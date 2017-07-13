@@ -22,7 +22,6 @@ INSTALLED_APPS = (
     'rest_framework',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
     'rules.apps.AutodiscoverRulesConfig',
     'easy_thumbnails',
     'ckeditor',

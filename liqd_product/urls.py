@@ -37,7 +37,6 @@ urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
 
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^accounts/social/', include('allauth.socialaccount.urls')),
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),
