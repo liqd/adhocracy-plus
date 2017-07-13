@@ -17,7 +17,7 @@
                 {% endif %}
                 {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
                 {% if user_may_change %}
-                    <a href="{% url 'dashboard-project-edit' project.slug %}" class="button button--light">{% trans 'Edit' %}</a>
+                    <a href="" class="button button--light">{% trans 'Edit' %}</a>
                 {% endif %}
             </div>
         </div>
@@ -67,7 +67,7 @@
     aria-expanded="false">
     <div class="l-wrapper">
         <div class="l-center-8">
-            {{ project.information | richtext }}
+            {{ project.information|safe }}
         </div>
     </div>
 </div>
@@ -91,7 +91,7 @@
     <div class="l-wrapper">
         <div class="l-center-8">
             {% if project.result %}
-                {{ project.result | richtext }}
+                {{ project.result|safe}}
             {% else %}
                 {% trans 'No results yet.' %}
             {% endif %}

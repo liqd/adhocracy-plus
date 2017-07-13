@@ -1,40 +1,26 @@
-{% load contrib_tags i18n offlineevent_tags static %}
+{% load contrib_tags i18n static %}
 
 {% with project.active_phase as active_phase %}
 
-{% phases_and_offlineevents_sorted project as phases_and_events %}
-{% with phases_and_events|length as phase_event_count %}
-{% if phase_event_count > 1 %}
+{% if project.phases|length > 1 %}
 <script src="{% static 'js/popover.js' %}"></script>
 <div class="phase-list">
     <ul>
-        {% for obj in phases_and_events %}
-            {% if obj|is_phase %}
-                <li>
-                    <a
-                            href="{{ project.get_absolute_url }}"
-                            class="phase-list__button {% if obj == active_phase %} is-active{% endif %}"
-                    >
-                        {{ obj.name }}
-                    </a>
-                </li>
-            {% else %}
-                <li>
-                    <a
-                        href="{{ obj.get_absolute_url }}"
-                        class="phase-list__button"
-                    >
-                        {{ obj.name }}
-                    </a>
-                </li>
-            {% endif %}
+        {% for obj in project.phases %}
+            <li>
+                <a
+                        href="{{ project.get_absolute_url }}"
+                        class="phase-list__button {% if obj == active_phase %} is-active{% endif %}"
+                >
+                    {{ obj.name }}
+                </a>
+            </li>
         {% endfor %}
     </ul>
 </div>
 {% endif %}
 {% endwith %}
 
-{% if not object|is_offlineevent %}
 <div class="phase-info">
     <div class="l-center-6">
         {% if active_phase %}
@@ -55,6 +41,4 @@
         {% endif %}
     </div>
 </div>
-{% endif %}
 
-{% endwith %}
