@@ -1,0 +1,38 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-declaration-strict-value"
+  ],
+  "rules": {
+    "font-family-name-quotes": "always-unless-keyword",
+
+    "value-keyword-case": "lower",
+    "value-no-vendor-prefix": true,
+
+    "block-opening-brace-newline-after": "always",
+
+    "selector-attribute-quotes": "always",
+    "selector-max-id": 0,
+    "selector-no-vendor-prefix": true,
+    "selector-pseudo-element-colon-notation": "single",
+    "no-duplicate-selectors": true,
+    "selector-max-specificity": "0,3,1",
+
+    "at-rule-empty-line-before": [ "always", {
+      "except": ["first-nested"],
+      "ignore": [
+        "blockless-after-blockless",
+        "after-comment"
+      ]
+    }],
+
+    "indentation": 4,
+    "max-nesting-depth": 2,
+
+    "scale-unlimited/declaration-strict-value": ["/color/", {
+      "ignoreKeywords": ["inherit", "transparent"]
+    }],
+
+    "declaration-empty-line-before": null
+  }
+}
