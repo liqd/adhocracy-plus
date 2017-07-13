@@ -1,0 +1,36 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Register" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "Register" %}</h1>
+
+    <p>{% blocktrans %}Already have an account? Then please
+        <a href="{{ login_url }}">login</a>.{% endblocktrans %}</p>
+
+    <form id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {{ form.non_field_errors }}
+        {% csrf_token %}
+        {% for field in form %}
+            {% if not forloop.last %}
+                {% include 'liqd_product_contrib/includes/form_field.html' with field=field %}
+            {% endif %}
+        {% endfor %}
+        <div class="form-check">
+            <label class="form-check__label">
+                {{ form.terms_of_use }}
+                {% blocktrans with terms_of_use_url="/terms-of-use" %}
+                I accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a>.
+                {% endblocktrans %}
+            </label>
+            {{ form.terms_of_use.errors }}
+        </div>
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <div class="u-spacer-bottom">
+            <button class="button button--primary" type="submit">{% trans "Register" %}</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "account/base.html" %}
+{% load i18n account  %}
+
+{% block head_title %}{% trans "Login" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "Login" %}</h1>
+
+    <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktrans %}</p>
+
+    <form method="POST" action="{% url 'account_login' %}" class="u-spacer-bottom-double">
+        {{ form.non_field_errors }}
+        {% csrf_token %}
+
+        <div class="form-group form-group--narrow">
+            {% include 'liqd_product_contrib/includes/form_field.html' with field=form.login %}
+            {% include 'liqd_product_contrib/includes/form_field.html' with field=form.password %}
+            {% include 'liqd_product_contrib/includes/form_checkbox_field.html' with field=form.remember %}
+        </div>
+
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+
+        <div class="u-spacer-bottom">
+            <button class="button button--primary" type="submit">{% trans "Login" %}</button>
+            <a class="button button--link" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+        </div>
+    </form>
+{% endblock %}

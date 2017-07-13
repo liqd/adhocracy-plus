@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{% block head_title %}{% endblock %} &mdash; {{ block.super }}{% endblock %}
+
+{% block super_content %}
+<div class="l-wrapper">
+    <div class="l-center-6">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

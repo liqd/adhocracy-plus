@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Error' %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="l-wrapper">
+    <div class="l-center-6">
+        <h1>{% block error_status %}{% endblock %}</h1>
+        {% block error_description %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

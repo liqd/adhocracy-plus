@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %}_LIQD_PRODUCT_{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor.css' %}" />
+    {% block extra_css %}
+        {# Override this in templates to add extra stylesheets #}
+    {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'vendor.js' %}"></script>
+    <script src="{% static 'adhocracy4.js' %}"></script>
+    <meta name="viewport" content="width=device-width" />
+    {% if request.user.is_authenticated %}
+    <script>
+        // if this was opened from an embed for login, notify it about success
+        if (window.opener) {
+            window.opener.postMessage(
+                JSON.stringify({name: "popup-close",}),
+                location.origin
+            )
+        }
+    </script>
+    {% endif %}
+    {% block header %}{% endblock %}
+
+    {% block extra_js %}
+        {# Override this in templates to add extra javascript #}
+    {% endblock %}
+</head>
+<body>
+    <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
+
+    {% include 'header.html' %}
+    <main id="main">
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="alert alert--dialog-box {{ message.tags }}">
+                <div class="l-wrapper">
+                    {{ message }}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% block super_content %}
+            {% block content %}{% endblock %}
+        {% endblock %}
+
+    </main>
+
+    <aside class="fixed-side">
+        <a href="/feedback/" class="button button--primary button--attached-top">{% trans 'Feedback' %}</a>
+    </aside>
+
+    {% include 'footer.html' %}
+</body>
+</html>

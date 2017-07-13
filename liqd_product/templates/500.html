@@ -1,0 +1,8 @@
+{% extends "base_errors.html" %}
+{% load i18n %}
+
+{% block error_status %}500{% endblock %}
+
+{% block error_description %}
+    <p>{% trans 'Internal server error.' %}</p>
+{% endblock %}
