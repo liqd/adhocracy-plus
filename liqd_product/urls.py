@@ -38,7 +38,6 @@ urlpatterns = [
 
     url(r'^accounts/', include('allauth.urls')),
 
-    url(r'^projects/', include('apps.projects.urls')),
     url(r'^account/', include('apps.account.urls')),
 
     url(r'^api/', include(ct_router.urls)),
