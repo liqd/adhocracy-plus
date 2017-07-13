@@ -43,6 +43,8 @@ INSTALLED_APPS = (
 
     'apps.users.apps.Config',
     'apps.organisations.apps.Config',
+
+    'apps.contrib.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
