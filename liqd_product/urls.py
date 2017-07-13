@@ -38,6 +38,8 @@ urlpatterns = [
 
     url(r'^accounts/', include('allauth.urls')),
 
+    url(r'^account/', include('apps.account.urls')),
+
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),
     url(r'^api/', include(orga_router.urls)),
