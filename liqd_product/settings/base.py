@@ -41,15 +41,19 @@ INSTALLED_APPS = (
     'adhocracy4.actions.apps.ActionsConfig',
     'adhocracy4.follows.apps.FollowsConfig',
 
+    # General components that define models or helpers
     'apps.users.apps.Config',
     'apps.organisations.apps.Config',
     'apps.contrib.apps.Config',
     'apps.moderatorfeedback.apps.Config',
 
+    # General apps containing views
     'apps.account.apps.Config',
     'apps.embed.apps.Config',
     'apps.projects.apps.Config',
 
+    # Apps defining phases
+    'apps.extprojects.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
