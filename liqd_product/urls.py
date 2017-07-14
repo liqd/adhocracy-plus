@@ -42,6 +42,7 @@ urlpatterns = [
 
     # Urls within the context of a project
     url(r'^embed/', include('apps.embed.urls')),
+    url(r'^projects/', include('adhocracy4.projects.urls')),
 
     # API urls
     url(r'^api/', include(ct_router.urls)),
