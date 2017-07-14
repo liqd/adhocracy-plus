@@ -34,12 +34,16 @@ ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
 
 
 urlpatterns = [
+    # General platform urls
     url(r'^django-admin/', include(admin.site.urls)),
 
     url(r'^accounts/', include('allauth.urls')),
-
     url(r'^account/', include('apps.account.urls')),
 
+    # Urls within the context of a project
+    url(r'^embed/', include('apps.embed.urls')),
+
+    # API urls
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),
     url(r'^api/', include(orga_router.urls)),

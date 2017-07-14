@@ -44,10 +44,12 @@ INSTALLED_APPS = (
     'apps.users.apps.Config',
     'apps.organisations.apps.Config',
     'apps.contrib.apps.Config',
+    'apps.moderatorfeedback.apps.Config',
 
     'apps.account.apps.Config',
-    'apps.moderatorfeedback.apps.Config',
+    'apps.embed.apps.Config',
     'apps.projects.apps.Config',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,6 +62,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+
+    'apps.embed.middleware.AjaxPathMiddleware',
 )
 
 SITE_ID = 1
