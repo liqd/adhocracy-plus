@@ -6,6 +6,8 @@ Participation platform by Liquid Democracy
 
 ## Codebase
 
-This project is based on https://github.com/liqd/a4-meinberlin/ 
+This project is based on <https://github.com/liqd/a4-meinberlin/>
 
-It has been derived from commit [7de114193f1eb4d016a67603cc860476c2463714](https://github.com/liqd/a4-meinberlin/commit/7de114193f1eb4d016a67603cc860476c2463714) on 13.07.2017 
+It has been derived from commit
+[7de114193f1eb4d016a67603cc860476c2463714](https://github.com/liqd/a4-meinberlin/commit/7de114193f1eb4d016a67603cc860476c2463714)
+on 13.07.2017
