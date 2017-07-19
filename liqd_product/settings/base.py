@@ -54,7 +54,7 @@ INSTALLED_APPS = (
     'apps.projects.apps.Config',
 
     # Apps defining phases
-    'apps.extprojects.apps.Config',
+    'meinberlin.apps.extprojects.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
