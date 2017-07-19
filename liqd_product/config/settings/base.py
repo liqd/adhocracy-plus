@@ -3,7 +3,8 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONFIG_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(CONFIG_DIR)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Application definition
@@ -42,14 +43,14 @@ INSTALLED_APPS = (
     'adhocracy4.follows.apps.FollowsConfig',
 
     # General components that define models or helpers
-    'apps.users.apps.Config',
-    'apps.organisations.apps.Config',
-    'apps.contrib.apps.Config',
+    'liqd_product.apps.users.apps.Config',
+    'liqd_product.apps.organisations.apps.Config',
+    'liqd_product.apps.contrib.apps.Config',
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.moderatorfeedback.apps.Config',
 
     # General apps containing views
-    'apps.account.apps.Config',
+    'liqd_product.apps.account.apps.Config',
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.exports.apps.Config',
     'meinberlin.apps.projects.apps.Config',
@@ -175,7 +176,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-ACCOUNT_ADAPTER = 'apps.users.adapters.AccountAdapter'
+ACCOUNT_ADAPTER = 'liqd_product.apps.users.adapters.AccountAdapter'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_EMAIL_REQUIRED = True
@@ -185,7 +186,7 @@ ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 10
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
-ACCOUNT_SIGNUP_FORM_CLASS = 'apps.users.forms.TermsSignupForm'
+ACCOUNT_SIGNUP_FORM_CLASS = 'liqd_product.apps.users.forms.TermsSignupForm'
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_URL = 'account_login'
