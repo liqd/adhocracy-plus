@@ -50,7 +50,7 @@ INSTALLED_APPS = (
     # General apps containing views
     'apps.account.apps.Config',
     'meinberlin.apps.embed.apps.Config',
-    'apps.exports.apps.Config',
+    'meinberlin.apps.exports.apps.Config',
     'apps.projects.apps.Config',
 
     # Apps defining phases

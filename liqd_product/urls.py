@@ -42,7 +42,7 @@ urlpatterns = [
 
     # Urls within the context of a project
     url(r'^embed/', include('meinberlin.apps.embed.urls')),
-    url(r'^exports/', include('apps.exports.urls')),
+    url(r'^exports/', include('meinberlin.apps.exports.urls')),
     url(r'^projects/', include('adhocracy4.projects.urls')),
 
     # API urls
