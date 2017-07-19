@@ -125,12 +125,3 @@ class RatingFactory(factory.django.DjangoModelFactory):
 
     value = 1
     creator = factory.SubFactory(UserFactory)
-
-
-class ModeratorStatementFactory(factory.django.DjangoModelFactory):
-
-    class Meta:
-        model = 'liqd_product_moderatorfeedback.ModeratorStatement'
-
-    statement = factory.Faker('text')
-    creator = factory.SubFactory(UserFactory)
