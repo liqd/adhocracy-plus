@@ -49,7 +49,7 @@ INSTALLED_APPS = (
 
     # General apps containing views
     'apps.account.apps.Config',
-    'apps.embed.apps.Config',
+    'meinberlin.apps.embed.apps.Config',
     'apps.exports.apps.Config',
     'apps.projects.apps.Config',
 
@@ -68,7 +68,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
 
-    'apps.embed.middleware.AjaxPathMiddleware',
+    'meinberlin.apps.embed.middleware.AjaxPathMiddleware',
 )
 
 SITE_ID = 1

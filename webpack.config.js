@@ -35,9 +35,6 @@ module.exports = {
     'leaflet.draw': [
       'leaflet-draw',
       'leaflet-draw/dist/leaflet.draw.css'
-    ],
-    embed: [
-      './liqd_product/assets/js/embed.js'
     ]
   },
   devtool: 'eval',
