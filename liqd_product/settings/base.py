@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     'apps.account.apps.Config',
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.exports.apps.Config',
-    'apps.projects.apps.Config',
+    'meinberlin.apps.projects.apps.Config',
 
     # Apps defining phases
     'meinberlin.apps.extprojects.apps.Config',
