@@ -45,7 +45,7 @@ INSTALLED_APPS = (
     'apps.users.apps.Config',
     'apps.organisations.apps.Config',
     'apps.contrib.apps.Config',
-    'apps.moderatorfeedback.apps.Config',
+    'meinberlin.apps.moderatorfeedback.apps.Config',
 
     # General apps containing views
     'apps.account.apps.Config',
