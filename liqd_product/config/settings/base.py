@@ -75,7 +75,7 @@ MIDDLEWARE_CLASSES = (
 
 SITE_ID = 1
 
-ROOT_URLCONF = 'liqd_product.urls'
+ROOT_URLCONF = 'liqd_product.config.urls'
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
@@ -97,7 +97,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'liqd_product.wsgi.application'
+WSGI_APPLICATION = 'liqd_product.config.wsgi.application'
 
 
 # Database
