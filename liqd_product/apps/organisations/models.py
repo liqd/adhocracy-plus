@@ -2,6 +2,8 @@ from autoslug import AutoSlugField
 from django.conf import settings
 from django.db import models
 
+from liqd_product.apps.partners.models import Partner
+
 
 class Organisation(models.Model):
     slug = AutoSlugField(populate_from='name', unique=True)
@@ -9,6 +11,10 @@ class Organisation(models.Model):
     initiators = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         blank=True,
+    )
+    partner = models.ForeignKey(
+        Partner,
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):

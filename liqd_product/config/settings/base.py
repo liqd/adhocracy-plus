@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     # General components that define models or helpers
     'liqd_product.apps.contrib.apps.Config',
     'liqd_product.apps.organisations.apps.Config',
+    'liqd_product.apps.partners.apps.Config',
     'liqd_product.apps.users.apps.Config',
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.moderatorfeedback.apps.Config',
