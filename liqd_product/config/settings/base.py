@@ -77,6 +77,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
 
+    'liqd_product.apps.partners.middleware.PartnerMiddleware',
     'meinberlin.apps.embed.middleware.AjaxPathMiddleware',
 )
 
@@ -290,3 +291,5 @@ A4_AUTO_FOLLOWABLES = (
 A4_MAP_BASEURL = 'https://{s}.tile.openstreetmap.org/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
+
+CONTACT_EMAIL = 'support-liqd-product@liqd.de'
