@@ -29,23 +29,27 @@ INSTALLED_APPS = (
     'ckeditor_uploader',
     'capture_tag',
 
-    'adhocracy4.organisations.apps.OrganisationsConfig',
-    'adhocracy4.projects.apps.ProjectsConfig',
+    # Temporary Compatibility layer for a4-meinberlin
+    'liqd_product.apps.compatibility.apps.Config',
+
+    # General adhocracy 4 components
+    'adhocracy4.actions.apps.ActionsConfig',
+    'adhocracy4.categories.apps.CategoriesConfig',
+    'adhocracy4.comments.apps.CommentsConfig',
+    'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.images.apps.ImagesConfig',
-    'adhocracy4.phases.apps.PhasesConfig',
+    'adhocracy4.maps.apps.MapsConfig',
     'adhocracy4.modules.apps.ModulesConfig',
+    'adhocracy4.organisations.apps.OrganisationsConfig',
+    'adhocracy4.phases.apps.PhasesConfig',
+    'adhocracy4.projects.apps.ProjectsConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
     'adhocracy4.reports.apps.ReportsConfig',
-    'adhocracy4.comments.apps.CommentsConfig',
-    'adhocracy4.categories.apps.CategoriesConfig',
-    'adhocracy4.maps.apps.MapsConfig',
-    'adhocracy4.actions.apps.ActionsConfig',
-    'adhocracy4.follows.apps.FollowsConfig',
 
     # General components that define models or helpers
-    'liqd_product.apps.users.apps.Config',
-    'liqd_product.apps.organisations.apps.Config',
     'liqd_product.apps.contrib.apps.Config',
+    'liqd_product.apps.organisations.apps.Config',
+    'liqd_product.apps.users.apps.Config',
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.moderatorfeedback.apps.Config',
 
@@ -53,9 +57,11 @@ INSTALLED_APPS = (
     'liqd_product.apps.account.apps.Config',
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.exports.apps.Config',
+    'meinberlin.apps.offlineevents.apps.Config',
     'meinberlin.apps.projects.apps.Config',
 
     # Apps defining phases
+    'meinberlin.apps.ideas.apps.Config',
     'meinberlin.apps.extprojects.apps.Config',
 )
 
@@ -257,25 +263,28 @@ A4_ORGANISATIONS_MODEL = 'liqd_product_organisations.Organisation'
 
 A4_RATEABLES = (
     ('a4comments', 'comment'),
+    ('meinberlin_ideas', 'idea'),
 )
 
 A4_COMMENTABLES = (
     ('a4comments', 'comment'),
+    ('meinberlin_ideas', 'idea'),
 )
 
 A4_REPORTABLES = (
     ('a4comments', 'comment'),
+    ('meinberlin_ideas', 'idea'),
 )
 
 A4_ACTIONABLES = (
     ('a4comments', 'comment'),
+    ('meinberlin_ideas', 'idea'),
 )
 
 A4_AUTO_FOLLOWABLES = (
     ('a4comments', 'comment'),
+    ('meinberlin_ideas', 'idea'),
 )
-
-ACTION_TYPES = {}
 
 A4_MAP_BASEURL = 'https://{s}.tile.openstreetmap.org/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
