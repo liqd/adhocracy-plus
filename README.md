@@ -2,7 +2,7 @@
 
 Participation platform by Liquid Democracy
 
-[![Build Status](https://travis-ci.org/liqd/liqd-product.svg?branch=master)](https://travis-ci.org/liqd/liqd-product)
+[![Build Status](https://travis-ci.org/liqd/a4-product.svg?branch=master)](https://travis-ci.org/liqd/a4-product)
 
 ## Codebase
 
