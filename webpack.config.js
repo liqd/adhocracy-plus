@@ -18,7 +18,7 @@ module.exports = {
       'moment',
       'moment/locale/de.js',
       'react',
-      'react-addons-update',
+      'immutability-helper',
       'react-dom',
       'react-flip-move',
       'shariff',
@@ -99,11 +99,6 @@ module.exports = {
         from: './liqd_product/assets/images/**/*',
         to: 'images/',
         flatten: true
-      },
-      {
-        from: './liqd_product/assets/info',
-        to: 'info/',
-        flatten: false
       },
       {
         from: './liqd_product/assets/js/popover.js',

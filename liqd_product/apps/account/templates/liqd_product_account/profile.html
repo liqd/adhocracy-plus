@@ -9,9 +9,9 @@
 <div class="general-form">
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post" class="l-col-2">
         {% csrf_token %}
-        {% include 'liqd_product_contrib/includes/form_field.html' with field=form.username %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.username %}
 
-        {% include 'liqd_product_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
+        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
 
         <div class="u-spacer-bottom">
             <button type="submit" class="button button--primary">{% trans 'Save changes'%}</button>
