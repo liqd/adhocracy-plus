@@ -10,6 +10,8 @@ from PIL import Image
 from adhocracy4 import phases
 from adhocracy4.test import factories
 
+from .partners import factories as partner_factories
+
 
 class UserFactory(factory.django.DjangoModelFactory):
 
@@ -73,6 +75,8 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
         django_get_or_create = ('name',)
 
     name = factory.Faker('company')
+
+    partner = factory.SubFactory(partner_factories.PartnerFactory)
 
     @factory.post_generation
     def initiators(self, create, extracted, **kwargs):
