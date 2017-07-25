@@ -14,7 +14,7 @@ from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
-from liqd_product.apps.partners import partner_patterns
+from liqd_product.apps.partners.urlresolvers import partner_patterns
 from liqd_product.apps.users.decorators import user_is_project_admin
 
 js_info_dict = {
@@ -40,14 +40,13 @@ urlpatterns = [
 
     url(r'^accounts/', include('allauth.urls')),
     url(r'^account/', include('liqd_product.apps.account.urls')),
+    url(r'^embed/', include('meinberlin.apps.embed.urls')),
     url(r'^exports/', include('meinberlin.apps.exports.urls')),
 
     # Urls within the context of a partner
     url(r'^(?P<partner_slug>[-\w_]+)/', include(
         partner_patterns(
             url(r'^projects/', include('adhocracy4.projects.urls')),
-            url(r'^embed/', include('meinberlin.apps.embed.urls')),
-
             url(r'^ideas/', include(r'meinberlin.apps.ideas.urls',
                                     namespace='meinberlin_ideas')),
         )

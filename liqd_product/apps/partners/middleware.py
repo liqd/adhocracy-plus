@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 
-from . import set_partner
 from .models import Partner
+from .urlresolvers import set_partner
 
 
 class PartnerMiddleware:

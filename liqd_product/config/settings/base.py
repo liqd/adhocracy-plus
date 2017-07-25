@@ -10,6 +10,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = (
+    'liqd_product.apps.django_overwrites.apps.Config',
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -106,6 +107,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'liqd_product.config.wsgi.application'
+
+REVERSE_METHOD = 'liqd_product.apps.partners.urlresolvers.reverse'
 
 
 # Database
