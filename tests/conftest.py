@@ -5,8 +5,14 @@ from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
 from adhocracy4.test import factories as a4_factories
+from liqd_product.apps.django_overwrites.urlresolvers import patch_reverse
 
 from . import factories
+
+
+def pytest_configure(config):
+    patch_reverse()
+
 
 register(factories.UserFactory)
 register(factories.UserFactory, 'user2')
