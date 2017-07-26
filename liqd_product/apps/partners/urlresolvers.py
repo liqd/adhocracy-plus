@@ -3,9 +3,9 @@ from django.core.urlresolvers import RegexURLResolver
 
 from liqd_product.apps.django_overwrites.urlresolvers import django_reverse
 
-# TODO: Should this be thread locals?
+from . import get_partner
+
 _partner_pattern_names = set()
-_partner = None
 
 
 def partner_patterns(*pattern_list):
@@ -39,12 +39,3 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
             kwargs['partner_slug'] = partner_slug
 
     return django_reverse(viewname, urlconf, args, kwargs, prefix, current_app)
-
-
-def set_partner(partner):
-    global _partner
-    _partner = partner
-
-
-def get_partner():
-    return _partner
