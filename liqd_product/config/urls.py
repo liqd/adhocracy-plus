@@ -44,13 +44,11 @@ urlpatterns = [
     url(r'^exports/', include('meinberlin.apps.exports.urls')),
 
     # Urls within the context of a partner
-    url(r'^(?P<partner_slug>[-\w_]+)/', include(
-        partner_patterns(
-            url(r'^projects/', include('adhocracy4.projects.urls')),
-            url(r'^ideas/', include(r'meinberlin.apps.ideas.urls',
-                                    namespace='meinberlin_ideas')),
-        )
-    )),
+    partner_patterns(
+        url(r'^projects/', include('adhocracy4.projects.urls')),
+        url(r'^ideas/', include(r'meinberlin.apps.ideas.urls',
+                                namespace='meinberlin_ideas')),
+    ),
 
     # API urls
     url(r'^api/', include(ct_router.urls)),
