@@ -14,8 +14,8 @@ def patch_reverse():
 
     Monkey-patches the urlresolvers.reverse function. Will not patch twice.
     """
+    global django_reverse, django_reverse_lazy
     if hasattr(settings, 'REVERSE_METHOD') and django_reverse is None:
-        global django_reverse, django_reverse_lazy
         django_reverse = urlresolvers.reverse
         django_reverse_lazy = urlresolvers.reverse_lazy
 
