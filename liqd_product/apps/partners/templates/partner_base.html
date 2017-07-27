@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load userindicator static i18n %}
+
+{% block after_header %}
+<img src="{{partner.logo}}" alt="Logo" />
+            {{partner.name}}
+<header class="header">
+    <div class="l-wrapper">
+        <nav class="nav">
+            <a href="/" class="nav__logo" rel="home">
+                <img src="http://via.placeholder.com/303x303" alt="_LIQD_PRODUCT_"/>
+            </a>
+            <button class="button button--light nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+                {% trans 'Menu' %}
+            </button>
+            <div class="nav__menu-wrapper collapse" id="menu-collapse">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">Beteiligen</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">Blog</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">Veranstaltungen</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">Über uns</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+{% endblock %}
+
