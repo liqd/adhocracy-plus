@@ -29,6 +29,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'ckeditor_uploader',
     'capture_tag',
+    'background_task',
 
     # Temporary Compatibility layer for a4-meinberlin
     'liqd_product.apps.compatibility.apps.Config',
