@@ -1,0 +1,18 @@
+{% extends 'partner_base.html' %}
+
+{% block title %}{{partner.name}}{% endblock %}
+
+{% block content %}
+    <div class="hero-unit">
+        <img src="{{partner.image}}">
+        {{partner.slogan}}
+    </div>
+
+    <div class="l-col-8-0">
+        {{partner.slogan}}
+    </div>
+
+    <div class="l-col-4-8">
+        {{partner.description}}
+    </div>
+{% endblock %}
