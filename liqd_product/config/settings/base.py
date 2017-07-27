@@ -10,6 +10,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = (
+    'liqd_product.apps.django_overwrites.apps.Config',
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,6 +50,7 @@ INSTALLED_APPS = (
     # General components that define models or helpers
     'liqd_product.apps.contrib.apps.Config',
     'liqd_product.apps.organisations.apps.Config',
+    'liqd_product.apps.partners.apps.Config',
     'liqd_product.apps.users.apps.Config',
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.moderatorfeedback.apps.Config',
@@ -76,6 +78,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
 
+    'liqd_product.apps.partners.middleware.PartnerMiddleware',
     'meinberlin.apps.embed.middleware.AjaxPathMiddleware',
 )
 
@@ -104,6 +107,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'liqd_product.config.wsgi.application'
+
+REVERSE_METHOD = 'liqd_product.apps.partners.urlresolvers.reverse'
 
 
 # Database
