@@ -5,6 +5,7 @@ from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
 from adhocracy4.test import factories as a4_factories
+from adhocracy4.test.helpers import patch_background_task_decorator
 from liqd_product.apps.django_overwrites.urlresolvers import patch_reverse
 
 from . import factories
@@ -13,6 +14,7 @@ from .partners import factories as partner_factories
 
 def pytest_configure(config):
     patch_reverse()
+    patch_background_task_decorator()
 
 
 register(factories.UserFactory)
