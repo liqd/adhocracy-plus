@@ -13,8 +13,11 @@ from .partners import factories as partner_factories
 
 
 def pytest_configure(config):
+    # Patch the reverse function.
+    # This is required as modules are imported by pytest prior to app init
     patch_reverse()
-    patch_background_task_decorator()
+    # Patch email background_task decorators for all tests
+    patch_background_task_decorator('adhocracy4.emails.tasks')
 
 
 register(factories.UserFactory)
