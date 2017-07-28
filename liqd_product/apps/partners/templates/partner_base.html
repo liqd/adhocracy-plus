@@ -3,11 +3,11 @@
 {% load static i18n thumbnail %}
 
 {% block after_header %}
-<header class="header">
+<header class="header header--partner">
     <div class="l-wrapper">
         <nav class="nav">
-            <a href="/" class="nav__logo" rel="home">
-                <img src="{% thumbnail partner.logo '300x300' %}" width="150" height="150" alt="{{ partner.name }}" />
+            <a href="/" class="header__logo-link" rel="home">
+                <img src="{% thumbnail partner.logo '0x160' %}" height="80" alt="{{ partner.name }}" class="header__logo-img" />
                 <span aria-hidden="true">{{ partner.name }}</span>
             </a>
             <button class="button button--light nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse">

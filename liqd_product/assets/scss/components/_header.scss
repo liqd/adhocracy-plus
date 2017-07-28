@@ -1,6 +1,16 @@
 .header--platform {
     background-color: $text-color;
     color: contrast-color($text-color);
+
+    .nav {
+        padding: 0;
+    }
+}
+
+.header--partner {
+    .nav {
+        align-items: flex-end;
+    }
 }
 
 .header__brand a {
@@ -9,4 +19,14 @@
 
 .header__brand__partner {
     color: contrast-color($text-color, $text-color, $text-secondary-color);
+}
+
+.header__logo-link {
+    font-size: $font-size-xl;
+    font-weight: 800;
+}
+
+.header__logo-img {
+    height: 80px;
+    width: auto;
 }
