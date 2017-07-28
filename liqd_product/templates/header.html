@@ -1,12 +1,16 @@
 {% load userindicator static i18n %}
 
-<header class="header">
+<header class="header header--platform">
     <div class="l-wrapper">
         <nav class="nav">
-            <div class="nav__menu-wrapper">
-                <div class="header__user">
-                    {% userindicator %}
-                </div>
+            <div class="header__brand">
+            {% spaceless %}
+                <a href="/" class="nav__link">Beteiligen.in</a>
+                {% if partner %}<span class="header__brand__partner">/{{ partner.name }}</span>{% endif %}
+            {% endspaceless %}
+            </div>
+            <div class="header__user">
+                {% userindicator %}
             </div>
         </nav>
     </div>
