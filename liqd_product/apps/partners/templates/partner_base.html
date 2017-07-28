@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 
-{% load userindicator static i18n %}
+{% load static i18n thumbnail %}
 
 {% block after_header %}
-<img src="{{partner.logo}}" alt="Logo" />
-            {{partner.name}}
 <header class="header">
     <div class="l-wrapper">
         <nav class="nav">
             <a href="/" class="nav__logo" rel="home">
-                <img src="http://via.placeholder.com/303x303" alt="_LIQD_PRODUCT_"/>
+                <img src="{% thumbnail partner.logo '300x300' %}" width="150" height="150" alt="{{ partner.name }}" />
+                <span aria-hidden="true">{{ partner.name }}</span>
             </a>
             <button class="button button--light nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse">
                 <i class="fa fa-bars" aria-hidden="true"></i>
