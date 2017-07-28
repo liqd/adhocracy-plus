@@ -1,9 +1,25 @@
 .header--platform {
+    padding: 0.4em 0;
     background-color: $text-color;
+
+    font-size: $font-size-sm;
     color: contrast-color($text-color);
 
     .nav {
         padding: 0;
+    }
+
+    .nav__item {
+        border-left: 1px solid $border-color;
+    }
+
+    .nav__link {
+        display: inline-block;
+        color: contrast-color($text-color);
+    }
+
+    .dropdown {
+        margin-bottom: 0;
     }
 }
 

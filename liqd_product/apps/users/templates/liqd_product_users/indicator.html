@@ -1,66 +1,52 @@
 {% load i18n %}
 
-<div class="dropdown dropdown--right">
+{% if request.user.is_authenticated %}
+    <div class="dropdown">
+        <button
+                type="button"
+                class=""
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                id="user-actions"
+        >
+            {{ request.user.username }}
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="user-actions">
+            <li>
+                <a class="dropdown-item" href="{% url 'account' %}">{% trans "Account Settings" %}</a>
+            </li>
 
-    {% if request.user.is_authenticated %}
+            {% for organisation in request.user.organisations %}
 
-    <button
-            type="button"
-            class="dropdown-toggle button button--light"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            id="user-actions"
-    >
-        {{ request.user.username }}
-        <i class="fa fa-caret-down" aria-hidden="true"></i>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="user-actions">
-        <li>
-            <a class="dropdown-item" href="{% url 'account' %}">{% trans "Account Settings" %}</a>
-        </li>
+            <li>
+                <a class="dropdown-item" href="#">
+                    {{ organisation.name }}
+                </a>
+            </li>
 
-        {% for organisation in request.user.organisations %}
+            {% endfor %}
 
-        <li>
-            <a class="dropdown-item" href="#">
-                {{ organisation.name }}
-            </a>
-        </li>
-
-        {% endfor %}
-
-        <li>
-            <form class="form--inline" action="{% url 'account_logout' %}" method="post" aria-label="{% trans 'Logout' %}">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{ redirect_field_value }}">
-                <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
-            </form>
-        </li>
-    </ul>
-
-    {% else %}
-
-    <button
-            type="button"
-            class="dropdown-toggle button button--light"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            id="login-register"
-    >
-        {% trans "Login" %}/{% trans "Register" %}
-        <i class="fa fa-caret-down" aria-hidden="true"></i>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="login-register">
-        <li>
-            <a class="dropdown-item" href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
-        </li>
-        <li>
-            <a class="dropdown-item" href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a>
-        </li>
-    </ul>
-
-    {% endif %}
-</div>
+            <li>
+                <form class="form--inline" action="{% url 'account_logout' %}" method="post" aria-label="{% trans 'Logout' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ redirect_field_value }}">
+                    <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+{% else %}
+    <div class="nav__menu-wrapper collapse" id="menu-collapse">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a class="nav__link" href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link" href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a>
+            </li>
+        </ul>
+    </div>
+{% endif %}
 
