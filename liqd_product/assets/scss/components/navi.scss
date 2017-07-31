@@ -1,0 +1,44 @@
+.navi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25em 0;
+}
+
+.navi__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    @media screen and (min-width: $breakpoint) {
+        display: inline-block;
+    }
+}
+
+.navi__item {
+    display: block;
+
+    @media screen and (min-width: $breakpoint) {
+        display: inline-block;
+        padding: 0 (1.875em / 2);
+    }
+
+    :first-child > & {
+        padding-left: 0;
+    }
+}
+
+.navi__link {
+    font-weight: 600;
+    color: contrast-color($body-bg);
+}
+
+@media screen and (min-width: $breakpoint) {
+    .navi__menu-wrapper.collapse {
+        display: inline-block;
+    }
+
+    .navi__toggle {
+        display: none;
+    }
+}

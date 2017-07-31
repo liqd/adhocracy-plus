@@ -1,0 +1,48 @@
+.header--platform {
+    padding: 0.4em 0;
+    background-color: $text-color;
+
+    font-size: $font-size-sm;
+    color: contrast-color($text-color);
+
+    .nav {
+        padding: 0;
+    }
+
+    .nav__item {
+        border-left: 1px solid $border-color;
+    }
+
+    .nav__link {
+        display: inline-block;
+        color: contrast-color($text-color);
+    }
+
+    .dropdown {
+        margin-bottom: 0;
+    }
+}
+
+.header--partner {
+    .nav {
+        align-items: flex-end;
+    }
+}
+
+.header__brand a {
+    color: contrast-color($text-color);
+}
+
+.header__brand__partner {
+    color: contrast-color($text-color, $text-color, $text-secondary-color);
+}
+
+.header__logo-link {
+    font-size: $font-size-xl;
+    font-weight: 800;
+}
+
+.header__logo-img {
+    height: 80px;
+    width: auto;
+}
