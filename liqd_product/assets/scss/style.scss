@@ -16,6 +16,8 @@
 @import '~a4-meinberlin/meinberlin/assets/scss/layout';
 @import '~a4-meinberlin/meinberlin/assets/scss/form';
 
+@import 'layout';
+
 @import '~a4-meinberlin/meinberlin/assets/scss/components/action';
 @import '~a4-meinberlin/meinberlin/assets/scss/components/alert';
 @import '~a4-meinberlin/meinberlin/assets/scss/components/blocks';
@@ -55,10 +57,8 @@
 @import '~a4-meinberlin/meinberlin/assets/scss/components/tile';
 @import '~a4-meinberlin/meinberlin/assets/scss/components/upload';
 
+@import 'components/header';
+@import 'components/nav';
+
 @import '~a4-meinberlin/meinberlin/assets/scss/utility';
 @import '~a4-meinberlin/meinberlin/assets/scss/shame';
-
-@import "layout";
-
-@import "components/header";
-@import "components/nav";
