@@ -36,6 +36,7 @@
     <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
 
     {% include 'header.html' %}
+    {% block after_header %}{% endblock %}
     <main id="main">
 
         {% if messages %}
@@ -51,7 +52,9 @@
         {% endif %}
 
         {% block super_content %}
-            {% block content %}{% endblock %}
+            <div class="l-wrapper">
+                {% block content %}{% endblock %}
+            </div>
         {% endblock %}
 
     </main>
@@ -60,6 +63,7 @@
         <a href="/feedback/" class="button button--primary button--attached-top">{% trans 'Feedback' %}</a>
     </aside>
 
+    {% block before_footer %}{% endblock %}
     {% include 'footer.html' %}
 </body>
 </html>
