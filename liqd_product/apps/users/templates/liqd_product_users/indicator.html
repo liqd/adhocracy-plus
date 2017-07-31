@@ -38,13 +38,13 @@
         </ul>
     </div>
 {% else %}
-    <div class="nav__menu-wrapper collapse" id="menu-collapse">
-        <ul class="nav__list">
-            <li class="nav__item">
-                <a class="nav__link" href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
+    <div class="navi__menu-wrapper collapse" id="menu-collapse">
+        <ul class="navi__list">
+            <li class="navi__item">
+                <a class="navi__link" href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
             </li>
-            <li class="nav__item">
-                <a class="nav__link" href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a>
+            <li class="navi__item">
+                <a class="navi__link" href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a>
             </li>
         </ul>
     </div>

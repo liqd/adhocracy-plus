@@ -1,11 +1,11 @@
-.nav {
+.navi {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.25em 0;
 }
 
-.nav__list {
+.navi__list {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -15,7 +15,7 @@
     }
 }
 
-.nav__item {
+.navi__item {
     display: block;
 
     @media screen and (min-width: $breakpoint) {
@@ -28,17 +28,17 @@
     }
 }
 
-.nav__link {
+.navi__link {
     font-weight: 600;
     color: contrast-color($body-bg);
 }
 
 @media screen and (min-width: $breakpoint) {
-    .nav__menu-wrapper.collapse {
+    .navi__menu-wrapper.collapse {
         display: inline-block;
     }
 
-    .nav__toggle {
+    .navi__toggle {
         display: none;
     }
 }
