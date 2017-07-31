@@ -33,37 +33,39 @@
     {% endblock %}
 </head>
 <body>
-    <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
+    <div class="l-outer-wrapper">
+        <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
 
-    {% include 'header.html' %}
-    {% block after_header %}{% endblock %}
-    <main id="main">
+        {% include 'header.html' %}
+        {% block after_header %}{% endblock %}
+        <main id="main">
 
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li class="alert alert--dialog-box {{ message.tags }}">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li class="alert alert--dialog-box {{ message.tags }}">
+                    <div class="l-wrapper">
+                        {{ message }}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% block super_content %}
                 <div class="l-wrapper">
-                    {{ message }}
+                    {% block content %}{% endblock %}
                 </div>
-            </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+            {% endblock %}
 
-        {% block super_content %}
-            <div class="l-wrapper">
-                {% block content %}{% endblock %}
-            </div>
-        {% endblock %}
+        </main>
 
-    </main>
+        <aside class="fixed-side">
+            <a href="/feedback/" class="button button--primary button--attached-top">{% trans 'Feedback' %}</a>
+        </aside>
 
-    <aside class="fixed-side">
-        <a href="/feedback/" class="button button--primary button--attached-top">{% trans 'Feedback' %}</a>
-    </aside>
-
-    {% block before_footer %}{% endblock %}
-    {% include 'footer.html' %}
+        {% block before_footer %}{% endblock %}
+        {% include 'footer.html' %}
+    </div>
 </body>
 </html>
