@@ -1,11 +1,13 @@
 {% extends 'partner_base.html' %}
+{% load thumbnail %}
 
 {% block title %}{{partner.name}}{% endblock %}
 
 {% block content %}
-    <div class="hero-unit">
-        <img src="{{partner.image}}" alt="">
-        {{partner.slogan}}
+    <div class="hero-unit" style="background-image: url({% thumbnail partner.image "1500x610" crop %});">
+        <div class="hero-unit__title l-center-8">
+            {{ partner.slogan }}
+        </div>
     </div>
 
     <div class="l-col-8-0">
