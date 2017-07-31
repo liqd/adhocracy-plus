@@ -1,5 +1,5 @@
 {% extends 'partner_base.html' %}
-{% load thumbnail %}
+{% load thumbnail i18n %}
 
 {% block title %}{{partner.name}}{% endblock %}
 
@@ -19,6 +19,17 @@
             <div class="aside__block">
                 <h2 class="aside__block__title">Über diese Seite</h2>
                 <p>{{partner.description}}</p>
+            </div>
+
+            <div class="aside__block">
+                <h2 class="aside__block__title">{% trans 'Activity' %}</h2>
+                <div>
+                    {% for action in action_list %}
+                        {% include 'meinberlin_actions/includes/action.html' with action=action %}
+                    {% empty %}
+                        {% trans 'No activity yet. '%}
+                    {% endfor %}
+                </div>
             </div>
         </aside>
     </div>
