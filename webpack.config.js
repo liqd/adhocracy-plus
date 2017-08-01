@@ -64,7 +64,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract('style?sourceMap', '!css?sourceMap!postcss?sourceMap!sass?sourceMap')
       },
       {
-        test: /fonts\/.*\.(svg|woff2?|ttf|eot)(\?.*)?$/,
+        test: /fonts\/.*\.(svg|woff2?|ttf|eot|otf)(\?.*)?$/,
         loader: 'file-loader?name=fonts/[name].[ext]'
       },
       {
