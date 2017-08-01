@@ -1,8 +1,7 @@
-.footer--platform {
+.footer {
     padding: 0.4em 0;
-    background-color: $text-color;
-
     font-size: $font-size-sm;
+    background-color: $text-color;
     color: contrast-color($text-color);
 
     .navi {
@@ -11,10 +10,6 @@
 
     .navi__link {
         display: inline-block;
-        color: contrast-color($text-color);
-    }
-
-    .navi__comment {
-        margin: auto 0;
+        color: inherit;
     }
 }
