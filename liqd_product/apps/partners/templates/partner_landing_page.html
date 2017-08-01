@@ -17,12 +17,12 @@
 
         <aside class="l-col-4-8 aside">
             <div class="aside__block">
-                <h2 class="aside__block__title">{% trans 'About this page' %}</h2>
+                <h2 class="aside__block__title heading2">{% trans 'About this page' %}</h2>
                 <p>{{partner.description}}</p>
             </div>
 
             <div class="aside__block">
-                <h2 class="aside__block__title">{% trans 'Activity' %}</h2>
+                <h2 class="aside__block__title heading2">{% trans 'Activity' %}</h2>
                 <div>
                     {% for action in action_list %}
                         {% include 'meinberlin_actions/includes/action.html' with action=action %}
@@ -33,7 +33,7 @@
             </div>
 
             <div class="aside__block">
-                <h2 class="aside__block__title">{% trans 'Statistics' %}</h2>
+                <h2 class="aside__block__title heading2">{% trans 'Statistics' %}</h2>
                 <div class="l-tiles-2">
                     <div class="stats">
                         <div class="stats__number">{{ stats.users|intcomma }}</div>
