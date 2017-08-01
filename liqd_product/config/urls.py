@@ -48,7 +48,7 @@ urlpatterns = [
         url(r'^projects/', include('adhocracy4.projects.urls')),
         url(r'^ideas/', include(r'meinberlin.apps.ideas.urls',
                                 namespace='meinberlin_ideas')),
-        url(r'^$', include('liqd_product.apps.partners.urls'))
+        url(r'', include('liqd_product.apps.partners.urls'))
     ),
 
     # API urls
