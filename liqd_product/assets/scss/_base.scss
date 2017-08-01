@@ -1,0 +1,138 @@
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+p,
+address,
+blockquote,
+pre,
+table,
+dl,
+ul,
+ol,
+figure,
+fieldset {
+    margin-top: 0;
+    margin-bottom: $spacer;
+}
+
+html {
+    overflow-y: scroll;
+    background-color: $body-bg;
+    color: contrast-color($body-bg);
+    box-sizing: border-box;
+    font-family: $font-family-base;
+    line-height: 1.5;
+}
+
+body {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+    margin-top: 1.5 * $spacer;
+    font-weight: bold;
+}
+
+h1,
+.h1 {
+    font-size: $font-size-xxl;
+}
+
+h2,
+.h2 {
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h3,
+.h3 {
+    font-size: $font-size-xl;
+}
+
+h4,
+.h4 {
+    font-size: $font-size-lg;
+}
+
+h5,
+.h5 {
+    font-size: $font-size-sm;
+}
+
+h6,
+.h6 {
+    font-size: $font-size-xs;
+}
+
+a {
+    color: $link-color;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+        color: $link-hover-color;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+
+    .rich-text & {
+        height: auto !important;
+    }
+}
+
+a:not([href]) {
+    color: inherit;
+    text-decoration: inherit;
+
+    &:hover,
+    &:focus {
+        color: inherit;
+    }
+}
+
+textarea {
+    resize: vertical;
+}
+
+ol,
+ul {
+    padding-left: 1.5rem;
+}
+
+button,
+[type="submit"] {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    background: none;
+    font-size: inherit;
+    font-family: $font-family-base;
+    line-height: inherit;
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+}
+
+@media print {
+    html {
+        background: none;
+        // stylelint-disable scale-unlimited/declaration-strict-value
+        color: #000; // Black prints faster:
+        // stylelint-enable
+    }
+}
