@@ -10,7 +10,7 @@ class PartnerView(DetailView):
     slug_url_kwarg = 'partner_slug'
 
     def get_context_data(self, **kwargs):
-        context = super(PartnerView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
 
         # FIXME: limit to current partner
         context['action_list'] = Action.objects.all()[:10]
