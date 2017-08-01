@@ -1,11 +1,16 @@
 .project-tile {
-    display: flex;
+    @media (min-width: $breakpoint) {
+        display: flex;
+    }
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     margin-bottom: 0.6em;
 }
 
 .project-tile__picture {
-    display: block;
+    @media (min-width: $breakpoint) {
+        display: block;
+        width: 100%;
+    }
 }
 
 .project-tile__title {

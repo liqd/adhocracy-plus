@@ -1,9 +1,13 @@
 .l-col-8-0 {
-    @include grid-span(8, 0);
+    @media (min-width: $breakpoint) {
+        @include grid-span(8, 0);
+    }
 }
 
 .l-col-4-8 {
-    @include grid-span(4, 8);
+    @media (min-width: $breakpoint) {
+        @include grid-span(4, 8);
+    }
 }
 
 .l-outer-wrapper {
