@@ -12,8 +12,10 @@ class PartnerView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # FIXME: limit to current partner
-        context['action_list'] = Action.objects.all()[:10]
+        context['action_list'] = Action.objects.all()\
+            .filter(project__organisation__partner=self.object)\
+            .filter_public()\
+            .exclude_updates()[:4]
 
         context['stats'] = {
             'users': 1204,
