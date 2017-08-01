@@ -1,6 +1,7 @@
 from django.views.generic import DetailView
 
 from adhocracy4.actions.models import Action
+from adhocracy4.projects.models import Project
 from liqd_product.apps.partners.models import Partner
 
 
@@ -11,6 +12,8 @@ class PartnerView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        context['project_list'] = Project.objects.all()[:3]
 
         context['action_list'] = Action.objects.all()\
             .filter(project__organisation__partner=self.object)\
