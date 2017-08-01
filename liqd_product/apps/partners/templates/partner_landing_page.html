@@ -71,13 +71,13 @@
 
         <aside class="l-col-4-8 aside">
             <div class="aside__block">
-                <h2 class="aside__block__title">Über diese Seite</h2>
+                <h2 class="aside__block__title heading2">{% trans 'About this page' %}</h2>
                 <p>{{partner.description}}</p>
 
             </div>
 
             <div class="aside__block">
-                <h2 class="aside__block__title">{% trans 'Activity' %}</h2>
+                <h2 class="aside__block__title heading2">{% trans 'Activity' %}</h2>
                 <div>
                     {% for action in action_list %}
                         {% include 'meinberlin_actions/includes/action.html' with action=action %}
@@ -88,23 +88,23 @@
             </div>
 
             <div class="aside__block">
-                <h2 class="aside__block__title">Statistiken</h2>
+                <h2 class="aside__block__title heading2">{% trans 'Statistics' %}</h2>
                 <div class="l-tiles-2">
                     <div class="stats">
-                        <div class="stats__number">{{ 1204|intcomma }}</div>
-                        <div class="stats__label">registrierte Nutzer</div>
+                        <div class="stats__number">{{ stats.users|intcomma }}</div>
+                        <div class="stats__label">{% trans 'registered Users' %}</div>
                     </div>
                     <div class="stats">
-                        <div class="stats__number">{{ 3425|intcomma }}</div>
-                        <div class="stats__label">Beiträge</div>
+                        <div class="stats__number">{{ stats.items|intcomma }}</div>
+                        <div class="stats__label">{% trans 'Items' %}</div>
                     </div>
                     <div class="stats">
-                        <div class="stats__number">{{ 23234|intcomma }}</div>
-                        <div class="stats__label">Kommentare</div>
+                        <div class="stats__number">{{ stats.comments|intcomma }}</div>
+                        <div class="stats__label">{% trans 'Comments' %}</div>
                     </div>
                     <div class="stats">
-                        <div class="stats__number">{{ 134234|intcomma }}</div>
-                        <div class="stats__label">Bewertungen</div>
+                        <div class="stats__number">{{ stats.ratings|intcomma }}</div>
+                        <div class="stats__label">{% trans 'Ratings' %}</div>
                     </div>
                 </div>
             </div>

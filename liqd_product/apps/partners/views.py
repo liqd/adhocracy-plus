@@ -11,8 +11,20 @@ class PartnerView(DetailView):
     slug_url_kwarg = 'partner_slug'
 
     def get_context_data(self, **kwargs):
-        context = super(PartnerView, self).get_context_data(**kwargs)
-        # FIXME: limit to current partner
-        context['action_list'] = Action.objects.all()[:10]
+        context = super().get_context_data(**kwargs)
+
         context['project_list'] = Project.objects.all()[:3]
+
+        context['action_list'] = Action.objects.all()\
+            .filter(project__organisation__partner=self.object)\
+            .filter_public()\
+            .exclude_updates()[:4]
+
+        context['stats'] = {
+            'users': 1204,
+            'items': 3425,
+            'comments': 23234,
+            'ratings': 134234,
+        }
+
         return context
