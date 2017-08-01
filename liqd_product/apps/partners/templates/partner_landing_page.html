@@ -36,19 +36,19 @@
                 <h2 class="aside__block__title">{% trans 'Statistics' %}</h2>
                 <div class="l-tiles-2">
                     <div class="stats">
-                        <div class="stats__number">{{ 1204|intcomma }}</div>
+                        <div class="stats__number">{{ stats.users|intcomma }}</div>
                         <div class="stats__label">{% trans 'registered Users' %}</div>
                     </div>
                     <div class="stats">
-                        <div class="stats__number">{{ 3425|intcomma }}</div>
+                        <div class="stats__number">{{ stats.items|intcomma }}</div>
                         <div class="stats__label">{% trans 'Items' %}</div>
                     </div>
                     <div class="stats">
-                        <div class="stats__number">{{ 23234|intcomma }}</div>
+                        <div class="stats__number">{{ stats.comments|intcomma }}</div>
                         <div class="stats__label">{% trans 'Comments' %}</div>
                     </div>
                     <div class="stats">
-                        <div class="stats__number">{{ 134234|intcomma }}</div>
+                        <div class="stats__number">{{ stats.ratings|intcomma }}</div>
                         <div class="stats__label">{% trans 'Ratings' %}</div>
                     </div>
                 </div>

@@ -11,6 +11,15 @@ class PartnerView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PartnerView, self).get_context_data(**kwargs)
+
         # FIXME: limit to current partner
         context['action_list'] = Action.objects.all()[:10]
+
+        context['stats'] = {
+            'users': 1204,
+            'items': 3425,
+            'comments': 23234,
+            'ratings': 134234,
+        }
+
         return context
