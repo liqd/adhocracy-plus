@@ -1,3 +1,20 @@
-.footer {
-    border-top: 0.3em solid $brand-primary;
+.footer--platform {
+    padding: 0.4em 0;
+    background-color: $text-color;
+
+    font-size: $font-size-sm;
+    color: contrast-color($text-color);
+
+    .navi {
+        padding: 0;
+    }
+
+    .navi__link {
+        display: inline-block;
+        color: contrast-color($text-color);
+    }
+
+    .navi__comment {
+        margin: auto 0;
+    }
 }
