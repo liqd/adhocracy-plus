@@ -3,18 +3,20 @@
 
 {% block title %}{{partner.name}}{% endblock %}
 
-{% block content %}
+{% block super_content %}
     <div class="hero-unit" style="background-image: url({% thumbnail partner.image "1500x610" crop %});">
         <div class="hero-unit__title l-center-8">
             {{ partner.slogan }}
         </div>
     </div>
 
-    <div class="l-col-8-0">
-        {{partner.slogan}}
-    </div>
+    <div class="l-wrapper">
+        <div class="l-col-8-0">
+            {{partner.slogan}}
+        </div>
 
-    <div class="l-col-4-8">
-        {{partner.description}}
+        <div class="l-col-4-8">
+            {{partner.description}}
+        </div>
     </div>
 {% endblock %}

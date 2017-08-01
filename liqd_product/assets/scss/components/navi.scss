@@ -33,9 +33,31 @@
     color: contrast-color($body-bg);
 }
 
+.navi__menu-wrapper {
+    padding: 0 $padding;
+    border-bottom: 1px solid $border-color;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 1;
+
+    background-color: $body-bg;
+
+}
+
 @media screen and (min-width: $breakpoint) {
-    .navi__menu-wrapper.collapse {
-        display: inline-block;
+    .navi__menu-wrapper {
+        padding: 0;
+        border: 0;
+        position: static;
+        z-index: 0;
+        background-color: transparent;
+
+        &.collapse {
+            display: inline-block;
+        }
     }
 
     .navi__toggle {
