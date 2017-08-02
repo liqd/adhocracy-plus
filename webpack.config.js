@@ -4,7 +4,7 @@ var webpack = require('webpack')
 var path = require('path')
 var autoprefixer = require('autoprefixer')
 
-module.exports = {
+var config = {
   entry: {
     adhocracy4: [
       './liqd_product/assets/scss/style.scss',
@@ -108,3 +108,5 @@ module.exports = {
     ])
   ]
 }
+
+module.exports = config
