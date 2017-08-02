@@ -15,9 +15,9 @@
             <ul class="u-list-reset">
                 {% for project in project_list %}
                     <li>
-                        <div class="project-tile">
+                        <div class="tile tile--horizontal">
                             <a tabindex="-1"
-                               class="tile__image project-tile__picture"
+                               class="tile__image"
                                aria-labelledby="project-title-{{ project.pk }}"
                                {% if project.tile_image %}
                                    style="background-image: url({{ project.tile_image|thumbnail_url:'project_thumbnail' }})"
@@ -26,12 +26,12 @@
                                {% endif %}
                                href="{{ project.get_absolute_url }}">
                             </a>
-                            <div class="project-tile__body">
-                                <h3 class="project-tile__title" id="project-title-{{ project.pk }}">
+                            <div class="tile__body">
+                                <h3 class="tile__title" id="project-title-{{ project.pk }}">
                                     <a href="{{ project.get_absolute_url }}">{{project.name}}</a>
                                 </h3>
 
-                                <div class="project-tile__labels">
+                                <div class="tile__labels">
                                     {% get_days project.days_left as days %}
                                     {% if project.has_finished %}
                                         <span class="label label--danger">{% trans "Finished" %}</span>
@@ -44,11 +44,11 @@
                                     {% endif %}
                                 </div>
 
-                                <p class="project-tile__description">
+                                <p class="tile__text">
                                     {{project.description}}
                                 </p>
 
-                                <p class="project-tile__date">
+                                <p class="tile__date">
                                     {{ project.phases.first.start_date|date:'d. M. Y' }} -
                                     {{ project.phases.last.end_date|date:'d. M. Y' }}
                                 </p>
