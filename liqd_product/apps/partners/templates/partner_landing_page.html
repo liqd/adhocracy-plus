@@ -19,7 +19,7 @@
                             <div class="project-tile__picture">
                                 <a tabindex="-1"
                                    class="tile__image project-tile__picture"
-                                   aria-labelledby="project-title-90"
+                                   aria-labelledby="project-title-{{ project.pk }}"
                                    {% if project.tile_image %}
                                        style="background-image: url({{ project.tile_image|thumbnail_url:'project_thumbnail' }})"
                                    {% elif project.image %}
@@ -29,7 +29,9 @@
                                 </a>
                             </div>
                             <div class="project-tile__body">
-                                <h3 class="project-tile__title h4"><a href="{{ project.get_absolute_url }}">{{project.name}}</a></h3>
+                                <h3 class="project-tile__title" id="project-title-{{ project.pk }}">
+                                    <a href="{{ project.get_absolute_url }}">{{project.name}}</a>
+                                </h3>
 
                                 <div class="project-tile__labels">
                                     {% get_days project.days_left as days %}
