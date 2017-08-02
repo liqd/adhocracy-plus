@@ -1,5 +1,5 @@
 {% extends 'partner_base.html' %}
-{% load thumbnail i18n humanize %}
+{% load thumbnail i18n humanize project_tags %}
 
 {% block title %}{{partner.name}}{% endblock %}
 
@@ -31,21 +31,17 @@
                             </div>
                             <div class="project-tile__body">
                                 <h3 class="project-tile__title h4">{{project.name}}</h3>
-                                {% if not project.is_public %}
-                                    <span class="label label">{% trans "Private" %}</span>
-                                {% endif %}
-                                {% if project.days_left == 1 %}
-                                    <span class="label label--primary">{% trans "One day left" %}</span>
-                                {% elif project.days_left < 5 %}
-                                    <span class="label label--primary">{{ project.days_left }} {% trans "days left" %}</span>
-                                {% endif %}
 
+                                {% get_days project.days_left as days %}
                                 {% if project.has_finished %}
                                     <span class="label label--danger">{% trans "Finished" %}</span>
-                                {% elif not project.active_phase %}
-                                    <span class="label label--danger">{% trans "Participation not available" %}</span>
+                                {% elif days %}
+                                    <span class="label label--primary">{{ days }}</span>
                                 {% endif %}
 
+                                {% if not project.is_public %}
+                                    <span class="label">{% trans "Private" %}</span>
+                                {% endif %}
                                 <p class="project-tile__description">
                                     {{project.description}}
                                 </p>
