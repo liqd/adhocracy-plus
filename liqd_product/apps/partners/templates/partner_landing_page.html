@@ -16,18 +16,16 @@
                 {% for project in project_list %}
                     <li>
                         <div class="project-tile">
-                            <div class="project-tile__picture">
-                                <a tabindex="-1"
-                                   class="tile__image project-tile__picture"
-                                   aria-labelledby="project-title-{{ project.pk }}"
-                                   {% if project.tile_image %}
-                                       style="background-image: url({{ project.tile_image|thumbnail_url:'project_thumbnail' }})"
-                                   {% elif project.image %}
-                                       style="background-image: url({{ project.image|thumbnail_url:'project_thumbnail' }})"
-                                   {% endif %}
-                                   href="{{ project.get_absolute_url }}">
-                                </a>
-                            </div>
+                            <a tabindex="-1"
+                               class="tile__image project-tile__picture"
+                               aria-labelledby="project-title-{{ project.pk }}"
+                               {% if project.tile_image %}
+                                   style="background-image: url({{ project.tile_image|thumbnail_url:'project_thumbnail' }})"
+                               {% elif project.image %}
+                                   style="background-image: url({{ project.image|thumbnail_url:'project_thumbnail' }})"
+                               {% endif %}
+                               href="{{ project.get_absolute_url }}">
+                            </a>
                             <div class="project-tile__body">
                                 <h3 class="project-tile__title" id="project-title-{{ project.pk }}">
                                     <a href="{{ project.get_absolute_url }}">{{project.name}}</a>
