@@ -31,16 +31,19 @@
                             <div class="project-tile__body">
                                 <h3 class="project-tile__title h4"><a href="{{ project.get_absolute_url }}">{{project.name}}</a></h3>
 
-                                {% get_days project.days_left as days %}
-                                {% if project.has_finished %}
-                                    <span class="label label--danger">{% trans "Finished" %}</span>
-                                {% elif days %}
-                                    <span class="label label--primary">{{ days }}</span>
-                                {% endif %}
+                                <div class="project-tile__labels">
+                                    {% get_days project.days_left as days %}
+                                    {% if project.has_finished %}
+                                        <span class="label label--danger">{% trans "Finished" %}</span>
+                                    {% elif days %}
+                                        <span class="label label--primary">{{ days }}</span>
+                                    {% endif %}
 
-                                {% if not project.is_public %}
-                                    <span class="label">{% trans "Private" %}</span>
-                                {% endif %}
+                                    {% if not project.is_public %}
+                                        <span class="label">{% trans "Private" %}</span>
+                                    {% endif %}
+                                </div>
+
                                 <p class="project-tile__description">
                                     {{project.description}}
                                 </p>
