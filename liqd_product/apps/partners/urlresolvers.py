@@ -32,8 +32,7 @@ def partner_patterns(*pattern_list):
                include(list(pattern_list)))
 
 
-def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
-            current_app=None):
+def reverse(viewname, urlconf=None, args=None, kwargs=None, current_app=None):
     """Add the current partner to the url if none is set yet."""
     if viewname in _partner_pattern_names and get_partner():
         partner_slug = get_partner().slug
@@ -45,4 +44,4 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
         elif not kwargs:
             kwargs = {'partner_slug': partner_slug}
 
-    return django_reverse(viewname, urlconf, args, kwargs, prefix, current_app)
+    return django_reverse(viewname, urlconf, args, kwargs, current_app)
