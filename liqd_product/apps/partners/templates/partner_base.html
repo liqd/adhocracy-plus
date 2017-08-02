@@ -26,7 +26,7 @@
                         <a href="#" class="navi__link">Veranstaltungen</a>
                     </li>
                     <li class="navi__item">
-                        <a href="#" class="navi__link">Über uns</a>
+                        <a href="{% url 'partner_about' partner_slug=partner.slug %}" class="navi__link">{% trans 'About us' %}</a>
                     </li>
                 </ul>
             </div>
