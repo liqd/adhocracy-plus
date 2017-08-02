@@ -2,8 +2,6 @@ from django import template
 from django.contrib.staticfiles.finders import find
 from django.templatetags.static import static
 
-INVALID_URL_NAME = object()
-
 register = template.Library()
 
 
