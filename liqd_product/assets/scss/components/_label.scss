@@ -1,0 +1,40 @@
+.label {
+    display: inline-block;
+    background-color: $text-color;
+    color: contrast-color($text-color);
+    font-size: $font-size-xs;
+    font-weight: normal;
+    border-radius: 0.4em;
+    padding: 0.2em 0.7em;
+}
+
+.label--big {
+    padding: 0.4em 0.6em;
+    font-size: $font-size-sm;
+    border-radius: 0.3em;
+}
+
+.label--primary {
+    background-color: $platform-primary;
+    color: contrast-color($platform-primary, $text-color-inverted);
+}
+
+.label--danger {
+    background-color: $platform-danger;
+    color: contrast-color($platform-danger);
+}
+
+.label--CONSIDERATION {
+    background-color: $feedback-color-consideration;
+    color: contrast-color($feedback-color-consideration);
+}
+
+.label--REJECTED {
+    background-color: $feedback-color-rejected;
+    color: contrast-color($feedback-color-rejected);
+}
+
+.label--ACCEPTED {
+    background-color: $feedback-color-accepted;
+    color: contrast-color($feedback-color-accepted);
+}

@@ -1,5 +1,5 @@
 {% extends 'partner_base.html' %}
-{% load thumbnail %}
+{% load thumbnail i18n humanize %}
 
 {% block title %}{{partner.name}}{% endblock %}
 
@@ -11,12 +11,103 @@
     </div>
 
     <div class="l-wrapper">
-        <div class="l-col-8-0">
-            {{partner.slogan}}
-        </div>
+        <main class="l-col-8-0">
+            <ul class="u-list-reset">
+                <li>
+                    <div class="project-tile">
+                        <div class="project-tile__picture">
+                            <a tabindex="-1"
+                               class="tile__image project-tile__picture"
+                               aria-labelledby="project-title-90"
+                               style="background-image: url(
+                               http://via.placeholder.com/1000x2500)"
+                               href="https://placeholder.com"
+                               target="_self">
+                            </a>
+                            <!--#370 zu 400-->
+                        </div>
+                        <div class="project-tile__body">
+                            <h3 class="project-tile__title h4">Fußballturnier Falkensee</h3>
+                            <div class="project-tile__labels">
+                                <span class="label">3 days left</span>
+                                <span class="label label--primary">active</span>
+                                <span class="label label--danger">finished</span>
+                            </div>
+                            <p class="project-tile__description">
+                                The world should stop complaining
+                                about the life and should
+                                have fun at doing sports
+                                like real soccer.
+                            </p>
+                            <p class="project-tile__date">9. August 2017 - 16. August 2017</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-tile">
+                        <div class="project-tile__picture">
+                            <a tabindex="-1"
+                               class="tile__image project-tile__picture"
+                               aria-labelledby="project-title-90"
+                               style="background-image: url(
+                               http://via.placeholder.com/800x800)"
+                               href="https://placeholder.com"
+                               target="_self">
+                            </a>
+                            <!--#370 zu 400-->
+                        </div>
+                        <div class="project-tile__body">
+                            <h3 class="project-tile__title h4">Autorennen Falkensee</h3>
+                            <p class="project-tile__description">
+                                The world should stop complaining
+                                about the life and should
+                                enjoy doing motorsports like car racing.
+                            </p>
+                            <p class="project-tile__date">9. August 2017 - 16. August 2017</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </main>
 
-        <div class="l-col-4-8">
-            {{partner.description}}
-        </div>
+        <aside class="l-col-4-8 aside">
+            <div class="aside__block">
+                <h2 class="aside__block__title heading2">{% trans 'About this page' %}</h2>
+                <p>{{partner.description}}</p>
+            </div>
+
+            <div class="aside__block">
+                <h2 class="aside__block__title heading2">{% trans 'Activity' %}</h2>
+                <div>
+                    {% for action in action_list %}
+                        {% include 'meinberlin_actions/includes/action.html' with action=action %}
+                    {% empty %}
+                        {% trans 'No activity yet. '%}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="aside__block">
+                <h2 class="aside__block__title heading2">{% trans 'Statistics' %}</h2>
+                <div class="l-tiles-2">
+                    <div class="stats">
+                        <div class="stats__number">{{ stats.users|intcomma }}</div>
+                        <div class="stats__label">{% trans 'registered Users' %}</div>
+                    </div>
+                    <div class="stats">
+                        <div class="stats__number">{{ stats.items|intcomma }}</div>
+                        <div class="stats__label">{% trans 'Items' %}</div>
+                    </div>
+                    <div class="stats">
+                        <div class="stats__number">{{ stats.comments|intcomma }}</div>
+                        <div class="stats__label">{% trans 'Comments' %}</div>
+                    </div>
+                    <div class="stats">
+                        <div class="stats__number">{{ stats.ratings|intcomma }}</div>
+                        <div class="stats__label">{% trans 'Ratings' %}</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
     </div>
 {% endblock %}

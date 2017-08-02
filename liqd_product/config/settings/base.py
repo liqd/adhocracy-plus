@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'liqd_product.apps.partners.apps.Config',
     'liqd_product.apps.users.apps.Config',
     'meinberlin.apps.contrib.apps.Config',
+    'meinberlin.apps.actions.apps.Config',
     'meinberlin.apps.moderatorfeedback.apps.Config',
 
     # General apps containing views

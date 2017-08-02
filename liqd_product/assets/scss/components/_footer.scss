@@ -1,3 +1,15 @@
 .footer {
-    border-top: 0.3em solid $brand-primary;
+    padding: 0.4em 0;
+    font-size: $font-size-sm;
+    background-color: $text-color;
+    color: contrast-color($text-color);
+
+    .navi {
+        padding: 0;
+    }
+
+    .navi__link {
+        display: inline-block;
+        color: inherit;
+    }
 }
