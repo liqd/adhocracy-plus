@@ -49,12 +49,9 @@
                                 </p>
 
                                 <p class="project-tile__date">
-                                {% blocktrans with project.phases.first.start_date|date:'d. M. Y' as date %}
-                                    {{ date }}
-                                {% endblocktrans %} -
-                                {% blocktrans with project.phases.last.end_date|date:'d. M. Y' as date %}
-                                    {{ date }}
-                                {% endblocktrans %} {{date}}</p>
+                                    {{ project.phases.first.start_date|date:'d. M. Y' }} -
+                                    {{ project.phases.last.end_date|date:'d. M. Y' }}
+                                </p>
                             </div>
                         </div>
                     </li>
