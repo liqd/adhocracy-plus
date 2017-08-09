@@ -1,5 +1,6 @@
 from django.views.generic.detail import DetailView
 
+from adhocracy4.actions.models import Action
 from adhocracy4.projects.models import Project
 from liqd_product.apps.partners.models import Partner
 
@@ -21,3 +22,9 @@ class ProfileView(DetailView):
             organisation__project__follow__creator=self.object,
             organisation__project__follow__enabled=True
         ).distinct()
+
+    @property
+    def actions(self):
+        return Action.objects.filter(
+            actor=self.object,
+        ).filter_public().exclude_updates()
