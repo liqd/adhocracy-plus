@@ -5,10 +5,24 @@
 
 {% block content %}
     <div class="l-wrapper">
-        <div class="l-center-8">
-            <h1 class="herounit-title">
-                {{ object.username }}
-            </h1>
+        <div class="l-col-3-0 aside">
+            <h1>{{ object.username }}</h1>
+            {% if object.bio %}<p>{{ object.bio }}</p>{% endif %}
+
+            <h2 class="aside__block__title heading2">{% trans 'Active in these platforms' %}</h2>
+            {% for partner in view.partners %}
+                {{ partner }}
+            {% empty %}
+                {% trans 'This user is not active in any platform yet.' %}
+                {% if object == request.user %}
+                    <a href="/">{% trans 'Check some platforms out.' %}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="l-col-9-3">
+            {% for project in view.projects %}
+                {% include 'meinberlin_projects/includes/project_list_tile.html' with project=project %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
