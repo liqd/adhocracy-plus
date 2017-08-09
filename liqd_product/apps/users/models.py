@@ -5,6 +5,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.images.fields import ConfiguredImageField
+
 from . import USERNAME_INVALID_MESSAGE
 from . import USERNAME_REGEX
 
@@ -57,6 +59,37 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         help_text=_(
             'Designates whether you want to receive notifications. '
             'Unselect if you do not want to receive notifications.')
+    )
+
+    bio = models.CharField(
+        blank=True,
+        max_length=255,
+        verbose_name=_('Biography'),
+    )
+
+    twitter_handle = models.CharField(
+        blank=True,
+        max_length=15,
+        verbose_name=_('Twitter name'),
+    )
+
+    facebook_handle = models.CharField(
+        blank=True,
+        max_length=50,
+        verbose_name=_('Facebook name'),
+    )
+
+    homepage = models.CharField(
+        blank=True,
+        max_length=50,
+        verbose_name=_('Homepage'),
+    )
+
+    avatar = ConfiguredImageField(
+        'avatar',
+        upload_to='users/images',
+        blank=True,
+        verbose_name=_('Avatar picture'),
     )
 
     objects = auth_models.UserManager()
