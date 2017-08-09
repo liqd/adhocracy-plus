@@ -4,6 +4,30 @@
 {% block title %}{{ object.username }} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
+
+    <nav class="tablist" role="tablist">
+        <a
+            id="tab-user-{{ user.pk }}-participation"
+            class="tab active"
+            data-toggle="tab"
+            href="#tabpanel-user-{{ user.pk }}-participation"
+            role="tab"
+            aria-controls="tabpanel-user-{{ user.pk }}-participation"
+            aria-expanded="true">
+            {% trans 'Participations' %}
+        </a>
+        <a
+            id="tab-user-{{ user.pk }}-activities"
+            class="tab"
+            data-toggle="tab"
+            href="#tabpanel-user-{{ user.pk }}-activities"
+            role="tab"
+            aria-controls="tabpanel-user-{{ user.pk }}-activities"
+            aria-expanded="false">
+            {% trans 'Activities' %}
+        </a>
+    </nav>
+
     <div class="l-wrapper">
         <div class="l-col-3-0 aside">
             <h1>{{ object.username }}</h1>
@@ -20,9 +44,23 @@
             {% endfor %}
         </div>
         <div class="l-col-9-3">
-            {% for project in view.projects %}
-                {% include 'meinberlin_projects/includes/project_list_tile.html' with project=project %}
-            {% endfor %}
+            <div
+                class="tabpanel active"
+                id="tabpanel-user-{{ user.pk }}-participation"
+                role="tabpanel"
+                aria-labelledby="tab-user-{{ user.pk }}-participation"
+                aria-expanded="true">
+                {% for project in view.projects %}
+                    {% include 'meinberlin_projects/includes/project_list_tile.html' with project=project %}
+                {% endfor %}
+            </div>
+            <div
+                class="tabpanel"
+                id="tabpanel-user-{{ user.pk }}-activities"
+                role="tabpanel"
+                aria-labelledby="tab-user-{{ user.pk }}-activities"
+                aria-expanded="false">
+            </div>
         </div>
     </div>
 {% endblock %}
