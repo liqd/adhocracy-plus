@@ -44,7 +44,7 @@ def test_middleware_clear_partner(rf, partner):
 
 @pytest.mark.django_db
 def test_middleware_partner_context(partner):
-    assert get_partner() == None
+    assert get_partner() is None
     with partner_context(partner):
         assert get_partner() == partner
-    assert get_partner() == None
+    assert get_partner() is None
