@@ -1,0 +1,41 @@
+{% load thumbnail i18n project_tags %}
+
+<div class="tile tile--horizontal">
+    <a tabindex="-1"
+       class="tile__image"
+       aria-labelledby="project-title-{{ project.pk }}"
+       {% if project.tile_image %}
+           style="background-image: url({{ project.tile_image|thumbnail_url:'project_thumbnail' }})"
+       {% elif project.image %}
+           style="background-image: url({{ project.image|thumbnail_url:'project_thumbnail' }})"
+       {% endif %}
+       href="{{ project.get_absolute_url }}">
+    </a>
+    <div class="tile__body">
+        <h3 class="tile__title" id="project-title-{{ project.pk }}">
+            <a href="{{ project.get_absolute_url }}">{{project.name}}</a>
+        </h3>
+
+        <div class="tile__labels">
+            {% get_days project.days_left as days %}
+            {% if project.has_finished %}
+                <span class="label label--danger">{% trans "Finished" %}</span>
+            {% elif days %}
+                <span class="label label--primary">{{ days }}</span>
+            {% endif %}
+
+            {% if not project.is_public %}
+                <span class="label">{% trans "Private" %}</span>
+            {% endif %}
+        </div>
+
+        <p class="tile__text">
+            {{project.description}}
+        </p>
+
+        <p class="tile__date">
+            {{ project.phases.first.start_date|date:'d. M. Y' }} -
+            {{ project.phases.last.end_date|date:'d. M. Y' }}
+        </p>
+    </div>
+</div>

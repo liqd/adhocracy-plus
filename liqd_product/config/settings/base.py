@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'adhocracy4.actions.apps.ActionsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
     'adhocracy4.comments.apps.CommentsConfig',
+    'adhocracy4.filters.apps.FiltersConfig',
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.images.apps.ImagesConfig',
     'adhocracy4.maps.apps.MapsConfig',

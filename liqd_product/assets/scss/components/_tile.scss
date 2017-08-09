@@ -1,0 +1,49 @@
+.tile {
+    margin-bottom: $padding;
+    background-color: $body-bg;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.tile__image {
+    display: block;
+    min-height: 11.8em;
+
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-color: $brand-secondary;
+}
+
+.tile__body {
+    padding: $padding;
+}
+
+.tile__title {
+    font-size: $font-size-lg;
+    margin-top: 0;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+.tile__title,
+.tile__text,
+.tile__date {
+    margin: 0;
+}
+
+.tile__date {
+    color: $text-secondary-color;
+}
+
+@media (min-width: $breakpoint) {
+    .tile--horizontal {
+        display: flex;
+
+        .tile__image {
+            flex: 50% 0 0;
+        }
+    }
+}
