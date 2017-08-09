@@ -60,7 +60,7 @@
                 role="tabpanel"
                 aria-labelledby="tab-user-{{ user.pk }}-activities"
                 aria-expanded="false">
-                {% for action in action_list %}
+                {% for action in view.actions %}
                     {% include 'meinberlin_actions/includes/action.html' with action=action %}
                 {% empty %}
                     {% trans 'No activity yet. '%}
