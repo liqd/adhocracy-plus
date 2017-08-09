@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load rules i18n %}
+{% load rules i18n partners_tags %}
 
 {% block title %}{{ object.username }} &mdash; {{ block.super }}{% endblock %}
 
@@ -51,7 +51,9 @@
                 aria-labelledby="tab-user-{{ user.pk }}-participation"
                 aria-expanded="true">
                 {% for project in view.projects %}
-                    {% include 'meinberlin_projects/includes/project_list_tile.html' with project=project %}
+                    {% withpartner project.organisation.partner %}
+                        {% include 'meinberlin_projects/includes/project_list_tile.html' with project=project %}
+                    {% endwithpartner %}
                 {% endfor %}
             </div>
             <div
@@ -61,7 +63,9 @@
                 aria-labelledby="tab-user-{{ user.pk }}-activities"
                 aria-expanded="false">
                 {% for action in view.actions %}
-                    {% include 'meinberlin_actions/includes/action.html' with action=action %}
+                    {% withpartner action.project.organisation.partner %}
+                        {% include 'meinberlin_actions/includes/action.html' with action=action %}
+                    {% endwithpartner %}
                 {% empty %}
                     {% trans 'No activity yet. '%}
                 {% endfor %}
