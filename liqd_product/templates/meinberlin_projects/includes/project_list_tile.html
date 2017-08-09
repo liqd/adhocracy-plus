@@ -9,11 +9,11 @@
        {% elif project.image %}
            style="background-image: url({{ project.image|thumbnail_url:'project_thumbnail' }})"
        {% endif %}
-       href="{% url 'project-detail' project.organisation.partner.slug project.slug %}">
+       href="{{ project.get_absolute_url }}">
     </a>
     <div class="tile__body">
         <h3 class="tile__title" id="project-title-{{ project.pk }}">
-            <a href="{% url 'project-detail' project.organisation.partner.slug project.slug %}">{{project.name}}</a>
+            <a href="{{ project.get_absolute_url }}">{{project.name}}</a>
         </h3>
 
         <div class="tile__labels">
