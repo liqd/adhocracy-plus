@@ -5,30 +5,29 @@ _partner = threading.local()
 
 
 def set_partner(partner):
-    _partner.stack = [partner]
+    _partner.value = partner
 
 
 def get_partner():
-    if hasattr(_partner, 'stack'):
-        return _partner.stack[-1]
+    return getattr(_partner, 'value', None)
 
 
 @contextlib.contextmanager
 def partner_context(partner):
-    if not hasattr(_partner, 'stack'):
-        _partner.stack = []
+    prev_partner = get_partner()
 
-    _partner.stack.append(partner)
+    set_partner(partner)
     try:
         yield
     finally:
-        _partner.stack.pop()
-        if not _partner.stack:
-            del _partner.stack
+        if prev_partner:
+            set_partner(prev_partner)
+        else:
+            clear_partner()
 
 
 def clear_partner():
     try:
-        del _partner.stack
+        del _partner.value
     except AttributeError:
         pass
