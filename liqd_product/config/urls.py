@@ -40,9 +40,9 @@ urlpatterns = [
 
     url(r'^accounts/', include('allauth.urls')),
     url(r'^account/', include('liqd_product.apps.account.urls')),
-    url(r'^profile/', include('liqd_product.apps.users.urls')),
     url(r'^embed/', include('meinberlin.apps.embed.urls')),
     url(r'^exports/', include('meinberlin.apps.exports.urls')),
+    url(r'^profile/', include('liqd_product.apps.users.urls')),
 
     # API urls
     url(r'^api/', include(ct_router.urls)),
