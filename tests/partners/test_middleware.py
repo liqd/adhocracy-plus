@@ -2,8 +2,8 @@ import pytest
 from django.http import Http404
 
 from liqd_product.apps.partners import get_partner
-from liqd_product.apps.partners import set_partner
 from liqd_product.apps.partners import partner_context
+from liqd_product.apps.partners import set_partner
 from liqd_product.apps.partners.middleware import PartnerMiddleware
 
 
