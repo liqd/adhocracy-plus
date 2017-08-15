@@ -9,13 +9,14 @@ class PartnerView(DetailView):
     template_name = 'partner_landing_page.html'
     model = Partner
     slug_url_kwarg = 'partner_slug'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['project_list'] = Project.objects.all()[:3]
+        context['project_list'] = Project.objects\
+            .filter(organisation__partner=self.object)[:3]
 
-        context['action_list'] = Action.objects.all()\
+        context['action_list'] = Action.objects\
             .filter(project__organisation__partner=self.object)\
             .filter_public()\
             .exclude_updates()[:4]

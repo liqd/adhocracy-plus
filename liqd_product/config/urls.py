@@ -42,14 +42,7 @@ urlpatterns = [
     url(r'^account/', include('liqd_product.apps.account.urls')),
     url(r'^embed/', include('meinberlin.apps.embed.urls')),
     url(r'^exports/', include('meinberlin.apps.exports.urls')),
-
-    # Urls within the context of a partner
-    partner_patterns(
-        url(r'^projects/', include('adhocracy4.projects.urls')),
-        url(r'^ideas/', include(r'meinberlin.apps.ideas.urls',
-                                namespace='meinberlin_ideas')),
-        url(r'', include('liqd_product.apps.partners.urls'))
-    ),
+    url(r'^profile/', include('liqd_product.apps.users.urls')),
 
     # API urls
     url(r'^api/', include(ct_router.urls)),
@@ -67,6 +60,14 @@ urlpatterns = [
 
     # Temporary Compatibility layer for a4-meinberlin
     url(r'^missing/', include('liqd_product.apps.compatibility.urls')),
+
+    # Urls within the context of a partner
+    partner_patterns(
+        url(r'^projects/', include('adhocracy4.projects.urls')),
+        url(r'^ideas/', include(r'meinberlin.apps.ideas.urls',
+                                namespace='meinberlin_ideas')),
+        url(r'', include('liqd_product.apps.partners.urls'))
+    ),
 ]
 
 

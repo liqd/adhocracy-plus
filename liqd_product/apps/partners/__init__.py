@@ -1,3 +1,4 @@
+import contextlib
 import threading
 
 _partner = threading.local()
@@ -9,6 +10,20 @@ def set_partner(partner):
 
 def get_partner():
     return getattr(_partner, 'value', None)
+
+
+@contextlib.contextmanager
+def partner_context(partner):
+    prev_partner = get_partner()
+
+    set_partner(partner)
+    try:
+        yield
+    finally:
+        if prev_partner:
+            set_partner(prev_partner)
+        else:
+            clear_partner()
 
 
 def clear_partner():

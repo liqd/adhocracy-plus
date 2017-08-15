@@ -2,6 +2,7 @@ import pytest
 from django.http import Http404
 
 from liqd_product.apps.partners import get_partner
+from liqd_product.apps.partners import partner_context
 from liqd_product.apps.partners import set_partner
 from liqd_product.apps.partners.middleware import PartnerMiddleware
 
@@ -38,4 +39,12 @@ def test_middleware_clear_partner(rf, partner):
     set_partner(partner)
     middleware.process_view(request, None, None, {})
 
+    assert get_partner() is None
+
+
+@pytest.mark.django_db
+def test_middleware_partner_context(partner):
+    assert get_partner() is None
+    with partner_context(partner):
+        assert get_partner() == partner
     assert get_partner() is None
