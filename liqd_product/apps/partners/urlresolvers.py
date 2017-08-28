@@ -1,9 +1,9 @@
 import itertools
 
+from django.conf.urls import RegexURLPattern
+from django.conf.urls import RegexURLResolver
 from django.conf.urls import include
 from django.conf.urls import url
-from django.core.urlresolvers import RegexURLPattern
-from django.core.urlresolvers import RegexURLResolver
 
 from liqd_product.apps.django_overwrites.urlresolvers import django_reverse
 
