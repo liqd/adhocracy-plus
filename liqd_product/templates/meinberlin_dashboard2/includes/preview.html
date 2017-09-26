@@ -1,0 +1,13 @@
+{% load i18n partners_tags %}
+
+{% withpartner project.organisation.partner %}
+<a href="{{ project.get_absolute_url }}"
+   class="btn btn--light btn--full">
+    <i class="fa fa-eye" aria-hidden="true"></i>
+    {% if project.is_draft %}
+    {% trans 'Preview' %}
+    {% else %}
+    {% trans 'View' %}
+    {% endif %}
+</a>
+{% endwithpartner %}
