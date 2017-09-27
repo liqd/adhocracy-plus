@@ -38,7 +38,7 @@
 
         {% include 'header.html' %}
         {% block after_header %}{% endblock %}
-        <div id="main">
+        <main id="main">
 
             {% if messages %}
             <ul class="messages">
@@ -53,12 +53,12 @@
             {% endif %}
 
             {% block super_content %}
-                <main class="l-wrapper">
+                <div class="l-wrapper">
                     {% block content %}{% endblock %}
-                </main>
+                </div>
             {% endblock %}
 
-        </div>
+        </main>
 
         <aside class="fixed-side">
             <a href="/feedback/" class="btn btn--primary btn--attached-top">{% trans 'Feedback' %}</a>
