@@ -99,11 +99,6 @@ module.exports = {
         from: './liqd_product/assets/images/**/*',
         to: 'images/',
         flatten: true
-      },
-      {
-        from: './liqd_product/assets/js/popover.js',
-        to: 'js/',
-        flatten: false
       }
     ])
   ]
