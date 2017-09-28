@@ -51,7 +51,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!adhocracy4|bootstrap)/, // exclude all dependencies but adhocracy4 and bootstrap
+        exclude: /node_modules\/(?!a4-meinberlin|adhocracy4|bootstrap)/, // exclude all dependencies but meinberlin, adhocracy4 and bootstrap
         loader: 'babel-loader',
         query: {
           presets: ['babel-preset-es2015', 'babel-preset-react'].map(require.resolve)
@@ -99,11 +99,6 @@ module.exports = {
         from: './liqd_product/assets/images/**/*',
         to: 'images/',
         flatten: true
-      },
-      {
-        from: './liqd_product/assets/js/popover.js',
-        to: 'js/',
-        flatten: false
       }
     ])
   ]

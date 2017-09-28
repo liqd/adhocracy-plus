@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'adhocracy4.comments.apps.CommentsConfig',
     'adhocracy4.filters.apps.FiltersConfig',
     'adhocracy4.follows.apps.FollowsConfig',
+    'adhocracy4.forms.apps.FormsConfig',
     'adhocracy4.images.apps.ImagesConfig',
     'adhocracy4.maps.apps.MapsConfig',
     'adhocracy4.modules.apps.ModulesConfig',
@@ -57,6 +58,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.actions.apps.Config',
     'meinberlin.apps.moderatorfeedback.apps.Config',
+    'meinberlin.apps.maps.apps.Config',
 
     # General apps containing views
     'liqd_product.apps.account.apps.Config',
@@ -64,10 +66,13 @@ INSTALLED_APPS = (
     'meinberlin.apps.exports.apps.Config',
     'meinberlin.apps.offlineevents.apps.Config',
     'meinberlin.apps.projects.apps.Config',
+    'meinberlin.apps.dashboard2.apps.Config',
 
     # Apps defining phases
+    'meinberlin.apps.documents.apps.Config',
     'meinberlin.apps.ideas.apps.Config',
-    'meinberlin.apps.extprojects.apps.Config',
+    'meinberlin.apps.mapideas.apps.Config',
+    'meinberlin.apps.polls.apps.Config',
 )
 
 MIDDLEWARE = (
@@ -272,31 +277,44 @@ A4_ORGANISATIONS_MODEL = 'liqd_product_organisations.Organisation'
 A4_RATEABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
 )
 
 A4_COMMENTABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_documents', 'chapter'),
+    ('meinberlin_documents', 'paragraph'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_polls', 'poll'),
 )
 
 A4_REPORTABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
 )
 
 A4_ACTIONABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
 )
 
 A4_AUTO_FOLLOWABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
 )
 
 A4_MAP_BASEURL = 'https://{s}.tile.openstreetmap.org/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
+
+A4_DASHBOARD = {
+    'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard2.ProjectDashboard',
+    'BLUEPRINTS': 'liqd_product.apps.dashboard.blueprints.blueprints'
+}
 
 CONTACT_EMAIL = 'support-berlin@liqd.de'
 EMAIL_DEFAULT_LANGUAGE = 'de'
