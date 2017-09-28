@@ -277,26 +277,34 @@ A4_ORGANISATIONS_MODEL = 'liqd_product_organisations.Organisation'
 A4_RATEABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
 )
 
 A4_COMMENTABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_documents', 'chapter'),
+    ('meinberlin_documents', 'paragraph'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_polls', 'poll'),
 )
 
 A4_REPORTABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
 )
 
 A4_ACTIONABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
 )
 
 A4_AUTO_FOLLOWABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
 )
 
 A4_MAP_BASEURL = 'https://{s}.tile.openstreetmap.org/'
