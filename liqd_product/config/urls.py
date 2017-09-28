@@ -16,6 +16,9 @@ from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from liqd_product.apps.partners.urlresolvers import partner_patterns
 from liqd_product.apps.users.decorators import user_is_project_admin
+from meinberlin.apps.documents.api import DocumentViewSet
+from meinberlin.apps.polls.api import PollViewSet
+from meinberlin.apps.polls.api import VoteViewSet
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -24,8 +27,12 @@ js_info_dict = {
 router = routers.DefaultRouter()
 router.register(r'follows', FollowViewSet, base_name='follows')
 router.register(r'reports', ReportViewSet, base_name='reports')
+router.register(r'polls', PollViewSet, base_name='polls')
+router.register(r'pollvotes', VoteViewSet, base_name='pollvotes')
 
 module_router = a4routers.ModuleDefaultRouter()
+# FIXME: rename to 'chapters'
+module_router.register(r'documents', DocumentViewSet, base_name='chapters')
 
 orga_router = a4routers.OrganisationDefaultRouter()
 
