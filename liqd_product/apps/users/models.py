@@ -61,7 +61,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
             'Unselect if you do not want to receive notifications.')
     )
 
-    bio = models.CharField(
+    bio = models.TextField(
         blank=True,
         max_length=255,
         verbose_name=_('Biography'),
