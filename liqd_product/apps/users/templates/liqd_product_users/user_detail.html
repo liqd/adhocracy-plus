@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load rules i18n partners_tags %}
+{% load rules i18n thumbnail partners_tags %}
 
 {% block title %}{{ object.username }} &mdash; {{ block.super }}{% endblock %}
 
@@ -58,14 +58,23 @@
             </ul>
 
             <h2 class="aside__block__title heading2">{% trans 'Active in these platforms' %}</h2>
-            {% for partner in view.partners %}
-                {{ partner }}
-            {% empty %}
+            {% if view.partners %}
+                <ul class="u-list-reset">
+                    {% for partner in view.partners %}
+                        <li>
+                            <a class="list-item-tiny" href="{% url 'partner' partner_slug=partner.slug %}">
+                                <img class="list-item-tiny__image" src="{% thumbnail partner.logo '50x50' crop %}" alt="" />
+                                <span class="list-item-tiny__body">{{ partner.name }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
                 {% trans 'This user is not active in any platform yet.' %}
                 {% if object == request.user %}
                     <a href="/">{% trans 'Check some platforms out.' %}</a>
                 {% endif %}
-            {% endfor %}
+            {% endif %}
         </div>
         <div class="l-col-9-3">
             <div
