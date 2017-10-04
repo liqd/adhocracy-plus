@@ -30,8 +30,32 @@
 
     <div class="l-wrapper">
         <div class="l-col-3-0 aside">
+            {% if object.avatar %}<img src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
+
             <h1>{{ object.username }}</h1>
+
             {% if object.bio %}<p>{{ object.bio }}</p>{% endif %}
+
+            <ul class="u-list-reset">
+                {% if object.homepage %}
+                    <li>
+                        <i class="fa fa-link" aria-label="{% trans 'Homepage' %}" title="{% trans 'Homepage' %}"></i>
+                        <a href="{{ object.homepage }}">{{ object.homepage }}</a>
+                    </li>
+                {% endif %}
+                {% if object.facebook_handle %}
+                    <li>
+                        <i class="fa fa-facebook-square" aria-label="{% trans 'Facebook' %}" title="{% trans 'Facebook' %}"></i>
+                        <a href="https://www.facebook.com/{{ object.facebook_handle }}">{{ object.facebook_handle }}</a>
+                    </li>
+                {% endif %}
+                {% if object.twitter_handle %}
+                    <li>
+                        <i class="fa fa-twitter" aria-label="{% trans 'Twitter' %}" title="{% trans 'Twitter' %}"></i>
+                        <a href="https://twitter.com/{{ object.twitter_handle }}">{{ object.twitter_handle }}</a>
+                    </li>
+                {% endif %}
+            </ul>
 
             <h2 class="aside__block__title heading2">{% trans 'Active in these platforms' %}</h2>
             {% for partner in view.partners %}
