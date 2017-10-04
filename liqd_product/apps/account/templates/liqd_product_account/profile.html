@@ -11,6 +11,14 @@
         {% csrf_token %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.username %}
 
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.avatar %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.bio %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.homepage %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.facebook_handle %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.twitter_handle %}
+
         {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
 
         <div class="u-spacer-bottom">

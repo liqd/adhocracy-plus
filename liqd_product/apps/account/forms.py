@@ -7,4 +7,12 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'get_notifications']
+        fields = [
+            'username',
+            'avatar',
+            'bio',
+            'homepage',
+            'facebook_handle',
+            'twitter_handle',
+            'get_notifications'
+        ]
