@@ -5,8 +5,14 @@
 }
 
 .user-profile__avatar {
+    float: right;
     border-radius: 50%;
+    shape-outside: circle();
     box-shadow: 0 0 2em rgba(0, 0, 0, 0.1);
+
+    ~ h2 {
+        clear: both;
+    }
 }
 
 .user-profile__main {
@@ -37,11 +43,13 @@
         grid-row: 2;
     }
 
-    // If grid layout is not supported, this would break the layout.
-    // Note that IE only implements a legacy version of the spec, so
-    // it will not use this code either.
-    @supports (display: grid) {
-        .user-profile__avatar {
+    .user-profile__avatar {
+        float: none;
+
+        // If grid layout is not supported, this would break the layout.
+        // Note that IE only implements a legacy version of the spec, so
+        // it will not use this code either.
+        @supports (display: grid) {
             margin-top: -150px;
             position: relative;  // raise
         }
