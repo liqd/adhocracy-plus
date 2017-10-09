@@ -4,35 +4,12 @@
 {% block title %}{{ object.username }} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
+    <div class="user-profile">
 
-    <nav class="tablist" role="tablist">
-        <a
-            id="tab-user-{{ user.pk }}-participation"
-            class="tab active"
-            data-toggle="tab"
-            href="#tabpanel-user-{{ user.pk }}-participation"
-            role="tab"
-            aria-controls="tabpanel-user-{{ user.pk }}-participation"
-            aria-expanded="true">
-            {% trans 'Participations' %}
-        </a>
-        <a
-            id="tab-user-{{ user.pk }}-activities"
-            class="tab"
-            data-toggle="tab"
-            href="#tabpanel-user-{{ user.pk }}-activities"
-            role="tab"
-            aria-controls="tabpanel-user-{{ user.pk }}-activities"
-            aria-expanded="false">
-            {% trans 'Activities' %}
-        </a>
-    </nav>
+        <div class="user-profile__side">
+            {% if object.avatar %}<img class="user-profile__avatar" src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
 
-    <div class="l-wrapper">
-        <div class="l-col-3-0 aside">
-            {% if object.avatar %}<img src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
-
-            <h1>{{ object.username }}</h1>
+            <h1 class="u-first-heading">{{ object.username }}</h1>
 
             {% if object.bio %}<p>{{ object.bio }}</p>{% endif %}
 
@@ -76,7 +53,33 @@
                 {% endif %}
             {% endif %}
         </div>
-        <div class="l-col-9-3">
+
+        <div class="user-profile__tablist tablist">
+            <nav class="l-col-9-3" role="tablist">
+                <a
+                    id="tab-user-{{ user.pk }}-participation"
+                    class="tab active"
+                    data-toggle="tab"
+                    href="#tabpanel-user-{{ user.pk }}-participation"
+                    role="tab"
+                    aria-controls="tabpanel-user-{{ user.pk }}-participation"
+                    aria-expanded="true">
+                    {% trans 'Participations' %}
+                </a>
+                <a
+                    id="tab-user-{{ user.pk }}-activities"
+                    class="tab"
+                    data-toggle="tab"
+                    href="#tabpanel-user-{{ user.pk }}-activities"
+                    role="tab"
+                    aria-controls="tabpanel-user-{{ user.pk }}-activities"
+                    aria-expanded="false">
+                    {% trans 'Activities' %}
+                </a>
+            </nav>
+        </div>
+
+        <div class="user-profile__main">
             <div
                 class="tabpanel active"
                 id="tabpanel-user-{{ user.pk }}-participation"
@@ -104,5 +107,6 @@
                 {% endfor %}
             </div>
         </div>
+
     </div>
 {% endblock %}

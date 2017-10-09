@@ -1,0 +1,49 @@
+.user-profile__side {
+    padding: $padding;
+    background-color: $bg-secondary;
+    margin-bottom: $spacer * 2;
+}
+
+.user-profile__avatar {
+    border-radius: 50%;
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.1);
+}
+
+.user-profile__main {
+    padding: 0 $padding;
+}
+
+@media (min-width: $breakpoint) {
+    .user-profile {
+        display: grid;
+        grid-template-rows: 100px auto 1fr;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    .user-profile__main {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    .user-profile__side {
+        grid-column: 1;
+        grid-row: 3;
+        margin: 0;
+    }
+
+    .user-profile__tablist {
+        grid-column: 1 / 3;
+        -ms-grid-column-span: 2;
+        grid-row: 2;
+    }
+
+    // If grid layout is not supported, this would break the layout.
+    // Note that IE only implements a legacy version of the spec, so
+    // it will not use this code either.
+    @supports (display: grid) {
+        .user-profile__avatar {
+            margin-top: -150px;
+            position: relative;  // raise
+        }
+    }
+}
