@@ -72,7 +72,10 @@ module.exports = {
     ]
   },
   postcss: [
-    autoprefixer({browsers: ['last 3 versions', 'ie >= 10']})
+    autoprefixer({
+      browsers: ['last 3 versions', 'ie >= 10'],
+      grid: true
+    })
   ],
   resolve: {
     extensions: ['', '.js', '.jsx', '.scss', '.css'],
