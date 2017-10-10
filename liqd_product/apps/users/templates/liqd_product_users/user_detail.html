@@ -90,6 +90,8 @@
                     {% withpartner project.organisation.partner %}
                         {% include 'meinberlin_projects/includes/project_list_tile.html' with project=project %}
                     {% endwithpartner %}
+                {% empty %}
+                    {% trans 'This user is not active in any projects yet.' %}
                 {% endfor %}
             </div>
             <div
