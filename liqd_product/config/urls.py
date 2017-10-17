@@ -48,7 +48,6 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^account/', include('liqd_product.apps.account.urls')),
     url(r'^embed/', include('meinberlin.apps.embed.urls')),
-    url(r'^exports/', include('meinberlin.apps.exports.urls')),
     url(r'^dashboard/', include('meinberlin.apps.dashboard2.urls')),
     url(r'^profile/', include('liqd_product.apps.users.urls')),
 
@@ -71,7 +70,7 @@ urlpatterns = [
 
     # Urls within the context of a partner
     partner_patterns(
-        url(r'^modules/', include('meinberlin.apps.modules.urls')),
+        url(r'^modules/', include('adhocracy4.modules.urls')),
         url(r'^projects/', include('adhocracy4.projects.urls')),
         url(r'^offlineevents/', include('meinberlin.apps.offlineevents.urls',
                                         namespace='meinberlin_offlineevents')),
