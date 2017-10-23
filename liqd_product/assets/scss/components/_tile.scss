@@ -1,7 +1,19 @@
 .tile {
+    display: flex;
+    flex-direction: column;
     margin-bottom: $padding;
+    page-break-inside: avoid;
     background-color: $body-bg;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.tile__head {
+    position: relative;
+    flex: 0 1 50%;
+
+    @media print {
+        display: none;
+    }
 }
 
 .tile__image {
@@ -14,8 +26,25 @@
     background-color: $brand-secondary;
 }
 
+.tile__image__copyright {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 .tile__body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
     padding: $padding;
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+.tile__text {
+    flex: 1 0 auto;
 }
 
 .tile__title {
@@ -40,10 +69,6 @@
 
 @media (min-width: $breakpoint) {
     .tile--horizontal {
-        display: flex;
-
-        .tile__image {
-            flex: 50% 0 0;
-        }
+        flex-direction: row;
     }
 }
