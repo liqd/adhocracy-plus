@@ -1,19 +1,25 @@
-{% load thumbnail i18n project_tags %}
+{% load i18n project_tags meinberlin_project_tags contrib_tags thumbnail %}
+{% project_tile_image project as project_image %}
+{% project_tile_image_copyright project as project_image_copyright %}
 
 <div class="tile tile--horizontal">
-    <a tabindex="-1"
-       class="tile__image"
-       aria-labelledby="project-title-{{ project.pk }}"
-       {% if project.tile_image %}
-           style="background-image: url({{ project.tile_image|thumbnail_url:'project_thumbnail' }})"
-       {% elif project.image %}
-           style="background-image: url({{ project.image|thumbnail_url:'project_thumbnail' }})"
-       {% endif %}
-       href="{{ project.get_absolute_url }}">
-    </a>
+    <div class="tile__head">
+        <a tabindex="-1"
+           class="tile__image"
+           aria-labelledby="project-title-{{ project.pk }}"
+           {% if project_image %}
+               style="background-image: url({{ project_image|thumbnail_url:'project_thumbnail' }})"
+           {% endif %}
+           href="{{ project|project_url }}">
+        </a>
+        {% if project_image_copyright %}
+            <div class="tile__image__copyright copyright">© {{ project_image_copyright }}</div>
+        {% endif %}
+    </div>
+
     <div class="tile__body">
         <h3 class="tile__title" id="project-title-{{ project.pk }}">
-            <a href="{{ project.get_absolute_url }}">{{project.name}}</a>
+            <a href="{{ project|project_url }}">{{ project.name }}</a>
         </h3>
 
         <div class="tile__labels">
@@ -29,9 +35,7 @@
             {% endif %}
         </div>
 
-        <p class="tile__text">
-            {{project.description}}
-        </p>
+        <p class="tile__text">{{ project.description }}</p>
 
         <p class="tile__date">
             {{ project.phases.first.start_date|date:'d. M. Y' }} -
