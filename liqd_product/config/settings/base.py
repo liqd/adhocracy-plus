@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'adhocracy4.projects.apps.ProjectsConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
     'adhocracy4.reports.apps.ReportsConfig',
+    'adhocracy4.rules.apps.RulesConfig',
 
     # General components that define models or helpers
     'liqd_product.apps.contrib.apps.Config',
