@@ -36,9 +36,10 @@ var relativeTimestamps = require('a4-meinberlin/meinberlin/apps/actions/assets/t
 var mapAddress = require('a4-meinberlin/meinberlin/assets/js/map-address.js')
 
 var dynamicFields = require('a4-meinberlin/meinberlin/apps/contrib/assets/dynamic_fields.js')
+
 // This function is overwritten with custom behavior in embed.js.
-var getCurrentHref = function () {
-  return location.href
+var getCurrentPath = function () {
+  return location.pathname
 }
 
 module.exports = {
@@ -49,5 +50,5 @@ module.exports = {
   'renderPollManagement': ReactPolls.renderPollManagement,
   'renderReports': ReactReports.renderReports,
   'renderFollow': ReactFollows.renderFollow,
-  'getCurrentHref': getCurrentHref
+  'getCurrentPath': getCurrentPath
 }
