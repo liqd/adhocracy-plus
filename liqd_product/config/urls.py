@@ -65,9 +65,6 @@ urlpatterns = [
     url(r'^jsi18n/$', javascript_catalog,
         js_info_dict, name='javascript-catalog'),
 
-    # Temporary Compatibility layer for a4-meinberlin
-    url(r'^missing/', include('liqd_product.apps.compatibility.urls')),
-
     # Urls within the context of a partner
     partner_patterns(
         url(r'^modules/', include('adhocracy4.modules.urls')),
