@@ -19,6 +19,7 @@ from liqd_product.apps.users.decorators import user_is_project_admin
 from meinberlin.apps.documents.api import DocumentViewSet
 from meinberlin.apps.polls.api import PollViewSet
 from meinberlin.apps.polls.api import VoteViewSet
+from meinberlin.apps.polls.routers import QuestionDefaultRouter
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -28,7 +29,6 @@ router = routers.DefaultRouter()
 router.register(r'follows', FollowViewSet, base_name='follows')
 router.register(r'reports', ReportViewSet, base_name='reports')
 router.register(r'polls', PollViewSet, base_name='polls')
-router.register(r'pollvotes', VoteViewSet, base_name='pollvotes')
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
@@ -39,6 +39,9 @@ orga_router = a4routers.OrganisationDefaultRouter()
 ct_router = a4routers.ContentTypeDefaultRouter()
 ct_router.register(r'comments', CommentViewSet, base_name='comments')
 ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
+
+question_router = QuestionDefaultRouter()
+question_router.register(r'vote', VoteViewSet, base_name='vote')
 
 
 urlpatterns = [
@@ -55,6 +58,7 @@ urlpatterns = [
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),
     url(r'^api/', include(orga_router.urls)),
+    url(r'^api/', include(question_router.urls)),
     url(r'^api/', include(router.urls)),
 
     url(r'^upload/', user_is_project_admin(ck_views.upload),
