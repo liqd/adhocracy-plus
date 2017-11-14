@@ -9,11 +9,14 @@ install:
   - nvm install 6
   - npm install
   - pip install -r requirements/dev.txt
+  - pip install coveralls
 script:
   - py.test --cov
   - python manage.py makemigrations --dry-run --check --noinput
   - ./node_modules/.bin/polylint -F
   - make webpack
+after_success:
+  - coveralls
 deploy:
  - provider: script
    script: scripts/deploy.sh
