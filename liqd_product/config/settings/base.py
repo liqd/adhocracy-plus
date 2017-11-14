@@ -56,18 +56,18 @@ INSTALLED_APPS = (
     'liqd_product.apps.organisations.apps.Config',
     'liqd_product.apps.partners.apps.Config',
     'liqd_product.apps.users.apps.Config',
-    'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.actions.apps.Config',
-    'meinberlin.apps.moderatorfeedback.apps.Config',
+    'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.maps.apps.Config',
+    'meinberlin.apps.moderatorfeedback.apps.Config',
 
     # General apps containing views
     'liqd_product.apps.account.apps.Config',
+    'meinberlin.apps.dashboard2.apps.Config',
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.exports.apps.Config',
     'meinberlin.apps.offlineevents.apps.Config',
     'meinberlin.apps.projects.apps.Config',
-    'meinberlin.apps.dashboard2.apps.Config',
 
     # Apps defining phases
     'meinberlin.apps.documents.apps.Config',
