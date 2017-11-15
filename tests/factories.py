@@ -1,14 +1,6 @@
-from io import BytesIO
-
 import factory
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
-from django.core.files import base
-from django.core.files import images
-from PIL import Image
-
-from adhocracy4 import phases
-from adhocracy4.test import factories
 
 from .partners import factories as partner_factories
 
@@ -33,41 +25,6 @@ class AdminFactory(factory.django.DjangoModelFactory):
     is_superuser = True
 
 
-# FIXME: move to core
-class PhaseContentFactory(factory.Factory):
-    class Meta:
-        model = phases.PhaseContent
-
-    app = 'phase_content_factory'
-    phase = 'factory_phase'
-    weight = 10
-    view = None
-
-    name = 'Factory Phase'
-    description = 'Factory Phase Description'
-    module_name = 'factory phase module'
-
-    features = {}
-
-    @classmethod
-    def _create(cls, model_class, *args, **kwargs):
-        phase_content = model_class()
-        for key, value in kwargs.items():
-            setattr(phase_content, key, value)
-
-        phases.content.register(phase_content)
-        return phase_content
-
-
-# FIXME: move to core
-class PhaseFactory(factories.PhaseFactory):
-
-    class Params:
-        phase_content = PhaseContentFactory()
-
-    type = factory.LazyAttribute(lambda f: f.phase_content.identifier)
-
-
 class OrganisationFactory(factory.django.DjangoModelFactory):
 
     class Meta:
@@ -88,44 +45,3 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
         if extracted:
             for user in extracted:
                 self.initiators.add(user)
-
-
-class ContentTypeFactory(factory.django.DjangoModelFactory):
-
-    class Meta:
-        model = 'contenttypes.ContentType'
-
-    app_label = factory.Faker('name')
-    model = factory.Faker('name')
-    name = factory.Faker('name')
-
-
-class ImageFactory():
-    """Create a django file object containg an image."""
-
-    def __call__(self, resolution, image_format='JPEG', name=None):
-
-        filename = name or 'default.{}'.format(image_format.lower())
-        color = 'blue'
-        image = Image.new('RGB', resolution, color)
-        image_data = BytesIO()
-        image.save(image_data, image_format)
-        image_content = base.ContentFile(image_data.getvalue())
-        return images.ImageFile(image_content.file, filename)
-
-
-class CommentFactory(factory.django.DjangoModelFactory):
-
-    class Meta:
-        model = 'a4comments.Comment'
-
-    comment = factory.Faker('text')
-    creator = factory.SubFactory(UserFactory)
-
-
-class RatingFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = 'a4ratings.Rating'
-
-    value = 1
-    creator = factory.SubFactory(UserFactory)
