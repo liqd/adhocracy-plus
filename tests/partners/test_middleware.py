@@ -8,7 +8,8 @@ from liqd_product.apps.partners.middleware import PartnerMiddleware
 
 
 @pytest.mark.django_db
-def test_middleware_set_partner(rf, partner):
+def test_middleware_set_partner(rf, partner_factory):
+    partner = partner_factory(auto_set_partner=False)
     slug = partner.slug
     request = rf.get('/%s/' % slug)
     middleware = PartnerMiddleware()
@@ -32,7 +33,8 @@ def test_middleware_partner_not_found(rf):
 
 
 @pytest.mark.django_db
-def test_middleware_clear_partner(rf, partner):
+def test_middleware_clear_partner(rf, partner_factory):
+    partner = partner_factory(auto_set_partner=False)
     request = rf.get('/login/')
     middleware = PartnerMiddleware()
 
@@ -43,7 +45,8 @@ def test_middleware_clear_partner(rf, partner):
 
 
 @pytest.mark.django_db
-def test_middleware_partner_context(partner):
+def test_middleware_partner_context(partner_factory):
+    partner = partner_factory(auto_set_partner=False)
     assert get_partner() is None
     with partner_context(partner):
         assert get_partner() == partner

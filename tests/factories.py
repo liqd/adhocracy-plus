@@ -33,7 +33,8 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('company')
 
-    partner = factory.SubFactory(partner_factories.PartnerFactory)
+    partner = factory.SubFactory(partner_factories.PartnerFactory,
+                                 auto_set_partner=False)
 
     @factory.post_generation
     def initiators(self, create, extracted, **kwargs):
