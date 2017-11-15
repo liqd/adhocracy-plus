@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4 import transforms
 from adhocracy4.images import fields as images_fields
 
 
@@ -46,3 +47,7 @@ class Partner(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.about = transforms.clean_html_field(self.about, 'image-editor')
+        super().save(*args, **kwargs)
