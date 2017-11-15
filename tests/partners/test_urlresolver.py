@@ -15,7 +15,8 @@ base_urlconf = [
 
 @pytest.mark.django_db
 def test_partner_patterns(partner_factory):
-    partner = partner_factory(slug='automatic_partner')
+    partner = partner_factory(slug='automatic_partner',
+                              auto_set_partner=False)
     set_partner(partner)
     urlconf = (partner_patterns(
         *base_urlconf
@@ -41,7 +42,8 @@ def test_partner_patterns(partner_factory):
 
 @pytest.mark.django_db
 def test_partner_patterns_instance_ns(partner_factory):
-    partner = partner_factory(slug='automatic_partner')
+    partner = partner_factory(slug='automatic_partner',
+                              auto_set_partner=False)
     set_partner(partner)
     urlconf = (partner_patterns(
         url(r'^ns/', include(base_urlconf, namespace='instance-ns'))
