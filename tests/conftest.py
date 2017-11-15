@@ -1,3 +1,4 @@
+from django.urls.base import get_resolver
 from pytest_factoryboy import register
 
 from adhocracy4.test import factories as a4_factories
@@ -16,6 +17,10 @@ def pytest_configure(config):
     patch_reverse()
     # Patch email background_task decorators for all tests
     patch_background_task_decorator('adhocracy4.emails.tasks')
+
+    # Populate reverse dict with partner patterns
+    resolver = get_resolver()
+    resolver.reverse_dict
 
 
 register(factories.UserFactory)
