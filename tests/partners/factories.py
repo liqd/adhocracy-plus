@@ -24,10 +24,7 @@ class PartnerFactory(factory.django.DjangoModelFactory):
             for user in extracted:
                 self.admins.add(user)
 
-    @classmethod
-    def _create(cls, model_class, *args, **kwargs):
-        do_set_partner = kwargs.pop('auto_set_partner', True)
-        obj = super()._create(model_class, *args, **kwargs)
-        if do_set_partner:
-            set_partner(obj)
-        return obj
+    @factory.post_generation
+    def auto_set_partner(self, create, extracted, **kwargs):
+        if extracted is None or extracted:
+            set_partner(self)
