@@ -19,8 +19,8 @@ module.exports = {
       'immutability-helper',
       'react-dom',
       'react-flip-move',
-      'shariff',
-      'shariff/build/shariff.min.css'
+      'shariff/dist/shariff.complete.js',
+      'shariff/dist/shariff.min.css'
     ],
     leaflet: [
       'leaflet',
@@ -54,7 +54,7 @@ module.exports = {
         exclude: /node_modules\/(?!a4-meinberlin|adhocracy4|bootstrap)/, // exclude all dependencies but meinberlin, adhocracy4 and bootstrap
         loader: 'babel-loader',
         options: {
-          presets: ['babel-preset-es2015', 'babel-preset-react'].map(require.resolve)
+          presets: ['babel-preset-env', 'babel-preset-react'].map(require.resolve)
         }
       },
       {
@@ -68,9 +68,7 @@ module.exports = {
               options: {
                 ident: 'postcss',
                 plugins: (loader) => [
-                  autoprefixer({
-                    browsers: ['last 3 versions', 'ie >= 10']
-                  })
+                  autoprefixer()
                 ]
               }
             },
@@ -97,7 +95,8 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
-      'jquery$': 'jquery/dist/jquery.min.js'
+      'jquery$': 'jquery/dist/jquery.min.js',
+      'shariff$': 'shariff/dist/shariff.complete.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.
