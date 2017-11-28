@@ -3,10 +3,13 @@
 $brand-primary: contrast-stretch($body-bg, #0296c5);
 $brand-secondary: contrast-stretch($body-bg, #0ca644);
 
-$bg-secondary: #f5f5f5;
 $text-color: #191919;
 $text-secondary-color: #999;
 $overlay: rgba(#000, 0.5);
+
+$_bg-base: contrast-stretch($text-color, $brand-primary);
+$bg-secondary: mix($_bg-base, $body-bg, 10%);
+$bg-tertiary: mix($_bg-base, $body-bg, 20%);
 
 $platform-primary: #46caad;
 $platform-danger: #d0011b;
