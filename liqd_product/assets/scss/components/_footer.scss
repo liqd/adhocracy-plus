@@ -1,11 +1,9 @@
 .footer {
-    padding: 0.4em 0;
-    font-size: $font-size-sm;
-    background-color: $text-color;
-    color: contrast-color($text-color);
+    padding: $spacer 0;
 
     .navi {
-        padding: 0;
+        border-top: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
     }
 
     .navi__link {
