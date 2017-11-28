@@ -1,26 +1,5 @@
 .header--platform {
-    padding: 0.4em 0;
-    background-color: $text-color;
-
-    font-size: $font-size-sm;
-    color: contrast-color($text-color);
-
-    .navi {
-        padding: 0;
-    }
-
-    .navi__item {
-        border-left: 1px solid $border-color;
-    }
-
-    .navi__link {
-        display: inline-block;
-        color: contrast-color($text-color);
-    }
-
-    .dropdown {
-        margin-bottom: 0;
-    }
+    border-top: 0.5em solid $brand-primary;
 }
 
 .header--partner {
@@ -29,12 +8,9 @@
     }
 }
 
-.header__brand a {
-    color: contrast-color($text-color);
-}
-
-.header__brand__partner {
-    color: contrast-color($text-color, $text-color, $text-secondary-color);
+.header__brand {
+    padding: 0.3em 0;
+    border-bottom: 0.3em solid $brand-primary;
 }
 
 .header__logo-link {
