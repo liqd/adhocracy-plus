@@ -1,4 +1,4 @@
-# _LIQD_PRODUCT_
+# Beteiligung.in
 
 Participation platform by Liquid Democracy
 
