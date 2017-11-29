@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n static partners_tags %}
+{% load i18n static partners_tags wagtailuserbar %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_partner as PARTNER %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -34,6 +34,7 @@
     {% endblock %}
 </head>
 <body>
+    {% wagtailuserbar %}
     <div class="l-outer-wrapper">
         <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
 
