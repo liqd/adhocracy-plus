@@ -1,4 +1,4 @@
-"""Django settings for _LIQD_PRODUCT_."""
+"""Django settings for Beteiligung.in."""
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
