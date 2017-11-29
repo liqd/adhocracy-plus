@@ -3,14 +3,25 @@
 <footer class="footer">
     <div class="l-wrapper">
         <nav class="navi">
+            {%  with pages=settings.liqd_product_cms_settings.ImportantPages %}
             <ul class="navi__list">
+                {% if pages.imprint %}
                 <li class="navi__item">
-                    <a href="#" class="navi__link">Impressum</a>
+                    <a href="{{ pages.imprint.url }}" class="navi__link">Impressum</a>
                 </li>
+                {% endif %}
+                {% if pages.terms_of_use %}
                 <li class="navi__item">
-                    <a href="#" class="navi__link">Hilfe</a>
+                    <a href="{{ pages.terms_of_use.url }}" class="navi__link">Nutzungsbedingungen</a>
                 </li>
+                {% endif %}
+                {% if pages.data_protection_policy %}
+                <li class="navi__item">
+                    <a href="{{ pages.data_protection_policy.url }}" class="navi__link">Datenschutz</a>
+                </li>
+                {% endif %}
             </ul>
+            {% endwith %}
             <span>Powered by Adhocracy4</span>
         </nav>
     </div>
