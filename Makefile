@@ -5,7 +5,7 @@ all: help
 
 .PHONY: help
 help:
-	@echo _LIQD_PRODUCT_ development tools
+	@echo Beteiligung.in development tools
 	@echo
 	@echo It will either use an exisiting virtualenv if it was entered
 	@echo before or create a new one in the .env subdirectory.
