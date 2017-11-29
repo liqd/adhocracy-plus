@@ -482,7 +482,7 @@ msgstr ""
 
 #: liqd_product/apps/partners/models.py:16
 msgid "Short description of your municipality"
-msgstr ""
+msgstr "Kurze Beschreibung Ihrer Kommune"
 
 #: liqd_product/apps/partners/models.py:20
 msgid "Logo"
@@ -490,21 +490,21 @@ msgstr "Logo"
 
 #: liqd_product/apps/partners/models.py:21
 msgid "The Logo representing your municipality"
-msgstr ""
+msgstr "Das Logo Ihrer Kommune"
 
 #: liqd_product/apps/partners/models.py:27
 msgid "Slogan"
-msgstr ""
+msgstr "Slogan"
 
 #: liqd_product/apps/partners/models.py:41
 msgid "Description of your municipality"
-msgstr ""
+msgstr "Beschreibung Ihrer Kommune"
 
 #: liqd_product/apps/partners/templates/partner_about.html:4
 #: liqd_product/apps/partners/templates/partner_about.html:8
 #: liqd_product/apps/partners/templates/partner_base.html:29
 msgid "About us"
-msgstr ""
+msgstr "Über uns"
 
 #: liqd_product/apps/partners/templates/partner_base.html:15
 msgid "Menu"
@@ -512,32 +512,32 @@ msgstr "Menü"
 
 #: liqd_product/apps/partners/templates/partner_landing_page.html:26
 msgid "About this page"
-msgstr ""
+msgstr "Über diese Seite"
 
 #: liqd_product/apps/partners/templates/partner_landing_page.html:31
 msgid "Activity"
-msgstr ""
+msgstr "Aktivitäten"
 
 #: liqd_product/apps/partners/templates/partner_landing_page.html:36
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:108
 msgid "No activity yet. "
-msgstr ""
+msgstr "Bisher fand keine Aktivität statt"
 
 #: liqd_product/apps/partners/templates/partner_landing_page.html:42
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiken"
 
 #: liqd_product/apps/partners/templates/partner_landing_page.html:46
 msgid "registered Users"
-msgstr ""
+msgstr "Angemeldete Nutzer*innen"
 
 #: liqd_product/apps/partners/templates/partner_landing_page.html:50
 msgid "Items"
-msgstr ""
+msgstr "Items"
 
 #: liqd_product/apps/partners/templates/partner_landing_page.html:58
 msgid "Ratings"
-msgstr ""
+msgstr "Bewertungen"
 
 #: liqd_product/apps/users/__init__.py:5
 msgid ""
@@ -624,27 +624,30 @@ msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
 msgstr ""
+"Bitte setzen Sie einen Haken, falls Sie "
+"Benachrichtigungen per E-Mail erhalten möchten. Nehmen Sie den Haken raus, "
+"falls Sie keine Benachrichtigungen per E-Mail erhalten möchten."
 
 #: liqd_product/apps/users/models.py:67
 msgid "Biography"
-msgstr ""
+msgstr "Biografie"
 
 #: liqd_product/apps/users/models.py:73
 msgid "Twitter name"
-msgstr ""
+msgstr "Twitter name"
 
 #: liqd_product/apps/users/models.py:79
 msgid "Facebook name"
-msgstr ""
+msgstr "Facebook name"
 
 #: liqd_product/apps/users/models.py:85
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:19
 msgid "Homepage"
-msgstr ""
+msgstr "Homepage"
 
 #: liqd_product/apps/users/models.py:92
 msgid "Avatar picture"
-msgstr ""
+msgstr "Avatar Bild"
 
 #: liqd_product/apps/users/templates/liqd_product_users/indicator.html:18
 msgid "Account Settings"
@@ -671,27 +674,27 @@ msgstr "Registrieren"
 
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:25
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:31
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:37
 msgid "Active in these platforms"
-msgstr ""
+msgstr "Aktiv in den folgenden Plattformen"
 
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:50
 msgid "This user is not active in any platform yet."
-msgstr ""
+msgstr "Diese Nutzer*in ist bislang noch in keiner Plattform aktiv."
 
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:52
 msgid "Check some platforms out."
-msgstr ""
+msgstr "Entdecke weitere Platformen."
 
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:67
 msgid "Participations"
-msgstr ""
+msgstr "Beteiligungen"
 
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:77
 msgid "Activities"
@@ -699,7 +702,7 @@ msgstr "Aktivitäten"
 
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:94
 msgid "This user is not active in any projects yet."
-msgstr ""
+msgstr "Dise Nutzer*in ist bislang noch in keinem Projekt aktiv."
 
 #: liqd_product/templates/404.html:7
 msgid "This page could not be found."
@@ -757,7 +760,7 @@ msgstr "E-Mail Adresse hinzufügen"
 #: liqd_product/templates/account/email_confirm.html:4
 #: liqd_product/templates/account/email_confirm.html:7
 msgid "Confirm E-mail Address"
-msgstr ""
+msgstr "Bitte bestätigen Sie Ihre E-Mail Adresse."
 
 #: liqd_product/templates/account/email_confirm.html:11
 #, python-format
@@ -766,6 +769,8 @@ msgid ""
 "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an\n"
 "            e-mail address for user %(user_display)s."
 msgstr ""
+"Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> eine E-"
+"Mail Adresse des Nutzers %(user_display)s ist."
 
 #: liqd_product/templates/account/email_confirm.html:17
 msgid "Confirm"
@@ -779,6 +784,8 @@ msgid ""
 "confirmation\n"
 "                request</a>."
 msgstr ""
+"Der Link zur E-Mail Bestätigung ist abgelaufen oder ist ungültig. Bitte <a "
+"href=\"%(email_url)s\">fordern Sie eine neue Bestätigungsemail an</a>."
 
 #: liqd_product/templates/account/login.html:9
 #, python-format
@@ -861,7 +868,7 @@ msgstr ""
 
 #: liqd_product/templates/account/password_reset_from_key.html:20
 msgid "change password"
-msgstr ""
+msgstr "Passwort ändern"
 
 #: liqd_product/templates/account/password_reset_from_key.html:23
 msgid "Your password is now changed."
@@ -903,7 +910,7 @@ msgstr "Fehler"
 
 #: liqd_product/templates/email_base.html:47
 msgid "_LIQD_PRODUCT_ is a participation platform operated by"
-msgstr ""
+msgstr "_LIQD_PRODUCT_ ist eine Plattform für Beteiligung, betrieben durch"
 
 #: liqd_product/templates/email_base.html:55
 #: liqd_product/templates/email_base.txt:13
@@ -916,7 +923,7 @@ msgstr "meinBerlin ist die Plattform für Beteiligung, betrieben durch"
 
 #: liqd_product/templates/header.html:3
 msgid "Platform header"
-msgstr ""
+msgstr "Plattform Kopfzeile"
 
 #: liqd_product/templates/meinberlin_dashboard2/base_dashboard.html:11
 msgid "Organisations"
@@ -970,7 +977,7 @@ msgstr "Löschen"
 
 #: liqd_product/templates/meinberlin_projects/includes/project_list_tile.html:34
 msgid "Private"
-msgstr ""
+msgstr "Privat"
 
 #~ msgid "Account Connections"
 #~ msgstr "Nutzerkonto Verbindungen"
