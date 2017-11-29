@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-{% load i18n static %}
+{% load i18n static partners_tags %}
 {% get_current_language as LANGUAGE_CODE %}
+{% get_current_partner as PARTNER %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{% block title %}_LIQD_PRODUCT_{% endblock %}</title>
+    <title>{% block title %}Beteiligung.in{% if PARTNER %}/{{ PARTNER.name }}{% endif %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'vendor.css' %}" />
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}

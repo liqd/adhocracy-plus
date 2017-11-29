@@ -1,5 +1,6 @@
 from django import template
 
+from .. import get_partner
 from .. import partner_context
 
 register = template.Library()
@@ -23,3 +24,8 @@ def withpartner(parser, token):
     nodelist = parser.parse(('endwithpartner',))
     parser.delete_first_token()
     return WithPartnerNode(nodelist, partner)
+
+
+@register.simple_tag
+def get_current_partner():
+    return get_partner()

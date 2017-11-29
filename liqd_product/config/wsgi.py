@@ -1,5 +1,5 @@
 """
-WSGI config for _LIQD_PRODUCT_.
+WSGI config for Beteiligung.in.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

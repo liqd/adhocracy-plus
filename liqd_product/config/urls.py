@@ -1,4 +1,4 @@
-"""_LIQD_PRODUCT_ URL Configuration."""
+"""Beteiligung.in URL Configuration."""
 
 from ckeditor_uploader import views as ck_views
 from django.conf import settings
