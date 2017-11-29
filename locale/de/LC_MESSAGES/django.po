@@ -3,20 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-29 09:15+0100\n"
-"PO-Revision-Date: 2017-05-30 12:04+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2017-11-29 09:23+0100\n"
+"PO-Revision-Date: 2017-10-16 13:42+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.1\n"
 
 #: adhocracy4/categories/fields.py:11
 #: adhocracy4/categories/filters.py:10
@@ -39,17 +39,17 @@ msgstr "Kommentare"
 #: adhocracy4/comments/models.py:55
 #: adhocracy4/comments/models.py:55
 msgid "deleted by creator"
-msgstr ""
+msgstr "Vom Ersteller gelöscht"
 
 #: adhocracy4/comments/models.py:57
 #: adhocracy4/comments/models.py:57
 msgid "deleted by moderator"
-msgstr ""
+msgstr "Vom Moderator gelöscht"
 
 #: adhocracy4/comments/serializers.py:25
 #: adhocracy4/comments/serializers.py:25
 msgid "unknown user"
-msgstr "unbekannte*r Nutzer*in"
+msgstr "unbekannter Nutzer"
 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
@@ -57,7 +57,7 @@ msgstr "unbekannte*r Nutzer*in"
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:10
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:11
 msgid "Search"
-msgstr ""
+msgstr "Suchen"
 
 #: adhocracy4/filters/widgets.py:32
 #: adhocracy4/filters/widgets.py:32
@@ -68,7 +68,7 @@ msgstr "Alle"
 #: adhocracy4/forms/fields.py:18
 #, python-format
 msgid "Time of %(date_label)s"
-msgstr ""
+msgstr "Uhrzeit für %(date_label)s"
 
 #: adhocracy4/images/fields.py:70
 #: adhocracy4/images/fields.py:70
@@ -86,13 +86,13 @@ msgstr ""
 #: adhocracy4/images/fields.py:90
 #, python-brace-format
 msgid "{image_name} copyright"
-msgstr ""
+msgstr "{image_name} Urheber*in"
 
 #: adhocracy4/images/fields.py:93
 #: adhocracy4/images/fields.py:93
 #, python-brace-format
 msgid "Copyright shown in the {image_name}."
-msgstr ""
+msgstr "Urheber*in, die im {image_name} angezeigt wird."
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
@@ -159,7 +159,7 @@ msgstr "Ein Bild aus einem lokalen Ordner auswählen."
 #: adhocracy4/maps/admin.py:14
 #: adhocracy4/maps/models.py:11
 msgid "Polygon"
-msgstr ""
+msgstr "Polygon"
 
 #: adhocracy4/maps/admin.py:16
 #: adhocracy4/maps/admin.py:16
@@ -167,11 +167,13 @@ msgid ""
 "Enter a valid GeoJSON object. To initialize a new areasetting enter the "
 "string \"false\" without quotation marks."
 msgstr ""
+"Ein valides GeoJSON Objekt eingeben. Zur Initialisierung \"false\" ohne "
+"Anführungszeichen eingeben."
 
 #: adhocracy4/maps/fields.py:16
 #: adhocracy4/maps/fields.py:16
 msgid "Geometry as GeoJSON"
-msgstr ""
+msgstr "GeoJSON kodierte Koordinaten"
 
 #: adhocracy4/maps/fields.py:34
 #: adhocracy4/maps/fields.py:34
@@ -189,11 +191,13 @@ msgstr ""
 #: adhocracy4/maps/models.py:12
 msgid "Please draw an area on the map."
 msgstr ""
+"Bitte zeichnen Sie einen Bereich auf der Karte ein, in dem Ihr Projekt "
+"stattfindet und Ideen verortet werden sollen."
 
 #: adhocracy4/modules/models.py:14
 #: adhocracy4/modules/models.py:14
 msgid "Title of the module"
-msgstr ""
+msgstr "Modultitel"
 
 #: adhocracy4/modules/models.py:15
 #: adhocracy4/modules/models.py:15
@@ -201,11 +205,13 @@ msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
 msgstr ""
+"Der Modultitel wird in der Zeitleiste und auf der Projektseite erscheinen. "
+"Er sollte maximal 512 Zeichen lang sein."
 
 #: adhocracy4/modules/models.py:23
 #: adhocracy4/modules/models.py:23
 msgid "Short description of the module"
-msgstr ""
+msgstr "Kurzbeschreibung des Moduls"
 
 #: adhocracy4/modules/models.py:24
 #: adhocracy4/modules/models.py:24
@@ -214,6 +220,8 @@ msgid ""
 "detail pages. It should briefly state the goal of the module in max. 250 "
 "chars."
 msgstr ""
+"Die Kurzbeschreibung des Moduls erscheint auf der Projektseite. Sie sollte "
+"in maximal 250 Zeichen das Ziel des Moduls beschreiben."
 
 #: adhocracy4/phases/models.py:64
 #: adhocracy4/phases/models.py:64
@@ -243,7 +251,7 @@ msgstr "Das Enddatum kann nicht vor dem Startdatum liegen."
 #: adhocracy4/projects/admin.py:8
 #: adhocracy4/projects/admin.py:8
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #: adhocracy4/projects/models.py:28
 #: adhocracy4/projects/models.py:28
@@ -285,9 +293,9 @@ msgid ""
 "how the project’s participation will look like. It will be always visible in "
 "the „Info“ tab on your project’s page."
 msgstr ""
-"Die Beschreibung verdeutlicht Nutzer*innen was das Ziel des Projekts ist und "
-"wie die Beteiligung von statten gehen wird. Sie wird im Info-Tab der "
-"Projektseite angezeigt werden."
+"Die Beschreibung verdeutlicht Nutzerinnen und Nutzern was das Ziel des "
+"Projekts ist und wie die Beteiligung vonstatten gehen wird. Sie wird im Info-"
+"Tab der Projektseite angezeigt werden."
 
 #: adhocracy4/projects/models.py:56
 #: adhocracy4/projects/models.py:56
@@ -317,6 +325,8 @@ msgid ""
 "invited users. Teasers for your project including title and short "
 "description will always be visible to everyone"
 msgstr ""
+"Bitte geben Sie an, ob dieses Projekt öffentlich oder auf eingeladene "
+"Teilnehmerinnen und Teinehmer beschränkt sein soll."
 
 #: adhocracy4/projects/models.py:73
 #: adhocracy4/projects/models.py:79
@@ -337,12 +347,12 @@ msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 #: adhocracy4/projects/models.py:82
 #: adhocracy4/projects/models.py:89
 msgid "Tile image"
-msgstr ""
+msgstr "Kachel-Bild"
 
 #: adhocracy4/projects/models.py:84
 #: adhocracy4/projects/models.py:84
 msgid "The image will be shown in the project tile."
-msgstr ""
+msgstr "Das Bild wird in der Projekt-Kachel angezeigt."
 
 #: adhocracy4/projects/models.py:102
 #: adhocracy4/projects/models.py:102
@@ -355,6 +365,8 @@ msgid ""
 "Exclude this project from all listings by default. You can still access this "
 "project by using filters."
 msgstr ""
+"Dieses Projekt standardmäßig von allen Listen ausschließen. Sie können das "
+"Projekt weiterhin über die Filter erreichen."
 
 #: adhocracy4/projects/templatetags/project_tags.py:12
 #: adhocracy4/projects/templatetags/project_tags.py:12
@@ -440,8 +452,8 @@ msgid ""
 "statements. Afterwards anyone can comment and rate on different topics."
 msgstr ""
 "Mit \"Agenda festlegen\" ist es möglich, Themen zu identifizieren und "
-"Mission Statements zu definieren. Im Anschluss können die Themen bewertet "
-"und kommentiert werden."
+"Leitbilder zu definieren. Im Anschluss können diese bewertet und kommentiert "
+"werden."
 
 #: liqd_product/apps/dashboard/blueprints.py:52
 msgid "Text Review"
@@ -452,7 +464,7 @@ msgid ""
 "In the text-review it’s possible to structure draft texts that can be "
 "commented."
 msgstr ""
-"Text-Kommentieren erlaubt es Textentwürfe zu erstellen die kommentiert "
+"\"Text kommentieren\" erlaubt es Textentwürfe zu erstellen, die kommentiert "
 "werden können."
 
 #: liqd_product/apps/dashboard/blueprints.py:65
@@ -465,7 +477,8 @@ msgid ""
 "votes and comment on the poll."
 msgstr ""
 "Bei einer Umfrage können Sie mehrere Fragen und deren Antwortmöglichkeiten "
-"anlegen. Nutzer können ihre Stimme dann abgeben und die Umfrage kommentieren."
+"anlegen. Nutzerinnen und Nutzer können ihre Stimme dann abgeben und die "
+"Umfrage kommentieren."
 
 #: liqd_product/apps/partners/models.py:16
 msgid "Short description of your municipality"
@@ -473,7 +486,7 @@ msgstr ""
 
 #: liqd_product/apps/partners/models.py:20
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: liqd_product/apps/partners/models.py:21
 msgid "The Logo representing your municipality"
@@ -531,9 +544,9 @@ msgid ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
 "and @/./+/-/_ characters. It must start with a digit or a letter."
 msgstr ""
-"Bitte geben Sie einen gültigen Benutzernamen ein. Dieser darf nur "
-"Buchstaben, Zahlen, Leerzeichen und nur @/./+/-/_ Zeichen erhalten. Der "
-"Benutzername muss mit einem Buchstaben oder einer Zahl anfangen."
+"Bitte geben Sie einen gültigen Nutzernamen ein. Dieser darf nur Buchstaben, "
+"Zahlen, Leerzeichen und nur @/./+/-/_ Zeichen erhalten. Der Nutzername muss "
+"mit einem Buchstaben oder einer Zahl anfangen."
 
 #: liqd_product/apps/users/admin.py:11
 msgid "Permissions"
@@ -559,7 +572,7 @@ msgstr "Bitte akzeptieren sie die Nutzungsbedingungen."
 
 #: liqd_product/apps/users/models.py:16
 msgid "username"
-msgstr "Benutzername"
+msgstr "Nutzername"
 
 #: liqd_product/apps/users/models.py:20
 msgid ""
@@ -570,7 +583,7 @@ msgstr ""
 
 #: liqd_product/apps/users/models.py:26
 msgid "A user with that username already exists."
-msgstr "Der Benutzer mit diesem Benutzernamen existiert bereits."
+msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
 #: liqd_product/apps/users/models.py:30
 msgid "Email address"
@@ -578,11 +591,11 @@ msgstr "E-Mail Adresse"
 
 #: liqd_product/apps/users/models.py:33
 msgid "A user with that email address already exists."
-msgstr "Der Benutzer mit dieser Emailadresse existiert bereits."
+msgstr "Der Nutzer mit dieser E-Mail Adresse existiert bereits."
 
 #: liqd_product/apps/users/models.py:37
 msgid "staff status"
-msgstr ""
+msgstr "Mitarbeiterstatus"
 
 #: liqd_product/apps/users/models.py:40
 msgid "Designates whether the user can log into this admin site."
@@ -611,9 +624,6 @@ msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
 msgstr ""
-"Bitte setzen Sie einen Haken, falls Sie Benachrichtigungen per E-Mail "
-"erhalten möchten.  Nehmen Sie den Haken raus, falls Sie keine "
-"Benachrichtigungen per Email erhalten möchten."
 
 #: liqd_product/apps/users/models.py:67
 msgid "Biography"
@@ -638,7 +648,7 @@ msgstr ""
 
 #: liqd_product/apps/users/templates/liqd_product_users/indicator.html:18
 msgid "Account Settings"
-msgstr "Benutzerkonto Einstellungen"
+msgstr "Nutzerkonto Einstellungen"
 
 #: liqd_product/apps/users/templates/liqd_product_users/indicator.html:32
 #: liqd_product/apps/users/templates/liqd_product_users/indicator.html:35
@@ -685,7 +695,7 @@ msgstr ""
 
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:77
 msgid "Activities"
-msgstr ""
+msgstr "Aktivitäten"
 
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:94
 msgid "This user is not active in any projects yet."
@@ -747,7 +757,7 @@ msgstr "E-Mail Adresse hinzufügen"
 #: liqd_product/templates/account/email_confirm.html:4
 #: liqd_product/templates/account/email_confirm.html:7
 msgid "Confirm E-mail Address"
-msgstr "Bitte bestätigen Sie Ihre E-Mail-Adresse."
+msgstr ""
 
 #: liqd_product/templates/account/email_confirm.html:11
 #, python-format
@@ -756,8 +766,6 @@ msgid ""
 "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an\n"
 "            e-mail address for user %(user_display)s."
 msgstr ""
-"Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> eine E-"
-"Mail Adresse des Nutzers %(user_display)s ist."
 
 #: liqd_product/templates/account/email_confirm.html:17
 msgid "Confirm"
@@ -771,8 +779,6 @@ msgid ""
 "confirmation\n"
 "                request</a>."
 msgstr ""
-"Der Link zur E-Mail-Bestätigung ist abgelaufen oder ist ungültig. Bitte <a "
-"href=\"%(email_url)s\">fordern Sie eine neue Bestätigungsemail an</a>."
 
 #: liqd_product/templates/account/login.html:9
 #, python-format
@@ -780,7 +786,7 @@ msgid ""
 "If you have not created an account yet, then please <a href=\"%(signup_url)s"
 "\">register</a> first."
 msgstr ""
-"Wenn Sie noch kein Benutzerkonto haben, <a href=\"%(signup_url)s"
+"Wenn Sie noch kein Nutzerkonto haben, <a href=\"%(signup_url)s"
 "\">registrieren</a> Sie sich bitte zuerst."
 
 #: liqd_product/templates/account/login.html:27
@@ -820,7 +826,7 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll send you "
 "an e-mail allowing you to reset it."
 msgstr ""
-"Passwort vergessen? Tragen Sie Ihre E-mail Adresse ein und Sie bekommen eine "
+"Passwort vergessen? Tragen Sie Ihre E-Mail Adresse ein und Sie bekommen eine "
 "Email mit der Sie das Passwort zurücksetzen können."
 
 #: liqd_product/templates/account/password_reset.html:18
@@ -855,7 +861,7 @@ msgstr ""
 
 #: liqd_product/templates/account/password_reset_from_key.html:20
 msgid "change password"
-msgstr "Passwort ändern"
+msgstr ""
 
 #: liqd_product/templates/account/password_reset_from_key.html:23
 msgid "Your password is now changed."
@@ -867,7 +873,7 @@ msgid ""
 "Already have an account? Then please\n"
 "        <a href=\"%(login_url)s\">login</a>."
 msgstr ""
-"Haben Sie schon ein Benutzerkonto? Dann <a href=\"%(login_url)s\">melden Sie "
+"Haben Sie schon ein Nutzerkonto? Dann <a href=\"%(login_url)s\">melden Sie "
 "sich bitte an</a>."
 
 #: liqd_product/templates/account/signup.html:23
@@ -942,7 +948,7 @@ msgstr "Abgeschlossen"
 
 #: liqd_product/templates/meinberlin_dashboard2/includes/project_list_item.html:20
 msgid "private"
-msgstr ""
+msgstr "privat"
 
 #: liqd_product/templates/meinberlin_dashboard2/includes/project_list_item.html:41
 #: liqd_product/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:22
@@ -952,11 +958,11 @@ msgstr "Bearbeiten"
 #: liqd_product/templates/meinberlin_dashboard2/includes/project_list_item.html:51
 #: liqd_product/templates/meinberlin_dashboard2/includes/project_list_item.html:53
 msgid "more"
-msgstr ""
+msgstr "mehr"
 
 #: liqd_product/templates/meinberlin_dashboard2/includes/project_list_item.html:63
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplizieren"
 
 #: liqd_product/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:27
 msgid "Delete"
@@ -966,14 +972,13 @@ msgstr "Löschen"
 msgid "Private"
 msgstr ""
 
-#~ msgid "Set to archive the project"
-#~ msgstr "Setzen, um das Projekt zu archivieren."
-
-#~ msgid "Type of the project"
-#~ msgstr "Typ des Projekt"
-
 #~ msgid "Account Connections"
-#~ msgstr "Benutzerkonto Verbindungen"
+#~ msgstr "Nutzerkonto Verbindungen"
+
+#~ msgid ""
+#~ "Here you can find any actions that have happened in projects you are "
+#~ "following."
+#~ msgstr "Hier sehen Sie alle Aktionen aus den Projekten, denen Sie folgen."
 
 #~ msgid "Heading"
 #~ msgstr "Überschrift"
@@ -1007,6 +1012,80 @@ msgstr ""
 #~ msgid "on <a href=\"%(url)s\">%(name)s</a>"
 #~ msgstr "in <a href=\"%(url)s\">%(name)s</a>"
 
+#~ msgid "Component"
+#~ msgstr "Bereich"
+
+#~ msgid "Log"
+#~ msgstr "Änderungsprotokoll"
+
+#~ msgid "Project updated"
+#~ msgstr "Projekt aktualisiert"
+
+#~ msgid "Module updated"
+#~ msgstr "Modul aktualisiert"
+
+#~ msgid "Project created"
+#~ msgstr "Projekt erstellt"
+
+#~ msgid "Project published"
+#~ msgstr "Projekt veröffentlicht"
+
+#~ msgid "Project unpublished"
+#~ msgstr "Projekt depubliziert"
+
+#~ msgid "action time"
+#~ msgstr "Zeitpunkt der Aktion"
+
+#~ msgid "User"
+#~ msgstr "Nutzer*innen"
+
+#~ msgid "Module"
+#~ msgstr "Modul"
+
+#~ msgid "Message"
+#~ msgstr "Eintrag"
+
+#~ msgid "Action"
+#~ msgstr "Aktion"
+
+#~ msgid "log entry"
+#~ msgstr "Protokolleintrag"
+
+#~ msgid "log entries"
+#~ msgstr "Protokolleinträge"
+
+#~ msgid ""
+#~ "\"{username}\" modified the component \"{component_label}\" in the module "
+#~ "\"{module_name}\" of the project \"{project_name}\"."
+#~ msgstr ""
+#~ "\"{username}\" hat im Projekt \"{project_name}\" Änderungen am Modul "
+#~ "\"{module_name}\" im Bereich \"{component_label}\" vorgenommen."
+
+#~ msgid ""
+#~ "\"{username}\" modified the component \"{component_label}\" of the "
+#~ "project \"{project_name}\"."
+#~ msgstr ""
+#~ "\"{username}\" hat im Projekt \"{project_name}\" Änderungen im Bereich "
+#~ "\"{component_label}\" vorgenommen."
+
+#~ msgid "\"{username}\" created the project \"{project_name}\"."
+#~ msgstr "\"{username}\" hat das Projekt \"{project_name}\" erstellt."
+
+#~ msgid "\"{username}\" published the project \"{project_name}\"."
+#~ msgstr "\"{username}\" hat das Projekt \"{project_name}\" veröffentlicht."
+
+#~ msgid "\"{username}\" depublished the project \"{project_name}\"."
+#~ msgstr "\"{username}\" hat das Projekt \"{project_name}\" depubliziert."
+
+#~ msgid "Project Edit Log"
+#~ msgstr "Änderungsprotokoll des Projekts"
+
+#~ msgid "Development plan settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "Edit development plan settings"
+#~ msgstr "Bebauungsplan bearbeiten"
+
 #~ msgid "Office worker email"
 #~ msgstr "E-Mail Adresse der Sachbearbeiter*in"
 
@@ -1034,6 +1113,15 @@ msgstr ""
 #~ msgid "Bplan statement phase"
 #~ msgstr "Bebauungsplan Stellungnahmephase"
 
+#~ msgid "Participation is over"
+#~ msgstr "Die Beteiligung hat geendet"
+
+#~ msgid "The Participation is over"
+#~ msgstr "Die Beteiligung hat geendet"
+
+#~ msgid "Statments cannot be submited anymore."
+#~ msgstr "Es können keine Stellungnahmen mehr eingereicht werden."
+
 #~ msgid "Submit a development plan statement"
 #~ msgstr "Meine Stellungnahme zum Bebauungsplan"
 
@@ -1050,16 +1138,29 @@ msgstr ""
 #~ "Danke! Ihre Stellungnahme wurde versandt! Eine Antwort erhalten Sie per E-"
 #~ "Mail."
 
+#~ msgid "Proposals with comments"
+#~ msgstr "Vorschläge mit Kommentaren"
+
 #~ msgid "Required Budget"
 #~ msgstr "Notwendiges Budget"
+
+#~ msgid "Proposal is archived"
+#~ msgstr "Vorschlag ist archiviert"
+
+#~ msgid ""
+#~ "Exclude this proposal from all listings by default. You can still access "
+#~ "this proposal by using filters."
+#~ msgstr ""
+#~ "Diesen Vorschlag standardmäßig von allen Listen ausschließen. Sie können "
+#~ "den Vorschlag weiterhin über die Filter erreichen."
 
 #~ msgid "Request phase"
 #~ msgstr "Vorschlagsphase"
 
 #~ msgid "Request budgeting and get feedback through rates and comments."
 #~ msgstr ""
-#~ "Nutzer können Vorschläge mit Budgetangabe machen und erhalten durch "
-#~ "Bewertungen und Kommentare Rückmeldung."
+#~ "Nutzerinnen und Nutzer können Vorschläge mit Budgetangabe machen und "
+#~ "erhalten durch Bewertungen und Kommentare Rückmeldung."
 
 #~ msgid "participatory budgeting"
 #~ msgstr "Bürgerhaushalt"
@@ -1087,6 +1188,9 @@ msgstr ""
 
 #~ msgid "Create a new proposal"
 #~ msgstr "Anlegen eines neuen Vorschlags"
+
+#~ msgid "breadcrumbs"
+#~ msgstr "breadcrumbs"
 
 #~ msgid "back to project"
 #~ msgstr "Zurück zum Projekt"
@@ -1118,8 +1222,11 @@ msgstr ""
 #~ msgid "Moderate proposal"
 #~ msgstr "Vorschlag moderieren"
 
+#~ msgid "Edit %(title)s"
+#~ msgstr "%(title)s bearbeiten"
+
 #~ msgid "Edit proposal"
-#~ msgstr "Vorschlag editieren"
+#~ msgstr "Vorschlag bearbeiten"
 
 #~ msgid "Most recent"
 #~ msgstr "am aktuellsten"
@@ -1148,6 +1255,12 @@ msgstr ""
 #~ msgid "Ordering"
 #~ msgstr "Sortierung"
 
+#~ msgid "Filter bar "
+#~ msgstr "Filterleiste"
+
+#~ msgid "This field is required"
+#~ msgstr "Dieses Feld muss ausgefüllt werden"
+
 #~ msgid "Remove category"
 #~ msgstr "Kategorie entfernen"
 
@@ -1171,6 +1284,15 @@ msgstr ""
 #~ "Sammeln Sie ortsspezifische Ideen zu einem Thema und lassen Sie diese "
 #~ "kommentieren."
 
+#~ msgid ""
+#~ "With Agenda-Setting it’s possible to identify topics and to define "
+#~ "mission statements. Anyone can submit topics that can be commented and "
+#~ "rated."
+#~ msgstr ""
+#~ "Mit \"Agenda festlegen\" ist es möglich, Themen zu identifizieren und "
+#~ "Leitbilder zu definieren. Nutzerinnen und Nutzer können Themen "
+#~ "vorschlagen, die bewertet und kommentiert werden können."
+
 #~ msgid "Participatory budgeting"
 #~ msgstr "Bürgerhaushalt"
 
@@ -1179,7 +1301,7 @@ msgstr ""
 #~ "specifications and locate them. Anyone can comment and rate on different "
 #~ "proposals."
 #~ msgstr ""
-#~ "Mit dem Bürgerhaushalt ist es den Teilnehmern möglich, Vorschläge mit "
+#~ "Mit dem Bürgerhaushalt ist es den Teilnehmenden möglich, Vorschläge mit "
 #~ "einem Budget zu versehen und sie auf einer Karte zu verorten. Diese "
 #~ "Vorschläge können bewertet und kommentiert werden."
 
@@ -1197,6 +1319,14 @@ msgstr ""
 #~ msgid "Comment and prioritize topics."
 #~ msgstr ""
 #~ "Bei der Themenpriorisierung legen Sie die Themen an, welche dann von den "
+#~ "Nutzerinnen und Nutzern bewertet und kommentiert werden können."
+
+#~ msgid "Place Prioritization"
+#~ msgstr "Ortspriorisierung"
+
+#~ msgid "Comment and prioritize places located on a map."
+#~ msgstr ""
+#~ "Legen Sie Orte auf einer Karte an, welche dann von den Nutzerinnen und "
 #~ "Nutzern bewertet und kommentiert werden können."
 
 #~ msgid "Development Plan"
@@ -1207,7 +1337,7 @@ msgstr ""
 #~ "external sites."
 #~ msgstr ""
 #~ "Legen Sie ein Formular zur Stellungnahme zu den Bebauungsplänen an. "
-#~ "DiesesFormular wird dann auf externen Seiten eingebunden."
+#~ "Dieses Formular wird dann auf externen Seiten eingebunden."
 
 #~ msgid "Kiezkasse"
 #~ msgstr "Kiezkasse"
@@ -1216,81 +1346,94 @@ msgstr ""
 #~ "With kiezkasse it’s possible to make proposals with budget specifications "
 #~ "and locate them. The proposals can be commented and rated."
 #~ msgstr ""
-#~ "Mit der Kiezkasse ist es den Teilnehmern möglich, Vorschläge mit einem "
+#~ "Mit der Kiezkasse ist es den Teilnehmenden möglich, Vorschläge mit einem "
 #~ "Budget zu versehen und sie auf einer Karte zu verorten. Diese Vorschläge "
 #~ "können bewertet und kommentiert werden."
 
 #~ msgid "Organisation name"
 #~ msgstr "Organisationsname"
 
-#~ msgid "Add moderator via email"
-#~ msgstr "Moderator via E-Mail Adresse hinzufügen"
-
-#~ msgid "Following emails are not registered: "
-#~ msgstr "Folgende E-Mail Adressen sind nicht registriert: "
-
-#~ msgid "{} moderator added."
-#~ msgid_plural "{} moderators added."
-#~ msgstr[0] "{} Moderator hinzugefügt."
-#~ msgstr[1] "{} Moderatoren hinzugefügt."
-
-#~ msgid "End date can not be smaller than the start date."
-#~ msgstr "Das Enddatum kann nicht kleiner als das Startdatum sein."
-
-#~ msgid "External projects require no information."
-#~ msgstr "Externe Projekte benötigen keine Information."
-
-#~ msgid "External project phase"
-#~ msgstr "Externe Projekt Phase"
-
-#~ msgid "Bplan projects require no information."
-#~ msgstr "Bebauungspläne benötigen keine Information."
-
-#~ msgid "Project succesfully created."
-#~ msgstr "Projekt erfolgreich erstellt."
-
 #~ msgid "Project successfully updated."
 #~ msgstr "Projekt erfolgreich aktualisiert."
 
-#~ msgid ""
-#~ "Project can not be published until every Phase it contains has start and "
-#~ "end dates."
+#~ msgid "Module successfully updated."
+#~ msgstr "Modul erfolgreich aktualisiert."
+
+#~ msgid "Basic settings"
+#~ msgstr "Grundeinstellungen"
+
+#~ msgid "Edit basic settings"
+#~ msgstr "Grundeinstellungen bearbeiten"
+
+#~ msgid "Information"
+#~ msgstr "Information"
+
+#~ msgid "Edit project information"
+#~ msgstr "Projektinformation bearbeiten"
+
+#~ msgid "Result"
+#~ msgstr "Ergebnis"
+
+#~ msgid "Edit project result"
+#~ msgstr "Projektresultat bearbeiten"
+
+#~ msgid "Basic information"
+#~ msgstr "Grundeinstellungen"
+
+#~ msgid "Edit basic module information"
+#~ msgstr "Moduleinstellungen bearbeiten"
+
+#~ msgid "Phases"
+#~ msgstr "Phasen"
+
+#~ msgid "Edit phases information"
+#~ msgstr "Phaseneinstellungen bearbeiten"
+
+#~ msgid "Areasettings"
+#~ msgstr "Karte"
+
+#~ msgid "Edit areasettings"
+#~ msgstr "Kartenbereich bearbeiten"
+
+#~ msgid "Categories"
+#~ msgstr "Kategorien"
+
+#~ msgid "Edit categories"
+#~ msgstr "Kategorien bearbeiten"
+
+#~ msgid "Archived"
+#~ msgstr "Archiviert"
+
+#~ msgid "No"
+#~ msgstr "Nein"
+
+#~ msgid "All users can participate (public)."
+#~ msgstr "Alle Nutzerinnen und Nutzer können sich beteiligen (öffentlich)."
+
+#~ msgid "Only invited users can participate (private)."
 #~ msgstr ""
-#~ "Das Projekt kann nicht veröffentlicht werden, solange nicht jede Phase "
-#~ "ein Start- und Enddatum hat."
+#~ "Nur eingeladene Nutzerinnen und Nutzer können sich beteiligen (privat)."
 
-#~ msgid "Project successfully published."
-#~ msgstr "Projekt erfolgreich veröffentlicht"
+#~ msgid "End time"
+#~ msgstr "Endzeit"
 
-#~ msgid "Project successfully unpublished."
-#~ msgstr "Projekt erfolgreich depubliziert."
+#~ msgid "Start time"
+#~ msgstr "Anfangszeit"
 
-#~ msgid "Moderator successfully removed."
-#~ msgstr "Moderator erfolgreich entfernt."
+#~ msgid "Project successfully duplicated."
+#~ msgstr "Projekt erfolgreich dupliziert."
 
-#~ msgid "Dashboard navigation"
-#~ msgstr "Organisationsverwaltung Navigation"
+#~ msgid "Missing fields for publication"
+#~ msgstr "Benötigte Felder zur Veröffentlichung"
 
-#~ msgid "Settings"
-#~ msgstr "Einstellungen"
+#~ msgid "Add Module"
+#~ msgstr "Modul hinzufügen"
+
+#~ msgid "Projects"
+#~ msgstr "Projekte"
 
 #~ msgid "New Project"
 #~ msgstr "Neues Projekt"
-
-#~ msgid "back to dashboard"
-#~ msgstr "Zurück zur Projektverwaltung"
-
-#~ msgid "Create development plan project"
-#~ msgstr "Bebauungsplan anlegen"
-
-#~ msgid "Edit development plan project"
-#~ msgstr "Bebauungsplan bearbeiten"
-
-#~ msgid "Create external project"
-#~ msgstr "Externes Projekt anlegen"
-
-#~ msgid "Edit external project"
-#~ msgstr "Externes Projekt bearbeiten"
 
 #~ msgid "Phase"
 #~ msgstr "Phase"
@@ -1298,62 +1441,96 @@ msgstr ""
 #~ msgid "Select"
 #~ msgstr "Auswählen"
 
+#~ msgid "Missing field for publication"
+#~ msgstr "Benötigtes Feld zur Veröffentlichung"
+
+#~ msgid ""
+#~ "In this section, you can create\n"
+#~ "categories. If you create any, users must assign their contributions\n"
+#~ "to one of them. This way, content can be classified."
+#~ msgstr ""
+#~ "Hier können Sie Kategorien anlegen. Falls Sie dies tun werden Nutzerinnen "
+#~ "und Nutzer aufgefordert, ihre Beiträge einer Kategorie zuordnen. Dadurch "
+#~ "können Inhalte strukturiert werden."
+
+#~ msgid "Add category"
+#~ msgstr "Kategorie hinzufügen"
+
+#~ msgid "%(value)s from %(max)s"
+#~ msgstr "%(value)s von %(max)s"
+
+#~ msgid "required fields for publication"
+#~ msgstr "benötigte Felder zur Veröffentlichung"
+
 #~ msgid "Publish"
 #~ msgstr "Veröffentlichen"
 
 #~ msgid "Unpublish"
 #~ msgstr "Depublizieren"
 
-#~ msgid "back to blueprints"
-#~ msgstr "Zurück zu Projekttypen"
-
-#~ msgid "Categories"
-#~ msgstr "Kategorien"
-
-#~ msgid "Add category"
-#~ msgstr "Kategorie hinzufügen"
-
-#~ msgid "Phases"
-#~ msgstr "Phasen"
-
-#~ msgid "Information"
-#~ msgstr "Information"
-
-#~ msgid "Participation"
-#~ msgstr "Beteiligung"
-
-#~ msgid "Result"
-#~ msgstr "Ergebnis"
-
-#~ msgid "Contents"
-#~ msgstr "Inhalte"
-
-#~ msgid "Moderators"
-#~ msgstr "Moderatoren"
-
-#~ msgid "Edit your organisation information"
-#~ msgstr "Organisationsinformationen bearbeiten"
-
-#~ msgid "Create project based on"
-#~ msgstr "Projekt anlegen basierend auf"
-
-#~ msgid "Projects"
-#~ msgstr "Projekte"
-
-#~ msgid "We could not find any projects."
-#~ msgstr "Wir konnten keine Projekte finden."
+#~ msgid "Email"
+#~ msgstr "E-Mail"
 
 #~ msgid "Add"
 #~ msgstr "Hinzufügen"
 
-#~ msgid "Email"
-#~ msgstr "E-Mail"
+#~ msgid "New Module"
+#~ msgstr "Neues Modul"
 
-#~ msgid "Edit project"
-#~ msgstr "Projekt bearbeiten"
+#~ msgid "Create project based on"
+#~ msgstr "Projekt anlegen basierend auf"
 
-#~ msgid "Organisation successfully updated."
-#~ msgstr "Organisation erfolgreich aktualisiert"
+#~ msgid ""
+#~ "After saving the draft project you can further customize and edit your "
+#~ "project and eventually publish it."
+#~ msgstr ""
+#~ "Nachdem der Projektentwurf gespeichert wurde, können in einem weiteren "
+#~ "Schritt Einstellungen angepasst und zusätzliche Informationen angegeben "
+#~ "werden. Wenn alle benötigten Informationen eingegeben sind, kann das "
+#~ "Projekt veröffentlicht werden."
+
+#~ msgid "Create draft"
+#~ msgstr "Projektentwurf anlegen"
+
+#~ msgid "We could not find any projects."
+#~ msgstr "Wir konnten keine Projekte finden."
+
+#~ msgid "Project successfully created."
+#~ msgstr "Projekt erfolgreich erstellt."
+
+#~ msgid "Invalid action"
+#~ msgstr "Ungültige Aktion"
+
+#~ msgid "Project is already published"
+#~ msgstr "Das Projekt wurde bereits veröffentlicht"
+
+#~ msgid "Project cannot be published. Required fields are missing."
+#~ msgstr ""
+#~ "Das Projekt kann nicht veröffentlicht werden. Es fehlen benötigte Felder."
+
+#~ msgid "Project cannot be published."
+#~ msgstr "Das Projekt kann nicht veröffentlicht werden."
+
+#~ msgid "Project successfully published."
+#~ msgstr "Projekt erfolgreich veröffentlicht"
+
+#~ msgid "Project is already unpublished"
+#~ msgstr "Das Projekt wurde bereits depubliziert."
+
+#~ msgid "Project successfully unpublished."
+#~ msgstr "Projekt erfolgreich depubliziert."
+
+#~ msgid "Document"
+#~ msgstr "Dokument"
+
+#~ msgid "Documents with comments"
+#~ msgstr "Dokument mit Kommentaren"
+
+#~ msgid "Chapter"
+#~ msgstr "Kapitel"
+
+#~ msgid "Paragraph"
+#~ msgstr "Absatz"
 
 #~ msgid "Comment phase"
 #~ msgstr "Kommentierphase"
@@ -1372,8 +1549,8 @@ msgstr ""
 #~ msgstr[0] "%(count)s Kommentar"
 #~ msgstr[1] "%(count)s Kommentare"
 
-#~ msgid "Manage project contents"
-#~ msgstr "Projektinhalt verwalten"
+#~ msgid "Edit document"
+#~ msgstr "Dokument bearbeiten"
 
 #~ msgid "Previous Chapter"
 #~ msgstr "Vorheriges Kapitel"
@@ -1383,6 +1560,9 @@ msgstr ""
 
 #~ msgid "back to chapter"
 #~ msgstr "Zurück zum Kapitel"
+
+#~ msgid "Document has no chapters defined."
+#~ msgstr "Für dieses Dokument wurden noch keine Kapitel angelegt"
 
 #~ msgid "You are logged in as "
 #~ msgstr "Sie sind angemeldet als "
@@ -1404,6 +1584,39 @@ msgstr ""
 #~ msgid "Embed Code"
 #~ msgstr "Code zum Einbetten des Projekts"
 
+#~ msgid "Export Excel"
+#~ msgstr "Excel exportieren"
+
+#~ msgid "Link"
+#~ msgstr "Link"
+
+#~ msgid "Positive ratings"
+#~ msgstr "Positive Bewertungen"
+
+#~ msgid "Negative ratings"
+#~ msgstr "Negative Bewertungen"
+
+#~ msgid "Comment count"
+#~ msgstr "Anzahl Kommentare"
+
+#~ msgid "Location"
+#~ msgstr "Ort"
+
+#~ msgid "Location label"
+#~ msgstr "Ortsbezeichnung"
+
+#~ msgid "Moderator feedback"
+#~ msgstr "Rückmeldung der Moderation"
+
+#~ msgid "External project settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "Edit external project settings"
+#~ msgstr "Externes Projekt bearbeiten"
+
+#~ msgid "End date can not be smaller than the start date."
+#~ msgstr "Das Enddatum kann nicht kleiner als das Startdatum sein."
+
 #~ msgid "External phase"
 #~ msgstr "Externe Phase"
 
@@ -1412,6 +1625,12 @@ msgstr ""
 
 #~ msgid "external project"
 #~ msgstr "Externes Projekt"
+
+#~ msgid "Ideas with comments"
+#~ msgstr "Ideen mit Kommentaren"
+
+#~ msgid "Title"
+#~ msgstr "Titel"
 
 #~ msgid "Issue phase"
 #~ msgstr "Phase zur Einreichung von Ideen"
@@ -1443,11 +1662,13 @@ msgstr ""
 #~ "Erhalten Sie Rückmeldung für gesammelte Ideen in Form von Bewertungen und "
 #~ "Kommentaren"
 
-#~ msgid "Universal phase"
-#~ msgstr "Universelle Phase"
+#~ msgid "Collect ideas and get feedback"
+#~ msgstr "Lassen Sie Ideen bewerten und kommentieren."
 
-#~ msgid "Use all features of the idea collection."
-#~ msgstr "Anlegen, bewerten und kommentieren von Ideen."
+#~ msgid "Create new ideas and get feedback through rates and comments."
+#~ msgstr ""
+#~ "Sammeln Sie Ideen zu einem bestimmten Thema und lassen Sie diese "
+#~ "kommentieren und bewerten."
 
 #~ msgid "Confirm Idea Deletion"
 #~ msgstr "Bestätigung der Löschung der Idee"
@@ -1470,6 +1691,28 @@ msgstr ""
 #~ msgid "Your Idea has been deleted"
 #~ msgstr "Ihre Idee wurde gelöscht"
 
+#~ msgid "Organisation"
+#~ msgstr "Organisation"
+
+#~ msgid "Phone number"
+#~ msgstr "Telefonnummer"
+
+#~ msgid "Registration for Initiators"
+#~ msgstr "Initiatorenanfrage"
+
+#~ msgid ""
+#~ "If you want to initiate new participation projects on meinBerlin, please "
+#~ "use this form to request the required access permissions."
+#~ msgstr ""
+#~ "Bitte füllen Sie das folgende Formular aus um die Berechtigung zu "
+#~ "erhalten eigene Beteiligungsprojekte auf meinBerlin zu erstellen."
+
+#~ msgid "Send request"
+#~ msgstr "Anfrage senden"
+
+#~ msgid "Request was send."
+#~ msgstr "Initiatorenanfrage wurde gesendet."
+
 #~ msgid "Own contribution to the proposal"
 #~ msgstr "Eigene Beteiligung an dem Vorschlag"
 
@@ -1477,7 +1720,7 @@ msgstr ""
 #~ msgstr "Ich möchte mich an der Umsetzung des Vorschlags beteiligen."
 
 #~ msgid "Request budgeting."
-#~ msgstr "Nutzer können Vorschläge mit Budgetangabe machen"
+#~ msgstr "Nutzerinnen und Nutzer können Vorschläge mit Budgetangabe machen"
 
 #~ msgid "kiezkasse"
 #~ msgstr "Kiezkasse"
@@ -1493,6 +1736,9 @@ msgstr ""
 #~ msgid "Moderate %(name)s"
 #~ msgstr "%(name)s moderieren"
 
+#~ msgid "Ideas with location and comments"
+#~ msgstr "Ideen mit Verortung und Kommentaren"
+
 #~ msgid "Please locate your proposal on the map."
 #~ msgstr "Bitte verorten Sie Ihren Vorschlag auf der Karte."
 
@@ -1500,11 +1746,13 @@ msgstr ""
 #~ msgstr "Wo kann ihre Idee auf der Karte verortet werden?"
 
 #~ msgid ""
-#~ "Click inside marked area to set a marker. Drag and drop marker to change "
-#~ "place."
+#~ "Click inside marked area on the map to set a marker. Drag and drop the "
+#~ "marker to change its place. Alternatively you can use the search field to "
+#~ "search for an address."
 #~ msgstr ""
 #~ "Klicken Sie innerhalb des markierten Bereichs um einen Pin zu setzen. Sie "
-#~ "können den Pin mittels Ziehen und Ablegen bewegen."
+#~ "können den Pin mittels Ziehen und Ablegen bewegen. Alternativ können Sie "
+#~ "auch das Suchfeld benutzen, um nach einer Adresse zu suchen."
 
 #~ msgid "Label of the ideas location"
 #~ msgstr "Bezeichnung des markierten Ortes"
@@ -1520,11 +1768,64 @@ msgstr ""
 #~ "Anlegen neuer Ideen, verortet auf einer Karte, diese können kommentiert "
 #~ "werden."
 
+#~ msgid ""
+#~ "Create new ideas located on a map and get feedback through rates and "
+#~ "comments."
+#~ msgstr ""
+#~ "Sammeln Sie Ideen auf einer Karte und lassen Sie diese kommentieren und "
+#~ "bewerten"
+
 #~ msgid "Submit Idea"
 #~ msgstr "Idee anlegen"
 
 #~ msgid "You can choose a preset for further customization."
 #~ msgstr "Sie können einen vordefinierten Bereich auswählen."
+
+#~ msgid "Places"
+#~ msgstr "Orte"
+
+#~ msgid "Places with comments"
+#~ msgstr "Orte mit Kommentaren"
+
+#~ msgid "Locate the place on a map"
+#~ msgstr "Verortung auf der Karte"
+
+#~ msgid "Place label"
+#~ msgstr "Ortsbezeichnung"
+
+#~ msgid "Prioritize phase"
+#~ msgstr "Phasen priorisieren"
+
+#~ msgid "Prioritize and comment places located on a map."
+#~ msgstr "Orte priorisieren und kommentieren"
+
+#~ msgid "place prioritization"
+#~ msgstr "Ortspriorisierung"
+
+#~ msgid "Confirm Place Deletion"
+#~ msgstr "Bestätigung der Löschung des Ortes"
+
+#~ msgid "Are you sure you want to delete the place?"
+#~ msgstr "Sind Sie sicher, dass Sie den Ort löschen möchten?"
+
+#~ msgid "Add a new place"
+#~ msgstr "Neuen Ort hinzufügen"
+
+#~ msgid "Add Place"
+#~ msgstr "Ort hinzufügen"
+
+#~ msgid "Edit place"
+#~ msgstr "Ort bearbeiten"
+
+#~ msgid "Alphabetical"
+#~ msgstr "Alphabetisch"
+
+#~ msgid "The place has been deleted"
+#~ msgstr "Ort wurde gelöscht"
+
+#~ msgid "Moderator feedback for items with fixed feedback choices"
+#~ msgstr ""
+#~ "Rückmeldung der Moderation für Beiträge mit festen Rückmelde-Optionen"
 
 #~ msgid "Under consideration"
 #~ msgstr "wird geprüft"
@@ -1535,8 +1836,124 @@ msgstr ""
 #~ msgid "Accepted"
 #~ msgstr "wird umgesetzt"
 
+#~ msgid "Receivers"
+#~ msgstr "Empfänger*innen"
+
+#~ msgid "Users following a specific project"
+#~ msgstr "Nutzer*innen die einem bestimmten Projekt folgen"
+
+#~ msgid "Users following your organisation"
+#~ msgstr "Nutzer*innen die Ihrer Organisation folgen"
+
+#~ msgid "Every initiator of your organisation"
+#~ msgstr "Initiator*innen Ihrer Organisation"
+
+#~ msgid "Every user of the platform"
+#~ msgstr "Alle Nutzer*innen der Plattform"
+
+#~ msgid "Sender"
+#~ msgstr "Absender"
+
+#~ msgid "Subject"
+#~ msgstr "Betreff"
+
+#~ msgid "Email body"
+#~ msgstr "Inhalt der E-Mail"
+
+#~ msgid "Sent"
+#~ msgstr "Senden"
+
+#~ msgid "Newsletter"
+#~ msgstr "Newsletter"
+
+#~ msgid "Create Newsletter"
+#~ msgstr "Newsletter erstellen"
+
+#~ msgid "Create newsletter"
+#~ msgstr "Newsletter erstellen"
+
+#~ msgid "Newsletter has been saved and will be sent to the recipients."
+#~ msgstr ""
+#~ "Der Newsletter wurde gespeichert und wird an die Empfänger*innen gesendet."
+
+#~ msgid "Offline Events"
+#~ msgstr "Veranstaltungen"
+
 #~ msgid "Date"
 #~ msgstr "Datum"
+
+#~ msgid "Time"
+#~ msgstr "Zeit"
+
+#~ msgid "Confirm Offline Event Deletion"
+#~ msgstr "Bestätigung der Veranstaltung"
+
+#~ msgid "Are you sure you want to delete the offline event?"
+#~ msgstr "Sind Sie sicher, dass Sie diese Veranstaltung löschen möchten?"
+
+#~ msgid "Create a new topic"
+#~ msgstr "Neues Thema erstellen"
+
+#~ msgid "Add a new offline event"
+#~ msgstr "Neue Veranstaltung hinzufügen"
+
+#~ msgid "Offlineevents"
+#~ msgstr "Veranstaltungen"
+
+#~ msgid "Add offline event"
+#~ msgstr "Veranstaltung hinzufügen"
+
+#~ msgid ""
+#~ "Here, you can include events that take place as part of the participation "
+#~ "project."
+#~ msgstr ""
+#~ "Hier können Sie Veranstaltungen eintragen, die als Teil des "
+#~ "Beteiligungsprojekts stattfinden."
+
+#~ msgid "Edit offline event"
+#~ msgstr "Veranstaltung bearbeiten"
+
+#~ msgid "The offline event has been deleted"
+#~ msgstr "Die Veranstaltung wurde gelöscht."
+
+#~ msgid "The image will be shown in the newsletter in the banner."
+#~ msgstr "Das Bild wird in der Kopfzeile von Newslettern angezeigt."
+
+#~ msgid "Settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "Edit your organisation information"
+#~ msgstr "Organisationsinformationen bearbeiten"
+
+#~ msgid "Organisation successfully updated."
+#~ msgstr "Organisation erfolgreich aktualisiert"
+
+#~ msgid "Please locate the plan on the map."
+#~ msgstr "Bitte verorten Sie das Vorhaben auf der Karte."
+
+#~ msgid "Where can the plan be located on a map?"
+#~ msgstr "Wo kann das Vorhaben auf der Karte verortet werden?"
+
+#~ msgid "Confirm Plan Deletion"
+#~ msgstr "Bestätigung der Vorhabenlöschung"
+
+#~ msgid "Are you sure you want to delete the plan?"
+#~ msgstr "Sind Sie sicher, dass Sie dieses Vorhaben löschen möchten?"
+
+#~ msgid "Add a new plan"
+#~ msgstr "Vorhaben hinzufügen"
+
+#~ msgid "Plans"
+#~ msgstr "Vorhaben"
+
+#~ msgid "Add Plan"
+#~ msgstr "Vorhaben hinzufügen"
+
+#~ msgid "Edit plan"
+#~ msgstr "Vorhaben bearbeiten"
+
+#~ msgid "The plan has been deleted"
+#~ msgstr "Vorhaben wurde gelöscht"
 
 #~ msgid "Voting phase"
 #~ msgstr "Abstimmungsphase"
@@ -1546,9 +1963,6 @@ msgstr ""
 
 #~ msgid "polls"
 #~ msgstr "Umfragen"
-
-#~ msgid "Management"
-#~ msgstr "Inhalte"
 
 #~ msgid ""
 #~ "Participation is not possible at the moment. The poll has not been set up "
@@ -1562,6 +1976,9 @@ msgstr ""
 #~ "Legen Sie die Umfrage an indem Sie Fragen und Antwortmöglichkeiten in der "
 #~ "Projektverwaltung hinzufügen."
 
+#~ msgid "Edit poll"
+#~ msgstr "Umfrage bearbeiten"
+
 #~ msgid "Item of type %(item)s for that module already exists"
 #~ msgstr "Item des Typs %(item)s für dieses Modul existiert bereits."
 
@@ -1571,48 +1988,193 @@ msgstr ""
 #~ msgid "Choice has to belong to the question set in the url."
 #~ msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 
+#~ msgid "Edit container settings"
+#~ msgstr "Projektsammlung bearbeiten"
+
+#~ msgid "Select projects"
+#~ msgstr "Projekte auswählen"
+
+#~ msgid "Title of your container"
+#~ msgstr "Titel Ihrer Projektsammlung"
+
+#~ msgid "Short description of your container"
+#~ msgstr "Kurzbeschreibung Ihrer Projektsammlung"
+
+#~ msgid ""
+#~ "This title will appear on the teaser card and on top of the container "
+#~ "detail page. It should be max. 120 characters long"
+#~ msgstr ""
+#~ "Der Titel wird in Kacheln und im Kopf der Projektsammlungsseite angezeigt "
+#~ "werden. Er sollte maximal 120 Zeichen lang sein."
+
+#~ msgid ""
+#~ "This short description will appear on the header of the container and in "
+#~ "the teaser. It should briefly state the goal of the projects in max. 250 "
+#~ "chars."
+#~ msgstr ""
+#~ "Die Kurzbeschreibung wird im Kopf der Projektsammlungsseite und in der "
+#~ "Kachel angezeigt werden. Sie sollte das Ziel der Projekte in maximal 250 "
+#~ "Zeichen beschreiben."
+
+#~ msgid "The image will be shown in the container tile."
+#~ msgstr "Das Bild wird in der Projektsammlungs-Kachel angezeigt."
+
+#~ msgid "Description of your container"
+#~ msgstr "Beschreibung Ihrer Projektsammlung"
+
+#~ msgid "Create project container"
+#~ msgstr "Projektsammlung anlegen"
+
+#~ msgid ""
+#~ "After saving the container you can add projects to it eventually publish "
+#~ "it."
+#~ msgstr ""
+#~ "Nachdem die Projektsammlung gespeichert wurde, können Sie Projekte "
+#~ "hinzufügen und die Projektsammlung schließlich veröffentlichen."
+
+#~ msgid "Containers"
+#~ msgstr "Projektsammlungen"
+
+#~ msgid "New Container"
+#~ msgstr "Neue Projektsammlung"
+
+#~ msgid "We could not find any containers."
+#~ msgstr "Wir konnten keine Projektsammlungen finden."
+
+#~ msgid "%(active_count)s of %(count)s"
+#~ msgstr "%(active_count)s von %(count)s"
+
+#~ msgid "projects are currently active."
+#~ msgstr "Projekten sind aktuell aktiv."
+
+#~ msgid "Participation"
+#~ msgstr "Beteiligung"
+
+#~ msgid "Container successfully created."
+#~ msgstr "Projektsammlung erfolgreich angelegt."
+
+#~ msgid "Container"
+#~ msgstr "Projektsammlung"
+
+#~ msgid "A container contains multiple projects."
+#~ msgstr "Eine Projektsammlung enthält mehrere Projekte."
+
+#~ msgid "Participants"
+#~ msgstr "Teilnehmer*innen"
+
+#~ msgid "Moderators"
+#~ msgstr "Moderator*innen"
+
+#~ msgid "Invite users via email"
+#~ msgstr "Nutzer*innen via E-Mail einladen"
+
+#~ msgid "Invite users via file upload"
+#~ msgstr "Nutzer*innen aus Datei einladen"
+
+#~ msgid "Upload a csv file containing email addresses."
+#~ msgstr "Laden Sie eine CSV-Datei hoch, die E-Mail Adressen beinhaltet."
+
+#~ msgid "Please enter email addresses or upload a file"
+#~ msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
+
+#~ msgid "External Project"
+#~ msgstr "Externes Projekt"
+
+#~ msgid "Project on meinBerlin"
+#~ msgstr "Projekt auf meinBerlin"
+
+#~ msgid "Participation possible until %(date)s"
+#~ msgstr "Beteiligung möglich bis zum %(date)s"
+
+#~ msgid "Participation starting from %(date)s"
+#~ msgstr "Beteiligung fängt am %(date)s an"
+
+#~ msgid "Timeline"
+#~ msgstr "Zeitleiste"
+
+#~ msgid "current page"
+#~ msgstr "aktuelle Seite"
+
 #~ msgid "Participation is not possible at the moment."
 #~ msgstr "Die Beteiligung ist aktuell nicht möglich."
 
-#~ msgid "Phase %(phase_num)s of %(phase_count)s"
-#~ msgstr "Phase %(phase_num)s von %(phase_count)s"
+#~ msgid "It starts on %(date)s."
+#~ msgstr "Sie startet am %(date)s."
+
+#~ msgid "It continues on %(date)s."
+#~ msgstr "Es geht weiter am %(date)s."
+
+#~ msgid "It ended on %(date)s."
+#~ msgstr "Sie hat am %(date)s geendet."
+
+#~ msgid "Show phase overview"
+#~ msgstr "Phasen anzeigen"
+
+#~ msgid "Hide phase overview"
+#~ msgstr "Phasen verstecken"
+
+#~ msgid "Upload"
+#~ msgstr "Hochladen"
+
+#~ msgid "Invitation to %(project)s"
+#~ msgstr "Einladung zu %(project)s"
+
+#~ msgid "Moderation invitation for %(project)s"
+#~ msgstr "Moderationseinladungen für %(project)s"
 
 #~ msgid ""
-#~ "\n"
-#~ "            from %(start)s<br>\n"
-#~ "            to %(end)s\n"
-#~ "        "
+#~ "Please login to procceed. If you do not have an account, register and "
+#~ "revisit the invitation link."
 #~ msgstr ""
-#~ "\n"
-#~ "Von %(start)s <br>bis %(end)s"
+#~ "Bitte melden Sie sich an. Wenn Sie noch kein Konto haben, registrieren "
+#~ "Sie sich bitte und besuchen sie den Einladungslink noch einmal."
+
+#~ msgid "Proceed to login"
+#~ msgstr "Weiter zur Anmeldung"
 
 #~ msgid ""
-#~ "\n"
-#~ "                    Participation possible until %(date)s\n"
-#~ "                "
+#~ "You were invited by the initiator of the project. If you accept you will "
+#~ "be able to moderate the project."
 #~ msgstr ""
-#~ "\n"
-#~ "Beteiligung möglich bis zum %(date)s"
+#~ "Sie wurden von den Initiator*innen des Projekts eingeladen. Wenn Sie "
+#~ "akzeptieren können sie das Projekt moderieren."
+
+#~ msgid "Accept"
+#~ msgstr "Akzeptieren"
+
+#~ msgid "Decline"
+#~ msgstr "Ablehnen"
+
+#~ msgid "Project: %(project)s"
+#~ msgstr "Projekt: %(project)s"
+
+#~ msgid "Do you want to join %(project)s?"
+#~ msgstr "Wollen Sie %(project)s beitreten?"
 
 #~ msgid ""
-#~ "\n"
-#~ "                    Participation starting from %(date)s\n"
-#~ "                "
+#~ "You were invited by the initiator of the project. If you accept you will "
+#~ "be able to participate in the project."
 #~ msgstr ""
-#~ "\n"
-#~ "Beteiligung fängt ab dem %(date)s an"
+#~ "Sie wurden von den Initiator*innen des Projekts eingeladen. Wenn Sie "
+#~ "akzeptieren können sie an dem Projekt teilnehmen."
+
+#~ msgid "This project is in not published yet."
+#~ msgstr "Dieses Projekt ist noch nicht veröffentlicht."
+
+#~ msgid "back to %(name)s"
+#~ msgstr "Zurück zu %(name)s"
 
 #~ msgid "No results yet."
 #~ msgstr "Noch gibt es keine Ergebnisse."
 
-#~ msgid "Organisation"
-#~ msgstr "Organisation"
+#~ msgid "Edit Moderators"
+#~ msgstr "Moderator*innen bearbeiten"
 
-#~ msgid "Archived"
-#~ msgstr "Archiviert"
+#~ msgid "Pending Invitations"
+#~ msgstr "Ausstehende Einladungen"
 
-#~ msgid "No"
-#~ msgstr "Nein"
+#~ msgid "Edit Participants"
+#~ msgstr "Teilnehmer*innen bearbeiten"
 
 #~ msgid "Year"
 #~ msgstr "Jahr"
@@ -1620,8 +2182,28 @@ msgstr ""
 #~ msgid "Any"
 #~ msgstr "Alle"
 
-#~ msgid "Project Type"
-#~ msgstr "Projekttyp"
+#~ msgid "Invitation succesfully removed."
+#~ msgstr "Einladung erfolgreich entfernt."
+
+#~ msgid "Following users already accepted an invitation: "
+#~ msgstr ""
+#~ "Die folgenden Nutzerinnen und Nutzer haben bereits eine Einladung "
+#~ "angenommen:"
+
+#~ msgid "Following users are already invited: "
+#~ msgstr "Die folgenden Nutzerinnen und Nutzer wurden bereits eingeladen:"
+
+#~ msgid "Invite moderators via email"
+#~ msgstr "Moderator*innen via E-Mail einladen"
+
+#~ msgid "Invite moderators via file upload"
+#~ msgstr "Moderator*innen aus Datei einladen"
+
+#~ msgid "Moderator successfully removed."
+#~ msgstr "Moderator*in erfolgreich entfernt."
+
+#~ msgid "Participant successfully removed."
+#~ msgstr "Teilnehmer*in erfolgreich entfernt."
 
 #~ msgid "Login via Service-Konto"
 #~ msgstr "Mit dem Service-Konto anmelden"
@@ -1650,14 +2232,17 @@ msgstr ""
 #~ msgid "Service-Konto Login"
 #~ msgstr "Service-Konto Login"
 
-#~ msgid "Prioritize phase"
-#~ msgstr "Phasen priorisieren"
+#~ msgid "Topics"
+#~ msgstr "Themen"
+
+#~ msgid "Topics with comments"
+#~ msgstr "Themen mit Kommentaren"
 
 #~ msgid "Prioritize and comment topics."
 #~ msgstr "Themen priorisieren und kommentieren"
 
 #~ msgid "topic prioritization"
-#~ msgstr "Priorisierung von Themen"
+#~ msgstr "Themenpriorisierung"
 
 #~ msgid "Confirm Topic Deletion"
 #~ msgstr "Bestätigen der Themalöschung"
@@ -1665,17 +2250,8 @@ msgstr ""
 #~ msgid "Are you sure you want to delete the topic?"
 #~ msgstr "Sind Sie sicher, dass Sie das Thema löschen möchten?"
 
-#~ msgid "Create a new topic"
-#~ msgstr "Neues Thema erstellen"
-
-#~ msgid "back to topic list"
-#~ msgstr "Zurück zur Themenliste"
-
 #~ msgid "Add a new topic"
 #~ msgstr "Neues Thema hinzufügen"
-
-#~ msgid "Topics"
-#~ msgstr "Themen"
 
 #~ msgid "Add Topic"
 #~ msgstr "Thema hinzufügen"
@@ -1683,11 +2259,56 @@ msgstr ""
 #~ msgid "Edit topic"
 #~ msgstr "Thema bearbeiten"
 
-#~ msgid "Alphabetical"
-#~ msgstr "Alphabetisch"
-
 #~ msgid "The topic has been deleted"
 #~ msgstr "Das Thema wurde gelöscht."
+
+#~ msgid "Invalid file format. Only text files are allowed."
+#~ msgstr "Ungültiges Dateiformat. Nur Textdateien sind erlaubt."
+
+#~ msgid ""
+#~ "Designates whether you want to receive notifications about content you "
+#~ "follow. Unselect if you do not want to receive notifications."
+#~ msgstr ""
+#~ "Bitte setzen Sie einen Haken, falls Sie für Inhalte denen Sie folgen "
+#~ "Benachrichtigungen per E-Mail erhalten möchten. Nehmen Sie den Haken "
+#~ "raus, falls Sie keine Benachrichtigungen per E-Mail erhalten möchten."
+
+#~ msgid "Send me newsletters"
+#~ msgstr "Bitte senden Sie mir E-Mail Newsletter"
+
+#~ msgid ""
+#~ "Designates whether you want to receive newsletters. Unselect if you do "
+#~ "not want to receive newsletters."
+#~ msgstr ""
+#~ "Bitte setzen Sie einen Haken, falls Sie Newsletter erhalten möchten. "
+#~ "Nehmen Sie den Haken raus, falls Sie keine Newsletter erhalten möchten."
+
+#~ msgid "Rich text editor"
+#~ msgstr "Rich Text Editor"
+
+#~ msgid "Confirm Email Address"
+#~ msgstr "Bitte bestätigen Sie Ihre E-Mail Adresse."
+
+#~ msgid ""
+#~ "Please\n"
+#~ "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is "
+#~ "an\n"
+#~ "            email address for user %(user_display)s."
+#~ msgstr ""
+#~ "Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> "
+#~ "eine E-Mail Adresse des Nutzers %(user_display)s ist."
+
+#~ msgid ""
+#~ "This email confirmation link expired or is invalid.\n"
+#~ "            Please <a href=\"%(email_url)s\">issue a new email "
+#~ "confirmation\n"
+#~ "                request</a>."
+#~ msgstr ""
+#~ "Der Link zur E-Mail Bestätigung ist abgelaufen oder ist ungültig. Bitte "
+#~ "<a href=\"%(email_url)s\">fordern Sie eine neue Bestätigungsemail an</a>."
+
+#~ msgid "Or use your Service-Konto:"
+#~ msgstr "Oder benutzen Sie ihr Service-Konto:"
 
 #~ msgid "meinBerlin"
 #~ msgstr "meinBerlin"
@@ -1706,10 +2327,10 @@ msgstr ""
 #~ "aufgetreten."
 
 #~ msgid "Your account is connected to the following services:"
-#~ msgstr "Ihr Benutzerkonto ist mit folgenden Diensten verbunden:"
+#~ msgstr "Ihr Nutzerkonto ist mit folgenden Diensten verbunden:"
 
 #~ msgid "You can connect your account to the following services:"
-#~ msgstr "Sie können Ihr Benutzerkonto mit folgenden Diensten verbinden:"
+#~ msgstr "Sie können Ihr Nutzerkonto mit folgenden Diensten verbinden:"
 
 #~ msgid "Login Cancelled"
 #~ msgstr "Anmeldung abgebrochen"
@@ -1724,7 +2345,7 @@ msgstr ""
 #~ "wiederholen</a>."
 
 #~ msgid "Email address is already in use"
-#~ msgstr "Email-Adresse wird bereits verwendet"
+#~ msgstr "E-Mail Adresse wird bereits verwendet"
 
 #~ msgid ""
 #~ "You tried to use your %(provider_name)s account to login to "
@@ -1732,9 +2353,9 @@ msgstr ""
 #~ "        but the email address passed from %(provider_name)s is already "
 #~ "registered to an existing user account."
 #~ msgstr ""
-#~ "Sie haben versucht sich mit Ihrem %(provider_name)s Benutzerkonto auf "
-#~ "%(site_name)s anzumelden. Die vom %(provider_name)s übergebene Email-"
-#~ "Adresse wird jedoch bereits von einem vorhandenen Benutzerkonto verwendet."
+#~ "Sie haben versucht sich mit Ihrem %(provider_name)s Nutzerkonto auf "
+#~ "%(site_name)s anzumelden. Die vom %(provider_name)s übergebene E-Mail "
+#~ "Adresse wird jedoch bereits von einem vorhandenen Nutzerkonto verwendet."
 
 #~ msgid ""
 #~ "Please <a href=\"%(login_url)s\">sign in</a> to your existing "
@@ -1742,5 +2363,11 @@ msgstr ""
 #~ "        and connect %(provider_name)s from the account settings."
 #~ msgstr ""
 #~ "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem "
-#~ "%(site_name)s Benutzerkonto an und verbinden die dieses mit dem "
-#~ "%(provider_name)s über die Benutzerkonto Einstellungen."
+#~ "%(site_name)s Nutzerkonto an und verbinden die dieses mit dem "
+#~ "%(provider_name)s über die Nutzerkonto Einstellungen."
+
+#~ msgid "Universal phase"
+#~ msgstr "Universelle Phase"
+
+#~ msgid "Use all features of the idea collection."
+#~ msgstr "Anlegen, bewerten und kommentieren von Ideen."
