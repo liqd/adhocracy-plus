@@ -20,6 +20,9 @@
       </tr>
       <tr>
           <td>
+            <p>
+                {% trans 'Hello' %},
+            </p>
             {% block content_html %}
                 {% load capture_tags %}
                 {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
