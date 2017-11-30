@@ -72,8 +72,6 @@ urlpatterns = [
     url(r'^jsi18n/$', javascript_catalog,
         js_info_dict, name='javascript-catalog'),
 
-    url(r'', include(wagtail_urls)),
-
     # Urls within the context of a partner
     partner_patterns(
         url(r'^modules/', include('adhocracy4.modules.urls')),
@@ -88,6 +86,8 @@ urlpatterns = [
                                namespace='meinberlin_documents')),
         url(r'', include('liqd_product.apps.partners.urls'))
     ),
+
+    url(r'', include(wagtail_urls)),
 
 ]
 
