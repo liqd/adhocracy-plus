@@ -3,13 +3,13 @@ import re
 from allauth.account.adapter import DefaultAccountAdapter
 from django.conf import settings
 
-from adhocracy4.emails import Email
 from adhocracy4.emails.mixins import SyncEmailMixin
 from liqd_product.apps.users import USERNAME_INVALID_MESSAGE
 from liqd_product.apps.users import USERNAME_REGEX
+from meinberlin.apps.contrib.emails import Email
 
 
-class UserAccountEmail(Email, SyncEmailMixin):
+class UserAccountEmail(SyncEmailMixin, Email):
     def get_receivers(self):
         return [self.object]
 
