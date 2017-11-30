@@ -8,8 +8,6 @@ from django.contrib import admin
 from django.views.decorators.cache import never_cache
 from django.views.i18n import javascript_catalog
 from rest_framework import routers
-from wagtail.wagtailadmin import urls as wagtailadmin_urls
-from wagtail.wagtailcore import urls as wagtail_urls
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
@@ -49,7 +47,7 @@ question_router.register(r'vote', VoteViewSet, base_name='vote')
 urlpatterns = [
     # General platform urls
     url(r'^django-admin/', include(admin.site.urls)),
-    url(r'^admin/', include(wagtailadmin_urls)),
+    url(r'^admin/', include('wagtail.wagtailadmin.urls')),
 
     url(r'^accounts/', include('allauth.urls')),
     url(r'^account/', include('liqd_product.apps.account.urls')),
@@ -84,11 +82,10 @@ urlpatterns = [
                                    namespace='meinberlin_mapideas')),
         url(r'^text/', include('meinberlin.apps.documents.urls',
                                namespace='meinberlin_documents')),
-        url(r'', include('liqd_product.apps.partners.urls'))
     ),
 
-    url(r'', include(wagtail_urls)),
-
+    url(r'', include('liqd_product.apps.partners.urls')),
+    url(r'', include('wagtail.wagtailcore.urls'))
 ]
 
 
