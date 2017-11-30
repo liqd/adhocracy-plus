@@ -325,7 +325,6 @@ A4_DASHBOARD = {
 }
 
 CONTACT_EMAIL = 'support-berlin@liqd.de'
-EMAIL_DEFAULT_LANGUAGE = 'de'
 
 # The default language is used for emails and strings
 # that are stored translated to the database.
