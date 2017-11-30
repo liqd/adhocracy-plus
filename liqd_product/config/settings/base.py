@@ -293,7 +293,7 @@ BLEACH_LIST = {
 }
 
 # Wagtail
-WAGTAIL_SITE_NAME = "liquid product"
+WAGTAIL_SITE_NAME = 'Beteiligung.in'
 
 # adhocracy4
 

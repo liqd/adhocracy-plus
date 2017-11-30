@@ -15,7 +15,7 @@ class SimplePage(Page):
     body = RichTextField()
 
     content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full"),
+        FieldPanel('body', classname='full'),
     ]
 
     subpage_types = ['liqd_product_cms_pages.SimplePage']
