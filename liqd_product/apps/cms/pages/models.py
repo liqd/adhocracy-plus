@@ -4,7 +4,11 @@ from wagtail.wagtailcore.models import Page
 
 
 class HomePage(Page):
-    pass
+    subpage_types = ['liqd_product_cms_pages.EmptyPage']
+
+
+class EmptyPage(Page):
+    subpage_types = ['liqd_product_cms_pages.SimplePage']
 
 
 class SimplePage(Page):
