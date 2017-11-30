@@ -11,23 +11,9 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = (
 
-    'wagtail.contrib.settings',
-    'wagtail.wagtailforms',
-    'wagtail.wagtailredirects',
-    'wagtail.wagtailembeds',
-    'wagtail.wagtailsites',
-    'wagtail.wagtailusers',
-    'wagtail.wagtailsnippets',
-    'wagtail.wagtaildocs',
-    'wagtail.wagtailimages',
-    'wagtail.wagtailsearch',
-    'wagtail.wagtailadmin',
-    'wagtail.wagtailcore',
-    'wagtail.contrib.wagtailstyleguide',
-    'modelcluster',
-    'taggit',
-
+    # Watch out this needs to be included first
     'liqd_product.apps.django_overwrites.apps.Config',
+
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,6 +33,25 @@ INSTALLED_APPS = (
     'ckeditor_uploader',
     'capture_tag',
     'background_task',
+
+    # Wagtail cms components
+    'wagtail.contrib.settings',
+    'wagtail.wagtailforms',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsites',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtailcore',
+    'wagtail.contrib.wagtailstyleguide',
+    'modelcluster',
+    'taggit',
+    'liqd_product.apps.cms.pages.apps.Config',
+    'liqd_product.apps.cms.settings.apps.Config',
 
     # General adhocracy 4 components
     'adhocracy4.actions.apps.ActionsConfig',
@@ -70,8 +75,6 @@ INSTALLED_APPS = (
     'liqd_product.apps.organisations.apps.Config',
     'liqd_product.apps.partners.apps.Config',
     'liqd_product.apps.users.apps.Config',
-    'liqd_product.apps.cms.pages.apps.Config',
-    'liqd_product.apps.cms.settings.apps.Config',
     'meinberlin.apps.actions.apps.Config',
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.maps.apps.Config',
