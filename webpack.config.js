@@ -12,9 +12,9 @@ module.exports = {
     ],
     vendor: [
       'classnames',
-      'font-awesome/scss/font-awesome.scss',
       'jquery',
       'js-cookie',
+      'line-awesome/dist/css/line-awesome-font-awesome.css',
       'react',
       'immutability-helper',
       'react-dom',
