@@ -6,7 +6,7 @@
             <div class="header__brand">
             {% spaceless %}
                 <a href="/" class="navi__link">Beteiligen.in</a>
-                {% if partner %}<span class="header__brand__partner">/{{ partner.name }}</span>{% endif %}
+                {% if partner %}<span class="header__brand__partner">/<span class="marked">{{ partner.name }}</span></span>{% endif %}
             {% endspaceless %}
             </div>
             <div class="header__user">
