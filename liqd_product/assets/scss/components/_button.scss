@@ -1,0 +1,29 @@
+@mixin button-color--product($color) {
+    $shadow: mix($color, $body-bg, 30%);
+    $background: mix($color, $body-bg, 15%);
+
+    @include button-color($body-bg, $background);
+    box-shadow: 2px 2px 0 0 $shadow;
+
+    &,
+    &:focus,
+    &:hover,
+    &:active,
+    &:disabled,
+    &.is-disabled {
+        border-color: $color;
+    }
+
+    &:disabled,
+    &.is-disabled {
+        box-shadow: none;
+    }
+}
+
+.btn--primary {
+    @include button-color--product($brand-primary);
+}
+
+.btn--secondary {
+    @include button-color--product($brand-secondary);
+}
