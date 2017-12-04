@@ -1,13 +1,5 @@
 .footer {
-    padding: $spacer 0;
-
-    .navi {
-        border-top: 1px solid $border-color;
-        border-bottom: 1px solid $border-color;
-    }
-
-    .navi__link {
-        display: inline-block;
-        color: inherit;
-    }
+    border-top: 0.3em solid $brand-primary;
+    background-color: $bg-secondary;
+    color: contrast-color($bg-secondary);
 }
