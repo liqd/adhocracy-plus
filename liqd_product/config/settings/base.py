@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'taggit',
     'liqd_product.apps.cms.pages.apps.Config',
     'liqd_product.apps.cms.settings.apps.Config',
+    'liqd_product.apps.cms.updates.apps.Config',
 
     # General adhocracy 4 components
     'adhocracy4.actions.apps.ActionsConfig',
