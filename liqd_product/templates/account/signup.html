@@ -20,7 +20,7 @@
         <div class="form-check">
             <label class="form-check__label">
                 {{ form.terms_of_use }}
-                {% blocktrans with terms_of_use_url="/terms-of-use" %}
+                {% blocktrans with terms_of_use_url=settings.liqd_product_cms_settings.ImportantPages.terms_of_use.url  %}
                 I accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a>.
                 {% endblocktrans %}
             </label>
