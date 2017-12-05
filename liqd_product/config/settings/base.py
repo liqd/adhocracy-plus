@@ -334,7 +334,6 @@ A4_AUTO_FOLLOWABLES = (
     ('meinberlin_mapideas', 'mapidea'),
 )
 
-
 A4_CATEGORIZABLE = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
