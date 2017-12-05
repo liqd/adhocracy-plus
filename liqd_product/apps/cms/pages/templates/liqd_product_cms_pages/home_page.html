@@ -12,7 +12,7 @@
                 <div>{{ page.subtitle }}</div>
             </div>
 
-            <p>{{ page.body|richtext }}</p>
+            <div>{{ page.body|richtext }}</div>
 
             <form method="POST">
                 {% csrf_token %}

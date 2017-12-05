@@ -4,10 +4,8 @@
 {% block content %}
     <div class="l-wrapper">
         <div class="l-center-6">
-            <div>
-                <h1>{{ page.title }}</h1>
-            </div>
-            <p>{{ page.body|richtext }}</p>
+            <h1>{{ page.title }}</h1>
+            {{ page.body|richtext }}
         </div>
     </div>
 {% endblock %}
