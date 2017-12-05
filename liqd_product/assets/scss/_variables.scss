@@ -1,26 +1,25 @@
 // subset of bootstrap variables
 
-$brand-primary: contrast-stretch($body-bg, #0296c5);
-$brand-secondary: contrast-stretch($body-bg, #0ca644);
+$brand-primary: #008dc5;
+$brand-secondary: #00a747;
 
-$text-color: #191919;
-$text-secondary-color: #999;
+$text-color: #333;
+$text-secondary-color: #666;
 $overlay: rgba(#000, 0.5);
 
-$_bg-base: contrast-stretch($text-color, $brand-primary);
-$bg-secondary: mix($_bg-base, $body-bg, 10%);
-$bg-tertiary: mix($_bg-base, $body-bg, 20%);
+$bg-tertiary: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7);
+$bg-secondary: mix($bg-tertiary, $body-bg, 50%);
 
 $platform-primary: #46caad;
 $platform-danger: #d0011b;
 
-$link-color: $brand-primary;
+$link-color: contrast-stretch($body-bg, $brand-primary);
 $link-hover-color: darken($link-color, 15%);
 
 $border-color: #666;
 $input-border-color: $border-color;
 
-$font-family-sans-serif: "Source Sans Pro", sans-serif;
+$font-family-sans-serif: "Libre Franklin", sans-serif;
 
 $headings-font-weight: 600;
 
@@ -33,5 +32,3 @@ $font-size-xs: 0.64rem;
 @include grid-set('gutter', $padding);
 $planifolia-contrast-dark-default: $text-color;
 $planifolia-contrast-light-default: $text-color-inverted;
-
-$FontPathSourceSansPro: '~npm-font-source-sans-pro/fonts';

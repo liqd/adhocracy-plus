@@ -16,6 +16,7 @@ from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from liqd_product.apps.partners.urlresolvers import partner_patterns
 from liqd_product.apps.users.decorators import user_is_project_admin
+from meinberlin.apps.contrib import views as contrib_views
 from meinberlin.apps.documents.api import DocumentViewSet
 from meinberlin.apps.polls.api import PollViewSet
 from meinberlin.apps.polls.api import VoteViewSet
@@ -67,6 +68,7 @@ urlpatterns = [
     url(r'^browse/', never_cache(user_is_project_admin(ck_views.browse)),
         name='ckeditor_browse'),
 
+    url(r'^components/$', contrib_views.ComponentLibraryView.as_view()),
     url(r'^jsi18n/$', javascript_catalog,
         js_info_dict, name='javascript-catalog'),
 
