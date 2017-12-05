@@ -1,0 +1,25 @@
+.chapter {
+    background-color: $body-bg;
+    padding: $padding;
+}
+
+.chapter-title {
+    margin-top: 0;
+}
+
+.paragraph__content {
+    padding-bottom: $spacer;
+    margin-bottom: (2.6em / 2);
+    border-bottom: 2px solid $brand-primary;
+}
+
+.paragraph__actions {
+    float: right;
+    margin-top: -2.6em;
+    padding-left: $padding;
+    background-color: $body-bg;
+}
+
+.paragraph + .paragraph {
+    margin-top: $spacer * 3;
+}
