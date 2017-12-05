@@ -12,15 +12,16 @@ module.exports = {
     ],
     vendor: [
       'classnames',
-      'font-awesome/scss/font-awesome.scss',
       'jquery',
       'js-cookie',
+      'line-awesome/dist/css/line-awesome-font-awesome.css',
       'react',
       'immutability-helper',
       'react-dom',
       'react-flip-move',
       'shariff/dist/shariff.complete.js',
-      'shariff/dist/shariff.min.css'
+      'shariff/dist/shariff.min.css',
+      'typeface-libre-franklin'
     ],
     leaflet: [
       'leaflet',
@@ -77,7 +78,7 @@ module.exports = {
         })
       },
       {
-        test: /fonts\/.*\.(svg|woff2?|ttf|eot|otf)(\?.*)?$/,
+        test: /(fonts|files)\/.*\.(svg|woff2?|ttf|eot|otf)(\?.*)?$/,
         loader: 'file-loader',
         options: {
           name: 'fonts/[name].[ext]'

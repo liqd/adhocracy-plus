@@ -12,8 +12,6 @@
 @import '~bootstrap/scss/transitions';
 @import '~bootstrap/scss/utilities/screenreaders';
 
-@import '~npm-font-source-sans-pro/source-sans-pro';
-
 @import '~a4-meinberlin/meinberlin/assets/scss/base';
 @import 'base';
 @import '~a4-meinberlin/meinberlin/assets/scss/layout';
@@ -61,18 +59,21 @@
 @import '~a4-meinberlin/meinberlin/assets/scss/components/upload';
 
 @import 'components/aside';
+@import 'components/button';
 @import 'components/footer';
 @import 'components/header';
 @import 'components/headings';
 @import 'components/hero-unit';
 @import 'components/label';
 @import 'components/list_item_tiny';
+@import 'components/marked';
 @import 'components/navi';
-@import 'components/tile';
 @import 'components/stats';
+@import 'components/tile';
 @import 'components/user_profile';
 
 @import '~a4-meinberlin/meinberlin/assets/scss/utility';
-@import '~a4-meinberlin/meinberlin/assets/scss/shame';
-
 @import 'utility';
+
+@import '~a4-meinberlin/meinberlin/assets/scss/shame';
+@import 'line_awesome_overwrites';

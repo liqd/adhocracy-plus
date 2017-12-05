@@ -1,0 +1,44 @@
+// stylelint-disable selector-max-specificity
+.date-picker-control:link {
+    span:first-child {
+        &:before {
+            content: '\f15c'; // calendar-o
+        }
+    }
+
+    &:focus,
+    &:hover {
+        span:first-child:before {
+            content: '\f15f'; // calendar
+        }
+    }
+}
+// stylelint-enable
+
+.date-picker {
+    .prev-but:before {
+        content: '\f111'; // angle-left
+    }
+
+    .prev-year:before {
+        content: '\f10d'; // angle-double-left
+    }
+
+    .next-but:before {
+        content: '\f112'; // angle-right
+    }
+
+    .next-year:before {
+        content: '\f10e'; // angle-double-right
+    }
+}
+
+.docs-block__body {
+    a[href^="/documents"]:before {
+        content: '\f1e6'; // file-o
+    }
+}
+
+.radio__input:checked + .radio__text:after {
+    content: '\f17b'; // check
+}

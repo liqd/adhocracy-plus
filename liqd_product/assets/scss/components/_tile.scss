@@ -19,6 +19,7 @@
 .tile__image {
     display: block;
     min-height: 11.8em;
+    height: 100%;
 
     background-size: cover;
     background-position: 50%;
@@ -33,7 +34,7 @@
 }
 
 .tile__body {
-    flex: 1 1 auto;
+    flex: 1 1 50%;
     display: flex;
     flex-direction: column;
     padding: $padding;
