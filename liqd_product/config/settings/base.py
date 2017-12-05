@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.maps.apps.Config',
     'meinberlin.apps.moderatorfeedback.apps.Config',
+    'meinberlin.apps.notifications.apps.Config',
 
     # General apps containing views
     'liqd_product.apps.account.apps.Config',
