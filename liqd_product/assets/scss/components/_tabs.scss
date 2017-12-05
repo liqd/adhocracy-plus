@@ -1,0 +1,22 @@
+.tablist {
+    border-bottom: 2px solid $brand-secondary;
+}
+
+.tab {
+    color: $text-secondary-color;
+    margin-bottom: -2px;
+    border: 2px solid transparent;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom: 0;
+
+    &:hover,
+    &:focus {
+        color: $text-color;
+    }
+
+    &.active {
+        border-color: $brand-secondary;
+        background-color: $body-bg;
+    }
+}
