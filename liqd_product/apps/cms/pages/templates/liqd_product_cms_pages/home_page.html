@@ -3,18 +3,24 @@
 
 {% block content %}
     <div class="l-wrapper">
-    <h1>{{ page.title }}</h1>
-    {% image page.image width-770 %}
-    <h2>{{ page.subtitle }}</h2>
-    <p>{{ page.body|richtext }}</p>
+        <div class="l-center-6">
 
-    <form action="." method="POST">
-        {% csrf_token %}
+            {% image page.image width-770 %}
 
-        {{ form.as_p }}
+            <div>
+                <h1>{{ page.title }}</h1>
+                <div>{{ page.subtitle }}</div>
+            </div>
 
-        <input type="submit" value="{% trans 'Send' %}">
-    </form>
+            <p>{{ page.body|richtext }}</p>
+
+            <form method="POST">
+                {% csrf_token %}
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
+                {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.interested_as_citizen %}
+                {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.interested_as_municipality %}
+                <input class="btn btn--primary" type="submit" value="{% trans 'Send' %}" />
+            </form>
+        </div>
     </div>
-
 {% endblock %}
