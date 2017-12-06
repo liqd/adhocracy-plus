@@ -11,7 +11,11 @@
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
     {% endblock %}
-    <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
+    {% if PARTNER %}
+        <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
+    {% else %}
+        <link rel="stylesheet" type="text/css" href="{% static 'platform.css' %}" />
+    {% endif %}
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>

@@ -10,6 +10,9 @@ module.exports = {
       './liqd_product/assets/scss/style.scss',
       './liqd_product/assets/js/app.js'
     ],
+    platform: [
+      './liqd_product/assets/scss/platform.scss'
+    ],
     vendor: [
       'classnames',
       'jquery',
