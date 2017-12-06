@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'taggit',
     'liqd_product.apps.cms.pages.apps.Config',
     'liqd_product.apps.cms.settings.apps.Config',
+    'liqd_product.apps.cms.updates.apps.Config',
 
     # General adhocracy 4 components
     'adhocracy4.actions.apps.ActionsConfig',
@@ -79,6 +80,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.maps.apps.Config',
     'meinberlin.apps.moderatorfeedback.apps.Config',
+    'meinberlin.apps.notifications.apps.Config',
 
     # General apps containing views
     'liqd_product.apps.account.apps.Config',
@@ -331,7 +333,6 @@ A4_AUTO_FOLLOWABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
 )
-
 
 A4_CATEGORIZABLE = (
     ('meinberlin_ideas', 'idea'),
