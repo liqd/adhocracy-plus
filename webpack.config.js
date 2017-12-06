@@ -34,6 +34,12 @@ module.exports = {
     'leaflet.draw': [
       'leaflet-draw',
       'leaflet-draw/dist/leaflet.draw.css'
+    ],
+    embed: [
+      'a4-meinberlin/meinberlin/assets/js/embed.js'
+    ],
+    'popup-close': [
+      'a4-meinberlin/meinberlin/assets/js/popup-close.js'
     ]
   },
   devtool: 'eval',
