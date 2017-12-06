@@ -1,49 +1,44 @@
 {% load userindicator static i18n thumbnail %}
 
-<header class="header header--platform" aria-label="{% trans 'Platform header' %}">
+<header class="main-header" aria-label="{% trans 'Header' %}">
+    <div class="main-header__border-top"></div>
     <div class="l-wrapper">
-        <nav class="navi">
-            <div class="header__brand">
+        <div class="platform-brand main-header__brand">
             {% spaceless %}
-                <a href="/" class="navi__link">Beteiligen.in</a>
-                {% if PARTNER %}<span class="header__brand__partner">/<span class="marked">{{ PARTNER.name }}</span></span>{% endif %}
+                <a href="/" class="platform-brand__link">
+                    Beteiligung.in
+                </a>
+                {% if PARTNER %}
+                    /
+                    <span class="marked">{{ PARTNER.name }}</span>
+                {% endif %}
             {% endspaceless %}
+        </div>
+        <nav class="main-header__change-me">
+            {% if PARTNER %}
+                <a href="{{ PARTNER.get_absolute_url }}" class="main-header__logo-box" rel="home">
+                    <img src="{% thumbnail PARTNER.logo '0x160' %}" height="80" alt="{{ PARTNER.name }}" class="main-header__logo-img" />
+                </a>
+            {% endif %}
+            <div class="main-header__mobile-menu collapse" id="main-header-collapse">
+                {% if PARTNER %}
+                    <ul class="main-header__partner-nav">
+                        <li class="main-header__partner-nav__item">
+                            <a href="#" class="main-header__partner-nav__link">{% trans 'Beteiligen' %}</a>
+                        </li>
+                        <li class="main-header__partner-nav__item">
+                            <a href="{% url 'partner_about' partner_slug=PARTNER.slug %}" class="main-header__partner-nav__link">{% trans 'FAQ' %}</a>
+                        </li>
+                    </ul>
+                {% endif %}
+                <div class="main-header__user">
+                    {% userindicator %}
+                </div>
             </div>
-            <div class="header__user">
-                {% userindicator %}
-            </div>
+            <button class="btn btn--small btn--attached-top main-header__mobile-toggle" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+                {% trans 'Menu' %}
+            </button>
         </nav>
     </div>
 </header>
-{% if PARTNER %}
-    <header class="header header--partner">
-        <div class="l-wrapper">
-            <nav class="navi">
-                <a href="{{ PARTNER.get_absolute_url }}" class="header__logo-link" rel="home">
-                    <img src="{% thumbnail PARTNER.logo '0x160' %}" height="80" alt="{{ PARTNER.name }}" class="header__logo-img" />
-                    <span aria-hidden="true">{{ PARTNER.name }}</span>
-                </a>
-                <button class="btn btn--light navi__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                    {% trans 'Menu' %}
-                </button>
-                <div class="navi__menu-wrapper collapse" id="menu-collapse">
-                    <ul class="navi__list">
-                        <li class="navi__item">
-                            <a href="#" class="navi__link">Beteiligen</a>
-                        </li>
-                        <li class="navi__item">
-                            <a href="#" class="navi__link">Blog</a>
-                        </li>
-                        <li class="navi__item">
-                            <a href="#" class="navi__link">Veranstaltungen</a>
-                        </li>
-                        <li class="navi__item">
-                            <a href="{% url 'partner_about' partner_slug=PARTNER.slug %}" class="navi__link">{% trans 'About us' %}</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
-{% endif %}
