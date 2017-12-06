@@ -52,7 +52,7 @@ urlpatterns = [
 
     url(r'^accounts/', include('allauth.urls')),
     url(r'^account/', include('liqd_product.apps.account.urls')),
-    url(r'^embed/', include('meinberlin.apps.embed.urls')),
+    url(r'^embed/', include('liqd_product.apps.embed.urls')),
     url(r'^dashboard/', include('meinberlin.apps.dashboard2.urls')),
     url(r'^profile/', include('liqd_product.apps.users.urls')),
 
@@ -75,7 +75,10 @@ urlpatterns = [
     # Urls within the context of a partner
     partner_patterns(
         url(r'^modules/', include('adhocracy4.modules.urls')),
-        url(r'^projects/', include('adhocracy4.projects.urls')),
+        # Temporary include meinberlin projects urls, as they contain
+        # the invite links. This may be removed when invites are refactored
+        # to a separate app.
+        url(r'^projects/', include('meinberlin.apps.projects.urls')),
         url(r'^offlineevents/', include('meinberlin.apps.offlineevents.urls',
                                         namespace='meinberlin_offlineevents')),
         url(r'^ideas/', include(r'meinberlin.apps.ideas.urls',

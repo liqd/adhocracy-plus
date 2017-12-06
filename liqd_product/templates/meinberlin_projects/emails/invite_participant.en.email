@@ -1,0 +1,13 @@
+{% extends 'email_base.'|add:part_type %}
+{% load verbose_name partner_tags %}
+
+{% block subject %}Invitation to the private project {{ participantinvite.project.name }}{% endblock %}
+
+{% block headline %}Invitation to the private project {{ participantinvite.project.name }}{% endblock  %}
+
+{% block content %}you are invited to participate in the private project "{{ participantinvite.project.name }}" on the participation platform  {{ site.name }}. To participate click on "Accepct invitation."{% endblock %}
+
+{% block cta_url %}{% withpartner participantinvite.project.organisation.partner %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endwithpartner %}{% endblock %}
+{% block cta_label %}Accept invitation{% endblock %}
+
+{% block reason %}This email was sent to {{ participantinvite.email }}. This email was sent to you because you are invited to participate in a private project.{% endblock %}

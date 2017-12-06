@@ -7,7 +7,11 @@ $text-color: #333;
 $text-secondary-color: #666;
 $overlay: rgba(#000, 0.5);
 
-$bg-tertiary: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7);
+$brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7);
+$brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7);
+$brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7);
+
+$bg-tertiary: $brand-primary-tint;
 $bg-secondary: mix($bg-tertiary, $body-bg, 50%);
 
 $platform-primary: #46caad;
