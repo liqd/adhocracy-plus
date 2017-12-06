@@ -6,6 +6,7 @@
 .main-header__brand {
     float: left;
     margin: (3 * $spacer) 0 $spacer;
+    font-weight: bold;
 }
 
 .main-header__change-me {
@@ -29,11 +30,6 @@
     display: block;
     height: 3em;
     width: auto;
-}
-
-.navi__link {
-    font-weight: 600;
-    color: contrast-color($body-bg);
 }
 
 .main-header__mobile-menu {
@@ -101,5 +97,11 @@
         position: absolute;
         top: 0;
         right: 0;
+    }
+}
+
+.main-header__user {
+    .navi__link {
+        font-weight: bold;
     }
 }
