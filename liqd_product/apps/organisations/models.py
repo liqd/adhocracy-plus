@@ -21,7 +21,11 @@ class Organisation(models.Model):
         return self.name
 
     def has_initiator(self, user):
-        return self.initiators.filter(id=user.id).exists()
+        # FIXME: this is a hack until we adapt all perms to check for partner
+        #  admins, too. furthermore it won't help for listing private projects
+        #  which is done on the db level based on the initiator relation.
+        return (self.initiators.filter(id=user.id).exists() or
+                self.partner.has_admin(user))
 
     def get_absolute_url(self):
         # FIXME: not available yet
