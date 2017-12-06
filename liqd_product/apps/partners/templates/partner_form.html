@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Settings" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block content %}
+<div class="l-center-8">
+    <h1>{% trans "Edit your partner information" %}</h1>
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.logo %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.slogan %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.about %}
+
+        <div class="u-spacer-bottom">
+            <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
+        </div>
+    </form>
+    {{ form.media }}
+</div>
+{% endblock %}
