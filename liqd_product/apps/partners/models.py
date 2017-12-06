@@ -45,6 +45,9 @@ class Partner(models.Model):
         blank=True,
     )
 
+    def has_admin(self, user):
+        return self.admins.filter(id=user.id).exists()
+
     def __str__(self):
         return self.name
 
