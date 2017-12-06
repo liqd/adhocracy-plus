@@ -1,38 +1,36 @@
 // subset of bootstrap variables
 
-$brand-primary: #008dc5;
-$brand-secondary: #00a747;
+$brand-primary: #008dc5 !default;
+$brand-secondary: #00a747 !default;
+$brand-danger: #a72b1e !default;
 
-$text-color: #333;
-$text-secondary-color: #666;
-$overlay: rgba(#000, 0.5);
+$body-bg: #fff !default;
+$text-color: #333 !default;
+$text-secondary-color: #666 !default;
+$overlay: rgba(#000, 0.5) !default;
 
-$brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7);
-$brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7);
-$brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7);
+$brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
+$brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
+$brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
 
-$bg-tertiary: $brand-primary-tint;
-$bg-secondary: mix($bg-tertiary, $body-bg, 50%);
+$bg-tertiary: $brand-primary-tint !default;
+$bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
 
-$platform-primary: #46caad;
-$platform-danger: #d0011b;
+$platform-primary: #46caad !default;
+$platform-danger: #d0011b !default;
 
-$link-color: contrast-stretch($body-bg, $brand-primary);
-$link-hover-color: darken($link-color, 15%);
+$link-color: contrast-stretch($body-bg, $brand-primary) !default;
+$link-hover-color: darken($link-color, 15%) !default;
 
-$border-color: #666;
-$input-border-color: $border-color;
+$border-color: #666 !default;
+$input-border-color: $border-color !default;
 
-$font-family-sans-serif: "Libre Franklin", sans-serif;
+$font-family-sans-serif: "Libre Franklin", sans-serif !default;
 
-$headings-font-weight: 600;
+$headings-font-weight: 600 !default;
 
-$font-size-xxl: 2.25rem;
-$font-size-xl: 1.5rem;
-$font-size-lg: 1.125rem;
-$font-size-sm: 0.8rem;
-$font-size-xs: 0.64rem;
-
-@include grid-set('gutter', $padding);
-$planifolia-contrast-dark-default: $text-color;
-$planifolia-contrast-light-default: $text-color-inverted;
+$font-size-xxl: 2.25rem !default;
+$font-size-xl: 1.5rem !default;
+$font-size-lg: 1.125rem !default;
+$font-size-sm: 0.8rem !default;
+$font-size-xs: 0.64rem !default;
