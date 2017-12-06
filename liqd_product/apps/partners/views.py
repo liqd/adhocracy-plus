@@ -1,8 +1,14 @@
+from django.contrib.messages.views import SuccessMessageMixin
+from django.utils.translation import ugettext_lazy as _
+from django.views import generic
 from django.views.generic import DetailView
 
 from adhocracy4.actions.models import Action
 from adhocracy4.projects.models import Project
+from adhocracy4.rules import mixins as rules_mixins
 from liqd_product.apps.partners.models import Partner
+
+from . import forms
 
 
 class PartnerView(DetailView):
@@ -35,3 +41,18 @@ class AboutView(DetailView):
     template_name = 'partner_about.html'
     model = Partner
     slug_url_kwarg = 'partner_slug'
+
+
+class PartnerUpdateView(rules_mixins.PermissionRequiredMixin,
+                        SuccessMessageMixin,
+                        generic.UpdateView):
+    model = Partner
+    form_class = forms.PartnerForm
+    slug_url_kwarg = 'partner_slug'
+    template_name = 'partner_form.html'
+    success_message = _('Partner successfully updated.')
+    permission_required = 'liqd_product_partners.change_partner'
+    menu_item = 'partner'
+
+    def get_success_url(self):
+        return self.request.path
