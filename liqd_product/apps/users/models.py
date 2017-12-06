@@ -79,7 +79,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         verbose_name=_('Facebook name'),
     )
 
-    homepage = models.CharField(
+    homepage = models.URLField(
         blank=True,
         max_length=50,
         verbose_name=_('Homepage'),
