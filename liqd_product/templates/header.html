@@ -5,13 +5,7 @@
     <div class="l-wrapper">
         <div class="platform-brand main-header__brand">
             {% spaceless %}
-                <a href="/" class="platform-brand__link">
-                    Beteiligung.in
-                </a>
-                {% if PARTNER %}
-                    /
-                    <span class="marked">{{ PARTNER.name }}</span>
-                {% endif %}
+                <a href="/" class="platform-brand__link">Beteiligung.in</a>{% if PARTNER %}/<span class="marked">{{ PARTNER.name }}</span>{% endif %}
             {% endspaceless %}
         </div>
         <nav class="main-header__change-me">
