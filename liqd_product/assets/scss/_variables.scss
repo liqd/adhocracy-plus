@@ -9,6 +9,9 @@ $text-color: #333 !default;
 $text-secondary-color: #666 !default;
 $overlay: rgba(#000, 0.5) !default;
 
+$platform-brand-primary: #3746cd !default;
+$platform-brand-secondary: #90efe4 !default;
+
 $brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
 $brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
 $brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
@@ -19,7 +22,7 @@ $bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
 $platform-primary: #46caad !default;
 $platform-danger: #d0011b !default;
 
-$link-color: contrast-stretch($body-bg, $brand-primary) !default;
+$link-color: $text-color !default;
 $link-hover-color: darken($link-color, 15%) !default;
 
 $border-color: #666 !default;
