@@ -3,22 +3,24 @@
 
 {% block content %}
     <div class="l-wrapper">
-        <div class="l-center-6">
+        <div class="l-center-8">
 
-            {% image page.image width-770 %}
-
-            <div>
-                <h1>{{ page.title }}</h1>
-                <div>{{ page.subtitle }}</div>
+            <div class="homepage-header">
+                {% image page.image width-770 as image %}
+                <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
+                <div class="homepage-header__text">
+                    <h1 class="cms-title">{{ page.title }}</h1>
+                    <div class="cms-subtitle">{{ page.subtitle }}</div>
+                </div>
             </div>
 
             <div>{{ page.body|richtext }}</div>
 
-            <form method="POST">
+            <form method="POST" class="homepage-form">
                 {% csrf_token %}
-                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
                 {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.interested_as_citizen %}
                 {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.interested_as_municipality %}
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
                 <input class="btn btn--primary" type="submit" value="{% trans 'Send' %}" />
             </form>
         </div>
