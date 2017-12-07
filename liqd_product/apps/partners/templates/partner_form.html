@@ -9,9 +9,8 @@
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+        <h2>{{ object.name }}</h2>
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.logo %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.slogan %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.about %}
 
