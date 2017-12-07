@@ -1,0 +1,51 @@
+.cms-title {
+    display: inline-block;
+    border-bottom: solid 8px $platform-brand-primary;
+}
+
+.cms-header {
+    display: inline-block;
+    border-bottom: solid 4px $platform-brand-secondary;
+}
+
+.cms-subtitle {
+    font-size: $font-size-xl;
+    font-weight: 600;
+}
+
+.homepage-header {
+    position: relative;
+    margin-top: 50px;
+
+    @media screen and (min-width: $breakpoint) {
+        margin-bottom: 70px;
+    }
+}
+
+.homepage-header__image {
+    width: 100%;
+}
+
+.homepage-header__text {
+    @media screen and (min-width: $breakpoint) {
+        width: 70%;
+        background-color: $white;
+        position: absolute;
+        bottom: -30px;
+    }
+}
+
+.homepage-form {
+    @media screen and (min-width: $breakpoint) {
+        width: 70%;
+    }
+}
+
+.rich-text {
+    h2,
+    h3,
+    h4 {
+        @extend .cms-header;
+    }
+}
+
