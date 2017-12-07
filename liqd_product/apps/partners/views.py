@@ -50,7 +50,7 @@ class PartnerUpdateView(rules_mixins.PermissionRequiredMixin,
     form_class = forms.PartnerForm
     slug_url_kwarg = 'partner_slug'
     template_name = 'partner_form.html'
-    success_message = _('Partner successfully updated.')
+    success_message = _('Municipality successfully updated.')
     permission_required = 'liqd_product_partners.change_partner'
     menu_item = 'partner'
 
