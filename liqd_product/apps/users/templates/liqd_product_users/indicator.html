@@ -1,19 +1,20 @@
 {% load i18n %}
 
 {% if request.user.is_authenticated %}
-    <div class="dropdown dropdown--right">
+    <div class="dropdown userindicator__dropdown">
         <button
                 type="button"
-                class=""
+                class="btn btn--bg-tertiary userindicator__button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
                 id="user-actions"
         >
-            {{ request.user.username }}
+            <span>{% trans "Hello," %}</span>
+            <span>{{ request.user.username }}</span>
             <i class="fa fa-caret-down" aria-hidden="true"></i>
         </button>
-        <ul class="dropdown-menu" aria-labelledby="user-actions">
+        <ul class="dropdown-menu userindicator__dropdown-menu" aria-labelledby="user-actions">
             <li>
                 <a class="dropdown-item" href="{% url 'account' %}">{% trans "Account Settings" %}</a>
             </li>
