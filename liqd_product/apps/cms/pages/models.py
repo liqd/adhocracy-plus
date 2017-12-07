@@ -53,6 +53,7 @@ class HomePage(Page):
         })
 
     content_panels = [
+        FieldPanel('title'),
         ImageChooserPanel('image'),
         FieldPanel('subtitle'),
         FieldPanel('body')

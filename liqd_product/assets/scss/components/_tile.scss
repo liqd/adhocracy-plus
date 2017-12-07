@@ -9,7 +9,6 @@
 
 .tile__head {
     position: relative;
-    flex: 0 1 50%;
 
     @media print {
         display: none;
@@ -71,5 +70,9 @@
 @media (min-width: $breakpoint) {
     .tile--horizontal {
         flex-direction: row;
+
+        .tile__head {
+            flex: 0 1 50%;
+        }
     }
 }
