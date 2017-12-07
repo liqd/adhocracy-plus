@@ -8,7 +8,7 @@ class PartnerForm(forms.ModelForm):
 
     class Meta:
         model = Partner
-        fields = ['logo', 'image', 'about']
+        fields = ['logo', 'about']
         labels = {
             'name': _('Partner name')
         }
