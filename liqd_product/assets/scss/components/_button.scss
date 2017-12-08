@@ -35,6 +35,8 @@
     @include button-color--product($brand-secondary);
 }
 
-.btn--bg-tertiary {
+.btn--main-header {
     @include button-color($bg-tertiary, $body-bg);
+    border: none;
+    border-radius: 0;
 }
