@@ -1,5 +1,5 @@
 .main-header__border-top {
-    background: linear-gradient(to right, $brand-primary, $bg-tertiary);
+    background: linear-gradient(to right, $brand-primary, $brand-primary 33%, $bg-tertiary 66%, $bg-tertiary);
     height: 0.5em;
 }
 
@@ -33,8 +33,7 @@
 }
 
 .main-header__mobile-menu {
-    padding: 0 $padding;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $body-bg;
 
     position: absolute;
     left: 0;
@@ -44,6 +43,14 @@
     background-color: $bg-tertiary;
     color: contrast-color($bg-tertiary);
     z-index: 1;
+
+    button,
+    a {
+        border-bottom: 1px solid $body-bg;
+        display: block;
+        width: 100%;
+        padding: 0.5em;
+    }
 }
 
 .main-header__mobile-toggle {
@@ -83,6 +90,10 @@
 
         &.collapse {
             display: inline-block;
+        }
+
+        .main-header__partner-nav__link {
+            display: inline;
         }
     }
 

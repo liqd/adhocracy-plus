@@ -5,13 +5,7 @@
     <div class="l-wrapper">
         <div class="platform-brand main-header__brand">
             {% spaceless %}
-                <a href="/" class="platform-brand__link">
-                    Beteiligung.in
-                </a>
-                {% if PARTNER %}
-                    /
-                    <span class="marked">{{ PARTNER.name }}</span>
-                {% endif %}
+                <a href="/" class="platform-brand__link">Beteiligung.in</a>{% if PARTNER %}/<span class="marked">{{ PARTNER.name }}</span>{% endif %}
             {% endspaceless %}
         </div>
         <nav class="main-header__change-me">
@@ -35,7 +29,7 @@
                     {% userindicator %}
                 </div>
             </div>
-            <button class="btn btn--bg-tertiary btn--small btn--attached-top main-header__mobile-toggle" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
+            <button class="btn btn--bg-tertiary btn--square btn--small btn--attached-top main-header__mobile-toggle" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
                 {% trans 'Menu' %}
                 <i class="fa fa-bars" aria-hidden="true"></i>
             </button>
