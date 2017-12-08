@@ -1,4 +1,11 @@
 .userindicator__dropdown-menu {
     background-color: $bg-tertiary;
     color: $text-color;
+    border: 1px solid $body-bg;
+
+    a,
+    button {
+        border-bottom: 1px solid $body-bg;
+        font-weight: bold;
+    }
 }
