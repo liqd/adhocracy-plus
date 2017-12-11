@@ -23,6 +23,9 @@
                         <li class="main-header__partner-nav__item">
                             <a href="{% url 'partner-information' partner_slug=PARTNER.slug %}" class="main-header__partner-nav__link">{% trans 'FAQ' %}</a>
                         </li>
+                        <li class="main-header__partner-nav__item">
+                            <a href="{% url 'partner-imprint' partner_slug=PARTNER.slug %}" class="main-header__partner-nav__link">{% trans 'Imprint' %}</a>
+                        </li>
                     </ul>
                 {% endif %}
                 <div class="main-header__user">
