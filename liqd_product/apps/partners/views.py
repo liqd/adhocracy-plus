@@ -43,6 +43,12 @@ class InformationView(DetailView):
     slug_url_kwarg = 'partner_slug'
 
 
+class ImprintView(DetailView):
+    template_name = 'partner_imprint.html'
+    model = Partner
+    slug_url_kwarg = 'partner_slug'
+
+
 class PartnerUpdateView(rules_mixins.PermissionRequiredMixin,
                         SuccessMessageMixin,
                         generic.UpdateView):
