@@ -18,11 +18,16 @@
                 {% if PARTNER %}
                     <ul class="main-header__partner-nav">
                         <li class="main-header__partner-nav__item">
-                            <a href="#" class="main-header__partner-nav__link">{% trans 'Beteiligen' %}</a>
+                            <a href="{{ PARTNER.get_absolute_url }}" class="main-header__partner-nav__link">{% trans 'Beteiligen' %}</a>
                         </li>
                         <li class="main-header__partner-nav__item">
                             <a href="{% url 'partner_about' partner_slug=PARTNER.slug %}" class="main-header__partner-nav__link">{% trans 'FAQ' %}</a>
                         </li>
+                        {% if PARTNER.imprint %}
+                        <li class="main-header__partner-nav__item">
+                            <a href="{% url 'partner_imprint' partner_slug=PARTNER.slug %}" class="main-header__partner-nav__link">{% trans 'Imprint' %}</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 {% endif %}
                 <div class="main-header__user">
