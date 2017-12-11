@@ -37,8 +37,8 @@ class PartnerView(DetailView):
         return context
 
 
-class AboutView(DetailView):
-    template_name = 'partner_about.html'
+class InformationView(DetailView):
+    template_name = 'partner_information.html'
     model = Partner
     slug_url_kwarg = 'partner_slug'
 
