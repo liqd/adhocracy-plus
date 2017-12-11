@@ -12,6 +12,7 @@
         <h2>{{ object.name }}</h2>
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.logo %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.information %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.imprint %}
 
         <div class="u-spacer-bottom">
             <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>

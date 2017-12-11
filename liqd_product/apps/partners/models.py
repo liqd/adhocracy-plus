@@ -1,4 +1,5 @@
 from autoslug import AutoSlugField
+from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.db import models
@@ -40,6 +41,9 @@ class Partner(models.Model):
         config_name='image-editor',
         verbose_name=_('Information about your municipality'),
     )
+    imprint = RichTextField(
+        verbose_name=_('Imprint')
+    )
     admins = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         blank=True,
@@ -54,4 +58,5 @@ class Partner(models.Model):
     def save(self, *args, **kwargs):
         self.information = transforms.clean_html_field(
             self.information, 'image-editor')
+        self.imprint = transforms.clean_html_field(self.imprint)
         super().save(*args, **kwargs)
