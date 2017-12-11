@@ -18,14 +18,16 @@
                 {% if PARTNER %}
                     <ul class="main-header__partner-nav">
                         <li class="main-header__partner-nav__item">
-                            <a href="{{ PARTNER.get_absolute_url }}" class="main-header__partner-nav__link">{% trans 'Beteiligen' %}</a>
+                            <a href="{{ PARTNER.get_absolute_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == PARTNER.get_absolute_url %}is-active{% endif %}">{% trans 'Beteiligen' %}</span></a>
                         </li>
                         <li class="main-header__partner-nav__item">
-                            <a href="{% url 'partner_about' partner_slug=PARTNER.slug %}" class="main-header__partner-nav__link">{% trans 'FAQ' %}</a>
+                            {% url 'partner_about' partner_slug=PARTNER.slug as partner_about_url %}
+                            <a href="{{ partner_about_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_about_url %}is-active{% endif %}">{% trans 'FAQ' %}</span></a>
                         </li>
                         {% if PARTNER.imprint %}
                         <li class="main-header__partner-nav__item">
-                            <a href="{% url 'partner_imprint' partner_slug=PARTNER.slug %}" class="main-header__partner-nav__link">{% trans 'Imprint' %}</a>
+                            {% url 'partner_imprint' partner_slug=PARTNER.slug as partner_imprint_url %}
+                            <a href="{{ partner_imprint_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>
                         </li>
                         {% endif %}
                     </ul>
