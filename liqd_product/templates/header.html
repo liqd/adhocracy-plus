@@ -10,7 +10,7 @@
         </div>
         <nav class="main-header__change-me">
             {% if PARTNER %}
-                <a href="{{ PARTNER.get_absolute_url }}" class="main-header__logo-box" rel="home">
+                <a href="{% url 'partner' partner_slug=PARTNER.slug %}" class="main-header__logo-box" rel="home">
                     <img src="{% thumbnail PARTNER.logo '0x160' %}" height="80" alt="{{ PARTNER.name }}" class="main-header__logo-img" />
                 </a>
             {% endif %}
@@ -18,7 +18,8 @@
                 {% if PARTNER %}
                     <ul class="main-header__partner-nav">
                         <li class="main-header__partner-nav__item">
-                            <a href="{{ PARTNER.get_absolute_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == PARTNER.get_absolute_url %}is-active{% endif %}">{% trans 'Beteiligen' %}</span></a>
+                            {% url 'partner' partner_slug=PARTNER.slug as partner_url %}
+                            <a href="{{ partner_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_url %}is-active{% endif %}">{% trans 'Beteiligen' %}</span></a>
                         </li>
                         <li class="main-header__partner-nav__item">
                             {% url 'partner_about' partner_slug=PARTNER.slug as partner_about_url %}
