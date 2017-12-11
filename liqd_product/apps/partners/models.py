@@ -36,9 +36,9 @@ class Partner(models.Model):
         upload_to='parterns/backgrounds',
         blank=True
     )
-    about = RichTextUploadingField(
+    information = RichTextUploadingField(
         config_name='image-editor',
-        verbose_name=_('Description of your municipality'),
+        verbose_name=_('Information about your municipality'),
     )
     admins = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
@@ -52,5 +52,6 @@ class Partner(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.about = transforms.clean_html_field(self.about, 'image-editor')
+        self.information = transforms.clean_html_field(
+            self.information, 'image-editor')
         super().save(*args, **kwargs)

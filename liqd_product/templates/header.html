@@ -21,7 +21,7 @@
                             <a href="#" class="main-header__partner-nav__link">{% trans 'Beteiligen' %}</a>
                         </li>
                         <li class="main-header__partner-nav__item">
-                            <a href="{% url 'partner_about' partner_slug=PARTNER.slug %}" class="main-header__partner-nav__link">{% trans 'FAQ' %}</a>
+                            <a href="{% url 'partner-information' partner_slug=PARTNER.slug %}" class="main-header__partner-nav__link">{% trans 'FAQ' %}</a>
                         </li>
                     </ul>
                 {% endif %}
