@@ -33,7 +33,7 @@ class Partner(models.Model):
         help_prefix=_(
             'The image will be shown as a decorative background image.'
         ),
-        upload_to='parterns/backgrounds',
+        upload_to='partners/backgrounds',
         blank=True
     )
     information = RichTextUploadingField(
