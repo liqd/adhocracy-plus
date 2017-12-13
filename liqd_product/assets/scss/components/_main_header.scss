@@ -1,3 +1,9 @@
+.main-header {
+    a {
+        text-decoration: none;
+    }
+}
+
 .main-header__border-top {
     background: linear-gradient(to right, $brand-primary, $brand-primary 33%, $bg-tertiary 66%, $bg-tertiary);
     height: 0.5em;
@@ -28,7 +34,7 @@
 
 .main-header__logo-img {
     display: block;
-    height: 3em;
+    height: 4em;
     width: auto;
 }
 
@@ -74,6 +80,11 @@
 
 .main-header__partner-nav__item {
     display: block;
+
+    .is-active {
+        padding-bottom: 0.1em;
+        border-bottom: 0.2em solid $brand-primary;
+    }
 }
 
 @media screen and (min-width: $breakpoint) {
