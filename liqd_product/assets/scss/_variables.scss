@@ -35,7 +35,8 @@ $font-size-lg: 1.125rem !default;
 $font-size-sm: 0.8rem !default;
 $font-size-xs: 0.64rem !default;
 
-$brand-success: #90efe4 !default;
-$brand-info: #2d40cc !default;
+/* Don't use variables but hex-values here as they should not be overwritten on partner pages */
+$brand-success: #90efe4 !default; // $brand-secondary from platform.scss
+$brand-info: #2d40cc !default; // $brand-primary from platform.scss
 $brand-warning: #ffc107 !default;
-$brand-danger: #d0011b !default;
+$brand-danger: #d0011b !default; // $plattform-danger
