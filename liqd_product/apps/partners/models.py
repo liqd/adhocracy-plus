@@ -1,4 +1,5 @@
 from autoslug import AutoSlugField
+from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.db import models
@@ -33,12 +34,15 @@ class Partner(models.Model):
         help_prefix=_(
             'The image will be shown as a decorative background image.'
         ),
-        upload_to='parterns/backgrounds',
+        upload_to='partners/backgrounds',
         blank=True
     )
-    about = RichTextUploadingField(
+    information = RichTextUploadingField(
         config_name='image-editor',
-        verbose_name=_('Description of your municipality'),
+        verbose_name=_('Information about your municipality'),
+    )
+    imprint = RichTextField(
+        verbose_name=_('Imprint')
     )
     admins = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
@@ -52,5 +56,7 @@ class Partner(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.about = transforms.clean_html_field(self.about, 'image-editor')
+        self.information = transforms.clean_html_field(
+            self.information, 'image-editor')
+        self.imprint = transforms.clean_html_field(self.imprint)
         super().save(*args, **kwargs)
