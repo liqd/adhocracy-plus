@@ -9,9 +9,6 @@ $text-color: #333 !default;
 $text-secondary-color: #666 !default;
 $overlay: rgba(#000, 0.5) !default;
 
-$platform-brand-primary: #3746cd !default;
-$platform-brand-secondary: #90efe4 !default;
-
 $brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
 $brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
 $brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
@@ -37,3 +34,8 @@ $font-size-xl: 1.5rem !default;
 $font-size-lg: 1.125rem !default;
 $font-size-sm: 0.8rem !default;
 $font-size-xs: 0.64rem !default;
+
+$brand-success: #90efe4 !default;
+$brand-info: #2d40cc !default;
+$brand-warning: #ffc107 !default;
+$brand-danger: #d0011b !default;
