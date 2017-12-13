@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n wagtailcore_tags %}
+
+{% block title %}{% trans 'Information' %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="l-center-6">
+        <h1>{% trans 'Information' %}</h1>
+        {{ partner.information|richtext }}
+    </div>
+{% endblock %}
