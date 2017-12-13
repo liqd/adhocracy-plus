@@ -350,7 +350,7 @@ A4_DASHBOARD = {
     'BLUEPRINTS': 'liqd_product.apps.dashboard.blueprints.blueprints'
 }
 
-CONTACT_EMAIL = 'support-berlin@liqd.de'
+CONTACT_EMAIL = 'info@beteiligung.in'
 
 # The default language is used for emails and strings
 # that are stored translated to the database.
