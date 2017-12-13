@@ -5,13 +5,14 @@
 
 {% block content %}
 <div class="l-center-8">
-    <h1>{% trans "Edit your partner information" %}</h1>
+    <h1>{% trans "Edit your municipality information" %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
         <h2>{{ object.name }}</h2>
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.logo %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.about %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.information %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.imprint %}
 
         <div class="u-spacer-bottom">
             <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
