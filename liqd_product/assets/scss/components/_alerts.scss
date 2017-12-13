@@ -1,0 +1,62 @@
+$messages-margin-bottom: 25px;
+
+.messages {
+    margin: 0 0 $messages-margin-bottom;
+    padding: 0;
+
+    li {
+        display: block;
+    }
+
+    + .messages {
+        margin-top: -$messages-margin-bottom;
+    }
+}
+
+.alert {
+    margin: 0;
+    padding: $padding * 1.2 0;
+    background-color: lighten($brand-info, 40);
+    color: $text-color;
+    text-align: center;
+}
+
+.alert--success {
+    background-color: lighten($brand-success, 20);
+    color: $text-color;
+}
+
+.alert--error,
+.alert--danger {
+    background-color: lighten($brand-danger, 50);
+    color: $text-color;
+}
+
+.alert--warning {
+    background-color: lighten($brand-warning, 20);
+    color: $text-color;
+}
+
+.alert__close {
+    float: right;
+    color: inherit;
+}
+
+.alert--small {
+    padding: 0.5em;
+}
+
+// If this directly follows the dialog box (see header.scss), add 16px
+// additional padding to the default value (see above).
+.messages:first-child > :first-child {
+    padding-top: calc(16px + #{$padding * 1.2});
+}
+
+// compensate for margin-bottom on messages
+.u-after-dialogue-box,
+.project-header,
+.hero-unit {
+    .messages + & {
+        margin-top: -$messages-margin-bottom;
+    }
+}
