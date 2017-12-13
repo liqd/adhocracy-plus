@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n static thumbnail %}
 
 {% if request.user.is_authenticated %}
     <div class="dropdown dropdown--right userindicator__dropdown">
@@ -10,9 +10,13 @@
                 aria-expanded="false"
                 id="user-actions"
         >
-            <span>{% trans "Hello," %}</span>
-            <span>{{ request.user.username }}</span>
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
+            <img class="userindicator__btn-img" src="{% if request.user.avatar %}{{ request.user.avatar|thumbnail_url:'avatar'}}{% else %}{% static 'images/avatar_00.png' %}{% endif %}">
+            <div class="userindicator__btn-text">
+                <span class="userindicator__hello">{% trans "Hello," %}</span>
+                <br>
+                <span>{{ request.user.username }}</span>
+            </div>
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
         </button>
         <ul class="dropdown-menu userindicator__dropdown-menu" aria-labelledby="user-actions">
             <li>
