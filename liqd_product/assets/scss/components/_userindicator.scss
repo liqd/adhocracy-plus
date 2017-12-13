@@ -1,3 +1,34 @@
+.userindicator__dropdown {
+    .btn {
+        padding: $padding;
+    }
+
+    i {
+        margin-left: 2 * $padding;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+.userindicator__btn-img {
+    margin-right: $padding;
+    display: inline-block;
+    vertical-align: middle;
+    width: 4em;
+    height: 4em;
+    border-radius: 100%;
+    border: 2px solid $body-bg;
+}
+
+.userindicator__btn-text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.userindicator__hello {
+    font-weight: normal;
+}
+
 .userindicator__dropdown-menu {
     background-color: $bg-tertiary;
     color: $text-color;

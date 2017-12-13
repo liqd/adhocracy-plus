@@ -204,6 +204,7 @@ THUMBNAIL_ALIASES = {
         'project_thumbnail': {'size': (520, 330), 'crop': 'smart'},
         'idea_image': {'size': (800, 0), 'crop': 'scale'},
         'idea_thumbnail': {'size': (240, 240), 'crop': 'smart'},
+        'avatar': {'size': (200, 200), 'crop': 'smart'}
     }
 }
 
