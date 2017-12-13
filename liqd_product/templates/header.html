@@ -21,16 +21,16 @@
                             {% url 'partner' partner_slug=PARTNER.slug as partner_url %}
                             <a href="{{ partner_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_url %}is-active{% endif %}">{% trans 'Beteiligen' %}</span></a>
                         </li>
+                        {% if PARTNER.information %}
                         <li class="main-header__partner-nav__item">
-                            {% url 'partner_about' partner_slug=PARTNER.slug as partner_about_url %}
-                            <a href="{{ partner_about_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_about_url %}is-active{% endif %}">{% trans 'FAQ' %}</span></a>
-                        </li>
-                        {% if PARTNER.imprint %}
-                        <li class="main-header__partner-nav__item">
-                            {% url 'partner_imprint' partner_slug=PARTNER.slug as partner_imprint_url %}
-                            <a href="{{ partner_imprint_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>
+                            {% url 'partner-information' partner_slug=PARTNER.slug as partner_information_url %}
+                            <a href="{{ partner_information_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_information_url %}is-active{% endif %}">{% trans 'FAQ' %}</span></a>
                         </li>
                         {% endif %}
+                        <li class="main-header__partner-nav__item">
+                            {% url 'partner-imprint' partner_slug=PARTNER.slug as partner_imprint_url %}
+                            <a href="{{ partner_imprint_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>
+                        </li>
                     </ul>
                 {% endif %}
                 <div class="main-header__user">
