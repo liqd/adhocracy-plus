@@ -114,7 +114,26 @@
 }
 
 .main-header__user {
-    .navi__link {
-        font-weight: bold;
+    // min-width and max-width can't have the same breakpoint
+    @media screen and (max-width: $breakpoint - 0.1em) {
+        // overwrite dropdown style on mobile
+
+        .dropdown {
+            margin-bottom: 0;
+        }
+
+        .dropdown-toggle {
+            display: none;
+        }
+
+        .dropdown-menu {
+            display: block;
+            padding: 0;
+            border: 0;
+
+            box-shadow: none;
+
+            position: static;
+        }
     }
 }
