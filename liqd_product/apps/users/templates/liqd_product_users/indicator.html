@@ -12,7 +12,7 @@
         >
             <img class="userindicator__btn-img" src="{% if request.user.avatar %}{{ request.user.avatar|thumbnail_url:'avatar'}}{% else %}{% static 'images/avatar_00.png' %}{% endif %}">
             <div class="userindicator__btn-text">
-                <span class="userindicator__hello">{% trans "Hello," %}</span>
+                <span class="userindicator__hello">{% trans "Hello" %}</span>
                 <br>
                 <span>{{ request.user.username }}</span>
             </div>
