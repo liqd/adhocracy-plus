@@ -1,5 +1,10 @@
 .item-detail {
-    margin-bottom: $spacer * 2;
+    margin-bottom: $spacer;
+}
+
+.item-detail--bottom-divider {
+    padding-bottom: $spacer * 1.5;
+    border-bottom: 2px solid $brand-primary;
 }
 
 .item-detail__title {
@@ -30,8 +35,4 @@
 
 .item-detail__content {
     margin-bottom: 1em;
-}
-
-.item-detail__divider {
-    border-bottom: 2px solid $brand-primary;
 }
