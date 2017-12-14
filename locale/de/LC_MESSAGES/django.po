@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-14 11:01+0100\n"
+"POT-Creation-Date: 2017-12-14 15:54+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1327,7 +1327,6 @@ msgstr "Alle Projekte anzeigen"
 #: a4-meinberlin/meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:30
 #: a4-meinberlin/meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_form.html:32
 #: a4-meinberlin/meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_create_form.html:28
-#: liqd_product/apps/cms/pages/templates/liqd_product_cms_pages/home_page.html:25
 msgid "Send"
 msgstr "Senden"
 
@@ -2884,8 +2883,8 @@ msgstr "Organisationsinformationen bearbeiten"
 msgid "Organisation successfully updated."
 msgstr "Organisation erfolgreich aktualisiert"
 
-#: a4-meinberlin/meinberlin/apps/plans/forms.py:23
-#: a4-meinberlin/meinberlin/apps/plans/forms.py:23
+#: a4-meinberlin/meinberlin/apps/plans/forms.py:36
+#: a4-meinberlin/meinberlin/apps/plans/forms.py:36
 msgid "Please locate the plan on the map."
 msgstr "Bitte verorten Sie das Vorhaben auf der Karte."
 
@@ -4167,18 +4166,6 @@ msgstr ""
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
 
-#: liqd_product/apps/cms/pages/models.py:36
-msgid "Your data has been saved. We will keep you up to date."
-msgstr "Ihre Daten wurden gespeichert. Wir halten Sie auf dem Laufenden."
-
-#: liqd_product/apps/cms/updates/models.py:7
-msgid "interested as municipality"
-msgstr "interessiert als Kommune"
-
-#: liqd_product/apps/cms/updates/models.py:9
-msgid "interested as citizen"
-msgstr "interessiert als Bürger*in"
-
 #: liqd_product/apps/dashboard/blueprints.py:39
 msgid ""
 "With Agenda-Setting it’s possible to identify topics and to define mission "
@@ -4204,7 +4191,7 @@ msgstr "Slogan"
 msgid "Information about your municipality"
 msgstr "Beschreibung Ihrer Kommune"
 
-#: liqd_product/apps/partners/models.py:45
+#: liqd_product/apps/partners/models.py:46
 #: liqd_product/apps/partners/templates/partner_imprint.html:4
 #: liqd_product/apps/partners/templates/partner_imprint.html:8
 #: liqd_product/templates/footer.html:10 liqd_product/templates/header.html:32
@@ -4318,6 +4305,28 @@ msgstr ""
 msgid "change password"
 msgstr "Passwort ändern"
 
+#: liqd_product/templates/account/signup.html:38
+#, python-format
+msgid ""
+"\n"
+"            With your account on Beteiligung.in you may participate in every "
+"public process on this platform.\n"
+"            This platform allows municipalities in Germany, to involve "
+"citizens in the urban development via online participation.\n"
+"            If you have any questions regarding the data protection on this "
+"platform you can find <a href=\"%(data_protection_url)s\" target=\"_blank"
+"\">further information here</a>.\n"
+"        "
+msgstr ""
+"\n"
+"Mit Ihrem Account auf Beteiligung.in können Sie sich an allen öffentlichen "
+"Prozessen auf der Plattform beteiligen.Die Plattform bietet allen Kommunen "
+"in Deutschland eine Möglichkeit, ihre Bürger*innen durch Online-Beteiligung "
+"an der Stadtentwicklung zu beteiligen.Sollten Sie Fragen zum Datenschutz auf "
+"der Plattform haben finden Sie <a href=\"%(data_protection_url)s\" target="
+"\"_blank\">hier weitere Informationen<a>.\n"
+"        "
+
 #: liqd_product/templates/email_base.html:50
 #: liqd_product/templates/email_base.txt:11
 msgid "Beteiligung.in is a participation platform operated by"
@@ -4346,6 +4355,15 @@ msgstr "Kommune bearbeiten"
 #: liqd_product/templates/meinberlin_projects/includes/project_list_tile.html:34
 msgid "Private"
 msgstr "Privat"
+
+#~ msgid "Your data has been saved. We will keep you up to date."
+#~ msgstr "Ihre Daten wurden gespeichert. Wir halten Sie auf dem Laufenden."
+
+#~ msgid "interested as municipality"
+#~ msgstr "interessiert als Kommune"
+
+#~ msgid "interested as citizen"
+#~ msgstr "interessiert als Bürger*in"
 
 #~ msgid ""
 #~ "This short description will appear on the header of the module and "
