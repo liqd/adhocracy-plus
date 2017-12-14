@@ -1,0 +1,81 @@
+{% extends 'meinberlin_projects/project_detail.html' %}
+{% load i18n react_comments wagtailcore_tags %}
+
+{% block phase_content %}
+
+    {% if chapter_list|length > 1 %}
+        <div class="control-bar__top-overlap">
+            {% include 'meinberlin_documents/includes/nextprev.html' %}
+        </div>
+    {% endif %}
+
+    <article class="module-content">
+        <div class="l-wrapper">
+            <div class="l-center-8">
+                {% if chapter_list|length > 1 %}
+                    <nav class="doc-toc" aria-label="{% trans 'Table of Contents' %}">
+                        <button
+                            class="doc-toc__toggle {% if object.prev %}collapsed{% endif %}"
+                            data-toggle="collapse"
+                            data-target="#doc-toc__content"
+                            aria-expanded="{{ object.prev|yesno:'false,true' }}"
+                            aria-controls="doc-toc__content">
+                            <h2 class="doc-toc__title">{% trans 'Table of Contents' %}</h2>
+                            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                        </button>
+                        <div class="doc-toc__content collapse {% if not object.prev %}show{% endif %}" id="doc-toc__content">
+                            <ol>
+                                {% for chapter in chapter_list %}
+                                    <li>
+                                        <a href="{{ chapter.get_absolute_url }}" class="doc-toc__link {% if chapter.pk == object.pk %}active{% endif %}">
+                                            {{ chapter.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </nav>
+                {% endif %}
+
+                <div class="chapter">
+                    <h2 class="chapter-title">{{ object.name }}</h2>
+
+                    {% for paragraph in object.paragraphs.all %}
+
+                        <section class="paragraph" id="paragraph-{{ object.pk }}-{{ paragraph.pk }}">
+                            <div class="paragraph__content">
+                                <h3 class="paragraph__title">
+                                    {{ paragraph.name }}
+                                </h3>
+                                {{ paragraph.text|richtext }}
+                            </div>
+                            <div class="paragraph__actions">
+                                <a
+                                        class="btn btn--primary"
+                                        href="{{ paragraph.get_absolute_url }}"
+                                >
+                                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                    {% blocktrans count count=paragraph.comments.all|length %}{{ count }} Comment{% plural %}{{ count }} Comments{% endblocktrans %}
+                                </a>
+                            </div>
+                        </section>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </article>
+
+    {% if chapter_list|length > 1 %}
+        <div class="control-bar__bottom-overlap">
+            {% include 'meinberlin_documents/includes/nextprev.html' %}
+        </div>
+    {% endif %}
+
+
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            {% react_comments object %}
+        </div>
+    </div>
+{% endblock %}
