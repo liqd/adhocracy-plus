@@ -40,6 +40,7 @@ class Partner(models.Model):
     information = RichTextUploadingField(
         config_name='image-editor',
         verbose_name=_('Information about your municipality'),
+        blank=True
     )
     imprint = RichTextField(
         verbose_name=_('Imprint')
