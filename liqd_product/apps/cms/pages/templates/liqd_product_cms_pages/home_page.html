@@ -17,13 +17,6 @@
 
             <div>{{ page.body|richtext }}</div>
 
-            <form method="POST" class="homepage-form">
-                {% csrf_token %}
-                {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.interested_as_citizen %}
-                {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.interested_as_municipality %}
-                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
-                <input class="btn btn--primary" type="submit" value="{% trans 'Send' %}" />
-            </form>
         </div>
     </div>
 {% endblock %}
