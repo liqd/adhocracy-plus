@@ -1,13 +1,8 @@
-from django.contrib import messages
 from django.db import models
-from django.shortcuts import render
-from django.utils.translation import ugettext_lazy as _
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-
-from liqd_product.apps.cms.updates.forms import KeepMeUpdatedEmailForm
 
 
 class HomePage(Page):
@@ -25,32 +20,6 @@ class HomePage(Page):
     body = RichTextField(blank=True)
 
     subpage_types = ['liqd_product_cms_pages.EmptyPage']
-
-    def serve(self, request):
-
-        if request.method == 'POST':
-            form = KeepMeUpdatedEmailForm(request.POST)
-            if form.is_valid():
-                form.save()
-                messages.success(request,
-                                 _('Your data has been '
-                                   'saved. We will keep '
-                                   'you up to date.'))
-                form = KeepMeUpdatedEmailForm()
-                return render(
-                    request,
-                    'liqd_product_cms_pages/home_page.html', {
-                        'page': self,
-                        'form': form,
-                    }
-                )
-        else:
-            form = KeepMeUpdatedEmailForm()
-
-        return render(request, 'liqd_product_cms_pages/home_page.html', {
-            'page': self,
-            'form': form,
-        })
 
     content_panels = [
         FieldPanel('title'),
