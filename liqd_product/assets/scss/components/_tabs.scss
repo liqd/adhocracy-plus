@@ -20,3 +20,11 @@
         background-color: $body-bg;
     }
 }
+
+@media (max-width: $breakpoint) {
+    .tab {
+        margin-right: -4px;
+        padding-right: 0.3em;
+        padding-left: 0.3em;
+    }
+}
