@@ -1,14 +1,18 @@
 {% load userindicator static i18n thumbnail %}
 
 <header class="main-header" aria-label="{% trans 'Header' %}">
+    {% if PARTNER %}
     <div class="main-header__border-top"></div>
+    {% else %}
+    <div class="main-header__border-top main-header__border-top--platform"></div>
+    {% endif %}
     <div class="l-wrapper">
         <div class="platform-brand main-header__brand">
             {% spaceless %}
                 <a href="{% if PARTNER %}{% url 'partner' partner_slug=PARTNER.slug %}{% else %}/{% endif %}" class="platform-brand__link">Beteiligung.in{% if PARTNER %}/<span class="marked">{{ PARTNER.name }}</span>{% endif %}</a>
             {% endspaceless %}
         </div>
-        <nav class="main-header__change-me">
+        <nav class="main-header__nav">
             {% if PARTNER %}
                 <a href="{% url 'partner' partner_slug=PARTNER.slug %}" class="main-header__logo-box" rel="home">
                     <img src="{% thumbnail PARTNER.logo '0x160' %}" height="80" alt="{{ PARTNER.name }}" class="main-header__logo-img" />
