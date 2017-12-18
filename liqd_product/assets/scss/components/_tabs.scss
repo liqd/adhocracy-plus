@@ -28,4 +28,14 @@
         padding-right: 0.3em;
         padding-left: 0.3em;
     }
+
+    .tablist__right,
+    .tablist__left {
+        margin-bottom: 1em;
+    }
+
+    .tablist__right + nav,
+    .tablist__left + nav {
+        clear: both;
+    }
 }
