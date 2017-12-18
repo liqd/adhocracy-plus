@@ -1,11 +1,7 @@
 {% load userindicator static i18n thumbnail %}
 
 <header class="main-header" aria-label="{% trans 'Header' %}">
-    {% if PARTNER %}
-    <div class="main-header__border-top"></div>
-    {% else %}
-    <div class="main-header__border-top main-header__border-top--platform"></div>
-    {% endif %}
+    <div class="main-header__border-top {% if not PARTNER %}main-header__border-top--platform{% endif %}"></div>
     <div class="l-wrapper">
         <div class="platform-brand main-header__brand">
             {% spaceless %}
@@ -18,7 +14,7 @@
                     <img src="{% thumbnail PARTNER.logo '0x160' %}" height="80" alt="{{ PARTNER.name }}" class="main-header__logo-img" />
                 </a>
             {% endif %}
-            <div class="main-header__mobile-menu collapse" id="main-header-collapse">
+            <div class="main-header__mobile-menu {% if not PARTNER %}main-header__mobile-menu--platform{% endif %} collapse" id="main-header-collapse">
                 {% if PARTNER %}
                     <ul class="main-header__partner-nav">
                         <li class="main-header__partner-nav__item">
@@ -41,7 +37,7 @@
                     {% userindicator %}
                 </div>
             </div>
-            <button class="btn btn--bg-tertiary btn--square btn--small btn--attached-top main-header__mobile-toggle" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
+            <button class="btn {% if PARTNER %}btn--bg-tertiary{% else %}btn--secondary-filled{% endif %} btn--square btn--small btn--attached-top main-header__mobile-toggle" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
                 {% trans 'Menu' %}
                 <i class="fa fa-bars" aria-hidden="true"></i>
             </button>

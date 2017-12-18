@@ -35,6 +35,10 @@
     @include button-color--product($brand-secondary);
 }
 
+.btn--secondary-filled {
+    @include button-color($brand-secondary, $body-bg);
+}
+
 .btn--bg-tertiary {
     @include button-color($bg-tertiary, $body-bg);
 }
