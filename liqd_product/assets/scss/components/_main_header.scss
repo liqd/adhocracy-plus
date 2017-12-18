@@ -77,6 +77,16 @@
     font-weight: bold;
 }
 
+.show + .main-header__mobile-toggle {
+    background-color: $bg-secondary;
+}
+
+.show + .main-header__mobile-toggle--platform {
+    // use same color as used for hover styles
+    // (defined in meinberlin's _button.scss)
+    background-color: mix($brand-secondary, $body-bg, 50%);
+}
+
 .main-header__partner-nav {
     list-style: none;
     padding: 0;
