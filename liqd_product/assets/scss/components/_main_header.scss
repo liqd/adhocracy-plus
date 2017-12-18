@@ -9,13 +9,17 @@
     height: 0.5em;
 }
 
+.main-header__border-top--platform {
+    background: linear-gradient(to right, $brand-primary, $brand-primary 33%, $brand-secondary 66%, $brand-secondary);
+}
+
 .main-header__brand {
     float: left;
     margin: (3 * $spacer) 0 $spacer;
     font-weight: bold;
 }
 
-.main-header__change-me {
+.main-header__nav {
     clear: left;
 }
 
