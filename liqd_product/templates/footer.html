@@ -4,7 +4,7 @@
     <div class="l-wrapper">
         <nav class="navi">
             {%  with pages=settings.liqd_product_cms_settings.ImportantPages %}
-            <ul class="navi__list">
+            <ul class="navi__list footer__links">
                 {% if pages.imprint %}
                 <li class="navi__item">
                     <a href="{{ pages.imprint.url }}" class="navi__link">{% trans 'Imprint' %}</a>
@@ -22,6 +22,25 @@
                 {% endif %}
             </ul>
             {% endwith %}
+            <ul class="navi__list footer__boxed-links">
+                <li class="navi__item">
+                    <span>OPEN CONTENT</span>
+                    <br>
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA</a>
+                </li>
+                <li class="navi__item">
+                    <span>OPEN SOURCE</span>
+                    <br>
+                    <a href="https://github.com/liqd/a4-product">AGPLv3</a>
+                </li>
+            </ul>
         </nav>
+    </div>
+    <div class="l-wrapper">
+        <p class="l-col-5-0 ">
+            {% blocktrans %}
+            Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial content.
+            {% endblocktrans %}
+        </p>
     </div>
 </footer>

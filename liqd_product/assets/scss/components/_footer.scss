@@ -1,10 +1,31 @@
 .footer {
     margin-top: $spacer * 5;
-    border-top: 0.3em solid $brand-primary;
+    border-top: 0.4em solid $brand-primary;
     background-color: $bg-secondary;
     color: contrast-color($bg-secondary);
+}
+
+.footer__links {
+    a {
+        font-weight: normal;
+    }
+}
+
+.footer__boxed-links {
+    .navi__item {
+        border: 0.2em solid $brand-primary;
+
+        @media screen and (min-width: $breakpoint) {
+            margin-left: 0.6em;
+        }
+    }
+
+    span {
+        font-weight: bold;
+    }
 
     a {
         font-weight: normal;
+        text-decoration: none;
     }
 }

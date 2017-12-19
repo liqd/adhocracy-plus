@@ -1,8 +1,11 @@
 .navi {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 1.25em 0;
+
+    @media screen and (min-width: $breakpoint) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
 
 .navi__list {
@@ -17,9 +20,11 @@
 
 .navi__item {
     display: block;
+    margin-top: 0.5em;
 
     @media screen and (min-width: $breakpoint) {
         display: inline-block;
+        margin-top: 0;
         padding: 0 (1.875em / 2);
     }
 
