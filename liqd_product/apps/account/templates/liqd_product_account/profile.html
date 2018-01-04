@@ -4,7 +4,7 @@
 
 {% block title %}{% trans 'Your user profile' %} &mdash; {{ block.super }}{% endblock %}
 {% block dashboard_content %}
-    <h1 class="u-first-heading"><a href="{% url 'profile' request.user.username %}">{% trans 'Your profile' %}</a></h1>
+    <h1 class="u-first-heading">{% trans 'Your profile' %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
@@ -22,6 +22,7 @@
 
         <div class="u-spacer-bottom">
             <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
+            <a class="btn btn--secondary" href="{% url 'profile' request.user.username %}">{% trans 'view your profile' %}</a>
         </div>
     </form>
     {{ form.media }}
