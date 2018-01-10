@@ -22,7 +22,6 @@
 
         <div class="u-spacer-bottom">
             <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
-            <a class="btn btn--secondary" href="{% url 'profile' request.user.username %}">{% trans 'view your profile' %}</a>
         </div>
     </form>
     {{ form.media }}
