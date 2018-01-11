@@ -9,13 +9,17 @@
     height: 0.5em;
 }
 
+.main-header__border-top--platform {
+    background: linear-gradient(to right, $brand-primary, $brand-primary 33%, $brand-secondary 66%, $brand-secondary);
+}
+
 .main-header__brand {
     float: left;
     margin: (3 * $spacer) 0 $spacer;
     font-weight: bold;
 }
 
-.main-header__change-me {
+.main-header__nav {
     clear: left;
 }
 
@@ -59,6 +63,11 @@
     }
 }
 
+.main-header__mobile-menu--platform {
+    background-color: $brand-secondary;
+    color: contrast-color($brand-secondary);
+}
+
 .main-header__mobile-toggle {
     position: absolute;
     right: $padding;
@@ -66,6 +75,16 @@
     z-index: 1;
 
     font-weight: bold;
+}
+
+.show + .main-header__mobile-toggle {
+    background-color: $bg-secondary;
+}
+
+.show + .main-header__mobile-toggle--platform {
+    // use same color as used for hover styles
+    // (defined in meinberlin's _button.scss)
+    background-color: mix($brand-secondary, $body-bg, 50%);
 }
 
 .main-header__partner-nav {
