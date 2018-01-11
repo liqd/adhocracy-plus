@@ -31,7 +31,7 @@
 
 .userindicator__dropdown-menu {
     background-color: $bg-tertiary;
-    color: $text-color;
+    color: contrast-color($bg-tertiary);
     border: 1px solid $body-bg;
 
     a,
@@ -39,4 +39,9 @@
         border-bottom: 1px solid $body-bg;
         font-weight: bold;
     }
+}
+
+.userindicator__dropdown-menu--platform {
+    background-color: $brand-secondary;
+    color: contrast-color($brand-secondary);
 }

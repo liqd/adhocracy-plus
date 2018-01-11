@@ -4,6 +4,7 @@
 
 .tab {
     color: $text-secondary-color;
+    padding: 0.6em 1em;
     margin-bottom: -2px;
     border: 2px solid transparent;
     border-top-right-radius: 0;
@@ -18,5 +19,25 @@
     &.active {
         border-color: $brand-secondary;
         background-color: $body-bg;
+    }
+}
+
+@media (max-width: $breakpoint-xs) {
+    .tab {
+        margin-right: -4px;
+        padding-right: 0.3em;
+        padding-left: 0.3em;
+    }
+}
+
+@media (max-width: $breakpoint) {
+    .tablist__right,
+    .tablist__left {
+        margin-bottom: 1em;
+    }
+
+    .tablist__right + nav,
+    .tablist__left + nav {
+        clear: both;
     }
 }

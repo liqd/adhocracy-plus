@@ -4,7 +4,7 @@
     <div class="dropdown dropdown--right userindicator__dropdown">
         <button
                 type="button"
-                class="dropdown-toggle btn btn--bg-tertiary btn--square btn--align-left"
+                class="dropdown-toggle btn {% if PARTNER %}btn--bg-tertiary{% else %}btn--secondary-filled{% endif %} btn--square btn--align-left"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
@@ -18,9 +18,13 @@
             </div>
             <i class="fa fa-angle-down" aria-hidden="true"></i>
         </button>
-        <ul class="dropdown-menu userindicator__dropdown-menu" aria-labelledby="user-actions">
+        <ul class="dropdown-menu userindicator__dropdown-menu {% if not PARTNER %}userindicator__dropdown-menu--platform{% endif %}" aria-labelledby="user-actions">
             <li>
                 <a class="dropdown-item" href="{% url 'account' %}">{% trans "Account Settings" %}</a>
+            </li>
+
+            <li>
+                <a class="dropdown-item" href="{% url 'profile' request.user.username %}">{% trans 'View your profile' %}</a>
             </li>
 
             {% for organisation in request.user.organisations %}
