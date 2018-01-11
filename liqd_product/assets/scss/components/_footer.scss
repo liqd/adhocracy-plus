@@ -5,19 +5,22 @@
     color: contrast-color($bg-secondary);
 }
 
-.footer__links {
+.footer__link {
     a {
         font-weight: normal;
     }
 }
 
-.footer__boxed-links {
-    .navi__item {
-        border: 0.2em solid $brand-primary;
+.footer__boxed-link {
+    display: inline-block;
+    margin-top: 1em;
+    padding: 0 (1.875em / 2);
 
-        @media screen and (min-width: $breakpoint) {
-            margin-left: 0.6em;
-        }
+    border: 0.2em solid $brand-primary;
+
+    @media screen and (min-width: $breakpoint) {
+        margin-top: 0;
+        margin-left: 0.6em;
     }
 
     span {
