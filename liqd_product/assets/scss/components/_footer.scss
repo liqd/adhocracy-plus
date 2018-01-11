@@ -1,10 +1,34 @@
 .footer {
     margin-top: $spacer * 5;
-    border-top: 0.3em solid $brand-primary;
+    border-top: 0.4em solid $brand-primary;
     background-color: $bg-secondary;
     color: contrast-color($bg-secondary);
+}
+
+.footer__link {
+    a {
+        font-weight: normal;
+    }
+}
+
+.footer__boxed-link {
+    display: inline-block;
+    margin-top: 1em;
+    padding: 0 (1.875em / 2);
+
+    border: 0.2em solid $brand-primary;
+
+    @media screen and (min-width: $breakpoint) {
+        margin-top: 0;
+        margin-left: 0.6em;
+    }
+
+    span {
+        font-weight: bold;
+    }
 
     a {
         font-weight: normal;
+        text-decoration: none;
     }
 }
