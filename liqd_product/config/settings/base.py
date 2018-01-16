@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     # General adhocracy 4 components
     'adhocracy4.actions.apps.ActionsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
+    'adhocracy4.ckeditor.apps.CKEditorConfig',
     'adhocracy4.comments.apps.CommentsConfig',
     'adhocracy4.filters.apps.FiltersConfig',
     'adhocracy4.follows.apps.FollowsConfig',
