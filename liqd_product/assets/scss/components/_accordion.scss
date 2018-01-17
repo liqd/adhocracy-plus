@@ -1,0 +1,58 @@
+.accordion {
+    border: solid 1px $border-color;
+    border-radius: 5px;
+
+    // make border-radius work with contents
+    overflow: hidden;
+    margin-bottom: $padding * 1.8;
+}
+
+.accordion__title {
+    display: block;
+    position: relative;
+    padding: $padding/2 1em $padding/2 1.2em;
+    color: inherit;
+    border-bottom: solid 1px $border-color;
+
+    &.collapsed {
+        border-bottom: none;
+    }
+
+    h2 {
+        font-size: $font-size-lg;
+        margin-top: $spacer / 5;
+        margin-bottom: $spacer / 5;
+    }
+
+    i {
+        position: absolute;
+        top: 0.7em;
+        right: $padding;
+        transition: transform 0.3s;
+        color: $border-color;
+    }
+
+    &[aria-expanded="true"] i {
+        transform: rotate(180deg);
+    }
+}
+
+.accordion__body {
+    padding: $padding / 2;
+
+    ul {
+        list-style: none;
+        margin-left: 0;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 0.2em;
+    }
+
+    a[href^="/documents"]:before {
+        content: '\f016'; // file-o
+        font-family: 'FontAwesome', sans-serif;
+        margin-right: 0.3em;
+    }
+}
