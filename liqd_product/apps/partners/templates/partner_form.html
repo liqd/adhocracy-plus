@@ -12,6 +12,9 @@
             {% csrf_token %}
             <h2>{{ object.name }}</h2>
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.logo %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.slogan %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.information %}
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.imprint %}
 
