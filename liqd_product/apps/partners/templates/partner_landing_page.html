@@ -4,14 +4,20 @@
 {% block title %}{{partner.name}}{% endblock %}
 
 {% block super_content %}
-    <div class="hero-unit" style="background-image: url({% thumbnail partner.image "1500x610" crop %});">
-        <div class="hero-unit__title l-center-8">
-            {{ partner.slogan }}
+    <div class="hero-unit" style="background-image: url({% thumbnail partner.image "1500x610" crop %});"></div>
+
+    <div class="l-wrapper partner__header">
+        <div class="l-col-6-0">
+            <h1 class="u-no-margin"><span class="marked marked--multiple_lines">{% trans 'participation platform for' %}</span> <br/> <span class="marked marked--multiple_lines">{{ partner.name }}</span></h1>
+            <h2 class="u-no-margin partner__slogan">{{ partner.slogan }}</h2>
+        </div>
+        <div class="l-col-5-7">
+            {{ partner.description }}
         </div>
     </div>
 
     <div class="l-wrapper">
-        <div class="l-col-8-0 u-overlap-top">
+        <div class="l-col-9-0">
             <ul class="u-list-reset">
                 {% for project in project_list %}
                     <li>
@@ -21,42 +27,15 @@
             </ul>
         </div>
 
-        <aside class="l-col-4-8 aside">
+        <aside class="l-col-3-9 aside">
             <div class="aside__block">
-                <h2 class="aside__block__title heading2">{% trans 'About this page' %}</h2>
-                <p>{{partner.description}}</p>
-            </div>
-
-            <div class="aside__block">
-                <h2 class="aside__block__title heading2">{% trans 'Activity' %}</h2>
+                <h2 class="aside__block__title heading3">{% trans 'Activity' %}</h2>
                 <div>
                     {% for action in action_list %}
                         {% include 'meinberlin_actions/includes/action.html' with action=action %}
                     {% empty %}
                         {% trans 'No activity yet. '%}
                     {% endfor %}
-                </div>
-            </div>
-
-            <div class="aside__block">
-                <h2 class="aside__block__title heading2">{% trans 'Statistics' %}</h2>
-                <div class="l-tiles-2">
-                    <div class="stats">
-                        <div class="stats__number">{{ stats.users|intcomma }}</div>
-                        <div class="stats__label">{% trans 'registered Users' %}</div>
-                    </div>
-                    <div class="stats">
-                        <div class="stats__number">{{ stats.items|intcomma }}</div>
-                        <div class="stats__label">{% trans 'Items' %}</div>
-                    </div>
-                    <div class="stats">
-                        <div class="stats__number">{{ stats.comments|intcomma }}</div>
-                        <div class="stats__label">{% trans 'Comments' %}</div>
-                    </div>
-                    <div class="stats">
-                        <div class="stats__number">{{ stats.ratings|intcomma }}</div>
-                        <div class="stats__label">{% trans 'Ratings' %}</div>
-                    </div>
                 </div>
             </div>
         </aside>
