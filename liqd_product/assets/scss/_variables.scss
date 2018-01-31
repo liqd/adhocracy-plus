@@ -9,6 +9,12 @@ $text-color: #333 !default;
 $text-secondary-color: #666 !default;
 $overlay: rgba(#000, 0.5) !default;
 
+$gray-light: #4d4d4d;
+$gray-lighter: #666;
+$text-color: #1a1a1a;
+
+$demi-bold: 600;
+
 $brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
 $brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
 $brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
@@ -42,3 +48,7 @@ $brand-warning: #ffc107 !default;
 $brand-danger: #d0011b !default; // $plattform-danger
 
 $breakpoint-xs: 33em !default;
+
+$hero-height: 25.5rem !default;
+$hero-height-secondary: 20rem !default;
+$hero-height-mobile: 12rem !default;
