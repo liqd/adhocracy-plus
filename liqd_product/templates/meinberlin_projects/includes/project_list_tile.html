@@ -2,7 +2,7 @@
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 
-<div class="tile tile--horizontal">
+<div class="tile partner__tile tile--horizontal">
     <div class="tile__head">
         <a tabindex="-1"
            class="tile__image"
@@ -22,24 +22,14 @@
             <a href="{{ project|project_url }}">{{ project.name }}</a>
         </h3>
 
-        <div class="tile__labels">
-            {% get_days project.days_left as days %}
-            {% if project.has_finished %}
-                <span class="label label--danger">{% trans "Finished" %}</span>
-            {% elif days %}
-                <span class="label label--primary">{{ days }}</span>
-            {% endif %}
-
-            {% if not project.is_public %}
-                <span class="label">{% trans "Private" %}</span>
-            {% endif %}
-        </div>
-
         <p class="tile__text">{{ project.description }}</p>
 
         <p class="tile__date">
-            {{ project.phases.first.start_date|date:'d. M. Y' }} -
-            {{ project.phases.last.end_date|date:'d. M. Y' }}
+            {% if project.has_finished %}
+                <span><i class="tile__icon fa fa-flag-checkered"></i> {% trans 'Finished' %}</span>
+            {% else %}
+                <span><i class="tile__icon fa fa-comments"></i> {% trans 'Participation possible until' %} {{ project.phases.last.end_date|date:'d. M. Y'}}</span>
+            {% endif %}
         </p>
     </div>
 </div>
