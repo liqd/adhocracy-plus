@@ -25,6 +25,7 @@
 
 .main-header__logo-box {
     display: inline-block;
+    margin-right: $spacer;
     margin-bottom: -2em;
     padding: $padding;
     vertical-align: middle;
@@ -52,7 +53,7 @@
 
     background-color: $bg-tertiary;
     color: contrast-color($bg-tertiary);
-    z-index: 1;
+    z-index: 2;
 
     button,
     a {
@@ -72,7 +73,7 @@
     position: absolute;
     right: $padding;
     top: 0;
-    z-index: 1;
+    z-index: 2;
 
     font-weight: bold;
 }
@@ -111,6 +112,10 @@
         margin-top: 2 * $spacer;
     }
 
+    .main-header__partner-nav {
+        line-height: 4em;
+    }
+
     .main-header__mobile-menu {
         padding: 0;
         border: 0;
@@ -133,7 +138,11 @@
 
     .main-header__partner-nav__item {
         display: inline;
-        margin-left: $spacer;
+        margin-right: $spacer;
+    }
+
+    .main-header__partner-nav__link:first-child {
+        padding-left: 0;
     }
 
     .main-header__user {
