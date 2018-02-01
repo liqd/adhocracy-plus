@@ -21,7 +21,6 @@
 
 .main-header__nav {
     clear: left;
-    line-height: 4em;
 }
 
 .main-header__logo-box {
@@ -112,6 +111,10 @@
 @media screen and (min-width: $breakpoint) {
     .main-header__brand {
         margin-top: 2 * $spacer;
+    }
+
+    .main-header__partner-nav {
+        line-height: 4em;
     }
 
     .main-header__mobile-menu {
