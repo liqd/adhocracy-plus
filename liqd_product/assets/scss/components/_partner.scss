@@ -1,5 +1,5 @@
 .partner__header {
-    margin-top: 3.5 * $spacer;
+    margin-top: $spacer;
     margin-bottom: 1.7 * $spacer;
 }
 
@@ -14,4 +14,20 @@
     .partner__tile {
         height: 210px;
     }
+}
+
+.partner__logo-box {
+    display: inline-block;
+    position: relative;
+    margin-top: -3.5em;
+
+    padding: 1.5 * $padding;
+    background-color: $body-bg;
+    box-shadow: 0 0 8px 0 $shadow;
+}
+
+.partner__logo-img {
+    display: block;
+    height: 6em;
+    width: auto;
 }
