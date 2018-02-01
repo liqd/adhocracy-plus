@@ -15,16 +15,19 @@
 
 .main-header__brand {
     float: left;
-    margin: (3 * $spacer) 0 $spacer;
+    margin: (3 * $spacer) 0 $spacer 0.5em;
     font-weight: bold;
 }
 
 .main-header__nav {
     clear: left;
+    line-height: 4em;
 }
 
 .main-header__logo-box {
     display: inline-block;
+    margin-right: $spacer;
+    margin-left: 0.5em;
     margin-bottom: -2em;
     padding: $padding;
     vertical-align: middle;
@@ -133,7 +136,7 @@
 
     .main-header__partner-nav__item {
         display: inline;
-        margin-left: $spacer;
+        margin-right: $spacer;
     }
 
     .main-header__user {
