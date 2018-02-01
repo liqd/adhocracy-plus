@@ -6,6 +6,12 @@
 {% block super_content %}
     <div class="hero-unit" style="background-image: url({% thumbnail partner.image "1500x610" crop %});"></div>
 
+    <div class="l-wrapper">
+        <div class="partner__logo-box">
+            <img src="{% thumbnail PARTNER.logo '0x160' %}" height="80" alt="{{ PARTNER.name }}" class="partner__logo-img" />
+        </div>
+    </div>
+
     <div class="l-wrapper partner__header">
         <div class="l-col-6-0">
             <h1 class="u-no-margin"><span class="marked marked--multiple_lines">{% trans 'participation platform for' %}</span> <br/> <span class="marked marked--multiple_lines">{{ partner.name }}</span></h1>
