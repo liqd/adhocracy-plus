@@ -4,26 +4,32 @@ $brand-primary: #008dc5 !default;
 $brand-secondary: #00a747 !default;
 $brand-danger: #a72b1e !default;
 
-$body-bg: #fff !default;
-$text-color: #333 !default;
-$text-secondary-color: #666 !default;
-$overlay: rgba(#000, 0.5) !default;
-
-$gray-light: #4d4d4d;
-$gray-lighter: #666;
-$text-color: #1a1a1a;
-
-$demi-bold: 600;
+/* Don't use variables but hex-values here as they should not be overwritten on partner pages */
+$brand-success: #90efe4 !default; // $brand-secondary from platform.scss
+$brand-info: #2d40cc !default; // $brand-primary from platform.scss
+$brand-warning: #ffc107 !default;
+$brand-danger: #d0011b !default; // $plattform-danger
 
 $brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
 $brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
 $brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
 
+$platform-primary: #46caad !default;
+$platform-danger: #d0011b !default;
+
+$body-bg: #fff !default;
 $bg-tertiary: $brand-primary-tint !default;
 $bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
 
-$platform-primary: #46caad !default;
-$platform-danger: #d0011b !default;
+$text-color: #1a1a1a !default;
+$text-secondary-color: #666 !default;
+$overlay: rgba(#000, 0.5) !default;
+
+$gray-light: #4d4d4d;
+$gray-lighter: $text-secondary-color;
+
+$demi-bold: 600;
+$headings-font-weight: $demi-bold !default;
 
 $link-color: $text-color !default;
 $link-hover-color: darken($link-color, 15%) !default;
@@ -33,19 +39,11 @@ $input-border-color: $border-color !default;
 
 $font-family-sans-serif: "Libre Franklin", sans-serif !default;
 
-$headings-font-weight: 600 !default;
-
 $font-size-xxl: 2.25rem !default;
 $font-size-xl: 1.5rem !default;
 $font-size-lg: 1.125rem !default;
 $font-size-sm: 0.8rem !default;
 $font-size-xs: 0.64rem !default;
-
-/* Don't use variables but hex-values here as they should not be overwritten on partner pages */
-$brand-success: #90efe4 !default; // $brand-secondary from platform.scss
-$brand-info: #2d40cc !default; // $brand-primary from platform.scss
-$brand-warning: #ffc107 !default;
-$brand-danger: #d0011b !default; // $plattform-danger
 
 $breakpoint-xs: 33em !default;
 
