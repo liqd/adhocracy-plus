@@ -10,20 +10,21 @@ $brand-info: #2d40cc !default; // $brand-primary from platform.scss
 $brand-warning: #ffc107 !default;
 $brand-danger: #d0011b !default; // $plattform-danger
 
-$brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
-$brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
-$brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
-
 $platform-primary: #46caad !default;
 $platform-danger: #d0011b !default;
 
 $body-bg: #fff !default;
-$bg-tertiary: $brand-primary-tint !default;
-$bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
 
 $text-color: #1a1a1a !default;
 $text-secondary-color: #666 !default;
 $overlay: rgba(#000, 0.5) !default;
+
+$brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
+$brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
+$brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
+
+$bg-tertiary: $brand-primary-tint !default;
+$bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
 
 $gray-light: #4d4d4d;
 $gray-lighter: $text-secondary-color;
