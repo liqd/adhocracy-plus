@@ -3,6 +3,7 @@
     flex-direction: column;
     margin-bottom: $padding;
     page-break-inside: avoid;
+    overflow-wrap: break-word;
     background-color: $body-bg;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
@@ -49,11 +50,12 @@
 
 .tile__text {
     flex: 1 0 auto;
+    font-size: $font-size-lg;
 }
 
 .tile__title {
-    font-size: $font-size-lg;
     margin-top: 0;
+    line-height: 1.5;
 
     a {
         text-decoration: none;
@@ -62,7 +64,6 @@
 }
 
 .tile__title,
-.tile__text,
 .tile__date {
     margin: 0;
 }
