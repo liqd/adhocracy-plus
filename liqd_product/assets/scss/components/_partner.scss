@@ -10,24 +10,27 @@
     line-height: 1.33;
 }
 
-@media (min-width: $breakpoint) {
-    .partner__tile {
-        height: 210px;
-    }
-}
-
 .partner__logo-box {
     display: inline-block;
     position: relative;
     margin-top: -3.5em;
 
-    padding: 1.5 * $padding;
+    padding: 1.25 * $padding;
     background-color: $body-bg;
-    box-shadow: 0 0 8px 0 $shadow;
 }
 
 .partner__logo-img {
     display: block;
-    height: 6em;
+    height: 6.5em;
     width: auto;
+}
+
+@media (min-width: $breakpoint) {
+    .partner__tile {
+        height: 210px;
+    }
+
+    .partner__logo-box {
+        padding: $padding;
+    }
 }
