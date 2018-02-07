@@ -1,13 +1,27 @@
 .partner__header {
     margin-top: $spacer;
     margin-bottom: 1.7 * $spacer;
+
+    h1 {
+        font-size: $font-size-xl;
+    }
+
+    h2 {
+        font-size: $font-size-lg;
+    }
 }
 
 .partner__slogan {
     padding-top: $spacer;
+    padding-bottom: $spacer;
     color: $gray-lighter;
     font-weight: $demi-bold;
     line-height: 1.33;
+}
+
+.partner__description {
+    font-size: $font-size-lg;
+    padding-bottom: $spacer;
 }
 
 .partner__logo-box {
@@ -26,6 +40,19 @@
 }
 
 @media (min-width: $breakpoint) {
+    .partner__header h1 {
+        font-size: $font-size-xxl;
+    }
+
+    .partner__header h2 {
+        font-size: $font-size-xl;
+    }
+
+    .partner__slogan,
+    .partner__description {
+        padding-bottom: 0;
+    }
+
     .partner__logo-box {
         padding: $padding;
     }
