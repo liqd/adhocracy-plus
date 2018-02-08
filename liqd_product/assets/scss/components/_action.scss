@@ -3,13 +3,20 @@
     $size: $lines * $line-height / $font-size;
 
     line-height: $size;
-    min-width: $size * 1em;
+    min-width: $size * 0.5em;
     font-size: $font-size * 100%;
+}
+
+@mixin multi-line-main($lines, $line-height: 1.4) {
+    $font-size: 0.7 * $lines;
+    $size: $lines * $line-height / $font-size;
+
+    margin-left: $size * 1em;
 }
 
 .action {
     @include clearfix;
-    padding: 0.5em 0;
+    padding: 0.6em 0;
 }
 
 .action__icon {
@@ -21,9 +28,10 @@
 }
 
 .action__main {
-    margin-left: (2 * 1.4 + 1) * 1em;
+    @include multi-line-main(2);
 }
 
 .action__date {
     color: $gray-light;
+    font-size: $font-size-sm;
 }

@@ -1,19 +1,27 @@
 .partner__header {
     margin-top: $spacer;
     margin-bottom: 1.7 * $spacer;
+
+    h1 {
+        font-size: $font-size-xl;
+    }
+
+    h2 {
+        font-size: $font-size-lg;
+    }
 }
 
 .partner__slogan {
     padding-top: $spacer;
+    padding-bottom: $spacer;
     color: $gray-lighter;
     font-weight: $demi-bold;
     line-height: 1.33;
 }
 
-@media (min-width: $breakpoint) {
-    .partner__tile {
-        height: 210px;
-    }
+.partner__description {
+    font-size: $font-size-lg;
+    padding-bottom: $spacer;
 }
 
 .partner__logo-box {
@@ -21,13 +29,31 @@
     position: relative;
     margin-top: -3.5em;
 
-    padding: 1.5 * $padding;
+    padding: 1.25 * $padding;
     background-color: $body-bg;
-    box-shadow: 0 0 8px 0 $shadow;
 }
 
 .partner__logo-img {
     display: block;
-    height: 6em;
+    height: 6.5em;
     width: auto;
+}
+
+@media (min-width: $breakpoint) {
+    .partner__header h1 {
+        font-size: $font-size-xxl;
+    }
+
+    .partner__header h2 {
+        font-size: $font-size-xl;
+    }
+
+    .partner__slogan,
+    .partner__description {
+        padding-bottom: 0;
+    }
+
+    .partner__logo-box {
+        padding: $padding;
+    }
 }
