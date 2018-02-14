@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 
-from meinberlin.apps.dashboard2.blueprints import ProjectBlueprint
+from adhocracy4.dashboard.blueprints import ProjectBlueprint
 from meinberlin.apps.documents import phases as documents_phases
 from meinberlin.apps.ideas import phases as ideas_phases
 from meinberlin.apps.mapideas import phases as mapideas_phases
