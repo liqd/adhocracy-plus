@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'adhocracy4.categories.apps.CategoriesConfig',
     'adhocracy4.ckeditor.apps.CKEditorConfig',
     'adhocracy4.comments.apps.CommentsConfig',
+    'adhocracy4.dashboard.apps.DashboardConfig',
     'adhocracy4.filters.apps.FiltersConfig',
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.forms.apps.FormsConfig',
@@ -84,7 +85,6 @@ INSTALLED_APPS = (
 
     # General apps containing views
     'liqd_product.apps.account.apps.Config',
-    'meinberlin.apps.dashboard2.apps.Config',
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.exports.apps.Config',
     'meinberlin.apps.offlineevents.apps.Config',
@@ -377,7 +377,7 @@ A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenSt
 A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
 
 A4_DASHBOARD = {
-    'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard2.ProjectDashboard',
+    'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard.ProjectDashboard',
     'BLUEPRINTS': 'liqd_product.apps.dashboard.blueprints.blueprints'
 }
 

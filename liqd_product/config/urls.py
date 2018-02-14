@@ -52,8 +52,8 @@ urlpatterns = [
 
     url(r'^accounts/', include('allauth.urls')),
     url(r'^account/', include('liqd_product.apps.account.urls')),
+    url(r'^dashboard/', include('adhocracy4.dashboard.urls')),
     url(r'^embed/', include('liqd_product.apps.embed.urls')),
-    url(r'^dashboard/', include('meinberlin.apps.dashboard2.urls')),
     url(r'^profile/', include('liqd_product.apps.users.urls')),
 
     # API urls
