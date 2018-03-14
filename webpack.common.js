@@ -28,21 +28,27 @@ module.exports = {
     ],
     leaflet: [
       'leaflet',
-      'leaflet/dist/leaflet.css'
+      'leaflet/dist/leaflet.css',
+      'leaflet.markercluster',
+      'leaflet.markercluster/dist/MarkerCluster.css'
     ],
     datepicker: [
       './liqd_product/assets/js/init-picker.js',
       'datepicker/css/datepicker.min.css'
-    ],
-    'leaflet.draw': [
-      'leaflet-draw',
-      'leaflet-draw/dist/leaflet.draw.css'
     ],
     embed: [
       'a4-meinberlin/meinberlin/assets/js/embed.js'
     ],
     'popup-close': [
       'a4-meinberlin/meinberlin/assets/js/popup-close.js'
+    ],
+    'map_choose_polygon_with_preset': [
+      'a4-meinberlin/meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js',
+      'leaflet-draw',
+      'leaflet-draw/dist/leaflet.draw.css',
+      'a4-meinberlin/meinberlin/assets/js/i18n-leaflet-draw.js',
+      'file-saver',
+      'shpjs'
     ]
   },
   devtool: 'eval',
