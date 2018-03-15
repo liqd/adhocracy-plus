@@ -73,6 +73,7 @@ test-clean:
 	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
 
 .PHONY: release
+release: export DJANGO_SETTINGS_MODULE ?= liqd_product.config.settings.build
 release:
 	npm install --silent
 	npm run build
