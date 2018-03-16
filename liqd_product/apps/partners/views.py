@@ -20,7 +20,7 @@ class PartnerView(DetailView):
         context = super().get_context_data(**kwargs)
 
         context['project_list'] = Project.objects\
-            .filter(organisation__partner=self.object)[:3]
+            .filter(organisation__partner=self.object)
 
         context['action_list'] = Action.objects\
             .filter(project__organisation__partner=self.object)\
