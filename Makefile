@@ -76,7 +76,7 @@ test-clean:
 release: export DJANGO_SETTINGS_MODULE ?= liqd_product.config.settings.build
 release:
 	npm install --silent
-	npm run build
+	UV_THREADPOOL_SIZE=2 npm run build
 	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements.txt -q
 	$(VIRTUAL_ENV)/bin/python3 manage.py compilemessages -v0
 	$(VIRTUAL_ENV)/bin/python3 manage.py collectstatic --noinput -v0
