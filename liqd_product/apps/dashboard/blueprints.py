@@ -20,6 +20,18 @@ blueprints = [
          image='images/brainstorming.svg',
          settings_model=None,
      )),
+    ('map-brainstorming',
+     ProjectBlueprint(
+         title=_('Spatial Brainstorming'),
+         description=_(
+             'Collect location specific ideas for a topic and comment on them.'
+         ),
+         content=[
+             mapideas_phases.CollectPhase(),
+         ],
+         image='images/map-brainstorming.svg',
+         settings_model=('a4maps', 'AreaSettings'),
+     )),
     ('map-idea-collection',
      ProjectBlueprint(
          title=_('Spatial Idea Collection'),
