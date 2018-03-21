@@ -95,6 +95,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.ideas.apps.Config',
     'meinberlin.apps.mapideas.apps.Config',
     'meinberlin.apps.polls.apps.Config',
+    'meinberlin.apps.budgeting.apps.Config',
 )
 
 MIDDLEWARE = (
