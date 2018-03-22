@@ -338,6 +338,7 @@ A4_RATEABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
 )
 
 A4_COMMENTABLES = (
@@ -346,6 +347,7 @@ A4_COMMENTABLES = (
     ('meinberlin_documents', 'chapter'),
     ('meinberlin_documents', 'paragraph'),
     ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_polls', 'poll'),
 )
 
@@ -353,11 +355,13 @@ A4_REPORTABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
 )
 
 A4_ACTIONABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_mapideas', 'mapidea'),
 )
 
@@ -370,6 +374,7 @@ A4_AUTO_FOLLOWABLES = (
 A4_CATEGORIZABLE = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
 )
 
 
