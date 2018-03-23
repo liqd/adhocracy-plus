@@ -87,6 +87,8 @@ urlpatterns = [
                                    namespace='meinberlin_mapideas')),
         url(r'^text/', include('meinberlin.apps.documents.urls',
                                namespace='meinberlin_documents')),
+        url(r'^budgeting/', include('meinberlin.apps.budgeting.urls',
+                                    namespace='meinberlin_budgeting')),
     ),
 
     url(r'', include('liqd_product.apps.partners.urls')),

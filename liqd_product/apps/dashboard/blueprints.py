@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard.blueprints import ProjectBlueprint
+from meinberlin.apps.budgeting import phases as budgeting_phases
 from meinberlin.apps.documents import phases as documents_phases
 from meinberlin.apps.ideas import phases as ideas_phases
 from meinberlin.apps.mapideas import phases as mapideas_phases
@@ -18,6 +19,18 @@ blueprints = [
          ],
          image='images/brainstorming.svg',
          settings_model=None,
+     )),
+    ('map-brainstorming',
+     ProjectBlueprint(
+         title=_('Spatial Brainstorming'),
+         description=_(
+             'Collect location specific ideas for a topic and comment on them.'
+         ),
+         content=[
+             mapideas_phases.CollectPhase(),
+         ],
+         image='images/map-brainstorming.svg',
+         settings_model=('a4maps', 'AreaSettings'),
      )),
     ('map-idea-collection',
      ProjectBlueprint(
@@ -72,5 +85,17 @@ blueprints = [
          ],
          image='images/poll.svg',
          settings_model=None,
+     )),
+    ('participatory-budgeting',
+     ProjectBlueprint(
+         title=_('Participatory budgeting'),
+         description=_(
+             'With participatory-budgeting it’s possible to make proposals '
+             'with budget specifications and locate them. Anyone can comment '
+             'and rate on different proposals.'),
+         content=[
+             budgeting_phases.RequestPhase()],
+         image='images/participatory-budgeting.svg',
+         settings_model=('a4maps', 'AreaSettings'),
      )),
 ]
