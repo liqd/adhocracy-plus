@@ -3,6 +3,8 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from django.utils.translation import ugettext_lazy as _
+
 CONFIG_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(CONFIG_DIR)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -375,6 +377,24 @@ A4_CATEGORIZABLE = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
+)
+
+A4_CATEGORY_ICONS = (
+    ('', _('Pin without icon')),
+    ('diamant', _('Diamond')),
+    ('dreieck_oben', _('Triangle up')),
+    ('dreieck_unten', _('Triangle down')),
+    ('ellipse', _('Ellipse')),
+    ('halbkreis', _('Semi circle')),
+    ('hexagon', _('Hexagon')),
+    ('parallelogramm', _('Rhomboid')),
+    ('pentagramm', _('Star')),
+    ('quadrat', _('Square')),
+    ('raute', _('Octothorpe')),
+    ('rechtecke', _('Rectangle')),
+    ('ring', _('Circle')),
+    ('rw_dreieck', _('Right triangle')),
+    ('zickzack', _('Zigzag'))
 )
 
 
