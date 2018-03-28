@@ -1,4 +1,4 @@
-"""WSGI WhiteNoise config for Beteiligung.in """
+"""WSGI WhiteNoise config for Beteiligung.in."""
 
 import os
 
