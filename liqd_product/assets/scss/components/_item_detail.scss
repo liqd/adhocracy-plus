@@ -37,3 +37,20 @@
 .item-detail__content {
     margin-bottom: 1em;
 }
+
+.item-detail__basic-content {
+    @include clearfix;
+    margin-bottom: 1em;
+}
+
+.item-detail__image {
+    margin-bottom: 0.5em;
+    width: 100%;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        display: inline-block;
+        float: right;
+        margin-left: 0.5em;
+        width: auto;
+    }
+}
