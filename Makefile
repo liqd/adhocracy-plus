@@ -36,6 +36,11 @@ install:
 	$(VIRTUAL_ENV)/bin/python3 -m pip install --upgrade -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
 
+.PHONY: clean
+clean:
+	if [ -d node_modules ]; then rm -r node_modules; fi
+	$(VIRTUAL_ENV)/bin/python3 -m pip uninstall -y -r requirements/dev.txt
+
 .PHONY: server
 server:
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8004
