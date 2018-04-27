@@ -9,11 +9,12 @@ help:
 	@echo Beteiligung.in development tools
 	@echo
 	@echo It will either use an exisiting virtualenv if it was entered
-	@echo before or create a new one in the .env subdirectory.
+	@echo before or create a new one in the venv subdirectory.
 	@echo
 	@echo usage:
 	@echo
 	@echo "  make install         -- install dev setup"
+	@echo "  make clean           -- delete node modules and venv"
 	@echo "  make server          -- start a dev server"
 	@echo "  make watch           -- start a dev server and rebuild js and css files on changes"
 	@echo "  make background      -- start a dev server, rebuild js and css files on changes, and start background processes"
@@ -39,7 +40,7 @@ install:
 .PHONY: clean
 clean:
 	if [ -d node_modules ]; then rm -r node_modules; fi
-	$(VIRTUAL_ENV)/bin/python3 -m pip uninstall -y -r requirements/dev.txt
+	if [ -d venv ]; then rm -r venv; fi
 
 .PHONY: server
 server:
