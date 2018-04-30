@@ -25,7 +25,7 @@ help:
 	@echo "  make lint            -- lint all project files"
 	@echo "  make lint-quick      -- lint all files staged in git"
 	@echo "  make po              -- create new po files from the source"
-	@echo "  make mo              -- create new mo files from the translated po files"
+	@echo "  make compilemessages -- create new mo files from the translated po files"
 	@echo "  make release         -- build everything required for a release"
 	@echo
 
@@ -93,8 +93,8 @@ po:
 	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
 	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
 
-.PHONY: mo
-mo:
+.PHONY: compilemessages
+compilemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
 .PHONY: release
