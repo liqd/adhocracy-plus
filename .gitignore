@@ -16,6 +16,7 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+.pytest_cache
 
 # Translations
 *.mo
@@ -23,9 +24,14 @@ coverage.xml
 
 # Environments
 venv/
+/pyvenv.cfg
+/pip-selfcheck.json
 
 # Node
 node_modules/
+package-lock.json
+npm-debug.log*
+/webpack-stats.json
 
 # IDEs
 .idea/
@@ -40,3 +46,18 @@ liqd_product/config/settings/local.py
 # Generated static files
 liqd_product/static/
 static/
+
+# Media
+media/
+
+# setuptools
+/build
+/dist
+/*.egg-info
+/share
+
+# OS
+.DS_Store
+
+# sass
+.sass-cache
