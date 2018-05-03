@@ -65,6 +65,7 @@ INSTALLED_APPS = (
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.forms.apps.FormsConfig',
     'adhocracy4.images.apps.ImagesConfig',
+    'adhocracy4.labels.apps.LabelsConfig',
     'adhocracy4.maps.apps.MapsConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.organisations.apps.OrganisationsConfig',
@@ -94,6 +95,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.projects.apps.Config',
 
     # Apps defining phases
+    'meinberlin.apps.activities.apps.Config',
     'meinberlin.apps.documents.apps.Config',
     'meinberlin.apps.ideas.apps.Config',
     'meinberlin.apps.mapideas.apps.Config',
@@ -379,6 +381,12 @@ A4_AUTO_FOLLOWABLES = (
 )
 
 A4_CATEGORIZABLE = (
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+)
+
+A4_LABELS_ADDABLE = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
