@@ -65,6 +65,7 @@ INSTALLED_APPS = (
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.forms.apps.FormsConfig',
     'adhocracy4.images.apps.ImagesConfig',
+    'adhocracy4.labels.apps.LabelsConfig',
     'adhocracy4.maps.apps.MapsConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.organisations.apps.OrganisationsConfig',
@@ -87,12 +88,14 @@ INSTALLED_APPS = (
 
     # General apps containing views
     'liqd_product.apps.account.apps.Config',
+    'liqd_product.apps.dashboard.apps.Config',
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.exports.apps.Config',
     'meinberlin.apps.offlineevents.apps.Config',
     'meinberlin.apps.projects.apps.Config',
 
     # Apps defining phases
+    'meinberlin.apps.activities.apps.Config',
     'meinberlin.apps.documents.apps.Config',
     'meinberlin.apps.ideas.apps.Config',
     'meinberlin.apps.mapideas.apps.Config',
@@ -383,6 +386,12 @@ A4_CATEGORIZABLE = (
     ('meinberlin_budgeting', 'proposal'),
 )
 
+A4_LABELS_ADDABLE = (
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+)
+
 A4_CATEGORY_ICONS = (
     ('', _('Pin without icon')),
     ('diamant', _('Diamond')),
@@ -404,7 +413,7 @@ A4_CATEGORY_ICONS = (
 
 A4_MAP_BASEURL = 'https://{s}.tile.openstreetmap.org/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
+A4_MAP_BOUNDING_BOX = ([[54.983, 15.016], [47.302, 5.988]])
 
 A4_DASHBOARD = {
     'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard.ProjectDashboard',
