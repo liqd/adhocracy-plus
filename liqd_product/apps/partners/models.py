@@ -23,6 +23,14 @@ class Partner(models.Model):
         upload_to='partners/logos',
         blank=True
     )
+    primary_colour = models.CharField(
+        max_length=7,
+        default='#008dc5'
+    )
+    secondary_colour = models.CharField(
+        max_length=7,
+        default='#00a747'
+    )
     slogan = models.CharField(
         max_length=100,
         verbose_name=_('Slogan'),
