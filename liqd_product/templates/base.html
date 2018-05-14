@@ -13,9 +13,13 @@
     {% endblock %}
     {% if PARTNER %}
         <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
+        {% include 'colours.html' with primary_colour=PARTNER.primary_colour secondary_colour=PARTNER.secondary_colour %}
     {% else %}
         <link rel="stylesheet" type="text/css" href="{% static 'platform.css' %}" />
+        {% include 'colours.html' with primary_colour='#2d40cc' secondary_colour='#90efe4' %}
     {% endif %}
+
+
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>

@@ -1,0 +1,34 @@
+<style>
+    .main-header__border-top {
+        background: linear-gradient(to right, {{ primary_colour }}, #fff);
+        height: 0.5em;
+    }
+
+    .main-header__border-top--platform {
+        background: linear-gradient(to right, {{ primary_colour }}, {{ primary_colour }} 33%, {{ secondary_colour }} 66%, {{ secondary_colour }} );
+    }
+
+    .u-background-color-primary {
+        background-color: {{ primary_colour }};
+    }
+
+    .u-color-primary {
+        color: {{ primary_colour }};
+    }
+
+    .u-background-color-secondary {
+        background-color: {{ secondary_colour }};
+    }
+
+    .u-color-secondary {
+        color: {{ secondary_colour }};
+    }
+
+    .u-border-bottom-primary {
+        border-bottom: 0.2em solid {{ primary_colour }};
+    }
+
+    .u-border-bottom-secondary {
+        border-bottom: 0.2em solid {{ secondary_colour }};
+    }
+</style>
