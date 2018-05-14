@@ -4,15 +4,6 @@
     }
 }
 
-.main-header__border-top {
-    background: linear-gradient(to right, $brand-primary, $brand-primary 33%, $bg-tertiary 66%, $bg-tertiary);
-    height: 0.5em;
-}
-
-.main-header__border-top--platform {
-    background: linear-gradient(to right, $brand-primary, $brand-primary 33%, $brand-secondary 66%, $brand-secondary);
-}
-
 .main-header__brand {
     float: left;
     margin: (3 * $spacer) 0 $spacer;
@@ -64,11 +55,6 @@
     }
 }
 
-.main-header__mobile-menu--platform {
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
-}
-
 .main-header__mobile-toggle {
     position: absolute;
     right: $padding;
@@ -103,7 +89,6 @@
 
     .is-active {
         padding-bottom: 0.1em;
-        border-bottom: 0.2em solid $brand-primary;
     }
 }
 
