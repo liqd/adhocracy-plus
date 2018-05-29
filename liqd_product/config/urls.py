@@ -18,6 +18,7 @@ from liqd_product.apps.partners.urlresolvers import partner_patterns
 from liqd_product.apps.users.decorators import user_is_project_admin
 from meinberlin.apps.contrib import views as contrib_views
 from meinberlin.apps.documents.api import DocumentViewSet
+from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
 from meinberlin.apps.polls.api import PollViewSet
 from meinberlin.apps.polls.api import VoteViewSet
 from meinberlin.apps.polls.routers import QuestionDefaultRouter
@@ -40,6 +41,8 @@ orga_router = a4routers.OrganisationDefaultRouter()
 ct_router = a4routers.ContentTypeDefaultRouter()
 ct_router.register(r'comments', CommentViewSet, base_name='comments')
 ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
+ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
+                   base_name='moderatorremarks')
 
 question_router = QuestionDefaultRouter()
 question_router.register(r'vote', VoteViewSet, base_name='vote')
