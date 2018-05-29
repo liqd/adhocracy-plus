@@ -27,7 +27,7 @@ var ReactPolls = require('a4-meinberlin/meinberlin/apps/polls/assets/react_polls
 
 var relativeTimestamps = require('a4-meinberlin/meinberlin/apps/actions/assets/timestamps.js')
 var mapAddress = require('a4-meinberlin/meinberlin/assets/js/map-address.js')
-
+var remarkpopover = require('a4-meinberlin/meinberlin/apps/moderatorremark/assets/idea_remarks.js')
 var dynamicFields = require('a4-meinberlin/meinberlin/apps/contrib/assets/dynamic_fields.js')
 
 // This function is overwritten with custom behavior in embed.js.
