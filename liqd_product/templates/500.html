@@ -1,6 +1,5 @@
 {% load i18n static %}
 <html>
-
 <head>
     <title>Error &mdash; {% trans 'Beteiligung.in' %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'vendor.css' %}" />
@@ -18,39 +17,17 @@
                 </div>
             </div>
         </header>
-            <main id="main">
-                <div class="l-wrapper">
-                    <div class="l-center-6">
-                        <h1>500</h1>
-                        <p>{% trans 'Internal server error.' %}</p>
-                            <a href="/">{% trans 'Back to Beteiligung.in' %}</a>
-                    </div>
+        <main id="main">
+            <div class="l-wrapper">
+                <div class="l-center-6">
+                    <h1>500</h1>
+                    <p>{% trans 'Internal server error.' %}</p>
+                    <a href="/">{% trans 'Back to Beteiligung.in' %}</a>
                 </div>
-            </main>
-            <footer class="footer">
-                <div class="l-wrapper">
-                    <nav class="navi">
-                        <ul class="navi__list">
-                        </ul>
-                        <ul class="navi__list">
-                            <li class="footer__boxed-link">
-                                <span>OPEN CONTENT</span>
-                                <br>
-                                <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA</a>
-                            </li>
-                            <li class="footer__boxed-link">
-                                <span>OPEN SOURCE</span>
-                                <br>
-                                <a href="https://github.com/liqd/a4-product">AGPLv3</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="l-wrapper">
-                    <p class="l-col-5-0 ">
-                        Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial content.
-                    </p>
-                </div>
-            </footer>
-    </body>
+            </div>
+        </main>
+        <footer class="footer">
+        </footer>
+    </div>
+</body>
 </html>
