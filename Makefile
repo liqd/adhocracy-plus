@@ -15,6 +15,7 @@ help:
 	@echo
 	@echo "  make install         -- install dev setup"
 	@echo "  make clean           -- delete node modules and venv"
+	@echo "  make fixtures        -- load example data"
 	@echo "  make server          -- start a dev server"
 	@echo "  make watch           -- start a dev server and rebuild js and css files on changes"
 	@echo "  make background      -- start a dev server, rebuild js and css files on changes, and start background processes"
@@ -41,6 +42,13 @@ install:
 clean:
 	if [ -d node_modules ]; then rm -r node_modules; fi
 	if [ -d venv ]; then rm -r venv; fi
+
+.PHONY: fixtures
+fixtures:
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata liqd_product/fixtures/site-dev.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata liqd_product/fixtures/users-dev.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata liqd_product/fixtures/partner-dev.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata liqd_product/fixtures/orga-dev.json
 
 .PHONY: server
 server:
