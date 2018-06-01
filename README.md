@@ -19,7 +19,6 @@ on 13.07.2017
 *   libmagic
 *   libjpeg
 *   libpq (only if postgres should be used)
-*   gdal
 
 ## Installation
 
