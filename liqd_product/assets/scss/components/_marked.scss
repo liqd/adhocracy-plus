@@ -20,3 +20,11 @@
     line-height: 1.5;
     display: inline-block;
 }
+
+.marked-box {
+    background-color: $bg-secondary;
+    line-height: 1.5;
+    box-decoration-break: clone;
+    display: inline;
+    box-shadow: 1rem 0.7rem $bg-secondary, inset 1rem 0.7rem $body-bg;
+}
