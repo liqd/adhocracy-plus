@@ -12,6 +12,10 @@ from adhocracy4.images import fields as images_fields
 class Partner(models.Model):
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(max_length=512)
+    title = models.CharField(
+        max_length=200,
+        default='Beteiligungsplattform'
+    )
     description = models.CharField(
         max_length=500,
         verbose_name=_('Short description of your municipality'),
