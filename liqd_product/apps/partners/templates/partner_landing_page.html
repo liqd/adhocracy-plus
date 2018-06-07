@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load thumbnail i18n humanize marked_tags %}
+{% load thumbnail i18n humanize %}
 
 {% block title %}{{partner.name}}{% endblock %}
 
@@ -14,7 +14,7 @@
 
     <div class="l-wrapper partner__header">
         <div class="l-col-6-0">
-            <h1 class="u-no-margin">{{ _('participation platform for')|marked_per_word }}<div class="marked marked--multiple_lines">{{ partner.name }}</div></h1>
+            <h1 class="u-no-margin marked-box">{{ partner.title }}</h1>
             <h2 class="u-no-margin partner__slogan">{{ partner.slogan }}</h2>
         </div>
         <div class="l-col-5-7 partner__description">
