@@ -14,11 +14,13 @@ class Partner(models.Model):
     name = models.CharField(max_length=100)
     title = models.CharField(
         max_length=100,
-        default='Beteiligungsplattform'
+        default='Beteiligungsplattform',
+        help_text=_('max. 100 characters')
     )
     description = models.CharField(
         max_length=400,
         verbose_name=_('Short description of your municipality'),
+        help_text=_('max. 400 characters')
     )
     logo = images_fields.ConfiguredImageField(
         'logo',
@@ -30,7 +32,8 @@ class Partner(models.Model):
     slogan = models.CharField(
         max_length=200,
         verbose_name=_('Slogan'),
-        blank=True
+        blank=True,
+        help_text=_('max. 200 characters')
     )
     image = images_fields.ConfiguredImageField(
         'heroimage',
