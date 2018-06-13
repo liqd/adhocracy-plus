@@ -45,6 +45,7 @@
                                 type="button"
                                 class="dropdown-toggle btn btn--light btn--small"
                                 data-toggle="dropdown"
+                                data-flip="false"
                                 aria-haspopup="true"
                                 aria-expanded="false"
                                 id="project-actions"
@@ -52,7 +53,8 @@
                         >
                             <i class="fa fa-caret-down" aria-label="{% trans 'more' %}"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="project-actions">
+                        <div class="dropdown-menu dropdown-menu-right
+                        " aria-labelledby="project-actions">
                             <form method="post" class="list-item__action">
                                 {% csrf_token %}
                                 <input type="hidden" name="project_pk" value="{{ project.pk }}">

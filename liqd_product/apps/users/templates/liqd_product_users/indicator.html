@@ -1,11 +1,12 @@
 {% load i18n static thumbnail %}
 
 {% if request.user.is_authenticated %}
-    <div class="dropdown userindicator__dropdown">
+    <div class="dropdown dropdown--right userindicator__dropdown">
         <button
                 type="button"
                 class="dropdown-toggle btn {% if PARTNER %}btn--bg-tertiary{% else %}btn--secondary-filled{% endif %} btn--square btn--align-left"
                 data-toggle="dropdown"
+                data-flip="false"
                 aria-haspopup="true"
                 aria-expanded="false"
                 id="user-actions"
