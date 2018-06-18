@@ -6,6 +6,7 @@
                 type="button"
                 class="dropdown-toggle btn {% if PARTNER %}btn--bg-tertiary{% else %}btn--secondary-filled{% endif %} btn--square btn--align-left"
                 data-toggle="dropdown"
+                data-flip="false"
                 aria-haspopup="true"
                 aria-expanded="false"
                 id="user-actions"
@@ -18,33 +19,25 @@
             </div>
             <i class="fa fa-angle-down" aria-hidden="true"></i>
         </button>
-        <ul class="dropdown-menu userindicator__dropdown-menu {% if not PARTNER %}userindicator__dropdown-menu--platform{% endif %}" aria-labelledby="user-actions">
-            <li>
-                <a class="dropdown-item" href="{% url 'account' %}">{% trans "Account Settings" %}</a>
-            </li>
+        <div class="dropdown-menu dropdown-menu-right userindicator__dropdown-menu {% if not PARTNER %}userindicator__dropdown-menu--platform{% endif %}" aria-labelledby="user-actions">
+            <a class="dropdown-item" href="{% url 'account' %}">{% trans "Account Settings" %}</a>
 
-            <li>
-                <a class="dropdown-item" href="{% url 'profile' request.user.username %}">{% trans 'View your profile' %}</a>
-            </li>
+            <a class="dropdown-item" href="{% url 'profile' request.user.username %}">{% trans 'View your profile' %}</a>
 
             {% for organisation in request.user.organisations %}
 
-            <li>
-                <a class="dropdown-item" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
+            <a class="dropdown-item" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
                     {{ organisation.name }}
                 </a>
-            </li>
 
             {% endfor %}
 
-            <li>
-                <form class="form--inline" action="{% url 'account_logout' %}" method="post" aria-label="{% trans 'Logout' %}">
+            <form class="form--inline" action="{% url 'account_logout' %}" method="post" aria-label="{% trans 'Logout' %}">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ redirect_field_value }}">
                     <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
-                </form>
-            </li>
-        </ul>
+            </form>
+        </div>
     </div>
 {% else %}
     <ul class="navi__list">
@@ -56,4 +49,3 @@
         </li>
     </ul>
 {% endif %}
-
