@@ -37,7 +37,7 @@
                     {% endwithpartner %}
                     <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
                        class="btn btn--light btn--small">
-                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
                         {% trans 'Edit'%}
                     </a>
                     <div class="dropdown">
@@ -60,7 +60,7 @@
                                 <input type="hidden" name="project_pk" value="{{ project.pk }}">
                                 <button type="submit" name="duplicate" value="{{ project }}"
                                         class="dropdown-item">
-                                    <i class="far fa-copy" aria-hidden="true"></i>
+                                    <i class="fa fa-files-o" aria-hidden="true"></i>
                                     {% trans 'Duplicate' %}
                                 </button>
                             </form>

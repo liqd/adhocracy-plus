@@ -2,6 +2,7 @@
 .date-picker-control:link {
     span:first-child {
         &:before {
+            font-family: 'FontAwesome', sans-serif;
             content: '\f15c'; // calendar-o
         }
     }
@@ -9,6 +10,7 @@
     &:focus,
     &:hover {
         span:first-child:before {
+            font-family: 'FontAwesome', sans-serif;
             content: '\f15f'; // calendar
         }
     }
@@ -17,28 +19,34 @@
 
 .date-picker {
     .prev-but:before {
+        font-family: 'FontAwesome', sans-serif;
         content: '\f111'; // angle-left
     }
 
     .prev-year:before {
+        font-family: 'FontAwesome', sans-serif;
         content: '\f10d'; // angle-double-left
     }
 
     .next-but:before {
+        font-family: 'FontAwesome', sans-serif;
         content: '\f112'; // angle-right
     }
 
     .next-year:before {
+        font-family: 'FontAwesome', sans-serif;
         content: '\f10e'; // angle-double-right
     }
 }
 
 .docs-block__body {
     a[href^="/documents"]:before {
+        font-family: 'FontAwesome', sans-serif;
         content: '\f1e6'; // file-o
     }
 }
 
 .radio__input:checked + .radio__text:after {
+    font-family: 'FontAwesome', sans-serif;
     content: '\f17b'; // check
 }
