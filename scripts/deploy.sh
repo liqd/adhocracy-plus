@@ -45,4 +45,4 @@ EOF
     chmod 600 ~/id_rsa
 fi
 
-ssh -p 22036 ${SSH_ID_ARG} -oStrictHostKeyChecking=no build@benhabib.liqd.net deploy liqd_product master
+ssh ${SSH_ID_ARG} -oStrictHostKeyChecking=no build@conway.liqd.net deploy liqd_product master
