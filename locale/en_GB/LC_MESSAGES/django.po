@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 11:18+0200\n"
+"POT-Creation-Date: 2018-07-16 17:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,16 +255,15 @@ msgid "Only invited users can participate (private)."
 msgstr "Only invited users can participate (private)."
 
 #: adhocracy4/dashboard/forms.py:66
-#: a4-meinberlin/meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:115
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:115
 msgid "Contact for questions"
 msgstr "Contact for questions"
 
-#: adhocracy4/dashboard/forms.py:67
+#: adhocracy4/dashboard/forms.py:67 adhocracy4/dashboard/forms.py:72
 msgid "More contact possibilities"
 msgstr "More contact possibilities"
 
-#: adhocracy4/dashboard/forms.py:68
+#: adhocracy4/dashboard/forms.py:68 adhocracy4/dashboard/forms.py:67
 msgid ""
 "Please name a contact person. The user will then know who is carrying out "
 "this project and to whom they can address possible questions. The contact "
@@ -287,21 +286,18 @@ msgid "Address"
 msgstr "Address"
 
 #: adhocracy4/dashboard/forms.py:90
-#: a4-meinberlin/meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:123
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:123
 msgid "Telephone"
 msgstr "Telephone"
 
 #: adhocracy4/dashboard/forms.py:92
 #: a4-meinberlin/meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:7
-#: a4-meinberlin/meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:127
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:7
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:127
 msgid "Email"
 msgstr "Email"
 
 #: adhocracy4/dashboard/forms.py:94
-#: a4-meinberlin/meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:132
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:132
 msgid "Website"
 msgstr "Website"
@@ -982,19 +978,19 @@ msgstr ""
 "Phone number must be entered in the format: '+999999999'. Up to 15 digits "
 "allowed."
 
-#: adhocracy4/projects/models.py:38
+#: adhocracy4/projects/models.py:38 adhocracy4/projects/models.py:39
 msgid "Postal address"
 msgstr "Postal address"
 
-#: adhocracy4/projects/models.py:47
+#: adhocracy4/projects/models.py:47 adhocracy4/projects/models.py:48
 msgid "Contact person"
 msgstr "Contact person"
 
-#: adhocracy4/projects/models.py:64
+#: adhocracy4/projects/models.py:64 adhocracy4/projects/models.py:65
 msgid "Title of your project"
 msgstr "Title of your project"
 
-#: adhocracy4/projects/models.py:65
+#: adhocracy4/projects/models.py:65 adhocracy4/projects/models.py:66
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -1002,11 +998,11 @@ msgstr ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
 
-#: adhocracy4/projects/models.py:74
+#: adhocracy4/projects/models.py:74 adhocracy4/projects/models.py:75
 msgid "Short description of your project"
 msgstr "Short description of your project"
 
-#: adhocracy4/projects/models.py:75
+#: adhocracy4/projects/models.py:75 adhocracy4/projects/models.py:76
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -1014,11 +1010,11 @@ msgstr ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
 
-#: adhocracy4/projects/models.py:83
+#: adhocracy4/projects/models.py:83 adhocracy4/projects/models.py:84
 msgid "Description of your project"
 msgstr "Description of your project"
 
-#: adhocracy4/projects/models.py:84
+#: adhocracy4/projects/models.py:84 adhocracy4/projects/models.py:85
 msgid ""
 "This description should tell participants what the goal of the project is, "
 "how the project’s participation will look like. It will be always visible in "
@@ -1028,11 +1024,11 @@ msgstr ""
 "how the project’s participation will look like. It will be always visible in "
 "the „Info“ tab on your project’s page."
 
-#: adhocracy4/projects/models.py:92
+#: adhocracy4/projects/models.py:92 adhocracy4/projects/models.py:93
 msgid "Results of your project"
 msgstr "Results of your project"
 
-#: adhocracy4/projects/models.py:93
+#: adhocracy4/projects/models.py:93 adhocracy4/projects/models.py:94
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
 "how you are planning to use the results. If the project is finished you "
@@ -1042,11 +1038,11 @@ msgstr ""
 "how you are planning to use the results. If the project is finished you "
 "should add a summary of the results."
 
-#: adhocracy4/projects/models.py:100
+#: adhocracy4/projects/models.py:100 adhocracy4/projects/models.py:101
 msgid "Access to the project"
 msgstr "Access to the project"
 
-#: adhocracy4/projects/models.py:101
+#: adhocracy4/projects/models.py:101 adhocracy4/projects/models.py:102
 msgid ""
 "Please indicate whether this project should be public or restricted to "
 "invited users. Teasers for your project including title and short "
@@ -1057,27 +1053,30 @@ msgstr ""
 "description will always be visible to everyone"
 
 #: adhocracy4/projects/models.py:109 adhocracy4/projects/models.py:115
+#: adhocracy4/projects/models.py:110 adhocracy4/projects/models.py:116
 #: liqd_product/apps/partners/models.py:40
 msgid "Header image"
 msgstr "Header image"
 
-#: adhocracy4/projects/models.py:111 liqd_product/apps/partners/models.py:42
+#: adhocracy4/projects/models.py:111 adhocracy4/projects/models.py:112
+#: liqd_product/apps/partners/models.py:42
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
 #: adhocracy4/projects/models.py:118 adhocracy4/projects/models.py:125
+#: adhocracy4/projects/models.py:119 adhocracy4/projects/models.py:126
 msgid "Tile image"
 msgstr "Tile image"
 
-#: adhocracy4/projects/models.py:120
+#: adhocracy4/projects/models.py:120 adhocracy4/projects/models.py:121
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
 
-#: adhocracy4/projects/models.py:138
+#: adhocracy4/projects/models.py:138 adhocracy4/projects/models.py:139
 msgid "Project is archived"
 msgstr "Project is archived"
 
-#: adhocracy4/projects/models.py:139
+#: adhocracy4/projects/models.py:139 adhocracy4/projects/models.py:140
 msgid ""
 "Exclude this project from all listings by default. You can still access this "
 "project by using filters."
@@ -1101,6 +1100,14 @@ msgstr "a few hours left"
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:107
 msgid "Report"
 msgstr "Report"
+
+#: adhocracy4/projects/models.py:33
+msgid ""
+"Phone numbers can only contain digits, spaces and the following characters: "
+"-, +, (, ). It has to be between 8 and 20 characters long."
+msgstr ""
+"Phone numbers can only contain digits, spaces and the following characters: "
+"-, +, (, ). It has to be between 8 and 20 characters long."
 
 #: a4-meinberlin/meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:4
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html:4
@@ -1543,6 +1550,7 @@ msgstr ""
 
 #: a4-meinberlin/meinberlin/apps/budgeting/dashboard.py:14
 #: a4-meinberlin/meinberlin/apps/documents/dashboard.py:45
+#: a4-meinberlin/meinberlin/apps/exports/dashboard.py:14
 #: a4-meinberlin/meinberlin/apps/ideas/dashboard.py:14
 #: a4-meinberlin/meinberlin/apps/kiezkasse/dashboard.py:14
 #: a4-meinberlin/meinberlin/apps/mapideas/dashboard.py:14
@@ -2398,8 +2406,8 @@ msgid "Creator"
 msgstr "Creator"
 
 #: a4-meinberlin/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:5
-#: a4-meinberlin/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:23
-#: a4-meinberlin/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:35
+#: a4-meinberlin/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:24
+#: a4-meinberlin/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:36
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:5
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:23
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:35
@@ -2407,21 +2415,16 @@ msgid "Export"
 msgstr "Export"
 
 #: a4-meinberlin/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:7
-#: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:7
-msgid ""
-"You can export the results of your participation project as an excel file."
-msgstr ""
-"You can export the results of your participation project as an excel file."
+msgid "Some blablabla to explain the exports!"
+msgstr "Some blablabla to explain the exports!"
 
 #: a4-meinberlin/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:19
-#: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:19
-msgid "here you can export all ideas"
-msgstr "here you can export all ideas"
+msgid "This is some export."
+msgstr "This is some export."
 
-#: a4-meinberlin/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:31
-#: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:31
-msgid "here you can export all comments"
-msgstr "here you can export all comments"
+#: a4-meinberlin/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:32
+msgid "This is the comment export."
+msgstr "This is the comment export."
 
 #: a4-meinberlin/meinberlin/apps/extprojects/dashboard.py:15
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/extprojects/dashboard.py:15
@@ -3685,7 +3688,7 @@ msgstr "This project is in not published yet."
 msgid "back to %(name)s"
 msgstr "back to %(name)s"
 
-#: a4-meinberlin/meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:180
+#: a4-meinberlin/meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:158
 #: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:180
 msgid "No results yet."
 msgstr "No results yet."
@@ -4409,6 +4412,20 @@ msgstr ""
 "account\n"
 "        and connect %(provider_name)s from the account settings."
 
+#: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:7
+msgid ""
+"You can export the results of your participation project as an excel file."
+msgstr ""
+"You can export the results of your participation project as an excel file."
+
+#: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:19
+msgid "here you can export all ideas"
+msgstr "here you can export all ideas"
+
+#: /home/katharina/a4-product/venv/lib/python3.5/site-packages/meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:31
+msgid "here you can export all comments"
+msgstr "here you can export all comments"
+
 #: liqd_product/apps/dashboard/blueprints.py:53
 msgid ""
 "With Agenda-Setting it’s possible to identify topics and to define mission "
@@ -4638,6 +4655,24 @@ msgstr "FAQ"
 msgid "Participation possible until"
 msgstr "Participation possible until"
 
+#~ msgid "Proposals with comments"
+#~ msgstr "Proposals with comments"
+
+#~ msgid "Documents with comments"
+#~ msgstr "Documents with comments"
+
+#~ msgid "Ideas with comments"
+#~ msgstr "Ideas with comments"
+
+#~ msgid "Ideas with location and comments"
+#~ msgstr "Ideas with location and comments"
+
+#~ msgid "Places with comments"
+#~ msgstr "Places with comments"
+
+#~ msgid "Topics with comments"
+#~ msgstr "Topics with comments"
+
 #~ msgid ""
 #~ "The processing of personal data is carried out as part of the development "
 #~ "plan procedure on the basis of § 3 Baugesetzbuch in conjunction with Art. "
@@ -4660,24 +4695,6 @@ msgstr "Participation possible until"
 #~ "of the opinion's opinion. Detailed information on data processing rights "
 #~ "and personal data can be found in the privacy policy linked at the bottom "
 #~ "of the page."
-
-#~ msgid "Proposals with comments"
-#~ msgstr "Proposals with comments"
-
-#~ msgid "Documents with comments"
-#~ msgstr "Documents with comments"
-
-#~ msgid "Ideas with comments"
-#~ msgstr "Ideas with comments"
-
-#~ msgid "Ideas with location and comments"
-#~ msgstr "Ideas with location and comments"
-
-#~ msgid "Places with comments"
-#~ msgstr "Places with comments"
-
-#~ msgid "Topics with comments"
-#~ msgstr "Topics with comments"
 
 #~ msgid "Chapter"
 #~ msgstr "Chapter"
