@@ -27,7 +27,7 @@
                         {% if PARTNER.information %}
                         <li class="main-header__partner-nav__item">
                             {% url 'partner-information' partner_slug=PARTNER.slug as partner_information_url %}
-                            <a href="{{ partner_information_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_information_url %}is-active{% endif %}">{% trans 'FAQ' %}</span></a>
+                            <a href="{{ partner_information_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_information_url %}is-active{% endif %}">{% trans 'Information' %}</span></a>
                         </li>
                         {% endif %}
                         <li class="main-header__partner-nav__item">
