@@ -28,3 +28,5 @@ try:
     INSTALLED_APPS += tuple(ADDITIONAL_APPS)
 except NameError:
     pass
+
+BASE_URL = 'http://localhost:8004'
