@@ -62,8 +62,12 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "build:dev": "webpack --config webpack.dev.js",
-    "watch": "webpack --config webpack.dev.js --watch",
-    "precommit": "make lint-quick"
+    "watch": "webpack --config webpack.dev.js --watch"
   },
-  "browserslist": "last 3 versions, ie >= 10"
+  "browserslist": "last 3 versions, ie >= 10",
+  "husky": {
+    "hooks": {
+      "pre-commit": "make lint-quick"
+    }
+  }
 }
