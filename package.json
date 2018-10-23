@@ -20,15 +20,15 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "bootstrap": "4.1.3",
-    "css-loader": "0.28.11",
+    "css-loader": "1.0.0",
     "copy-webpack-plugin": "4.5.3",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
-    "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "2.0.0",
     "leaflet": "1.3.4",
     "leaflet-draw": "1.0.3",
     "leaflet.markercluster": "1.4.1",
     "line-awesome": "github:icons8/line-awesome",
+    "mini-css-extract-plugin": "0.4.3",
     "node-sass": "4.9.4",
     "popper.js": "1.14.4",
     "postcss-loader": "2.1.6",
@@ -40,7 +40,7 @@
     "tether": "1.4.5",
     "timeago.js": "3.0.2",
     "typeface-libre-franklin": "0.0.54",
-    "webpack": "3.12.0",
+    "webpack": "4.22.0",
     "webpack-merge": "4.1.4"
   },
   "devDependencies": {
@@ -57,12 +57,13 @@
     "polylint.sh": "0.0.4",
     "stylelint": "9.5.0",
     "stylelint-config-standard": "18.2.0",
-    "stylelint-declaration-strict-value": "1.0.4"
+    "stylelint-declaration-strict-value": "1.0.4",
+    "webpack-cli": "3.1.0"
   },
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
-    "build:dev": "webpack --config webpack.dev.js",
-    "watch": "webpack --config webpack.dev.js --watch",
+    "build": "webpack --config webpack.prod.js --mode production",
+    "build:dev": "webpack --config webpack.dev.js --mode development",
+    "watch": "webpack --config webpack.dev.js --watch --mode development",
     "precommit": "make lint-quick"
   },
   "browserslist": "last 3 versions, ie >= 10"
