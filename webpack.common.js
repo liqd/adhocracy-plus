@@ -1,4 +1,4 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var webpack = require('webpack')
 var path = require('path')
@@ -74,22 +74,26 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins: (loader) => [
-                  autoprefixer()
-                ]
-              }
-            },
-            'sass-loader'
-          ]
-        })
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: (loader) => [
+                autoprefixer()
+              ]
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
       },
       {
         test: /(fonts|files)\/.*\.(svg|woff2?|ttf|eot|otf)(\?.*)?$/,
@@ -123,11 +127,14 @@ module.exports = {
     new webpack.ProvidePlugin({
       timeago: 'timeago.js'
     }),
-    new webpack.optimize.CommonsChunkPlugin({
+    new webpack.optimize.SplitChunksPlugin({
       name: 'vendor',
       filename: 'vendor.js'
     }),
-    new ExtractTextPlugin({ filename: '[name].css' }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
     new CopyWebpackPlugin([
       {
         from: './liqd_product/assets/images/**/*',
