@@ -68,3 +68,6 @@ class Partner(models.Model):
             self.information, 'image-editor')
         self.imprint = transforms.clean_html_field(self.imprint)
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return '/{}'.format(self.name).lower()
