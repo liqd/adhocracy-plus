@@ -6,14 +6,23 @@ from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
 from django.views.decorators.cache import never_cache
+from django.views.generic import TemplateView
 from django.views.i18n import javascript_catalog
 from rest_framework import routers
+from wagtail.contrib.wagtailsitemaps import views as wagtail_sitemap_views
+from wagtail.contrib.wagtailsitemaps.sitemap_generator import \
+    Sitemap as WagtailSitemap
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
+from liqd_product.apps.contrib.sitemaps.product_partners_sitemap import \
+    ProductPartnersSitemap
+from liqd_product.apps.contrib.sitemaps.product_projects_sitemap import \
+    ProductProjectsSitemap
+from liqd_product.apps.contrib.sitemaps.static_sitemap import StaticSitemap
 from liqd_product.apps.partners.urlresolvers import partner_patterns
 from liqd_product.apps.users.decorators import user_is_project_admin
 from meinberlin.apps.contrib import views as contrib_views
@@ -47,6 +56,12 @@ ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
 question_router = QuestionDefaultRouter()
 question_router.register(r'vote', VoteViewSet, base_name='vote')
 
+sitemaps = {
+    'partners': ProductPartnersSitemap,
+    'projects': ProductProjectsSitemap,
+    'wagtail': WagtailSitemap,
+    'static': StaticSitemap
+}
 
 urlpatterns = [
     # General platform urls
@@ -93,6 +108,13 @@ urlpatterns = [
         url(r'^budgeting/', include('meinberlin.apps.budgeting.urls',
                                     namespace='meinberlin_budgeting')),
     ),
+
+    url(r'^sitemap\.xml$', wagtail_sitemap_views.index,
+        {'sitemaps': sitemaps, 'sitemap_url_name': 'sitemaps'}),
+    url(r'^sitemap-(?P<section>.+)\.xml$', wagtail_sitemap_views.sitemap,
+        {'sitemaps': sitemaps}, name='sitemaps'),
+    url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt',
+        content_type="text/plain"), name="robots_file"),
 
     url(r'', include('liqd_product.apps.partners.urls')),
     url(r'', include('wagtail.wagtailcore.urls'))
