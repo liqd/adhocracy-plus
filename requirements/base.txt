@@ -1,5 +1,5 @@
-git+git://github.com/liqd/adhocracy4.git@014e8ef2cc586c93cdffed2631accf08cb93bc30#egg=adhocracy4
-git+git://github.com/liqd/a4-meinberlin.git@e8b3c930283c51e2c027608971a3d36da85b8735#egg=a4-meinberlin-libs
+git+git://github.com/liqd/adhocracy4.git@44b104bbeff2400e62f5e9033cd217ec7757d493#egg=adhocracy4
+git+git://github.com/liqd/a4-meinberlin.git@12237a81e9e998137b5d3a127acb1fa45623b56c#egg=a4-meinberlin-libs
 
 # Inherited a4-meinberlin requirements
 bcrypt==3.1.4
@@ -10,6 +10,7 @@ zeep==3.1.0
 
 # Inherited a4-core requirements
 bleach==3.0.0
+brotli==1.0.4
 Django==1.11.16 # pyup: <2.0
 django-allauth==0.38.0
 django-autoslug==1.9.3
@@ -17,6 +18,7 @@ django-background-tasks==1.2.0
 django-ckeditor==5.6.1
 django-cloudflare-push==0.2.0
 django-filter==2.0.0
+django-sites==0.10
 django-widget-tweaks==1.4.3
 djangorestframework==3.8.2
 easy-thumbnails==2.5
@@ -25,3 +27,4 @@ jsonfield==2.0.2
 python-dateutil==2.7.3
 python-magic==0.4.15
 rules==2.0
+whitenoise==3.3.1
