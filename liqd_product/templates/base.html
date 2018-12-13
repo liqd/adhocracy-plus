@@ -7,6 +7,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{% block title %}Beteiligung.in{% if PARTNER %}/{{ PARTNER.name }}{% endif %}{% endblock %}</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'vendor.css' %}" />
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
