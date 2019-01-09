@@ -84,7 +84,7 @@ INSTALLED_APPS = (
     'liqd_product.apps.users',
     'meinberlin.apps.actions',
     'meinberlin.apps.contrib',
-    'meinberlin.apps.maps.apps',
+    'meinberlin.apps.maps',
     'meinberlin.apps.moderatorfeedback',
     'meinberlin.apps.moderatorremark',
     'meinberlin.apps.notifications',
