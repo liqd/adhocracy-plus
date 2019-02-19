@@ -1,12 +1,13 @@
 language: python
+dist: xenial
 python:
-  - "3.4"
+  - "3.6"
 cache:
   pip: true
   directories:
     - node_modules
 install:
-  - nvm install 6
+  - nvm install 8
   - npm install
   - npm run build
   - pip install -r requirements/dev.txt
