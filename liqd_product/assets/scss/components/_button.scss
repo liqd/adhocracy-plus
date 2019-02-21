@@ -1,3 +1,37 @@
+@mixin button-color($color, $color-active) {
+    $color-focus: mix($color, $color-active, 50%);
+    $color-contrast: contrast-color($color);
+
+    border-color: $color;
+    background-color: $color;
+    color: $color-contrast;
+
+    &:hover,
+    &:focus {
+        border-color: $color-focus;
+        background-color: $color-focus;
+        color: contrast-color($color-focus);
+    }
+
+    &:active {
+        border-color: $color-active;
+        background-color: $color-active;
+        color: contrast-color($color-active);
+    }
+
+    &.is-disabled,
+    &:disabled {
+        $is-light: luma($color) > luma($color-contrast);
+        $weight-bg: if($is-light, 95%, 50%);
+        $weight-fg: if($is-light, 60%, 10%);
+
+        border-color: mix($color, $color-contrast, $weight-bg);
+        background-color: mix($color, $color-contrast, $weight-bg);
+        color: mix($color, $color-contrast, $weight-fg);
+        cursor: not-allowed;
+    }
+}
+
 @mixin button-color--product($color) {
     $shadow: mix($color, $body-bg, 30%);
     $background: mix($color, $body-bg, 15%);
@@ -27,6 +61,50 @@
     }
 }
 
+%button-base {
+    @extend %input-base;
+    border-radius: 0.3em;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.btn {
+    @extend %button-base;
+    @include button-color($link-color, $link-hover-color);
+}
+
+.btn--light {
+    @include button-color($body-bg, $bg-secondary);
+
+    &,
+    &:focus,
+    &:hover,
+    &:active,
+    &:disabled,
+    &.is-disabled {
+        border-color: $border-color;
+    }
+}
+
+.btn--transparent {
+    @include button-color(transparent, transparent);
+
+    &,
+    &:focus,
+    &:hover,
+    &:active,
+    &:disabled,
+    &.is-disabled {
+        border-color: $border-color;
+    }
+}
+
 .btn--primary {
     @include button-color--product($brand-primary);
 }
@@ -50,4 +128,110 @@
 
 .btn--align-left {
     text-align: left;
+}
+
+.btn--danger {
+    @include button-color($brand-danger, darken($brand-danger, 15%));
+}
+
+.btn--link {
+    // horizontal paddings would make the button look off on mobile
+    padding-left: 0;
+    padding-right: 0;
+    border-color: transparent;
+    background-color: transparent;
+
+    color: $link-color;
+    text-decoration: underline;
+    font-weight: normal;
+
+    &:hover,
+    &:focus {
+        color: $link-hover-color;
+        border-color: transparent;
+        background-color: transparent;
+    }
+
+    &.is-disabled,
+    &:disabled {
+        color: $text-color;
+        cursor: not-allowed;
+    }
+}
+
+.btn--none {
+    @include button-color(transparent, transparent);
+}
+
+.btn--select {
+    @include text-truncate;
+    max-width: 15em;
+
+    // leave space for caret
+    padding-right: 2.2em;
+    position: relative;
+
+    i {
+        position: absolute;
+        top: 0.4em;
+        right: 0.7em;
+    }
+}
+
+.btn--small {
+    padding: 0.3em 0.6em;
+    font-weight: inherit;
+}
+
+.btn--huge {
+    padding: 0.8em 2em;
+}
+
+.btn--full {
+    display: block;
+    width: 100%;
+    margin-bottom: $spacer;
+}
+
+.btn--attached-top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.btn-group {
+    .dropdown {
+        display: inline-block;
+    }
+
+    > *,
+    .dropdown-toggle {
+        border-radius: 0;
+        margin-left: -1px;
+
+        &:focus {
+            // highlighted border should be on top
+            z-index: 1;
+            position: relative;
+        }
+    }
+
+    > :first-child {
+        border-top-left-radius: 0.3em;
+        border-bottom-left-radius: 0.3em;
+        margin-left: 0;
+    }
+
+    > :last-child,
+    > :last-child .dropdown-toggle {
+        border-top-right-radius: 0.3em;
+        border-bottom-right-radius: 0.3em;
+    }
+}
+
+@media print {
+    .btn {
+        background-color: contrast-color($print-black);
+        color: $print-black;
+        border-color: $border-color;
+    }
 }
