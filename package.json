@@ -12,6 +12,7 @@
   ],
   "repository": "https://github.com/liqd/liqd-product.git",
   "dependencies": {
+    "@fortawesome/fontawesome-free-webfonts": "1.0.9",
     "adhocracy4": "liqd/adhocracy4#c8ade9a4303a254bcc2d6ba63429094499577c26",
     "autoprefixer": "9.4.7",
     "babel-core": "6.26.3",
@@ -19,14 +20,13 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "bootstrap": "4.3.0",
-    "css-loader": "2.1.0",
     "copy-webpack-plugin": "4.6.0",
+    "css-loader": "2.1.0",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
     "file-loader": "3.0.1",
     "file-saver": "1.3.8",
-    "@fortawesome/fontawesome-free-webfonts": "1.0.9",
     "immutability-helper": "2.8.1",
-    "leaflet": "1.4.0",
+    "leaflet": "1.3.4",
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "1.4.1",
     "line-awesome": "github:icons8/line-awesome",
@@ -46,6 +46,7 @@
     "tether": "1.4.5",
     "timeago.js": "3.0.2",
     "typeface-libre-franklin": "0.0.54",
+    "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "4.28.3",
     "webpack-merge": "4.2.1"
   },
@@ -65,7 +66,7 @@
     "stylelint": "9.10.1",
     "stylelint-config-standard": "18.2.0",
     "stylelint-declaration-strict-value": "1.1.2",
-    "webpack-cli": "3.2.3"
+    "webpack-cli": "3.1.2"
   },
   "scripts": {
     "build": "webpack --config webpack.prod.js --mode production",
