@@ -1,0 +1,62 @@
+.rating-bar {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+    }
+}
+
+.rating-button {
+    border: 1px solid $border-color;
+    font-weight: normal;
+    padding: 0 0.4em;
+
+    &.is-read-only,
+    &:disabled {
+        cursor: default;
+    }
+
+    &:first-child {
+        margin-right: 0.2em;
+    }
+}
+
+@mixin rating-button($color) {
+    color: $color;
+    padding: 0.65em 1.2em;
+    border-radius: 0.3em;
+
+    &:hover,
+    &:focus {
+        background: $color;
+        border-color: $color;
+        color: contrast-color($color);
+    }
+
+    &.is-selected {
+        background-color: $color;
+        border-color: $color;
+        color: contrast-color($color);
+    }
+
+    i {
+        margin-right: 0.3em;
+    }
+
+    &.is-read-only,
+    &:disabled {
+        color: $color;
+        background: none;
+        border: 0;
+    }
+}
+
+.rating-up {
+    @include rating-button($brand-success);
+}
+
+.rating-down {
+    @include rating-button($brand-danger);
+}
