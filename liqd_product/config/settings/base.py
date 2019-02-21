@@ -82,27 +82,27 @@ INSTALLED_APPS = (
     'liqd_product.apps.organisations',
     'liqd_product.apps.partners',
     'liqd_product.apps.users',
-    'meinberlin.apps.actions',
-    'meinberlin.apps.contrib',
-    'meinberlin.apps.maps',
-    'meinberlin.apps.moderatorfeedback',
-    'meinberlin.apps.moderatorremark',
-    'meinberlin.apps.notifications',
+    'liqd_product.apps.actions',
+    'liqd_product.apps.contrib',
+    'liqd_product.apps.maps',
+    'liqd_product.apps.moderatorfeedback',
+    'liqd_product.apps.moderatorremark',
+    'liqd_product.apps.notifications',
 
     # General apps containing views
     'liqd_product.apps.account',
     'liqd_product.apps.dashboard',
-    'meinberlin.apps.embed',
-    'meinberlin.apps.offlineevents',
-    'meinberlin.apps.projects',
+    'liqd_product.apps.embed',
+    'liqd_product.apps.offlineevents',
+    'liqd_product.apps.projects',
 
     # Apps defining phases
-    'meinberlin.apps.activities',
-    'meinberlin.apps.documents',
-    'meinberlin.apps.ideas',
-    'meinberlin.apps.mapideas',
-    'meinberlin.apps.polls',
-    'meinberlin.apps.budgeting',
+    'liqd_product.apps.activities',
+    'liqd_product.apps.budgeting',
+    'liqd_product.apps.documents',
+    'liqd_product.apps.ideas',
+    'liqd_product.apps.mapideas',
+    'liqd_product.apps.polls',
 )
 
 MIDDLEWARE = (
@@ -118,7 +118,7 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
 
     'liqd_product.apps.partners.middleware.PartnerMiddleware',
-    'meinberlin.apps.embed.middleware.AjaxPathMiddleware',
+    'liqd_product.apps.embed.middleware.AjaxPathMiddleware',
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 )
@@ -346,53 +346,53 @@ A4_ORGANISATIONS_MODEL = 'liqd_product_organisations.Organisation'
 
 A4_RATEABLES = (
     ('a4comments', 'comment'),
-    ('meinberlin_ideas', 'idea'),
-    ('meinberlin_mapideas', 'mapidea'),
-    ('meinberlin_budgeting', 'proposal'),
+    ('liqd_product_ideas', 'idea'),
+    ('liqd_product_mapideas', 'mapidea'),
+    ('liqd_product_budgeting', 'proposal'),
 )
 
 A4_COMMENTABLES = (
     ('a4comments', 'comment'),
-    ('meinberlin_ideas', 'idea'),
-    ('meinberlin_documents', 'chapter'),
-    ('meinberlin_documents', 'paragraph'),
-    ('meinberlin_mapideas', 'mapidea'),
-    ('meinberlin_budgeting', 'proposal'),
-    ('meinberlin_polls', 'poll'),
+    ('liqd_product_ideas', 'idea'),
+    ('liqd_product_documents', 'chapter'),
+    ('liqd_product_documents', 'paragraph'),
+    ('liqd_product_mapideas', 'mapidea'),
+    ('liqd_product_budgeting', 'proposal'),
+    ('liqd_product_polls', 'poll'),
 )
 
 A4_REPORTABLES = (
     ('a4comments', 'comment'),
-    ('meinberlin_ideas', 'idea'),
-    ('meinberlin_mapideas', 'mapidea'),
-    ('meinberlin_budgeting', 'proposal'),
+    ('liqd_product_ideas', 'idea'),
+    ('liqd_product_mapideas', 'mapidea'),
+    ('liqd_product_budgeting', 'proposal'),
 )
 
 A4_ACTIONABLES = (
     ('a4comments', 'comment'),
-    ('meinberlin_ideas', 'idea'),
-    ('meinberlin_budgeting', 'proposal'),
-    ('meinberlin_mapideas', 'mapidea'),
+    ('liqd_product_ideas', 'idea'),
+    ('liqd_product_budgeting', 'proposal'),
+    ('liqd_product_mapideas', 'mapidea'),
 )
 
 A4_AUTO_FOLLOWABLES = (
     # Disabled to keep current behaviour: the auto follow functionality did
     # not work until 2018/03/21 due to a adhocracy4 bug
     # ('a4comments', 'comment'),
-    # ('meinberlin_ideas', 'idea'),
-    # ('meinberlin_mapideas', 'mapidea'),
+    # ('liqd_product_ideas', 'idea'),
+    # ('liqd_product_mapideas', 'mapidea'),
 )
 
 A4_CATEGORIZABLE = (
-    ('meinberlin_ideas', 'idea'),
-    ('meinberlin_mapideas', 'mapidea'),
-    ('meinberlin_budgeting', 'proposal'),
+    ('liqd_product_ideas', 'idea'),
+    ('liqd_product_mapideas', 'mapidea'),
+    ('liqd_product_budgeting', 'proposal'),
 )
 
 A4_LABELS_ADDABLE = (
-    ('meinberlin_ideas', 'idea'),
-    ('meinberlin_mapideas', 'mapidea'),
-    ('meinberlin_budgeting', 'proposal'),
+    ('liqd_product_ideas', 'idea'),
+    ('liqd_product_mapideas', 'mapidea'),
+    ('liqd_product_budgeting', 'proposal'),
 )
 
 A4_CATEGORY_ICONS = (
@@ -419,7 +419,7 @@ A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenSt
 A4_MAP_BOUNDING_BOX = ([[54.983, 15.016], [47.302, 5.988]])
 
 A4_DASHBOARD = {
-    'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard.ProjectDashboard',
+    'PROJECT_DASHBOARD_CLASS': 'liqd_product.apps.dashboard.ProjectDashboard',
     'BLUEPRINTS': 'liqd_product.apps.dashboard.blueprints.blueprints'
 }
 

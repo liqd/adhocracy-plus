@@ -90,7 +90,7 @@
                 aria-expanded="true">
                 {% for project in view.projects %}
                     {% withpartner project.organisation.partner %}
-                        {% include 'meinberlin_projects/includes/project_list_tile.html' with project=project %}
+                        {% include 'liqd_product_projects/includes/project_list_tile.html' with project=project %}
                     {% endwithpartner %}
                 {% empty %}
                     {% trans 'This user is not active in any projects yet.' %}
@@ -104,7 +104,7 @@
                 aria-expanded="false">
                 {% for action in view.actions %}
                     {% withpartner action.project.organisation.partner %}
-                        {% include 'meinberlin_actions/includes/action.html' with action=action %}
+                        {% include 'liqd_product_actions/includes/action.html' with action=action %}
                     {% endwithpartner %}
                 {% empty %}
                     {% trans 'No activity yet. '%}

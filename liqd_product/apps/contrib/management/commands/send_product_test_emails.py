@@ -10,10 +10,10 @@ from adhocracy4.emails.mixins import SyncEmailMixin
 from adhocracy4.projects.models import Project
 from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
-from meinberlin.apps.contrib.emails import Email
-from meinberlin.apps.ideas.models import Idea
-from meinberlin.apps.notifications import emails as notification_emails
-from meinberlin.apps.projects import models as project_models
+from liqd_product.apps.contrib.emails import Email
+from liqd_product.apps.ideas.models import Idea
+from liqd_product.apps.notifications import emails as notification_emails
+from liqd_product.apps.projects import models as project_models
 
 User = get_user_model()
 
@@ -190,7 +190,7 @@ class Command(BaseCommand):
         TestEmail.send(
             invite,
             receiver=[self.user],
-            template_name='meinberlin_projects/emails/invite_participant'
+            template_name='liqd_product_projects/emails/invite_participant'
         )
 
     def _send_invitation_moderator(self):
@@ -202,5 +202,5 @@ class Command(BaseCommand):
         TestEmail.send(
             invite,
             receiver=[self.user],
-            template_name='meinberlin_projects/emails/invite_moderator'
+            template_name='liqd_product_projects/emails/invite_moderator'
         )

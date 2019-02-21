@@ -2,12 +2,12 @@ from django.views import generic
 
 from adhocracy4.projects import models as project_models
 from liqd_product.apps.partners import set_partner
-from meinberlin.apps.embed.views import EmbedView
+from liqd_product.apps.embed.views import EmbedView
 
 
 class EmbedProjectView(generic.DetailView, EmbedView):
     model = project_models.Project
-    template_name = "meinberlin_embed/embed.html"
+    template_name = "liqd_product_embed/embed.html"
 
     def get(self, request, *args, **kwargs):
         project = self.get_object()
