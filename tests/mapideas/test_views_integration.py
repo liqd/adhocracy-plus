@@ -2,7 +2,7 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from adhocracy4.test.helpers import redirect_target
-from meinberlin.apps.mapideas import phases
+from liqd_product.apps.mapideas import phases
 from meinberlin.test.helpers import assert_template_response
 from meinberlin.test.helpers import freeze_phase
 from meinberlin.test.helpers import setup_phase

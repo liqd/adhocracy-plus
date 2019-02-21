@@ -1,0 +1,31 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Offlineevents" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block dashboard_project_content %}
+    <div class="lr-bar lr-bar--with-margin">
+        <h1 class="u-first-heading lr-bar__left">
+            {% trans 'Offline Events' %}
+        </h1>
+        <div class="lr-bar__right">
+            <a href="{% url 'a4dashboard:offlineevent-create' project_slug=project.slug %}" class="btn">
+                {% trans 'Add offline event' %}
+            </a>
+        </div>
+    </div>
+
+    <p class="form-hint">{% blocktrans %}Here, you can include events that take place as part of the participation project.{% endblocktrans %}</p>
+
+    {% if object_list.count > 0 %}
+        <ul class="u-list-reset">
+            {% for object in object_list %}
+                {% include "liqd_product_offlineevents/includes/offlineevent_list_item.html" with object=object %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% trans "Nothing to show" %}
+    {% endif %}
+
+    {% include "liqd_product_contrib/includes/pagination.html" %}
+{% endblock %}
