@@ -1,0 +1,53 @@
+// See https://csswizardry.com/2013/04/shame-css/ about this file
+
+// CKEditor applies `box-sizing: content-box` everywhere. The outer element has
+// a 1px border, so if set to `width: 100%` it will take up an additional 2px.
+.cke_chrome {
+    box-sizing: border-box !important;
+}
+
+// CKEditor uses background images for its toolbar
+.cke_button_icon {
+    // stylelint-disable-next-line scale-unlimited/declaration-strict-value
+    -webkit-print-color-adjust: exact;
+}
+
+// safari doesn't allow styling of these otherwise
+// see https://css-tricks.com/webkit-html5-search-inputs/
+input[type="search"] {
+    -webkit-appearance: none;
+}
+
+// used by adhocracy4
+.submit-button {
+    @extend %button-base;
+    @extend .btn--primary;
+}
+
+.cancel-button {
+    @extend %button-base;
+    @extend .btn--light;
+}
+
+// used by adhocracy4 for the follow button, long-term we'd like
+// our own classes.
+.btngroup .btn {
+    @extend .btn--light;
+    @extend .btn--small;
+
+    &:first-child {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    &:last-child {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+}
+
+// maps usually have a height of 300px in their element style, defined in adhocracy4.
+// However, 300px is not enough for the list view so we add a min-height here instead.
+.map-list [data-map] {
+    min-height: 500px;
+}
