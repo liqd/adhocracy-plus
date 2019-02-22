@@ -9,8 +9,10 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_mapideas', '0010_alter_category')]
+
     dependencies = [
-        ('meinberlin_mapideas', '0009_name_verbose_name'),
+        ('liqd_product_mapideas', '0009_name_verbose_name'),
     ]
 
     operations = [

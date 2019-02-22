@@ -7,8 +7,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_moderatorremark', '0003_use_textfield')]
+
     dependencies = [
-        ('meinberlin_moderatorremark', '0002_unique_by_foreignobject'),
+        ('liqd_product_moderatorremark', '0002_unique_by_foreignobject'),
     ]
 
     operations = [

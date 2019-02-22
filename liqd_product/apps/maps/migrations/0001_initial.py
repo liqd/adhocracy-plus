@@ -8,6 +8,8 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_maps', '0001_initial')]
+
     dependencies = [
     ]
 
@@ -36,6 +38,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='mappreset',
             name='category',
-            field=models.ForeignKey(blank=True, on_delete=django.db.models.deletion.SET_NULL, to='meinberlin_maps.MapPresetCategory', null=True),
+            field=models.ForeignKey(blank=True, on_delete=django.db.models.deletion.SET_NULL, to='liqd_product_maps.MapPresetCategory', null=True),
         ),
     ]

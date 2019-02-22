@@ -7,8 +7,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_offlineevents', '0003_verbose_name_title')]
+
     dependencies = [
-        ('meinberlin_offlineevents', '0002_require_date'),
+        ('liqd_product_offlineevents', '0002_require_date'),
     ]
 
     operations = [

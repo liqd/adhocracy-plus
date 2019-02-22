@@ -7,9 +7,11 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_ideas', '0002_idea_category')]
+
     dependencies = [
         ('a4categories', '__first__'),
-        ('meinberlin_ideas', '0001_initial'),
+        ('liqd_product_ideas', '0001_initial'),
     ]
 
     operations = [

@@ -7,8 +7,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_polls', '0004_question_multiple_choice')]
+
     dependencies = [
-        ('meinberlin_polls', '0003_choice_order'),
+        ('liqd_product_polls', '0003_choice_order'),
     ]
 
     operations = [

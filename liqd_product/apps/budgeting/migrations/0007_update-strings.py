@@ -6,8 +6,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_budgeting', '0007_update-strings')]
+
     dependencies = [
-        ('meinberlin_budgeting', '0006_merge'),
+        ('liqd_product_budgeting', '0006_merge'),
     ]
 
     operations = [

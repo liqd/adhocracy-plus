@@ -7,8 +7,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_budgeting', '0014_proposal_is_archived')]
+
     dependencies = [
-        ('meinberlin_budgeting', '0013_alter_category'),
+        ('liqd_product_budgeting', '0013_alter_category'),
     ]
 
     operations = [

@@ -9,6 +9,8 @@ import django.utils.timezone
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_moderatorfeedback', '0001_initial')]
+
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]

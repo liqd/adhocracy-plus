@@ -8,8 +8,10 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_activities', '0002_use_collapsible_ck_for_description')]
+
     dependencies = [
-        ('meinberlin_activities', '0001_initial'),
+        ('liqd_product_activities', '0001_initial'),
     ]
 
     operations = [

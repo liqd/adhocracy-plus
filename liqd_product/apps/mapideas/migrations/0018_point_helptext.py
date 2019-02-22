@@ -8,8 +8,10 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_mapideas', '0018_point_helptext')]
+
     dependencies = [
-        ('meinberlin_mapideas', '0017_add_verbose_for_idea_image'),
+        ('liqd_product_mapideas', '0017_add_verbose_for_idea_image'),
     ]
 
     operations = [

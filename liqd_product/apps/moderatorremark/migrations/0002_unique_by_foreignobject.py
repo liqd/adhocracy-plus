@@ -7,9 +7,11 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_moderatorremark', '0002_unique_by_foreignobject')]
+
     dependencies = [
         ('contenttypes', '0002_remove_content_type_name'),
-        ('meinberlin_moderatorremark', '0001_initial'),
+        ('liqd_product_moderatorremark', '0001_initial'),
     ]
 
     operations = [

@@ -7,8 +7,10 @@ import ckeditor.fields
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_budgeting', '0008_auto_20170529_1302')]
+
     dependencies = [
-        ('meinberlin_budgeting', '0007_update-strings'),
+        ('liqd_product_budgeting', '0007_update-strings'),
     ]
 
     operations = [

@@ -5,7 +5,7 @@ from django.db import migrations, models
 import django.utils.timezone
 from django.conf import settings
 import autoslug.fields
-import meinberlin.apps.moderatorfeedback.fields
+import liqd_product.apps.moderatorfeedback.fields
 import django.db.models.deletion
 import ckeditor.fields
 import adhocracy4.maps.fields
@@ -13,7 +13,7 @@ import adhocracy4.maps.fields
 
 class Migration(migrations.Migration):
 
-    replaces = [('meinberlin_budgeting', '0001_initial'), ('meinberlin_budgeting', '0002_proposal_moderator_feedback'), ('meinberlin_budgeting', '0003_moderatorstatement'), ('meinberlin_budgeting', '0004_auto_20170420_1456')]
+    replaces = [('liqd_product_budgeting', '0001_initial'), ('liqd_product_budgeting', '0002_proposal_moderator_feedback'), ('liqd_product_budgeting', '0003_moderatorstatement'), ('liqd_product_budgeting', '0004_auto_20170420_1456'), ('meinberlin_budgeting', '0001_squashed_0004_auto_20170420_1456')]
 
     dependencies = [
         ('a4categories', '__first__'),
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('description', ckeditor.fields.RichTextField()),
                 ('budget', models.PositiveIntegerField(default=0, help_text='Required Budget')),
                 ('category', models.ForeignKey(to='a4categories.Category', null=True, on_delete=django.db.models.deletion.SET_NULL, blank=True)),
-                ('moderator_feedback', meinberlin.apps.moderatorfeedback.fields.ModeratorFeedbackField(default=None, choices=[('CONSIDERATION', 'Under consideration'), ('REJECTED', 'Rejected'), ('ACCEPTED', 'Accepted')], null=True, blank=True, max_length=254)),
+                ('moderator_feedback', liqd_product.apps.moderatorfeedback.fields.ModeratorFeedbackField(default=None, choices=[('CONSIDERATION', 'Under consideration'), ('REJECTED', 'Rejected'), ('ACCEPTED', 'Accepted')], null=True, blank=True, max_length=254)),
             ],
             options={
                 'ordering': ['-created'],
@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(blank=True, editable=False, null=True)),
-                ('proposal', models.OneToOneField(serialize=False, related_name='moderator_statement', to='meinberlin_budgeting.Proposal', primary_key=True)),
+                ('proposal', models.OneToOneField(serialize=False, related_name='moderator_statement', to='liqd_product_budgeting.Proposal', primary_key=True)),
                 ('statement', ckeditor.fields.RichTextField(blank=True)),
                 ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],

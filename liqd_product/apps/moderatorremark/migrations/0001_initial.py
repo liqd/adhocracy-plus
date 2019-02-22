@@ -10,6 +10,8 @@ import django.utils.timezone
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_moderatorremark', '0001_initial')]
+
     initial = True
 
     dependencies = [

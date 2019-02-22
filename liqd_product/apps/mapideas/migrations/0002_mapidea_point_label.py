@@ -6,8 +6,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_mapideas', '0002_mapidea_point_label')]
+
     dependencies = [
-        ('meinberlin_mapideas', '0001_initial'),
+        ('liqd_product_mapideas', '0001_initial'),
     ]
 
     operations = [

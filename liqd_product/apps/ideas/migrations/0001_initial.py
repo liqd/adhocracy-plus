@@ -8,6 +8,8 @@ import ckeditor.fields
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_ideas', '0001_initial')]
+
     dependencies = [
         ('a4modules', '0001_initial'),
     ]
