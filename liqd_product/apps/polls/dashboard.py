@@ -46,7 +46,8 @@ class ExportPollComponent(DashboardComponent):
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
-        return module_app == 'liqd_product_polls' and not module.project.is_draft
+        return (module_app == 'liqd_product_polls' and
+                not module.project.is_draft)
 
     def get_progress(self, module):
         return 0, 0

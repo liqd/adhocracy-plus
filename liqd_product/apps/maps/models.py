@@ -24,7 +24,7 @@ class MapPreset(models.Model):
 
     class Meta:
         ordering = ['name']
+        db_table = 'meinberlin_maps_mappreset'
 
     def __str__(self):
         return self.name
-        db_table = 'meinberlin_maps_mappreset'
