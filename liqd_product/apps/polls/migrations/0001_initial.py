@@ -20,6 +20,9 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('label', models.CharField(max_length=255)),
             ],
+            options={
+                'db_table': 'meinberlin_polls_choice',
+            },
         ),
         migrations.CreateModel(
             name='Poll',
@@ -28,6 +31,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'meinberlin_polls_poll',
             },
             bases=('a4modules.item',),
         ),
@@ -37,10 +41,11 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('label', models.CharField(max_length=255)),
                 ('weight', models.SmallIntegerField()),
-                ('poll', models.ForeignKey(related_name='questions', to='liqd_product_polls.Poll')),
+                ('poll', models.ForeignKey(related_name='questions', to='meinberlin_polls.Poll')),
             ],
             options={
                 'ordering': ['weight'],
+                'db_table': 'meinberlin_polls_question',
             },
         ),
         migrations.CreateModel(
@@ -49,14 +54,17 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('created', models.DateTimeField(editable=False, default=django.utils.timezone.now)),
                 ('modified', models.DateTimeField(null=True, blank=True, editable=False)),
-                ('choice', models.ForeignKey(related_name='votes', to='liqd_product_polls.Choice')),
+                ('choice', models.ForeignKey(related_name='votes', to='meinberlin_polls.Choice')),
                 ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
+            options={
+                'db_table': 'meinberlin_polls_vote',
+            },
         ),
         migrations.AddField(
             model_name='choice',
             name='question',
-            field=models.ForeignKey(related_name='choices', to='liqd_product_polls.Question'),
+            field=models.ForeignKey(related_name='choices', to='meinberlin_polls.Question'),
         ),
         migrations.AlterUniqueTogether(
             name='vote',

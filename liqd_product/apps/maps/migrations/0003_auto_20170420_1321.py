@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_maps', '0002_auto_20170420_1313'),
+        ('meinberlin_maps', '0002_auto_20170420_1313'),
     ]
 
     operations = [

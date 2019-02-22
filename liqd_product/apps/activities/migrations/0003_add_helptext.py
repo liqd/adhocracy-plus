@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_activities', '0002_use_collapsible_ck_for_description'),
+        ('meinberlin_activities', '0002_use_collapsible_ck_for_description'),
     ]
 
     operations = [

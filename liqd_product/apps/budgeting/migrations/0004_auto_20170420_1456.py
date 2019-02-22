@@ -8,7 +8,7 @@ import adhocracy4.maps.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_budgeting', '0003_moderatorstatement'),
+        ('meinberlin_budgeting', '0003_moderatorstatement'),
     ]
 
     operations = [

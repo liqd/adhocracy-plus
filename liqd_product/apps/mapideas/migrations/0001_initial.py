@@ -28,6 +28,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'meinberlin_mapideas_mapidea',
             },
             bases=('a4modules.item', models.Model),
         ),

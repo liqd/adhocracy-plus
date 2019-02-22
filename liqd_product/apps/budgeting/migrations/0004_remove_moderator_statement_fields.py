@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_budgeting', '0003_remove_category_related_name'),
+        ('meinberlin_budgeting', '0003_remove_category_related_name'),
     ]
 
     operations = [

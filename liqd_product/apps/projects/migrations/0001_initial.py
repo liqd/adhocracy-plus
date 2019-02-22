@@ -32,6 +32,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'meinberlin_projects_moderatorinvite',
             },
         ),
         migrations.CreateModel(
@@ -47,6 +48,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'meinberlin_projects_participantinvite',
             },
         ),
         migrations.AlterUniqueTogether(

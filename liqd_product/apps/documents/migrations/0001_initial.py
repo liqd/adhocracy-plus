@@ -21,6 +21,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'meinberlin_documents_document',
             },
             bases=('a4modules.item',),
         ),
@@ -33,10 +34,11 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=120, blank=True)),
                 ('text', ckeditor.fields.RichTextField()),
                 ('weight', models.PositiveIntegerField()),
-                ('document', models.ForeignKey(related_name='paragraphs', to='liqd_product_documents.Document')),
+                ('document', models.ForeignKey(related_name='paragraphs', to='meinberlin_documents.Document')),
             ],
             options={
                 'ordering': ('weight',),
+                'db_table': 'meinberlin_documents_paragraph',
             },
         ),
     ]

@@ -23,6 +23,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'meinberlin_ideas_idea',
             },
             bases=('a4modules.item',),
         ),

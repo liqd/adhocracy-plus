@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('contenttypes', '0002_remove_content_type_name'),
-        ('liqd_product_moderatorremark', '0001_initial'),
+        ('meinberlin_moderatorremark', '0001_initial'),
     ]
 
     operations = [

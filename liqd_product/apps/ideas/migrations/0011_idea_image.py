@@ -9,7 +9,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_ideas', '0010_moderateable'),
+        ('meinberlin_ideas', '0010_moderateable'),
     ]
 
     operations = [

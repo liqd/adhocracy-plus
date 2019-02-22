@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_documents', '0005_update_content_types'),
+        ('meinberlin_documents', '0005_update_content_types'),
     ]
 
     operations = [

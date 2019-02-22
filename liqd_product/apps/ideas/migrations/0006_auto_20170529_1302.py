@@ -8,7 +8,7 @@ import ckeditor.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_ideas', '0005_use_explicit_item_ptr'),
+        ('meinberlin_ideas', '0005_use_explicit_item_ptr'),
     ]
 
     operations = [

@@ -9,7 +9,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_mapideas', '0017_add_verbose_for_idea_image'),
+        ('meinberlin_mapideas', '0017_add_verbose_for_idea_image'),
     ]
 
     operations = [

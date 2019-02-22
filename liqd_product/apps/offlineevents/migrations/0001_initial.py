@@ -31,6 +31,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'ordering': ['-date'],
+                'db_table': 'meinberlin_offlineevents_offlineevent',
             },
         ),
     ]

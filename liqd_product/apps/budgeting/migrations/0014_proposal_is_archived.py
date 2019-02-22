@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_budgeting', '0013_alter_category'),
+        ('meinberlin_budgeting', '0013_alter_category'),
     ]
 
     operations = [

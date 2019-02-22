@@ -9,7 +9,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_budgeting', '0015_proposal_image'),
+        ('meinberlin_budgeting', '0015_proposal_image'),
     ]
 
     operations = [

@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_mapideas', '0004_use_explicit_item_ptr'),
+        ('meinberlin_mapideas', '0004_use_explicit_item_ptr'),
     ]
 
     operations = [

@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_documents', '0002_rename_document_to_chapter'),
+        ('meinberlin_documents', '0002_rename_document_to_chapter'),
     ]
 
     operations = [

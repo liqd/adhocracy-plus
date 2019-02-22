@@ -19,6 +19,9 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=128)),
                 ('polygon', adhocracy4.maps.fields.MultiPolygonField()),
             ],
+            options={
+                'db_table': 'meinberlin_maps_mappreset',
+            },
         ),
         migrations.CreateModel(
             name='MapPresetCategory',
@@ -26,10 +29,13 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(serialize=False, primary_key=True, auto_created=True, verbose_name='ID')),
                 ('name', models.CharField(max_length=128)),
             ],
+            options={
+                'db_table': 'meinberlin_maps_mappresetcategory',
+            },
         ),
         migrations.AddField(
             model_name='mappreset',
             name='category',
-            field=models.ForeignKey(blank=True, on_delete=django.db.models.deletion.SET_NULL, to='liqd_product_maps.MapPresetCategory', null=True),
+            field=models.ForeignKey(blank=True, on_delete=django.db.models.deletion.SET_NULL, to='meinberlin_maps.MapPresetCategory', null=True),
         ),
     ]

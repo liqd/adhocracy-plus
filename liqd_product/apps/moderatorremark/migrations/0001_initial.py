@@ -29,6 +29,9 @@ class Migration(migrations.Migration):
                 ('creator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
                 ('item_content_type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contenttypes.ContentType')),
             ],
+            options={
+                'db_table': 'meinberlin_moderatorremark_moderatorremark',
+            },
         ),
         migrations.AlterUniqueTogether(
             name='moderatorremark',

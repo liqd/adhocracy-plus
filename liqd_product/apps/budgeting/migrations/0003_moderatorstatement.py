@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('liqd_product_budgeting', '0002_proposal_moderator_feedback'),
+        ('meinberlin_budgeting', '0002_proposal_moderator_feedback'),
     ]
 
     operations = [
@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(blank=True, null=True, editable=False)),
-                ('proposal', models.OneToOneField(related_name='moderator_statement', primary_key=True, serialize=False, to='liqd_product_budgeting.Proposal')),
+                ('proposal', models.OneToOneField(related_name='moderator_statement', primary_key=True, serialize=False, to='meinberlin_budgeting.Proposal')),
                 ('statement', ckeditor.fields.RichTextField(blank=True)),
                 ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
