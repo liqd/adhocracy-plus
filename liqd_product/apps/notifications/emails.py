@@ -94,7 +94,8 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
 
 
 class NotifyFollowersOnNewItemCreated(Email):
-    template_name = 'liqd_product_notifications/emails/notify_followers_new_item'
+    template_name = \
+        'liqd_product_notifications/emails/notify_followers_new_item'
 
     def get_receivers(self):
         action = self.object

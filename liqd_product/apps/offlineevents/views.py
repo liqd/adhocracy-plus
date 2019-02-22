@@ -91,7 +91,8 @@ class OfflineEventDeleteView(ProjectMixin,
     model = models.OfflineEvent
     success_message = _('The offline event has been deleted')
     permission_required = 'liqd_product_offlineevents.change_offlineevent'
-    template_name = 'liqd_product_offlineevents/offlineevent_confirm_delete.html'
+    template_name = \
+        'liqd_product_offlineevents/offlineevent_confirm_delete.html'
     get_context_from_object = True
 
     def delete(self, request, *args, **kwargs):

@@ -34,11 +34,13 @@ class TextWithDatalistWidget(forms.TextInput):
         if 'list' not in attrs:
             attrs['list'] = attrs['id'] + '_datalist'
 
-        return render_to_string('liqd_product_contrib/text_with_datalist.html', {
-            'text_input': super().render(name, value, attrs),
-            'id_for_datalist': attrs['list'],
-            'options': options
-        })
+        return render_to_string(
+            'liqd_product_contrib/text_with_datalist.html', {
+                'text_input': super().render(name, value, attrs),
+                'id_for_datalist': attrs['list'],
+                'options': options
+            }
+        )
 
     def get_options(self, options):
         if callable(options):
