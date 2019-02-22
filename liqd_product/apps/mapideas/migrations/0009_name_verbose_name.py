@@ -7,8 +7,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_mapideas', '0009_name_verbose_name')]
+
     dependencies = [
-        ('meinberlin_mapideas', '0008_help_text'),
+        ('liqd_product_mapideas', '0008_help_text'),
     ]
 
     operations = [

@@ -8,6 +8,8 @@ from django.conf import settings
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_polls', '0001_initial')]
+
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('a4modules', '0001_initial'),
@@ -41,7 +43,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('label', models.CharField(max_length=255)),
                 ('weight', models.SmallIntegerField()),
-                ('poll', models.ForeignKey(related_name='questions', to='meinberlin_polls.Poll')),
+                ('poll', models.ForeignKey(related_name='questions', to='liqd_product_polls.Poll')),
             ],
             options={
                 'ordering': ['weight'],
@@ -54,7 +56,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('created', models.DateTimeField(editable=False, default=django.utils.timezone.now)),
                 ('modified', models.DateTimeField(null=True, blank=True, editable=False)),
-                ('choice', models.ForeignKey(related_name='votes', to='meinberlin_polls.Choice')),
+                ('choice', models.ForeignKey(related_name='votes', to='liqd_product_polls.Choice')),
                 ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -64,7 +66,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='choice',
             name='question',
-            field=models.ForeignKey(related_name='choices', to='meinberlin_polls.Question'),
+            field=models.ForeignKey(related_name='choices', to='liqd_product_polls.Question'),
         ),
         migrations.AlterUniqueTogether(
             name='vote',

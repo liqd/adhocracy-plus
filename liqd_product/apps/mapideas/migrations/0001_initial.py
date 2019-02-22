@@ -10,6 +10,8 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_mapideas', '0001_initial')]
+
     dependencies = [
         ('a4modules', '0001_initial'),
         ('a4categories', '__first__'),

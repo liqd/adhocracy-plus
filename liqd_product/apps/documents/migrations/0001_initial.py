@@ -8,6 +8,8 @@ import django.utils.timezone
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_documents', '0001_initial')]
+
     dependencies = [
         ('a4modules', '0001_initial'),
     ]
@@ -34,7 +36,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=120, blank=True)),
                 ('text', ckeditor.fields.RichTextField()),
                 ('weight', models.PositiveIntegerField()),
-                ('document', models.ForeignKey(related_name='paragraphs', to='meinberlin_documents.Document')),
+                ('document', models.ForeignKey(related_name='paragraphs', to='liqd_product_documents.Document')),
             ],
             options={
                 'ordering': ('weight',),

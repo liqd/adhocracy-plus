@@ -11,6 +11,8 @@ import uuid
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_projects', '0001_initial')]
+
     initial = True
 
     dependencies = [

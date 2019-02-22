@@ -9,6 +9,8 @@ import autoslug.fields
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_budgeting', '0001_initial')]
+
     dependencies = [
         ('a4modules', '0001_initial'),
         ('a4categories', '__first__'),

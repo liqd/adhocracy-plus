@@ -6,14 +6,16 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_budgeting', '0011_allow_blank')]
+
     dependencies = [
-        ('meinberlin_budgeting', '0010_add_default_ordering'),
+        ('liqd_product_budgeting', '0010_add_default_ordering'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='proposal',
             name='moderator_statement',
-            field=models.OneToOneField(null=True, related_name='+', to='meinberlin_moderatorfeedback.ModeratorStatement', blank=True),
+            field=models.OneToOneField(null=True, related_name='+', to='liqd_product_moderatorfeedback.ModeratorStatement', blank=True),
         ),
     ]

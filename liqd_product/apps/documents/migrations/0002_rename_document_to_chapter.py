@@ -6,8 +6,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_documents', '0002_rename_document_to_chapter')]
+
     dependencies = [
-        ('meinberlin_documents', '0001_initial'),
+        ('liqd_product_documents', '0001_initial'),
     ]
 
     operations = [

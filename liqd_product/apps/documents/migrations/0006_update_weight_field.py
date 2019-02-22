@@ -6,8 +6,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_documents', '0006_update_weight_field')]
+
     dependencies = [
-        ('meinberlin_documents', '0005_update_content_types'),
+        ('liqd_product_documents', '0005_update_content_types'),
     ]
 
     operations = [

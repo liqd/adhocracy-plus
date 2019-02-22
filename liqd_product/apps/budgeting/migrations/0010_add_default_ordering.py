@@ -6,8 +6,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_budgeting', '0010_add_default_ordering')]
+
     dependencies = [
-        ('meinberlin_budgeting', '0009_remove_feedback_phase'),
+        ('liqd_product_budgeting', '0009_remove_feedback_phase'),
     ]
 
     operations = [

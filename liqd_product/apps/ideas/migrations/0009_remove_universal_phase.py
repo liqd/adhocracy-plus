@@ -7,15 +7,17 @@ from django.db import migrations
 
 def change_phase(apps, schema_editor):
     Phase = apps.get_model('a4phases', 'Phase')
-    for phase in Phase.objects.filter(type='meinberlin_ideas:050:universal'):
-        phase.type = 'meinberlin_ideas:050:collect_feedback'
+    for phase in Phase.objects.filter(type='liqd_product_ideas:050:universal'):
+        phase.type = 'liqd_product_ideas:050:collect_feedback'
         phase.save()
 
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_ideas', '0009_remove_universal_phase')]
+
     dependencies = [
-        ('meinberlin_ideas', '0008_alter_category'),
+        ('liqd_product_ideas', '0008_alter_category'),
     ]
 
     operations = [

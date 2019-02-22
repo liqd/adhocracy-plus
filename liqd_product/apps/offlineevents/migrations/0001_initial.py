@@ -10,6 +10,8 @@ from django.conf import settings
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_offlineevents', '0001_initial')]
+
     dependencies = [
         ('a4projects', '0007_add_verbose_names'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),

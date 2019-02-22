@@ -8,8 +8,10 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_ideas', '0012_add_form_hint_prefix')]
+
     dependencies = [
-        ('meinberlin_ideas', '0011_idea_image'),
+        ('liqd_product_ideas', '0011_idea_image'),
     ]
 
     operations = [

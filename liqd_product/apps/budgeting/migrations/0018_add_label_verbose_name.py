@@ -7,14 +7,16 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_budgeting', '0018_add_label_verbose_name')]
+
     dependencies = [
-        ('meinberlin_budgeting', '0017_proposal_labels'),
+        ('liqd_product_budgeting', '0017_proposal_labels'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='proposal',
             name='labels',
-            field=models.ManyToManyField(related_name='meinberlin_budgeting_proposal_label', to='a4labels.Label', verbose_name='Labels'),
+            field=models.ManyToManyField(related_name='liqd_product_budgeting_proposal_label', to='a4labels.Label', verbose_name='Labels'),
         ),
     ]

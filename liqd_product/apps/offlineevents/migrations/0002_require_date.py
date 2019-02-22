@@ -7,8 +7,10 @@ import datetime
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_offlineevents', '0002_require_date')]
+
     dependencies = [
-        ('meinberlin_offlineevents', '0001_initial'),
+        ('liqd_product_offlineevents', '0001_initial'),
     ]
 
     operations = [

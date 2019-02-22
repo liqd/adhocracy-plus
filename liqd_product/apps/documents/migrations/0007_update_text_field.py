@@ -7,8 +7,10 @@ import ckeditor_uploader.fields
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_documents', '0007_update_text_field')]
+
     dependencies = [
-        ('meinberlin_documents', '0006_update_weight_field'),
+        ('liqd_product_documents', '0006_update_weight_field'),
     ]
 
     operations = [

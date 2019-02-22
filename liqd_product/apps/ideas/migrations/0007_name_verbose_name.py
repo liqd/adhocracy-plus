@@ -7,8 +7,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_ideas', '0007_name_verbose_name')]
+
     dependencies = [
-        ('meinberlin_ideas', '0006_auto_20170529_1302'),
+        ('liqd_product_ideas', '0006_auto_20170529_1302'),
     ]
 
     operations = [

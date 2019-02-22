@@ -7,8 +7,10 @@ import ckeditor.fields
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_ideas', '0006_auto_20170529_1302')]
+
     dependencies = [
-        ('meinberlin_ideas', '0005_use_explicit_item_ptr'),
+        ('liqd_product_ideas', '0005_use_explicit_item_ptr'),
     ]
 
     operations = [
