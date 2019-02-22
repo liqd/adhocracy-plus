@@ -61,17 +61,6 @@ class TopicComponent(ProjectFormComponent):
     form_template_name = 'liqd_product_projects/project_topics.html'
 
 
-class PointComponent(ProjectFormComponent):
-    identifier = 'point'
-    weight = 33
-    label = _('District and Location')
-
-    form_title = _('Edit district and location')
-    form_class = forms.PointForm
-    form_template_name = 'liqd_product_projects/project_point.html'
-
-
 components.register_project(ModeratorsComponent())
 components.register_project(ParticipantsComponent())
 components.register_project(TopicComponent())
-components.register_project(PointComponent())

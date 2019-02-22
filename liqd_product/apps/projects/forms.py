@@ -80,15 +80,3 @@ class TopicForm(ProjectDashboardForm):
         model = Project
         fields = ['topics']
         required_for_project_publish = ['topics']
-
-
-class PointForm(ProjectDashboardForm):
-
-    class Meta:
-        model = Project
-        fields = ['administrative_district', 'point']
-        required_for_project_publish = []
-        widgets = {
-            'point': maps_widgets.MapChoosePointWidget(
-                polygon=settings.BERLIN_POLYGON)
-        }

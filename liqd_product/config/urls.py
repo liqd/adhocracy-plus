@@ -25,12 +25,12 @@ from liqd_product.apps.contrib.sitemaps.product_projects_sitemap import \
 from liqd_product.apps.contrib.sitemaps.static_sitemap import StaticSitemap
 from liqd_product.apps.partners.urlresolvers import partner_patterns
 from liqd_product.apps.users.decorators import user_is_project_admin
-from meinberlin.apps.contrib import views as contrib_views
-from meinberlin.apps.documents.api import DocumentViewSet
-from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
-from meinberlin.apps.polls.api import PollViewSet
-from meinberlin.apps.polls.api import VoteViewSet
-from meinberlin.apps.polls.routers import QuestionDefaultRouter
+from liqd_product.apps.contrib import views as contrib_views
+from liqd_product.apps.documents.api import DocumentViewSet
+from liqd_product.apps.moderatorremark.api import ModeratorRemarkViewSet
+from liqd_product.apps.polls.api import PollViewSet
+from liqd_product.apps.polls.api import VoteViewSet
+from liqd_product.apps.polls.routers import QuestionDefaultRouter
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -93,20 +93,20 @@ urlpatterns = [
     # Urls within the context of a partner
     partner_patterns(
         url(r'^modules/', include('adhocracy4.modules.urls')),
-        # Temporary include meinberlin projects urls, as they contain
+        # Temporary include liqd_product projects urls, as they contain
         # the invite links. This may be removed when invites are refactored
         # to a separate app.
-        url(r'^projects/', include('meinberlin.apps.projects.urls')),
-        url(r'^offlineevents/', include('meinberlin.apps.offlineevents.urls',
-                                        namespace='meinberlin_offlineevents')),
+        url(r'^projects/', include('liqd_product.apps.projects.urls')),
+        url(r'^offlineevents/', include('liqd_product.apps.offlineevents.urls',
+                                        namespace='liqd_product_offlineevents')),
         url(r'^ideas/', include(r'liqd_product.apps.ideas.urls',
-                                namespace='meinberlin_ideas')),
+                                namespace='liqd_product_ideas')),
         url(r'^mapideas/', include('liqd_product.apps.mapideas.urls',
-                                   namespace='meinberlin_mapideas')),
-        url(r'^text/', include('meinberlin.apps.documents.urls',
-                               namespace='meinberlin_documents')),
+                                   namespace='liqd_product_mapideas')),
+        url(r'^text/', include('liqd_product.apps.documents.urls',
+                               namespace='liqd_product_documents')),
         url(r'^budgeting/', include('liqd_product.apps.budgeting.urls',
-                                    namespace='meinberlin_budgeting')),
+                                    namespace='liqd_product_budgeting')),
     ),
 
     url(r'^sitemap\.xml$', wagtail_sitemap_views.index,

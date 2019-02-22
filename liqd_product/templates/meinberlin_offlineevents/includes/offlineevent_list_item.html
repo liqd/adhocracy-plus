@@ -10,7 +10,7 @@
             <div class="btn-group">
                 {% spaceless %}
                     {% withpartner project.organisation.partner %}
-                    <a href="{% url 'meinberlin_offlineevents:offlineevent-detail' slug=object.slug %}"
+                    <a href="{% url 'liqd_product_offlineevents:offlineevent-detail' slug=object.slug %}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                         {% trans 'View' %}
