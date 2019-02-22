@@ -13,9 +13,9 @@
         {% csrf_token %}
 
         <div class="form-group form-group--narrow">
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.login %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password %}
-            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.remember %}
+            {% include 'liqd_product_contrib/includes/form_field.html' with field=form.login %}
+            {% include 'liqd_product_contrib/includes/form_field.html' with field=form.password %}
+            {% include 'liqd_product_contrib/includes/form_checkbox_field.html' with field=form.remember %}
         </div>
 
         {% if redirect_field_value %}

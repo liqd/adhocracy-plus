@@ -1,4 +1,4 @@
-{% extends 'meinberlin_projects/project_detail.html' %}
+{% extends 'liqd_product_projects/project_detail.html' %}
 {% load i18n react_comments wagtailcore_tags %}
 
 {% block phase_content %}
@@ -62,7 +62,7 @@
 
     {% if chapter_list|length > 1 %}
         <div class="control-bar__bottom-overlap">
-            {% include 'meinberlin_documents/includes/nextprev.html' %}
+            {% include 'liqd_product_documents/includes/nextprev.html' %}
         </div>
     {% endif %}
 

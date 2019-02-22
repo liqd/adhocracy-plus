@@ -1,8 +1,14 @@
 from django.views import generic
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 from adhocracy4.projects import models as project_models
 from liqd_product.apps.partners import set_partner
-from liqd_product.apps.embed.views import EmbedView
+
+
+class EmbedView(generic.View):
+    @xframe_options_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(EmbedView, self).dispatch(request, *args, **kwargs)
 
 
 class EmbedProjectView(generic.DetailView, EmbedView):

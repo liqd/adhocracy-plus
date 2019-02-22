@@ -78,16 +78,15 @@ INSTALLED_APPS = (
     'adhocracy4.rules',
 
     # General components that define models or helpers
-    'liqd_product.apps.contrib',
-    'liqd_product.apps.organisations',
-    'liqd_product.apps.partners',
-    'liqd_product.apps.users',
     'liqd_product.apps.actions',
     'liqd_product.apps.contrib',
     'liqd_product.apps.maps',
     'liqd_product.apps.moderatorfeedback',
     'liqd_product.apps.moderatorremark',
     'liqd_product.apps.notifications',
+    'liqd_product.apps.organisations',
+    'liqd_product.apps.partners',
+    'liqd_product.apps.users',
 
     # General apps containing views
     'liqd_product.apps.account',
@@ -422,6 +421,22 @@ A4_DASHBOARD = {
     'PROJECT_DASHBOARD_CLASS': 'liqd_product.apps.dashboard.ProjectDashboard',
     'BLUEPRINTS': 'liqd_product.apps.dashboard.blueprints.blueprints'
 }
+
+A4_PROJECT_TOPICS = (
+    ('ANT', _('Anti-discrimination')),
+    ('WOR', _('Work & economy')),
+    ('BUI', _('Building & living')),
+    ('EDU', _('Education & research')),
+    ('CHI', _('Children, youth & family')),
+    ('FIN', _('Finances')),
+    ('HEA', _('Health & sports')),
+    ('INT', _('Integration')),
+    ('CUL', _('Culture & leisure')),
+    ('NEI', _('Neighborhood & participation')),
+    ('URB', _('Urban development')),
+    ('ENV', _('Environment & public green space')),
+    ('TRA', _('Traffic'))
+)
 
 CONTACT_EMAIL = 'support-beteiligung@liqd.net'
 
