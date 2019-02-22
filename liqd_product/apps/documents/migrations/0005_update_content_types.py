@@ -6,18 +6,18 @@ from django.db import migrations
 sql = """UPDATE django_content_type
          SET model = 'chapter'
          WHERE model = 'document' AND
-               app_label = 'liqd_product_documents';"""
+               app_label = 'meinberlin_documents';"""
 
 reverse_sql = """UPDATE django_content_type
                  SET model = 'document'
                  WHERE model = 'chapter' AND
-                       app_label = 'liqd_product_documents';"""
+                       app_label = 'meinberlin_documents';"""
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_documents', '0004_remove_create_document_phase'),
+        ('meinberlin_documents', '0004_remove_create_document_phase'),
     ]
 
     operations = [

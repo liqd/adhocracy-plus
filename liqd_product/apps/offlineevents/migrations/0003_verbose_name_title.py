@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_offlineevents', '0002_require_date'),
+        ('meinberlin_offlineevents', '0002_require_date'),
     ]
 
     operations = [

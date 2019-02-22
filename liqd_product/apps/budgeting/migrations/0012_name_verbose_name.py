@@ -9,7 +9,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_budgeting', '0011_allow_blank'),
+        ('meinberlin_budgeting', '0011_allow_blank'),
     ]
 
     operations = [

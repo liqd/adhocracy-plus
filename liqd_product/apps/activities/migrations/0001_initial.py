@@ -28,6 +28,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'meinberlin_activities_activity',
             },
             bases=('a4modules.item',),
         ),

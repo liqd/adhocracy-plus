@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_moderatorremark', '0002_unique_by_foreignobject'),
+        ('meinberlin_moderatorremark', '0002_unique_by_foreignobject'),
     ]
 
     operations = [

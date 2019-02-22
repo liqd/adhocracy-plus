@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_budgeting', '0002_proposal_point_label'),
+        ('meinberlin_budgeting', '0002_proposal_point_label'),
     ]
 
     operations = [

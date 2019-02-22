@@ -28,6 +28,7 @@ class Migration(migrations.Migration):
             options={
                 'ordering': ['-created'],
                 'abstract': False,
+                'db_table': 'meinberlin_budgeting_proposal',
             },
             bases=('a4modules.item', models.Model),
         ),

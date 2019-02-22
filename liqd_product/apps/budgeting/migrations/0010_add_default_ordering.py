@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_budgeting', '0009_remove_feedback_phase'),
+        ('meinberlin_budgeting', '0009_remove_feedback_phase'),
     ]
 
     operations = [

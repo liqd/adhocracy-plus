@@ -8,7 +8,7 @@ import ckeditor.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_mapideas', '0005_update-strings'),
+        ('meinberlin_mapideas', '0005_update-strings'),
     ]
 
     operations = [

@@ -9,13 +9,13 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('a4labels', '0001_initial'),
-        ('liqd_product_mapideas', '0013_add_form_hint_prefix'),
+        ('meinberlin_mapideas', '0013_add_form_hint_prefix'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='mapidea',
             name='labels',
-            field=models.ManyToManyField(related_name='liqd_product_mapideas_mapidea_label', to='a4labels.Label'),
+            field=models.ManyToManyField(related_name='meinberlin_mapideas_mapidea_label', to='a4labels.Label'),
         ),
     ]

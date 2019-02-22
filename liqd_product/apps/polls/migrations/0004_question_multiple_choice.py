@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_polls', '0003_choice_order'),
+        ('meinberlin_polls', '0003_choice_order'),
     ]
 
     operations = [

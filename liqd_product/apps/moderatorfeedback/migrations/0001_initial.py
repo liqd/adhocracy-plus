@@ -25,6 +25,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'meinberlin_moderatorfeedback_moderatorstatement',
             },
         ),
     ]

@@ -9,7 +9,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('liqd_product_mapideas', '0007_add_default_ordering'),
+        ('meinberlin_mapideas', '0007_add_default_ordering'),
     ]
 
     operations = [
