@@ -13,7 +13,7 @@ import adhocracy4.maps.fields
 
 class Migration(migrations.Migration):
 
-    replaces = [('liqd_product_budgeting', '0001_initial'), ('liqd_product_budgeting', '0002_proposal_moderator_feedback'), ('liqd_product_budgeting', '0003_moderatorstatement'), ('liqd_product_budgeting', '0004_auto_20170420_1456'), ('meinberlin_budgeting', '0001_squashed_0004_auto_20170420_1456')]
+    replaces = [('meinberlin_budgeting', '0001_squashed_0004_auto_20170420_1456')]
 
     dependencies = [
         ('a4categories', '__first__'),
@@ -36,6 +36,7 @@ class Migration(migrations.Migration):
             options={
                 'ordering': ['-created'],
                 'abstract': False,
+                'db_table': 'meinberlin_budgeting_proposal',
             },
             bases=('a4modules.item', models.Model),
         ),
