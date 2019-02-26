@@ -24,7 +24,6 @@ class Invite(base.TimeStampedModel):
 
     class Meta:
         abstract = True
-        unique_together = ('email', 'project')
 
     def accept(self, user):
         self.delete()
@@ -57,6 +56,7 @@ class ParticipantInvite(Invite):
         super().accept(user)
 
     class Meta:
+        unique_together = ('email', 'project')
         db_table = 'meinberlin_projects_participantinvite'
 
 
@@ -83,4 +83,5 @@ class ModeratorInvite(Invite):
         super().accept(user)
 
     class Meta:
+        unique_together = ('email', 'project')
         db_table = 'meinberlin_projects_moderatorinvite'
