@@ -22,4 +22,8 @@ class Migration(migrations.Migration):
             old_name='document',
             new_name='chapter',
         ),
+        migrations.AlterModelTable(
+            name='chapter',
+            table='meinberlin_documents_chapter',
+        ),
     ]
