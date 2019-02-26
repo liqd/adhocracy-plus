@@ -1,6 +1,69 @@
-// In a4-meinberlin, .poll-row__bar has background-color: $bg-tertiary
-// and .poll-row__bar--highlight has background-color: $brand-primary-tint
-// These colors are the same in a4-product.
+.poll {
+    padding: 1.5em;
+    margin-bottom: $spacer;
+
+    background-color: $body-bg;
+
+    h2 {
+        margin-top: 0;
+    }
+}
+
+.poll__actions > :last-child {
+    margin-top: 0.5em;
+    display: block;
+
+    @media (min-width: $breakpoint) {
+        display: inline-block;
+        margin: 0 0 0 1em;
+    }
+}
+
+.poll__rows {
+    margin-bottom: 1em;
+}
+
+.poll-row {
+    position: relative;
+    z-index: 1;
+    padding: 0.2em 0;
+    margin-bottom: 0.5em;
+
+    @include clearfix;
+}
+
+.poll-row__radio,
+.poll-row__number,
+.poll-row__label {
+    display: inline-block;
+    margin: 0;
+    margin-right: 0.2em;
+}
+
+.poll-row__number {
+    padding-left: 0.5em;
+    min-width: 5em;
+    font-weight: bold;
+}
+
+.poll-row__bar {
+    background-color: $bg-tertiary;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 0.3em;
+    z-index: -1;
+    width: 0;
+    min-width: 0.4em;
+
+    transition: width 0.3s;
+
+    @media print {
+        border: 1px solid $border-color;
+    }
+}
+
 .poll-row__bar--highlight {
     background-color: $brand-secondary-tint;
 }
