@@ -19,7 +19,7 @@ class Chapter(module_models.Item):
 
     class Meta:
         ordering = ('weight',)
-        db_table = 'meinberlin_documents_chapter'
+        db_table = 'meinberlin_documents_document'
 
     def __str__(self):
         return "{}_chapter_{}".format(str(self.module), self.pk)
