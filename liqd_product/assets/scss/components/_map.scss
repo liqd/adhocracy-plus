@@ -1,0 +1,168 @@
+.leaflet-popup-content {
+    display: flex;
+    flex-direction: row-reverse;
+
+    min-height: 8em;
+    margin: 0;
+}
+
+.leaflet-popup-content-wrapper {
+    padding: 0;
+    border-radius: 0;
+}
+
+.maps-popups-popup-text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin: 0.5em;
+    width: 14.5em;
+}
+
+.maps-popups-popup-name {
+    font-size: $font-size-lg;
+
+    line-height: normal;
+    page-break-inside: avoid;
+    overflow-wrap: break-word;
+
+    a {
+        color: $link-color;
+    }
+}
+
+.maps-popups-popup-meta {
+    padding: 1em;
+}
+
+.map-popup-upvotes i {
+    color: $brand-success;
+}
+
+.map-popup-downvotes i {
+    color: $brand-danger;
+}
+
+.map-popup-upvotes,
+.map-popup-downvotes,
+.map-popup-comments-count {
+    margin-right: 2em;
+}
+
+.maps-popups-popup-image {
+    width: 8em;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.maps-popups-popup-no-image {
+    display: none;
+}
+
+.map-list {
+    position: relative;
+    z-index: 0;
+}
+
+.map-list__controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: $padding 0;
+}
+
+/* On large screens, map and list are next to each other. The list should
+ * maintain a width of 30em as long as possible.
+ *
+ * On small screens, map and list are one below the other. The map should
+ * maintain a hight of 36vh as long as possible.
+ *
+ * In both cases, the complete component should fit on the screen (max-height
+ * of 80vh).
+ *
+ * The size of the map should not change depending on the number of items in
+ * the list.
+ */
+.map-list-combined {
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    position: relative;
+
+    @media (min-width: $breakpoint) {
+        flex-direction: row;
+        height: 36em;
+    }
+
+    @media print {
+        max-height: none;
+    }
+}
+
+.map-list-combined__dropdown-menu {
+    @extend .dropdown-menu;
+    top: 32px;
+    display: block;
+}
+
+.map-list-combined__alert {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.map-list-combined__map {
+    flex: 0 1 36vh;
+    z-index: 0;
+
+    @media (min-width: $breakpoint) {
+        flex: 1 1 auto;
+    }
+}
+
+.map-list-combined__list {
+    overflow-y: auto;
+    flex: 0 1 44vh;
+    background-color: $bg-secondary;
+
+    @media (min-width: $breakpoint) {
+        flex: 0 1 30em;
+    }
+
+    @media print {
+        overflow: visible;
+    }
+}
+
+.map-list-combined__icon {
+    background-color: $brand-secondary;
+    color: contrast-color($brand-secondary);
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(contrast-color($brand-secondary), 0.8);
+}
+
+.marker-cluster {
+    background-clip: padding-box;
+    border-radius: 20px;
+    background-color: rgba($brand-secondary, 0.6);
+
+    div {
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+        margin-top: 5px;
+        text-align: center;
+        border-radius: 15px;
+        font-size: 12px $font-family-sans-serif;
+        background-color: $brand-secondary;
+        color: $text-color-inverted;
+        line-height: 30px;
+    }
+}

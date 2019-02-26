@@ -42,17 +42,17 @@ module.exports = {
       './liqd_product/assets/js/init-picker.js',
       'datepicker/css/datepicker.min.css'
     ],
-    embed: [
-      'a4-meinberlin/meinberlin/assets/js/embed.js'
-    ],
-    'popup-close': [
-      'a4-meinberlin/meinberlin/assets/js/popup-close.js'
-    ],
+    // embed: [
+    //   'a4-meinberlin/meinberlin/assets/js/embed.js'
+    // ],
+    // 'popup-close': [
+    //   'a4-meinberlin/meinberlin/assets/js/popup-close.js'
+    // ],
     'map_choose_polygon_with_preset': [
-      'a4-meinberlin/meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js',
+      // 'a4-meinberlin/meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js',
       'leaflet-draw',
       'leaflet-draw/dist/leaflet.draw.css',
-      'a4-meinberlin/meinberlin/assets/js/i18n-leaflet-draw.js',
+      // 'a4-meinberlin/meinberlin/assets/js/i18n-leaflet-draw.js',
       'file-saver',
       'shpjs'
     ]

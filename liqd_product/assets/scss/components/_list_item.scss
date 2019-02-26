@@ -1,0 +1,110 @@
+.list-item {
+    padding: 0.7em $padding;
+    display: block;
+    position: relative;
+    border: 1px solid $border-color;
+    background-color: $body-bg;
+    margin-bottom: $spacer;
+    page-break-inside: avoid;
+
+    &.selected {
+        background-color: $bg-secondary;
+    }
+
+    &.selected:focus {
+        outline: none;
+    }
+}
+
+.list-item--squashed {
+    border: 0;
+    margin-bottom: 2px;
+
+    @media print {
+        border: 1px solid $border-color;
+    }
+}
+
+.list-item--has-image {
+    padding: 0;
+}
+
+.list-item--has-image__wrapper {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 30em) {
+        flex-direction: row;
+    }
+}
+
+.list-item--has-image__image {
+    position: relative;
+    min-height: 7.5em;
+    flex: 0 0 7.5em;
+
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-color: $brand-secondary;
+}
+
+.list-item--has-image__copyright {
+    position: absolute;
+    bottom: 0;
+}
+
+.list-item--has-image__body {
+    padding: 0.7em $padding;
+    flex: 1 1 auto;
+}
+
+.list-item__title {
+    margin: 0 0 0.8rem;
+    font-size: $font-size-lg;
+}
+
+.list-item__subtitle {
+    margin-bottom: 0.3em;
+    font-size: $font-size-sm;
+}
+
+.list-item__labels {
+    @include clearfix;
+    margin: 0 0 0.4rem;
+}
+
+.list-item__label--moderator-feedback {
+    float: right;
+    margin-left: 0.5em;
+}
+
+.list-item__author {
+    margin-right: 0.3em;
+}
+
+.list-item__stats {
+    float: right;
+    margin-left: 0.5em;
+}
+
+.list-item__action {
+    display: inline;
+}
+
+.list-item .is-read-only {
+    padding: 0;
+}
+
+.list-item__comments {
+    margin-left: 0.7em;
+}
+
+.list-item-empty {
+    padding: 0.7em $padding;
+    text-align: center;
+}
+
+.list-item__status--active {
+    color: $brand-primary;
+}
