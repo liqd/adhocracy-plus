@@ -1,0 +1,105 @@
+.dropdown {
+    position: relative;
+    text-align: left;
+    margin-bottom: $spacer / 2;
+}
+
+.dropdown--right {
+    text-align: right;
+}
+
+.dropdown-toggle {
+    display: inline-block;
+    min-width: 1.4em;
+    text-align: center;
+
+    // the current dropdown-toggle should be above the dropdown-menu shadow
+    .dropdown.show & {
+        position: relative;
+        z-index: 3;
+    }
+
+    i {
+        font-size: 1.25em;
+    }
+
+    .fa-ellipsis-h {
+        vertical-align: middle;
+    }
+
+    .dropdown-item__icon {
+        display: none;
+    }
+}
+
+.dropdown-menu {
+    display: none;
+
+    position: absolute;
+    left: 0;
+    min-width: 100%;
+    width: max-content;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    z-index: 2;
+    background-color: $body-bg;
+    color: contrast-color($body-bg);
+    border: 1px solid $text-color;
+    border-radius: 2px;
+    text-align: left;
+    box-shadow: 0 0 1em $shadow;
+
+    li {
+        display: block;
+    }
+
+    a,
+    button {
+        display: block;
+        width: 100%;
+        padding: 0.5em;
+        color: inherit;
+        border-bottom: 1px solid $text-color;
+        white-space: nowrap;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            background-color: $bg-secondary;
+            color: $brand-primary;
+        }
+
+        i {
+            display: inline-block;
+            width: 1.5em;
+        }
+    }
+
+    li:last-child > a,
+    li:last-child > button {
+        border-bottom: 0;
+    }
+
+    .dropdown--right & {
+        left: auto;
+        right: 0;
+    }
+
+    .dropdown.show & {
+        display: block;
+    }
+
+    img {
+        display: inline-block;
+        height: 1.6em;
+        width: auto;
+        vertical-align: middle;
+        margin-right: 0.6em;
+    }
+
+    @media print {
+        display: none;
+    }
+}

@@ -13,11 +13,19 @@ $brand-danger: #d0011b !default; // $plattform-danger
 $platform-primary: #46caad !default;
 $platform-danger: #d0011b !default;
 
+$gray: #464a4c !default;
+$gray-lighter: #636c72 !default;
+
 $body-bg: #fff !default;
 
 $text-color: #1a1a1a !default;
+$text-color-inverted: $body-bg !default;
+$text-color-gray: #666 !default;
 $text-secondary-color: #666 !default;
 $overlay: rgba(#000, 0.5) !default;
+
+$print-black: #000 !default;
+$print-link: #005cb4 !default;
 
 $brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
 $brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
@@ -38,6 +46,10 @@ $link-hover-color: darken($link-color, 15%) !default;
 $border-color: #666 !default;
 $input-border-color: $border-color !default;
 
+$feedback-color-accepted: #0a820a !default;
+$feedback-color-rejected: #dc3818 !default;
+$feedback-color-consideration: #ffae00 !default;
+
 $font-family-sans-serif: "Libre Franklin", sans-serif !default;
 
 $font-size-xxl: 2.25rem !default;
@@ -46,8 +58,34 @@ $font-size-lg: 1.125rem !default;
 $font-size-sm: 0.8rem !default;
 $font-size-xs: 0.64rem !default;
 
+$shadow: rgba(#000, 0.25) !default;
+
+$spacer: 1em !default;
+$padding: 1rem !default;
+
 $wrapper-width: 79rem !default;
+
+// use for min-width media-queries
+$breakpoint-xs: 32rem !default;
+$breakpoint: 50rem !default;
+$breakpoint-md: 64rem !default;
+$breakpoint-lg: 90rem !default;
+
+// use for max-width media queries
+$breakpoint-xs-down: $breakpoint-xs - 0.1rem !default;
+$breakpoint-down: $breakpoint - 0.1rem !default;  // sm
+$breakpoint-md-down: $breakpoint-md - 0.1rem !default;
+$breakpoint-lg-down: $breakpoint-lg - 0.1rem !default;
 
 $hero-height: 25.5rem !default;
 $hero-height-secondary: 20rem !default;
 $hero-height-mobile: 12rem !default;
+
+@include grid-set('gutter', $padding);
+$planifolia-contrast-dark-default: $text-color;
+$planifolia-contrast-light-default: $text-color-inverted;
+
+$enable-caret: false;
+
+$idea-remark-bg: #faf5d1 !default;
+$idea-remark-color: #999 !default;
