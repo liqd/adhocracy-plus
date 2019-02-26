@@ -1,7 +1,7 @@
 {% load i18n contrib_tags %}
 
 <div class="action action--withdate">
-    <i class="{{ action.icon|fa_class }} action__icon" aria-hidden="true"></i>
+    <i class="fa fa-{{ action.icon }} action__icon" aria-hidden="true"></i>
     <div class="action__main">
         <div class="action__line">
             {% if action.type == 'comment' and action.verb == 'add' %}
@@ -20,11 +20,9 @@
             {% else %}
                 {{ action }}
             {% endif %}
-        </div>
-        <div class="action__line">
             {% blocktrans with url=action.project.get_absolute_url name=action.project.name %}on <a href="{{ url }}">{{ name }}</a>{% endblocktrans %}
         </div>
-        <div class="action__date">
+        <div class="action__line action__date">
             {% html_date action.timestamp 'd.m.Y' class='relative' title=action.timestamp|date:'DATETIME_FORMAT' %}
         </div>
     </div>

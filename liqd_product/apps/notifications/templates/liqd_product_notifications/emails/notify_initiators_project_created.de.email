@@ -1,5 +1,5 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name %}
+{% load verbose_name partner_tags %}
 
 {% block subject %}Neues Projekt {{ project.name }} auf {{ site.name }}{% endblock %}
 
@@ -8,7 +8,7 @@
 {% block content %}{{ creator.username }} hat ein neues Projekt {{ action.project.name }} bei {{ project.organisation.name }} erstellt{% endblock %}
 
 
-{% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
+{% block cta_url %}{% withpartner project.organisation.partner %}{{ email.get_host }}{{ project.get_absolute_url }}{% endwithpartner %}{% endblock %}
 {% block cta_label %}Projekt anzeigen{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie Initiator der Organisation {{ project.organisation.name }} sind. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie Benachrichtigungen in Ihren Benutzerkonto-Einstellungen komplett deaktivieren.{% endblock %}

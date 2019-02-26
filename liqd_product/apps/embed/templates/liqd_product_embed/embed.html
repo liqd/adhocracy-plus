@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Embedded meinBerlin</title>
+    <title>Embedded Beteiligung.in</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="{% static 'vendor.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
@@ -33,7 +33,7 @@
     <main class="embed-main"></main>
     <footer class="embed-footer">
         <a href="/" target="_blank">
-            <img src="{% static 'images/logo_horizontal.svg' %}" alt="mein.berlin" class="embed-footer__logo">
+            Beteiligung.in
         </a>
         {% if not object|is_external %}
             <a href="{{ object.get_absolute_url }}" data-embed-target="external">{% trans 'Go to platform' %}</a>
