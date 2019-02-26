@@ -1,9 +1,9 @@
 import pytest
 
 from adhocracy4.dashboard import components
-from meinberlin.apps.documents.phases import CommentPhase
-from meinberlin.test.helpers import assert_template_response
-from meinberlin.test.helpers import setup_phase
+from liqd_product.apps.documents.phases import CommentPhase
+from tests.helpers import assert_template_response
+from tests.helpers import setup_phase
 
 component = components.modules.get('document_settings')
 
@@ -17,4 +17,4 @@ def test_edit_view(client, phase_factory):
     client.login(username=initiator.email, password='password')
     response = client.get(url)
     assert_template_response(
-        response, 'meinberlin_documents/document_dashboard.html')
+        response, 'liqd_product_documents/document_dashboard.html')

@@ -1,5 +1,5 @@
 from pytest_factoryboy import register
 
-from meinberlin.test.factories import mapideas
+from . import factories
 
-register(mapideas.MapIdeaFactory)
+register(factories.MapIdeaFactory)
