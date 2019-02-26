@@ -72,7 +72,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!a4-meinberlin|adhocracy4|bootstrap)/, // exclude all dependencies but meinberlin, adhocracy4 and bootstrap
+        exclude: /node_modules\/(?!adhocracy4|bootstrap)/, // exclude all dependencies but meinberlin, adhocracy4 and bootstrap
         loader: 'babel-loader',
         options: {
           presets: ['babel-preset-env', 'babel-preset-react'].map(require.resolve)
