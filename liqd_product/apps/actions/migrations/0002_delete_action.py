@@ -6,6 +6,8 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('meinberlin_actions', '0002_delete_action')]
+
     dependencies = [
         ('liqd_product_actions', '0001_initial'),
     ]

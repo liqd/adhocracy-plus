@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_documents', '0003_add_chapter_weight')]
 
     dependencies = [
-        ('liqd_product_documents', '0002_rename_document_to_chapter'),
+        ('liqd_product_documents', '0001_initial'),
     ]
 
     operations = [
