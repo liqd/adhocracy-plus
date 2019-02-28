@@ -64,6 +64,10 @@
                                     {% trans 'Duplicate' %}
                                 </button>
                             </form>
+                            <a href="#" class="dropdown-item u-fontweight-normal" data-toggle="modal" data-target="#project{{ project.pk }}DeleteModal">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                {% trans 'delete' %}
+                            </a>
                         </div>
                     </div>
                 {% endspaceless %}
@@ -72,3 +76,23 @@
         </div>
     </div>
 </li>
+
+<div class="modal fade" id="project{{ project.pk }}DeleteModal" tabindex="-1" role="dialog" aria-labelledby="projectDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="project{{ project.pk }}DeleteModal">{% blocktrans with project_name=project.name %} Are you sure you want to delete the project '{{ project_name }}'? {% endblocktrans %}</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <form action="{% url "project-delete" pk=project.pk partner_slug=project.organisation.partner.slug %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn--primary">{% trans 'delete' %}</button>
+                    <button type="button" class="btn btn--secondary" data-dismiss="modal">{% trans 'cancel' %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
