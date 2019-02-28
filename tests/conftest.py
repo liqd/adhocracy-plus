@@ -34,6 +34,7 @@ register(factories.PhaseFactory)
 register(factories.PhaseContentFactory)
 register(factories.CategoryFactory)
 register(factories.CommentFactory)
+register(factories.ModeratorStatementFactory)
 
 register(a4_factories.ProjectFactory)
 register(a4_factories.ModuleFactory)
