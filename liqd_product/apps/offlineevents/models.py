@@ -31,5 +31,10 @@ class OfflineEvent(UserGeneratedContentModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('liqd_product_offlineevents:offlineevent-detail',
-                       args=[str(self.slug)])
+        return reverse(
+            'liqd_product_offlineevents:offlineevent-detail',
+            kwargs=dict(
+                partner_slug=self.project.organisation.partner.slug,
+                slug=str(self.slug)
+            )
+        )

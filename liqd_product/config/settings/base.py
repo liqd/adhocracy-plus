@@ -92,6 +92,7 @@ INSTALLED_APPS = (
     'liqd_product.apps.account',
     'liqd_product.apps.dashboard',
     'liqd_product.apps.embed',
+    'liqd_product.apps.exports',
     'liqd_product.apps.offlineevents',
     'liqd_product.apps.projects',
 
