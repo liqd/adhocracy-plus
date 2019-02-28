@@ -1,9 +1,9 @@
 import pytest
 
-from meinberlin.apps.documents import phases
-from meinberlin.test.helpers import assert_template_response
-from meinberlin.test.helpers import freeze_phase
-from meinberlin.test.helpers import setup_phase
+from liqd_product.apps.documents import phases
+from tests.helpers import assert_template_response
+from tests.helpers import freeze_phase
+from tests.helpers import setup_phase
 
 
 @pytest.mark.django_db
@@ -14,7 +14,7 @@ def test_document_detail_view(client, phase_factory, chapter_factory, partner):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'meinberlin_documents/chapter_detail.html')
+            response, 'liqd_product_documents/chapter_detail.html')
 
 
 @pytest.mark.django_db
@@ -27,7 +27,7 @@ def test_chapter_detail_view(client, phase_factory, chapter_factory, partner):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'meinberlin_documents/chapter_detail.html')
+            response, 'liqd_product_documents/chapter_detail.html')
 
 
 @pytest.mark.django_db
@@ -40,4 +40,4 @@ def test_paragraph_detail_view(client, phase_factory, chapter_factory,
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'meinberlin_documents/paragraph_detail.html')
+            response, 'liqd_product_documents/paragraph_detail.html')

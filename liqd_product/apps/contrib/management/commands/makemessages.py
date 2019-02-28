@@ -25,15 +25,10 @@ class Command(makemessages.Command):
             settings.BASE_DIR, 'node_modules', 'adhocracy4', 'adhocracy4'
         ))
         a4_paths = super().find_files(get_module_dir('adhocracy4'))
-        mbjs_paths = super().find_files(path.join(
-            settings.BASE_DIR, 'node_modules', 'a4-meinberlin', 'meinberlin'
-        ))
-        mb_paths = super().find_files(get_module_dir('meinberlin'))
 
         liqd_product_paths = super().find_files(
             path.relpath(get_module_dir('liqd_product'))
         )
 
         return a4js_paths + a4_paths + \
-            mbjs_paths + mb_paths + \
             liqd_product_paths

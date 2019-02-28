@@ -11,13 +11,13 @@
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
             <h2>{{ object.name }}</h2>
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.title %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.logo %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.slogan %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.information %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.imprint %}
+            {% include 'liqd_product_contrib/includes/form_field.html' with field=form.title %}
+            {% include 'liqd_product_contrib/includes/form_field.html' with field=form.logo %}
+            {% include 'liqd_product_contrib/includes/form_field.html' with field=form.description %}
+            {% include 'liqd_product_contrib/includes/form_field.html' with field=form.slogan %}
+            {% include 'liqd_product_contrib/includes/form_field.html' with field=form.image %}
+            {% include 'liqd_product_contrib/includes/form_field.html' with field=form.information %}
+            {% include 'liqd_product_contrib/includes/form_field.html' with field=form.imprint %}
 
             <div class="u-spacer-bottom">
                 <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>

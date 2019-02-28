@@ -18,13 +18,13 @@ var ReactRatings = require('adhocracy4').ratings
 var ReactReports = require('adhocracy4').reports
 var ReactFollows = require('adhocracy4').follows
 
-// var ReactDocuments = require('a4-meinberlin/meinberlin/apps/documents/assets/react_documents.jsx')
-// var ReactPolls = require('a4-meinberlin/meinberlin/apps/polls/assets/react_polls.jsx')
-//
-// var relativeTimestamps = require('a4-meinberlin/meinberlin/apps/actions/assets/timestamps.js')
-// var mapAddress = require('a4-meinberlin/meinberlin/assets/js/map-address.js')
-// var remarkpopover = require('a4-meinberlin/meinberlin/apps/moderatorremark/assets/idea_remarks.js')
-// var dynamicFields = require('a4-meinberlin/meinberlin/apps/contrib/assets/dynamic_fields.js')
+var ReactDocuments = require('../../apps/documents/assets/react_documents.jsx')
+var ReactPolls = require('../../apps/polls/assets/react_polls.jsx')
+
+var relativeTimestamps = require('../../apps/actions/assets/timestamps.js')
+var mapAddress = require('../../assets/js/map-address.js')
+var remarkpopover = require('../../apps/moderatorremark/assets/idea_remarks.js')
+var dynamicFields = require('../../apps/contrib/assets/dynamic_fields.js')
 
 // This function is overwritten with custom behavior in embed.js.
 var getCurrentPath = function () {
@@ -43,16 +43,14 @@ var initialiseWidget = function (namespace, name, fn) {
 }
 
 var init = function () {
-  new Shariff($('.shariff'))
-
   initialiseWidget('a4', 'comment', ReactComments.renderComment)
   initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
   initialiseWidget('a4', 'ratings', ReactRatings.renderRatings)
   initialiseWidget('a4', 'reports', ReactReports.renderReports)
 
-  // initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
-  // initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
-  // initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
+  initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
+  initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
+  initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
 }
 
 $(init)

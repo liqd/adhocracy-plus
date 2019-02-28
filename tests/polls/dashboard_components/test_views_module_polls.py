@@ -1,9 +1,9 @@
 import pytest
 
 from adhocracy4.dashboard import components
-from meinberlin.apps.polls.phases import VotingPhase
-from meinberlin.test.helpers import assert_template_response
-from meinberlin.test.helpers import setup_phase
+from liqd_product.apps.polls.phases import VotingPhase
+from tests.helpers import assert_template_response
+from tests.helpers import setup_phase
 
 component = components.modules.get('polls')
 
@@ -17,4 +17,4 @@ def test_edit_view(client, phase_factory):
     client.login(username=initiator.email, password='password')
     response = client.get(url)
     assert_template_response(
-        response, 'meinberlin_polls/poll_dashboard.html')
+        response, 'liqd_product_polls/poll_dashboard.html')

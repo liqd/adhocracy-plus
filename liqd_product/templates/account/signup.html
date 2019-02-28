@@ -14,7 +14,7 @@
         {% csrf_token %}
         {% for field in form %}
             {% if not forloop.last %}
-                {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
+                {% include 'liqd_product_contrib/includes/form_field.html' with field=field %}
             {% endif %}
         {% endfor %}
         <div class="form-check">
