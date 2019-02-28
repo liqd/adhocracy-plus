@@ -93,3 +93,12 @@ class CategoryFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('job')
     module = factory.SubFactory(factories.ModuleFactory)
+
+
+class CommentFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'a4comments.Comment'
+
+    comment = factory.Faker('text')
+    creator = factory.SubFactory(UserFactory)
