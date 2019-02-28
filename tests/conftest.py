@@ -5,7 +5,6 @@ from adhocracy4.test import factories as a4_factories
 from adhocracy4.test.factories.maps import AreaSettingsFactory
 from adhocracy4.test.helpers import patch_background_task_decorator
 from liqd_product.apps.django_overwrites.urlresolvers import patch_reverse
-from meinberlin.test import factories as mb_factories
 
 from . import factories
 from .partners import factories as partner_factories
@@ -29,9 +28,9 @@ register(factories.AdminFactory, 'admin')
 register(factories.OrganisationFactory)
 register(partner_factories.PartnerFactory)
 
-register(mb_factories.PhaseFactory)
-register(mb_factories.PhaseContentFactory)
-register(mb_factories.CategoryFactory)
+register(factories.PhaseFactory)
+register(factories.PhaseContentFactory)
+register(factories.CategoryFactory)
 
 register(a4_factories.ProjectFactory)
 register(a4_factories.ModuleFactory)

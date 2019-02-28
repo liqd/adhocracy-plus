@@ -1,0 +1,20 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Create a new topic' %} &mdash; {{ block.super }}{% endblock %}
+{% block dashboard_project_content %}
+<div class="l-wrapper">
+    <h1 class="u-first-heading">{% trans 'Add a new offline event'%}</h1>
+
+    {% url 'a4dashboard:offlineevent-list' project_slug=project.slug as cancel %}
+    {% include "liqd_product_offlineevents/includes/offlineevent_form.html" with cancel=cancel %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    {{ form.media.js }}
+{% endblock %}
+{% block extra_css %}
+    {{ form.media.css }}
+{% endblock %}

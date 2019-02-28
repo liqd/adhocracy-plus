@@ -41,3 +41,10 @@ def freeze_pre_phase(phase):
 def freeze_post_phase(phase):
     with freeze_time(phase.end_date + timedelta(seconds=1)):
         yield
+
+
+def assert_template_response(response, template_name, status_code=200):
+    assert response.status_code == status_code
+    response_template = response.template_name[0]
+    assert response_template == template_name, \
+        '{} != {}'.format(response_template, template_name)

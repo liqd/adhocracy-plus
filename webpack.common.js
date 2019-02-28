@@ -42,17 +42,17 @@ module.exports = {
       './liqd_product/assets/js/init-picker.js',
       'datepicker/css/datepicker.min.css'
     ],
-    // embed: [
-    //   'a4-meinberlin/meinberlin/assets/js/embed.js'
-    // ],
-    // 'popup-close': [
-    //   'a4-meinberlin/meinberlin/assets/js/popup-close.js'
-    // ],
+    embed: [
+      './liqd_product/assets/js/embed.js'
+    ],
+    'popup-close': [
+      './liqd_product/assets/js/popup-close.js'
+    ],
     'map_choose_polygon_with_preset': [
-      // 'a4-meinberlin/meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js',
+      './liqd_product/apps/maps/assets/map_choose_polygon_with_preset.js',
       'leaflet-draw',
       'leaflet-draw/dist/leaflet.draw.css',
-      // 'a4-meinberlin/meinberlin/assets/js/i18n-leaflet-draw.js',
+      './liqd_product/assets/js/i18n-leaflet-draw.js',
       'file-saver',
       'shpjs'
     ]
@@ -72,7 +72,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!a4-meinberlin|adhocracy4|bootstrap)/, // exclude all dependencies but meinberlin, adhocracy4 and bootstrap
+        exclude: /node_modules\/(?!adhocracy4|bootstrap)/, // exclude all dependencies but adhocracy4 and bootstrap
         loader: 'babel-loader',
         options: {
           presets: ['babel-preset-env', 'babel-preset-react'].map(require.resolve)
