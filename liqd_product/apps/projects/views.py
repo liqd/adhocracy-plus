@@ -9,6 +9,7 @@ from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 from django.views import generic
@@ -360,3 +361,23 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 
     def get_permission_object(self):
         return self.project
+
+
+class ProjectDeleteView(generic.DeleteView,
+                        LoginRequiredMixin):
+    model = project_models.Project
+    permission_required = 'a4projects.change_project'
+    template_name = 'liqd_product_projects/project_confirm_delete.html'
+    success_message = _("Project '%(name)s' was deleted successfully.")
+
+    def get_success_url(self):
+        return reverse_lazy('a4dashboard:project-list',
+                            kwargs={
+                                'organisation_slug':
+                                    self.get_object().organisation.slug}
+                            )
+
+    def delete(self, request, *args, **kwargs):
+        obj = self.get_object()
+        messages.success(self.request, self.success_message % obj.__dict__)
+        return super().delete(request, *args, **kwargs)
