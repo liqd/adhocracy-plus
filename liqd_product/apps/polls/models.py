@@ -1,4 +1,5 @@
 from django.contrib.contenttypes.fields import GenericRelation
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from adhocracy4.comments import models as comment_models
@@ -30,7 +31,13 @@ class Poll(module_models.Item):
                                object_id_field='object_pk')
 
     def get_absolute_url(self):
-        return self.project.get_absolute_url()
+        return reverse(
+            'project-detail',
+            kwargs=dict(
+                partner_slug=self.project.organisation.partner.slug,
+                slug=self.project.slug
+            )
+        )
 
     class Meta:
         db_table = 'meinberlin_polls_poll'
