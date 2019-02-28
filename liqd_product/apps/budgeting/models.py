@@ -28,9 +28,12 @@ class Proposal(mapidea_models.AbstractMapIdea):
     )
 
     def get_absolute_url(self):
-        return reverse('liqd_product_budgeting:proposal-detail',
-                       kwargs=dict(pk='{:05d}'.format(self.pk),
-                                   year=self.created.year))
+        return reverse(
+            'liqd_product_budgeting:proposal-detail',
+            kwargs=dict(
+                partner_slug=self.project.organisation.partner.slug,
+                pk='{:05d}'.format(self.pk),
+                year=self.created.year))
 
     class Meta:
         ordering = ['-created']

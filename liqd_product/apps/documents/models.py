@@ -25,8 +25,13 @@ class Chapter(module_models.Item):
         return "{}_chapter_{}".format(str(self.module), self.pk)
 
     def get_absolute_url(self):
-        return reverse('liqd_product_documents:chapter-detail',
-                       args=[str(self.pk)])
+        return reverse(
+            'liqd_product_documents:chapter-detail',
+            kwargs=dict(
+                partner_slug=self.project.organisation.partner.slug,
+                pk=str(self.pk)
+            )
+        )
 
     @cached_property
     def prev(self):
@@ -69,8 +74,13 @@ class Paragraph(base.TimeStampedModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('liqd_product_documents:paragraph-detail',
-                       args=[str(self.pk)])
+        return reverse(
+            'liqd_product_documents:paragraph-detail',
+            kwargs=dict(
+                partner_slug=self.chapter.project.organisation.partner.slug,
+                pk=str(self.pk)
+            )
+        )
 
     @property
     def creator(self):
