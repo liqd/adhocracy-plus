@@ -1,4 +1,5 @@
 from liqd_product.apps.contrib.emails import Email
+from liqd_product.apps.projects import tasks
 
 
 class InviteParticipantEmail(Email):
@@ -13,3 +14,31 @@ class InviteModeratorEmail(Email):
 
     def get_receivers(self):
         return [self.object.email]
+
+
+class DeleteProjectEmail(Email):
+    template_name = 'liqd_product_projects/emails/delete_project'
+
+    @classmethod
+    def send_no_object(cls, object, *args, **kwargs):
+        organisation = object.organisation
+        object_dict = {
+            'name': object.name,
+            'initiators': list(organisation.initiators.all()
+                               .distinct()
+                               .values_list('email', flat=True)),
+            'organisation': organisation.name
+        }
+        tasks.send_async_no_object(
+            cls.__module__, cls.__name__,
+            object_dict, args, kwargs)
+        return []
+
+    def get_receivers(self):
+        return self.object['initiators']
+
+    def get_context(self):
+        context = super().get_context()
+        context['name'] = self.object['name']
+        context['organisation'] = self.object['organisation']
+        return context
