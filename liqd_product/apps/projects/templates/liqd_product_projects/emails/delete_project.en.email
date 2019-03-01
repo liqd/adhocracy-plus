@@ -1,13 +1,10 @@
 {% extends 'email_base.'|add:part_type %}
 {% load verbose_name partner_tags %}
 
-{% block subject %}Löschung eines Projekts {% endblock %}
+{% block subject %}Deletion of project{% endblock %}
 
-{% block headline %}Löschung des Projekts {{ name }}{% endblock  %}
+{% block headline %}The project {{ name }} was deleted.{% endblock  %}
 
-{% block content %}Das Projekt "{{ name }}" auf der Beteiligungsplattform {{ site.name }} wurde gelöscht.{% endblock  %}
+{% block content %}The project "{{ name }}" on the participation platform {{ site.name }} was deleted.{% endblock  %}
 
-{% block cta_url %}{% endblock %}
-{% block cta_label %}{% endblock %}
-
-{% block reason %}Diese E-Mail wurde an {{ email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie als Initiator*in einer Organisation sind, in der ein Projekt gelöscht wurde.{% endblock %}
+{% block reason %}This email was sent to {{ receiver }}. This email was sent to you because you are an initiator of the '{{ organisation }}', in wich a project was deleted.{% endblock %}
