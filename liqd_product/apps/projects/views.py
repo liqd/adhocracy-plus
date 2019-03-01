@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 from django.views import generic
 from rules.contrib.views import LoginRequiredMixin
+from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.dashboard import signals as a4dashboard_signals
@@ -248,11 +249,11 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
         return self.project
 
 
-class ProjectDeleteView(generic.DeleteView,
-                        LoginRequiredMixin):
+class ProjectDeleteView(PermissionRequiredMixin,
+                        generic.DeleteView):
     model = project_models.Project
-    permission_required = 'a4projects.change_project'
-    template_name = 'liqd_product_projects/project_confirm_delete.html'
+    permission_required = 'liqd_product_projects.delete_project'
+    http_method_names = ['post']
     success_message = _("Project '%(name)s' was deleted successfully.")
 
     def get_success_url(self):
