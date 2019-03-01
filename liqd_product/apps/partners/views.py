@@ -7,6 +7,7 @@ from adhocracy4.actions.models import Action
 from adhocracy4.projects.models import Project
 from adhocracy4.rules import mixins as rules_mixins
 from liqd_product.apps.partners.models import Partner
+from liqd_product.apps.projects import query
 
 from . import forms
 
@@ -19,10 +20,14 @@ class PartnerView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['project_list'] = Project.objects\
+        project_list = Project.objects\
             .filter(organisation__partner=self.object,
                     is_archived=False,
                     is_draft=False)
+        project_list = query.filter_viewable(
+            project_list, self.request.user
+        )
+        context['project_list'] = project_list
 
         context['action_list'] = Action.objects\
             .filter(project__organisation__partner=self.object)\
