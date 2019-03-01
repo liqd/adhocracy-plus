@@ -54,6 +54,7 @@ def get_item_url(item, view, raises=True):
 
     try:
         return reverse(url_name, kwargs={
+            'partner_slug': item.project.organisation.partner.slug,
             'year': item.created.year,
             'pk': '{:05d}'.format(item.pk)
         })
