@@ -1,5 +1,8 @@
+import factory
+import pytest
 from django.urls.base import get_resolver
 from pytest_factoryboy import register
+from rest_framework.test import APIClient
 
 from adhocracy4.test import factories as a4_factories
 from adhocracy4.test.factories.maps import AreaSettingsFactory
@@ -31,7 +34,20 @@ register(partner_factories.PartnerFactory)
 register(factories.PhaseFactory)
 register(factories.PhaseContentFactory)
 register(factories.CategoryFactory)
+register(factories.CommentFactory)
+register(factories.RatingFactory)
+register(factories.ModeratorStatementFactory)
 
 register(a4_factories.ProjectFactory)
 register(a4_factories.ModuleFactory)
 register(AreaSettingsFactory)
+
+
+@pytest.fixture
+def apiclient():
+    return APIClient()
+
+
+@pytest.fixture
+def ImagePNG():
+    return factory.django.ImageField(width=1400, height=1400, format='PNG')

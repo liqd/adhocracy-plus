@@ -93,3 +93,29 @@ class CategoryFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('job')
     module = factory.SubFactory(factories.ModuleFactory)
+
+
+class CommentFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'a4comments.Comment'
+
+    comment = factory.Faker('text')
+    creator = factory.SubFactory(UserFactory)
+
+
+class RatingFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = 'a4ratings.Rating'
+
+    value = 1
+    creator = factory.SubFactory(UserFactory)
+
+
+class ModeratorStatementFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'liqd_product_moderatorfeedback.ModeratorStatement'
+
+    statement = factory.Faker('text')
+    creator = factory.SubFactory(UserFactory)
