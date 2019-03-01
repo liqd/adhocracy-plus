@@ -1,12 +1,7 @@
 import itertools
-from datetime import datetime
 
-import django_filters
-from django.apps import apps
-from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -14,41 +9,18 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 from django.views import generic
 from rules.contrib.views import LoginRequiredMixin
+from rules.contrib.views import PermissionRequiredMixin
 
-from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.dashboard import signals as a4dashboard_signals
-from adhocracy4.filters import views as filter_views
-from adhocracy4.filters import widgets as filters_widgets
-from adhocracy4.filters.filters import DefaultsFilterSet
-from adhocracy4.filters.filters import DistinctOrderingFilter
-from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import ProjectMixin
 
 from . import forms
 from . import models
-from . import query
 
 User = get_user_model()
-
-
-class OrderingWidget(DropdownLinkWidget):
-    label = _('Ordering')
-    right = True
-
-
-class OrganisationWidget(DropdownLinkWidget):
-    label = _('Organisation')
-
-
-class DistrictWidget(DropdownLinkWidget):
-    label = _('District')
-
-
-class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
-    label = _('Search')
 
 
 class ArchivedWidget(DropdownLinkWidget):
@@ -61,92 +33,6 @@ class ArchivedWidget(DropdownLinkWidget):
             ('true', _('Yes')),
         )
         super().__init__(attrs, choices)
-
-
-class YearWidget(DropdownLinkWidget):
-    label = _('Year')
-
-    def __init__(self, attrs=None):
-        choices = (('', _('Any')),)
-        now = datetime.now().year
-        try:
-            first_year = project_models.Project.objects.earliest('created').\
-                created.year
-        except project_models.Project.DoesNotExist:
-            first_year = now
-        for year in range(now, first_year - 1, -1):
-            choices += (year, year),
-        super().__init__(attrs, choices)
-
-
-class ProjectFilterSet(DefaultsFilterSet):
-
-    defaults = {
-        'is_archived': 'false'
-    }
-
-    ordering = DistinctOrderingFilter(
-        choices=(
-            ('-created', _('Most recent')),
-        ),
-        empty_label=None,
-        widget=OrderingWidget,
-    )
-
-    search = FreeTextFilter(
-        widget=FreeTextFilterWidget,
-        fields=['name', 'description',
-                'projectcontainer__projects__name']
-    )
-
-    organisation = django_filters.ModelChoiceFilter(
-        queryset=apps.get_model(settings.A4_ORGANISATIONS_MODEL).objects
-                     .order_by('name'),
-        widget=OrganisationWidget,
-    )
-
-    is_archived = django_filters.BooleanFilter(
-        widget=ArchivedWidget
-    )
-
-    created = django_filters.NumberFilter(
-        name='created',
-        lookup_expr='year',
-        widget=YearWidget,
-    )
-
-    administrative_district = django_filters.ModelChoiceFilter(
-        queryset=AdministrativeDistrict.objects.all(),
-        widget=DistrictWidget
-    )
-
-    class Meta:
-        model = project_models.Project
-        fields = ['search', 'organisation', 'is_archived',
-                  'created', 'administrative_district']
-
-
-class ProjectListView(filter_views.FilteredListView):
-    model = project_models.Project
-    paginate_by = 16
-    filter_set = ProjectFilterSet
-
-    def get_queryset(self):
-        queryset = super().get_queryset()\
-            .filter(
-                # Show only published projects
-                is_draft=False)\
-            .filter(
-                # Do not include archived bplan projects
-                Q(is_archived=False) |
-                Q(externalproject__bplan=None))\
-            .filter(
-                # Do not include projects belonging to containers
-                containers=None)
-        # Show only projects viewable by the current user
-        queryset = query.filter_viewable(queryset, self.request.user)
-        # List every project at most once
-        return queryset.distinct()
 
 
 class ParticipantInviteDetailView(generic.DetailView):
@@ -363,11 +249,11 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
         return self.project
 
 
-class ProjectDeleteView(generic.DeleteView,
-                        LoginRequiredMixin):
+class ProjectDeleteView(PermissionRequiredMixin,
+                        generic.DeleteView):
     model = project_models.Project
-    permission_required = 'a4projects.change_project'
-    template_name = 'liqd_product_projects/project_confirm_delete.html'
+    permission_required = 'liqd_product_projects.delete_project'
+    http_method_names = ['post']
     success_message = _("Project '%(name)s' was deleted successfully.")
 
     def get_success_url(self):
