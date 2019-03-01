@@ -1,0 +1,10 @@
+{% extends 'email_base.'|add:part_type %}
+{% load verbose_name partner_tags %}
+
+{% block subject %}Deletion of project{% endblock %}
+
+{% block headline %}The project {{ name }} was deleted.{% endblock  %}
+
+{% block content %}The project "{{ name }}" on the participation platform {{ site.name }} was deleted.{% endblock  %}
+
+{% block reason %}This email was sent to {{ receiver }}. This email was sent to you because you are an initiator of the '{{ organisation }}', in wich a project was deleted.{% endblock %}
