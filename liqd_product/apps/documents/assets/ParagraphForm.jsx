@@ -121,7 +121,7 @@ class Paragraph extends React.Component {
               onClick={this.props.onDelete}
               title={django.gettext('Delete')}
               type="button">
-              <i className="fas fa-trash-alt"
+              <i className="fa fa-trash"
                 aria-label={django.gettext('Delete')} />
             </button>
           </div>
