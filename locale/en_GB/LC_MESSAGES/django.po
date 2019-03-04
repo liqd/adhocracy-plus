@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-26 14:42+0100\n"
+"POT-Creation-Date: 2019-03-04 11:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -203,7 +203,6 @@ msgstr "We could not find any projects."
 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11 liqd_product/apps/ideas/views.py:26
-#: liqd_product/apps/projects/views.py:50
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:4
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:10
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:11
@@ -399,16 +398,16 @@ msgstr "Areasettings"
 msgid "Edit areasettings"
 msgstr "Edit areasettings"
 
-#: adhocracy4/dashboard/filter.py:15 liqd_product/apps/projects/views.py:54
+#: adhocracy4/dashboard/filter.py:15 liqd_product/apps/projects/views.py:27
 msgid "Archived"
 msgstr "Archived"
 
 #: adhocracy4/dashboard/filter.py:19 adhocracy4/filters/widgets.py:32
-#: liqd_product/apps/projects/views.py:58
+#: liqd_product/apps/projects/views.py:31
 msgid "All"
 msgstr "All"
 
-#: adhocracy4/dashboard/filter.py:20 liqd_product/apps/projects/views.py:59
+#: adhocracy4/dashboard/filter.py:20 liqd_product/apps/projects/views.py:32
 msgid "No"
 msgstr "No"
 
@@ -417,8 +416,7 @@ msgstr "No"
 #: liqd_product/apps/ideas/templates/liqd_product_ideas/idea_confirm_delete.html:13
 #: liqd_product/apps/mapideas/templates/liqd_product_mapideas/mapidea_confirm_delete.html:13
 #: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_confirm_delete.html:12
-#: liqd_product/apps/projects/serializers.py:154
-#: liqd_product/apps/projects/views.py:60
+#: liqd_product/apps/projects/views.py:33
 msgid "Yes"
 msgstr "Yes"
 
@@ -878,32 +876,26 @@ msgid "Add topics to your project."
 msgstr "Add topics to your project."
 
 #: adhocracy4/projects/models.py:295
-#: liqd_product/apps/projects/serializers.py:221
 msgid "day"
 msgstr "day"
 
 #: adhocracy4/projects/models.py:295
-#: liqd_product/apps/projects/serializers.py:221
 msgid "days"
 msgstr "days"
 
 #: adhocracy4/projects/models.py:296
-#: liqd_product/apps/projects/serializers.py:222
 msgid "hour"
 msgstr "hour"
 
 #: adhocracy4/projects/models.py:296
-#: liqd_product/apps/projects/serializers.py:222
 msgid "hours"
 msgstr "hours"
 
 #: adhocracy4/projects/models.py:297
-#: liqd_product/apps/projects/serializers.py:223
 msgid "minute"
 msgstr "minute"
 
 #: adhocracy4/projects/models.py:297
-#: liqd_product/apps/projects/serializers.py:223
 msgid "minutes"
 msgstr "minutes"
 
@@ -1204,7 +1196,6 @@ msgstr "Edit proposal"
 
 #: liqd_product/apps/budgeting/views.py:17 liqd_product/apps/ideas/views.py:30
 #: liqd_product/apps/mapideas/views.py:15
-#: liqd_product/apps/projects/views.py:89
 msgid "Most recent"
 msgstr "Most recent"
 
@@ -1273,7 +1264,6 @@ msgid "You must select a maximum of  %(limit_value)d choices."
 msgstr "You must select a maximum of  %(limit_value)d choices."
 
 #: liqd_product/apps/contrib/filters.py:10
-#: liqd_product/apps/projects/views.py:37
 msgid "Ordering"
 msgstr "Ordering"
 
@@ -1837,7 +1827,7 @@ msgstr "Activity"
 msgid "No activity yet. "
 msgstr "No activity yet. "
 
-#: liqd_product/apps/partners/views.py:61
+#: liqd_product/apps/partners/views.py:66
 msgid "Municipality successfully updated."
 msgstr "Municipality successfully updated."
 
@@ -1850,7 +1840,6 @@ msgid "dearchive"
 msgstr "dearchive"
 
 #: liqd_product/apps/projects/admin.py:64
-#: liqd_product/apps/projects/serializers.py:16
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:39
 msgid "City wide"
 msgstr "City wide"
@@ -1876,12 +1865,12 @@ msgid "Edit topics"
 msgstr "Edit topics"
 
 #: liqd_product/apps/projects/forms.py:48
-#: liqd_product/apps/projects/views.py:352
+#: liqd_product/apps/projects/views.py:239
 msgid "Invite users via email"
 msgstr "Invite users via email"
 
 #: liqd_product/apps/projects/forms.py:53
-#: liqd_product/apps/projects/views.py:353
+#: liqd_product/apps/projects/views.py:240
 msgid "Invite users via file upload"
 msgstr "Invite users via file upload"
 
@@ -1892,31 +1881,6 @@ msgstr "Upload a csv file containing email addresses."
 #: liqd_product/apps/projects/forms.py:71
 msgid "Please enter email addresses or upload a file"
 msgstr "Please enter email addresses or upload a file"
-
-#: liqd_product/apps/projects/serializers.py:85
-#: liqd_product/apps/projects/serializers.py:94
-#: liqd_product/apps/projects/serializers.py:262
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:60
-msgid "running"
-msgstr "running"
-
-#: liqd_product/apps/projects/serializers.py:87
-#: liqd_product/apps/projects/serializers.py:104
-#: liqd_product/apps/projects/serializers.py:292
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:62
-msgid "starts in the future"
-msgstr "starts in the future"
-
-#: liqd_product/apps/projects/serializers.py:89
-#: liqd_product/apps/projects/serializers.py:107
-#: liqd_product/apps/projects/serializers.py:320
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:64
-msgid "done"
-msgstr "done"
-
-#: liqd_product/apps/projects/serializers.py:98
-msgid "starts at {}"
-msgstr "starts at {}"
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_list_tile.html:31
 msgid "Participation possible until"
@@ -1929,6 +1893,18 @@ msgstr "Participation projects: "
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:57
 msgid "Participation: "
 msgstr "Participation: "
+
+#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:60
+msgid "running"
+msgstr "running"
+
+#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:62
+msgid "starts in the future"
+msgstr "starts in the future"
+
+#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:64
+msgid "done"
+msgstr "done"
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:75
 #, python-format
@@ -2130,65 +2106,54 @@ msgstr "Pending Invitations"
 msgid "Edit Participants"
 msgstr "Edit Participants"
 
-#: liqd_product/apps/projects/views.py:42
-msgid "Organisation"
-msgstr "Organisation"
-
-#: liqd_product/apps/projects/views.py:46
-msgid "District"
-msgstr "District"
-
-#: liqd_product/apps/projects/views.py:66
-msgid "Year"
-msgstr "Year"
-
-#: liqd_product/apps/projects/views.py:69
-msgid "Any"
-msgstr "Any"
-
-#: liqd_product/apps/projects/views.py:240
+#: liqd_product/apps/projects/views.py:127
 msgid "Invitation succesfully removed."
 msgstr "Invitation succesfully removed."
 
-#: liqd_product/apps/projects/views.py:281
+#: liqd_product/apps/projects/views.py:168
 msgid "Following users already accepted an invitation: "
 msgstr "Following users already accepted an invitation: "
 
-#: liqd_product/apps/projects/views.py:289
+#: liqd_product/apps/projects/views.py:176
 msgid "Following users are already invited: "
 msgstr "Following users are already invited: "
 
-#: liqd_product/apps/projects/views.py:332
+#: liqd_product/apps/projects/views.py:219
 msgid "Invite moderators via email"
 msgstr "Invite moderators via email"
 
-#: liqd_product/apps/projects/views.py:333
+#: liqd_product/apps/projects/views.py:220
 msgid "Invite moderators via file upload"
 msgstr "Invite moderators via file upload"
 
-#: liqd_product/apps/projects/views.py:334
+#: liqd_product/apps/projects/views.py:221
 msgid "{} moderator invited."
 msgstr "{} moderator invited."
 
-#: liqd_product/apps/projects/views.py:334
+#: liqd_product/apps/projects/views.py:221
 msgid "{} moderators invited."
 msgstr "{} moderators invited."
 
-#: liqd_product/apps/projects/views.py:335
+#: liqd_product/apps/projects/views.py:222
 msgid "Moderator successfully removed."
 msgstr "Moderator successfully removed."
 
-#: liqd_product/apps/projects/views.py:355
+#: liqd_product/apps/projects/views.py:242
 msgid "{} participant invited."
 msgstr "{} participant invited."
 
-#: liqd_product/apps/projects/views.py:356
+#: liqd_product/apps/projects/views.py:243
 msgid "{} participants invited."
 msgstr "{} participants invited."
 
-#: liqd_product/apps/projects/views.py:357
+#: liqd_product/apps/projects/views.py:244
 msgid "Participant successfully removed."
 msgstr "Participant successfully removed."
+
+#: liqd_product/apps/projects/views.py:257
+#, python-format
+msgid "Project '%(name)s' was deleted successfully."
+msgstr "Project '%(name)s' was deleted successfully."
 
 #: liqd_product/apps/users/__init__.py:7
 msgid ""
@@ -2338,115 +2303,115 @@ msgstr "Activities"
 msgid "This user is not active in any projects yet."
 msgstr "This user is not active in any projects yet."
 
-#: liqd_product/config/settings/base.py:398
+#: liqd_product/config/settings/base.py:399
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: liqd_product/config/settings/base.py:399
+#: liqd_product/config/settings/base.py:400
 msgid "Diamond"
 msgstr "Diamond"
 
-#: liqd_product/config/settings/base.py:400
+#: liqd_product/config/settings/base.py:401
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: liqd_product/config/settings/base.py:401
+#: liqd_product/config/settings/base.py:402
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: liqd_product/config/settings/base.py:402
+#: liqd_product/config/settings/base.py:403
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: liqd_product/config/settings/base.py:403
+#: liqd_product/config/settings/base.py:404
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: liqd_product/config/settings/base.py:404
+#: liqd_product/config/settings/base.py:405
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: liqd_product/config/settings/base.py:405
+#: liqd_product/config/settings/base.py:406
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: liqd_product/config/settings/base.py:406
+#: liqd_product/config/settings/base.py:407
 msgid "Star"
 msgstr "Star"
 
-#: liqd_product/config/settings/base.py:407
+#: liqd_product/config/settings/base.py:408
 msgid "Square"
 msgstr "Square"
 
-#: liqd_product/config/settings/base.py:408
+#: liqd_product/config/settings/base.py:409
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: liqd_product/config/settings/base.py:409
+#: liqd_product/config/settings/base.py:410
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: liqd_product/config/settings/base.py:410
+#: liqd_product/config/settings/base.py:411
 msgid "Circle"
 msgstr "Circle"
 
-#: liqd_product/config/settings/base.py:411
+#: liqd_product/config/settings/base.py:412
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: liqd_product/config/settings/base.py:412
+#: liqd_product/config/settings/base.py:413
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: liqd_product/config/settings/base.py:426
+#: liqd_product/config/settings/base.py:427
 msgid "Anti-discrimination"
 msgstr "Anti-discrimination"
 
-#: liqd_product/config/settings/base.py:427
+#: liqd_product/config/settings/base.py:428
 msgid "Work & economy"
 msgstr "Work & economy"
 
-#: liqd_product/config/settings/base.py:428
+#: liqd_product/config/settings/base.py:429
 msgid "Building & living"
 msgstr "Building & living"
 
-#: liqd_product/config/settings/base.py:429
+#: liqd_product/config/settings/base.py:430
 msgid "Education & research"
 msgstr "Education & research"
 
-#: liqd_product/config/settings/base.py:430
+#: liqd_product/config/settings/base.py:431
 msgid "Children, youth & family"
 msgstr "Children, youth & family"
 
-#: liqd_product/config/settings/base.py:431
+#: liqd_product/config/settings/base.py:432
 msgid "Finances"
 msgstr "Finances"
 
-#: liqd_product/config/settings/base.py:432
+#: liqd_product/config/settings/base.py:433
 msgid "Health & sports"
 msgstr "Health & sports"
 
-#: liqd_product/config/settings/base.py:433
+#: liqd_product/config/settings/base.py:434
 msgid "Integration"
 msgstr "Integration"
 
-#: liqd_product/config/settings/base.py:434
+#: liqd_product/config/settings/base.py:435
 msgid "Culture & leisure"
 msgstr "Culture & leisure"
 
-#: liqd_product/config/settings/base.py:435
+#: liqd_product/config/settings/base.py:436
 msgid "Neighborhood & participation"
 msgstr "Neighborhood & participation"
 
-#: liqd_product/config/settings/base.py:436
+#: liqd_product/config/settings/base.py:437
 msgid "Urban development"
 msgstr "Urban development"
 
-#: liqd_product/config/settings/base.py:437
+#: liqd_product/config/settings/base.py:438
 msgid "Environment & public green space"
 msgstr "Environment & public green space"
 
-#: liqd_product/config/settings/base.py:438
+#: liqd_product/config/settings/base.py:439
 msgid "Traffic"
 msgstr "Traffic"
 
@@ -2493,6 +2458,20 @@ msgstr "Municipality settings"
 #: liqd_product/templates/a4dashboard/includes/project_list_item.html:54
 msgid "more"
 msgstr "more"
+
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:69
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:92
+msgid "delete"
+msgstr "delete"
+
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:84
+#, python-format
+msgid " Are you sure you want to delete the project '%(project_name)s'? "
+msgstr " Are you sure you want to delete the project '%(project_name)s'? "
+
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:93
+msgid "cancel"
+msgstr "cancel"
 
 #: liqd_product/templates/a4images/image_upload_widget.html:29
 msgid ""
@@ -2734,6 +2713,21 @@ msgstr "Beteiligen"
 #: liqd_product/templates/header.html:44
 msgid "Menu"
 msgstr "Menu"
+
+#~ msgid "starts at {}"
+#~ msgstr "starts at {}"
+
+#~ msgid "Organisation"
+#~ msgstr "Organisation"
+
+#~ msgid "District"
+#~ msgstr "District"
+
+#~ msgid "Year"
+#~ msgstr "Year"
+
+#~ msgid "Any"
+#~ msgstr "Any"
 
 #~ msgid ""
 #~ "Phone number must be entered in the format: '+999999999'. Up to 15 digits "
