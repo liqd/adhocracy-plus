@@ -62,6 +62,14 @@
         width: 100%;
         padding: 0.5em;
     }
+
+    @media screen and (max-width: $breakpoint - 0.1rem) {
+        // overwrite link style on mobile
+        li :hover {
+            background-color: $bg-secondary;
+            color: $brand-primary;
+        }
+    }
 }
 
 .main-header__mobile-menu--platform {
