@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-26 14:42+0100\n"
+"POT-Creation-Date: 2019-03-04 11:44+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -239,7 +239,7 @@ msgstr "Wir konnten keine Projekte finden."
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: liqd_product/apps/ideas/views.py:26 liqd_product/apps/projects/views.py:50
+#: liqd_product/apps/ideas/views.py:26
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:4
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:10
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:11
@@ -386,7 +386,7 @@ msgstr "Vom Moderator gelöscht"
 
 #: adhocracy4/comments/serializers.py:49
 msgid "Please choose a category"
-msgstr ""
+msgstr "Bitte wählen Sie eine Kategorie"
 
 #: adhocracy4/comments/serializers.py:58
 msgid "unknown user"
@@ -454,18 +454,18 @@ msgid "Edit areasettings"
 msgstr "Kartenbereich bearbeiten"
 
 #: adhocracy4/dashboard/filter.py:15
-#: liqd_product/apps/projects/views.py:54
+#: liqd_product/apps/projects/views.py:27
 msgid "Archived"
 msgstr "Archiviert"
 
 #: adhocracy4/dashboard/filter.py:19
 #: adhocracy4/filters/widgets.py:32
-#: liqd_product/apps/projects/views.py:58
+#: liqd_product/apps/projects/views.py:31
 msgid "All"
 msgstr "Alle"
 
 #: adhocracy4/dashboard/filter.py:20
-#: liqd_product/apps/projects/views.py:59
+#: liqd_product/apps/projects/views.py:32
 msgid "No"
 msgstr "Nein"
 
@@ -474,8 +474,7 @@ msgstr "Nein"
 #: liqd_product/apps/ideas/templates/liqd_product_ideas/idea_confirm_delete.html:13
 #: liqd_product/apps/mapideas/templates/liqd_product_mapideas/mapidea_confirm_delete.html:13
 #: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_confirm_delete.html:12
-#: liqd_product/apps/projects/serializers.py:154
-#: liqd_product/apps/projects/views.py:60
+#: liqd_product/apps/projects/views.py:33
 msgid "Yes"
 msgstr "Ja"
 
@@ -797,7 +796,7 @@ msgstr "Projekt"
 #: adhocracy4/projects/admin.py:47
 #: liqd_product/apps/projects/admin.py:42
 msgid "Information and result"
-msgstr ""
+msgstr "Informationen und Ergebnis"
 
 #: adhocracy4/projects/admin.py:50
 #: liqd_product/apps/partners/templates/partner_form.html:4
@@ -808,7 +807,7 @@ msgstr "Einstellungen"
 #: adhocracy4/projects/admin.py:55
 #: liqd_product/apps/projects/admin.py:50
 msgid "Images"
-msgstr ""
+msgstr "Bilder"
 
 #: adhocracy4/projects/admin.py:60
 #: liqd_product/apps/projects/admin.py:55
@@ -818,7 +817,7 @@ msgstr "Kontakt"
 #: adhocracy4/projects/admin.py:65
 #: liqd_product/apps/projects/admin.py:39
 msgid "Topic and location"
-msgstr ""
+msgstr "Thema und Ort"
 
 #: adhocracy4/projects/models.py:37
 msgid ""
@@ -838,7 +837,7 @@ msgstr "Kontaktperson"
 
 #: adhocracy4/projects/models.py:72
 msgid "Can your project be located on the map?"
-msgstr ""
+msgstr "Kann Ihr Projekt auf der Karte verortet werden?"
 
 #: adhocracy4/projects/models.py:73
 msgid ""
@@ -848,7 +847,7 @@ msgstr ""
 
 #: adhocracy4/projects/models.py:84
 msgid "Administrative district"
-msgstr ""
+msgstr "Bezirk"
 
 #: adhocracy4/projects/models.py:94
 msgid "Title of your project"
@@ -949,41 +948,37 @@ msgstr ""
 
 #: adhocracy4/projects/models.py:173
 msgid "Project topics"
-msgstr ""
+msgstr "Projektthemen"
 
 #: adhocracy4/projects/models.py:174
 msgid "Add topics to your project."
 msgstr ""
+"Bitte ordnen Sie Ihrem Projekt 1-2 Themenfelder zu. Ihr Projekt kann in der "
+"Projektübersicht nach diesen Themen gefiltert werden."
 
 #: adhocracy4/projects/models.py:295
-#: liqd_product/apps/projects/serializers.py:221
 msgid "day"
-msgstr ""
+msgstr "Tag"
 
 #: adhocracy4/projects/models.py:295
-#: liqd_product/apps/projects/serializers.py:221
 msgid "days"
-msgstr ""
+msgstr "Tage"
 
 #: adhocracy4/projects/models.py:296
-#: liqd_product/apps/projects/serializers.py:222
 msgid "hour"
-msgstr ""
+msgstr "Stunde"
 
 #: adhocracy4/projects/models.py:296
-#: liqd_product/apps/projects/serializers.py:222
 msgid "hours"
-msgstr ""
+msgstr "Stunden"
 
 #: adhocracy4/projects/models.py:297
-#: liqd_product/apps/projects/serializers.py:223
 msgid "minute"
-msgstr ""
+msgstr "Minute"
 
 #: adhocracy4/projects/models.py:297
-#: liqd_product/apps/projects/serializers.py:223
 msgid "minutes"
-msgstr ""
+msgstr "Minuten"
 
 #: adhocracy4/projects/templatetags/project_tags.py:12
 #, python-format
@@ -1286,7 +1281,6 @@ msgstr "Vorschlag bearbeiten"
 
 #: liqd_product/apps/budgeting/views.py:17 liqd_product/apps/ideas/views.py:30
 #: liqd_product/apps/mapideas/views.py:15
-#: liqd_product/apps/projects/views.py:89
 msgid "Most recent"
 msgstr "am aktuellsten"
 
@@ -1306,31 +1300,33 @@ msgstr "Ihr Vorschlag wurde gelöscht"
 
 #: liqd_product/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
-msgstr ""
+msgstr "Sie haben sich abgemeldet."
 
 #: liqd_product/apps/contrib/django_standard_messages.py:7
 msgid "Verify Your E-mail Address"
-msgstr ""
+msgstr "Bestätigen Sie Ihre E-Mail-Adresse"
 
 #: liqd_product/apps/contrib/django_standard_messages.py:8
 msgid "You must type the same password each time."
-msgstr ""
+msgstr "Sie müssen zweimal das selbe Passwort eingeben."
 
 #: liqd_product/apps/contrib/django_standard_messages.py:9
 #, python-format
 msgid "You have confirmed %(email)s."
-msgstr ""
+msgstr "Sie haben die Adresse %(email)s bestätigt."
 
 #: liqd_product/apps/contrib/django_standard_messages.py:10
 #, python-format
 msgid "You cannot remove your primary e-mail address (%(email)s)."
-msgstr ""
+msgstr "Sie können Ihre primäre E-Mail-Adresse (%(email)s) nicht löschen."
 
 #: liqd_product/apps/contrib/django_standard_messages.py:11
 msgid ""
 "We have sent you an e-mail. Please contact us if you do not receive it "
 "within a few minutes."
 msgstr ""
+"Wir haben Ihnen eine E-Mail geschickt. Bitte kontaktieren Sie uns, wenn Sie "
+"diese nicht in ein paar Minuten erhalten haben."
 
 #: liqd_product/apps/contrib/django_standard_messages.py:13
 msgid ""
@@ -1338,19 +1334,22 @@ msgid ""
 "finalize the signup process. Please contact us if you do not receive it "
 "within a few minutes."
 msgstr ""
+"Wir haben Ihnen eine E-Mail geschickt, um Ihre Adresse zu verifizieren. "
+"Bitte folgen Sie dem Link in der E-Mail um den Anmeldeprozess abzuschließen. "
+"Bitte kontaktieren Sie uns, falls die E-Mail nicht in ein paar Minuten "
+"angekommen ist."
 
 #: liqd_product/apps/contrib/django_standard_messages.py:16
 #, python-format
 msgid "You must select a minimum of  %(limit_value)d choices."
-msgstr ""
+msgstr "Bitte wählen Sie mindestens %(limit_value)d Felder aus."
 
 #: liqd_product/apps/contrib/django_standard_messages.py:17
 #, python-format
 msgid "You must select a maximum of  %(limit_value)d choices."
-msgstr ""
+msgstr "Sie können max. %(limit_value)d Felder auswählen."
 
 #: liqd_product/apps/contrib/filters.py:10
-#: liqd_product/apps/projects/views.py:37
 msgid "Ordering"
 msgstr "Sortierung"
 
@@ -1928,86 +1927,52 @@ msgstr "Aktivitäten"
 msgid "No activity yet. "
 msgstr "Noch keine Aktivität."
 
-#: liqd_product/apps/partners/views.py:61
+#: liqd_product/apps/partners/views.py:66
 msgid "Municipality successfully updated."
 msgstr "Kommune erfolgreich aktualisiert."
 
 #: liqd_product/apps/projects/admin.py:11
 msgid "archive"
-msgstr ""
+msgstr "archivieren"
 
 #: liqd_product/apps/projects/admin.py:18
 msgid "dearchive"
-msgstr ""
+msgstr "unarchivieren"
 
 #: liqd_product/apps/projects/admin.py:64
-#: liqd_product/apps/projects/serializers.py:16
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:39
 msgid "City wide"
-msgstr ""
+msgstr "Gesamtstädtisch"
 
-#: liqd_product/apps/projects/dashboard.py:15
+#: liqd_product/apps/projects/dashboard.py:13
 #: liqd_product/apps/projects/templates/liqd_product_projects/project_participants.html:4
 #: liqd_product/apps/projects/templates/liqd_product_projects/project_participants.html:12
 msgid "Participants"
 msgstr "Teilnehmer*innen"
 
-#: liqd_product/apps/projects/dashboard.py:36
+#: liqd_product/apps/projects/dashboard.py:34
 #: liqd_product/apps/projects/templates/liqd_product_projects/project_moderators.html:4
 #: liqd_product/apps/projects/templates/liqd_product_projects/project_moderators.html:12
 msgid "Moderators"
 msgstr "Moderator*innen"
 
-#: liqd_product/apps/projects/dashboard.py:57
-msgid "Topics"
-msgstr "Themen"
-
-#: liqd_product/apps/projects/dashboard.py:59
-msgid "Edit topics"
-msgstr ""
-
-#: liqd_product/apps/projects/forms.py:48
-#: liqd_product/apps/projects/views.py:352
+#: liqd_product/apps/projects/forms.py:46
+#: liqd_product/apps/projects/views.py:239
 msgid "Invite users via email"
 msgstr "Nutzer*innen via E-Mail einladen"
 
-#: liqd_product/apps/projects/forms.py:53
-#: liqd_product/apps/projects/views.py:353
+#: liqd_product/apps/projects/forms.py:51
+#: liqd_product/apps/projects/views.py:240
 msgid "Invite users via file upload"
 msgstr "Nutzer*innen aus Datei einladen"
 
-#: liqd_product/apps/projects/forms.py:54
+#: liqd_product/apps/projects/forms.py:52
 msgid "Upload a csv file containing email addresses."
 msgstr "Laden Sie eine CSV-Datei hoch, die E-Mail Adressen beinhaltet."
 
-#: liqd_product/apps/projects/forms.py:71
+#: liqd_product/apps/projects/forms.py:69
 msgid "Please enter email addresses or upload a file"
 msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
-
-#: liqd_product/apps/projects/serializers.py:85
-#: liqd_product/apps/projects/serializers.py:94
-#: liqd_product/apps/projects/serializers.py:262
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:60
-msgid "running"
-msgstr "laufend"
-
-#: liqd_product/apps/projects/serializers.py:87
-#: liqd_product/apps/projects/serializers.py:104
-#: liqd_product/apps/projects/serializers.py:292
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:62
-msgid "starts in the future"
-msgstr ""
-
-#: liqd_product/apps/projects/serializers.py:89
-#: liqd_product/apps/projects/serializers.py:107
-#: liqd_product/apps/projects/serializers.py:320
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:64
-msgid "done"
-msgstr ""
-
-#: liqd_product/apps/projects/serializers.py:98
-msgid "starts at {}"
-msgstr "started am {}"
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_list_tile.html:31
 msgid "Participation possible until"
@@ -2015,25 +1980,37 @@ msgstr "Beteiligung möglich bis"
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:51
 msgid "Participation projects: "
-msgstr ""
+msgstr "Beteiligungsprojekte: "
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:57
 msgid "Participation: "
-msgstr ""
+msgstr "Beteiligung: "
+
+#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:60
+msgid "running"
+msgstr "laufend"
+
+#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:62
+msgid "starts in the future"
+msgstr "startet in der Zukunft"
+
+#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:64
+msgid "done"
+msgstr "abgeschlossen"
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:75
 #, python-format
 msgid "remaining %(time_left)s"
-msgstr ""
+msgstr "noch %(time_left)s"
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:81
 #, python-format
 msgid "Participation: starts on %(date)s"
-msgstr ""
+msgstr "Beteiligung: startet am %(date)s"
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_tile.html:86
 msgid "Participation ended. Read result"
-msgstr ""
+msgstr "Beteiligung beendet. Ergebnis lesen."
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_invite_list.html:9
 #: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_invite_list.html:21
@@ -2157,12 +2134,14 @@ msgstr "Projekt: %(project)s"
 #: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_detail.html:8
 #, python-format
 msgid "Do you want to take part in \"%(project)s\"?"
-msgstr ""
+msgstr "Teilnahme am Projekt %(project)s"
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_detail.html:11
 msgid ""
 "For this you need an account. Please login with your account or register."
 msgstr ""
+"Hierzu benötigen Sie ein Konto. Bitte melden Sie sich mit Ihrem meinBerlin-"
+"Konto an oder registrieren Sie sich neu."
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_form.html:8
 #, python-format
@@ -2189,7 +2168,7 @@ msgstr "Dieses Projekt ist noch nicht veröffentlicht."
 #: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:45
 #, python-format
 msgid "to project collection %(name)s"
-msgstr ""
+msgstr "zur Projektsammlung %(name)s"
 
 #: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:89
 msgid "Participation"
@@ -2212,66 +2191,55 @@ msgstr "Ausstehende Einladungen"
 msgid "Edit Participants"
 msgstr "Teilnehmer*innen bearbeiten"
 
-#: liqd_product/apps/projects/views.py:42
-msgid "Organisation"
-msgstr "Organisation"
-
-#: liqd_product/apps/projects/views.py:46
-msgid "District"
-msgstr "Bezirk"
-
-#: liqd_product/apps/projects/views.py:66
-msgid "Year"
-msgstr "Jahr"
-
-#: liqd_product/apps/projects/views.py:69
-msgid "Any"
-msgstr "Alle"
-
-#: liqd_product/apps/projects/views.py:240
+#: liqd_product/apps/projects/views.py:127
 msgid "Invitation succesfully removed."
 msgstr "Einladung erfolgreich entfernt."
 
-#: liqd_product/apps/projects/views.py:281
+#: liqd_product/apps/projects/views.py:168
 msgid "Following users already accepted an invitation: "
 msgstr ""
 "Die folgenden Nutzerinnen und Nutzer haben bereits eine Einladung angenommen:"
 
-#: liqd_product/apps/projects/views.py:289
+#: liqd_product/apps/projects/views.py:176
 msgid "Following users are already invited: "
 msgstr "Die folgenden Nutzerinnen und Nutzer wurden bereits eingeladen:"
 
-#: liqd_product/apps/projects/views.py:332
+#: liqd_product/apps/projects/views.py:219
 msgid "Invite moderators via email"
 msgstr "Moderator*innen via E-Mail einladen"
 
-#: liqd_product/apps/projects/views.py:333
+#: liqd_product/apps/projects/views.py:220
 msgid "Invite moderators via file upload"
 msgstr "Moderator*innen aus Datei einladen"
 
-#: liqd_product/apps/projects/views.py:334
+#: liqd_product/apps/projects/views.py:221
 msgid "{} moderator invited."
-msgstr ""
+msgstr "{} Moderator*in eingeladen."
 
-#: liqd_product/apps/projects/views.py:334
+#: liqd_product/apps/projects/views.py:221
 msgid "{} moderators invited."
-msgstr ""
+msgstr "{} Moderator*innen eingeladen."
 
-#: liqd_product/apps/projects/views.py:335
+#: liqd_product/apps/projects/views.py:222
 msgid "Moderator successfully removed."
 msgstr "Moderator*in erfolgreich entfernt."
 
-#: liqd_product/apps/projects/views.py:355
+#: liqd_product/apps/projects/views.py:242
 msgid "{} participant invited."
-msgstr ""
+msgstr "{} Teilnehmer*in eingeladen"
 
-#: liqd_product/apps/projects/views.py:356
+#: liqd_product/apps/projects/views.py:243
 msgid "{} participants invited."
-msgstr ""
+msgstr "{} Teilnehmer*innen eingeladen"
 
-#: liqd_product/apps/projects/views.py:357
+#: liqd_product/apps/projects/views.py:244
 msgid "Participant successfully removed."
 msgstr "Teilnehmer*in erfolgreich entfernt."
+
+#: liqd_product/apps/projects/views.py:257
+#, python-format
+msgid "Project '%(name)s' was deleted successfully."
+msgstr "Das Projekt '%(name)s' wurde erfolgreich gelöscht."
 
 #: liqd_product/apps/users/__init__.py:7
 msgid ""
@@ -2426,117 +2394,117 @@ msgstr "Aktivitäten"
 msgid "This user is not active in any projects yet."
 msgstr "Dise Nutzer*in ist bislang noch in keinem Projekt aktiv."
 
-#: liqd_product/config/settings/base.py:398
+#: liqd_product/config/settings/base.py:399
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: liqd_product/config/settings/base.py:399
+#: liqd_product/config/settings/base.py:400
 msgid "Diamond"
 msgstr "Diamant"
 
-#: liqd_product/config/settings/base.py:400
+#: liqd_product/config/settings/base.py:401
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: liqd_product/config/settings/base.py:401
+#: liqd_product/config/settings/base.py:402
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: liqd_product/config/settings/base.py:402
+#: liqd_product/config/settings/base.py:403
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: liqd_product/config/settings/base.py:403
+#: liqd_product/config/settings/base.py:404
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: liqd_product/config/settings/base.py:404
+#: liqd_product/config/settings/base.py:405
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: liqd_product/config/settings/base.py:405
+#: liqd_product/config/settings/base.py:406
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: liqd_product/config/settings/base.py:406
+#: liqd_product/config/settings/base.py:407
 msgid "Star"
 msgstr "Stern"
 
-#: liqd_product/config/settings/base.py:407
+#: liqd_product/config/settings/base.py:408
 msgid "Square"
 msgstr "Quadrat"
 
-#: liqd_product/config/settings/base.py:408
+#: liqd_product/config/settings/base.py:409
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: liqd_product/config/settings/base.py:409
+#: liqd_product/config/settings/base.py:410
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: liqd_product/config/settings/base.py:410
+#: liqd_product/config/settings/base.py:411
 msgid "Circle"
 msgstr "Kreis"
 
-#: liqd_product/config/settings/base.py:411
+#: liqd_product/config/settings/base.py:412
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: liqd_product/config/settings/base.py:412
+#: liqd_product/config/settings/base.py:413
 msgid "Zigzag"
 msgstr "ZickZack"
 
-#: liqd_product/config/settings/base.py:426
-msgid "Anti-discrimination"
-msgstr ""
-
 #: liqd_product/config/settings/base.py:427
-msgid "Work & economy"
-msgstr ""
+msgid "Anti-discrimination"
+msgstr "Antidiskriminierung"
 
 #: liqd_product/config/settings/base.py:428
-msgid "Building & living"
-msgstr ""
+msgid "Work & economy"
+msgstr "Arbeit & Wirtschaft"
 
 #: liqd_product/config/settings/base.py:429
-msgid "Education & research"
-msgstr ""
+msgid "Building & living"
+msgstr "Bauen & Wohnen"
 
 #: liqd_product/config/settings/base.py:430
-msgid "Children, youth & family"
-msgstr ""
+msgid "Education & research"
+msgstr "Bildung & Forschung"
 
 #: liqd_product/config/settings/base.py:431
-msgid "Finances"
-msgstr ""
+msgid "Children, youth & family"
+msgstr "Kinder, Jugend & Familie"
 
 #: liqd_product/config/settings/base.py:432
-msgid "Health & sports"
-msgstr ""
+msgid "Finances"
+msgstr "Finanzen"
 
 #: liqd_product/config/settings/base.py:433
-msgid "Integration"
-msgstr ""
+msgid "Health & sports"
+msgstr "Gesundheit & Sport"
 
 #: liqd_product/config/settings/base.py:434
-msgid "Culture & leisure"
-msgstr ""
+msgid "Integration"
+msgstr "Integration"
 
 #: liqd_product/config/settings/base.py:435
-msgid "Neighborhood & participation"
-msgstr ""
+msgid "Culture & leisure"
+msgstr "Kultur & Freizeit"
 
 #: liqd_product/config/settings/base.py:436
-msgid "Urban development"
-msgstr ""
+msgid "Neighborhood & participation"
+msgstr "Nachbarschaft & Teilhabe"
 
 #: liqd_product/config/settings/base.py:437
-msgid "Environment & public green space"
-msgstr ""
+msgid "Urban development"
+msgstr "Stadtentwicklung"
 
 #: liqd_product/config/settings/base.py:438
+msgid "Environment & public green space"
+msgstr "Umwelt & Grünflächen"
+
+#: liqd_product/config/settings/base.py:439
 msgid "Traffic"
-msgstr ""
+msgstr "Verkehr"
 
 #: liqd_product/templates/403.html:7
 msgid "You are not allowed to access this page."
@@ -2548,7 +2516,7 @@ msgstr "Diese Seite konnte nicht gefunden werden."
 
 #: liqd_product/templates/500.html:4
 msgid "Beteiligung.in"
-msgstr ""
+msgstr "Beteiligung.in"
 
 #: liqd_product/templates/500.html:24
 msgid "Internal server error."
@@ -2581,6 +2549,20 @@ msgstr "Kommune bearbeiten"
 #: liqd_product/templates/a4dashboard/includes/project_list_item.html:54
 msgid "more"
 msgstr "mehr"
+
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:69
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:92
+msgid "delete"
+msgstr "Löschen"
+
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:84
+#, python-format
+msgid " Are you sure you want to delete the project '%(project_name)s'? "
+msgstr " Sind Sie sicher dass Sie das Projekt '%(project_name)s' löschen wollen?"
+
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:93
+msgid "cancel"
+msgstr "Abbrechen"
 
 #: liqd_product/templates/a4images/image_upload_widget.html:29
 msgid ""
@@ -2821,6 +2803,24 @@ msgstr "Beteiligen"
 #: liqd_product/templates/header.html:44
 msgid "Menu"
 msgstr "Menü"
+
+#~ msgid "Topics"
+#~ msgstr "Themen"
+
+#~ msgid "starts at {}"
+#~ msgstr "started am {}"
+
+#~ msgid "Organisation"
+#~ msgstr "Organisation"
+
+#~ msgid "District"
+#~ msgstr "Bezirk"
+
+#~ msgid "Year"
+#~ msgstr "Jahr"
+
+#~ msgid "Any"
+#~ msgstr "Alle"
 
 #~ msgid ""
 #~ "Phone number must be entered in the format: '+999999999'. Up to 15 digits "
