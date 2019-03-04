@@ -35,6 +35,6 @@ class Config(AppConfig):
         configure_icon('far fa-comment', type='comment')
         configure_icon('far fa-lightbulb', type='item')
         configure_icon('fas fa-plus', verb=Verbs.ADD)
-        configure_icon('fas fa-pencil-alt', verb=Verbs.UPDATE)
+        configure_icon('fas fa-pencil', verb=Verbs.UPDATE)
         configure_icon('fas fa-flag', verb=Verbs.START)
-        configure_icon('far fa-clock', verb=Verbs.SCHEDULE)
+        configure_icon('far fa-clock-o', verb=Verbs.SCHEDULE)

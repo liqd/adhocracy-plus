@@ -53,7 +53,7 @@
                     <span>{{ project.projectcontainer.total_project_count }}</span>
                     <br />
                     <span class="maplist-item__status">
-                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        <i class="fas fa-clock-o" aria-hidden="true"></i>
                         {% trans 'Participation: ' %}
                     </span>
                     {% if project.projectcontainer.active_project_count > 0 %}
@@ -71,13 +71,13 @@
                             <span class="status-bar__active-fill" style="width: {{ project.active_phase_progress }}%"></span>
                         </div>
                         <span class="maplist-item__status">
-                            <i class="fas fa-clock" aria-hidden="true"></i>
+                            <i class="fas fa-clock-o" aria-hidden="true"></i>
                         {% blocktrans with time_left=project.time_left %}remaining {{ time_left }}{% endblocktrans %}
                         </span>
                     </div>
                     {% elif project.future_phases %}
                     <div class="status-item status__future">
-                        <span class="maplist-item__status"><i class="fas fa-clock"  aria-hidden="true"></i>{% html_date project.future_phases.first.start_date 'd.m.Y' as start_date %}
+                        <span class="maplist-item__status"><i class="fas fa-clock-o"  aria-hidden="true"></i>{% html_date project.future_phases.first.start_date 'd.m.Y' as start_date %}
                         {% blocktrans with date=start_date %}Participation: starts on {{ date }}{% endblocktrans %}
                         </span>
                     </div>
