@@ -212,7 +212,7 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
     template_name = 'liqd_product_projects/project_moderators.html'
-    permission_required = 'a4projects.change_project'
+    permission_required = 'liqd_product_projects.change_project'
     menu_item = 'project'
 
     related_users_field = 'moderators'
@@ -232,7 +232,7 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
     template_name = 'liqd_product_projects/project_participants.html'
-    permission_required = 'a4projects.change_project'
+    permission_required = 'liqd_product_projects.change_project'
     menu_item = 'project'
 
     related_users_field = 'participants'
