@@ -13,7 +13,6 @@ from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.dashboard import signals as a4dashboard_signals
-from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import ProjectMixin
 
@@ -21,18 +20,6 @@ from . import forms
 from . import models
 
 User = get_user_model()
-
-
-class ArchivedWidget(DropdownLinkWidget):
-    label = _('Archived')
-
-    def __init__(self, attrs=None):
-        choices = (
-            ('', _('All')),
-            ('false', _('No')),
-            ('true', _('Yes')),
-        )
-        super().__init__(attrs, choices)
 
 
 class ParticipantInviteDetailView(generic.DetailView):
