@@ -20,13 +20,11 @@
 
 <body data-url="{{ object.get_absolute_url }}">
     <header class="embed-header">
-        {% if not object|is_external %}
-            {% if request.user.is_anonymous %}
-                <a href="{% url 'account_login' %}" class="btn btn--light">{% trans 'Login' %}</a>
-            {% else %}
-                {% trans 'You are logged in as ' %} {{ request.user.username }}
-                <a href="{% url 'account_logout' %}" class="js-embed-logout btn btn--light" target="_blank">{% trans 'Logout' %}</a>
-            {% endif %}
+        {% if request.user.is_anonymous %}
+            <a href="{% url 'account_login' %}" class="btn btn--light">{% trans 'Login' %}</a>
+        {% else %}
+            {% trans 'You are logged in as ' %} {{ request.user.username }}
+            <a href="{% url 'account_logout' %}" class="js-embed-logout btn btn--light" target="_blank">{% trans 'Logout' %}</a>
         {% endif %}
         <div id="embed-status" class="embed-status"></div>
     </header>
@@ -35,9 +33,7 @@
         <a href="/" target="_blank">
             Beteiligung.in
         </a>
-        {% if not object|is_external %}
-            <a href="{{ object.get_absolute_url }}" data-embed-target="external">{% trans 'Go to platform' %}</a>
-        {% endif %}
+        <a href="{{ object.get_absolute_url }}" data-embed-target="external">{% trans 'Go to platform' %}</a>
     </footer>
     <div id="embed-confirm" class="modal" tabindex="-1" role="dialog" aria-label="{% trans 'Confirm login' %}" aria-hidden="true">
         <div class="modal-dialog">
