@@ -4,10 +4,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
+from adhocracy4.filters.widgets import DropdownLinkWidget
 from liqd_product.apps.contrib import filters
 from liqd_product.apps.exports.views import DashboardExportView
 from liqd_product.apps.ideas import views as idea_views
-from liqd_product.apps.projects.views import ArchivedWidget
 
 from . import forms
 from . import models
@@ -19,6 +19,18 @@ def get_ordering_choices(view):
         choices += ('-positive_rating_count', _('Most popular')),
     choices += ('-comment_count', _('Most commented')),
     return choices
+
+
+class ArchivedWidget(DropdownLinkWidget):
+    label = _('Archived')
+
+    def __init__(self, attrs=None):
+        choices = (
+            ('', _('All')),
+            ('false', _('No')),
+            ('true', _('Yes')),
+        )
+        super().__init__(attrs, choices)
 
 
 class ProposalFilterSet(a4_filters.DefaultsFilterSet):

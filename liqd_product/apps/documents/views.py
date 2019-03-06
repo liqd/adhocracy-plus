@@ -17,7 +17,7 @@ class DocumentDashboardView(ProjectMixin,
                             dashboard_mixins.DashboardComponentMixin,
                             generic.TemplateView):
     template_name = 'liqd_product_documents/document_dashboard.html'
-    permission_required = 'a4projects.change_project'
+    permission_required = 'liqd_product_projects.change_project'
 
     def get_permission_object(self):
         return self.project
