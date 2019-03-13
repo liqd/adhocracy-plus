@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('slug', autoslug.fields.AutoSlugField(unique=True, populate_from='name', editable=False)),
                 ('name', models.CharField(max_length=512)),
                 ('initiators', models.ManyToManyField(to=settings.AUTH_USER_MODEL, blank=True)),
-                ('partner', models.ForeignKey(to='liqd_product_partners.Partner')),
+                ('partner', models.ForeignKey(to='liqd_product_partners.Partner', on_delete=models.CASCADE)),
             ],
         ),
     ]

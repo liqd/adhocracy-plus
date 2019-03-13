@@ -38,19 +38,19 @@ INSTALLED_APPS = (
     'background_task',
 
     # Wagtail cms components
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
     'wagtail.contrib.settings',
-    'wagtail.wagtailforms',
-    'wagtail.wagtailredirects',
-    'wagtail.wagtailembeds',
-    'wagtail.wagtailsites',
-    'wagtail.wagtailusers',
-    'wagtail.wagtailsnippets',
-    'wagtail.wagtaildocs',
-    'wagtail.wagtailimages',
-    'wagtail.wagtailsearch',
-    'wagtail.wagtailadmin',
-    'wagtail.wagtailcore',
-    'wagtail.contrib.wagtailstyleguide',
+    'wagtail.contrib.styleguide',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.core',
     'modelcluster',
     'taggit',
     'liqd_product.apps.cms.pages',
@@ -119,8 +119,8 @@ MIDDLEWARE = (
 
     'liqd_product.apps.partners.middleware.PartnerMiddleware',
     'liqd_product.apps.embed.middleware.AjaxPathMiddleware',
-    'wagtail.wagtailcore.middleware.SiteMiddleware',
-    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 
 SITE_ID = 1

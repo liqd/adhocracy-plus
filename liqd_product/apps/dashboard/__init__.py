@@ -1,5 +1,5 @@
-from adhocracy4.dashboard import components
 from adhocracy4.dashboard import ProjectDashboard
+from adhocracy4.dashboard import components
 
 default_app_config = 'liqd_product.apps.dashboard.apps.Config'
 
