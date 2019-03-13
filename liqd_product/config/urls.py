@@ -9,8 +9,8 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from django.views.i18n import javascript_catalog
 from rest_framework import routers
-from wagtail.contrib.wagtailsitemaps import views as wagtail_sitemap_views
-from wagtail.contrib.wagtailsitemaps.sitemap_generator import \
+from wagtail.contrib.sitemaps import views as wagtail_sitemap_views
+from wagtail.contrib.sitemaps.sitemap_generator import \
     Sitemap as WagtailSitemap
 
 from adhocracy4.api import routers as a4routers
@@ -65,8 +65,8 @@ sitemaps = {
 
 urlpatterns = [
     # General platform urls
-    url(r'^django-admin/', include(admin.site.urls)),
-    url(r'^admin/', include('wagtail.wagtailadmin.urls')),
+    url(r'^django-admin/', admin.site.urls),
+    url(r'^admin/', include('wagtail.admin.urls')),
 
     url(r'^accounts/', include('allauth.urls')),
     url(r'^account/', include('liqd_product.apps.account.urls')),
@@ -118,7 +118,7 @@ urlpatterns = [
         content_type="text/plain"), name="robots_file"),
 
     url(r'', include('liqd_product.apps.partners.urls')),
-    url(r'', include('wagtail.wagtailcore.urls'))
+    url(r'', include('wagtail.core.urls'))
 ]
 
 

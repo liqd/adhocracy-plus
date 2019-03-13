@@ -57,7 +57,7 @@ class Question(models.Model):
     objects = QuestionQuerySet.as_manager()
 
     def user_choices_list(self, user):
-        if not user.is_authenticated():
+        if not user.is_authenticated:
             return []
 
         return self.choices\
