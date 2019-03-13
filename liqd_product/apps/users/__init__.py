@@ -1,6 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
 
-
 default_app_config = 'liqd_product.apps.users.apps.Config'
 
 USERNAME_REGEX = r'^[\w]+[ \w.@+-]*$'
