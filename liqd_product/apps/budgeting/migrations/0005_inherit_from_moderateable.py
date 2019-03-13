@@ -23,6 +23,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='proposal',
             name='moderator_statement',
-            field=models.OneToOneField(null=True, related_name='+', to='liqd_product_moderatorfeedback.ModeratorStatement'),
+            field=models.OneToOneField(null=True, related_name='+', to='liqd_product_moderatorfeedback.ModeratorStatement', on_delete=models.CASCADE),
         ),
     ]
