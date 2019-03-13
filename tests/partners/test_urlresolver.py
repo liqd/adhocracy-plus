@@ -8,8 +8,8 @@ from liqd_product.apps.partners.urlresolvers import partner_patterns
 from liqd_product.apps.partners.urlresolvers import reverse
 
 base_urlconf = [
-    url('^static/', page_not_found, name='static-url'),
-    url('^dynamic/(?P<pk>\d+)/', page_not_found, name='dynamic-url'),
+    url(r'^static/', page_not_found, name='static-url'),
+    url(r'^dynamic/(?P<pk>\d+)/', page_not_found, name='dynamic-url'),
 ]
 
 
