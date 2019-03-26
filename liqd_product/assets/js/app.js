@@ -5,9 +5,7 @@
 var $ = window.jQuery = window.$ = require('jquery')
 window.Tether = require('tether/dist/js/tether.js')
 
-require('shariff')
-var Shariff = window.Shariff
-
+// load bootstrap components
 require('bootstrap')
 
 var django = require('django')
@@ -22,7 +20,7 @@ var ReactDocuments = require('../../apps/documents/assets/react_documents.jsx')
 var ReactPolls = require('../../apps/polls/assets/react_polls.jsx')
 
 var relativeTimestamps = require('../../apps/actions/assets/timestamps.js')
-var mapAddress = require('../../assets/js/map-address.js')
+var mapAddress = require('./map-address.js')
 var remarkpopover = require('../../apps/moderatorremark/assets/idea_remarks.js')
 var dynamicFields = require('../../apps/contrib/assets/dynamic_fields.js')
 
@@ -43,10 +41,6 @@ var initialiseWidget = function (namespace, name, fn) {
 }
 
 var init = function () {
-  new Shariff($('.shariff'), {
-    services: '[&quot;twitter&quot;,&quot;facebook&quot;,&quot;info&quot;]'
-  })
-
   initialiseWidget('a4', 'comment', ReactComments.renderComment)
   initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
   initialiseWidget('a4', 'ratings', ReactRatings.renderRatings)
@@ -63,3 +57,8 @@ $(document).on('a4.embed.ready', init)
 module.exports = {
   'getCurrentPath': getCurrentPath
 }
+
+// Closes bootstrap collapse on click elsewhere
+$(document).on('click', function () {
+  $('.collapse').collapse('hide')
+})

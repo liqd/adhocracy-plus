@@ -1,8 +1,6 @@
-var MiniCssExtractPlugin = require('mini-css-extract-plugin')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var webpack = require('webpack')
-var path = require('path')
-var autoprefixer = require('autoprefixer')
+const webpack = require('webpack')
+const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -15,15 +13,12 @@ module.exports = {
     ],
     vendor: [
       'classnames',
-      'jquery',
       'js-cookie',
-      'line-awesome/dist/css/line-awesome-font-awesome.css',
+      'line-awesome/css/line-awesome.min.css',
       'react',
       'immutability-helper',
       'react-dom',
       'react-flip-move',
-      'shariff/dist/shariff.complete.js',
-      'shariff/dist/shariff.min.css',
       'typeface-libre-franklin'
     ],
     leaflet: [
@@ -34,13 +29,6 @@ module.exports = {
       'leaflet/dist/leaflet.css',
       'leaflet.markercluster',
       'leaflet.markercluster/dist/MarkerCluster.css'
-    ],
-    'mapboxgl': [
-      'mapbox-gl/dist/mapbox-gl.js'
-    ],
-    datepicker: [
-      './liqd_product/assets/js/init-picker.js',
-      'datepicker/css/datepicker.min.css'
     ],
     embed: [
       './liqd_product/assets/js/embed.js'
@@ -57,7 +45,6 @@ module.exports = {
       'shpjs'
     ]
   },
-  devtool: 'eval',
   output: {
     libraryTarget: 'this',
     library: '[name]',
@@ -80,29 +67,6 @@ module.exports = {
         }
       },
       {
-        test: /\.s?css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: (loader) => [
-                autoprefixer()
-              ]
-            }
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
-      },
-      {
         test: /(fonts|files)\/.*\.(svg|woff2?|ttf|eot|otf)(\?.*)?$/,
         loader: 'file-loader',
         options: {
@@ -122,7 +86,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
       'jquery$': 'jquery/dist/jquery.min.js',
-      'shariff$': 'shariff/dist/shariff.complete.js'
+      'shariff$': 'shariff/dist/shariff.min.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.
@@ -132,15 +96,13 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      timeago: 'timeago.js'
+      timeago: 'timeago.js',
+      $: 'jquery',
+      jQuery: 'jquery'
     }),
     new webpack.optimize.SplitChunksPlugin({
       name: 'vendor',
       filename: 'vendor.js'
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css'
     }),
     new CopyWebpackPlugin([
       {
