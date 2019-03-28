@@ -31,6 +31,10 @@ module.exports = {
       'leaflet.markercluster',
       'leaflet.markercluster/dist/MarkerCluster.css'
     ],
+    datepicker: [
+      './liqd_product/assets/js/init-picker.js',
+      'datepicker/css/datepicker.min.css'
+    ],
     embed: [
       './liqd_product/assets/js/embed.js'
     ],
