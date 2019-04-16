@@ -444,3 +444,9 @@ CONTACT_EMAIL = 'support-beteiligung@liqd.net'
 # The default language is used for emails and strings
 # that are stored translated to the database.
 DEFAULT_LANGUAGE = 'de'
+
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    'default': {
+        'WIDGET': 'wagtail.admin.rich_text.HalloRichTextArea'
+    }
+}
