@@ -14,8 +14,11 @@ module.exports = {
     ],
     vendor: [
       'classnames',
+      '@fortawesome/fontawesome-free/scss/fontawesome.scss',
+      '@fortawesome/fontawesome-free/scss/brands.scss',
+      '@fortawesome/fontawesome-free/scss/regular.scss',
+      '@fortawesome/fontawesome-free/scss/solid.scss',
       'js-cookie',
-      'line-awesome/css/line-awesome.min.css',
       'react',
       'immutability-helper',
       'react-dom',
