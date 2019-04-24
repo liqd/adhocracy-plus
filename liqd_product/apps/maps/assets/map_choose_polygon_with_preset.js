@@ -1,26 +1,9 @@
 /* global django */
-
-const $ = require('jquery')
-// const L = require('leaflet')
-const FileSaver = require('file-saver')
-const shp = require('shpjs')
-
-function createMap (L, baseurl, usevectormap, attribution, e) {
-  const map = new L.Map(e, { scrollWheelZoom: false, zoomControl: true, minZoom: 2 })
-
-  if (usevectormap === '1') {
-    L.mapboxGL({
-      accessToken: 'no-token',
-      style: baseurl
-    }).addTo(map)
-  } else {
-    var basemap = baseurl + '{z}/{x}/{y}.png'
-    var baselayer = L.tileLayer(basemap, { attribution: attribution })
-    baselayer.addTo(map)
-  }
-
-  return map
-}
+import { createMap } from 'a4maps_common'
+import 'leaflet-draw'
+import '../../../assets/js/i18n-leaflet-draw'
+import { FileSaver } from 'file-saver'
+import { shp } from 'shpjs'
 
 function getBaseBounds (L, polygon, bbox) {
   if (polygon) {
@@ -33,11 +16,8 @@ function getBaseBounds (L, polygon, bbox) {
   }
 }
 
-(function (init) {
-  $(init)
-  $(document).on('a4.embed.ready', init)
-})(function () {
-  // Prevent from including leaflet in this bundle
+var init = function () {
+  const $ = window.jQuery
   const L = window.L
 
   const ImportControl = L.Control.extend({
@@ -197,11 +177,17 @@ function getBaseBounds (L, polygon, bbox) {
     const name = e.getAttribute('data-name')
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const bbox = JSON.parse(e.getAttribute('data-bbox'))
-    const baseurl = e.getAttribute('data-baseurl')
-    const usevectormap = e.getAttribute('data-usevectormap')
-    const attribution = e.getAttribute('data-attribution')
 
-    const map = createMap(L, baseurl, usevectormap, attribution, e)
+    const map = createMap(L, e, {
+      baseUrl: e.getAttribute('data-baseurl'),
+      useVectorMap: e.getAttribute('data-usevectormap'),
+      attribution: e.getAttribute('data-attribution'),
+      mapboxToken: e.getAttribute('data-mapbox-token'),
+      omtToken: e.getAttribute('data-omt-token'),
+      dragging: true,
+      scrollWheelZoom: false,
+      zoomControl: true,
+      minZoom: 2 })
 
     const polygonStyle = {
       'color': '#0076ae',
@@ -299,4 +285,7 @@ function getBaseBounds (L, polygon, bbox) {
       }
     })
   })
-})
+}
+
+window.jQuery(init)
+window.jQuery(document).on('a4.embed.ready', init)
