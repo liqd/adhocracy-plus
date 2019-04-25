@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const autoprefixer = require('autoprefixer')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -25,14 +26,27 @@ module.exports = {
       'react-flip-move',
       'typeface-libre-franklin'
     ],
-    leaflet: [
-      'leaflet',
-      'mapbox-gl-leaflet',
-      'mapbox-gl/dist/mapbox-gl.js',
-      'mapbox-gl/dist/mapbox-gl.css',
+    a4maps_display_point: [
       'leaflet/dist/leaflet.css',
-      'leaflet.markercluster',
-      'leaflet.markercluster/dist/MarkerCluster.css'
+      'mapbox-gl/dist/mapbox-gl.css',
+      'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_point.js'
+    ],
+    a4maps_display_points: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'leaflet.markercluster/dist/MarkerCluster.css',
+      'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_points.js'
+    ],
+    a4maps_choose_point: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_point.js'
+    ],
+    a4maps_choose_polygon: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'leaflet-draw/dist/leaflet.draw.css',
+      './liqd_product/apps/maps/assets/map_choose_polygon_with_preset.js'
     ],
     datepicker: [
       './liqd_product/assets/js/init-picker.js',
@@ -43,14 +57,6 @@ module.exports = {
     ],
     'popup-close': [
       './liqd_product/assets/js/popup-close.js'
-    ],
-    'map_choose_polygon_with_preset': [
-      './liqd_product/apps/maps/assets/map_choose_polygon_with_preset.js',
-      'leaflet-draw',
-      'leaflet-draw/dist/leaflet.draw.css',
-      './liqd_product/assets/js/i18n-leaflet-draw.js',
-      'file-saver',
-      'shpjs'
     ]
   },
   output: {
@@ -77,9 +83,24 @@ module.exports = {
       {
         test: /\.s?css$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: (loader) => [
+                autoprefixer({ browsers: ['last 3 versions', 'ie >= 11'] })
+              ]
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       },
       {
@@ -102,7 +123,8 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
       'jquery$': 'jquery/dist/jquery.min.js',
-      'shariff$': 'shariff/dist/shariff.min.js'
+      'shpjs$': 'shpjs/dist/shp.min.js',
+      'a4maps_common$': 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_common.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.

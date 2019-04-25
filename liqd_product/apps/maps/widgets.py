@@ -12,13 +12,11 @@ class MapChoosePolygonWithPresetWidget(Widget):
 
     class Media:
         js = (
-            'leaflet.js',
-            'map_choose_polygon_with_preset.js'
+            'a4maps_choose_polygon.js',
         )
 
         css = {'all': [
-            'leaflet.css',
-            'map_choose_polygon_with_preset.css'
+            'a4maps_choose_polygon.css'
         ]}
 
     def get_presets(self, category):
@@ -37,13 +35,24 @@ class MapChoosePolygonWithPresetWidget(Widget):
         ]
 
         use_vector_map = 0
+        mapbox_token = ''
+        omt_token = ''
+
         if (hasattr(settings, 'A4_USE_VECTORMAP') and
                 settings.A4_USE_VECTORMAP):
             use_vector_map = 1
 
+        if hasattr(settings, 'A4_MAPBOX_TOKEN'):
+            mapbox_token = settings.A4_MAPBOX_TOKEN
+
+        if hasattr(settings, 'A4_OPENMAPTILES_TOKEN'):
+            omt_token = settings.A4_OPENMAPTILES_TOKEN
+
         context = {
             'baseurl': settings.A4_MAP_BASEURL,
             'usevectormap': use_vector_map,
+            'mapbox_token': mapbox_token,
+            'omt_token': omt_token,
             'attribution': settings.A4_MAP_ATTRIBUTION,
             'bbox': json.dumps(settings.A4_MAP_BOUNDING_BOX),
             'name': name,
