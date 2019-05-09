@@ -54,6 +54,9 @@ var init = function () {
 $(init)
 $(document).on('a4.embed.ready', init)
 
+// ugly hack to make ckeditor work with whitenoise
+window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'
+
 module.exports = {
   'getCurrentPath': getCurrentPath
 }
