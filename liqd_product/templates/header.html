@@ -22,7 +22,7 @@
                     <ul class="main-header__partner-nav">
                         <li class="main-header__partner-nav__item">
                             {% url 'partner' partner_slug=PARTNER.slug as partner_url %}
-                            <a href="{{ partner_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_url %}is-active{% endif %}">{% trans 'Beteiligen' %}</span></a>
+                            <a href="{{ partner_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_url %}is-active{% endif %}">{% trans 'Participate' %}</span></a>
                         </li>
                         {% if PARTNER.information %}
                         <li class="main-header__partner-nav__item">
