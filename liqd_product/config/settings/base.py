@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = (
 
     # Watch out this needs to be included first
-    'liqd_product.apps.django_overwrites',
+    'apps.django_overwrites',
 
     'django.contrib.sites',
     'django.contrib.admin',
@@ -53,8 +53,8 @@ INSTALLED_APPS = (
     'wagtail.core',
     'modelcluster',
     'taggit',
-    'liqd_product.apps.cms.pages',
-    'liqd_product.apps.cms.settings',
+    'apps.cms.pages',
+    'apps.cms.settings',
 
     # General adhocracy 4 components
     'adhocracy4.actions',
@@ -78,31 +78,31 @@ INSTALLED_APPS = (
     'adhocracy4.rules',
 
     # General components that define models or helpers
-    'liqd_product.apps.actions',
-    'liqd_product.apps.contrib',
-    'liqd_product.apps.maps',
-    'liqd_product.apps.moderatorfeedback',
-    'liqd_product.apps.moderatorremark',
-    'liqd_product.apps.notifications',
-    'liqd_product.apps.organisations',
-    'liqd_product.apps.partners',
-    'liqd_product.apps.users',
+    'apps.actions',
+    'apps.contrib',
+    'apps.maps',
+    'apps.moderatorfeedback',
+    'apps.moderatorremark',
+    'apps.notifications',
+    'apps.organisations',
+    'apps.partners',
+    'apps.users',
 
     # General apps containing views
-    'liqd_product.apps.account',
-    'liqd_product.apps.dashboard',
-    'liqd_product.apps.embed',
-    'liqd_product.apps.exports',
-    'liqd_product.apps.offlineevents',
-    'liqd_product.apps.projects',
+    'apps.account',
+    'apps.dashboard',
+    'apps.embed',
+    'apps.exports',
+    'apps.offlineevents',
+    'apps.projects',
 
     # Apps defining phases
-    'liqd_product.apps.activities',
-    'liqd_product.apps.budgeting',
-    'liqd_product.apps.documents',
-    'liqd_product.apps.ideas',
-    'liqd_product.apps.mapideas',
-    'liqd_product.apps.polls',
+    'apps.activities',
+    'apps.budgeting',
+    'apps.documents',
+    'apps.ideas',
+    'apps.mapideas',
+    'apps.polls',
 )
 
 MIDDLEWARE = (
@@ -118,8 +118,8 @@ MIDDLEWARE = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 
-    'liqd_product.apps.partners.middleware.PartnerMiddleware',
-    'liqd_product.apps.embed.middleware.AjaxPathMiddleware',
+    'apps.partners.middleware.PartnerMiddleware',
+    'apps.embed.middleware.AjaxPathMiddleware',
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
@@ -151,7 +151,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'liqd_product.config.wsgi.application'
 
-REVERSE_METHOD = 'liqd_product.apps.partners.urlresolvers.reverse'
+REVERSE_METHOD = 'apps.partners.urlresolvers.reverse'
 
 
 # Database
@@ -238,7 +238,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-ACCOUNT_ADAPTER = 'liqd_product.apps.users.adapters.AccountAdapter'
+ACCOUNT_ADAPTER = 'apps.users.adapters.AccountAdapter'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_EMAIL_REQUIRED = True
@@ -248,7 +248,7 @@ ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 10
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
-ACCOUNT_SIGNUP_FORM_CLASS = 'liqd_product.apps.users.forms.TermsSignupForm'
+ACCOUNT_SIGNUP_FORM_CLASS = 'apps.users.forms.TermsSignupForm'
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_URL = 'account_login'
@@ -425,8 +425,8 @@ A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenSt
 A4_MAP_BOUNDING_BOX = ([[54.983, 15.016], [47.302, 5.988]])
 
 A4_DASHBOARD = {
-    'PROJECT_DASHBOARD_CLASS': 'liqd_product.apps.dashboard.ProjectDashboard',
-    'BLUEPRINTS': 'liqd_product.apps.dashboard.blueprints.blueprints'
+    'PROJECT_DASHBOARD_CLASS': 'apps.dashboard.ProjectDashboard',
+    'BLUEPRINTS': 'apps.dashboard.blueprints.blueprints'
 }
 
 A4_PROJECT_TOPICS = (
