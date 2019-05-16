@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_activities', '0002_use_collapsible_ck_for_description')]
 
     dependencies = [
-        ('liqd_product_activities', '0001_initial'),
+        ('a4_candy_activities', '0001_initial'),
     ]
 
     operations = [
