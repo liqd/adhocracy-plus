@@ -13,7 +13,7 @@
         {{ form.non_field_errors }}
         {% csrf_token %}
         {% for field in form %}
-            {% if not forloop.last %}
+            {% if field is not form.terms_of_use and field is not form.get_newsletters %}
                 {% include 'liqd_product_contrib/includes/form_field.html' with field=field %}
             {% endif %}
         {% endfor %}
@@ -25,6 +25,15 @@
                 {% endblocktrans %}
             </label>
             {{ form.terms_of_use.errors }}
+        </div>
+        <div class="form-check">
+            <label class="form-check__label">
+                {{ form.get_newsletters }}
+                {% blocktrans %}
+                Send me newsletters
+                {% endblocktrans %}
+            </label>
+            {{ form.get_newsletters.errors }}
         </div>
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
