@@ -3,7 +3,7 @@ from django.apps import AppConfig
 
 class Config(AppConfig):
     name = 'apps.actions'
-    label = 'liqd_product_actions'
+    label = 'a4_candy_actions'
 
     def ready(self):
         from adhocracy4.actions.models import configure_icon

@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_actions', '0002_delete_action')]
 
     dependencies = [
-        ('liqd_product_actions', '0001_initial'),
+        ('a4_candy_actions', '0001_initial'),
     ]
 
     operations = [

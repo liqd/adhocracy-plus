@@ -38,7 +38,7 @@
                 <h2 class="aside__block__title heading3">{% trans 'Activity' %}</h2>
                 <div>
                     {% for action in action_list %}
-                        {% include 'liqd_product_actions/includes/action.html' with action=action %}
+                        {% include 'a4_candy_actions/includes/action.html' with action=action %}
                     {% empty %}
                         {% trans 'No activity yet. '%}
                     {% endfor %}
