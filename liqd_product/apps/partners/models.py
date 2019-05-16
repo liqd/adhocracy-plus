@@ -19,13 +19,13 @@ class Partner(models.Model):
     )
     description = models.CharField(
         max_length=400,
-        verbose_name=_('Short description of your municipality'),
+        verbose_name=_('Short description of your organisation'),
         help_text=_('max. 400 characters')
     )
     logo = images_fields.ConfiguredImageField(
         'logo',
         verbose_name=_('Logo'),
-        help_prefix=_('The Logo representing your municipality'),
+        help_prefix=_('The Logo representing your organisation'),
         upload_to='partners/logos',
         blank=True
     )
@@ -46,7 +46,7 @@ class Partner(models.Model):
     )
     information = RichTextUploadingField(
         config_name='image-editor',
-        verbose_name=_('Information about your municipality'),
+        verbose_name=_('Information about your organisation'),
         blank=True
     )
     imprint = RichTextField(
