@@ -28,6 +28,3 @@ class Activity(module_models.Item):
         self.description = html_transforms.clean_html_field(
             self.description, 'collapsible-image-editor')
         super().save(*args, **kwargs)
-
-    class Meta:
-        db_table = 'meinberlin_activities_activity'
