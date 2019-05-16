@@ -354,7 +354,7 @@ A4_RATEABLES = (
     ('a4comments', 'comment'),
     ('liqd_product_ideas', 'idea'),
     ('liqd_product_mapideas', 'mapidea'),
-    ('liqd_product_budgeting', 'proposal'),
+    ('a4_candy_budgeting', 'proposal'),
 )
 
 A4_COMMENTABLES = (
@@ -363,7 +363,7 @@ A4_COMMENTABLES = (
     ('liqd_product_documents', 'chapter'),
     ('liqd_product_documents', 'paragraph'),
     ('liqd_product_mapideas', 'mapidea'),
-    ('liqd_product_budgeting', 'proposal'),
+    ('a4_candy_budgeting', 'proposal'),
     ('liqd_product_polls', 'poll'),
 )
 
@@ -371,13 +371,13 @@ A4_REPORTABLES = (
     ('a4comments', 'comment'),
     ('liqd_product_ideas', 'idea'),
     ('liqd_product_mapideas', 'mapidea'),
-    ('liqd_product_budgeting', 'proposal'),
+    ('a4_candy_budgeting', 'proposal'),
 )
 
 A4_ACTIONABLES = (
     ('a4comments', 'comment'),
     ('liqd_product_ideas', 'idea'),
-    ('liqd_product_budgeting', 'proposal'),
+    ('a4_candy_budgeting', 'proposal'),
     ('liqd_product_mapideas', 'mapidea'),
 )
 
@@ -392,13 +392,13 @@ A4_AUTO_FOLLOWABLES = (
 A4_CATEGORIZABLE = (
     ('liqd_product_ideas', 'idea'),
     ('liqd_product_mapideas', 'mapidea'),
-    ('liqd_product_budgeting', 'proposal'),
+    ('a4_candy_budgeting', 'proposal'),
 )
 
 A4_LABELS_ADDABLE = (
     ('liqd_product_ideas', 'idea'),
     ('liqd_product_mapideas', 'mapidea'),
-    ('liqd_product_budgeting', 'proposal'),
+    ('a4_candy_budgeting', 'proposal'),
 )
 
 A4_CATEGORY_ICONS = (

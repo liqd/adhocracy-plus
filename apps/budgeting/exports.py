@@ -25,7 +25,7 @@ class ProposalExportView(PermissionRequiredMixin,
     model = models.Proposal
     fields = ['name', 'description', 'budget']
     html_fields = ['description']
-    permission_required = 'liqd_product_budgeting.moderate_proposal'
+    permission_required = 'a4_candy_budgeting.moderate_proposal'
 
     def get_permission_object(self):
         return self.module
@@ -53,7 +53,7 @@ class ProposalCommentExportView(PermissionRequiredMixin,
     model = Comment
 
     fields = ['id', 'comment', 'created']
-    permission_required = 'liqd_product_budgeting.moderate_proposal'
+    permission_required = 'a4_candy_budgeting.moderate_proposal'
 
     def get_permission_object(self):
         return self.module

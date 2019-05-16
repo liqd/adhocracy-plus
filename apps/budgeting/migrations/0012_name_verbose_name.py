@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_budgeting', '0012_name_verbose_name')]
 
     dependencies = [
-        ('liqd_product_budgeting', '0011_allow_blank'),
+        ('a4_candy_budgeting', '0011_allow_blank'),
     ]
 
     operations = [

@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(blank=True, editable=False, null=True)),
-                ('proposal', models.OneToOneField(serialize=False, related_name='moderator_statement', to='liqd_product_budgeting.Proposal', primary_key=True, on_delete=models.CASCADE)),
+                ('proposal', models.OneToOneField(serialize=False, related_name='moderator_statement', to='a4_candy_budgeting.Proposal', primary_key=True, on_delete=models.CASCADE)),
                 ('statement', ckeditor.fields.RichTextField(blank=True)),
                 ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],

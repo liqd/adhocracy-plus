@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_budgeting', '0015_proposal_image')]
 
     dependencies = [
-        ('liqd_product_budgeting', '0014_proposal_is_archived'),
+        ('a4_candy_budgeting', '0014_proposal_is_archived'),
     ]
 
     operations = [

@@ -109,7 +109,7 @@ urlpatterns = [
         url(r'^text/', include('apps.documents.urls',
                                namespace='liqd_product_documents')),
         url(r'^budgeting/', include('apps.budgeting.urls',
-                                    namespace='liqd_product_budgeting')),
+                                    namespace='a4_candy_budgeting')),
     ),
 
     url(r'^sitemap\.xml$', wagtail_sitemap_views.index,

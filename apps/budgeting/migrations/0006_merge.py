@@ -9,8 +9,8 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_budgeting', '0006_merge')]
 
     dependencies = [
-        ('liqd_product_budgeting', '0005_inherit_from_moderateable'),
-        ('liqd_product_budgeting', '0004_use_explicit_item_ptr'),
+        ('a4_candy_budgeting', '0005_inherit_from_moderateable'),
+        ('a4_candy_budgeting', '0004_use_explicit_item_ptr'),
     ]
 
     operations = [
