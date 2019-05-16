@@ -107,6 +107,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -170,7 +171,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'de-DE'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Berlin'
 
