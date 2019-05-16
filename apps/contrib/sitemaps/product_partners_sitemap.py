@@ -1,6 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 
-from liqd_product.apps.partners.models import Partner
+from apps.partners.models import Partner
 
 
 class ProductPartnersSitemap(Sitemap):

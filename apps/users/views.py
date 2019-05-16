@@ -2,7 +2,7 @@ from django.views.generic.detail import DetailView
 
 from adhocracy4.actions.models import Action
 from adhocracy4.projects.models import Project
-from liqd_product.apps.partners.models import Partner
+from apps.partners.models import Partner
 
 from . import models
 

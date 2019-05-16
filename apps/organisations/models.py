@@ -2,7 +2,7 @@ from autoslug import AutoSlugField
 from django.conf import settings
 from django.db import models
 
-from liqd_product.apps.partners.models import Partner
+from apps.partners.models import Partner
 
 
 class Organisation(models.Model):

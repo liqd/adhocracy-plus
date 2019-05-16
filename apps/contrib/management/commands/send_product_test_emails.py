@@ -11,9 +11,9 @@ from adhocracy4.emails.mixins import SyncEmailMixin
 from adhocracy4.projects.models import Project
 from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
-from liqd_product.apps.ideas.models import Idea
-from liqd_product.apps.notifications import emails as notification_emails
-from liqd_product.apps.projects import models as project_models
+from apps.ideas.models import Idea
+from apps.notifications import emails as notification_emails
+from apps.projects import models as project_models
 
 User = get_user_model()
 

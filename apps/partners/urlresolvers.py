@@ -5,7 +5,7 @@ from django.conf.urls import RegexURLResolver
 from django.conf.urls import include
 from django.conf.urls import url
 
-from liqd_product.apps.django_overwrites.urlresolvers import django_reverse
+from apps.django_overwrites.urlresolvers import django_reverse
 
 from . import get_partner
 

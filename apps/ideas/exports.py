@@ -4,7 +4,7 @@ from rules.contrib.views import PermissionRequiredMixin
 from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins as a4_export_mixins
 from adhocracy4.exports import views as a4_export_views
-from liqd_product.apps.exports import mixins as export_mixins
+from apps.exports import mixins as export_mixins
 
 from . import models
 

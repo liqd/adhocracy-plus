@@ -1,12 +1,12 @@
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard.blueprints import ProjectBlueprint
-from liqd_product.apps.activities import phases as activities_phases
-from liqd_product.apps.budgeting import phases as budgeting_phases
-from liqd_product.apps.documents import phases as documents_phases
-from liqd_product.apps.ideas import phases as ideas_phases
-from liqd_product.apps.mapideas import phases as mapideas_phases
-from liqd_product.apps.polls import phases as poll_phases
+from apps.activities import phases as activities_phases
+from apps.budgeting import phases as budgeting_phases
+from apps.documents import phases as documents_phases
+from apps.ideas import phases as ideas_phases
+from apps.mapideas import phases as mapideas_phases
+from apps.polls import phases as poll_phases
 
 blueprints = [
     ('brainstorming',

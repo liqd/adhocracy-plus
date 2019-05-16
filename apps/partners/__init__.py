@@ -1,7 +1,7 @@
 import contextlib
 import threading
 
-default_app_config = 'liqd_product.apps.partners.apps.Config'
+default_app_config = 'apps.partners.apps.Config'
 
 _partner = threading.local()
 

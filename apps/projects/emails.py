@@ -1,5 +1,5 @@
 from adhocracy4.emails import Email
-from liqd_product.apps.projects import tasks
+from apps.projects import tasks
 
 
 class InviteParticipantEmail(Email):

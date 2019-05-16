@@ -6,7 +6,7 @@ from django.views import generic
 from adhocracy4.dashboard import mixins
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
-from liqd_product.apps.contrib.views import CanonicalURLDetailView
+from apps.contrib.views import CanonicalURLDetailView
 
 from . import forms
 from . import models

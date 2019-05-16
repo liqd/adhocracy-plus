@@ -12,13 +12,13 @@ from adhocracy4.emails.mixins import SyncEmailMixin
 from adhocracy4.projects.models import Project
 from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
-from liqd_product.apps.bplan import emails as bplan_emails
-from liqd_product.apps.bplan.models import Statement
-from liqd_product.apps.cms.models import EmailFormPage
-from liqd_product.apps.ideas.models import Idea
-from liqd_product.apps.notifications import emails as notification_emails
-from liqd_product.apps.organisations.models import Organisation
-from liqd_product.apps.projects import models as project_models
+from apps.bplan import emails as bplan_emails
+from apps.bplan.models import Statement
+from apps.cms.models import EmailFormPage
+from apps.ideas.models import Idea
+from apps.notifications import emails as notification_emails
+from apps.organisations.models import Organisation
+from apps.projects import models as project_models
 
 User = get_user_model()
 

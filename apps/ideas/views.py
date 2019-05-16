@@ -11,12 +11,12 @@ from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
-from liqd_product.apps.contrib import filters
-from liqd_product.apps.contrib import forms as contrib_forms
-from liqd_product.apps.contrib.views import CanonicalURLDetailView
-from liqd_product.apps.exports.views import DashboardExportView
-from liqd_product.apps.moderatorfeedback.forms import ModeratorStatementForm
-from liqd_product.apps.moderatorfeedback.models import ModeratorStatement
+from apps.contrib import filters
+from apps.contrib import forms as contrib_forms
+from apps.contrib.views import CanonicalURLDetailView
+from apps.exports.views import DashboardExportView
+from apps.moderatorfeedback.forms import ModeratorStatementForm
+from apps.moderatorfeedback.models import ModeratorStatement
 
 from . import forms
 from . import models

@@ -6,8 +6,8 @@ from django.views.generic import DetailView
 from adhocracy4.actions.models import Action
 from adhocracy4.projects.models import Project
 from adhocracy4.rules import mixins as rules_mixins
-from liqd_product.apps.partners.models import Partner
-from liqd_product.apps.projects import query
+from apps.partners.models import Partner
+from apps.projects import query
 
 from . import forms
 

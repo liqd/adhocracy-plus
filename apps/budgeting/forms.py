@@ -1,6 +1,6 @@
 from django import forms
 
-from liqd_product.apps.mapideas.forms import MapIdeaForm
+from apps.mapideas.forms import MapIdeaForm
 
 from . import models
 

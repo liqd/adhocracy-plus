@@ -14,8 +14,8 @@ from adhocracy4.labels import models as labels_models
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
-from liqd_product.apps.moderatorfeedback.models import Moderateable
-from liqd_product.apps.moderatorremark import models as remark_models
+from apps.moderatorfeedback.models import Moderateable
+from apps.moderatorremark import models as remark_models
 
 
 class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):

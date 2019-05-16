@@ -2,7 +2,7 @@ from django.contrib.sitemaps import Sitemap
 from django.core.urlresolvers import reverse
 
 from adhocracy4.projects.models import Project
-from liqd_product.apps.partners.models import Partner
+from apps.partners.models import Partner
 
 
 class ProductProjectsSitemap(Sitemap):

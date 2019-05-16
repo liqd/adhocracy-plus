@@ -4,8 +4,8 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import template
 from rest_framework.renderers import JSONRenderer
 
-from liqd_product.apps.documents.models import Chapter
-from liqd_product.apps.documents.serializers import ChapterSerializer
+from apps.documents.models import Chapter
+from apps.documents.serializers import ChapterSerializer
 
 register = template.Library()
 

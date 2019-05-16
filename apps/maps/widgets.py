@@ -4,8 +4,8 @@ from django.conf import settings
 from django.forms.widgets import Widget
 from django.template import loader
 
-from liqd_product.apps.maps.models import MapPreset
-from liqd_product.apps.maps.models import MapPresetCategory
+from apps.maps.models import MapPreset
+from apps.maps.models import MapPresetCategory
 
 
 class MapChoosePolygonWithPresetWidget(Widget):

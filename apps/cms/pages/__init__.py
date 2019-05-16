@@ -1,1 +1,1 @@
-default_app_config = 'liqd_product.apps.cms.pages.apps.Config'
+default_app_config = 'apps.cms.pages.apps.Config'
