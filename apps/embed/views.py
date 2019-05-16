@@ -2,7 +2,7 @@ from django.views import generic
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 from adhocracy4.projects import models as project_models
-from liqd_product.apps.partners import set_partner
+from apps.partners import set_partner
 
 
 class EmbedView(generic.View):

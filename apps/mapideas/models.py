@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.comments import models as comment_models
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.ratings import models as rating_models
-from liqd_product.apps.ideas import models as idea_models
+from apps.ideas import models as idea_models
 
 
 class AbstractMapIdea(idea_models.AbstractIdea):

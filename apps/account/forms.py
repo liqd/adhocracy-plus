@@ -1,6 +1,6 @@
 from django import forms
 
-from liqd_product.apps.users.models import User
+from apps.users.models import User
 
 
 class ProfileForm(forms.ModelForm):

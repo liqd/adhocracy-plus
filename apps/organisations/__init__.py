@@ -1,1 +1,1 @@
-default_app_config = 'liqd_product.apps.organisations.apps.Config'
+default_app_config = 'apps.organisations.apps.Config'

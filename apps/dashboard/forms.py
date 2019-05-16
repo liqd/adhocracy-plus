@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from liqd_product.apps.organisations.models import Organisation
+from apps.organisations.models import Organisation
 
 
 class OrganisationForm(forms.ModelForm):

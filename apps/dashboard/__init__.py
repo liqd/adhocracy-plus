@@ -1,7 +1,7 @@
 from adhocracy4.dashboard import ProjectDashboard
 from adhocracy4.dashboard import components
 
-default_app_config = 'liqd_product.apps.dashboard.apps.Config'
+default_app_config = 'apps.dashboard.apps.Config'
 
 
 class TypedProjectDashboard(ProjectDashboard):

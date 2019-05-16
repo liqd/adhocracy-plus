@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import liqd_product.apps.moderatorfeedback.fields
+import apps.moderatorfeedback.fields
 
 
 class Migration(migrations.Migration):
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='proposal',
             name='moderator_feedback',
-            field=liqd_product.apps.moderatorfeedback.fields.ModeratorFeedbackField(null=True, choices=[('CONSIDERATION', 'Under consideration'), ('REJECTED', 'Rejected'), ('ACCEPTED', 'Accepted')], blank=True, default=None, max_length=254),
+            field=apps.moderatorfeedback.fields.ModeratorFeedbackField(null=True, choices=[('CONSIDERATION', 'Under consideration'), ('REJECTED', 'Rejected'), ('ACCEPTED', 'Accepted')], blank=True, default=None, max_length=254),
         ),
         migrations.AddField(
             model_name='proposal',

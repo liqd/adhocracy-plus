@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from adhocracy4.maps import widgets as maps_widgets
-from liqd_product.apps.contrib.mixins import ImageRightOfUseMixin
+from apps.contrib.mixins import ImageRightOfUseMixin
 
 from . import models
 

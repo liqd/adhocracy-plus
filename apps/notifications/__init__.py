@@ -1,1 +1,1 @@
-default_app_config = 'liqd_product.apps.notifications.apps.Config'
+default_app_config = 'apps.notifications.apps.Config'

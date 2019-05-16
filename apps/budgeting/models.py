@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.comments import models as comment_models
 from adhocracy4.ratings import models as rating_models
-from liqd_product.apps.mapideas import models as mapidea_models
+from apps.mapideas import models as mapidea_models
 
 
 class Proposal(mapidea_models.AbstractMapIdea):

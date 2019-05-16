@@ -1,1 +1,1 @@
-default_app_config = 'liqd_product.apps.budgeting.apps.Config'
+default_app_config = 'apps.budgeting.apps.Config'

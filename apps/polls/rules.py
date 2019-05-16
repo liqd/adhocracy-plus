@@ -1,7 +1,7 @@
 import rules
 
 from adhocracy4.modules import predicates as module_predicates
-from liqd_product.apps.contrib import predicates as contrib_predicates
+from apps.contrib import predicates as contrib_predicates
 
 from . import models
 

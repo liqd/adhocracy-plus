@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import components
-from liqd_product.apps.documents.models import Chapter
+from apps.documents.models import Chapter
 
 from . import exports
 from . import views

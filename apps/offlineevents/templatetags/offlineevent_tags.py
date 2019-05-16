@@ -4,8 +4,8 @@ from django import template
 
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
-from liqd_product.apps.activities.models import Activity
-from liqd_product.apps.offlineevents.models import OfflineEvent
+from apps.activities.models import Activity
+from apps.offlineevents.models import OfflineEvent
 
 register = template.Library()
 
