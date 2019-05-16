@@ -1,4 +1,5 @@
-{% load userindicator static i18n thumbnail %}
+{% load userindicator static i18n thumbnail url_translations %}
+{% get_current_language as LANGUAGE_CODE %}
 
 <header class="main-header" aria-label="{% trans 'Header' %}">
     <div class="main-header__border-top {% if not PARTNER %}main-header__border-top--platform{% endif %}"></div>
@@ -39,6 +40,22 @@
                 <div class="main-header__user">
                     {% userindicator %}
                 </div>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ LANGUAGE_CODE|upper }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                        {% get_available_languages as languages %}
+                        {% for lang_code, lang_name in languages %}
+                            {% if lang_code != LANGUAGE_CODE %}
+                                {% get_language_info for lang_code as lang %}
+                                <li>
+                                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                        <input name="next" type="hidden" value="{{ redirect_to }}" />
+                                        <input name="language" type="hidden" value="{{ lang_code }}">
+                                        <button type="submit">{{ lang.name_local }}</button>
+                                    </form>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
             </div>
             <button class="btn main-header__mobile-toggle {% if PARTNER %}btn--bg-tertiary{% else %}btn--secondary-filled main-header__mobile-toggle--platform{% endif %} btn--square btn--small btn--attached-top" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
                 {% trans 'Menu' %}
