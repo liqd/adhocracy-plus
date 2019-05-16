@@ -19,19 +19,19 @@ from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
-from liqd_product.apps.contrib import views as contrib_views
-from liqd_product.apps.contrib.sitemaps.product_partners_sitemap import \
+from apps.contrib import views as contrib_views
+from apps.contrib.sitemaps.product_partners_sitemap import \
     ProductPartnersSitemap
-from liqd_product.apps.contrib.sitemaps.product_projects_sitemap import \
+from apps.contrib.sitemaps.product_projects_sitemap import \
     ProductProjectsSitemap
-from liqd_product.apps.contrib.sitemaps.static_sitemap import StaticSitemap
-from liqd_product.apps.documents.api import DocumentViewSet
-from liqd_product.apps.moderatorremark.api import ModeratorRemarkViewSet
-from liqd_product.apps.partners.urlresolvers import partner_patterns
-from liqd_product.apps.polls.api import PollViewSet
-from liqd_product.apps.polls.api import VoteViewSet
-from liqd_product.apps.polls.routers import QuestionDefaultRouter
-from liqd_product.apps.users.decorators import user_is_project_admin
+from apps.contrib.sitemaps.static_sitemap import StaticSitemap
+from apps.documents.api import DocumentViewSet
+from apps.moderatorremark.api import ModeratorRemarkViewSet
+from apps.partners.urlresolvers import partner_patterns
+from apps.polls.api import PollViewSet
+from apps.polls.api import VoteViewSet
+from apps.polls.routers import QuestionDefaultRouter
+from apps.users.decorators import user_is_project_admin
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -70,10 +70,10 @@ urlpatterns = [
     url(r'^admin/', include('wagtail.admin.urls')),
 
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^account/', include('liqd_product.apps.account.urls')),
-    url(r'^dashboard/', include('liqd_product.apps.dashboard.urls')),
-    url(r'^embed/', include('liqd_product.apps.embed.urls')),
-    url(r'^profile/', include('liqd_product.apps.users.urls')),
+    url(r'^account/', include('apps.account.urls')),
+    url(r'^dashboard/', include('apps.dashboard.urls')),
+    url(r'^embed/', include('apps.embed.urls')),
+    url(r'^profile/', include('apps.users.urls')),
     url(r'^i18n/', include(i18n)),
 
     # API urls
@@ -98,17 +98,17 @@ urlpatterns = [
         # Temporary include liqd_product projects urls, as they contain
         # the invite links. This may be removed when invites are refactored
         # to a separate app.
-        url(r'^projects/', include('liqd_product.apps.projects.urls')),
+        url(r'^projects/', include('apps.projects.urls')),
         url(r'^offlineevents/', include(
-            'liqd_product.apps.offlineevents.urls',
+            'apps.offlineevents.urls',
             namespace='liqd_product_offlineevents')),
-        url(r'^ideas/', include(r'liqd_product.apps.ideas.urls',
+        url(r'^ideas/', include(r'apps.ideas.urls',
                                 namespace='liqd_product_ideas')),
-        url(r'^mapideas/', include('liqd_product.apps.mapideas.urls',
+        url(r'^mapideas/', include('apps.mapideas.urls',
                                    namespace='liqd_product_mapideas')),
-        url(r'^text/', include('liqd_product.apps.documents.urls',
+        url(r'^text/', include('apps.documents.urls',
                                namespace='liqd_product_documents')),
-        url(r'^budgeting/', include('liqd_product.apps.budgeting.urls',
+        url(r'^budgeting/', include('apps.budgeting.urls',
                                     namespace='liqd_product_budgeting')),
     ),
 
@@ -119,7 +119,7 @@ urlpatterns = [
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt',
         content_type="text/plain"), name="robots_file"),
 
-    url(r'', include('liqd_product.apps.partners.urls')),
+    url(r'', include('apps.partners.urls')),
     url(r'', include('wagtail.core.urls'))
 ]
 
