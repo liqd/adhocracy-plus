@@ -16,5 +16,5 @@ class PlatformActivityBlock(blocks.StructBlock):
         return context
 
     class Meta:
-        template = 'liqd_product_actions/blocks/platform_activity_block.html'
+        template = 'a4_candy_actions/blocks/platform_activity_block.html'
         icon = 'time'

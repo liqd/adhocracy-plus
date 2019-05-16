@@ -104,7 +104,7 @@
                 aria-expanded="false">
                 {% for action in view.actions %}
                     {% withpartner action.project.organisation.partner %}
-                        {% include 'liqd_product_actions/includes/action.html' with action=action %}
+                        {% include 'a4_candy_actions/includes/action.html' with action=action %}
                     {% endwithpartner %}
                 {% empty %}
                     {% trans 'No activity yet. '%}
