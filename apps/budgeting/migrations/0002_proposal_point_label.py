@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_budgeting', '0002_proposal_point_label')]
 
     dependencies = [
-        ('liqd_product_budgeting', '0001_squashed_0004_auto_20170420_1456'),
+        ('a4_candy_budgeting', '0001_squashed_0004_auto_20170420_1456'),
     ]
 
     operations = [

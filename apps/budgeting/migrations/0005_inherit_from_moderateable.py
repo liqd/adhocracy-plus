@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('liqd_product_moderatorfeedback', '__first__'),
-        ('liqd_product_budgeting', '0004_remove_moderator_statement_fields'),
+        ('a4_candy_budgeting', '0004_remove_moderator_statement_fields'),
     ]
 
     operations = [

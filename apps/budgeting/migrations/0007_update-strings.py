@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_budgeting', '0007_update-strings')]
 
     dependencies = [
-        ('liqd_product_budgeting', '0006_merge'),
+        ('a4_candy_budgeting', '0006_merge'),
     ]
 
     operations = [

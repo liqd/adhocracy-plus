@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_budgeting', '0004_remove_moderator_statement_fields')]
 
     dependencies = [
-        ('liqd_product_budgeting', '0003_remove_category_related_name'),
+        ('a4_candy_budgeting', '0003_remove_category_related_name'),
     ]
 
     operations = [

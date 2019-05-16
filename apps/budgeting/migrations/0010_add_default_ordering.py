@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_budgeting', '0010_add_default_ordering')]
 
     dependencies = [
-        ('liqd_product_budgeting', '0009_remove_feedback_phase'),
+        ('a4_candy_budgeting', '0009_remove_feedback_phase'),
     ]
 
     operations = [
