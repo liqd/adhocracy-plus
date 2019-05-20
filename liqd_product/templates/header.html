@@ -1,4 +1,4 @@
-{% load userindicator static i18n thumbnail url_translations %}
+{% load userindicator static i18n thumbnail %}
 {% get_current_language as LANGUAGE_CODE %}
 
 <header class="main-header" aria-label="{% trans 'Header' %}">
@@ -49,7 +49,11 @@
                             <form class="lang__switch" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                                 <input name="next" type="hidden" value="{{ redirect_to }}" />
                                 <input name="language" type="hidden" value="{{ lang_code }}">
-                                <a class="lang__btn--left" role="button" >{{ LANGUAGE_CODE }}</a><button class="lang__btn--right" type="submit">{{ lang_code }}</button>
+                                {% if LANGUAGE_CODE == 'de' %}
+                                <a class="lang__btn--left" role="button">de</a><button class="lang__btn--right" type="submit">en</button>
+                                {% else %}
+                                <button class="lang__btn--left" type="submit">de</button><a class="lang__btn--right" role="button">en</a>
+                                {% endif %}
                             </form>
                     {% endif %}
                 {% endfor %}
