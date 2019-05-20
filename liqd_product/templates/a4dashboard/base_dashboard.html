@@ -8,7 +8,7 @@
     <div class="l-wrapper">
         <div class="platform-brand main-header__brand">
             {% spaceless %}
-                <a href="{% if view.organisation.partner %}{% url 'partner' partner_slug=view.organisation.partner.slug %}{% else %}/{% endif %}" class="platform-brand__link">{% if view.organisation.partner %}<span class="marked">{{ view.organisation.partner.name }}</span>{% else %}Beteiligung.in{% endif %}</a>
+                <a href="{% if view.organisation.partner %}{% url 'partner' partner_slug=view.organisation.partner.slug %}{% else %}/{% endif %}" class="platform-brand__link">{% if view.organisation.partner %}<h2 class="heading--sm-margin">{{ view.organisation.partner.name }}</h2>{% else %}Beteiligung.in{% endif %}</a>
             {% endspaceless %}
         </div>
         <nav class="main-header__nav">
