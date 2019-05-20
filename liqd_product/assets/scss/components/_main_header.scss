@@ -116,6 +116,11 @@
     }
 }
 
+.main-header__lang {
+    position: absolute;
+    top: 0;
+}
+
 @media screen and (min-width: $breakpoint) {
     .main-header__brand {
         margin-top: 2 * $spacer;
@@ -157,6 +162,10 @@
     .main-header__user {
         position: absolute;
         top: 0;
+        right: 80px;
+    }
+
+    .main-header__lang {
         right: 0;
     }
 }
