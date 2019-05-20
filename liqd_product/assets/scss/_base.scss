@@ -67,6 +67,21 @@ h6 {
     font-size: $font-size-xs;
 }
 
+@media screen and (max-width: $breakpoint-xs-down) {
+    h1 {
+        font-size: $mobile-headline-size*$font-size-xxl;
+    }
+
+    h2 {
+        font-size: $mobile-headline-size*$font-size-xl;
+    }
+
+    h3 {
+        font-size: $font-size-base; //it's smaller than base if multiplied same as above
+        font-weight: bold; //it's a headline so need to have some differentiation from base
+    }
+}
+
 a {
     color: $link-color;
     text-decoration: underline;
