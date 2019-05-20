@@ -2,6 +2,7 @@
 
 from ckeditor_uploader import views as ck_views
 from django.conf import settings
+from django.conf.urls import i18n
 from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
@@ -73,6 +74,7 @@ urlpatterns = [
     url(r'^dashboard/', include('liqd_product.apps.dashboard.urls')),
     url(r'^embed/', include('liqd_product.apps.embed.urls')),
     url(r'^profile/', include('liqd_product.apps.users.urls')),
+    url(r'^i18n/', include(i18n)),
 
     # API urls
     url(r'^api/', include(ct_router.urls)),
