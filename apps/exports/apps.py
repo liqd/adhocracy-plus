@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class Config(AppConfig):
     name = 'apps.exports'
-    label = 'liqd_product_exports'
+    label = 'a4_candy_exports'

@@ -87,7 +87,7 @@ class MapIdeaModerateView(idea_views.AbstractIdeaModerateView):
 
 
 class MapIdeaDashboardExportView(DashboardExportView):
-    template_name = 'liqd_product_exports/export_dashboard.html'
+    template_name = 'a4_candy_exports/export_dashboard.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
