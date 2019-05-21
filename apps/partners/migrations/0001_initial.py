@@ -8,6 +8,8 @@ import autoslug.fields
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_partners', '0001_initial')]
+
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
@@ -21,5 +23,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=512)),
                 ('admins', models.ManyToManyField(blank=True, to=settings.AUTH_USER_MODEL)),
             ],
+            options={
+                'db_table': 'liqd_product_partners_partner',
+            },
         ),
     ]

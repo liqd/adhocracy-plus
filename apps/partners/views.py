@@ -64,7 +64,7 @@ class PartnerUpdateView(rules_mixins.PermissionRequiredMixin,
     slug_url_kwarg = 'partner_slug'
     template_name = 'partner_form.html'
     success_message = _('Organisation successfully updated.')
-    permission_required = 'liqd_product_partners.change_partner'
+    permission_required = 'a4_candy_partners.change_partner'
     menu_item = 'partner'
 
     def get_success_url(self):

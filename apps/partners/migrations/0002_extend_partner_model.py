@@ -8,8 +8,10 @@ import adhocracy4.images.fields
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_partners', '0002_extend_partner_model')]
+
     dependencies = [
-        ('liqd_product_partners', '0001_initial'),
+        ('a4_candy_partners', '0001_initial'),
     ]
 
     operations = [

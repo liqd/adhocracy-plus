@@ -6,7 +6,7 @@ from liqd_product.apps.partners import set_partner
 class PartnerFactory(factory.django.DjangoModelFactory):
 
     class Meta:
-        model = 'liqd_product_partners.Partner'
+        model = 'a4_candy_partners.Partner'
         django_get_or_create = ('name',)
 
     name = factory.Faker('company')

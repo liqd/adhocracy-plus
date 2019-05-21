@@ -8,8 +8,10 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_partners', '0006_information_blank')]
+
     dependencies = [
-        ('liqd_product_partners', '0005_partner_imprint'),
+        ('a4_candy_partners', '0005_partner_imprint'),
     ]
 
     operations = [
