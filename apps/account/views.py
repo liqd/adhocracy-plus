@@ -20,7 +20,7 @@ class ProfileUpdateView(SuccessMessageMixin,
                         generic.UpdateView):
 
     model = User
-    template_name = 'liqd_product_account/profile.html'
+    template_name = 'a4_candy_account/profile.html'
     form_class = forms.ProfileForm
     success_message = _('Your profile was successfully updated.')
 
