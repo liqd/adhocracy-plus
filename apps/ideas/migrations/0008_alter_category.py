@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_ideas', '0008_alter_category')]
 
     dependencies = [
-        ('liqd_product_ideas', '0007_name_verbose_name'),
+        ('a4_candy_ideas', '0007_name_verbose_name'),
     ]
 
     operations = [

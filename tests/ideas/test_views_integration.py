@@ -16,7 +16,7 @@ def test_list_view(client, phase_factory, idea_factory, partner):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_ideas/idea_list.html')
+            response, 'a4_candy_ideas/idea_list.html')
 
 
 @pytest.mark.django_db
@@ -27,7 +27,7 @@ def test_detail_view(client, phase_factory, idea_factory, partner):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_ideas/idea_detail.html')
+            response, 'a4_candy_ideas/idea_detail.html')
 
 
 @pytest.mark.django_db
@@ -36,14 +36,14 @@ def test_create_view(client, phase_factory, idea_factory, user,
     phase, module, project, idea = setup_phase(
         phase_factory, idea_factory, phases.IssuePhase)
     category = category_factory(module=module)
-    url = reverse('liqd_product_ideas:idea-create',
+    url = reverse('a4_candy_ideas:idea-create',
                   kwargs={'module_slug': module.slug})
     with freeze_phase(phase):
         client.login(username=user.email, password='password')
 
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_ideas/idea_create_form.html')
+            response, 'a4_candy_ideas/idea_create_form.html')
 
         idea = {
             'name': 'Idea',

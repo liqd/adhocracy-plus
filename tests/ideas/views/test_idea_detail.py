@@ -15,7 +15,7 @@ def test_detail_view(client, phase_factory, idea_factory):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_ideas/idea_detail.html')
+            response, 'a4_candy_ideas/idea_detail.html')
         assert response.status_code == 200
 
 

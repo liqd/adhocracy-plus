@@ -79,7 +79,7 @@ class IdeaDetailView(AbstractIdeaDetailView):
     model = models.Idea
     queryset = models.Idea.objects.annotate_positive_rating_count()\
         .annotate_negative_rating_count()
-    permission_required = 'liqd_product_ideas.view_idea'
+    permission_required = 'a4_candy_ideas.view_idea'
 
 
 class AbstractIdeaCreateView(ProjectMixin,
@@ -106,8 +106,8 @@ class AbstractIdeaCreateView(ProjectMixin,
 class IdeaCreateView(AbstractIdeaCreateView):
     model = models.Idea
     form_class = forms.IdeaForm
-    permission_required = 'liqd_product_ideas.add_idea'
-    template_name = 'liqd_product_ideas/idea_create_form.html'
+    permission_required = 'a4_candy_ideas.add_idea'
+    template_name = 'a4_candy_ideas/idea_create_form.html'
 
 
 class AbstractIdeaUpdateView(ProjectMixin,
@@ -128,8 +128,8 @@ class AbstractIdeaUpdateView(ProjectMixin,
 class IdeaUpdateView(AbstractIdeaUpdateView):
     model = models.Idea
     form_class = forms.IdeaForm
-    permission_required = 'liqd_product_ideas.change_idea'
-    template_name = 'liqd_product_ideas/idea_update_form.html'
+    permission_required = 'a4_candy_ideas.change_idea'
+    template_name = 'a4_candy_ideas/idea_update_form.html'
 
 
 class AbstractIdeaDeleteView(ProjectMixin,
@@ -150,8 +150,8 @@ class AbstractIdeaDeleteView(ProjectMixin,
 class IdeaDeleteView(AbstractIdeaDeleteView):
     model = models.Idea
     success_message = _('Your Idea has been deleted')
-    permission_required = 'liqd_product_ideas.change_idea'
-    template_name = 'liqd_product_ideas/idea_confirm_delete.html'
+    permission_required = 'a4_candy_ideas.change_idea'
+    template_name = 'a4_candy_ideas/idea_confirm_delete.html'
 
 
 class AbstractIdeaModerateView(
@@ -205,8 +205,8 @@ class AbstractIdeaModerateView(
 
 class IdeaModerateView(AbstractIdeaModerateView):
     model = models.Idea
-    permission_required = 'liqd_product_ideas.moderate_idea'
-    template_name = 'liqd_product_ideas/idea_moderate_form.html'
+    permission_required = 'a4_candy_ideas.moderate_idea'
+    template_name = 'a4_candy_ideas/idea_moderate_form.html'
     moderateable_form_class = forms.IdeaModerateForm
 
 

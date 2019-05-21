@@ -82,7 +82,7 @@ class Idea(AbstractIdea):
 
     def get_absolute_url(self):
         return reverse(
-            'liqd_product_ideas:idea-detail',
+            'a4_candy_ideas:idea-detail',
             kwargs=dict(
                 partner_slug=self.project.organisation.partner.slug,
                 pk='{:05d}'.format(self.pk),
@@ -92,4 +92,3 @@ class Idea(AbstractIdea):
 
     class Meta:
         ordering = ['-created']
-        db_table = 'meinberlin_ideas_idea'

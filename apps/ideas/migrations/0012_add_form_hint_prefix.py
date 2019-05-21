@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_ideas', '0012_add_form_hint_prefix')]
 
     dependencies = [
-        ('liqd_product_ideas', '0011_idea_image'),
+        ('a4_candy_ideas', '0011_idea_image'),
     ]
 
     operations = [
