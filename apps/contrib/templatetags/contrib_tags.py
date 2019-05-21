@@ -90,7 +90,7 @@ def tracking_enabled():
     return settings.TRACKING_ENABLED
 
 
-@register.inclusion_tag('liqd_product_contrib/matomo/tracking_code.html')
+@register.inclusion_tag('a4_candy_contrib/matomo/tracking_code.html')
 def tracking_code():
     try:
         id = settings.MATOMO_SITE_ID

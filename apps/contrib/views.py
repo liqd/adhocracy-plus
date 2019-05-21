@@ -3,7 +3,7 @@ from django.views import generic
 
 
 class ComponentLibraryView(generic.base.TemplateView):
-    template_name = 'liqd_product_contrib/component_library.html'
+    template_name = 'a4_candy_contrib/component_library.html'
 
 
 class CanonicalURLDetailView(generic.DetailView):
