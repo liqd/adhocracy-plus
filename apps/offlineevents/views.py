@@ -17,7 +17,7 @@ class OfflineEventDetailView(ProjectMixin,
                              CanonicalURLDetailView):
     get_context_from_object = True
     model = models.OfflineEvent
-    permission_required = 'liqd_product_offlineevents.view_offlineevent'
+    permission_required = 'a4_candy_offlineevents.view_offlineevent'
 
 
 class OfflineEventListView(ProjectMixin,
@@ -25,8 +25,8 @@ class OfflineEventListView(ProjectMixin,
                            mixins.DashboardComponentMixin,
                            generic.ListView):
     model = models.OfflineEvent
-    template_name = 'liqd_product_offlineevents/offlineevent_list.html'
-    permission_required = 'liqd_product_offlineevents.list_offlineevent'
+    template_name = 'a4_candy_offlineevents/offlineevent_list.html'
+    permission_required = 'a4_candy_offlineevents.list_offlineevent'
 
     def get_queryset(self):
         return super().get_queryset().filter(project=self.project)
@@ -42,8 +42,8 @@ class OfflineEventCreateView(ProjectMixin,
                              generic.CreateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
-    permission_required = 'liqd_product_offlineevents.add_offlineevent'
-    template_name = 'liqd_product_offlineevents/offlineevent_create_form.html'
+    permission_required = 'a4_candy_offlineevents.add_offlineevent'
+    template_name = 'a4_candy_offlineevents/offlineevent_create_form.html'
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
@@ -66,8 +66,8 @@ class OfflineEventUpdateView(ProjectMixin,
                              generic.UpdateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
-    permission_required = 'liqd_product_offlineevents.change_offlineevent'
-    template_name = 'liqd_product_offlineevents/offlineevent_update_form.html'
+    permission_required = 'a4_candy_offlineevents.change_offlineevent'
+    template_name = 'a4_candy_offlineevents/offlineevent_update_form.html'
     get_context_from_object = True
 
     def get_success_url(self):
@@ -90,9 +90,9 @@ class OfflineEventDeleteView(ProjectMixin,
                              generic.DeleteView):
     model = models.OfflineEvent
     success_message = _('The offline event has been deleted')
-    permission_required = 'liqd_product_offlineevents.change_offlineevent'
+    permission_required = 'a4_candy_offlineevents.change_offlineevent'
     template_name = \
-        'liqd_product_offlineevents/offlineevent_confirm_delete.html'
+        'a4_candy_offlineevents/offlineevent_confirm_delete.html'
     get_context_from_object = True
 
     def delete(self, request, *args, **kwargs):

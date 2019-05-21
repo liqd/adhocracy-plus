@@ -101,7 +101,7 @@ urlpatterns = [
         url(r'^projects/', include('apps.projects.urls')),
         url(r'^offlineevents/', include(
             'apps.offlineevents.urls',
-            namespace='liqd_product_offlineevents')),
+            namespace='a4_candy_offlineevents')),
         url(r'^ideas/', include(r'apps.ideas.urls',
                                 namespace='a4_candy_ideas')),
         url(r'^mapideas/', include('apps.mapideas.urls',
