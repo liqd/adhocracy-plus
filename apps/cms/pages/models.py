@@ -19,7 +19,7 @@ class HomePage(Page):
         max_length=500, blank=True, verbose_name="Subtitle")
     body = RichTextField(blank=True)
 
-    subpage_types = ['liqd_product_cms_pages.EmptyPage']
+    subpage_types = ['a4_candy_cms_pages.EmptyPage']
 
     content_panels = [
         FieldPanel('title'),
@@ -32,7 +32,7 @@ class HomePage(Page):
 
 
 class EmptyPage(Page):
-    subpage_types = ['liqd_product_cms_pages.SimplePage']
+    subpage_types = ['a4_candy_cms_pages.SimplePage']
 
 
 class SimplePage(Page):
@@ -42,4 +42,4 @@ class SimplePage(Page):
         FieldPanel('body', classname='full'),
     ]
 
-    subpage_types = ['liqd_product_cms_pages.SimplePage']
+    subpage_types = ['a4_candy_cms_pages.SimplePage']
