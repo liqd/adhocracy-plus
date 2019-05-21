@@ -90,7 +90,7 @@
                 aria-expanded="true">
                 {% for project in view.projects %}
                     {% withpartner project.organisation.partner %}
-                        {% include 'liqd_product_projects/includes/project_list_tile.html' with project=project %}
+                        {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project %}
                     {% endwithpartner %}
                 {% empty %}
                     {% trans 'This user is not active in any projects yet.' %}

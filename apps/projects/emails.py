@@ -3,21 +3,21 @@ from apps.projects import tasks
 
 
 class InviteParticipantEmail(Email):
-    template_name = 'liqd_product_projects/emails/invite_participant'
+    template_name = 'a4_candy_projects/emails/invite_participant'
 
     def get_receivers(self):
         return [self.object.email]
 
 
 class InviteModeratorEmail(Email):
-    template_name = 'liqd_product_projects/emails/invite_moderator'
+    template_name = 'a4_candy_projects/emails/invite_moderator'
 
     def get_receivers(self):
         return [self.object.email]
 
 
 class DeleteProjectEmail(Email):
-    template_name = 'liqd_product_projects/emails/delete_project'
+    template_name = 'a4_candy_projects/emails/delete_project'
 
     @classmethod
     def send_no_object(cls, object, *args, **kwargs):

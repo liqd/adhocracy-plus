@@ -43,7 +43,7 @@
     <div class="tablist tablist--left">
         <div class="l-wrapper">
             <div class="tablist__right">
-                {% has_perm 'liqd_product_projects.change_project' request.user view.project as user_may_change %}
+                {% has_perm 'a4_candy_projects.change_project' request.user view.project as user_may_change %}
                 {% if user_may_change %}
                     <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
                 {% endif %}
@@ -128,7 +128,7 @@
         aria-labelledby="tab-project-{{ project.pk }}-participation"
         aria-expanded="true">
         <div class="l-wrapper">
-            {% include "liqd_product_projects/includes/timeline.html" with project=project %}
+            {% include "a4_candy_projects/includes/timeline.html" with project=project %}
 
             <div class="l-center-6">
                 {% block project_action %}{% endblock %}

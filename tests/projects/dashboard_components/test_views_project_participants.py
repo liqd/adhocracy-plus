@@ -19,7 +19,7 @@ def test_initiator_can_edit(client, phase_factory):
     client.login(username=initiator.email, password='password')
     response = client.get(url)
     assert_template_response(
-        response, 'liqd_product_projects/project_participants.html')
+        response, 'a4_candy_projects/project_participants.html')
 
     data = {
         'add_users': 'test1@foo.bar,test2@foo.bar',
@@ -40,7 +40,7 @@ def test_moderator_can_edit(client, phase_factory):
     client.login(username=moderator.email, password='password')
     response = client.get(url)
     assert_template_response(
-        response, 'liqd_product_projects/project_participants.html')
+        response, 'a4_candy_projects/project_participants.html')
 
     data = {
         'add_users': 'test1@foo.bar,test2@foo.bar',
