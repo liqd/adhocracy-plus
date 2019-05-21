@@ -48,11 +48,11 @@ class QuestionSerializer(serializers.ModelSerializer):
         if 'request' in self.context:
             user = self.context['request'].user
             has_poll_permission = user.has_perm(
-                'liqd_product_polls.add_vote',
+                'a4_candy_polls.add_vote',
                 question.poll.module
             )
             would_have_poll_permission = NormalUser().would_have_perm(
-                'liqd_product_polls.add_vote',
+                'a4_candy_polls.add_vote',
                 question.poll.module
             )
             return not has_poll_permission and not would_have_poll_permission

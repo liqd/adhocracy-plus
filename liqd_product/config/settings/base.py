@@ -364,7 +364,7 @@ A4_COMMENTABLES = (
     ('a4_candy_documents', 'paragraph'),
     ('a4_candy_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
-    ('liqd_product_polls', 'poll'),
+    ('a4_candy_polls', 'poll'),
 )
 
 A4_REPORTABLES = (

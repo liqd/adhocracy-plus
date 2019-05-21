@@ -16,7 +16,7 @@ class PollDetailView(ProjectMixin,
                      rules_mixins.PermissionRequiredMixin,
                      generic.DetailView):
     model = models.Poll
-    permission_required = 'liqd_product_polls.view_poll'
+    permission_required = 'a4_candy_polls.view_poll'
 
     def get(self, request, *args, **kwargs):
         try:
@@ -28,7 +28,7 @@ class PollDetailView(ProjectMixin,
             self.object = None
             context = self.get_context_data(object=None, request=self.request,)
             return render_to_response(
-                'liqd_product_polls/poll_404.html',
+                'a4_candy_polls/poll_404.html',
                 context=context,
                 status=404
             )
@@ -51,7 +51,7 @@ class PollDashboardView(ProjectMixin,
                         dashboard_mixins.DashboardBaseMixin,
                         dashboard_mixins.DashboardComponentMixin,
                         generic.TemplateView):
-    template_name = 'liqd_product_polls/poll_dashboard.html'
+    template_name = 'a4_candy_polls/poll_dashboard.html'
     permission_required = 'liqd_product_projects.change_project'
 
     def get_context_data(self, **kwargs):

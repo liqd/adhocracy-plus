@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('label', models.CharField(max_length=255)),
                 ('weight', models.SmallIntegerField()),
-                ('poll', models.ForeignKey(related_name='questions', to='liqd_product_polls.Poll', on_delete=models.CASCADE)),
+                ('poll', models.ForeignKey(related_name='questions', to='a4_candy_polls.Poll', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['weight'],
@@ -56,7 +56,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('created', models.DateTimeField(editable=False, default=django.utils.timezone.now)),
                 ('modified', models.DateTimeField(null=True, blank=True, editable=False)),
-                ('choice', models.ForeignKey(related_name='votes', to='liqd_product_polls.Choice', on_delete=models.CASCADE)),
+                ('choice', models.ForeignKey(related_name='votes', to='a4_candy_polls.Choice', on_delete=models.CASCADE)),
                 ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='choice',
             name='question',
-            field=models.ForeignKey(related_name='choices', to='liqd_product_polls.Question', on_delete=models.CASCADE),
+            field=models.ForeignKey(related_name='choices', to='a4_candy_polls.Question', on_delete=models.CASCADE),
         ),
         migrations.AlterUniqueTogether(
             name='vote',

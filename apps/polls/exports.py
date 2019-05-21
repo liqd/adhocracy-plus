@@ -19,7 +19,7 @@ class PollCommentExportView(
     model = Comment
 
     fields = ['id', 'comment', 'created']
-    permission_required = 'liqd_product_polls.change_poll'
+    permission_required = 'a4_candy_polls.change_poll'
 
     def get_permission_object(self):
         return self.module

@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_polls', '0004_question_multiple_choice')]
 
     dependencies = [
-        ('liqd_product_polls', '0003_choice_order'),
+        ('a4_candy_polls', '0003_choice_order'),
     ]
 
     operations = [

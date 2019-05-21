@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_polls', '0003_choice_order')]
 
     dependencies = [
-        ('liqd_product_polls', '0002_auto_20170503_1524'),
+        ('a4_candy_polls', '0002_auto_20170503_1524'),
     ]
 
     operations = [

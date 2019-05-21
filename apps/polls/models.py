@@ -39,9 +39,6 @@ class Poll(module_models.Item):
             )
         )
 
-    class Meta:
-        db_table = 'meinberlin_polls_poll'
-
 
 class Question(models.Model):
     label = models.CharField(max_length=255)
@@ -72,7 +69,6 @@ class Question(models.Model):
 
     class Meta:
         ordering = ['weight']
-        db_table = 'meinberlin_polls_question'
 
 
 class Choice(models.Model):
@@ -94,7 +90,6 @@ class Choice(models.Model):
 
     class Meta:
         ordering = ['id']
-        db_table = 'meinberlin_polls_choice'
 
 
 class Vote(UserGeneratedContentModel):
@@ -118,6 +113,3 @@ class Vote(UserGeneratedContentModel):
 
     def __str__(self):
         return '%s: %s' % (self.creator, self.choice)
-
-    class Meta:
-        db_table = 'meinberlin_polls_vote'
