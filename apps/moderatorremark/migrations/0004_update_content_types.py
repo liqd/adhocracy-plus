@@ -15,8 +15,10 @@ reverse_sql = """UPDATE django_content_type
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_moderatorremark', '0004_update_content_types')]
+
     dependencies = [
-        ('liqd_product_moderatorremark', '0003_use_textfield'),
+        ('a4_candy_moderatorremark', '0003_use_textfield'),
     ]
 
     operations = [

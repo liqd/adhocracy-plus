@@ -9,7 +9,7 @@ from apps.moderatorremark.serializers import \
 register = template.Library()
 
 
-@register.inclusion_tag('liqd_product_moderatorremark/includes/'
+@register.inclusion_tag('a4_candy_moderatorremark/includes/'
                         'popover_remark.html')
 def popover_remark(item):
     remark = getattr(item, 'remark', None)
