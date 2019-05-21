@@ -18,7 +18,7 @@ class DocumentExportView(
 ):
 
     model = Comment
-    permission_required = 'liqd_product_documents.change_chapter'
+    permission_required = 'a4_candy_documents.change_chapter'
 
     fields = ['id', 'comment', 'created']
 

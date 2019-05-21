@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_documents', '0006_update_weight_field')]
 
     dependencies = [
-        ('liqd_product_documents', '0005_update_content_types'),
+        ('a4_candy_documents', '0005_update_content_types'),
     ]
 
     operations = [

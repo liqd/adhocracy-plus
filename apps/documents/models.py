@@ -19,14 +19,13 @@ class Chapter(module_models.Item):
 
     class Meta:
         ordering = ('weight',)
-        db_table = 'meinberlin_documents_chapter'
 
     def __str__(self):
         return "{}_chapter_{}".format(str(self.module), self.pk)
 
     def get_absolute_url(self):
         return reverse(
-            'liqd_product_documents:chapter-detail',
+            'a4_candy_documents:chapter-detail',
             kwargs=dict(
                 partner_slug=self.project.organisation.partner.slug,
                 pk=str(self.pk)
@@ -63,7 +62,6 @@ class Paragraph(base.TimeStampedModel):
 
     class Meta:
         ordering = ('weight',)
-        db_table = 'meinberlin_documents_paragraph'
 
     def __str__(self):
         return "{}_paragraph_{}".format(str(self.chapter), self.weight)
@@ -75,7 +73,7 @@ class Paragraph(base.TimeStampedModel):
 
     def get_absolute_url(self):
         return reverse(
-            'liqd_product_documents:paragraph-detail',
+            'a4_candy_documents:paragraph-detail',
             kwargs=dict(
                 partner_slug=self.chapter.project.organisation.partner.slug,
                 pk=str(self.pk)

@@ -16,7 +16,7 @@ class DocumentDashboardView(ProjectMixin,
                             dashboard_mixins.DashboardBaseMixin,
                             dashboard_mixins.DashboardComponentMixin,
                             generic.TemplateView):
-    template_name = 'liqd_product_documents/document_dashboard.html'
+    template_name = 'a4_candy_documents/document_dashboard.html'
     permission_required = 'liqd_product_projects.change_project'
 
     def get_permission_object(self):
@@ -27,7 +27,7 @@ class ChapterDetailView(ProjectMixin,
                         rules_mixins.PermissionRequiredMixin,
                         generic.DetailView):
     model = models.Chapter
-    permission_required = 'liqd_product_documents.view_chapter'
+    permission_required = 'a4_candy_documents.view_chapter'
     get_context_from_object = True
 
     def dispatch(self, request, *args, **kwargs):
@@ -67,7 +67,7 @@ class ParagraphDetailView(ProjectMixin,
                           rules_mixins.PermissionRequiredMixin,
                           generic.DetailView):
     model = models.Paragraph
-    permission_required = 'liqd_product_documents.view_paragraph'
+    permission_required = 'a4_candy_documents.view_paragraph'
 
 
 class DocumentDashboardExportView(DashboardExportView):
