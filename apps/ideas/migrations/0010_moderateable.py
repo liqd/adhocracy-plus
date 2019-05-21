@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('liqd_product_moderatorfeedback', '0001_initial'),
-        ('liqd_product_ideas', '0009_remove_universal_phase'),
+        ('a4_candy_ideas', '0009_remove_universal_phase'),
     ]
 
     operations = [

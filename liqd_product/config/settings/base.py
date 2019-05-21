@@ -352,14 +352,14 @@ A4_ORGANISATIONS_MODEL = 'liqd_product_organisations.Organisation'
 
 A4_RATEABLES = (
     ('a4comments', 'comment'),
-    ('liqd_product_ideas', 'idea'),
+    ('a4_candy_ideas', 'idea'),
     ('liqd_product_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
 )
 
 A4_COMMENTABLES = (
     ('a4comments', 'comment'),
-    ('liqd_product_ideas', 'idea'),
+    ('a4_candy_ideas', 'idea'),
     ('a4_candy_documents', 'chapter'),
     ('a4_candy_documents', 'paragraph'),
     ('liqd_product_mapideas', 'mapidea'),
@@ -369,14 +369,14 @@ A4_COMMENTABLES = (
 
 A4_REPORTABLES = (
     ('a4comments', 'comment'),
-    ('liqd_product_ideas', 'idea'),
+    ('a4_candy_ideas', 'idea'),
     ('liqd_product_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
 )
 
 A4_ACTIONABLES = (
     ('a4comments', 'comment'),
-    ('liqd_product_ideas', 'idea'),
+    ('a4_candy_ideas', 'idea'),
     ('a4_candy_budgeting', 'proposal'),
     ('liqd_product_mapideas', 'mapidea'),
 )
@@ -385,18 +385,18 @@ A4_AUTO_FOLLOWABLES = (
     # Disabled to keep current behaviour: the auto follow functionality did
     # not work until 2018/03/21 due to a adhocracy4 bug
     # ('a4comments', 'comment'),
-    # ('liqd_product_ideas', 'idea'),
+    # ('a4_candy_ideas', 'idea'),
     # ('liqd_product_mapideas', 'mapidea'),
 )
 
 A4_CATEGORIZABLE = (
-    ('liqd_product_ideas', 'idea'),
+    ('a4_candy_ideas', 'idea'),
     ('liqd_product_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
 )
 
 A4_LABELS_ADDABLE = (
-    ('liqd_product_ideas', 'idea'),
+    ('a4_candy_ideas', 'idea'),
     ('liqd_product_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
 )

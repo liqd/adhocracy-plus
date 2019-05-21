@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_ideas', '0011_idea_image')]
 
     dependencies = [
-        ('liqd_product_ideas', '0010_moderateable'),
+        ('a4_candy_ideas', '0010_moderateable'),
     ]
 
     operations = [

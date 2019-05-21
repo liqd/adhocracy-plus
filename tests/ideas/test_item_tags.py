@@ -20,13 +20,13 @@ def test_get_change_perm(rf, idea_factory):
     context = {'request': request, 'obj': obj}
     helpers.render_template(template, context)
 
-    assert 'liqd_product_ideas.view_idea' == context['view_perm']
+    assert 'a4_candy_ideas.view_idea' == context['view_perm']
     assert rules.perm_exists(context['view_perm'])
-    assert 'liqd_product_ideas.add_idea' == context['add_perm']
+    assert 'a4_candy_ideas.add_idea' == context['add_perm']
     assert rules.perm_exists(context['add_perm'])
-    assert 'liqd_product_ideas.change_idea' == context['change_perm']
+    assert 'a4_candy_ideas.change_idea' == context['change_perm']
     assert rules.perm_exists(context['change_perm'])
-    assert 'liqd_product_ideas.delete_idea' == context['delete_perm']
+    assert 'a4_candy_ideas.delete_idea' == context['delete_perm']
 
 
 @pytest.mark.django_db

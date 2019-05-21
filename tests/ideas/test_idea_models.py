@@ -12,7 +12,7 @@ from tests.helpers import createThumbnail
 
 @pytest.mark.django_db
 def test_absolute_url(idea):
-    url = reverse('liqd_product_ideas:idea-detail',
+    url = reverse('a4_candy_ideas:idea-detail',
                   kwargs={'pk': '{:05d}'.format(idea.pk),
                           'year': idea.created.year})
     assert idea.get_absolute_url() == url

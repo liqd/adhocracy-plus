@@ -103,7 +103,7 @@ urlpatterns = [
             'apps.offlineevents.urls',
             namespace='liqd_product_offlineevents')),
         url(r'^ideas/', include(r'apps.ideas.urls',
-                                namespace='liqd_product_ideas')),
+                                namespace='a4_candy_ideas')),
         url(r'^mapideas/', include('apps.mapideas.urls',
                                    namespace='liqd_product_mapideas')),
         url(r'^text/', include('apps.documents.urls',

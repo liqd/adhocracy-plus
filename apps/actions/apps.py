@@ -28,7 +28,7 @@ class Config(AppConfig):
         configure_type(
             'item',
             ('a4_candy_budgeting', 'proposal'),
-            ('liqd_product_ideas', 'idea'),
+            ('a4_candy_ideas', 'idea'),
             ('liqd_product_mapideas', 'mapidea')
         )
 

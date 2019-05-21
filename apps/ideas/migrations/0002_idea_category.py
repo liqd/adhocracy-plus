@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('a4categories', '__first__'),
-        ('liqd_product_ideas', '0001_initial'),
+        ('a4_candy_ideas', '0001_initial'),
     ]
 
     operations = [
