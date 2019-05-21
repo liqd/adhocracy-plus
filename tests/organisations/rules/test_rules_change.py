@@ -3,7 +3,7 @@ import rules
 
 from tests.helpers import setup_users
 
-perm_name = 'liqd_product_organisations.change_organisation'
+perm_name = 'a4_candy_organisations.change_organisation'
 
 
 def test_perm_exists():

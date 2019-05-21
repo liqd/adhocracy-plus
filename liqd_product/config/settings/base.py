@@ -348,7 +348,7 @@ WAGTAIL_SITE_NAME = 'Beteiligung.in'
 
 # adhocracy4
 
-A4_ORGANISATIONS_MODEL = 'liqd_product_organisations.Organisation'
+A4_ORGANISATIONS_MODEL = 'a4_candy_organisations.Organisation'
 
 A4_RATEABLES = (
     ('a4comments', 'comment'),
