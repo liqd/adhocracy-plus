@@ -9,6 +9,8 @@ import django.core.validators
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_users', '0001_initial')]
+
     dependencies = [
         ('auth', '0006_require_contenttypes_0002'),
     ]
@@ -32,6 +34,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'liqd_product_users_user',
             },
             managers=[
                 ('objects', django.contrib.auth.models.UserManager()),

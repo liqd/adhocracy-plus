@@ -7,8 +7,10 @@ import adhocracy4.images.fields
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_users', '0002_add-user-fields-for-profile')]
+
     dependencies = [
-        ('liqd_product_users', '0001_initial'),
+        ('a4_candy_users', '0001_initial'),
     ]
 
     operations = [

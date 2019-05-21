@@ -230,7 +230,7 @@ ALLOWED_UPLOAD_IMAGES = ('png', 'jpeg', 'gif')
 
 # Authentication
 
-AUTH_USER_MODEL = 'liqd_product_users.User'
+AUTH_USER_MODEL = 'a4_candy_users.User'
 
 AUTHENTICATION_BACKENDS = (
     'rules.permissions.ObjectPermissionBackend',
