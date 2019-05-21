@@ -7,8 +7,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_partners', '0007_partner_title')]
+
     dependencies = [
-        ('liqd_product_partners', '0006_information_blank'),
+        ('a4_candy_partners', '0006_information_blank'),
     ]
 
     operations = [

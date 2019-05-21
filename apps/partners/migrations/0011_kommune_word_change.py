@@ -9,8 +9,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_partners', '0011_kommune_word_change')]
+
     dependencies = [
-        ('liqd_product_partners', '0010_update_helptexts'),
+        ('a4_candy_partners', '0010_update_helptexts'),
     ]
 
     operations = [

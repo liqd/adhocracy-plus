@@ -6,7 +6,7 @@ from django.db import migrations
 
 
 def shorten_fields(apps, schema_editor):
-    Partner = apps.get_model("liqd_product_partners", "Partner")
+    Partner = apps.get_model("a4_candy_partners", "Partner")
     for partner in Partner.objects.all():
         partner.name = partner.name[0:100]
         partner.title = partner.title[0:100]
@@ -16,8 +16,10 @@ def shorten_fields(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_partners', '0008_custom_shorten_fields')]
+
     dependencies = [
-        ('liqd_product_partners', '0007_partner_title'),
+        ('a4_candy_partners', '0007_partner_title'),
     ]
 
     operations = [
