@@ -194,7 +194,7 @@ msgstr "Abbrechen"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_list.html:4
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_list.html:4
 #: liqd_product/templates/a4dashboard/base_project_list.html:15
 #: liqd_product/templates/a4dashboard/project_list.html:4
 #: liqd_product/templates/a4dashboard/project_list.html:9
@@ -203,7 +203,7 @@ msgstr "Projekte"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_list_tile.html:29
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:29
 #: liqd_product/templates/a4dashboard/includes/project_list_item.html:17
 msgid "Finished"
 msgstr "Abgeschlossen"
@@ -218,7 +218,7 @@ msgstr "privat"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:45
 #: liqd_product/apps/contrib/templates/a4_candy_contrib/item_detail.html:96
 #: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:22
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:48
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_detail.html:48
 #: liqd_product/templates/a4dashboard/includes/project_list_item.html:41
 msgid "Edit"
 msgstr "Bearbeiten"
@@ -231,7 +231,7 @@ msgstr "Duplizieren"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:62
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:62
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_list.html:18
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_list.html:18
 #: liqd_product/templates/a4dashboard/project_list.html:27
 msgid "We could not find any projects."
 msgstr "Wir konnten keine Projekte finden."
@@ -411,8 +411,13 @@ msgstr "Grundeinstellungen bearbeiten"
 #: adhocracy4/dashboard/dashboard.py:23
 #: liqd_product/apps/partners/templates/partner_information.html:4
 #: liqd_product/apps/partners/templates/partner_information.html:9
+<<<<<<< HEAD
 #: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:64
 #: liqd_product/templates/header.html:31
+=======
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_detail.html:64
+#: liqd_product/templates/header.html:30
+>>>>>>> apps/projects: Update label
 msgid "Information"
 msgstr "Information"
 
@@ -421,7 +426,7 @@ msgid "Edit project information"
 msgstr "Projektinformation bearbeiten"
 
 #: adhocracy4/dashboard/dashboard.py:33
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:84
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_detail.html:84
 msgid "Result"
 msgstr "Ergebnis"
 
@@ -488,7 +493,7 @@ msgstr ""
 "Nur eingeladene Nutzerinnen und Nutzer können sich beteiligen (privat)."
 
 #: adhocracy4/dashboard/forms.py:79
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:100
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_detail.html:100
 msgid "Contact for questions"
 msgstr "Kontakt für Rückfragen"
 
@@ -508,7 +513,7 @@ msgstr "weitere Kontaktmöglichkeiten"
 
 #: adhocracy4/dashboard/forms.py:98
 #: adhocracy4/phases/models.py:64
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_user_list.html:7
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Name"
 
@@ -517,18 +522,18 @@ msgid "Address"
 msgstr "Adresse"
 
 #: adhocracy4/dashboard/forms.py:103
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:108
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_detail.html:108
 msgid "Telephone"
 msgstr "Telefon"
 
 #: adhocracy4/dashboard/forms.py:105
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_invite_list.html:7
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:112
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_detail.html:112
 msgid "Email"
 msgstr "E-Mail"
 
 #: adhocracy4/dashboard/forms.py:107
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:117
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_detail.html:117
 msgid "Website"
 msgstr "Webseite"
 
@@ -1822,7 +1827,7 @@ msgstr "Veranstaltungen"
 
 #: liqd_product/apps/offlineevents/forms.py:15
 #: liqd_product/apps/offlineevents/models.py:15
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_invite_list.html:8
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:8
 msgid "Date"
 msgstr "Datum"
 
@@ -1984,14 +1989,14 @@ msgid "Topic and location"
 msgstr "Thema und Ort"
 
 #: liqd_product/apps/projects/dashboard.py:13
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_participants.html:4
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_participants.html:12
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_participants.html:4
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_participants.html:12
 msgid "Participants"
 msgstr "Teilnehmer*innen"
 
 #: liqd_product/apps/projects/dashboard.py:34
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_moderators.html:4
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_moderators.html:12
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_moderators.html:4
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_moderators.html:12
 msgid "Moderators"
 msgstr "Moderator*innen"
 
@@ -2013,82 +2018,82 @@ msgstr "Laden Sie eine CSV-Datei hoch, die E-Mail Adressen beinhaltet."
 msgid "Please enter email addresses or upload a file"
 msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/project_list_tile.html:31
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:31
 msgid "Participation possible until"
 msgstr "Beteiligung möglich bis"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_invite_list.html:9
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_invite_list.html:21
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_invite_list.html:22
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_user_list.html:8
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_user_list.html:19
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_user_list.html:20
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:9
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:21
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:22
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:8
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:19
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:20
 #: liqd_product/templates/account/email.html:35
 msgid "Remove"
 msgstr "Entfernen"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_invite_list.html:31
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/removeable_user_list.html:29
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:31
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:29
 msgid "None"
 msgstr "Keine Einträge"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/timeline.html:7
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/timeline.html:7
 msgid "Timeline"
 msgstr "Zeitleiste"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/timeline.html:18
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/timeline.html:76
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/timeline.html:18
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/timeline.html:76
 #: liqd_product/apps/users/models.py:44
 msgid "active"
 msgstr "aktiv"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/timeline.html:19
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/timeline.html:28
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/timeline.html:19
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/timeline.html:28
 msgid "current page"
 msgstr "aktuelle Seite"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/timeline.html:49
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/timeline.html:96
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/timeline.html:49
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/timeline.html:96
 msgid "Participation is not possible at the moment."
 msgstr "Die Beteiligung ist aktuell nicht möglich."
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/timeline.html:52
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/timeline.html:98
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/timeline.html:52
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/timeline.html:98
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "Sie startet am %(date)s."
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/timeline.html:55
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/timeline.html:55
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "Es geht weiter am %(date)s."
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/timeline.html:58
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/timeline.html:58
 #, python-format
 msgid "It ended on %(date)s."
 msgstr "Sie hat am %(date)s geendet."
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/users_from_email_form.html:27
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/users_from_email_form.html:27
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/includes/users_from_email_form.html:47
+#: liqd_product/apps/projects/templates/a4_candy_projects/includes/users_from_email_form.html:47
 msgid "Upload"
 msgstr "Hochladen"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/moderatorinvite_detail.html:4
-#: liqd_product/apps/projects/templates/liqd_product_projects/moderatorinvite_form.html:4
+#: liqd_product/apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:4
+#: liqd_product/apps/projects/templates/a4_candy_projects/moderatorinvite_form.html:4
 #, python-format
 msgid "Invitation to %(project)s"
 msgstr "Einladung zu %(project)s"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/moderatorinvite_detail.html:8
-#: liqd_product/apps/projects/templates/liqd_product_projects/moderatorinvite_form.html:8
+#: liqd_product/apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:8
+#: liqd_product/apps/projects/templates/a4_candy_projects/moderatorinvite_form.html:8
 #, python-format
 msgid "Moderation invitation for %(project)s"
 msgstr "Moderationseinladungen für %(project)s"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/moderatorinvite_detail.html:11
+#: liqd_product/apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:11
 msgid ""
 "Please login to procceed. If you do not have an account, register and "
 "revisit the invitation link."
@@ -2096,13 +2101,13 @@ msgstr ""
 "Bitte melden Sie sich an. Wenn Sie noch kein Konto haben, registrieren Sie "
 "sich bitte und besuchen sie den Einladungslink noch einmal."
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/moderatorinvite_detail.html:13
-#: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_detail.html:13
+#: liqd_product/apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:13
+#: liqd_product/apps/projects/templates/a4_candy_projects/participantinvite_detail.html:13
 msgid "Proceed to login"
 msgstr "Weiter zur Anmeldung"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/moderatorinvite_detail.html:14
-#: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_detail.html:14
+#: liqd_product/apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:14
+#: liqd_product/apps/projects/templates/a4_candy_projects/participantinvite_detail.html:14
 #: liqd_product/apps/users/templates/liqd_product_users/indicator.html:48
 #: liqd_product/templates/account/signup.html:4
 #: liqd_product/templates/account/signup.html:7
@@ -2110,7 +2115,7 @@ msgstr "Weiter zur Anmeldung"
 msgid "Register"
 msgstr "Registrieren"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/moderatorinvite_form.html:11
+#: liqd_product/apps/projects/templates/a4_candy_projects/moderatorinvite_form.html:11
 msgid ""
 "You were invited by the initiator of the project. If you accept you will be "
 "able to moderate the project."
@@ -2118,40 +2123,40 @@ msgstr ""
 "Sie wurden von den Initiator*innen des Projekts eingeladen. Wenn Sie "
 "akzeptieren können sie das Projekt moderieren."
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/moderatorinvite_form.html:15
-#: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_form.html:18
+#: liqd_product/apps/projects/templates/a4_candy_projects/moderatorinvite_form.html:15
+#: liqd_product/apps/projects/templates/a4_candy_projects/participantinvite_form.html:18
 msgid "Accept"
 msgstr "Akzeptieren"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/moderatorinvite_form.html:16
-#: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_form.html:19
+#: liqd_product/apps/projects/templates/a4_candy_projects/moderatorinvite_form.html:16
+#: liqd_product/apps/projects/templates/a4_candy_projects/participantinvite_form.html:19
 msgid "Decline"
 msgstr "Ablehnen"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_detail.html:4
-#: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_form.html:4
+#: liqd_product/apps/projects/templates/a4_candy_projects/participantinvite_detail.html:4
+#: liqd_product/apps/projects/templates/a4_candy_projects/participantinvite_form.html:4
 #, python-format
 msgid "Project: %(project)s"
 msgstr "Projekt: %(project)s"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_detail.html:8
+#: liqd_product/apps/projects/templates/a4_candy_projects/participantinvite_detail.html:8
 #, python-format
 msgid "Do you want to take part in \"%(project)s\"?"
 msgstr "Teilnahme am Projekt %(project)s"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_detail.html:11
+#: liqd_product/apps/projects/templates/a4_candy_projects/participantinvite_detail.html:11
 msgid ""
 "For this you need an account. Please login with your account or register."
 msgstr ""
 "Hierzu benötigen Sie ein Konto. Bitte melden Sie sich mit Ihrem meinBerlin-"
 "Konto an oder registrieren Sie sich neu."
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_form.html:8
+#: liqd_product/apps/projects/templates/a4_candy_projects/participantinvite_form.html:8
 #, python-format
 msgid "Do you want to join %(project)s?"
 msgstr "Wollen Sie %(project)s beitreten?"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/participantinvite_form.html:11
+#: liqd_product/apps/projects/templates/a4_candy_projects/participantinvite_form.html:11
 #, python-format
 msgid ""
 "\n"
@@ -2164,33 +2169,33 @@ msgid ""
 "                "
 msgstr ""
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:13
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_detail.html:13
 msgid "This project is in not published yet."
 msgstr "Dieses Projekt ist noch nicht veröffentlicht."
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:30
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_detail.html:30
 #, python-format
 msgid "to project collection %(name)s"
 msgstr "zur Projektsammlung %(name)s"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:74
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_detail.html:74
 msgid "Participation"
 msgstr "Beteiligung"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:165
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_detail.html:165
 msgid "No results yet."
 msgstr "Noch gibt es keine Ergebnisse."
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_moderators.html:7
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_moderators.html:7
 msgid "Edit Moderators"
 msgstr "Moderator*innen bearbeiten"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_moderators.html:10
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_participants.html:10
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_moderators.html:10
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_participants.html:10
 msgid "Pending Invitations"
 msgstr "Ausstehende Einladungen"
 
-#: liqd_product/apps/projects/templates/liqd_product_projects/project_participants.html:7
+#: liqd_product/apps/projects/templates/a4_candy_projects/project_participants.html:7
 msgid "Edit Participants"
 msgstr "Teilnehmer*innen bearbeiten"
 

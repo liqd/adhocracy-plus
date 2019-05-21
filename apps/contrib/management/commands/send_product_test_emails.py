@@ -190,7 +190,7 @@ class Command(BaseCommand):
         TestEmail.send(
             invite,
             receiver=[self.user],
-            template_name='liqd_product_projects/emails/invite_participant'
+            template_name='a4_candy_projects/emails/invite_participant'
         )
 
     def _send_invitation_moderator(self):
@@ -202,5 +202,5 @@ class Command(BaseCommand):
         TestEmail.send(
             invite,
             receiver=[self.user],
-            template_name='liqd_product_projects/emails/invite_moderator'
+            template_name='a4_candy_projects/emails/invite_moderator'
         )

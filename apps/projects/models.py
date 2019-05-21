@@ -57,7 +57,6 @@ class ParticipantInvite(Invite):
 
     class Meta:
         unique_together = ('email', 'project')
-        db_table = 'meinberlin_projects_participantinvite'
 
 
 class ModeratorInviteManager(models.Manager):
@@ -84,4 +83,3 @@ class ModeratorInvite(Invite):
 
     class Meta:
         unique_together = ('email', 'project')
-        db_table = 'meinberlin_projects_moderatorinvite'
