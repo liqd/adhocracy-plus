@@ -38,6 +38,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='mappreset',
             name='category',
-            field=models.ForeignKey(blank=True, on_delete=django.db.models.deletion.SET_NULL, to='liqd_product_maps.MapPresetCategory', null=True),
+            field=models.ForeignKey(blank=True, on_delete=django.db.models.deletion.SET_NULL, to='a4_candy_maps.MapPresetCategory', null=True),
         ),
     ]

@@ -62,6 +62,6 @@ class MapChoosePolygonWithPresetWidget(Widget):
         }
 
         return loader.render_to_string(
-            'liqd_product_maps/map_choose_polygon_with_preset_widget.html',
+            'a4_candy_maps/map_choose_polygon_with_preset_widget.html',
             context
         )

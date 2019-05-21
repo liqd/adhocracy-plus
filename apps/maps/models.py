@@ -8,7 +8,6 @@ class MapPresetCategory(models.Model):
 
     class Meta:
         ordering = ['name']
-        db_table = 'meinberlin_maps_mappresetcategory'
 
     def __str__(self):
         return self.name
@@ -24,7 +23,6 @@ class MapPreset(models.Model):
 
     class Meta:
         ordering = ['name']
-        db_table = 'meinberlin_maps_mappreset'
 
     def __str__(self):
         return self.name
