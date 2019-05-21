@@ -11,6 +11,8 @@ class Migration(migrations.Migration):
 
     initial = True
 
+    replaces = [('liqd_product_cms_pages', '0001_initial')]
+
     dependencies = [
         ('wagtailcore', '0040_page_draft_title'),
     ]
@@ -23,6 +25,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'liqd_product_cms_pages_homepage',
             },
             bases=('wagtailcore.page',),
         ),
@@ -34,6 +37,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'liqd_product_cms_pages_simplepage',
             },
             bases=('wagtailcore.page',),
         ),

@@ -9,7 +9,7 @@ def create_homepage(apps, schema_editor):
     ContentType = apps.get_model('contenttypes.ContentType')
     Page = apps.get_model('wagtailcore.Page')
     Site = apps.get_model('wagtailcore.Site')
-    HomePage = apps.get_model('liqd_product_cms_pages.HomePage')
+    HomePage = apps.get_model('a4_candy_cms_pages.HomePage')
 
     # Delete the default homepage
     # If migration is run multiple times, it may have already been deleted
@@ -17,7 +17,7 @@ def create_homepage(apps, schema_editor):
 
     # Create content type for homepage model
     homepage_content_type, __ = ContentType.objects.get_or_create(
-        model='homepage', app_label='liqd_product_cms_pages')
+        model='homepage', app_label='a4_candy_cms_pages')
 
     # Create a new homepage
     homepage = HomePage.objects.create(
@@ -38,20 +38,22 @@ def create_homepage(apps, schema_editor):
 def remove_homepage(apps, schema_editor):
     # Get models
     ContentType = apps.get_model('contenttypes.ContentType')
-    HomePage = apps.get_model('liqd_product_cms_pages.HomePage')
+    HomePage = apps.get_model('a4_candy_cms_pages.HomePage')
 
     # Delete the default homepage
     # Page and Site objects CASCADE
     HomePage.objects.filter(slug='home', depth=2).delete()
 
     # Delete content type for homepage model
-    ContentType.objects.filter(model='homepage', app_label='liqd_product_cms_pages').delete()
+    ContentType.objects.filter(model='homepage', app_label='a4_candy_cms_pages').delete()
 
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_cms_pages', '0002_create_homepage')]
+
     dependencies = [
-        ('liqd_product_cms_pages', '0001_initial'),
+        ('a4_candy_cms_pages', '0001_initial'),
     ]
 
     operations = [

@@ -8,9 +8,11 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_cms_pages', '0003_emptypage')]
+
     dependencies = [
         ('wagtailcore', '0040_page_draft_title'),
-        ('liqd_product_cms_pages', '0002_create_homepage'),
+        ('a4_candy_cms_pages', '0002_create_homepage'),
     ]
 
     operations = [
@@ -21,6 +23,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
+                'db_table': 'liqd_product_cms_pages_emptypage',
             },
             bases=('wagtailcore.page',),
         ),

@@ -9,9 +9,11 @@ import wagtail.core.fields
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_cms_pages', '0004_add_fields_to_hompage')]
+
     dependencies = [
         ('wagtailimages', '0019_delete_filter'),
-        ('liqd_product_cms_pages', '0003_emptypage'),
+        ('a4_candy_cms_pages', '0003_emptypage'),
     ]
 
     operations = [
