@@ -21,9 +21,6 @@ class ModeratorStatement(UserGeneratedContentModel):
         self.statement = transforms.clean_html_field(self.statement)
         super().save(*args, **kwargs)
 
-    class Meta:
-        db_table = 'meinberlin_moderatorfeedback_moderatorstatement'
-
 
 class Moderateable(models.Model):
     moderator_feedback_choices = DEFAULT_CHOICES

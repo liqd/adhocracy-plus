@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_mapideas', '0011_moderateable')]
 
     dependencies = [
-        ('liqd_product_moderatorfeedback', '0001_initial'),
+        ('a4_candy_moderatorfeedback', '0001_initial'),
         ('a4_candy_mapideas', '0010_alter_category'),
     ]
 
@@ -25,6 +25,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='mapidea',
             name='moderator_statement',
-            field=models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='liqd_product_moderatorfeedback.ModeratorStatement'),
+            field=models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='a4_candy_moderatorfeedback.ModeratorStatement'),
         ),
     ]

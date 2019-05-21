@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='proposal',
             name='moderator_statement',
-            field=models.OneToOneField(null=True, related_name='+', to='liqd_product_moderatorfeedback.ModeratorStatement', blank=True, on_delete=models.CASCADE),
+            field=models.OneToOneField(null=True, related_name='+', to='a4_candy_moderatorfeedback.ModeratorStatement', blank=True, on_delete=models.CASCADE),
         ),
     ]
