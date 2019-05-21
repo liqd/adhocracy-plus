@@ -360,8 +360,8 @@ A4_RATEABLES = (
 A4_COMMENTABLES = (
     ('a4comments', 'comment'),
     ('liqd_product_ideas', 'idea'),
-    ('liqd_product_documents', 'chapter'),
-    ('liqd_product_documents', 'paragraph'),
+    ('a4_candy_documents', 'chapter'),
+    ('a4_candy_documents', 'paragraph'),
     ('liqd_product_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
     ('liqd_product_polls', 'poll'),

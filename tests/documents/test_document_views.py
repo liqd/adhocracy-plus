@@ -11,7 +11,7 @@ def test_chapter_detail_view_redirect_first_chapter(client, chapter_factory,
     chapter = chapter_factory(module=phase.module)
 
     url = reverse(
-        'liqd_product_documents:chapter-detail',
+        'a4_candy_documents:chapter-detail',
         kwargs={
             'partner_slug': chapter.project.organisation.partner.slug,
             'pk': chapter.pk

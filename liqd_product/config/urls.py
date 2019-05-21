@@ -107,7 +107,7 @@ urlpatterns = [
         url(r'^mapideas/', include('apps.mapideas.urls',
                                    namespace='liqd_product_mapideas')),
         url(r'^text/', include('apps.documents.urls',
-                               namespace='liqd_product_documents')),
+                               namespace='a4_candy_documents')),
         url(r'^budgeting/', include('apps.budgeting.urls',
                                     namespace='a4_candy_budgeting')),
     ),

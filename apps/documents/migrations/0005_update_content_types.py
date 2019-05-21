@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_documents', '0005_update_content_types')]
 
     dependencies = [
-        ('liqd_product_documents', '0004_remove_create_document_phase'),
+        ('a4_candy_documents', '0004_remove_create_document_phase'),
     ]
 
     operations = [

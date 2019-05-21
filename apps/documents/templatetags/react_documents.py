@@ -10,7 +10,7 @@ from apps.documents.serializers import ChapterSerializer
 register = template.Library()
 
 
-@register.inclusion_tag('liqd_product_documents/react_documents.html',
+@register.inclusion_tag('a4_candy_documents/react_documents.html',
                         takes_context=True)
 def react_documents(context, module, reload_on_success=False):
     chapters = Chapter.objects.filter(module=module)

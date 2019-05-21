@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=120, blank=True)),
                 ('text', ckeditor.fields.RichTextField()),
                 ('weight', models.PositiveIntegerField()),
-                ('chapter', models.ForeignKey(related_name='paragraphs', to='liqd_product_documents.Chapter', on_delete=models.CASCADE)),
+                ('chapter', models.ForeignKey(related_name='paragraphs', to='a4_candy_documents.Chapter', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ('weight',),
