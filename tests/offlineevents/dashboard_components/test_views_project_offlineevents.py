@@ -22,7 +22,7 @@ def test_edit_view(client, phase_factory, offline_event_factory):
     client.login(username=initiator.email, password='password')
     response = client.get(url)
     assert_template_response(
-        response, 'liqd_product_offlineevents/offlineevent_list.html')
+        response, 'a4_candy_offlineevents/offlineevent_list.html')
 
 
 @pytest.mark.django_db

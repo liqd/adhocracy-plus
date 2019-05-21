@@ -59,7 +59,7 @@ msgstr "Missing fields for publication"
 #: liqd_product/apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:27
 #: liqd_product/apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:35
 #: liqd_product/apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:27
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/includes/offlineevent_form.html:12
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:12
 #: liqd_product/templates/a4dashboard/base_form_module.html:19
 #: liqd_product/templates/a4dashboard/base_form_project.html:19
 msgid "Save"
@@ -101,7 +101,7 @@ msgstr "Preview"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:38
 #: liqd_product/apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:8
 #: liqd_product/apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:14
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/includes/offlineevent_list_item.html:16
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:16
 #: liqd_product/templates/a4dashboard/includes/preview.html:10
 #: liqd_product/templates/a4dashboard/includes/project_list_item.html:34
 msgid "View"
@@ -156,8 +156,8 @@ msgstr "Create draft"
 #: liqd_product/apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:28
 #: liqd_product/apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:14
 #: liqd_product/apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:36
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/includes/offlineevent_form.html:13
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_confirm_delete.html:15
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:13
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:15
 #: liqd_product/templates/a4dashboard/project_create_form.html:30
 msgid "Cancel"
 msgstr "Cancel"
@@ -184,7 +184,7 @@ msgstr "private"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:45
 #: liqd_product/apps/contrib/templates/a4_candy_contrib/item_detail.html:96
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/includes/offlineevent_list_item.html:22
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:22
 #: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:48
 #: liqd_product/templates/a4dashboard/includes/project_list_item.html:41
 msgid "Edit"
@@ -416,7 +416,7 @@ msgstr "No"
 #: liqd_product/apps/budgeting/views.py:31
 #: liqd_product/apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:13
 #: liqd_product/apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:13
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_confirm_delete.html:12
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:12
 msgid "Yes"
 msgstr "Yes"
 
@@ -1160,7 +1160,7 @@ msgstr "Zoom out"
 #: liqd_product/apps/budgeting/templates/liqd_product_budgeting/proposal_list.html:53
 #: liqd_product/apps/ideas/templates/a4_candy_ideas/idea_list.html:31
 #: liqd_product/apps/mapideas/templates/a4_candy_mapideas/mapidea_list.html:53
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_list.html:27
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:27
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
@@ -1181,7 +1181,7 @@ msgstr "Moderate proposal"
 #: liqd_product/apps/budgeting/templates/liqd_product_budgeting/proposal_update_form.html:4
 #: liqd_product/apps/ideas/templates/a4_candy_ideas/idea_update_form.html:4
 #: liqd_product/apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:4
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_update_form.html:4
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_update_form.html:4
 #, python-format
 msgid "Edit %(title)s"
 msgstr "Edit %(title)s"
@@ -1308,7 +1308,7 @@ msgid "Actions"
 msgstr "Actions"
 
 #: liqd_product/apps/contrib/templates/a4_candy_contrib/item_detail.html:98
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/includes/offlineevent_list_item.html:27
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:27
 msgid "Delete"
 msgstr "Delete"
 
@@ -1717,7 +1717,7 @@ msgid "Note only visible internally within project."
 msgstr "Note only visible internally within project."
 
 #: liqd_product/apps/offlineevents/dashboard.py:13
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_list.html:9
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:9
 msgid "Offline Events"
 msgstr "Offline Events"
 
@@ -1731,31 +1731,31 @@ msgstr "Date"
 msgid "Time"
 msgstr "Time"
 
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_confirm_delete.html:4
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:4
 msgid "Confirm Offline Event Deletion"
 msgstr "Confirm Offline Event Deletion"
 
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_confirm_delete.html:8
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:8
 msgid "Are you sure you want to delete the offline event?"
 msgstr "Are you sure you want to delete the offline event?"
 
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_create_form.html:4
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_create_form.html:4
 msgid "Create a new topic"
 msgstr "Create a new topic"
 
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_create_form.html:7
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_create_form.html:7
 msgid "Add a new offline event"
 msgstr "Add a new offline event"
 
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_list.html:4
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:4
 msgid "Offlineevents"
 msgstr "Offlineevents"
 
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_list.html:13
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:13
 msgid "Add offline event"
 msgstr "Add offline event"
 
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_list.html:18
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:18
 msgid ""
 "Here, you can include events that take place as part of the participation "
 "project."
@@ -1763,7 +1763,7 @@ msgstr ""
 "Here, you can include events that take place as part of the participation "
 "project."
 
-#: liqd_product/apps/offlineevents/templates/liqd_product_offlineevents/offlineevent_update_form.html:8
+#: liqd_product/apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_update_form.html:8
 msgid "Edit offline event"
 msgstr "Edit offline event"
 

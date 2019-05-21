@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_offlineevents', '0003_verbose_name_title')]
 
     dependencies = [
-        ('liqd_product_offlineevents', '0002_require_date'),
+        ('a4_candy_offlineevents', '0002_require_date'),
     ]
 
     operations = [

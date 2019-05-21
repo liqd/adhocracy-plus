@@ -20,7 +20,6 @@ class OfflineEvent(UserGeneratedContentModel):
 
     class Meta:
         ordering = ['-date']
-        db_table = 'meinberlin_offlineevents_offlineevent'
 
     def __str__(self):
         return self.name
@@ -32,7 +31,7 @@ class OfflineEvent(UserGeneratedContentModel):
 
     def get_absolute_url(self):
         return reverse(
-            'liqd_product_offlineevents:offlineevent-detail',
+            'a4_candy_offlineevents:offlineevent-detail',
             kwargs=dict(
                 partner_slug=self.project.organisation.partner.slug,
                 slug=str(self.slug)

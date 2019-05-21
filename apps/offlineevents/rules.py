@@ -6,21 +6,21 @@ from adhocracy4.organisations.predicates import is_initiator
 from adhocracy4.projects.predicates import is_moderator
 
 rules.add_perm(
-    'liqd_product_offlineevents.list_offlineevent',
+    'a4_candy_offlineevents.list_offlineevent',
     is_superuser | is_initiator | is_moderator
 )
 
 rules.add_perm(
-    'liqd_product_offlineevents.view_offlineevent',
+    'a4_candy_offlineevents.view_offlineevent',
     module_predicates.is_allowed_view_item
 )
 
 rules.add_perm(
-    'liqd_product_offlineevents.add_offlineevent',
+    'a4_candy_offlineevents.add_offlineevent',
     is_superuser | is_initiator | is_moderator
 )
 
 rules.add_perm(
-    'liqd_product_offlineevents.change_offlineevent',
+    'a4_candy_offlineevents.change_offlineevent',
     is_superuser | is_initiator | is_moderator
 )
