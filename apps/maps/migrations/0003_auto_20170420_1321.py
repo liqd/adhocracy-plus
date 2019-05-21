@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_maps', '0003_auto_20170420_1321')]
 
     dependencies = [
-        ('liqd_product_maps', '0002_auto_20170420_1313'),
+        ('a4_candy_maps', '0002_auto_20170420_1313'),
     ]
 
     operations = [
