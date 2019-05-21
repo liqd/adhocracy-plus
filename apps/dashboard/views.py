@@ -16,7 +16,7 @@ from adhocracy4.projects.mixins import ProjectMixin
 class ModuleBlueprintListView(ProjectMixin,
                               mixins.DashboardBaseMixin,
                               generic.DetailView):
-    template_name = 'liqd_product_dashboard/module_blueprint_list.html'
+    template_name = 'a4_candy_dashboard/module_blueprint_list.html'
     permission_required = 'a4projects.add_project'
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
