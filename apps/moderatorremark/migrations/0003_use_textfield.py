@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_moderatorremark', '0003_use_textfield')]
 
     dependencies = [
-        ('liqd_product_moderatorremark', '0002_unique_by_foreignobject'),
+        ('a4_candy_moderatorremark', '0002_unique_by_foreignobject'),
     ]
 
     operations = [

@@ -31,4 +31,3 @@ class ModeratorRemark(UserGeneratedContentModel):
 
     class Meta:
         unique_together = ('item_content_type', 'item_object_id')
-        db_table = 'meinberlin_moderatorremark_moderatorremark'
