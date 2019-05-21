@@ -7,8 +7,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_users', '0004_use_url_field_for_homepage')]
+
     dependencies = [
-        ('liqd_product_users', '0003_bio_text_field'),
+        ('a4_candy_users', '0003_bio_text_field'),
     ]
 
     operations = [

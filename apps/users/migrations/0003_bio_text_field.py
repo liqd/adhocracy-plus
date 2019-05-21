@@ -7,8 +7,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_users', '0003_bio_text_field')]
+
     dependencies = [
-        ('liqd_product_users', '0002_add-user-fields-for-profile'),
+        ('a4_candy_users', '0002_add-user-fields-for-profile'),
     ]
 
     operations = [
