@@ -13,7 +13,7 @@ class EmbedView(generic.View):
 
 class EmbedProjectView(generic.DetailView, EmbedView):
     model = project_models.Project
-    template_name = "liqd_product_embed/embed.html"
+    template_name = "a4_candy_embed/embed.html"
 
     def get(self, request, *args, **kwargs):
         project = self.get_object()
