@@ -20,7 +20,7 @@ def test_creator_can_update_during_active_phase(client,
     category = category_factory(module=module)
     user = mapidea.creator
     url = reverse(
-        'liqd_product_mapideas:mapidea-update',
+        'a4_candy_mapideas:mapidea-update',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -53,7 +53,7 @@ def test_creator_cannot_update_in_wrong_phase(client,
     user = mapidea.creator
     assert user not in project.moderators.all()
     url = reverse(
-        'liqd_product_mapideas:mapidea-update',
+        'a4_candy_mapideas:mapidea-update',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -84,7 +84,7 @@ def test_moderator_can_update_during_wrong_phase(client,
     moderator = project.moderators.first()
     assert moderator is not user
     url = reverse(
-        'liqd_product_mapideas:mapidea-update',
+        'a4_candy_mapideas:mapidea-update',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -112,7 +112,7 @@ def test_creator_cannot_update(client, map_idea_factory):
     user = mapidea.creator
     assert user not in mapidea.module.project.moderators.all()
     url = reverse(
-        'liqd_product_mapideas:mapidea-update',
+        'a4_candy_mapideas:mapidea-update',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -140,7 +140,7 @@ def test_moderators_can_always_update(client, phase_factory,
     moderator = project.moderators.first()
     assert moderator is not user
     url = reverse(
-        'liqd_product_mapideas:mapidea-update',
+        'a4_candy_mapideas:mapidea-update',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,

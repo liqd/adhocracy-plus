@@ -13,7 +13,7 @@ def test_anonymous_cannot_create_mapidea(client, phase_factory):
     phase = phase_factory(phase_content=phases.IssuePhase())
     module = phase.module
     url = reverse(
-        'liqd_product_mapideas:mapidea-create',
+        'a4_candy_mapideas:mapidea-create',
         kwargs={
             'partner_slug': module.project.organisation.partner.slug,
             'module_slug': module.slug
@@ -36,7 +36,7 @@ def test_user_can_create_mapidea_during_active_phase(client, phase_factory,
     area_settings_factory(module=module)
     category = category_factory(module=module)
     url = reverse(
-        'liqd_product_mapideas:mapidea-create',
+        'a4_candy_mapideas:mapidea-create',
         kwargs={
             'partner_slug': module.project.organisation.partner.slug,
             'module_slug': module.slug
@@ -48,7 +48,7 @@ def test_user_can_create_mapidea_during_active_phase(client, phase_factory,
         client.login(username=user.email, password='password')
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_mapideas/mapidea_create_form.html')
+            response, 'a4_candy_mapideas/mapidea_create_form.html')
         assert response.status_code == 200
         mapidea = {
             'name': 'MapIdea',
@@ -70,7 +70,7 @@ def test_user_cannot_create_mapidea_in_wrong_phase(client, phase_factory,
     phase = phase_factory(phase_content=phases.RatingPhase())
     module = phase.module
     url = reverse(
-        'liqd_product_mapideas:mapidea-create',
+        'a4_candy_mapideas:mapidea-create',
         kwargs={
             'partner_slug': module.project.organisation.partner.slug,
             'module_slug': module.slug
@@ -93,7 +93,7 @@ def test_admin_can_create_mapidea_in_wrong_phase(client, phase_factory,
     area_settings_factory(module=module)
     category = category_factory(module=module)
     url = reverse(
-        'liqd_product_mapideas:mapidea-create',
+        'a4_candy_mapideas:mapidea-create',
         kwargs={
             'partner_slug': module.project.organisation.partner.slug,
             'module_slug': module.slug
@@ -103,7 +103,7 @@ def test_admin_can_create_mapidea_in_wrong_phase(client, phase_factory,
         client.login(username=admin.email, password='password')
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_mapideas/mapidea_create_form.html')
+            response, 'a4_candy_mapideas/mapidea_create_form.html')
         assert response.status_code == 200
         mapidea = {
             'name': 'MapIdea',

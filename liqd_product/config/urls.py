@@ -105,7 +105,7 @@ urlpatterns = [
         url(r'^ideas/', include(r'apps.ideas.urls',
                                 namespace='a4_candy_ideas')),
         url(r'^mapideas/', include('apps.mapideas.urls',
-                                   namespace='liqd_product_mapideas')),
+                                   namespace='a4_candy_mapideas')),
         url(r'^text/', include('apps.documents.urls',
                                namespace='a4_candy_documents')),
         url(r'^budgeting/', include('apps.budgeting.urls',
