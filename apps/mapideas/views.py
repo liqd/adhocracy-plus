@@ -55,34 +55,34 @@ class MapIdeaDetailView(idea_views.AbstractIdeaDetailView):
     model = models.MapIdea
     queryset = models.MapIdea.objects.annotate_positive_rating_count()\
         .annotate_negative_rating_count()
-    permission_required = 'liqd_product_mapideas.view_mapidea'
+    permission_required = 'a4_candy_mapideas.view_mapidea'
 
 
 class MapIdeaCreateView(idea_views.AbstractIdeaCreateView):
     model = models.MapIdea
     form_class = forms.MapIdeaForm
-    permission_required = 'liqd_product_mapideas.add_mapidea'
-    template_name = 'liqd_product_mapideas/mapidea_create_form.html'
+    permission_required = 'a4_candy_mapideas.add_mapidea'
+    template_name = 'a4_candy_mapideas/mapidea_create_form.html'
 
 
 class MapIdeaUpdateView(idea_views.AbstractIdeaUpdateView):
     model = models.MapIdea
     form_class = forms.MapIdeaForm
-    permission_required = 'liqd_product_mapideas.change_mapidea'
-    template_name = 'liqd_product_mapideas/mapidea_update_form.html'
+    permission_required = 'a4_candy_mapideas.change_mapidea'
+    template_name = 'a4_candy_mapideas/mapidea_update_form.html'
 
 
 class MapIdeaDeleteView(idea_views.AbstractIdeaDeleteView):
     model = models.MapIdea
     success_message = _('Your Idea has been deleted')
-    permission_required = 'liqd_product_mapideas.change_mapidea'
-    template_name = 'liqd_product_mapideas/mapidea_confirm_delete.html'
+    permission_required = 'a4_candy_mapideas.change_mapidea'
+    template_name = 'a4_candy_mapideas/mapidea_confirm_delete.html'
 
 
 class MapIdeaModerateView(idea_views.AbstractIdeaModerateView):
     model = models.MapIdea
-    permission_required = 'liqd_product_mapideas.moderate_mapidea'
-    template_name = 'liqd_product_mapideas/mapidea_moderate_form.html'
+    permission_required = 'a4_candy_mapideas.moderate_mapidea'
+    template_name = 'a4_candy_mapideas/mapidea_moderate_form.html'
     moderateable_form_class = forms.MapIdeaModerateForm
 
 

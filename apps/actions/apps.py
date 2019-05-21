@@ -29,7 +29,7 @@ class Config(AppConfig):
             'item',
             ('a4_candy_budgeting', 'proposal'),
             ('a4_candy_ideas', 'idea'),
-            ('liqd_product_mapideas', 'mapidea')
+            ('a4_candy_mapideas', 'mapidea')
         )
 
         configure_icon('far fa-comment', type='comment')

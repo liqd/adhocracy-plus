@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_mapideas', '0007_add_default_ordering')]
 
     dependencies = [
-        ('liqd_product_mapideas', '0006_auto_20170529_1302'),
+        ('a4_candy_mapideas', '0006_auto_20170529_1302'),
     ]
 
     operations = [

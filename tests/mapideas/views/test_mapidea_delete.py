@@ -13,7 +13,7 @@ from tests.helpers import setup_phase
 def test_anonymous_cannot_delete(client, map_idea_factory):
     mapidea = map_idea_factory()
     url = reverse(
-        'liqd_product_mapideas:mapidea-delete',
+        'a4_candy_mapideas:mapidea-delete',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -29,7 +29,7 @@ def test_user_cannot_delete(client, map_idea_factory, user):
     mapidea = map_idea_factory()
     client.login(username=user.email, password='password')
     url = reverse(
-        'liqd_product_mapideas:mapidea-delete',
+        'a4_candy_mapideas:mapidea-delete',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -44,7 +44,7 @@ def test_creator_cannot_delete(client, map_idea_factory):
     mapidea = map_idea_factory()
     client.login(username=mapidea.creator.email, password='password')
     url = reverse(
-        'liqd_product_mapideas:mapidea-delete',
+        'a4_candy_mapideas:mapidea-delete',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -60,7 +60,7 @@ def test_moderator_can_delete(client, map_idea_factory):
     moderator = mapidea.module.project.moderators.first()
     client.login(username=moderator.email, password='password')
     url = reverse(
-        'liqd_product_mapideas:mapidea-delete',
+        'a4_candy_mapideas:mapidea-delete',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -76,7 +76,7 @@ def test_initator_can_delete(client, map_idea_factory):
     initiator = mapidea.module.project.organisation.initiators.first()
     client.login(username=initiator.email, password='password')
     url = reverse(
-        'liqd_product_mapideas:mapidea-delete',
+        'a4_candy_mapideas:mapidea-delete',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -91,7 +91,7 @@ def test_admin_can_delete(client, map_idea_factory, admin):
     mapidea = map_idea_factory()
     client.login(username=admin.email, password='password')
     url = reverse(
-        'liqd_product_mapideas:mapidea-delete',
+        'a4_candy_mapideas:mapidea-delete',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -108,7 +108,7 @@ def test_creator_can_delete_in_active_phase(client,
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.IssuePhase)
     url = reverse(
-        'liqd_product_mapideas:mapidea-delete',
+        'a4_candy_mapideas:mapidea-delete',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -121,7 +121,7 @@ def test_creator_can_delete_in_active_phase(client,
         response = client.get(url)
         assert response.status_code == 200
         assert_template_response(
-            response, 'liqd_product_mapideas/mapidea_confirm_delete.html')
+            response, 'a4_candy_mapideas/mapidea_confirm_delete.html')
         response = client.post(url)
         assert redirect_target(response) == 'project-detail'
         assert response.status_code == 302
@@ -137,7 +137,7 @@ def test_creator_cannot_delete_in_wrong_phase(client,
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.RatingPhase)
     url = reverse(
-        'liqd_product_mapideas:mapidea-delete',
+        'a4_candy_mapideas:mapidea-delete',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -158,7 +158,7 @@ def test_moderator_can_delete_in_active_phase(client,
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.IssuePhase)
     url = reverse(
-        'liqd_product_mapideas:mapidea-delete',
+        'a4_candy_mapideas:mapidea-delete',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -172,7 +172,7 @@ def test_moderator_can_delete_in_active_phase(client,
         response = client.get(url)
         assert response.status_code == 200
         assert_template_response(
-            response, 'liqd_product_mapideas/mapidea_confirm_delete.html')
+            response, 'a4_candy_mapideas/mapidea_confirm_delete.html')
         response = client.post(url)
         assert redirect_target(response) == 'project-detail'
         assert response.status_code == 302
@@ -187,7 +187,7 @@ def test_moderator_can_delete_in_wrong_phase(client,
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.RatingPhase)
     url = reverse(
-        'liqd_product_mapideas:mapidea-delete',
+        'a4_candy_mapideas:mapidea-delete',
         kwargs={
             'partner_slug': mapidea.project.organisation.partner.slug,
             'pk': mapidea.pk,
@@ -201,7 +201,7 @@ def test_moderator_can_delete_in_wrong_phase(client,
         response = client.get(url)
         assert response.status_code == 200
         assert_template_response(
-            response, 'liqd_product_mapideas/mapidea_confirm_delete.html')
+            response, 'a4_candy_mapideas/mapidea_confirm_delete.html')
         response = client.post(url)
         assert redirect_target(response) == 'project-detail'
         assert response.status_code == 302

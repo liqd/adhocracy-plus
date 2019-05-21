@@ -25,7 +25,7 @@ class MapIdeaExportView(PermissionRequiredMixin,
     model = models.MapIdea
     fields = ['name', 'description']
     html_fields = ['description']
-    permission_required = 'liqd_product_mapideas.moderate_mapidea'
+    permission_required = 'a4_candy_mapideas.moderate_mapidea'
 
     def get_queryset(self):
         return super().get_queryset() \
@@ -53,7 +53,7 @@ class MapIdeaCommentExportView(PermissionRequiredMixin,
     model = Comment
 
     fields = ['id', 'comment', 'created']
-    permission_required = 'liqd_product_mapideas.moderate_mapidea'
+    permission_required = 'a4_candy_mapideas.moderate_mapidea'
 
     def get_queryset(self):
         comments = (Comment.objects.filter(mapidea__module=self.module) |

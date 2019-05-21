@@ -15,8 +15,10 @@ reverse_sql = """UPDATE django_content_type
 
 class Migration(migrations.Migration):
 
+    replaces = [('liqd_product_mapideas', '0019_update_content_types')]
+
     dependencies = [
-        ('liqd_product_mapideas', '0018_point_helptext'),
+        ('a4_candy_mapideas', '0018_point_helptext'),
     ]
 
     operations = [

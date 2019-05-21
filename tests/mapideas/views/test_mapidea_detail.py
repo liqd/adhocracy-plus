@@ -15,7 +15,7 @@ def test_detail_view(client, phase_factory, map_idea_factory):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_mapideas/mapidea_detail.html')
+            response, 'a4_candy_mapideas/mapidea_detail.html')
         assert response.status_code == 200
 
 

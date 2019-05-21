@@ -8,7 +8,7 @@ from tests.helpers import freeze_pre_phase
 from tests.helpers import setup_phase
 from tests.helpers import setup_users
 
-perm_name = 'liqd_product_mapideas.add_mapidea'
+perm_name = 'a4_candy_mapideas.add_mapidea'
 
 
 def test_perm_exists():

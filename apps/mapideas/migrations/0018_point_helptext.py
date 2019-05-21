@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_mapideas', '0018_point_helptext')]
 
     dependencies = [
-        ('liqd_product_mapideas', '0017_add_verbose_for_idea_image'),
+        ('a4_candy_mapideas', '0017_add_verbose_for_idea_image'),
     ]
 
     operations = [

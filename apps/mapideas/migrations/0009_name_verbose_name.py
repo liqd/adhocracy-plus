@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     replaces = [('meinberlin_mapideas', '0009_name_verbose_name')]
 
     dependencies = [
-        ('liqd_product_mapideas', '0008_help_text'),
+        ('a4_candy_mapideas', '0008_help_text'),
     ]
 
     operations = [

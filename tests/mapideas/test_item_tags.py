@@ -20,10 +20,10 @@ def test_get_change_perm(rf, map_idea_factory):
     context = {'request': request, 'obj': obj}
     helpers.render_template(template, context)
 
-    assert 'liqd_product_mapideas.view_mapidea' == context['view_perm']
+    assert 'a4_candy_mapideas.view_mapidea' == context['view_perm']
     assert rules.perm_exists(context['view_perm'])
-    assert 'liqd_product_mapideas.add_mapidea' == context['add_perm']
+    assert 'a4_candy_mapideas.add_mapidea' == context['add_perm']
     assert rules.perm_exists(context['add_perm'])
-    assert 'liqd_product_mapideas.change_mapidea' == context['change_perm']
+    assert 'a4_candy_mapideas.change_mapidea' == context['change_perm']
     assert rules.perm_exists(context['change_perm'])
-    assert 'liqd_product_mapideas.delete_mapidea' == context['delete_perm']
+    assert 'a4_candy_mapideas.delete_mapidea' == context['delete_perm']

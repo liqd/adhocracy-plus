@@ -38,7 +38,7 @@ class MapIdea(AbstractMapIdea):
 
     def get_absolute_url(self):
         return reverse(
-            'liqd_product_mapideas:mapidea-detail',
+            'a4_candy_mapideas:mapidea-detail',
             kwargs=dict(
                 partner_slug=self.project.organisation.partner.slug,
                 pk='{:05d}'.format(self.pk),
@@ -49,4 +49,3 @@ class MapIdea(AbstractMapIdea):
     class Meta:
         ordering = ['-created']
         verbose_name = 'mapidea'
-        db_table = 'meinberlin_mapideas_mapidea'
