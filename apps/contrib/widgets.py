@@ -35,7 +35,7 @@ class TextWithDatalistWidget(forms.TextInput):
             attrs['list'] = attrs['id'] + '_datalist'
 
         return render_to_string(
-            'liqd_product_contrib/text_with_datalist.html', {
+            'a4_candy_contrib/text_with_datalist.html', {
                 'text_input': super().render(name, value, attrs),
                 'id_for_datalist': attrs['list'],
                 'options': options

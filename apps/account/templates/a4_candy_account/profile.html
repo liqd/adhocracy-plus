@@ -8,19 +8,19 @@
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
-        {% include 'liqd_product_contrib/includes/form_field.html' with field=form.username %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.username %}
 
-        {% include 'liqd_product_contrib/includes/form_field.html' with field=form.avatar %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.avatar %}
 
-        {% include 'liqd_product_contrib/includes/form_field.html' with field=form.bio %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.bio %}
 
-        {% include 'liqd_product_contrib/includes/form_field.html' with field=form.homepage %}
-        {% include 'liqd_product_contrib/includes/form_field.html' with field=form.facebook_handle %}
-        {% include 'liqd_product_contrib/includes/form_field.html' with field=form.twitter_handle %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.homepage %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.facebook_handle %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.twitter_handle %}
 
-        {% include 'liqd_product_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
+        {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
 
-        {% include 'liqd_product_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
+        {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
 
         <div class="u-spacer-bottom">
             <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>

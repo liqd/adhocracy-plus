@@ -2,11 +2,11 @@
 <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
     {% csrf_token %}
 
-    {% include 'liqd_product_contrib/includes/form_field.html' with field=form.name %}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.name %}
 
-    {% include 'liqd_product_contrib/includes/form_field.html' with field=form.date %}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.date %}
 
-    {% include 'liqd_product_contrib/includes/form_field.html' with field=form.description %}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.description %}
 
     <div class="u-spacer-bottom">
         <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />

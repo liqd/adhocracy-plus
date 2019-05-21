@@ -5,7 +5,7 @@
 
 {% block content %}
     <div class="l-wrapper">
-        {% include "liqd_product_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+        {% include "a4_candy_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
         {% filter_has_perm 'liqd_product_projects.view_project' request.user project_list as filtered_projects %}
         {% if filtered_projects|length > 0 %}
@@ -18,6 +18,6 @@
             <p>{% trans 'We could not find any projects.' %}</p>
         {% endif %}
 
-        {% include "liqd_product_contrib/includes/pagination.html" %}
+        {% include "a4_candy_contrib/includes/pagination.html" %}
     </div>
 {% endblock %}

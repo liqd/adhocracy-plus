@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    {% include "liqd_product_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+    {% include "a4_candy_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
     {% if project_list|length > 0 %}
         <ul class="u-list-reset">
@@ -27,5 +27,5 @@
         <p>{% trans 'We could not find any projects.' %}</p>
     {% endif %}
 
-    {% include "liqd_product_contrib/includes/pagination.html" %}
+    {% include "a4_candy_contrib/includes/pagination.html" %}
 {% endblock %}

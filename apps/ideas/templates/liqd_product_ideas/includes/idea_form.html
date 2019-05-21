@@ -3,21 +3,21 @@
     {% csrf_token %}
     {{ form.media }}
 
-    {% include 'liqd_product_contrib/includes/form_field.html' with field=form.name %}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.name %}
 
-    {% include 'liqd_product_contrib/includes/form_field.html' with field=form.description %}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.description %}
 
     {% if form.show_categories %}
-        {% include 'liqd_product_contrib/includes/form_field.html' with field=form.category %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.category %}
     {% endif %}
 
     {% if form.show_labels %}
-        {% include 'liqd_product_contrib/includes/form_field.html' with field=form.labels %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.labels %}
     {% endif %}
 
-    {% include 'liqd_product_contrib/includes/form_field.html' with field=form.image %}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.image %}
 
-    {% include 'liqd_product_contrib/includes/form_checkbox_field.html' with field=form.right_of_use %}
+    {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.right_of_use %}
 
     <div class="u-spacer-bottom">
         <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />
