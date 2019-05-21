@@ -35,7 +35,7 @@ def _exclude_notifications_disabled(receivers):
 
 
 class NotifyCreatorEmail(Email):
-    template_name = 'liqd_product_notifications/emails/notify_creator'
+    template_name = 'a4_candy_notifications/emails/notify_creator'
 
     def get_receivers(self):
         action = self.object
@@ -49,7 +49,7 @@ class NotifyCreatorEmail(Email):
 
 
 class NotifyModeratorsEmail(Email):
-    template_name = 'liqd_product_notifications/emails/notify_moderator'
+    template_name = 'a4_candy_notifications/emails/notify_moderator'
 
     def get_receivers(self):
         action = self.object
@@ -61,7 +61,7 @@ class NotifyModeratorsEmail(Email):
 
 class NotifyInitiatorsOnProjectCreatedEmail(Email):
     template_name = \
-        'liqd_product_notifications/emails/notify_initiators_project_created'
+        'a4_candy_notifications/emails/notify_initiators_project_created'
 
     def get_receivers(self):
         project = self.object
@@ -80,7 +80,7 @@ class NotifyInitiatorsOnProjectCreatedEmail(Email):
 
 
 class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
-    template_name = 'liqd_product_notifications/emails' \
+    template_name = 'a4_candy_notifications/emails' \
                     '/notify_followers_over_soon'
 
     def get_receivers(self):
@@ -95,7 +95,7 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
 
 class NotifyFollowersOnNewItemCreated(Email):
     template_name = \
-        'liqd_product_notifications/emails/notify_followers_new_item'
+        'a4_candy_notifications/emails/notify_followers_new_item'
 
     def get_receivers(self):
         action = self.object
