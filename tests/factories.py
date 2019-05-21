@@ -32,7 +32,7 @@ class AdminFactory(factory.django.DjangoModelFactory):
 class OrganisationFactory(factory.django.DjangoModelFactory):
 
     class Meta:
-        model = 'liqd_product_organisations.Organisation'
+        model = 'a4_candy_organisations.Organisation'
         django_get_or_create = ('name',)
 
     name = factory.Faker('company')
