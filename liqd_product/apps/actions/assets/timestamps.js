@@ -11,7 +11,7 @@ $(function () {
     let timeagoInstance = timeago()
 
     if ((new Date() - datetime) < sevenDays) {
-      e.textContent = timeagoInstance.format(datetime, 'en')
+      e.textContent = timeagoInstance.format(datetime, document.documentElement.lang)
     }
   })
 })
