@@ -7,6 +7,7 @@ from django.core.management.base import CommandError
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
 from adhocracy4.comments.models import Comment
+from adhocracy4.emails import Email
 from adhocracy4.emails.mixins import SyncEmailMixin
 from adhocracy4.projects.models import Project
 from adhocracy4.reports import emails as reports_emails
@@ -14,7 +15,6 @@ from adhocracy4.reports.models import Report
 from liqd_product.apps.bplan import emails as bplan_emails
 from liqd_product.apps.bplan.models import Statement
 from liqd_product.apps.cms.models import EmailFormPage
-from liqd_product.apps.contrib.emails import Email
 from liqd_product.apps.ideas.models import Idea
 from liqd_product.apps.notifications import emails as notification_emails
 from liqd_product.apps.organisations.models import Organisation
