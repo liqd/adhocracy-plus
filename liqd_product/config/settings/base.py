@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'apps.maps',
     'apps.moderatorfeedback',
     'apps.moderatorremark',
+    'apps.newsletters',
     'apps.notifications',
     'apps.organisations',
     'apps.partners',
