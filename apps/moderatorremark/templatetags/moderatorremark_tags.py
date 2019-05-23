@@ -3,8 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 from rest_framework.renderers import JSONRenderer
 
 from apps.moderatorremark.models import ModeratorRemark
-from apps.moderatorremark.serializers import \
-    ModeratorRemarkSerializer
+from apps.moderatorremark.serializers import ModeratorRemarkSerializer
 
 register = template.Library()
 
