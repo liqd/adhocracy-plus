@@ -5,12 +5,12 @@ from __future__ import unicode_literals
 from django.db import migrations
 
 sql = """UPDATE django_content_type
-         SET app_label = 'a4_candy_ideas'
+         SET app_label = 'liqd_product_ideas'
          WHERE app_label = 'meinberlin_ideas';"""
 
 reverse_sql = """UPDATE django_content_type
                  SET app_label = 'meinberlin_ideas';
-                 WHERE app_label = 'a4_candy_ideas';"""
+                 WHERE app_label = 'liqd_product_ideas';"""
 
 
 class Migration(migrations.Migration):
