@@ -8,7 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_partners', '0012_update_content_types'),
+        ('a4_candy_partners', '0013_update_content_types'),
     ]
 
     operations = [
