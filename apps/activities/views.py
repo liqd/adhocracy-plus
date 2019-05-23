@@ -13,8 +13,8 @@ class ActivityDashboardView(ProjectMixin, dashboard_mixins.DashboardBaseMixin,
                             generic.UpdateView):
     model = models.Activity
     form_class = forms.ActivityForm
-    template_name = 'liqd_product_activities/activities_dashboard.html'
-    permission_required = 'liqd_product_activities.change_activity'
+    template_name = 'a4_candy_activities/activities_dashboard.html'
+    permission_required = 'a4_candy_activities.change_activity'
 
     def get_permission_object(self):
         return self.module
@@ -32,7 +32,7 @@ class ActivityView(ProjectMixin,
                    rules_mixins.PermissionRequiredMixin,
                    generic.DetailView):
     model = models.Activity
-    permission_required = 'liqd_product_activities.view_activity'
+    permission_required = 'a4_candy_activities.view_activity'
 
     def get_object(self):
         return models.Activity.objects \

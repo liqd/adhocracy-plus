@@ -15,7 +15,7 @@ class ActivityComponent(DashboardComponent):
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
-        return module_app == 'liqd_product_activities'
+        return module_app == 'a4_candy_activities'
 
     def get_progress(self, module):
         if models.Activity.objects.filter(module=module).exists():
