@@ -1,7 +1,7 @@
 import factory
 
 from adhocracy4.test import factories as a4_factories
-from liqd_product.apps.moderatorremark.models import ModeratorRemark
+from apps.moderatorremark.models import ModeratorRemark
 from tests.ideas.factories import IdeaFactory
 
 

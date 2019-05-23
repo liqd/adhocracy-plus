@@ -1,6 +1,6 @@
 import factory
 
-from liqd_product.apps.partners import set_partner
+from apps.partners import set_partner
 
 
 class PartnerFactory(factory.django.DjangoModelFactory):

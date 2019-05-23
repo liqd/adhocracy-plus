@@ -1,6 +1,6 @@
 import pytest
 
-from liqd_product.apps.users.decorators import _user_is_project_admin
+from apps.users.decorators import _user_is_project_admin
 from tests.helpers import setup_users
 
 

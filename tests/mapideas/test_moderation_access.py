@@ -1,7 +1,7 @@
 import pytest
 from django.core.urlresolvers import reverse
 
-from liqd_product.apps.mapideas import phases
+from apps.mapideas import phases
 from tests.factories import PhaseFactory
 from tests.helpers import assert_template_response
 from tests.helpers import freeze_phase

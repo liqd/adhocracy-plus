@@ -1,9 +1,8 @@
 import factory
 
 from adhocracy4.test import factories as a4_factories
-from liqd_product.apps.budgeting import models
-from liqd_product.apps.moderatorfeedback import \
-    models as moderatorfeedback_models
+from apps.budgeting import models
+from apps.moderatorfeedback import models as moderatorfeedback_models
 from tests.factories import ModeratorStatementFactory
 
 

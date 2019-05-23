@@ -2,7 +2,7 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from adhocracy4.test.helpers import redirect_target
-from liqd_product.apps.ideas import phases
+from apps.ideas import phases
 from tests.helpers import assert_template_response
 from tests.helpers import freeze_phase
 from tests.helpers import setup_phase

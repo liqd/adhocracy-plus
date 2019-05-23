@@ -1,7 +1,7 @@
 import pytest
 
 from adhocracy4.dashboard import components
-from liqd_product.apps.ideas.phases import CollectFeedbackPhase
+from apps.ideas.phases import CollectFeedbackPhase
 from tests.helpers import setup_phase
 
 component = components.modules.get('idea_export')
