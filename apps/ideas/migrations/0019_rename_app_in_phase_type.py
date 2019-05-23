@@ -10,7 +10,7 @@ def rename_app(apps, schema_editor):
     for phase in Phase.objects.all():
         phase.type = phase.type.replace(
             'liqd_product',
-            'a4_candy_')
+            'a4_candy')
         phase.save()
 
 
@@ -18,7 +18,7 @@ def backname_app(apps, schema_editor):
     Phase = apps.get_model("a4phases", "Phase")
     for phase in Phase.objects.all():
         phase.type = phase.type.replace(
-            'a4_candy_',
+            'a4_candy',
             'liqd_product')
         phase.save()
 
