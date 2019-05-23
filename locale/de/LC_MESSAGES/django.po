@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-16 14:31+0200\n"
+"POT-Creation-Date: 2019-05-23 13:30+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -35,7 +35,7 @@ msgstr "Kategorie hinzufügen"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
-#: liqd_product/templates/a4dashboard/base_dashboard.html:37
+#: liqd_product/templates/a4dashboard/base_dashboard.html:64
 msgid "Dashboard"
 msgstr "Organisationsverwaltung"
 
@@ -412,7 +412,7 @@ msgstr "Grundeinstellungen bearbeiten"
 #: liqd_product/apps/partners/templates/partner_information.html:4
 #: liqd_product/apps/partners/templates/partner_information.html:9
 #: liqd_product/apps/projects/templates/liqd_product_projects/project_detail.html:64
-#: liqd_product/templates/header.html:30
+#: liqd_product/templates/header.html:31
 msgid "Information"
 msgstr "Information"
 
@@ -911,12 +911,12 @@ msgstr ""
 
 #: adhocracy4/projects/models.py:147
 #: adhocracy4/projects/models.py:153
-#: liqd_product/apps/partners/models.py:40
+#: liqd_product/apps/partners/models.py:55
 msgid "Header image"
 msgstr "Headerbild"
 
 #: adhocracy4/projects/models.py:149
-#: liqd_product/apps/partners/models.py:42
+#: liqd_product/apps/partners/models.py:57
 msgid "The image will be shown as a decorative background image."
 msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
@@ -1021,7 +1021,7 @@ msgstr "Ihr Nutzerprofil"
 msgid "Your profile"
 msgstr "Dein Profil"
 
-#: liqd_product/apps/account/templates/liqd_product_account/profile.html:24
+#: liqd_product/apps/account/templates/liqd_product_account/profile.html:26
 #: liqd_product/apps/partners/templates/partner_form.html:23
 msgid "Save changes"
 msgstr "Änderungen speichern"
@@ -1870,44 +1870,72 @@ msgstr "Veranstaltung bearbeiten"
 msgid "The offline event has been deleted"
 msgstr "Die Veranstaltung wurde gelöscht."
 
-#: liqd_product/apps/partners/models.py:18
-msgid "max. 100 characters"
-msgstr "maximal 100 Zeichen"
+#: liqd_product/apps/partners/models.py:16
+msgid "Title of your platform"
+msgstr ""
 
-#: liqd_product/apps/partners/models.py:22
+#: liqd_product/apps/partners/models.py:19
+msgid ""
+"The title of your platform will be shown on the landing page. It should be "
+"clear to the users that this is your participation platform. max. 100 "
+"characters"
+msgstr ""
+
+#: liqd_product/apps/partners/models.py:26
 msgid "Short description of your organisation"
 msgstr "Kurze Beschreibung Ihrer Organisation"
 
-#: liqd_product/apps/partners/models.py:23
-msgid "max. 400 characters"
-msgstr "maximal 400 Zeichen"
-
 #: liqd_product/apps/partners/models.py:27
+msgid ""
+"The description will be displayed on the landing page. max. 400 characters"
+msgstr ""
+
+#: liqd_product/apps/partners/models.py:32
 msgid "Logo"
 msgstr "Logo"
 
-#: liqd_product/apps/partners/models.py:28
-msgid "The Logo representing your organisation"
-msgstr "Das Logo Ihrer Organisation"
+#: liqd_product/apps/partners/models.py:33
+msgid ""
+"The Logo representing your organisation. The image must be square and it "
+"should be min. 200 pixels wide and 200 pixels tall. Allowed file formats are "
+"png, jpeg, gif. The file size should be max. 5 MB."
+msgstr ""
 
-#: liqd_product/apps/partners/models.py:34
+#: liqd_product/apps/partners/models.py:44
 msgid "Slogan"
 msgstr "Slogan"
 
-#: liqd_product/apps/partners/models.py:36
-msgid "max. 200 characters"
-msgstr "maximal 200 Zeichen"
+#: liqd_product/apps/partners/models.py:46
+msgid ""
+"The slogan will be shown below the title of your platform on the landing "
+"page. The slogan can provide context or additional information to the title. "
+"max. 200 characters"
+msgstr ""
 
-#: liqd_product/apps/partners/models.py:49
+#: liqd_product/apps/partners/models.py:64
 msgid "Information about your organisation"
 msgstr "Beschreibung Ihrer Organisation"
 
-#: liqd_product/apps/partners/models.py:53
+#: liqd_product/apps/partners/models.py:65
+msgid ""
+"You can provide general information about your participation platform to "
+"your visitors. It’s also helpful to name a general person of contact for "
+"inquiries. The information will be shown on a separate page that can be "
+"reached via the main menu."
+msgstr ""
+
+#: liqd_product/apps/partners/models.py:74
 #: liqd_product/apps/partners/templates/partner_imprint.html:4
 #: liqd_product/apps/partners/templates/partner_imprint.html:9
-#: liqd_product/templates/footer.html:10 liqd_product/templates/header.html:35
+#: liqd_product/templates/footer.html:10 liqd_product/templates/header.html:36
 msgid "Imprint"
 msgstr "Impressum"
+
+#: liqd_product/apps/partners/models.py:75
+msgid ""
+"Please provide all the legally required information of your imprint. The "
+"imprint will be shown on a separate page."
+msgstr ""
 
 #: liqd_product/apps/partners/templates/partner_form.html:9
 msgid "Edit your organisation information"
@@ -2061,7 +2089,7 @@ msgstr "Weiter zur Anmeldung"
 #: liqd_product/apps/users/templates/liqd_product_users/indicator.html:48
 #: liqd_product/templates/account/signup.html:4
 #: liqd_product/templates/account/signup.html:7
-#: liqd_product/templates/account/signup.html:33
+#: liqd_product/templates/account/signup.html:42
 msgid "Register"
 msgstr "Registrieren"
 
@@ -2285,24 +2313,36 @@ msgstr ""
 "erhalten möchten. Nehmen Sie den Haken raus, falls Sie keine "
 "Benachrichtigungen per E-Mail erhalten möchten."
 
-#: liqd_product/apps/users/models.py:67
+#: liqd_product/apps/users/models.py:65
+msgid "Send me newsletters"
+msgstr "Bitte senden Sie mir E-Mail Newsletter"
+
+#: liqd_product/apps/users/models.py:68
+msgid ""
+"Designates whether you want to receive newsletters. Unselect if you do not "
+"want to receive newsletters."
+msgstr ""
+"Bitte setzen Sie einen Haken, falls Sie Newsletter erhalten möchten. Nehmen "
+"Sie den Haken raus, falls Sie keine Newsletter erhalten möchten."
+
+#: liqd_product/apps/users/models.py:75
 msgid "Biography"
 msgstr "Biografie"
 
-#: liqd_product/apps/users/models.py:73
+#: liqd_product/apps/users/models.py:81
 msgid "Twitter name"
 msgstr "Twitter Name"
 
-#: liqd_product/apps/users/models.py:79
+#: liqd_product/apps/users/models.py:87
 msgid "Facebook name"
 msgstr "Facebook Name"
 
-#: liqd_product/apps/users/models.py:85
+#: liqd_product/apps/users/models.py:93
 #: liqd_product/apps/users/templates/liqd_product_users/user_detail.html:19
 msgid "Homepage"
 msgstr "Homepage"
 
-#: liqd_product/apps/users/models.py:92
+#: liqd_product/apps/users/models.py:100
 msgid "Avatar picture"
 msgstr "Avatar Bild"
 
@@ -2352,115 +2392,123 @@ msgstr "Aktivitäten"
 msgid "This user is not active in any projects yet."
 msgstr "Dise Nutzer*in ist bislang noch in keinem Projekt aktiv."
 
-#: liqd_product/config/settings/base.py:399
+#: liqd_product/config/settings/base.py:185
+msgid "English"
+msgstr ""
+
+#: liqd_product/config/settings/base.py:186
+msgid "German"
+msgstr ""
+
+#: liqd_product/config/settings/base.py:405
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: liqd_product/config/settings/base.py:400
+#: liqd_product/config/settings/base.py:406
 msgid "Diamond"
 msgstr "Diamant"
 
-#: liqd_product/config/settings/base.py:401
+#: liqd_product/config/settings/base.py:407
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: liqd_product/config/settings/base.py:402
+#: liqd_product/config/settings/base.py:408
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: liqd_product/config/settings/base.py:403
+#: liqd_product/config/settings/base.py:409
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: liqd_product/config/settings/base.py:404
+#: liqd_product/config/settings/base.py:410
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: liqd_product/config/settings/base.py:405
+#: liqd_product/config/settings/base.py:411
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: liqd_product/config/settings/base.py:406
+#: liqd_product/config/settings/base.py:412
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: liqd_product/config/settings/base.py:407
+#: liqd_product/config/settings/base.py:413
 msgid "Star"
 msgstr "Stern"
 
-#: liqd_product/config/settings/base.py:408
+#: liqd_product/config/settings/base.py:414
 msgid "Square"
 msgstr "Quadrat"
 
-#: liqd_product/config/settings/base.py:409
+#: liqd_product/config/settings/base.py:415
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: liqd_product/config/settings/base.py:410
+#: liqd_product/config/settings/base.py:416
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: liqd_product/config/settings/base.py:411
+#: liqd_product/config/settings/base.py:417
 msgid "Circle"
 msgstr "Kreis"
 
-#: liqd_product/config/settings/base.py:412
+#: liqd_product/config/settings/base.py:418
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: liqd_product/config/settings/base.py:413
+#: liqd_product/config/settings/base.py:419
 msgid "Zigzag"
 msgstr "ZickZack"
 
-#: liqd_product/config/settings/base.py:427
+#: liqd_product/config/settings/base.py:433
 msgid "Anti-discrimination"
 msgstr "Antidiskriminierung"
 
-#: liqd_product/config/settings/base.py:428
+#: liqd_product/config/settings/base.py:434
 msgid "Work & economy"
 msgstr "Arbeit & Wirtschaft"
 
-#: liqd_product/config/settings/base.py:429
+#: liqd_product/config/settings/base.py:435
 msgid "Building & living"
 msgstr "Bauen & Wohnen"
 
-#: liqd_product/config/settings/base.py:430
+#: liqd_product/config/settings/base.py:436
 msgid "Education & research"
 msgstr "Bildung & Forschung"
 
-#: liqd_product/config/settings/base.py:431
+#: liqd_product/config/settings/base.py:437
 msgid "Children, youth & family"
 msgstr "Kinder, Jugend & Familie"
 
-#: liqd_product/config/settings/base.py:432
+#: liqd_product/config/settings/base.py:438
 msgid "Finances"
 msgstr "Finanzen"
 
-#: liqd_product/config/settings/base.py:433
+#: liqd_product/config/settings/base.py:439
 msgid "Health & sports"
 msgstr "Gesundheit & Sport"
 
-#: liqd_product/config/settings/base.py:434
+#: liqd_product/config/settings/base.py:440
 msgid "Integration"
 msgstr "Integration"
 
-#: liqd_product/config/settings/base.py:435
+#: liqd_product/config/settings/base.py:441
 msgid "Culture & leisure"
 msgstr "Kultur & Freizeit"
 
-#: liqd_product/config/settings/base.py:436
+#: liqd_product/config/settings/base.py:442
 msgid "Neighborhood & participation"
 msgstr "Nachbarschaft & Teilhabe"
 
-#: liqd_product/config/settings/base.py:437
+#: liqd_product/config/settings/base.py:443
 msgid "Urban development"
 msgstr "Stadtentwicklung"
 
-#: liqd_product/config/settings/base.py:438
+#: liqd_product/config/settings/base.py:444
 msgid "Environment & public green space"
 msgstr "Umwelt & Grünflächen"
 
-#: liqd_product/config/settings/base.py:439
+#: liqd_product/config/settings/base.py:445
 msgid "Traffic"
 msgstr "Verkehr"
 
@@ -2485,11 +2533,21 @@ msgstr "Interner Serverfehler."
 msgid "Back to Beteiligung.in"
 msgstr "Zurück zu Beteiligung.in"
 
-#: liqd_product/templates/a4dashboard/base_dashboard.html:11
+#: liqd_product/templates/a4dashboard/base_dashboard.html:6
+#: liqd_product/templates/header.html:4
+msgid "Header"
+msgstr "Kopfzeile"
+
+#: liqd_product/templates/a4dashboard/base_dashboard.html:22
+#: liqd_product/templates/header.html:62
+msgid "Menu"
+msgstr "Menü"
+
+#: liqd_product/templates/a4dashboard/base_dashboard.html:38
 msgid "Organisations"
 msgstr "Organisationen"
 
-#: liqd_product/templates/a4dashboard/base_dashboard.html:40
+#: liqd_product/templates/a4dashboard/base_dashboard.html:67
 #: liqd_product/templates/a4dashboard/base_project_list.html:6
 #: liqd_product/templates/a4dashboard/base_project_list.html:9
 msgid "Participation projects"
@@ -2702,7 +2760,14 @@ msgstr ""
 "\">Nutzungsbedingungen</a>.\n"
 "                "
 
-#: liqd_product/templates/account/signup.html:38
+#: liqd_product/templates/account/signup.html:32
+msgid ""
+"\n"
+"                Send me newsletters\n"
+"                "
+msgstr ""
+
+#: liqd_product/templates/account/signup.html:47
 #, python-format
 msgid ""
 "\n"
@@ -2716,16 +2781,16 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Mit Ihrem Account auf Beteiligung.in können Sie sich an allen "
-"öffentlichen Prozessen auf der Plattform beteiligen. Die Plattform bietet "
-"allen Organisationen in Deutschland eine Möglichkeit, ihre Bürger*innen durch "
-"Online-Beteiligung an der Stadtentwicklung zu beteiligen.Sollten Sie "
-"Fragen zum Datenschutz auf der Plattform haben finden Sie <a href="
+"Mit Ihrem Account auf Beteiligung.in können Sie sich an allen öffentlichen "
+"Prozessen auf der Plattform beteiligen. Die Plattform bietet allen "
+"Organisationen in Deutschland eine Möglichkeit, ihre Bürger*innen durch "
+"Online-Beteiligung an der Stadtentwicklung zu beteiligen.Sollten Sie Fragen "
+"zum Datenschutz auf der Plattform haben finden Sie <a href="
 "\"%(data_protection_url)s\" target=\"_blank\">hier weitere "
 "Informationen<a>.\n"
 "        "
 
-#: liqd_product/templates/base.html:46
+#: liqd_product/templates/base.html:45
 msgid "Skip to content "
 msgstr "Zum Inhalt springen"
 
@@ -2752,17 +2817,24 @@ msgstr ""
 "bereitgestellt wird. Für die redaktionellen Inhalte ist allein der jeweilige "
 "Betreiber des Angebots verantwortlich."
 
-#: liqd_product/templates/header.html:3
-msgid "Header"
-msgstr "Kopfzeile"
+#: liqd_product/templates/header.html:26
+msgid "Participate"
+msgstr ""
 
-#: liqd_product/templates/header.html:25
-msgid "Beteiligen"
-msgstr "Beteiligen"
+#~ msgid "max. 100 characters"
+#~ msgstr "maximal 100 Zeichen"
 
-#: liqd_product/templates/header.html:44
-msgid "Menu"
-msgstr "Menü"
+#~ msgid "max. 400 characters"
+#~ msgstr "maximal 400 Zeichen"
+
+#~ msgid "The Logo representing your organisation"
+#~ msgstr "Das Logo Ihrer Organisation"
+
+#~ msgid "max. 200 characters"
+#~ msgstr "maximal 200 Zeichen"
+
+#~ msgid "Beteiligen"
+#~ msgstr "Beteiligen"
 
 #~ msgid "Short description of your municipality"
 #~ msgstr "Kurze Beschreibung Ihrer Kommune"
@@ -3446,16 +3518,6 @@ msgstr "Menü"
 #~ "Bitte setzen Sie einen Haken, falls Sie für Inhalte denen Sie folgen "
 #~ "Benachrichtigungen per E-Mail erhalten möchten. Nehmen Sie den Haken "
 #~ "raus, falls Sie keine Benachrichtigungen per E-Mail erhalten möchten."
-
-#~ msgid "Send me newsletters"
-#~ msgstr "Bitte senden Sie mir E-Mail Newsletter"
-
-#~ msgid ""
-#~ "Designates whether you want to receive newsletters. Unselect if you do "
-#~ "not want to receive newsletters."
-#~ msgstr ""
-#~ "Bitte setzen Sie einen Haken, falls Sie Newsletter erhalten möchten. "
-#~ "Nehmen Sie den Haken raus, falls Sie keine Newsletter erhalten möchten."
 
 #~ msgid "Rich text editor"
 #~ msgstr "Rich Text Editor"
