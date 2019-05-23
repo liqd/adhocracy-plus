@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Create newsletter' %}{% endblock %}
+{% block content %}
+<div class="l-wrapper">
+    <div class="l-center-6">
+        <h1>{% trans 'Create newsletter'%}</h1>
+
+        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            {{ form.media }}
+            <div class="l-tiles-2">
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.sender_name %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.sender %}
+            </div>
+
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.subject %}
+
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.body %}
+            <div id="receiver-selection">
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.receivers %}
+            </div>
+            <div id="selection-project">
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.project %}
+            </div>
+
+            <div id="selection-organisation">
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.organisation %}
+            </div>
+            <div class="u-spacer-bottom">
+                <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send'%}" />
+                <a href="/" class="btn btn--light">{% trans 'Cancel'%}</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
