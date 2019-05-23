@@ -1,6 +1,6 @@
 from django.contrib import auth
 
-from liqd_product.apps.contrib.emails import Email
+from adhocracy4.emails import Email
 
 User = auth.get_user_model()
 
