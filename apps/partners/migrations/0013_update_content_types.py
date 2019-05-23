@@ -16,7 +16,7 @@ reverse_sql = """UPDATE django_content_type
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_partners', '0011_kommune_word_change'),
+        ('a4_candy_partners', '0012_wording_fixes'),
     ]
 
     operations = [
