@@ -26,9 +26,10 @@ class Command(makemessages.Command):
         ))
         a4_paths = super().find_files(get_module_dir('adhocracy4'))
 
+        apps_path = super().find_files('apps')
+
         liqd_product_paths = super().find_files(
             path.relpath(get_module_dir('liqd_product'))
         )
 
-        return a4js_paths + a4_paths + \
-            liqd_product_paths
+        return a4js_paths + a4_paths + apps_path + liqd_product_paths
