@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+from django.utils import timezone
 import datetime
 
 
@@ -17,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='offlineevent',
             name='date',
-            field=models.DateTimeField(verbose_name='Date', default=datetime.datetime(1970, 1, 1, 1, 0)),
+            field=models.DateTimeField(verbose_name='Date', default=timezone.make_aware(datetime.datetime(1970, 1, 1, 1, 0))),
             preserve_default=False,
         ),
     ]
