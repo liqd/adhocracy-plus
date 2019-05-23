@@ -1,7 +1,7 @@
 import pytest
 
 from adhocracy4.dashboard import components
-from liqd_product.apps.documents.phases import CommentPhase
+from apps.documents.phases import CommentPhase
 from tests.helpers import assert_template_response
 from tests.helpers import setup_phase
 

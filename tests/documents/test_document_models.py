@@ -2,7 +2,7 @@ import pytest
 from django.contrib.contenttypes.models import ContentType
 
 from adhocracy4.comments import models as comments_models
-from liqd_product.apps.documents.models import Chapter
+from apps.documents.models import Chapter
 
 
 @pytest.mark.django_db

@@ -1,7 +1,7 @@
 import factory
 
 from adhocracy4.test import factories as a4_factories
-from liqd_product.apps.activities.models import Activity
+from apps.activities.models import Activity
 
 
 class ActivityFactory(factory.django.DjangoModelFactory):

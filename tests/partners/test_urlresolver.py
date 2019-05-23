@@ -3,9 +3,9 @@ from django.conf.urls import include
 from django.conf.urls import url
 from django.views.defaults import page_not_found
 
-from liqd_product.apps.partners import set_partner
-from liqd_product.apps.partners.urlresolvers import partner_patterns
-from liqd_product.apps.partners.urlresolvers import reverse
+from apps.partners import set_partner
+from apps.partners.urlresolvers import partner_patterns
+from apps.partners.urlresolvers import reverse
 
 base_urlconf = [
     url(r'^static/', page_not_found, name='static-url'),

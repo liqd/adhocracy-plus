@@ -1,6 +1,6 @@
 import pytest
 
-from liqd_product.apps.activities.dashboard import ActivityComponent
+from apps.activities.dashboard import ActivityComponent
 
 
 @pytest.mark.django_db

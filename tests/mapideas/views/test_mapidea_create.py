@@ -2,8 +2,8 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from adhocracy4.test.helpers import redirect_target
-from liqd_product.apps.mapideas import models
-from liqd_product.apps.mapideas import phases
+from apps.mapideas import models
+from apps.mapideas import phases
 from tests.helpers import assert_template_response
 from tests.helpers import freeze_phase
 

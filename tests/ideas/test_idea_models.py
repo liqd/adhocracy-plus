@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 
 from adhocracy4.comments import models as comments_models
 from adhocracy4.ratings import models as rating_models
-from liqd_product.apps.ideas import models as idea_models
+from apps.ideas import models as idea_models
 from tests.helpers import createThumbnail
 
 
