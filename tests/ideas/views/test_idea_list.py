@@ -1,6 +1,6 @@
 import pytest
 
-from liqd_product.apps.ideas import phases
+from apps.ideas import phases
 from tests.helpers import assert_template_response
 from tests.helpers import freeze_phase
 from tests.helpers import setup_phase
@@ -17,7 +17,7 @@ def test_list_view(client, phase_factory, idea_factory, partner):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_ideas/idea_list.html')
+            response, 'a4_candy_ideas/idea_list.html')
         assert response.status_code == 200
         assert idea in response.context_data['idea_list']
         assert idea_2 not in response.context_data['idea_list']

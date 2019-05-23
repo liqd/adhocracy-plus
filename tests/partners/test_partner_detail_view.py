@@ -1,7 +1,7 @@
 import pytest
 from django.core.urlresolvers import reverse
 
-from liqd_product.apps.partners import set_partner
+from apps.partners import set_partner
 
 
 @pytest.mark.django_db

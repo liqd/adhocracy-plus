@@ -1,6 +1,6 @@
 import pytest
 
-from liqd_product.apps.mapideas import phases
+from apps.mapideas import phases
 from tests.helpers import assert_template_response
 from tests.helpers import freeze_phase
 from tests.helpers import setup_phase
@@ -17,7 +17,7 @@ def test_list_view(client, phase_factory, map_idea_factory, partner):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_mapideas/mapidea_list.html')
+            response, 'a4_candy_mapideas/mapidea_list.html')
         assert response.status_code == 200
         assert mapidea in response.context_data['mapidea_list']
         assert mapidea_2 not in response.context_data['mapidea_list']

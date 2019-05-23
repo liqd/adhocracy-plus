@@ -1,7 +1,7 @@
 import factory
 
 from adhocracy4.test import factories as a4_factories
-from liqd_product.apps.documents import models as document_models
+from apps.documents import models as document_models
 
 
 class ChapterFactory(factory.django.DjangoModelFactory):

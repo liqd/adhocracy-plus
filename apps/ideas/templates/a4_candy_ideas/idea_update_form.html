@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% blocktrans with title=object.name %}Edit {{ title }}{% endblocktrans %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="l-wrapper">
+    <div class="l-center-6">
+        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+            <ul>
+                <li>
+                    <a href="{{ project.get_absolute_url }}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to project' %}</a>
+                </li>
+                <li>
+                    <a href="{{ object.get_absolute_url }}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to idea' %}</a>
+                </li>
+            </ul>
+        </nav>
+
+        <h1>{% trans 'Edit idea' %}</h1>
+
+        {% include "a4_candy_ideas/includes/idea_form.html" with idea=idea cancel=object.get_absolute_url %}
+    </div>
+</div>
+{% endblock %}

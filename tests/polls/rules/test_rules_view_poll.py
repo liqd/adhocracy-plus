@@ -1,14 +1,14 @@
 import pytest
 import rules
 
-from liqd_product.apps.polls import phases
+from apps.polls import phases
 from tests.helpers import freeze_phase
 from tests.helpers import freeze_post_phase
 from tests.helpers import freeze_pre_phase
 from tests.helpers import setup_phase
 from tests.helpers import setup_users
 
-perm_name = 'liqd_product_polls.view_poll'
+perm_name = 'a4_candy_polls.view_poll'
 
 
 def test_perm_exists():

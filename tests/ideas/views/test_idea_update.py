@@ -2,8 +2,8 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from adhocracy4.test.helpers import redirect_target
-from liqd_product.apps.ideas import models
-from liqd_product.apps.ideas import phases
+from apps.ideas import models
+from apps.ideas import phases
 from tests.helpers import freeze_phase
 from tests.helpers import setup_phase
 
@@ -18,7 +18,7 @@ def test_creator_can_update_during_active_phase(client,
     category = category_factory(module=module)
     user = idea.creator
     url = reverse(
-        'liqd_product_ideas:idea-update',
+        'a4_candy_ideas:idea-update',
         kwargs={
             'partner_slug': idea.project.organisation.partner.slug,
             'pk': idea.pk,
@@ -49,7 +49,7 @@ def test_creator_cannot_update_in_wrong_phase(client,
     user = idea.creator
     assert user not in project.moderators.all()
     url = reverse(
-        'liqd_product_ideas:idea-update',
+        'a4_candy_ideas:idea-update',
         kwargs={
             'partner_slug': idea.project.organisation.partner.slug,
             'pk': idea.pk,
@@ -78,7 +78,7 @@ def test_moderator_can_update_during_wrong_phase(client,
     moderator = project.moderators.first()
     assert moderator is not user
     url = reverse(
-        'liqd_product_ideas:idea-update',
+        'a4_candy_ideas:idea-update',
         kwargs={
             'partner_slug': idea.project.organisation.partner.slug,
             'pk': idea.pk,
@@ -104,7 +104,7 @@ def test_creator_cannot_update(client, idea_factory):
     user = idea.creator
     assert user not in idea.module.project.moderators.all()
     url = reverse(
-        'liqd_product_ideas:idea-update',
+        'a4_candy_ideas:idea-update',
         kwargs={
             'partner_slug': idea.project.organisation.partner.slug,
             'pk': idea.pk,
@@ -125,7 +125,7 @@ def test_moderators_can_always_update(client, idea_factory):
     moderator = idea.module.project.moderators.first()
     assert moderator is not idea.creator
     url = reverse(
-        'liqd_product_ideas:idea-update',
+        'a4_candy_ideas:idea-update',
         kwargs={
             'partner_slug': idea.project.organisation.partner.slug,
             'pk': idea.pk,
