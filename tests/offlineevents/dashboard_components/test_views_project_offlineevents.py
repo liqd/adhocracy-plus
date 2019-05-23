@@ -4,8 +4,8 @@ from django.core.urlresolvers import reverse
 
 from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
-from liqd_product.apps.ideas.phases import CollectFeedbackPhase
-from liqd_product.apps.offlineevents.models import OfflineEvent
+from apps.ideas.phases import CollectFeedbackPhase
+from apps.offlineevents.models import OfflineEvent
 from tests.helpers import assert_template_response
 from tests.helpers import setup_phase
 
@@ -22,7 +22,7 @@ def test_edit_view(client, phase_factory, offline_event_factory):
     client.login(username=initiator.email, password='password')
     response = client.get(url)
     assert_template_response(
-        response, 'liqd_product_offlineevents/offlineevent_list.html')
+        response, 'a4_candy_offlineevents/offlineevent_list.html')
 
 
 @pytest.mark.django_db

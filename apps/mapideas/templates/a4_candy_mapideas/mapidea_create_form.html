@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Create a new proposal' %} &mdash; {{ block.super }}{% endblock %}
+{% block content %}
+<div class="l-wrapper">
+    <div class="l-center-6">
+        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+            <ul>
+                <li>
+                    <a href="{{ project.get_absolute_url }}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to project' %}</a>
+                </li>
+            </ul>
+        </nav>
+
+        <h1>{% trans 'Submit a new idea for this project'%}</h1>
+        <div class="u-bottom-divider">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+        </div>
+
+        {% include "a4_candy_mapideas/includes/mapidea_form.html" with cancel=project.get_absolute_url %}
+    </div>
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 import pytest
 
-from liqd_product.apps.exports import mixins
+from apps.exports import mixins
 
 
 @pytest.mark.django_db

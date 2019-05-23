@@ -3,7 +3,7 @@ import rules
 
 from tests.helpers import setup_users
 
-perm_name = 'liqd_product_offlineevents.view_offlineevent'
+perm_name = 'a4_candy_offlineevents.view_offlineevent'
 
 
 def test_perm_exists():

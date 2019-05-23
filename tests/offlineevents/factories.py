@@ -2,7 +2,7 @@ import factory
 from dateutil.parser import parse
 
 from adhocracy4.test import factories as a4_factories
-from liqd_product.apps.offlineevents import models
+from apps.offlineevents import models
 
 
 class OfflineEventFactory(factory.django.DjangoModelFactory):

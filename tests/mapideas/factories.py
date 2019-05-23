@@ -1,7 +1,7 @@
 import factory
 
 from adhocracy4.test import factories as a4_factories
-from liqd_product.apps.mapideas import models as mapidea_models
+from apps.mapideas import models as mapidea_models
 
 
 class MapIdeaFactory(factory.django.DjangoModelFactory):

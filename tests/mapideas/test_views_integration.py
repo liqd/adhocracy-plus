@@ -2,7 +2,7 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from adhocracy4.test.helpers import redirect_target
-from liqd_product.apps.mapideas import phases
+from apps.mapideas import phases
 from tests.helpers import assert_template_response
 from tests.helpers import freeze_phase
 from tests.helpers import setup_phase
@@ -16,7 +16,7 @@ def test_list_view(client, phase_factory, map_idea_factory, partner):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_mapideas/mapidea_list.html')
+            response, 'a4_candy_mapideas/mapidea_list.html')
 
 
 @pytest.mark.django_db
@@ -27,7 +27,7 @@ def test_detail_view(client, phase_factory, map_idea_factory, partner):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_mapideas/mapidea_detail.html')
+            response, 'a4_candy_mapideas/mapidea_detail.html')
 
 
 @pytest.mark.django_db
@@ -37,14 +37,14 @@ def test_create_view(client, phase_factory, map_idea_factory, user,
         phase_factory, map_idea_factory, phases.CollectPhase)
     area_settings_factory(module=module)
     category = category_factory(module=module)
-    url = reverse('liqd_product_mapideas:mapidea-create',
+    url = reverse('a4_candy_mapideas:mapidea-create',
                   kwargs={'module_slug': module.slug})
     with freeze_phase(phase):
         client.login(username=user.email, password='password')
 
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_mapideas/mapidea_create_form.html')
+            response, 'a4_candy_mapideas/mapidea_create_form.html')
 
         data = {
             'name': 'Idea',

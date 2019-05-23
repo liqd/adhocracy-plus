@@ -1,7 +1,7 @@
 import factory
 
 from adhocracy4.test import factories
-from liqd_product.apps.polls import models
+from apps.polls import models
 
 from ..factories import UserFactory
 

@@ -1,0 +1,30 @@
+{% extends "a4_candy_account/account_dashboard.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Your user profile' %} &mdash; {{ block.super }}{% endblock %}
+{% block dashboard_content %}
+    <h1 class="u-first-heading">{% trans 'Your profile' %}</h1>
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.username %}
+
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.avatar %}
+
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.bio %}
+
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.homepage %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.facebook_handle %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.twitter_handle %}
+
+        {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
+
+        {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
+
+        <div class="u-spacer-bottom">
+            <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
+        </div>
+    </form>
+    {{ form.media }}
+{% endblock %}

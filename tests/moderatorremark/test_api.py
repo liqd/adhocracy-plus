@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.contenttypes.models import ContentType
 
-from liqd_product.apps.moderatorremark.models import ModeratorRemark
+from apps.moderatorremark.models import ModeratorRemark
 
 
 @pytest.mark.django_db
