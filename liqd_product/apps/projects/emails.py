@@ -1,4 +1,4 @@
-from liqd_product.apps.contrib.emails import Email
+from adhocracy4.emails import Email
 from liqd_product.apps.projects import tasks
 
 
