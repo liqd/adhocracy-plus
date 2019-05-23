@@ -13,19 +13,29 @@ class Partner(models.Model):
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(max_length=100)
     title = models.CharField(
+        verbose_name=_('Title of your platform'),
         max_length=100,
         default='Beteiligungsplattform',
-        help_text=_('max. 100 characters')
+        help_text=_('The title of your platform will be shown '
+                    'on the landing page. It should be clear to '
+                    'the users that this is your participation '
+                    'platform. max. 100 characters')
     )
     description = models.CharField(
         max_length=400,
         verbose_name=_('Short description of your organisation'),
-        help_text=_('max. 400 characters')
+        help_text=_('The description will be displayed on the '
+                    'landing page. max. 400 characters')
     )
     logo = images_fields.ConfiguredImageField(
         'logo',
         verbose_name=_('Logo'),
-        help_prefix=_('The Logo representing your organisation'),
+        help_text=_('The Logo representing your organisation.'
+                    ' The image must be square and it '
+                    'should be min. 200 pixels wide and 200 '
+                    'pixels tall. Allowed file formats are '
+                    'png, jpeg, gif. The file size '
+                    'should be max. 5 MB.'),
         upload_to='partners/logos',
         blank=True
     )
@@ -33,7 +43,12 @@ class Partner(models.Model):
         max_length=200,
         verbose_name=_('Slogan'),
         blank=True,
-        help_text=_('max. 200 characters')
+        help_text=_('The slogan will be shown below '
+                    'the title of your platform on '
+                    'the landing page. The slogan can '
+                    'provide context or additional '
+                    'information to the title. '
+                    'max. 200 characters')
     )
     image = images_fields.ConfiguredImageField(
         'heroimage',
@@ -47,10 +62,19 @@ class Partner(models.Model):
     information = RichTextUploadingField(
         config_name='image-editor',
         verbose_name=_('Information about your organisation'),
+        help_text=_('You can provide general information about your '
+                    'participation platform to your visitors. '
+                    'It’s also helpful to name a general person '
+                    'of contact for inquiries. The information '
+                    'will be shown on a separate page that '
+                    'can be reached via the main menu.'),
         blank=True
     )
     imprint = RichTextField(
-        verbose_name=_('Imprint')
+        verbose_name=_('Imprint'),
+        help_text=_('Please provide all the legally '
+                    'required information of your imprint. '
+                    'The imprint will be shown on a separate page.')
     )
     admins = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
