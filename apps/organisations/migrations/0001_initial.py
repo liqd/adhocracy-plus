@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     replaces = [('liqd_product_organisations', '0001_initial')]
 
     dependencies = [
-        ('a4_candy_partners', '0001_initial'),
+        ('a4_candy_partners', '0014_rename_table_to_default'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
