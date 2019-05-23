@@ -16,7 +16,7 @@ def test_list_view(client, phase_factory, proposal_factory, partner):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_budgeting/proposal_list.html')
+            response, 'a4_candy_budgeting/proposal_list.html')
 
 
 @pytest.mark.django_db
@@ -27,7 +27,7 @@ def test_detail_view(client, phase_factory, proposal_factory):
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'liqd_product_budgeting/proposal_detail.html')
+            response, 'a4_candy_budgeting/proposal_detail.html')
 
 
 @pytest.mark.django_db
@@ -38,7 +38,7 @@ def test_create_view(client, phase_factory, proposal_factory, user,
     area_settings_factory(module=module)
     category = category_factory(module=module)
     url = reverse(
-        'liqd_product_budgeting:proposal-create',
+        'a4_candy_budgeting:proposal-create',
         kwargs={
             'partner_slug': project.organisation.partner.slug,
             'module_slug': module.slug
@@ -50,7 +50,7 @@ def test_create_view(client, phase_factory, proposal_factory, user,
         response = client.get(url)
         assert_template_response(
             response,
-            'liqd_product_budgeting/proposal_create_form.html')
+            'a4_candy_budgeting/proposal_create_form.html')
 
         data = {
             'name': 'Idea',
@@ -71,7 +71,7 @@ def test_moderate_view(client, phase_factory, proposal_factory, user,
         phase_factory, proposal_factory, phases.RequestPhase)
     area_settings_factory(module=module)
     url = reverse(
-        'liqd_product_budgeting:proposal-moderate',
+        'a4_candy_budgeting:proposal-moderate',
         kwargs={
             'partner_slug': project.organisation.partner.slug,
             'pk': item.pk,
@@ -85,7 +85,7 @@ def test_moderate_view(client, phase_factory, proposal_factory, user,
         response = client.get(url)
         assert_template_response(
             response,
-            'liqd_product_budgeting/proposal_moderate_form.html')
+            'a4_candy_budgeting/proposal_moderate_form.html')
 
         data = {
             'moderator_feedback': 'test',
