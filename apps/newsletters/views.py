@@ -15,7 +15,6 @@ from adhocracy4.rules import mixins as rules_mixins
 
 from . import emails
 from . import models
-from .forms import NewsletterForm
 from .forms import RestrictedNewsletterForm
 
 Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
@@ -25,31 +24,6 @@ User = auth.get_user_model()
 class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
                            generic.CreateView):
     model = models.Newsletter
-    form_class = NewsletterForm
-    permission_required = 'is_superuser'
-
-    def get_email_kwargs(self):
-        kwargs = {}
-        kwargs.update({'organisation_pk': None})
-        return kwargs
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
-
-        if hasattr(self, 'organisation'):
-            sender_name = self.organisation.name
-        else:
-            sender_name = settings.WAGTAIL_SITE_NAME
-
-        kwargs['initial'] = {
-            'sender_name': sender_name,
-            'sender': settings.CONTACT_EMAIL
-        }
-        return kwargs
-
-    def get_success_url(self):
-        return reverse('a4_candy_newsletters:newsletter-create')
 
     def _check_permission(self, organisation, user):
         return user.is_superuser or organisation.has_initiator(user)
@@ -74,31 +48,12 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
                 enabled=True
             ).values_list('creator', flat=True)
 
-        elif receivers == models.ORGANISATION:
-            participant_ids = Follow.objects.filter(
-                project__organisation=organisation.pk,
-                enabled=True
-            ).values_list('creator', flat=True).distinct()
-
-        elif receivers == models.PLATFORM:
-            participant_ids = User.objects.all().values_list('pk',
-                                                             flat=True)
-
-        elif receivers == models.INITIATOR:
-            participant_ids = Organisation.objects.get(
-                pk=organisation.pk).initiators.all()\
-                .values_list('pk', flat=True)
         else:
             participant_ids = []
 
-        if receivers == models.PLATFORM:
-            emails.NewsletterEmailAll.send(instance,
-                                           **self.get_email_kwargs())
-
-        else:
-            emails.NewsletterEmail.send(instance,
-                                        participant_ids=list(participant_ids),
-                                        **self.get_email_kwargs())
+        emails.NewsletterEmail.send(instance,
+                                    participant_ids=list(participant_ids),
+                                    **self.get_email_kwargs())
         messages.success(self.request,
                          _('Newsletter has been saved and '
                            'will be sent to the recipients.'))
@@ -109,22 +64,10 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
 class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
                                     NewsletterCreateView):
     menu_item = 'newsletter'
+    form_class = RestrictedNewsletterForm
     permission_required = 'a4projects.add_project'
-
-    def get_form(self):
-        user = self.request.user
-        if self.organisation.has_initiator(user) or user.is_superuser:
-            return NewsletterForm(**self.get_form_kwargs())
-        else:
-            return RestrictedNewsletterForm(**self.get_form_kwargs())
-
-    def get_template_names(self):
-        user = self.request.user
-        if self.organisation.has_initiator(user) or user.is_superuser:
-            return ['a4_candy_newsletters/newsletter_dashboard_form.html']
-        else:
-            return ['a4_candy_newsletters/'
-                    'restricted_newsletter_dashboard_form.html']
+    template_name = ('a4_candy_newsletters/'
+                     'restricted_newsletter_dashboard_form.html')
 
     def get_email_kwargs(self):
         kwargs = {}
