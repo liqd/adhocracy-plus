@@ -6,11 +6,13 @@
 {% block super_content %}
     <div class="hero-unit" style="background-image: url({% thumbnail partner.image "1500x610" crop %});"></div>
 
+    {% if PARTNER.logo %}
     <div class="l-wrapper">
         <div class="partner__logo-box">
             <img src="{% thumbnail PARTNER.logo '0x160' %}" height="80" alt="{{ PARTNER.name }}" class="partner__logo-img" />
         </div>
     </div>
+    {% endif %}
 
     <div class="l-wrapper partner__header">
         <div class="l-col-6-0">
@@ -23,7 +25,7 @@
     </div>
 
     <div class="l-wrapper">
-        <div class="l-col-9-0">
+        <div class="l-col-8-0">
             <ul class="u-list-reset">
                 {% for project in project_list %}
                     <li>
@@ -33,7 +35,7 @@
             </ul>
         </div>
 
-        <aside class="l-col-3-9 aside">
+        <aside class="l-col-4-8 aside">
             <div class="aside__block">
                 <h2 class="aside__block__title heading3">{% trans 'Activity' %}</h2>
                 <div>
