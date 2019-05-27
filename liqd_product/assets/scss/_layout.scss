@@ -117,3 +117,15 @@
     margin: 0 auto;
     box-shadow: 0 0 2em $shadow;
 }
+
+.l-top-overlap {
+    position: relative;
+    z-index: 1;
+    bottom: -1em;
+}
+
+.l-bottom-overlap {
+    position: relative;
+    z-index: 1;
+    top: -1em;
+}

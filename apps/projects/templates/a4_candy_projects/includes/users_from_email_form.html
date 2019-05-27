@@ -19,13 +19,13 @@
             {{ form.add_users.help_text }}
         </div>
         {% endif %}
-        <div class="input-group">
-            <div class="input-group__input widget widget--{{ form.add_users|widget_type }}">
-                {{ form.add_users }}
+        <div class="widget widget--{{ form.add_users|widget_type }}">
+            <div class="input-group">
+                {{ form.add_users|add_class:'form-control' }}
+                <div class="input-group-append">
+                    <input type="submit" class="btn btn--primary" value="{% trans 'Add' %}"/>
+                </div>
             </div>
-            <span>
-                <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Add' %}"/>
-            </span>
         </div>
         {{ form.add_users.errors }}
     </div>
@@ -42,10 +42,10 @@
         </div>
         <div class="widget widget--{{ form.add_users_upload|widget_type }}">
             <div class="input-group">
-                {{ form.add_users_upload|add_class:'input-group__input' }}
-                <span>
-                    <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Upload' %}"/>
-                </span>
+                {{ form.add_users_upload|add_class:'form-control' }}
+                <div class="input-group-append">
+                    <input type="submit" class="btn btn--primary" value="{% trans 'Upload' %}"/>
+                </div>
             </div>
         </div>
         {{ form.add_users_upload.errors }}
