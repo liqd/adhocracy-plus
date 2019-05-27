@@ -2,7 +2,7 @@
 
 <div class="l-wrapper">
     <div class="l-center-8">
-        <div class="control-bar">
+        <div class="form-inline">
             {% if object.prev %}
                 <a href="{{ object.prev.get_absolute_url }}" class="btn btn--light">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -16,12 +16,12 @@
             {% endif %}
 
             {% if object.next %}
-                <a href="{{ object.next.get_absolute_url }}" class="btn btn--light control-bar__right">
+                <a href="{{ object.next.get_absolute_url }}" class="btn btn--light ml-auto">
                     {% trans "Next Chapter" %}
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
             {% else %}
-                <span class="btn btn--light is-disabled control-bar__right">
+                <span class="btn btn--light is-disabled ml-auto">
                     {% trans "Next Chapter" %}
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </span>

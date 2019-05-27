@@ -124,3 +124,24 @@ div.cke_focus {
         @extend .form-check__label;
     }
 }
+
+.form-control {
+    height: auto !important;
+}
+
+.input-group {
+    display: flex;
+}
+
+.form-group {
+    margin-bottom: $spacer / 2;
+}
+
+//kept from before bootstrap for datepicker
+.input-group__input {
+    flex: 1 1 auto;
+}
+
+.input-group__after {
+    flex: 0 1 0%;
+}

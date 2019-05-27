@@ -1,13 +1,13 @@
 {% load i18n %}
 
-<div class="control-bar" role="group" aria-label="{% trans 'Filter bar '%}">
+<div class="filter-bar form-inline mb-2" role="group" aria-label="{% trans 'Filter bar '%}">
     {% for field in filter.form %}
         {% if field.name != 'ordering' %}
             {{ field }}
         {% endif %}
     {% endfor %}
 
-    <div class="control-bar__right">
+    <div class="ml-auto">
         {{ filter.form.ordering }}
     </div>
 </div>

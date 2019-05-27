@@ -12,18 +12,20 @@ const ChoiceForm = (props) => {
             id={'id_choices-' + props.id + '-name'}
             name={'choices-' + props.id + '-name'}
             type="text"
-            className="input-group__input"
+            className="form-control"
             value={props.choice.label}
             onChange={(e) => { props.onLabelChange(e.target.value) }} />
         </label>
-        <button
-          className="input-group__after input-group__after-outside btn btn--light"
-          onClick={props.onDelete}
-          title={django.gettext('remove')}
-          type="button">
-          <i className="fa fa-times"
-            aria-label={django.gettext('remove')} />
-        </button>
+        <div className="input-group-append">
+          <button
+            className="btn btn--light"
+            onClick={props.onDelete}
+            title={django.gettext('remove')}
+            type="button">
+            <i className="fa fa-times"
+              aria-label={django.gettext('remove')} />
+          </button>
+        </div>
       </div>
       <ErrorList errors={props.errors} field="label" />
     </div>
