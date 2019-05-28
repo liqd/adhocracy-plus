@@ -51,3 +51,14 @@ input[type="search"] {
 .map-list [data-map] {
     min-height: 500px;
 }
+
+//follow dropdown overwrite so it drops on left side so doesn't go off screen
+@media screen and (max-width: $breakpoint-lg-down) {
+    .btngroup-gray {
+        .dropdown-menu {
+            right: 0 !important;
+            left: auto !important;
+            transform: translate3d(0, 25px, 0) !important;
+        }
+    }
+}
