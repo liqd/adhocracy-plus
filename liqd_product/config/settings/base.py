@@ -383,11 +383,11 @@ A4_ACTIONABLES = (
 )
 
 A4_AUTO_FOLLOWABLES = (
-    # Disabled to keep current behaviour: the auto follow functionality did
-    # not work until 2018/03/21 due to a adhocracy4 bug
-    # ('a4comments', 'comment'),
-    # ('a4_candy_ideas', 'idea'),
-    # ('a4_candy_mapideas', 'mapidea'),
+    ('a4comments', 'comment'),
+    ('a4_candy_ideas', 'idea'),
+    ('a4_candy_mapideas', 'mapidea'),
+    ('a4_candy_budgeting', 'proposal'),
+    ('a4_candy_polls', 'vote'),
 )
 
 A4_CATEGORIZABLE = (
