@@ -6,16 +6,18 @@
     <div class="l-wrapper">
         <div class="platform-brand main-header__brand">
             {% spaceless %}
-                <a href="{% if PARTNER %}{% url 'partner' partner_slug=PARTNER.slug %}{% else %}/{% endif %}" class="platform-brand__link">{% if PARTNER %}<h2 class="heading--sm-margin">{{ PARTNER.name }}</h2>{% else %}Beteiligung.in{% endif %}</a>
+                <a href="{% if PARTNER %}{% url 'partner' partner_slug=PARTNER.slug %}{% else %}/{% endif %}" class="platform-brand__link">{% if PARTNER %}<h3 class="heading--sm-margin marked">{{ PARTNER.name }}</h3>{% else %}Beteiligung.in{% endif %}</a>
             {% endspaceless %}
         </div>
         <nav class="main-header__nav">
             {% if PARTNER %}
+                {% if PARTNER.logo %}
                 {% url 'partner' partner_slug=PARTNER.slug as partner_url %}
                 {% if not request.get_full_path == partner_url %}
                 <a href="{% url 'partner' partner_slug=PARTNER.slug %}" class="main-header__logo-box" rel="home">
                     <img src="{% thumbnail PARTNER.logo '0x160' %}" height="80" alt="{{ PARTNER.name }}" class="main-header__logo-img" />
                 </a>
+                {% endif %}
                 {% endif %}
             {% endif %}
             <div class="main-header__mobile-menu {% if not PARTNER %}main-header__mobile-menu--platform{% endif %} collapse" id="main-header-collapse">
