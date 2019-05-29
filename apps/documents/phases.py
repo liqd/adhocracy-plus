@@ -14,7 +14,7 @@ class CommentPhase(phases.PhaseContent):
 
     name = _('Comment phase')
     module_name = _('commenting text')
-    description = _('Collect comments for the text.')
+    description = _('Post comments on the paragraphs of the text')
 
     features = {
         'comment': (models.Paragraph, models.Chapter),

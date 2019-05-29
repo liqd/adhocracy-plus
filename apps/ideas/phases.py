@@ -27,7 +27,7 @@ class CollectPhase(phases.PhaseContent):
     view = views.IdeaListView
 
     name = _('Collect phase')
-    description = _('Create and comment new ideas.')
+    description = _('Create and comment on new ideas.')
     module_name = _('ideas collection')
 
     features = {
@@ -42,7 +42,7 @@ class RatingPhase(phases.PhaseContent):
     view = views.IdeaListView
 
     name = _('Rating phase')
-    description = _('Get quantative feeback by rating the collected ideas.')
+    description = _('Rate the previously collected ideas.')
     module_name = _('ideas collection')
 
     features = {
