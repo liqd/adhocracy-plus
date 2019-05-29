@@ -43,12 +43,8 @@
     }
 
     .navbar {
-        @include clearfix;
-
-        > * {
-            display: inline-block;
-            margin-right: 0.5em;
-        }
+        justify-content: flex-start;
+        padding: $padding 0;
     }
 
     .rating-button {
@@ -68,6 +64,7 @@
     .comment-answer-button {
         @extend .btn--light;
         @extend .btn--small;
+        margin: 0 0.5*$spacer;
         vertical-align: baseline;
         line-height: inherit;
     }

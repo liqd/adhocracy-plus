@@ -4,11 +4,11 @@
 {% block field %}
     <div class="widget widget--{{ field|widget_type }} input-group">
         {% if before %}
-            <span class="input-group__before addon">{{ before }}</span>
+            <div class="input-group-prepend">{{ before }}</div>
         {% endif %}
-        {{ field|add_class:'input-group__input' }}
+        {{ field|add_class:'form-control' }}
         {% if after %}
-            <span class="input-group__after addon">{{ after }}</span>
+            <div class="input-group-append">{{ after }}</div>
         {% endif %}
     </div>
 {% endblock %}
