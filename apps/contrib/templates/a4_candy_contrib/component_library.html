@@ -79,7 +79,7 @@
                              <a href="#cl-embed-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Embed Layout</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar</a>
+                            <a href="#cl-form_inline" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-footer" class="dashboard-nav__item dashboard-nav__item--interactive">Footer</a>
@@ -91,7 +91,7 @@
                             <a href="#cl-hero-unit" class="dashboard-nav__item dashboard-nav__item--interactive">Hero Unit</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Input Group</a>
+                            <a href="#cl-form-inline" class="dashboard-nav__item dashboard-nav__item--interactive">Input Group</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-overlapping-ctrl-bar" class="dashboard-nav__item dashboard-nav__item--interactive">Overlapping Control Bar</a>
@@ -690,8 +690,10 @@
                         <div class="widget widget--datetimeinput">
                             <div class="l-tiles-2">
                                 <div class="widget--datetimeinput__date">
-                                    <input name="name_start_date" value="2017-11-22" placeholder="2017-11-24" id="id_start_date" class="datepicker" type="text">
-                                    <a href="#" class="date-picker-control date-picker-dateval" title="Show Calendar" role="button" aria-haspopup="true" tabindex="0"><span>&nbsp;</span><span class="fd-screen-reader">Show Calendar</span></a>
+                                    <input name="name_start_date" value="2017-11-22" placeholder="2017-11-24" id="id_start_date" class="datepicker form-control" type="text">
+                                    <div class="input-group-append">
+                                        <a href="#" class="date-picker-control date-picker-dateval" title="Show Calendar" role="button" aria-haspopup="true" tabindex="0"><span>&nbsp;</span><span class="fd-screen-reader">Show Calendar</span></a>
+                                    </div>
                                 </div>
                                 <div>
                                     <label class="sr-only" for="id_start_date_time">Start time</label>
@@ -799,23 +801,24 @@
                     </html>
                 </div>
 
-                <h2 id="cl-control_bar">Filter Bar and Input Group</h2>
+                <h2 id="cl-form-inline">Filter Bar and Input Group</h2>
 
                 <div class="cl-example">
-                    <p>Inside the component Filter Bar are the control-bar block elements. Control Bars are intended to be used atop of lists of elements or maps.</p>
-                    <p>Control Bars may only contain <a href="#">Buttons</a>, <a href="#">Dropdowns</a> and <code>input-groups</code>.</p>
-                    <p>Note that they are somehow located within the <code>_filter_bar.scss</code> file.</p>
+                    <p>Inside the component Filter Bar are the form inline block elements.</p>
+                    <p>These forms may only contain <a href="#">Buttons</a>, <a href="#">Dropdowns</a> and <code>input-groups</code>.</p>
                     <div class="cl-example">
-                        <div class="control-bar" role="group" aria-label="Filter bar">
+                        <div class="form-inline" role="group" aria-label="Filter bar">
                             <a class="btn btn--light" href="#" aria-label="View as map">
                                 <i class="fa fa-map" aria-hidden="true"></i>
                                 View
                             </a>
-                            <form class="input-group form-group u-inline-flex" method="get">
-                                <input class="input-group__input" type="search" name="search" placeholder="Search" value="">
-                                <button class="input-group__after btn btn--light" type="submit" title="Search">
-                                    <i class="fa fa-search" aria-label="Search"></i>
-                                </button>
+                            <form class="input-group" method="get">
+                                <input class="form-control" type="search" name="search" placeholder="Search" value="">
+                                <div class="input-group-append">
+                                    <button class="btn btn--light" type="submit" title="Search">
+                                        <i class="fa fa-search" aria-label="Search"></i>
+                                    </button>
+                                </div>
                             </form>
                             <div class="dropdown">
                                 <button type="button" class="dropdown-toggle btn btn--light btn--select">
@@ -823,7 +826,7 @@
                                     <i class="fa fa-caret-down" aria-hidden="true"></i>
                                 </button>
                             </div>
-                            <div class="control-bar__right">
+                            <div class="ml-auto">
                                 <div class="dropdown">
                                     <button type="button" class="dropdown-toggle btn btn--light btn--select">
                                         Ordering: Most recent
@@ -951,21 +954,23 @@
                     </div>
                 </div>
 
-                <h2 ID="cl-overlapping-ctrl-bar">Overlapping Control Bars</h2>
+                <h2 ID="cl-overlapping-ctrl-bar">Overlapping Inline Forms</h2>
 
                 <div class="cl-example">
-                    <div class="control-bar__top-overlap">
-                        <div class="control-bar" role="group" aria-label="Filter bar">
+                    <div class="l-top-overlap">
+                        <div class="form-inline" role="group" aria-label="Filter bar">
                             <a class="btn btn--light" href="#" aria-label="View as map">
                                 <i class="fa fa-map" aria-hidden="true"></i>
                                 View
                             </a>
 
-                            <form class="input-group form-group u-inline-flex">
-                                <input class="input-group__input" type="search" name="search" placeholder="Search" value="">
-                                <button class="input-group__after btn btn--light" type="submit" title="Search">
-                                    <i class="fa fa-search" aria-label="Search"></i>
-                                </button>
+                            <form class="input-group">
+                                <input class="form-control" type="search" name="search" placeholder="Search" value="">
+                                <div class="input-group-append">
+                                    <button class="btn btn--light" type="submit" title="Search">
+                                        <i class="fa fa-search" aria-label="Search"></i>
+                                    </button>
+                                </div>
                             </form>
 
                             <div class="dropdown">
@@ -975,7 +980,7 @@
                                 </button>
                             </div>
 
-                            <div class="control-bar__right">
+                            <div class="ml-auto">
                                 <div class="dropdown ">
                                     <button type="button" class="dropdown-toggle btn btn--light btn--select">
                                         Ordering: Most recent
@@ -1566,9 +1571,11 @@
                                 <div class="upload-wrapper__fields input-group">
                                     <input name="logo" id="id_logo" class="form-control form-control-file" type="file">
                                     <input name="__noname__" class="form-control form-control-file-dummy" placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_logo" type="text">
-                                    <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
-                                        <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
-                                    </label>
+                                    <div class="input-group-append">
+                                        <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
+                                            <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="form-id_logo upload-wrapper__preview">
                                     <input name="logo-clear" id="logo_id" class="clear-image" data-upload-clear="id_logo" type="checkbox">

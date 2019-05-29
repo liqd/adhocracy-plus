@@ -5,6 +5,8 @@ const django = require('django')
 $(function () {
   let $inputs = $('.datepicker')
 
+  $inputs.addClass('form-control')
+
   $inputs.each(function (i, e) {
     let initObject = { formElements: {} }
     initObject.formElements[e.id] = django.get_format('DATE_INPUT_FORMATS')[0]
