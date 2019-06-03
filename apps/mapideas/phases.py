@@ -13,7 +13,8 @@ class IssuePhase(phases.PhaseContent):
     view = views.MapIdeaListView
 
     name = _('Issue phase')
-    description = _('Create new ideas located on a map.')
+    description = _('Create new ideas, locate them on a map and comment on'
+                    ' them.')
     module_name = _('ideas collection')
 
     features = {
@@ -42,7 +43,8 @@ class RatingPhase(phases.PhaseContent):
     view = views.MapIdeaListView
 
     name = _('Rating phase')
-    description = _('Get quantative feeback by rating the collected ideas.')
+    description = _('Rate the previously collected ideas to get quantitative '
+                    'feedback.')
     module_name = _('ideas collection')
 
     features = {

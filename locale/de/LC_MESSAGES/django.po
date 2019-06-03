@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-23 17:40+0200\n"
+"POT-Creation-Date: 2019-06-03 13:58+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -79,7 +79,6 @@ msgstr "Speichern"
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
 #: liqd_product/templates/a4dashboard/blueprint_list.html:4
-#: liqd_product/templates/a4dashboard/blueprint_list.html:8
 #: liqd_product/templates/a4dashboard/project_list.html:13
 msgid "New Project"
 msgstr "Neues Projekt"
@@ -184,6 +183,7 @@ msgstr "Projektentwurf anlegen"
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:28
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:14
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:36
+#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:26
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:13
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:15
 #: liqd_product/templates/a4dashboard/project_create_form.html:30
@@ -410,7 +410,7 @@ msgstr "Grundeinstellungen bearbeiten"
 #: apps/partners/templates/partner_information.html:4
 #: apps/partners/templates/partner_information.html:9
 #: apps/projects/templates/a4_candy_projects/project_detail.html:64
-#: liqd_product/templates/header.html:31
+#: liqd_product/templates/header.html:33
 msgid "Information"
 msgstr "Information"
 
@@ -506,6 +506,7 @@ msgstr "weitere Kontaktmöglichkeiten"
 
 #: adhocracy4/dashboard/forms.py:98
 #: adhocracy4/phases/models.py:64
+#: apps/newsletters/models.py:30
 #: apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Name"
@@ -760,7 +761,6 @@ msgid "Voting phase"
 msgstr "Abstimmungsphase"
 
 #: adhocracy4/polls/phases.py:16
-#: apps/polls/phases.py:16
 msgid "Cast votes and discuss the poll."
 msgstr "Abgeben von Stimmen und kommentieren der Umfrage."
 
@@ -786,6 +786,7 @@ msgid "Choice has to belong to the question set in the url."
 msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 
 #: adhocracy4/projects/admin.py:8
+#: apps/newsletters/forms.py:36
 msgid "Project"
 msgstr "Projekt"
 
@@ -805,7 +806,7 @@ msgid "Images"
 msgstr "Bilder"
 
 #: adhocracy4/projects/admin.py:60
-#: apps/projects/admin.py:55
+#: apps/projects/admin.py:55 liqd_product/templates/newsletter_base.txt:13
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -1094,10 +1095,10 @@ msgid "Face to face phase"
 msgstr "Vor-Ort-Phase"
 
 #: apps/activities/phases.py:15
-msgid "Provide information about face-to-face participation events."
-msgstr "Informationen zur Vor-Ort-Beteiligung bereitstellen"
+msgid "Show information about the face-to-face event/phase."
+msgstr "Informationen über die Phase oder Veranstaltung werden angezeigt."
 
-#: apps/activities/phases.py:17
+#: apps/activities/phases.py:16
 msgid "facetoface"
 msgstr "Vor-Ort"
 
@@ -1143,13 +1144,11 @@ msgstr ""
 msgid "Request phase"
 msgstr "Vorschlagsphase"
 
-#: apps/budgeting/phases.py:16
-msgid "Request budgeting and get feedback through rates and comments."
-msgstr ""
-"Nutzerinnen und Nutzer können Vorschläge mit Budgetangabe machen und "
-"erhalten durch Bewertungen und Kommentare Rückmeldung."
+#: apps/budgeting/phases.py:17
+msgid "Post ideas with budget proposals, comment on them and rate them."
+msgstr "Ideen mit Budgetangabe einreichen, kommentieren und bewerten."
 
-#: apps/budgeting/phases.py:18
+#: apps/budgeting/phases.py:20
 msgid "participatory budgeting"
 msgstr "Bürgerhaushalt"
 
@@ -1393,62 +1392,59 @@ msgid "Brainstorming"
 msgstr "Brainstorming"
 
 #: apps/dashboard/blueprints.py:16
-msgid "Collect first ideas for a specific topic and comment on them."
-msgstr ""
-"Sammeln Sie Ideen zu einem bestimmten Thema und lassen Sie diese "
-"kommentieren."
+msgid "Collect ideas and let participants comment on them."
+msgstr "Sammeln Sie Ideen und lassen Sie Teilnehmer*innen Ideen kommentieren."
 
 #: apps/dashboard/blueprints.py:26
 msgid "Spatial Brainstorming"
 msgstr "Brainstorming mit Kartenfunktion"
 
 #: apps/dashboard/blueprints.py:28
-msgid "Collect location specific ideas for a topic and comment on them."
+msgid ""
+"Collect ideas associated with a location within a pre-defined area on a map."
 msgstr ""
-"Sammeln Sie ortsspezifische Ideen zu einem Thema und lassen Sie diese "
-"kommentieren."
+"Sammeln Sie Ideen, die von den Teilnehmer*innen auf einem vorher definierten "
+"Kartenausschnitt platziert werden können."
 
-#: apps/dashboard/blueprints.py:38
-msgid "Spatial Idea Collection"
-msgstr "Ideensammlung mit Kartenfunktion"
+#: apps/dashboard/blueprints.py:39
+msgid "Spatial Idea Challenge"
+msgstr "Ideenwettbewerb mit Karte"
 
-#: apps/dashboard/blueprints.py:40
-msgid "Collect location specific ideas that can be rated and commented."
-msgstr "Lassen Sie ortsspezifische Ideen bewerten und kommentieren."
-
-#: apps/dashboard/blueprints.py:51
-msgid "Agenda Setting"
-msgstr "Agenda festlegen"
+#: apps/dashboard/blueprints.py:41
+msgid ""
+"Collect ideas on a pre-defined area on a map and let participants rate them "
+"in a second step."
+msgstr ""
+"Sammeln Sie Ideen, die von den Teilnehmer*innen auf einem vorher definierten "
+"Kartenausschnitt platziert werden können. Die Ideen können in einem zweiten "
+"Schritt bewertet werden."
 
 #: apps/dashboard/blueprints.py:53
-msgid ""
-"With Agenda-Setting it’s possible to identify topics and to define mission "
-"statements. Afterwards anyone can comment and rate on different topics."
-msgstr ""
-"Mit \"Agenda festlegen\" ist es möglich, Themen zu identifizieren und "
-"Leitbilder zu definieren. Im Anschluss können diese bewertet und kommentiert "
-"werden."
+msgid "Idea Challenge"
+msgstr "Ideenwettbewerb"
 
-#: apps/dashboard/blueprints.py:66
+#: apps/dashboard/blueprints.py:55
+msgid ""
+"Collect ideas and let participants rate and comment on them in a second step."
+msgstr ""
+"Sammeln Sie Ideen und lassen sie sie durch die Teilnehmer*innen in einem "
+"zweiten Schritt bewerten."
+
+#: apps/dashboard/blueprints.py:67
 msgid "Text Review"
 msgstr "Text kommentieren"
 
-#: apps/dashboard/blueprints.py:68
-msgid ""
-"In the text-review it’s possible to structure draft texts that can be "
-"commented."
-msgstr ""
-"\"Text kommentieren\" erlaubt es Textentwürfe zu erstellen, die kommentiert "
-"werden können."
+#: apps/dashboard/blueprints.py:69
+msgid "Let participants comment on paragraphs of a pre-defined text."
+msgstr "Lassen Sie Teilnehmer*innen die Abschnitte/Absätze eines vorher "
+"eingestellten Textes kommentieren."
 
 #: apps/dashboard/blueprints.py:81
 msgid ""
-"Create a poll with multiple questions and possible answers. Anyone can cast "
-"votes and comment on the poll."
+"Let participants answer a poll of pre-defined multiple choice questions."
 msgstr ""
-"Bei einer Umfrage können Sie mehrere Fragen und deren Antwortmöglichkeiten "
-"anlegen. Nutzerinnen und Nutzer können ihre Stimme dann abgeben und die "
-"Umfrage kommentieren."
+"Lassen Sie Teilnehmer*innen auf eine oder mehrere Fragen mit vordefinierten "
+"Antwortmöglichkeiten antworten. "
 
 #: apps/dashboard/blueprints.py:92
 msgid "Participatory budgeting"
@@ -1456,26 +1452,23 @@ msgstr "Bürgerhaushalt"
 
 #: apps/dashboard/blueprints.py:94
 msgid ""
-"With participatory-budgeting it’s possible to make proposals with budget "
-"specifications and locate them. Anyone can comment and rate on different "
-"proposals."
+"Collect ideas with a budget proposal from participants. The ideas can be "
+"located on a pre-defined map."
 msgstr ""
-"Mit dem Bürgerhaushalt ist es den Teilnehmenden möglich, Vorschläge mit "
-"einem Budget zu versehen und sie auf einer Karte zu verorten. Diese "
-"Vorschläge können bewertet und kommentiert werden."
+"Sammeln Sie Ideen mit Budgetangabe von den Teilnehmer*innen. Die Ideen können"
+" auf einem vordefinierten Kartenausschnitt platziert werden."
 
-#: apps/dashboard/blueprints.py:104
+#: apps/dashboard/blueprints.py:103
 msgid "Face-to-Face Participation"
 msgstr "Vor-Ort-Beteiligung"
 
-#: apps/dashboard/blueprints.py:106
+#: apps/dashboard/blueprints.py:105
 msgid ""
-"With this module you can provide information about events or phases for face-"
-"to-face participation. No online participation is possible in this module."
+"Inform your participants about events and phases of your participation "
+"process that take place offline."
 msgstr ""
-"Mit diesem Modul können Informationen über Veranstaltungen und Phasen zur "
-"Vor-Ort-Beteiligung bereitgestellt werden. In diesem Modul ist keine Online-"
-"Beteiligung möglich."
+"Informieren Sie die Teilnehmer*innen über Veranstaltungen oder Phasen des "
+"Beteiligungsprozesses, die offline stattfinden."
 
 #: apps/dashboard/forms.py:13
 msgid "Organisation name"
@@ -1499,8 +1492,8 @@ msgid "commenting text"
 msgstr "Text kommentieren"
 
 #: apps/documents/phases.py:17
-msgid "Collect comments for the text."
-msgstr "Kommentieren von Text und einzelnen Absätzen."
+msgid "Post comments on the paragraphs of the text"
+msgstr "Abschnitte/Absätze des Textes kommentieren"
 
 #: apps/documents/templates/a4_candy_documents/chapter_detail.html:10
 #: apps/documents/templates/a4_candy_documents/chapter_detail.html:17
@@ -1632,39 +1625,39 @@ msgid "Create new ideas."
 msgstr "Anlegen von neuen Ideen."
 
 #: apps/ideas/phases.py:17 apps/ideas/phases.py:31 apps/ideas/phases.py:46
-#: apps/ideas/phases.py:61 apps/mapideas/phases.py:17
-#: apps/mapideas/phases.py:31 apps/mapideas/phases.py:46
-#: apps/mapideas/phases.py:61 apps/mapideas/phases.py:77
+#: apps/ideas/phases.py:61 apps/mapideas/phases.py:18
+#: apps/mapideas/phases.py:32 apps/mapideas/phases.py:48
+#: apps/mapideas/phases.py:63 apps/mapideas/phases.py:79
 msgid "ideas collection"
 msgstr "Ideensammlung"
 
-#: apps/ideas/phases.py:29 apps/mapideas/phases.py:29
+#: apps/ideas/phases.py:29 apps/mapideas/phases.py:30
 msgid "Collect phase"
 msgstr "Phase zur Einreichung von Ideen"
 
 #: apps/ideas/phases.py:30
-msgid "Create and comment new ideas."
-msgstr "Anlegen und Kommentieren neuer Ideen."
+msgid "Create and comment on new ideas."
+msgstr "Neue Ideen anlegen und kommentieren."
 
-#: apps/ideas/phases.py:44 apps/mapideas/phases.py:44
+#: apps/ideas/phases.py:44 apps/mapideas/phases.py:45
 msgid "Rating phase"
 msgstr "Bewertungsphase"
 
-#: apps/ideas/phases.py:45 apps/mapideas/phases.py:45
-msgid "Get quantative feeback by rating the collected ideas."
-msgstr "Erhalten Sie quantitative Rückmeldung mittels der Bewertung der Ideen."
+#: apps/ideas/phases.py:45
+msgid "Rate the previously collected ideas."
+msgstr "Die zuvor angelegten Ideen bewerten."
 
-#: apps/ideas/phases.py:58 apps/mapideas/phases.py:58
+#: apps/ideas/phases.py:58 apps/mapideas/phases.py:60
 msgid "Feedback phase"
 msgstr "Rückmeldungsphase"
 
-#: apps/ideas/phases.py:59 apps/mapideas/phases.py:59
+#: apps/ideas/phases.py:59 apps/mapideas/phases.py:61
 msgid "Get feedback for collected ideas through rates and comments."
 msgstr ""
 "Erhalten Sie Rückmeldung für gesammelte Ideen in Form von Bewertungen und "
 "Kommentaren"
 
-#: apps/ideas/phases.py:74 apps/mapideas/phases.py:74
+#: apps/ideas/phases.py:74 apps/mapideas/phases.py:76
 msgid "Collect ideas and get feedback"
 msgstr "Lassen Sie Ideen bewerten und kommentieren."
 
@@ -1733,6 +1726,9 @@ msgid ""
 "Click inside the marked area or type in an address to set the marker. A set "
 "marker can be dragged when pressed."
 msgstr ""
+"Um einen Pin zu setzen, klicken Sie innerhalb des markierten Bereichs oder "
+"geben Sie eine Adresse ein. Ein gesetzter Pin kann verschoben werden, wenn "
+"Sie ihn gedrückt halten."
 
 #: apps/mapideas/models.py:23
 msgid "Label of the ideas location"
@@ -1743,16 +1739,20 @@ msgid "This could be an address or the name of a landmark."
 msgstr "Dies kann sowohl eine Adresse als auch eine Ortsbezeichnung sein."
 
 #: apps/mapideas/phases.py:16
-msgid "Create new ideas located on a map."
-msgstr "Anlegen neuer Ideen, verortet auf einer Karte."
+msgid "Create new ideas, locate them on a map and comment on them."
+msgstr "Neue Ideen anlegen, auf der Karte platzieren und kommentieren."
 
-#: apps/mapideas/phases.py:30
+#: apps/mapideas/phases.py:31
 msgid "Create new ideas located on a map and comment them."
 msgstr ""
 "Anlegen neuer Ideen, verortet auf einer Karte, diese können kommentiert "
 "werden."
 
-#: apps/mapideas/phases.py:75
+#: apps/mapideas/phases.py:46
+msgid "Rate the previously collected ideas to get quantitative feedback."
+msgstr "Die zuvor angelegten Ideen bewerten."
+
+#: apps/mapideas/phases.py:77
 msgid ""
 "Create new ideas located on a map and get feedback through rates and "
 "comments."
@@ -1795,6 +1795,68 @@ msgstr "Schreiben Sie Ihre Notiz!"
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:24
 msgid "Note only visible internally within project."
 msgstr "Notiz nur innerhalb des Projektes sichtbar."
+
+#: apps/newsletters/forms.py:39
+msgid "Receivers are all users which follow the following project:"
+msgstr "Empfänger*innen sind alle, die diesem Projekt folgen:"
+
+#: apps/newsletters/forms.py:43
+msgid "Organisation"
+msgstr "Organisation"
+
+#: apps/newsletters/models.py:19
+msgid "Users following a specific project"
+msgstr "Nutzer*innen die einem bestimmten Projekt folgen"
+
+#: apps/newsletters/models.py:20
+msgid "Users following your organisation"
+msgstr "Nutzer*innen die Ihrer Organisation folgen"
+
+#: apps/newsletters/models.py:21
+msgid "Every initiator of your organisation"
+msgstr "Initiator*innen Ihrer Organisation"
+
+#: apps/newsletters/models.py:22
+msgid "Every user of the platform"
+msgstr "Alle Nutzer*innen der Plattform"
+
+#: apps/newsletters/models.py:32
+msgid "Sender"
+msgstr "Absender"
+
+#: apps/newsletters/models.py:34
+msgid "Subject"
+msgstr "Betreff"
+
+#: apps/newsletters/models.py:37
+msgid "Email body"
+msgstr "Inhalt der E-Mail"
+
+#: apps/newsletters/models.py:40
+msgid "Sent"
+msgstr "Senden"
+
+#: apps/newsletters/models.py:43
+msgid "Receivers"
+msgstr "Empfänger*innen"
+
+#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:4
+#: liqd_product/templates/a4dashboard/base_dashboard.html:48
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:8
+msgid "Create Newsletter"
+msgstr "Newsletter erstellen"
+
+#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:25
+msgid "Send"
+msgstr "Senden"
+
+#: apps/newsletters/views.py:58
+msgid "Newsletter has been saved and will be sent to the recipients."
+msgstr ""
+"Der Newsletter wurde gespeichert und wird an die Empfänger*innen gesendet."
 
 #: apps/offlineevents/dashboard.py:13
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:9
@@ -1919,7 +1981,7 @@ msgstr ""
 
 #: apps/partners/models.py:74 apps/partners/templates/partner_imprint.html:4
 #: apps/partners/templates/partner_imprint.html:9
-#: liqd_product/templates/footer.html:10 liqd_product/templates/header.html:36
+#: liqd_product/templates/footer.html:10 liqd_product/templates/header.html:38
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -1935,11 +1997,11 @@ msgstr ""
 msgid "Edit your organisation information"
 msgstr "Organisationsinformationen bearbeiten"
 
-#: apps/partners/templates/partner_landing_page.html:38
+#: apps/partners/templates/partner_landing_page.html:40
 msgid "Activity"
 msgstr "Aktivitäten"
 
-#: apps/partners/templates/partner_landing_page.html:43
+#: apps/partners/templates/partner_landing_page.html:45
 #: apps/users/templates/a4_candy_users/user_detail.html:110
 msgid "No activity yet. "
 msgstr "Noch keine Aktivität."
@@ -1947,6 +2009,10 @@ msgstr "Noch keine Aktivität."
 #: apps/partners/views.py:66
 msgid "Organisation successfully updated."
 msgstr "Organisation erfolgreich aktualisiert"
+
+#: apps/polls/phases.py:16
+msgid "Answer the questions and comment on the poll."
+msgstr "Auf Fragen antworten und Umfrage kommentieren."
 
 #: apps/projects/admin.py:11
 msgid "archive"
@@ -2138,6 +2204,12 @@ msgid ""
 "the invitation the link is not valid anymore.\n"
 "                "
 msgstr ""
+"\n"
+"Wenn Sie akzeptieren, treten Sie dem Projekt mit Ihrem Nutzernamen \"%(user)s"
+"\" bei.\n"
+"Wenn Sie dem Projekt mit einem anderen Profil beitreten möchten, melden Sie "
+"sich ab und folgen Sie dem Einladungslink erneut. Wenn Sie die Einladung "
+"ablehnen, verliert der Link seine Gültigkeit."
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:13
 msgid "This project is in not published yet."
@@ -2243,6 +2315,8 @@ msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 #: apps/users/forms.py:10 liqd_product/templates/email_base.html:59
 #: liqd_product/templates/email_base.txt:15
 #: liqd_product/templates/footer.html:15
+#: liqd_product/templates/newsletter_base.html:59
+#: liqd_product/templates/newsletter_base.txt:14
 msgid "Terms of use"
 msgstr "Nutzungsbedingungen"
 
@@ -2340,6 +2414,7 @@ msgstr "Avatar Bild"
 #: apps/users/templates/a4_candy_users/indicator.html:16
 #: liqd_product/templates/email_base.html:24
 #: liqd_product/templates/email_base.txt:3
+#: liqd_product/templates/newsletter_base.html:24
 msgid "Hello"
 msgstr "Guten Tag"
 
@@ -2383,123 +2458,123 @@ msgstr "Aktivitäten"
 msgid "This user is not active in any projects yet."
 msgstr "Dise Nutzer*in ist bislang noch in keinem Projekt aktiv."
 
-#: liqd_product/config/settings/base.py:185
-msgid "English"
-msgstr ""
-
 #: liqd_product/config/settings/base.py:186
-msgid "German"
-msgstr ""
+msgid "English"
+msgstr "Englisch"
 
-#: liqd_product/config/settings/base.py:405
+#: liqd_product/config/settings/base.py:187
+msgid "German"
+msgstr "Deutsche"
+
+#: liqd_product/config/settings/base.py:406
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: liqd_product/config/settings/base.py:406
+#: liqd_product/config/settings/base.py:407
 msgid "Diamond"
 msgstr "Diamant"
 
-#: liqd_product/config/settings/base.py:407
+#: liqd_product/config/settings/base.py:408
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: liqd_product/config/settings/base.py:408
+#: liqd_product/config/settings/base.py:409
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: liqd_product/config/settings/base.py:409
+#: liqd_product/config/settings/base.py:410
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: liqd_product/config/settings/base.py:410
+#: liqd_product/config/settings/base.py:411
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: liqd_product/config/settings/base.py:411
+#: liqd_product/config/settings/base.py:412
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: liqd_product/config/settings/base.py:412
+#: liqd_product/config/settings/base.py:413
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: liqd_product/config/settings/base.py:413
+#: liqd_product/config/settings/base.py:414
 msgid "Star"
 msgstr "Stern"
 
-#: liqd_product/config/settings/base.py:414
+#: liqd_product/config/settings/base.py:415
 msgid "Square"
 msgstr "Quadrat"
 
-#: liqd_product/config/settings/base.py:415
+#: liqd_product/config/settings/base.py:416
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: liqd_product/config/settings/base.py:416
+#: liqd_product/config/settings/base.py:417
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: liqd_product/config/settings/base.py:417
+#: liqd_product/config/settings/base.py:418
 msgid "Circle"
 msgstr "Kreis"
 
-#: liqd_product/config/settings/base.py:418
+#: liqd_product/config/settings/base.py:419
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: liqd_product/config/settings/base.py:419
+#: liqd_product/config/settings/base.py:420
 msgid "Zigzag"
 msgstr "ZickZack"
 
-#: liqd_product/config/settings/base.py:433
+#: liqd_product/config/settings/base.py:434
 msgid "Anti-discrimination"
 msgstr "Antidiskriminierung"
 
-#: liqd_product/config/settings/base.py:434
+#: liqd_product/config/settings/base.py:435
 msgid "Work & economy"
 msgstr "Arbeit & Wirtschaft"
 
-#: liqd_product/config/settings/base.py:435
+#: liqd_product/config/settings/base.py:436
 msgid "Building & living"
 msgstr "Bauen & Wohnen"
 
-#: liqd_product/config/settings/base.py:436
+#: liqd_product/config/settings/base.py:437
 msgid "Education & research"
 msgstr "Bildung & Forschung"
 
-#: liqd_product/config/settings/base.py:437
+#: liqd_product/config/settings/base.py:438
 msgid "Children, youth & family"
 msgstr "Kinder, Jugend & Familie"
 
-#: liqd_product/config/settings/base.py:438
+#: liqd_product/config/settings/base.py:439
 msgid "Finances"
 msgstr "Finanzen"
 
-#: liqd_product/config/settings/base.py:439
+#: liqd_product/config/settings/base.py:440
 msgid "Health & sports"
 msgstr "Gesundheit & Sport"
 
-#: liqd_product/config/settings/base.py:440
+#: liqd_product/config/settings/base.py:441
 msgid "Integration"
 msgstr "Integration"
 
-#: liqd_product/config/settings/base.py:441
+#: liqd_product/config/settings/base.py:442
 msgid "Culture & leisure"
 msgstr "Kultur & Freizeit"
 
-#: liqd_product/config/settings/base.py:442
+#: liqd_product/config/settings/base.py:443
 msgid "Neighborhood & participation"
 msgstr "Nachbarschaft & Teilhabe"
 
-#: liqd_product/config/settings/base.py:443
+#: liqd_product/config/settings/base.py:444
 msgid "Urban development"
 msgstr "Stadtentwicklung"
 
-#: liqd_product/config/settings/base.py:444
+#: liqd_product/config/settings/base.py:445
 msgid "Environment & public green space"
 msgstr "Umwelt & Grünflächen"
 
-#: liqd_product/config/settings/base.py:445
+#: liqd_product/config/settings/base.py:446
 msgid "Traffic"
 msgstr "Verkehr"
 
@@ -2539,8 +2614,12 @@ msgid "Add Module"
 msgstr "Modul hinzufügen"
 
 #: liqd_product/templates/a4dashboard/base_project_list.html:25
-msgid "Organisation settings"
+msgid "Edit your organisation"
 msgstr "Organisation bearbeiten"
+
+#: liqd_product/templates/a4dashboard/blueprint_list.html:8
+msgid "Create a new Project"
+msgstr "Neues Projekt anlegen"
 
 #: liqd_product/templates/a4dashboard/includes/project_list_item.html:52
 #: liqd_product/templates/a4dashboard/includes/project_list_item.html:54
@@ -2747,6 +2826,8 @@ msgid ""
 "                Send me newsletters\n"
 "                "
 msgstr ""
+"\n"
+"Bitte senden Sie mir E-Mail Newsletter"
 
 #: liqd_product/templates/account/signup.html:47
 #, python-format
@@ -2781,6 +2862,8 @@ msgstr "Fehler"
 
 #: liqd_product/templates/email_base.html:50
 #: liqd_product/templates/email_base.txt:11
+#: liqd_product/templates/newsletter_base.html:50
+#: liqd_product/templates/newsletter_base.txt:10
 msgid "Beteiligung.in is a participation platform operated by"
 msgstr "Beteiligung.in ist eine Plattform für Beteiligung, betrieben durch"
 
@@ -2803,14 +2886,99 @@ msgstr ""
 msgid "Header"
 msgstr "Kopfzeile"
 
-#: liqd_product/templates/header.html:26
+#: liqd_product/templates/header.html:28
 msgid "Participate"
 msgstr "Beteiligung"
 
-#: liqd_product/templates/header.html:62
+#: liqd_product/templates/header.html:64
 #: liqd_product/templates/header_dashboard.html:37
 msgid "Menu"
 msgstr "Menü"
+
+#~ msgid "Provide information about face-to-face participation events."
+#~ msgstr "Informationen zur Vor-Ort-Beteiligung bereitstellen"
+
+#~ msgid "Request budgeting and get feedback through rates and comments."
+#~ msgstr ""
+#~ "Nutzerinnen und Nutzer können Vorschläge mit Budgetangabe machen und "
+#~ "erhalten durch Bewertungen und Kommentare Rückmeldung."
+
+#~ msgid "Collect first ideas for a specific topic and comment on them."
+#~ msgstr ""
+#~ "Sammeln Sie Ideen zu einem bestimmten Thema und lassen Sie diese "
+#~ "kommentieren."
+
+#~ msgid "Collect location specific ideas for a topic and comment on them."
+#~ msgstr ""
+#~ "Sammeln Sie ortsspezifische Ideen zu einem Thema und lassen Sie diese "
+#~ "kommentieren."
+
+#~ msgid "Spatial Idea Collection"
+#~ msgstr "Ideensammlung mit Kartenfunktion"
+
+#~ msgid "Collect location specific ideas that can be rated and commented."
+#~ msgstr "Lassen Sie ortsspezifische Ideen bewerten und kommentieren."
+
+#~ msgid "Agenda Setting"
+#~ msgstr "Agenda festlegen"
+
+#~ msgid ""
+#~ "With Agenda-Setting it’s possible to identify topics and to define "
+#~ "mission statements. Afterwards anyone can comment and rate on different "
+#~ "topics."
+#~ msgstr ""
+#~ "Mit \"Agenda festlegen\" ist es möglich, Themen zu identifizieren und "
+#~ "Leitbilder zu definieren. Im Anschluss können diese bewertet und "
+#~ "kommentiert werden."
+
+#~ msgid ""
+#~ "In the text-review it’s possible to structure draft texts that can be "
+#~ "commented."
+#~ msgstr ""
+#~ "\"Text kommentieren\" erlaubt es Textentwürfe zu erstellen, die "
+#~ "kommentiert werden können."
+
+#~ msgid ""
+#~ "Create a poll with multiple questions and possible answers. Anyone can "
+#~ "cast votes and comment on the poll."
+#~ msgstr ""
+#~ "Bei einer Umfrage können Sie mehrere Fragen und deren "
+#~ "Antwortmöglichkeiten anlegen. Nutzerinnen und Nutzer können ihre Stimme "
+#~ "dann abgeben und die Umfrage kommentieren."
+
+#~ msgid ""
+#~ "With participatory-budgeting it’s possible to make proposals with budget "
+#~ "specifications and locate them. Anyone can comment and rate on different "
+#~ "proposals."
+#~ msgstr ""
+#~ "Mit dem Bürgerhaushalt ist es den Teilnehmenden möglich, Vorschläge mit "
+#~ "einem Budget zu versehen und sie auf einer Karte zu verorten. Diese "
+#~ "Vorschläge können bewertet und kommentiert werden."
+
+#~ msgid ""
+#~ "With this module you can provide information about events or phases for "
+#~ "face-to-face participation. No online participation is possible in this "
+#~ "module."
+#~ msgstr ""
+#~ "Mit diesem Modul können Informationen über Veranstaltungen und Phasen zur "
+#~ "Vor-Ort-Beteiligung bereitgestellt werden. In diesem Modul ist keine "
+#~ "Online-Beteiligung möglich."
+
+#~ msgid "Collect comments for the text."
+#~ msgstr "Kommentieren von Text und einzelnen Absätzen."
+
+#~ msgid "Create and comment new ideas."
+#~ msgstr "Anlegen und Kommentieren neuer Ideen."
+
+#~ msgid "Get quantative feeback by rating the collected ideas."
+#~ msgstr ""
+#~ "Erhalten Sie quantitative Rückmeldung mittels der Bewertung der Ideen."
+
+#~ msgid "Create new ideas located on a map."
+#~ msgstr "Anlegen neuer Ideen, verortet auf einer Karte."
+
+#~ msgid "Organisation settings"
+#~ msgstr "Organisation bearbeiten"
 
 #~ msgid "max. 100 characters"
 #~ msgstr "maximal 100 Zeichen"
@@ -2898,9 +3066,6 @@ msgstr "Menü"
 
 #~ msgid "starts at {}"
 #~ msgstr "started am {}"
-
-#~ msgid "Organisation"
-#~ msgstr "Organisation"
 
 #~ msgid "District"
 #~ msgstr "Bezirk"
@@ -3060,9 +3225,6 @@ msgstr "Menü"
 
 #~ msgid "Show all projects"
 #~ msgstr "Alle Projekte anzeigen"
-
-#~ msgid "Send"
-#~ msgstr "Senden"
 
 #~ msgid ""
 #~ "With Agenda-Setting it’s possible to identify topics and to define "
@@ -3236,48 +3398,11 @@ msgstr "Menü"
 #~ msgid "The place has been deleted"
 #~ msgstr "Ort wurde gelöscht"
 
-#~ msgid "Receivers"
-#~ msgstr "Empfänger*innen"
-
 #~ msgid "Select a Project"
 #~ msgstr "Suchen Sie ein Projekt aus"
 
-#~ msgid "Users following a specific project"
-#~ msgstr "Nutzer*innen die einem bestimmten Projekt folgen"
-
-#~ msgid "Users following your organisation"
-#~ msgstr "Nutzer*innen die Ihrer Organisation folgen"
-
-#~ msgid "Every initiator of your organisation"
-#~ msgstr "Initiator*innen Ihrer Organisation"
-
-#~ msgid "Every user of the platform"
-#~ msgstr "Alle Nutzer*innen der Plattform"
-
-#~ msgid "Sender"
-#~ msgstr "Absender"
-
-#~ msgid "Subject"
-#~ msgstr "Betreff"
-
-#~ msgid "Email body"
-#~ msgstr "Inhalt der E-Mail"
-
-#~ msgid "Sent"
-#~ msgstr "Senden"
-
-#~ msgid "Newsletter"
-#~ msgstr "Newsletter"
-
-#~ msgid "Create Newsletter"
-#~ msgstr "Newsletter erstellen"
-
 #~ msgid "Create newsletter"
 #~ msgstr "Newsletter erstellen"
-
-#~ msgid "Newsletter has been saved and will be sent to the recipients."
-#~ msgstr ""
-#~ "Der Newsletter wurde gespeichert und wird an die Empfänger*innen gesendet."
 
 #~ msgid "The image will be shown in the newsletter in the banner."
 #~ msgstr "Das Bild wird in der Kopfzeile von Newslettern angezeigt."
