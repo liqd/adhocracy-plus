@@ -13,7 +13,7 @@ blueprints = [
      ProjectBlueprint(
          title=_('Brainstorming'),
          description=_(
-             'Collect first ideas for a specific topic and comment on them.'
+             'Collect ideas and let participants comment on them.'
          ),
          content=[
              ideas_phases.CollectPhase(),
@@ -25,7 +25,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Spatial Brainstorming'),
          description=_(
-             'Collect location specific ideas for a topic and comment on them.'
+             'Collect ideas associated with a location within a pre-defined '
+             'area on a map.'
          ),
          content=[
              mapideas_phases.CollectPhase(),
@@ -35,9 +36,10 @@ blueprints = [
      )),
     ('map-idea-collection',
      ProjectBlueprint(
-         title=_('Spatial Idea Collection'),
+         title=_('Spatial Idea Challenge'),
          description=_(
-             'Collect location specific ideas that can be rated and commented.'
+             'Collect ideas on a pre-defined area on a map and let '
+             'participants rate them in a second step.'
          ),
          content=[
              mapideas_phases.CollectPhase(),
@@ -48,11 +50,10 @@ blueprints = [
      )),
     ('agenda-setting',
      ProjectBlueprint(
-         title=_('Agenda Setting'),
+         title=_('Idea Challenge'),
          description=_(
-             'With Agenda-Setting it’s possible to identify topics and to '
-             'define mission statements. Afterwards anyone can comment and '
-             'rate on different topics.'
+             'Collect ideas and let participants rate and comment on them in'
+             ' a second step.'
          ),
          content=[
              ideas_phases.CollectPhase(),
@@ -65,8 +66,7 @@ blueprints = [
      ProjectBlueprint(
          title=_('Text Review'),
          description=_(
-             'In the text-review it’s possible to structure draft texts '
-             'that can be commented.'
+             'Let participants comment on paragraphs of a pre-defined text.'
          ),
          content=[
              documents_phases.CommentPhase(),
@@ -78,8 +78,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Poll'),
          description=_(
-             'Create a poll with multiple questions and possible answers. '
-             'Anyone can cast votes and comment on the poll.'
+             'Let participants answer a poll of pre-defined multiple choice '
+             'questions.'
          ),
          content=[
              poll_phases.VotingPhase(),
@@ -91,9 +91,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Participatory budgeting'),
          description=_(
-             'With participatory-budgeting it’s possible to make proposals '
-             'with budget specifications and locate them. Anyone can comment '
-             'and rate on different proposals.'),
+             'Collect ideas with a budget proposal from participants. The '
+             'ideas can be located on a pre-defined map.'),
          content=[
              budgeting_phases.RequestPhase()],
          image='images/participatory-budgeting.svg',
@@ -103,9 +102,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Face-to-Face Participation'),
          description=_(
-             'With this module you can provide information about events or '
-             'phases for face-to-face participation. No online participation '
-             'is possible in this module.'
+             'Inform your participants about events and phases of your '
+             'participation process that take place offline.'
          ),
          content=[
              activities_phases.FaceToFacePhase(),

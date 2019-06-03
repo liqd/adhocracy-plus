@@ -12,8 +12,7 @@ class FaceToFacePhase(phases.PhaseContent):
     view = views.ActivityView
 
     name = _('Face to face phase')
-    description = _('Provide information about face-to-face participation '
-                    'events.')
+    description = _('Show information about the face-to-face event/phase.')
     module_name = _('facetoface')
 
     features = {}

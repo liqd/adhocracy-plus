@@ -13,8 +13,10 @@ class RequestPhase(phases.PhaseContent):
     view = views.ProposalListView
 
     name = _('Request phase')
-    description = _('Request budgeting and get feedback through rates and '
-                    'comments.')
+    description = _(
+        'Post ideas with budget proposals, comment on them and'
+        ' rate them.'
+    )
     module_name = _('participatory budgeting')
 
     features = {
