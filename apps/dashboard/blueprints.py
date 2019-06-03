@@ -25,7 +25,7 @@ blueprints = [
      ProjectBlueprint(
          title=_('Spatial Brainstorming'),
          description=_(
-             'Collect ideas and let participants locate them on a pre-defined '
+             'Collect ideas associated with a location within a pre-defined '
              'area on a map.'
          ),
          content=[
@@ -78,8 +78,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Poll'),
          description=_(
-             'Let participants answer a poll with pre-defined questions and '
-             'possible answers.'
+             'Let participants answer a poll of pre-defined multiple choice '
+             'questions.'
          ),
          content=[
              poll_phases.VotingPhase(),
