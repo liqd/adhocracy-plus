@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-03 13:58+0200\n"
+"POT-Creation-Date: 2019-06-25 15:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgstr "Missing fields for publication"
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:27
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:35
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:27
-#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:12
+#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:14
 #: liqd_product/templates/a4dashboard/base_form_module.html:19
 #: liqd_product/templates/a4dashboard/base_form_project.html:19
 msgid "Save"
@@ -156,7 +156,7 @@ msgstr "Create draft"
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:14
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:36
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:26
-#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:13
+#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:15
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:15
 #: liqd_product/templates/a4dashboard/project_create_form.html:30
 msgid "Cancel"
@@ -204,8 +204,8 @@ msgstr "We could not find any projects."
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11 apps/ideas/views.py:26
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:4
-#: liqd_product/templates/a4filters/widgets/free_text_filter.html:10
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:11
+#: liqd_product/templates/a4filters/widgets/free_text_filter.html:12
 msgid "Search"
 msgstr "Search"
 
@@ -226,14 +226,14 @@ msgid "Remove category"
 msgstr "Remove category"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
-#: liqd_product/templates/a4images/image_upload_widget.html:9
 #: liqd_product/templates/a4images/image_upload_widget.html:10
+#: liqd_product/templates/a4images/image_upload_widget.html:11
 msgid "Remove the picture"
 msgstr "Remove the picture"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:12
-#: liqd_product/templates/a4images/image_upload_widget.html:15
 #: liqd_product/templates/a4images/image_upload_widget.html:16
+#: liqd_product/templates/a4images/image_upload_widget.html:17
 msgid "Upload a picture"
 msgstr "Upload a picture"
 
@@ -673,7 +673,7 @@ msgstr ""
 "chars."
 
 #: adhocracy4/phases/models.py:66 apps/activities/models.py:21
-#: apps/ideas/models.py:31 apps/offlineevents/models.py:17
+#: apps/ideas/models.py:31 apps/offlineevents/models.py:22
 msgid "Description"
 msgstr "Description"
 
@@ -1765,7 +1765,7 @@ msgstr "Newsletter has been saved and will be sent to the recipients."
 msgid "Offline Events"
 msgstr "Offline Events"
 
-#: apps/offlineevents/forms.py:15 apps/offlineevents/models.py:15
+#: apps/offlineevents/forms.py:15 apps/offlineevents/models.py:20
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:8
 msgid "Date"
 msgstr "Date"
@@ -1773,6 +1773,18 @@ msgstr "Date"
 #: apps/offlineevents/forms.py:15
 msgid "Time"
 msgstr "Time"
+
+#: apps/offlineevents/models.py:16
+msgid "Event type"
+msgstr "Event type"
+
+#: apps/offlineevents/models.py:17
+msgid ""
+"The content of this field is shown in the timeline. It should have no more "
+"than 30 characters e.g. Information event or 3rd public workshop."
+msgstr ""
+"The content of this field is shown in the timeline. It should have no more "
+"than 30 characters e.g. Information event or 3rd public workshop."
 
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:4
 msgid "Confirm Offline Event Deletion"
@@ -2012,7 +2024,7 @@ msgstr "It continues on %(date)s."
 msgid "It ended on %(date)s."
 msgstr "It ended on %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/includes/users_from_email_form.html:27
+#: apps/projects/templates/a4_candy_projects/includes/users_from_email_form.html:26
 msgid "Add"
 msgstr "Add"
 
@@ -2538,7 +2550,7 @@ msgstr " Are you sure you want to delete the project '%(project_name)s'? "
 msgid "cancel"
 msgstr "cancel"
 
-#: liqd_product/templates/a4images/image_upload_widget.html:29
+#: liqd_product/templates/a4images/image_upload_widget.html:31
 msgid ""
 "Your image will be uploaded/removed once you save your changes at the end of "
 "this page."
