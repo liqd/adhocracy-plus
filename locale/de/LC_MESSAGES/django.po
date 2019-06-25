@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-03 13:58+0200\n"
+"POT-Creation-Date: 2019-06-25 15:54+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -66,7 +66,7 @@ msgstr "Benötigte Felder zur Veröffentlichung"
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:27
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:35
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:27
-#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:12
+#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:14
 #: liqd_product/templates/a4dashboard/base_form_module.html:19
 #: liqd_product/templates/a4dashboard/base_form_project.html:19
 msgid "Save"
@@ -184,7 +184,7 @@ msgstr "Projektentwurf anlegen"
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:14
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:36
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:26
-#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:13
+#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:15
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:15
 #: liqd_product/templates/a4dashboard/project_create_form.html:30
 msgid "Cancel"
@@ -241,8 +241,8 @@ msgstr "Wir konnten keine Projekte finden."
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: apps/ideas/views.py:26
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:4
-#: liqd_product/templates/a4filters/widgets/free_text_filter.html:10
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:11
+#: liqd_product/templates/a4filters/widgets/free_text_filter.html:12
 msgid "Search"
 msgstr "Suchen"
 
@@ -269,15 +269,15 @@ msgstr "Kategorie entfernen"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
-#: liqd_product/templates/a4images/image_upload_widget.html:9
 #: liqd_product/templates/a4images/image_upload_widget.html:10
+#: liqd_product/templates/a4images/image_upload_widget.html:11
 msgid "Remove the picture"
 msgstr "Bild entfernen"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:12
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:12
-#: liqd_product/templates/a4images/image_upload_widget.html:15
 #: liqd_product/templates/a4images/image_upload_widget.html:16
+#: liqd_product/templates/a4images/image_upload_widget.html:17
 msgid "Upload a picture"
 msgstr "Bild hochladen"
 
@@ -742,7 +742,7 @@ msgstr ""
 
 #: adhocracy4/phases/models.py:66
 #: apps/activities/models.py:21 apps/ideas/models.py:31
-#: apps/offlineevents/models.py:17
+#: apps/offlineevents/models.py:22
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -1436,7 +1436,8 @@ msgstr "Text kommentieren"
 
 #: apps/dashboard/blueprints.py:69
 msgid "Let participants comment on paragraphs of a pre-defined text."
-msgstr "Lassen Sie Teilnehmer*innen die Abschnitte/Absätze eines vorher "
+msgstr ""
+"Lassen Sie Teilnehmer*innen die Abschnitte/Absätze eines vorher "
 "eingestellten Textes kommentieren."
 
 #: apps/dashboard/blueprints.py:81
@@ -1444,7 +1445,7 @@ msgid ""
 "Let participants answer a poll of pre-defined multiple choice questions."
 msgstr ""
 "Lassen Sie Teilnehmer*innen auf eine oder mehrere Fragen mit vordefinierten "
-"Antwortmöglichkeiten antworten. "
+"Antwortmöglichkeiten antworten."
 
 #: apps/dashboard/blueprints.py:92
 msgid "Participatory budgeting"
@@ -1455,8 +1456,8 @@ msgid ""
 "Collect ideas with a budget proposal from participants. The ideas can be "
 "located on a pre-defined map."
 msgstr ""
-"Sammeln Sie Ideen mit Budgetangabe von den Teilnehmer*innen. Die Ideen können"
-" auf einem vordefinierten Kartenausschnitt platziert werden."
+"Sammeln Sie Ideen mit Budgetangabe von den Teilnehmer*innen. Die Ideen "
+"können auf einem vordefinierten Kartenausschnitt platziert werden."
 
 #: apps/dashboard/blueprints.py:103
 msgid "Face-to-Face Participation"
@@ -1863,7 +1864,7 @@ msgstr ""
 msgid "Offline Events"
 msgstr "Veranstaltungen"
 
-#: apps/offlineevents/forms.py:15 apps/offlineevents/models.py:15
+#: apps/offlineevents/forms.py:15 apps/offlineevents/models.py:20
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:8
 msgid "Date"
 msgstr "Datum"
@@ -1871,6 +1872,19 @@ msgstr "Datum"
 #: apps/offlineevents/forms.py:15
 msgid "Time"
 msgstr "Zeit"
+
+#: apps/offlineevents/models.py:16
+msgid "Event type"
+msgstr ""
+
+#: apps/offlineevents/models.py:17
+msgid ""
+"The content of this field is shown in the timeline. It should have no more "
+"than 30 characters e.g. Information event or 3rd public workshop."
+msgstr ""
+"Der Inhalt dieses Feldes erscheint in der Zeitleiste. Er darf maximal 30 "
+"Zeichen lang sein. Schreiben Sie z.B. Informationsveranstaltung oder 3. "
+"öffentlicher Workshop."
 
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:4
 msgid "Confirm Offline Event Deletion"
@@ -2109,7 +2123,7 @@ msgstr "Es geht weiter am %(date)s."
 msgid "It ended on %(date)s."
 msgstr "Sie hat am %(date)s geendet."
 
-#: apps/projects/templates/a4_candy_projects/includes/users_from_email_form.html:27
+#: apps/projects/templates/a4_candy_projects/includes/users_from_email_form.html:26
 msgid "Add"
 msgstr "Hinzufügen"
 
@@ -2641,7 +2655,7 @@ msgstr ""
 msgid "cancel"
 msgstr "Abbrechen"
 
-#: liqd_product/templates/a4images/image_upload_widget.html:29
+#: liqd_product/templates/a4images/image_upload_widget.html:31
 msgid ""
 "Your image will be uploaded/removed once you save your changes at the end of "
 "this page."

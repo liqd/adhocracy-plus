@@ -37,6 +37,7 @@ def test_offlineevent_create_view(client, phase_factory):
         'description': 'desc',
         'date_0': '2013-01-01',
         'date_1': '18:00',
+        'event_type': 'Workshop'
     }
     client.login(username=initiator.email, password='password')
     response = client.post(url, data)
@@ -60,6 +61,7 @@ def test_offlineevent_update_view(
         'description': 'desc',
         'date_0': '2013-01-01',
         'date_1': '18:00',
+        'event_type': 'Workshop'
     }
     client.login(username=initiator.email, password='password')
     response = client.post(url, data)
