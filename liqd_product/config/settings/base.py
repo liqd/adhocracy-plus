@@ -173,6 +173,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en'
+DEFAULT_USER_LANGUAGE_CODE = 'de'
 
 TIME_ZONE = 'Europe/Berlin'
 

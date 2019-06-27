@@ -1,8 +1,10 @@
+from django.conf import settings
 from django.contrib.auth import models as auth_models
 from django.core import validators
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.images.fields import ConfiguredImageField
@@ -100,6 +102,13 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         verbose_name=_('Avatar picture'),
     )
 
+    language = models.CharField(
+        verbose_name=_('Language'),
+        choices=settings.LANGUAGES,
+        default=settings.DEFAULT_USER_LANGUAGE_CODE,
+        max_length=4,
+    )
+
     objects = auth_models.UserManager()
 
     USERNAME_FIELD = 'email'
@@ -120,6 +129,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         """Update the fields required for sign-up."""
         self.username = username
         self.email = email
+        self.language = get_language()
         if commit:
             self.save()
 
