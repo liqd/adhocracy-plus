@@ -106,8 +106,8 @@ po:
 	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
 	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
 
-.PHONY: compilemessages
-compilemessages:
+.PHONY: mo
+mo:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
 .PHONY: release
