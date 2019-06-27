@@ -5,10 +5,10 @@ from allauth.account.adapter import DefaultAccountAdapter
 from django.conf import settings
 from django.utils.http import is_safe_url
 
-from adhocracy4.emails import Email
 from adhocracy4.emails.mixins import SyncEmailMixin
 from apps.users import USERNAME_INVALID_MESSAGE
 from apps.users import USERNAME_REGEX
+from apps.users.emails import EmailWithUserLanguage as Email
 
 
 class UserAccountEmail(SyncEmailMixin, Email):

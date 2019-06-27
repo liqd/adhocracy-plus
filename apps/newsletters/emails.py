@@ -2,8 +2,8 @@ from django.apps import apps
 from django.conf import settings
 from django.contrib import auth
 
-from adhocracy4.emails import Email
 from adhocracy4.emails.mixins import ReportToAdminEmailMixin
+from apps.users.emails import EmailWithUserLanguage as Email
 
 Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 User = auth.get_user_model()
