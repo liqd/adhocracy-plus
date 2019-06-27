@@ -1,6 +1,6 @@
 from django.contrib import auth
 
-from adhocracy4.emails import Email
+from apps.users.emails import EmailWithUserLanguage as Email
 
 User = auth.get_user_model()
 

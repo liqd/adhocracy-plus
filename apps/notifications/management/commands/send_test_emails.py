@@ -7,7 +7,6 @@ from django.core.management.base import CommandError
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
 from adhocracy4.comments.models import Comment
-from adhocracy4.emails import Email
 from adhocracy4.emails.mixins import SyncEmailMixin
 from adhocracy4.projects.models import Project
 from adhocracy4.reports import emails as reports_emails
@@ -19,6 +18,7 @@ from apps.ideas.models import Idea
 from apps.notifications import emails as notification_emails
 from apps.organisations.models import Organisation
 from apps.projects import models as project_models
+from apps.users.emails import EmailWithUserLanguage as Email
 
 User = get_user_model()
 
