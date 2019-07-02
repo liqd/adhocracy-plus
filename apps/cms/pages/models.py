@@ -15,11 +15,15 @@ class HomePage(Page):
         verbose_name="Header Image",
         help_text="The Image that is shown on top of the page"
     )
-    subtitle = models.CharField(
+
+    subtitle_de = models.CharField(
         max_length=500, blank=True, verbose_name="Subtitle")
-    body = RichTextField(blank=True)
+    subtitle_en = models.CharField(
+        max_length=500, blank=True, verbose_name="Subtitle")
 
     subpage_types = ['a4_candy_cms_pages.EmptyPage']
+    body_de = RichTextField(blank=True)
+    body_en = RichTextField(blank=True)
 
     content_panels = [
         FieldPanel('title'),
@@ -36,7 +40,8 @@ class EmptyPage(Page):
 
 
 class SimplePage(Page):
-    body = RichTextField()
+    body_de = RichTextField()
+    body_en = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('body', classname='full'),
