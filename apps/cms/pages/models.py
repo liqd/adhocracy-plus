@@ -4,6 +4,8 @@ from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
+from apps.contrib.translations import TranslatedField
+
 
 class HomePage(Page):
     image = models.ForeignKey(
@@ -26,6 +28,15 @@ class HomePage(Page):
     body_en = RichTextField(blank=True)
 
     content_panels = [
+    body = TranslatedField(
+        'body_de',
+        'body_en'
+    )
+
+    subtitle = TranslatedField(
+        'subtitle_de',
+        'subtitle_en'
+    )
         FieldPanel('title'),
         ImageChooserPanel('image'),
         FieldPanel('subtitle'),
@@ -45,6 +56,10 @@ class SimplePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('body', classname='full'),
+    body = TranslatedField(
+        'body_de',
+        'body_en'
+    )
     ]
 
     subpage_types = ['a4_candy_cms_pages.SimplePage']
