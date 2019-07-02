@@ -1,5 +1,5 @@
-from adhocracy4.emails import Email
 from apps.projects import tasks
+from apps.users.emails import EmailWithUserLanguage as Email
 
 
 class InviteParticipantEmail(Email):

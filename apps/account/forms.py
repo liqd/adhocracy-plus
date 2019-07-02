@@ -15,5 +15,6 @@ class ProfileForm(forms.ModelForm):
             'facebook_handle',
             'twitter_handle',
             'get_notifications',
-            'get_newsletters'
+            'get_newsletters',
+            'language'
         ]

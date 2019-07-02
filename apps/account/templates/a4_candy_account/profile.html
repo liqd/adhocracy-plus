@@ -22,6 +22,8 @@
 
         {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
 
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.language %}
+
         <div class="u-spacer-bottom">
             <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
         </div>
