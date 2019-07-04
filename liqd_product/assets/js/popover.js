@@ -1,4 +1,3 @@
-/* global $ */
 (function (init) {
   $(init)
   $(document).on('a4.embed.ready', init)
