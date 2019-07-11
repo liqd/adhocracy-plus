@@ -1,5 +1,5 @@
 import pytest
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from adhocracy4.projects import models
 from adhocracy4.test.helpers import redirect_target
@@ -36,7 +36,7 @@ def test_user_cannot_delete(client, project_factory, user):
             'pk': project.pk
         })
     response = client.post(url)
-    assert response.status_code == 302
+    assert response.status_code == 403
     count = models.Project.objects.all().count()
     assert count == 1
 
@@ -55,7 +55,7 @@ def test_moderator_cannot_delete(client, project_factory, user):
             'pk': project.pk
         })
     response = client.post(url)
-    assert response.status_code == 302
+    assert response.status_code == 403
     count = models.Project.objects.all().count()
     assert count == 1
 

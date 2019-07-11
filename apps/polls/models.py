@@ -1,6 +1,6 @@
 from django.contrib.contenttypes.fields import GenericRelation
-from django.core.urlresolvers import reverse
 from django.db import models
+from django.urls import reverse
 
 from adhocracy4.comments import models as comment_models
 from adhocracy4.models.base import UserGeneratedContentModel

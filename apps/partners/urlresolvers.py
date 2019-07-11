@@ -1,9 +1,9 @@
 import itertools
 
-from django.conf.urls import RegexURLPattern
-from django.conf.urls import RegexURLResolver
 from django.conf.urls import include
 from django.conf.urls import url
+from django.urls import URLPattern
+from django.urls import URLResolver
 
 from apps.django_overwrites.urlresolvers import django_reverse
 
@@ -15,14 +15,14 @@ _partner_pattern_names = set()
 def partner_patterns(*pattern_list):
     """Mark the url patterns used with partners."""
     for pattern in pattern_list:
-        if isinstance(pattern, RegexURLPattern):
+        if isinstance(pattern, URLPattern):
             _partner_pattern_names.add(pattern.name)
-        elif isinstance(pattern, RegexURLResolver):
+        elif isinstance(pattern, URLResolver):
             for url_pattern in pattern.url_patterns:
                 ns = ''
                 if pattern.app_name:
                     ns = ns + pattern.app_name + ':'
-                if pattern.namespace:
+                elif pattern.namespace:
                     ns = ns + pattern.namespace + ':'
                 _partner_pattern_names.add(ns + url_pattern.name)
         else:
