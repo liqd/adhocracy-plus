@@ -46,7 +46,8 @@ def test_partner_patterns_instance_ns(partner_factory):
                               auto_set_partner=False)
     set_partner(partner)
     urlconf = (partner_patterns(
-        url(r'^ns/', include(base_urlconf, namespace='instance-ns'))
+        url(r'^ns/', include((base_urlconf, 'instance-ns'),
+                             namespace='instance-ns'))
     ),)
 
     url_ = reverse('instance-ns:static-url', urlconf)
