@@ -14,6 +14,7 @@ reverse_sql = """UPDATE django_content_type
 
 
 class Migration(migrations.Migration):
+    atomic = False
 
     replaces = [('liqd_product_budgeting', '0021_update_content_types')]
 
