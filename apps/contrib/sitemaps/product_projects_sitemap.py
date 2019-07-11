@@ -1,5 +1,5 @@
 from django.contrib.sitemaps import Sitemap
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from adhocracy4.projects.models import Project
 from apps.partners.models import Partner
