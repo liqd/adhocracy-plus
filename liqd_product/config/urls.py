@@ -8,7 +8,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
-from django.views.i18n import javascript_catalog
+from django.views.i18n import JavaScriptCatalog
 from rest_framework import routers
 from wagtail.contrib.sitemaps import views as wagtail_sitemap_views
 from wagtail.contrib.sitemaps.sitemap_generator import \
@@ -32,10 +32,6 @@ from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
 from apps.polls.routers import QuestionDefaultRouter
 from apps.users.decorators import user_is_project_admin
-
-js_info_dict = {
-    'packages': ('adhocracy4.comments',),
-}
 
 router = routers.DefaultRouter()
 router.register(r'follows', FollowViewSet, base_name='follows')
@@ -89,8 +85,7 @@ urlpatterns = [
         name='ckeditor_browse'),
 
     url(r'^components/$', contrib_views.ComponentLibraryView.as_view()),
-    url(r'^jsi18n/$', javascript_catalog,
-        js_info_dict, name='javascript-catalog'),
+    url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 
     # Urls within the context of a partner
     partner_patterns(
@@ -100,15 +95,16 @@ urlpatterns = [
         # to a separate app.
         url(r'^projects/', include('apps.projects.urls')),
         url(r'^offlineevents/', include(
-            'apps.offlineevents.urls',
+            ('apps.offlineevents.urls', 'a4_candy_offlineevents'),
             namespace='a4_candy_offlineevents')),
-        url(r'^ideas/', include(r'apps.ideas.urls',
+        url(r'^ideas/', include(('apps.ideas.urls', 'a4_candy_ideas'),
                                 namespace='a4_candy_ideas')),
-        url(r'^mapideas/', include('apps.mapideas.urls',
+        url(r'^mapideas/', include(('apps.mapideas.urls', 'a4_candy_mapideas'),
                                    namespace='a4_candy_mapideas')),
-        url(r'^text/', include('apps.documents.urls',
+        url(r'^text/', include(('apps.documents.urls', 'a4_candy_documents'),
                                namespace='a4_candy_documents')),
-        url(r'^budgeting/', include('apps.budgeting.urls',
+        url(r'^budgeting/', include(('apps.budgeting.urls',
+                                     'a4_candy_budgeting'),
                                     namespace='a4_candy_budgeting')),
     ),
 
