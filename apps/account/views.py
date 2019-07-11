@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
@@ -17,7 +18,8 @@ class AccountView(RedirectView):
     # dashboard function overview.
 
 
-class ProfileUpdateView(SuccessMessageMixin,
+class ProfileUpdateView(LoginRequiredMixin,
+                        SuccessMessageMixin,
                         generic.UpdateView):
 
     model = User
