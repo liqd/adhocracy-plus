@@ -12,7 +12,7 @@ class ChapterFactory(factory.django.DjangoModelFactory):
     name = factory.Faker('sentence')
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     module = factory.SubFactory(a4_factories.ModuleFactory)
-    weight = factory.Faker('random_number')
+    weight = factory.Faker('random_number', digits=3)
 
 
 class ParagraphFactory(factory.django.DjangoModelFactory):
@@ -22,5 +22,5 @@ class ParagraphFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('sentence')
     text = 'text'
-    weight = factory.Faker('random_number')
+    weight = factory.Faker('random_number', digits=3)
     chapter = factory.SubFactory(ChapterFactory)
