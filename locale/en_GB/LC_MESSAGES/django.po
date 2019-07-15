@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-25 15:54+0200\n"
+"POT-Creation-Date: 2019-07-15 16:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -291,7 +291,7 @@ msgid "Edit categories"
 msgstr "Edit categories"
 
 #: adhocracy4/categories/fields.py:12 adhocracy4/categories/filters.py:14
-#: adhocracy4/categories/forms.py:45 adhocracy4/exports/mixins.py:149
+#: adhocracy4/categories/forms.py:45 adhocracy4/exports/mixins.py:150
 msgid "Category"
 msgstr "Category"
 
@@ -303,13 +303,13 @@ msgstr "Category name"
 msgid "Category icon"
 msgstr "Category icon"
 
-#: adhocracy4/comments/models.py:50 apps/budgeting/exports.py:72
+#: adhocracy4/comments/models.py:52 apps/budgeting/exports.py:72
 #: apps/documents/exports.py:40 apps/ideas/exports.py:69
 #: apps/mapideas/exports.py:70 apps/polls/exports.py:36
 msgid "Comment"
 msgstr "Comment"
 
-#: adhocracy4/comments/models.py:51 adhocracy4/exports/mixins.py:121
+#: adhocracy4/comments/models.py:53 adhocracy4/exports/mixins.py:122
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:16
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:17
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:18
@@ -319,19 +319,19 @@ msgstr "Comment"
 msgid "Comments"
 msgstr "Comments"
 
-#: adhocracy4/comments/models.py:71
+#: adhocracy4/comments/models.py:73
 msgid "deleted by creator"
 msgstr "deleted by creator"
 
-#: adhocracy4/comments/models.py:74
+#: adhocracy4/comments/models.py:76
 msgid "deleted by moderator"
 msgstr "deleted by moderator"
 
-#: adhocracy4/comments/serializers.py:49
+#: adhocracy4/comments/serializers.py:51
 msgid "Please choose a category"
 msgstr "Please choose a category"
 
-#: adhocracy4/comments/serializers.py:58
+#: adhocracy4/comments/serializers.py:60
 msgid "unknown user"
 msgstr "unknown user"
 
@@ -527,32 +527,32 @@ msgstr "Project successfully unpublished."
 msgid "Link"
 msgstr "Link"
 
-#: adhocracy4/exports/mixins.py:62
+#: adhocracy4/exports/mixins.py:63
 msgid "Positive ratings"
 msgstr "Positive ratings"
 
-#: adhocracy4/exports/mixins.py:64
+#: adhocracy4/exports/mixins.py:65
 msgid "Negative ratings"
 msgstr "Negative ratings"
 
-#: adhocracy4/exports/mixins.py:97
+#: adhocracy4/exports/mixins.py:98
 msgid "Comment count"
 msgstr "Comment count"
 
-#: adhocracy4/exports/mixins.py:162 adhocracy4/labels/dashboard.py:12
-#: apps/ideas/models.py:44
+#: adhocracy4/exports/mixins.py:163 adhocracy4/labels/dashboard.py:12
+#: apps/ideas/models.py:45
 msgid "Labels"
 msgstr "Labels"
 
-#: adhocracy4/exports/mixins.py:174
+#: adhocracy4/exports/mixins.py:175
 msgid "Location (Longitude)"
 msgstr "Location (Longitude)"
 
-#: adhocracy4/exports/mixins.py:176
+#: adhocracy4/exports/mixins.py:177
 msgid "Location (Latitude)"
 msgstr "Location (Latitude)"
 
-#: adhocracy4/exports/mixins.py:178
+#: adhocracy4/exports/mixins.py:179
 msgid "Location label"
 msgstr "Location label"
 
@@ -673,7 +673,7 @@ msgstr ""
 "chars."
 
 #: adhocracy4/phases/models.py:66 apps/activities/models.py:21
-#: apps/ideas/models.py:31 apps/offlineevents/models.py:22
+#: apps/ideas/models.py:32 apps/offlineevents/models.py:22
 msgid "Description"
 msgstr "Description"
 
@@ -868,27 +868,27 @@ msgstr "Project topics"
 msgid "Add topics to your project."
 msgstr "Add topics to your project."
 
-#: adhocracy4/projects/models.py:308
+#: adhocracy4/projects/models.py:315
 msgid "day"
 msgstr "day"
 
-#: adhocracy4/projects/models.py:308
+#: adhocracy4/projects/models.py:315
 msgid "days"
 msgstr "days"
 
-#: adhocracy4/projects/models.py:309
+#: adhocracy4/projects/models.py:316
 msgid "hour"
 msgstr "hour"
 
-#: adhocracy4/projects/models.py:309
+#: adhocracy4/projects/models.py:316
 msgid "hours"
 msgstr "hours"
 
-#: adhocracy4/projects/models.py:310
+#: adhocracy4/projects/models.py:317
 msgid "minute"
 msgstr "minute"
 
-#: adhocracy4/projects/models.py:310
+#: adhocracy4/projects/models.py:317
 msgid "minutes"
 msgstr "minutes"
 
@@ -938,12 +938,12 @@ msgstr "Your user profile"
 msgid "Your profile"
 msgstr "Your profile"
 
-#: apps/account/templates/a4_candy_account/profile.html:26
+#: apps/account/templates/a4_candy_account/profile.html:28
 #: apps/partners/templates/partner_form.html:23
 msgid "Save changes"
 msgstr "Save changes"
 
-#: apps/account/views.py:25
+#: apps/account/views.py:28
 msgid "Your profile was successfully updated."
 msgstr "Your profile was successfully updated."
 
@@ -992,7 +992,7 @@ msgstr "on <a href=\"%(url)s\">%(name)s</a>"
 msgid "Face-to-Face Information"
 msgstr "Face-to-Face Information"
 
-#: apps/activities/models.py:12 apps/ideas/models.py:30
+#: apps/activities/models.py:12 apps/ideas/models.py:31
 #: apps/offlineevents/models.py:14
 msgid "Title"
 msgstr "Title"
@@ -1518,11 +1518,11 @@ msgstr "here you can export all ideas"
 msgid "here you can export all comments"
 msgstr "here you can export all comments"
 
-#: apps/ideas/models.py:34
+#: apps/ideas/models.py:35
 msgid "Add image"
 msgstr "Add image"
 
-#: apps/ideas/models.py:38
+#: apps/ideas/models.py:39
 msgid "Visualize your idea."
 msgstr "Visualize your idea."
 
@@ -1994,7 +1994,7 @@ msgstr "Timeline"
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:18
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:76
-#: apps/users/models.py:44
+#: apps/users/models.py:46
 msgid "active"
 msgstr "active"
 
@@ -2206,7 +2206,7 @@ msgstr "Participant successfully removed."
 msgid "Project '%(name)s' was deleted successfully."
 msgstr "Project '%(name)s' was deleted successfully."
 
-#: apps/users/__init__.py:6
+#: apps/users/__init__.py:7
 msgid ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
 "and @/./+/-/_ characters. It must start with a digit or a letter."
@@ -2238,37 +2238,37 @@ msgstr "Terms of use"
 msgid "Please accept the terms of use."
 msgstr "Please accept the terms of use."
 
-#: apps/users/models.py:16
+#: apps/users/models.py:18
 msgid "username"
 msgstr "username"
 
-#: apps/users/models.py:20
+#: apps/users/models.py:22
 msgid ""
 "Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
 msgstr ""
 "Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
 
-#: apps/users/models.py:26
+#: apps/users/models.py:28
 msgid "A user with that username already exists."
 msgstr "A user with that username already exists."
 
-#: apps/users/models.py:30
+#: apps/users/models.py:32
 msgid "Email address"
 msgstr "Email address"
 
-#: apps/users/models.py:33
+#: apps/users/models.py:35
 msgid "A user with that email address already exists."
 msgstr "A user with that email address already exists."
 
-#: apps/users/models.py:37
+#: apps/users/models.py:39
 msgid "staff status"
 msgstr "staff status"
 
-#: apps/users/models.py:40
+#: apps/users/models.py:42
 msgid "Designates whether the user can log into this admin site."
 msgstr "Designates whether the user can log into this admin site."
 
-#: apps/users/models.py:47
+#: apps/users/models.py:49
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -2276,11 +2276,11 @@ msgstr ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 
-#: apps/users/models.py:57
+#: apps/users/models.py:59
 msgid "Send me email notifications"
 msgstr "Send me email notifications"
 
-#: apps/users/models.py:60
+#: apps/users/models.py:62
 msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
@@ -2288,11 +2288,11 @@ msgstr ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
 
-#: apps/users/models.py:65
+#: apps/users/models.py:67
 msgid "Send me newsletters"
 msgstr "Send me newsletters"
 
-#: apps/users/models.py:68
+#: apps/users/models.py:70
 msgid ""
 "Designates whether you want to receive newsletters. Unselect if you do not "
 "want to receive newsletters."
@@ -2300,26 +2300,38 @@ msgstr ""
 "Designates whether you want to receive newsletters. Unselect if you do not "
 "want to receive newsletters."
 
-#: apps/users/models.py:75
+#: apps/users/models.py:77
 msgid "Biography"
 msgstr "Biography"
 
-#: apps/users/models.py:81
+#: apps/users/models.py:83
 msgid "Twitter name"
 msgstr "Twitter name"
 
-#: apps/users/models.py:87
+#: apps/users/models.py:89
 msgid "Facebook name"
 msgstr "Facebook name"
 
-#: apps/users/models.py:93
+#: apps/users/models.py:95
 #: apps/users/templates/a4_candy_users/user_detail.html:19
 msgid "Homepage"
 msgstr "Homepage"
 
-#: apps/users/models.py:100
+#: apps/users/models.py:102
 msgid "Avatar picture"
 msgstr "Avatar picture"
+
+#: apps/users/models.py:106
+msgid "Your preferred language"
+msgstr "Your preferred language"
+
+#: apps/users/models.py:111
+msgid ""
+"Specify your preferred language for the user interface and the notifications "
+"of the platform."
+msgstr ""
+"Specify your preferred language for the user interface and the notifications "
+"of the platform."
 
 #: apps/users/templates/a4_candy_users/indicator.html:16
 #: liqd_product/templates/email_base.html:24
