@@ -103,10 +103,13 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     )
 
     language = models.CharField(
-        verbose_name=_('Language'),
+        verbose_name=_('Your preferred language'),
         choices=settings.LANGUAGES,
         default=settings.DEFAULT_USER_LANGUAGE_CODE,
         max_length=4,
+        help_text=_(
+            'Specify your preferred language for the user interface '
+            'and the notifications of the platform.'),
     )
 
     objects = auth_models.UserManager()
