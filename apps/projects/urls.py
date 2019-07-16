@@ -20,6 +20,11 @@ urlpatterns = [
     url(r'^moderator-invites/(?P<invite_token>[-\w_]+)/accept/$',
         views.ModeratorInviteUpdateView.as_view(),
         name='project-moderator-invite-update'),
+    url(r'^(?P<slug>[-\w_]+)/$', views.ProjectDetailView.as_view(),
+        name='project-detail'),
+    url(r'^module/(?P<module_slug>[-\w_]+)/$',
+        views.ModuleDetailview.as_view(),
+        name='module-detail')
 ]
 
 urlpatterns += a4_projects_urls
