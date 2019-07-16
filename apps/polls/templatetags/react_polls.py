@@ -18,7 +18,9 @@ def react_polls(context, question):
 
     return format_html(
         '<div data-mb-widget="polls" data-question="{question}"></div>',
-        question=JSONRenderer().render(question_serializer.data).decode("utf-8")
+        question=JSONRenderer()
+        .render(question_serializer.data)
+        .decode("utf-8")
     )
 
 
