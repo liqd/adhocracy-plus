@@ -27,7 +27,7 @@ class Select2MultipleWidget(Select2Mixin, forms.SelectMultiple):
 
 
 class TextWithDatalistWidget(forms.TextInput):
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         attrs = self.build_attrs(self.attrs, attrs)
         options = self.get_options(attrs.pop('options'))
 
@@ -36,7 +36,7 @@ class TextWithDatalistWidget(forms.TextInput):
 
         return render_to_string(
             'a4_candy_contrib/text_with_datalist.html', {
-                'text_input': super().render(name, value, attrs),
+                'text_input': super().render(name, value, attrs, renderer),
                 'id_for_datalist': attrs['list'],
                 'options': options
             }
