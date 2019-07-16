@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
+from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from apps.contrib import filters
 from apps.exports.views import DashboardExportView
 from apps.ideas import views as idea_views
@@ -33,7 +34,8 @@ class MapIdeaFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class MapIdeaListView(idea_views.AbstractIdeaListView):
+class MapIdeaListView(idea_views.AbstractIdeaListView,
+                      DisplayProjectOrModuleMixin):
     model = models.MapIdea
     filter_set = MapIdeaFilterSet
 
