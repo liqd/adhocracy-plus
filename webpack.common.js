@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     adhocracy4: [
       './liqd_product/assets/scss/style.scss',
+      './liqd_product/assets/extra_css/_slick-theme.css',
       './liqd_product/assets/js/app.js'
     ],
     platform: [
@@ -23,7 +24,9 @@ module.exports = {
       'immutability-helper',
       'react-dom',
       'react-flip-move',
-      'typeface-libre-franklin'
+      'typeface-libre-franklin',
+      'slick-carousel/slick/slick.min.js',
+      'slick-carousel/slick/slick.css'
     ],
     a4maps_display_point: [
       'leaflet/dist/leaflet.css',
