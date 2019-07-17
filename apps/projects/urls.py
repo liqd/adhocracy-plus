@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^(?P<slug>[-\w_]+)/$', views.ProjectDetailView.as_view(),
         name='project-detail'),
     url(r'^module/(?P<module_slug>[-\w_]+)/$',
-        views.ModuleDetailview.as_view(),
+        views.ModuleDetailView.as_view(),
         name='module-detail')
 ]
 

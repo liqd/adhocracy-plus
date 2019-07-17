@@ -307,7 +307,7 @@ class ProjectDetailView(PermissionRequiredMixin,
         return self.request.user.is_authenticated
 
 
-class ModuleDetailview(PermissionRequiredMixin,
+class ModuleDetailView(PermissionRequiredMixin,
                        PhaseDispatchMixin):
 
     model = module_models.Module
