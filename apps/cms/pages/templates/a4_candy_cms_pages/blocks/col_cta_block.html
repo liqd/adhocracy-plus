@@ -1,0 +1,14 @@
+{% load wagtailcore_tags %}
+
+<div class="block row mb-5">
+    {% for column in value.columns %}
+        <div class="block-col-{{ value.columns_count }}">
+          {{ column.body|richtext }}
+          <div class="block-call_to_action">
+                  {{ value.body }}
+                  <a href="{{ value.link }}" class="btn btn-lg btn-primary">{{ value.link_text }}</a>
+          </div>
+          </div>
+        </div>
+    {% endfor %}
+</div>
