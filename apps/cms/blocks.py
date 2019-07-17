@@ -2,7 +2,7 @@ from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
 
-class CallToActionBlock(blocks.StreamBlock):
+class CallToActionBlock(blocks.StructBlock):
     body = blocks.RichTextBlock(required=False)
     link = blocks.CharBlock(required=False)
     link_text = blocks.CharBlock(
@@ -14,7 +14,7 @@ class CallToActionBlock(blocks.StreamBlock):
         icon = 'plus-inverse'
 
 
-class ImageCTABlock(blocks.StreamBlock):
+class ImageCTABlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
     body = blocks.RichTextBlock(required=False)
     call_to_action = CallToActionBlock(required=False)
