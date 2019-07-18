@@ -19,6 +19,7 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
+from apps.contrib.mixins import ProjectModuleDispatchMixin
 
 from . import forms
 from . import models
@@ -261,46 +262,20 @@ class ProjectDeleteView(PermissionRequiredMixin,
 
 
 class ProjectDetailView(PermissionRequiredMixin,
-                        generic.DetailView,
-                        DisplayProjectOrModuleMixin):
+                        ProjectModuleDispatchMixin,
+                        DisplayProjectOrModuleMixin
+                        ):
 
     model = models.Project
     permission_required = 'a4projects.view_project'
     template_name = 'a4_candy_projects/project_detail.html'
 
-    def dispatch(self, request, *args, **kwargs):
-        kwargs['project'] = self.project
-        kwargs['module'] = self.module
-
-        if self.modules.count() == 1 and not self.events:
-            return self._view_by_phase()(request, *args, **kwargs)
-        elif len(self.get_current_modules()) == 1:
-            return self._view_by_phase()(request, *args, **kwargs)
-        else:
-            return super().dispatch(request)
-
-    @cached_property
-    def project(self):
-        return self.get_object()
-
-    @cached_property
-    def module(self):
-        if self.modules.count() == 1 and not self.events:
-            return self.modules.first()
-        elif len(self.get_current_modules()) == 1:
-            return self.get_current_modules()[0]
+    def get_permission_object(self):
+        return self.project
 
     @cached_property
     def is_project_view(self):
         return self.get_current_modules()
-
-    def _view_by_phase(self):
-        if self.module.last_active_phase:
-            return self.module.last_active_phase.view.as_view()
-        elif self.module.future_phases:
-            return self.module.future_phases.first().view.as_view()
-        else:
-            return super().dispatch
 
     @property
     def raise_exception(self):
