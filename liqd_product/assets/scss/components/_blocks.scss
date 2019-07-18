@@ -30,6 +30,7 @@ $block_padding: 5*$padding;
 
 .block-col-1 {
     @extend .col-12;
+    text-align: center;
 }
 
 .block-img-col-1 {
@@ -39,6 +40,11 @@ $block_padding: 5*$padding;
 
 .block-img-col-2 {
     @extend .col-sm-5;
+
+    .rich-text,
+    .block-call_to_action {
+        padding-right: $block_padding;
+    }
 }
 
 .block-image_cta_block {
