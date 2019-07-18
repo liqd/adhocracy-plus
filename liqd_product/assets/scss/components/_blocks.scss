@@ -1,7 +1,14 @@
+$block_padding: 5*$padding;
+
 .block {
     @include clearfix;
     margin-bottom: 2.8em;
     page-break-inside: avoid;
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: $spacer;
+    }
 }
 
 .block-col-6 {
@@ -25,20 +32,80 @@
     @extend .col-12;
 }
 
-.block--cta {
-    padding: 2.8em 0;
+.block-img-col-1 {
+    @extend .col-sm-7;
+    padding: $block_padding;
+}
 
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
-    text-align: center;
+.block-img-col-2 {
+    @extend .col-sm-5;
+}
 
-    .rich-text > :first-child {
-        margin-top: 0;
+.block-image_cta_block {
+    text-align: left;
+    background-color: $body-bg-darker;
+
+    img {
+        max-height: 400px;
+        width: auto;
     }
 
-    @media print {
-        background-color: transparent;
-        color: $print-black;
+    //list styling
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li:before {
+            margin-right: 0.5*$spacer;
+            color: $gray-lighter;
+            font-family: "Font Awesome 5 Free", sans-serif;
+            font-weight: 900;
+            content: '\f111';
+            font-size: $font-size-xxl;
+        }
+
+        p {
+            width: 90%;
+            vertical-align: middle;
+            display: inline-block;
+        }
+    }
+
+    //height thing
+    @media screen and (min-width: $breakpoint-md) {
+        min-height: 100vh;
+    }
+}
+
+.block-background_cta_block .block > :first-child {
+    background-color: $brand-secondary;
+}
+
+.block-background_cta_block .block > :last-child {
+    background-color: $brand-primary;
+    color: $text-color-inverted;
+}
+
+.block-background_cta_block {
+    margin-left: -17px;
+    margin-right: -17px;
+
+    .block {
+        text-align: center;
+        justify-content: center;
+
+        @media screen and (min-width: $breakpoint-md) {
+            min-height: 100vh;
+        }
+    }
+
+    .rich-text {
+        padding: $block_padding;
+    }
+
+    .block-call_to_action {
+        padding-left: 1.5*$block_padding;
+        padding-right: 1.5*$block_padding;
     }
 }
 
@@ -49,48 +116,5 @@
     @media (max-width: $breakpoint - 0.1rem) {
         margin: 0;
         width: 100%;
-    }
-
-    h2 {
-        margin-top: 0;
-    }
-}
-
-.block__actions {
-    text-align: center;
-}
-
-.block--image-cta {
-    border: 1px solid $border-color;
-}
-
-.block--image-cta__img {
-    display: block;
-    position: relative;
-    min-height: 11.8em;
-    background-size: stretch;
-    background-position: center;
-    margin-bottom: $spacer;
-}
-
-.block--image-cta__body {
-    padding: $padding;
-    text-align: center;
-}
-
-.block--image-cta__copyright {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.block__homepage .rich-text {
-    p,
-    h2 {
-        text-align: center;
-    }
-
-    h2 {
-        color: $brand-secondary;
     }
 }
