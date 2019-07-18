@@ -89,7 +89,6 @@ urlpatterns = [
 
     # Urls within the context of a partner
     partner_patterns(
-        url(r'^modules/', include('adhocracy4.modules.urls')),
         # Temporary include liqd_product projects urls, as they contain
         # the invite links. This may be removed when invites are refactored
         # to a separate app.
