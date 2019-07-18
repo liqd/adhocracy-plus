@@ -4,6 +4,27 @@
     page-break-inside: avoid;
 }
 
+.block-col-6 {
+    @extend .col-sm-4;
+    @extend .col-md-2;
+}
+
+.block-col-4 {
+    @extend .col-sm-3;
+}
+
+.block-col-3 {
+    @extend .col-sm-4;
+}
+
+.block-col-2 {
+    @extend .col-sm-6;
+}
+
+.block-col-1 {
+    @extend .col-12;
+}
+
 .block--cta {
     padding: 2.8em 0;
 
