@@ -9,6 +9,7 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
+from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
@@ -57,7 +58,7 @@ class AbstractIdeaListView(ProjectMixin,
     paginate_by = 15
 
 
-class IdeaListView(AbstractIdeaListView):
+class IdeaListView(AbstractIdeaListView, DisplayProjectOrModuleMixin):
     model = models.Idea
     filter_set = IdeaFilterSet
 

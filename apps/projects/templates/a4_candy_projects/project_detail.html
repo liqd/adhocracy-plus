@@ -121,36 +121,96 @@
             </div>
         </div>
     </div>
+
     <div
         class="tabpanel active"
         id="tabpanel-project-{{ project.pk }}-participation"
         role="tabpanel"
         aria-labelledby="tab-project-{{ project.pk }}-participation"
         aria-expanded="true">
-        <div class="l-wrapper">
-            {% include "a4_candy_projects/includes/timeline.html" with project=project %}
-
-            <div class="l-center-6">
-                {% block project_action %}{% endblock %}
-            </div>
-        </div>
-
-        {% to_class_name object as object_type %}
-        {% if object_type == 'Module' %}
-            {% if object|has_activity %}
-            {% include "a4_candy_activities/includes/activity_detail_content.html" with object=object.item_set.first.activity %}
-            {% endif %}
-        {% elif object_type == 'Project' %}
-            {% if object.modules.first|has_activity %}
-            {% with activity=object.modules.first.item_set.first.activity %}
-            {% include "a4_candy_activities/includes/activity_detail_content.html" with object=activity %}
-            {% endwith %}
-            {% endif %}
-        {% else %}
-            {% block phase_content %}{% endblock %}
+        <div class="timeline-carousel__wrapper">
+        {% if view.display_timeline %}
+            {% include "a4_candy_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
         {% endif %}
-
+        </div>
+        <div class="l-wrapper">
+            {% if event %}
+            <div class="l-center-6">
+                <h2>{{ event.name }}</h2>
+                <P>{{ event.description | safe}}</P>
+            </div>
+            {% elif view.is_project_view %}
+            <div class="participation-tile__wrapper">
+                <div class="participation-tile__list-container">
+                    <ul class="u-list-reset participation-tile__list">
+                    {% for module in modules %}
+                        {% include "a4_candy_projects/includes/project_module_tile.html" with project=project module=module %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% elif view.is_project_view_with_timeline %}
+            <div class="participation-tile__wrapper">
+                <div class="participation-tile__list-container">
+                    <ul class="u-list-reset participation-tile__list">
+                    {% for module in modules %}
+                        {% include "a4_candy_projects/includes/project_module_tile.html" with project=project module=module %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% else %} <!-- if no timeline and just one module and no phase view to dispatch to -->
+                {% if not module.active_phase %}
+                <div class="l-center-6">
+                    <strong>
+                        {% trans 'Participation is not possible at the moment.' %}
+                        {% if not module.past_phases %}
+                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                            {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                        {% elif module.future_phases %}
+                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                            {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                        {% else %}
+                            {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
+                            {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                        {% endif %}
+                    </strong>
+                </div>
+                {% endif %}
+                {% with phase_count=module.phases.count %}
+                <div class="l-center-6">
+                    {% for phase in module.phases %}
+                        {% if phase.is_over or phase == module.active_phase %}
+                        <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
+                            <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
+                                {% if phase == module.active_phase %}
+                                    <span class="lr-bar__left">{{ phase.name }}</span>
+                                    <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
+                                {% else %}
+                                    {{ phase.name }}
+                                {% endif %}
+                            </div>
+                            <div class="phase-info__item__subtitle">
+                                {% html_date phase.start_date 'DATETIME_FORMAT' %}
+                                &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
+                            </div>
+                            <div class="phase-info__item__description">
+                                {{ phase.description }}
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endwith %}
+            {% endif %}
+        </div>
+        <!-- these blocks are only filled when in phase view -->
+        <div class="l-center-6">
+        {% block project_action %}{% endblock %}
+        </div>
+        {% block phase_content %}{% endblock %}
     </div>
+
     <div
         class="tabpanel"
         id="tabpanel-project-{{ project.pk }}-result"
