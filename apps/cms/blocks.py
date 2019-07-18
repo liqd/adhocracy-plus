@@ -53,7 +53,7 @@ class ColBackgroundCTABlock(blocks.StructBlock):
     )
 
     class Meta:
-        template = 'a4_candy_cms_pages/blocks/col_img_cta_block.html'
+        template = 'a4_candy_cms_pages/blocks/col_background_cta_block.html'
         icon = 'plus-inverse'
 
 
