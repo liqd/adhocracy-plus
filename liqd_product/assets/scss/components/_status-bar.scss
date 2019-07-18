@@ -1,0 +1,55 @@
+.status-item {
+    position: absolute;
+    bottom: $padding;
+    right: 1.5*$padding;
+    left: 1.5*$padding;
+    text-align: left;
+}
+
+.status-item__position-storefront.status-bar__past {
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.status-item_spacer {
+    height: 3*$r-spacer;
+}
+
+.status-bar__active {
+    position: relative;
+    height: 5px;
+    background-color: $bg-tertiary;
+    margin-bottom: 0.5*$r-spacer;
+}
+
+.status-bar__active-fill {
+    background-color: $brand-primary;
+    display: block;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.status-bar__past {
+    padding: $padding;
+    background-color: $bg-secondary;
+    color: $text-color;
+    text-align: center;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.status-bar__past--sm {
+    padding: 0.5*$padding;
+}
+
+.status-bar__status {
+    color: $text-color;
+
+    i {
+        padding-right: 0.5*$padding;
+        color: $brand-secondary;
+    }
+}

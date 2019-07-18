@@ -1,6 +1,7 @@
 from django.views import generic
 
 import adhocracy4.dashboard.mixins as dashboard_mixins
+from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 
@@ -30,7 +31,8 @@ class ActivityDashboardView(ProjectMixin, dashboard_mixins.DashboardBaseMixin,
 
 class ActivityView(ProjectMixin,
                    rules_mixins.PermissionRequiredMixin,
-                   generic.DetailView):
+                   generic.DetailView,
+                   DisplayProjectOrModuleMixin):
     model = models.Activity
     permission_required = 'a4_candy_activities.view_activity'
 

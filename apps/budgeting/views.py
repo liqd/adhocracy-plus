@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters.widgets import DropdownLinkWidget
+from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from apps.contrib import filters
 from apps.exports.views import DashboardExportView
 from apps.ideas import views as idea_views
@@ -51,7 +52,8 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category', 'is_archived']
 
 
-class ProposalListView(idea_views.AbstractIdeaListView):
+class ProposalListView(idea_views.AbstractIdeaListView,
+                       DisplayProjectOrModuleMixin):
     model = models.Proposal
     filter_set = ProposalFilterSet
 
