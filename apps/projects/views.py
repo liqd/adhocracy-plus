@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 from django.views import generic
@@ -13,7 +14,10 @@ from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.dashboard import signals as a4dashboard_signals
+from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
+from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 
 from . import forms
@@ -254,3 +258,77 @@ class ProjectDeleteView(PermissionRequiredMixin,
         obj = self.get_object()
         messages.success(self.request, self.success_message % obj.__dict__)
         return super().delete(request, *args, **kwargs)
+
+
+class ProjectDetailView(PermissionRequiredMixin,
+                        generic.DetailView,
+                        DisplayProjectOrModuleMixin):
+
+    model = models.Project
+    permission_required = 'a4projects.view_project'
+    template_name = 'a4_candy_projects/project_detail.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        kwargs['project'] = self.project
+        kwargs['module'] = self.module
+
+        if self.modules.count() == 1 and not self.events:
+            return self._view_by_phase()(request, *args, **kwargs)
+        elif len(self.get_current_modules()) == 1:
+            return self._view_by_phase()(request, *args, **kwargs)
+        else:
+            return super().dispatch(request)
+
+    @cached_property
+    def project(self):
+        return self.get_object()
+
+    @cached_property
+    def module(self):
+        if self.modules.count() == 1 and not self.events:
+            return self.modules.first()
+        elif len(self.get_current_modules()) == 1:
+            return self.modules.first()
+
+    @cached_property
+    def is_project_view(self):
+        return self.get_current_modules()
+
+    def _view_by_phase(self):
+        if self.module.last_active_phase:
+            return self.module.last_active_phase.view.as_view()
+        elif self.module.future_phases:
+            return self.module.future_phases.first().view.as_view()
+        else:
+            return super().dispatch
+
+    @property
+    def raise_exception(self):
+        return self.request.user.is_authenticated
+
+
+class ModuleDetailView(PermissionRequiredMixin,
+                       PhaseDispatchMixin):
+
+    model = module_models.Module
+    permission_required = 'a4projects.view_project'
+    slug_url_kwarg = 'module_slug'
+
+    @cached_property
+    def project(self):
+        return self.module.project
+
+    @cached_property
+    def module(self):
+        return self.get_object()
+
+    def get_permission_object(self):
+        return self.project
+
+    def get_context_data(self, **kwargs):
+        """Append project and module to the template context."""
+        if 'project' not in kwargs:
+            kwargs['project'] = self.project
+        if 'module' not in kwargs:
+            kwargs['module'] = self.module
+        return super().get_context_data(**kwargs)

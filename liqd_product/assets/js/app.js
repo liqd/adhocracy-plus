@@ -7,6 +7,10 @@ window.Tether = require('tether/dist/js/tether.js')
 // load bootstrap components
 require('bootstrap')
 
+// load slick carousel for project timeline
+require('slick-carousel')
+require('slick-carousel/slick/slick.css')
+
 var django = require('django')
 
 // expose react components
@@ -60,4 +64,25 @@ module.exports = {
 // Closes bootstrap collapse on click elsewhere
 $(document).on('click', function () {
   $('.collapse').collapse('hide')
+})
+
+// carousel for project timeline
+$(document).ready(function () {
+  function getInitialSlide () {
+    return parseInt($('#timeline-carousel').attr('data-initial-slide'))
+  }
+
+  $('.timeline-carousel__item').slick({
+    initialSlide: getInitialSlide(),
+    focusOnSelect: false,
+    centerMode: true,
+    dots: false,
+    arrows: true,
+    centerPadding: 30,
+    mobileFirst: true,
+    infinite: false,
+    variableWidth: true,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  })
 })
