@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 16:49+0200\n"
+"POT-Creation-Date: 2019-07-19 14:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -202,7 +202,7 @@ msgid "We could not find any projects."
 msgstr "We could not find any projects."
 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: adhocracy4/dashboard/filter.py:11 apps/ideas/views.py:26
+#: adhocracy4/dashboard/filter.py:11 apps/ideas/views.py:27
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:4
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:11
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:12
@@ -396,22 +396,22 @@ msgstr "Areasettings"
 msgid "Edit areasettings"
 msgstr "Edit areasettings"
 
-#: adhocracy4/dashboard/filter.py:15 apps/budgeting/views.py:25
+#: adhocracy4/dashboard/filter.py:15 apps/budgeting/views.py:26
 msgid "Archived"
 msgstr "Archived"
 
 #: adhocracy4/dashboard/filter.py:19 adhocracy4/filters/widgets.py:32
-#: apps/budgeting/views.py:29
+#: apps/budgeting/views.py:30
 msgid "All"
 msgstr "All"
 
-#: adhocracy4/dashboard/filter.py:20 apps/budgeting/views.py:30
+#: adhocracy4/dashboard/filter.py:20 apps/budgeting/views.py:31
 msgid "No"
 msgstr "No"
 
 #: adhocracy4/dashboard/filter.py:21
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:13
-#: apps/budgeting/views.py:31
+#: apps/budgeting/views.py:32
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:13
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:13
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:12
@@ -445,7 +445,7 @@ msgstr ""
 msgid "More contact possibilities"
 msgstr "More contact possibilities"
 
-#: adhocracy4/dashboard/forms.py:98 adhocracy4/phases/models.py:64
+#: adhocracy4/dashboard/forms.py:98 adhocracy4/phases/models.py:67
 #: apps/newsletters/models.py:30
 #: apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:7
 msgid "Name"
@@ -471,7 +471,7 @@ msgstr "Email"
 msgid "Website"
 msgstr "Website"
 
-#: adhocracy4/dashboard/forms.py:135 adhocracy4/phases/models.py:72
+#: adhocracy4/dashboard/forms.py:135 adhocracy4/phases/models.py:75
 msgid "End date"
 msgstr "End date"
 
@@ -479,7 +479,7 @@ msgstr "End date"
 msgid "End time"
 msgstr "End time"
 
-#: adhocracy4/dashboard/forms.py:141 adhocracy4/phases/models.py:70
+#: adhocracy4/dashboard/forms.py:141 adhocracy4/phases/models.py:73
 msgid "Start date"
 msgstr "Start date"
 
@@ -646,11 +646,11 @@ msgstr "Please draw a Polygon on the map"
 msgid "Please draw an area on the map."
 msgstr "Please draw an area on the map."
 
-#: adhocracy4/modules/models.py:15
+#: adhocracy4/modules/models.py:63
 msgid "Title of the module"
 msgstr "Title of the module"
 
-#: adhocracy4/modules/models.py:16
+#: adhocracy4/modules/models.py:64
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
@@ -658,11 +658,11 @@ msgstr ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
 
-#: adhocracy4/modules/models.py:24
+#: adhocracy4/modules/models.py:72
 msgid "Short description of the module"
 msgstr "Short description of the module"
 
-#: adhocracy4/modules/models.py:25
+#: adhocracy4/modules/models.py:73
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
@@ -672,12 +672,44 @@ msgstr ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 
-#: adhocracy4/phases/models.py:66 apps/activities/models.py:21
+#: adhocracy4/modules/models.py:191 adhocracy4/projects/models.py:335
+msgid "day"
+msgstr "day"
+
+#: adhocracy4/modules/models.py:191 adhocracy4/projects/models.py:335
+msgid "days"
+msgstr "days"
+
+#: adhocracy4/modules/models.py:192 adhocracy4/projects/models.py:336
+msgid "hour"
+msgstr "hour"
+
+#: adhocracy4/modules/models.py:192 adhocracy4/projects/models.py:336
+msgid "hours"
+msgstr "hours"
+
+#: adhocracy4/modules/models.py:193 adhocracy4/projects/models.py:337
+msgid "minute"
+msgstr "minute"
+
+#: adhocracy4/modules/models.py:193 adhocracy4/projects/models.py:337
+msgid "minutes"
+msgstr "minutes"
+
+#: adhocracy4/modules/models.py:194
+msgid "second"
+msgstr "second"
+
+#: adhocracy4/modules/models.py:194
+msgid "seconds"
+msgstr "seconds"
+
+#: adhocracy4/phases/models.py:69 apps/activities/models.py:21
 #: apps/ideas/models.py:32 apps/offlineevents/models.py:22
 msgid "Description"
 msgstr "Description"
 
-#: adhocracy4/phases/models.py:90
+#: adhocracy4/phases/models.py:93
 msgid "End date can not be smallerthan the start date."
 msgstr "End date can not be smallerthan the start date."
 
@@ -733,7 +765,15 @@ msgstr "Images"
 msgid "Contact"
 msgstr "Contact"
 
-#: adhocracy4/projects/models.py:38
+#: adhocracy4/projects/mixins.py:144
+msgid "{}. Online Participation"
+msgstr "{}. Online Participation"
+
+#: adhocracy4/projects/mixins.py:184
+msgid "Online Participation"
+msgstr "Online Participation"
+
+#: adhocracy4/projects/models.py:40
 msgid ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
@@ -741,19 +781,19 @@ msgstr ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
 
-#: adhocracy4/projects/models.py:44
+#: adhocracy4/projects/models.py:46
 msgid "Postal address"
 msgstr "Postal address"
 
-#: adhocracy4/projects/models.py:53
+#: adhocracy4/projects/models.py:55
 msgid "Contact person"
 msgstr "Contact person"
 
-#: adhocracy4/projects/models.py:73
+#: adhocracy4/projects/models.py:75
 msgid "Can your project be located on the map?"
 msgstr "Can your project be located on the map?"
 
-#: adhocracy4/projects/models.py:74
+#: adhocracy4/projects/models.py:76
 msgid ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
@@ -761,15 +801,15 @@ msgstr ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
 
-#: adhocracy4/projects/models.py:85
+#: adhocracy4/projects/models.py:87
 msgid "Administrative district"
 msgstr "Administrative district"
 
-#: adhocracy4/projects/models.py:95
+#: adhocracy4/projects/models.py:97
 msgid "Title of your project"
 msgstr "Title of your project"
 
-#: adhocracy4/projects/models.py:96
+#: adhocracy4/projects/models.py:98
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -777,11 +817,11 @@ msgstr ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
 
-#: adhocracy4/projects/models.py:112
+#: adhocracy4/projects/models.py:114
 msgid "Short description of your project"
 msgstr "Short description of your project"
 
-#: adhocracy4/projects/models.py:113
+#: adhocracy4/projects/models.py:115
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -789,11 +829,11 @@ msgstr ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
 
-#: adhocracy4/projects/models.py:121
+#: adhocracy4/projects/models.py:123
 msgid "Description of your project"
 msgstr "Description of your project"
 
-#: adhocracy4/projects/models.py:122
+#: adhocracy4/projects/models.py:124
 msgid ""
 "This description should tell participants what the goal of the project is, "
 "how the project’s participation will look like. It will be always visible in "
@@ -803,11 +843,11 @@ msgstr ""
 "how the project’s participation will look like. It will be always visible in "
 "the „Info“ tab on your project’s page."
 
-#: adhocracy4/projects/models.py:130
+#: adhocracy4/projects/models.py:132
 msgid "Results of your project"
 msgstr "Results of your project"
 
-#: adhocracy4/projects/models.py:131
+#: adhocracy4/projects/models.py:133
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
 "how you are planning to use the results. If the project is finished you "
@@ -817,11 +857,11 @@ msgstr ""
 "how you are planning to use the results. If the project is finished you "
 "should add a summary of the results."
 
-#: adhocracy4/projects/models.py:138
+#: adhocracy4/projects/models.py:140
 msgid "Access to the project"
 msgstr "Access to the project"
 
-#: adhocracy4/projects/models.py:139
+#: adhocracy4/projects/models.py:141
 msgid ""
 "Please indicate whether this project should be public or restricted to "
 "invited users. Teasers for your project including title and short "
@@ -831,28 +871,28 @@ msgstr ""
 "invited users. Teasers for your project including title and short "
 "description will always be visible to everyone"
 
-#: adhocracy4/projects/models.py:147 adhocracy4/projects/models.py:153
+#: adhocracy4/projects/models.py:149 adhocracy4/projects/models.py:155
 #: apps/partners/models.py:55
 msgid "Header image"
 msgstr "Header image"
 
-#: adhocracy4/projects/models.py:149 apps/partners/models.py:57
+#: adhocracy4/projects/models.py:151 apps/partners/models.py:57
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
-#: adhocracy4/projects/models.py:156 adhocracy4/projects/models.py:163
+#: adhocracy4/projects/models.py:158 adhocracy4/projects/models.py:165
 msgid "Tile image"
 msgstr "Tile image"
 
-#: adhocracy4/projects/models.py:158
+#: adhocracy4/projects/models.py:160
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
 
-#: adhocracy4/projects/models.py:176
+#: adhocracy4/projects/models.py:178
 msgid "Project is archived"
 msgstr "Project is archived"
 
-#: adhocracy4/projects/models.py:177
+#: adhocracy4/projects/models.py:179
 msgid ""
 "Exclude this project from all listings by default. You can still access this "
 "project by using filters."
@@ -860,37 +900,13 @@ msgstr ""
 "Exclude this project from all listings by default. You can still access this "
 "project by using filters."
 
-#: adhocracy4/projects/models.py:181
+#: adhocracy4/projects/models.py:183
 msgid "Project topics"
 msgstr "Project topics"
 
-#: adhocracy4/projects/models.py:182
+#: adhocracy4/projects/models.py:184
 msgid "Add topics to your project."
 msgstr "Add topics to your project."
-
-#: adhocracy4/projects/models.py:315
-msgid "day"
-msgstr "day"
-
-#: adhocracy4/projects/models.py:315
-msgid "days"
-msgstr "days"
-
-#: adhocracy4/projects/models.py:316
-msgid "hour"
-msgstr "hour"
-
-#: adhocracy4/projects/models.py:316
-msgid "hours"
-msgstr "hours"
-
-#: adhocracy4/projects/models.py:317
-msgid "minute"
-msgstr "minute"
-
-#: adhocracy4/projects/models.py:317
-msgid "minutes"
-msgstr "minutes"
 
 #: adhocracy4/projects/templatetags/project_tags.py:12
 #, python-format
@@ -1114,6 +1130,7 @@ msgstr "Create a new proposal"
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_create_form.html:8
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:8
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:9
+#: liqd_product/templates/a4modules/module_detail.html:40
 msgid "breadcrumbs"
 msgstr "breadcrumbs"
 
@@ -1180,19 +1197,19 @@ msgstr "Edit %(title)s"
 msgid "Edit proposal"
 msgstr "Edit proposal"
 
-#: apps/budgeting/views.py:17 apps/ideas/views.py:30 apps/mapideas/views.py:15
+#: apps/budgeting/views.py:18 apps/ideas/views.py:31 apps/mapideas/views.py:16
 msgid "Most recent"
 msgstr "Most recent"
 
-#: apps/budgeting/views.py:19 apps/ideas/views.py:32 apps/mapideas/views.py:17
+#: apps/budgeting/views.py:20 apps/ideas/views.py:33 apps/mapideas/views.py:18
 msgid "Most popular"
 msgstr "Most popular"
 
-#: apps/budgeting/views.py:20 apps/ideas/views.py:33 apps/mapideas/views.py:18
+#: apps/budgeting/views.py:21 apps/ideas/views.py:34 apps/mapideas/views.py:19
 msgid "Most commented"
 msgstr "Most commented"
 
-#: apps/budgeting/views.py:95
+#: apps/budgeting/views.py:97
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
 
@@ -1250,7 +1267,7 @@ msgstr "You must select a maximum of  %(limit_value)d choices."
 msgid "Ordering"
 msgstr "Ordering"
 
-#: apps/contrib/mixins.py:4
+#: apps/contrib/mixins.py:6
 msgid ""
 "I hereby confirm that the copyrights for this photo are with me or that I "
 "have received rights of use from the author. I also confirm that the privacy "
@@ -1260,7 +1277,7 @@ msgstr ""
 "have received rights of use from the author. I also confirm that the privacy "
 "rights of depicted third persons are not violated. "
 
-#: apps/contrib/mixins.py:58
+#: apps/contrib/mixins.py:60
 msgid ""
 "You want to upload an image. Please check that you have the right of use for "
 "the image."
@@ -1437,7 +1454,7 @@ msgstr "Next Chapter"
 msgid "back to chapter"
 msgstr "back to chapter"
 
-#: apps/documents/views.py:62
+#: apps/documents/views.py:53
 msgid "Document has no chapters defined."
 msgstr "Document has no chapters defined."
 
@@ -1615,7 +1632,7 @@ msgstr "Moderate idea"
 msgid "Edit idea"
 msgstr "Edit idea"
 
-#: apps/ideas/views.py:152 apps/mapideas/views.py:77
+#: apps/ideas/views.py:153 apps/mapideas/views.py:79
 msgid "Your Idea has been deleted"
 msgstr "Your Idea has been deleted"
 
@@ -1953,11 +1970,11 @@ msgstr "Participants"
 msgid "Moderators"
 msgstr "Moderators"
 
-#: apps/projects/forms.py:46 apps/projects/views.py:226
+#: apps/projects/forms.py:46 apps/projects/views.py:231
 msgid "Invite users via email"
 msgstr "Invite users via email"
 
-#: apps/projects/forms.py:51 apps/projects/views.py:227
+#: apps/projects/forms.py:51 apps/projects/views.py:232
 msgid "Invite users via file upload"
 msgstr "Invite users via file upload"
 
@@ -1972,6 +1989,43 @@ msgstr "Please enter email addresses or upload a file"
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:31
 msgid "Participation possible until"
 msgstr "Participation possible until"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:12
+#, python-format
+msgid "%(num_entries)s Contribution"
+msgid_plural "%(num_entries)s Contributions"
+msgstr[0] "%(num_entries)s Contribution"
+msgstr[1] "%(num_entries)s Contributions"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:21
+#, python-format
+msgid "remaining %(time_left)s"
+msgstr "remaining %(time_left)s"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:27
+#, python-format
+msgid "Participation: starts on %(date)s"
+msgstr "Participation: starts on %(date)s"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:32
+msgid "Participation ended. Read result"
+msgstr "Participation ended. Read result"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:37
+msgid "Join now"
+msgstr "Join now"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:12
+msgid "Timeline item"
+msgstr "Timeline item"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:18
+msgid "from"
+msgstr "from"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:21
+msgid "on"
+msgstr "on"
 
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:9
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:21
@@ -1994,7 +2048,9 @@ msgstr "Timeline"
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:18
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:76
+#: apps/projects/templates/a4_candy_projects/project_detail.html:188
 #: apps/users/models.py:46
+#: liqd_product/templates/a4modules/module_detail.html:79
 msgid "active"
 msgstr "active"
 
@@ -2005,21 +2061,29 @@ msgstr "current page"
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:49
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:96
+#: apps/projects/templates/a4_candy_projects/project_detail.html:166
+#: liqd_product/templates/a4modules/module_detail.html:57
 msgid "Participation is not possible at the moment."
 msgstr "Participation is not possible at the moment."
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:52
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:98
+#: apps/projects/templates/a4_candy_projects/project_detail.html:169
+#: liqd_product/templates/a4modules/module_detail.html:60
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "It starts on %(date)s."
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:55
+#: apps/projects/templates/a4_candy_projects/project_detail.html:172
+#: liqd_product/templates/a4modules/module_detail.html:63
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "It continues on %(date)s."
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:58
+#: apps/projects/templates/a4_candy_projects/project_detail.html:175
+#: liqd_product/templates/a4modules/module_detail.html:66
 #, python-format
 msgid "It ended on %(date)s."
 msgstr "It ended on %(date)s."
@@ -2128,6 +2192,7 @@ msgstr ""
 "                "
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:13
+#: liqd_product/templates/a4modules/module_detail.html:14
 msgid "This project is in not published yet."
 msgstr "This project is in not published yet."
 
@@ -2140,7 +2205,7 @@ msgstr "to project collection %(name)s"
 msgid "Participation"
 msgstr "Participation"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:165
+#: apps/projects/templates/a4_candy_projects/project_detail.html:225
 msgid "No results yet."
 msgstr "No results yet."
 
@@ -2157,51 +2222,51 @@ msgstr "Pending Invitations"
 msgid "Edit Participants"
 msgstr "Edit Participants"
 
-#: apps/projects/views.py:114
+#: apps/projects/views.py:119
 msgid "Invitation succesfully removed."
 msgstr "Invitation succesfully removed."
 
-#: apps/projects/views.py:155
+#: apps/projects/views.py:160
 msgid "Following users already accepted an invitation: "
 msgstr "Following users already accepted an invitation: "
 
-#: apps/projects/views.py:163
+#: apps/projects/views.py:168
 msgid "Following users are already invited: "
 msgstr "Following users are already invited: "
 
-#: apps/projects/views.py:206
+#: apps/projects/views.py:211
 msgid "Invite moderators via email"
 msgstr "Invite moderators via email"
 
-#: apps/projects/views.py:207
+#: apps/projects/views.py:212
 msgid "Invite moderators via file upload"
 msgstr "Invite moderators via file upload"
 
-#: apps/projects/views.py:208
+#: apps/projects/views.py:213
 msgid "{} moderator invited."
 msgstr "{} moderator invited."
 
-#: apps/projects/views.py:208
+#: apps/projects/views.py:213
 msgid "{} moderators invited."
 msgstr "{} moderators invited."
 
-#: apps/projects/views.py:209
+#: apps/projects/views.py:214
 msgid "Moderator successfully removed."
 msgstr "Moderator successfully removed."
 
-#: apps/projects/views.py:229
+#: apps/projects/views.py:234
 msgid "{} participant invited."
 msgstr "{} participant invited."
 
-#: apps/projects/views.py:230
+#: apps/projects/views.py:235
 msgid "{} participants invited."
 msgstr "{} participants invited."
 
-#: apps/projects/views.py:231
+#: apps/projects/views.py:236
 msgid "Participant successfully removed."
 msgstr "Participant successfully removed."
 
-#: apps/projects/views.py:244
+#: apps/projects/views.py:249
 #, python-format
 msgid "Project '%(name)s' was deleted successfully."
 msgstr "Project '%(name)s' was deleted successfully."
@@ -2569,6 +2634,18 @@ msgid ""
 msgstr ""
 "Your image will be uploaded/removed once you save your changes at the end of "
 "this page."
+
+#: liqd_product/templates/a4modules/module_detail.html:28
+msgid "Previous"
+msgstr "Previous"
+
+#: liqd_product/templates/a4modules/module_detail.html:31
+msgid "of"
+msgstr "of"
+
+#: liqd_product/templates/a4modules/module_detail.html:35
+msgid "Next"
+msgstr "Next"
 
 #: liqd_product/templates/account/email.html:6
 #: liqd_product/templates/account/email.html:9
@@ -2941,15 +3018,6 @@ msgstr "Menu"
 
 #~ msgid "done"
 #~ msgstr "done"
-
-#~ msgid "remaining %(time_left)s"
-#~ msgstr "remaining %(time_left)s"
-
-#~ msgid "Participation: starts on %(date)s"
-#~ msgstr "Participation: starts on %(date)s"
-
-#~ msgid "Participation ended. Read result"
-#~ msgstr "Participation ended. Read result"
 
 #~ msgid "Municipality settings"
 #~ msgstr "Municipality settings"
