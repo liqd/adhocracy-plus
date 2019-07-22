@@ -19,7 +19,7 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
-from apps.contrib.mixins import ProjectModuleDispatchMixin
+from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
 
 from . import forms
 from . import models
