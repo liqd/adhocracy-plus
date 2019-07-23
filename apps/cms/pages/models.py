@@ -28,6 +28,9 @@ class HomePage(Page):
     subtitle_en = models.CharField(
         max_length=500, blank=True, verbose_name="Subtitle")
 
+    teaser_de = fields.RichTextField(blank=True)
+    teaser_en = fields.RichTextField(blank=True)
+
     body_de = fields.RichTextField(blank=True)
     body_en = fields.RichTextField(blank=True)
 
@@ -47,6 +50,16 @@ class HomePage(Page):
         ('paragraph', blocks.RichTextBlock())
     ], blank=True)
 
+    subtitle = TranslatedField(
+        'subtitle_de',
+        'subtitle_en'
+    )
+
+    teaser = TranslatedField(
+        'teaser_de',
+        'teaser_en'
+    )
+
     body_streamfield = TranslatedField(
         'body_streamfield_de',
         'body_streamfield_en'
@@ -57,19 +70,16 @@ class HomePage(Page):
         'body_en',
     )
 
-    subtitle = TranslatedField(
-        'subtitle_de',
-        'subtitle_en'
-    )
-
     en_content_panels = [
         FieldPanel('subtitle_en'),
+        FieldPanel('teaser_en'),
         FieldPanel('body_en'),
         StreamFieldPanel('body_streamfield_en')
     ]
 
     de_content_panels = [
         FieldPanel('subtitle_de'),
+        FieldPanel('teaser_de'),
         FieldPanel('body_de'),
         StreamFieldPanel('body_streamfield_de')
     ]
