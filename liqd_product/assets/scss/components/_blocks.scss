@@ -55,8 +55,12 @@ $block-padding-md: 5*$padding;
 .block-img-col-2 {
     @extend .col-sm-5;
 
+    .rich-text {
+        padding-bottom: 0;
+    }
+
     .rich-text,
-    .block-col_cta {
+    .block-col_cta-content {
         padding-right: $block-padding-md;
 
         @media screen and (min-width: $breakpoint-md) {
