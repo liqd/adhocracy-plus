@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags widget_tweaks form_field_tags i18n %}
+
+{% block content %}
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            <div>
+                <h1>{{ page.header }}</h1>
+                {{ page.intro|richtext }}
+                <form action="{% pageurl page %}" method="POST">
+                    <div class="form-group form-group--narrow">
+                    {% csrf_token %}
+                    {% for hidden_field in form.hidden_fields %}
+                        {{ hidden_field }}
+                    {% endfor %}
+
+                    {% include 'a4_candy_cms_contacts/form_fields.html' with fields=form.visible_fields %}
+                    </div>
+                    <div class="u-spacer-bottom">
+                        <button class="btn btn--primary" type="submit">{% trans "Send" %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

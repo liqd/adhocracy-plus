@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'taggit',
     'apps.cms.pages',
     'apps.cms.settings',
+    'apps.cms.contacts',
 
     # General adhocracy 4 components
     'adhocracy4.actions',
