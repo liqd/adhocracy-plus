@@ -6,9 +6,10 @@
 {% block headline %} Wir haben Ihre Nachricht erhalten {% endblock  %}
 
 {% block content %}Dies sind die Daten, die wir von Ihnen erhalten haben:
-{% for entry in data_list %}
-{{ entry }}
-{% endfor %}
+Ihre Email-Adresse: {{ customformsubmission.email }}
+Ihre Nachricht: {{ customformsubmission.message }}
+{% if customformsubmission.telephone_number %}Ihre Telefonnummer: {{ customformsubmission.telephone_number }}{% endif %}
+{% if customformsubmission.name %}Ihr Name: {{ customformsubmission.name }}{% endif %}
 {% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver }} gesendet. Sie wurde an Sie gesendet, da Sie uns über unser Kontaktformular kontaktiert haben und uns gebeten haben, Ihnen eine Kopie der Nachricht zu senden.{% endblock %}
