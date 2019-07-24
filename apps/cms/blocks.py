@@ -17,7 +17,10 @@ class CallToActionBlock(blocks.StructBlock):
 class ImageCTABlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
     body = blocks.RichTextBlock(required=False)
-    call_to_action = CallToActionBlock(required=False)
+    link = blocks.CharBlock(required=False)
+    link_text = blocks.CharBlock(
+        required=False, max_length=50, label='Link Text'
+    )
 
     class Meta:
         template = 'a4_candy_cms_pages/blocks/img_cta_block.html'
@@ -33,12 +36,12 @@ class ColumnsImageCTABlock(blocks.StructBlock):
     ], default=2)
 
     columns = blocks.ListBlock(
-        ImageCTABlock(label='CTA Img Column body')
+        ImageCTABlock(label='List and Image')
     )
 
     class Meta:
         template = 'a4_candy_cms_pages/blocks/col_img_cta_block.html'
-        icon = 'plus-inverse'
+        icon = 'list-ul'
 
 
 class ColBackgroundCTABlock(blocks.StructBlock):
@@ -49,12 +52,12 @@ class ColBackgroundCTABlock(blocks.StructBlock):
     ], default=2)
 
     columns = blocks.ListBlock(
-        CallToActionBlock(label='CTA Background Column body')
+        CallToActionBlock(label='CTA with Background')
     )
 
     class Meta:
         template = 'a4_candy_cms_pages/blocks/col_background_cta_block.html'
-        icon = 'plus-inverse'
+        icon = 'tick-inverse'
 
 
 # 3 column block with an optional button/link for each col,
@@ -68,12 +71,12 @@ class ColumnsCTABlock(blocks.StructBlock):
     ], default=3)
 
     columns = blocks.ListBlock(
-        CallToActionBlock(label='CTA Column body')
+        CallToActionBlock(label='CTA Column')
     )
 
     class Meta:
         template = 'a4_candy_cms_pages/blocks/col_cta_block.html'
-        icon = 'plus-inverse'
+        icon = 'grip'
 
 
 class DocsBlock(blocks.StructBlock):
