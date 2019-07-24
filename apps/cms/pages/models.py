@@ -1,6 +1,7 @@
 from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.admin.edit_handlers import ObjectList
+from wagtail.admin.edit_handlers import PageChooserPanel
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.admin.edit_handlers import TabbedInterface
 from wagtail.core import blocks
@@ -21,6 +22,14 @@ class HomePage(Page):
         related_name='+',
         verbose_name="Header Image",
         help_text="The Image that is shown on top of the page"
+    )
+
+    form_page = models.ForeignKey(
+        'a4_candy_cms_contacts.FormPage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
     )
 
     subtitle_de = models.CharField(
@@ -70,6 +79,10 @@ class HomePage(Page):
         'body_en',
     )
 
+    @property
+    def form(self):
+        return self.form_page.get_form()
+
     en_content_panels = [
         FieldPanel('subtitle_en'),
         FieldPanel('teaser_en'),
@@ -87,6 +100,7 @@ class HomePage(Page):
     common_panels = [
         FieldPanel('title'),
         FieldPanel('slug'),
+        PageChooserPanel('form_page'),
         ImageChooserPanel('image'),
     ]
 
@@ -100,7 +114,8 @@ class HomePage(Page):
 
 
 class EmptyPage(Page):
-    subpage_types = ['a4_candy_cms_pages.SimplePage']
+    subpage_types = ['a4_candy_cms_pages.SimplePage',
+                     'a4_candy_cms_contacts.FormPage']
 
 
 class SimplePage(Page):
