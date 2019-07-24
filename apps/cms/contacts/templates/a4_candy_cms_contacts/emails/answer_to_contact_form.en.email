@@ -1,0 +1,14 @@
+{% extends 'email_base.'|add:part_type %}
+{% load verbose_name partner_tags wagtailcore_tags %}
+
+{% block subject %}We received your message on {{ site.name }}{% endblock %}
+
+{% block headline %} We received your message {% endblock  %}
+
+{% block content %} This is the data we received from you:
+{% for entry in data_list %}
+{{ entry }}
+{% endfor %}
+{% endblock %}
+
+{% block reason %} This message was sent to {{ receiver }}. It was sent because you wrote us message via our contact form and asked us to send you a copy .{% endblock %}

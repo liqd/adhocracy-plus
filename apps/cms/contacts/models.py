@@ -50,6 +50,13 @@ class FormPage(AbstractEmailForm):
         'thank_you_text_en'
     )
 
+    def process_form_submission(self, form):
+        submission = super().process_form_submission(form)
+        if form.cleaned_data['receive_copy']:
+            AnswerToContactFormEmail.send(submission)
+        if self.to_address:
+            self.send_mail(form)
+        return submission
 
     def get_form_fields(self):
         fields = list(super().get_form_fields())
