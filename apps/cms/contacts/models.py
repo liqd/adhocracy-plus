@@ -58,6 +58,16 @@ class FormPage(AbstractEmailForm):
             self.send_mail(form)
         return submission
 
+    def render_landing_page(
+            self, request, form_submission=None, *args, **kwargs):
+        if 'HTTP_REFERER' in request.META \
+                and request.META.get('HTTP_REFERER'):
+            messages.add_message(request, messages.SUCCESS,
+                                 self.thank_you_text)
+            return redirect(request.META['HTTP_REFERER'])
+        return super().render_landing_page(
+            request, form_submission, *args, **kwargs)
+
     def get_form_fields(self):
         fields = list(super().get_form_fields())
         fields.insert(0, FormField(
