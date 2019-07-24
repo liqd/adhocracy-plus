@@ -16,7 +16,22 @@
             </div>
 
             <div>{{ page.body|richtext }}</div>
-            <div>{{ page.body_streamfield }}
+            <div>{{ page.body_streamfield }}</div>
+
+            {% if page.form_page %}
+            <h1>{{ page.form_page.header }}</h1>
+            <p>{{ page.form_page.intro|richtext }}</p>
+            <form action="{% pageurl page.form_page %}" method="POST">
+                <div class="form-group form-group--narrow">
+                {% csrf_token %}
+
+                {% include 'a4_candy_cms_contacts/form_fields.html' with fields=page.form %}
+                </div>
+                <div class="u-spacer-bottom">
+                    <button class="btn btn--primary" type="submit">{% trans "Send" %}</button>
+                </div>
+            </form>
+            {% endif %}
 
         </div>
     </div>
