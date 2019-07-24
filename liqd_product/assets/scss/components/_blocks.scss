@@ -24,7 +24,7 @@ $block-padding-md: 5*$padding;
 }
 
 //cta with content
-.block-col_cta {
+.block-columns_cta {
     text-align: center;
 
     // cta with just btn
@@ -61,10 +61,10 @@ $block-padding-md: 5*$padding;
 
     .rich-text,
     .block-col_cta-content {
-        padding-right: $block-padding-md;
+        padding: 0 $block-padding 0 0;
 
         @media screen and (min-width: $breakpoint-md) {
-            padding-right: $block-padding-md;
+            padding: 0 $block-padding-md 0 0;
         }
     }
 }
@@ -124,16 +124,25 @@ $block-padding-md: 5*$padding;
     .row {
         text-align: center;
         justify-content: center;
+
+        @media screen and (min-width: $breakpoint-md) {
+            min-height: 70vh;
+        }
     }
 
     .block-col-2 {
         justify-content: space-between;
         display: flex;
         flex-direction: column;
-    }
+        padding: $padding;
 
-    @media screen and (min-width: $breakpoint-md) {
-        min-height: 100vh;
+        @media screen and (min-width: $breakpoint-xs) {
+            padding: $block-padding;
+        }
+
+        @media screen and (min-width: $breakpoint-md) {
+            padding: $block-padding-md;
+        }
     }
 }
 
@@ -179,11 +188,8 @@ $block-padding-md: 5*$padding;
         border-bottom: solid 4px $brand-secondary;
     }
 
-    .rich-text,
     .block-img-col-1,
-    .block-col_cta,
-    .block-col_cta-content,
-    .block-col_cta-btn {
+    .block-col_cta {
         padding: $padding;
 
         @media screen and (min-width: $breakpoint-xs) {
@@ -192,6 +198,14 @@ $block-padding-md: 5*$padding;
 
         @media screen and (min-width: $breakpoint-md) {
             padding: $block-padding-md;
+        }
+    }
+
+    .block-col_cta-btn {
+        padding: $padding;
+
+        @media screen and (min-width: $breakpoint-xs) {
+            padding-bottom: $block-padding;
         }
     }
 }
