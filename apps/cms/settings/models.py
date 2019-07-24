@@ -1,7 +1,9 @@
 from django.db import models
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.admin.edit_handlers import PageChooserPanel
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.models import register_setting
+from wagtail.core import fields
 
 
 @register_setting
@@ -29,4 +31,28 @@ class ImportantPages(BaseSetting):
         PageChooserPanel('terms_of_use'),
         PageChooserPanel('imprint'),
         PageChooserPanel('data_protection_policy')
+    ]
+
+
+@register_setting
+class OrganisationSettings(BaseSetting):
+    address = fields.RichTextField()
+    contacts = fields.RichTextField()
+
+    panels = [
+        FieldPanel('address'),
+        FieldPanel('contacts')
+    ]
+
+
+@register_setting
+class SocialMedia(BaseSetting):
+    facebook = models.URLField(blank=True)
+    twitter = models.URLField(blank=True)
+    github = models.URLField(blank=True)
+
+    panels = [
+        FieldPanel('facebook'),
+        FieldPanel('twitter'),
+        FieldPanel('github')
     ]
