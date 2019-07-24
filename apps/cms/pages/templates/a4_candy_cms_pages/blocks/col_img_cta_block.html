@@ -1,6 +1,6 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="block row mb-5">
+<div class="block row mb-3 mb-md-5">
     {% for column in value.columns %}
         <div class="block-img-col-{{ forloop.counter }}">
             {% if column.image %}
@@ -8,7 +8,7 @@
             {% endif %}
             {{ column.body }}
             {% if column.link %}
-            <div class="block-call_to_action">
+            <div class="block-col_cta-content">
                 <a href="{{ column.link }}" class="btn btn--full btn--transparent">{{ column.link_text }}</a>
             </div>
             {% endif %}
