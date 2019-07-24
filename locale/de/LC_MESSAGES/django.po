@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-19 14:00+0200\n"
+"POT-Creation-Date: 2019-07-23 14:25+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -886,7 +886,6 @@ msgstr ""
 "klicken Sie innerhalb des markierten Bereichs oder geben Sie eine Adresse "
 "ein. Ein gesetzter Pin kann verschoben werden, wenn Sie ihn gedrückt halten."
 
-
 #: adhocracy4/projects/models.py:87
 msgid "Administrative district"
 msgstr "Bezirk"
@@ -1305,6 +1304,31 @@ msgstr "meist kommentiert"
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
 
+#: apps/cms/contacts/models.py:57
+msgid "I want to receicve a copy of my message as email"
+msgstr "Eine Kopie der Anfrage an mich senden"
+
+#: apps/cms/contacts/models.py:62
+msgid "Your message"
+msgstr "Ihre Nachricht"
+
+#: apps/cms/contacts/models.py:67
+msgid "Your email address"
+msgstr "Ihre E-Mail-Adresse"
+
+#: apps/cms/contacts/models.py:72
+msgid "Your telephone number"
+msgstr "Ihre Telefonnumer"
+
+#: apps/cms/contacts/models.py:77
+msgid "Your first and last name"
+msgstr "Ihr Vor- und Nachname"
+
+#: apps/cms/contacts/templates/a4_candy_cms_contacts/form_page.html:20
+#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:25
+msgid "Send"
+msgstr "Senden"
+
 #: apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
 msgstr "Sie haben sich abgemeldet."
@@ -1360,7 +1384,7 @@ msgstr "Sie können max. %(limit_value)d Felder auswählen."
 msgid "Ordering"
 msgstr "Sortierung"
 
-#: apps/contrib/mixins.py:6
+#: apps/contrib/mixins.py:4
 msgid ""
 "I hereby confirm that the copyrights for this photo are with me or that I "
 "have received rights of use from the author. I also confirm that the privacy "
@@ -1371,7 +1395,7 @@ msgstr ""
 "habe. Ich bestätige außerdem, dass die Persönlichkeitsrechte abgebildeter "
 "dritter Personen nicht verletzt werden."
 
-#: apps/contrib/mixins.py:60
+#: apps/contrib/mixins.py:58
 msgid ""
 "You want to upload an image. Please check that you have the right of use for "
 "the image."
@@ -1877,10 +1901,6 @@ msgstr "Newsletter"
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:8
 msgid "Create Newsletter"
 msgstr "Newsletter erstellen"
-
-#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:25
-msgid "Send"
-msgstr "Senden"
 
 #: apps/newsletters/views.py:58
 msgid "Newsletter has been saved and will be sent to the recipients."
@@ -2560,123 +2580,123 @@ msgstr "Aktivitäten"
 msgid "This user is not active in any projects yet."
 msgstr "Dise Nutzer*in ist bislang noch in keinem Projekt aktiv."
 
-#: liqd_product/config/settings/base.py:186
+#: liqd_product/config/settings/base.py:187
 msgid "English"
 msgstr "Englisch"
 
-#: liqd_product/config/settings/base.py:187
+#: liqd_product/config/settings/base.py:188
 msgid "German"
 msgstr "Deutsch"
 
-#: liqd_product/config/settings/base.py:406
+#: liqd_product/config/settings/base.py:407
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: liqd_product/config/settings/base.py:407
+#: liqd_product/config/settings/base.py:408
 msgid "Diamond"
 msgstr "Diamant"
 
-#: liqd_product/config/settings/base.py:408
+#: liqd_product/config/settings/base.py:409
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: liqd_product/config/settings/base.py:409
+#: liqd_product/config/settings/base.py:410
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: liqd_product/config/settings/base.py:410
+#: liqd_product/config/settings/base.py:411
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: liqd_product/config/settings/base.py:411
+#: liqd_product/config/settings/base.py:412
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: liqd_product/config/settings/base.py:412
+#: liqd_product/config/settings/base.py:413
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: liqd_product/config/settings/base.py:413
+#: liqd_product/config/settings/base.py:414
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: liqd_product/config/settings/base.py:414
+#: liqd_product/config/settings/base.py:415
 msgid "Star"
 msgstr "Stern"
 
-#: liqd_product/config/settings/base.py:415
+#: liqd_product/config/settings/base.py:416
 msgid "Square"
 msgstr "Quadrat"
 
-#: liqd_product/config/settings/base.py:416
+#: liqd_product/config/settings/base.py:417
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: liqd_product/config/settings/base.py:417
+#: liqd_product/config/settings/base.py:418
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: liqd_product/config/settings/base.py:418
+#: liqd_product/config/settings/base.py:419
 msgid "Circle"
 msgstr "Kreis"
 
-#: liqd_product/config/settings/base.py:419
+#: liqd_product/config/settings/base.py:420
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: liqd_product/config/settings/base.py:420
+#: liqd_product/config/settings/base.py:421
 msgid "Zigzag"
 msgstr "ZickZack"
 
-#: liqd_product/config/settings/base.py:434
+#: liqd_product/config/settings/base.py:435
 msgid "Anti-discrimination"
 msgstr "Antidiskriminierung"
 
-#: liqd_product/config/settings/base.py:435
+#: liqd_product/config/settings/base.py:436
 msgid "Work & economy"
 msgstr "Arbeit & Wirtschaft"
 
-#: liqd_product/config/settings/base.py:436
+#: liqd_product/config/settings/base.py:437
 msgid "Building & living"
 msgstr "Bauen & Wohnen"
 
-#: liqd_product/config/settings/base.py:437
+#: liqd_product/config/settings/base.py:438
 msgid "Education & research"
 msgstr "Bildung & Forschung"
 
-#: liqd_product/config/settings/base.py:438
+#: liqd_product/config/settings/base.py:439
 msgid "Children, youth & family"
 msgstr "Kinder, Jugend & Familie"
 
-#: liqd_product/config/settings/base.py:439
+#: liqd_product/config/settings/base.py:440
 msgid "Finances"
 msgstr "Finanzen"
 
-#: liqd_product/config/settings/base.py:440
+#: liqd_product/config/settings/base.py:441
 msgid "Health & sports"
 msgstr "Gesundheit & Sport"
 
-#: liqd_product/config/settings/base.py:441
+#: liqd_product/config/settings/base.py:442
 msgid "Integration"
 msgstr "Integration"
 
-#: liqd_product/config/settings/base.py:442
+#: liqd_product/config/settings/base.py:443
 msgid "Culture & leisure"
 msgstr "Kultur & Freizeit"
 
-#: liqd_product/config/settings/base.py:443
+#: liqd_product/config/settings/base.py:444
 msgid "Neighborhood & participation"
 msgstr "Nachbarschaft & Teilhabe"
 
-#: liqd_product/config/settings/base.py:444
+#: liqd_product/config/settings/base.py:445
 msgid "Urban development"
 msgstr "Stadtentwicklung"
 
-#: liqd_product/config/settings/base.py:445
+#: liqd_product/config/settings/base.py:446
 msgid "Environment & public green space"
 msgstr "Umwelt & Grünflächen"
 
-#: liqd_product/config/settings/base.py:446
+#: liqd_product/config/settings/base.py:447
 msgid "Traffic"
 msgstr "Verkehr"
 

@@ -1,0 +1,14 @@
+{% extends 'email_base.'|add:part_type %}
+{% load verbose_name %}
+
+{% block subject %}Wir haben Ihre Nachricht auf {{ site.name }} erhalten {% endblock %}
+
+{% block headline %} Wir haben Ihre Nachricht erhalten {% endblock  %}
+
+{% block content %}Dies sind die Daten, die wir von Ihnen erhalten haben:
+{% for entry in data_list %}
+{{ entry }}
+{% endfor %}
+{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ receiver }} gesendet. Sie wurde an Sie gesendet, da Sie uns über unser Kontaktformular kontaktiert haben und uns gebeten haben, Ihnen eine Kopie der Nachricht zu senden.{% endblock %}
