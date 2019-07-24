@@ -15,6 +15,7 @@ from wagtail.contrib.forms.models import AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField
 from wagtail.contrib.forms.models import AbstractFormSubmission
 from wagtail.core.fields import RichTextField
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.cms.emails import AnswerToContactFormEmail
 from apps.contrib.translations import TranslatedField
@@ -55,6 +56,18 @@ class FormPage(AbstractEmailForm):
 
     thank_you_text_en = models.TextField(blank=True)
     thank_you_text_de = models.TextField(blank=True)
+
+    contact_person_name = models.CharField(max_length=100, blank=True)
+    contact_person_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Image of contact person",
+        help_text="The Image will be shown "
+                  "besides the name of the contact person"
+    )
 
     header = TranslatedField(
         'header_de',
@@ -152,6 +165,12 @@ class FormPage(AbstractEmailForm):
             ]),
             FieldPanel('subject'),
         ], "Email"),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('contact_person_name', classname="col6"),
+                ImageChooserPanel('contact_person_image', classname="col6"),
+            ]),
+        ], "Contact Person"),
 
     ]
 
