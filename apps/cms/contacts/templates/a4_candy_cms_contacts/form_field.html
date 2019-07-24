@@ -1,0 +1,33 @@
+{% load i18n widget_tweaks form_field_tags %}
+
+{% if field|is_checkbox %}
+  <div class="form-group form-check">
+    {% render_field field class="form-check-input" %}
+    <label class="form-check-label mb-1" for="{{ field.id }}">{{ field.help_text }} {% if field.required %} *{% endif %}</label>
+    {% if field.errors %}
+      <div class="alert alert-danger pb-0" role="alert">
+      {{ field.errors }}
+      </div>
+    {% endif %}
+  </div>
+  {% elif field|is_radiobutton %}
+  <div class="form-group">
+    <label for="{{ field.id }} mb-1">{{ field.help_text }} {% if field.required %} *{% endif %}</label>
+    {% render_field field class="list-unstyled" %}
+    {% if field.errors %}
+      <div class="alert alert-danger pb-0" role="alert">
+      {{ field.errors }}
+      </div>
+    {% endif %}
+  </div>
+  {% else %}
+  <div class="form-group">
+    <label class="mb-1">{{ field.help_text }} {% if field.required %} *{% endif %}</label>
+    {% render_field field class="form-control" %}
+  </div>
+    {% if field.errors %}
+      <div class="alert alert-danger pb-0" role="alert">
+      {{ field.errors }}
+      </div>
+    {% endif %}
+  {% endif %}
