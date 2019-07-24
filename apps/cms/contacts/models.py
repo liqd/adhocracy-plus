@@ -51,6 +51,38 @@ class FormPage(AbstractEmailForm):
     )
 
 
+    def get_form_fields(self):
+        fields = list(super().get_form_fields())
+        fields.insert(0, FormField(
+            label='receive_copy',
+            field_type='checkbox',
+            help_text=_('I want to receicve a copy of my message as email'),
+            required=False))
+
+        fields.insert(0, FormField(
+            label='your_message',
+            help_text=_('Your message'),
+            field_type='multiline',
+            required=True))
+
+        fields.insert(0, FormField(
+            label='email',
+            help_text=_('Your email address'),
+            field_type='email',
+            required=True))
+
+        fields.insert(0, FormField(
+            label='phone_number',
+            help_text=_('Your telephone number'),
+            field_type='singleline',
+            required=False))
+
+        fields.insert(0, FormField(
+            label='name',
+            help_text=_('Your first and last name'),
+            field_type='singleline',
+            required=False))
+        return fields
 
     en_content_panels = [
         FieldPanel('header_en'),
