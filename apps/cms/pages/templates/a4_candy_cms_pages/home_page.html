@@ -19,18 +19,36 @@
             <div>{{ page.body_streamfield }}</div>
 
             {% if page.form_page %}
-            <h1>{{ page.form_page.header }}</h1>
-            <p>{{ page.form_page.intro|richtext }}</p>
-            <form action="{% pageurl page.form_page %}" method="POST">
-                <div class="form-group form-group--narrow">
-                {% csrf_token %}
+            <div class="l-center-8 text-center">
+                <h2>{{ page.form_page.header }}</h2>
+                <p>{{ page.form_page.intro|richtext }}</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="{% pageurl page.form_page %}" method="POST">
+                        <div class="form-group">
+                        {% csrf_token %}
 
-                {% include 'a4_candy_cms_contacts/form_fields.html' with fields=page.form %}
+                        {% include 'a4_candy_cms_contacts/form_fields.html' with fields=page.form %}
+                        </div>
+                        <div class="u-spacer-bottom">
+                            <button class="btn btn--primary btn--full" type="submit">{% trans "Send" %}</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="u-spacer-bottom">
-                    <button class="btn btn--primary" type="submit">{% trans "Send" %}</button>
+                <div class="col-md-6">
+                    <div>
+                        <div class="userindicator__btn-img" style="background-image:url({% static 'images/avatar_00.png'"></div>
+                        test1
+                    </div>
+                    <div>
+                        test2
+                    </div>
+                    <div>
+                        test3
+                    </div>
                 </div>
-            </form>
+            </div>
             {% endif %}
 
         </div>
