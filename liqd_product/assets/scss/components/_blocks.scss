@@ -1,15 +1,5 @@
-$block_padding: 5*$padding;
-
-.block {
-    @include clearfix;
-    margin-bottom: 2.8em;
-    page-break-inside: avoid;
-
-    h2 {
-        margin-top: 0;
-        margin-bottom: $spacer;
-    }
-}
+$block-padding: 2.5*$padding;
+$block-padding-md: 5*$padding;
 
 .block-col-6 {
     @extend .col-sm-4;
@@ -21,7 +11,7 @@ $block_padding: 5*$padding;
 }
 
 .block-col-3 {
-    @extend .col-sm-4;
+    @extend .col-md-4;
 }
 
 .block-col-2 {
@@ -33,23 +23,55 @@ $block_padding: 5*$padding;
     text-align: center;
 }
 
+//cta with content
+.block-col_cta {
+    text-align: center;
+
+    // cta with just btn
+    .block-col-2 {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .block-col_cta-btn {
+        width: 100%;
+
+        @media screen and (min-width: $breakpoint) {
+            width: 75%;
+        }
+    }
+}
+
+.block-col_cta,
+.block-image_cta_block {
+    background-color: $body-bg-darker;
+}
+
+//image/list cta block
 .block-img-col-1 {
     @extend .col-sm-7;
-    padding: $block_padding;
 }
 
 .block-img-col-2 {
     @extend .col-sm-5;
 
     .rich-text,
-    .block-call_to_action {
-        padding-right: $block_padding;
+    .block-col_cta {
+        padding-right: $block-padding-md;
+
+        @media screen and (min-width: $breakpoint-md) {
+            padding-right: $block-padding-md;
+        }
     }
 }
 
 .block-image_cta_block {
     text-align: left;
-    background-color: $body-bg-darker;
+
+    //block height contained in whole page
+    @media screen and (min-width: $breakpoint-md) {
+        min-height: 100vh;
+    }
 
     img {
         max-height: 400px;
@@ -60,26 +82,25 @@ $block_padding: 5*$padding;
     ul {
         list-style: none;
         padding: 0;
-
-        li:before {
-            margin-right: 0.5*$spacer;
-            color: $gray-lighter;
-            font-family: "Font Awesome 5 Free", sans-serif;
-            font-weight: 900;
-            content: '\f111';
-            font-size: $font-size-xxl;
-        }
-
-        p {
-            width: 90%;
-            vertical-align: middle;
-            display: inline-block;
-        }
     }
 
-    //height thing
-    @media screen and (min-width: $breakpoint-md) {
-        min-height: 100vh;
+    li:before {
+        margin-right: 0.5*$spacer;
+        color: $gray-lighter;
+        font-family: "Font Awesome 5 Free", sans-serif;
+        font-weight: 900;
+        content: '\f111';
+        font-size: $font-size-xxl;
+    }
+
+    p {
+        width: 79%;
+        vertical-align: middle;
+        display: inline-block;
+
+        @media screen and (min-width: $breakpoint-md) {
+            width: 90%;
+        }
     }
 }
 
@@ -96,22 +117,19 @@ $block_padding: 5*$padding;
     margin-left: -17px;
     margin-right: -17px;
 
-    .block {
+    .row {
         text-align: center;
         justify-content: center;
-
-        @media screen and (min-width: $breakpoint-md) {
-            min-height: 100vh;
-        }
     }
 
-    .rich-text {
-        padding: $block_padding;
+    .block-col-2 {
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
     }
 
-    .block-call_to_action {
-        padding-left: 1.5*$block_padding;
-        padding-right: 1.5*$block_padding;
+    @media screen and (min-width: $breakpoint-md) {
+        min-height: 100vh;
     }
 }
 
@@ -122,5 +140,54 @@ $block_padding: 5*$padding;
     @media (max-width: $breakpoint - 0.1rem) {
         margin: 0;
         width: 100%;
+    }
+}
+
+.block {
+    @include clearfix;
+    margin-bottom: 2.8em;
+    page-break-inside: avoid;
+
+    h2,
+    h3,
+    h4 {
+        font-family: $font-family-serif;
+        font-weight: normal;
+
+        b {
+            font-family: $font-family-base;
+            font-weight: bold;
+        }
+    }
+
+    h2 {
+        display: inline-block;
+        position: relative;
+    }
+
+    //border on chaüter headings
+    h2:after {
+        content: "";
+        position: absolute;
+        left: calc(50% - 25px);
+        bottom: -10px;
+        width: 50px;
+        border-bottom: solid 4px $brand-secondary;
+    }
+
+    .rich-text,
+    .block-img-col-1,
+    .block-col_cta,
+    .block-col_cta-content,
+    .block-col_cta-btn {
+        padding: $padding;
+
+        @media screen and (min-width: $breakpoint-xs) {
+            padding: $block-padding;
+        }
+
+        @media screen and (min-width: $breakpoint-md) {
+            padding: $block-padding-md;
+        }
     }
 }
