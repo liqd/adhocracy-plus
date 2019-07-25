@@ -1,8 +1,5 @@
-.block {
-    @include clearfix;
-    margin-bottom: 2.8em;
-    page-break-inside: avoid;
-}
+$block-padding: 2.5*$padding;
+$block-padding-md: 5*$padding;
 
 .block-col-6 {
     @extend .col-sm-4;
@@ -14,7 +11,7 @@
 }
 
 .block-col-3 {
-    @extend .col-sm-4;
+    @extend .col-md-4;
 }
 
 .block-col-2 {
@@ -23,22 +20,129 @@
 
 .block-col-1 {
     @extend .col-12;
+    text-align: center;
 }
 
-.block--cta {
-    padding: 2.8em 0;
-
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
+//cta with content
+.block-columns_cta {
     text-align: center;
 
-    .rich-text > :first-child {
-        margin-top: 0;
+    // cta with just btn
+    .block-col-2 {
+        display: flex;
+        justify-content: space-around;
     }
 
-    @media print {
-        background-color: transparent;
-        color: $print-black;
+    .block-col_cta-btn {
+        width: 100%;
+
+        @media screen and (min-width: $breakpoint) {
+            width: 75%;
+        }
+    }
+}
+
+.block-col_cta,
+.block-image_cta_block {
+    background-color: $body-bg-darker;
+}
+
+//image/list cta block
+.block-img-col-1 {
+    @extend .col-sm-7;
+}
+
+.block-img-col-2 {
+    @extend .col-sm-5;
+
+    .rich-text {
+        padding-bottom: 0;
+    }
+
+    .rich-text,
+    .block-col_cta-content {
+        padding: 0 $block-padding 0 0;
+
+        @media screen and (min-width: $breakpoint-md) {
+            padding: 0 $block-padding-md 0 0;
+        }
+    }
+}
+
+.block-image_cta_block {
+    text-align: left;
+
+    //block height contained in whole page
+    @media screen and (min-width: $breakpoint-md) {
+        min-height: 100vh;
+    }
+
+    img {
+        max-height: 400px;
+        width: auto;
+    }
+
+    //list styling
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li:before {
+        margin-right: 0.5*$spacer;
+        color: $gray-lighter;
+        font-family: "Font Awesome 5 Free", sans-serif;
+        font-weight: 900;
+        content: '\f111';
+        font-size: $font-size-xxl;
+    }
+
+    p {
+        width: 79%;
+        vertical-align: middle;
+        display: inline-block;
+
+        @media screen and (min-width: $breakpoint-md) {
+            width: 90%;
+        }
+    }
+}
+
+.block-background_cta_block .block > :first-child {
+    background-color: $brand-secondary;
+}
+
+.block-background_cta_block .block > :last-child {
+    background-color: $brand-primary;
+    color: $text-color-inverted;
+}
+
+.block-background_cta_block {
+    margin-left: -17px;
+    margin-right: -17px;
+
+    .row {
+        text-align: center;
+        justify-content: center;
+
+        @media screen and (min-width: $breakpoint-md) {
+            min-height: 70vh;
+        }
+    }
+
+    .block-col-2 {
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        padding: $padding;
+
+        @media screen and (min-width: $breakpoint-xs) {
+            padding: $block-padding;
+        }
+
+        @media screen and (min-width: $breakpoint-md) {
+            padding: $block-padding-md;
+        }
     }
 }
 
@@ -50,47 +154,58 @@
         margin: 0;
         width: 100%;
     }
-
-    h2 {
-        margin-top: 0;
-    }
 }
 
-.block__actions {
-    text-align: center;
-}
+.block {
+    @include clearfix;
+    margin-bottom: 2.8em;
+    page-break-inside: avoid;
 
-.block--image-cta {
-    border: 1px solid $border-color;
-}
+    h2,
+    h3,
+    h4 {
+        font-family: $font-family-serif;
+        font-weight: normal;
 
-.block--image-cta__img {
-    display: block;
-    position: relative;
-    min-height: 11.8em;
-    background-size: stretch;
-    background-position: center;
-    margin-bottom: $spacer;
-}
-
-.block--image-cta__body {
-    padding: $padding;
-    text-align: center;
-}
-
-.block--image-cta__copyright {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.block__homepage .rich-text {
-    p,
-    h2 {
-        text-align: center;
+        b {
+            font-family: $font-family-base;
+            font-weight: bold;
+        }
     }
 
     h2 {
-        color: $brand-secondary;
+        display: inline-block;
+        position: relative;
+    }
+
+    //border on chaüter headings
+    h2:after {
+        content: "";
+        position: absolute;
+        left: calc(50% - 25px);
+        bottom: -10px;
+        width: 50px;
+        border-bottom: solid 4px $brand-secondary;
+    }
+
+    .block-img-col-1,
+    .block-col_cta {
+        padding: $padding;
+
+        @media screen and (min-width: $breakpoint-xs) {
+            padding: $block-padding;
+        }
+
+        @media screen and (min-width: $breakpoint-md) {
+            padding: $block-padding-md;
+        }
+    }
+
+    .block-col_cta-btn {
+        padding: $padding;
+
+        @media screen and (min-width: $breakpoint-xs) {
+            padding-bottom: $block-padding;
+        }
     }
 }
