@@ -3,18 +3,17 @@
 
 {% block content %}
     <div class="l-wrapper">
-        <div class="l-center-8">
-
-            <div class="homepage-header">
+        <div class="hompage__wrapper p-3">
+        <div class="row homepage-header">
+            <div class="col-lg-6">
+                <h1 class="homepage-header__teaser">{{ page.teaser|richtext }}</h1>
+            </div>
+            <div class="col-lg-6 homepage-header__image-wrapper">
                 {% image page.image width-770 as image %}
                 <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
-                <div class="homepage-header__text">
-                    <h1 class="homepage-title homepage-title--large">Beteiligung.in/<span class="marked cms-title--normal">jederstadt</span></h1>
-                    <h1 class="homepage-title homepage-title--small">Beteiligung.in/<br><span class="marked cms-title--normal">jederstadt</span></h1>
-                    <div class="cms-teaser">{{ page.teaser|richtext }}</div>
-                </div>
             </div>
         </div>
+
         <div>{{ page.body|richtext }}</div>
         <div>{{ page.body_streamfield }}</div>
 
@@ -78,5 +77,6 @@
         </div>
         {% endif %}
 
+        </div>
     </div>
 {% endblock %}

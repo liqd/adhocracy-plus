@@ -1,0 +1,34 @@
+$spacer-xl: 5rem;
+
+.hompage__wrapper {
+    background-color: $bg-light;
+
+    @media screen and (min-width: $breakpoint-lg) {
+        margin: -$r-spacer;
+    }
+}
+
+.homepage-header {
+    margin-bottom: $spacer-xl;
+}
+
+.homepage-header__image-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.homepage-header__image {
+    position: relative;
+    right: -32px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.homepage-header__teaser {
+    font-family: $font-family-serif;
+    font-weight: normal;
+
+    b {
+        font-family: $font-family-base;
+    }
+}
