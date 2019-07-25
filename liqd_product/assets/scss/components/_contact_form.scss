@@ -1,5 +1,11 @@
 //nasty hack until forms are refactored
 .contact_form {
+    .form-control {
+        background-color: $bg-light !important;
+        box-shadow: none;
+        border-color: $gray-lightest;
+    }
+
     .form-check-input {
         width: 5% !important;
     }
