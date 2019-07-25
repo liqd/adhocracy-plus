@@ -4,7 +4,8 @@
     {% for column in value.columns %}
         <div class="block-img-col-{{ forloop.counter }}">
             {% if column.image %}
-            {% image column.image width-500 %}
+            {% image column.image width-770 as image %}
+            <img src="{{ image.url }}" alt="{{ image.alt }}" class="block-img-col__image" />
             {% endif %}
             {{ column.body }}
             {% if column.link %}
