@@ -6,9 +6,10 @@
 {% block headline %} We received your message {% endblock  %}
 
 {% block content %} This is the data we received from you:
-{% for entry in data_list %}
-{{ entry }}
-{% endfor %}
+Your email address: {{ customformsubmission.email }}
+Your message: {{ customformsubmission.message }}
+{% if customformsubmission.telephone_number %}Your telephone number: {{ customformsubmission.telephone_number }}{% endif %}
+{% if customformsubmission.name %}Your Name: {{ customformsubmission.name }}{% endif %}
 {% endblock %}
 
 {% block reason %} This message was sent to {{ receiver }}. It was sent because you wrote us message via our contact form and asked us to send you a copy .{% endblock %}

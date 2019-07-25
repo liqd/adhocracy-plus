@@ -1,4 +1,7 @@
+import json
+
 from django.contrib import messages
+from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
@@ -10,7 +13,9 @@ from wagtail.admin.edit_handlers import ObjectList
 from wagtail.admin.edit_handlers import TabbedInterface
 from wagtail.contrib.forms.models import AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField
+from wagtail.contrib.forms.models import AbstractFormSubmission
 from wagtail.core.fields import RichTextField
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.cms.emails import AnswerToContactFormEmail
 from apps.contrib.translations import TranslatedField
@@ -22,8 +27,25 @@ class FormField(AbstractFormField):
                        related_name='form_fields')
 
 
-class FormPage(AbstractEmailForm):
+class CustomFormSubmission(AbstractFormSubmission):
+    email = models.EmailField()
+    message = models.TextField()
+    telephone_number = models.CharField(max_length=100, blank=True)
+    name = models.CharField(max_length=100, blank=True)
 
+    def get_data(self):
+        form_data = super().get_data()
+        form_data.update({
+            'email': self.email,
+            'message': self.message,
+            'telephone_number': self.telephone_number,
+            'name': self.name
+        })
+
+        return form_data
+
+
+class FormPage(AbstractEmailForm):
     header_de = models.CharField(
         max_length=500, blank=True, verbose_name="Header")
     header_en = models.CharField(
@@ -34,6 +56,18 @@ class FormPage(AbstractEmailForm):
 
     thank_you_text_en = models.TextField(blank=True)
     thank_you_text_de = models.TextField(blank=True)
+
+    contact_person_name = models.CharField(max_length=100, blank=True)
+    contact_person_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Image of contact person",
+        help_text="The Image will be shown "
+                  "besides the name of the contact person"
+    )
 
     header = TranslatedField(
         'header_de',
@@ -50,12 +84,20 @@ class FormPage(AbstractEmailForm):
         'thank_you_text_en'
     )
 
+    def get_submission_class(self):
+        return CustomFormSubmission
+
     def process_form_submission(self, form):
-        submission = super().process_form_submission(form)
-        if form.cleaned_data['receive_copy']:
-            AnswerToContactFormEmail.send(submission)
+        data = form.cleaned_data
+        submission = self.get_submission_class().objects.create(
+            form_data=json.dumps(form.cleaned_data, cls=DjangoJSONEncoder),
+            page=self, email=data['email'], message=data['message'],
+            telephone_number=data['telephone_number'], name=data['name']
+        )
         if self.to_address:
             self.send_mail(form)
+        if form.cleaned_data['receive_copy']:
+            AnswerToContactFormEmail.send(submission)
         return submission
 
     def render_landing_page(
@@ -77,7 +119,7 @@ class FormPage(AbstractEmailForm):
             required=False))
 
         fields.insert(0, FormField(
-            label='your_message',
+            label='message',
             help_text=_('Your message'),
             field_type='multiline',
             required=True))
@@ -89,7 +131,7 @@ class FormPage(AbstractEmailForm):
             required=True))
 
         fields.insert(0, FormField(
-            label='phone_number',
+            label='telephone_number',
             help_text=_('Your telephone number'),
             field_type='singleline',
             required=False))
@@ -123,6 +165,12 @@ class FormPage(AbstractEmailForm):
             ]),
             FieldPanel('subject'),
         ], "Email"),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('contact_person_name', classname="col6"),
+                ImageChooserPanel('contact_person_image', classname="col6"),
+            ]),
+        ], "Contact Person"),
 
     ]
 
