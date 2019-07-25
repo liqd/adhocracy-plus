@@ -40,7 +40,7 @@ class MapIdea(AbstractMapIdea):
         return reverse(
             'a4_candy_mapideas:mapidea-detail',
             kwargs=dict(
-                partner_slug=self.project.organisation.partner.slug,
+                organisation_slug=self.project.organisation.slug,
                 pk='{:05d}'.format(self.pk),
                 year=self.created.year
             )

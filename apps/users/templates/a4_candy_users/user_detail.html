@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load rules i18n thumbnail partner_tags %}
+{% load rules i18n thumbnail organisation_tags %}
 
 {% block title %}{{ object.username }} &mdash; {{ block.super }}{% endblock %}
 
@@ -36,13 +36,13 @@
 
             {% comment 'This code can be used as soon as we several partners on the plattform' %}
             <h2 class="heading2">{% trans 'Active in these platforms' %}</h2>
-            {% if view.partners %}
+            {% if view.organisations %}
                 <ul class="u-list-reset">
-                    {% for partner in view.partners %}
+                    {% for organisation in view.organisations %}
                         <li>
-                            <a class="list-item-tiny" href="{% url 'partner' partner_slug=partner.slug %}">
-                                <img class="list-item-tiny__image" src="{% thumbnail partner.logo '50x50' crop %}" alt="" />
-                                <span class="list-item-tiny__body">{{ partner.name }}</span>
+                            <a class="list-item-tiny" href="{% url 'organisation' organisation_slug=organisation.slug %}">
+                                <img class="list-item-tiny__image" src="{% thumbnail organisation.logo '50x50' crop %}" alt="" />
+                                <span class="list-item-tiny__body">{{ organisation.name }}</span>
                             </a>
                         </li>
                     {% endfor %}
@@ -89,9 +89,9 @@
                 aria-labelledby="tab-user-{{ user.pk }}-participation"
                 aria-expanded="true">
                 {% for project in view.projects %}
-                    {% withpartner project.organisation.partner %}
+                    {% withorganisation project.organisation %}
                         {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project %}
-                    {% endwithpartner %}
+                    {% endwithorganisation %}
                 {% empty %}
                     {% trans 'This user is not active in any projects yet.' %}
                 {% endfor %}
@@ -103,9 +103,9 @@
                 aria-labelledby="tab-user-{{ user.pk }}-activities"
                 aria-expanded="false">
                 {% for action in view.actions %}
-                    {% withpartner action.project.organisation.partner %}
+                    {% withorganisation action.project.organisation %}
                         {% include 'a4_candy_actions/includes/action.html' with action=action %}
-                    {% endwithpartner %}
+                    {% endwithorganisation %}
                 {% empty %}
                     {% trans 'No activity yet. '%}
                 {% endfor %}

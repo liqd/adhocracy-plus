@@ -1,5 +1,5 @@
 {% extends 'email_base.'|add:part_type %}
-{% load reports_tags partner_tags %}
+{% load reports_tags organisation_tags %}
 
 
 {% block subject %} Moderation request in the project {{ report.project }} on {{ site.name }}{% endblock %}

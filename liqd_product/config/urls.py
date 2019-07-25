@@ -20,14 +20,14 @@ from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from apps.contrib import views as contrib_views
-from apps.contrib.sitemaps.product_partners_sitemap import \
-    ProductPartnersSitemap
+from apps.contrib.sitemaps.product_organisations_sitemap import \
+    ProductOrganisationsSitemap
 from apps.contrib.sitemaps.product_projects_sitemap import \
     ProductProjectsSitemap
 from apps.contrib.sitemaps.static_sitemap import StaticSitemap
 from apps.documents.api import DocumentViewSet
 from apps.moderatorremark.api import ModeratorRemarkViewSet
-from apps.partners.urlresolvers import partner_patterns
+from apps.organisations.urlresolvers import organisation_patterns
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
 from apps.polls.routers import QuestionDefaultRouter
@@ -54,7 +54,7 @@ question_router = QuestionDefaultRouter()
 question_router.register(r'vote', VoteViewSet, base_name='vote')
 
 sitemaps = {
-    'partners': ProductPartnersSitemap,
+    'organisations': ProductOrganisationsSitemap,
     'projects': ProductProjectsSitemap,
     'wagtail': WagtailSitemap,
     'static': StaticSitemap
@@ -87,8 +87,8 @@ urlpatterns = [
     url(r'^components/$', contrib_views.ComponentLibraryView.as_view()),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 
-    # Urls within the context of a partner
-    partner_patterns(
+    # Urls within the context of a organisation
+    organisation_patterns(
         # Temporary include liqd_product projects urls, as they contain
         # the invite links. This may be removed when invites are refactored
         # to a separate app.
@@ -114,7 +114,7 @@ urlpatterns = [
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt',
         content_type="text/plain"), name="robots_file"),
 
-    url(r'', include('apps.partners.urls')),
+    url(r'', include('apps.organisations.urls')),
     url(r'', include('wagtail.core.urls'))
 ]
 

@@ -31,7 +31,7 @@ class Proposal(mapidea_models.AbstractMapIdea):
         return reverse(
             'a4_candy_budgeting:proposal-detail',
             kwargs=dict(
-                partner_slug=self.project.organisation.partner.slug,
+                organisation_slug=self.project.organisation.slug,
                 pk='{:05d}'.format(self.pk),
                 year=self.created.year))
 
