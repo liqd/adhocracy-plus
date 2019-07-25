@@ -1,21 +1,23 @@
 $block-padding: 2.5*$padding;
 $block-padding-md: 5*$padding;
 
+//non block specific styles
 .block-col-6 {
     @extend .col-sm-4;
     @extend .col-md-2;
 }
 
 .block-col-4 {
-    @extend .col-sm-3;
+    @extend .col-md-3;
 }
 
 .block-col-3 {
     @extend .col-md-4;
+    padding: $block-padding;
 }
 
 .block-col-2 {
-    @extend .col-sm-6;
+    @extend .col-md-6;
 }
 
 .block-col-1 {
@@ -23,7 +25,42 @@ $block-padding-md: 5*$padding;
     text-align: center;
 }
 
-//cta with content
+.block-col_cta-btn {
+    padding: $padding;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding-bottom: $block-padding;
+    }
+}
+
+//single col cta styling
+.block-row-1 {
+    background-color: $body-bg;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding-top: $block-padding;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding-top: $block-padding-md;
+    }
+}
+
+//three col cta styling
+.block-row-3 {
+    padding: $padding;
+    background-color: $body-bg;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding: $padding $block-padding $block-padding $block-padding;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding: $padding $block-padding-md $block-padding-md $block-padding-md;
+    }
+}
+
+//multi col cta with content styling
 .block-columns_cta {
     text-align: center;
 
@@ -42,45 +79,34 @@ $block-padding-md: 5*$padding;
     }
 }
 
-.block-col_cta,
-.block-image_cta_block {
-    background-color: $body-bg-darker;
-}
-
 //image/list cta block
 .block-img-col-1 {
-    @extend .col-sm-7;
+    @extend .col-md-7;
 }
 
 .block-img-col-2 {
-    @extend .col-sm-5;
-
-    .rich-text {
-        padding-bottom: 0;
-    }
+    @extend .col-md-5;
 
     .rich-text,
     .block-col_cta-content {
-        padding: 0 $block-padding 0 0;
+        padding: 0 0 0 2*$r-spacer;
 
         @media screen and (min-width: $breakpoint-md) {
-            padding: 0 $block-padding-md 0 0;
+            padding: 0 $block-padding-md 0 2*$r-spacer;
         }
     }
 }
 
+.block-img-col__image {
+    max-height: 400px;
+    width: auto;
+    position: relative;
+    right: -32px;
+    margin-top: $r-spacer;
+}
+
 .block-image_cta_block {
     text-align: left;
-
-    //block height contained in whole page
-    @media screen and (min-width: $breakpoint-md) {
-        min-height: 100vh;
-    }
-
-    img {
-        max-height: 400px;
-        width: auto;
-    }
 
     //list styling
     ul {
@@ -90,7 +116,7 @@ $block-padding-md: 5*$padding;
 
     li:before {
         margin-right: 0.5*$spacer;
-        color: $gray-lighter;
+        color: $gray-lightest;
         font-family: "Font Awesome 5 Free", sans-serif;
         font-weight: 900;
         content: '\f111';
@@ -108,6 +134,7 @@ $block-padding-md: 5*$padding;
     }
 }
 
+//coloured background block
 .block-background_cta_block .block > :first-child {
     background-color: $brand-secondary;
 }
@@ -128,12 +155,9 @@ $block-padding-md: 5*$padding;
     margin-right: -17px;
 
     .row {
+        display: flex;
         text-align: center;
         justify-content: center;
-
-        @media screen and (min-width: $breakpoint-md) {
-            min-height: 70vh;
-        }
     }
 
     .block-col-2 {
@@ -141,6 +165,7 @@ $block-padding-md: 5*$padding;
         display: flex;
         flex-direction: column;
         padding: $padding;
+        padding-bottom: $block-padding;
 
         @media screen and (min-width: $breakpoint-xs) {
             padding: $block-padding;
@@ -152,6 +177,7 @@ $block-padding-md: 5*$padding;
     }
 }
 
+//old block styling, still used in activity block
 .block--bordered {
     padding: 1em;
     border: 1px solid $border-color;
@@ -162,6 +188,7 @@ $block-padding-md: 5*$padding;
     }
 }
 
+//some old some current general styling
 .block {
     @include clearfix;
     margin-bottom: 2.8em;
@@ -184,7 +211,7 @@ $block-padding-md: 5*$padding;
         position: relative;
     }
 
-    //border on chaüter headings
+    //border on section headings
     h2:after {
         content: "";
         position: absolute;
@@ -193,25 +220,18 @@ $block-padding-md: 5*$padding;
         width: 50px;
         border-bottom: solid 4px $brand-secondary;
     }
+}
 
-    .block-img-col-1,
-    .block-col_cta {
-        padding: $padding;
+//responsive padding for image, 2 col cta and whole
+.block-img-col-1,
+.block-row-2 {
+    padding: $padding;
 
-        @media screen and (min-width: $breakpoint-xs) {
-            padding: $block-padding;
-        }
-
-        @media screen and (min-width: $breakpoint-md) {
-            padding: $block-padding-md;
-        }
+    @media screen and (min-width: $breakpoint-xs) {
+        padding: $block-padding;
     }
 
-    .block-col_cta-btn {
-        padding: $padding;
-
-        @media screen and (min-width: $breakpoint-xs) {
-            padding-bottom: $block-padding;
-        }
+    @media screen and (min-width: $breakpoint-md) {
+        padding: $block-padding-md;
     }
 }
