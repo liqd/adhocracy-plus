@@ -1,6 +1,6 @@
 {% load wagtailcore_tags %}
 
-<div class="block row mb-3 mb-md-5">
+<div class="block block-row-{{ value.columns_count }} row mb-0">
     {% for column in value.columns %}
         <div class="block-col-{{ value.columns_count }}">
             {% if column.body %}
