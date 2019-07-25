@@ -3,34 +3,79 @@
 
 {% block content %}
     <div class="l-wrapper">
-
-            <div class="homepage-header">
+        <div class="hompage__wrapper p-3">
+        <div class="row homepage-header">
+            <div class="col-lg-6">
+                <h1 class="homepage-header__teaser">{{ page.teaser|richtext }}</h1>
+            </div>
+            <div class="col-lg-6 homepage-header__image-wrapper">
                 {% image page.image width-770 as image %}
                 <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
-                <div class="homepage-header__text">
-                    <h1 class="homepage-title homepage-title--large">Beteiligung.in/<span class="marked cms-title--normal">jederstadt</span></h1>
-                    <h1 class="homepage-title homepage-title--small">Beteiligung.in/<br><span class="marked cms-title--normal">jederstadt</span></h1>
-                    <div class="cms-teaser">{{ page.teaser|richtext }}</div>
+            </div>
+        </div>
+
+        <div>{{ page.body|richtext }}</div>
+        <div>{{ page.body_streamfield }}</div>
+
+        {% if page.form_page %}
+        <div class="contact_form p-3 py-md-5">
+            <div class="l-center-6 text-center mb-md-5">
+                <h2>{{ page.form_page.header }}</h2>
+                <p>{{ page.form_page.intro|richtext }}</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 offset-lg-1">
+                    <form action="{% pageurl page.form_page %}" method="POST">
+                        <div class="form-group">
+                        {% csrf_token %}
+
+                        {% include 'a4_candy_cms_contacts/form_fields.html' with fields=page.form %}
+                        </div>
+                        <div class="u-spacer-bottom">
+                            <button class="btn btn--primary btn--full" type="submit">{% trans "Send" %}</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-5 my-5 my-lg-0">
+                    <div class="row mb-3 pb-3 position-relative">
+                        <div class="col-4 col-sm-3 col-md-4"></div>
+                        <div class="col-8">
+                            <span class="font-weight-bold">Ihr Ansprechpartner</span><br>
+                            <span>Moritz Ritter</span><br>
+                            <span>Position</span>
+                        </div>
+                        <div class="contact_form__divider pt-3"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 col-sm-3 col-md-4"></div>
+                        <div class="col-8">
+                          <span class="font-weight-bold">Hier finden Sie uns</span><br>
+                          <span>Liquid Democracy e.V.</span><br>
+                          <span>Am Sudhaus 2</span><br>
+                          <span>12053 Berlin</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3 pb-3 position-relative">
+                        <div class="col-4 col-sm-3 col-md-4"></div>
+                        <div class="col-8">
+                          <span class="font-weight-bold">So erreichen Sie uns</span><br>
+                          <span>+49 (0) 30 6298 4840</span><br>
+                          <span>hallo@liqd.net</span>
+                        </div>
+                        <div class="contact_form__divider pt-3"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 col-sm-3 col-md-4"></div>
+                        <div class="col-8">
+                            <a>Facebook</a><br>
+                            <a>Twitter</a><br>
+                            <a>Github</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div>{{ page.body|richtext }}</div>
-            <div>{{ page.body_streamfield }}</div>
-
-            {% if page.form_page %}
-            <h1>{{ page.form_page.header }}</h1>
-            <p>{{ page.form_page.intro|richtext }}</p>
-            <form action="{% pageurl page.form_page %}" method="POST">
-                <div class="form-group form-group--narrow">
-                {% csrf_token %}
-
-                {% include 'a4_candy_cms_contacts/form_fields.html' with fields=page.form %}
-                </div>
-                <div class="u-spacer-bottom">
-                    <button class="btn btn--primary" type="submit">{% trans "Send" %}</button>
-                </div>
-            </form>
-            {% endif %}
+        </div>
+        {% endif %}
 
     </div>
 {% endblock %}
