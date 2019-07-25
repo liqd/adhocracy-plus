@@ -1,0 +1,75 @@
+{% load wagtailcore_tags widget_tweaks form_field_tags i18n wagtailsettings_tags wagtailimages_tags %}
+{% get_settings %}
+<div class="contact_form p-sm-3 py-md-5">
+    <div class="l-center-6 text-center mb-md-5">
+        <h2>{{ page.header }}</h2>
+        <p>{{ page.intro|richtext }}</p>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 offset-lg-1">
+            <form action="{% pageurl page %}" method="POST">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {% include 'a4_candy_cms_contacts/form_fields.html' with fields=form %}
+                </div>
+                <div class="u-spacer-bottom">
+                    <button class="btn btn--transparent btn--full" type="submit">{% trans "Send" %}</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-5 my-5 my-lg-0">
+
+            {% if page.contact_person_name %}
+                <div class="row mb-3 pb-3 position-relative">
+                    <div class="col-4 col-sm-3 col-md-4 d-flex justify-content-end">
+                        {% if page.contact_person_image %}
+                        {% image page.contact_person_image fill-100x100 as image %}
+                        <div class="userindicator__btn-img " style="background-image: url({{ image.url }})"></div>
+                        {% endif %}
+                    </div>
+                    <div class="col-8">
+                        <span class="font-weight-bold">{% trans 'Your contact person' %}</span><br>
+                        <span>{{ page.contact_person_name }}</span>
+                    </div>
+                    <div class="contact_form__divider pt-3"></div>
+                </div>
+            {% endif %}
+
+            {% if settings.a4_candy_cms_settings.OrganisationSettings.address %}
+            <div class="row mb-3">
+                <div class="col-4 col-sm-3 col-md-4"></div>
+                <div class="col-8">
+                    <span class="font-weight-bold">{% trans 'You can find us here:' %}</span><br>
+                    {{ settings.a4_candy_cms_settings.OrganisationSettings.address | richtext }}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if settings.a4_candy_cms_settings.OrganisationSettings.contacts %}
+            <div class="row mb-3 pb-3 position-relative">
+                <div class="col-4 col-sm-3 col-md-4"></div>
+                <div class="col-8">
+                    <span class="font-weight-bold">{% trans 'This is how you can contact us:' %}</span><br>
+                    {{ settings.a4_candy_cms_settings.OrganisationSettings.contacts | richtext }}
+                </div>
+                <div class="contact_form__divider pt-3"></div>
+            </div>
+            {% endif %}
+
+            <div class="row mb-3">
+                <div class="col-4 col-sm-3 col-md-4"></div>
+                <div class="col-8">
+                    {% if settings.a4_candy_cms_settings.SocialMedia.facebook %}
+                    <a href="{{ settings.a4_candy_cms_settings.SocialMedia.facebook }}">Facebook</a><br>
+                    {% endif %}
+                    {% if settings.a4_candy_cms_settings.SocialMedia.twitter %}
+                    <a href="{{ settings.a4_candy_cms_settings.SocialMedia.twitter }}">Twitter</a><br>
+                    {% endif %}
+                    {% if settings.a4_candy_cms_settings.SocialMedia.github %}
+                    <a href="{{ settings.a4_candy_cms_settings.SocialMedia.github }}">GitHub</a><br>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
