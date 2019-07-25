@@ -1,5 +1,5 @@
 {% extends 'email_base.'|add:part_type %}
-{% load reports_tags partner_tags %}
+{% load reports_tags organisation_tags %}
 
 {% block subject %}Ihr Beitrag auf {{ site.name }}{% endblock %}
 

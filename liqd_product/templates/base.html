@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-{% load i18n static partner_tags wagtailuserbar %}
+{% load i18n static organisation_tags wagtailuserbar %}
 {% get_current_language as LANGUAGE_CODE %}
-{% get_current_partner as PARTNER %}
+{% get_current_organisation as ORGANISATION %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{% block title %}Beteiligung.in{% if PARTNER %}/{{ PARTNER.name }}{% endif %}{% endblock %}</title>
+    <title>{% block title %}Beteiligung.in{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}{% endblock %}</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
@@ -14,7 +14,7 @@
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
     {% endblock %}
-    {% if PARTNER %}
+    {% if ORGANISATION %}
         <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
     {% else %}
         <link rel="stylesheet" type="text/css" href="{% static 'platform.css' %}" />

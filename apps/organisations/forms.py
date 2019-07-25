@@ -1,12 +1,12 @@
 from django import forms
 
-from .models import Partner
+from .models import Organisation
 
 
-class PartnerForm(forms.ModelForm):
+class OrganisationForm(forms.ModelForm):
 
     class Meta:
-        model = Partner
+        model = Organisation
         fields = ['title', 'logo', 'description', 'slogan', 'image',
                   'information', 'imprint']
 

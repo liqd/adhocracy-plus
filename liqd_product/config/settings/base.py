@@ -119,7 +119,7 @@ MIDDLEWARE = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 
-    'apps.partners.middleware.PartnerMiddleware',
+    'apps.organisations.middleware.OrganisationMiddleware',
     'apps.embed.middleware.AjaxPathMiddleware',
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
@@ -152,7 +152,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'liqd_product.config.wsgi.application'
 
-REVERSE_METHOD = 'apps.partners.urlresolvers.reverse'
+REVERSE_METHOD = 'apps.organisations.urlresolvers.reverse'
 
 
 # Database

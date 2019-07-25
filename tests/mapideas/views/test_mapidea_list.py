@@ -7,7 +7,7 @@ from tests.helpers import setup_phase
 
 
 @pytest.mark.django_db
-def test_list_view(client, phase_factory, map_idea_factory, partner):
+def test_list_view(client, phase_factory, map_idea_factory, organisation):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase)
     phase_2, module_2, project_2, mapidea_2 = setup_phase(

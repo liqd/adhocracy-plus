@@ -2,7 +2,7 @@ from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
 from adhocracy4.projects.models import Project
-from apps.partners.models import Partner
+from apps.organisations.models import Organisation
 
 
 class ProductProjectsSitemap(Sitemap):
@@ -11,15 +11,16 @@ class ProductProjectsSitemap(Sitemap):
 
     def items(self):
         queryset = Project.objects.none()
-        for partner in Partner.objects.all():
+        for organisation in Organisation.objects.all():
             queryset |= Project.objects.filter(
-                organisation__partner=partner,
+                organisation=organisation,
                 is_archived=False,
                 is_draft=False,
                 is_public=True)
         return queryset
 
     def location(self, obj):
-        partner_slug = obj.organisation.partner.slug
+        organisation_slug = obj.organisation.slug
         return reverse('project-detail',
-                       kwargs=dict(slug=obj.slug, partner_slug=partner_slug))
+                       kwargs=dict(slug=obj.slug,
+                                   organisation_slug=organisation_slug))

@@ -27,7 +27,7 @@ class Chapter(module_models.Item):
         return reverse(
             'a4_candy_documents:chapter-detail',
             kwargs=dict(
-                partner_slug=self.project.organisation.partner.slug,
+                organisation_slug=self.project.organisation.slug,
                 pk=str(self.pk)
             )
         )
@@ -75,7 +75,7 @@ class Paragraph(base.TimeStampedModel):
         return reverse(
             'a4_candy_documents:paragraph-detail',
             kwargs=dict(
-                partner_slug=self.chapter.project.organisation.partner.slug,
+                organisation_slug=self.chapter.project.organisation.slug,
                 pk=str(self.pk)
             )
         )

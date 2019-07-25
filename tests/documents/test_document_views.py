@@ -11,7 +11,7 @@ def test_chapter_detail_view_redirect_first_chapter(client, chapter_factory,
     url = reverse(
         'a4_candy_documents:chapter-detail',
         kwargs={
-            'partner_slug': chapter.project.organisation.partner.slug,
+            'organisation_slug': chapter.project.organisation.slug,
             'pk': chapter.pk
         }
     )

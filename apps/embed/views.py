@@ -2,7 +2,7 @@ from django.views import generic
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 from adhocracy4.projects import models as project_models
-from apps.partners import set_partner
+from apps.organisations import set_organisation
 
 
 class EmbedView(generic.View):
@@ -17,5 +17,5 @@ class EmbedProjectView(generic.DetailView, EmbedView):
 
     def get(self, request, *args, **kwargs):
         project = self.get_object()
-        set_partner(project.organisation.partner)
+        set_organisation(project.organisation)
         return super().get(request, *args, **kwargs)
