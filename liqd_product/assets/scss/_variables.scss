@@ -13,9 +13,6 @@ $brand-danger: #d0011b !default; // $plattform-danger
 $platform-primary: #46caad !default;
 $platform-danger: #d0011b !default;
 
-$gray: #464a4c !default;
-$gray-lighter: #636c72 !default;
-
 $body-bg: #fff !default;
 $body-bg-darker: #f7f7f7 !default;
 
@@ -24,6 +21,12 @@ $text-color-inverted: $body-bg !default;
 $text-color-gray: #666 !default;
 $text-secondary-color: #666 !default;
 $overlay: rgba(#000, 0.5) !default;
+
+$gray: #464a4c !default;
+$gray-two: #636c72 !default;
+$gray-light: #4d4d4d;
+$gray-lighter: $text-secondary-color;
+$gray-lightest: #d8d8d8;
 
 $print-black: #000 !default;
 $print-link: #005cb4 !default;
@@ -35,10 +38,6 @@ $brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 3
 $bg-tertiary: $brand-primary-tint !default;
 $bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
 $bg-light: #f7f7f7;
-
-$gray-light: #4d4d4d;
-$gray-lighter: $text-secondary-color;
-$gray-lightest: #d8d8d8;
 
 $demi-bold: 600;
 $headings-font-weight: $demi-bold !default;
