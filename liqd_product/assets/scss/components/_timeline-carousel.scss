@@ -24,8 +24,9 @@ $timeline-carousel__top-space: 11px;
 .timeline-carousel__label {
     padding: $padding;
     margin-top: 2*$spacer;
-    color: $brand-secondary;
-    background-color: $bg-secondary;
+    color: $text-color-gray;
+    border: 1px solid $text-color-gray;
+    background-color: $body-bg;
     text-align: left;
     transition: transform 0.2s;
     transform-origin: 50% 50%;
@@ -36,13 +37,17 @@ $timeline-carousel__top-space: 11px;
     width: 100%;
     left: 0;
     top: $timeline-carousel__top-space;
-    border-top: 2px dashed $border-color;
+    border-top: 1px dotted $border-color;
 }
 
 //slick overwrites
 .slick-slide {
     margin: 0 3*$spacer;
     min-width: 275px;
+
+    & a {
+        text-decoration: none;
+    }
 
     :focus,
     :hover {
@@ -69,8 +74,8 @@ $timeline-carousel__top-space: 11px;
     .slick-next {
         top: $timeline-carousel__top-space;
         text-align: center;
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         border-radius: 100%;
         border: 1px solid $border-color;
         background-color: $body-bg;
@@ -86,7 +91,7 @@ $timeline-carousel__top-space: 11px;
             opacity: 1;
             font-family: "Font Awesome 5 Free", sans-serif;
             font-weight: 900;
-            font-size: $font-size-xxl;
+            font-size: $font-size-lg;
             line-height: 1.3rem;
         }
     }
@@ -112,8 +117,9 @@ $timeline-carousel__top-space: 11px;
 }
 
 .initial {
-    background: $brand-secondary;
-    color: $text-color-inverted;
+    background: $body-bg;
+    color: $text-color;
+    border: 2px solid $brand-secondary;
 
     &.timeline-carousel__label {
         padding: 1.5*$padding;
