@@ -10,6 +10,7 @@ label {
     line-height: 1.6;
     font-family: inherit;
     font-size: inherit;
+    border-radius: 0;
 }
 
 input,
@@ -22,6 +23,7 @@ select {
     color: contrast-color($body-bg);
     border-color: $brand-primary;
     box-shadow: 0 0 2px $brand-primary-tint inset;
+    border-radius: 0;
 
     &:invalid {
         border-color: $brand-primary;
@@ -127,6 +129,7 @@ div.cke_focus {
 
 .form-control {
     height: auto !important;
+    border-radius: 0 !important;
 }
 
 .input-group {

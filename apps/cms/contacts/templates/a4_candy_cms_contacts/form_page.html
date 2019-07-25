@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="l-wrapper">
-        <div class="contact_form p-3 py-md-5">
+        <div class="contact_form p-sm-3 py-md-5">
             <div class="l-center-6 text-center mb-md-5">
                 <h2>{{ page.form_page.header }}</h2>
                 <p>{{ page.form_page.intro|richtext }}</p>
@@ -17,7 +17,7 @@
                           {% include 'a4_candy_cms_contacts/form_fields.html' with fields=page.form %}
                         </div>
                         <div class="u-spacer-bottom">
-                            <button class="btn btn--primary btn--full" type="submit">{% trans "Send" %}</button>
+                            <button class="btn btn--transparent btn--full" type="submit">{% trans "Send" %}</button>
                         </div>
                     </form>
                 </div>
