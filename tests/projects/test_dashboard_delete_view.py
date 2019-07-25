@@ -13,7 +13,7 @@ def test_anonymous_cannot_delete(client, project_factory):
     url = reverse(
         'project-delete',
         kwargs={
-            'partner_slug': project.organisation.partner.slug,
+            'organisation_slug': project.organisation.slug,
             'pk': project.pk
         })
     response = client.post(url)
@@ -32,7 +32,7 @@ def test_user_cannot_delete(client, project_factory, user):
     url = reverse(
         'project-delete',
         kwargs={
-            'partner_slug': project.organisation.partner.slug,
+            'organisation_slug': project.organisation.slug,
             'pk': project.pk
         })
     response = client.post(url)
@@ -51,7 +51,7 @@ def test_moderator_cannot_delete(client, project_factory, user):
     url = reverse(
         'project-delete',
         kwargs={
-            'partner_slug': project.organisation.partner.slug,
+            'organisation_slug': project.organisation.slug,
             'pk': project.pk
         })
     response = client.post(url)
@@ -70,7 +70,7 @@ def test_initator_can_delete(client, project_factory):
     url = reverse(
         'project-delete',
         kwargs={
-            'partner_slug': project.organisation.partner.slug,
+            'organisation_slug': project.organisation.slug,
             'pk': project.pk
         })
     response = client.get(url)

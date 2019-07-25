@@ -34,7 +34,7 @@ class Poll(module_models.Item):
         return reverse(
             'project-detail',
             kwargs=dict(
-                partner_slug=self.project.organisation.partner.slug,
+                organisation_slug=self.project.organisation.slug,
                 slug=self.project.slug
             )
         )

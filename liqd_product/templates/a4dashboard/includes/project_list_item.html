@@ -1,4 +1,4 @@
-{% load i18n project_tags a4_candy_project_tags thumbnail contrib_tags partner_tags %}
+{% load i18n project_tags a4_candy_project_tags thumbnail contrib_tags organisation_tags %}
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 
@@ -24,7 +24,7 @@
             <div class="lr-bar__right">
                 <div class="btn-group">
                 {% spaceless %}
-                    {% withpartner project.organisation.partner %}
+                    {% withorganisation project.organisation %}
                     <a href="{{ project|project_url }}"
                        class="btn btn--light btn--small">
                         <i class="fa fa-eye" aria-hidden="true"></i>
@@ -34,7 +34,7 @@
                         {% trans 'View' %}
                         {% endif %}
                     </a>
-                    {% endwithpartner %}
+                    {% endwithorganisation %}
                     <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
                        class="btn btn--light btn--small">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -87,7 +87,7 @@
                 </button>
             </div>
             <div class="modal-footer">
-                <form action="{% url "project-delete" pk=project.pk partner_slug=project.organisation.partner.slug %}" method="post">
+                <form action="{% url "project-delete" pk=project.pk organisation_slug=project.organisation.slug %}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn--primary">{% trans 'delete' %}</button>
                     <button type="button" class="btn btn--secondary" data-dismiss="modal">{% trans 'cancel' %}</button>

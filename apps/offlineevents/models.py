@@ -38,7 +38,7 @@ class OfflineEvent(UserGeneratedContentModel):
         return reverse(
             'a4_candy_offlineevents:offlineevent-detail',
             kwargs=dict(
-                partner_slug=self.project.organisation.partner.slug,
+                organisation_slug=self.project.organisation.slug,
                 slug=str(self.slug)
             )
         )

@@ -20,7 +20,7 @@ def test_creator_can_update_during_active_phase(client,
     url = reverse(
         'a4_candy_ideas:idea-update',
         kwargs={
-            'partner_slug': idea.project.organisation.partner.slug,
+            'organisation_slug': idea.project.organisation.slug,
             'pk': idea.pk,
             'year': idea.created.year
         })
@@ -51,7 +51,7 @@ def test_creator_cannot_update_in_wrong_phase(client,
     url = reverse(
         'a4_candy_ideas:idea-update',
         kwargs={
-            'partner_slug': idea.project.organisation.partner.slug,
+            'organisation_slug': idea.project.organisation.slug,
             'pk': idea.pk,
             'year': idea.created.year
         })
@@ -80,7 +80,7 @@ def test_moderator_can_update_during_wrong_phase(client,
     url = reverse(
         'a4_candy_ideas:idea-update',
         kwargs={
-            'partner_slug': idea.project.organisation.partner.slug,
+            'organisation_slug': idea.project.organisation.slug,
             'pk': idea.pk,
             'year': idea.created.year
         })
@@ -106,7 +106,7 @@ def test_creator_cannot_update(client, idea_factory):
     url = reverse(
         'a4_candy_ideas:idea-update',
         kwargs={
-            'partner_slug': idea.project.organisation.partner.slug,
+            'organisation_slug': idea.project.organisation.slug,
             'pk': idea.pk,
             'year': idea.created.year
         })
@@ -127,7 +127,7 @@ def test_moderators_can_always_update(client, idea_factory):
     url = reverse(
         'a4_candy_ideas:idea-update',
         kwargs={
-            'partner_slug': idea.project.organisation.partner.slug,
+            'organisation_slug': idea.project.organisation.slug,
             'pk': idea.pk,
             'year': idea.created.year
         })

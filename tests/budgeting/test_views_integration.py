@@ -9,7 +9,7 @@ from tests.helpers import setup_phase
 
 
 @pytest.mark.django_db
-def test_list_view(client, phase_factory, proposal_factory, partner):
+def test_list_view(client, phase_factory, proposal_factory, organisation):
     phase, module, project, item = setup_phase(
         phase_factory, proposal_factory, phases.RequestPhase)
     url = project.get_absolute_url()
@@ -40,7 +40,7 @@ def test_create_view(client, phase_factory, proposal_factory, user,
     url = reverse(
         'a4_candy_budgeting:proposal-create',
         kwargs={
-            'partner_slug': project.organisation.partner.slug,
+            'organisation_slug': project.organisation.slug,
             'module_slug': module.slug
         }
     )
@@ -73,7 +73,7 @@ def test_moderate_view(client, phase_factory, proposal_factory, user,
     url = reverse(
         'a4_candy_budgeting:proposal-moderate',
         kwargs={
-            'partner_slug': project.organisation.partner.slug,
+            'organisation_slug': project.organisation.slug,
             'pk': item.pk,
             'year': item.created.year
         }

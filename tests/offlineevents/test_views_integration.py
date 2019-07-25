@@ -4,7 +4,7 @@ from tests.helpers import assert_template_response
 
 
 @pytest.mark.django_db
-def test_detail_view(client, offline_event, partner):
+def test_detail_view(client, offline_event, organisation):
     url = offline_event.get_absolute_url()
     response = client.get(url)
     assert_template_response(

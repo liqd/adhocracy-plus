@@ -43,14 +43,14 @@ def test_get_item_url(rf, idea_factory):
 
     assert (
         '/{}/ideas/{}-{}/update/'.format(
-            obj.project.organisation.partner.slug,
+            obj.project.organisation.slug,
             obj.created.year,
             '{:05d}'.format(obj.pk)) ==
         context['update_url']
     )
     assert (
         '/{}/ideas/{}-{}/delete/'.format(
-            obj.project.organisation.partner.slug,
+            obj.project.organisation.slug,
             obj.created.year,
             '{:05d}'.format(obj.pk)) ==
         context['delete_url']

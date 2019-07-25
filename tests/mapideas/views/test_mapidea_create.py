@@ -15,7 +15,7 @@ def test_anonymous_cannot_create_mapidea(client, phase_factory):
     url = reverse(
         'a4_candy_mapideas:mapidea-create',
         kwargs={
-            'partner_slug': module.project.organisation.partner.slug,
+            'organisation_slug': module.project.organisation.slug,
             'module_slug': module.slug
         }
     )
@@ -38,7 +38,7 @@ def test_user_can_create_mapidea_during_active_phase(client, phase_factory,
     url = reverse(
         'a4_candy_mapideas:mapidea-create',
         kwargs={
-            'partner_slug': module.project.organisation.partner.slug,
+            'organisation_slug': module.project.organisation.slug,
             'module_slug': module.slug
         }
     )
@@ -72,7 +72,7 @@ def test_user_cannot_create_mapidea_in_wrong_phase(client, phase_factory,
     url = reverse(
         'a4_candy_mapideas:mapidea-create',
         kwargs={
-            'partner_slug': module.project.organisation.partner.slug,
+            'organisation_slug': module.project.organisation.slug,
             'module_slug': module.slug
         }
     )
@@ -95,7 +95,7 @@ def test_admin_can_create_mapidea_in_wrong_phase(client, phase_factory,
     url = reverse(
         'a4_candy_mapideas:mapidea-create',
         kwargs={
-            'partner_slug': module.project.organisation.partner.slug,
+            'organisation_slug': module.project.organisation.slug,
             'module_slug': module.slug
         }
     )

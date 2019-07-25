@@ -85,7 +85,7 @@ class Idea(AbstractIdea):
         return reverse(
             'a4_candy_ideas:idea-detail',
             kwargs=dict(
-                partner_slug=self.project.organisation.partner.slug,
+                organisation_slug=self.project.organisation.slug,
                 pk='{:05d}'.format(self.pk),
                 year=self.created.year
             )
