@@ -24,8 +24,9 @@ $timeline-carousel__top-space: 11px;
 .timeline-carousel__label {
     padding: $padding;
     margin-top: 2*$spacer;
-    color: $brand-secondary;
-    background-color: $bg-secondary;
+    color: $text-color-gray;
+    border: 1px solid $text-color-gray;
+    background-color: $body-bg;
     text-align: left;
     transition: transform 0.2s;
     transform-origin: 50% 50%;
@@ -112,8 +113,9 @@ $timeline-carousel__top-space: 11px;
 }
 
 .initial {
-    background: $brand-secondary;
-    color: $text-color-inverted;
+    background: $body-bg;
+    color: $text-color;
+    border: 2px solid $brand-secondary;
 
     &.timeline-carousel__label {
         padding: 1.5*$padding;
