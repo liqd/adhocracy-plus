@@ -48,7 +48,8 @@ class ParticipantInvite(Invite):
             s=self)
 
     def get_absolute_url(self):
-        url_kwargs = {'invite_token': self.token}
+        url_kwargs = {'organisation_slug': self.project.organisation.slug,
+                      'invite_token': self.token}
         return reverse('project-participant-invite-detail', kwargs=url_kwargs)
 
     def accept(self, user):
@@ -74,7 +75,8 @@ class ModeratorInvite(Invite):
         return 'Moderation invite to {s.project} for {s.email}'.format(s=self)
 
     def get_absolute_url(self):
-        url_kwargs = {'invite_token': self.token}
+        url_kwargs = {'organisation_slug': self.project.organisation.slug,
+                      'invite_token': self.token}
         return reverse('project-moderator-invite-detail', kwargs=url_kwargs)
 
     def accept(self, user):
