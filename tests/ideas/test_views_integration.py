@@ -9,7 +9,7 @@ from tests.helpers import setup_phase
 
 
 @pytest.mark.django_db
-def test_list_view(client, phase_factory, idea_factory, partner):
+def test_list_view(client, phase_factory, idea_factory, organisation):
     phase, module, project, idea = setup_phase(
         phase_factory, idea_factory, phases.FeedbackPhase)
     url = project.get_absolute_url()
@@ -20,7 +20,7 @@ def test_list_view(client, phase_factory, idea_factory, partner):
 
 
 @pytest.mark.django_db
-def test_detail_view(client, phase_factory, idea_factory, partner):
+def test_detail_view(client, phase_factory, idea_factory, organisation):
     phase, module, project, idea = setup_phase(
         phase_factory, idea_factory, phases.FeedbackPhase)
     url = idea.get_absolute_url()
@@ -32,7 +32,7 @@ def test_detail_view(client, phase_factory, idea_factory, partner):
 
 @pytest.mark.django_db
 def test_create_view(client, phase_factory, idea_factory, user,
-                     category_factory, partner):
+                     category_factory, organisation):
     phase, module, project, idea = setup_phase(
         phase_factory, idea_factory, phases.IssuePhase)
     category = category_factory(module=module)

@@ -4,8 +4,7 @@ from django.contrib.auth.hashers import make_password
 
 from adhocracy4 import phases
 from adhocracy4.test import factories
-
-from .partners import factories as partner_factories
+from apps.organisations import set_organisation
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -37,9 +36,6 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('company')
 
-    partner = factory.SubFactory(partner_factories.PartnerFactory,
-                                 auto_set_partner=False)
-
     @factory.post_generation
     def initiators(self, create, extracted, **kwargs):
         if not extracted:
@@ -50,6 +46,11 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
         if extracted:
             for user in extracted:
                 self.initiators.add(user)
+
+    @factory.post_generation
+    def auto_set_organisation(self, create, extracted, **kwargs):
+        if extracted is None or extracted:
+            set_organisation(self)
 
 
 # FIXME: move to core

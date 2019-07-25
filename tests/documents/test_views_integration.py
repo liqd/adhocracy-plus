@@ -7,7 +7,8 @@ from tests.helpers import setup_phase
 
 
 @pytest.mark.django_db
-def test_document_detail_view(client, phase_factory, chapter_factory, partner):
+def test_document_detail_view(client, phase_factory, chapter_factory,
+                              organisation):
     phase, module, project, item = setup_phase(
         phase_factory, chapter_factory, phases.CommentPhase)
     url = project.get_absolute_url()
@@ -18,7 +19,8 @@ def test_document_detail_view(client, phase_factory, chapter_factory, partner):
 
 
 @pytest.mark.django_db
-def test_chapter_detail_view(client, phase_factory, chapter_factory, partner):
+def test_chapter_detail_view(client, phase_factory, chapter_factory,
+                             organisation):
     phase, module, project, item = setup_phase(
         phase_factory, None, phases.CommentPhase)
     chapter_factory(module=module, weight=0)
@@ -32,7 +34,7 @@ def test_chapter_detail_view(client, phase_factory, chapter_factory, partner):
 
 @pytest.mark.django_db
 def test_paragraph_detail_view(client, phase_factory, chapter_factory,
-                               paragraph_factory, partner):
+                               paragraph_factory, organisation):
     phase, module, project, item = setup_phase(
         phase_factory, chapter_factory, phases.CommentPhase)
     paragraph = paragraph_factory(chapter=item)

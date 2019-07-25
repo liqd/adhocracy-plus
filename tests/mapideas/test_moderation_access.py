@@ -19,7 +19,7 @@ def setup_mapidea_moderation():
         url = reverse(
             'a4_candy_mapideas:mapidea-moderate',
             kwargs={
-                'partner_slug': item.project.organisation.partner.slug,
+                'organisation_slug': item.project.organisation.slug,
                 'pk': item.pk,
                 'year': item.created.year
             })

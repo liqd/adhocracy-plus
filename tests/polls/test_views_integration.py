@@ -8,7 +8,7 @@ from tests.helpers import setup_phase
 
 @pytest.mark.django_db
 def test_detail_view(client, phase_factory, poll_factory, question_factory,
-                     choice_factory, partner):
+                     choice_factory, organisation):
     phase, module, project, item = setup_phase(
         phase_factory, poll_factory, phases.VotingPhase)
     question = question_factory(poll=item)

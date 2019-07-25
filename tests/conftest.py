@@ -10,7 +10,6 @@ from adhocracy4.test.helpers import patch_background_task_decorator
 from apps.django_overwrites.urlresolvers import patch_reverse
 
 from . import factories
-from .partners import factories as partner_factories
 
 
 def pytest_configure(config):
@@ -20,7 +19,7 @@ def pytest_configure(config):
     # Patch email background_task decorators for all tests
     patch_background_task_decorator('adhocracy4.emails.tasks')
 
-    # Populate reverse dict with partner patterns
+    # Populate reverse dict with organisation patterns
     resolver = get_resolver()
     resolver.reverse_dict
 
@@ -29,7 +28,6 @@ register(factories.UserFactory)
 register(factories.UserFactory, 'user2')
 register(factories.AdminFactory, 'admin')
 register(factories.OrganisationFactory)
-register(partner_factories.PartnerFactory)
 
 register(factories.PhaseFactory)
 register(factories.PhaseContentFactory)

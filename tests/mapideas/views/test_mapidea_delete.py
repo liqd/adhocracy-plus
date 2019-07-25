@@ -15,7 +15,7 @@ def test_anonymous_cannot_delete(client, map_idea_factory):
     url = reverse(
         'a4_candy_mapideas:mapidea-delete',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -31,7 +31,7 @@ def test_user_cannot_delete(client, map_idea_factory, user):
     url = reverse(
         'a4_candy_mapideas:mapidea-delete',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -46,7 +46,7 @@ def test_creator_cannot_delete(client, map_idea_factory):
     url = reverse(
         'a4_candy_mapideas:mapidea-delete',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -62,7 +62,7 @@ def test_moderator_can_delete(client, map_idea_factory):
     url = reverse(
         'a4_candy_mapideas:mapidea-delete',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -78,7 +78,7 @@ def test_initator_can_delete(client, map_idea_factory):
     url = reverse(
         'a4_candy_mapideas:mapidea-delete',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -93,7 +93,7 @@ def test_admin_can_delete(client, map_idea_factory, admin):
     url = reverse(
         'a4_candy_mapideas:mapidea-delete',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -110,7 +110,7 @@ def test_creator_can_delete_in_active_phase(client,
     url = reverse(
         'a4_candy_mapideas:mapidea-delete',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -139,7 +139,7 @@ def test_creator_cannot_delete_in_wrong_phase(client,
     url = reverse(
         'a4_candy_mapideas:mapidea-delete',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -160,7 +160,7 @@ def test_moderator_can_delete_in_active_phase(client,
     url = reverse(
         'a4_candy_mapideas:mapidea-delete',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -189,7 +189,7 @@ def test_moderator_can_delete_in_wrong_phase(client,
     url = reverse(
         'a4_candy_mapideas:mapidea-delete',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })

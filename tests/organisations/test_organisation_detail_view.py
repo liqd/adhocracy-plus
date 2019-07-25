@@ -1,18 +1,18 @@
 import pytest
 from django.urls import reverse
 
-from apps.partners import set_partner
+from apps.organisations import set_organisation
 
 
 @pytest.mark.django_db
 def test_hide_private_projects(client, user, project_factory, organisation):
-    partner = organisation.partner
-    set_partner(partner)
+    set_organisation(organisation)
     public = project_factory(organisation=organisation)
     private = project_factory(is_public=False, organisation=organisation)
 
     client.login(username=user, password='password')
-    url = reverse('partner', kwargs={'partner_slug': partner.slug})
+    url = reverse('organisation',
+                  kwargs={'organisation_slug': organisation.slug})
     response = client.get(url)
     assert response.status_code == 200
 
@@ -25,13 +25,13 @@ def test_hide_private_projects(client, user, project_factory, organisation):
 def test_show_private_projects_participant(
     client, user, project_factory, organisation
 ):
-    partner = organisation.partner
     public = project_factory(organisation=organisation)
     private = project_factory(is_public=False, organisation=organisation)
     private.participants.add(user)
 
     client.login(username=user, password='password')
-    url = reverse('partner', kwargs={'partner_slug': partner.slug})
+    url = reverse('organisation',
+                  kwargs={'organisation_slug': organisation.slug})
     response = client.get(url)
     assert response.status_code == 200
 
@@ -44,13 +44,13 @@ def test_show_private_projects_participant(
 def test_show_private_projects_initiators(
     client, user, project_factory, organisation
 ):
-    partner = organisation.partner
     public = project_factory(organisation=organisation)
     private = project_factory(is_public=False, organisation=organisation)
     private.organisation.initiators.add(user)
 
     client.login(username=user, password='password')
-    url = reverse('partner', kwargs={'partner_slug': partner.slug})
+    url = reverse('organisation',
+                  kwargs={'organisation_slug': organisation.slug})
     response = client.get(url)
     assert response.status_code == 200
 

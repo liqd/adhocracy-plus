@@ -7,16 +7,16 @@ from django.urls import URLResolver
 
 from apps.django_overwrites.urlresolvers import django_reverse
 
-from . import get_partner
+from . import get_organisation
 
-_partner_pattern_names = set()
+_organisation_pattern_names = set()
 
 
-def partner_patterns(*pattern_list):
-    """Mark the url patterns used with partners."""
+def organisation_patterns(*pattern_list):
+    """Mark the url patterns used with organisations."""
     for pattern in pattern_list:
         if isinstance(pattern, URLPattern):
-            _partner_pattern_names.add(pattern.name)
+            _organisation_pattern_names.add(pattern.name)
         elif isinstance(pattern, URLResolver):
             for url_pattern in pattern.url_patterns:
                 ns = ''
@@ -24,24 +24,25 @@ def partner_patterns(*pattern_list):
                     ns = ns + pattern.app_name + ':'
                 elif pattern.namespace:
                     ns = ns + pattern.namespace + ':'
-                _partner_pattern_names.add(ns + url_pattern.name)
+                _organisation_pattern_names.add(ns + url_pattern.name)
         else:
             raise Exception()
 
-    return url(r'^(?P<partner_slug>[-\w_]+)/',
+    return url(r'^(?P<organisation_slug>[-\w_]+)/',
                include(list(pattern_list)))
 
 
 def reverse(viewname, urlconf=None, args=None, kwargs=None, current_app=None):
-    """Add the current partner to the url if none is set yet."""
-    if viewname in _partner_pattern_names and get_partner():
-        partner_slug = get_partner().slug
+    """Add the current organisation to the url if none is set yet."""
+    if viewname in _organisation_pattern_names and get_organisation():
+        organisation_slug = get_organisation().slug
         if args:
-            # Attention: Assumes a manual partner_slug is always set as kwarg
-            args = list(itertools.chain((partner_slug,), args))
-        elif kwargs and 'partner_slug' not in kwargs:
-            kwargs['partner_slug'] = partner_slug
+            # Attention: Assumes a manual organisation_slug is
+            # always set as kwarg
+            args = list(itertools.chain((organisation_slug,), args))
+        elif kwargs and 'organisation_slug' not in kwargs:
+            kwargs['organisation_slug'] = organisation_slug
         elif not kwargs:
-            kwargs = {'partner_slug': partner_slug}
+            kwargs = {'organisation_slug': organisation_slug}
 
     return django_reverse(viewname, urlconf, args, kwargs, current_app)

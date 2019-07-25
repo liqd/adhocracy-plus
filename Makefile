@@ -47,7 +47,6 @@ clean:
 fixtures:
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata liqd_product/fixtures/site-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata liqd_product/fixtures/users-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata liqd_product/fixtures/partner-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata liqd_product/fixtures/orga-dev.json
 
 .PHONY: server

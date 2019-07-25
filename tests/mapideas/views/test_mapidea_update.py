@@ -22,7 +22,7 @@ def test_creator_can_update_during_active_phase(client,
     url = reverse(
         'a4_candy_mapideas:mapidea-update',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -55,7 +55,7 @@ def test_creator_cannot_update_in_wrong_phase(client,
     url = reverse(
         'a4_candy_mapideas:mapidea-update',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -86,7 +86,7 @@ def test_moderator_can_update_during_wrong_phase(client,
     url = reverse(
         'a4_candy_mapideas:mapidea-update',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -114,7 +114,7 @@ def test_creator_cannot_update(client, map_idea_factory):
     url = reverse(
         'a4_candy_mapideas:mapidea-update',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
@@ -142,7 +142,7 @@ def test_moderators_can_always_update(client, phase_factory,
     url = reverse(
         'a4_candy_mapideas:mapidea-update',
         kwargs={
-            'partner_slug': mapidea.project.organisation.partner.slug,
+            'organisation_slug': mapidea.project.organisation.slug,
             'pk': mapidea.pk,
             'year': mapidea.created.year
         })
