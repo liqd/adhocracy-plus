@@ -14,17 +14,18 @@
                     <div class="cms-teaser">{{ page.teaser|richtext }}</div>
                 </div>
             </div>
+        </div>
+        <div>{{ page.body|richtext }}</div>
+        <div>{{ page.body_streamfield }}</div>
 
-            <div>{{ page.body|richtext }}</div>
-            <div>{{ page.body_streamfield }}</div>
-
-            {% if page.form_page %}
-            <div class="l-center-8 text-center">
+        {% if page.form_page %}
+        <div class="contact_form p-3 py-md-5">
+            <div class="l-center-6 text-center mb-md-5">
                 <h2>{{ page.form_page.header }}</h2>
                 <p>{{ page.form_page.intro|richtext }}</p>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-5 offset-lg-1">
                     <form action="{% pageurl page.form_page %}" method="POST">
                         <div class="form-group">
                         {% csrf_token %}
@@ -36,21 +37,46 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-6">
-                    <div>
-                        <div class="userindicator__btn-img" style="background-image:url({% static 'images/avatar_00.png'"></div>
-                        test1
+                <div class="col-lg-5 my-5 my-lg-0">
+                    <div class="row mb-3 pb-3 position-relative">
+                        <div class="col-4 col-sm-3 col-md-4"></div>
+                        <div class="col-8">
+                            <span class="font-weight-bold">Ihr Ansprechpartner</span><br>
+                            <span>Moritz Ritter</span><br>
+                            <span>Position</span>
+                        </div>
+                        <div class="contact_form__divider pt-3"></div>
                     </div>
-                    <div>
-                        test2
+                    <div class="row mb-3">
+                        <div class="col-4 col-sm-3 col-md-4"></div>
+                        <div class="col-8">
+                          <span class="font-weight-bold">Hier finden Sie uns</span><br>
+                          <span>Liquid Democracy e.V.</span><br>
+                          <span>Am Sudhaus 2</span><br>
+                          <span>12053 Berlin</span>
+                        </div>
                     </div>
-                    <div>
-                        test3
+                    <div class="row mb-3 pb-3 position-relative">
+                        <div class="col-4 col-sm-3 col-md-4"></div>
+                        <div class="col-8">
+                          <span class="font-weight-bold">So erreichen Sie uns</span><br>
+                          <span>+49 (0) 30 6298 4840</span><br>
+                          <span>hallo@liqd.net</span>
+                        </div>
+                        <div class="contact_form__divider pt-3"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 col-sm-3 col-md-4"></div>
+                        <div class="col-8">
+                            <a>Facebook</a><br>
+                            <a>Twitter</a><br>
+                            <a>Github</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            {% endif %}
-
         </div>
+        {% endif %}
+
     </div>
 {% endblock %}
