@@ -53,7 +53,8 @@ class OfflineEventCreateView(ProjectMixin,
     def get_success_url(self):
         return reverse(
             'a4dashboard:offlineevent-list',
-            kwargs={'project_slug': self.project.slug})
+            kwargs={'organisation_slug': self.project.organisation.slug,
+                    'project_slug': self.project.slug})
 
     def get_permission_object(self):
         return self.project
@@ -73,7 +74,8 @@ class OfflineEventUpdateView(ProjectMixin,
     def get_success_url(self):
         return reverse(
             'a4dashboard:offlineevent-list',
-            kwargs={'project_slug': self.project.slug})
+            kwargs={'organisation_slug': self.project.organisation.slug,
+                    'project_slug': self.project.slug})
 
     @property
     def organisation(self):
@@ -102,7 +104,8 @@ class OfflineEventDeleteView(ProjectMixin,
     def get_success_url(self):
         return reverse(
             'a4dashboard:offlineevent-list',
-            kwargs={'project_slug': self.project.slug})
+            kwargs={'organisation_slug': self.project.organisation.slug,
+                    'project_slug': self.project.slug})
 
     @property
     def organisation(self):

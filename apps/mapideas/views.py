@@ -95,8 +95,10 @@ class MapIdeaDashboardExportView(DashboardExportView):
         context = super().get_context_data(**kwargs)
         context['export'] = reverse(
             'a4dashboard:mapidea-export',
-            kwargs={'module_slug': self.module.slug})
+            kwargs={'organisation_slug': self.module.project.organisation.slug,
+                    'module_slug': self.module.slug})
         context['comment_export'] = reverse(
             'a4dashboard:mapidea-comment-export',
-            kwargs={'module_slug': self.module.slug})
+            kwargs={'organisation_slug': self.module.project.organisation.slug,
+                    'module_slug': self.module.slug})
         return context

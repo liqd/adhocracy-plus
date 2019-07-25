@@ -4,7 +4,7 @@
     <div class="tile__head">
         <div class="tile__image tile__image--contained" style="background-image: url({% static blueprint.image %})"></div>
     </div>
-    <form class="tile__body" action="{% url 'a4dashboard:module-create' project_slug=project.slug blueprint_slug=blueprint_slug %}" method="POST">
+    <form class="tile__body" action="{% url 'a4dashboard:module-create' organisation_slug=project.organisation.slug project_slug=project.slug blueprint_slug=blueprint_slug %}" method="POST">
         {% csrf_token %}
 
         <h3 class="tile__title">{{ blueprint.title }}</h3>
