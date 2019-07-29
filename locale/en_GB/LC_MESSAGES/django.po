@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-23 14:25+0200\n"
+"POT-Creation-Date: 2019-07-29 17:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -352,8 +352,8 @@ msgid "Edit basic settings"
 msgstr "Edit basic settings"
 
 #: adhocracy4/dashboard/dashboard.py:23
-#: apps/partners/templates/partner_information.html:4
-#: apps/partners/templates/partner_information.html:9
+#: apps/organisations/templates/organisation_information.html:4
+#: apps/organisations/templates/organisation_information.html:9
 #: apps/projects/templates/a4_candy_projects/project_detail.html:64
 #: liqd_product/templates/header.html:33
 msgid "Information"
@@ -751,7 +751,8 @@ msgstr "Project"
 msgid "Information and result"
 msgstr "Information and result"
 
-#: adhocracy4/projects/admin.py:50 apps/partners/templates/partner_form.html:4
+#: adhocracy4/projects/admin.py:50
+#: apps/organisations/templates/organisation_form.html:4
 #: apps/projects/admin.py:45
 msgid "Settings"
 msgstr "Settings"
@@ -872,11 +873,12 @@ msgstr ""
 "description will always be visible to everyone"
 
 #: adhocracy4/projects/models.py:149 adhocracy4/projects/models.py:155
-#: apps/partners/models.py:55
+#: apps/organisations/models.py:57 apps/partners/models.py:55
 msgid "Header image"
 msgstr "Header image"
 
-#: adhocracy4/projects/models.py:151 apps/partners/models.py:57
+#: adhocracy4/projects/models.py:151 apps/organisations/models.py:59
+#: apps/partners/models.py:57
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
@@ -955,7 +957,7 @@ msgid "Your profile"
 msgstr "Your profile"
 
 #: apps/account/templates/a4_candy_account/profile.html:28
-#: apps/partners/templates/partner_form.html:23
+#: apps/organisations/templates/organisation_form.html:23
 msgid "Save changes"
 msgstr "Save changes"
 
@@ -1213,30 +1215,42 @@ msgstr "Most commented"
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
 
-#: apps/cms/contacts/models.py:57
-msgid "I want to receicve a copy of my message as email"
-msgstr "I want to receicve a copy of my message as email"
+#: apps/cms/contacts/models.py:118
+msgid "I want to receive a copy of my message"
+msgstr "I want to receive a copy of my message"
 
-#: apps/cms/contacts/models.py:62
+#: apps/cms/contacts/models.py:123
 msgid "Your message"
 msgstr "Your message"
 
-#: apps/cms/contacts/models.py:67
+#: apps/cms/contacts/models.py:129
 msgid "Your email address"
 msgstr "Your email address"
 
-#: apps/cms/contacts/models.py:72
+#: apps/cms/contacts/models.py:135
 msgid "Your telephone number"
 msgstr "Your telephone number"
 
-#: apps/cms/contacts/models.py:77
-msgid "Your first and last name"
-msgstr "Your first and last name"
+#: apps/cms/contacts/models.py:141
+msgid "Your name"
+msgstr "Your name"
 
-#: apps/cms/contacts/templates/a4_candy_cms_contacts/form_page.html:20
+#: apps/cms/contacts/templates/a4_candy_cms_contacts/includes/form.html:16
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:25
 msgid "Send"
 msgstr "Send"
+
+#: apps/cms/contacts/templates/a4_candy_cms_contacts/includes/form.html:31
+msgid "Your contact person"
+msgstr "Your contact person"
+
+#: apps/cms/contacts/templates/a4_candy_cms_contacts/includes/form.html:42
+msgid "You can find us here:"
+msgstr "You can find us here:"
+
+#: apps/cms/contacts/templates/a4_candy_cms_contacts/includes/form.html:52
+msgid "This is how you can contact us:"
+msgstr "This is how you can contact us:"
 
 #: apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
@@ -1864,6 +1878,105 @@ msgstr "Edit offline event"
 msgid "The offline event has been deleted"
 msgstr "The offline event has been deleted"
 
+#: apps/organisations/models.py:20
+msgid "Title of your organisation"
+msgstr "Title of your organisation"
+
+#: apps/organisations/models.py:23
+msgid ""
+"The title of your organisation will be shown on the landing page. max. 100 "
+"characters"
+msgstr ""
+"The title of your organisation will be shown on the landing page. max. 100 "
+"characters"
+
+#: apps/organisations/models.py:28 apps/partners/models.py:26
+msgid "Short description of your organisation"
+msgstr "Short description of your organisation"
+
+#: apps/organisations/models.py:29 apps/partners/models.py:27
+msgid ""
+"The description will be displayed on the landing page. max. 400 characters"
+msgstr ""
+"The description will be displayed on the landing page. max. 400 characters"
+
+#: apps/organisations/models.py:34 apps/partners/models.py:32
+msgid "Logo"
+msgstr "Logo"
+
+#: apps/organisations/models.py:35 apps/partners/models.py:33
+msgid ""
+"The Logo representing your organisation. The image must be square and it "
+"should be min. 200 pixels wide and 200 pixels tall. Allowed file formats are "
+"png, jpeg, gif. The file size should be max. 5 MB."
+msgstr ""
+"The Logo representing your organisation. The image must be square and it "
+"should be min. 200 pixels wide and 200 pixels tall. Allowed file formats are "
+"png, jpeg, gif. The file size should be max. 5 MB."
+
+#: apps/organisations/models.py:46 apps/partners/models.py:44
+msgid "Slogan"
+msgstr "Slogan"
+
+#: apps/organisations/models.py:48
+msgid ""
+"The slogan will be shown below the title of your organisation on the landing "
+"page. The slogan can provide context or additional information to the title. "
+"max. 200 characters"
+msgstr ""
+"The slogan will be shown below the title of your organisation on the landing "
+"page. The slogan can provide context or additional information to the title. "
+"max. 200 characters"
+
+#: apps/organisations/models.py:66 apps/partners/models.py:64
+msgid "Information about your organisation"
+msgstr "Information about your organisation"
+
+#: apps/organisations/models.py:67 apps/partners/models.py:65
+msgid ""
+"You can provide general information about your participation platform to "
+"your visitors. It’s also helpful to name a general person of contact for "
+"inquiries. The information will be shown on a separate page that can be "
+"reached via the main menu."
+msgstr ""
+"You can provide general information about your participation platform to "
+"your visitors. It’s also helpful to name a general person of contact for "
+"inquiries. The information will be shown on a separate page that can be "
+"reached via the main menu."
+
+#: apps/organisations/models.py:76
+#: apps/organisations/templates/organisation_imprint.html:4
+#: apps/organisations/templates/organisation_imprint.html:9
+#: apps/partners/models.py:74 liqd_product/templates/footer.html:10
+#: liqd_product/templates/header.html:38
+msgid "Imprint"
+msgstr "Imprint"
+
+#: apps/organisations/models.py:77 apps/partners/models.py:75
+msgid ""
+"Please provide all the legally required information of your imprint. The "
+"imprint will be shown on a separate page."
+msgstr ""
+"Please provide all the legally required information of your imprint. The "
+"imprint will be shown on a separate page."
+
+#: apps/organisations/templates/organisation_form.html:9
+msgid "Edit your organisation information"
+msgstr "Edit your organisation information"
+
+#: apps/organisations/templates/organisation_landing_page.html:40
+msgid "Activity"
+msgstr "Activity"
+
+#: apps/organisations/templates/organisation_landing_page.html:45
+#: apps/users/templates/a4_candy_users/user_detail.html:110
+msgid "No activity yet. "
+msgstr "No activity yet. "
+
+#: apps/organisations/views.py:66
+msgid "Organisation successfully updated."
+msgstr "Organisation successfully updated."
+
 #: apps/partners/models.py:16
 msgid "Title of your platform"
 msgstr "Title of your platform"
@@ -1878,34 +1991,6 @@ msgstr ""
 "clear to the users that this is your participation platform. max. 100 "
 "characters"
 
-#: apps/partners/models.py:26
-msgid "Short description of your organisation"
-msgstr "Short description of your organisation"
-
-#: apps/partners/models.py:27
-msgid ""
-"The description will be displayed on the landing page. max. 400 characters"
-msgstr ""
-"The description will be displayed on the landing page. max. 400 characters"
-
-#: apps/partners/models.py:32
-msgid "Logo"
-msgstr "Logo"
-
-#: apps/partners/models.py:33
-msgid ""
-"The Logo representing your organisation. The image must be square and it "
-"should be min. 200 pixels wide and 200 pixels tall. Allowed file formats are "
-"png, jpeg, gif. The file size should be max. 5 MB."
-msgstr ""
-"The Logo representing your organisation. The image must be square and it "
-"should be min. 200 pixels wide and 200 pixels tall. Allowed file formats are "
-"png, jpeg, gif. The file size should be max. 5 MB."
-
-#: apps/partners/models.py:44
-msgid "Slogan"
-msgstr "Slogan"
-
 #: apps/partners/models.py:46
 msgid ""
 "The slogan will be shown below the title of your platform on the landing "
@@ -1915,53 +2000,6 @@ msgstr ""
 "The slogan will be shown below the title of your platform on the landing "
 "page. The slogan can provide context or additional information to the title. "
 "max. 200 characters"
-
-#: apps/partners/models.py:64
-msgid "Information about your organisation"
-msgstr "Information about your organisation"
-
-#: apps/partners/models.py:65
-msgid ""
-"You can provide general information about your participation platform to "
-"your visitors. It’s also helpful to name a general person of contact for "
-"inquiries. The information will be shown on a separate page that can be "
-"reached via the main menu."
-msgstr ""
-"You can provide general information about your participation platform to "
-"your visitors. It’s also helpful to name a general person of contact for "
-"inquiries. The information will be shown on a separate page that can be "
-"reached via the main menu."
-
-#: apps/partners/models.py:74 apps/partners/templates/partner_imprint.html:4
-#: apps/partners/templates/partner_imprint.html:9
-#: liqd_product/templates/footer.html:10 liqd_product/templates/header.html:38
-msgid "Imprint"
-msgstr "Imprint"
-
-#: apps/partners/models.py:75
-msgid ""
-"Please provide all the legally required information of your imprint. The "
-"imprint will be shown on a separate page."
-msgstr ""
-"Please provide all the legally required information of your imprint. The "
-"imprint will be shown on a separate page."
-
-#: apps/partners/templates/partner_form.html:9
-msgid "Edit your organisation information"
-msgstr "Edit your organisation information"
-
-#: apps/partners/templates/partner_landing_page.html:40
-msgid "Activity"
-msgstr "Activity"
-
-#: apps/partners/templates/partner_landing_page.html:45
-#: apps/users/templates/a4_candy_users/user_detail.html:110
-msgid "No activity yet. "
-msgstr "No activity yet. "
-
-#: apps/partners/views.py:66
-msgid "Organisation successfully updated."
-msgstr "Organisation successfully updated."
 
 #: apps/polls/phases.py:16
 msgid "Answer the questions and comment on the poll."
@@ -2914,6 +2952,12 @@ msgstr "Participate"
 #: liqd_product/templates/header_dashboard.html:37
 msgid "Menu"
 msgstr "Menu"
+
+#~ msgid "I want to receicve a copy of my message as email"
+#~ msgstr "I want to receicve a copy of my message as email"
+
+#~ msgid "Your first and last name"
+#~ msgstr "Your first and last name"
 
 #~ msgid "Provide information about face-to-face participation events."
 #~ msgstr "Provide information about face-to-face participation events."
