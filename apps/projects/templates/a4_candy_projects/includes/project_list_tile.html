@@ -27,7 +27,7 @@
         <p class="tile__date">
             {% if project.has_finished %}
                 <span><i class="tile__icon fa fa-flag-checkered"></i> {% trans 'Finished' %}</span>
-            {% else %}
+            {% elif project.end_date  %}
                 <span><i class="tile__icon fa fa-comments"></i> {% trans 'Participation possible until' %} {{ project.end_date|date:'d. M. Y'}}</span>
             {% endif %}
         </p>
