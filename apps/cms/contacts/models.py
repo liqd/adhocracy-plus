@@ -115,7 +115,7 @@ class FormPage(AbstractEmailForm):
         fields.insert(0, FormField(
             label='receive_copy',
             field_type='checkbox',
-            help_text=_('I want to receicve a copy of my message as email'),
+            help_text=_('I want to receive a copy of my message'),
             required=False))
 
         fields.insert(0, FormField(
@@ -138,7 +138,7 @@ class FormPage(AbstractEmailForm):
 
         fields.insert(0, FormField(
             label='name',
-            help_text=_('Your first and last name'),
+            help_text=_('Your name'),
             field_type='singleline',
             required=False))
         return fields
