@@ -4,23 +4,24 @@
 {% block content %}
     <div class="l-wrapper">
         <div class="hompage__wrapper p-3">
-        <div class="row homepage-header">
-            <div class="col-lg-6">
-                <h1 class="homepage-header__teaser ml-md-4">{{ page.teaser|richtext }}</h1>
+            <div class="row homepage-header">
+                <div class="col-lg-6">
+                    <h1 class="homepage-header__teaser ml-md-4">{{ page.teaser|richtext }}</h1>
+                </div>
+                <div class="col-lg-6 homepage-header__image-wrapper">
+                    {% image page.image width-770 as image %}
+                    <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
+                </div>
             </div>
-            <div class="col-lg-6 homepage-header__image-wrapper">
-                {% image page.image width-770 as image %}
-                <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
-            </div>
+
+            <div>{{ page.body|richtext }}</div>
+            <div>{{ page.body_streamfield }}</div>
+
+            {% if page.form_page %}
+                <div id="form_page">
+                {% include 'a4_candy_cms_contacts/includes/form.html' with page=page.form_page form=page.form %}
+                </div>
+            {% endif %}
         </div>
-
-        <div>{{ page.body|richtext }}</div>
-        <div>{{ page.body_streamfield }}</div>
-
-        {% if page.form_page %}
-            <div id="form_page">
-            {% include 'a4_candy_cms_contacts/includes/form.html' with page=page.form_page form=page.form %}
-            </div>
-        {% endif %}
     </div>
 {% endblock %}
