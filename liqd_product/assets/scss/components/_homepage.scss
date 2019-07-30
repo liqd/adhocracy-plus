@@ -2,9 +2,10 @@ $spacer-xl: 5rem;
 
 .hompage__wrapper {
     background-color: $bg-light;
+    margin: $r-spacer;
 
     @media screen and (min-width: $breakpoint-lg) {
-        margin: -$r-spacer;
+        margin: 2*$r-spacer;
     }
 }
 
