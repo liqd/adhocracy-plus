@@ -77,6 +77,11 @@ $block-padding-md: 7*$padding;
             width: 75%;
         }
     }
+
+    .row {
+        margin-left: -$r-spacer;
+        margin-right: -$r-spacer;
+    }
 }
 
 //image/list cta block
@@ -106,7 +111,7 @@ $block-padding-md: 7*$padding;
 
     @media screen and (min-width: $breakpoint-lg) {
         margin-top: 2*$r-spacer;
-        right: 5*-$r-spacer;
+        right: 4.5*-$r-spacer;
     }
 }
 
