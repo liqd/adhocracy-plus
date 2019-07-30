@@ -101,8 +101,13 @@ $block-padding-md: 5*$padding;
     max-height: 400px;
     width: auto;
     position: relative;
-    right: -32px;
+    right: 2*-$r-spacer;
     margin-top: $r-spacer;
+
+    @media screen and (min-width: $breakpoint-lg) {
+        margin-top: 2*$r-spacer;
+        right: 5*-$r-spacer;
+    }
 }
 
 .block-image_cta_block {
@@ -196,8 +201,13 @@ $block-padding-md: 5*$padding;
 }
 
 .block-background_cta_block {
-    margin-left: -17px;
-    margin-right: -17px;
+    margin-left: -$r-spacer;
+    margin-right: -$r-spacer;
+
+    @media screen and (min-width: $breakpoint-lg) {
+        margin-left: 2*-$r-spacer;
+        margin-right: 2*-$r-spacer;
+    }
 
     .block {
         h2:after {
