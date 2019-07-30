@@ -1,7 +1,7 @@
 $spacer-xl: 7rem;
 
 .hompage__wrapper {
-    background-color: $bg-light;
+    background-color: $bg-tertiary;
     margin: $r-spacer;
 
     @media screen and (min-width: $breakpoint-lg) {
@@ -20,9 +20,13 @@ $spacer-xl: 7rem;
 
 .homepage-header__image {
     position: relative;
-    right: -32px;
+    right: 2*-$r-spacer;
     height: 100%;
     object-fit: cover;
+
+    @media screen and (min-width: $breakpoint-md) {
+        right: -3*$r-spacer;
+    }
 }
 
 .homepage-header__teaser {
