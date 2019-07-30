@@ -1,5 +1,5 @@
-$block-padding: 2.5*$padding;
-$block-padding-md: 5*$padding;
+$block-padding: 3.5*$padding;
+$block-padding-md: 7*$padding;
 
 //non block specific styles
 .block-col-6 {
@@ -92,7 +92,7 @@ $block-padding-md: 5*$padding;
         padding: 0 0 0 2*$r-spacer;
 
         @media screen and (min-width: $breakpoint-md) {
-            padding: 0 $block-padding-md 0 2*$r-spacer;
+            padding: 0 $block-padding-md 0 5*$r-spacer;
         }
     }
 }
@@ -153,7 +153,6 @@ $block-padding-md: 5*$padding;
 //some old some current general styling
 .block {
     @include clearfix;
-    margin-bottom: 2.8em;
     page-break-inside: avoid;
 
     h2,
@@ -210,6 +209,9 @@ $block-padding-md: 5*$padding;
     }
 
     .block {
+        border-top: 2*$r-spacer solid $body-bg;
+        border-bottom: 2*$r-spacer solid $body-bg;
+
         h2:after {
             border-bottom: none;
         }
