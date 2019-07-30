@@ -17,5 +17,9 @@
     border-bottom: 2px solid $body-bg;
     position: absolute;
     bottom: 0;
-    left: 100px;
+    left: 10%;
+
+    @media screen and (min-width: $breakpoint-lg) {
+        left: 20%;
+    }
 }
