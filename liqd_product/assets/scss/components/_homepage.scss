@@ -1,4 +1,4 @@
-$spacer-xl: 7rem;
+$spacer-xl: 7.5rem;
 
 .hompage__wrapper {
     background-color: $bg-light;
@@ -10,7 +10,11 @@ $spacer-xl: 7rem;
 }
 
 .homepage-header {
-    margin-bottom: $spacer-xl;
+    margin-bottom: 2*$r-spacer;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        margin-bottom: $spacer-xl;
+    }
 }
 
 .homepage-header__image-wrapper {
