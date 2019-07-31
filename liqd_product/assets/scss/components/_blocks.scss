@@ -194,6 +194,50 @@ $block-padding-md: 7.5*$padding;
     }
 }
 
+//old block styling, still used in activity block
+.block--bordered {
+    padding: 1em;
+    border: 1px solid $border-color;
+
+    @media (max-width: $breakpoint - 0.1rem) {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+//some old some current general styling
+.block {
+    @include clearfix;
+    page-break-inside: avoid;
+
+    h2,
+    h3,
+    h4 {
+        font-family: $font-family-serif;
+        font-weight: normal;
+
+        b {
+            font-family: $font-family-base;
+            font-weight: bold;
+        }
+    }
+
+    h2 {
+        display: inline-block;
+        position: relative;
+    }
+
+    //border on section headings
+    h2:after {
+        content: "";
+        position: absolute;
+        left: calc(50% - 25px);
+        bottom: -10px;
+        width: 50px;
+        border-bottom: solid 4px $brand-secondary;
+    }
+}
+
 //coloured background block
 .block-background_cta_block .block > :first-child {
     background-color: $brand-secondary;
