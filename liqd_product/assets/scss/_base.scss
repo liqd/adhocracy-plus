@@ -56,15 +56,15 @@ h3 {
 }
 
 h4 {
-    font-size: inherit;
+    font-size: $font-size-md;
 }
 
 h5 {
-    font-size: $font-size-sm;
+    font-size: $font-size-base;
 }
 
 h6 {
-    font-size: $font-size-xs;
+    font-size: $font-size-sm;
 }
 
 @media screen and (max-width: $breakpoint-xs-down) {
@@ -77,8 +77,11 @@ h6 {
     }
 
     h3 {
-        font-size: $font-size-base; //it's smaller than base if multiplied same as above
-        font-weight: bold; //it's a headline so need to have some differentiation from base
+        font-size: $mobile-headline-size*$font-size-lg;
+    }
+
+    h4 {
+        font-size: $mobile-headline-size*$font-size-md;
     }
 }
 
