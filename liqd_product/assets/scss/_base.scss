@@ -44,23 +44,23 @@ h6 {
 }
 
 h1 {
-    font-size: $font-size-xxl;
+    font-size: $font-size-xxxl;
 }
 
 h2 {
-    font-size: $font-size-xl;
+    font-size: $font-size-xxl;
 }
 
 h3 {
-    font-size: $font-size-lg;
+    font-size: $font-size-xl;
 }
 
 h4 {
-    font-size: $font-size-md;
+    font-size: $font-size-lg;
 }
 
 h5 {
-    font-size: $font-size-base;
+    font-size: $font-size-md;
 }
 
 h6 {
@@ -69,26 +69,26 @@ h6 {
 
 @media screen and (max-width: $breakpoint-xs-down) {
     h1 {
-        font-size: $mobile-headline-size*$font-size-xxl;
+        font-size: $mobile-headline-size*$font-size-xxxl;
     }
 
     h2 {
-        font-size: $mobile-headline-size*$font-size-xl;
+        font-size: $mobile-headline-size*$font-size-xxl;
     }
 
     h3 {
-        font-size: $mobile-headline-size*$font-size-lg;
+        font-size: $mobile-headline-size*$font-size-xl;
     }
 
     h4 {
-        font-size: $mobile-headline-size*$font-size-md;
+        font-size: $mobile-headline-size*$font-size-lg;
     }
 }
 
 a {
     color: $link-color;
     text-decoration: underline;
-    font-weight: bold;
+    font-family: $font-family-serif;
 
     &:hover,
     &:focus {
