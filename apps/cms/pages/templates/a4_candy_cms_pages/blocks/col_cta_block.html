@@ -3,9 +3,10 @@
 <div class="block block-row-{{ value.columns_count }} row mb-0">
     {% for column in value.columns %}
         <div class="block-col-{{ value.columns_count }}">
-            {% if column.body %}
+            {% if column.body and not column.link %}
             {{ column.body }}
-            {% elif column.body and column.link%}
+            {% elif column.body and column.link %}
+            {{ column.body }}
             <div class="block-col_cta-content">
                 <a href="{{ column.link }}" class="btn btn--full btn--transparent">{{ column.link_text }}</a>
             </div>
