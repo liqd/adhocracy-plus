@@ -1,6 +1,6 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="block row mb-3 mb-md-5">
+<div class="block row">
     {% for column in value.columns %}
         <div class="block-img-col-{{ forloop.counter }}">
             {% if column.image %}
