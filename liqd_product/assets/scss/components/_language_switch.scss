@@ -1,5 +1,9 @@
 .lang__switch {
     margin-right: 2*$r-spacer;
+
+    @media screen and (min-width: $breakpoint) and (max-width: $breakpoint-md) {
+        margin-right: 13*$r-spacer;
+    }
 }
 
 .lang__btn--right,
