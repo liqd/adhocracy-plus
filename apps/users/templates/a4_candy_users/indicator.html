@@ -45,6 +45,9 @@
             <a class="navi__link" href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
         </li>
         <li class="navi__item">
+            <span class="d-none d-lg-inline">/</span>
+        </li>
+        <li class="navi__item">
             <a class="navi__link" href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a>
         </li>
     </ul>
