@@ -2,7 +2,7 @@
     background-color: $bg-light;
     margin: $r-spacer;
 
-    @media screen and (min-width: $breakpoint-lg) {
+    @media screen and (min-width: $breakpoint-xl) {
         margin: 2*$r-spacer;
     }
 
@@ -15,29 +15,6 @@
         font-weight: bold;
     }
 }
-
-// .main-header__brand {
-//     float: left;
-//     margin: (3 * $spacer) 0 $spacer;
-// }
-
-// .main-header__nav {
-//     clear: left;
-// }
-
-// .main-header__logo-box {
-//     display: inline-block;
-//     margin-right: $spacer;
-//     margin-bottom: -2em;
-//     padding: $padding;
-//     vertical-align: middle;
-//
-//     background-color: $body-bg;
-//     z-index: 1;
-//     position: relative;
-//
-//     box-shadow: 0 0 8px 0 $shadow;
-// }
 
 .main-header__logo-img {
     display: block;
@@ -92,10 +69,6 @@
     font-weight: 900;
     content: '\f00d';
 }
-//
-// .show + .main-header__mobile-toggle--platform {
-//     background-color: $bg-light;
-// }
 
 .main-header__partner-nav {
     list-style: none;
