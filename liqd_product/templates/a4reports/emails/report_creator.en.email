@@ -10,7 +10,7 @@
 {{ report.description }}
 {% endblock %}
 
-{% block cta_url %}{% withpartner report.project.organisation.partner %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endwithpartner %}{% endblock %}
+{% block cta_url %}{% withorganisation report.project.organisation %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endwithorganisation %}{% endblock %}
 {% block cta_label %}Beitrag anzeigen{% endblock %}
 
 {% block reason %}This email has been sent to {{ receiver.email }}. The email was sent to you because you created a post in a project. If you no longer wish to receive these emails, you can disable the notifications in your user account settings.{% endblock %}
