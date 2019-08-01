@@ -1,7 +1,16 @@
 {% load i18n static %}
 
 <footer class="footer">
-    <div class="l-wrapper">
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                {% blocktrans %}Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial content.{% endblocktrans %}
+            </p>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn--transparent" href="https://creativecommons.org/licenses/by-sa/4.0/">OPEN CONTENT CC-BY-SA</a>
+            <a class="btn btn--transparent" href="https://github.com/liqd/a4-product">OPEN SOURCE AGPLv3</a>
+        </div>
         <nav class="navi">
             {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
             <ul class="navi__list">
@@ -22,23 +31,6 @@
                 {% endif %}
             </ul>
             {% endwith %}
-            <ul class="navi__list">
-                <li class="footer__boxed-link">
-                    <span>OPEN CONTENT</span>
-                    <br>
-                    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA</a>
-                </li>
-                <li class="footer__boxed-link">
-                    <span>OPEN SOURCE</span>
-                    <br>
-                    <a href="https://github.com/liqd/a4-product">AGPLv3</a>
-                </li>
-            </ul>
         </nav>
-    </div>
-    <div class="l-wrapper">
-        <p class="l-col-5-0 ">
-            {% blocktrans %}Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial content.{% endblocktrans %}
-        </p>
     </div>
 </footer>
