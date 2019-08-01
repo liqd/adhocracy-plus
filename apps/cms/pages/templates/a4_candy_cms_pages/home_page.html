@@ -3,13 +3,20 @@
 
 {% block content %}
     <div class="hompage__wrapper p-3">
-        <div class="row homepage-header">
-            <div class="col-lg-6">
-                <h1 class="homepage-header__teaser ml-md-4">{{ page.teaser|richtext }}</h1>
+        <div class="hompage-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1 class="homepage-header__teaser ml-md-4">{{ page.teaser|richtext }}</h1>
+                </div>
+                <div class="col-lg-6 homepage-header__image-wrapper">
+                    {% image page.image original as image %}
+                    <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
+                </div>
             </div>
-            <div class="col-lg-6 homepage-header__image-wrapper">
-                {% image page.image width-770 as image %}
-                <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
+            <div class="row">
+                <div class="col-lg-6 offset-lg-6 d-flex">
+                    <a class="btn btn--full btn--secondary-filled hompage-header__btn" href="">{% trans 'Filler text which will be changed in settings' %}<br><b>{% trans 'Donate Now' %}</b></a>
+                </div>
             </div>
         </div>
 
