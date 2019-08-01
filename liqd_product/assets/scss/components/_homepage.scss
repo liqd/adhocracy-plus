@@ -39,6 +39,14 @@ $spacer-xl: 7.5rem;
     }
 }
 
+.hompage-header__btn {
+    margin: 2*$r-spacer 0 0 2*$r-spacer;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-left: 2.5*$r-spacer;
+    }
+}
+
 .homepage-header__teaser {
     font-family: $font-family-serif;
     font-weight: normal;
