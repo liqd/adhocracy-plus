@@ -3,9 +3,9 @@
 
 <header class="main-header" aria-label="{% trans 'Header' %}">
 
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar">
 
-          <div class="navbar-brand mr-auto">
+          <div class="navbar-brand mr-auto d-flex">
               {% spaceless %}
                   <a href="{% if ORGANISATION %}{% url 'organisation' organisation_slug=ORGANISATION.slug %}{% else %}/{% endif %}" class="platform-brand__link navbar-brand">{% if ORGANISATION %}<h3 class="heading--sm-margin marked">{{ ORGANISATION.name }}</h3>{% else %}adhocracy +{% endif %}</a>
               {% endspaceless %}

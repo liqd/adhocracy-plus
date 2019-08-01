@@ -64,7 +64,7 @@
         padding: 0.5em;
     }
 
-    @media screen and (max-width: $breakpoint - 0.1rem) {
+    @media screen and (max-width: $breakpoint-down) {
         // overwrite link style on mobile
         li :hover {
             text-decoration: underline;
@@ -157,13 +157,19 @@
     .main-header__user {
         position: absolute;
         top: 0;
-        right: 80px;
+        right: 0;
+    }
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    .main-header__lang {
+        margin-right: 13rem;
     }
 }
 
 .main-header__user {
     // min-width and max-width can't have the same breakpoint
-    @media screen and (max-width: $breakpoint - 0.1rem) {
+    @media screen and (max-width: $breakpoint-down) {
         // overwrite dropdown style on mobile
 
         .dropdown {
