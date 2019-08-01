@@ -1,40 +1,43 @@
 .main-header {
+    background-color: $bg-light;
+    margin: $r-spacer;
+
+    @media screen and (min-width: $breakpoint-lg) {
+        margin: 2*$r-spacer;
+    }
+
     a {
         text-decoration: none;
     }
+
+    .navbar-brand {
+        font-family: $font-family-base;
+        font-weight: bold;
+    }
 }
 
-.main-header__border-top {
-    background: linear-gradient(to right, $brand-primary, $brand-primary 33%, $bg-tertiary 66%, $bg-tertiary);
-    height: 0.5em;
-}
+// .main-header__brand {
+//     float: left;
+//     margin: (3 * $spacer) 0 $spacer;
+// }
 
-.main-header__border-top--platform {
-    background: linear-gradient(to right, $brand-primary, $brand-primary 33%, $brand-secondary 66%, $brand-secondary);
-}
+// .main-header__nav {
+//     clear: left;
+// }
 
-.main-header__brand {
-    float: left;
-    margin: (3 * $spacer) 0 $spacer;
-}
-
-.main-header__nav {
-    clear: left;
-}
-
-.main-header__logo-box {
-    display: inline-block;
-    margin-right: $spacer;
-    margin-bottom: -2em;
-    padding: $padding;
-    vertical-align: middle;
-
-    background-color: $body-bg;
-    z-index: 1;
-    position: relative;
-
-    box-shadow: 0 0 8px 0 $shadow;
-}
+// .main-header__logo-box {
+//     display: inline-block;
+//     margin-right: $spacer;
+//     margin-bottom: -2em;
+//     padding: $padding;
+//     vertical-align: middle;
+//
+//     background-color: $body-bg;
+//     z-index: 1;
+//     position: relative;
+//
+//     box-shadow: 0 0 8px 0 $shadow;
+// }
 
 .main-header__logo-img {
     display: block;
@@ -42,7 +45,7 @@
     width: auto;
 }
 
-.main-header__mobile-menu {
+.main-header__menu {
     border-bottom: 1px solid $body-bg;
 
     position: absolute;
@@ -50,8 +53,7 @@
     right: 0;
     top: 0;
 
-    background-color: $bg-tertiary;
-    color: contrast-color($bg-tertiary);
+    background-color: $body-bg;
     z-index: 2;
 
     button,
@@ -65,35 +67,35 @@
     @media screen and (max-width: $breakpoint - 0.1rem) {
         // overwrite link style on mobile
         li :hover {
-            background-color: $bg-secondary;
-            color: $brand-primary;
+            text-decoration: underline;
         }
     }
 }
 
-.main-header__mobile-menu--platform {
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
-}
-
 .main-header__mobile-toggle {
-    position: absolute;
-    right: $padding;
-    top: 0;
+    position: relative;
+    right: 0;
     z-index: 2;
-
-    font-weight: bold;
+    background-color: $bg-light;
 }
 
-.show + .main-header__mobile-toggle {
-    background-color: $bg-secondary;
+.main-header__mobile-toggle:before {
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    content: '\f0c9';
 }
 
-.show + .main-header__mobile-toggle--platform {
-    // use same color as used for hover styles
-    // (defined in meinberlin's _button.scss)
-    background-color: mix($brand-secondary, $body-bg, 50%);
+.show + .main-header__mobile-toggle:before {
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    content: '\f00d';
 }
+//
+// .show + .main-header__mobile-toggle--platform {
+//     background-color: $bg-light;
+// }
 
 .main-header__partner-nav {
     list-style: none;
@@ -114,12 +116,6 @@
     }
 }
 
-.main-header__lang {
-    position: absolute;
-    top: 0;
-    right: 100px;
-}
-
 @media screen and (min-width: $breakpoint) {
     .main-header__brand {
         margin-top: 2 * $spacer;
@@ -129,7 +125,7 @@
         line-height: 4em;
     }
 
-    .main-header__mobile-menu {
+    .main-header__menu {
         padding: 0;
         border: 0;
         position: static;
@@ -162,10 +158,6 @@
         position: absolute;
         top: 0;
         right: 80px;
-    }
-
-    .main-header__lang {
-        right: 0;
     }
 }
 
