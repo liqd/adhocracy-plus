@@ -22,20 +22,20 @@
             {% endif %}
             <div class="main-header__mobile-menu {% if not ORGANISATION %}main-header__mobile-menu--platform{% endif %} collapse" id="main-header-collapse">
                 {% if ORGANISATION %}
-                    <ul class="main-header__partner-nav">
-                        <li class="main-header__partner-nav__item">
+                    <ul class="main-header__organisation-nav">
+                        <li class="main-header__organisation-nav__item">
                             {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
-                            <a href="{{ organisation_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == organisation_url %}is-active{% endif %}">{% trans 'Participate' %}</span></a>
+                            <a href="{{ organisation_url }}" class="main-header__organisation-nav__link"><span class="{% if request.path == organisation_url %}is-active{% endif %}">{% trans 'Participate' %}</span></a>
                         </li>
                         {% if ORGANISATION.information %}
-                        <li class="main-header__partner-nav__item">
-                            {% url 'organisation-information' organisation_slug=ORGANISATION.slug as partner_information_url %}
-                            <a href="{{ partner_information_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_information_url %}is-active{% endif %}">{% trans 'Information' %}</span></a>
+                        <li class="main-header__organisation-nav__item">
+                            {% url 'organisation-information' organisation_slug=ORGANISATION.slug as organisation_information_url %}
+                            <a href="{{ organisation_information_url }}" class="main-header__organisation-nav__link"><span class="{% if request.path == organisation_information_url %}is-active{% endif %}">{% trans 'Information' %}</span></a>
                         </li>
                         {% endif %}
-                        <li class="main-header__partner-nav__item">
-                            {% url 'organisation-imprint' organisation_slug=ORGANISATION.slug as partner_imprint_url %}
-                            <a href="{{ partner_imprint_url }}" class="main-header__partner-nav__link"><span class="{% if request.path == partner_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>
+                        <li class="main-header__organisation-nav__item">
+                            {% url 'organisation-imprint' organisation_slug=ORGANISATION.slug as organisation_imprint_url %}
+                            <a href="{{ organisation_imprint_url }}" class="main-header__organisation-nav__link"><span class="{% if request.path == organisation_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>
                         </li>
                     </ul>
                 {% endif %}
