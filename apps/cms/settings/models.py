@@ -26,11 +26,18 @@ class ImportantPages(BaseSetting):
         null=True,
         blank=True,
         on_delete=models.SET_NULL)
+    contact = models.ForeignKey(
+        'wagtailcore.Page',
+        related_name='important_page_contact',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL)
 
     panels = [
         PageChooserPanel('terms_of_use'),
         PageChooserPanel('imprint'),
-        PageChooserPanel('data_protection_policy')
+        PageChooserPanel('data_protection_policy'),
+        PageChooserPanel('contact')
     ]
 
 
