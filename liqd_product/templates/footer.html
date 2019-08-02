@@ -1,19 +1,31 @@
 {% load i18n static %}
 
-<footer class="footer">
+<footer class="footer p-3">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-5 offset-lg-1">
             <p>
                 {% blocktrans %}Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial content.{% endblocktrans %}
             </p>
         </div>
-        <div class="col-md-6">
-            <a class="btn btn--transparent" href="https://creativecommons.org/licenses/by-sa/4.0/">OPEN CONTENT CC-BY-SA</a>
-            <a class="btn btn--transparent" href="https://github.com/liqd/a4-product">OPEN SOURCE AGPLv3</a>
+        <div class="col-lg-5">
+            <div class="row">
+            <div class="col-sm-6 d-flex flex-column">
+                <a class="btn btn--transparent footer__btn" href="https://creativecommons.org/licenses/by-sa/4.0/">OPEN CONTENT CC-BY-SA</a>
+            </div>
+            <div class="col-sm-6 d-flex flex-column mt-4 mt-sm-0">
+                <a class="btn btn--transparent footer__btn" href="https://github.com/liqd/a4-product">OPEN SOURCE AGPLv3</a>
+            </div>
+            </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
         <nav class="navi">
             {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
             <ul class="navi__list">
+                <li class="navi__item footer__link">
+                  2019 Liquid Democracy
+                </li>
                 {% if pages.imprint %}
                 <li class="navi__item footer__link">
                     <a href="{{ pages.imprint.url }}" class="navi__link">{% trans 'Imprint' %}</a>
@@ -32,5 +44,6 @@
             </ul>
             {% endwith %}
         </nav>
+        </div>
     </div>
 </footer>
