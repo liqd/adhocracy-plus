@@ -2,8 +2,8 @@
 {% load i18n wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-    <div class="hompage__wrapper p-3">
-        <div class="hompage-header">
+    <div class="homepage__wrapper p-3">
+        <div class="homepage-header">
             <div class="row">
                 <div class="col-lg-6">
                     <h1 class="homepage-header__teaser ml-md-4">{{ page.teaser|richtext }}</h1>
@@ -15,7 +15,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 offset-lg-6 d-flex">
-                    <a class="btn btn--full btn--secondary-filled hompage-header__btn" href="">{% trans 'Filler text which will be changed in settings' %}<br><b>{% trans 'Donate Now' %}</b></a>
+                    <a class="btn btn--full btn--secondary-filled homepage-header__btn" href="">{% trans 'Filler text which will be changed in settings' %}<br><b>{% trans 'Donate Now' %}</b></a>
                 </div>
             </div>
         </div>
