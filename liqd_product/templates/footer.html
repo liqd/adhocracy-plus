@@ -1,7 +1,7 @@
 {% load i18n static %}
 
 <footer class="footer p-3">
-    <div class="row">
+    <div class="row mt-3 mb-3 mb-sm-4">
         <div class="col-lg-5 offset-lg-1">
             <p>
                 {% blocktrans %}Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial content.{% endblocktrans %}
@@ -39,6 +39,11 @@
                 {% if pages.data_protection_policy %}
                 <li class="navi__item footer__link">
                     <a href="{{ pages.data_protection_policy.url }}" class="navi__link">{% trans 'Data protection policy' %}</a>
+                </li>
+                {% endif %}
+                {% if pages.contact %}
+                <li class="navi__item footer__link">
+                    <a href="{{ pages.contact.url }}" class="navi__link">{% trans 'Contact' %}</a>
                 </li>
                 {% endif %}
             </ul>
