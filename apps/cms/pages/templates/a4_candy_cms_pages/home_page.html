@@ -13,11 +13,13 @@
                     <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
                 </div>
             </div>
+            {% if settings.a4_candy_cms_settings.ImportantPages.donate_link %}
             <div class="row">
                 <div class="col-lg-6 offset-lg-6 d-flex">
-                    <a class="btn btn--full btn--secondary-filled homepage-header__btn" href="">{% trans 'Filler text which will be changed in settings' %}<br><b>{% trans 'Donate Now' %}</b></a>
+                    <a class="btn btn--full btn--secondary-filled homepage-header__btn" href="{{ settings.a4_candy_cms_settings.ImportantPages.donate_link.url }}">{% trans 'Support the further development of the platform' %}<br><b>{% trans 'Donate Now' %}</b></a>
                 </div>
             </div>
+            {% endif %}
         </div>
 
         <div>{{ page.body|richtext }}</div>
