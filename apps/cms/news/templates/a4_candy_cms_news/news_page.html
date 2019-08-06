@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <div class="l-wrapper">
+        <div class="l-center-8">
+            <h1 class="cms-title">{{ page.subtitle }}</h1>
+            {% if page.image %}
+            <div class="col-lg-6">
+                {% image page.image width-770 as image %}
+                <img src="{{ image.url }}" alt="{{ image.alt }}" class="" />
+            </div>
+            {% endif %}
+            <div>{{ page.body }}</div>
+        </div>
+    </div>
+{% endblock %}
