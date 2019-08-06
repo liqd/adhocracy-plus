@@ -202,12 +202,11 @@ $block-padding-md: 7.5*$padding;
 .block-background_cta_block .block > :last-child {
     background-color: $brand-primary;
     color: $text-color-inverted;
-}
 
-//linked for specificty
-.btn--transparent.block-bg_btn-2 {
-    color: $body-bg;
-    border-color: $body-bg;
+    .block-bg_btn-2 {
+        color: $body-bg;
+        border-color: $body-bg;
+    }
 }
 
 .block-background_cta_block {
