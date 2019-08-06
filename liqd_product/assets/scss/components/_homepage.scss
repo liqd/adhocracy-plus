@@ -1,16 +1,26 @@
-$spacer-xl: 7rem;
+$spacer-xl: 7.5rem;
 
-.hompage__wrapper {
+.homepage__wrapper {
     background-color: $body-bg;
     margin: $r-spacer;
 
     @media screen and (min-width: $breakpoint-xl) {
         margin: 2*$r-spacer;
     }
+
+    .block {
+        p {
+            font-size: $font-size-md;
+        }
+    }
 }
 
 .homepage-header {
-    margin-bottom: $spacer-xl;
+    margin-bottom: 2*$r-spacer;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        margin-bottom: $spacer-xl;
+    }
 }
 
 .homepage-header__image-wrapper {
@@ -26,6 +36,14 @@ $spacer-xl: 7rem;
 
     @media screen and (min-width: $breakpoint-md) {
         right: 2.5*-$r-spacer;
+    }
+}
+
+.homepage-header__btn {
+    margin: 2*$r-spacer 0 0 2*$r-spacer;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-left: 2.5*$r-spacer;
     }
 }
 
