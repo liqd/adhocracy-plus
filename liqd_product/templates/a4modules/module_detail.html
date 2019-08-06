@@ -20,17 +20,17 @@
 
 {% block content %}
     <div class="l-wrapper">
-        {% if other_modules|length > 1  %}
+        {% if module.is_in_module_cluster  %}
             <div class="u-align-right u-spacer-bottom-double">
-            {% if previous %}
-                <a class="btn btn--light u-secondary" href="{% url 'module-detail' previous.slug %}">
+            {% if module.previous_module_in_cluster %}
+                <a class="btn btn--light u-secondary" href="{% url 'module-detail' module.previous_module_in_cluster.slug %}">
                     <i class="fa fa-chevron-left u-md-up-display-none"></i>
                     <span class="u-md-down-display-none">{% trans 'Previous' %}</span>
                 </a>
             {% endif %}
-                <span class="u-spacer-left u-spacer-right">{{ index }} {% trans 'of' %} {{ other_modules|length }}</span>
-            {% if next %}
-                <a class="btn btn--light u-secondary" href="{% url 'module-detail' next.slug %}">
+                <span class="u-spacer-left u-spacer-right">{{ module.readable_index_in_cluster }} {% trans 'of' %} {{ module.module_cluster|length }}</span>
+            {% if module.next_module_in_cluster %}
+                <a class="btn btn--light u-secondary" href="{% url 'module-detail' module.next_module_in_cluster.slug %}">
                     <i class="fa fa-chevron-right u-md-up-display-none"></i>
                     <span class="u-md-down-display-none">{% trans 'Next' %}</span></a>
             {% endif %}
@@ -103,13 +103,13 @@
         </div>
         {% block phase_content %}{% endblock %}
     </div>
-    {% if module %}
+    {% if module.is_in_module_cluster %}
     <div class="l-wrapper">
         <div class="participation-tile__wrapper">
             <div class="participation-tile__list-container">
                 <ul class="u-list-reset participation-tile__list">
-                    <h3 class="participation-tile__list-header">More questions from this online participation</h3>
-                    {% for other_module in other_modules %}
+                    <h3 class="participation-tile__list-header">{%  trans 'More questions from this online participation' %}</h3>
+                    {% for other_module in module.module_cluster %}
                         {% if not other_module == module %}
                             {% include "a4_candy_projects/includes/project_module_tile.html" with project=project module=other_module %}
                         {% endif %}
