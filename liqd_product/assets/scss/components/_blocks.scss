@@ -15,7 +15,7 @@ $block-padding-md: 7.5*$padding;
     @extend .col-md-4;
     padding: $padding;
 
-    @media screen and (min-width: $breakpoint-lg) {
+    @media screen and (min-width: $breakpoint-xl) {
         padding: $padding $block-padding-md 0 $block-padding-md;
     }
 }
@@ -124,7 +124,7 @@ $block-padding-md: 7.5*$padding;
     right: 2*-$r-spacer;
     margin-top: $r-spacer;
 
-    @media screen and (min-width: $breakpoint-lg) {
+    @media screen and (min-width: $breakpoint-xl) {
         margin-top: 2*$r-spacer;
         right: 4.5*-$r-spacer;
     }
@@ -214,7 +214,7 @@ $block-padding-md: 7.5*$padding;
     margin-left: -$r-spacer;
     margin-right: -$r-spacer;
 
-    @media screen and (min-width: $breakpoint-lg) {
+    @media screen and (min-width: $breakpoint-xl) {
         margin-left: 2*-$r-spacer;
         margin-right: 2*-$r-spacer;
     }
