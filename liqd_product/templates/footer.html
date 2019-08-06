@@ -1,44 +1,59 @@
 {% load i18n static %}
 
-<footer class="footer">
-    <div class="l-wrapper">
-        <nav class="navi">
-            {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
-            <ul class="navi__list">
-                {% if pages.imprint %}
-                <li class="navi__item footer__link">
-                    <a href="{{ pages.imprint.url }}" class="navi__link">{% trans 'Imprint' %}</a>
-                </li>
-                {% endif %}
-                {% if pages.terms_of_use %}
-                <li class="navi__item footer__link">
-                    <a href="{{ pages.terms_of_use.url }}" class="navi__link">{% trans 'Terms of use' %}</a>
-                </li>
-                {% endif %}
-                {% if pages.data_protection_policy %}
-                <li class="navi__item footer__link">
-                    <a href="{{ pages.data_protection_policy.url }}" class="navi__link">{% trans 'Data protection policy' %}</a>
-                </li>
-                {% endif %}
-            </ul>
-            {% endwith %}
-            <ul class="navi__list">
-                <li class="footer__boxed-link">
-                    <span>OPEN CONTENT</span>
-                    <br>
-                    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA</a>
-                </li>
-                <li class="footer__boxed-link">
-                    <span>OPEN SOURCE</span>
-                    <br>
-                    <a href="https://github.com/liqd/a4-product">AGPLv3</a>
-                </li>
-            </ul>
-        </nav>
+<footer class="footer px-3 pt-3">
+    <div class="row mt-3 mb-3 mb-sm-4">
+        <div class="col-lg-5 offset-lg-1">
+            <p>
+                {% blocktrans %}Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial content.{% endblocktrans %}
+            </p>
+        </div>
+        <div class="col-lg-5">
+            <div class="row">
+            <div class="col-sm-6 d-flex flex-column">
+                <a class="btn btn--transparent footer__btn" href="https://creativecommons.org/licenses/by-sa/4.0/">Open Content CC-BY-SA</a>
+            </div>
+            <div class="col-sm-6 d-flex flex-column mt-4 mt-sm-0">
+                <a class="btn btn--transparent footer__btn" href="https://github.com/liqd/a4-product">Open Source AGPLv3</a>
+            </div>
+            </div>
+        </div>
     </div>
-    <div class="l-wrapper">
-        <p class="l-col-5-0 ">
-            {% blocktrans %}Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial content.{% endblocktrans %}
-        </p>
+    <div class="row">
+        {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
+        <div class="col-12 col-lg-6">
+            <nav class="navi p-0">
+                <ul class="navi__list mb-3 mb-sm-4 d-sm-flex flex-wrap">
+                    <li class="navi__item footer__link">
+                      2019 Liquid Democracy
+                    </li>
+                    {% if pages.imprint %}
+                    <li class="navi__item footer__link">
+                        <a href="{{ pages.imprint.url }}" class="navi__link">{% trans 'Imprint' %}</a>
+                    </li>
+                    {% endif %}
+                    {% if pages.terms_of_use %}
+                    <li class="navi__item footer__link">
+                        <a href="{{ pages.terms_of_use.url }}" class="navi__link">{% trans 'Terms of use' %}</a>
+                    </li>
+                    {% endif %}
+                    {% if pages.data_protection_policy %}
+                    <li class="navi__item footer__link">
+                        <a href="{{ pages.data_protection_policy.url }}" class="navi__link">{% trans 'Data protection policy' %}</a>
+                    </li>
+                    {% endif %}
+                    {% if pages.contact %}
+                    <li class="navi__item footer__link">
+                        <a href="{{ pages.contact.url }}" class="navi__link">{% trans 'Contact' %}</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {% if pages.donate_link %}
+        <div class="col-12 col-sm-6 offset-sm-6 offset-lg-0 d-flex flex-column px-0 pl-sm-3">
+            <a href="{{ pages.donate_link.url }}"  class="btn btn--full btn--secondary-filled mb-0 mr-0">{% trans 'Support the further development of the platform' %}<br><b>{% trans 'Donate now' %}</b></a>
+        </div>
+        {% endif %}
+    {% endwith %}
     </div>
 </footer>

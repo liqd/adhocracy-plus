@@ -2,15 +2,24 @@
 {% load i18n wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-    <div class="hompage__wrapper p-3">
-        <div class="row homepage-header">
-            <div class="col-lg-6">
-                <h1 class="homepage-header__teaser ml-md-4">{{ page.teaser|richtext }}</h1>
+    <div class="homepage__wrapper p-3">
+        <div class="homepage-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1 class="homepage-header__teaser ml-md-4">{{ page.teaser|richtext }}</h1>
+                </div>
+                <div class="col-lg-6 homepage-header__image-wrapper">
+                    {% image page.image original as image %}
+                    <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
+                </div>
             </div>
-            <div class="col-lg-6 homepage-header__image-wrapper">
-                {% image page.image width-770 as image %}
-                <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
+            {% if settings.a4_candy_cms_settings.ImportantPages.donate_link %}
+            <div class="row">
+                <div class="col-lg-6 offset-lg-6 d-flex">
+                    <a class="btn btn--full btn--secondary-filled homepage-header__btn" href="{{ settings.a4_candy_cms_settings.ImportantPages.donate_link.url }}">{% trans 'Support the further development of the platform' %}<br><b>{% trans 'Donate Now' %}</b></a>
+                </div>
             </div>
+            {% endif %}
         </div>
 
         <div>{{ page.body|richtext }}</div>
