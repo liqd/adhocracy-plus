@@ -24,6 +24,7 @@ class ActivityComponent(DashboardComponent):
 
     def get_base_url(self, module):
         return reverse('a4dashboard:activities-dashboard', kwargs={
+            'organisation_slug': module.project.organisation.slug,
             'module_slug': module.slug
         })
 

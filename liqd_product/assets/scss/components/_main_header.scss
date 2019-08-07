@@ -95,7 +95,7 @@
     background-color: mix($brand-secondary, $body-bg, 50%);
 }
 
-.main-header__partner-nav {
+.main-header__organisation-nav {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -105,7 +105,7 @@
     }
 }
 
-.main-header__partner-nav__item {
+.main-header__organisation-nav__item {
     display: block;
 
     .is-active {
@@ -125,7 +125,7 @@
         margin-top: 2 * $spacer;
     }
 
-    .main-header__partner-nav {
+    .main-header__organisation-nav {
         line-height: 4em;
     }
 
@@ -140,7 +140,7 @@
             display: inline-block;
         }
 
-        .main-header__partner-nav__link {
+        .main-header__organisation-nav__link {
             display: inline;
         }
     }
@@ -149,12 +149,12 @@
         display: none;
     }
 
-    .main-header__partner-nav__item {
+    .main-header__organisation-nav__item {
         display: inline;
         margin-right: $spacer;
     }
 
-    .main-header__partner-nav__link:first-child {
+    .main-header__organisation-nav__link:first-child {
         padding-left: 0;
     }
 

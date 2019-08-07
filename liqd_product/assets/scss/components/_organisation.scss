@@ -1,4 +1,4 @@
-.partner__header {
+.organisation__header {
     margin-top: $spacer;
     margin-bottom: 1.7 * $spacer;
 
@@ -11,7 +11,7 @@
     }
 }
 
-.partner__slogan {
+.organisation__slogan {
     padding-top: $spacer;
     padding-bottom: $spacer;
     color: $gray-lighter;
@@ -19,12 +19,12 @@
     line-height: 1.33;
 }
 
-.partner__description {
+.organisation__description {
     font-size: $font-size-lg;
     padding-bottom: $spacer;
 }
 
-.partner__logo-box {
+.organisation__logo-box {
     display: inline-block;
     position: relative;
     margin-top: -3.5em;
@@ -33,27 +33,27 @@
     background-color: $body-bg;
 }
 
-.partner__logo-img {
+.organisation__logo-img {
     display: block;
     height: 6.5em;
     width: auto;
 }
 
 @media (min-width: $breakpoint) {
-    .partner__header h1 {
+    .organisation__header h1 {
         font-size: $font-size-xxl;
     }
 
-    .partner__header h2 {
+    .organisation__header h2 {
         font-size: $font-size-xl;
     }
 
-    .partner__slogan,
-    .partner__description {
+    .organisation__slogan,
+    .organisation__description {
         padding-bottom: 0;
     }
 
-    .partner__logo-box {
+    .organisation__logo-box {
         padding: $padding;
     }
 }

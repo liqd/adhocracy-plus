@@ -8,18 +8,18 @@
 
     {% if organisation.logo %}
     <div class="l-wrapper">
-        <div class="partner__logo-box">
-            <img src="{% thumbnail organisation.logo '0x160' %}" height="80" alt="{{ organisation.name }}" class="partner__logo-img" />
+        <div class="organisation__logo-box">
+            <img src="{% thumbnail organisation.logo '0x160' %}" height="80" alt="{{ organisation.name }}" class="organisation__logo-img" />
         </div>
     </div>
     {% endif %}
 
-    <div class="l-wrapper partner__header">
+    <div class="l-wrapper organisation__header">
         <div class="l-col-6-0">
             <h1 class="u-no-margin marked-box">{{ organisation.title }}</h1>
-            <h2 class="u-no-margin partner__slogan">{{ organisation.slogan }}</h2>
+            <h2 class="u-no-margin organisation__slogan">{{ organisation.slogan }}</h2>
         </div>
-        <div class="l-col-5-7 partner__description">
+        <div class="l-col-5-7 organisation__description">
             {{ organisation.description }}
         </div>
     </div>

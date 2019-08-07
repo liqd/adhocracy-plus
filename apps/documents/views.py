@@ -78,5 +78,6 @@ class DocumentDashboardExportView(DashboardExportView):
         context = super().get_context_data(**kwargs)
         context['comment_export'] = reverse(
             'a4dashboard:document-comment-export',
-            kwargs={'module_slug': self.module.slug})
+            kwargs={'organisation_slug': self.module.project.organisation.slug,
+                    'module_slug': self.module.slug})
         return context
