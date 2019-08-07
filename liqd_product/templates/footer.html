@@ -10,10 +10,10 @@
         <div class="col-lg-5">
             <div class="row">
             <div class="col-sm-6 d-flex flex-column">
-                <a class="btn btn--transparent footer__btn" href="https://creativecommons.org/licenses/by-sa/4.0/">Open Content CC-BY-SA</a>
+                <a class="btn btn--transparent footer__info-btn" href="https://creativecommons.org/licenses/by-sa/4.0/">Open Content CC-BY-SA</a>
             </div>
             <div class="col-sm-6 d-flex flex-column mt-4 mt-sm-0">
-                <a class="btn btn--transparent footer__btn" href="https://github.com/liqd/a4-product">Open Source AGPLv3</a>
+                <a class="btn btn--transparent footer__info-btn" href="https://github.com/liqd/a4-product">Open Source AGPLv3</a>
             </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
         </div>
         {% if pages.donate_link %}
         <div class="col-12 col-sm-6 offset-sm-6 offset-lg-0 d-flex flex-column px-0 pl-sm-3">
-            <a href="{{ pages.donate_link.url }}"  class="btn btn--full btn--secondary-filled mb-0 mr-0">{% trans 'Support the further development of the platform' %}<br><b>{% trans 'Donate now' %}</b></a>
+            <a href="{{ pages.donate_link.url }}"  class="btn btn--full btn--secondary-filled mb-0 mr-0 mt-auto">{% trans 'Support the further development of the platform' %}<br><b>{% trans 'Donate now' %}</b></a>
         </div>
         {% endif %}
     {% endwith %}
