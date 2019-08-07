@@ -1,4 +1,7 @@
+from django.core.paginator import InvalidPage
+from django.core.paginator import Paginator
 from django.db import models
+from django.http import Http404
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.admin.edit_handlers import ObjectList
 from wagtail.admin.edit_handlers import StreamFieldPanel
@@ -23,6 +26,26 @@ class NewsIndexPage(Page):
         'subtitle_de',
         'subtitle_en'
     )
+
+    @property
+    def news(self):
+        news = NewsPage.objects.live()
+        news = news.order_by('-last_published_at')
+        return news
+
+    def get_context(self, request):
+        news = self.news
+        page = request.GET.get('page', 1)
+        paginator = Paginator(news, 5)
+
+        try:
+            news = paginator.page(page)
+        except InvalidPage:
+            raise Http404
+
+        context = super(NewsIndexPage, self).get_context(request)
+        context['news'] = news
+        return context
 
     de_content_panels = [
         FieldPanel('subtitle_de'),
