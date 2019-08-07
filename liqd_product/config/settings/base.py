@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'apps.cms.pages',
     'apps.cms.settings',
     'apps.cms.contacts',
+    'apps.cms.news',
 
     # General adhocracy 4 components
     'adhocracy4.actions',
