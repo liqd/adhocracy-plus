@@ -63,6 +63,10 @@ $timeline-carousel__top-space: 11px;
     }
 }
 
+.slick-track {
+    padding-bottom: $padding;
+}
+
 .timeline-carousel {
     position: relative;
     color: $brand-secondary;
@@ -106,7 +110,7 @@ $timeline-carousel__top-space: 11px;
 }
 
 //mobile slick overwrites
-@media screen and (max-width: $breakpoint-lg-down) {
+@media screen and (max-width: $breakpoint-xl-down) {
     .slick-next {
         right: 0 !important;
     }
