@@ -82,10 +82,10 @@ $grid-breakpoints: (
 ) !default;
 
 // use for min-width media-queries
-$breakpoint-xs: $grid-breakpoints(xs) !default;
-$breakpoint: $grid-breakpoints(sm) !default;
-$breakpoint-md: $grid-breakpoints(lg) !default;
-$breakpoint-lg: $grid-breakpoints(xl) !default;
+$breakpoint-xs: map-get($grid-breakpoints, "sm") !default;
+$breakpoint: map-get($grid-breakpoints, "md") !default;
+$breakpoint-md: map-get($grid-breakpoints, "lg") !default;
+$breakpoint-lg: map-get($grid-breakpoints, "xl") !default;
 $breakpoint-xl: 1440px !default;
 
 // use for max-width media queries
