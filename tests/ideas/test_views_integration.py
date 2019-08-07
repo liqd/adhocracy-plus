@@ -37,7 +37,8 @@ def test_create_view(client, phase_factory, idea_factory, user,
         phase_factory, idea_factory, phases.IssuePhase)
     category = category_factory(module=module)
     url = reverse('a4_candy_ideas:idea-create',
-                  kwargs={'module_slug': module.slug})
+                  kwargs={'organisation_slug': organisation.slug,
+                          'module_slug': module.slug})
     with freeze_phase(phase):
         client.login(username=user.email, password='password')
 

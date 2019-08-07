@@ -13,9 +13,6 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = (
 
-    # Watch out this needs to be included first
-    'apps.django_overwrites',
-
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -120,7 +117,6 @@ MIDDLEWARE = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 
-    'apps.organisations.middleware.OrganisationMiddleware',
     'apps.embed.middleware.AjaxPathMiddleware',
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
@@ -152,8 +148,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'liqd_product.config.wsgi.application'
-
-REVERSE_METHOD = 'apps.organisations.urlresolvers.reverse'
 
 
 # Database

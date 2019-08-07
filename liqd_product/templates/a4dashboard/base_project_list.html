@@ -18,7 +18,7 @@
             </ul>
         </div>
 
-        {% has_perm 'a4_candy_partners.change_organisation' request.user view.organisation as user_may_change_organisation %}
+        {% has_perm 'a4_candy_organisations.change_organisation' request.user view.organisation as user_may_change_organisation %}
         {% if user_may_change_organisation %}
             <a href="{% url 'organisation-settings' organisation_slug=view.organisation.slug %}"
                class="btn btn--light btn--full">
