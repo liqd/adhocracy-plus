@@ -1,6 +1,7 @@
 .dropdown {
     position: relative;
     text-align: left;
+    // margin-bottom: $spacer / 2; for bootstrap
 }
 
 .dropdown-item {
@@ -69,8 +70,9 @@
 
         &:hover,
         &:focus {
-            text-decoration: underline;
-            background-color: inherit;
+            text-decoration: none;
+            background-color: $bg-secondary;
+            color: $brand-primary;
         }
 
         i {

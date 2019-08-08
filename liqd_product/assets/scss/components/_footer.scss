@@ -1,9 +1,9 @@
 .footer {
-    margin: 0 $r-spacer $r-spacer $r-spacer;
+    margin: $r-spacer;
     background-color: $bg-light;
 
-    @media screen and (min-width: $breakpoint-lg) {
-        margin: 0 2*$r-spacer 2*$r-spacer 2*$r-spacer;
+    @media screen and (min-width: $breakpoint-xl) {
+        margin: 2*$r-spacer;
     }
 }
 
