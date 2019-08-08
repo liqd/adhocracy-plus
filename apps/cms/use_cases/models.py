@@ -18,6 +18,8 @@ class UseCaseIndexPage(Page):
     subtitle_en = models.CharField(
         max_length=250, blank=True, verbose_name="Title")
 
+    demo_link = models.URLField(blank=True, verbose_name='Demo site')
+
     subtitle = TranslatedField(
         'subtitle_de',
         'subtitle_en'
@@ -45,7 +47,8 @@ class UseCaseIndexPage(Page):
 
     common_panels = [
         FieldPanel('title'),
-        FieldPanel('slug')
+        FieldPanel('slug'),
+        FieldPanel('demo_link')
     ]
 
     edit_handler = TabbedInterface([
