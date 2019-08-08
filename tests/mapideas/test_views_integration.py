@@ -38,7 +38,8 @@ def test_create_view(client, phase_factory, map_idea_factory, user,
     area_settings_factory(module=module)
     category = category_factory(module=module)
     url = reverse('a4_candy_mapideas:mapidea-create',
-                  kwargs={'module_slug': module.slug})
+                  kwargs={'organisation_slug': organisation.slug,
+                          'module_slug': module.slug})
     with freeze_phase(phase):
         client.login(username=user.email, password='password')
 
