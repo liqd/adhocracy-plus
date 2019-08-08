@@ -12,6 +12,20 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.contrib.translations import TranslatedField
 
+MUNICIPALITIES = 'MP'
+CITIZENASSEMBLIES = 'CA'
+COOPERATIVESNGOS = 'CN'
+COMPANIES = 'CP'
+POLITICIANS = 'PO'
+
+CATEGORY_CHOICES = [
+    ('MP', _('Municipalities')),
+    ('CA', _('Citizen Assemblies')),
+    ('CN', _('Co-Operatives/NGOs')),
+    ('CP', _('Companies')),
+    ('PO', _('Politicians')),
+]
+
 
 class UseCaseIndexPage(Page):
     subtitle_de = models.CharField(
@@ -33,18 +47,30 @@ class UseCaseIndexPage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
     )
+
     @property
-    def use_case(self):
-        use_case = UseCasePage.objects.live()
-        return use_case
     def form(self):
         return self.form_page.get_form()
 
+    @property
+    def use_cases(self):
+        use_cases = UseCasePage.objects.live()
+        return use_cases
+
     def get_context(self, request):
-        use_case = self.use_case
+        use_cases = self.use_cases
+
+        category = request.GET.get('category')
+
+        if category:
+            try:
+                use_cases = use_cases.filter(category=category)
+            except ValueError:
+                use_cases = []
 
         context = super().get_context(request)
-        context['use_case'] = use_case
+        context['use_cases'] = use_cases
+        context['categories'] = CATEGORY_CHOICES
         return context
 
     de_content_panels = [
@@ -58,7 +84,7 @@ class UseCaseIndexPage(Page):
     common_panels = [
         FieldPanel('title'),
         FieldPanel('slug'),
-        FieldPanel('demo_link')
+        FieldPanel('demo_link'),
         PageChooserPanel('form_page'),
     ]
 
@@ -72,19 +98,6 @@ class UseCaseIndexPage(Page):
 
 
 class UseCasePage(Page):
-    MUNICIPALITIES = 'MP'
-    CITIZENASSEMBLIES = 'CA'
-    COOPERATIVESNGOS = 'CN'
-    COMPANIES = 'CP'
-    POLITICIANS = 'PO'
-
-    CATEGORY_CHOICES = [
-        ('MP', _('Municipalities')),
-        ('CA', _('Citizen Assemblies')),
-        ('CN', _('Co-Operatives/NGOs')),
-        ('CP', _('Companies')),
-        ('PO', _('Politicians')),
-    ]
 
     category = models.CharField(
         max_length=2,
