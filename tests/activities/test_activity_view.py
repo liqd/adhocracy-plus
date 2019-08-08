@@ -34,6 +34,7 @@ def test_create_activity_in_dashboard(user, client, activity_factory,
     url = reverse(
         'a4dashboard:activities-dashboard',
         kwargs={
+            'organisation_slug': activity.project.organisation.slug,
             'module_slug': activity.module.slug
         })
     # get the page

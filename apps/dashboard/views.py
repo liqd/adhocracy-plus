@@ -77,6 +77,7 @@ class ModuleCreateView(ProjectMixin,
 
     def get_next(self, module):
         return reverse('a4dashboard:dashboard-module_basic-edit', kwargs={
+            'organisation_slug': module.project.organisation.slug,
             'module_slug': module.slug
         })
 
