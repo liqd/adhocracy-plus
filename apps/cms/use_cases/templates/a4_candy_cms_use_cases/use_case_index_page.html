@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
     {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
@@ -7,10 +7,29 @@
 {% block content %}
     <div class="l-wrapper">
         <div class="l-center-8">
-            <h1 class="cms-title">{{ page.title }}</h1>
-            {{ page.body|richtext }}
+            <h1 class="cms-title">{{ page.subtitle }}</h1>
+            {% for category in categories %}
+                <a href="?category={{ category.0 }}">{{ category.1 }}</a>
+            {% endfor %}
         </div>
+
+        {% for use_case in use_cases %}
+        {% if forloop.first %}<div class="row">{% endif %}
+        <div class="col-4">
+            <a href="{{ use_case.url }}">
+            {% if use_case.image %}
+            {% image use_case.image fill-370x295 as image %}
+            <img src="{{ image.url }}" alt="{{ image.alt }}" />
+            {% endif %}
+                <span>{{ use_case.get_category_display }}</span>
+                <h2>{{ use_case.title }}</h2>
+            </a>
+        </div>
+        {% if forloop.counter|divisibleby:3%}</div><div class="row">{% endif %}
+        {% if forloop.last %}</div>{% endif %}
+        {% endfor %}
     </div>
+
     {% if page.form_page %}
         <div id="form_page">
         {% include 'a4_candy_cms_contacts/includes/form.html' with page=page.form_page form=page.form %}
