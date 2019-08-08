@@ -36,6 +36,7 @@ class ParticipantInviteDetailView(generic.DetailView):
         if request.user.is_authenticated:
             return redirect(
                 'project-participant-invite-update',
+                organisation_slug=self.get_object().project.organisation.slug,
                 invite_token=invite_token
             )
         else:
@@ -66,6 +67,7 @@ class ModeratorInviteDetailView(generic.DetailView):
         if request.user.is_authenticated:
             return redirect(
                 'project-moderator-invite-update',
+                organisation_slug=self.get_object().project.organisation.slug,
                 invite_token=invite_token
             )
         else:
