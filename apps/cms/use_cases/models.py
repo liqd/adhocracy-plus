@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.admin.edit_handlers import ObjectList
+from wagtail.admin.edit_handlers import PageChooserPanel
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.admin.edit_handlers import TabbedInterface
 from wagtail.core import blocks
@@ -25,10 +26,19 @@ class UseCaseIndexPage(Page):
         'subtitle_en'
     )
 
+    form_page = models.ForeignKey(
+        'a4_candy_cms_contacts.FormPage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
     @property
     def use_case(self):
         use_case = UseCasePage.objects.live()
         return use_case
+    def form(self):
+        return self.form_page.get_form()
 
     def get_context(self, request):
         use_case = self.use_case
@@ -49,6 +59,7 @@ class UseCaseIndexPage(Page):
         FieldPanel('title'),
         FieldPanel('slug'),
         FieldPanel('demo_link')
+        PageChooserPanel('form_page'),
     ]
 
     edit_handler = TabbedInterface([
