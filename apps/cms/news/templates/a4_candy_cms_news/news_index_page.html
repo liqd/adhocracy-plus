@@ -24,6 +24,9 @@
                 </div>
             {% endfor %}
             </div>
+            <div class="text-center">
+            {% include "a4_candy_contrib/includes/pagination.html" with page_obj=news %}
+            </div>
         </div>
     </div>
 {% endblock %}

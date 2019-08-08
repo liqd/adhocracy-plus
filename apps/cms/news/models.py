@@ -30,13 +30,13 @@ class NewsIndexPage(Page):
     @property
     def news(self):
         news = NewsPage.objects.live()
-        news = news.order_by('-last_published_at')
+        news = news.order_by('-first_published_at')
         return news
 
     def get_context(self, request):
         news = self.news
         page = request.GET.get('page', 1)
-        paginator = Paginator(news, 5)
+        paginator = Paginator(news, 25)
 
         try:
             news = paginator.page(page)
