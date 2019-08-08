@@ -57,3 +57,8 @@
     {% endwith %}
     </div>
 </footer>
+{% if ORGANISATION %}
+<div class="u-page-ribbon u-page-ribbon--platform"></div>
+{% else %}
+    <div class="u-page-ribbon"></div>
+{% endif %}
