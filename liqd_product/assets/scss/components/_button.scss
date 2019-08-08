@@ -160,28 +160,6 @@
     }
 }
 
-.btn--link--big {
-    border-color: transparent;
-    background-color: transparent;
-
-    color: $link-color;
-    font-weight: normal;
-
-    &:hover,
-    &:focus {
-        color: $link-hover-color;
-        border-color: transparent;
-        background-color: transparent;
-        text-decoration: underline;
-    }
-
-    &.is-disabled,
-    &:disabled {
-        color: $text-color;
-        cursor: not-allowed;
-    }
-}
-
 .btn--none {
     @include button-color(transparent, transparent);
 }
@@ -214,6 +192,11 @@
     display: block;
     width: 100%;
     margin-bottom: $spacer;
+}
+
+.btn--attached-top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .btn-group {
