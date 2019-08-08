@@ -11,4 +11,9 @@
             {{ page.body|richtext }}
         </div>
     </div>
+    {% if page.form_page %}
+        <div id="form_page">
+        {% include 'a4_candy_cms_contacts/includes/form.html' with page=page.form_page form=page.form %}
+        </div>
+    {% endif %}
 {% endblock %}
