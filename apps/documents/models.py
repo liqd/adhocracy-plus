@@ -24,13 +24,17 @@ class Chapter(module_models.Item):
         return "{}_chapter_{}".format(str(self.module), self.pk)
 
     def get_absolute_url(self):
-        return reverse(
+        url = reverse(
             'a4_candy_documents:chapter-detail',
             kwargs=dict(
                 organisation_slug=self.project.organisation.slug,
                 pk=str(self.pk)
-            )
-        )
+            ))
+        if (self.project.display_timeline
+                and not self.module.is_in_module_cluster):
+            return ('{}?initialSlide={}'
+                    .format(url, self.module.get_timeline_index))
+        return url
 
     @cached_property
     def prev(self):

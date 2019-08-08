@@ -20,6 +20,7 @@ class OfflineEventsComponent(DashboardComponent):
 
     def get_base_url(self, project):
         return reverse('a4dashboard:offlineevent-list', kwargs={
+            'organisation_slug': project.organisation.slug,
             'project_slug': project.slug
         })
 

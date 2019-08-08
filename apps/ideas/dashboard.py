@@ -23,6 +23,7 @@ class ExportIdeaComponent(DashboardComponent):
 
     def get_base_url(self, module):
         return reverse('a4dashboard:idea-export-module', kwargs={
+            'organisation_slug': module.project.organisation.slug,
             'module_slug': module.slug,
         })
 

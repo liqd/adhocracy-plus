@@ -25,6 +25,7 @@ class DocumentComponent(DashboardComponent):
 
     def get_base_url(self, module):
         return reverse('a4dashboard:dashboard-document-settings', kwargs={
+            'organisation_slug': module.project.organisation.slug,
             'module_slug': module.slug
         })
 
@@ -54,6 +55,7 @@ class ExportDocumentComponent(DashboardComponent):
 
     def get_base_url(self, module):
         return reverse('a4dashboard:document-export-module', kwargs={
+            'organisation_slug': module.project.organisation.slug,
             'module_slug': module.slug,
         })
 

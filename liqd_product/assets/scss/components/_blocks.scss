@@ -15,7 +15,7 @@ $block-padding-md: 7.5*$padding;
     @extend .col-md-4;
     padding: $padding;
 
-    @media screen and (min-width: $breakpoint-lg) {
+    @media screen and (min-width: $breakpoint-xl) {
         padding: $padding $block-padding-md 0 $block-padding-md;
     }
 }
@@ -115,18 +115,17 @@ $block-padding-md: 7.5*$padding;
             padding: 0 $block-padding-md $block-padding-md 5*$r-spacer;
         }
     }
-}
 
-.block-img-col__image {
-    max-height: 400px;
-    width: auto;
-    position: relative;
-    right: 2*-$r-spacer;
-    margin-top: $r-spacer;
+    .block-img-col__image {
+        width: 100%;
+        position: relative;
+        right: 2*-$r-spacer;
+        margin-top: $r-spacer;
 
-    @media screen and (min-width: $breakpoint-xl) {
-        margin-top: 2*$r-spacer;
-        right: 4.5*-$r-spacer;
+        @media screen and (min-width: $breakpoint-xl) {
+            margin-top: 2*$r-spacer;
+            right: 3*-$r-spacer;
+        }
     }
 }
 
@@ -135,7 +134,7 @@ $block-padding-md: 7.5*$padding;
     padding: 1em;
     border: 1px solid $border-color;
 
-    @media (max-width: $breakpoint - 0.1rem) {
+    @media (max-width: $breakpoint-down) {
         margin: 0;
         width: 100%;
     }
@@ -206,8 +205,8 @@ $block-padding-md: 7.5*$padding;
 
 //linked for specificty
 .btn--transparent.block-bg_btn-2 {
-    color: $body-bg;
-    border-color: $body-bg;
+    color: $text-color-inverted;
+    border-color: $text-color-inverted;
 }
 
 .block-background_cta_block {

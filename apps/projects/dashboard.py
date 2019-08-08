@@ -17,6 +17,7 @@ class ParticipantsComponent(DashboardComponent):
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-participants-edit', kwargs={
+            'organisation_slug': project.organisation.slug,
             'project_slug': project.slug
         })
 
@@ -38,6 +39,7 @@ class ModeratorsComponent(DashboardComponent):
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-moderators-edit', kwargs={
+            'organisation_slug': project.organisation.slug,
             'project_slug': project.slug
         })
 

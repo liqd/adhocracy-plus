@@ -46,7 +46,7 @@
 
             {% has_perm 'a4projects.add_project' request.user view.project as user_may_add %}
             {% if user_may_add %}
-                <a class="btn btn--secondary btn--full" href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}">{% trans 'Add Module' %}</a>
+                <a class="btn btn--secondary btn--full" href="{% url 'a4dashboard:module-blueprint-list' organisation_slug=project.organisation.slug project_slug=project.slug %}">{% trans 'Add Module' %}</a>
             {% endif %}
         </nav>
 
@@ -55,7 +55,7 @@
         </div>
 
         <div class="l-menu__aside">
-            {% include "a4dashboard/includes/progress.html" with value=project_progress.valid max=project_progress.required project=project %}
+            {% include "a4_candy_dashboard/includes/progress.html" with value=project_progress.valid max=project_progress.required project=project %}
 
             {% include "a4dashboard/includes/preview.html" with project=project %}
         </div>

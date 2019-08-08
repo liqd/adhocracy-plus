@@ -115,7 +115,8 @@ class HomePage(Page):
 
 class EmptyPage(Page):
     subpage_types = ['a4_candy_cms_pages.SimplePage',
-                     'a4_candy_cms_contacts.FormPage']
+                     'a4_candy_cms_contacts.FormPage',
+                     'a4_candy_cms_news.NewsIndexPage']
 
 
 class SimplePage(Page):

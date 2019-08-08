@@ -35,7 +35,7 @@
                         {% endif %}
                     </a>
                     {% endwithorganisation %}
-                    <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
+                    <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}"
                        class="btn btn--light btn--small">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         {% trans 'Edit'%}
