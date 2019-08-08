@@ -4,19 +4,14 @@
     <div class="dropdown dropdown--right userindicator__dropdown">
         <button
                 type="button"
-                class="dropdown-toggle btn {% if ORGANISATION %}btn--bg-tertiary{% else %}btn--secondary-filled{% endif %} btn--square btn--align-left"
+                class="dropdown-toggle btn btn--link--big btn--align-left"
                 data-toggle="dropdown"
                 data-flip="false"
                 aria-haspopup="true"
                 aria-expanded="false"
                 id="user-actions"
         >
-            <div class="userindicator__btn-img" style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar'}}) {% else %}  url({% static 'images/avatar_00.png' %}) {% endif %}"></div>
-            <div class="userindicator__btn-text">
-                <span class="userindicator__hello">{% trans "Hello" %}</span>
-                <br>
-                <span>{{ request.user.username }}</span>
-            </div>
+            <span class="userindicator__text">{% trans "Hello " %}{{ request.user.username }}</span>
             <i class="fa fa-angle-down" aria-hidden="true"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right userindicator__dropdown-menu {% if not ORGANISATION %}userindicator__dropdown-menu--platform{% endif %}" aria-labelledby="user-actions">
@@ -40,12 +35,9 @@
         </div>
     </div>
 {% else %}
-    <ul class="navi__list">
-        <li class="navi__item">
-            <a class="navi__link" href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
-        </li>
-        <li class="navi__item">
-            <a class="navi__link" href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a>
-        </li>
-    </ul>
+    <div class="navi">
+        <span class="navi__item"><a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a></span>
+            <span class="d-none d-md-inline">/</span>
+        <span class="navi__item"><a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a></span>
+    </div>
 {% endif %}
