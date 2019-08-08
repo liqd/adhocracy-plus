@@ -1,6 +1,4 @@
-{% load i18n static organisation_tags %}
-{% get_current_organisation as ORGANISATION %}
-
+{% load i18n static %}
 
 <footer class="footer px-3 pt-3">
     <div class="row mt-3 mb-3 mb-sm-4">
@@ -59,8 +57,3 @@
     {% endwith %}
     </div>
 </footer>
-{% if ORGANISATION %}
-<div class="u-page-ribbon u-page-ribbon--platform"></div>
-{% else %}
-    <div class="u-page-ribbon"></div>
-{% endif %}
