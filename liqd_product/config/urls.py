@@ -27,7 +27,6 @@ from apps.contrib.sitemaps.product_projects_sitemap import \
 from apps.contrib.sitemaps.static_sitemap import StaticSitemap
 from apps.documents.api import DocumentViewSet
 from apps.moderatorremark.api import ModeratorRemarkViewSet
-from apps.organisations.urlresolvers import organisation_patterns
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
 from apps.polls.routers import QuestionDefaultRouter
@@ -67,7 +66,6 @@ urlpatterns = [
 
     url(r'^accounts/', include('allauth.urls')),
     url(r'^account/', include('apps.account.urls')),
-    url(r'^dashboard/', include('apps.dashboard.urls')),
     url(r'^embed/', include('apps.embed.urls')),
     url(r'^profile/', include('apps.users.urls')),
     url(r'^i18n/', include(i18n)),
@@ -87,25 +85,25 @@ urlpatterns = [
     url(r'^components/$', contrib_views.ComponentLibraryView.as_view()),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 
-    # Urls within the context of a organisation
-    organisation_patterns(
-        # Temporary include liqd_product projects urls, as they contain
-        # the invite links. This may be removed when invites are refactored
-        # to a separate app.
-        url(r'^projects/', include('apps.projects.urls')),
-        url(r'^offlineevents/', include(
-            ('apps.offlineevents.urls', 'a4_candy_offlineevents'),
-            namespace='a4_candy_offlineevents')),
-        url(r'^ideas/', include(('apps.ideas.urls', 'a4_candy_ideas'),
-                                namespace='a4_candy_ideas')),
-        url(r'^mapideas/', include(('apps.mapideas.urls', 'a4_candy_mapideas'),
-                                   namespace='a4_candy_mapideas')),
-        url(r'^text/', include(('apps.documents.urls', 'a4_candy_documents'),
-                               namespace='a4_candy_documents')),
-        url(r'^budgeting/', include(('apps.budgeting.urls',
-                                     'a4_candy_budgeting'),
-                                    namespace='a4_candy_budgeting')),
-    ),
+    url(r'^(?P<organisation_slug>[-\w_]+)/dashboard/',
+        include('apps.dashboard.urls')),
+    url(r'^(?P<organisation_slug>[-\w_]+)/projects/',
+        include('apps.projects.urls')),
+    url(r'^(?P<organisation_slug>[-\w_]+)/offlineevents/',
+        include(('apps.offlineevents.urls', 'a4_candy_offlineevents'),
+                namespace='a4_candy_offlineevents')),
+    url(r'^(?P<organisation_slug>[-\w_]+)/ideas/',
+        include(('apps.ideas.urls', 'a4_candy_ideas'),
+                namespace='a4_candy_ideas')),
+    url(r'^(?P<organisation_slug>[-\w_]+)/mapideas/',
+        include(('apps.mapideas.urls', 'a4_candy_mapideas'),
+                namespace='a4_candy_mapideas')),
+    url(r'^(?P<organisation_slug>[-\w_]+)/text/',
+        include(('apps.documents.urls', 'a4_candy_documents'),
+                namespace='a4_candy_documents')),
+    url(r'^(?P<organisation_slug>[-\w_]+)/budgeting/',
+        include(('apps.budgeting.urls', 'a4_candy_budgeting'),
+                namespace='a4_candy_budgeting')),
 
     url(r'^sitemap\.xml$', wagtail_sitemap_views.index,
         {'sitemaps': sitemaps, 'sitemap_url_name': 'sitemaps'}),

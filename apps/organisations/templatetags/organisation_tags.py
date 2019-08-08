@@ -1,6 +1,8 @@
 from django import template
+from django.urls import resolve
 
-from .. import get_organisation
+from apps.organisations.models import Organisation
+
 from .. import organisation_context
 
 register = template.Library()
@@ -26,6 +28,10 @@ def withorganisation(parser, token):
     return WithOrganisationNode(nodelist, organisation)
 
 
-@register.simple_tag
-def get_current_organisation():
-    return get_organisation()
+@register.simple_tag(takes_context=True)
+def get_current_organisation(context):
+    request = context.request
+    resolver = resolve(request.path_info)
+    if resolver.kwargs and 'organisation_slug' in resolver.kwargs:
+        return Organisation.objects.get(
+            slug=resolver.kwargs['organisation_slug'])

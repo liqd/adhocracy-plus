@@ -31,7 +31,8 @@ def test_offlineevent_create_view(client, phase_factory):
         phase_factory, None, CollectFeedbackPhase)
     initiator = module.project.organisation.initiators.first()
     url = reverse('a4dashboard:offlineevent-create',
-                  kwargs={'project_slug': project.slug})
+                  kwargs={'organisation_slug': project.organisation.slug,
+                          'project_slug': project.slug})
     data = {
         'name': 'name',
         'description': 'desc',
@@ -55,7 +56,8 @@ def test_offlineevent_update_view(
     initiator = module.project.organisation.initiators.first()
     event = offline_event_factory(project=project)
     url = reverse('a4dashboard:offlineevent-update',
-                  kwargs={'slug': event.slug})
+                  kwargs={'organisation_slug': project.organisation.slug,
+                          'slug': event.slug})
     data = {
         'name': 'name',
         'description': 'desc',
@@ -79,7 +81,8 @@ def test_offlineevent_delete_view(
     initiator = module.project.organisation.initiators.first()
     event = offline_event_factory(project=project)
     url = reverse('a4dashboard:offlineevent-delete',
-                  kwargs={'slug': event.slug})
+                  kwargs={'organisation_slug': project.organisation.slug,
+                          'slug': event.slug})
     client.login(username=initiator.email, password='password')
     response = client.delete(url)
     assert redirect_target(response) == 'offlineevent-list'

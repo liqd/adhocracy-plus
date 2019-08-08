@@ -140,7 +140,9 @@ class AbstractIdeaDeleteView(ProjectMixin,
 
     def get_success_url(self):
         return reverse(
-            'project-detail', kwargs={'slug': self.project.slug})
+            'project-detail',
+            kwargs={'organisation_slug': self.module.project.organisation.slug,
+                    'slug': self.project.slug})
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
@@ -218,8 +220,10 @@ class IdeaDashboardExportView(DashboardExportView):
         context = super().get_context_data(**kwargs)
         context['export'] = reverse(
             'a4dashboard:idea-export',
-            kwargs={'module_slug': self.module.slug})
+            kwargs={'organisation_slug': self.module.project.organisation.slug,
+                    'module_slug': self.module.slug})
         context['comment_export'] = reverse(
             'a4dashboard:idea-comment-export',
-            kwargs={'module_slug': self.module.slug})
+            kwargs={'organisation_slug': self.module.project.organisation.slug,
+                    'module_slug': self.module.slug})
         return context
