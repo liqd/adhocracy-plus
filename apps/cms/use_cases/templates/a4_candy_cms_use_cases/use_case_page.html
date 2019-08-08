@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
+    {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="l-wrapper">
+        <div class="l-center-8">
+            <h1 class="cms-title">{{ page.title }}</h1>
+            {{ page.body }}
+        </div>
+    </div>
+{% endblock %}
