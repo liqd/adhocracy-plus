@@ -20,8 +20,6 @@ class NewsIndexPage(Page):
     subtitle_en = models.CharField(
         max_length=250, blank=True, verbose_name="Title")
 
-    demo_link = models.URLField(blank=True, verbose_name='Demo site')
-
     subtitle = TranslatedField(
         'subtitle_de',
         'subtitle_en'
@@ -36,7 +34,7 @@ class NewsIndexPage(Page):
     def get_context(self, request):
         news = self.news
         page = request.GET.get('page', 1)
-        paginator = Paginator(news, 25)
+        paginator = Paginator(news, 20)
 
         try:
             news = paginator.page(page)
@@ -57,7 +55,6 @@ class NewsIndexPage(Page):
 
     common_panels = [
         FieldPanel('title'),
-        FieldPanel('demo_link'),
         FieldPanel('slug')
     ]
 
@@ -88,9 +85,9 @@ class NewsPage(Page):
         max_length=250, blank=True, verbose_name="Title")
 
     teaser_de = models.TextField(
-        blank=True, null=True, verbose_name="Teaser Text")
+        max_length=400, blank=True, null=True, verbose_name="Teaser Text")
     teaser_en = models.TextField(
-        blank=True, null=True, verbose_name="Teaser Text")
+        max_length=400, blank=True, null=True, verbose_name="Teaser Text")
 
     author = models.CharField(
         max_length=255, blank=True, verbose_name="Author Name")
