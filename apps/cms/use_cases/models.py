@@ -33,7 +33,7 @@ class UseCaseIndexPage(Page):
     def get_context(self, request):
         use_case = self.use_case
 
-        context = super(UseCasePage, self).get_context(request)
+        context = super().get_context(request)
         context['use_case'] = use_case
         return context
 
@@ -143,7 +143,8 @@ class UseCasePage(Page):
     common_panels = [
         FieldPanel('title'),
         ImageChooserPanel('image'),
-        FieldPanel('slug')
+        FieldPanel('slug'),
+        FieldPanel('category')
     ]
 
     edit_handler = TabbedInterface([
