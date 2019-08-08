@@ -2,15 +2,14 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 <header class="main-header" aria-label="{% trans 'Header' %}">
-    <div class="u-page-ribbon"></div>
+    <div class="u-page-ribbon u-page-ribbon--platform"></div>
     <div class="l-wrapper">
         <div class="platform-brand main-header__brand">
             {% spaceless %}
-                <a href="{% if ORGANISATION %}{% url 'organisation' organisation_slug=ORGANISATION.slug %}{% else %}/{% endif %}" class="platform-brand__link">adhocracy +</a>
+                <a href="{% if ORGANISATION %}{% url 'organisation' organisation_slug=ORGANISATION.slug %}{% else %}/{% endif %}" class="platform-brand__link">{{ ORGANISATION.name }}</a>
             {% endspaceless %}
         </div>
         <nav class="main-header__nav">
-            {% if ORGANISATION %}
                 {% if ORGANISATION.logo %}
                 {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
                 {% if not request.get_full_path == organisation_url %}
@@ -19,9 +18,7 @@
                 </a>
                 {% endif %}
                 {% endif %}
-            {% endif %}
             <div class="main-header__mobile-menu {% if not ORGANISATION %}main-header__mobile-menu--platform{% endif %} collapse" id="main-header-collapse">
-                {% if ORGANISATION %}
                     <ul class="main-header__organisation-nav">
                         <li class="main-header__organisation-nav__item">
                             {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
@@ -38,12 +35,11 @@
                             <a href="{{ organisation_imprint_url }}" class="main-header__organisation-nav__link"><span class="{% if request.path == organisation_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>
                         </li>
                     </ul>
-                {% endif %}
                 <div class="main-header__user">
                     {% userindicator %}
                 </div>
             </div>
-            <div class="main-header__lang">
+            <div class="main-header__lang test">
                 {% get_available_languages as languages %}
                 {% for lang_code, lang_name in languages %}
                     {% if lang_code != LANGUAGE_CODE %}

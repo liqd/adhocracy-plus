@@ -40,12 +40,11 @@
         </div>
     </div>
 {% else %}
-    <ul class="navi__list">
-        <li class="navi__item">
-            <a class="navi__link" href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
-        </li>
-        <li class="navi__item">
-            <a class="navi__link" href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a>
-        </li>
-    </ul>
+    <div class="navi">
+        <span class="navi__item"><a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a></span>
+            <span class="d-none d-md-inline">/</span>
+        <span class="navi__item"><a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a></span>
+    </div>
+
+
 {% endif %}
