@@ -4,21 +4,20 @@
 {% block title %}{% endblock %}
 
 {% block content %}
+<div class="cms__wrapper">
     <div class="l-wrapper">
         <div class="l-center-8">
-            <h1>{{ page.title }}</h1>
+            <h1 class="cms__title--serif cms__title--underlined text-center">{{ page.title }}</h1>
             <div class="row">
             {% for post in news %}
-                <div class="col-12 col-md-6">
-                    <a href="{% pageurl post %}">
-                        <div class="">
+                <div class="col-12 col-md-6 cms-news__tile">
+                    <a class="cms-news__tile-link" href="{% pageurl post %}">
+                        <div class="cms-news__text">
                             {{ post.last_published_at|date }}
                         </div>
-                        <div class="">
-                            <h4>{{ post.subtitle }}</h4>
-                        </div>
-                        <div>
-                            {{ post.teaser|truncatechars:150 }}
+                        <h3 class="cms__title--bold cms-news__header-margin">{{ post.subtitle }}</h3>
+                        <div class="cms-news__text">
+                            {{ post.teaser }}
                         </div>
                     </a>
                 </div>
@@ -29,4 +28,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

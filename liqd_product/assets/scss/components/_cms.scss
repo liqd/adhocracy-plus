@@ -1,53 +1,34 @@
-.cms-title--normal {
+.cms__title--serif {
+    font-family: $font-family-serif;
     font-weight: normal;
 }
 
-.cms-header {
-    display: inline-block;
-    border-bottom: solid 4px $brand-secondary;
+.cms__title--bold {
+    font-family: $font-family-base;
+    font-weight: bold;
 }
 
-.cms-subtitle {
-    font-size: $font-size-xl;
-    font-weight: 600;
-}
-
-.homepage-title {
-    display: inline-block;
-    border-bottom: solid 8px $brand-primary;
-    padding-bottom: 23px;
-}
-
-.homepage-title--large {
-    @media screen and (max-width: $breakpoint) {
-        display: none;
-    }
-}
-
-.homepage-title--small {
-    @media screen and (min-width: $breakpoint) {
-        display: none;
-    }
-}
-
-.homepage-header {
+.cms__title--underlined {
     position: relative;
-    margin-top: $spacer * 5;
+    margin-bottom: 6 * $r-spacer;
 
-    @media screen and (min-width: $breakpoint) {
-        margin-bottom: $spacer * 7;
+    &:after {
+        content: "";
+        position: absolute;
+        left: calc(50% - 40px);
+        bottom: -20px;
+        width: 80px;
+        border-bottom: solid 8px $brand-secondary;
     }
 }
 
-.homepage-header__image {
-    width: 100%;
-}
+.cms__wrapper {
+    margin-left: $r-spacer;
+    margin-right: $r-spacer;
+    background-color: $bg-light;
 
-.homepage-header__text {
-    @media screen and (min-width: $breakpoint) {
-        width: 70%;
-        background-color: $white;
-        position: absolute;
-        bottom: - $spacer * 4.5;
+    @media screen and (min-width: $breakpoint-xl) {
+        margin-left: 2*$r-spacer;
+        margin-right: 2*$r-spacer;
     }
 }
