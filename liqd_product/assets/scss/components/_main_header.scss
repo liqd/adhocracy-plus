@@ -1,9 +1,10 @@
 .main-header {
     background-color: $bg-light;
-    margin: $r-spacer;
+    margin: $r-spacer $r-spacer 0 $r-spacer;
 
     @media screen and (min-width: $breakpoint-xl) {
-        margin: 2*$r-spacer;
+        font-size: $font-size-md;
+        margin: 2*$r-spacer 2*$r-spacer 0 2*$r-spacer;
     }
 
     a {
@@ -23,8 +24,6 @@
 }
 
 .main-header__menu {
-    border-bottom: 1px solid $body-bg;
-
     position: absolute;
     left: 0;
     right: 0;
@@ -35,7 +34,6 @@
 
     button,
     a {
-        border-bottom: 1px solid $body-bg;
         display: block;
         width: 100%;
         padding: 0.5em;
@@ -53,7 +51,7 @@
     position: relative;
     right: 0;
     z-index: 2;
-    background-color: $bg-light;
+    background-color: inherit;
 }
 
 .main-header__mobile-toggle:before {
@@ -61,6 +59,7 @@
     font-style: normal;
     font-weight: 900;
     content: '\f0c9';
+    // background-color: $body-bg;
 }
 
 .show + .main-header__mobile-toggle:before {
@@ -80,14 +79,14 @@
     }
 }
 
-.main-header__partner-nav__item {
-    display: block;
-
-    .is-active {
-        padding-bottom: 0.1em;
-        border-bottom: 0.2em solid $brand-primary;
-    }
-}
+// .main-header__partner-nav__item {
+//     display: block;
+//
+//     .is-active {
+//         padding-bottom: 0.1em;
+//         border-bottom: 0.2em solid $brand-primary;
+//     }
+// }
 
 @media screen and (min-width: $breakpoint) {
     .main-header__brand {
@@ -129,14 +128,14 @@
 
     .main-header__user {
         position: absolute;
-        top: 0;
+        top: 0.75rem;
         right: 0;
     }
 }
 
 @media screen and (min-width: $breakpoint-md) {
     .main-header__lang {
-        margin-right: 13rem;
+        margin-right: 17%;
     }
 }
 
