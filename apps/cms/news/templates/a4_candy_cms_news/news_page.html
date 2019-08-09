@@ -4,16 +4,28 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
-        <div class="l-center-8">
-            <h1 class="cms-title">{{ page.subtitle }}</h1>
-            {% if page.image %}
-            <div class="col-lg-6">
-                {% image page.image width-770 as image %}
-                <img src="{{ image.url }}" alt="{{ image.alt }}" class="" />
+<div class="cms__wrapper pt-5">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-md-10">
+                <div class="cms-news__text">
+                    {{ page.first_published_at|date }}
+                </div>
+                <h1 class="cms__title--bold cms-news__header-margin">{{ page.subtitle }}</h1>
             </div>
-            {% endif %}
-            <div>{{ page.body }}</div>
+        </div>
+        {% if page.image %}
+        <div class="row justify-content-md-center">
+            <div class="col-12">
+                {% image page.image width-1200 %}
+            </div>
+        </div>
+        {% endif %}
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-md-10 cms-news__text">
+                {{ page.body }}
+            </div>
         </div>
     </div>
+</div>
 {% endblock %}
