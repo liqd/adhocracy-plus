@@ -1,6 +1,5 @@
-{% load i18n organisation_tags %}
+{% load i18n %}
 
-{% withorganisation project.organisation %}
 <a href="{{ project.get_absolute_url }}"
    class="btn btn--light btn--full">
     <i class="fa fa-eye" aria-hidden="true"></i>
@@ -10,4 +9,3 @@
     {% trans 'View' %}
     {% endif %}
 </a>
-{% endwithorganisation %}

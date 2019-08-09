@@ -1,4 +1,4 @@
-{% load i18n contrib_tags organisation_tags %}
+{% load i18n contrib_tags %}
 
 <li class="list-item">
     <div class="lr-bar">
@@ -9,13 +9,11 @@
         <div class="lr-bar__right">
             <div class="btn-group">
                 {% spaceless %}
-                    {% withorganisation project.organisation %}
                     <a href="{% url 'a4_candy_offlineevents:offlineevent-detail' organisation_slug=project.organisation.slug slug=object.slug %}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                         {% trans 'View' %}
                     </a>
-                    {% endwithorganisation %}
                     <a href="{% url 'a4dashboard:offlineevent-update' organisation_slug=project.organisation.slug slug=object.slug %}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
