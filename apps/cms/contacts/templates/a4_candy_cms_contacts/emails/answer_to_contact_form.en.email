@@ -1,5 +1,4 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name organisation_tags wagtailcore_tags %}
 
 {% block subject %}We received your message on {{ site.name }}{% endblock %}
 

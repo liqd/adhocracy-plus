@@ -1,5 +1,5 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name organisation_tags %}
+{% load verbose_name %}
 
 {% block subject %}A {{ action.obj | verbose_name }} was added to {{ action.project.name }}{% endblock %}
 
@@ -7,7 +7,7 @@
 
 {% block content %}a {{ action.obj | verbose_name }} was added to project "{{ action.project.name }}" by "{{ action.project.organisation.name }}".{% endblock %}
 
-{% block cta_url %}{% withorganisation action.project.organisation %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endwithorganisation %}{% endblock %}
-{% block cta_label %}Visit the project{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ action.obj.get_absolute_url|default:action.obj.module.get_detail_url }}{% endblock %}
+{% block cta_label %}{% if action.obj.get_absolute_url %}Visit the entry{% else %}Visit the project{% endif %}{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you follow a project. If you don’t want to receive these notifications anymore, you can unfollow the project on the project page or disable notifications completely in your account settings.{% endblock %}

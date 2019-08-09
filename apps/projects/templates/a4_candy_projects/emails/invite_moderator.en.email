@@ -1,5 +1,5 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name organisation_tags %}
+{% load verbose_name %}
 
 {% block subject %}Invitation to moderate the project {{ moderatorinvite.project.name }}{% endblock %}
 
@@ -8,7 +8,7 @@
 {% block content %}you are invited  to moderate the private project "{{ participantinvite.project.name }}" on the participation platform  {{ site.name }}. To moderate click on "Accepct invitation."
 {% endblock %}
 
-{% block cta_url %}{% withorganisation moderatorinvite.project.organisation %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endwithorganisation %}{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Accept invitation{% endblock %}
 
 {% block reason %}This email was sent to {{ moderatorinvite.email }}. This email was sent to you because you are invited to moderate a project.{% endblock %}

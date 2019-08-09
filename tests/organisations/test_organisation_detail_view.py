@@ -1,12 +1,9 @@
 import pytest
 from django.urls import reverse
 
-from apps.organisations import set_organisation
-
 
 @pytest.mark.django_db
 def test_hide_private_projects(client, user, project_factory, organisation):
-    set_organisation(organisation)
     public = project_factory(organisation=organisation)
     private = project_factory(is_public=False, organisation=organisation)
 
