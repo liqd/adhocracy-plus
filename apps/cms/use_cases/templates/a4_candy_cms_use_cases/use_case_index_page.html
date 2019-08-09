@@ -12,9 +12,20 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
                 <h1 class="cms__title--serif cms__title--underlined text-center">{{ page.subtitle }}</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10">
+                <div class="row justify-content-center">
                 {% for category in categories %}
-                    <a href="?category={{ category.0 }}">{{ category.1 }}</a>
+                    <a class="col-4 col-md-2" href="?category={{ category.0 }}">
+                        <div class="mx-auto cms-use-case__category-image"></div>
+                        <div class="text-center cms-use-case__category">
+                            {{ category.1 }}
+                        </div>
+                    </a>
                 {% endfor %}
+                </div>
             </div>
         </div>
         <div class="row justify-content-center justify-content-sm-start">
