@@ -1,3 +1,14 @@
+.cms__wrapper {
+    margin-left: $r-spacer;
+    margin-right: $r-spacer;
+    background-color: $bg-light;
+
+    @media screen and (min-width: $breakpoint-xl) {
+        margin-left: 2*$r-spacer;
+        margin-right: 2*$r-spacer;
+    }
+}
+
 .cms__title--serif {
     font-family: $font-family-serif;
     font-weight: normal;
@@ -22,13 +33,42 @@
     }
 }
 
-.cms__wrapper {
-    margin-left: $r-spacer;
-    margin-right: $r-spacer;
-    background-color: $bg-light;
+.cms__text {
+    font-size: $font-size-md;
+    font-family: $font-family-base;
+}
 
-    @media screen and (min-width: $breakpoint-xl) {
-        margin-left: 2*$r-spacer;
-        margin-right: 2*$r-spacer;
+.cms__tile-link {
+    text-decoration-line: none;
+
+    &:hover,
+    &:focus {
+        text-decoration-line: underline;
     }
+}
+
+.cms-page__header-margin {
+    margin-top: $r-spacer;
+    margin-bottom: $r-spacer;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-top: 2 * $r-spacer;
+        margin-bottom: 2 * $r-spacer;
+    }
+}
+
+.cms-news__tile {
+    padding-bottom: 3 * $r-spacer;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding-bottom: 4 * $r-spacer;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding-bottom: 6 * $r-spacer;
+    }
+}
+
+.cms-use-case__tile {
+    padding-bottom: 3 * $r-spacer;
 }

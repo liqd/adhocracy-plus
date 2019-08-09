@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
 
-{% block title %}{% endblock %}
+{% block title %}
+    {{ self.title }} &mdash; {{ block.super }}
+{% endblock %}
 
 {% block content %}
 <div class="cms__wrapper">
@@ -12,12 +14,12 @@
                 <div class="row justify-content-start">
                 {% for post in news %}
                     <div class="col-12 col-md-6 cms-news__tile">
-                        <a class="cms-news__tile-link" href="{% pageurl post %}">
-                            <div class="cms-news__text">
+                        <a class="cms__tile-link" href="{% pageurl post %}">
+                            <div class="cms__text">
                                 {{ post.first_published_at|date }}
                             </div>
                             <h3 class="cms__title--bold cms-news__header-margin">{{ post.subtitle }}</h3>
-                            <div class="cms-news__text">
+                            <div class="cms__text">
                                 {{ post.teaser }}
                             </div>
                         </a>
