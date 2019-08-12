@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags i18n %}
 
 {% block title %}
     {{ self.title }} &mdash; {{ block.super }}
@@ -27,6 +27,11 @@
         <div class="row justify-content-md-center pt-5">
             <div class="col-12 col-md-10 cms__text">
                 {{ page.body }}
+            </div>
+        </div>
+        <div class="row justify-content-md-center pt-5 pb-5">
+            <div class="cms__text">
+                <a href="{{ page.get_parent.url }}" class="btn btn--transparent">{% trans 'Back to overview' %}</a>
             </div>
         </div>
     </div>
