@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-29 17:08+0200\n"
+"POT-Creation-Date: 2019-08-12 13:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgid "Add category"
 msgstr "Add category"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
-#: liqd_product/templates/a4dashboard/base_dashboard.html:41
+#: liqd_product/templates/a4dashboard/base_dashboard.html:37
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -91,8 +91,8 @@ msgstr "Missing field for publication"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:36
-#: liqd_product/templates/a4dashboard/includes/preview.html:8
-#: liqd_product/templates/a4dashboard/includes/project_list_item.html:32
+#: liqd_product/templates/a4dashboard/includes/preview.html:7
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:31
 msgid "Preview"
 msgstr "Preview"
 
@@ -100,26 +100,30 @@ msgstr "Preview"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:38
 #: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:8
 #: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:14
-#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:16
-#: liqd_product/templates/a4dashboard/includes/preview.html:10
-#: liqd_product/templates/a4dashboard/includes/project_list_item.html:34
+#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:15
+#: liqd_product/templates/a4dashboard/includes/preview.html:9
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:33
 msgid "View"
 msgstr "View"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
+#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:16
 #, python-format
 msgid "%(value)s from %(max)s"
 msgstr "%(value)s from %(max)s"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
+#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:17
 msgid "required fields for publication"
 msgstr "required fields for publication"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
+#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:27
 msgid "Publish"
 msgstr "Publish"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
+#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:31
 msgid "Unpublish"
 msgstr "Unpublish"
 
@@ -184,14 +188,14 @@ msgstr "private"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:45
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:96
-#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:22
+#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
 #: apps/projects/templates/a4_candy_projects/project_detail.html:48
-#: liqd_product/templates/a4dashboard/includes/project_list_item.html:41
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:39
 msgid "Edit"
 msgstr "Edit"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:54
-#: liqd_product/templates/a4dashboard/includes/project_list_item.html:64
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:62
 msgid "Duplicate"
 msgstr "Duplicate"
 
@@ -672,27 +676,27 @@ msgstr ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 
-#: adhocracy4/modules/models.py:191 adhocracy4/projects/models.py:335
+#: adhocracy4/modules/models.py:191 adhocracy4/projects/models.py:411
 msgid "day"
 msgstr "day"
 
-#: adhocracy4/modules/models.py:191 adhocracy4/projects/models.py:335
+#: adhocracy4/modules/models.py:191 adhocracy4/projects/models.py:411
 msgid "days"
 msgstr "days"
 
-#: adhocracy4/modules/models.py:192 adhocracy4/projects/models.py:336
+#: adhocracy4/modules/models.py:192 adhocracy4/projects/models.py:412
 msgid "hour"
 msgstr "hour"
 
-#: adhocracy4/modules/models.py:192 adhocracy4/projects/models.py:336
+#: adhocracy4/modules/models.py:192 adhocracy4/projects/models.py:412
 msgid "hours"
 msgstr "hours"
 
-#: adhocracy4/modules/models.py:193 adhocracy4/projects/models.py:337
+#: adhocracy4/modules/models.py:193 adhocracy4/projects/models.py:413
 msgid "minute"
 msgstr "minute"
 
-#: adhocracy4/modules/models.py:193 adhocracy4/projects/models.py:337
+#: adhocracy4/modules/models.py:193 adhocracy4/projects/models.py:413
 msgid "minutes"
 msgstr "minutes"
 
@@ -762,19 +766,12 @@ msgid "Images"
 msgstr "Images"
 
 #: adhocracy4/projects/admin.py:60 apps/projects/admin.py:55
+#: liqd_product/templates/footer.html:46
 #: liqd_product/templates/newsletter_base.txt:13
 msgid "Contact"
 msgstr "Contact"
 
-#: adhocracy4/projects/mixins.py:144
-msgid "{}. Online Participation"
-msgstr "{}. Online Participation"
-
-#: adhocracy4/projects/mixins.py:184
-msgid "Online Participation"
-msgstr "Online Participation"
-
-#: adhocracy4/projects/models.py:40
+#: adhocracy4/projects/models.py:42
 msgid ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
@@ -782,19 +779,19 @@ msgstr ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
 
-#: adhocracy4/projects/models.py:46
+#: adhocracy4/projects/models.py:48
 msgid "Postal address"
 msgstr "Postal address"
 
-#: adhocracy4/projects/models.py:55
+#: adhocracy4/projects/models.py:57
 msgid "Contact person"
 msgstr "Contact person"
 
-#: adhocracy4/projects/models.py:75
+#: adhocracy4/projects/models.py:77
 msgid "Can your project be located on the map?"
 msgstr "Can your project be located on the map?"
 
-#: adhocracy4/projects/models.py:76
+#: adhocracy4/projects/models.py:78
 msgid ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
@@ -802,15 +799,15 @@ msgstr ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
 
-#: adhocracy4/projects/models.py:87
+#: adhocracy4/projects/models.py:89
 msgid "Administrative district"
 msgstr "Administrative district"
 
-#: adhocracy4/projects/models.py:97
+#: adhocracy4/projects/models.py:173
 msgid "Title of your project"
 msgstr "Title of your project"
 
-#: adhocracy4/projects/models.py:98
+#: adhocracy4/projects/models.py:174
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -818,11 +815,11 @@ msgstr ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
 
-#: adhocracy4/projects/models.py:114
+#: adhocracy4/projects/models.py:190
 msgid "Short description of your project"
 msgstr "Short description of your project"
 
-#: adhocracy4/projects/models.py:115
+#: adhocracy4/projects/models.py:191
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -830,11 +827,11 @@ msgstr ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
 
-#: adhocracy4/projects/models.py:123
+#: adhocracy4/projects/models.py:199
 msgid "Description of your project"
 msgstr "Description of your project"
 
-#: adhocracy4/projects/models.py:124
+#: adhocracy4/projects/models.py:200
 msgid ""
 "This description should tell participants what the goal of the project is, "
 "how the project’s participation will look like. It will be always visible in "
@@ -844,11 +841,11 @@ msgstr ""
 "how the project’s participation will look like. It will be always visible in "
 "the „Info“ tab on your project’s page."
 
-#: adhocracy4/projects/models.py:132
+#: adhocracy4/projects/models.py:208
 msgid "Results of your project"
 msgstr "Results of your project"
 
-#: adhocracy4/projects/models.py:133
+#: adhocracy4/projects/models.py:209
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
 "how you are planning to use the results. If the project is finished you "
@@ -858,11 +855,11 @@ msgstr ""
 "how you are planning to use the results. If the project is finished you "
 "should add a summary of the results."
 
-#: adhocracy4/projects/models.py:140
+#: adhocracy4/projects/models.py:216
 msgid "Access to the project"
 msgstr "Access to the project"
 
-#: adhocracy4/projects/models.py:141
+#: adhocracy4/projects/models.py:217
 msgid ""
 "Please indicate whether this project should be public or restricted to "
 "invited users. Teasers for your project including title and short "
@@ -872,29 +869,29 @@ msgstr ""
 "invited users. Teasers for your project including title and short "
 "description will always be visible to everyone"
 
-#: adhocracy4/projects/models.py:149 adhocracy4/projects/models.py:155
+#: adhocracy4/projects/models.py:225 adhocracy4/projects/models.py:231
 #: apps/organisations/models.py:57 apps/partners/models.py:55
 msgid "Header image"
 msgstr "Header image"
 
-#: adhocracy4/projects/models.py:151 apps/organisations/models.py:59
+#: adhocracy4/projects/models.py:227 apps/organisations/models.py:59
 #: apps/partners/models.py:57
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
-#: adhocracy4/projects/models.py:158 adhocracy4/projects/models.py:165
+#: adhocracy4/projects/models.py:234 adhocracy4/projects/models.py:241
 msgid "Tile image"
 msgstr "Tile image"
 
-#: adhocracy4/projects/models.py:160
+#: adhocracy4/projects/models.py:236
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
 
-#: adhocracy4/projects/models.py:178
+#: adhocracy4/projects/models.py:254
 msgid "Project is archived"
 msgstr "Project is archived"
 
-#: adhocracy4/projects/models.py:179
+#: adhocracy4/projects/models.py:255
 msgid ""
 "Exclude this project from all listings by default. You can still access this "
 "project by using filters."
@@ -902,11 +899,11 @@ msgstr ""
 "Exclude this project from all listings by default. You can still access this "
 "project by using filters."
 
-#: adhocracy4/projects/models.py:183
+#: adhocracy4/projects/models.py:259
 msgid "Project topics"
 msgstr "Project topics"
 
-#: adhocracy4/projects/models.py:184
+#: adhocracy4/projects/models.py:260
 msgid "Add topics to your project."
 msgstr "Add topics to your project."
 
@@ -920,6 +917,14 @@ msgstr[1] "%(number)d days left"
 #: adhocracy4/projects/templatetags/project_tags.py:19
 msgid "a few hours left"
 msgstr "a few hours left"
+
+#: adhocracy4/projects/utils.py:44
+msgid "{}. Online Participation"
+msgstr "{}. Online Participation"
+
+#: adhocracy4/projects/utils.py:53
+msgid "Online Participation"
+msgstr "Online Participation"
 
 #: adhocracy4/reports/templatetags/react_reports.py:30
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:107
@@ -1043,9 +1048,9 @@ msgstr "facetoface"
 msgid "Edit face to face participation information"
 msgstr "Edit face to face participation information"
 
-#: apps/budgeting/dashboard.py:14 apps/documents/dashboard.py:45
+#: apps/budgeting/dashboard.py:14 apps/documents/dashboard.py:46
 #: apps/ideas/dashboard.py:14 apps/mapideas/dashboard.py:14
-#: apps/polls/dashboard.py:45
+#: apps/polls/dashboard.py:46
 msgid "Export Excel"
 msgstr "Export Excel"
 
@@ -1139,14 +1144,15 @@ msgstr "breadcrumbs"
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_create_form.html:13
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:13
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_update_form.html:14
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:15
 #: apps/ideas/templates/a4_candy_ideas/idea_create_form.html:13
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:13
 #: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:14
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_create_form.html:13
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:13
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:14
-msgid "back to project"
-msgstr "back to project"
+msgid "go back"
+msgstr "go back"
 
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_create_form.html:18
 msgid "Submit a new proposal for this project"
@@ -1252,6 +1258,75 @@ msgstr "You can find us here:"
 msgid "This is how you can contact us:"
 msgstr "This is how you can contact us:"
 
+#: apps/cms/news/templates/a4_candy_cms_news/includes/news_pagination.html:3
+#: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:4
+msgid "Page navigation"
+msgstr "Page navigation"
+
+#: apps/cms/news/templates/a4_candy_cms_news/includes/news_pagination.html:14
+msgid "Previous page"
+msgstr "Previous page"
+
+#: apps/cms/news/templates/a4_candy_cms_news/includes/news_pagination.html:20
+msgid "Next page"
+msgstr "Next page"
+
+#: apps/cms/news/templates/a4_candy_cms_news/news_page.html:33
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:35
+msgid "Back to overview"
+msgstr "Back to overview"
+
+#: apps/cms/pages/templates/a4_candy_cms_pages/home_page.html:19
+#: liqd_product/templates/footer.html:54
+msgid "Support the further development of the platform"
+msgstr "Support the further development of the platform"
+
+#: apps/cms/pages/templates/a4_candy_cms_pages/home_page.html:19
+msgid "Donate Now"
+msgstr "Donate Now"
+
+#: apps/cms/use_cases/models.py:22
+msgid "Municipalities"
+msgstr "Municipalities"
+
+#: apps/cms/use_cases/models.py:23
+msgid "Citizen Assemblies"
+msgstr "Citizen Assemblies"
+
+#: apps/cms/use_cases/models.py:24
+msgid "Co-Operatives/NGOs"
+msgstr "Co-Operatives/NGOs"
+
+#: apps/cms/use_cases/models.py:25
+msgid "Companies"
+msgstr "Companies"
+
+#: apps/cms/use_cases/models.py:26
+msgid "Politicians"
+msgstr "Politicians"
+
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:40
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:14
+#, python-format
+msgid "In %(category)s"
+msgstr "In %(category)s"
+
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:50
+msgid "Try it out!"
+msgstr "Try it out!"
+
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:51
+msgid ""
+"Instead of just reading about it, you can test all the features of adhocracy"
+"+ yourself on our demo platform. "
+msgstr ""
+"Instead of just reading about it, you can test all the features of adhocracy"
+"+ yourself on our demo platform. "
+
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:52
+msgid "Visit the demo platform"
+msgstr "Visit the demo platform"
+
 #: apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
 msgstr "You have signed out."
@@ -1336,10 +1411,6 @@ msgstr "View as list"
 msgid "View as map"
 msgstr "View as map"
 
-#: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:4
-msgid "Page navigation"
-msgstr "Page navigation"
-
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:56
 #: apps/exports/mixins.py:12
 msgid "Reference No."
@@ -1351,7 +1422,7 @@ msgid "Actions"
 msgstr "Actions"
 
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:98
-#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:27
+#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:25
 msgid "Delete"
 msgstr "Delete"
 
@@ -1493,7 +1564,7 @@ msgstr "Next Chapter"
 msgid "back to chapter"
 msgstr "back to chapter"
 
-#: apps/documents/views.py:53
+#: apps/documents/views.py:63
 msgid "Document has no chapters defined."
 msgstr "Document has no chapters defined."
 
@@ -1671,7 +1742,7 @@ msgstr "Moderate idea"
 msgid "Edit idea"
 msgstr "Edit idea"
 
-#: apps/ideas/views.py:153 apps/mapideas/views.py:79
+#: apps/ideas/views.py:155 apps/mapideas/views.py:79
 msgid "Your Idea has been deleted"
 msgstr "Your Idea has been deleted"
 
@@ -1800,7 +1871,7 @@ msgid "Receivers"
 msgstr "Receivers"
 
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:4
-#: liqd_product/templates/a4dashboard/base_dashboard.html:48
+#: liqd_product/templates/a4dashboard/base_dashboard.html:44
 msgid "Newsletter"
 msgstr "Newsletter"
 
@@ -1874,7 +1945,7 @@ msgstr ""
 msgid "Edit offline event"
 msgstr "Edit offline event"
 
-#: apps/offlineevents/views.py:92
+#: apps/offlineevents/views.py:94
 msgid "The offline event has been deleted"
 msgstr "The offline event has been deleted"
 
@@ -1947,7 +2018,7 @@ msgstr ""
 #: apps/organisations/models.py:76
 #: apps/organisations/templates/organisation_imprint.html:4
 #: apps/organisations/templates/organisation_imprint.html:9
-#: apps/partners/models.py:74 liqd_product/templates/footer.html:10
+#: apps/partners/models.py:74 liqd_product/templates/footer.html:31
 #: liqd_product/templates/header.html:38
 msgid "Imprint"
 msgstr "Imprint"
@@ -1969,7 +2040,7 @@ msgid "Activity"
 msgstr "Activity"
 
 #: apps/organisations/templates/organisation_landing_page.html:45
-#: apps/users/templates/a4_candy_users/user_detail.html:110
+#: apps/users/templates/a4_candy_users/user_detail.html:107
 msgid "No activity yet. "
 msgstr "No activity yet. "
 
@@ -2023,17 +2094,17 @@ msgstr "Topic and location"
 msgid "Participants"
 msgstr "Participants"
 
-#: apps/projects/dashboard.py:34
+#: apps/projects/dashboard.py:35
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:4
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:12
 msgid "Moderators"
 msgstr "Moderators"
 
-#: apps/projects/forms.py:46 apps/projects/views.py:231
+#: apps/projects/forms.py:46 apps/projects/views.py:233
 msgid "Invite users via email"
 msgstr "Invite users via email"
 
-#: apps/projects/forms.py:51 apps/projects/views.py:232
+#: apps/projects/forms.py:51 apps/projects/views.py:234
 msgid "Invite users via file upload"
 msgstr "Invite users via file upload"
 
@@ -2107,7 +2178,7 @@ msgstr "Timeline"
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:18
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:76
-#: apps/projects/templates/a4_candy_projects/project_detail.html:188
+#: apps/projects/templates/a4_candy_projects/project_detail.html:180
 #: apps/users/models.py:46
 #: liqd_product/templates/a4modules/module_detail.html:79
 msgid "active"
@@ -2120,28 +2191,28 @@ msgstr "current page"
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:49
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:96
-#: apps/projects/templates/a4_candy_projects/project_detail.html:166
+#: apps/projects/templates/a4_candy_projects/project_detail.html:158
 #: liqd_product/templates/a4modules/module_detail.html:57
 msgid "Participation is not possible at the moment."
 msgstr "Participation is not possible at the moment."
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:52
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:98
-#: apps/projects/templates/a4_candy_projects/project_detail.html:169
+#: apps/projects/templates/a4_candy_projects/project_detail.html:161
 #: liqd_product/templates/a4modules/module_detail.html:60
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "It starts on %(date)s."
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:55
-#: apps/projects/templates/a4_candy_projects/project_detail.html:172
+#: apps/projects/templates/a4_candy_projects/project_detail.html:164
 #: liqd_product/templates/a4modules/module_detail.html:63
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "It continues on %(date)s."
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:58
-#: apps/projects/templates/a4_candy_projects/project_detail.html:175
+#: apps/projects/templates/a4_candy_projects/project_detail.html:167
 #: liqd_product/templates/a4modules/module_detail.html:66
 #, python-format
 msgid "It ended on %(date)s."
@@ -2264,7 +2335,7 @@ msgstr "to project collection %(name)s"
 msgid "Participation"
 msgstr "Participation"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:225
+#: apps/projects/templates/a4_candy_projects/project_detail.html:217
 msgid "No results yet."
 msgstr "No results yet."
 
@@ -2281,51 +2352,51 @@ msgstr "Pending Invitations"
 msgid "Edit Participants"
 msgstr "Edit Participants"
 
-#: apps/projects/views.py:119
+#: apps/projects/views.py:121
 msgid "Invitation succesfully removed."
 msgstr "Invitation succesfully removed."
 
-#: apps/projects/views.py:160
+#: apps/projects/views.py:162
 msgid "Following users already accepted an invitation: "
 msgstr "Following users already accepted an invitation: "
 
-#: apps/projects/views.py:168
+#: apps/projects/views.py:170
 msgid "Following users are already invited: "
 msgstr "Following users are already invited: "
 
-#: apps/projects/views.py:211
+#: apps/projects/views.py:213
 msgid "Invite moderators via email"
 msgstr "Invite moderators via email"
 
-#: apps/projects/views.py:212
+#: apps/projects/views.py:214
 msgid "Invite moderators via file upload"
 msgstr "Invite moderators via file upload"
 
-#: apps/projects/views.py:213
+#: apps/projects/views.py:215
 msgid "{} moderator invited."
 msgstr "{} moderator invited."
 
-#: apps/projects/views.py:213
+#: apps/projects/views.py:215
 msgid "{} moderators invited."
 msgstr "{} moderators invited."
 
-#: apps/projects/views.py:214
+#: apps/projects/views.py:216
 msgid "Moderator successfully removed."
 msgstr "Moderator successfully removed."
 
-#: apps/projects/views.py:234
+#: apps/projects/views.py:236
 msgid "{} participant invited."
 msgstr "{} participant invited."
 
-#: apps/projects/views.py:235
+#: apps/projects/views.py:237
 msgid "{} participants invited."
 msgstr "{} participants invited."
 
-#: apps/projects/views.py:236
+#: apps/projects/views.py:238
 msgid "Participant successfully removed."
 msgstr "Participant successfully removed."
 
-#: apps/projects/views.py:249
+#: apps/projects/views.py:251
 #, python-format
 msgid "Project '%(name)s' was deleted successfully."
 msgstr "Project '%(name)s' was deleted successfully."
@@ -2352,7 +2423,7 @@ msgstr "Please enter correct email addresses, separated by commas."
 
 #: apps/users/forms.py:10 liqd_product/templates/email_base.html:59
 #: liqd_product/templates/email_base.txt:15
-#: liqd_product/templates/footer.html:15
+#: liqd_product/templates/footer.html:36
 #: liqd_product/templates/newsletter_base.html:59
 #: liqd_product/templates/newsletter_base.txt:14
 msgid "Terms of use"
@@ -2437,7 +2508,7 @@ msgid "Facebook name"
 msgstr "Facebook name"
 
 #: apps/users/models.py:95
-#: apps/users/templates/a4_candy_users/user_detail.html:19
+#: apps/users/templates/a4_candy_users/user_detail.html:20
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -2472,155 +2543,155 @@ msgstr "Account Settings"
 msgid "View your profile"
 msgstr "View your profile"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:25
+#: apps/users/templates/a4_candy_users/user_detail.html:26
 msgid "Facebook"
 msgstr "Facebook"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:31
+#: apps/users/templates/a4_candy_users/user_detail.html:32
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:38
+#: apps/users/templates/a4_candy_users/user_detail.html:39
 msgid "Active in these platforms"
 msgstr "Active in these platforms"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:51
+#: apps/users/templates/a4_candy_users/user_detail.html:52
 msgid "This user is not active in any platform yet."
 msgstr "This user is not active in any platform yet."
 
-#: apps/users/templates/a4_candy_users/user_detail.html:53
+#: apps/users/templates/a4_candy_users/user_detail.html:54
 msgid "Check some platforms out."
 msgstr "Check some platforms out."
 
-#: apps/users/templates/a4_candy_users/user_detail.html:69
+#: apps/users/templates/a4_candy_users/user_detail.html:70
 msgid "Participations"
 msgstr "Participations"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:79
+#: apps/users/templates/a4_candy_users/user_detail.html:80
 msgid "Activities"
 msgstr "Activities"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:96
+#: apps/users/templates/a4_candy_users/user_detail.html:95
 msgid "This user is not active in any projects yet."
 msgstr "This user is not active in any projects yet."
 
-#: liqd_product/config/settings/base.py:187
+#: liqd_product/config/settings/base.py:183
 msgid "English"
 msgstr "English"
 
-#: liqd_product/config/settings/base.py:188
+#: liqd_product/config/settings/base.py:184
 msgid "German"
 msgstr "German"
 
-#: liqd_product/config/settings/base.py:407
+#: liqd_product/config/settings/base.py:403
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: liqd_product/config/settings/base.py:408
+#: liqd_product/config/settings/base.py:404
 msgid "Diamond"
 msgstr "Diamond"
 
-#: liqd_product/config/settings/base.py:409
+#: liqd_product/config/settings/base.py:405
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: liqd_product/config/settings/base.py:410
+#: liqd_product/config/settings/base.py:406
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: liqd_product/config/settings/base.py:411
+#: liqd_product/config/settings/base.py:407
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: liqd_product/config/settings/base.py:412
+#: liqd_product/config/settings/base.py:408
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: liqd_product/config/settings/base.py:413
+#: liqd_product/config/settings/base.py:409
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: liqd_product/config/settings/base.py:414
+#: liqd_product/config/settings/base.py:410
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: liqd_product/config/settings/base.py:415
+#: liqd_product/config/settings/base.py:411
 msgid "Star"
 msgstr "Star"
 
-#: liqd_product/config/settings/base.py:416
+#: liqd_product/config/settings/base.py:412
 msgid "Square"
 msgstr "Square"
 
-#: liqd_product/config/settings/base.py:417
+#: liqd_product/config/settings/base.py:413
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: liqd_product/config/settings/base.py:418
+#: liqd_product/config/settings/base.py:414
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: liqd_product/config/settings/base.py:419
+#: liqd_product/config/settings/base.py:415
 msgid "Circle"
 msgstr "Circle"
 
-#: liqd_product/config/settings/base.py:420
+#: liqd_product/config/settings/base.py:416
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: liqd_product/config/settings/base.py:421
+#: liqd_product/config/settings/base.py:417
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: liqd_product/config/settings/base.py:435
+#: liqd_product/config/settings/base.py:431
 msgid "Anti-discrimination"
 msgstr "Anti-discrimination"
 
-#: liqd_product/config/settings/base.py:436
+#: liqd_product/config/settings/base.py:432
 msgid "Work & economy"
 msgstr "Work & economy"
 
-#: liqd_product/config/settings/base.py:437
+#: liqd_product/config/settings/base.py:433
 msgid "Building & living"
 msgstr "Building & living"
 
-#: liqd_product/config/settings/base.py:438
+#: liqd_product/config/settings/base.py:434
 msgid "Education & research"
 msgstr "Education & research"
 
-#: liqd_product/config/settings/base.py:439
+#: liqd_product/config/settings/base.py:435
 msgid "Children, youth & family"
 msgstr "Children, youth & family"
 
-#: liqd_product/config/settings/base.py:440
+#: liqd_product/config/settings/base.py:436
 msgid "Finances"
 msgstr "Finances"
 
-#: liqd_product/config/settings/base.py:441
+#: liqd_product/config/settings/base.py:437
 msgid "Health & sports"
 msgstr "Health & sports"
 
-#: liqd_product/config/settings/base.py:442
+#: liqd_product/config/settings/base.py:438
 msgid "Integration"
 msgstr "Integration"
 
-#: liqd_product/config/settings/base.py:443
+#: liqd_product/config/settings/base.py:439
 msgid "Culture & leisure"
 msgstr "Culture & leisure"
 
-#: liqd_product/config/settings/base.py:444
+#: liqd_product/config/settings/base.py:440
 msgid "Neighborhood & participation"
 msgstr "Neighborhood & participation"
 
-#: liqd_product/config/settings/base.py:445
+#: liqd_product/config/settings/base.py:441
 msgid "Urban development"
 msgstr "Urban development"
 
-#: liqd_product/config/settings/base.py:446
+#: liqd_product/config/settings/base.py:442
 msgid "Environment & public green space"
 msgstr "Environment & public green space"
 
-#: liqd_product/config/settings/base.py:447
+#: liqd_product/config/settings/base.py:443
 msgid "Traffic"
 msgstr "Traffic"
 
@@ -2645,11 +2716,11 @@ msgstr "Internal server error."
 msgid "Back to Beteiligung.in"
 msgstr "Back to Beteiligung.in"
 
-#: liqd_product/templates/a4dashboard/base_dashboard.html:15
+#: liqd_product/templates/a4dashboard/base_dashboard.html:11
 msgid "Organisations"
 msgstr "Organisations"
 
-#: liqd_product/templates/a4dashboard/base_dashboard.html:44
+#: liqd_product/templates/a4dashboard/base_dashboard.html:40
 #: liqd_product/templates/a4dashboard/base_project_list.html:6
 #: liqd_product/templates/a4dashboard/base_project_list.html:9
 msgid "Participation projects"
@@ -2667,22 +2738,22 @@ msgstr "Edit your organisation"
 msgid "Create a new Project"
 msgstr "Create a new Project"
 
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:50
 #: liqd_product/templates/a4dashboard/includes/project_list_item.html:52
-#: liqd_product/templates/a4dashboard/includes/project_list_item.html:54
 msgid "more"
 msgstr "more"
 
-#: liqd_product/templates/a4dashboard/includes/project_list_item.html:69
-#: liqd_product/templates/a4dashboard/includes/project_list_item.html:92
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:67
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:90
 msgid "delete"
 msgstr "delete"
 
-#: liqd_product/templates/a4dashboard/includes/project_list_item.html:84
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:82
 #, python-format
 msgid " Are you sure you want to delete the project '%(project_name)s'? "
 msgstr " Are you sure you want to delete the project '%(project_name)s'? "
 
-#: liqd_product/templates/a4dashboard/includes/project_list_item.html:93
+#: liqd_product/templates/a4dashboard/includes/project_list_item.html:91
 msgid "cancel"
 msgstr "cancel"
 
@@ -2705,6 +2776,10 @@ msgstr "of"
 #: liqd_product/templates/a4modules/module_detail.html:35
 msgid "Next"
 msgstr "Next"
+
+#: liqd_product/templates/a4modules/module_detail.html:111
+msgid "More questions from this online participation"
+msgstr "More questions from this online participation"
 
 #: liqd_product/templates/account/email.html:6
 #: liqd_product/templates/account/email.html:9
@@ -2925,11 +3000,7 @@ msgstr "Error"
 msgid "Beteiligung.in is a participation platform operated by"
 msgstr "Beteiligung.in is a participation platform operated by"
 
-#: liqd_product/templates/footer.html:20
-msgid "Data protection policy"
-msgstr "Data protection policy"
-
-#: liqd_product/templates/footer.html:41
+#: liqd_product/templates/footer.html:7
 msgid ""
 "Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. "
 "Only the respective operator of the offer is responsible for the editorial "
@@ -2939,8 +3010,15 @@ msgstr ""
 "Only the respective operator of the offer is responsible for the editorial "
 "content."
 
+#: liqd_product/templates/footer.html:41
+msgid "Data protection policy"
+msgstr "Data protection policy"
+
+#: liqd_product/templates/footer.html:54
+msgid "Donate now"
+msgstr "Donate now"
+
 #: liqd_product/templates/header.html:4
-#: liqd_product/templates/header_dashboard.html:4
 msgid "Header"
 msgstr "Header"
 
@@ -2949,9 +3027,11 @@ msgid "Participate"
 msgstr "Participate"
 
 #: liqd_product/templates/header.html:64
-#: liqd_product/templates/header_dashboard.html:37
 msgid "Menu"
 msgstr "Menu"
+
+#~ msgid "back to project"
+#~ msgstr "back to project"
 
 #~ msgid "I want to receicve a copy of my message as email"
 #~ msgstr "I want to receicve a copy of my message as email"
