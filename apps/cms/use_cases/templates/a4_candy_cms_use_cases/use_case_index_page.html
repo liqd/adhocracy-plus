@@ -19,10 +19,14 @@
                 <div class="row justify-content-center">
                 {% for category in categories %}
                     {% with 'images/'|add:category.0|add:'.svg' as category_svg %}
-                    <img src="{% static category_svg %}" alt="{{ category.1 }}" width="600" height="350" >
+                    <!--<img src="{% static category_svg %}" alt="{{ category.1 }}" width="600" height="350" >-->
                     {% endwith %}
                     <a class="col-4 col-md-2" href="?category={{ category.0 }}">
-                        <div class="mx-auto cms-use-case__category-image"></div>
+                        {% if current_category and current_category == category.0 %}
+                        <div class="mx-auto cms-use-case__category-selected-square">
+                            <div class="cms-use-case__category-selected-arrow"></div>
+                        </div>
+                        {% endif %}
                         <div class="text-center cms-use-case__category">
                             {{ category.1 }}
                         </div>

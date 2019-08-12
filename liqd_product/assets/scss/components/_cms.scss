@@ -95,8 +95,19 @@
     background-color: $brand-primary;
 }
 
-.cms-use-case__category-image {
-    width: 60px;
-    height: 60px;
-    background-color: $black;
+.cms-use-case__category-selected-square {
+    width: 50px;
+    height: 50px;
+    background-color: $brand-primary;
+    position: relative;
+}
+
+.cms-use-case__category-selected-arrow {
+    position: absolute;
+    left: 20px;
+    bottom: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: $brand-primary;
+    transform: rotate(45deg);
 }
