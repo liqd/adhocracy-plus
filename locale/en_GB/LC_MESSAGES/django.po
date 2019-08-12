@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-12 13:06+0200\n"
+"POT-Creation-Date: 2019-08-12 17:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgid "Add category"
 msgstr "Add category"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
-#: liqd_product/templates/a4dashboard/base_dashboard.html:37
+#: liqd_product/templates/a4dashboard/base_dashboard.html:41
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -359,7 +359,7 @@ msgstr "Edit basic settings"
 #: apps/organisations/templates/organisation_information.html:4
 #: apps/organisations/templates/organisation_information.html:9
 #: apps/projects/templates/a4_candy_projects/project_detail.html:64
-#: liqd_product/templates/header.html:33
+#: liqd_product/templates/header_organisation.html:30
 msgid "Information"
 msgstr "Information"
 
@@ -766,7 +766,7 @@ msgid "Images"
 msgstr "Images"
 
 #: adhocracy4/projects/admin.py:60 apps/projects/admin.py:55
-#: liqd_product/templates/footer.html:46
+#: liqd_product/templates/footer.html:48
 #: liqd_product/templates/newsletter_base.txt:13
 msgid "Contact"
 msgstr "Contact"
@@ -1258,26 +1258,17 @@ msgstr "You can find us here:"
 msgid "This is how you can contact us:"
 msgstr "This is how you can contact us:"
 
-#: apps/cms/news/templates/a4_candy_cms_news/includes/news_pagination.html:3
-#: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:4
-msgid "Page navigation"
-msgstr "Page navigation"
+#: apps/cms/news/templates/a4_candy_cms_news/blocks/news_block.html:25
+msgid "display more"
+msgstr "display more"
 
-#: apps/cms/news/templates/a4_candy_cms_news/includes/news_pagination.html:14
-msgid "Previous page"
-msgstr "Previous page"
-
-#: apps/cms/news/templates/a4_candy_cms_news/includes/news_pagination.html:20
-msgid "Next page"
-msgstr "Next page"
-
-#: apps/cms/news/templates/a4_candy_cms_news/news_page.html:33
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:35
+#: apps/cms/news/templates/a4_candy_cms_news/news_page.html:34
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:34
 msgid "Back to overview"
 msgstr "Back to overview"
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/home_page.html:19
-#: liqd_product/templates/footer.html:54
+#: liqd_product/templates/footer.html:56
 msgid "Support the further development of the platform"
 msgstr "Support the further development of the platform"
 
@@ -1305,17 +1296,26 @@ msgstr "Companies"
 msgid "Politicians"
 msgstr "Politicians"
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:40
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:19
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:47
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:14
 #, python-format
 msgid "In %(category)s"
 msgstr "In %(category)s"
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:50
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:30
+msgid "Visit Demosite"
+msgstr "Visit Demosite"
+
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:36
+msgid "View more examples"
+msgstr "View more examples"
+
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:57
 msgid "Try it out!"
 msgstr "Try it out!"
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:51
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:58
 msgid ""
 "Instead of just reading about it, you can test all the features of adhocracy"
 "+ yourself on our demo platform. "
@@ -1323,7 +1323,7 @@ msgstr ""
 "Instead of just reading about it, you can test all the features of adhocracy"
 "+ yourself on our demo platform. "
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:52
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:59
 msgid "Visit the demo platform"
 msgstr "Visit the demo platform"
 
@@ -1410,6 +1410,10 @@ msgstr "View as list"
 #: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:12
 msgid "View as map"
 msgstr "View as map"
+
+#: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:4
+msgid "Page navigation"
+msgstr "Page navigation"
 
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:56
 #: apps/exports/mixins.py:12
@@ -1513,6 +1517,18 @@ msgstr ""
 msgid "Organisation name"
 msgstr "Organisation name"
 
+#: apps/dashboard/templates/a4_candy_dashboard/dashboard_header.html:4
+#: liqd_product/templates/header.html:5
+#: liqd_product/templates/header_organisation.html:4
+msgid "Header"
+msgstr "Header"
+
+#: apps/dashboard/templates/a4_candy_dashboard/dashboard_header.html:31
+#: liqd_product/templates/header.html:36
+#: liqd_product/templates/header_organisation.html:60
+msgid "Menu"
+msgstr "Menu"
+
 #: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:4
 #: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:8
 msgid "New Module"
@@ -1570,7 +1586,7 @@ msgstr "Document has no chapters defined."
 
 #: apps/embed/templates/a4_candy_embed/embed.html:24
 #: apps/embed/templates/a4_candy_embed/embed.html:43
-#: apps/users/templates/a4_candy_users/indicator.html:45
+#: apps/users/templates/a4_candy_users/indicator.html:44
 #: liqd_product/templates/account/login.html:4
 #: liqd_product/templates/account/login.html:7
 #: liqd_product/templates/account/login.html:26
@@ -1871,7 +1887,7 @@ msgid "Receivers"
 msgstr "Receivers"
 
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:4
-#: liqd_product/templates/a4dashboard/base_dashboard.html:44
+#: liqd_product/templates/a4dashboard/base_dashboard.html:48
 msgid "Newsletter"
 msgstr "Newsletter"
 
@@ -2018,8 +2034,8 @@ msgstr ""
 #: apps/organisations/models.py:76
 #: apps/organisations/templates/organisation_imprint.html:4
 #: apps/organisations/templates/organisation_imprint.html:9
-#: apps/partners/models.py:74 liqd_product/templates/footer.html:31
-#: liqd_product/templates/header.html:38
+#: apps/partners/models.py:74 liqd_product/templates/footer.html:33
+#: liqd_product/templates/header_organisation.html:35
 msgid "Imprint"
 msgstr "Imprint"
 
@@ -2253,7 +2269,7 @@ msgstr "Proceed to login"
 
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:14
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:14
-#: apps/users/templates/a4_candy_users/indicator.html:48
+#: apps/users/templates/a4_candy_users/indicator.html:46
 #: liqd_product/templates/account/signup.html:4
 #: liqd_product/templates/account/signup.html:7
 #: liqd_product/templates/account/signup.html:42
@@ -2423,7 +2439,7 @@ msgstr "Please enter correct email addresses, separated by commas."
 
 #: apps/users/forms.py:10 liqd_product/templates/email_base.html:59
 #: liqd_product/templates/email_base.txt:15
-#: liqd_product/templates/footer.html:36
+#: liqd_product/templates/footer.html:38
 #: liqd_product/templates/newsletter_base.html:59
 #: liqd_product/templates/newsletter_base.txt:14
 msgid "Terms of use"
@@ -2716,11 +2732,11 @@ msgstr "Internal server error."
 msgid "Back to Beteiligung.in"
 msgstr "Back to Beteiligung.in"
 
-#: liqd_product/templates/a4dashboard/base_dashboard.html:11
+#: liqd_product/templates/a4dashboard/base_dashboard.html:15
 msgid "Organisations"
 msgstr "Organisations"
 
-#: liqd_product/templates/a4dashboard/base_dashboard.html:40
+#: liqd_product/templates/a4dashboard/base_dashboard.html:44
 #: liqd_product/templates/a4dashboard/base_project_list.html:6
 #: liqd_product/templates/a4dashboard/base_project_list.html:9
 msgid "Participation projects"
@@ -3000,7 +3016,7 @@ msgstr "Error"
 msgid "Beteiligung.in is a participation platform operated by"
 msgstr "Beteiligung.in is a participation platform operated by"
 
-#: liqd_product/templates/footer.html:7
+#: liqd_product/templates/footer.html:8
 msgid ""
 "Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. "
 "Only the respective operator of the offer is responsible for the editorial "
@@ -3010,25 +3026,23 @@ msgstr ""
 "Only the respective operator of the offer is responsible for the editorial "
 "content."
 
-#: liqd_product/templates/footer.html:41
+#: liqd_product/templates/footer.html:43
 msgid "Data protection policy"
 msgstr "Data protection policy"
 
-#: liqd_product/templates/footer.html:54
+#: liqd_product/templates/footer.html:56
 msgid "Donate now"
 msgstr "Donate now"
 
-#: liqd_product/templates/header.html:4
-msgid "Header"
-msgstr "Header"
-
-#: liqd_product/templates/header.html:28
+#: liqd_product/templates/header_organisation.html:25
 msgid "Participate"
 msgstr "Participate"
 
-#: liqd_product/templates/header.html:64
-msgid "Menu"
-msgstr "Menu"
+#~ msgid "Previous page"
+#~ msgstr "Previous page"
+
+#~ msgid "Next page"
+#~ msgstr "Next page"
 
 #~ msgid "back to project"
 #~ msgstr "back to project"
