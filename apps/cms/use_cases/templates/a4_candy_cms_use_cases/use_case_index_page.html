@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags i18n %}
+{% load static wagtailcore_tags wagtailimages_tags i18n %}
 
 {% block title %}
     {{ self.title }} &mdash; {{ block.super }}
@@ -18,6 +18,9 @@
             <div class="col-12 col-md-10">
                 <div class="row justify-content-center">
                 {% for category in categories %}
+                    {% with 'images/'|add:category.0|add:'.svg' as category_svg %}
+                    <img src="{% static category_svg %}" alt="{{ category.1 }}" width="600" height="350" >
+                    {% endwith %}
                     <a class="col-4 col-md-2" href="?category={{ category.0 }}">
                         <div class="mx-auto cms-use-case__category-image"></div>
                         <div class="text-center cms-use-case__category">
