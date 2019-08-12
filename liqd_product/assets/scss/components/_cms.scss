@@ -47,6 +47,15 @@
     }
 }
 
+.cms__tile-link--inverted {
+    color: $text-color-inverted;
+
+    &:hover,
+    &:focus {
+        color: $text-color-inverted;
+    }
+}
+
 .cms-page__header-margin {
     margin-top: $r-spacer;
     margin-bottom: $r-spacer;
@@ -70,7 +79,11 @@
 }
 
 .cms-use-case__tile {
-    padding-bottom: 3 * $r-spacer;
+    margin-bottom: 3 * $r-spacer;
+}
+
+.cms-use-case__tile--demo {
+    background-color: $brand-primary;
 }
 
 .cms-use-case__category-image {
