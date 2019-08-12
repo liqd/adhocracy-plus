@@ -4,7 +4,7 @@
 <header class="main-header main-header--org" aria-label="{% trans 'Header' %}">
     <div class="u-page-ribbon"></div>
     <div class="l-wrapper">
-        <div class="platform-brand main-header__brand">
+        <div class="navbar-brand main-header__brand">
             {% spaceless %}
                 <a href="{% if ORGANISATION %}{% url 'organisation' organisation_slug=ORGANISATION.slug %}{% else %}/{% endif %}" class="platform-brand__link">{{ ORGANISATION.name }}</a>
             {% endspaceless %}

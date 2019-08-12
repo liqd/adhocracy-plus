@@ -1,3 +1,8 @@
+.main-header {
+    min-height: 100px;
+    font-family: $font-family-serif;
+}
+
 .main-header--cms {
     background-color: $bg-light;
     margin: $r-spacer $r-spacer 0 $r-spacer;
@@ -7,11 +12,6 @@
         font-size: $font-size-md;
         margin: 2*$r-spacer 2*$r-spacer 0 2*$r-spacer;
     }
-}
-
-.main-header__brand {
-    float: left;
-    margin: (3 * $spacer) 0 $spacer;
 }
 
 .main-header__nav {
@@ -132,7 +132,7 @@
 
 .main-header__lang {
     position: absolute;
-    right: 100px;
+    right: 50px;
 }
 
 .main-header__lang--org {
@@ -140,14 +140,16 @@
 }
 
 .main-header__lang--cms {
-    top: 2*$r-spacer;
+    top: 1.5*$r-spacer;
+}
+
+@media screen and (min-width: $breakpoint-xs) {
+    .main-header__lang {
+        right: 100px;
+    }
 }
 
 @media screen and (min-width: $breakpoint) {
-    .main-header__brand {
-        margin-top: 2 * $spacer;
-    }
-
     .main-header__organisation-nav {
         line-height: 4em;
     }
@@ -207,8 +209,12 @@
         right: 350px;
     }
 
-    .main-header__user--cms {
+    .main-header__lang--cms {
         top: 3.5*$r-spacer;
+    }
+
+    .main-header__user--cms {
+        top: 2.5*$r-spacer;
         right: -0.5*$r-spacer;
     }
 }
