@@ -12,6 +12,8 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.contrib.translations import TranslatedField
 
+from .blocks import ExampleBlock
+
 MUNICIPALITIES = 'MP'
 CITIZENASSEMBLIES = 'CA'
 COOPERATIVESNGOS = 'CN'
@@ -124,12 +126,14 @@ class UseCasePage(Page):
 
     body_streamfield_de = fields.StreamField([
         ('paragraph', blocks.RichTextBlock()),
-        ('html', blocks.RawHTMLBlock())
+        ('html', blocks.RawHTMLBlock()),
+        ('examples', ExampleBlock())
     ], blank=True)
 
     body_streamfield_en = fields.StreamField([
         ('paragraph', blocks.RichTextBlock()),
-        ('html', blocks.RawHTMLBlock())
+        ('html', blocks.RawHTMLBlock()),
+        ('examples', ExampleBlock())
     ], blank=True)
 
     subtitle = TranslatedField(
