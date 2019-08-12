@@ -17,9 +17,10 @@
             </div>
         </div>
         {% if page.image %}
+        {% image page.image width-1200 as image %}
         <div class="row justify-content-md-center">
             <div class="col-12">
-                {% image page.image width-1200 %}
+                <img src="{{ image.url }}" alt="{{ image.alt }}" class="cms-page__hero-image" />
             </div>
         </div>
         {% endif %}
