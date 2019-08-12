@@ -115,17 +115,10 @@ class UseCasePage(Page):
                   "and the use case index page"
     )
 
-    demo_link = models.URLField(blank=True, verbose_name='Demo site')
-
     title_de = models.CharField(
         max_length=250, blank=True, verbose_name="German Title")
     title_en = models.CharField(
         max_length=250, blank=True, verbose_name="English Title")
-
-    teaser_de = models.TextField(
-        blank=True, null=True, verbose_name="Teaser Text")
-    teaser_en = models.TextField(
-        blank=True, null=True, verbose_name="Teaser Text")
 
     body_streamfield_de = fields.StreamField([
         ('paragraph', blocks.RichTextBlock()),
@@ -154,13 +147,11 @@ class UseCasePage(Page):
 
     en_content_panels = [
         FieldPanel('title_en'),
-        FieldPanel('teaser_en'),
         StreamFieldPanel('body_streamfield_en')
     ]
 
     de_content_panels = [
         FieldPanel('title_de'),
-        FieldPanel('teaser_de'),
         StreamFieldPanel('body_streamfield_de')
     ]
 

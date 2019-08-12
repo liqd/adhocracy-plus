@@ -10,6 +10,8 @@ from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.cms import blocks as cms_blocks
+from apps.cms.news.blocks import NewsBlock
+from apps.cms.use_cases.blocks import UseCaseBlock
 from apps.contrib.translations import TranslatedField
 
 
@@ -48,7 +50,9 @@ class HomePage(Page):
         ('background_cta_block', cms_blocks.ColBackgroundCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('html', blocks.RawHTMLBlock()),
-        ('paragraph', blocks.RichTextBlock())
+        ('paragraph', blocks.RichTextBlock()),
+        ('news', NewsBlock()),
+        ('use_cases', UseCaseBlock())
     ], blank=True)
 
     body_streamfield_en = fields.StreamField([
@@ -56,7 +60,9 @@ class HomePage(Page):
         ('background_cta_block', cms_blocks.ColBackgroundCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('html', blocks.RawHTMLBlock()),
-        ('paragraph', blocks.RichTextBlock())
+        ('paragraph', blocks.RichTextBlock()),
+        ('news', NewsBlock()),
+        ('use_cases', UseCaseBlock())
     ], blank=True)
 
     subtitle = TranslatedField(
