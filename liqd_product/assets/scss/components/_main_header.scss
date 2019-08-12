@@ -81,6 +81,22 @@
     font-weight: bold;
 }
 
+.main-header__mobile-toggle:after {
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    content: '\f0c9';
+    background-color: inherit;
+}
+
+.show ~ .main-header__mobile-toggle:after {
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    content: '\f00d';
+    background-color: inherit;
+}
+
 .main-header__mobile-toggle--platform {
     top: 1.5*$r-spacer;
 }
@@ -188,12 +204,11 @@
 
 @media screen and (min-width: $breakpoint-xl) {
     .main-header__lang {
-        top: 3.5*$r-spacer;
         right: 350px;
     }
 
     .main-header__user--cms {
-        top: 2.5*$r-spacer;
+        top: 3.5*$r-spacer;
         right: -0.5*$r-spacer;
     }
 }
