@@ -71,6 +71,8 @@ class UseCaseIndexPage(Page):
         context = super().get_context(request)
         context['use_cases'] = use_cases
         context['categories'] = CATEGORY_CHOICES
+        if category:
+            context['current_category'] = category
         return context
 
     de_content_panels = [
