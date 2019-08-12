@@ -37,7 +37,7 @@ $block-padding-md: 7.5*$padding;
     }
 }
 
-//single col cta styling
+//single col cta styling - for headline
 .block-row-1 {
     background-color: $body-bg;
 
@@ -247,5 +247,25 @@ $block-padding-md: 7.5*$padding;
         @media screen and (min-width: $breakpoint-md) {
             padding: $block-padding-md;
         }
+    }
+}
+
+.block-usecase {
+    padding: $padding;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding-bottom: $block-padding;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding-bottom: $block-padding-md;
+    }
+}
+
+.block-news {
+    padding: $padding;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding: $block-padding 0 $block-padding 0;
     }
 }
