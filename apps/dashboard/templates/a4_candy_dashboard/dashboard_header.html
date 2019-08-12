@@ -1,0 +1,35 @@
+{% load userindicator static i18n thumbnail %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<header class="main-header main-header--org" aria-label="{% trans 'Header' %}">
+    <div class="u-page-ribbon"></div>
+    <div class="l-wrapper">
+        <nav class="main-header__nav">
+            <div class="main-header__mobile-menu {% if not ORGANISATION %}main-header__mobile-menu--platform{% endif %} collapse" id="main-header-collapse">
+                <div class="main-header__user main-header__user--org">
+                    {% userindicator %}
+                </div>
+            </div>
+            <div class="main-header__lang main-header__lang--org">
+                {% get_available_languages as languages %}
+                {% for lang_code, lang_name in languages %}
+                    {% if lang_code != LANGUAGE_CODE %}
+                        {% get_language_info for lang_code as lang %}
+                            <form class="lang__switch" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                <input name="next" type="hidden" value="{{ redirect_to }}" />
+                                <input name="language" type="hidden" value="{{ lang_code }}">
+                                {% if LANGUAGE_CODE == 'de' %}
+                                <a class="lang__btn--left" role="button">de</a><button class="lang__btn--right" type="submit">en</button>
+                                {% else %}
+                                <button class="lang__btn--left" type="submit">de</button><a class="lang__btn--right" role="button">en</a>
+                                {% endif %}
+                            </form>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <button class="btn main-header__mobile-toggle btn--bg-tertiary btn--square btn--small btn--attached-top" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
+                <span class="d-none d-sm-inline-block">{% trans 'Menu' %}</span>
+            </button>
+        </nav>
+    </div>
+</header>
