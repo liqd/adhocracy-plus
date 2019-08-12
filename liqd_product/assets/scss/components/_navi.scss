@@ -1,3 +1,9 @@
+.navi {
+    margin-top: 0.5*$r-spacer;
+    text-decoration: none;
+    margin-right: $r-spacer;
+}
+
 .navi__list {
     list-style: none;
     padding: 0;
@@ -6,4 +12,15 @@
 .navi__item {
     font-family: $font-family-serif;
     display: block;
+
+    @media screen and (min-width: $breakpoint) {
+        display: inline-block;
+    }
+}
+
+.main-header--cms {
+    .navi {
+        margin-top: $r-spacer;
+        margin-right: 3.5*$r-spacer;
+    }
 }
