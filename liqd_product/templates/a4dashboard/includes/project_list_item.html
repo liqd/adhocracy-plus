@@ -1,4 +1,4 @@
-{% load i18n project_tags a4_candy_project_tags thumbnail contrib_tags organisation_tags %}
+{% load i18n project_tags a4_candy_project_tags thumbnail contrib_tags %}
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 
@@ -24,7 +24,6 @@
             <div class="lr-bar__right">
                 <div class="btn-group">
                 {% spaceless %}
-                    {% withorganisation project.organisation %}
                     <a href="{{ project|project_url }}"
                        class="btn btn--light btn--small">
                         <i class="fa fa-eye" aria-hidden="true"></i>
@@ -34,7 +33,6 @@
                         {% trans 'View' %}
                         {% endif %}
                     </a>
-                    {% endwithorganisation %}
                     <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}"
                        class="btn btn--light btn--small">
                         <i class="fa fa-pencil" aria-hidden="true"></i>

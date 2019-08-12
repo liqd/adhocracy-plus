@@ -1,5 +1,4 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name %}
 
 {% block subject %}Wir haben Ihre Nachricht auf {{ site.name }} erhalten {% endblock %}
 

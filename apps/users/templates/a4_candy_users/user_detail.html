@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load rules i18n thumbnail organisation_tags %}
+{% load rules i18n thumbnail %}
 
 {% block title %}{{ object.username }} &mdash; {{ block.super }}{% endblock %}
 
@@ -90,9 +90,7 @@
                     aria-labelledby="tab-user-{{ user.pk }}-participation"
                     aria-expanded="true">
                     {% for project in view.projects %}
-                        {% withorganisation project.organisation %}
                             {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project %}
-                        {% endwithorganisation %}
                     {% empty %}
                         {% trans 'This user is not active in any projects yet.' %}
                     {% endfor %}
@@ -104,9 +102,7 @@
                     aria-labelledby="tab-user-{{ user.pk }}-activities"
                     aria-expanded="false">
                     {% for action in view.actions %}
-                        {% withorganisation action.project.organisation %}
                             {% include 'a4_candy_actions/includes/action.html' with action=action %}
-                        {% endwithorganisation %}
                     {% empty %}
                         {% trans 'No activity yet. '%}
                     {% endfor %}
