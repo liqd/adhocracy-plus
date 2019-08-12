@@ -45,7 +45,11 @@
         <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
 
         {% block header %}
+        {% if ORGANISATION %}
+        {% include 'header_organisation.html' %}
+        {% else %}
         {% include 'header.html' %}
+        {% endif %}
         {% endblock %}
 
         <main id="main" class="flex-fill">
