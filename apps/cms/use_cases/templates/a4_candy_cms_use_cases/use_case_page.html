@@ -16,17 +16,15 @@
                 <h1 class="cms__title--bold cms-page__header-margin">{{ page.title }}</h1>
             </div>
         </div>
-    </div>
-    <div class="">
-        {% if page.image %}
-        <div class="row justify-content-md-end">
-            <div class="col-12 col-md-6">
-                {% image page.image width-1200 %}
+        <div class="">
+            {% if page.image %}
+            <div class="row justify-content-md-center">
+                <div class="col-12">
+                    {% image page.image width-1200 %}
+                </div>
             </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
-    <div class="container">
         <div class="row justify-content-md-center pt-5">
             <div class="col-12 col-md-10 cms__text">
                 {{ page.body }}
