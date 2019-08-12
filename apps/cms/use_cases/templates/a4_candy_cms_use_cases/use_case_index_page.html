@@ -16,21 +16,32 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
-                <div class="row justify-content-center">
+                <div class="row mb-5 justify-content-center">
                 {% for category in categories %}
-                    {% with 'images/'|add:category.0|add:'.svg' as category_svg %}
-                    <!--<img src="{% static category_svg %}" alt="{{ category.1 }}" width="600" height="350" >-->
-                    {% endwith %}
-                    <a class="col-4 col-md-2" href="?category={{ category.0 }}">
-                        {% if current_category and current_category == category.0 %}
-                        <div class="mx-auto cms-use-case__category-selected-square">
-                            <div class="cms-use-case__category-selected-arrow"></div>
-                        </div>
-                        {% endif %}
-                        <div class="text-center cms-use-case__category">
-                            {{ category.1 }}
-                        </div>
-                    </a>
+                    <div class="col-4 col-md-2">
+                        <a href="?category={{ category.0 }}">
+                            {% if current_category and current_category == category.0 %}
+                            <div class="mx-auto cms-use-case__category-square cms-use-case__category-selected-square">
+                                {% with 'images/'|add:category.0|add:'.svg' as category_svg %}
+                                <img class="mx-auto" src="{% static category_svg %}" alt="{{ category.1 }}" width="50" />
+                                {% endwith %}
+                                <div class="text-center pb-1 u-z-index--1 cms-use-case__category">
+                                    {{ category.1 }}
+                                </div>
+                                <div class="cms-use-case__category-selected-arrow"></div>
+                            </div>
+                            {% else %}
+                            {% with 'images/'|add:category.0|add:'.svg' as category_svg %}
+                            <div class="mx-auto cms-use-case__category-square">
+                                <img class="mx-auto" src="{% static category_svg %}" alt="{{ category.1 }}" width="50" />
+                            {% endwith %}
+                                <div class="text-center pb-1 cms-use-case__category">
+                                    {{ category.1 }}
+                                </div>
+                            </div>
+                            {% endif %}
+                        </a>
+                    </div>
                 {% endfor %}
                 </div>
             </div>
