@@ -68,10 +68,6 @@ class UseCaseIndexPage(Page):
             except ValueError:
                 use_cases = []
 
-        if self.demo_link:
-            use_cases = list(use_cases)
-            use_cases.append('demotile')
-
         context = super().get_context(request)
         context['use_cases'] = use_cases
         context['categories'] = CATEGORY_CHOICES

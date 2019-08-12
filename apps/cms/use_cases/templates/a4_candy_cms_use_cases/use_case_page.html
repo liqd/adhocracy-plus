@@ -1,14 +1,35 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags i18n %}
 
-{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
-    {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}
+    {{ self.title }} &mdash; {{ block.super }}
+{% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
-        <div class="l-center-8">
-            <h1 class="cms-title">{{ page.title }}</h1>
-            {{ page.body }}
+<div class="cms__wrapper pt-5">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-md-10">
+                <div class="cms__text">
+                    {% blocktrans with category=page.get_category_display %}In {{ category }}{% endblocktrans %}
+                </div>
+                <h1 class="cms__title--bold cms-page__header-margin">{{ page.title }}</h1>
+            </div>
+        </div>
+        <div class="">
+            {% if page.image %}
+            <div class="row justify-content-md-center">
+                <div class="col-12">
+                    {% image page.image width-1200 %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="row justify-content-md-center pt-5">
+            <div class="col-12 col-md-10 cms__text">
+                {{ page.body }}
+            </div>
         </div>
     </div>
+</div>
 {% endblock %}

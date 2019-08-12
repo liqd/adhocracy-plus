@@ -1,48 +1,61 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags i18n %}
 
-{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
-    {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}
+    {{ self.title }} &mdash; {{ block.super }}
+{% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
-        <div class="l-center-8">
-            <h1 class="cms-title">{{ page.subtitle }}</h1>
-            {% for category in categories %}
-                <a href="?category={{ category.0 }}">{{ category.1 }}</a>
-            {% endfor %}
-        </div>
 
-        {% for use_case in use_cases %}
-        {% if forloop.first %}<div class="row">{% endif %}
-        {% if forloop.last and page.demo_link %}
-        <div class="col-4">
-            <a href="{{ page.demo_page }}">
-            <h2>Ich bin eine Headline</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rhoncus dictum varius.
-Interdum et malesuada fames ac ante ipsumprimis in faucibus. </p>
-            <div class="btn btn--transparent">Demo-Plattform ausprobieren</div>
-            </a>
-        {% else %}
-        <div class="col-4">
-            <a href="{{ use_case.url }}">
-            {% if use_case.image %}
-            {% image use_case.image fill-370x295 as image %}
-            <img src="{{ image.url }}" alt="{{ image.alt }}" />
-            {% endif %}
-                <span>{{ use_case.get_category_display }}</span>
-                <h2>{{ use_case.title }}</h2>
-            </a>
+<div class="cms__wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <h1 class="cms__title--serif cms__title--underlined text-center">{{ page.subtitle }}</h1>
+            </div>
         </div>
-        {% endif %}
-        {% if forloop.counter|divisibleby:3%}</div><div class="row">{% endif %}
-        {% if forloop.last %}</div>{% endif %}
-        {% endfor %}
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10">
+                <div class="row justify-content-center">
+                {% for category in categories %}
+                    <a class="col-4 col-md-2" href="?category={{ category.0 }}">
+                        <div class="mx-auto cms-use-case__category-image"></div>
+                        <div class="text-center cms-use-case__category">
+                            {{ category.1 }}
+                        </div>
+                    </a>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center justify-content-sm-start">
+                {% for use_case in use_cases %}
+                    <div class="col-12 col-sm-6 col-lg-4 cms-use-case__tile">
+                        <a class="cms__tile-link" href="{% pageurl use_case %}">
+                            {% if use_case.image %}
+                            {% image use_case.image fill-500x350 as image %}
+                            <img src="{{ image.url }}" alt="{{ image.alt }}" />
+                            {% endif %}
+                            <div class="cms__text pt-4">
+                                {% blocktrans with category=use_case.get_category_display %}In {{ category }}{% endblocktrans %}
+                            </div>
+                            <h3 class="cms__title--bold">{{ use_case.title }}
+                            </h3>
+                        </a>
+                    </div>
+                {% endfor %}
+                {% if page.demo_link %}
+                <div class="col-12 col-md-6 col-lg-4 ">
+                    <a href="{{ page.demo_link }}">
+                    <h2>Ich bin eine Headline</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rhoncus dictum varius.
+                    Interdum et malesuada fames ac ante ipsumprimis in faucibus. </p>
+                    <div class="btn btn--transparent">Demo-Plattform ausprobieren</div>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
-
-    {% if page.form_page %}
-        <div id="form_page">
-        {% include 'a4_candy_cms_contacts/includes/form.html' with page=page.form_page form=page.form %}
-        </div>
-    {% endif %}
+</div>
 {% endblock %}
