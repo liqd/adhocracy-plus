@@ -1,7 +1,7 @@
 {% load userindicator static i18n thumbnail %}
 {% get_current_language as LANGUAGE_CODE %}
 
-<header class="main-header" aria-label="{% trans 'Header' %}">
+<header class="main-header main-header--org" aria-label="{% trans 'Header' %}">
     <div class="u-page-ribbon"></div>
     <div class="l-wrapper">
         <div class="platform-brand main-header__brand">
@@ -35,11 +35,11 @@
                             <a href="{{ organisation_imprint_url }}" class="main-header__organisation-nav__link"><span class="{% if request.path == organisation_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>
                         </li>
                     </ul>
-                <div class="main-header__user">
+                <div class="main-header__user main-header__user--org">
                     {% userindicator %}
                 </div>
             </div>
-            <div class="main-header__lang test">
+            <div class="main-header__lang main-header__lang--org">
                 {% get_available_languages as languages %}
                 {% for lang_code, lang_name in languages %}
                     {% if lang_code != LANGUAGE_CODE %}
@@ -56,7 +56,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
-            <button class="btn main-header__mobile-toggle {% if ORGANISATION %}btn--bg-tertiary{% else %}btn--secondary-filled main-header__mobile-toggle--platform{% endif %} btn--square btn--small btn--attached-top" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
+            <button class="btn main-header__mobile-toggle btn--bg-tertiary btn--square btn--small btn--attached-top" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
                 {% trans 'Menu' %}
                 <i class="fa fa-bars" aria-hidden="true"></i>
             </button>

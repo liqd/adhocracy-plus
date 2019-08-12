@@ -1,69 +1,67 @@
 {% load userindicator static i18n thumbnail %}
 {% get_current_language as LANGUAGE_CODE %}
 
-<header class="main-header" aria-label="{% trans 'Header' %}">
-    <div class="u-page-ribbon u-page-ribbon--platform"></div>
-    <div class="l-wrapper">
-        <div class="platform-brand main-header__brand">
-            {% spaceless %}
-                <a href="{% if ORGANISATION %}{% url 'organisation' organisation_slug=ORGANISATION.slug %}{% else %}/{% endif %}" class="platform-brand__link">adhocracy +</a>
-            {% endspaceless %}
-        </div>
-        <nav class="main-header__nav">
-            {% if ORGANISATION %}
-                {% if ORGANISATION.logo %}
-                {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
-                {% if not request.get_full_path == organisation_url %}
-                <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}" class="main-header__logo-box" rel="home">
-                    <img src="{% thumbnail ORGANISATION.logo '0x160' %}" height="80" alt="{{ ORGANISATION.name }}" class="main-header__logo-img" />
-                </a>
-                {% endif %}
-                {% endif %}
-            {% endif %}
-            <div class="main-header__mobile-menu {% if not ORGANISATION %}main-header__mobile-menu--platform{% endif %} collapse" id="main-header-collapse">
-                {% if ORGANISATION %}
-                    <ul class="main-header__organisation-nav">
-                        <li class="main-header__organisation-nav__item">
-                            {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
-                            <a href="{{ organisation_url }}" class="main-header__organisation-nav__link"><span class="{% if request.path == organisation_url %}is-active{% endif %}">{% trans 'Participate' %}</span></a>
-                        </li>
-                        {% if ORGANISATION.information %}
-                        <li class="main-header__organisation-nav__item">
-                            {% url 'organisation-information' organisation_slug=ORGANISATION.slug as organisation_information_url %}
-                            <a href="{{ organisation_information_url }}" class="main-header__organisation-nav__link"><span class="{% if request.path == organisation_information_url %}is-active{% endif %}">{% trans 'Information' %}</span></a>
-                        </li>
-                        {% endif %}
-                        <li class="main-header__organisation-nav__item">
-                            {% url 'organisation-imprint' organisation_slug=ORGANISATION.slug as organisation_imprint_url %}
-                            <a href="{{ organisation_imprint_url }}" class="main-header__organisation-nav__link"><span class="{% if request.path == organisation_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>
-                        </li>
-                    </ul>
-                {% endif %}
-                <div class="main-header__user">
-                    {% userindicator %}
-                </div>
-            </div>
-            <div class="main-header__lang">
-                {% get_available_languages as languages %}
-                {% for lang_code, lang_name in languages %}
-                    {% if lang_code != LANGUAGE_CODE %}
-                        {% get_language_info for lang_code as lang %}
-                            <form class="lang__switch" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                                <input name="next" type="hidden" value="{{ redirect_to }}" />
-                                <input name="language" type="hidden" value="{{ lang_code }}">
-                                {% if LANGUAGE_CODE == 'de' %}
-                                <a class="lang__btn--left" role="button">de</a><button class="lang__btn--right" type="submit">en</button>
-                                {% else %}
-                                <button class="lang__btn--left" type="submit">de</button><a class="lang__btn--right" role="button">en</a>
-                                {% endif %}
-                            </form>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            <button class="btn main-header__mobile-toggle {% if ORGANISATION %}btn--bg-tertiary{% else %}btn--secondary-filled main-header__mobile-toggle--platform{% endif %} btn--square btn--small btn--attached-top" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
-                {% trans 'Menu' %}
-                <i class="fa fa-bars" aria-hidden="true"></i>
-            </button>
-        </nav>
+<div class="u-page-ribbon u-page-ribbon--platform"></div>
+<header class="main-header main-header--cms" aria-label="{% trans 'Header' %}">
+    <div class="platform-brand main-header__brand">
+        {% spaceless %}
+            <a href="{% if ORGANISATION %}{% url 'organisation' organisation_slug=ORGANISATION.slug %}{% else %}/{% endif %}" class="platform-brand__link">adhocracy +</a>
+        {% endspaceless %}
     </div>
+    <nav class="main-header__nav">
+        {% if ORGANISATION %}
+            {% if ORGANISATION.logo %}
+            {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
+            {% if not request.get_full_path == organisation_url %}
+            <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}" class="main-header__logo-box" rel="home">
+                <img src="{% thumbnail ORGANISATION.logo '0x160' %}" height="80" alt="{{ ORGANISATION.name }}" class="main-header__logo-img" />
+            </a>
+            {% endif %}
+            {% endif %}
+        {% endif %}
+        <div class="main-header__mobile-menu {% if not ORGANISATION %}main-header__mobile-menu--platform{% endif %} collapse" id="main-header-collapse">
+            {% if ORGANISATION %}
+                <ul class="main-header__organisation-nav">
+                    <li class="main-header__organisation-nav__item">
+                        {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
+                        <a href="{{ organisation_url }}" class="main-header__organisation-nav__link"><span class="{% if request.path == organisation_url %}is-active{% endif %}">{% trans 'Participate' %}</span></a>
+                    </li>
+                    {% if ORGANISATION.information %}
+                    <li class="main-header__organisation-nav__item">
+                        {% url 'organisation-information' organisation_slug=ORGANISATION.slug as organisation_information_url %}
+                        <a href="{{ organisation_information_url }}" class="main-header__organisation-nav__link"><span class="{% if request.path == organisation_information_url %}is-active{% endif %}">{% trans 'Information' %}</span></a>
+                    </li>
+                    {% endif %}
+                    <li class="main-header__organisation-nav__item">
+                        {% url 'organisation-imprint' organisation_slug=ORGANISATION.slug as organisation_imprint_url %}
+                        <a href="{{ organisation_imprint_url }}" class="main-header__organisation-nav__link"><span class="{% if request.path == organisation_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>
+                    </li>
+                </ul>
+            {% endif %}
+            <div class="main-header__user main-header__user--cms">
+                {% userindicator %}
+            </div>
+        </div>
+        <div class="main-header__lang main-header__lang--cms">
+            {% get_available_languages as languages %}
+            {% for lang_code, lang_name in languages %}
+                {% if lang_code != LANGUAGE_CODE %}
+                    {% get_language_info for lang_code as lang %}
+                        <form class="lang__switch" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}" />
+                            <input name="language" type="hidden" value="{{ lang_code }}">
+                            {% if LANGUAGE_CODE == 'de' %}
+                            <a class="lang__btn--left" role="button">de</a><button class="lang__btn--right" type="submit">en</button>
+                            {% else %}
+                            <button class="lang__btn--left" type="submit">de</button><a class="lang__btn--right" role="button">en</a>
+                            {% endif %}
+                        </form>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <button class="btn main-header__mobile-toggle btn--secondary-filled main-header__mobile-toggle--platform btn--square btn--small btn--attached-top" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
+            {% trans 'Menu' %}
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+    </nav>
 </header>
