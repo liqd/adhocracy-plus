@@ -122,6 +122,20 @@
     @include button-color($bg-tertiary, $body-bg);
 }
 
+.btn--text-color-inverted {
+    @include button-color(transparent, transparent);
+
+    &,
+    &:focus,
+    &:hover,
+    &:active,
+    &:disabled,
+    &.is-disabled {
+        color: $text-color-inverted;
+        border-color: $text-color-inverted;
+    }
+}
+
 .btn--square {
     border: none;
     border-radius: 0;

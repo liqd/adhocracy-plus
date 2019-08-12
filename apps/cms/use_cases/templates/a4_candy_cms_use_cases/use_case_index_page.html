@@ -29,31 +29,30 @@
             </div>
         </div>
         <div class="row justify-content-center justify-content-sm-start">
-                {% for use_case in use_cases %}
-                    <div class="col-12 col-sm-6 col-lg-4 cms-use-case__tile">
-                        <a class="cms__tile-link" href="{% pageurl use_case %}">
-                            {% if use_case.image %}
-                            {% image use_case.image fill-500x350 as image %}
-                            <img src="{{ image.url }}" alt="{{ image.alt }}" />
-                            {% endif %}
-                            <div class="cms__text pt-4">
-                                {% blocktrans with category=use_case.get_category_display %}In {{ category }}{% endblocktrans %}
-                            </div>
-                            <h3 class="cms__title--bold">{{ use_case.title }}
-                            </h3>
-                        </a>
+            {% for use_case in use_cases %}
+            <div class="col-12 col-sm-6 col-lg-4 cms-use-case__tile">
+                <a class="cms__tile-link" href="{% pageurl use_case %}">
+                    {% if use_case.image %}
+                    {% image use_case.image fill-500x350 as image %}
+                    <img src="{{ image.url }}" alt="{{ image.alt }}" />
+                    {% endif %}
+                    <div class="cms__text pt-4">
+                        {% blocktrans with category=use_case.get_category_display %}In {{ category }}{% endblocktrans %}
                     </div>
-                {% endfor %}
-                {% if page.demo_link %}
-                <div class="col-12 col-md-6 col-lg-4 ">
-                    <a href="{{ page.demo_link }}">
-                    <h2>{% trans 'Try it out!' %}</h2>
-                    <p>{% trans 'Instead of just reading about it, you can test all the features of adhocracy+ yourself on our demo platform. ' %}</p>
-                    <div class="btn btn--transparent">{% trans 'Visit the demo platform' %}</div>
-                    </a>
-                </div>
-                {% endif %}
+                    <h3 class="cms__title--bold">{{ use_case.title }}
+                    </h3>
+                </a>
             </div>
+            {% endfor %}
+            {% if page.demo_link %}
+            <div class="col-12 col-sm-6 col-lg-4 cms-use-case__tile cms-use-case__tile--demo text-center">
+                <a class="cms__tile-link cms__tile-link--inverted h-100 d-flex flex-column justify-content-around p-4" target="_blank" href="{{ page.demo_link }}">
+                    <h5 class="cms__title--bold">{% trans 'Try it out!' %}</h5>
+                    <p class="cms__text">{% trans 'Instead of just reading about it, you can test all the features of adhocracy+ yourself on our demo platform. ' %}</p>
+                    <div class="btn btn--text-color-inverted cms__text">{% trans 'Visit the demo platform' %}</div>
+                </a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
