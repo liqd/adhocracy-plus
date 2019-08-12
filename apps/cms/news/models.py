@@ -27,7 +27,7 @@ class NewsIndexPage(Page):
 
     @property
     def news(self):
-        news = NewsPage.objects.live()
+        news = self.get_children().specific().live()
         news = news.order_by('-first_published_at')
         return news
 
