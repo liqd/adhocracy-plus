@@ -1,10 +1,13 @@
 .footer {
     margin: $r-spacer;
-    background-color: $bg-light;
 
     @media screen and (min-width: $breakpoint-xl) {
         margin: 2*$r-spacer;
     }
+}
+
+.footer--cms {
+    background-color: $bg-light;
 }
 
 .footer__link {
