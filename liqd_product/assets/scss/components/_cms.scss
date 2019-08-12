@@ -1,53 +1,80 @@
-.cms-title--normal {
+.cms__wrapper {
+    margin-left: $r-spacer;
+    margin-right: $r-spacer;
+    background-color: $bg-light;
+
+    @media screen and (min-width: $breakpoint-xl) {
+        margin-left: 2*$r-spacer;
+        margin-right: 2*$r-spacer;
+    }
+}
+
+.cms__title--serif {
+    font-family: $font-family-serif;
     font-weight: normal;
 }
 
-.cms-header {
-    display: inline-block;
-    border-bottom: solid 4px $brand-secondary;
+.cms__title--bold {
+    font-family: $font-family-base;
+    font-weight: bold;
 }
 
-.cms-subtitle {
-    font-size: $font-size-xl;
-    font-weight: 600;
-}
-
-.homepage-title {
-    display: inline-block;
-    border-bottom: solid 8px $brand-primary;
-    padding-bottom: 23px;
-}
-
-.homepage-title--large {
-    @media screen and (max-width: $breakpoint) {
-        display: none;
-    }
-}
-
-.homepage-title--small {
-    @media screen and (min-width: $breakpoint) {
-        display: none;
-    }
-}
-
-.homepage-header {
+.cms__title--underlined {
     position: relative;
-    margin-top: $spacer * 5;
+    margin-bottom: 6 * $r-spacer;
 
-    @media screen and (min-width: $breakpoint) {
-        margin-bottom: $spacer * 7;
-    }
-}
-
-.homepage-header__image {
-    width: 100%;
-}
-
-.homepage-header__text {
-    @media screen and (min-width: $breakpoint) {
-        width: 70%;
-        background-color: $white;
+    &:after {
+        content: "";
         position: absolute;
-        bottom: - $spacer * 4.5;
+        left: calc(50% - 40px);
+        bottom: -20px;
+        width: 80px;
+        border-bottom: solid 8px $brand-secondary;
     }
+}
+
+.cms__text {
+    font-size: $font-size-md;
+    font-family: $font-family-base;
+}
+
+.cms__tile-link {
+    text-decoration-line: none;
+
+    &:hover,
+    &:focus {
+        text-decoration-line: underline;
+    }
+}
+
+.cms-page__header-margin {
+    margin-top: $r-spacer;
+    margin-bottom: $r-spacer;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-top: 2 * $r-spacer;
+        margin-bottom: 2 * $r-spacer;
+    }
+}
+
+.cms-news__tile {
+    padding-bottom: 3 * $r-spacer;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding-bottom: 4 * $r-spacer;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding-bottom: 6 * $r-spacer;
+    }
+}
+
+.cms-use-case__tile {
+    padding-bottom: 3 * $r-spacer;
+}
+
+.cms-use-case__category-image {
+    width: 50px;
+    height: 50px;
+    background-color: $black;
 }
