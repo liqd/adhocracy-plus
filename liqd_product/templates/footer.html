@@ -1,14 +1,14 @@
 {% load i18n static %}
 
-<footer class="footer {% if not ORGANISATION %} footer--cms {% endif %} px-3 pt-3">
-    <div class="{% if ORGANISATION %} l-wrapper {% endif %}">
+<footer class="footer px-3 pt-3">
+    <div class="l-wrapper">
         <div class="row mt-3 mb-3 mb-sm-4 justify-content-lg-center">
-            <div class="{% if ORGANISATION %}col-lg-6 {% else %} col-lg-5{% endif %}">
+            <div class="col-lg-6">
                 <p>
                     {% blocktrans %}Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial content.{% endblocktrans %}
                 </p>
             </div>
-            <div class="{% if ORGANISATION %}col-lg-6 {% else %} col-lg-5{% endif %}">
+            <div class="col-lg-6">
                 <div class="row">
                 <div class="col-sm-6 d-flex flex-column">
                     <a class="btn btn--transparent footer__info-btn" href="https://creativecommons.org/licenses/by-sa/4.0/">Open Content CC-BY-SA</a>
@@ -52,7 +52,7 @@
                 </nav>
             </div>
             {% if pages.donate_link %}
-            <div class="col-12 col-sm-6 offset-sm-6 offset-lg-0 d-flex flex-column {% if not ORGANISATION %} px-0 pl-sm-3 {% endif %}">
+            <div class="col-12 col-sm-6 offset-sm-6 offset-lg-0 d-flex flex-column">
                 <a href="{{ pages.donate_link.url }}"  class="btn btn--full {% if ORGANISATION %} btn--bg-tertiary {% else %} btn--secondary-filled {% endif %} mb-0 mr-0 mt-auto">{% trans 'Support the further development of the platform' %}<br><b>{% trans 'Donate now' %}</b></a>
             </div>
             {% endif %}
@@ -63,5 +63,5 @@
 {% if ORGANISATION %}
 <div class="u-page-ribbon"></div>
 {% else %}
-    <div class="u-page-ribbon u-page-ribbon--platform"></div>
+<div class="u-page-ribbon u-page-ribbon--platform"></div>
 {% endif %}
