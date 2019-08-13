@@ -9,7 +9,7 @@
 
     <div class="row justify-content-center justify-content-sm-start">
     {% for use_case in value.use_cases %}
-        <div class="col-12 col-sm-6 col-lg-4 cms-use-case__tile">
+        <div class="col-12 col-md-4 cms-use-case__tile">
             <a class="cms__tile-link" href="{% pageurl use_case %}">
                 {% if use_case.image %}
                 {% image use_case.image fill-500x350 as image %}

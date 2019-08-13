@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_cms.html" %}
 {% load wagtailcore_tags %}
 
 {% block title %}
@@ -15,7 +15,7 @@
                 {% for post in news %}
                     <div class="col-12 col-md-6 cms-news__tile">
                         <a class="cms__tile-link" href="{% pageurl post %}">
-                            <div class="cms__text">
+                            <div class="cms__text text-muted">
                                 {{ post.first_published_at|date }}
                             </div>
                             <h3 class="cms__title--bold cms-news__header-margin">{{ post.subtitle }}</h3>
