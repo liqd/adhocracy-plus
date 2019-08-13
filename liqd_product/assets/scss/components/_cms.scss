@@ -75,15 +75,21 @@
     object-fit: cover;
 }
 
-.cms-news__tile {
-    padding-bottom: 3 * $r-spacer;
-
-    @media screen and (min-width: $breakpoint-xs) {
-        padding-bottom: 4 * $r-spacer;
+.cms-news__container {
+    .card-columns {
+        @include media-breakpoint-up(md) {
+            column-count: 2;
+        }
     }
+}
+
+.cms-news__tile {
+    background-color: $bg-light;
+    border: none;
+    padding-bottom: $r-spacer;
 
     @media screen and (min-width: $breakpoint-md) {
-        padding-bottom: 6 * $r-spacer;
+        padding-bottom: 2 * $r-spacer;
     }
 }
 
