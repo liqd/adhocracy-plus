@@ -16,14 +16,16 @@ from .blocks import ExampleBlock
 
 MUNICIPALITIES = 'MP'
 CITIZENASSEMBLIES = 'CA'
-COOPERATIVESNGOS = 'CN'
+COOPERATIVES = 'CO'
+NGOS = 'NG'
 COMPANIES = 'CP'
 POLITICIANS = 'PO'
 
 CATEGORY_CHOICES = [
     ('MP', _('Municipalities')),
     ('CA', _('Citizen Assemblies')),
-    ('CN', _('Co-Operatives/NGOs')),
+    ('CO', _('Co-Operatives')),
+    ('NG', _('NGOs')),
     ('CP', _('Companies')),
     ('PO', _('Politicians')),
 ]
