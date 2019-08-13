@@ -6,6 +6,7 @@
 .lang__btn--right,
 .lang__btn--left {
     line-height: normal;
+    font-family: $font-family-serif;
 }
 
 .lang__btn--right {
@@ -17,9 +18,10 @@
     border-right: 2px solid $black;
 }
 
-a {
-    .lang__btn--right,
-    .lang__btn--left {
-        color: $primary;
-    }
+.lang__btn--left.active {
+    color: $primary !important;
+}
+
+.lang__btn--right.active {
+    color: $primary !important;
 }

@@ -53,9 +53,9 @@
                                 <input name="next" type="hidden" value="{{ redirect_to }}" />
                                 <input name="language" type="hidden" value="{{ lang_code }}">
                                 {% if LANGUAGE_CODE == 'de' %}
-                                <a class="lang__btn--left" role="button">de</a><button class="lang__btn--right" type="submit">en</button>
+                                <a class="lang__btn--left active" role="button">de</a><button class="lang__btn--right" type="submit">en</button>
                                 {% else %}
-                                <button class="lang__btn--left" type="submit">de</button><a class="lang__btn--right" role="button">en</a>
+                                <button class="lang__btn--left" type="submit">de</button><a class="lang__btn--right active" role="button">en</a>
                                 {% endif %}
                             </form>
                     {% endif %}
