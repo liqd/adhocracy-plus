@@ -22,7 +22,7 @@
                         <a href="?category={{ category.0 }}">
                             {% if current_category and current_category == category.0 %}
                             <div class="mx-auto cms-use-case__category-square cms-use-case__category-selected-square">
-                                {% with 'images/'|add:category.0|add:'.svg' as category_svg %}
+                                {% with 'images/'|add:category.0|add:'-invert.svg' as category_svg %}
                                 <img class="mx-auto" src="{% static category_svg %}" alt="{{ category.1 }}" width="50" />
                                 {% endwith %}
                                 <div class="text-center pb-1 u-z-index--1 cms-use-case__category">
