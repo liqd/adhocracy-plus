@@ -9,7 +9,7 @@
                     <h1 class="homepage-header__teaser ml-md-4">{{ page.teaser|richtext }}</h1>
                 </div>
                 <div class="col-lg-6">
-                    {% image page.image height-400 as image %}
+                    {% image page.image width-800 as image %}
                     <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
                 </div>
             </div>
