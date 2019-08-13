@@ -19,7 +19,7 @@
                 <div class="row mb-5 justify-content-center">
                 {% for category in categories %}
                     <div class="col-4 col-md-2">
-                        <a href="?category={{ category.0 }}">
+                        <a class="u-no-underline" href="?category={{ category.0 }}">
                             {% if current_category and current_category == category.0 %}
                             <div class="mx-auto cms-use-case__category-square cms-use-case__category-selected-square">
                                 {% with 'images/'|add:category.0|add:'-invert.svg' as category_svg %}
