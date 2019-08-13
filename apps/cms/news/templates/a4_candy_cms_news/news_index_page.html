@@ -8,12 +8,12 @@
 {% block content %}
 <div class="cms__wrapper">
     <div class="container">
-        <div class="row justify-content-md-center cms-news__container">
+        <div class="row justify-content-md-center">
             <div class="col-12 col-md-10">
                 <h1 class="cms__title--serif cms__title--underlined text-center">{{ page.title }}</h1>
-                <div class="card-columns justify-content-start">
+                <div class="row justify-content-start">
                 {% for post in news %}
-                    <div class="card cms-news__tile">
+                    <div class="col-12 col-md-6 cms-news__tile">
                         <a class="cms__tile-link" href="{% pageurl post %}">
                             <div class="cms__text text-muted">
                                 {{ post.first_published_at|date }}
