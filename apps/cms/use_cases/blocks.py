@@ -1,5 +1,7 @@
 from wagtail.core import blocks
 
+from apps.cms.blocks import CallToActionBlock
+
 
 class UseCaseBlock(blocks.StructBlock):
     title = blocks.CharBlock()
@@ -11,4 +13,14 @@ class UseCaseBlock(blocks.StructBlock):
 
     class Meta:
         template = 'a4_candy_cms_use_cases/blocks/use_cases_block.html'
+        icon = 'grip'
+
+
+class ExampleBlock(blocks.StructBlock):
+    examples = blocks.ListBlock(
+        CallToActionBlock(label='CTA Column')
+    )
+
+    class Meta:
+        template = 'a4_candy_cms_use_cases/blocks/examples_block.html'
         icon = 'grip'
