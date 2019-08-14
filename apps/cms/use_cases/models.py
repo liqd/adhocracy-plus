@@ -161,6 +161,21 @@ class UseCasePage(Page):
         'body_streamfield_en'
     )
 
+    def get_context(self, request):
+        category = self.category
+
+        if category:
+            try:
+                use_cases = UseCasePage.objects\
+                    .filter(category=category)\
+                    .exclude(id=self.id)
+            except ValueError:
+                use_cases = []
+
+        context = super().get_context(request)
+        context['other_use_cases'] = use_cases
+        return context
+
     en_content_panels = [
         FieldPanel('title_en'),
         FieldPanel('image_caption_en'),
