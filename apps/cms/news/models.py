@@ -34,7 +34,7 @@ class NewsIndexPage(Page):
     def get_context(self, request):
         news = self.news
         page = request.GET.get('page', 1)
-        paginator = Paginator(news, 20)
+        paginator = Paginator(news, 2)
 
         try:
             news = paginator.page(page)
