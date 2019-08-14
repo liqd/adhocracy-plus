@@ -11,7 +11,7 @@
         <div class="row justify-content-md-center">
             <div class="col-12 col-md-10">
                 <div class="cms__text">
-                    {% blocktrans with category=page.get_category_display %}In {{ category }}{% endblocktrans %}
+                    {% blocktrans with category=page.get_category_display %}For {{ category }}{% endblocktrans %}
                 </div>
                 <h1 class="cms__title--bold cms-page__header-margin">{{ page.title }}</h1>
             </div>
@@ -54,7 +54,7 @@
                     <img src="{{ image.url }}" alt="{{ image.alt }}" />
                     {% endif %}
                     <div class="cms__text pt-4 text-muted cms__text--serif">
-                    {% blocktrans with category=use_case.get_category_display %}In {{ category }}{% endblocktrans %}
+                    {% blocktrans with category=use_case.get_category_display %}For {{ category }}{% endblocktrans %}
                     </div>
                     <h3 class="cms__title--bold">{{ use_case.title }}</h3>
                 </a>
