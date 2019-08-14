@@ -1,8 +1,34 @@
 {% extends "base_cms.html" %}
-{% load wagtailcore_tags wagtailimages_tags i18n %}
+{% load wagtailcore_tags wagtailimages_tags i18n absolute_url %}
 
 {% block title %}
     {{ self.title }} &mdash; {{ block.super }}
+{% endblock %}
+
+{% block social_meta %}
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Adhocracy+ | {{ page.title }}">
+    <meta name="twitter:description" content="{{ category }}">
+    {% if page.image %}
+        <meta name="twitter:image" content="{% get_absolute_uri obj=page.image.url %}">
+    {% else %}
+        <meta name="twitter:image" content="{% get_absolute_uri_static obj='images/logo.png' %}">
+    {% endif %}
+
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="Adhocracy+ | {{ page.title }}">
+    <meta property="og:description" content="{{ category }}">
+    {% if page.image %}
+        <meta property="og:image" content="{% get_absolute_uri obj=page.image.url %}">
+        <meta property="og:image:width" content="360">
+        <meta property="og:image:height" content="129">
+    {% else %}
+        <meta property="og:image" content="{% get_absolute_uri_static obj='images/logo.png' %}">
+        <meta property="og:image:width" content="360">
+        <meta property="og:image:height" content="129">
+    {% endif %}
+
 {% endblock %}
 
 {% block content %}
@@ -16,6 +42,7 @@
                 <h1 class="cms__title--bold cms-page__header-margin">{{ page.title }}</h1>
             </div>
         </div>
+        {% include 'a4_candy_cms_use_cases/includes/use_case_share_btns.html' with xs_class="" spacing="<br>" %}
         {% if page.image %}
         {% image page.image width-1200 as image %}
         <div class="row justify-content-md-center">

@@ -1,0 +1,7 @@
+{% load i18n rules discovery_tags absolute_url %}
+
+<div class="row justify-content-center">
+        <a href='https://twitter.com/intent/tweet?source={{ request.build_absolute_uri }}&amp;text={{ idea.idea_title }}:https://{{ request.build_absolute_uri }}' target='_blank' title='{% trans 'Share on Twitter' %}'><i class='fab fa-twitter fa-socialshare p-2'></i></a>
+        <a href='https://www.facebook.com/sharer/sharer.php?uri={{ request.build_absolute_uri }}' target='_blank' title='{% trans 'Share on Facebook' %}'><i class='fab fa-facebook-f fa-socialshare p-2'></i></a>
+        <a href='https://www.linkedin.com/share?url={{ request.build_absolute_uri }}' target='_blank' title='{% trans 'Share on Linked' %}'><i class='fab fa-linkedin fa-socialshare p-2'></i></a>
+</div>
