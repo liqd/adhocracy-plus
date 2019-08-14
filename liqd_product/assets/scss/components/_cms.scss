@@ -1,4 +1,5 @@
 .cms__wrapper {
+    padding: $padding;
     margin-left: $r-spacer;
     margin-right: $r-spacer;
     background-color: $bg-light;
@@ -87,6 +88,10 @@
     background-color: $brand-primary;
 }
 
+.cms-use-case__category {
+    font-size: $font-size-sm;
+}
+
 .cms-use-case__category-square {
     width: 100px;
     height: 100px;
@@ -112,4 +117,12 @@
     height: 20px;
     background-color: $brand-primary;
     transform: rotate(45deg);
+}
+
+.cms-usecase__dropdown {
+    width: 100%;
+}
+
+.cms-use-case__filter {
+    max-width: $breakpoint-xl;
 }
