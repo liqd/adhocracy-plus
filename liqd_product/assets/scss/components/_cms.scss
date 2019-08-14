@@ -88,6 +88,7 @@
     background-color: $brand-primary;
 }
 
+// tablet size
 .cms-use-case__category {
     font-size: $font-size-sm;
 }
@@ -119,10 +120,29 @@
     transform: rotate(45deg);
 }
 
+//desktop size
+@media screen and (min-width: $breakpoint-lg) {
+    .cms-use-case__category {
+        font-size: $font-size-base;
+    }
+
+    .cms-use-case__category-selected-square {
+        width: 120px;
+        height: 120px;
+    }
+
+    .cms-use-case__category-selected-arrow {
+        left: 50px;
+        bottom: -10px;
+        width: 20px;
+        height: 20px;
+    }
+}
+
 .cms-usecase__dropdown {
     width: 100%;
 }
 
 .cms-use-case__filter {
-    max-width: $breakpoint-xl;
+    max-width: $breakpoint-lg;
 }
