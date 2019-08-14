@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-12 17:31+0200\n"
+"POT-Creation-Date: 2019-08-14 17:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -359,7 +359,7 @@ msgstr "Edit basic settings"
 #: apps/organisations/templates/organisation_information.html:4
 #: apps/organisations/templates/organisation_information.html:9
 #: apps/projects/templates/a4_candy_projects/project_detail.html:64
-#: liqd_product/templates/header_organisation.html:30
+#: liqd_product/templates/header.html:35
 msgid "Information"
 msgstr "Information"
 
@@ -767,6 +767,7 @@ msgstr "Images"
 
 #: adhocracy4/projects/admin.py:60 apps/projects/admin.py:55
 #: liqd_product/templates/footer.html:48
+#: liqd_product/templates/footer_cms.html:47
 #: liqd_product/templates/newsletter_base.txt:13
 msgid "Contact"
 msgstr "Contact"
@@ -1262,13 +1263,13 @@ msgstr "This is how you can contact us:"
 msgid "display more"
 msgstr "display more"
 
-#: apps/cms/news/templates/a4_candy_cms_news/news_page.html:34
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:34
+#: apps/cms/news/templates/a4_candy_cms_news/news_page.html:37
 msgid "Back to overview"
 msgstr "Back to overview"
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/home_page.html:19
 #: liqd_product/templates/footer.html:56
+#: liqd_product/templates/footer_cms.html:55
 msgid "Support the further development of the platform"
 msgstr "Support the further development of the platform"
 
@@ -1276,46 +1277,57 @@ msgstr "Support the further development of the platform"
 msgid "Donate Now"
 msgstr "Donate Now"
 
-#: apps/cms/use_cases/models.py:22
+#: apps/cms/use_cases/models.py:25
 msgid "Municipalities"
 msgstr "Municipalities"
 
-#: apps/cms/use_cases/models.py:23
+#: apps/cms/use_cases/models.py:26
 msgid "Citizen Assemblies"
 msgstr "Citizen Assemblies"
 
-#: apps/cms/use_cases/models.py:24
-msgid "Co-Operatives/NGOs"
-msgstr "Co-Operatives/NGOs"
+#: apps/cms/use_cases/models.py:27
+msgid "Co-Operatives"
+msgstr "Co-Operatives"
 
-#: apps/cms/use_cases/models.py:25
+#: apps/cms/use_cases/models.py:28
+msgid "NGOs"
+msgstr "NGOs"
+
+#: apps/cms/use_cases/models.py:29
 msgid "Companies"
 msgstr "Companies"
 
-#: apps/cms/use_cases/models.py:26
+#: apps/cms/use_cases/models.py:30
 msgid "Politicians"
 msgstr "Politicians"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:19
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:47
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:77
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:14
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:57
 #, python-format
-msgid "In %(category)s"
-msgstr "In %(category)s"
+msgid "For %(category)s"
+msgstr "For %(category)s"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:30
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:69
 msgid "Visit Demosite"
 msgstr "Visit Demosite"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:36
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:74
 msgid "View more examples"
 msgstr "View more examples"
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:57
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:55
+msgid "Choose Category"
+msgstr "Choose Category"
+
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:87
 msgid "Try it out!"
 msgstr "Try it out!"
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:58
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:88
 msgid ""
 "Instead of just reading about it, you can test all the features of adhocracy"
 "+ yourself on our demo platform. "
@@ -1323,9 +1335,14 @@ msgstr ""
 "Instead of just reading about it, you can test all the features of adhocracy"
 "+ yourself on our demo platform. "
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:59
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:89
 msgid "Visit the demo platform"
 msgstr "Visit the demo platform"
+
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:43
+#, python-format
+msgid "More examples for %(category)s"
+msgstr "More examples for %(category)s"
 
 #: apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
@@ -1414,6 +1431,20 @@ msgstr "View as map"
 #: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:4
 msgid "Page navigation"
 msgstr "Page navigation"
+
+#: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:9
+#: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:10
+msgid "Previous page"
+msgstr "Previous page"
+
+#: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:14
+msgid " of "
+msgstr " of "
+
+#: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:19
+#: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:20
+msgid "Next page"
+msgstr "Next page"
 
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:56
 #: apps/exports/mixins.py:12
@@ -1518,14 +1549,14 @@ msgid "Organisation name"
 msgstr "Organisation name"
 
 #: apps/dashboard/templates/a4_candy_dashboard/dashboard_header.html:4
-#: liqd_product/templates/header.html:5
-#: liqd_product/templates/header_organisation.html:4
+#: liqd_product/templates/header.html:4
+#: liqd_product/templates/header_cms.html:5
 msgid "Header"
 msgstr "Header"
 
 #: apps/dashboard/templates/a4_candy_dashboard/dashboard_header.html:31
-#: liqd_product/templates/header.html:36
-#: liqd_product/templates/header_organisation.html:60
+#: liqd_product/templates/header.html:65
+#: liqd_product/templates/header_cms.html:36
 msgid "Menu"
 msgstr "Menu"
 
@@ -2035,7 +2066,8 @@ msgstr ""
 #: apps/organisations/templates/organisation_imprint.html:4
 #: apps/organisations/templates/organisation_imprint.html:9
 #: apps/partners/models.py:74 liqd_product/templates/footer.html:33
-#: liqd_product/templates/header_organisation.html:35
+#: liqd_product/templates/footer_cms.html:32
+#: liqd_product/templates/header.html:40
 msgid "Imprint"
 msgstr "Imprint"
 
@@ -2440,6 +2472,7 @@ msgstr "Please enter correct email addresses, separated by commas."
 #: apps/users/forms.py:10 liqd_product/templates/email_base.html:59
 #: liqd_product/templates/email_base.txt:15
 #: liqd_product/templates/footer.html:38
+#: liqd_product/templates/footer_cms.html:37
 #: liqd_product/templates/newsletter_base.html:59
 #: liqd_product/templates/newsletter_base.txt:14
 msgid "Terms of use"
@@ -3017,6 +3050,7 @@ msgid "Beteiligung.in is a participation platform operated by"
 msgstr "Beteiligung.in is a participation platform operated by"
 
 #: liqd_product/templates/footer.html:8
+#: liqd_product/templates/footer_cms.html:7
 msgid ""
 "Beteiligung.in is a platform provided by Liquid Democracy e.V. in Berlin. "
 "Only the respective operator of the offer is responsible for the editorial "
@@ -3027,22 +3061,24 @@ msgstr ""
 "content."
 
 #: liqd_product/templates/footer.html:43
+#: liqd_product/templates/footer_cms.html:42
 msgid "Data protection policy"
 msgstr "Data protection policy"
 
 #: liqd_product/templates/footer.html:56
+#: liqd_product/templates/footer_cms.html:55
 msgid "Donate now"
 msgstr "Donate now"
 
-#: liqd_product/templates/header_organisation.html:25
+#: liqd_product/templates/header.html:30
 msgid "Participate"
 msgstr "Participate"
 
-#~ msgid "Previous page"
-#~ msgstr "Previous page"
+#~ msgid "Co-Operatives/NGOs"
+#~ msgstr "Co-Operatives/NGOs"
 
-#~ msgid "Next page"
-#~ msgstr "Next page"
+#~ msgid "In %(category)s"
+#~ msgstr "In %(category)s"
 
 #~ msgid "back to project"
 #~ msgstr "back to project"
