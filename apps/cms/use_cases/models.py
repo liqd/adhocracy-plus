@@ -16,16 +16,18 @@ from .blocks import ExampleBlock
 
 MUNICIPALITIES = 'MP'
 CITIZENASSEMBLIES = 'CA'
-COOPERATIVESNGOS = 'CN'
+COOPERATIVES = 'CO'
+NGOS = 'NG'
 COMPANIES = 'CP'
 POLITICIANS = 'PO'
 
 CATEGORY_CHOICES = [
-    ('MP', _('Municipalities')),
-    ('CA', _('Citizen Assemblies')),
-    ('CN', _('Co-Operatives/NGOs')),
-    ('CP', _('Companies')),
-    ('PO', _('Politicians')),
+    (MUNICIPALITIES, _('Municipalities')),
+    (CITIZENASSEMBLIES, _('Citizen Assemblies')),
+    (COOPERATIVES, _('Co-Operatives')),
+    (NGOS, _('NGOs')),
+    (COMPANIES, _('Companies')),
+    (POLITICIANS, _('Politicians')),
 ]
 
 
@@ -75,6 +77,11 @@ class UseCaseIndexPage(Page):
         context['categories'] = CATEGORY_CHOICES
         if category:
             context['current_category'] = category
+            for category_choice in CATEGORY_CHOICES:
+                if category_choice[0] == category:
+                    context['get_current_category_display'] = (
+                        category_choice[1]
+                    )
         return context
 
     de_content_panels = [

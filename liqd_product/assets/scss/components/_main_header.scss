@@ -33,7 +33,7 @@
 
 .main-header__logo-img {
     display: block;
-    height: 3rem;
+    height: 2rem;
     width: auto;
 }
 
@@ -149,6 +149,10 @@
 }
 
 @media screen and (min-width: $breakpoint) {
+    .main-header__logo-img {
+        height: 3rem;
+    }
+
     .main-header__organisation-nav {
         line-height: 4em;
     }
