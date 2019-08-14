@@ -15,15 +15,15 @@
     </div>
     <div class="row justify-content-center mb-5">
       <!-- tablet and above category chooser-->
-        <div class="d-none d-md-block col-12 col-md-10">
-            <div class="row justify-content-center cms-use-case__filter">
+        <div class="d-none d-md-block col-12 col-lg-10 cms-use-case__filter">
+            <div class="row justify-content-center">
             {% for category in categories %}
                 <div class="col-2">
                     <a class="u-no-underline" href="?category={{ category.0 }}">
                         {% if current_category and current_category == category.0 %}
                         <div class="mx-auto cms-use-case__category-square cms-use-case__category-selected-square">
                             {% with 'images/'|add:category.0|add:'-invert.svg' as category_svg %}
-                            <img class="m-auto" src="{% static category_svg %}" alt="{{ category.1 }}" width="50" />
+                            <img class="m-auto" src="{% static category_svg %}" alt="{{ category.1 }}" width="60" />
                             {% endwith %}
                             <div class="text-center pb-1 u-z-index--1 cms-use-case__category">
                                 {{ category.1 }}
@@ -52,7 +52,7 @@
                 {% if current_category %}
                   {{ get_current_category_display }}
                 {% else %}
-                  Choose Category
+                  {% trans 'Choose Category' %}
                 {% endif %}
                   <i class="fa fa-angle-down" aria-hidden="true"></i>
             </a>
