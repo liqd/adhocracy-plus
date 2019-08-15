@@ -20,7 +20,7 @@
     <meta property="og:title" content="Adhocracy+ | {{ page.title }}">
     <meta property="og:description" content="{{ category }}">
     {% if page.image %}
-    {% image page.image width-400 as image %}
+    {% image page.image fill-400x400 as image %}
     <meta property="og:image" content="{{ page.get_site.root_url }}{{ image.url }}" />
     {% else %}
         <meta property="og:image" content="{% get_absolute_uri_static obj='images/logo.png' %}">
