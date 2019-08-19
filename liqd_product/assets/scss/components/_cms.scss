@@ -48,7 +48,11 @@
 
     &:hover,
     &:focus {
-        text-decoration-line: underline;
+        text-decoration-line: none;
+
+        h3 {
+            text-decoration-line: underline;
+        }
     }
 }
 
