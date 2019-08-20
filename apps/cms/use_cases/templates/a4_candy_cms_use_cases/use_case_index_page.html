@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
-                <h1 class="cms__title--serif cms__title--underlined text-center">{{ page.subtitle }}</h1>
+                <h1 class="cms__title--serif cms__title--underlined cms__title--h2-size text-center">{{ page.subtitle }}</h1>
             </div>
         </div>
         <div class="row justify-content-center mb-5">
@@ -79,8 +79,8 @@
                     <div class="cms__text pt-4">
                         {% blocktrans with category=use_case.get_category_display %}For {{ category }}{% endblocktrans %}
                     </div>
-                    <h3 class="cms__title--bold">{{ use_case.title }}
-                    </h3>
+                    <h2 class="cms__title--bold cms__title--h3-size">{{ use_case.title }}
+                    </h2>
                 </a>
             </div>
             {% endfor %}
