@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-12 col-lg-10">
-                <h1 class="cms__title--serif cms__title--underlined text-center">{{ page.subtitle }}</h1>
+                <h1 class="cms__title--serif cms__title--underlined cms__title--h2-size text-center">{{ page.subtitle }}</h1>
                 <div class="row justify-content-start">
                 {% for post in news %}
                     <div class="col-12 col-md-6 cms-news__tile">
@@ -18,7 +18,7 @@
                             <div class="cms__text text-muted">
                                 {{ post.first_published_at|date }}
                             </div>
-                            <h3 class="cms__title--bold cms-news__header-margin">{{ post.subtitle }}</h3>
+                            <h2 class="cms__title--bold cms-news__header-margin cms__title--h3-size">{{ post.subtitle }}</h2>
                             <div class="cms__text">
                                 {{ post.teaser }}
                             </div>
