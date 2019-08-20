@@ -8,45 +8,48 @@
 {% block content %}
 
 <div class="cms__wrapper">
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-8">
-            <h1 class="cms__title--serif cms__title--underlined text-center">{{ page.subtitle }}</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <h1 class="cms__title--serif cms__title--underlined text-center">{{ page.subtitle }}</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+          <!-- tablet and above category chooser-->
+            <div class="d-none d-md-block col-12 col-lg-8 cms-use-case__filter">
+                <div class="row justify-content-center">
+                {% for category in categories %}
+                    <div class="col-2">
+                        <a class="u-no-underline" href="?category={{ category.0 }}">
+                            {% if current_category and current_category == category.0 %}
+                            <div class="mx-auto cms-use-case__category-square cms-use-case__category-selected-square">
+                                {% with 'images/'|add:category.0|add:'-invert.svg' as category_svg %}
+                                <img class="m-auto" src="{% static category_svg %}" alt="{{ category.1 }}" width="70" />
+                                {% endwith %}
+                                <div class="text-center pb-1 u-z-index--1 cms-use-case__category">
+                                    {{ category.1 }}
+                                </div>
+                                <div class="cms-use-case__category-selected-arrow"></div>
+                            </div>
+                            {% else %}
+                            {% with 'images/'|add:category.0|add:'.svg' as category_svg %}
+                            <div class="mx-auto cms-use-case__category-square">
+                                <img class="mx-auto" src="{% static category_svg %}" alt="{{ category.1 }}" width="70" />
+                            {% endwith %}
+                                <div class="text-center pb-1 cms-use-case__category">
+                                    {{ category.1 }}
+                                </div>
+                            </div>
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
     <div class="row justify-content-center mb-5">
-      <!-- tablet and above category chooser-->
-        <div class="d-none d-md-block col-12 col-lg-10 cms-use-case__filter">
-            <div class="row justify-content-center">
-            {% for category in categories %}
-                <div class="col-2">
-                    <a class="u-no-underline" href="?category={{ category.0 }}">
-                        {% if current_category and current_category == category.0 %}
-                        <div class="mx-auto cms-use-case__category-square cms-use-case__category-selected-square">
-                            {% with 'images/'|add:category.0|add:'-invert.svg' as category_svg %}
-                            <img class="m-auto" src="{% static category_svg %}" alt="{{ category.1 }}" width="60" />
-                            {% endwith %}
-                            <div class="text-center pb-1 u-z-index--1 cms-use-case__category">
-                                {{ category.1 }}
-                            </div>
-                            <div class="cms-use-case__category-selected-arrow"></div>
-                        </div>
-                        {% else %}
-                        {% with 'images/'|add:category.0|add:'.svg' as category_svg %}
-                        <div class="mx-auto cms-use-case__category-square">
-                            <img class="mx-auto" src="{% static category_svg %}" alt="{{ category.1 }}" width="50" />
-                        {% endwith %}
-                            <div class="text-center pb-1 cms-use-case__category">
-                                {{ category.1 }}
-                            </div>
-                        </div>
-                        {% endif %}
-                    </a>
-                </div>
-            {% endfor %}
-            </div>
-        </div>
-
-<!-- mobile category chooser -->
+    <!-- mobile category chooser -->
         <div class="d-md-none dropdown cms-usecase__dropdown mx-3 mx-sm-5">
             <a class="btn btn--light btn-block dropdown-toggle d-flex justify-content-between" href="?category={{ category.0 }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {% if current_category %}

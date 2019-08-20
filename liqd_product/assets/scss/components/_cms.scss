@@ -22,7 +22,7 @@
 
 .cms__title--underlined {
     position: relative;
-    margin-bottom: 6 * $r-spacer;
+    margin-bottom: 3 * $r-spacer;
 
     &:after {
         content: "";
@@ -48,7 +48,11 @@
 
     &:hover,
     &:focus {
-        text-decoration-line: underline;
+        text-decoration-line: none;
+
+        h3 {
+            text-decoration-line: underline;
+        }
     }
 }
 
@@ -91,6 +95,7 @@
 // tablet size
 .cms-use-case__category {
     font-size: $font-size-sm;
+    font-family: $font-family-base;
 }
 
 .cms-use-case__category-square {
