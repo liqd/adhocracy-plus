@@ -13,10 +13,9 @@ $block-padding-md: 7.5*$padding;
 
 .block-col-3 {
     @extend .col-md-4;
-    padding: $padding;
 
     @media screen and (min-width: $breakpoint-xl) {
-        padding: $padding $block-padding-md 0 $block-padding-md;
+        padding: $padding $block-padding 0 $block-padding;
     }
 }
 
