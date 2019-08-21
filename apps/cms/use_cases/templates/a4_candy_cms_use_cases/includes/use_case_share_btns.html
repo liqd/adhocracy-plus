@@ -5,5 +5,5 @@
 
         <a href='https://www.facebook.com/sharer/sharer.php?uri={{ request.build_absolute_uri }}' target='_blank' title='{% trans 'Share on Facebook' %}'><i class='fab fa-facebook-f fa-socialshare p-2'></i></a>
 
-        <a href='https://www.linkedin.com/share?url={{ request.build_absolute_uri }}' target='_blank' title='{% trans 'Share on Linked' %}'><i class='fab fa-linkedin fa-socialshare p-2'></i></a>
+        <a href='https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ idea.idea_title }}&source={{ request.build_absolute_uri }}' target='_blank' title='{% trans 'Share on Linkedin' %}'><i class='fab fa-linkedin fa-socialshare p-2'></i></a>
 </div>
