@@ -16,6 +16,13 @@
         <meta name="twitter:image" content="{% get_absolute_uri_static obj='images/logo.png' %}">
     {% endif %}
 
+    <meta name="linkedin:title" content="Adhocracy+ | {{ page.title }}">
+    {% if page.image %}
+        <meta name="linkedin:image" content="{% get_absolute_uri obj=page.image.url %}">
+    {% else %}
+        <meta name="linkedin:image" content="{% get_absolute_uri_static obj='images/logo.png' %}">
+    {% endif %}
+
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta property="og:title" content="Adhocracy+ | {{ page.title }}">
     <meta property="og:description" content="{{ category }}">
