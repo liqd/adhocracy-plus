@@ -58,16 +58,6 @@ class FormPage(AbstractEmailForm):
     thank_you_text_de = models.TextField(blank=True)
 
     contact_person_name = models.CharField(max_length=100, blank=True)
-    contact_person_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        verbose_name="Image of contact person",
-        help_text="The Image will be shown "
-                  "besides the name of the contact person"
-    )
 
     custom_contact_person_image = models.ForeignKey(
         'a4_candy_cms_images.CustomImage',
@@ -179,7 +169,7 @@ class FormPage(AbstractEmailForm):
         MultiFieldPanel([
             FieldRowPanel([
                 FieldPanel('contact_person_name', classname="col6"),
-                ImageChooserPanel('contact_person_image', classname="col6"),
+                # ImageChooserPanel('contact_person_image', classname="col6"),
             ]),
         ], "Contact Person"),
 

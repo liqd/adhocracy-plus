@@ -16,16 +16,6 @@ from apps.contrib.translations import TranslatedField
 
 
 class HomePage(Page):
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        verbose_name="Header Image",
-        help_text="The Image that is shown on top of the page"
-    )
-
     custom_image = models.ForeignKey(
         'a4_candy_cms_images.CustomImage',
         null=True,
@@ -117,7 +107,7 @@ class HomePage(Page):
         FieldPanel('title'),
         FieldPanel('slug'),
         PageChooserPanel('form_page'),
-        ImageChooserPanel('image'),
+        # ImageChooserPanel('image'),
     ]
 
     edit_handler = TabbedInterface([
