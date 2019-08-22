@@ -116,7 +116,7 @@ class UseCasePage(Page):
     )
 
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'a4_candy_cms_images.CustomImage',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -125,11 +125,6 @@ class UseCasePage(Page):
         help_text="The Image that is shown on the use case item page " +
                   "and the use case index page"
     )
-
-    image_caption_de = models.TextField(
-        max_length=400, blank=True, null=True, verbose_name="Image Caption")
-    image_caption_en = models.TextField(
-        max_length=400, blank=True, null=True, verbose_name="Image Caption")
 
     title_de = models.CharField(
         max_length=250, blank=True, verbose_name="German Title")
@@ -147,11 +142,6 @@ class UseCasePage(Page):
         ('html', blocks.RawHTMLBlock()),
         ('examples', ExampleBlock())
     ], blank=True)
-
-    image_caption = TranslatedField(
-        'image_caption_de',
-        'image_caption_en'
-    )
 
     subtitle = TranslatedField(
         'title_de',
@@ -185,13 +175,11 @@ class UseCasePage(Page):
 
     en_content_panels = [
         FieldPanel('title_en'),
-        FieldPanel('image_caption_en'),
         StreamFieldPanel('body_streamfield_en')
     ]
 
     de_content_panels = [
         FieldPanel('title_de'),
-        FieldPanel('image_caption_de'),
         StreamFieldPanel('body_streamfield_de')
     ]
 
