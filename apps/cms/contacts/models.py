@@ -59,7 +59,7 @@ class FormPage(AbstractEmailForm):
 
     contact_person_name = models.CharField(max_length=100, blank=True)
 
-    custom_contact_person_image = models.ForeignKey(
+    contact_person_image = models.ForeignKey(
         'a4_candy_cms_images.CustomImage',
         null=True,
         blank=True,
@@ -169,7 +169,7 @@ class FormPage(AbstractEmailForm):
         MultiFieldPanel([
             FieldRowPanel([
                 FieldPanel('contact_person_name', classname="col6"),
-                # ImageChooserPanel('contact_person_image', classname="col6"),
+                ImageChooserPanel('contact_person_image', classname="col6"),
             ]),
         ], "Contact Person"),
 

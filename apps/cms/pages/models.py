@@ -16,7 +16,7 @@ from apps.contrib.translations import TranslatedField
 
 
 class HomePage(Page):
-    custom_image = models.ForeignKey(
+    image = models.ForeignKey(
         'a4_candy_cms_images.CustomImage',
         null=True,
         blank=True,
@@ -107,7 +107,7 @@ class HomePage(Page):
         FieldPanel('title'),
         FieldPanel('slug'),
         PageChooserPanel('form_page'),
-        # ImageChooserPanel('image'),
+        ImageChooserPanel('image'),
     ]
 
     edit_handler = TabbedInterface([
