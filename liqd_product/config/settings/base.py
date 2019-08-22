@@ -344,6 +344,13 @@ BLEACH_LIST = {
 
 # Wagtail
 WAGTAIL_SITE_NAME = 'Beteiligung.in'
+WAGTAILIMAGES_IMAGE_MODEL = 'a4_candy_cms_images.CustomImage'
+
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    'default': {
+        'WIDGET': 'wagtail.admin.rich_text.HalloRichTextArea'
+    }
+}
 
 # adhocracy4
 
@@ -445,9 +452,3 @@ A4_PROJECT_TOPICS = (
 )
 
 CONTACT_EMAIL = 'support-beteiligung@liqd.net'
-
-WAGTAILADMIN_RICH_TEXT_EDITORS = {
-    'default': {
-        'WIDGET': 'wagtail.admin.rich_text.HalloRichTextArea'
-    }
-}
