@@ -68,7 +68,7 @@ class NewsIndexPage(Page):
 
 
 class NewsPage(Page):
-    custom_image = models.ForeignKey(
+    image = models.ForeignKey(
         'a4_candy_cms_images.CustomImage',
         null=True,
         blank=True,
@@ -133,7 +133,7 @@ class NewsPage(Page):
 
     common_panels = [
         FieldPanel('title'),
-        # ImageChooserPanel('image'),
+        ImageChooserPanel('image'),
         FieldPanel('author'),
         FieldPanel('slug')
     ]

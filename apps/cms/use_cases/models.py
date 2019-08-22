@@ -115,7 +115,7 @@ class UseCasePage(Page):
         choices=CATEGORY_CHOICES
     )
 
-    custom_image = models.ForeignKey(
+    image = models.ForeignKey(
         'a4_candy_cms_images.CustomImage',
         null=True,
         blank=True,
@@ -185,7 +185,7 @@ class UseCasePage(Page):
 
     common_panels = [
         FieldPanel('title'),
-        # ImageChooserPanel('image'),
+        ImageChooserPanel('image'),
         FieldPanel('slug'),
         FieldPanel('category')
     ]
