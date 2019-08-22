@@ -63,7 +63,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
-            <button class="btn main-header__mobile-toggle btn--bg-tertiary btn--square btn--small btn--attached-top" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
+            <button class="btn main-header__mobile-toggle {% if ORGANISATION %}btn--bg-tertiary{% else %}btn--secondary-filled{% endif %} btn--square btn--small btn--attached-top" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
                 <span class="d-none d-sm-inline-block">{% trans 'Menu' %}</span>
             </button>
         </nav>
