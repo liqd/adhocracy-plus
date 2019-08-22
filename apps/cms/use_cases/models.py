@@ -131,6 +131,17 @@ class UseCasePage(Page):
     image_caption_en = models.TextField(
         max_length=400, blank=True, null=True, verbose_name="Image Caption")
 
+    custom_image = models.ForeignKey(
+        'a4_candy_cms_images.CustomImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Use Case Header Image",
+        help_text="The Image that is shown on the use case item page " +
+                  "and the use case index page"
+    )
+
     title_de = models.CharField(
         max_length=250, blank=True, verbose_name="German Title")
     title_en = models.CharField(

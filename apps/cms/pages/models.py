@@ -26,6 +26,16 @@ class HomePage(Page):
         help_text="The Image that is shown on top of the page"
     )
 
+    custom_image = models.ForeignKey(
+        'a4_candy_cms_images.CustomImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Header Image",
+        help_text="The Image that is shown on top of the page"
+    )
+
     form_page = models.ForeignKey(
         'a4_candy_cms_contacts.FormPage',
         null=True,

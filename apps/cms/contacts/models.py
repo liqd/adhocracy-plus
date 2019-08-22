@@ -69,6 +69,17 @@ class FormPage(AbstractEmailForm):
                   "besides the name of the contact person"
     )
 
+    custom_contact_person_image = models.ForeignKey(
+        'a4_candy_cms_images.CustomImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Image of contact person",
+        help_text="The Image will be shown "
+                  "besides the name of the contact person"
+    )
+
     header = TranslatedField(
         'header_de',
         'header_en'
