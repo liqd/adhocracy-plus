@@ -55,7 +55,6 @@
 
     button,
     a {
-        border-bottom: 1px solid $body-bg;
         display: block;
         width: 100%;
         padding: 0.5em;
@@ -202,12 +201,14 @@
         right: 0;
     }
 
-    .main-header__lang {
+    .main-header__lang--org {
         right: 250px;
+        top: 0.5*$r-spacer;
     }
 
-    .main-header__lang--org {
-        top: 0.5*$r-spacer;
+    .main-header__lang--cms {
+        right: 300px;
+        top: 2.5*$r-spacer;
     }
 }
 
