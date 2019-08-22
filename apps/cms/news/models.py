@@ -84,6 +84,17 @@ class NewsPage(Page):
     image_caption_en = models.TextField(
         max_length=400, blank=True, null=True, verbose_name="Image Caption")
 
+    custom_image = models.ForeignKey(
+        'a4_candy_cms_images.CustomImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="News Header Image",
+        help_text="The Image that is shown on the news item page " +
+                  "and the news index page"
+    )
+
     title_de = models.CharField(
         max_length=250, blank=True, verbose_name="Title")
     title_en = models.CharField(
