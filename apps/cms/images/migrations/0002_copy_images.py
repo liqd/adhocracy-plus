@@ -33,6 +33,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('a4_candy_cms_images', '0001_initial'),
+        ('wagtailimages', '0019_delete_filter')
     ]
 
     operations = [
