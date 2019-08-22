@@ -17,7 +17,7 @@ from apps.contrib.translations import TranslatedField
 
 class HomePage(Page):
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        'a4_candy_cms_images.CustomImage',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
