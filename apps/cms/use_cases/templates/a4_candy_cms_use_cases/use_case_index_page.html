@@ -47,27 +47,26 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row justify-content-center mb-5">
-    <!-- mobile category chooser -->
-        <div class="d-md-none dropdown cms-usecase__dropdown mx-3 mx-sm-5">
-            <a class="btn btn--light btn-block dropdown-toggle d-flex justify-content-between" href="?category={{ category.0 }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {% if current_category %}
-                  {{ get_current_category_display }}
-                {% else %}
-                  {% trans 'Choose Category' %}
-                {% endif %}
-                  <i class="fa fa-angle-down" aria-hidden="true"></i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                {% for category in categories %}
-                <a class="dropdown-item d-flex justify-content-between" href="?category={{ category.0 }}">{{ category.1 }}</a>
-                {% endfor %}
+        <div class="row justify-content-center mb-5">
+        <!-- mobile category chooser -->
+            <div class="col-12 col-lg-8">
+                <div class="d-md-none dropdown cms-usecase__dropdown">
+                    <a class="btn btn--transparent btn-block dropdown-toggle d-flex justify-content-between" href="?category={{ category.0 }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {% if current_category %}
+                          {{ get_current_category_display }}
+                        {% else %}
+                          <span class="text-muted">{% trans 'Choose Category' %}</span>
+                        {% endif %}
+                          <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        {% for category in categories %}
+                        <a class="dropdown-item d-flex justify-content-between" href="?category={{ category.0 }}">{{ category.1 }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="container">
         <div class="row justify-content-center justify-content-sm-start">
             {% for use_case in use_cases %}
             <div class="col-12 col-sm-6 col-lg-4 cms-use-case__tile">
