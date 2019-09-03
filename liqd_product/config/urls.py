@@ -33,24 +33,24 @@ from apps.polls.routers import QuestionDefaultRouter
 from apps.users.decorators import user_is_project_admin
 
 router = routers.DefaultRouter()
-router.register(r'follows', FollowViewSet, base_name='follows')
-router.register(r'reports', ReportViewSet, base_name='reports')
-router.register(r'polls', PollViewSet, base_name='polls')
+router.register(r'follows', FollowViewSet, basename='follows')
+router.register(r'reports', ReportViewSet, basename='reports')
+router.register(r'polls', PollViewSet, basename='polls')
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
-module_router.register(r'documents', DocumentViewSet, base_name='chapters')
+module_router.register(r'documents', DocumentViewSet, basename='chapters')
 
 orga_router = a4routers.OrganisationDefaultRouter()
 
 ct_router = a4routers.ContentTypeDefaultRouter()
-ct_router.register(r'comments', CommentViewSet, base_name='comments')
-ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
+ct_router.register(r'comments', CommentViewSet, basename='comments')
+ct_router.register(r'ratings', RatingViewSet, basename='ratings')
 ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
-                   base_name='moderatorremarks')
+                   basename='moderatorremarks')
 
 question_router = QuestionDefaultRouter()
-question_router.register(r'vote', VoteViewSet, base_name='vote')
+question_router.register(r'vote', VoteViewSet, basename='vote')
 
 sitemaps = {
     'organisations': ProductOrganisationsSitemap,
