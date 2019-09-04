@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-14 17:05+0200\n"
+"POT-Creation-Date: 2019-09-04 14:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,20 +35,18 @@ msgid "Collapsible element"
 msgstr "Collapsible element"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:23
-#, fuzzy, javascript-format
-#| msgid "hide one reply"
+#, javascript-format
 msgid "hide one reply"
 msgid_plural "hide %s replies"
 msgstr[0] "hide one reply"
-msgstr[1] "hide one reply"
+msgstr[1] "hide %s replies"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:25
-#, fuzzy, javascript-format
-#| msgid "view one reply"
+#, javascript-format
 msgid "view one reply"
 msgid_plural "view %s replies"
 msgstr[0] "view one reply"
-msgstr[1] "view one reply"
+msgstr[1] "view %s replies"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:125
 msgid "Do you really want to delete this comment?"
@@ -58,11 +56,11 @@ msgstr "Do you really want to delete this comment?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:93
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:96
-#: apps/documents/assets/ChapterNavItem.jsx:49
-#: apps/documents/assets/ChapterNavItem.jsx:52
-#: apps/documents/assets/ParagraphForm.jsx:122
-#: apps/documents/assets/ParagraphForm.jsx:125
-#: apps/polls/assets/QuestionForm.jsx:90 apps/polls/assets/QuestionForm.jsx:93
+#: apps/documents/assets/ChapterNavItem.jsx:56
+#: apps/documents/assets/ChapterNavItem.jsx:61
+#: apps/documents/assets/ParagraphForm.jsx:133
+#: apps/documents/assets/ParagraphForm.jsx:138
+#: apps/polls/assets/QuestionForm.jsx:99 apps/polls/assets/QuestionForm.jsx:104
 msgid "Delete"
 msgstr "Delete"
 
@@ -165,7 +163,7 @@ msgstr "Follow"
 
 #: adhocracy4/polls/static/polls/ChoiceForm.jsx:24
 #: adhocracy4/polls/static/polls/ChoiceForm.jsx:27
-#: apps/polls/assets/ChoiceForm.jsx:23 apps/polls/assets/ChoiceForm.jsx:26
+#: apps/polls/assets/ChoiceForm.jsx:24 apps/polls/assets/ChoiceForm.jsx:29
 msgid "remove"
 msgstr "remove"
 
@@ -180,13 +178,13 @@ msgid "The poll could not be updated."
 msgstr "The poll could not be updated."
 
 #: adhocracy4/polls/static/polls/PollManagement.jsx:246
-#: apps/polls/assets/PollManagement.jsx:246
+#: apps/polls/assets/PollManagement.jsx:247
 msgid "Add a new question"
 msgstr "Add a new question"
 
 #: adhocracy4/polls/static/polls/PollManagement.jsx:252
 #: apps/documents/assets/DocumentManagement.jsx:324
-#: apps/polls/assets/PollManagement.jsx:252
+#: apps/polls/assets/PollManagement.jsx:253
 msgid "Save"
 msgstr "Save"
 
@@ -201,12 +199,12 @@ msgid "Vote has not been counted due to a server error."
 msgstr "Vote has not been counted due to a server error."
 
 #: adhocracy4/polls/static/polls/Question.jsx:108
-#: apps/polls/assets/Question.jsx:108
+#: apps/polls/assets/Question.jsx:109
 msgid "Vote"
 msgstr "Vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:114
-#: apps/polls/assets/Question.jsx:114
+#: apps/polls/assets/Question.jsx:115
 msgid "Please login to vote"
 msgstr "Please login to vote"
 
@@ -215,69 +213,69 @@ msgid "Multiple answers are possible for this question"
 msgstr "Multiple answers are possible for this question"
 
 #: adhocracy4/polls/static/polls/Question.jsx:141
-#: apps/polls/assets/Question.jsx:136
+#: apps/polls/assets/Question.jsx:137
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "vote"
 msgstr[1] "votes"
 
 #: adhocracy4/polls/static/polls/Question.jsx:142
-#: apps/polls/assets/Question.jsx:137
+#: apps/polls/assets/Question.jsx:138
 msgid "To poll"
 msgstr "To poll"
 
 #: adhocracy4/polls/static/polls/Question.jsx:145
-#: apps/polls/assets/Question.jsx:140
+#: apps/polls/assets/Question.jsx:141
 msgid "Change vote"
 msgstr "Change vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:149
-#: apps/polls/assets/Question.jsx:144
+#: apps/polls/assets/Question.jsx:145
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
 #: adhocracy4/polls/static/polls/Question.jsx:177
-#: apps/polls/assets/Question.jsx:172
+#: apps/polls/assets/Question.jsx:173
 msgid "Your choice"
 msgstr "Your choice"
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:15
-#: apps/polls/assets/QuestionForm.jsx:14
+#: apps/polls/assets/QuestionForm.jsx:15
 msgid "Question"
 msgstr "Question"
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:37
-#: apps/polls/assets/QuestionForm.jsx:34
+#: apps/polls/assets/QuestionForm.jsx:36
 msgid "Users can select more than one answer."
 msgstr "Users can select more than one answer."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:45
-#: apps/polls/assets/QuestionForm.jsx:42
+#: apps/polls/assets/QuestionForm.jsx:44
 msgid "Choice"
 msgstr "Choice"
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:67
-#: apps/polls/assets/QuestionForm.jsx:64
+#: apps/polls/assets/QuestionForm.jsx:67
 msgid "Add a new choice"
 msgstr "Add a new choice"
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:76
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:79
-#: apps/documents/assets/ChapterNavItem.jsx:31
-#: apps/documents/assets/ChapterNavItem.jsx:34
-#: apps/documents/assets/ParagraphForm.jsx:105
-#: apps/documents/assets/ParagraphForm.jsx:108
-#: apps/polls/assets/QuestionForm.jsx:73 apps/polls/assets/QuestionForm.jsx:76
+#: apps/documents/assets/ChapterNavItem.jsx:32
+#: apps/documents/assets/ChapterNavItem.jsx:37
+#: apps/documents/assets/ParagraphForm.jsx:110
+#: apps/documents/assets/ParagraphForm.jsx:115
+#: apps/polls/assets/QuestionForm.jsx:76 apps/polls/assets/QuestionForm.jsx:81
 msgid "Move up"
 msgstr "Move up"
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:85
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:88
-#: apps/documents/assets/ChapterNavItem.jsx:40
-#: apps/documents/assets/ChapterNavItem.jsx:43
-#: apps/documents/assets/ParagraphForm.jsx:114
-#: apps/documents/assets/ParagraphForm.jsx:117
-#: apps/polls/assets/QuestionForm.jsx:82 apps/polls/assets/QuestionForm.jsx:85
+#: apps/documents/assets/ChapterNavItem.jsx:44
+#: apps/documents/assets/ChapterNavItem.jsx:49
+#: apps/documents/assets/ParagraphForm.jsx:122
+#: apps/documents/assets/ParagraphForm.jsx:127
+#: apps/polls/assets/QuestionForm.jsx:88 apps/polls/assets/QuestionForm.jsx:93
 msgid "Move down"
 msgstr "Move down"
 
@@ -309,7 +307,7 @@ msgstr "If you leave this page changes you made will not be saved."
 msgid "Chapter title"
 msgstr "Chapter title"
 
-#: apps/documents/assets/ChapterForm.jsx:53
+#: apps/documents/assets/ChapterForm.jsx:55
 msgid "Add a new paragraph"
 msgstr "Add a new paragraph"
 
@@ -317,7 +315,7 @@ msgstr "Add a new paragraph"
 msgid "Chapter navigation"
 msgstr "Chapter navigation"
 
-#: apps/documents/assets/ChapterNav.jsx:37
+#: apps/documents/assets/ChapterNav.jsx:38
 msgid "Add a new chapter"
 msgstr "Add a new chapter"
 
@@ -345,11 +343,11 @@ msgstr "Contents"
 msgid "Edit chapter"
 msgstr "Edit chapter"
 
-#: apps/documents/assets/ParagraphForm.jsx:70
+#: apps/documents/assets/ParagraphForm.jsx:71
 msgid "Headline"
 msgstr "Headline"
 
-#: apps/documents/assets/ParagraphForm.jsx:85
+#: apps/documents/assets/ParagraphForm.jsx:88
 msgid "Paragraph"
 msgstr "Paragraph"
 
@@ -404,7 +402,7 @@ msgstr "The uploaded file is not a valid geojson file."
 msgid "Invalid file format."
 msgstr "Invalid file format."
 
-#: apps/maps/assets/map_choose_polygon_with_preset.js:276
+#: apps/maps/assets/map_choose_polygon_with_preset.js:277
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-14 17:05+0200\n"
+"POT-Creation-Date: 2019-09-04 14:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -359,7 +359,7 @@ msgstr "Edit basic settings"
 #: apps/organisations/templates/organisation_information.html:4
 #: apps/organisations/templates/organisation_information.html:9
 #: apps/projects/templates/a4_candy_projects/project_detail.html:64
-#: liqd_product/templates/header.html:35
+#: liqd_product/templates/header.html:36
 msgid "Information"
 msgstr "Information"
 
@@ -1222,23 +1222,23 @@ msgstr "Most commented"
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
 
-#: apps/cms/contacts/models.py:118
+#: apps/cms/contacts/models.py:119
 msgid "I want to receive a copy of my message"
 msgstr "I want to receive a copy of my message"
 
-#: apps/cms/contacts/models.py:123
+#: apps/cms/contacts/models.py:124
 msgid "Your message"
 msgstr "Your message"
 
-#: apps/cms/contacts/models.py:129
+#: apps/cms/contacts/models.py:130
 msgid "Your email address"
 msgstr "Your email address"
 
-#: apps/cms/contacts/models.py:135
+#: apps/cms/contacts/models.py:136
 msgid "Your telephone number"
 msgstr "Your telephone number"
 
-#: apps/cms/contacts/models.py:141
+#: apps/cms/contacts/models.py:142
 msgid "Your name"
 msgstr "Your name"
 
@@ -1302,32 +1302,44 @@ msgid "Politicians"
 msgstr "Politicians"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:19
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:77
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:14
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:57
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:79
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:37
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:81
 #, python-format
 msgid "For %(category)s"
 msgstr "For %(category)s"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:30
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:69
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:93
 msgid "Visit Demosite"
 msgstr "Visit Demosite"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:36
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:74
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:98
 msgid "View more examples"
 msgstr "View more examples"
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:55
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/includes/use_case_share_btns.html:4
+msgid "Share on Twitter"
+msgstr "Share on Twitter"
+
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/includes/use_case_share_btns.html:6
+msgid "Share on Facebook"
+msgstr "Share on Facebook"
+
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/includes/use_case_share_btns.html:8
+msgid "Share on Linkedin"
+msgstr "Share on Linkedin"
+
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:58
 msgid "Choose Category"
 msgstr "Choose Category"
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:87
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:89
 msgid "Try it out!"
 msgstr "Try it out!"
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:88
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:90
 msgid ""
 "Instead of just reading about it, you can test all the features of adhocracy"
 "+ yourself on our demo platform. "
@@ -1335,11 +1347,11 @@ msgstr ""
 "Instead of just reading about it, you can test all the features of adhocracy"
 "+ yourself on our demo platform. "
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:89
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:91
 msgid "Visit the demo platform"
 msgstr "Visit the demo platform"
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:43
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:67
 #, python-format
 msgid "More examples for %(category)s"
 msgstr "More examples for %(category)s"
@@ -1547,18 +1559,6 @@ msgstr ""
 #: apps/dashboard/forms.py:13
 msgid "Organisation name"
 msgstr "Organisation name"
-
-#: apps/dashboard/templates/a4_candy_dashboard/dashboard_header.html:4
-#: liqd_product/templates/header.html:4
-#: liqd_product/templates/header_cms.html:5
-msgid "Header"
-msgstr "Header"
-
-#: apps/dashboard/templates/a4_candy_dashboard/dashboard_header.html:31
-#: liqd_product/templates/header.html:65
-#: liqd_product/templates/header_cms.html:36
-msgid "Menu"
-msgstr "Menu"
 
 #: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:4
 #: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:8
@@ -2067,7 +2067,7 @@ msgstr ""
 #: apps/organisations/templates/organisation_imprint.html:9
 #: apps/partners/models.py:74 liqd_product/templates/footer.html:33
 #: liqd_product/templates/footer_cms.html:32
-#: liqd_product/templates/header.html:40
+#: liqd_product/templates/header.html:41
 msgid "Imprint"
 msgstr "Imprint"
 
@@ -2624,123 +2624,123 @@ msgstr "Activities"
 msgid "This user is not active in any projects yet."
 msgstr "This user is not active in any projects yet."
 
-#: liqd_product/config/settings/base.py:183
+#: liqd_product/config/settings/base.py:184
 msgid "English"
 msgstr "English"
 
-#: liqd_product/config/settings/base.py:184
+#: liqd_product/config/settings/base.py:185
 msgid "German"
 msgstr "German"
 
-#: liqd_product/config/settings/base.py:403
+#: liqd_product/config/settings/base.py:411
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: liqd_product/config/settings/base.py:404
+#: liqd_product/config/settings/base.py:412
 msgid "Diamond"
 msgstr "Diamond"
 
-#: liqd_product/config/settings/base.py:405
+#: liqd_product/config/settings/base.py:413
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: liqd_product/config/settings/base.py:406
+#: liqd_product/config/settings/base.py:414
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: liqd_product/config/settings/base.py:407
+#: liqd_product/config/settings/base.py:415
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: liqd_product/config/settings/base.py:408
+#: liqd_product/config/settings/base.py:416
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: liqd_product/config/settings/base.py:409
+#: liqd_product/config/settings/base.py:417
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: liqd_product/config/settings/base.py:410
+#: liqd_product/config/settings/base.py:418
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: liqd_product/config/settings/base.py:411
+#: liqd_product/config/settings/base.py:419
 msgid "Star"
 msgstr "Star"
 
-#: liqd_product/config/settings/base.py:412
+#: liqd_product/config/settings/base.py:420
 msgid "Square"
 msgstr "Square"
 
-#: liqd_product/config/settings/base.py:413
+#: liqd_product/config/settings/base.py:421
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: liqd_product/config/settings/base.py:414
+#: liqd_product/config/settings/base.py:422
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: liqd_product/config/settings/base.py:415
+#: liqd_product/config/settings/base.py:423
 msgid "Circle"
 msgstr "Circle"
 
-#: liqd_product/config/settings/base.py:416
+#: liqd_product/config/settings/base.py:424
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: liqd_product/config/settings/base.py:417
+#: liqd_product/config/settings/base.py:425
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: liqd_product/config/settings/base.py:431
+#: liqd_product/config/settings/base.py:439
 msgid "Anti-discrimination"
 msgstr "Anti-discrimination"
 
-#: liqd_product/config/settings/base.py:432
+#: liqd_product/config/settings/base.py:440
 msgid "Work & economy"
 msgstr "Work & economy"
 
-#: liqd_product/config/settings/base.py:433
+#: liqd_product/config/settings/base.py:441
 msgid "Building & living"
 msgstr "Building & living"
 
-#: liqd_product/config/settings/base.py:434
+#: liqd_product/config/settings/base.py:442
 msgid "Education & research"
 msgstr "Education & research"
 
-#: liqd_product/config/settings/base.py:435
+#: liqd_product/config/settings/base.py:443
 msgid "Children, youth & family"
 msgstr "Children, youth & family"
 
-#: liqd_product/config/settings/base.py:436
+#: liqd_product/config/settings/base.py:444
 msgid "Finances"
 msgstr "Finances"
 
-#: liqd_product/config/settings/base.py:437
+#: liqd_product/config/settings/base.py:445
 msgid "Health & sports"
 msgstr "Health & sports"
 
-#: liqd_product/config/settings/base.py:438
+#: liqd_product/config/settings/base.py:446
 msgid "Integration"
 msgstr "Integration"
 
-#: liqd_product/config/settings/base.py:439
+#: liqd_product/config/settings/base.py:447
 msgid "Culture & leisure"
 msgstr "Culture & leisure"
 
-#: liqd_product/config/settings/base.py:440
+#: liqd_product/config/settings/base.py:448
 msgid "Neighborhood & participation"
 msgstr "Neighborhood & participation"
 
-#: liqd_product/config/settings/base.py:441
+#: liqd_product/config/settings/base.py:449
 msgid "Urban development"
 msgstr "Urban development"
 
-#: liqd_product/config/settings/base.py:442
+#: liqd_product/config/settings/base.py:450
 msgid "Environment & public green space"
 msgstr "Environment & public green space"
 
-#: liqd_product/config/settings/base.py:443
+#: liqd_product/config/settings/base.py:451
 msgid "Traffic"
 msgstr "Traffic"
 
@@ -3034,7 +3034,7 @@ msgstr ""
 "\">further information here</a>.\n"
 "        "
 
-#: liqd_product/templates/base.html:45
+#: liqd_product/templates/base.html:60
 msgid "Skip to content "
 msgstr "Skip to content "
 
@@ -3070,9 +3070,21 @@ msgstr "Data protection policy"
 msgid "Donate now"
 msgstr "Donate now"
 
-#: liqd_product/templates/header.html:30
+#: liqd_product/templates/header.html:4
+#: liqd_product/templates/header_cms.html:5
+#: liqd_product/templates/header_dashboard.html:4
+msgid "Header"
+msgstr "Header"
+
+#: liqd_product/templates/header.html:31
 msgid "Participate"
 msgstr "Participate"
+
+#: liqd_product/templates/header.html:67
+#: liqd_product/templates/header_cms.html:36
+#: liqd_product/templates/header_dashboard.html:31
+msgid "Menu"
+msgstr "Menu"
 
 #~ msgid "Co-Operatives/NGOs"
 #~ msgstr "Co-Operatives/NGOs"
