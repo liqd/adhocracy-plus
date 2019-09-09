@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktrans with name=object.name %}Moderate {{ name }}{% endblocktrans %}{% endblock %}
+{% block title %}{{ object.name }} &mdash; {% trans 'Give feedback' %}{% endblock %}
+
 {% block content %}
 <div class="l-wrapper">
     <div class="l-center-6">
@@ -20,7 +21,7 @@
             </ul>
         </nav>
 
-        <h1>{% trans 'Moderate idea' %}</h1>
+        <h1>{% trans 'Feedback on this idea' %}</h1>
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
             {% for form in forms.values %}
