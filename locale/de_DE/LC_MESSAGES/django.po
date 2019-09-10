@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-04 14:18+0200\n"
+"POT-Creation-Date: 2019-09-10 14:56+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -61,7 +61,7 @@ msgstr "Benötigte Felder zur Veröffentlichung"
 #: apps/activities/templates/a4_candy_activities/activities_dashboard.html:17
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:29
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:36
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:35
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:36
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:23
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:27
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:35
@@ -182,7 +182,7 @@ msgstr "Projektentwurf anlegen"
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:37
 #: apps/embed/templates/a4_candy_embed/embed.html:44
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:15
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:36
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:37
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:24
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:28
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:14
@@ -243,7 +243,7 @@ msgstr "Wir konnten keine Projekte finden."
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: apps/ideas/views.py:27
+#: apps/ideas/views.py:28
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:4
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:11
 #: liqd_product/templates/a4filters/widgets/free_text_filter.html:12
@@ -1223,7 +1223,7 @@ msgstr "Anlegen eines neuen Vorschlags"
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:10
 #: apps/documents/templates/a4_candy_documents/paragraph_detail.html:9
 #: apps/ideas/templates/a4_candy_ideas/idea_create_form.html:8
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:8
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:9
 #: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:9
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_create_form.html:8
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:8
@@ -1237,7 +1237,7 @@ msgstr "breadcrumbs"
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_update_form.html:14
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:15
 #: apps/ideas/templates/a4_candy_ideas/idea_create_form.html:13
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:13
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:14
 #: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:14
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_create_form.html:13
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:13
@@ -1271,7 +1271,6 @@ msgid "Nothing to show"
 msgstr "Keine Einträge"
 
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:4
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:102
 msgid "Moderate"
 msgstr "Moderieren"
 
@@ -1296,15 +1295,15 @@ msgstr "%(title)s bearbeiten"
 msgid "Edit proposal"
 msgstr "Vorschlag bearbeiten"
 
-#: apps/budgeting/views.py:18 apps/ideas/views.py:31 apps/mapideas/views.py:16
+#: apps/budgeting/views.py:18 apps/ideas/views.py:32 apps/mapideas/views.py:16
 msgid "Most recent"
 msgstr "am aktuellsten"
 
-#: apps/budgeting/views.py:20 apps/ideas/views.py:33 apps/mapideas/views.py:18
+#: apps/budgeting/views.py:20 apps/ideas/views.py:34 apps/mapideas/views.py:18
 msgid "Most popular"
 msgstr "am beliebtesten"
 
-#: apps/budgeting/views.py:21 apps/ideas/views.py:34 apps/mapideas/views.py:19
+#: apps/budgeting/views.py:21 apps/ideas/views.py:35 apps/mapideas/views.py:19
 msgid "Most commented"
 msgstr "meist kommentiert"
 
@@ -1564,6 +1563,11 @@ msgstr "Aktionen"
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:25
 msgid "Delete"
 msgstr "Löschen"
+
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:102
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:4
+msgid "Give feedback"
+msgstr ""
 
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:122
 #: apps/exports/mixins.py:26
@@ -1870,30 +1874,23 @@ msgstr "Eine neue Idee für dieses Projekt anlegen"
 msgid "Submit idea"
 msgstr "Idee anlegen"
 
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:4
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:4
-#, python-format
-msgid "Moderate %(name)s"
-msgstr "%(name)s moderieren"
-
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:18
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:19
 #: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:19
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:18
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:19
 msgid "back to idea"
 msgstr "Zurück zur Idee"
 
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:23
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:23
-msgid "Moderate idea"
-msgstr "Idee moderieren"
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:24
+msgid "Feedback on this idea"
+msgstr ""
 
 #: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:24
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:24
 msgid "Edit idea"
 msgstr "Idee bearbeiten"
 
-#: apps/ideas/views.py:155 apps/mapideas/views.py:79
+#: apps/ideas/views.py:156 apps/mapideas/views.py:79
 msgid "Your Idea has been deleted"
 msgstr "Ihre Idee wurde gelöscht"
 
@@ -1948,6 +1945,15 @@ msgstr ""
 msgid "Submit Idea"
 msgstr "Idee anlegen"
 
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:4
+#, python-format
+msgid "Moderate %(name)s"
+msgstr "%(name)s moderieren"
+
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:23
+msgid "Moderate idea"
+msgstr "Idee moderieren"
+
 #: apps/maps/templates/a4_candy_maps/map_choose_polygon_with_preset_widget.html:6
 msgid "You can choose a preset for further customization."
 msgstr "Sie können einen vordefinierten Bereich auswählen."
@@ -1967,6 +1973,26 @@ msgstr "nicht umgesetzt"
 #: apps/moderatorfeedback/models.py:13
 msgid "Accepted"
 msgstr "wird umgesetzt"
+
+#: apps/moderatorfeedback/models.py:20
+msgid "Official feedback"
+msgstr ""
+
+#: apps/moderatorfeedback/models.py:22
+msgid ""
+"The official feedback will appear below the idea, indicating your "
+"organisation. The idea provider receives a notification."
+msgstr ""
+
+#: apps/moderatorfeedback/models.py:37
+msgid "Processing status"
+msgstr ""
+
+#: apps/moderatorfeedback/models.py:39
+msgid ""
+"The editing status appears below the title of the idea in red, yellow or "
+"green. The idea provider receives a notification."
+msgstr ""
 
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:15
 msgid "Moderator remark"
@@ -2578,7 +2604,7 @@ msgstr "Wichtige Daten"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 
-#: apps/users/forms.py:10 liqd_product/templates/email_base.html:59
+#: apps/users/forms.py:10 liqd_product/templates/email_base.html:61
 #: liqd_product/templates/email_base.txt:15
 #: liqd_product/templates/footer.html:38
 #: liqd_product/templates/footer_cms.html:37
@@ -2691,7 +2717,7 @@ msgstr ""
 "der Plattform verfasst sein sollen."
 
 #: apps/users/templates/a4_candy_users/indicator.html:16
-#: liqd_product/templates/email_base.html:24
+#: liqd_product/templates/email_base.html:25
 #: liqd_product/templates/email_base.txt:3
 #: liqd_product/templates/newsletter_base.html:24
 msgid "Hello"
@@ -3155,7 +3181,7 @@ msgstr "Zum Inhalt springen"
 msgid "Error"
 msgstr "Fehler"
 
-#: liqd_product/templates/email_base.html:50
+#: liqd_product/templates/email_base.html:52
 #: liqd_product/templates/email_base.txt:11
 #: liqd_product/templates/newsletter_base.html:50
 #: liqd_product/templates/newsletter_base.txt:10
