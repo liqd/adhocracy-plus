@@ -21,7 +21,9 @@
       <tr>
           <td>
             <p>
-                {% trans 'Hello' %},
+              {% block greeting %}
+              {% trans 'Hello' %},
+              {% endblock %}
             </p>
             {% block content_html %}
                 {% load capture_tags %}
