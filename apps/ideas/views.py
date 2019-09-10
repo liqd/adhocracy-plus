@@ -18,6 +18,7 @@ from apps.contrib.views import CanonicalURLDetailView
 from apps.exports.views import DashboardExportView
 from apps.moderatorfeedback.forms import ModeratorStatementForm
 from apps.moderatorfeedback.models import ModeratorStatement
+from apps.notifications.emails import NotifyCreatorOnModeratorFeedback
 
 from . import forms
 from . import models
@@ -197,6 +198,7 @@ class AbstractIdeaModerateView(
             statement.save()
             moderateable.moderator_statement = statement
             moderateable.save()
+            NotifyCreatorOnModeratorFeedback.send(self.object)
         return objects
 
     def get_instance(self, name):
