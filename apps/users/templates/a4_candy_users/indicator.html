@@ -20,6 +20,9 @@
             <i class="fa fa-angle-down" aria-hidden="true"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right userindicator__dropdown-menu {% if not ORGANISATION %}userindicator__dropdown-menu--platform{% endif %}" aria-labelledby="user-actions">
+            {% if request.user.is_superuser %}
+                <a class="dropdown-item" href="{% url 'admin:index' %}">{% trans "Admin" %}</a>
+            {% endif %}
             <a class="dropdown-item" href="{% url 'account' %}">{% trans "Account Settings" %}</a>
 
             <a class="dropdown-item" href="{% url 'profile' request.user.username %}">{% trans 'View your profile' %}</a>
