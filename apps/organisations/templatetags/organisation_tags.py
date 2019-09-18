@@ -11,5 +11,8 @@ def get_current_organisation(context):
     request = context.request
     resolver = resolve(request.path_info)
     if resolver.kwargs and 'organisation_slug' in resolver.kwargs:
-        return Organisation.objects.get(
-            slug=resolver.kwargs['organisation_slug'])
+        try:
+            return Organisation.objects.get(
+                slug=resolver.kwargs['organisation_slug'])
+        except Organisation.DoesNotExist:
+            pass
