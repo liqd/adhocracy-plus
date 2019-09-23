@@ -31,6 +31,10 @@ class Config(AppConfig):
             ('a4_candy_ideas', 'idea'),
             ('a4_candy_mapideas', 'mapidea')
         )
+        configure_type(
+            'offlineevent',
+            ('a4_candy_offlineevents', 'offlineevent')
+        )
 
         configure_icon('far fa-comment', type='comment')
         configure_icon('far fa-lightbulb', type='item')
