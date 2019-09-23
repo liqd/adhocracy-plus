@@ -1,6 +1,8 @@
-{% load i18n wagtailsettings_tags %}{% block headline %}{% endblock %}
+{% load i18n wagtailsettings_tags %}
+{% block headline %}{% endblock %}
+{% block sub-headline %}{% endblock %}
 
-{% trans 'Hello' %},
+{% block greeting %}{% trans 'Hello' %},{% endblock %}
 {% block content %}{% endblock %}
 
 {% block cta %}{% block cta_label %}{% endblock %}: {% block cta_url %}{% endblock %}{% endblock %}
