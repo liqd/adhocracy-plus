@@ -453,3 +453,5 @@ A4_PROJECT_TOPICS = (
     ('ENV', _('Environment & public green space')),
     ('TRA', _('Traffic'))
 )
+
+A4_ACTIONS_PHASE_ENDS_HOURS = 48
