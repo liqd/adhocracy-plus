@@ -9,6 +9,9 @@ CONFIG_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(CONFIG_DIR)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+# General settings
+CONTACT_EMAIL = 'support-beteiligung@liqd.net'
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -450,5 +453,3 @@ A4_PROJECT_TOPICS = (
     ('ENV', _('Environment & public green space')),
     ('TRA', _('Traffic'))
 )
-
-CONTACT_EMAIL = 'support-beteiligung@liqd.net'
