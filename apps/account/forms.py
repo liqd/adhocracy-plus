@@ -9,7 +9,7 @@ class ProfileForm(forms.ModelForm):
         model = User
         fields = [
             'username',
-            'avatar',
+            '_avatar',
             'bio',
             'homepage',
             'facebook_handle',
