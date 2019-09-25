@@ -4,6 +4,7 @@ from django.core import validators
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 
@@ -95,7 +96,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         verbose_name=_('Homepage'),
     )
 
-    avatar = ConfiguredImageField(
+    _avatar = ConfiguredImageField(
         'avatar',
         upload_to='users/images',
         blank=True,
@@ -117,9 +118,14 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
-    @property
+    @cached_property
     def organisations(self):
         return self.organisation_set.all()
+
+    @cached_property
+    def avatar(self):
+        if self._avatar:
+            return self._avatar
 
     def get_short_name(self):
         return self.username
