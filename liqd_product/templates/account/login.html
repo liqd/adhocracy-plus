@@ -27,4 +27,7 @@
             <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
         </div>
     </form>
+
+    <h3 class="socialaccounts-heading">{% trans "or use your social media account" %}</h3>
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
 {% endblock %}
