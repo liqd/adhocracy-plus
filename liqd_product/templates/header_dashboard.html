@@ -4,6 +4,12 @@
 <header class="main-header main-header--org" aria-label="{% trans 'Header' %}">
     <div class="u-page-ribbon"></div>
     <div class="l-wrapper">
+
+        <div class="navbar-brand main-header__brand">
+            {% spaceless %}
+                <a href="{% if ORGANISATION %}{% url 'organisation' organisation_slug=ORGANISATION.slug %}{% else %}/{% endif %}" class="platform-brand__link">{% if ORGANISATION %}{{ ORGANISATION.name }}{% else %}<img src="/static/images/logo.png" alt="Adhocracy+" class="main-header__logo-img" />{% endif %}</a>
+            {% endspaceless %}
+        </div>
         <nav class="main-header__nav">
             <div class="main-header__mobile-menu {% if not ORGANISATION %}main-header__mobile-menu--platform{% endif %} collapse" id="main-header-collapse">
                 <div class="main-header__user main-header__user--org">
