@@ -11,9 +11,13 @@
         {% csrf_token %}
         {% include 'a4_candy_contrib/includes/form_field.html' with field=form.project %}
 
-        <div class="l-tiles-2">
+        <div class="row">
+            <div class="col-sm">
             {% include 'a4_candy_contrib/includes/form_field.html' with field=form.sender_name %}
+            </div>
+            <div class="col-sm">
             {% include 'a4_candy_contrib/includes/form_field.html' with field=form.sender %}
+            </div>
         </div>
         {% include 'a4_candy_contrib/includes/form_field.html' with field=form.subject %}
         {% include 'a4_candy_contrib/includes/form_field.html' with field=form.body %}
