@@ -15,14 +15,14 @@
             {% endspaceless %}
         </div>
         <nav class="main-header__nav">
-                {% if ORGANISATION.logo %}
-                {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
-                {% if not request.get_full_path == organisation_url %}
-                <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}" class="main-header__logo-box" rel="home">
-                    <img src="{% thumbnail ORGANISATION.logo '0x160' %}" height="80" alt="{{ ORGANISATION.name }}" class="main-header__logo-img" />
-                </a>
-                {% endif %}
-                {% endif %}
+            {% if ORGANISATION.logo %}
+            {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
+            {% if not request.get_full_path == organisation_url %}
+            <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}" class="main-header__logo-box" rel="home">
+                <img src="{% thumbnail ORGANISATION.logo '0x160' %}" height="80" alt="{{ ORGANISATION.name }}" class="main-header__logo-img" />
+            </a>
+            {% endif %}
+            {% endif %}
             <div class="main-header__mobile-menu {% if not ORGANISATION %}main-header__mobile-menu--platform{% endif %} collapse" id="main-header-collapse">
                     {% if ORGANISATION %}
                     <ul class="main-header__organisation-nav">
