@@ -3,6 +3,7 @@
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
+    <h3 class="socialaccounts-heading">{% trans "or use your social media account" %}</h3>
     <ul class="list-group">
     {% for provider in socialaccount_providers %}
         {% if provider.id == "openid" %}
