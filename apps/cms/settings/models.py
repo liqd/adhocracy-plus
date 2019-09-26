@@ -33,6 +33,7 @@ class ImportantPages(BaseSetting):
         blank=True,
         on_delete=models.SET_NULL)
     donate_link = models.URLField(blank=True)
+    manual_link = models.URLField(blank=True)
 
 
     panels = [
@@ -40,7 +41,8 @@ class ImportantPages(BaseSetting):
         PageChooserPanel('imprint'),
         PageChooserPanel('data_protection_policy'),
         PageChooserPanel('contact'),
-        FieldPanel('donate_link')
+        FieldPanel('donate_link'),
+        FieldPanel('manual_link')
     ]
 
 
