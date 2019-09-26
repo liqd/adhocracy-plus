@@ -1,4 +1,5 @@
-{% load i18n static %}
+{% load i18n static wagtailsettings_tags %}
+{% get_settings %}
 
 <footer class="footer px-3 pt-3">
     <div class="l-wrapper">
@@ -48,12 +49,17 @@
                             <a href="{{ pages.contact.url }}" class="navi__link">{% trans 'Contact' %}</a>
                         </li>
                         {% endif %}
+                        {% if pages.manual_link %}
+                        <li class="navi__item footer__link">
+                            <a href="{{ pages.manual_link }}" class="navi__link">{% trans 'Manual' %}</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </div>
             {% if pages.donate_link %}
             <div class="col-12 col-sm-6 offset-sm-6 offset-lg-0 d-flex flex-column">
-                <a href="{{ pages.donate_link.url }}"  class="btn btn--full {% if ORGANISATION %} btn--bg-tertiary {% else %} btn--secondary-filled {% endif %} mb-0 mr-0 mt-auto">{% trans 'Support the further development of the platform' %}<br><b>{% trans 'Donate now' %}</b></a>
+                <a href="{{ pages.donate_link }}"  class="btn btn--full {% if ORGANISATION %} btn--bg-tertiary {% else %} btn--secondary-filled {% endif %} mb-0 mr-0 mt-auto">{% trans 'Support the further development of the platform' %}<br><b>{% trans 'Donate now' %}</b></a>
             </div>
             {% endif %}
         {% endwith %}
