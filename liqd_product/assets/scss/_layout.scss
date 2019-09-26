@@ -20,12 +20,68 @@
 }
 
 .l-wrapper {
-    @include clearfix;
+    @extend .container;
     position: relative;
-    width: 100%;  // required when used in a flex container
-    max-width: $wrapper-width;
-    margin: 0 auto;
-    padding: 0 $padding;
+    display: flow-root;
+}
+
+.l-center-10 {
+    @extend .col-sm-10;
+    @extend .offset-sm-1;
+}
+
+.l-center-8 {
+    @extend .col-sm-10;
+    @extend .col-md-8;
+    @extend .offset-sm-1;
+    @extend .offset-md-2;
+}
+
+.l-center-6 {
+    @extend .col-sm-8;
+    @extend .col-md-6;
+    @extend .offset-sm-2;
+    @extend .offset-md-3;
+}
+
+.l-col-3-0 {
+    @extend .col-sm-3;
+}
+
+.l-col-9-3 {
+    @extend .col-sm-9;
+    @extend .offset-sm-3;
+}
+
+.l-col-5-0 {
+    @extend .col-sm-5;
+}
+
+.l-col-6-0 {
+    @extend .col-sm-6;
+}
+
+.l-col-8-0 {
+    @extend .col-sm-8;
+}
+
+.l-col-9-0 {
+    @extend .col-sm-9;
+}
+
+.l-col-5-7 {
+    @extend .col-sm-5;
+    @extend .offset-sm-7;
+}
+
+.l-col-4-8 {
+    @extend .col-sm-4;
+    @extend .offset-sm-8;
+}
+
+.l-col-3-9 {
+    @extend .col-sm-3;
+    @extend .offset-sm-9;
 }
 
 .l-tiles-2,
@@ -37,16 +93,6 @@
 }
 
 @media (min-width: $breakpoint) {
-    .l-center-8 {
-        @include grid-width(10);
-        margin: 0 auto;
-    }
-
-    .l-center-6 {
-        @include grid-width(8);
-        margin: 0 auto;
-    }
-
     .l-tiles-2 {
         @include grid-tiles(2);
     }
@@ -61,60 +107,9 @@
 }
 
 @media (min-width: $breakpoint-md) {
-    .l-center-8 {
-        @include grid-width(8);
-    }
-
-    .l-center-6 {
-        @include grid-width(6);
-    }
-
     .l-tiles-4 {
         @include grid-tiles(4);
     }
-}
-
-@media (min-width: $breakpoint) {
-    .l-col-3-0 {
-        @include grid-span(3, 0);
-    }
-
-    .l-col-9-3 {
-        @include grid-span(9, 3);
-    }
-
-    .l-col-5-0 {
-        @include grid-span(5, 0);
-    }
-
-    .l-col-6-0 {
-        @include grid-span(6, 0);
-    }
-
-    .l-col-8-0 {
-        @include grid-span(8, 0);
-    }
-
-    .l-col-9-0 {
-        @include grid-span(9, 0);
-    }
-
-    .l-col-5-7 {
-        @include grid-span(5,7);
-    }
-
-    .l-col-4-8 {
-        @include grid-span(4, 8);
-    }
-
-    .l-col-3-9 {
-        @include grid-span(3, 9);
-    }
-}
-
-.l-outer-wrapper {
-    max-width: 81rem;
-    margin: 0 auto;
 }
 
 .l-top-overlap {
