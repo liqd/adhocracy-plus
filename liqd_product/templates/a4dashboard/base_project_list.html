@@ -1,5 +1,6 @@
 {% extends "a4dashboard/base_dashboard.html" %}
-{% load i18n rules %}
+{% load i18n rules wagtailsettings_tags %}
+{% get_settings %}
 
 {% block dashboard_content %}
 <div class="l-menu">
@@ -24,6 +25,12 @@
                class="btn btn--light btn--full">
                 {% trans 'Edit your organisation' %}
             </a>
+            {% if settings.a4_candy_cms_settings.ImportantPages.manual_link %}
+                <a href="{{ settings.a4_candy_cms_settings.ImportantPages.manual_link }}"
+                   class="btn btn--light btn--full">
+                    {% trans 'Manual' %}
+                </a>
+            {% endif %}
         {% endif %}
     </nav>
 
