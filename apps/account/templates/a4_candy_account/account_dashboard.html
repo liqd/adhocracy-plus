@@ -8,12 +8,13 @@
 <div class="l-wrapper">
     <div class="l-menu">
 
-        <nav class="l-menu__menu dashboard-nav" aria-label="{% trans 'User Dashboard navigation' %}">
-            <div class="dropdown dashboard-nav__dropdown">
-                <div class="dashboard-nav__item">
-                    {{ request.user.username }}
+        <nav class="l-menu__menu" aria-label="{% trans 'User Dashboard navigation' %}">
+            <div class="dashboard-nav">
+                <div class="dropdown dashboard-nav__dropdown">
+                    <div class="dashboard-nav__item">
+                        {{ request.user.username }}
+                    </div>
                 </div>
-            </div>
             {% with request.resolver_match.url_name as url_name %}
                 <ul class="dashboard-nav__pages">
                     <li class="dashboard-nav__page">
@@ -46,6 +47,7 @@
                     </li>
                 </ul>
             {% endwith %}
+            </div>
         </nav>
 
         <div class="l-menu__content">
