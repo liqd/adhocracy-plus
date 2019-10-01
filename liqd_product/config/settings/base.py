@@ -1,4 +1,4 @@
-"""Django settings for Beteiligung.in."""
+"""Django settings for adhocracy+."""
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -347,7 +347,7 @@ BLEACH_LIST = {
 }
 
 # Wagtail
-WAGTAIL_SITE_NAME = 'Beteiligung.in'
+WAGTAIL_SITE_NAME = 'adhocracy+'
 WAGTAILIMAGES_IMAGE_MODEL = 'a4_candy_cms_images.CustomImage'
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {

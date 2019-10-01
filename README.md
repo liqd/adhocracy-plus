@@ -1,4 +1,4 @@
-# Beteiligung.in
+# adhocracy+
 
 Participation platform by Liquid Democracy
 
