@@ -6,7 +6,10 @@ from django.conf.urls import i18n
 from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
+from django.urls import path
+from django.urls import re_path
 from django.views.decorators.cache import never_cache
+from django.views.defaults import server_error
 from django.views.generic import TemplateView
 from django.views.i18n import JavaScriptCatalog
 from rest_framework import routers
@@ -61,65 +64,67 @@ sitemaps = {
 
 urlpatterns = [
     # General platform urls
-    url(r'^django-admin/', admin.site.urls),
-    url(r'^admin/', include('wagtail.admin.urls')),
+    re_path(r'^django-admin/', admin.site.urls),
+    re_path(r'^admin/', include('wagtail.admin.urls')),
 
-    url(r'^accounts/', include('allauth.urls')),
-    url(r'^account/', include('apps.account.urls')),
-    url(r'^embed/', include('apps.embed.urls')),
-    url(r'^profile/', include('apps.users.urls')),
-    url(r'^i18n/', include(i18n)),
+    re_path(r'^accounts/', include('allauth.urls')),
+    re_path(r'^account/', include('apps.account.urls')),
+    re_path(r'^embed/', include('apps.embed.urls')),
+    re_path(r'^profile/', include('apps.users.urls')),
+    re_path(r'^i18n/', include(i18n)),
 
     # API urls
-    url(r'^api/', include(ct_router.urls)),
-    url(r'^api/', include(module_router.urls)),
-    url(r'^api/', include(orga_router.urls)),
-    url(r'^api/', include(question_router.urls)),
-    url(r'^api/', include(router.urls)),
+    re_path(r'^api/', include(ct_router.urls)),
+    re_path(r'^api/', include(module_router.urls)),
+    re_path(r'^api/', include(orga_router.urls)),
+    re_path(r'^api/', include(question_router.urls)),
+    re_path(r'^api/', include(router.urls)),
 
-    url(r'^upload/', user_is_project_admin(ck_views.upload),
-        name='ckeditor_upload'),
-    url(r'^browse/', never_cache(user_is_project_admin(ck_views.browse)),
-        name='ckeditor_browse'),
+    re_path(r'^upload/', user_is_project_admin(ck_views.upload),
+            name='ckeditor_upload'),
+    re_path(r'^browse/', never_cache(user_is_project_admin(ck_views.browse)),
+            name='ckeditor_browse'),
 
-    url(r'^components/$', contrib_views.ComponentLibraryView.as_view()),
-    url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+    re_path(r'^components/$', contrib_views.ComponentLibraryView.as_view()),
+    re_path(r'^jsi18n/$', JavaScriptCatalog.as_view(),
+            name='javascript-catalog'),
 
-    url(r'^(?P<organisation_slug>[-\w_]+)/dashboard/',
-        include('apps.dashboard.urls')),
-    url(r'^(?P<organisation_slug>[-\w_]+)/projects/',
-        include('apps.projects.urls')),
-    url(r'^(?P<organisation_slug>[-\w_]+)/offlineevents/',
-        include(('apps.offlineevents.urls', 'a4_candy_offlineevents'),
-                namespace='a4_candy_offlineevents')),
-    url(r'^(?P<organisation_slug>[-\w_]+)/ideas/',
-        include(('apps.ideas.urls', 'a4_candy_ideas'),
-                namespace='a4_candy_ideas')),
-    url(r'^(?P<organisation_slug>[-\w_]+)/mapideas/',
-        include(('apps.mapideas.urls', 'a4_candy_mapideas'),
-                namespace='a4_candy_mapideas')),
-    url(r'^(?P<organisation_slug>[-\w_]+)/text/',
-        include(('apps.documents.urls', 'a4_candy_documents'),
-                namespace='a4_candy_documents')),
-    url(r'^(?P<organisation_slug>[-\w_]+)/budgeting/',
-        include(('apps.budgeting.urls', 'a4_candy_budgeting'),
-                namespace='a4_candy_budgeting')),
+    re_path(r'^(?P<organisation_slug>[-\w_]+)/', include([
+        path('budgeting/',
+             include(('apps.budgeting.urls', 'a4_candy_budgeting'),
+                     namespace='a4_candy_budgeting')),
+        path('dashboard/', include('apps.dashboard.urls')),
+        path('ideas/', include(('apps.ideas.urls', 'a4_candy_ideas'),
+                               namespace='a4_candy_ideas')),
+        path('mapideas/', include(('apps.mapideas.urls', 'a4_candy_mapideas'),
+                                  namespace='a4_candy_mapideas')),
+        path('offlineevents/',
+             include(('apps.offlineevents.urls', 'a4_candy_offlineevents'),
+                     namespace='a4_candy_offlineevents')),
+        path('projects/', include('apps.projects.urls')),
+        path('text/', include(('apps.documents.urls', 'a4_candy_documents'),
+                              namespace='a4_candy_documents')),
+    ])),
 
-    url(r'^sitemap\.xml$', wagtail_sitemap_views.index,
-        {'sitemaps': sitemaps, 'sitemap_url_name': 'sitemaps'}),
-    url(r'^sitemap-(?P<section>.+)\.xml$', wagtail_sitemap_views.sitemap,
-        {'sitemaps': sitemaps}, name='sitemaps'),
-    url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt',
-        content_type="text/plain"), name="robots_file"),
-
-    url(r'', include('apps.organisations.urls')),
-    url(r'', include('wagtail.core.urls'))
+    path('sitemap.xml', wagtail_sitemap_views.index,
+         {'sitemaps': sitemaps, 'sitemap_url_name': 'sitemaps'}),
+    re_path(r'^sitemap-(?P<section>.+)\.xml$', wagtail_sitemap_views.sitemap,
+            {'sitemaps': sitemaps}, name='sitemaps'),
+    path('robots.txt',
+         TemplateView.as_view(template_name='robots.txt',
+                              content_type="text/plain"), name="robots_file"),
 ]
 
 
 if settings.DEBUG:
     from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+    urlpatterns += [
+        path('403/', TemplateView.as_view(template_name='403.html')),
+        path('404/', TemplateView.as_view(template_name='404.html')),
+        path('500/', server_error),
+    ]
 
     # Serve static and media locally
     urlpatterns += staticfiles_urlpatterns()
@@ -133,3 +138,10 @@ if settings.DEBUG:
         urlpatterns = [
             url(r'^__debug__/', include(debug_toolbar.urls)),
         ] + urlpatterns
+
+
+# generic patterns at the very end
+urlpatterns += [
+    re_path(r'', include('apps.organisations.urls')),
+    re_path(r'', include('wagtail.core.urls')),
+]
