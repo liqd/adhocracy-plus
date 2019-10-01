@@ -1,4 +1,4 @@
-"""Beteiligung.in URL Configuration."""
+"""adhocracy+ URL Configuration."""
 
 from ckeditor_uploader import views as ck_views
 from django.conf import settings

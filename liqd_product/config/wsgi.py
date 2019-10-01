@@ -1,5 +1,5 @@
 """
-WSGI config for Beteiligung.in.
+WSGI config for adhocracy+.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

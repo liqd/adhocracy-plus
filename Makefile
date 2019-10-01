@@ -6,7 +6,7 @@ all: help
 
 .PHONY: help
 help:
-	@echo Beteiligung.in development tools
+	@echo adhocracy+ development tools
 	@echo
 	@echo It will either use an exisiting virtualenv if it was entered
 	@echo before or create a new one in the venv subdirectory.
