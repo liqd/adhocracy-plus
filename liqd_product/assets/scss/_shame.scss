@@ -34,16 +34,6 @@ input[type="search"] {
 .btngroup .btn {
     @extend .btn--light;
     @extend .btn--small;
-
-    &:first-child {
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
-    }
-
-    &:last-child {
-        border-bottom-left-radius: 0;
-        border-top-left-radius: 0;
-    }
 }
 
 // maps usually have a height of 300px in their element style, defined in adhocracy4.
