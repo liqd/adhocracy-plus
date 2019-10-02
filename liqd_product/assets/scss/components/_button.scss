@@ -239,16 +239,17 @@
 }
 
 .btn--facebook {
-    background-color: $facebook;
-    border-color: $facebook-border;
+    @include button-color--product($facebook);
 }
 
 .btn--google {
-    background-color: $google;
-    border-color: $google-border;
+    @include button-color--product($google);
 }
 
 .btn--twitter {
-    background-color: $twitter;
-    border-color: $twitter;
+    @include button-color--product($twitter);
+}
+
+.btn--github {
+    @include button-color--product($github);
 }
