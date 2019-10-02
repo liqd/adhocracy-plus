@@ -208,11 +208,6 @@
     margin-bottom: $spacer;
 }
 
-.btn--attached-top {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
 .btn-group {
     .dropdown {
         display: inline-block;
@@ -221,7 +216,7 @@
     > *,
     .dropdown-toggle {
         border-radius: 0;
-        margin-left: -1px;
+        margin-left: -2px !important;
 
         &:focus {
             // highlighted border should be on top
@@ -231,15 +226,7 @@
     }
 
     > :first-child {
-        border-top-left-radius: 0.3em;
-        border-bottom-left-radius: 0.3em;
         margin-left: 0;
-    }
-
-    > :last-child,
-    > :last-child .dropdown-toggle {
-        border-top-right-radius: 0.3em;
-        border-bottom-right-radius: 0.3em;
     }
 }
 
