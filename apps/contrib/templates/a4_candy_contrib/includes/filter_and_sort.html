@@ -3,7 +3,9 @@
 <div class="filter-bar form-inline mb-2" role="group" aria-label="{% trans 'Filter bar '%}">
     {% for field in filter.form %}
         {% if field.name != 'ordering' %}
+        <div class="mr-1">
             {{ field }}
+        </div>
         {% endif %}
     {% endfor %}
 
