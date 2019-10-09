@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load i18n discovery_tags react_questions %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="question-list">
+                {% has_or_would_have_perm 'a4_candy_questions.change_question' request.user view.module as view_present_page %}
+                {% if view_present_page %}
+                <div class="d-flex justify-content-center justify-content-lg-end">
+                    <a class="btn btn-outline-primary" href="{% url 'question-present' module_slug=view.module.slug %}" target="_blank"><span class="fa-stack fa-1x"><i class="fas fa-tv fa-stack-2x" aria-label="hidden"></i><i class="fas fa-arrow-up fa-stack-1x" aria-label="hidden"></i></span> {% trans 'display on screen' %}</a>
+                </div>
+                {% endif %}
+
+                {% react_questions view.module %}
+
+                {% has_or_would_have_perm 'a4_candy_questions.propose_question' request.user view.module as add_button_enabled %}
+                {% if add_button_enabled %}
+                <a href="{% url 'question-create' slug=view.module.slug %}" class="btn btn--primary btn--full btn--huge question-list-button mb-4" id="question-create">
+                    <i class="fa fa-plus question-list-button-icon" aria-hidden="true"></i>
+                    {% trans 'Add Question' %}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
