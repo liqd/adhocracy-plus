@@ -1,0 +1,8 @@
+{% extends extends %}
+{% load i18n %}
+
+{% block phase_content %}
+<div class="container">
+    <a href="{% url 'question-list' module.slug %}">{% trans 'Go to Speakup' %}</a>
+</div>
+{% endblock %}
