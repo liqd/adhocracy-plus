@@ -29,10 +29,13 @@ from apps.contrib.sitemaps.product_projects_sitemap import \
     ProductProjectsSitemap
 from apps.contrib.sitemaps.static_sitemap import StaticSitemap
 from apps.documents.api import DocumentViewSet
+from apps.likes.api import LikesViewSet
+from apps.likes.routers import LikesDefaultRouter
 from apps.moderatorremark.api import ModeratorRemarkViewSet
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
 from apps.polls.routers import QuestionDefaultRouter
+from apps.questions.api import QuestionViewSet
 from apps.users.decorators import user_is_project_admin
 
 router = routers.DefaultRouter()
@@ -43,6 +46,10 @@ router.register(r'polls', PollViewSet, basename='polls')
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
 module_router.register(r'documents', DocumentViewSet, basename='chapters')
+module_router.register(r'questions', QuestionViewSet, base_name='questions')
+
+likes_router = LikesDefaultRouter()
+likes_router.register(r'likes', LikesViewSet, base_name='likes')
 
 orga_router = a4routers.OrganisationDefaultRouter()
 
@@ -71,6 +78,7 @@ urlpatterns = [
     re_path(r'^account/', include('apps.account.urls')),
     re_path(r'^embed/', include('apps.embed.urls')),
     re_path(r'^profile/', include('apps.users.urls')),
+    re_path(r'^questions/', include('apps.questions.urls')),
     re_path(r'^i18n/', include(i18n)),
 
     # API urls
@@ -78,6 +86,7 @@ urlpatterns = [
     re_path(r'^api/', include(module_router.urls)),
     re_path(r'^api/', include(orga_router.urls)),
     re_path(r'^api/', include(question_router.urls)),
+    re_path(r'^api/', include(likes_router.urls)),
     re_path(r'^api/', include(router.urls)),
 
     re_path(r'^upload/', user_is_project_admin(ck_views.upload),
