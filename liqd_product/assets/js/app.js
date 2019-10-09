@@ -22,6 +22,10 @@ var ReactFollows = require('adhocracy4').follows
 var ReactDocuments = require('../../../apps/documents/assets/react_documents.jsx')
 var ReactPolls = require('../../../apps/polls/assets/react_polls.jsx')
 
+var ReactQuestions = require('../../../apps/questions/assets/react_questions.jsx')
+var ReactQuestionsStatistics = require('../../../apps/questions/assets/react_questions_statistics.jsx')
+var ReactQuestionsPresent = require('../../../apps/questions/assets/react_questions_present.jsx')
+
 var relativeTimestamps = require('../../../apps/actions/assets/timestamps.js')
 var mapAddress = require('./map-address.js')
 var remarkpopover = require('../../../apps/moderatorremark/assets/idea_remarks.js')
@@ -52,6 +56,10 @@ var init = function () {
   initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
   initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
   initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
+
+  initialiseWidget('speakup', 'questions', ReactQuestions.renderQuestions)
+  initialiseWidget('speakup', 'statistics', ReactQuestionsStatistics.renderData)
+  initialiseWidget('speakup', 'present', ReactQuestionsPresent.renderData)
 }
 
 $(init)
