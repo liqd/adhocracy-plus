@@ -85,6 +85,7 @@ INSTALLED_APPS = (
     # General components that define models or helpers
     'apps.actions',
     'apps.contrib',
+    'apps.likes',
     'apps.maps',
     'apps.moderatorfeedback',
     'apps.moderatorremark',
@@ -92,6 +93,7 @@ INSTALLED_APPS = (
     'apps.notifications',
     'apps.organisations',
     'apps.partners',
+    'apps.questions',
     'apps.users',
 
     # General apps containing views
@@ -403,6 +405,7 @@ A4_CATEGORIZABLE = (
     ('a4_candy_ideas', 'idea'),
     ('a4_candy_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
+    ('a4_candy_questions', 'question')
 )
 
 A4_LABELS_ADDABLE = (
