@@ -7,6 +7,7 @@ from apps.documents import phases as documents_phases
 from apps.ideas import phases as ideas_phases
 from apps.mapideas import phases as mapideas_phases
 from apps.polls import phases as poll_phases
+from apps.questions import phases as question_phases
 
 blueprints = [
     ('brainstorming',
@@ -111,4 +112,16 @@ blueprints = [
          image='images/facetoface.svg',
          settings_model=None,
      )),
+    ('speakup',
+     ProjectBlueprint(
+         title=_('Speak Up'),
+         description=_(
+             'Collect questions for your discussion.'
+         ),
+         content=[
+             question_phases.IssuePhase(),
+         ],
+         image='images/brainstorming.svg',
+         settings_model=None,
+     ))
 ]
