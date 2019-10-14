@@ -7,6 +7,4 @@ urlpatterns = [
         views.QuestionCreateView.as_view(), name='question-create'),
     url(r'present/module/(?P<module_slug>[-\w_]+)/$',
         views.QuestionPresentationListView.as_view(), name='question-present'),
-    url(r'list/module/(?P<module_slug>[-\w_]+)/$',
-        views.QuestionListView.as_view(), name='question-list'),
 ]
