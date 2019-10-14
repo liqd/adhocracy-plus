@@ -3,16 +3,16 @@
 {% if request.user.is_authenticated %}
     <div class="dropdown dropdown--right userindicator__dropdown">
         <button
-                type="button"
-                class="dropdown-toggle btn {% if ORGANISATION %}btn--bg-tertiary{% else %}btn--secondary-filled{% endif %} btn--square btn--align-left"
-                data-toggle="dropdown"
-                data-flip="false"
-                aria-haspopup="true"
-                aria-expanded="false"
-                id="user-actions"
+            type="button"
+            class="dropdown-toggle btn {% if ORGANISATION %}btn--bg-tertiary{% else %}btn--secondary-filled{% endif %} btn--square btn--align-left"
+            data-toggle="dropdown"
+            data-flip="false"
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="user-actions"
         >
             <div class="userindicator__btn-img" style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar'}}) {% else %}  url({% static 'images/avatar_00.png' %}) {% endif %}"></div>
-            <div class="userindicator__btn-text">
+            <div class="userindicator__btn-text text-left">
                 <span class="userindicator__hello">{% trans "Hello" %}</span>
                 <br>
                 <span>{{ request.user.username }}</span>
