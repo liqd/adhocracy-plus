@@ -1,11 +1,15 @@
 .aside {
     margin-top: 2 * $padding;
-    background-color: $bg-secondary;
     color: contrast-color($bg-secondary);
-    padding: $padding;
-
     page-break-inside: avoid;
     overflow-wrap: break-word;
+}
+
+.aside__block {
+    padding: $padding;
+    background-color: $bg-secondary;
+    text-align: left;
+    margin-top: 0;
 }
 
 .aside__block__title {
