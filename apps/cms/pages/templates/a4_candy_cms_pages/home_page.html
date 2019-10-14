@@ -2,11 +2,11 @@
 {% load i18n wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-    <div class="homepage__wrapper p-3">
+    <div class="homepage__wrapper">
         <div class="homepage-header">
             <div class="row">
                 <div class="col-lg-6">
-                    <h1 class="homepage-header__teaser ml-md-4">{{ page.teaser|richtext }}</h1>
+                    <h1 class="homepage-header__teaser p-3 ml-md-4">{{ page.teaser|richtext }}</h1>
                 </div>
                 <div class="col-lg-6">
                     {% image page.image width-800 as image %}

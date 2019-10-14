@@ -108,10 +108,14 @@ $block-padding-md: 7.5*$padding;
 
     .rich-text,
     .block-col_cta-content {
-        padding: 0 0 0 2*$r-spacer;
+        padding: 2*$padding $padding 0 2*$padding;
 
         @media screen and (min-width: $breakpoint-md) {
-            padding: 0 $block-padding-md $block-padding-md 5*$r-spacer;
+            padding-right: $block-padding-md;
+        }
+
+        @media screen and (min-width: $breakpoint-xl) {
+            padding-left: 3*$padding;
         }
     }
 
@@ -139,10 +143,10 @@ $block-padding-md: 7.5*$padding;
     }
 }
 
-//responsive padding for image, 2 col cta and whole
+//responsive padding for image, 2 col cta
 .block-img-col-1,
 .block-row-2 {
-    padding: $padding;
+    padding: 2*$padding;
 
     @media screen and (min-width: $breakpoint-xs) {
         padding: $block-padding;
@@ -211,6 +215,8 @@ $block-padding-md: 7.5*$padding;
 .block-background_cta_block {
     margin-left: -$r-spacer;
     margin-right: -$r-spacer;
+    padding-left: $padding;
+    padding-right: $padding;
 
     @media screen and (min-width: $breakpoint-xxl) {
         margin-left: 0;
@@ -250,9 +256,7 @@ $block-padding-md: 7.5*$padding;
 }
 
 .block-usecase {
-    padding: $padding;
-
-    @media screen and (min-width: $breakpoint-xs) {
+    @media screen and (min-width: $breakpoint) {
         padding-bottom: $block-padding;
     }
 
@@ -262,8 +266,6 @@ $block-padding-md: 7.5*$padding;
 }
 
 .block-news {
-    padding: $padding;
-
     @media screen and (min-width: $breakpoint-xs) {
         padding: $block-padding 0 $block-padding 0;
     }
