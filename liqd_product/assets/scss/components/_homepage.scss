@@ -4,8 +4,9 @@ $spacer-xl: 7.5rem;
     background-color: $bg-light;
     margin: 0 $r-spacer 0 $r-spacer;
 
-    @media screen and (min-width: $breakpoint-xl) {
-        margin: 0 2*$r-spacer 0 2*$r-spacer;
+    @media screen and (min-width: $breakpoint-xxl) {
+        max-width: $breakpoint-xl;
+        margin: auto;
     }
 
     .block {
