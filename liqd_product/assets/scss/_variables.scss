@@ -78,7 +78,9 @@ $grid-breakpoints: (
     sm: 576px,
     md: 768px,
     lg: 992px,
-    xl: 1200px
+    xl: 1200px,
+    xxl: 1440px,
+    xxxl: 2000px,
 ) !default;
 
 // use for min-width media-queries
@@ -86,7 +88,8 @@ $breakpoint-xs: map-get($grid-breakpoints, "sm") !default;
 $breakpoint: map-get($grid-breakpoints, "md") !default;
 $breakpoint-md: map-get($grid-breakpoints, "lg") !default;
 $breakpoint-lg: map-get($grid-breakpoints, "xl") !default;
-$breakpoint-xl: 1440px !default;
+$breakpoint-xl: map-get($grid-breakpoints, "xxl") !default;
+$breakpoint-xxl: map-get($grid-breakpoints, "xxxl") !default;
 
 // use for max-width media queries
 $breakpoint-xs-down: $breakpoint-xs - 0.1px !default;
@@ -94,6 +97,7 @@ $breakpoint-down: $breakpoint - 0.1px !default;  // sm
 $breakpoint-md-down: $breakpoint-md - 0.1px !default;
 $breakpoint-lg-down: $breakpoint-lg - 0.1px !default;
 $breakpoint-xl-down: $breakpoint-xl - 0.1px !default;
+$breakpoint-xxl-down: $breakpoint-xxl - 0.1px !default;
 
 $hero-height: 25.5rem !default;
 $hero-height-secondary: 20rem !default;
