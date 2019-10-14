@@ -48,3 +48,17 @@
     background-color: $brand-secondary;
     color: contrast-color($brand-secondary);
 }
+
+.userindicator__navi {
+    @media screen and (min-width: $breakpoint) {
+        padding: 0.5*$r-spacer $r-spacer 0.5*$r-spacer $r-spacer;
+    }
+}
+
+.userindicator__navi--bg-tertiary {
+    background-color: $bg-tertiary;
+}
+
+.userindicator__navi--secondary {
+    background-color: $brand-secondary;
+}
