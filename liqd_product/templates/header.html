@@ -12,6 +12,7 @@
             {% include 'includes/header_logo_link.html' %}
         </div>
         <nav class="main-header__nav">
+            {% include 'includes/header_language_switch.html' %}
             {% if ORGANISATION.logo %}
             {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
             {% if not request.get_full_path == organisation_url %}
@@ -43,7 +44,6 @@
                     {% userindicator %}
                 </div>
             </div>
-            {% include 'includes/header_language_switch.html' %}
             {% include 'includes/header_mobile_toggle.html' %}
         </nav>
     </div>
