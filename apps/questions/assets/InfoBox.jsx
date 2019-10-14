@@ -30,7 +30,7 @@ export default class InfoBox extends React.Component {
       <div>
         {this.state.displayInfo
           ? (
-            <div className="alert alert-secondary alert-dismissible">
+            <div className="alert alert--success alert-dismissible">
               {this.props.isModerator &&
                 <div className="row pt-4">
                   <div className="col-lg-3 pb-2 pb-xl-0">
@@ -60,7 +60,7 @@ export default class InfoBox extends React.Component {
           : (
             <div className="row">
               <div className="col-12 d-flex justify-content-end">
-                <button type="button" className="btn btn-outline-secondary" onClick={this.toggleInformation.bind(this)}>
+                <button type="button" className="btn btn--secondary" onClick={this.toggleInformation.bind(this)}>
                   <span aria-label={ariaOpenInfo}><i className="fas fa-info-circle" /></span>
                 </button>
               </div>
