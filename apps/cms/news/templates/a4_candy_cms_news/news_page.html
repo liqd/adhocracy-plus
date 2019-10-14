@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="cms__wrapper pt-5">
+<div class="cms__wrapper py-5">
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-12 col-md-10">
@@ -32,7 +32,7 @@
                 {{ page.body }}
             </div>
         </div>
-        <div class="row justify-content-md-center pt-5 pb-5">
+        <div class="row justify-content-center pt-5">
             <div class="cms__text">
                 <a href="{{ page.get_parent.url }}" class="btn btn--transparent">{% trans 'Back to overview' %}</a>
             </div>
