@@ -10,9 +10,9 @@ export default class Filter extends React.Component {
 
   getButtonClass () {
     if (this.props.currentCategory === '-1') {
-      return 'btn btn-primary btn-round dropdown-toggle'
+      return 'btn btn--primary btn-round dropdown-toggle'
     } else {
-      return 'btn btn-secondary btn-round dropdown-toggle'
+      return 'btn btn--secondary btn-round dropdown-toggle'
     }
   }
 
@@ -71,7 +71,7 @@ export default class Filter extends React.Component {
                 </label>
               </div>
               <div className="checkbox-btn mt-3">
-                <label htmlFor="orderedByLikes" className="checkbox-btn__label--transparent">
+                <label htmlFor="orderedByLikes" className="checkbox-btn__label--primary">
                   <input
                     className="checkbox-btn__input"
                     type="checkbox"

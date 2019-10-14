@@ -103,7 +103,7 @@ export default class QuestionModerator extends React.Component {
     const removeShortlistText = django.gettext('remove from shortlist')
 
     return (
-      <div className="list-group-item border-bottom mb-2">
+      <div className="list-group-item border-top-0 border-right-0 border-left-0 border-bottom mb-2">
         <div>
           <p className={this.props.is_hidden ? 'text-muted u-text-decoration-line-through' : ''}>{this.props.children}</p>
         </div>
@@ -115,7 +115,7 @@ export default class QuestionModerator extends React.Component {
           <div className="col-12 col-md-8 col-sm-7">
             {this.props.displayIsHidden &&
               <button
-                type="button" className="btn btn-transparent float-sm-right px-3"
+                type="button" className="btn btn--transparent border-0 float-sm-right px-3"
                 onClick={this.toggleIshidden.bind(this)}
               >
                 <i className={this.props.is_hidden ? 'far fa-eye-slash text-secondary' : 'far fa-eye text-primary'} aria-label={this.props.is_hidden ? hiddenText : undoHiddenText} />
@@ -123,7 +123,7 @@ export default class QuestionModerator extends React.Component {
 
             {this.props.displayIsAnswered &&
               <button
-                type="button" className="btn btn-transparent float-sm-right px-3"
+                type="button" className="btn btn--transparent border-0 float-sm-right px-3"
                 onClick={this.toggleIsAnswered.bind(this)}
               >
                 <i
@@ -132,14 +132,14 @@ export default class QuestionModerator extends React.Component {
                 />
               </button>}
             {this.props.displayIsLive &&
-              <button type="button" className="btn btn-transparent float-sm-right px-3" onClick={this.toggleIslive.bind(this)}>
+              <button type="button" className="btn btn--transparent border-0 float-sm-right px-3" onClick={this.toggleIslive.bind(this)}>
                 <span className="fa-stack fa-1x">
                   <i className={this.state.is_live ? 'fas fa-tv fa-stack-2x text-secondary' : 'fas fa-tv fa-stack-2x text-primary'} aria-label={this.state.is_live ? addLiveText : removeLiveText} />
                   <i className={this.state.is_live ? 'fas fa-arrow-up fa-stack-1x fa-inverse text-secondary' : 'fas fa-arrow-up fa-stack-1x text-primary'} aria-hidden="true" />
                 </span>
               </button>}
             {this.props.displayIsOnShortlist &&
-              <button type="button" className="btn btn-transparent float-sm-right px-3" onClick={this.toggleIsOnShortList.bind(this)}>
+              <button type="button" className="btn btn--transparent border-0 float-sm-right px-3" onClick={this.toggleIsOnShortList.bind(this)}>
                 <i className={this.state.is_on_shortlist ? 'icon-in-list text-secondary' : 'icon-push-in-list text-primary'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
               </button>}
           </div>
