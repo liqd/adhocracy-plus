@@ -47,10 +47,13 @@
                     </li>
                 </ul>
             </nav>
+            {% block module_description %}
             <h1 class="project-header__title">{{ module.name }}</h1>
             <p class="project-header__description">{{ module.description }}</p>
+            {% endblock %}
 
         </div>
+        {% block phase_info %}
         {% if not module.active_phase %}
         <div class="l-center-6 u-spacer-bottom">
             <strong>
@@ -93,6 +96,7 @@
             {% endfor %}
         </div>
             {% endwith %}
+        {% endblock %}
 
     </div>
     <div>
@@ -103,6 +107,7 @@
         </div>
         {% block phase_content %}{% endblock %}
     </div>
+    {% block other_modules %}
     {% if module.is_in_module_cluster %}
     <div class="l-wrapper">
         <div class="participation-tile__wrapper">
@@ -119,4 +124,5 @@
         </div>
     </div>
     {% endif %}
+    {% endblock %}
 {% endblock %}

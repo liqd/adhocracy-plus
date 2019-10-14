@@ -1,8 +1,132 @@
 {% extends extends %}
-{% load i18n %}
+{% load i18n discovery_tags react_questions ckeditor_tags wagtailcore_tags %}
+
+{% block module_description %}
+    <h1 class="project-header__title">{{ module.name }}</h1>
+{% endblock %}
+
+{% block phase_info %}{% endblock %}
 
 {% block phase_content %}
-<div class="container">
-    <a href="{% url 'question-list' module.slug %}">{% trans 'Go to Speakup' %}</a>
-</div>
+    {% if url_name == 'module-detail' %}
+        <div class="tablist tablist--left">
+            <div class="l-wrapper">
+                <nav class="nav" role="tablist">
+                    <a
+                            id="tab-module-{{ module.pk }}-information"
+                            class="tab"
+                            data-toggle="tab"
+                            href="#tabpanel-module-{{ module.pk }}-information"
+                            role="tab"
+                            aria-controls="tabpanel-module-{{ module.pk }}-information"
+                            aria-expanded="false">
+                        {% trans 'Information' %}
+                    </a>
+                    <a
+                            id="tab-module-{{ module.pk }}-questions"
+                            class="tab active"
+                            data-toggle="tab"
+                            href="#tabpanel-module-{{ module.pk }}-questions"
+                            role="tab"
+                            aria-controls="tabpanel-module-{{ module.pk }}-questions"
+                            aria-expanded="true">
+                        {% trans 'Questions' %}
+                    </a>
+                    <a
+                            id="tab-module-{{ module.pk }}-statistics"
+                            class="tab"
+                            data-toggle="tab"
+                            href="#tabpanel-module-{{ module.pk }}-statistics"
+                            role="tab"
+                            aria-controls="tabpanel-module-{{ module.pk }}-module"
+                            aria-expanded="false">
+                        {% trans 'Statistics' %}
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <div
+            class="tabpanel"
+            id="tabpanel-module-{{ module.pk }}-information"
+            role="tabpanel"
+            aria-labelledby="tab-module-{{ module.pk }}-information"
+            aria-expanded="false"
+        >
+            <div class="l-wrapper">
+                <div class="l-center-8">
+                    {{ module.description | transform_collapsibles | richtext }}
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="tabpanel active"
+            id="tabpanel-module-{{ module.pk }}-questions"
+            role="tabpanel"
+            aria-labelledby="tab-module-{{ module.pk }}-questions"
+            aria-expanded="true"
+        >
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="question-list">
+                            {% has_or_would_have_perm 'a4_candy_questions.change_question' request.user view.module as view_present_page %}
+                            {% if view_present_page %}
+                                <div class="d-flex justify-content-center justify-content-lg-end">
+                                    <a class="btn btn--secondary"
+                                       href="{% url 'question-present' module_slug=view.module.slug %}"
+                                       target="_blank"><span class="fa-stack fa-1x"><i class="fas fa-tv fa-stack-2x"
+                                                                                       aria-label="hidden"></i><i
+                                            class="fas fa-arrow-up fa-stack-1x"
+                                            aria-label="hidden"></i></span> {% trans 'display on screen' %}</a>
+                                </div>
+                            {% endif %}
+
+                            {% react_questions view.module %}
+
+                            {% has_or_would_have_perm 'a4_candy_questions.propose_question' request.user view.module as add_button_enabled %}
+                            {% if add_button_enabled %}
+                                <a href="{% url 'question-create' slug=view.module.slug %}"
+                                   class="btn btn--primary btn--full btn--huge question-list-button mb-4"
+                                   id="question-create">
+                                    <i class="fa fa-plus question-list-button-icon" aria-hidden="true"></i>
+                                    {% trans 'Add Question' %}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+                class="tabpanel"
+                id="tabpanel-module-{{ module.pk }}-statistics"
+                role="tabpanel"
+                aria-labelledby="tab-module-{{ module.pk }}-statistics"
+                aria-expanded="false">
+            <div class="l-wrapper">
+                <div class="l-center-8">
+                    {% react_questions_statistics view.module %}
+                </div>
+            </div>
+        </div>
+        {% block other_modules %}{% endblock %}
+
+    {% else %}
+        <div class="l-wrapper">
+            <div class="l-center-6">
+                <h3>{{ module.name }}</h3>
+                <div class="alert alert-light" role="alert">
+                    <i class="fas fa-info-circle"></i>
+                {% trans 'During this event you can hand in questions with your smartphone' %}
+                </div>
+                <div class="mb-3">
+                    {{ module.description | transform_collapsibles | richtext }}
+                </div>
+                <a class="btn btn--primary" href="{% url 'module-detail' module.project.organisation.slug module.slug %}">{% trans 'Go to event' %}</a>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
