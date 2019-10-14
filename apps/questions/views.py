@@ -15,13 +15,6 @@ class QuestionModuleDetail(ProjectMixin,
     template_name = 'a4_candy_questions/question_module_detail.html'
 
 
-class QuestionListView(ProjectMixin, generic.ListView):
-    model = question_models.Question
-
-    def get_queryset(self):
-        return super().get_queryset().filter(module=self.module)
-
-
 class QuestionPresentationListView(ProjectMixin,
                                    PermissionRequiredMixin,
                                    generic.ListView):
