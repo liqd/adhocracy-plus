@@ -111,7 +111,7 @@
 }
 
 .btn--secondary {
-    @include button-color--product($brand-secondary);
+    @include button-color--product($brand-info);
 }
 
 .btn--secondary-filled {
@@ -224,8 +224,7 @@
 
         &:focus,
         &:hover {
-            //stop btn appear to increase in size
-            z-index: 0;
+            z-index: 0 !important;
             position: relative;
         }
     }
