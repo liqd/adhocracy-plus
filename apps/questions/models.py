@@ -52,4 +52,6 @@ class Question(AnonymousItem):
         return str(self.text)
 
     def get_absolute_url(self):
-        return reverse('question-list', args=[str(self.module.slug)])
+        return reverse('module-detail',
+                       args=[str(self.module.project.organisation.slug),
+                             str(self.module.slug)])
