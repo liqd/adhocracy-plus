@@ -1,7 +1,7 @@
 {% load userindicator static i18n thumbnail %}
 {% get_current_language as LANGUAGE_CODE %}
 
-<div class="main-header__lang main-header__lang--org">
+<div class="main-header__lang">
     {% get_available_languages as languages %}
     {% for lang_code, lang_name in languages %}
         {% if lang_code != LANGUAGE_CODE %}

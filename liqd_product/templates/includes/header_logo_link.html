@@ -1,5 +1,13 @@
 {% load userindicator static i18n thumbnail %}
 
 {% spaceless %}
-    <a href="{% if ORGANISATION %}{% url 'organisation' organisation_slug=ORGANISATION.slug %}{% else %}/{% endif %}">{% if ORGANISATION %}{{ ORGANISATION.name }}{% else %}<img src="/static/images/logo.png" alt="Adhocracy+" class="main-header__logo-img" />{% endif %}</a>
+    {% if ORGANISATION %}
+    <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
+        {{ ORGANISATION.name }}
+    </a>
+    {% else %}
+    <a href="/">
+        <img src="/static/images/logo.png" alt="Adhocracy+" class="main-header__brand-img" />
+    </a>
+    {% endif %}
 {% endspaceless %}
