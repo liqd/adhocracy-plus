@@ -43,6 +43,12 @@ h6 {
     font-weight: bold;
 }
 
+h1,
+h2 {
+    font-family: $font-family-serif;
+    font-weight: normal;
+}
+
 h1 {
     font-size: $font-size-xxxl;
 }
@@ -87,12 +93,11 @@ h6 {
 
 a {
     color: $link-color;
-    text-decoration: underline;
-    font-family: $font-family-serif;
+}
 
-    &:hover,
-    &:focus {
-        color: $link-hover-color;
+p {
+    a {
+        text-decoration: underline;
     }
 }
 
