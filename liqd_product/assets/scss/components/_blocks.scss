@@ -162,21 +162,16 @@ $block-padding-md: 7.5*$padding;
     @include clearfix;
     page-break-inside: avoid;
 
-    h2,
-    h3,
-    h4 {
+    h2 {
         font-family: $font-family-serif;
         font-weight: normal;
+        display: inline-block;
+        position: relative;
 
         b {
             font-family: $font-family-base;
             font-weight: bold;
         }
-    }
-
-    h2 {
-        display: inline-block;
-        position: relative;
     }
 
     //border on section headings
