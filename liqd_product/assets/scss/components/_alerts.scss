@@ -22,7 +22,7 @@ $messages-margin-bottom: 25px;
 }
 
 .alert--success {
-    background-color: lighten($brand-success, 20);
+    background-color: lighten($brand-success, 15);
     color: $text-color;
 }
 
@@ -33,7 +33,7 @@ $messages-margin-bottom: 25px;
 }
 
 .alert--warning {
-    background-color: lighten($brand-warning, 20);
+    background-color: lighten($brand-warning, 30);
     color: $text-color;
 }
 
@@ -48,9 +48,9 @@ $messages-margin-bottom: 25px;
 
 // If this directly follows the dialog box (see header.scss), add 16px
 // additional padding to the default value (see above).
-.messages:first-child > :first-child {
-    padding-top: calc(16px + #{$padding * 1.2});
-}
+// .messages:first-child > :first-child {
+//     padding-top: calc(16px + #{$padding * 1.2});
+// }
 
 // compensate for margin-bottom on messages
 .u-after-dialogue-box,
