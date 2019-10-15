@@ -1,0 +1,54 @@
+.organisation-header__logo-box {
+    display: inline-block;
+    margin-right: $spacer;
+    margin-bottom: -2em;
+    padding: $padding;
+    vertical-align: middle;
+
+    background-color: $body-bg;
+    z-index: 1;
+    position: relative;
+
+    box-shadow: 0 0 8px 0 $shadow;
+}
+
+.organisation-header__logo-img {
+    display: block;
+    height: 2rem;
+    width: auto;
+}
+
+.organisation-header__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.organisation-header__nav-item {
+    display: block;
+
+    .is-active {
+        padding-bottom: 0.1em;
+        border-bottom: 0.2em solid $brand-primary;
+    }
+}
+
+@media screen and (min-width: $breakpoint) {
+    .organisation-header__logo-img {
+        height: 3rem;
+    }
+
+    .organisation-header__nav {
+        line-height: 4em;
+        display: inline-block;
+    }
+
+    .organisation-header__nav-item {
+        display: inline;
+        margin-right: $spacer;
+    }
+
+    .organisation-header__nav-link:first-child {
+        padding-left: 0;
+    }
+}

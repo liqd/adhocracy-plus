@@ -2,28 +2,26 @@
     min-height: 100px;
 }
 
+.main-header__brand {
+    font-size: $font-size-lg;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+.main-header__brand-img {
+    display: block;
+    height: 2rem;
+    width: auto;
+}
+
 .main-header__nav {
     clear: left;
 }
 
-.main-header__logo-box {
-    display: inline-block;
-    margin-right: $spacer;
-    margin-bottom: -2em;
-    padding: $padding;
-    vertical-align: middle;
-
-    background-color: $body-bg;
-    z-index: 1;
-    position: relative;
-
-    box-shadow: 0 0 8px 0 $shadow;
-}
-
-.main-header__logo-img {
-    display: block;
-    height: 2rem;
-    width: auto;
+.main-header__lang {
+    position: absolute;
+    right: 50px;
+    top: 0;
 }
 
 .main-header__mobile-menu {
@@ -98,38 +96,6 @@
     background-color: mix($brand-secondary, $body-bg, 50%);
 }
 
-.main-header__organisation-nav {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    @media screen and (min-width: $breakpoint) {
-        display: inline-block;
-    }
-}
-
-.main-header__organisation-nav__item {
-    display: block;
-
-    .is-active {
-        padding-bottom: 0.1em;
-        border-bottom: 0.2em solid $brand-primary;
-    }
-}
-
-.main-header__lang {
-    position: absolute;
-    right: 50px;
-}
-
-.main-header__lang--org {
-    top: 0;
-}
-
-.main-header__lang--cms {
-    top: 1.5*$r-spacer;
-}
-
 @media screen and (min-width: $breakpoint-xs) {
     .main-header__lang {
         right: 100px;
@@ -137,12 +103,13 @@
 }
 
 @media screen and (min-width: $breakpoint) {
-    .main-header__logo-img {
+    .main-header__brand-img {
         height: 3rem;
     }
 
-    .main-header__organisation-nav {
-        line-height: 4em;
+    .main-header__lang {
+        right: 250px;
+        top: 0.5*$r-spacer;
     }
 
     .main-header__mobile-menu {
@@ -156,7 +123,7 @@
             display: inline-block;
         }
 
-        .main-header__organisation-nav__link {
+        .organisation-header__nav-link {
             display: inline;
         }
     }
@@ -165,35 +132,10 @@
         display: none;
     }
 
-    .main-header__organisation-nav__item {
-        display: inline;
-        margin-right: $spacer;
-    }
-
-    .main-header__organisation-nav__link:first-child {
-        padding-left: 0;
-    }
-
-    .main-header__user--org {
+    .main-header__user {
         position: absolute;
         top: 0;
         right: 0;
-    }
-
-    .main-header__user--cms {
-        position: absolute;
-        top: 1.5*$r-spacer;
-        right: 0;
-    }
-
-    .main-header__lang--org {
-        right: 250px;
-        top: 0.5*$r-spacer;
-    }
-
-    .main-header__lang--cms {
-        right: 300px;
-        top: 2.5*$r-spacer;
     }
 }
 
@@ -201,20 +143,11 @@
     .main-header__lang {
         right: 350px;
     }
-
-    .main-header__lang--cms {
-        top: 3.5*$r-spacer;
-    }
-
-    .main-header__user--cms {
-        top: 2.5*$r-spacer;
-    }
 }
 
-.main-header__user {
-    @media screen and (max-width: $breakpoint-down) {
-        // overwrite dropdown style on mobile
-
+// overwrite dropdown style on mobile
+@media screen and (max-width: $breakpoint-down) {
+    .main-header__user {
         .dropdown {
             margin-bottom: 0;
         }
