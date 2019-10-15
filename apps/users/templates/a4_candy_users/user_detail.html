@@ -5,60 +5,19 @@
 
 {% block content %}
     <div class="l-wrapper">
-        <div class="user-profile">
-
-            <div class="user-profile__side">
-                {% if object.avatar %}<img class="user-profile__avatar" src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
-
-                <h1 class="u-first-heading">{{ object.username }}</h1>
-
-                {% if object.bio %}<p>{{ object.bio }}</p>{% endif %}
-
-                <ul class="u-list-reset">
-                    {% if object.homepage %}
-                        <li>
-                            <i class="fas fa-link" aria-label="{% trans 'Homepage' %}" title="{% trans 'Homepage' %}"></i>
-                            <a href="{{ object.homepage }}">{{ object.homepage }}</a>
-                        </li>
-                    {% endif %}
-                    {% if object.facebook_handle %}
-                        <li>
-                            <i class="fab fa-facebook-square" aria-label="{% trans 'Facebook' %}" title="{% trans 'Facebook' %}"></i>
-                            <a href="https://www.facebook.com/{{ object.facebook_handle }}">{{ object.facebook_handle }}</a>
-                        </li>
-                    {% endif %}
-                    {% if object.twitter_handle %}
-                        <li>
-                            <i class="fab fa-twitter" aria-label="{% trans 'Twitter' %}" title="{% trans 'Twitter' %}"></i>
-                            <a href="https://twitter.com/{{ object.twitter_handle }}">{{ object.twitter_handle }}</a>
-                        </li>
-                    {% endif %}
-                </ul>
-
-                {% comment 'This code can be used as soon as we several partners on the plattform' %}
-                <h2 class="heading2">{% trans 'Active in these platforms' %}</h2>
-                {% if view.organisations %}
-                    <ul class="u-list-reset">
-                        {% for organisation in view.organisations %}
-                            <li>
-                                <a class="list-item-tiny" href="{% url 'organisation' organisation_slug=organisation.slug %}">
-                                    <img class="list-item-tiny__image" src="{% thumbnail organisation.logo '50x50' crop %}" alt="" />
-                                    <span class="list-item-tiny__body">{{ organisation.name }}</span>
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    {% trans 'This user is not active in any platform yet.' %}
-                    {% if object == request.user %}
-                        <a href="/">{% trans 'Check some platforms out.' %}</a>
-                    {% endif %}
-                {% endif %}
-                {% endcomment %}
-            </div>
-
-            <div class="user-profile__tablist tablist">
-                <nav class="nav l-col-9-3" role="tablist">
+        <div class="row">
+            <div class="col-12 tabs user-profile__tablist tablist">
+                <nav class="nav" role="tablist">
+                    <a
+                        id="tab-user-{{ user.pk }}-info"
+                        class="tab d-md-none"
+                        data-toggle="tab"
+                        href="#tabpanel-user-{{ user.pk }}-info"
+                        role="tab"
+                        aria-controls="tabpanel-user-{{ user.pk }}-info"
+                        aria-expanded="true">
+                        {% trans 'Info' %}
+                    </a>
                     <a
                         id="tab-user-{{ user.pk }}-participation"
                         class="tab active"
@@ -81,10 +40,66 @@
                     </a>
                 </nav>
             </div>
+        </div>
 
-            <div class="user-profile__main">
+        <div class="row">
+              <div
+                  class="tabpanel user-profile col-md-3 user-profile__side"
+                  id="tabpanel-user-{{ user.pk }}-info"
+                  role="tabpanel"
+                  aria-labelledby="tab-user-{{ user.pk }}-info"
+                  aria-expanded="false">
+                    {% if object.avatar %}<img class="user-profile__avatar" src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
+
+                    <h1 class="u-first-heading">{{ object.username }}</h1>
+
+                    {% if object.bio %}<p>{{ object.bio }}</p>{% endif %}
+
+                    <ul class="u-list-reset">
+                        {% if object.homepage %}
+                            <li>
+                                <i class="fas fa-link" aria-label="{% trans 'Homepage' %}" title="{% trans 'Homepage' %}"></i>
+                                <a href="{{ object.homepage }}">{{ object.homepage }}</a>
+                            </li>
+                        {% endif %}
+                        {% if object.facebook_handle %}
+                            <li>
+                                <i class="fab fa-facebook-square" aria-label="{% trans 'Facebook' %}" title="{% trans 'Facebook' %}"></i>
+                                <a href="https://www.facebook.com/{{ object.facebook_handle }}">{{ object.facebook_handle }}</a>
+                            </li>
+                        {% endif %}
+                        {% if object.twitter_handle %}
+                            <li>
+                                <i class="fab fa-twitter" aria-label="{% trans 'Twitter' %}" title="{% trans 'Twitter' %}"></i>
+                                <a href="https://twitter.com/{{ object.twitter_handle }}">{{ object.twitter_handle }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+
+                    {% comment 'This code can be used as soon as we several partners on the plattform' %}
+                    <h2 class="heading2">{% trans 'Active in these platforms' %}</h2>
+                    {% if view.organisations %}
+                        <ul class="u-list-reset">
+                            {% for organisation in view.organisations %}
+                                <li>
+                                    <a class="list-item-tiny" href="{% url 'organisation' organisation_slug=organisation.slug %}">
+                                        <img class="list-item-tiny__image" src="{% thumbnail organisation.logo '50x50' crop %}" alt="" />
+                                        <span class="list-item-tiny__body">{{ organisation.name }}</span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        {% trans 'This user is not active in any platform yet.' %}
+                        {% if object == request.user %}
+                            <a href="/">{% trans 'Check some platforms out.' %}</a>
+                        {% endif %}
+                    {% endif %}
+                    {% endcomment %}
+                </div>
+
                 <div
-                    class="tabpanel active"
+                    class="user-profile__main col-md-9 tabpanel active"
                     id="tabpanel-user-{{ user.pk }}-participation"
                     role="tabpanel"
                     aria-labelledby="tab-user-{{ user.pk }}-participation"
@@ -96,7 +111,7 @@
                     {% endfor %}
                 </div>
                 <div
-                    class="tabpanel"
+                    class="user-profile__main col-md-9 tabpanel"
                     id="tabpanel-user-{{ user.pk }}-activities"
                     role="tabpanel"
                     aria-labelledby="tab-user-{{ user.pk }}-activities"
@@ -108,7 +123,5 @@
                     {% endfor %}
                 </div>
             </div>
-
         </div>
-    </div>
 {% endblock %}
