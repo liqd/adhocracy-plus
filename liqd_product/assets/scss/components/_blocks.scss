@@ -210,6 +210,16 @@ $block-padding-md: 7.5*$padding;
 .btn--transparent.block-bg_btn-2 {
     color: $text-color-inverted;
     border-color: $text-color-inverted;
+
+    &,
+    &:focus,
+    &:hover,
+    &:active,
+    &:disabled,
+    &.is-disabled {
+        color: $text-color-inverted;
+        border-color: $text-color-inverted;
+    }
 }
 
 .block-background_cta_block {
