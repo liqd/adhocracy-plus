@@ -222,9 +222,10 @@
         border-radius: 0;
         margin-left: -2px !important;
 
-        &:focus {
-            // highlighted border should be on top
-            z-index: 1;
+        &:focus,
+        &:hover {
+            //stop btn appear to increase in size
+            z-index: 0;
             position: relative;
         }
     }
