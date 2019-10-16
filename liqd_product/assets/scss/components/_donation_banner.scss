@@ -1,0 +1,21 @@
+.donation-banner {
+    position: fixed;
+    z-index: 100;
+
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    .btn {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: $breakpoint) {
+    .donation-banner {
+        bottom: 32px;
+        right: 32px;
+        left: inherit;
+    }
+}
