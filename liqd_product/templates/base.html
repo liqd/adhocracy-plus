@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n static organisation_tags wagtailuserbar absolute_url %}
+{% load absolute_url i18n organisation_tags static wagtailsettings_tags wagtailuserbar %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_organisation as ORGANISATION %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -88,6 +88,18 @@
         {% block before_footer %}{% endblock %}
         {% block footer %}
         {% include 'footer.html' %}
+        {% endblock %}
+
+        {% block donation_banner %}
+        {% if settings.a4_candy_cms_settings.ImportantPages.donate_link %}
+        <div class="donation-banner">
+            <a href="{{ settings.a4_candy_cms_settings.ImportantPages.donate_link }}"  class="btn {% if ORGANISATION %} btn--bg-tertiary {% else %} btn--secondary-filled {% endif %}">
+                {% trans 'adhocracy+ is funded by donations.' %}
+                <br>
+                <b>{% trans 'Donate now' %}</b>
+            </a>
+        </div>
+        {% endif %}
         {% endblock %}
     </div>
 </body>
