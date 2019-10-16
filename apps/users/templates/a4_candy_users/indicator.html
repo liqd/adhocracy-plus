@@ -15,7 +15,7 @@
             <div class="userindicator__btn-text text-left">
                 <span class="userindicator__hello">{% trans "Hello" %}</span>
                 <br>
-                <span>{{ request.user.username }}</span>
+                <span>{{ request.user.username|truncatechars:10 }}</span>
             </div>
             <i class="fa fa-angle-down" aria-hidden="true"></i>
         </button>
