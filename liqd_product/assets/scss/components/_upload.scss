@@ -28,6 +28,9 @@
     position: relative;
 }
 
+.upload-wrapper__fields {
+    flex-wrap: nowrap;
+}
 // This is actually a label that looks like a button.  It is used to trigger
 // .form-control-file (file input) or .clear-image (checkbox).  Both of these
 // inputs are in the accessibility tree, but the visual representation is very
@@ -49,12 +52,12 @@
     clear: left;
 }
 
-@media (min-width: $breakpoint) {
-    .upload-wrapper__fields {
-        @include grid-span(5, 0, ('columns': 9));
-    }
-
-    .upload-wrapper__preview {
-        @include grid-span(4, 5, ('columns': 9));
-    }
-}
+// @media (min-width: $breakpoint) {
+//     .upload-wrapper__fields {
+//         @include grid-span(5, 0, ('columns': 9));
+//     }
+//
+//     .upload-wrapper__preview {
+//         @include grid-span(4, 5, ('columns': 9));
+//     }
+// }
