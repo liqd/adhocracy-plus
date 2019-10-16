@@ -130,9 +130,6 @@
                             <a href="#cl-poll" class="dashboard-nav__item dashboard-nav__item--interactive">Poll</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-portal-header" class="dashboard-nav__item dashboard-nav__item--interactive">Portal Header</a>
-                        </li>
-                        <li class="dashboard-nav__page">
                             <a href="#cl-progress" class="dashboard-nav__item dashboard-nav__item--interactive">Progress</a>
                         </li>
                         <li class="dashboard-nav__page">
@@ -420,31 +417,152 @@
                         <button class="alert__close">X</button>
                     </p>
                 </div>
-
+                //Block Types
                 <h2 id="cl-blocks">Blocks</h2>
 
                 <div class="cl-example">
                     <div class="block">
                         <h2>Block content</h2>
+                        <br></br>
                         <p>
                             {% lorem random %}
                         </p>
                     </div>
-                    <div class="block block--cta">
+
+                    <!-- <div class="block block--cta">
                         <div class="l-wrapper">
-                            <div class="rich-text">
+                            <div class="block-call_to_action">
                                 <h2>Call to action block</h2>
-                                <p>
-                                    {% lorem random %}
-                                </p>
+                                <br></br>
+                                <p>{% lorem random %}</p>
+                                <a href="" class="btn btn-lg btn-primary">Call to Action</a>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="block-background_cta_block">
+                        <div class="block row">
+                            <div class="block-col-2">
+                                <h3>Coloured background block</h3>
+                                Small amount of content as due to screen size responsive margins do not kick in
+                                <div class="block-col_cta-content">
+                                    <a href="" class="btn btn--full btn--transparent block-bg_btn-1 mt-3">Link text</a>
+                                </div>
+                            </div>
+                            <div class="block-col-2">
+                                <h3>Coloured background block</h3>
+                                Small amount of content as due to screen size responsive margins do not kick in
+                                <div class="block-col_cta-content">
+                                    <a href="" class="btn btn--full btn--transparent block-bg_btn-2 mt-3">Link text</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="block block--bordered">
-                        <h2>Bordered block</h2>
-                        <p>
-                            {% lorem random %}
-                        </p>
+
+                    <div class="block-columns_cta">
+                        <div class="block block-row-3 row mb-0 p-0">
+                            <div class="block-col-3">
+                                <img src="/static/images/avatar_00.png" alt="" class="block-img-col__image" />
+                                <p>Small example text, si videtur; Quippe: habes enim a rhetoribus; Ut optime, secundum naturam affectum esse possit.</p>
+                                <div class="block-col_cta-content">
+                                    <a href="" class="btn btn--full btn--transparent">Link text</a>
+                                </div>
+                            </div>
+                            <div class="block-col-3">
+                                <div class="block-col_cta-content">
+                                    <h3>Column CTA blocks</h3>
+                                    <p>Small example text of col without image, si videtur; Quippe: habes enim a rhetoribus; Ut optime, secundum naturam affectum esse possit.</p>
+                                    <a href="" class="btn btn--full btn--transparent">Link text</a>
+                                </div>
+                            </div>
+                            <div class="block-col-3">
+                                <img src="/static/images/avatar_00.png" alt="" class="block-img-col__image" />
+                                <p>Small example text without a cta, si videtur; Quippe: habes enim a rhetoribus; Ut optime, secundum naturam affectum esse possit.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container block-news">
+                        <div class="row justify-content-md-center">
+                            <div class="col-12 col-md-10">
+                                <h2 class="cms__title--serif cms__title--underlined text-center">News article block</h2>
+                                <div class="row justify-content-start">
+                                    <div class="col-12 col-md-6 cms-news__tile">
+                                        <a class="cms__tile-link" href="">
+                                            <div class="cms__text">
+                                                01/10/2019
+                                            </div>
+                                            <h3 class="cms__title--bold cms-news__header-margin">Subtitle text: some more text ti fill it</h3>
+                                            <div class="cms__text">
+                                                Teaser text, Tria genera bonorum; Quae quidem vel cum periculo est quaerenda vobis. Tria genera bonorum; Quae quidem vel cum periculo est quaerenda vobis;
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-6 cms-news__tile">
+                                        <a class="cms__tile-link" href="">
+                                            <div class="cms__text">
+                                                01/10/2019
+                                            </div>
+                                            <h3 class="cms__title--bold cms-news__header-margin">Subtitle text: some more text ti fill it</h3>
+                                            <div class="cms__text">
+                                                Teaser text, Tria genera bonorum; Quae quidem vel cum periculo est quaerenda vobis. Tria genera bonorum; Quae quidem vel cum periculo est quaerenda vobis;
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-12 col-sm-6 col-lg-5">
+                                        <a href="" class="btn btn--full btn--transparent">display more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container block-usecase pb-3">
+                        <div class="row justify-content-md-center">
+                            <div class="col-12 col-md-10">
+                                <h2 class="cms__title--serif cms__title--underlined text-center">Use case block</h2>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center justify-content-sm-start">
+                            <div class="col-12 col-md-4 cms-use-case__tile">
+                                <a class="cms__tile-link" href="">
+                                    <img src="/static/images/avatar_00.png" alt="" />
+                                    <div class="cms__text pt-4 text-muted cms__text--serif">
+                                    For category
+                                    </div>
+                                    <h3 class="cms__title--bold">Use case title</h3>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-4 cms-use-case__tile">
+                                <a class="cms__tile-link" href="">
+                                    <img src="/static/images/avatar_00.png" alt="" />
+                                    <div class="cms__text pt-4 text-muted cms__text--serif">
+                                    For category
+                                    </div>
+                                    <h3 class="cms__title--bold">Use case title</h3>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-4 cms-use-case__tile">
+                                <a class="cms__tile-link" href="">
+                                    <img src="/static/images/avatar_00.png" alt="" />
+                                    <div class="cms__text pt-4 text-muted cms__text--serif">
+                                    For category
+                                    </div>
+                                    <h3 class="cms__title--bold">Use case title</h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-sm-6 col-lg-5">
+                                <a class="btn btn--full btn--transparent" href="{{ value.demo_platform.url }}">Visit Demosite</a>
+                            </div>
+                            <div class="col-12 col-sm-6 col-lg-5">
+                                <a class="btn btn--full btn--transparent" href="{{ value.use_case_page.url }}">View more examples</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -482,7 +600,13 @@
                         <button class="btn btn--transparent" type="button">Transparent Button</button>
                         <button class="btn btn--primary" type="button">Primary Button</button>
                         <button class="btn btn--secondary" type="button">Secondary Button</button>
+                    </p>
+                    <p>
+                        <button class="btn btn--secondary-filled" type="button">Secondary Button filled</button>
+                        <button class="btn btn--bg-tertiary" type="button">Tertiary background</button>
                         <button class="btn btn--danger" type="button">Danger Button</button>
+                        <button class="btn--text-color-inverted" type="button">Color Inverted</button>
+                        <button class="btn btn--square " type="button">Square Button</button>
                     </p>
                     <p>
                         <button class="btn btn--link" type="button">Button as Link</button>
@@ -492,13 +616,14 @@
                         <button class="btn btn--select" type="button">Select Button <i class="fa fa-caret-down" aria-hidden="true"></i></button>
                         <button class="btn btn--small" type="button">Small Button</button>
                         <button class="btn btn--huge" type="button">Huge Button</button>
+                        <button class="btn btn--round" type="button">Round Button</button>
                         <button class="btn btn--attached-top" type="button">Top Button</button>
                     </p>
                     <p>
                         <button class="btn btn--full" type="button">Full Button</button>
                     </p>
                     <div class="btn-group" role="group">
-                        <button class="btn" type="button">But</button><button class="btn" type="button">ton</button><button class="btn" type="button">group</button>
+                        <button class="btn btn--light" type="button">But</button><button class="btn btn--light" type="button">ton</button><button class="btn btn--light" type="button">group</button>
                     </div>
                 </div>
 
@@ -507,8 +632,8 @@
                 <div class="cl-example">
                     <p>The category formset is used for the categories and category icons from A4.</p>
 
-                    <div class="js-form category-formset__form form-group">
-                        <div class="category-formset__form__category">
+                    <div class="js-form category-formset__form form-group form-row">
+                        <div class="category-formset__form__category col">
                             <input name="category_set-0-DELETE" id="id_category_set-0-DELETE" class="category-formset__delete" type="checkbox">
                             <input name="category_set-0-name" value="category 1" placeholder="Kategorie" id="id_category_set-0-name" type="text">
                             <label for="id_category_set-0-DELETE" class="category-formset__delete-label" title="Kategorie entfernen">
@@ -516,7 +641,7 @@
                             </label>
                         </div>
 
-                        <div class="category-formset__form__icon select-icon">
+                        <div class="category-formset__form__icon select-icon col">
                             <div class="dropdown select-dropdown category-icon-select">
                                 <button class="btn select-dropdown__btn category-icon-select__btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="select-dropdown__btn__label">
@@ -763,20 +888,20 @@
                 </div>
 
                 <h2 id="cl-datepicker">Datepicker</h2>
-
                 <div class="cl-example">
                     <div class="form-group">
+                        <label for="id_phase_set-0-start_date_date" id="id_phase_set-0-start_date_date_label">
+                            Start date<span role="presentation" title="This field is required">*</span>
+                        </label>
                         <div class="widget widget--datetimeinput">
-                            <div class="l-tiles-2">
-                                <div class="widget--datetimeinput__date">
-                                    <input name="name_start_date" value="2017-11-22" placeholder="2017-11-24" id="id_start_date" class="datepicker form-control" type="text">
-                                    <div class="input-group-append">
-                                        <a href="#" class="date-picker-control date-picker-dateval" title="Show Calendar" role="button" aria-haspopup="true" tabindex="0"><span>&nbsp;</span><span class="fd-screen-reader">Show Calendar</span></a>
-                                    </div>
+                            <div class="d-flex category-formset__datetime-input">
+                                <div class="widget--datetimeinput__date input-group">
+                                    <input type="text" name="phase_set-0-start_date_0" value="2019-10-08" id="id_phase_set-0-start_date_date" class="datepicker form-control" placeholder="2019-10-16"><a href="#id_phase_set-0-start_date_date" class="date-picker-control date-picker-dateval"
+                                      title="Show Calendar" id="fd-but-id_phase_set-0-start_date_date" role="button" aria-haspopup="true" tabindex="0"><span>&nbsp;</span><span class="fd-screen-reader">Show Calendar</span></a>
                                 </div>
                                 <div>
-                                    <label class="sr-only" for="id_start_date_time">Start time</label>
-                                    <input name="name_start_date_time" value="00:00" placeholder="00:00" id="id_start_date_time" class="timepicker" type="text">
+                                    <label class="sr-only" for="id_phase_set-0-start_date_time">Start time</label>
+                                    <input type="text" name="phase_set-0-start_date_1" value="00:00" id="id_phase_set-0-start_date_time" class="timepicker" placeholder="00:00">
                                 </div>
                             </div>
                         </div>
@@ -887,11 +1012,11 @@
                     <p>These forms may only contain <a href="#">Buttons</a>, <a href="#">Dropdowns</a> and <code>input-groups</code>.</p>
                     <div class="cl-example">
                         <div class="form-inline" role="group" aria-label="Filter bar">
-                            <a class="btn btn--light" href="#" aria-label="View as map">
+                            <a class="btn btn--light mr-1" href="#" aria-label="View as map">
                                 <i class="fa fa-map" aria-hidden="true"></i>
                                 View
                             </a>
-                            <form class="input-group" method="get">
+                            <form class="input-group mr-1" method="get">
                                 <input class="form-control" type="search" name="search" placeholder="Search" value="">
                                 <div class="input-group-append">
                                     <button class="btn btn--light" type="submit" title="Search">
@@ -968,52 +1093,52 @@
                 </div>
 
                 <h2 id="cl-header">Header</h2>
-
                 <div class="cl-example">
-                    <header class="main-header">
-                        <div class="l-wrapper">
-                            <nav class="main-nav">
-                                <div class="main-nav__nav-item">
-                                    <button class="btn btn--light main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse" aria-label="Menu">
-                                        <i class="fas fa-bars" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
-                                        <ul class="main-nav__list">
-                                            <li class="main-nav__item">
-                                                <a class="main-nav__link" href="/"><i class="fas fa-home"></i></a>
-                                            </li>
-                                            <li class="main-nav__item">
-                                                <a class="main-nav__link" href="#">Where can I take part?'</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                    <header class="main-header" aria-label="Header">
+                        <div class="u-page-ribbon u-page-ribbon--platform"></div>
+                        <div class="container u-position-relative">
+                            <div class="main-header__brand">
+                                <a href="/"><img src="/static/images/logo.png" alt="Adhocracy+" class="main-header__brand-img"></a>
+                            </div>
+                            <nav class="main-header__nav">
+                                <div class="main-header__lang">
+                                    <form class="lang__switch" action="/i18n/setlang/" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="7qffsAn68eoqZx1JUKY57Z8usoEMWQdSWwAfPH7HzKicuXi9qhmFMZcKhexMa4lN">
+                                        <input name="next" type="hidden" value="">
+                                        <input name="language" type="hidden" value="de">
+                                        <button class="lang__btn--left" type="submit">de</button><a class="lang__btn--right active" role="button">en</a>
+                                    </form>
                                 </div>
-                                <div class="main-nav__logo-item">
-                                    <a href="/" class="main-nav__logo" rel="home">
-                                        <img src="/static/images/LOGO.png" alt="mein.berlin">
-                                    </a>
-                                </div>
-                                <div class="main-nav__nav-item main-nav__nav-item--right">
-                                    <button class="btn btn--secondary main-nav__toggle" data-toggle="collapse" data-target="#user-menu-collapse" aria-expanded="false" aria-controls="user-menu-collapse" aria-label="User Menu">
-                                        <i class="fas fa-user"></i>
-                                    </button>
-                                    <div class="main-nav__menu-wrapper collapse" id="user-menu-collapse">
-                                        <div class="main-header__user">
-                                            <button type="button" class="dropdown-toggle btn btn--secondary">
-                                            Anmelden/Registrieren
-                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                <div class="main-header__mobile-menu main-header__mobile-menu--platform collapse" id="main-header-collapse">
+                                    <div class="main-header__user">
+                                        <div class="dropdown dropdown--right userindicator__dropdown">
+                                            <button type="button" class="dropdown-toggle btn btn--secondary-filled btn--square btn--align-left" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false" id="user-actions">
+                                                <div class="userindicator__btn-img" style="background-image:   url(/static/images/avatar_00.png) "></div>
+                                                <div class="userindicator__btn-text text-left">
+                                                    <span class="userindicator__hello">Hello</span>
+                                                    <br>
+                                                    <span>admin</span>
+                                                </div>
+                                                <i class="fa fa-angle-down" aria-hidden="true"></i>
                                             </button>
+                                            <div class="dropdown-menu dropdown-menu-right userindicator__dropdown-menu userindicator__dropdown-menu--platform" aria-labelledby="user-actions">
+                                                <a class="dropdown-item" href="/django-admin/">Admin</a>
+                                                <a class="dropdown-item" href="/account/">Account Settings</a>
+                                                <a class="dropdown-item" href="/profile/admin/">View your profile</a>
+                                                <a class="dropdown-item" href="/liqd-orga/dashboard/organisations/projects/">
+                                                    liqd-orga
+                                                </a>
+                                                <form class="form--inline" action="/accounts/logout/" method="post" aria-label="Logout">
+                                                    <input type="hidden" name="csrfmiddlewaretoken" value="7qffsAn68eoqZx1JUKY57Z8usoEMWQdSWwAfPH7HzKicuXi9qhmFMZcKhexMa4lN">
+                                                    <input type="hidden" name="next" value="/">
+                                                    <button type="submit" class="dropdown-item">Logout</button>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <ul class="main-nav__list">
-                                            <li class="main-nav__item">
-                                                <a class="main-nav__link" href="#">Help</a>
-                                            </li>
-                                            <li class="main-nav__item">
-                                                <a class="main-nav__link" href="#">Give Feedback</a>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
+                                <button class="btn main-header__mobile-toggle btn--secondary-filled btn--square btn--small btn--attached-top collapsed" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" aria-controls="main-header-collapse">
+                                    <span class="d-none d-sm-inline-block">Menu</span>
+                                </button>
                             </nav>
                         </div>
                     </header>
@@ -1022,13 +1147,21 @@
                 <h2 id="cl-hero-unit">Hero Unit</h2>
 
                 <div class="cl-example">
-                    <div class="hero-unit">
-                        <div class="hero-unit__wrapper">
-                            <h1 class="hero-unit__title u-first-heading">Hero Unit Title - the hero unit is used on the (wagtail) landing page</h1>
-                            <div class="hero-unit__subtitle">And a subtitle!</div>
-                        </div>
-                        <div class="hero-unit__img">
-                            <div class="hero-unit__copyright copyright">© Copyright</div>
+                    <div class="homepage__wrapper">
+                        <div class="homepage-header">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h1 class="homepage-header__teaser p-3 ml-md-4">
+                                        <div class="rich-text">
+                                            <p>Duo Reges: constructio interrete. Nunc haec primum. </p>
+                                        </div>
+                                    </h1>
+                                </div>
+                                <div class="col-lg-6">
+
+                                    <img src="/static/images/avatar_00.png" alt="democracy404 – markus-spiske-unsplash.jpg" class="homepage-header__image">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1037,13 +1170,13 @@
 
                 <div class="cl-example">
                     <div class="l-top-overlap">
-                        <div class="form-inline" role="group" aria-label="Filter bar">
-                            <a class="btn btn--light" href="#" aria-label="View as map">
+                        <div class="filter-bar form-inline" role="group" aria-label="Filter bar">
+                            <a class="btn btn--light mr-1" href="#" aria-label="View as map">
                                 <i class="fa fa-map" aria-hidden="true"></i>
                                 View
                             </a>
 
-                            <form class="input-group">
+                            <form class="input-group mr-1">
                                 <input class="form-control" type="search" name="search" placeholder="Search" value="">
                                 <div class="input-group-append">
                                     <button class="btn btn--light" type="submit" title="Search">
@@ -1059,13 +1192,11 @@
                                 </button>
                             </div>
 
-                            <div class="ml-auto">
-                                <div class="dropdown ">
+                                <div class="dropdown ml-auto">
                                     <button type="button" class="dropdown-toggle btn btn--light btn--select">
                                         Ordering: Most recent
                                         <i class="fa fa-caret-down" aria-hidden="true"></i>
                                     </button>
-                                </div>
 
                             </div>
                         </div>
@@ -1408,31 +1539,6 @@
                     </div>
                 </div>
 
-                <h2 id="cl-portal-header">Portal Header</h2>
-
-                <div class="cl-example">
-                    <div class="portal-header">
-                        <div class="l-wrapper">
-                            <div class="portal-header__red-line"></div>
-                            <a class="portal-header__logo" href="http://www.berlin.de/">
-                                <img src="/static/images/berlin_de.png" alt="Zur Homepage von Berlin.de">
-                            </a>
-
-                            <nav aria-label="Portal Navigation">
-                                <ul class="portal-header__nav">
-                                    <li><a href="#">Politik, Verwaltung, Bürger</a></li>
-                                    <li><a href="#">Kultur &amp; Ausgehen</a></li>
-                                    <li><a href="#">Tourismus</a></li>
-                                    <li><a href="#">Wirtschaft</a></li>
-                                    <li><a href="#">Themen</a></li>
-                                    <li><a href="#">BerlinFinder</a></li>
-                                    <li><a href="#">Stadtplan</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-
                 <h2 id="cl-progress">Progress</h2>
 
                 <div class="cl-example">
@@ -1549,9 +1655,7 @@
                     <ul class="l-tiles-4">
                         <li class="tile ">
                             <div class="tile__head">
-                                <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-3" href="#" target="_self"></a>
-                                <img src="/static/images/svg" alt="Project on liqd_product" class="tile__badge">
-                                <div class="tile__labels"></div>
+                                <img src="/static/images/avatar_00.png" alt="Project on liqd_product" class="tile__badge">
                             </div>
                             <div class="tile__body">
                                 <h3 class="tile__title" id="project-title-3">
@@ -1566,11 +1670,7 @@
                         </li>
                         <li class="tile ">
                             <div class="tile__head">
-                                <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-2" href="#" target="_self"></a>
-                                <img src="/static/images/svg" alt="Project on liqd_product" class="tile__badge">
-                                <div class="tile__labels">
-                                    <span class="label label--primary">Finished</span>
-                                </div>
+                                <img src="/static/images/avatar_00.png" alt="" class="tile__badge">
                             </div>
                             <div class="tile__body">
                                 <h3 class="tile__title" id="project-title-2">
