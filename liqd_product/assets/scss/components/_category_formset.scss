@@ -7,8 +7,7 @@
     }
 }
 
-.category-formset__form,
-.category-formset__btn {
+.category-formset__form {
     @extend .l-tiles-2;
 }
 
@@ -25,7 +24,7 @@
 
     & ~ .category-formset__delete-label {
         position: absolute;
-        right: 0.5em;
+        right: 1em;
         top: 0.6em;
         color: $gray;
     }

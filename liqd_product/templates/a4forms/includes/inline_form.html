@@ -1,6 +1,6 @@
 {% load i18n widget_tweaks %}
-<div class="js-form category-formset__form form-group">
-    <div class="category-formset__form__category">
+<div class="js-form category-formset__form form-group form-row">
+    <div class="category-formset__form__category col pl-0">
         {% if can_delete %}
             <input type="checkbox" name="{{ form.DELETE.html_name }}" id="{{ form.DELETE.id_for_label }}" class="category-formset__delete">
         {% endif %}
@@ -11,7 +11,7 @@
         {{ form.name }}
 
         {% if not form.name.value %}
-            <button type="button" class="category-formset__delete-label js-remove-form" title="{% trans 'Remove category' %}">
+            <button type="button" class="category-formset__delete-label js-remove-form col pr-0" title="{% trans 'Remove category' %}">
                 <i class="fa fa-times" aria-label="{% trans 'Remove category' %}"></i>
             </button>
         {% elif can_delete %}
@@ -29,7 +29,7 @@
         <label for="{{ form.name.id_for_label }}" class="sr-only">
             {{ form.name.label }}
         </label>
-        <div class="category-formset__form__icon select-icon">
+        <div class="category-formset__form__icon select-icon col">
             {{ form.icon|add_class:'d-none category-icon-select' }}
         </div>
     {% endif %}

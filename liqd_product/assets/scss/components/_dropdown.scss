@@ -1,7 +1,6 @@
 .dropdown {
     position: relative;
     text-align: left;
-    // margin-bottom: $spacer / 2; for bootstrap
 }
 
 .dropdown-item {
@@ -105,5 +104,11 @@
 
     @media print {
         display: none;
+    }
+}
+
+.filter-bar {
+    .dropdown {
+        margin-right: 0.25em;
     }
 }
