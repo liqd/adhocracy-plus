@@ -31,6 +31,12 @@
         padding-bottom: 0.1em;
         border-bottom: 0.2em solid $brand-primary;
     }
+
+    a,
+    button {
+        border-bottom: 1px solid $body-bg;
+        font-weight: bold;
+    }
 }
 
 @media screen and (min-width: $breakpoint) {
@@ -46,6 +52,12 @@
     .organisation-header__nav-item {
         display: inline;
         margin-right: $spacer;
+
+        a,
+        button {
+            border-bottom: inherit;
+            font-weight: inherit;
+        }
     }
 
     .organisation-header__nav-link:first-child {
