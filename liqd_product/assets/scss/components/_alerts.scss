@@ -47,14 +47,6 @@ $messages-margin-bottom: 25px;
     padding: 0.5em;
 }
 
-// If this directly follows the dialog box (see header.scss), add 16px
-// additional padding to the default value (see above).
-// .messages:first-child > :first-child {
-//     padding-top: calc(16px + #{$padding * 1.2});
-// }
-
-// compensate for margin-bottom on messages
-.u-after-dialogue-box,
 .project-header,
 .hero-unit {
     .messages + & {
