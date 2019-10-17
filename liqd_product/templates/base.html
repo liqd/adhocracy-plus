@@ -94,9 +94,14 @@
         {% if settings.a4_candy_cms_settings.ImportantPages.donate_link %}
         <div class="donation-banner">
             <a href="{{ settings.a4_candy_cms_settings.ImportantPages.donate_link }}"  class="btn {% if ORGANISATION %} btn--bg-tertiary {% else %} btn--secondary-filled {% endif %}">
-                {% trans 'adhocracy+ is funded by donations.' %}
-                <br>
-                <b>{% trans 'Donate now' %}</b>
+                <span class="d-none d-md-block">
+                    {% trans 'adhocracy+ is funded by donations.' %}
+                    <br>
+                    <b>{% trans 'Donate now' %}</b>
+                </span>
+                <span class="d-md-none">
+                    <b>{% trans 'Donate now to adhocracy+' %}</b>
+                </span>
             </a>
         </div>
         {% endif %}

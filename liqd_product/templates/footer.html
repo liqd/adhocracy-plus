@@ -1,7 +1,7 @@
 {% load i18n static wagtailsettings_tags %}
 {% get_settings %}
 
-<footer class="footer px-sm-3 pt-3">
+<footer class="footer px-sm-3 pt-3 mb-4">
     <div class="container">
         <div class="row mt-3 mb-3 mb-sm-4 justify-content-lg-center">
             <div class="col-lg-6">
@@ -23,7 +23,7 @@
 
         <div class="row justify-content-lg-center">
             {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
-            <div class="col-12">
+            <div class="col-12 col-md-8 col-lg-12">
                 <nav class="navi p-0">
                     <ul class="navi__list mb-3 mb-sm-4 d-sm-flex flex-wrap">
                         <li class="navi__item footer__link">
