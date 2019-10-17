@@ -24,6 +24,12 @@ class TermsSignupForm(auth_forms.UserCreationForm):
         fields = ('email', 'username', 'password1', 'password2',
                   'terms_of_use', 'get_newsletters')
 
+# Tried to add form as described in allauth documentation:
+# https://django-allauth.readthedocs.io/en/latest/forms.html#socialaccount-forms
+# ran into the following error:
+# https://stackoverflow.com/questions/57254251/custom-form-with-socialaccount-in-django-allauth
+# added this solution, maybe not the best
+
 
 class SignupForm(forms.Form):
     terms_of_use = forms.BooleanField(label=_('Terms of use'), error_messages={
