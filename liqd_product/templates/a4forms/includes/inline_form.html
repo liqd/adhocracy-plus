@@ -11,7 +11,7 @@
         {{ form.name }}
 
         {% if not form.name.value %}
-            <button type="button" class="category-formset__delete-label js-remove-form col pr-0" title="{% trans 'Remove category' %}">
+            <button type="button" class="category-formset__delete-label js-remove-form" title="{% trans 'Remove category' %}">
                 <i class="fa fa-times" aria-label="{% trans 'Remove category' %}"></i>
             </button>
         {% elif can_delete %}
