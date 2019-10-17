@@ -78,6 +78,9 @@ class Organisation(models.Model):
                     'required information of your imprint. '
                     'The imprint will be shown on a separate page.')
     )
+    is_supporting = models.BooleanField(
+        default=False
+    )
 
     def __str__(self):
         return self.name
