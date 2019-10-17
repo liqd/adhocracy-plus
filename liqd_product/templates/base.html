@@ -91,6 +91,7 @@
         {% endblock %}
 
         {% block donation_banner %}
+        {% if not ORGANISATION.is_supporting %}
         {% if settings.a4_candy_cms_settings.ImportantPages.donate_link %}
         <div class="donation-banner">
             <a href="{{ settings.a4_candy_cms_settings.ImportantPages.donate_link }}"  class="btn {% if ORGANISATION %} btn--bg-tertiary {% else %} btn--secondary-filled {% endif %}">
@@ -104,6 +105,7 @@
                 </span>
             </a>
         </div>
+        {% endif %}
         {% endif %}
         {% endblock %}
     </div>
