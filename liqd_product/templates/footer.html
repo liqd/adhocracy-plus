@@ -23,7 +23,7 @@
 
         <div class="row justify-content-lg-center">
             {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
-            <div class="col-12 col-lg-6">
+            <div class="col-12">
                 <nav class="navi p-0">
                     <ul class="navi__list mb-3 mb-sm-4 d-sm-flex flex-wrap">
                         <li class="navi__item footer__link">
@@ -57,11 +57,6 @@
                     </ul>
                 </nav>
             </div>
-            {% if pages.donate_link %}
-            <div class="col-12 col-sm-6 offset-sm-6 offset-lg-0 d-flex flex-column">
-                <a href="{{ pages.donate_link }}"  class="btn btn--full {% if ORGANISATION %} btn--bg-tertiary {% else %} btn--secondary-filled {% endif %} mb-0 mr-0 mt-auto">{% trans 'Support the further development of the platform' %}<br><b>{% trans 'Donate now' %}</b></a>
-            </div>
-            {% endif %}
         {% endwith %}
         </div>
     </div>
