@@ -15,12 +15,14 @@
     {% endif %}
 
     <div class="l-wrapper organisation__header">
-        <div class="l-col-6-0">
-            <h1 class="u-no-margin marked-box">{{ organisation.title }}</h1>
-            <h2 class="u-no-margin organisation__slogan">{{ organisation.slogan }}</h2>
-        </div>
-        <div class="l-col-5-7 organisation__description">
-            {{ organisation.description }}
+        <div class="row">
+            <div class="l-col-6-0">
+                <h1 class="u-no-margin marked-box">{{ organisation.title }}</h1>
+                <h2 class="u-no-margin organisation__slogan">{{ organisation.slogan }}</h2>
+            </div>
+            <div class="col-lg-5 offset-lg-1 organisation__description">
+                {{ organisation.description }}
+            </div>
         </div>
     </div>
 
