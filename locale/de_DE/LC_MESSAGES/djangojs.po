@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-18 15:02+0200\n"
+"POT-Creation-Date: 2019-10-17 10:58+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,6 +104,7 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: apps/documents/assets/ChapterNavItem.jsx:61
 #: apps/documents/assets/ParagraphForm.jsx:133
 #: apps/documents/assets/ParagraphForm.jsx:138
+#: apps/polls/assets/QuestionForm.jsx:99 apps/polls/assets/QuestionForm.jsx:104
 msgid "Delete"
 msgstr "Löschen"
 
@@ -215,6 +216,7 @@ msgstr "Speichern"
 
 #: adhocracy4/polls/static/polls/Question.jsx:9
 #: adhocracy4/polls/static/polls/Question.jsx:9
+#: apps/polls/assets/Question.jsx:173
 msgid "Your choice"
 msgstr "Ihre Wahl"
 
@@ -249,16 +251,19 @@ msgstr "Bitte melden Sie sich zum Abstimmen an."
 
 #: adhocracy4/polls/static/polls/Question.jsx:139
 #: adhocracy4/polls/static/polls/Question.jsx:139
+#: apps/polls/assets/Question.jsx:138
 msgid "To poll"
 msgstr "Zur Umfrage"
 
 #: adhocracy4/polls/static/polls/Question.jsx:141
 #: adhocracy4/polls/static/polls/Question.jsx:141
+#: apps/polls/assets/Question.jsx:141
 msgid "Change vote"
 msgstr "Stimme ändern"
 
 #: adhocracy4/polls/static/polls/Question.jsx:144
 #: adhocracy4/polls/static/polls/Question.jsx:144
+#: apps/polls/assets/Question.jsx:145
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
@@ -284,6 +289,7 @@ msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
+#: apps/polls/assets/QuestionForm.jsx:67
 msgid "Add a new choice"
 msgstr "Neue Antwort"
 
@@ -293,6 +299,7 @@ msgstr "Neue Antwort"
 #: apps/documents/assets/ChapterNavItem.jsx:37
 #: apps/documents/assets/ParagraphForm.jsx:110
 #: apps/documents/assets/ParagraphForm.jsx:115
+#: apps/polls/assets/QuestionForm.jsx:76 apps/polls/assets/QuestionForm.jsx:81
 msgid "Move up"
 msgstr "nach oben"
 
@@ -302,6 +309,7 @@ msgstr "nach oben"
 #: apps/documents/assets/ChapterNavItem.jsx:49
 #: apps/documents/assets/ParagraphForm.jsx:122
 #: apps/documents/assets/ParagraphForm.jsx:127
+#: apps/polls/assets/QuestionForm.jsx:88 apps/polls/assets/QuestionForm.jsx:93
 msgid "Move down"
 msgstr "nach unten"
 
@@ -327,6 +335,7 @@ msgid "Send Report"
 msgstr "Meldung senden"
 
 #: adhocracy4/static/Alert.jsx:5
+#: apps/contrib/assets/Alert.jsx:10 apps/contrib/assets/Alert.jsx:11
 #: apps/contrib/static/js/ajax_modal.js:8
 #: apps/maps/assets/map_choose_polygon_with_preset.js:82
 #: liqd_product/assets/js/embed.js:30 liqd_product/assets/js/embed.js:31
@@ -447,6 +456,104 @@ msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr ""
 "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
 "entfernen?"
+
+#: apps/questions/assets/Filters.jsx:20
+msgid "all"
+msgstr ""
+
+#: apps/questions/assets/Filters.jsx:21
+msgid "only show marked questions"
+msgstr ""
+
+#: apps/questions/assets/Filters.jsx:22
+msgid "display only questions which are not hidden"
+msgstr ""
+
+#: apps/questions/assets/Filters.jsx:23
+msgid "order by likes"
+msgstr ""
+
+#: apps/questions/assets/InfoBox.jsx:4
+msgid "display question on screen"
+msgstr ""
+
+#: apps/questions/assets/InfoBox.jsx:5
+msgid "add question to shortlist"
+msgstr ""
+
+#: apps/questions/assets/InfoBox.jsx:6
+msgid "hide question from audience"
+msgstr ""
+
+#: apps/questions/assets/InfoBox.jsx:7
+msgid "mark question as answered"
+msgstr ""
+
+#: apps/questions/assets/InfoBox.jsx:8
+msgid "is shown in front of a question? It has been marked by the moderation."
+msgstr ""
+
+#: apps/questions/assets/InfoBox.jsx:9
+msgid "Close information"
+msgstr ""
+
+#: apps/questions/assets/InfoBox.jsx:10
+msgid "Open information"
+msgstr ""
+
+#: apps/questions/assets/QuestionBox.jsx:16
+#: apps/questions/assets/QuestionBox.jsx:45
+msgid "select category"
+msgstr ""
+
+#: apps/questions/assets/QuestionModerator.jsx:97
+msgid "mark as hidden"
+msgstr ""
+
+#: apps/questions/assets/QuestionModerator.jsx:98
+msgid "undo mark as hidden"
+msgstr ""
+
+#: apps/questions/assets/QuestionModerator.jsx:99
+msgid "mark as done"
+msgstr ""
+
+#: apps/questions/assets/QuestionModerator.jsx:100
+msgid "added to live list"
+msgstr ""
+
+#: apps/questions/assets/QuestionModerator.jsx:101
+msgid "remove from live list"
+msgstr ""
+
+#: apps/questions/assets/QuestionModerator.jsx:102
+msgid "added to shortlist"
+msgstr ""
+
+#: apps/questions/assets/QuestionModerator.jsx:103
+msgid "remove from shortlist"
+msgstr ""
+
+#: apps/questions/assets/QuestionPresent.jsx:29
+#: apps/questions/assets/QuestionUser.jsx:52
+msgid "likes"
+msgstr ""
+
+#: apps/questions/assets/QuestionUser.jsx:51
+msgid "on shortlist"
+msgstr ""
+
+#: apps/questions/assets/QuestionUser.jsx:53
+msgid "add like"
+msgstr ""
+
+#: apps/questions/assets/QuestionUser.jsx:54
+msgid "undo like"
+msgstr ""
+
+#: apps/questions/assets/StatisticsBox.jsx:100
+msgid "Questions Answered"
+msgstr ""
 
 #: liqd_product/assets/js/embed.js:83
 msgid "We couldn't find what you were looking for."
