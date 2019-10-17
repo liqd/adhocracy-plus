@@ -13,11 +13,9 @@
 <form id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
         {{ form.non_field_errors }}
         {% csrf_token %}
-        {% for field in form %}
-            {% if field is not form.terms_of_use and field is not form.get_newsletters %}
-                {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
-            {% endif %}
-        {% endfor %}
+        {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+         {% endfor %}
         <div class="form-check">
             <label class="form-check__label">
                 {{ form.terms_of_use }}
