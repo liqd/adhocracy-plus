@@ -417,7 +417,7 @@
                         <button class="alert__close">X</button>
                     </p>
                 </div>
-                //Block Types
+
                 <h2 id="cl-blocks">Blocks</h2>
 
                 <div class="cl-example">
@@ -428,17 +428,6 @@
                             {% lorem random %}
                         </p>
                     </div>
-
-                    <!-- <div class="block block--cta">
-                        <div class="l-wrapper">
-                            <div class="block-call_to_action">
-                                <h2>Call to action block</h2>
-                                <br></br>
-                                <p>{% lorem random %}</p>
-                                <a href="" class="btn btn-lg btn-primary">Call to Action</a>
-                            </div>
-                        </div>
-                    </div> -->
 
                     <div class="block-background_cta_block">
                         <div class="block row">
@@ -938,37 +927,39 @@
                             </div>
                         </nav>
 
-                        <h2 class="chapter-title">Chapter 2</h2>
+                        <div class="chapter">
+                            <h2 class="chapter-title">Chapter 2</h2>
 
-                        <section class="paragraph" id="id-paragraph">
-                            <div class="paragraph__content">
-                                <h3 class="paragraph__title">
-                                    Paragraph Title/Name
-                                </h3>
-                                Why is the Table of contents expanded when we are in the first chapter and collapsed in the following ones?
-                            </div>
-                            <div class="paragraph__actions">
-                                <a class="btn" href="#">
-                                    <i class="far fa-comment" aria-hidden="true"></i>
-                                    10 Comments
-                                </a>
-                            </div>
-                        </section>
+                            <section class="paragraph" id="id-paragraph">
+                                <div class="paragraph__content">
+                                    <h3 class="paragraph__title">
+                                        Paragraph Title/Name
+                                    </h3>
+                                    Why is the Table of contents expanded when we are in the first chapter and collapsed in the following ones?
+                                </div>
+                                <div class="paragraph__actions">
+                                    <a class="btn" href="#">
+                                        <i class="far fa-comment" aria-hidden="true"></i>
+                                        10 Comments
+                                    </a>
+                                </div>
+                            </section>
 
-                        <section class="paragraph" id="id-paragraph">
-                            <div class="paragraph__content">
-                                <h3 class="paragraph__title">
-                                    One more Paragraph Title/Name
-                                </h3>
-                                It looks a bit different with the grey background (from module-content), so I added it, even though it doesn't belong to this component. Oh, but that looks weird again. Normally it should also have grey padding/be surrounded by grey.
-                            </div>
-                            <div class="paragraph__actions">
-                                <a class="btn" href="#">
-                                    <i class="far fa-comment" aria-hidden="true"></i>
-                                    1 Comment
-                                </a>
-                            </div>
-                        </section>
+                            <section class="paragraph" id="id-paragraph">
+                                <div class="paragraph__content">
+                                    <h3 class="paragraph__title">
+                                        One more Paragraph Title/Name
+                                    </h3>
+                                    It looks a bit different with the grey background (from module-content), so I added it, even though it doesn't belong to this component. Oh, but that looks weird again. Normally it should also have grey padding/be surrounded by grey.
+                                </div>
+                                <div class="paragraph__actions">
+                                    <a class="btn" href="#">
+                                        <i class="far fa-comment" aria-hidden="true"></i>
+                                        1 Comment
+                                    </a>
+                                </div>
+                            </section>
+                        </div>
                     </div>
                 </div>
 
@@ -996,9 +987,7 @@
                                 <p>The class embed status left in above is only an empty div before embed.js puts stuff in there.</p>
                             </main>
                             <footer class="embed-footer">
-                                <a href="/" target="_blank">
-                                    <img src="" alt="mein.berlin Logo" class="embed-footer__logo">
-                                </a>
+                                <a href="/" target="_blank">adhocracy+</a>
                                 <a href="#" data-embed-target="external">Go to platform</a>
                             </footer>
                         </body>
@@ -1057,37 +1046,51 @@
                 <h2 id="cl-footer">Footer</h2>
 
                 <div class="cl-example">
-                    <footer class="main-footer">
-                        <div class="l-wrapper">
-                            <div class="shariff" data-theme="white">
-                                <ul class="theme-white orientation-horizontal col-4">
-                                    <li class="shariff-button twitter">
-                                        <a href="#" data-rel="popup" rel="nofollow" title="Bei Twitter teilen" role="button" aria-label="Bei Twitter teilen">
-                                            <span class="fab fa-twitter"></span>
-                                            <span class="share_text">tweet</span>
-                                        </a>
-                                    </li>
-                                    <li class="shariff-button ">
-                                        <a href="#" data-rel="popup" rel="nofollow" title="Bei Facebook teilen" role="button" aria-label="Bei Facebook teilen">
-                                            <span class="fab fa-facebook"></span>
-                                            <span class="share_text">teilen</span>
-                                        </a>
-                                    </li>
-                                    <li class="shariff-button googleplus">
-                                        <a href="#cl-footer" data-rel="popup" rel="nofollow" title="Bei Google+ teilen" role="button" aria-label="Bei Google+ teilen">
-                                            <span class="fab fa-google-plus-g"></span>
-                                            <span class="share_text">teilen</span>
-                                        </a>
-                                    </li>
-                                    <li class="shariff-button info">
-                                        <a href="#" title="Weitere Informationen" role="button" aria-label="Weitere Informationen">
-                                            <span class="fa fa-info"></span>
-                                            <span class="share_text">Info</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                    <footer class="footer px-sm-3 pt-3">
+                        <div class="container">
+                            <div class="row mt-3 mb-3 mb-sm-4 justify-content-lg-center">
+                                <div class="col-lg-6">
+                                    <p class="footer__description">
+                                        adhocracy+ is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial content.
+                                    </p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-sm-6 d-flex flex-column">
+                                            <a class="btn btn--transparent footer__info-btn" href="/">Open Content CC-BY-SA</a>
+                                        </div>
+                                        <div class="col-sm-6 d-flex flex-column mt-4 mt-sm-0">
+                                            <a class="btn btn--transparent footer__info-btn" href="https://github.com/liqd/a4-product">Open Source AGPLv3</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <nav class="footer-nav"></nav>
+                            <div class="row justify-content-lg-center">
+                                <div class="col-12 col-lg-6">
+                                    <nav class="navi p-0">
+                                        <ul class="navi__list mb-3 mb-sm-4 d-sm-flex flex-wrap">
+                                            <li class="navi__item footer__link">
+                                                2019 Liquid Democracy
+                                            </li>
+                                            <li class="navi__item footer__link">
+                                                <a href="/impressum/" class="navi__link">Imprint</a>
+                                            </li>
+                                            <li class="navi__item footer__link">
+                                                <a href="/other-important-thing/" class="navi__link">Terms of use</a>
+                                            </li>
+                                            <li class="navi__item footer__link">
+                                                <a href="/datashutz/" class="navi__link">Data protection policy</a>
+                                            </li>
+                                            <li class="navi__item footer__link">
+                                                <a href="/news/" class="navi__link">Contact</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div class="col-12 col-sm-6 offset-sm-6 offset-lg-0 d-flex flex-column">
+                                    <a href="http://www.liqd.net" class="btn btn--full  btn--bg-tertiary  mb-0 mr-0 mt-auto">Support the further development of the platform<br><b>Donate now</b></a>
+                                </div>
+                            </div>
                         </div>
                     </footer>
                 </div>
@@ -1614,6 +1617,42 @@
                     </div>
                 </div>
 
+                <h2 id="cl-table">Social icons</h2>
+
+                <div class="cl-example">
+                <div class="l-wrapper">
+                    <div class="shariff" data-theme="white">
+                        <ul class="theme-white orientation-horizontal col-4">
+                            <li class="shariff-button twitter">
+                                <a href="#" data-rel="popup" rel="nofollow" title="Bei Twitter teilen" role="button" aria-label="Bei Twitter teilen">
+                                    <span class="fab fa-twitter"></span>
+                                    <span class="share_text">tweet</span>
+                                </a>
+                            </li>
+                            <li class="shariff-button ">
+                                <a href="#" data-rel="popup" rel="nofollow" title="Bei Facebook teilen" role="button" aria-label="Bei Facebook teilen">
+                                    <span class="fab fa-facebook"></span>
+                                    <span class="share_text">teilen</span>
+                                </a>
+                            </li>
+                            <li class="shariff-button googleplus">
+                                <a href="#cl-footer" data-rel="popup" rel="nofollow" title="Bei Google+ teilen" role="button" aria-label="Bei Google+ teilen">
+                                    <span class="fab fa-google-plus-g"></span>
+                                    <span class="share_text">teilen</span>
+                                </a>
+                            </li>
+                            <li class="shariff-button info">
+                                <a href="#" title="Weitere Informationen" role="button" aria-label="Weitere Informationen">
+                                    <span class="fa fa-info"></span>
+                                    <span class="share_text">Info</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <nav class="footer-nav"></nav>
+                </div>
+                </div>
+
                 <h2 id="cl-table">Table</h2>
 
                 <div class="cl-example">
@@ -1685,54 +1724,49 @@
                 <h2 id="cl-timeline">Timeline</h2>
 
                 <div class="cl-example">
-                    <nav class="timeline" aria-label="Timeline">
-                        <ul>
-                            <li>
-                                <a href="#" class="btn btn--light btn--small timeline__button ">
-                                    Past process
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn btn--light btn--small timeline__button is-selected">
-                                    Active process
-                                </a>
-                                <span class="timeline__active">active</span>
-                                <span class="sr-only">current page</span>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="l-center-6">
-                        <div class="timeline-detail">
-                            <h2 class="timeline-detail__title">Module Name</h2>
-                            <div class="timeline-detail__meta">
-                                <strong>
-                                    Some extra info like the start date might be here.
-                                </strong>
-                            </div>
-                            <div class="timeline-detail__meta">
-                                The module description is displayed here.
-                            </div>
+                    <div class="timeline-carousel__wrapper">
+                        <div class="timeline-carousel">
+                            <div class="container">
+                                <div id="timeline-carousel" data-initial-slide="0">
+                                    <div class="timeline-carousel__line"></div>
+                                    <div class="timeline-carousel__item slick-initialized slick-slider">
+                                      <!-- arrows commented out due to no js so placement does not work -->
+                                      <!-- <button class="slick-prev slick-arrow slick-disabled" aria-label="Previous" type="button" aria-disabled="true" style=""></button> -->
+                                        <div class="slick-list draggable">
+                                            <div class="slick-track" style="opacity: 1; width: 10000px; transform: translate3d(64px, 0px, 0px);">
+                                                <div class="slick-slide slick-current slick-center" data-slick-index="0" aria-hidden="false">
+                                                    <div><a href="/liqd-orga/projects/text-commenting-documents/?initialSlide=0" aria-labelledby="timeline_item timeline_entry_1" style="width: 100%; display: inline-block;" tabindex="0">
+                                                            <div id="timeline_item" class="timeline-carousel__dot  initial ">
+                                                                <span class="sr-only">Timeline item</span>
+                                                            </div>
+                                                            <div class="timeline-carousel__label  initial ">
+                                                                <span id="timeline_entry_1">
+                                                                    <span class="timeline-carousel__title">Online Participation</span><br>
+                                                                    from Oct. 8, 2019
+                                                                </span>
+                                                            </div>
+                                                        </a></div>
+                                                </div>
+                                                <div class="slick-slide" data-slick-index="1" aria-hidden="false" tabindex="-1">
+                                                    <div><a href="/liqd-orga/projects/text-commenting-documents/?initialSlide=1" aria-labelledby="timeline_item timeline_entry_2" style="width: 100%; display: inline-block;" tabindex="0">
+                                                            <div id="timeline_item" class="timeline-carousel__dot ">
+                                                                <span class="sr-only">Timeline item</span>
+                                                            </div>
+                                                            <div class="timeline-carousel__label ">
+                                                                <span id="timeline_entry_2">
 
-                            <div class="phase-info collapse" id="phase-overview">
-                                <div class="phase-info__item">
-                                    <div class="phase-info__item__title lr-bar">
-                                        <span class="lr-bar__left">Phase name</span>
-                                        <span class="lr-bar__right phase-info__highlight">active</span>
-                                    </div>
-                                    <div class="phase-info__item__subtitle">
-                                        Feb. 16, 2018, midnight
-                                        &ndash; Feb. 28, 2018, midnight
-                                    </div>
-                                    <div class="phase-info__item__description">
-                                        This is the phase description
+                                                                    <span class="timeline-carousel__title">This is offline</span><br>
+                                                                    on Nov. 1, 2019
+
+                                                                </span>
+                                                            </div>
+                                                        </a></div>
+                                                </div>
+                                            </div>
+                                        <!-- </div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="" aria-disabled="false"></button> -->
                                     </div>
                                 </div>
                             </div>
-
-                            <button class="btn btn--link" type="button" data-toggle="collapse" data-target="#phase-overview" aria-expanded="false" aria-controls="phase-overview">
-                                <span class="u-if-collapsed">Show phase overview</span>
-                                <span class="u-if-not-collapsed">Hide phase overview</span>
-                            </button>
                         </div>
                     </div>
                 </div>
