@@ -1,5 +1,6 @@
 import factory
 import pytest
+from django.urls import reverse
 from django.urls.base import get_resolver
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
@@ -50,3 +51,18 @@ def apiclient():
 @pytest.fixture
 def ImagePNG():
     return factory.django.ImageField(width=1400, height=1400, format='PNG')
+
+
+@pytest.fixture
+def login_url():
+    return reverse('account_login')
+
+
+@pytest.fixture
+def logout_url():
+    return reverse('account_logout')
+
+
+@pytest.fixture
+def signup_url():
+    return reverse('account_signup')
