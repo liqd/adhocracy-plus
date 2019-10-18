@@ -76,18 +76,23 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         blank=True,
         max_length=255,
         verbose_name=_('Biography'),
+        help_text=_(
+            'Tell us about yourself in 255 characters!')
     )
 
     twitter_handle = models.CharField(
         blank=True,
         max_length=15,
-        verbose_name=_('Twitter name'),
+        verbose_name=_('Twitter handle'),
     )
 
     facebook_handle = models.CharField(
         blank=True,
         max_length=50,
         verbose_name=_('Facebook name'),
+        help_text=_(
+            'Your facebook name is the last part of the URL, '
+            'when you access your profile.')
     )
 
     homepage = models.URLField(
