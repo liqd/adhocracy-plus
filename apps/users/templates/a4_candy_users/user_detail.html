@@ -51,7 +51,9 @@
                   aria-expanded="false">
                     {% if object.avatar %}<img class="user-profile__avatar" src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
 
-                    <h1 class="u-first-heading">{{ object.username }}</h1>
+                    <h1 class="u-first-heading u-word-break-all">
+                    {{ object.username }}
+                    </h1>
 
                     {% if object.bio %}<p>{{ object.bio }}</p>{% endif %}
 
