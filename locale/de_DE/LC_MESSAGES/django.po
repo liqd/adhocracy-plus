@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-17 10:58+0200\n"
+"POT-Creation-Date: 2019-10-18 10:19+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2224,11 +2224,11 @@ msgstr ""
 msgid "Edit your organisation information"
 msgstr "Organisationsinformationen bearbeiten"
 
-#: apps/organisations/templates/organisation_landing_page.html:41
+#: apps/organisations/templates/organisation_landing_page.html:43
 msgid "Activity"
 msgstr "Aktivitäten"
 
-#: apps/organisations/templates/organisation_landing_page.html:46
+#: apps/organisations/templates/organisation_landing_page.html:48
 #: apps/users/templates/a4_candy_users/user_detail.html:122
 msgid "No activity yet. "
 msgstr "Noch keine Aktivität."
@@ -2446,7 +2446,7 @@ msgstr "Weiter zur Anmeldung"
 #: liqd_product/templates/account/signup.html:4
 #: liqd_product/templates/account/signup.html:7
 #: liqd_product/templates/account/signup.html:42
-#: liqd_product/templates/socialaccount/signup.html:43
+#: liqd_product/templates/socialaccount/signup.html:41
 msgid "Register"
 msgstr "Registrieren"
 
@@ -2617,8 +2617,7 @@ msgstr "Frage hinzufügen"
 
 #: apps/questions/templates/a4_candy_questions/question_module_detail.html:123
 msgid "During this event you can hand in questions with your smartphone"
-msgstr ""
-"Während dieser Veranstaltung können Sie Fragen per Handy stellen."
+msgstr "Während dieser Veranstaltung können Sie Fragen per Handy stellen."
 
 #: apps/questions/templates/a4_candy_questions/question_module_detail.html:128
 msgid "Go to event"
@@ -2661,7 +2660,8 @@ msgstr "Wichtige Daten"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 
-#: apps/users/forms.py:10 liqd_product/templates/email_base.html:63
+#: apps/users/forms.py:12 apps/users/forms.py:35
+#: liqd_product/templates/email_base.html:63
 #: liqd_product/templates/email_base.txt:17
 #: liqd_product/templates/footer.html:39
 #: liqd_product/templates/newsletter_base.html:59
@@ -2669,9 +2669,13 @@ msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 msgid "Terms of use"
 msgstr "Nutzungsbedingungen"
 
-#: apps/users/forms.py:11
+#: apps/users/forms.py:13 apps/users/forms.py:36
 msgid "Please accept the terms of use."
 msgstr "Bitte akzeptieren sie die Nutzungsbedingungen."
+
+#: apps/users/forms.py:39 apps/users/models.py:68
+msgid "Send me newsletters"
+msgstr "Bitte senden Sie mir E-Mail Newsletter"
 
 #: apps/users/models.py:19
 msgid "username"
@@ -2727,10 +2731,6 @@ msgstr ""
 "erhalten möchten. Nehmen Sie den Haken raus, falls Sie keine "
 "Benachrichtigungen per E-Mail erhalten möchten."
 
-#: apps/users/models.py:68
-msgid "Send me newsletters"
-msgstr "Bitte senden Sie mir E-Mail Newsletter"
-
 #: apps/users/models.py:71
 msgid ""
 "Designates whether you want to receive newsletters. Unselect if you do not "
@@ -2743,28 +2743,37 @@ msgstr ""
 msgid "Biography"
 msgstr "Biografie"
 
-#: apps/users/models.py:84
-msgid "Twitter name"
-msgstr "Twitter Name"
+#: apps/users/models.py:80
+msgid "Tell us about yourself in 255 characters!"
+msgstr ""
 
-#: apps/users/models.py:90
+#: apps/users/models.py:86
+msgid "Twitter handle"
+msgstr ""
+
+#: apps/users/models.py:92
 msgid "Facebook name"
 msgstr "Facebook Name"
 
-#: apps/users/models.py:96
+#: apps/users/models.py:94
+msgid ""
+"Your facebook name is the last part of the URL, when you access your profile."
+msgstr ""
+
+#: apps/users/models.py:101
 #: apps/users/templates/a4_candy_users/user_detail.html:61
 msgid "Homepage"
 msgstr "Homepage"
 
-#: apps/users/models.py:103
+#: apps/users/models.py:108
 msgid "Avatar picture"
 msgstr "Avatar Bild"
 
-#: apps/users/models.py:107
+#: apps/users/models.py:112
 msgid "Your preferred language"
 msgstr "Ihre bevorzugte Sprache"
 
-#: apps/users/models.py:112
+#: apps/users/models.py:117
 msgid ""
 "Specify your preferred language for the user interface and the notifications "
 "of the platform."
@@ -2835,115 +2844,115 @@ msgstr "Englisch"
 msgid "German"
 msgstr "Deutsch"
 
-#: liqd_product/config/settings/base.py:418
+#: liqd_product/config/settings/base.py:420
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: liqd_product/config/settings/base.py:419
+#: liqd_product/config/settings/base.py:421
 msgid "Diamond"
 msgstr "Diamant"
 
-#: liqd_product/config/settings/base.py:420
+#: liqd_product/config/settings/base.py:422
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: liqd_product/config/settings/base.py:421
+#: liqd_product/config/settings/base.py:423
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: liqd_product/config/settings/base.py:422
+#: liqd_product/config/settings/base.py:424
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: liqd_product/config/settings/base.py:423
+#: liqd_product/config/settings/base.py:425
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: liqd_product/config/settings/base.py:424
+#: liqd_product/config/settings/base.py:426
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: liqd_product/config/settings/base.py:425
+#: liqd_product/config/settings/base.py:427
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: liqd_product/config/settings/base.py:426
+#: liqd_product/config/settings/base.py:428
 msgid "Star"
 msgstr "Stern"
 
-#: liqd_product/config/settings/base.py:427
+#: liqd_product/config/settings/base.py:429
 msgid "Square"
 msgstr "Quadrat"
 
-#: liqd_product/config/settings/base.py:428
+#: liqd_product/config/settings/base.py:430
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: liqd_product/config/settings/base.py:429
+#: liqd_product/config/settings/base.py:431
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: liqd_product/config/settings/base.py:430
+#: liqd_product/config/settings/base.py:432
 msgid "Circle"
 msgstr "Kreis"
 
-#: liqd_product/config/settings/base.py:431
+#: liqd_product/config/settings/base.py:433
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: liqd_product/config/settings/base.py:432
+#: liqd_product/config/settings/base.py:434
 msgid "Zigzag"
 msgstr "ZickZack"
 
-#: liqd_product/config/settings/base.py:446
+#: liqd_product/config/settings/base.py:448
 msgid "Anti-discrimination"
 msgstr "Antidiskriminierung"
 
-#: liqd_product/config/settings/base.py:447
+#: liqd_product/config/settings/base.py:449
 msgid "Work & economy"
 msgstr "Arbeit & Wirtschaft"
 
-#: liqd_product/config/settings/base.py:448
+#: liqd_product/config/settings/base.py:450
 msgid "Building & living"
 msgstr "Bauen & Wohnen"
 
-#: liqd_product/config/settings/base.py:449
+#: liqd_product/config/settings/base.py:451
 msgid "Education & research"
 msgstr "Bildung & Forschung"
 
-#: liqd_product/config/settings/base.py:450
+#: liqd_product/config/settings/base.py:452
 msgid "Children, youth & family"
 msgstr "Kinder, Jugend & Familie"
 
-#: liqd_product/config/settings/base.py:451
+#: liqd_product/config/settings/base.py:453
 msgid "Finances"
 msgstr "Finanzen"
 
-#: liqd_product/config/settings/base.py:452
+#: liqd_product/config/settings/base.py:454
 msgid "Health & sports"
 msgstr "Gesundheit & Sport"
 
-#: liqd_product/config/settings/base.py:453
+#: liqd_product/config/settings/base.py:455
 msgid "Integration"
 msgstr "Integration"
 
-#: liqd_product/config/settings/base.py:454
+#: liqd_product/config/settings/base.py:456
 msgid "Culture & leisure"
 msgstr "Kultur & Freizeit"
 
-#: liqd_product/config/settings/base.py:455
+#: liqd_product/config/settings/base.py:457
 msgid "Neighborhood & participation"
 msgstr "Nachbarschaft & Teilhabe"
 
-#: liqd_product/config/settings/base.py:456
+#: liqd_product/config/settings/base.py:458
 msgid "Urban development"
 msgstr "Stadtentwicklung"
 
-#: liqd_product/config/settings/base.py:457
+#: liqd_product/config/settings/base.py:459
 msgid "Environment & public green space"
 msgstr "Umwelt & Grünflächen"
 
-#: liqd_product/config/settings/base.py:458
+#: liqd_product/config/settings/base.py:460
 msgid "Traffic"
 msgstr "Verkehr"
 
@@ -3198,7 +3207,7 @@ msgstr ""
 "sich bitte an</a>."
 
 #: liqd_product/templates/account/signup.html:23
-#: liqd_product/templates/socialaccount/signup.html:24
+#: liqd_product/templates/socialaccount/signup.html:22
 #, python-format
 msgid ""
 "\n"
@@ -3212,7 +3221,7 @@ msgstr ""
 "                "
 
 #: liqd_product/templates/account/signup.html:32
-#: liqd_product/templates/socialaccount/signup.html:33
+#: liqd_product/templates/socialaccount/signup.html:31
 msgid ""
 "\n"
 "                Send me newsletters\n"
@@ -3248,13 +3257,17 @@ msgstr ""
 msgid "Skip to content "
 msgstr "Zum Inhalt springen"
 
-#: liqd_product/templates/base.html:97
+#: liqd_product/templates/base.html:98
 msgid "adhocracy+ is funded by donations."
 msgstr "adhocracy+ finanziert sich durch Spenden."
 
-#: liqd_product/templates/base.html:99
+#: liqd_product/templates/base.html:100
 msgid "Donate now"
 msgstr "Jetzt unterstützen"
+
+#: liqd_product/templates/base.html:103
+msgid "Donate now to adhocracy+"
+msgstr ""
 
 #: liqd_product/templates/base_errors.html:4
 msgid "Error"
@@ -3309,9 +3322,9 @@ msgid ""
 "        accounts. To remove them mark the one you would like to remove and "
 "click the remove button"
 msgstr ""
-"Sie können sich über die folgenden externen Konten in Ihr Konto "
-"einloggen. Um diese zu entfernen, markieren Sie das entsprechende "
-"externe Konto und klicken Sie auf Entfernen."
+"Sie können sich über die folgenden externen Konten in Ihr Konto einloggen. "
+"Um diese zu entfernen, markieren Sie das entsprechende externe Konto und "
+"klicken Sie auf Entfernen."
 
 #: liqd_product/templates/socialaccount/connections.html:35
 msgid ""
@@ -3332,9 +3345,8 @@ msgid ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
 msgstr ""
-"Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf "
-"%(site_name)s anzumelden. Füllen Sie bitte das folgende Formular "
-"als letzten Schritt aus:"
+"Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
+"anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
 
 #: liqd_product/templates/socialaccount/snippets/provider_list.html:6
 msgid "Login with social media account"
@@ -3344,6 +3356,9 @@ msgstr "Mit Konto eines sozialen Netzwerks einloggen"
 #: liqd_product/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Einloggen mit "
+
+#~ msgid "Twitter name"
+#~ msgstr "Twitter Name"
 
 #~ msgid "Support the further development of the platform"
 #~ msgstr "Unterstütze die Weiterentwicklung der Plattform"
