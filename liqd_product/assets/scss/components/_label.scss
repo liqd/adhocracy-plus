@@ -38,3 +38,10 @@
     background-color: $feedback-color-accepted;
     color: contrast-color($feedback-color-accepted);
 }
+
+@media screen and (max-width: $breakpoint-down) {
+    .label--big {
+        padding: 0.2em 0.7em;
+        font-size: $font-size-xs;
+    }
+}
