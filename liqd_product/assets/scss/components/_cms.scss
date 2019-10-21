@@ -52,6 +52,10 @@
 .cms__text {
     font-size: $font-size-md;
     font-family: $font-family-base;
+
+    @media screen and (max-width: $breakpoint-xs-down) {
+        font-size: $font-size-sm;
+    }
 }
 
 .cms__text--serif {

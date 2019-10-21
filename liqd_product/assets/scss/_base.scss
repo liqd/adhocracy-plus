@@ -75,19 +75,44 @@ h6 {
 
 @media screen and (max-width: $breakpoint-md-down) {
     h1 {
-        font-size: $mobile-headline-size*$font-size-xxxl;
-    }
-
-    h2 {
         font-size: $mobile-headline-size*$font-size-xxl;
     }
 
-    h3 {
+    h2 {
         font-size: $mobile-headline-size*$font-size-xl;
     }
 
-    h4 {
-        font-size: $mobile-headline-size*$font-size-lg;
+    h3,
+    h4,
+    h5 {
+        font-size: $font-size-md;
+    }
+}
+
+@media screen and (max-width: $breakpoint-xs-down) {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        line-height: 1.1;
+        margin-bottom: 0.5 * $spacer;
+        margin-top: 1 * $spacer;
+    }
+
+    h1 {
+        font-size: $font-size-md;
+    }
+
+    h2 {
+        font-size: $font-size-base;
+    }
+
+    h3,
+    h4,
+    h5 {
+        font-size: $font-size-sm;
     }
 }
 
