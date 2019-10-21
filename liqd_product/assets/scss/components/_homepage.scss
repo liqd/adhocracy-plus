@@ -31,11 +31,11 @@ $spacer-xl: 7.5rem;
 
 .homepage-header__image {
     position: relative;
-    right: 2*-$r-spacer;
+    right: -$spacer;
     width: 100%;
     object-fit: cover;
 
-    @media screen and (min-width: $breakpoint-xl) {
+    @media screen and (min-width: $breakpoint-xxl) {
         right: 3*-$r-spacer;
     }
 }
