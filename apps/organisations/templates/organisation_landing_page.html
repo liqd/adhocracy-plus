@@ -18,9 +18,9 @@
         <div class="row">
             <div class="l-col-6-0">
                 <h1 class="u-no-margin marked-box">{{ organisation.title }}</h1>
-                <h2 class="u-no-margin organisation__slogan">{{ organisation.slogan }}</h2>
+                <h3 class="u-no-margin organisation__slogan">{{ organisation.slogan }}</h3>
             </div>
-            <div class="col-lg-5 offset-lg-1 organisation__description">
+            <div class="col-lg-4 offset-lg-2 organisation__description">
                 {{ organisation.description }}
             </div>
         </div>
@@ -40,7 +40,7 @@
 
             <aside class="l-col-4-8 aside">
                 <div class="aside__block">
-                    <h2 class="aside__block__title heading3">{% trans 'Activity' %}</h2>
+                    <h3 class="aside__block__title heading3">{% trans 'Activity' %}</h3>
                     <div>
                         {% for action in action_list %}
                             {% include 'a4_candy_actions/includes/action.html' with action=action %}
