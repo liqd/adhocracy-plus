@@ -115,10 +115,11 @@
         {% block other_modules %}{% endblock %}
 
     {% else %}
+    <div class="module-content">
         <div class="l-wrapper">
-            <div class="l-center-6">
+            <div class="l-center-10">
                 <h3>{{ module.name }}</h3>
-                <div class="alert alert-light" role="alert">
+                <div class="alert" role="alert">
                     <i class="fas fa-info-circle"></i>
                 {% trans 'During this event you can hand in questions with your smartphone' %}
                 </div>
@@ -128,5 +129,6 @@
                 <a class="btn btn--primary" href="{% url 'module-detail' module.project.organisation.slug module.slug %}">{% trans 'Go to event' %}</a>
             </div>
         </div>
+    </div>
     {% endif %}
 {% endblock %}
