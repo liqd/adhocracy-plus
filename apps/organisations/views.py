@@ -31,6 +31,7 @@ class OrganisationView(DetailView):
 
         context['action_list'] = Action.objects\
             .filter(project__organisation=self.object)\
+            .filter(project__is_archived=False) \
             .filter_public()\
             .exclude_updates()[:4]
 
