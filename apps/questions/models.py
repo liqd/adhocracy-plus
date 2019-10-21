@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AnonymousUser
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories.fields import CategoryField
 from adhocracy4.models.base import TimeStampedModel
@@ -38,13 +39,18 @@ class LikeQuerySet(models.QuerySet):
 
 
 class Question(AnonymousItem):
-    text = models.TextField(max_length=1000)
+    text = models.TextField(
+        max_length=1000,
+        verbose_name=_('Question')
+    )
     is_answered = models.BooleanField(default=False)
     is_on_shortlist = models.BooleanField(default=False)
     is_hidden = models.BooleanField(default=False)
     is_live = models.BooleanField(default=False)
 
-    category = CategoryField()
+    category = CategoryField(
+        verbose_name=_('Characteristic')
+    )
 
     objects = LikeQuerySet.as_manager()
 
