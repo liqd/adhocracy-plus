@@ -1,11 +1,15 @@
 .tile {
     display: flex;
     flex-direction: column;
-    margin: 0.5*$r-spacer 0.5*$r-spacer 0.5*$r-spacer 0.5*$r-spacer;
+    margin-bottom: $spacer;
     page-break-inside: avoid;
     overflow-wrap: break-word;
     background-color: $body-bg;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.tile__blueprint {
+    margin: 0.5*$spacer;
 }
 
 .tile__head {
