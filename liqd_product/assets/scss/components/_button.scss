@@ -284,3 +284,9 @@
         @extend .btn--secondary;
     }
 }
+
+@media screen and (max-width: $breakpoint-down) {
+    .btn {
+        font-size: $font-size-sm;
+    }
+}
