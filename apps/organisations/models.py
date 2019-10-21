@@ -79,7 +79,10 @@ class Organisation(models.Model):
                     'The imprint will be shown on a separate page.')
     )
     is_supporting = models.BooleanField(
-        default=False
+        default=False,
+        verbose_name=_('is a supporting organisation'),
+        help_text=_('For supporting organisations, the banner asking '
+                    'for donations is not displayed on their pages.')
     )
 
     def __str__(self):
