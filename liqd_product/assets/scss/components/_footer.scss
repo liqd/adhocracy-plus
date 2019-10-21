@@ -1,12 +1,14 @@
 .footer {
-    margin-bottom: $r-spacer;
+    border-top: 2px solid $brand-primary;
+
+    margin: $spacer 0 $spacer 0;
 
     @media screen and (min-width: $breakpoint) {
-        margin: 0 $r-spacer $r-spacer $r-spacer;
+        margin: 2*$spacer 0 $spacer 0;
     }
 
     @media screen and (min-width: $breakpoint-xl) {
-        margin: 0 2*$r-spacer 2*$r-spacer 2*$r-spacer;
+        margin: 3*$spacer 0 2*$spacer 0;
     }
 }
 
