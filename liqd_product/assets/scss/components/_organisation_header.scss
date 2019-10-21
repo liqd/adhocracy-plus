@@ -1,8 +1,7 @@
 .organisation-header__logo-box {
     display: inline-block;
-    margin-right: $spacer;
-    margin-bottom: -2em;
-    padding: $padding;
+    margin: $spacer $spacer (-$spacer) 0;
+    padding: 0.5*$padding;
     vertical-align: middle;
 
     background-color: $body-bg;
@@ -14,7 +13,7 @@
 
 .organisation-header__logo-img {
     display: block;
-    height: 2rem;
+    height: 3rem;
     width: auto;
 }
 
@@ -40,8 +39,8 @@
 }
 
 @media screen and (min-width: $breakpoint) {
-    .organisation-header__logo-img {
-        height: 3rem;
+    .organisation-header__logo-box {
+        padding: $padding;
     }
 
     .organisation-header__nav {
