@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-18 10:19+0200\n"
+"POT-Creation-Date: 2019-10-21 15:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2111,6 +2111,18 @@ msgstr ""
 "Please provide all the legally required information of your imprint. The "
 "imprint will be shown on a separate page."
 
+#: apps/organisations/models.py:83
+msgid "is a supporting organisation"
+msgstr "is a supporting organisation"
+
+#: apps/organisations/models.py:84
+msgid ""
+"For supporting organisations, the banner asking for donations is not "
+"displayed on their pages."
+msgstr ""
+"For supporting organisations, the banner asking for donations is not "
+"displayed on their pages."
+
 #: apps/organisations/templates/organisation_form.html:9
 msgid "Edit your organisation information"
 msgstr "Edit your organisation information"
@@ -2120,7 +2132,7 @@ msgid "Activity"
 msgstr "Activity"
 
 #: apps/organisations/templates/organisation_landing_page.html:48
-#: apps/users/templates/a4_candy_users/user_detail.html:122
+#: apps/users/templates/a4_candy_users/user_detail.html:124
 msgid "No activity yet. "
 msgstr "No activity yet. "
 
@@ -2551,7 +2563,7 @@ msgstr "Important dates"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Please enter correct email addresses, separated by commas."
 
-#: apps/users/forms.py:12 apps/users/forms.py:35
+#: apps/users/forms.py:12 apps/users/forms.py:36
 #: liqd_product/templates/email_base.html:63
 #: liqd_product/templates/email_base.txt:17
 #: liqd_product/templates/footer.html:39
@@ -2560,11 +2572,11 @@ msgstr "Please enter correct email addresses, separated by commas."
 msgid "Terms of use"
 msgstr "Terms of use"
 
-#: apps/users/forms.py:13 apps/users/forms.py:36
+#: apps/users/forms.py:13 apps/users/forms.py:37
 msgid "Please accept the terms of use."
 msgstr "Please accept the terms of use."
 
-#: apps/users/forms.py:39 apps/users/models.py:68
+#: apps/users/forms.py:40 apps/users/models.py:68
 msgid "Send me newsletters"
 msgstr "Send me newsletters"
 
@@ -2649,7 +2661,7 @@ msgstr ""
 "Your facebook name is the last part of the URL, when you access your profile."
 
 #: apps/users/models.py:101
-#: apps/users/templates/a4_candy_users/user_detail.html:61
+#: apps/users/templates/a4_candy_users/user_detail.html:63
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -2700,27 +2712,27 @@ msgstr "Participations"
 msgid "Activities"
 msgstr "Activities"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:67
+#: apps/users/templates/a4_candy_users/user_detail.html:69
 msgid "Facebook"
 msgstr "Facebook"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:73
+#: apps/users/templates/a4_candy_users/user_detail.html:75
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:80
+#: apps/users/templates/a4_candy_users/user_detail.html:82
 msgid "Active in these platforms"
 msgstr "Active in these platforms"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:93
+#: apps/users/templates/a4_candy_users/user_detail.html:95
 msgid "This user is not active in any platform yet."
 msgstr "This user is not active in any platform yet."
 
-#: apps/users/templates/a4_candy_users/user_detail.html:95
+#: apps/users/templates/a4_candy_users/user_detail.html:97
 msgid "Check some platforms out."
 msgstr "Check some platforms out."
 
-#: apps/users/templates/a4_candy_users/user_detail.html:110
+#: apps/users/templates/a4_candy_users/user_detail.html:112
 msgid "This user is not active in any projects yet."
 msgstr "This user is not active in any projects yet."
 
@@ -3145,15 +3157,15 @@ msgstr ""
 msgid "Skip to content "
 msgstr "Skip to content "
 
-#: liqd_product/templates/base.html:98
+#: liqd_product/templates/base.html:99
 msgid "adhocracy+ is funded by donations."
 msgstr "adhocracy+ is funded by donations."
 
-#: liqd_product/templates/base.html:100
+#: liqd_product/templates/base.html:101
 msgid "Donate now"
 msgstr "Donate now"
 
-#: liqd_product/templates/base.html:103
+#: liqd_product/templates/base.html:104
 msgid "Donate now to adhocracy+"
 msgstr "Donate now to adhocracy+"
 
