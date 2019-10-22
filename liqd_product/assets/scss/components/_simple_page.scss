@@ -1,6 +1,6 @@
 .richtext-image {
     display: block;
-    margin-bottom: $spacer;
+    margin-bottom: 2*$spacer;
     margin-left: auto;
     margin-right: auto;
 
@@ -10,5 +10,9 @@
 
     &.right {
         margin-right: 0;
+    }
+
+    @media screen and (max-width: $breakpoint-xs-down) {
+        margin-bottom: 0.5*$spacer;
     }
 }
