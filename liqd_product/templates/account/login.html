@@ -12,7 +12,7 @@
         {{ form.non_field_errors }}
         {% csrf_token %}
 
-        <div class="form-group form-group--narrow">
+        <div class="form-group">
             {% include 'a4_candy_contrib/includes/form_field.html' with field=form.login %}
             {% include 'a4_candy_contrib/includes/form_field.html' with field=form.password %}
             {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.remember %}
@@ -22,9 +22,13 @@
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
 
-        <div class="u-spacer-bottom">
+        <div class="row">
+            <div class="col-12 u-spacer-bottom">
             <button class="btn btn--primary" type="submit">{% trans "Login" %}</button>
+            </div>
+            <div class="col-12 u-spacer-bottom">
             <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+            </div>
         </div>
     </form>
 
