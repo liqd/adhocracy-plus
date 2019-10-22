@@ -4,6 +4,7 @@ import React from 'react'
 import QuestionList from './QuestionList'
 import InfoBox from './InfoBox'
 import Filters from './Filters'
+import StatisticsBox from './StatisticsBox'
 
 export default class QuestionBox extends React.Component {
   constructor (props) {
@@ -12,6 +13,7 @@ export default class QuestionBox extends React.Component {
     this.state = {
       questions: [],
       filteredQuestions: [],
+      answeredQuestions: [],
       category: '-1',
       categoryName: django.gettext('select category'),
       displayNotHiddenOnly: false,
@@ -82,11 +84,21 @@ export default class QuestionBox extends React.Component {
   filterQuestions (questions) {
     const filteredQuestions = []
     questions.forEach((item) => {
-      if (this.isInFilter(item)) {
+      if (this.isInFilter(item) && !item.is_answered) {
         filteredQuestions.push(item)
       }
     })
     return filteredQuestions
+  }
+
+  getAnsweredQuestions (questions) {
+    const answeredQuestions = []
+    questions.forEach((item) => {
+      if (item.is_answered) {
+        answeredQuestions.push(item)
+      }
+    })
+    return answeredQuestions
   }
 
   updateList () {
@@ -98,7 +110,7 @@ export default class QuestionBox extends React.Component {
   }
 
   getUrl () {
-    const url = this.props.questions_api_url + '?is_answered=0'
+    const url = this.props.questions_api_url
     if (this.state.orderedByLikes) {
       return url + '&ordering=-like_count'
     }
@@ -112,6 +124,7 @@ export default class QuestionBox extends React.Component {
         .then(data => this.setState({
           questions: data,
           filteredQuestions: this.filterQuestions(data),
+          answeredQuestions: this.getAnsweredQuestions(data),
           orderingChanged: false
         }))
     }
