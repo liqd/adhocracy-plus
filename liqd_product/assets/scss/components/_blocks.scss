@@ -15,6 +15,10 @@ $block-padding-md: 7.5*$padding;
     @extend .col-md-4;
     padding: $padding 0;
 
+    @media screen and (min-width: $breakpoint) {
+        padding: $padding;
+    }
+
     @media screen and (min-width: $breakpoint-xl) {
         padding: $padding $block-padding 0 $block-padding;
     }
@@ -168,10 +172,10 @@ $block-padding-md: 7.5*$padding;
         font-weight: normal;
         display: inline-block;
         position: relative;
+        margin: 1.5*$r-spacer 0;
 
         b {
             font-family: $font-family-base;
-            font-weight: bold;
         }
     }
 
@@ -262,6 +266,8 @@ $block-padding-md: 7.5*$padding;
 }
 
 .block-usecase {
+    padding-bottom: 2*$padding;
+
     @media screen and (min-width: $breakpoint) {
         padding-bottom: $block-padding;
     }
