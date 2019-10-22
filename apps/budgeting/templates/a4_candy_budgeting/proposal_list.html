@@ -22,8 +22,10 @@
 {% block phase_content %}
     <div class="l-top-overlap">
         <div class="l-wrapper">
-            <div class="l-center-8">
-                {% include "a4_candy_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
+            <div class="row">
+                <div class="l-center-8">
+                    {% include "a4_candy_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
+                </div>
             </div>
         </div>
     </div>
@@ -42,18 +44,20 @@
     {% else %}
         <div class="module-content">
             <div class="l-wrapper">
-                <div class="l-center-8">
-                    {% if object_list.count > 0 %}
-                        <ul class="u-list-reset">
-                            {% for object in object_list %}
-                                {% include "a4_candy_budgeting/includes/proposal_list_item.html" with object=object %}
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        {% trans "Nothing to show" %}
-                    {% endif %}
+                <div class="row">
+                    <div class="l-center-8">
+                        {% if object_list.count > 0 %}
+                            <ul class="u-list-reset">
+                                {% for object in object_list %}
+                                    {% include "a4_candy_budgeting/includes/proposal_list_item.html" with object=object %}
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            {% trans "Nothing to show" %}
+                        {% endif %}
 
-                    {% include "a4_candy_contrib/includes/pagination.html" %}
+                        {% include "a4_candy_contrib/includes/pagination.html" %}
+                    </div>
                 </div>
             </div>
         </div>

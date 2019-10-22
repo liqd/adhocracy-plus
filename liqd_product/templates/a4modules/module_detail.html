@@ -36,64 +36,70 @@
             {% endif %}
             </div>
         {% endif %}
-        <div class="l-center-6 project-header">
-            <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
-                <ul>
-                    <li>
-                        <a href="{{ project.get_absolute_url }}">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                            {{ project.name }}
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            {% block module_description %}
-            <h1 class="project-header__title">{{ module.name }}</h1>
-            <p class="project-header__description">{{ module.description }}</p>
-            {% endblock %}
+        <div class="row">
+            <div class="l-center-6 project-header">
+                <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
+                    <ul>
+                        <li>
+                            <a href="{{ project.get_absolute_url }}">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                {{ project.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                {% block module_description %}
+                <h1 class="project-header__title">{{ module.name }}</h1>
+                <p class="project-header__description">{{ module.description }}</p>
+                {% endblock %}
 
+            </div>
         </div>
         {% block phase_info %}
         {% if not module.active_phase %}
-        <div class="l-center-6 u-spacer-bottom">
-            <strong>
-                {% trans 'Participation is not possible at the moment.' %}
-                {% if not module.past_phases %}
-                    {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                    {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
-                {% elif module.future_phases %}
-                    {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                    {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
-                {% else %}
-                    {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
-                    {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
-                {% endif %}
-            </strong>
+        <div class="row">
+            <div class="l-center-6 u-spacer-bottom">
+                <strong>
+                    {% trans 'Participation is not possible at the moment.' %}
+                    {% if not module.past_phases %}
+                        {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                        {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                    {% elif module.future_phases %}
+                        {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                        {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                    {% else %}
+                        {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
+                        {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                    {% endif %}
+                </strong>
+            </div>
         </div>
         {% endif %}
         {% with phase_count=module.phases.count %}
-        <div class="l-center-6">
-            {% for phase in module.phases %}
-                {% if phase.is_over or phase == module.active_phase %}
-                <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
-                    <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
-                        {% if phase == module.active_phase %}
-                            <span class="lr-bar__left">{{ phase.name }}</span>
-                            <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
-                        {% else %}
-                            {{ phase.name }}
-                        {% endif %}
+        <div class="row">
+            <div class="l-center-6">
+                {% for phase in module.phases %}
+                    {% if phase.is_over or phase == module.active_phase %}
+                    <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
+                        <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
+                            {% if phase == module.active_phase %}
+                                <span class="lr-bar__left">{{ phase.name }}</span>
+                                <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
+                            {% else %}
+                                {{ phase.name }}
+                            {% endif %}
+                        </div>
+                        <div class="phase-info__item__subtitle">
+                            {% html_date phase.start_date 'DATETIME_FORMAT' %}
+                            &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
+                        </div>
+                        <div class="phase-info__item__description">
+                            {{ phase.description }}
+                        </div>
                     </div>
-                    <div class="phase-info__item__subtitle">
-                        {% html_date phase.start_date 'DATETIME_FORMAT' %}
-                        &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
-                    </div>
-                    <div class="phase-info__item__description">
-                        {{ phase.description }}
-                    </div>
-                </div>
-                {% endif %}
-            {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
             {% endwith %}
         {% endblock %}
@@ -101,8 +107,10 @@
     </div>
     <div>
         <div class="l-wrapper">
-            <div class="l-center-6">
-            {% block project_action %}{% endblock %}
+            <div class="row">
+                <div class="l-center-6">
+                {% block project_action %}{% endblock %}
+                </div>
             </div>
         </div>
         {% block phase_content %}{% endblock %}

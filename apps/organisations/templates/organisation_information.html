@@ -5,9 +5,11 @@
 
 {% block content %}
 <div class="l-wrapper">
-    <div class="l-center-8">
-        <h1>{% trans 'Information' %}</h1>
-        {{ organisation.information|richtext }}
+    <div class="row">
+        <div class="l-center-8">
+            <h1>{% trans 'Information' %}</h1>
+            {{ organisation.information|richtext }}
+        </div>
     </div>
 </div>
 {% endblock %}
