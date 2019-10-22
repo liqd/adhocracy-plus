@@ -5,9 +5,11 @@
 
 {% block content %}
 <div class="l-wrapper">
-    <div class="l-center-6">
-        <h1>{% trans 'Imprint' %}</h1>
-        {{ organisation.imprint|richtext }}
+    <div class="row">
+        <div class="l-center-6">
+            <h1>{% trans 'Imprint' %}</h1>
+            {{ organisation.imprint|richtext }}
+        </div>
     </div>
 </div>
 {% endblock %}

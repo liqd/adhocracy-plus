@@ -5,10 +5,12 @@
 
 {% block content %}
 <div class="l-wrapper py-5">
-    <div class="l-center-6">
-        <h1>{% block error_status %}{% endblock %}</h1>
-        <p class="u-font-size-lg">{% block error_description %}{% endblock %}</p>
-        <a href="/">{% trans 'Back to adhocracy+' %}</a>
+    <div class="row">
+        <div class="l-center-6">
+            <h1>{% block error_status %}{% endblock %}</h1>
+            <p class="u-font-size-lg">{% block error_description %}{% endblock %}</p>
+            <a href="/">{% trans 'Back to adhocracy+' %}</a>
+        </div>
     </div>
 </div>
 {% endblock %}

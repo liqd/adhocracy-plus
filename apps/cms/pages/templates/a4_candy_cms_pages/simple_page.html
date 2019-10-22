@@ -6,9 +6,11 @@
 
 {% block content %}
     <div class="l-wrapper">
-        <div class="l-center-8">
-            <h1 class="cms-title">{{ page.title }}</h1>
-            {{ page.body|richtext }}
+        <div class="row">
+            <div class="l-center-8">
+                <h1 class="cms-title">{{ page.title }}</h1>
+                {{ page.body|richtext }}
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -5,32 +5,38 @@
 
 {% block content %}
 <div class="l-wrapper u-bg-secondary">
-    <div class="l-center-6">
-        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
-            <ul>
-                <li class="u-move-element-down-after-header">
-                    <a href="{{ paragraph.chapter.get_absolute_url }}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'back to chapter' %}</a>
-                </li>
-            </ul>
-        </nav>
+    <div class="row">
+        <div class="l-center-6">
+            <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+                <ul>
+                    <li class="u-move-element-down-after-header">
+                        <a href="{{ paragraph.chapter.get_absolute_url }}">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            {% trans 'back to chapter' %}</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 <div class="l-wrapper">
-    <div class="l-center-6">
-        <article class="item-detail item-detail--bottom-divider">
-            <h1 class="item-detail__title">
-                {{ paragraph.name }}
-            </h1>
-            <div class="item-detail__content">
-                {{ paragraph.text | richtext }}
-            </div>
-        </article>
+    <div class="row">
+        <div class="l-center-6">
+            <article class="item-detail item-detail--bottom-divider">
+                <h1 class="item-detail__title">
+                    {{ paragraph.name }}
+                </h1>
+                <div class="item-detail__content">
+                    {{ paragraph.text | richtext }}
+                </div>
+            </article>
+        </div>
     </div>
 
-    <div class="l-center-6">
-        {% react_comments paragraph %}
+    <div class="row">
+        <div class="l-center-6">
+            {% react_comments paragraph %}
+        </div>
     </div>
 </div>
 {% endblock %}

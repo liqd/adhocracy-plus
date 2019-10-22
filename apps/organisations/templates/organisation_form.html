@@ -5,25 +5,27 @@
 
 {% block content %}
 <div class="l-wrapper">
-    <div class="l-center-8">
-        <h1>{% trans "Edit your organisation information" %}</h1>
+    <div class="row">
+        <div class="l-center-8">
+            <h1>{% trans "Edit your organisation information" %}</h1>
 
-        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
-            {% csrf_token %}
-            <h2>{{ object.name }}</h2>
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.title %}
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.logo %}
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.description %}
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.slogan %}
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.image %}
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.information %}
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.imprint %}
+            <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+                {% csrf_token %}
+                <h2>{{ object.name }}</h2>
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.title %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.logo %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.description %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.slogan %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.image %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.information %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.imprint %}
 
-            <div class="u-spacer-bottom">
-                <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
-            </div>
-        </form>
-        {{ form.media }}
+                <div class="u-spacer-bottom">
+                    <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
+                </div>
+            </form>
+            {{ form.media }}
+        </div>
     </div>
 </div>
 {% endblock %}

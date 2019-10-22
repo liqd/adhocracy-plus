@@ -22,25 +22,27 @@
                    background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                    {% endif %}">
         <div class="l-wrapper">
-            <div class="l-center-6">
-                {% with container=project.containers.first %}
-                    {% if container %}
-                        <a href="{{ container.get_absolute_url }}" class="project-header__link" data-embed-target="external">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                            {% blocktrans with name=container.name %}to project collection {{ name }}{% endblocktrans %}
-                        </a>
+            <div class="row">
+                <div class="l-center-6">
+                    {% with container=project.containers.first %}
+                        {% if container %}
+                            <a href="{{ container.get_absolute_url }}" class="project-header__link" data-embed-target="external">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                {% blocktrans with name=container.name %}to project collection {{ name }}{% endblocktrans %}
+                            </a>
+                        {% endif %}
+                    {% endwith %}
+                    <h1 class="project-header__title">{{ project.name }}</h1>
+                    <p class="project-header__description">{{ project.description }}</p>
+                    {% if request.user.is_authenticated %}
+                        {% react_follows project %}
                     {% endif %}
-                {% endwith %}
-                <h1 class="project-header__title">{{ project.name }}</h1>
-                <p class="project-header__description">{{ project.description }}</p>
-                {% if request.user.is_authenticated %}
-                    {% react_follows project %}
+                </div>
+                {% if project.image_copyright %}
+                <div class="project-header__copyright copyright">© {{ project.image_copyright }}</div>
                 {% endif %}
             </div>
         </div>
-        {% if project.image_copyright %}
-            <div class="project-header__copyright copyright">© {{ project.image_copyright }}</div>
-        {% endif %}
     </div>
 
     <div class="tablist tablist--left">
@@ -94,30 +96,32 @@
         aria-labelledby="tab-project-{{ project.pk }}-information"
         aria-expanded="false">
         <div class="l-wrapper">
-            <div class="l-center-8">
-                {{ project.information | transform_collapsibles | richtext }}
-                {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
-                    <h3 class="u-top-divider">{% trans 'Contact for questions' %}</h3>
-                    {% if project.contact_name %}
-                    <p>{{ project.contact_name }}</p>
+            <div class="row">
+                <div class="l-center-8">
+                    {{ project.information | transform_collapsibles | richtext }}
+                    {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
+                        <h3 class="u-top-divider">{% trans 'Contact for questions' %}</h3>
+                        {% if project.contact_name %}
+                        <p>{{ project.contact_name }}</p>
+                        {% endif %}
+                        {% if project.contact_address_text %}
+                        <p>{{ project.contact_address_text|linebreaks }}</p>
+                        {% endif %}
+                        {% if project.contact_phone %}
+                        <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
+                        {% endif %}
+                        {% if project.contact_email %}
+                        <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
+                            {% trans 'Email' %}
+                        </a>
+                        {% endif %}
+                        {% if project.contact_url %}
+                        <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
+                            {% trans 'Website' %}
+                        </a>
+                        {% endif %}
                     {% endif %}
-                    {% if project.contact_address_text %}
-                    <p>{{ project.contact_address_text|linebreaks }}</p>
-                    {% endif %}
-                    {% if project.contact_phone %}
-                    <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
-                    {% endif %}
-                    {% if project.contact_email %}
-                    <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
-                        {% trans 'Email' %}
-                    </a>
-                    {% endif %}
-                    {% if project.contact_url %}
-                    <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
-                        {% trans 'Website' %}
-                    </a>
-                    {% endif %}
-                {% endif %}
+                </div>
             </div>
         </div>
     </div>
@@ -135,9 +139,11 @@
         </div>
         <div class="l-wrapper">
             {% if event %}
-            <div class="l-center-6">
-                <h2>{{ event.name }}</h2>
-                <P>{{ event.description | safe}}</P>
+            <div class="row">
+                <div class="l-center-6">
+                    <h2>{{ event.name }}</h2>
+                    <P>{{ event.description | safe}}</P>
+                </div>
             </div>
 
             {% elif view.is_project_view %}
@@ -153,45 +159,49 @@
 
             {% else %} <!-- if no timeline and just one module and no phase view to dispatch to -->
                 {% if not module.active_phase %}
-                <div class="l-center-6">
-                    <strong>
-                        {% trans 'Participation is not possible at the moment.' %}
-                        {% if not module.past_phases %}
-                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                            {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
-                        {% elif module.future_phases %}
-                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                            {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
-                        {% else %}
-                            {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
-                            {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
-                        {% endif %}
-                    </strong>
+                <div class="row">
+                    <div class="l-center-6">
+                        <strong>
+                            {% trans 'Participation is not possible at the moment.' %}
+                            {% if not module.past_phases %}
+                                {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                                {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                            {% elif module.future_phases %}
+                                {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                                {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                            {% else %}
+                                {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
+                                {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                            {% endif %}
+                        </strong>
+                    </div>
                 </div>
                 {% endif %}
                 {% with phase_count=module.phases.count %}
-                <div class="l-center-6">
-                    {% for phase in module.phases %}
-                        {% if phase.is_over or phase == module.active_phase %}
-                        <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
-                            <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
-                                {% if phase == module.active_phase %}
-                                    <span class="lr-bar__left">{{ phase.name }}</span>
-                                    <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
-                                {% else %}
-                                    {{ phase.name }}
-                                {% endif %}
+                <div class="row">
+                    <div class="l-center-6">
+                        {% for phase in module.phases %}
+                            {% if phase.is_over or phase == module.active_phase %}
+                            <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
+                                <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
+                                    {% if phase == module.active_phase %}
+                                        <span class="lr-bar__left">{{ phase.name }}</span>
+                                        <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
+                                    {% else %}
+                                        {{ phase.name }}
+                                    {% endif %}
+                                </div>
+                                <div class="phase-info__item__subtitle">
+                                    {% html_date phase.start_date 'DATETIME_FORMAT' %}
+                                    &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
+                                </div>
+                                <div class="phase-info__item__description">
+                                    {{ phase.description }}
+                                </div>
                             </div>
-                            <div class="phase-info__item__subtitle">
-                                {% html_date phase.start_date 'DATETIME_FORMAT' %}
-                                &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
-                            </div>
-                            <div class="phase-info__item__description">
-                                {{ phase.description }}
-                            </div>
-                        </div>
-                        {% endif %}
-                    {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
                 {% endwith %}
             {% endif %}
@@ -210,12 +220,14 @@
         aria-labelledby="tab-project-{{ project.pk }}-result"
         aria-expanded="false">
         <div class="l-wrapper">
-            <div class="l-center-8">
-                {% if project.result %}
-                    {{ project.result | richtext }}
-                {% else %}
-                    {% trans 'No results yet.' %}
-                {% endif %}
+            <div class="row">
+                <div class="l-center-8">
+                    {% if project.result %}
+                        {{ project.result | richtext }}
+                    {% else %}
+                        {% trans 'No results yet.' %}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
