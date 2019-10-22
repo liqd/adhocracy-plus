@@ -162,32 +162,126 @@ export default class QuestionBox extends React.Component {
   render () {
     return (
       <div>
-        <Filters
-          categories={this.props.categories}
-          currentCategory={this.state.category}
-          currentCategoryName={this.state.categoryName}
-          setCategories={this.setCategory.bind(this)}
-          orderedByLikes={this.state.orderedByLikes}
-          toggleOrdering={this.toggleOrdering.bind(this)}
-          displayOnShortlist={this.state.displayOnShortlist}
-          displayNotHiddenOnly={this.state.displayNotHiddenOnly}
-          toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
-          toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
-          isModerator={this.props.isModerator}
-        />
-        <InfoBox
-          isModerator={this.props.isModerator}
-        />
+        <div className="tablist tablist--left">
+          <div className="l-wrapper">
+            <nav className="nav">
+              <a
+                id="tab-information"
+                className="tab"
+                data-toggle="tab"
+                href="#tabpanel-information"
+                role="tab"
+                aria-controls="tabpanel-information"
+                aria-expanded="false"
+              >
+                {django.gettext('Information')}
+              </a>
+              <a
+                id="tab-questions"
+                className="tab active"
+                data-toggle="tab"
+                href="#tabpanel-questions"
+                role="tab"
+                aria-controls="tabpanel-questions"
+                aria-expanded="true"
+              >
+                {django.gettext('Questions')}
+              </a>
+              <a
+                id="tab-statistics"
+                className="tab"
+                data-toggle="tab"
+                href="#tabpanel-statistics"
+                role="tab"
+                aria-controls="tabpanel-statistics"
+                aria-expanded="false"
+              >
+                {django.gettext('Statistics')}
+              </a>
+            </nav>
+          </div>
+        </div>
+        <div
+          className="tabpanel"
+          id="tabpanel-information"
+          role="tabpanel"
+          aria-labelledby="tab-information"
+          aria-expanded="false"
+        >
+          <div className="l-wrapper">
+            <div className="l-center-8">
+              {this.props.information}
+            </div>
+          </div>
+        </div>
 
-        <QuestionList
-          questions={this.state.filteredQuestions}
-          removeFromList={this.removeFromList.bind(this)}
-          updateQuestion={this.updateQuestion.bind(this)}
-          handleLike={this.handleLike.bind(this)}
-          isModerator={this.props.isModerator}
-          togglePollingPaused={this.togglePollingPaused.bind(this)}
-          hasLikingPermission={this.props.hasLikingPermission}
-        />
-      </div>)
+        <div
+          className="tabpanel active"
+          id="tabpanel-questions"
+          role="tabpanel"
+          aria-labelledby="tab-questions"
+          aria-expanded="true"
+        >
+          <div className="container">
+            <div className="row mb-5">
+              <div className="col-12">
+                <Filters
+                  categories={this.props.categories}
+                  currentCategory={this.state.category}
+                  currentCategoryName={this.state.categoryName}
+                  setCategories={this.setCategory.bind(this)}
+                  orderedByLikes={this.state.orderedByLikes}
+                  toggleOrdering={this.toggleOrdering.bind(this)}
+                  displayOnShortlist={this.state.displayOnShortlist}
+                  displayNotHiddenOnly={this.state.displayNotHiddenOnly}
+                  toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
+                  toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
+                  isModerator={this.props.isModerator}
+                />
+                <InfoBox
+                  isModerator={this.props.isModerator}
+                />
+                <QuestionList
+                  questions={this.state.filteredQuestions}
+                  removeFromList={this.removeFromList.bind(this)}
+                  updateQuestion={this.updateQuestion.bind(this)}
+                  handleLike={this.handleLike.bind(this)}
+                  isModerator={this.props.isModerator}
+                  togglePollingPaused={this.togglePollingPaused.bind(this)}
+                  hasLikingPermission={this.props.hasLikingPermission}
+                />
+                {this.props.hasAskQuestionsPermission &&
+                  <a
+                    href={this.props.askQuestionUrl}
+                    className="btn btn--primary btn--full btn--huge question-list-button mb-4"
+                    id="question-create"
+                  >
+                    <i className="fa fa-plus question-list-button-icon" aria-hidden="true" />
+                    {django.gettext('Add Question')}
+                  </a>}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="tabpanel"
+          id="tabpanel-statistics"
+          role="tabpanel"
+          aria-labelledby="tab-statistics"
+          aria-expanded="false"
+        >
+          <div className="l-wrapper">
+            <div className="l-center-8">
+              <StatisticsBox
+                answeredQuestions={this.state.answeredQuestions}
+                questions_api_url={this.props.questions_api_url}
+                categories={this.props.categories}
+                isModerator={this.props.isModerator}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 }
