@@ -1,4 +1,3 @@
-/* global fetch */
 import django from 'django'
 import { updateItem } from './helpers.js'
 import React from 'react'
@@ -8,52 +7,14 @@ import QuestionModerator from './QuestionModerator'
 export default class StatisticsBox extends React.Component {
   constructor (props) {
     super(props)
-
-    this.state = {
-      answeredQuestions: [],
-      hiddenQuestions: [],
-      combinedQuestions: [],
-      pollingPaused: false
-    }
+    this.state = { answeredQuestions: props.answeredQuestions }
   }
 
-  fetchAnsweredQuestions () {
-    const url = this.props.questions_api_url + '?is_answered=1'
-    return fetch(url).then((response) => response.json())
-  }
-
-  /* fetchHiddenAnswers () {
-    const url = this.props.questions_api_url + '?is_hidden=1'
-    return fetch (url).then((response) => response.json())
-  } */
-
-  fetchProcessedQuestions () {
-    return Promise.all([this.fetchAnsweredQuestions()])
-  }
-
-  /* getCombinedList (answeredQuestions, hiddenQuestions) {
-   if (this.props.isModerator) {
-     return answeredQuestions.concat(hiddenQuestions)
-   } else {
-     return answeredQuestions
-   }
-  } */
-
-  getItems () {
-    if (!this.state.pollingPaused) {
-      this.fetchProcessedQuestions().then(([answeredQuestions]) => {
-        this.setState({
-          answeredQuestions: answeredQuestions,
-          combinedQuestions: answeredQuestions
-        })
-      })
-    }
+  componentWillReceiveProps (props) {
+    this.setState({ answeredQuestions: props.answeredQuestions })
   }
 
   updateQuestion (data, id) {
-    this.setState({
-      pollingPaused: true
-    })
     const url = this.props.questions_api_url + id + '/'
     return updateItem(data, url, 'PATCH')
   }
@@ -61,31 +22,14 @@ export default class StatisticsBox extends React.Component {
   removeFromList (id, data) {
     this.updateQuestion(data, id)
       .then(response => this.setState(prevState => ({
-        combinedQuestions: prevState.combinedQuestions.filter(question => question.id !== id),
-        pollingPaused: false
+        answeredQuestions: prevState.answeredQuestions.filter(question => question.id !== id)
       })))
-  }
-
-  togglePollingPaused () {
-    const pollingPaused = !this.state.pollingPaused
-    this.setState({
-      pollingPaused: pollingPaused
-    })
-  }
-
-  componentDidMount () {
-    this.getItems()
-    this.timer = setInterval(() => this.getItems(), 5000)
-  }
-
-  componentWillUnmount () {
-    this.timer = null
   }
 
   countCategory (category) {
     let countPerCategory = 0
     let answeredQuestions = 0
-    this.state.answeredQuestions.forEach(function (question) {
+    this.props.answeredQuestions.forEach(function (question) {
       if (question.is_answered && !question.is_hidden) {
         answeredQuestions++
         if (question.category === category) {
@@ -124,13 +68,13 @@ export default class StatisticsBox extends React.Component {
         {this.props.isModerator
           ? (
             <div className="list-group mt-md-4">
-              {this.state.combinedQuestions.map((question, index) => {
+              {this.state.answeredQuestions.map((question, index) => {
                 return (
                   <QuestionModerator
                     updateQuestion={this.updateQuestion.bind(this)}
                     displayIsOnShortlist={false}
                     displayIsLive={false}
-                    displayIsHidden={question.is_hidden}
+                    displayIsHidden={false}
                     displayIsAnswered={question.is_answered}
                     removeFromList={this.removeFromList.bind(this)}
                     key={question.id}
@@ -150,7 +94,7 @@ export default class StatisticsBox extends React.Component {
           )
           : (
             <div className="list-group mt-3 mt-md-4">
-              {this.state.combinedQuestions.map((question, index) => {
+              {this.state.answeredQuestions.map((question, index) => {
                 return (
                   <QuestionUser
                     key={question.id}
