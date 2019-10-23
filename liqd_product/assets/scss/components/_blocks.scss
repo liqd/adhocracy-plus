@@ -122,12 +122,12 @@ $block-padding-md: 7.5*$padding;
     .block-img-col__image {
         width: 100%;
         position: relative;
-        right: 2*-$r-spacer;
+        right: -$spacer;
         margin-top: $r-spacer;
 
-        @media screen and (min-width: $breakpoint-xl) {
-            margin-top: 2*$r-spacer;
-            right: 3*-$r-spacer;
+        @media screen and (min-width: $breakpoint-xxl) {
+            margin-top: 2*$spacer;
+            right: 3*-$spacer;
         }
     }
 }
