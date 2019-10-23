@@ -73,6 +73,10 @@ div.cke_focus {
     margin-bottom: $spacer;
 }
 
+.form-check {
+    padding-left: 0;
+}
+
 .form-check,
 .form-group {
     margin: 0 0 $spacer;
@@ -95,7 +99,9 @@ div.cke_focus {
 }
 
 .form-group--narrow {
-    @include grid-width(9);
+    .btn--append {
+        line-height: 1.2;
+    }
 }
 
 .form-check__label {
