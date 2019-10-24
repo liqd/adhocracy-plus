@@ -227,7 +227,7 @@ class Command(BaseCommand):
             organisation=organisation,
             phone='01234567',
             receiver=[self.user],
-            template_name='liqd_product_initiators/emails/initiator_request'
+            template_name='adhocracy-plus_initiators/emails/initiator_request'
         )
 
     def _send_form_mail(self):
@@ -247,5 +247,5 @@ class Command(BaseCommand):
             emailformpage,
             field_values=fields,
             receiver=[self.user],
-            template_name='liqd_product_cms/emails/form_submission'
+            template_name='adhocracy-plus_cms/emails/form_submission'
         )

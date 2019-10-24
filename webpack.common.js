@@ -6,12 +6,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
   entry: {
     adhocracy4: [
-      './liqd_product/assets/scss/style.scss',
-      './liqd_product/assets/extra_css/_slick-theme.css',
-      './liqd_product/assets/js/app.js'
+      './adhocracy-plus/assets/scss/style.scss',
+      './adhocracy-plus/assets/extra_css/_slick-theme.css',
+      './adhocracy-plus/assets/js/app.js'
     ],
     platform: [
-      './liqd_product/assets/scss/platform.scss'
+      './adhocracy-plus/assets/scss/platform.scss'
     ],
     vendor: [
       'classnames',
@@ -51,20 +51,20 @@ module.exports = {
       './apps/maps/assets/map_choose_polygon_with_preset.js'
     ],
     datepicker: [
-      './liqd_product/assets/js/init-picker.js',
+      './adhocracy-plus/assets/js/init-picker.js',
       'datepicker/css/datepicker.min.css'
     ],
     embed: [
-      './liqd_product/assets/js/embed.js'
+      './adhocracy-plus/assets/js/embed.js'
     ],
     'popup-close': [
-      './liqd_product/assets/js/popup-close.js'
+      './adhocracy-plus/assets/js/popup-close.js'
     ]
   },
   output: {
     libraryTarget: 'this',
     library: '[name]',
-    path: path.resolve('./liqd_product/static/'),
+    path: path.resolve('./adhocracy-plus/static/'),
     publicPath: '/static/',
     filename: '[name].js'
   },
@@ -150,7 +150,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {
-        from: './liqd_product/assets/images/**/*',
+        from: './adhocracy-plus/assets/images/**/*',
         to: 'images/',
         flatten: true
       }
