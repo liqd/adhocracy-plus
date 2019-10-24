@@ -46,10 +46,10 @@ router.register(r'polls', PollViewSet, basename='polls')
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
 module_router.register(r'documents', DocumentViewSet, basename='chapters')
-module_router.register(r'questions', QuestionViewSet, base_name='questions')
+module_router.register(r'questions', QuestionViewSet, basename='questions')
 
 likes_router = LikesDefaultRouter()
-likes_router.register(r'likes', LikesViewSet, base_name='likes')
+likes_router.register(r'likes', LikesViewSet, basename='likes')
 
 orga_router = a4routers.OrganisationDefaultRouter()
 
