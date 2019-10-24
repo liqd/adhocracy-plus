@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-21 15:05+0200\n"
+"POT-Creation-Date: 2019-10-24 16:39+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,7 +104,6 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: apps/documents/assets/ChapterNavItem.jsx:61
 #: apps/documents/assets/ParagraphForm.jsx:133
 #: apps/documents/assets/ParagraphForm.jsx:138
-#: apps/polls/assets/QuestionForm.jsx:99 apps/polls/assets/QuestionForm.jsx:104
 msgid "Delete"
 msgstr "Löschen"
 
@@ -216,7 +215,6 @@ msgstr "Speichern"
 
 #: adhocracy4/polls/static/polls/Question.jsx:9
 #: adhocracy4/polls/static/polls/Question.jsx:9
-#: apps/polls/assets/Question.jsx:173
 msgid "Your choice"
 msgstr "Ihre Wahl"
 
@@ -251,19 +249,16 @@ msgstr "Bitte melden Sie sich zum Abstimmen an."
 
 #: adhocracy4/polls/static/polls/Question.jsx:139
 #: adhocracy4/polls/static/polls/Question.jsx:139
-#: apps/polls/assets/Question.jsx:138
 msgid "To poll"
 msgstr "Zur Umfrage"
 
 #: adhocracy4/polls/static/polls/Question.jsx:141
 #: adhocracy4/polls/static/polls/Question.jsx:141
-#: apps/polls/assets/Question.jsx:141
 msgid "Change vote"
 msgstr "Stimme ändern"
 
 #: adhocracy4/polls/static/polls/Question.jsx:144
 #: adhocracy4/polls/static/polls/Question.jsx:144
-#: apps/polls/assets/Question.jsx:145
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
@@ -289,7 +284,6 @@ msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
-#: apps/polls/assets/QuestionForm.jsx:67
 msgid "Add a new choice"
 msgstr "Neue Antwort"
 
@@ -299,7 +293,6 @@ msgstr "Neue Antwort"
 #: apps/documents/assets/ChapterNavItem.jsx:37
 #: apps/documents/assets/ParagraphForm.jsx:110
 #: apps/documents/assets/ParagraphForm.jsx:115
-#: apps/polls/assets/QuestionForm.jsx:76 apps/polls/assets/QuestionForm.jsx:81
 msgid "Move up"
 msgstr "nach oben"
 
@@ -309,7 +302,6 @@ msgstr "nach oben"
 #: apps/documents/assets/ChapterNavItem.jsx:49
 #: apps/documents/assets/ParagraphForm.jsx:122
 #: apps/documents/assets/ParagraphForm.jsx:127
-#: apps/polls/assets/QuestionForm.jsx:88 apps/polls/assets/QuestionForm.jsx:93
 msgid "Move down"
 msgstr "nach unten"
 
@@ -335,10 +327,9 @@ msgid "Send Report"
 msgstr "Meldung senden"
 
 #: adhocracy4/static/Alert.jsx:5
-#: apps/contrib/assets/Alert.jsx:10 apps/contrib/assets/Alert.jsx:11
 #: apps/contrib/static/js/ajax_modal.js:8
 #: apps/maps/assets/map_choose_polygon_with_preset.js:82
-#: liqd_product/assets/js/embed.js:30 liqd_product/assets/js/embed.js:31
+#: adhocracy-plus/assets/js/embed.js:30 adhocracy-plus/assets/js/embed.js:31
 msgid "Close"
 msgstr "Schließen"
 
@@ -502,10 +493,26 @@ msgstr "Information schließen"
 msgid "Open information"
 msgstr "Information öffnen"
 
-#: apps/questions/assets/QuestionBox.jsx:16
-#: apps/questions/assets/QuestionBox.jsx:45
+#: apps/questions/assets/QuestionBox.jsx:18
+#: apps/questions/assets/QuestionBox.jsx:47
 msgid "select category"
 msgstr "Merkmal auswählen"
+
+#: apps/questions/assets/QuestionBox.jsx:177
+msgid "Information"
+msgstr ""
+
+#: apps/questions/assets/QuestionBox.jsx:188
+msgid "Questions"
+msgstr ""
+
+#: apps/questions/assets/QuestionBox.jsx:199
+msgid "Statistics"
+msgstr ""
+
+#: apps/questions/assets/QuestionBox.jsx:260
+msgid "Add Question"
+msgstr ""
 
 #: apps/questions/assets/QuestionModerator.jsx:97
 msgid "mark as hidden"
@@ -552,23 +559,23 @@ msgstr "positiv bewerten"
 msgid "undo like"
 msgstr "positive Bewertung zurück nehmen"
 
-#: apps/questions/assets/StatisticsBox.jsx:100
+#: apps/questions/assets/StatisticsBox.jsx:44
 msgid "Questions Answered"
 msgstr "Beantwortete Fragen"
 
-#: liqd_product/assets/js/embed.js:83
+#: adhocracy-plus/assets/js/embed.js:83
 msgid "We couldn't find what you were looking for."
 msgstr "Wir konnten diese Seite nicht finden."
 
-#: liqd_product/assets/js/embed.js:87
+#: adhocracy-plus/assets/js/embed.js:87
 msgid "You don't have the permission to view this page."
 msgstr "Sie haben nicht die nötigen Rechte, um diese Seite anzuschauen."
 
-#: liqd_product/assets/js/embed.js:90
+#: adhocracy-plus/assets/js/embed.js:90
 msgid "Something went wrong!"
 msgstr "Etwas ging schief!"
 
-#: liqd_product/assets/js/embed.js:189
+#: adhocracy-plus/assets/js/embed.js:189
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
@@ -576,11 +583,11 @@ msgstr ""
 "Sie haben Third Party Cookies deaktiviert. Sie können sich dieses Projekt "
 "zwar anschauen, werden sich aber nicht anmelden können."
 
-#: liqd_product/assets/js/map-address.js:89
+#: adhocracy-plus/assets/js/map-address.js:89
 msgid "No matches found within the project area"
 msgstr "Keine Treffer im Bereich des Projekts gefunden"
 
-#: liqd_product/assets/js/map-address.js:92
+#: adhocracy-plus/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Meinten Sie:"
 
