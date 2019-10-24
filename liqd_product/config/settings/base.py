@@ -92,7 +92,6 @@ INSTALLED_APPS = (
     'apps.newsletters',
     'apps.notifications',
     'apps.organisations',
-    'apps.partners',
     'apps.questions',
     'apps.users',
 
