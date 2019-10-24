@@ -11,6 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "liqd_product.config.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE",
+                      "adhocracy-plus.config.settings")
 
 application = get_wsgi_application()
