@@ -1,7 +1,7 @@
 /* global django */
 import { createMap } from 'a4maps_common'
 import 'leaflet-draw'
-import '../../../liqd_product/assets/js/i18n-leaflet-draw'
+import '../../../adhocracy-plus/assets/js/i18n-leaflet-draw'
 import { FileSaver } from 'file-saver'
 import { shp } from 'shpjs'
 

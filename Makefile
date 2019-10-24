@@ -46,9 +46,9 @@ clean:
 
 .PHONY: fixtures
 fixtures:
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata liqd_product/fixtures/site-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata liqd_product/fixtures/users-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata liqd_product/fixtures/orga-dev.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata adhocracy-plus/fixtures/site-dev.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata adhocracy-plus/fixtures/users-dev.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata adhocracy-plus/fixtures/orga-dev.json
 
 .PHONY: server
 server:
@@ -111,7 +111,7 @@ mo:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
 .PHONY: release
-release: export DJANGO_SETTINGS_MODULE ?= liqd_product.config.settings.build
+release: export DJANGO_SETTINGS_MODULE ?= adhocracy-plus.config.settings.build
 release:
 	npm install --silent
 	npm run build:prod
