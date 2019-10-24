@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: django_migrations; Type: TABLE; Schema: public; Owner: robert
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: django
 --
 
 CREATE TABLE public.django_migrations (
@@ -32,10 +32,10 @@ CREATE TABLE public.django_migrations (
 );
 
 
-ALTER TABLE public.django_migrations OWNER TO robert;
+ALTER TABLE public.django_migrations OWNER TO django;
 
 --
--- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: robert
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: django
 --
 
 CREATE SEQUENCE public.django_migrations_id_seq
@@ -47,24 +47,24 @@ CREATE SEQUENCE public.django_migrations_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.django_migrations_id_seq OWNER TO robert;
+ALTER TABLE public.django_migrations_id_seq OWNER TO django;
 
 --
--- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: robert
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: django
 --
 
 ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
 
 
 --
--- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: robert
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: django
 --
 
 ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
 
 
 --
--- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: robert
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: django
 --
 
 COPY public.django_migrations (id, app, name, applied) FROM stdin;
@@ -288,14 +288,14 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 
 
 --
--- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: robert
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
 SELECT pg_catalog.setval('public.django_migrations_id_seq', 216, true);
 
 
 --
--- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: robert
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: django
 --
 
 ALTER TABLE ONLY public.django_migrations
