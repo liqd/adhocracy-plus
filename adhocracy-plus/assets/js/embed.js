@@ -71,6 +71,7 @@ $(document).ready(function () {
     $main.append($top)
     $main.append($root.find('main').children())
     $(document).trigger('a4.embed.ready')
+    $(window.init_widgets)
 
     // jump to top after navigation
     $top.focus()
@@ -112,7 +113,7 @@ $(document).ready(function () {
 
   $(document).on('click', 'a[href]', function (event) {
     // NOTE: event.target.href is resolved against /embed/
-    var url = event.target.getAttribute('href')
+    var url = event.currentTarget.getAttribute('href')
     var $link = $(event.target)
     var embedTarget = getEmbedTarget($link, url)
 

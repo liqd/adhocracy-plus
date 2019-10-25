@@ -58,22 +58,7 @@ var init = function () {
 
   initialiseWidget('speakup', 'questions', ReactQuestions.renderQuestions)
   initialiseWidget('speakup', 'present', ReactQuestionsPresent.renderData)
-}
 
-$(init)
-$(document).on('a4.embed.ready', init)
-
-module.exports = {
-  getCurrentPath: getCurrentPath
-}
-
-// Closes bootstrap collapse on click elsewhere
-$(document).on('click', function () {
-  $('.collapse').collapse('hide')
-})
-
-// carousel for project timeline
-$(document).ready(function () {
   function getInitialSlide () {
     return parseInt($('#timeline-carousel').attr('data-initial-slide'))
   }
@@ -91,4 +76,17 @@ $(document).ready(function () {
     slidesToShow: 1,
     slidesToScroll: 1
   })
+}
+
+$(init)
+window.init_widgets = init
+$(document).on('a4.embed.ready', init)
+
+module.exports = {
+  getCurrentPath: getCurrentPath
+}
+
+// Closes bootstrap collapse on click elsewhere
+$(document).on('click', function () {
+  $('.collapse').collapse('hide')
 })
