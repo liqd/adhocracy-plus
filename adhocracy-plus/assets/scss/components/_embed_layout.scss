@@ -21,7 +21,7 @@ html.embed body {
 .embed-footer {
     position: relative;
     background: $bg-tertiary;
-    padding: 5px 0;
+    padding: 0.5*$padding;
     text-align: right;
     font-size: $font-size-sm;
 }
@@ -46,6 +46,7 @@ html.embed body {
 }
 
 .embed-footer__logo {
+    height: 1.5*$padding;
     float: left;
 }
 
