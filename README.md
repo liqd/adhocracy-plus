@@ -22,8 +22,8 @@ on 13.07.2017
 
 ## Installation
 
-    git clone https://github.com/liqd/a4-product.git
-    cd a4-product
+    git clone https://github.com/liqd/adhocracy-plus.git
+    cd adhocracy-plus
     make install
     make fixtures
     make watch
