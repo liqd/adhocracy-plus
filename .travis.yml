@@ -1,29 +1,29 @@
 language: python
 dist: bionic
 python:
-  - "3.6"
+- '3.6'
 cache:
   pip: true
   npm: true
 install:
-  - nvm install 8
-  - npm install
-  - npm run build
-  - pip install -r requirements/dev.txt
-  - pip install coveralls
+- nvm install 8
+- npm install
+- npm run build
+- pip install -r requirements/dev.txt
+- pip install coveralls
 script:
-  - python manage.py collectstatic > /dev/null
-  - py.test --cov
-  - python manage.py makemigrations --dry-run --check --noinput
-  - ./node_modules/.bin/polylint -F
-  - rm -rf static/
+- python manage.py collectstatic > /dev/null
+- py.test --cov
+- python manage.py makemigrations --dry-run --check --noinput
+- "./node_modules/.bin/polylint -F"
+- rm -rf static/
 after_success:
-  - coveralls
-#deploy:
-#  - provider: script
-#    script: scripts/deploy.sh
-#    on:
-#      branch: master
-#env:
-#  global:
-#  - secure: k2bdrRAEQ3/wFHZaqOdytRTRNwPtuCtdhKHwtX2G18d8tG3yyAEB39OGcy3ScTua5fiFVK9E3Y5rIaZog6I8LJ9xggcbyO/PEBGjxgvzuQ/5PaEeF+1TxH54R33dtT+7oNYT3zv9IRH8++0/mVPxo78fDDxXyn/fUVd23gdZCniijEfWntn4/Ja8T8yyaaWDZWYU1RiJWiEAPtcsDkxOT66VhHEMFKG1WOOcu5+cf+HX4vABjGNe9GcZ7TRPlCN45x85Mo7G4/5tbLtInMbo/Tw6d3bNpqI7rKPM5nz/455phdx1SzUs4ULOs0sq6bPILcwXIHgXdwr8JRC2+kFaEj2T5NEr+NmujgxlHx4ASN9Z0f/NrxirYweTg9vnmwe2W3Px/ZIdnvLvrLB1CeOFSdvmCVwlGVibGYryWULL0k1fHKn2+W3MMTyyrI6QcbljQ7SJFmOrXZaLOQWGOFoWJmXBBX76hG13T+WuBLRmueNV1Bh1UaI1/toat5/udzR2rYRdkcesdo6XS04vwMvx7bmziq6EERQgy9oFb84AV2Am88bUgn9PbzHIaPYMjuwG6sX0Sqz8yaqw2vvMUMyDfgwVJyKBuuMAR5JHYRn+1V7rtG8hmdCUjUnb0I+pUt4aO9C3MVA2+F3DnQmPuU83Uocuve9Ke0bX4fQygAjQp/o=
+- coveralls
+deploy:
+- provider: script
+  script: scripts/deploy.sh
+  on:
+    branch: master
+env:
+  global:
+  - secure: loSDNJr/1BV5LdX2SDUvaNet3xbKNiW+PsazcSr38PylZQ/RLyDAcKzF8mxDW9LIiRpJTD0Dc8OwQlwWQWQhyUERM75gid/Sf5DxN8hfpwDNdpPvOsIrktZekir0CFhI1ezaHRWokZk3SmU8rzo6eG+uR6F1hKKP2zYDOWPKfrs/jHllbBB4p+P25IfxvdgX9t+t6aBACqUNzax9WIhmDyPPujWsDPyXOEfJcsgrGtmiCwZAAjSR+iMshWkQLh0kSmTQA/HwpuIx+T2zpWVEVu/rtxJ0FpWKQS7v2rah6wPJByNrkawGbjyhBKoKUj26Vz0Xr8SpNCu/EjAlxdQyy+GkRApGuW1+EXHwjRDjYWusfodbp/dEEnwXLugoSmRCDX8xhlc9llIGfMHKujz1dLKHoAKA6WgByVgFi0Ng0exlWZBJbX8QgbubdLXdqASj5NW3wpt7crTpz1gI7siVNPoNoa+VH+5hLMAtmX4RMDRyb5+4TnDbAf9iQYkHX+Z8D0Bxo81l4MycSuvBhK1uiO9t2dc+xZWI7rAkZdKllxDUCJAbM1kaUu9/Q7PJfQ2SJCE9DD7LaibV7iQPSmFrmrzXZax7R1QfYsb2Fd/ZzCeic/Kam87D/TdBqZ6MkZfjA/YZQD/NgEWvxo+vUm5zWUqlDAlcIpkPCREn4WjRRpc=
