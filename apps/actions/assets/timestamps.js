@@ -7,10 +7,9 @@ $(function () {
   $times.each((i, e) => {
     const sevenDays = 60 * 60 * 24 * 7 * 1000
     const datetime = new Date($(e).attr('datetime'))
-    const timeagoInstance = timeago()
 
     if ((new Date() - datetime) < sevenDays) {
-      e.textContent = timeagoInstance.format(datetime, document.documentElement.lang)
+      e.textContent = timeago.format(datetime, document.documentElement.lang)
     }
   })
 })
