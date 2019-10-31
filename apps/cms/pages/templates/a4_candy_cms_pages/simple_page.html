@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags  %}
+{% load wagtailcore_tags %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
     {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
