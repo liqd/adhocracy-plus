@@ -1,16 +1,20 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags  %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
     {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
-        <div class="row">
-            <div class="l-center-8">
-                <h1 class="cms-title">{{ page.title }}</h1>
-                {{ page.body|richtext }}
+    <div class="homepage__wrapper">
+        <h1 class="cms-title">{{ page.title }}</h1>
+        {% for block in page.body_streamfield %}
+            {% if not block.block_type == 'quote' %}
+            <div class="container">
+                {% include_block block %}
             </div>
-        </div>
+            {% else  %}
+            {% include_block block %}
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock %}
