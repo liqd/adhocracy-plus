@@ -1,5 +1,18 @@
 <div class="block-quote block-quote--{{ value.color }}">
     <div class="container">
-
+        <div class="row">
+            <div class="col-sm-2">
+            {{ value.image }}
+            </div>
+            <div class="col-sm-10">
+                <div class="block-quote__text">“{{ value.quote }}”</div>
+                <div class="block-quote__author mb-3">- {{ value.quote_author }}</div>
+                <div>
+                    {% if value.link %}
+                        <a href="{{ value.link }}" class="btn btn--transparent block-bg_btn">{{ value.link_text }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
