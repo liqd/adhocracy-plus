@@ -1,4 +1,5 @@
 from wagtail.core import blocks
+from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 
@@ -102,5 +103,22 @@ class AccordeonListBlock(blocks.StructBlock):
 
     class Meta:
         template = 'a4_candy_cms_pages/blocks/accordeon_list_block.html'
+
+
+class DownloadBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=False)
+    document = DocumentChooserBlock()
+    document_type = blocks.CharBlock(required=False)
+
+    class Meta:
+        template = 'a4_candy_cms_pages/blocks/download_block.html'
+
+
+class DownloadListBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=False)
+    documents = blocks.ListBlock(DownloadBlock)
+
+    class Meta:
+        template = 'a4_candy_cms_pages/blocks/download_list_block.html'
 
 

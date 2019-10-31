@@ -286,3 +286,27 @@ $block-padding-md: 7.5*$padding;
 .block-paragraph {
     @extend .p-3;
 }
+
+.block-download {
+    a {
+        font-weight: bold;
+    }
+
+    position: relative;
+    border-bottom: 2px solid $text-color;
+}
+
+.block-download__icon {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+}
+
+.block-download__info {
+    color: $text-color-gray;
+    text-transform: uppercase;
+}
+
+.block-quote {
+    padding: $spacer;
+}
