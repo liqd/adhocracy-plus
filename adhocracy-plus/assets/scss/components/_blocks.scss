@@ -310,3 +310,27 @@ $block-padding-md: 7.5*$padding;
 .block-quote {
     padding: $spacer;
 }
+
+.block-quote--turquoise {
+    background-color: $brand-secondary;
+    color: $text-color;
+}
+
+.block-quote--blue {
+    background-color: $brand-primary;
+    color: $text-color-inverted;
+
+    .btn {
+        color: $text-color-inverted;
+        border-color: $text-color-inverted;
+    }
+}
+
+.block-quote__text {
+    font-size: $font-size-xl;
+    font-family: $font-family-serif;
+}
+
+.block-quote__author {
+    font-family: $font-family-serif;
+}

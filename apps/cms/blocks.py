@@ -130,7 +130,10 @@ class QuoteBlock(blocks.StructBlock):
     image = ImageChooserBlock()
     quote = blocks.TextBlock()
     quote_author = blocks.CharBlock(required=False)
-    link =blocks.URLBlock(required=False)
+    link = blocks.URLBlock(required=False)
+    link_text = blocks.CharBlock(
+        required=False, max_length=50, label='Link Text'
+    )
 
     class Meta:
         template = 'a4_candy_cms_pages/blocks/quote_block.html'
