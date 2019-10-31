@@ -1,0 +1,12 @@
+{% load wagtailcore_tags %}
+
+{% if value.title %}
+    <h2>{{ value.title }}</h2>
+{% endif %}
+
+<div class="row">
+{% for document in value.documents %}
+<div class="col-6">{% include_block document %}</div>
+{% endfor %}
+</div>
+

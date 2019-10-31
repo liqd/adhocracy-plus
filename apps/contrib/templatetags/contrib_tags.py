@@ -102,3 +102,10 @@ def tracking_code():
     except AttributeError:
         raise ImproperlyConfigured('MATOMO_URL does not exist.')
     return {'id': id, 'url': url}
+
+
+@register.filter
+def devide(value, arg):
+    if arg:
+        return round(value / arg, 2)
+    return 0

@@ -16,6 +16,7 @@ from rest_framework import routers
 from wagtail.contrib.sitemaps import views as wagtail_sitemap_views
 from wagtail.contrib.sitemaps.sitemap_generator import \
     Sitemap as WagtailSitemap
+from wagtail.documents import urls as wagtaildocs_urls
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
@@ -73,6 +74,7 @@ urlpatterns = [
     # General platform urls
     re_path(r'^django-admin/', admin.site.urls),
     re_path(r'^admin/', include('wagtail.admin.urls')),
+    re_path(r'^documents/', include(wagtaildocs_urls)),
 
     re_path(r'^accounts/', include('allauth.urls')),
     re_path(r'^account/', include('apps.account.urls')),
