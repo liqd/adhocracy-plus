@@ -13,30 +13,30 @@ module.exports = {
     platform: [
       './adhocracy-plus/assets/scss/platform.scss'
     ],
-    vendor: [
+    common_unincluded: [
       'classnames',
+      'immutability-helper',
+      'js-cookie',
+      'react',
+      'react-dom',
+      'react-flip-move',
+      'slick-carousel/slick/slick.min.js',
+      'typeface-libre-franklin',
       '@fortawesome/fontawesome-free/scss/fontawesome.scss',
       '@fortawesome/fontawesome-free/scss/brands.scss',
       '@fortawesome/fontawesome-free/scss/regular.scss',
       '@fortawesome/fontawesome-free/scss/solid.scss',
-      'js-cookie',
-      'react',
-      'immutability-helper',
-      'react-dom',
-      'react-flip-move',
-      'typeface-libre-franklin',
-      'slick-carousel/slick/slick.min.js',
+      'datepicker/css/datepicker.min.css',
+      'leaflet/dist/leaflet.css',
+      'leaflet-draw/dist/leaflet.draw.css',
+      'leaflet.markercluster/dist/MarkerCluster.css',
+      'mapbox-gl/dist/mapbox-gl.css',
       'slick-carousel/slick/slick.css'
     ],
     a4maps_display_point: [
-      'leaflet/dist/leaflet.css',
-      'mapbox-gl/dist/mapbox-gl.css',
       'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_point.js'
     ],
     a4maps_display_points: [
-      'leaflet/dist/leaflet.css',
-      'mapbox-gl/dist/mapbox-gl.css',
-      'leaflet.markercluster/dist/MarkerCluster.css',
       'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_points.js'
     ],
     a4maps_choose_point: [
@@ -45,20 +45,22 @@ module.exports = {
       'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_point.js'
     ],
     a4maps_choose_polygon: [
-      'leaflet/dist/leaflet.css',
-      'mapbox-gl/dist/mapbox-gl.css',
-      'leaflet-draw/dist/leaflet.draw.css',
       './apps/maps/assets/map_choose_polygon_with_preset.js'
     ],
     datepicker: [
-      './adhocracy-plus/assets/js/init-picker.js',
-      'datepicker/css/datepicker.min.css'
+      './adhocracy-plus/assets/js/init-picker.js'
     ],
     embed: [
       './adhocracy-plus/assets/js/embed.js'
     ],
     'popup-close': [
       './adhocracy-plus/assets/js/popup-close.js'
+    ],
+    unload_warning: [
+      './apps/contrib/static/js/unload_warning.js'
+    ],
+    imageUploader: [
+      'adhocracy4/adhocracy4/images/static/a4images/imageUploader.js'
     ]
   },
   output: {
@@ -140,13 +142,9 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery'
     }),
-    new webpack.optimize.SplitChunksPlugin({
-      name: 'vendor',
-      filename: 'vendor.js'
-    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      chunkFilename: '[id].css'
+      chunkFilename: '[name].css'
     }),
     new CopyWebpackPlugin([
       {
@@ -155,5 +153,24 @@ module.exports = {
         flatten: true
       }
     ])
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        leaflet: {
+          test: /[\\/]node_modules[\\/](leaflet|leaflet-draw|leaflet.markercluster|mapbox-gl|mapbox-gl-leaflet)[\\/]/,
+          name: 'leaflet',
+          chunks: 'all',
+          priority: 0
+        },
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+          priority: -100,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  }
 }
