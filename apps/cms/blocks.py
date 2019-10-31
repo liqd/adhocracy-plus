@@ -122,3 +122,15 @@ class DownloadListBlock(blocks.StructBlock):
         template = 'a4_candy_cms_pages/blocks/download_list_block.html'
 
 
+class QuoteBlock(blocks.StructBlock):
+    color = blocks.ChoiceBlock(choices=[
+        ('turquoise', 'turquoise'),
+        ('blue', 'dark blue')
+    ], default=1)
+    image = ImageChooserBlock()
+    quote = blocks.TextBlock()
+    quote_author = blocks.CharBlock(required=False)
+    link =blocks.URLBlock(required=False)
+
+    class Meta:
+        template = 'a4_candy_cms_pages/blocks/quote_block.html'
