@@ -86,3 +86,21 @@ class DocsBlock(blocks.StructBlock):
     class Meta:
         template = 'a4_candy_cms_pages/blocks/docs_block.html'
         icon = 'arrow-down'
+
+
+class AccordeonBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    content = blocks.RichTextBlock()
+
+    class Meta:
+        template = 'a4_candy_cms_pages/blocks/accordeon_block.html'
+
+
+class AccordeonListBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=False)
+    entries = blocks.ListBlock(AccordeonBlock)
+
+    class Meta:
+        template = 'a4_candy_cms_pages/blocks/accordeon_list_block.html'
+
+

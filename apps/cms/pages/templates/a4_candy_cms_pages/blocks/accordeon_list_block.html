@@ -1,0 +1,10 @@
+{% load wagtailcore_tags %}
+
+{% if value.title %}
+    <h2>{{ value.title }}</h2>
+{% endif %}
+
+{% for entry in value.entries %}
+{% include_block entry with id=forloop.counter %}
+{% endfor %}
+
