@@ -1,0 +1,11 @@
+<div class="accordion">
+    <a id="accordion--title" href="#accordion--body{% if id %}--{{ id }}{% endif %}" class="accordion__title collapsed" aria-haspopup="true" aria-expanded="false" data-toggle="collapse">
+        <h2>
+            {{ value.title }}
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+        </h2>
+    </a>
+    <div class="accordion__body collapse" id="accordion--body{% if id %}--{{ id }}{% endif %}" aria-labelledby="accordion--title">
+        {{ value.content }}
+    </div>
+</div>
