@@ -7,6 +7,7 @@ from wagtail.admin.edit_handlers import TabbedInterface
 from wagtail.core import blocks
 from wagtail.core import fields
 from wagtail.core.models import Page
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.cms import blocks as cms_blocks
@@ -127,20 +128,38 @@ class EmptyPage(Page):
 
 
 class SimplePage(Page):
-    body_de = fields.RichTextField()
-    body_en = fields.RichTextField(blank=True)
+    body_streamfield_de = fields.StreamField([
+        ('html', blocks.RawHTMLBlock()),
+        ('richtext', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('faq', cms_blocks.AccordeonListBlock()),
+        ('image_cta', cms_blocks.ImageCTABlock()),
+        ('columns_cta', cms_blocks.ColumnsCTABlock()),
+        ('downloads', cms_blocks.DownloadListBlock()),
+        ('quote', cms_blocks.QuoteBlock())
+    ])
+    body_streamfield_en = fields.StreamField([
+        ('html', blocks.RawHTMLBlock()),
+        ('richtext', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('faq', cms_blocks.AccordeonListBlock()),
+        ('image_cta', cms_blocks.ImageCTABlock()),
+        ('columns_cta', cms_blocks.ColumnsCTABlock()),
+        ('downloads', cms_blocks.DownloadListBlock()),
+        ('quote', cms_blocks.QuoteBlock())
+    ], blank=True)
 
-    body = TranslatedField(
-        'body_de',
-        'body_en'
+    body_streamfield = TranslatedField(
+        'body_streamfield_de',
+        'body_streamfield_en'
     )
 
     en_content_panels = [
-        FieldPanel('body_en')
+        StreamFieldPanel('body_streamfield_en')
     ]
 
     de_content_panels = [
-        FieldPanel('body_de')
+        StreamFieldPanel('body_streamfield_de')
     ]
 
     common_panels = [
