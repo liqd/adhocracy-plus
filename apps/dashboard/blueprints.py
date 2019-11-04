@@ -1,7 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard.blueprints import ProjectBlueprint
-from apps.activities import phases as activities_phases
 from apps.budgeting import phases as budgeting_phases
 from apps.documents import phases as documents_phases
 from apps.ideas import phases as ideas_phases
@@ -98,19 +97,6 @@ blueprints = [
              budgeting_phases.RequestPhase()],
          image='images/participatory-budgeting.svg',
          settings_model=('a4maps', 'AreaSettings'),
-     )),
-    ('facetoface',
-     ProjectBlueprint(
-         title=_('Face-to-Face Participation'),
-         description=_(
-             'Inform your participants about events and phases of your '
-             'participation process that take place offline.'
-         ),
-         content=[
-             activities_phases.FaceToFacePhase(),
-         ],
-         image='images/facetoface.svg',
-         settings_model=None,
      )),
     ('speakup',
      ProjectBlueprint(
