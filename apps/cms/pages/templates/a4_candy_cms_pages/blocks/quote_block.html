@@ -1,16 +1,25 @@
-<div class="block-quote block-quote--{{ value.color }}">
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="block-quote block-quote--{{ value.color }} mb-5">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-2">
-            {{ value.image }}
-            </div>
-            <div class="col-sm-10">
-                <div class="block-quote__text">“{{ value.quote }}”</div>
-                <div class="block-quote__author mb-3">- {{ value.quote_author }}</div>
-                <div>
-                    {% if value.link %}
-                        <a href="{{ value.link }}" class="btn btn--transparent block-bg_btn">{{ value.link_text }}</a>
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-md-10 cms__text">
+                <div class="row">
+                    <div class="col-sm-3">
+                    {% if value.image %}
+                    {% image value.image width-500 as image %}
+                    <img src="{{ image.url }}" alt="{{ image.alt }}" class="block-img-col__image" />
                     {% endif %}
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="block-quote__text">“{{ value.quote }}”</div>
+                        <div class="block-quote__author mb-3">- {{ value.quote_author }}</div>
+                        <div>
+                            {% if value.link %}
+                                <a href="{{ value.link }}" class="btn btn--transparent block-bg_btn">{{ value.link_text }}</a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
