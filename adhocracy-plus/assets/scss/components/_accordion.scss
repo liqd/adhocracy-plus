@@ -1,7 +1,10 @@
 .accordion {
-    border: solid 1px $border-color;
+    border-top: solid 1px $border-color;
     overflow: hidden;
-    margin-bottom: $padding * 1.8;
+
+    &:last-child {
+        border-bottom: solid 1px $border-color;
+    }
 }
 
 .accordion__title {
@@ -15,10 +18,10 @@
         border-bottom: none;
     }
 
-    h2 {
-        font-size: $font-size-lg;
-        margin-top: $spacer / 5;
-        margin-bottom: $spacer / 5;
+    h3 {
+        font-size: $font-size-md;
+        margin-top: $spacer / 3;
+        margin-bottom: $spacer / 3;
     }
 
     i {
@@ -29,8 +32,10 @@
         color: $border-color;
     }
 
-    &[aria-expanded="true"] i {
-        transform: rotate(180deg);
+    &[aria-expanded="true"] .fa-plus:before {
+        font-family: "Font Awesome 5 Free", sans-serif;
+        font-weight: 900;
+        content: "\f068"; // plus
     }
 }
 
