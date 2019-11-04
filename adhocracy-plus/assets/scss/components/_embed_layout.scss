@@ -3,13 +3,14 @@ html.embed {
     padding: 0;
     background: white;
     overflow: auto;
+    border: 2px solid $platform-logo;
 }
 
 html.embed body {
     margin: 0;
     padding: 0;
-    border-left: 5px solid $bg-tertiary;
-    border-right: 5px solid $bg-tertiary;
+    border-left: 5px solid $gray-lightest;
+    border-right: 5px solid $gray-lightest;
     max-width: none;
 
     height: 100vh;
@@ -20,7 +21,7 @@ html.embed body {
 .embed-header,
 .embed-footer {
     position: relative;
-    background: $bg-tertiary;
+    background: $gray-lightest;
     padding: 0.5*$padding;
     text-align: right;
     font-size: $font-size-sm;
@@ -42,7 +43,7 @@ html.embed body {
 
 .embed-footer a {
     text-decoration: underline;
-    color: contrast-color($bg-tertiary);
+    color: contrast-color($gray-lightest);
 }
 
 .embed-footer__logo {
