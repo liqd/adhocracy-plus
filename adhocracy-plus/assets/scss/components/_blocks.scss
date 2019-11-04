@@ -149,16 +149,18 @@ $block-padding-md: 7.5*$padding;
 }
 
 //responsive padding for image, 2 col cta
-.block-img-col-1,
-.block-row-2 {
-    padding: 2*$padding;
+.homepage__wrapper {
+    .block-img-col-1,
+    .block-row-2 {
+        padding: 2*$padding;
 
-    @media screen and (min-width: $breakpoint-xs) {
-        padding: $block-padding;
-    }
+        @media screen and (min-width: $breakpoint-xs) {
+            padding: $block-padding;
+        }
 
-    @media screen and (min-width: $breakpoint-md) {
-        padding: $block-padding-md;
+        @media screen and (min-width: $breakpoint-md) {
+            padding: $block-padding-md;
+        }
     }
 }
 
