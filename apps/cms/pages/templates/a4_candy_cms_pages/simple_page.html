@@ -18,21 +18,27 @@
                 {% include_block block %}
             {% else %}
             <div class="container">
-                <div class="row justify-content-md-center pt-3 mb-5">
-                  <div class="col-12 col-md-10 cms__text">
-                    {% if block.block_type == 'image' %}
-                      <div class="cms-page__hero-image">
-                          {% include_block block %}
-                      </div>
-                      {% if include_block.block == 'image_caption' %}
-                      <div class="mt-3">
-                          {% include_block block %}
-                      </div>
+                <div class="row pt-3 justify-content-md-center mb-5">
+                    <div class="col-12 col-md-10 cms__text">
+                      {% if block.block_type == 'image' %}
+                        {% image block.value.image width-1200 as image %}
+                        <div class="row justify-content-md-center">
+                            <div class="col-12">
+                                <img src="{{ image.url }}" alt="{{ image.alt }}" class="cms-page__hero-image" />
+                                {% if value.image.caption %}
+                                <div class="mt-3 ml-auto">{{ value.image.caption }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
                       {% endif %}
-                    {% else %}
-                    {% include_block block %}
-                    {% endif %}
-                  </div>
+                      {% if block.block_type == 'html' %}
+                        <div class="d-flex justify-content-md-center">
+                            {% include_block block %}
+                        </div>
+                      {% else %}
+                        {% include_block block %}
+                      {% endif %}
+                    </div>
                 </div>
               </div>
             {% endif %}
