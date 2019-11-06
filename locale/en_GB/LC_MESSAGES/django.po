@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-24 19:41+0200\n"
+"POT-Creation-Date: 2019-11-06 17:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -717,7 +717,7 @@ msgstr "Description"
 msgid "End date can not be smallerthan the start date."
 msgstr "End date can not be smallerthan the start date."
 
-#: adhocracy4/polls/dashboard.py:14 apps/dashboard/blueprints.py:80
+#: adhocracy4/polls/dashboard.py:14 apps/dashboard/blueprints.py:79
 #: apps/polls/dashboard.py:15
 msgid "Poll"
 msgstr "Poll"
@@ -1268,27 +1268,23 @@ msgstr "display more"
 msgid "Back to overview"
 msgstr "Back to overview"
 
-#: apps/cms/use_cases/models.py:25
+#: apps/cms/use_cases/models.py:24
 msgid "Municipalities"
 msgstr "Municipalities"
 
-#: apps/cms/use_cases/models.py:26
+#: apps/cms/use_cases/models.py:25
 msgid "Citizen Assemblies"
 msgstr "Citizen Assemblies"
 
+#: apps/cms/use_cases/models.py:26
+msgid "Associations & NGOs"
+msgstr "Associations & NGOs"
+
 #: apps/cms/use_cases/models.py:27
-msgid "Co-Operatives"
-msgstr "Co-Operatives"
+msgid "Companies & Co-Operatives"
+msgstr "Companies & Co-Operatives"
 
 #: apps/cms/use_cases/models.py:28
-msgid "NGOs"
-msgstr "NGOs"
-
-#: apps/cms/use_cases/models.py:29
-msgid "Companies"
-msgstr "Companies"
-
-#: apps/cms/use_cases/models.py:30
 msgid "Politicians"
 msgstr "Politicians"
 
@@ -1474,29 +1470,29 @@ msgstr "Give feedback"
 msgid "Official Statement"
 msgstr "Official Statement"
 
-#: apps/dashboard/blueprints.py:15
+#: apps/dashboard/blueprints.py:14
 msgid "Brainstorming"
 msgstr "Brainstorming"
 
-#: apps/dashboard/blueprints.py:17
+#: apps/dashboard/blueprints.py:16
 msgid "Collect ideas and let participants comment on them."
 msgstr "Collect ideas and let participants comment on them."
 
-#: apps/dashboard/blueprints.py:27
+#: apps/dashboard/blueprints.py:26
 msgid "Spatial Brainstorming"
 msgstr "Spatial Brainstorming"
 
-#: apps/dashboard/blueprints.py:29
+#: apps/dashboard/blueprints.py:28
 msgid ""
 "Collect ideas associated with a location within a pre-defined area on a map."
 msgstr ""
 "Collect ideas associated with a location within a pre-defined area on a map."
 
-#: apps/dashboard/blueprints.py:40
+#: apps/dashboard/blueprints.py:39
 msgid "Spatial Idea Challenge"
 msgstr "Spatial Idea Challenge"
 
-#: apps/dashboard/blueprints.py:42
+#: apps/dashboard/blueprints.py:41
 msgid ""
 "Collect ideas on a pre-defined area on a map and let participants rate them "
 "in a second step."
@@ -1504,35 +1500,35 @@ msgstr ""
 "Collect ideas on a pre-defined area on a map and let participants rate them "
 "in a second step."
 
-#: apps/dashboard/blueprints.py:54
+#: apps/dashboard/blueprints.py:53
 msgid "Idea Challenge"
 msgstr "Idea Challenge"
 
-#: apps/dashboard/blueprints.py:56
+#: apps/dashboard/blueprints.py:55
 msgid ""
 "Collect ideas and let participants rate and comment on them in a second step."
 msgstr ""
 "Collect ideas and let participants rate and comment on them in a second step."
 
-#: apps/dashboard/blueprints.py:68
+#: apps/dashboard/blueprints.py:67
 msgid "Text Review"
 msgstr "Text Review"
 
-#: apps/dashboard/blueprints.py:70
+#: apps/dashboard/blueprints.py:69
 msgid "Let participants comment on paragraphs of a pre-defined text."
 msgstr "Let participants comment on paragraphs of a pre-defined text."
 
-#: apps/dashboard/blueprints.py:82
+#: apps/dashboard/blueprints.py:81
 msgid ""
 "Let participants answer a poll of pre-defined multiple choice questions."
 msgstr ""
 "Let participants answer a poll of pre-defined multiple choice questions."
 
-#: apps/dashboard/blueprints.py:93
+#: apps/dashboard/blueprints.py:92
 msgid "Participatory budgeting"
 msgstr "Participatory budgeting"
 
-#: apps/dashboard/blueprints.py:95
+#: apps/dashboard/blueprints.py:94
 msgid ""
 "Collect ideas with a budget proposal from participants. The ideas can be "
 "located on a pre-defined map."
@@ -1540,23 +1536,11 @@ msgstr ""
 "Collect ideas with a budget proposal from participants. The ideas can be "
 "located on a pre-defined map."
 
-#: apps/dashboard/blueprints.py:104
-msgid "Face-to-Face Participation"
-msgstr "Face-to-Face Participation"
-
-#: apps/dashboard/blueprints.py:106
-msgid ""
-"Inform your participants about events and phases of your participation "
-"process that take place offline."
-msgstr ""
-"Inform your participants about events and phases of your participation "
-"process that take place offline."
-
-#: apps/dashboard/blueprints.py:117 apps/questions/phases.py:17
+#: apps/dashboard/blueprints.py:103 apps/questions/phases.py:17
 msgid "Speak Up"
 msgstr "Speak Up"
 
-#: apps/dashboard/blueprints.py:119
+#: apps/dashboard/blueprints.py:105
 msgid "Collect questions for your discussion."
 msgstr "Collect questions for your discussion."
 
@@ -3223,6 +3207,25 @@ msgstr "Login with social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Login with "
+
+#~ msgid "Co-Operatives"
+#~ msgstr "Co-Operatives"
+
+#~ msgid "NGOs"
+#~ msgstr "NGOs"
+
+#~ msgid "Companies"
+#~ msgstr "Companies"
+
+#~ msgid "Face-to-Face Participation"
+#~ msgstr "Face-to-Face Participation"
+
+#~ msgid ""
+#~ "Inform your participants about events and phases of your participation "
+#~ "process that take place offline."
+#~ msgstr ""
+#~ "Inform your participants about events and phases of your participation "
+#~ "process that take place offline."
 
 #~ msgid ""
 #~ "Exclude this project from all listings by default. You can still access "
