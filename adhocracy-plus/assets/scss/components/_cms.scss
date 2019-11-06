@@ -115,8 +115,8 @@
 }
 
 .cms-use-case__category-square {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -124,8 +124,8 @@
 }
 
 .cms-use-case__category-selected-square {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     background-color: $brand-primary;
     position: relative;
     color: $text-color-inverted;
@@ -133,10 +133,10 @@
 
 .cms-use-case__category-selected-arrow {
     position: absolute;
-    left: 40px;
-    bottom: -10px;
-    width: 20px;
-    height: 20px;
+    left: 50px;
+    bottom: -15px;
+    width: 30px;
+    height: 30px;
     background-color: $brand-primary;
     transform: rotate(45deg);
 }
@@ -148,22 +148,18 @@
     }
 
     .cms-use-case__category-selected-square {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 130px;
     }
 
     .cms-use-case__category-selected-arrow {
-        left: 50px;
-        bottom: -10px;
-        width: 20px;
-        height: 20px;
+        left: 55px;
+        bottom: -15px;
+        width: 30px;
+        height: 30px;
     }
 }
 
 .cms-usecase__dropdown {
     width: 100%;
-}
-
-.cms-use-case__filter {
-    max-width: $breakpoint-lg;
 }

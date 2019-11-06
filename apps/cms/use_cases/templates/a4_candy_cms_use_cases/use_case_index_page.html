@@ -16,10 +16,10 @@
         </div>
         <div class="row justify-content-center mb-5">
           <!-- tablet and above category chooser-->
-            <div class="d-none d-md-block col-12 cms-use-case__filter">
-                <div class="row justify-content-center">
+            <div class="d-none d-md-block col-lg-10 cms-use-case__filter">
+                <div class="d-flex justify-content-between">
                 {% for category in categories %}
-                    <div class="col-2">
+                    <div>
                         <a class="u-no-underline" href="?category={{ category.0 }}">
                             {% if current_category and current_category == category.0 %}
                             <div class="mx-auto cms-use-case__category-square cms-use-case__category-selected-square">
