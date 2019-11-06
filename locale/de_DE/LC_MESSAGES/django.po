@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-24 19:41+0200\n"
+"POT-Creation-Date: 2019-11-06 17:28+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -793,7 +793,7 @@ msgid "End date can not be smallerthan the start date."
 msgstr "Das Enddatum kann nicht vor dem Startdatum liegen."
 
 #: adhocracy4/polls/dashboard.py:14
-#: apps/dashboard/blueprints.py:80 apps/polls/dashboard.py:15
+#: apps/dashboard/blueprints.py:79 apps/polls/dashboard.py:15
 msgid "Poll"
 msgstr "Umfrage"
 
@@ -982,8 +982,8 @@ msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
 msgstr ""
-"Archivierte Projekte werden nicht in der Projektübersicht angezeigt. "
-"Für Projektinitiator*innen sind sie weiterhin im Dashboard einsehbar."
+"Archivierte Projekte werden nicht in der Projektübersicht angezeigt. Für "
+"Projektinitiator*innen sind sie weiterhin im Dashboard einsehbar."
 
 #: adhocracy4/projects/models.py:260
 msgid "Project topics"
@@ -1359,27 +1359,23 @@ msgstr "mehr anzeigen"
 msgid "Back to overview"
 msgstr "Zurück zur Übersicht"
 
-#: apps/cms/use_cases/models.py:25
+#: apps/cms/use_cases/models.py:24
 msgid "Municipalities"
 msgstr "Kommunen"
 
-#: apps/cms/use_cases/models.py:26
+#: apps/cms/use_cases/models.py:25
 msgid "Citizen Assemblies"
 msgstr "Bürgerräte"
 
+#: apps/cms/use_cases/models.py:26
+msgid "Associations & NGOs"
+msgstr ""
+
 #: apps/cms/use_cases/models.py:27
-msgid "Co-Operatives"
-msgstr "Vereine und Genosschenschaften"
+msgid "Companies & Co-Operatives"
+msgstr ""
 
 #: apps/cms/use_cases/models.py:28
-msgid "NGOs"
-msgstr "NGOs"
-
-#: apps/cms/use_cases/models.py:29
-msgid "Companies"
-msgstr "Unternehmen"
-
-#: apps/cms/use_cases/models.py:30
 msgid "Politicians"
 msgstr "Politiker*innen"
 
@@ -1567,30 +1563,30 @@ msgstr "Zurück melden"
 msgid "Official Statement"
 msgstr "Offizielle Rückmeldung"
 
-#: apps/dashboard/blueprints.py:15
+#: apps/dashboard/blueprints.py:14
 msgid "Brainstorming"
 msgstr "Brainstorming"
 
-#: apps/dashboard/blueprints.py:17
+#: apps/dashboard/blueprints.py:16
 msgid "Collect ideas and let participants comment on them."
 msgstr "Sammeln Sie Ideen und lassen Sie Teilnehmer*innen Ideen kommentieren."
 
-#: apps/dashboard/blueprints.py:27
+#: apps/dashboard/blueprints.py:26
 msgid "Spatial Brainstorming"
 msgstr "Brainstorming mit Kartenfunktion"
 
-#: apps/dashboard/blueprints.py:29
+#: apps/dashboard/blueprints.py:28
 msgid ""
 "Collect ideas associated with a location within a pre-defined area on a map."
 msgstr ""
 "Sammeln Sie Ideen, die von den Teilnehmer*innen auf einem vorher definierten "
 "Kartenausschnitt platziert werden können."
 
-#: apps/dashboard/blueprints.py:40
+#: apps/dashboard/blueprints.py:39
 msgid "Spatial Idea Challenge"
 msgstr "Ideenwettbewerb mit Karte"
 
-#: apps/dashboard/blueprints.py:42
+#: apps/dashboard/blueprints.py:41
 msgid ""
 "Collect ideas on a pre-defined area on a map and let participants rate them "
 "in a second step."
@@ -1599,39 +1595,39 @@ msgstr ""
 "Kartenausschnitt platziert werden können. Die Ideen können in einem zweiten "
 "Schritt bewertet werden."
 
-#: apps/dashboard/blueprints.py:54
+#: apps/dashboard/blueprints.py:53
 msgid "Idea Challenge"
 msgstr "Ideenwettbewerb"
 
-#: apps/dashboard/blueprints.py:56
+#: apps/dashboard/blueprints.py:55
 msgid ""
 "Collect ideas and let participants rate and comment on them in a second step."
 msgstr ""
 "Sammeln Sie Ideen und lassen sie sie durch die Teilnehmer*innen in einem "
 "zweiten Schritt bewerten."
 
-#: apps/dashboard/blueprints.py:68
+#: apps/dashboard/blueprints.py:67
 msgid "Text Review"
 msgstr "Text kommentieren"
 
-#: apps/dashboard/blueprints.py:70
+#: apps/dashboard/blueprints.py:69
 msgid "Let participants comment on paragraphs of a pre-defined text."
 msgstr ""
 "Lassen Sie Teilnehmer*innen die Abschnitte/Absätze eines vorher "
 "eingestellten Textes kommentieren."
 
-#: apps/dashboard/blueprints.py:82
+#: apps/dashboard/blueprints.py:81
 msgid ""
 "Let participants answer a poll of pre-defined multiple choice questions."
 msgstr ""
 "Lassen Sie Teilnehmer*innen auf eine oder mehrere Fragen mit vordefinierten "
 "Antwortmöglichkeiten antworten."
 
-#: apps/dashboard/blueprints.py:93
+#: apps/dashboard/blueprints.py:92
 msgid "Participatory budgeting"
 msgstr "Bürgerhaushalt"
 
-#: apps/dashboard/blueprints.py:95
+#: apps/dashboard/blueprints.py:94
 msgid ""
 "Collect ideas with a budget proposal from participants. The ideas can be "
 "located on a pre-defined map."
@@ -1639,23 +1635,11 @@ msgstr ""
 "Sammeln Sie Ideen mit Budgetangabe von den Teilnehmer*innen. Die Ideen "
 "können auf einem vordefinierten Kartenausschnitt platziert werden."
 
-#: apps/dashboard/blueprints.py:104
-msgid "Face-to-Face Participation"
-msgstr "Vor-Ort-Beteiligung"
-
-#: apps/dashboard/blueprints.py:106
-msgid ""
-"Inform your participants about events and phases of your participation "
-"process that take place offline."
-msgstr ""
-"Informieren Sie die Teilnehmer*innen über Veranstaltungen oder Phasen des "
-"Beteiligungsprozesses, die offline stattfinden."
-
-#: apps/dashboard/blueprints.py:117 apps/questions/phases.py:17
+#: apps/dashboard/blueprints.py:103 apps/questions/phases.py:17
 msgid "Speak Up"
 msgstr "Speak Up"
 
-#: apps/dashboard/blueprints.py:119
+#: apps/dashboard/blueprints.py:105
 msgid "Collect questions for your discussion."
 msgstr "Sammeln Sie Fragen in Ihrer Diskussion."
 
@@ -3334,6 +3318,25 @@ msgstr "Mit Konto eines sozialen Netzwerks einloggen"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Einloggen mit "
+
+#~ msgid "Co-Operatives"
+#~ msgstr "Vereine und Genosschenschaften"
+
+#~ msgid "NGOs"
+#~ msgstr "NGOs"
+
+#~ msgid "Companies"
+#~ msgstr "Unternehmen"
+
+#~ msgid "Face-to-Face Participation"
+#~ msgstr "Vor-Ort-Beteiligung"
+
+#~ msgid ""
+#~ "Inform your participants about events and phases of your participation "
+#~ "process that take place offline."
+#~ msgstr ""
+#~ "Informieren Sie die Teilnehmer*innen über Veranstaltungen oder Phasen des "
+#~ "Beteiligungsprozesses, die offline stattfinden."
 
 #~ msgid ""
 #~ "Exclude this project from all listings by default. You can still access "
