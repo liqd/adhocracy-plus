@@ -16,6 +16,11 @@
         {% for hidden in form.hidden_fields %}
                 {{ hidden }}
          {% endfor %}
+
+        <div class="form-group">
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.username %}
+        </div>
+
         <div class="form-check">
             <label class="form-check__label">
                 {{ form.terms_of_use }}
