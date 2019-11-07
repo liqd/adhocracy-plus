@@ -1,5 +1,4 @@
 from allauth.account.forms import SignupForm
-from allauth.socialaccount.adapter import get_adapter
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
 from django.utils.translation import ugettext_lazy as _
@@ -26,12 +25,6 @@ class SocialTermsSignupForm(SocialSignupForm):
     })
     get_newsletters = forms.BooleanField(
         label=_('Send me newsletters'), required=False)
-
-    def __init__(self, *args, **kwargs):
-        initial = get_adapter().get_signup_form_initial_data(
-            kwargs["sociallogin"])
-        kwargs.update({'initial': initial})
-        super().__init__(*args, **kwargs)
 
     def save(self, request):
         user = super(SocialTermsSignupForm, self).save(request)
