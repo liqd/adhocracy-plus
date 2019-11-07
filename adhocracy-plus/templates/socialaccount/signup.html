@@ -15,7 +15,8 @@
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
                 {{ hidden }}
-         {% endfor %}
+                {{ hidden.errors }}
+        {% endfor %}
 
         <div class="form-group">
             {% include 'a4_candy_contrib/includes/form_field.html' with field=form.username %}
