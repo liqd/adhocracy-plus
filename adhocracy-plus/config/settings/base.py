@@ -10,7 +10,7 @@ PROJECT_DIR = os.path.dirname(CONFIG_DIR)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # General settings
-CONTACT_EMAIL = 'support-beteiligung@liqd.net'
+CONTACT_EMAIL = 'contact@domain'
 
 # Application definition
 
