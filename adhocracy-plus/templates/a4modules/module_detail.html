@@ -20,6 +20,7 @@
 
 {% block content %}
     <div class="l-wrapper">
+        {% block module_nav %}
         {% if module.is_in_module_cluster  %}
             <div class="u-align-right u-spacer-bottom-double">
             {% if module.previous_module_in_cluster %}
@@ -36,6 +37,7 @@
             {% endif %}
             </div>
         {% endif %}
+        {% endblock %}
         <div class="row">
             <div class="l-center-6 project-header">
                 <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
