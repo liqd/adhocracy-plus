@@ -37,6 +37,7 @@
         border-color: $brand-info;
         background-color: $body-bg;
     }
+
 }
 
 .tablist--right {
@@ -66,6 +67,29 @@
 
 .tablist__left {
     float: left;
+}
+
+.tablist--bg-secondary {
+    border-bottom: 2px solid $bg-secondary;
+}
+
+.tab--bg-secondary {
+
+    &.active {
+        border-color: $bg-secondary;
+        background-color: $bg-secondary;
+    }
+
+}
+
+.tabpanel--bg-secondary {
+    padding-top: $padding;
+    padding-bottom: 2*$padding;
+
+    &.active {
+        background-color: $bg-secondary;
+    }
+
 }
 
 @media (max-width: $breakpoint-xs) {

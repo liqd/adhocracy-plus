@@ -162,12 +162,12 @@ export default class QuestionBox extends React.Component {
   render () {
     return (
       <div>
-        <div className="tablist tablist--left">
+        <div className="tablist tablist--bg-secondary mb-0">
           <div className="l-wrapper">
-            <nav className="nav">
+            <nav className="nav justify-content-center">
               <a
                 id="tab-information"
-                className="tab"
+                className="tab tab--bg-secondary"
                 data-toggle="tab"
                 href="#tabpanel-information"
                 role="tab"
@@ -178,7 +178,7 @@ export default class QuestionBox extends React.Component {
               </a>
               <a
                 id="tab-questions"
-                className="tab active"
+                className="tab tab--bg-secondary active"
                 data-toggle="tab"
                 href="#tabpanel-questions"
                 role="tab"
@@ -189,7 +189,7 @@ export default class QuestionBox extends React.Component {
               </a>
               <a
                 id="tab-statistics"
-                className="tab"
+                className="tab tab--bg-secondary"
                 data-toggle="tab"
                 href="#tabpanel-statistics"
                 role="tab"
@@ -202,7 +202,7 @@ export default class QuestionBox extends React.Component {
           </div>
         </div>
         <div
-          className="tabpanel"
+          className="tabpanel tabpanel--bg-secondary"
           id="tabpanel-information"
           role="tabpanel"
           aria-labelledby="tab-information"
@@ -216,7 +216,7 @@ export default class QuestionBox extends React.Component {
         </div>
 
         <div
-          className="tabpanel active"
+          className="tabpanel tabpanel--bg-secondary active"
           id="tabpanel-questions"
           role="tabpanel"
           aria-labelledby="tab-questions"
@@ -264,7 +264,7 @@ export default class QuestionBox extends React.Component {
           </div>
         </div>
         <div
-          className="tabpanel"
+          className="tabpanel tabpanel--bg-secondary"
           id="tabpanel-statistics"
           role="tabpanel"
           aria-labelledby="tab-statistics"
