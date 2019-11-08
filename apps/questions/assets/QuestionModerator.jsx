@@ -103,7 +103,7 @@ export default class QuestionModerator extends React.Component {
     const removeShortlistText = django.gettext('remove from shortlist')
 
     return (
-      <div className="list-group-item border-top-0 border-right-0 border-left-0 border-bottom mb-2">
+      <div className="list-group-item border border-bottom rounded-0 mb-2">
         <div>
           <p className={this.props.is_hidden ? 'text-muted u-text-decoration-line-through' : ''}>{this.props.children}</p>
         </div>
