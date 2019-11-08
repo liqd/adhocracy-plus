@@ -109,8 +109,10 @@ export default class QuestionModerator extends React.Component {
         </div>
         <div className="row justify-content-between">
           <div className="col-12 col-md-4 col-sm-5 mb-3 mb-sm-0">
-            <span className="badge badge-gray mr-1">{this.props.category}</span>
-            <span className="badge">{this.state.likes}<i className="icon-like text-muted ml-2" /></span>
+            { this.props.category &&
+              <span className="label label--big mr-1">{this.props.category}</span>
+            }
+            <span className="label label--big bg-primary">{this.state.likes}<i className="icon-like ml-2" /></span>
           </div>
           <div className="col-12 col-md-8 col-sm-7">
             {this.props.displayIsHidden &&
