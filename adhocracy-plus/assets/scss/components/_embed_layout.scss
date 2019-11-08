@@ -3,14 +3,12 @@ html.embed {
     padding: 0;
     background: white;
     overflow: auto;
-    border: 2px solid $platform-logo;
 }
 
 html.embed body {
     margin: 0;
     padding: 0;
-    border-left: 5px solid $gray-lightest;
-    border-right: 5px solid $gray-lightest;
+    border: 2px solid $platform-logo;
     max-width: none;
 
     height: 100vh;
@@ -20,6 +18,8 @@ html.embed body {
 
 .embed-header,
 .embed-footer {
+    border-left: 5px solid $gray-lightest;
+    border-right: 5px solid $gray-lightest;
     position: relative;
     background: $gray-lightest;
     padding: 0.5*$padding;
@@ -32,6 +32,8 @@ html.embed body {
 }
 
 .embed-main {
+    border-left: 5px solid $gray-lightest;
+    border-right: 5px solid $gray-lightest;
     position: relative;
     flex: 1 1 auto;
     box-sizing: border-box;
