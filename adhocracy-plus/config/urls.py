@@ -115,6 +115,9 @@ urlpatterns = [
         path('projects/', include('apps.projects.urls')),
         path('text/', include(('apps.documents.urls', 'a4_candy_documents'),
                               namespace='a4_candy_documents')),
+        path('topicprio/',
+             include(('apps.topicprio.urls', 'a4_candy_topicprio'),
+                     namespace='a4_candy_topicprio')),
     ])),
 
     path('sitemap.xml', wagtail_sitemap_views.index,
