@@ -44,7 +44,7 @@ export default class StatisticsBox extends React.Component {
     const questionAnsweredTag = django.gettext('Questions Answered')
     return (
       <div>
-        <div className="row justify-content-center">
+        <div className="row m-0 bg-white justify-content-center pb-4">
           <div className="col-12 col-md-8">
             {this.props.categories.map((category, index) => {
               const countPerCategory = this.countCategory(category)
