@@ -110,6 +110,7 @@ INSTALLED_APPS = (
     'apps.ideas',
     'apps.mapideas',
     'apps.polls',
+    'apps.topicprio',
 )
 
 MIDDLEWARE = (
