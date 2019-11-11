@@ -8,12 +8,6 @@
         <h3 class="tile__title">{{ blueprint.title }}</h3>
         <div class="tile__text">
             {{ blueprint.description | linebreaks }}
-
-            <ul>
-                {% for phase_content in blueprint.content %}
-                    <li><strong>{% trans 'Phase' %} {{ forloop.counter }}</strong>: {{ phase_content.description }}</li>
-                {% endfor %}
-            </ul>
         </div>
 
         <a href="{% url 'a4dashboard:project-create' organisation_slug=view.organisation.slug blueprint_slug=blueprint_slug %}"
