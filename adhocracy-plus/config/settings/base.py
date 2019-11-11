@@ -370,6 +370,7 @@ A4_RATEABLES = (
     ('a4_candy_ideas', 'idea'),
     ('a4_candy_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
+    ('a4_candy_topicprio', 'topic'),
 )
 
 A4_COMMENTABLES = (
@@ -380,6 +381,7 @@ A4_COMMENTABLES = (
     ('a4_candy_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
     ('a4_candy_polls', 'poll'),
+    ('a4_candy_topicprio', 'topic'),
 )
 
 A4_REPORTABLES = (
@@ -408,13 +410,15 @@ A4_CATEGORIZABLE = (
     ('a4_candy_ideas', 'idea'),
     ('a4_candy_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
-    ('a4_candy_questions', 'question')
+    ('a4_candy_questions', 'question'),
+    ('a4_candy_topicprio', 'topic'),
 )
 
 A4_LABELS_ADDABLE = (
     ('a4_candy_ideas', 'idea'),
     ('a4_candy_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
+    ('a4_candy_topicprio', 'topic'),
 )
 
 A4_CATEGORY_ICONS = (
