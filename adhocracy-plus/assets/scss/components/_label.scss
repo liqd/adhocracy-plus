@@ -14,6 +14,12 @@
     border-radius: 0.3em;
 }
 
+.label--active {
+    background-color: $body-bg;
+    border: 2px solid $brand-primary;
+    color: $text-color;
+}
+
 .label--primary {
     background-color: $platform-primary;
     color: contrast-color($platform-primary, $text-color-inverted);
