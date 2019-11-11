@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-11 10:26+0100\n"
+"POT-Creation-Date: 2019-11-11 14:37+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1245,7 +1245,7 @@ msgstr "Anlegen eines neuen Vorschlags"
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:9
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:10
 #: apps/topicprio/templates/a4_candy_topicprio/topic_detail.html:8
-#: adhocracy-plus/templates/a4modules/module_detail.html:41
+#: adhocracy-plus/templates/a4modules/module_detail.html:43
 msgid "breadcrumbs"
 msgstr "breadcrumbs"
 
@@ -2373,7 +2373,7 @@ msgstr "Zeitleiste"
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:76
 #: apps/projects/templates/a4_candy_projects/project_detail.html:189
 #: apps/users/models.py:47
-#: adhocracy-plus/templates/a4modules/module_detail.html:87
+#: adhocracy-plus/templates/a4modules/module_detail.html:89
 msgid "active"
 msgstr "aktiv"
 
@@ -2385,28 +2385,28 @@ msgstr "aktuelle Seite"
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:49
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:96
 #: apps/projects/templates/a4_candy_projects/project_detail.html:165
-#: adhocracy-plus/templates/a4modules/module_detail.html:63
+#: adhocracy-plus/templates/a4modules/module_detail.html:65
 msgid "Participation is not possible at the moment."
 msgstr "Die Beteiligung ist aktuell nicht möglich."
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:52
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:98
 #: apps/projects/templates/a4_candy_projects/project_detail.html:168
-#: adhocracy-plus/templates/a4modules/module_detail.html:66
+#: adhocracy-plus/templates/a4modules/module_detail.html:68
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "Sie startet am %(date)s."
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:55
 #: apps/projects/templates/a4_candy_projects/project_detail.html:171
-#: adhocracy-plus/templates/a4modules/module_detail.html:69
+#: adhocracy-plus/templates/a4modules/module_detail.html:71
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "Es geht weiter am %(date)s."
 
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:58
 #: apps/projects/templates/a4_candy_projects/project_detail.html:174
-#: adhocracy-plus/templates/a4modules/module_detail.html:72
+#: adhocracy-plus/templates/a4modules/module_detail.html:74
 #, python-format
 msgid "It ended on %(date)s."
 msgstr "Sie hat am %(date)s geendet."
@@ -2508,12 +2508,13 @@ msgid ""
 "                    "
 msgstr ""
 "\n"
-"                    Sie wurden vom Initiator des Projekts eingeladen. Wenn Sie die Einladung "
-"annehmen, können Sie am Projekt teilnehmen mit Ihrem Usernamen "
-"\"%(user)s\".\n"
-"                    Wenn Sie mit einem anderen Profil teilnehmen möchten, loggen Sie sich mit "
-"diesem anderen Profil erneut ein und folgen wieder dem Einladungslink. "
-"Wenn Sie die Einladung nicht annehmen ist der Link nicht mehr gültig.\n"
+"                    Sie wurden vom Initiator des Projekts eingeladen. Wenn "
+"Sie die Einladung annehmen, können Sie am Projekt teilnehmen mit Ihrem "
+"Usernamen \"%(user)s\".\n"
+"                    Wenn Sie mit einem anderen Profil teilnehmen möchten, "
+"loggen Sie sich mit diesem anderen Profil erneut ein und folgen wieder dem "
+"Einladungslink. Wenn Sie die Einladung nicht annehmen ist der Link nicht "
+"mehr gültig.\n"
 "                    "
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:13
@@ -2613,11 +2614,15 @@ msgstr "Füge Frage hinzu."
 msgid "post"
 msgstr "abschicken"
 
-#: apps/questions/templates/a4_candy_questions/question_module_detail.html:21
+#: apps/questions/templates/a4_candy_questions/question_module_detail.html:7
+msgid "is live"
+msgstr "live"
+
+#: apps/questions/templates/a4_candy_questions/question_module_detail.html:26
 msgid "During this event you can hand in questions with your smartphone"
 msgstr "Während dieser Veranstaltung können Sie Fragen per Handy stellen."
 
-#: apps/questions/templates/a4_candy_questions/question_module_detail.html:26
+#: apps/questions/templates/a4_candy_questions/question_module_detail.html:31
 msgid "Go to event"
 msgstr "Zur Veranstaltung"
 
@@ -2891,115 +2896,115 @@ msgstr "Englisch"
 msgid "German"
 msgstr "Deutsch"
 
-#: adhocracy-plus/config/settings/base.py:421
+#: adhocracy-plus/config/settings/base.py:425
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: adhocracy-plus/config/settings/base.py:422
+#: adhocracy-plus/config/settings/base.py:426
 msgid "Diamond"
 msgstr "Diamant"
 
-#: adhocracy-plus/config/settings/base.py:423
+#: adhocracy-plus/config/settings/base.py:427
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: adhocracy-plus/config/settings/base.py:424
+#: adhocracy-plus/config/settings/base.py:428
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: adhocracy-plus/config/settings/base.py:425
+#: adhocracy-plus/config/settings/base.py:429
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: adhocracy-plus/config/settings/base.py:426
+#: adhocracy-plus/config/settings/base.py:430
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: adhocracy-plus/config/settings/base.py:427
+#: adhocracy-plus/config/settings/base.py:431
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: adhocracy-plus/config/settings/base.py:428
+#: adhocracy-plus/config/settings/base.py:432
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: adhocracy-plus/config/settings/base.py:429
+#: adhocracy-plus/config/settings/base.py:433
 msgid "Star"
 msgstr "Stern"
 
-#: adhocracy-plus/config/settings/base.py:430
+#: adhocracy-plus/config/settings/base.py:434
 msgid "Square"
 msgstr "Quadrat"
 
-#: adhocracy-plus/config/settings/base.py:431
+#: adhocracy-plus/config/settings/base.py:435
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: adhocracy-plus/config/settings/base.py:432
+#: adhocracy-plus/config/settings/base.py:436
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: adhocracy-plus/config/settings/base.py:433
+#: adhocracy-plus/config/settings/base.py:437
 msgid "Circle"
 msgstr "Kreis"
 
-#: adhocracy-plus/config/settings/base.py:434
+#: adhocracy-plus/config/settings/base.py:438
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: adhocracy-plus/config/settings/base.py:435
+#: adhocracy-plus/config/settings/base.py:439
 msgid "Zigzag"
 msgstr "ZickZack"
 
-#: adhocracy-plus/config/settings/base.py:449
+#: adhocracy-plus/config/settings/base.py:453
 msgid "Anti-discrimination"
 msgstr "Antidiskriminierung"
 
-#: adhocracy-plus/config/settings/base.py:450
+#: adhocracy-plus/config/settings/base.py:454
 msgid "Work & economy"
 msgstr "Arbeit & Wirtschaft"
 
-#: adhocracy-plus/config/settings/base.py:451
+#: adhocracy-plus/config/settings/base.py:455
 msgid "Building & living"
 msgstr "Bauen & Wohnen"
 
-#: adhocracy-plus/config/settings/base.py:452
+#: adhocracy-plus/config/settings/base.py:456
 msgid "Education & research"
 msgstr "Bildung & Forschung"
 
-#: adhocracy-plus/config/settings/base.py:453
+#: adhocracy-plus/config/settings/base.py:457
 msgid "Children, youth & family"
 msgstr "Kinder, Jugend & Familie"
 
-#: adhocracy-plus/config/settings/base.py:454
+#: adhocracy-plus/config/settings/base.py:458
 msgid "Finances"
 msgstr "Finanzen"
 
-#: adhocracy-plus/config/settings/base.py:455
+#: adhocracy-plus/config/settings/base.py:459
 msgid "Health & sports"
 msgstr "Gesundheit & Sport"
 
-#: adhocracy-plus/config/settings/base.py:456
+#: adhocracy-plus/config/settings/base.py:460
 msgid "Integration"
 msgstr "Integration"
 
-#: adhocracy-plus/config/settings/base.py:457
+#: adhocracy-plus/config/settings/base.py:461
 msgid "Culture & leisure"
 msgstr "Kultur & Freizeit"
 
-#: adhocracy-plus/config/settings/base.py:458
+#: adhocracy-plus/config/settings/base.py:462
 msgid "Neighborhood & participation"
 msgstr "Nachbarschaft & Teilhabe"
 
-#: adhocracy-plus/config/settings/base.py:459
+#: adhocracy-plus/config/settings/base.py:463
 msgid "Urban development"
 msgstr "Stadtentwicklung"
 
-#: adhocracy-plus/config/settings/base.py:460
+#: adhocracy-plus/config/settings/base.py:464
 msgid "Environment & public green space"
 msgstr "Umwelt & Grünflächen"
 
-#: adhocracy-plus/config/settings/base.py:461
+#: adhocracy-plus/config/settings/base.py:465
 msgid "Traffic"
 msgstr "Verkehr"
 
@@ -3079,19 +3084,19 @@ msgstr ""
 "Ihr Bild wird hochgeladen bzw. entfernt, sobald Sie Ihre Änderungen  am Ende "
 "gespeichert haben."
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:28
+#: adhocracy-plus/templates/a4modules/module_detail.html:29
 msgid "Previous"
 msgstr "Vorherige"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:31
+#: adhocracy-plus/templates/a4modules/module_detail.html:32
 msgid "of"
 msgstr "von"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:35
+#: adhocracy-plus/templates/a4modules/module_detail.html:36
 msgid "Next"
 msgstr "Nächste"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:124
+#: adhocracy-plus/templates/a4modules/module_detail.html:126
 msgid "More questions from this online participation"
 msgstr "Mehr Fragen aus dieser Online-Beteiligung"
 
