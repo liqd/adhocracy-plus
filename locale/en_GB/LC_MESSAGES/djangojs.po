@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-06 17:28+0100\n"
+"POT-Creation-Date: 2019-11-11 10:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,6 +87,7 @@ msgstr "Do you really want to delete this comment?"
 #: apps/documents/assets/ChapterNavItem.jsx:61
 #: apps/documents/assets/ParagraphForm.jsx:133
 #: apps/documents/assets/ParagraphForm.jsx:138
+#: apps/polls/assets/QuestionForm.jsx:99 apps/polls/assets/QuestionForm.jsx:104
 msgid "Delete"
 msgstr "Delete"
 
@@ -177,6 +178,7 @@ msgid "Save"
 msgstr "Save"
 
 #: adhocracy4/polls/static/polls/Question.jsx:9
+#: apps/polls/assets/Question.jsx:173
 msgid "Your choice"
 msgstr "Your choice"
 
@@ -205,14 +207,17 @@ msgid "Please login to vote"
 msgstr "Please login to vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:139
+#: apps/polls/assets/Question.jsx:138
 msgid "To poll"
 msgstr "To poll"
 
 #: adhocracy4/polls/static/polls/Question.jsx:141
+#: apps/polls/assets/Question.jsx:141
 msgid "Change vote"
 msgstr "Change vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:144
+#: apps/polls/assets/Question.jsx:145
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
@@ -234,6 +239,7 @@ msgid "Users can select more than one answer."
 msgstr "Users can select more than one answer."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
+#: apps/polls/assets/QuestionForm.jsx:67
 msgid "Add a new choice"
 msgstr "Add a new choice"
 
@@ -242,6 +248,7 @@ msgstr "Add a new choice"
 #: apps/documents/assets/ChapterNavItem.jsx:37
 #: apps/documents/assets/ParagraphForm.jsx:110
 #: apps/documents/assets/ParagraphForm.jsx:115
+#: apps/polls/assets/QuestionForm.jsx:76 apps/polls/assets/QuestionForm.jsx:81
 msgid "Move up"
 msgstr "Move up"
 
@@ -250,6 +257,7 @@ msgstr "Move up"
 #: apps/documents/assets/ChapterNavItem.jsx:49
 #: apps/documents/assets/ParagraphForm.jsx:122
 #: apps/documents/assets/ParagraphForm.jsx:127
+#: apps/polls/assets/QuestionForm.jsx:88 apps/polls/assets/QuestionForm.jsx:93
 msgid "Move down"
 msgstr "Move down"
 
@@ -270,7 +278,8 @@ msgstr "Your message"
 msgid "Send Report"
 msgstr "Send Report"
 
-#: adhocracy4/static/Alert.jsx:5 apps/contrib/static/js/ajax_modal.js:8
+#: adhocracy4/static/Alert.jsx:5 apps/contrib/assets/Alert.jsx:10
+#: apps/contrib/assets/Alert.jsx:11 apps/contrib/static/js/ajax_modal.js:8
 #: apps/maps/assets/map_choose_polygon_with_preset.js:82
 #: adhocracy-plus/assets/js/embed.js:30 adhocracy-plus/assets/js/embed.js:31
 msgid "Close"
