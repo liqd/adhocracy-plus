@@ -64,9 +64,8 @@ export default class QuestionUser extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
-            { this.props.category &&
-              <span className="label label--big mr-1">{this.props.category}</span>
-            }
+            {this.props.category &&
+              <span className="label label--big mr-1">{this.props.category}</span>}
 
             <div>
               {this.props.hasLikingPermission
