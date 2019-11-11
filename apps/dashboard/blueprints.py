@@ -114,7 +114,7 @@ blueprints = [
          content=[
              question_phases.IssuePhase(),
          ],
-         image='images/brainstorming.svg',
+         image='images/live-discussion.svg',
          settings_model=None,
      )),
     ('topic-prioritization',
