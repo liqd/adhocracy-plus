@@ -14,7 +14,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Brainstorming'),
          description=_(
-             'Collect ideas and let participants comment on them.'
+             'Participants can submit their own ideas and discuss the '
+             'ideas of others.'
          ),
          content=[
              ideas_phases.CollectPhase(),
@@ -26,8 +27,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Spatial Brainstorming'),
          description=_(
-             'Collect ideas associated with a location within a pre-defined '
-             'area on a map.'
+             'Participants can submit their own ideas and mark them on a '
+             'map. They can discuss the ideas of others.'
          ),
          content=[
              mapideas_phases.CollectPhase(),
@@ -39,8 +40,9 @@ blueprints = [
      ProjectBlueprint(
          title=_('Spatial Idea Challenge'),
          description=_(
-             'Collect ideas on a pre-defined area on a map and let '
-             'participants rate them in a second step.'
+             'In a first phase, participants can submit their own ideas, '
+             'mark them on a map, and discuss the ideas of others. In a '
+             'second phase, the ideas can be rated (pro/contra).'
          ),
          content=[
              mapideas_phases.CollectPhase(),
@@ -53,8 +55,9 @@ blueprints = [
      ProjectBlueprint(
          title=_('Idea Challenge'),
          description=_(
-             'Collect ideas and let participants rate and comment on them in'
-             ' a second step.'
+             'In a first phase, participants can submit their own ideas '
+             'and discuss the ideas of others. In a second phase, the '
+             'ideas can be rated (pro/contra).'
          ),
          content=[
              ideas_phases.CollectPhase(),
@@ -67,7 +70,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Text Review'),
          description=_(
-             'Let participants comment on paragraphs of a pre-defined text.'
+             'Participants can discuss the paragraphs of a previously added '
+             'text.'
          ),
          content=[
              documents_phases.CommentPhase(),
@@ -79,8 +83,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Poll'),
          description=_(
-             'Let participants answer a poll of pre-defined multiple choice '
-             'questions.'
+             'Participants can answer one or more questions with '
+             'predefined choices.'
          ),
          content=[
              poll_phases.VotingPhase(),
@@ -92,8 +96,9 @@ blueprints = [
      ProjectBlueprint(
          title=_('Participatory budgeting'),
          description=_(
-             'Collect ideas with a budget proposal from participants. The '
-             'ideas can be located on a pre-defined map.'),
+             'Participants can submit their own suggestions, mark them on '
+             'a map, and add a budget. The ideas of others can be discussed '
+             'and rated (pro/contra).'),
          content=[
              budgeting_phases.RequestPhase()],
          image='images/participatory-budgeting.svg',
@@ -103,7 +108,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Speak Up'),
          description=_(
-             'Collect questions for your discussion.'
+             'The participants of an event can ask their questions online. '
+             'Other participants can support the question. '
          ),
          content=[
              question_phases.IssuePhase(),
@@ -113,9 +119,10 @@ blueprints = [
      )),
     ('topic-prioritization',
      ProjectBlueprint(
-         title=_('Topic Priorization'),
+         title=_('Priorization'),
          description=_(
-             'Comment and prioritize topics.'
+             'Participants can discuss and rate (pro/contra) previously '
+             'added ideas and topics.'
          ),
          content=[
              topicprio_phases.PrioritizePhase(),
