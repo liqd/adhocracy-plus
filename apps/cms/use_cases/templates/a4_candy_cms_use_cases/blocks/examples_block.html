@@ -2,7 +2,7 @@
 
 <div class="row">
     {% for example in value.examples %}
-        <div class="col-4">
+        <div class="col-12 col-md-4">
             {% if example.body and not example.link %}
             {{ example.body }}
             {% elif example.body and example.link %}
