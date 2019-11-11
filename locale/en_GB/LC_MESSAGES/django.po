@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-11 16:11+0100\n"
+"POT-Creation-Date: 2019-11-11 17:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,14 +75,12 @@ msgid "New Project"
 msgstr "New Project"
 
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
-#: apps/dashboard/templates/a4_candy_dashboard/includes/module_blueprint_list_tile.html:16
-#: adhocracy-plus/templates/a4dashboard/includes/blueprint_list_tile.html:14
 msgid "Phase"
 msgstr "Phase"
 
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
-#: apps/dashboard/templates/a4_candy_dashboard/includes/module_blueprint_list_tile.html:21
-#: adhocracy-plus/templates/a4dashboard/includes/blueprint_list_tile.html:21
+#: apps/dashboard/templates/a4_candy_dashboard/includes/module_blueprint_list_tile.html:15
+#: adhocracy-plus/templates/a4dashboard/includes/blueprint_list_tile.html:15
 msgid "Select"
 msgstr "Select"
 
@@ -727,7 +725,7 @@ msgstr "Description"
 msgid "End date can not be smallerthan the start date."
 msgstr "End date can not be smallerthan the start date."
 
-#: adhocracy4/polls/dashboard.py:14 apps/dashboard/blueprints.py:80
+#: adhocracy4/polls/dashboard.py:14 apps/dashboard/blueprints.py:84
 #: apps/polls/dashboard.py:15
 msgid "Poll"
 msgstr "Poll"
@@ -1499,82 +1497,96 @@ msgid "Brainstorming"
 msgstr "Brainstorming"
 
 #: apps/dashboard/blueprints.py:17
-msgid "Collect ideas and let participants comment on them."
-msgstr "Collect ideas and let participants comment on them."
+msgid ""
+"Participants can submit their own ideas and discuss the ideas of others."
+msgstr ""
+"Participants can submit their own ideas and discuss the ideas of others."
 
-#: apps/dashboard/blueprints.py:27
+#: apps/dashboard/blueprints.py:28
 msgid "Spatial Brainstorming"
 msgstr "Spatial Brainstorming"
 
-#: apps/dashboard/blueprints.py:29
+#: apps/dashboard/blueprints.py:30
 msgid ""
-"Collect ideas associated with a location within a pre-defined area on a map."
+"Participants can submit their own ideas and mark them on a map. They can "
+"discuss the ideas of others."
 msgstr ""
-"Collect ideas associated with a location within a pre-defined area on a map."
+"Participants can submit their own ideas and mark them on a map. They can "
+"discuss the ideas of others."
 
-#: apps/dashboard/blueprints.py:40
+#: apps/dashboard/blueprints.py:41
 msgid "Spatial Idea Challenge"
 msgstr "Spatial Idea Challenge"
 
-#: apps/dashboard/blueprints.py:42
+#: apps/dashboard/blueprints.py:43
 msgid ""
-"Collect ideas on a pre-defined area on a map and let participants rate them "
-"in a second step."
+"In a first phase, participants can submit their own ideas, mark them on a "
+"map, and discuss the ideas of others. In a second phase, the ideas can be "
+"rated (pro/contra)."
 msgstr ""
-"Collect ideas on a pre-defined area on a map and let participants rate them "
-"in a second step."
+"In a first phase, participants can submit their own ideas, mark them on a "
+"map, and discuss the ideas of others. In a second phase, the ideas can be "
+"rated (pro/contra)."
 
-#: apps/dashboard/blueprints.py:54
+#: apps/dashboard/blueprints.py:56
 msgid "Idea Challenge"
 msgstr "Idea Challenge"
 
-#: apps/dashboard/blueprints.py:56
+#: apps/dashboard/blueprints.py:58
 msgid ""
-"Collect ideas and let participants rate and comment on them in a second step."
+"In a first phase, participants can submit their own ideas and discuss the "
+"ideas of others. In a second phase, the ideas can be rated (pro/contra)."
 msgstr ""
-"Collect ideas and let participants rate and comment on them in a second step."
+"In a first phase, participants can submit their own ideas and discuss the "
+"ideas of others. In a second phase, the ideas can be rated (pro/contra)."
 
-#: apps/dashboard/blueprints.py:68
+#: apps/dashboard/blueprints.py:71
 msgid "Text Review"
 msgstr "Text Review"
 
-#: apps/dashboard/blueprints.py:70
-msgid "Let participants comment on paragraphs of a pre-defined text."
-msgstr "Let participants comment on paragraphs of a pre-defined text."
+#: apps/dashboard/blueprints.py:73
+msgid "Participants can discuss the paragraphs of a previously added text."
+msgstr "Participants can discuss the paragraphs of a previously added text."
 
-#: apps/dashboard/blueprints.py:82
-msgid ""
-"Let participants answer a poll of pre-defined multiple choice questions."
-msgstr ""
-"Let participants answer a poll of pre-defined multiple choice questions."
+#: apps/dashboard/blueprints.py:86
+msgid "Participants can answer one or more questions with predefined choices."
+msgstr "Participants can answer one or more questions with predefined choices."
 
-#: apps/dashboard/blueprints.py:93
+#: apps/dashboard/blueprints.py:97
 msgid "Participatory budgeting"
 msgstr "Participatory budgeting"
 
-#: apps/dashboard/blueprints.py:95
+#: apps/dashboard/blueprints.py:99
 msgid ""
-"Collect ideas with a budget proposal from participants. The ideas can be "
-"located on a pre-defined map."
+"Participants can submit their own suggestions, mark them on a map, and add a "
+"budget. The ideas of others can be discussed and rated (pro/contra)."
 msgstr ""
-"Collect ideas with a budget proposal from participants. The ideas can be "
-"located on a pre-defined map."
+"Participants can submit their own suggestions, mark them on a map, and add a "
+"budget. The ideas of others can be discussed and rated (pro/contra)."
 
-#: apps/dashboard/blueprints.py:104 apps/questions/phases.py:17
+#: apps/dashboard/blueprints.py:109 apps/questions/phases.py:17
 msgid "Speak Up"
 msgstr "Speak Up"
 
-#: apps/dashboard/blueprints.py:106
-msgid "Collect questions for your discussion."
-msgstr "Collect questions for your discussion."
+#: apps/dashboard/blueprints.py:111
+msgid ""
+"The participants of an event can ask their questions online. Other "
+"participants can support the question. "
+msgstr ""
+"The participants of an event can ask their questions online. Other "
+"participants can support the question. "
 
-#: apps/dashboard/blueprints.py:116
-msgid "Topic Priorization"
-msgstr "Topic Priorization"
+#: apps/dashboard/blueprints.py:122
+msgid "Priorization"
+msgstr "Priorization"
 
-#: apps/dashboard/blueprints.py:118
-msgid "Comment and prioritize topics."
-msgstr "Comment and prioritize topics."
+#: apps/dashboard/blueprints.py:124
+msgid ""
+"Participants can discuss and rate (pro/contra) previously added ideas and "
+"topics."
+msgstr ""
+"Participants can discuss and rate (pro/contra) previously added ideas and "
+"topics."
 
 #: apps/dashboard/forms.py:13
 msgid "Organisation name"
@@ -3299,6 +3311,54 @@ msgstr "Login with social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Login with "
+
+#~ msgid "Collect ideas and let participants comment on them."
+#~ msgstr "Collect ideas and let participants comment on them."
+
+#~ msgid ""
+#~ "Collect ideas associated with a location within a pre-defined area on a "
+#~ "map."
+#~ msgstr ""
+#~ "Collect ideas associated with a location within a pre-defined area on a "
+#~ "map."
+
+#~ msgid ""
+#~ "Collect ideas on a pre-defined area on a map and let participants rate "
+#~ "them in a second step."
+#~ msgstr ""
+#~ "Collect ideas on a pre-defined area on a map and let participants rate "
+#~ "them in a second step."
+
+#~ msgid ""
+#~ "Collect ideas and let participants rate and comment on them in a second "
+#~ "step."
+#~ msgstr ""
+#~ "Collect ideas and let participants rate and comment on them in a second "
+#~ "step."
+
+#~ msgid "Let participants comment on paragraphs of a pre-defined text."
+#~ msgstr "Let participants comment on paragraphs of a pre-defined text."
+
+#~ msgid ""
+#~ "Let participants answer a poll of pre-defined multiple choice questions."
+#~ msgstr ""
+#~ "Let participants answer a poll of pre-defined multiple choice questions."
+
+#~ msgid ""
+#~ "Collect ideas with a budget proposal from participants. The ideas can be "
+#~ "located on a pre-defined map."
+#~ msgstr ""
+#~ "Collect ideas with a budget proposal from participants. The ideas can be "
+#~ "located on a pre-defined map."
+
+#~ msgid "Collect questions for your discussion."
+#~ msgstr "Collect questions for your discussion."
+
+#~ msgid "Topic Priorization"
+#~ msgstr "Topic Priorization"
+
+#~ msgid "Comment and prioritize topics."
+#~ msgstr "Comment and prioritize topics."
 
 #~ msgid "Co-Operatives"
 #~ msgstr "Co-Operatives"
