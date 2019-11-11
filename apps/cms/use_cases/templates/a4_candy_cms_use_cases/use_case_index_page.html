@@ -2,7 +2,7 @@
 {% load static wagtailcore_tags wagtailimages_tags i18n absolute_url %}
 
 {% block title %}
-    {{ self.title }} &mdash; {{ block.super }}
+    {{ self.subtitle }} &mdash; {{ block.super }}
 {% endblock %}
 
 {% block content %}
@@ -78,7 +78,7 @@
                     <div class="cms__text pt-4">
                         {% blocktrans with category=use_case.get_category_display %}For {{ category }}{% endblocktrans %}
                     </div>
-                    <h2 class="cms__title--bold cms__title--h3-size">{{ use_case.title }}
+                    <h2 class="cms__title--bold cms__title--h3-size">{{ use_case.subtitle }}
                     </h2>
                 </a>
             </div>
