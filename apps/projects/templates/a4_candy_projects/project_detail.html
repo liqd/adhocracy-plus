@@ -38,11 +38,11 @@
                         {% react_follows project %}
                     {% endif %}
                 </div>
-                {% if project.image_copyright %}
-                <div class="project-header__copyright copyright">© {{ project.image_copyright }}</div>
-                {% endif %}
             </div>
         </div>
+    {% if project.image_copyright %}
+    <div class="project-header__copyright copyright">© {{ project.image_copyright }}</div>
+    {% endif %}
     </div>
 
     <div class="tablist tablist--left">
