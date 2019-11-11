@@ -114,6 +114,10 @@
     @include button-color--product($brand-info);
 }
 
+.btn--primary-filled {
+    @include button-color($brand-primary, $body-bg);
+}
+
 .btn--secondary-filled {
     @include button-color($brand-secondary, $body-bg);
 }
