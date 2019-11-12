@@ -16,6 +16,10 @@ class TermsSignupForm(SignupForm):
         super().__init__(*args, **kwargs)
         self.fields['username'].help_text = \
             _("Your username will appear publicly next to your posts.")
+        del self.fields['username'].widget.attrs['placeholder']
+        del self.fields['email'].widget.attrs['placeholder']
+        del self.fields['password1'].widget.attrs['placeholder']
+        del self.fields['password2'].widget.attrs['placeholder']
 
     def save(self, request):
         user = super(TermsSignupForm, self).save(request)
@@ -36,6 +40,7 @@ class SocialTermsSignupForm(SocialSignupForm):
         super().__init__(*args, **kwargs)
         self.fields['username'].help_text = \
             _("Your username will appear publicly next to your posts.")
+        del self.fields['username'].widget.attrs['placeholder']
 
     def save(self, request):
         user = super(SocialTermsSignupForm, self).save(request)
@@ -49,3 +54,5 @@ class ExtraLabelLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['login'].label = _('username/e-mail address')
+        del self.fields['login'].widget.attrs['placeholder']
+        del self.fields['password'].widget.attrs['placeholder']
