@@ -2,7 +2,7 @@
 
 {% spaceless %}
     {% if ORGANISATION %}
-    <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
+    <a class="font-weight-bold" href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
         {{ ORGANISATION.name }}
     </a>
     {% else %}
