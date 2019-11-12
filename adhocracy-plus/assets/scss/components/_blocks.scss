@@ -57,15 +57,6 @@ $block-padding-md: 7.5*$padding;
 //three col cta styling
 .block-row-3 {
     padding: $padding;
-    background-color: $body-bg;
-
-    @media screen and (min-width: $breakpoint-xs) {
-        padding: $padding $block-padding $block-padding $block-padding;
-    }
-
-    @media screen and (min-width: $breakpoint-md) {
-        padding: $padding $block-padding-md $block-padding-md $block-padding-md;
-    }
 }
 
 //multi col cta with content styling
