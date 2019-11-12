@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-12 11:48+0100\n"
+"POT-Creation-Date: 2019-11-12 12:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1515,30 +1515,30 @@ msgstr ""
 "also discuss the ideas of others."
 
 #: apps/dashboard/blueprints.py:41
-msgid "Spatial Idea Challenge"
-msgstr "Spatial Idea Challenge"
-
-#: apps/dashboard/blueprints.py:43
-msgid ""
-"In a first phase, participants can submit their own ideas, mark them on a "
-"map, and discuss the ideas of others. In a second phase, the ideas can be "
-"rated (pro/contra)."
-msgstr ""
-"In a first phase, participants can submit their own ideas, mark them on a "
-"map, and discuss the ideas of others. In a second phase, the ideas can be "
-"rated (pro/contra)."
-
-#: apps/dashboard/blueprints.py:56
 msgid "Idea Challenge"
 msgstr "Idea Challenge"
 
-#: apps/dashboard/blueprints.py:58
+#: apps/dashboard/blueprints.py:43
 msgid ""
 "In a first phase, participants can submit their own ideas and discuss the "
 "ideas of others. In a second phase, the ideas can be rated (pro/contra)."
 msgstr ""
 "In a first phase, participants can submit their own ideas and discuss the "
 "ideas of others. In a second phase, the ideas can be rated (pro/contra)."
+
+#: apps/dashboard/blueprints.py:56
+msgid "Spatial Idea Challenge"
+msgstr "Spatial Idea Challenge"
+
+#: apps/dashboard/blueprints.py:58
+msgid ""
+"In a first phase, participants can submit their own ideas, mark them on a "
+"map, and discuss the ideas of others. In a second phase, the ideas can be "
+"rated (pro/contra)."
+msgstr ""
+"In a first phase, participants can submit their own ideas, mark them on a "
+"map, and discuss the ideas of others. In a second phase, the ideas can be "
+"rated (pro/contra)."
 
 #: apps/dashboard/blueprints.py:71
 msgid "Text Review"
@@ -2616,7 +2616,7 @@ msgstr "Important dates"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Please enter correct email addresses, separated by commas."
 
-#: apps/users/forms.py:8 apps/users/forms.py:23
+#: apps/users/forms.py:9 apps/users/forms.py:33
 #: adhocracy-plus/templates/email_base.html:63
 #: adhocracy-plus/templates/email_base.txt:17
 #: adhocracy-plus/templates/footer.html:39
@@ -2625,13 +2625,21 @@ msgstr "Please enter correct email addresses, separated by commas."
 msgid "Terms of use"
 msgstr "Terms of use"
 
-#: apps/users/forms.py:9 apps/users/forms.py:24
+#: apps/users/forms.py:10 apps/users/forms.py:34
 msgid "Please accept the terms of use."
 msgstr "Please accept the terms of use."
 
-#: apps/users/forms.py:12 apps/users/forms.py:27 apps/users/models.py:68
+#: apps/users/forms.py:13 apps/users/forms.py:37 apps/users/models.py:68
 msgid "Send me newsletters"
 msgstr "Send me newsletters"
+
+#: apps/users/forms.py:18 apps/users/forms.py:42
+msgid "Your username will appear publicly next to your posts."
+msgstr "Your username will appear publicly next to your posts."
+
+#: apps/users/forms.py:56
+msgid "Username/e-mail address"
+msgstr "Username/e-mail address"
 
 #: apps/users/models.py:19
 msgid "username"
@@ -2797,115 +2805,115 @@ msgstr "English"
 msgid "German"
 msgstr "German"
 
-#: adhocracy-plus/config/settings/base.py:425
+#: adhocracy-plus/config/settings/base.py:426
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: adhocracy-plus/config/settings/base.py:426
+#: adhocracy-plus/config/settings/base.py:427
 msgid "Diamond"
 msgstr "Diamond"
 
-#: adhocracy-plus/config/settings/base.py:427
+#: adhocracy-plus/config/settings/base.py:428
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: adhocracy-plus/config/settings/base.py:428
+#: adhocracy-plus/config/settings/base.py:429
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: adhocracy-plus/config/settings/base.py:429
+#: adhocracy-plus/config/settings/base.py:430
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: adhocracy-plus/config/settings/base.py:430
+#: adhocracy-plus/config/settings/base.py:431
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: adhocracy-plus/config/settings/base.py:431
+#: adhocracy-plus/config/settings/base.py:432
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: adhocracy-plus/config/settings/base.py:432
+#: adhocracy-plus/config/settings/base.py:433
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: adhocracy-plus/config/settings/base.py:433
+#: adhocracy-plus/config/settings/base.py:434
 msgid "Star"
 msgstr "Star"
 
-#: adhocracy-plus/config/settings/base.py:434
+#: adhocracy-plus/config/settings/base.py:435
 msgid "Square"
 msgstr "Square"
 
-#: adhocracy-plus/config/settings/base.py:435
+#: adhocracy-plus/config/settings/base.py:436
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: adhocracy-plus/config/settings/base.py:436
+#: adhocracy-plus/config/settings/base.py:437
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: adhocracy-plus/config/settings/base.py:437
+#: adhocracy-plus/config/settings/base.py:438
 msgid "Circle"
 msgstr "Circle"
 
-#: adhocracy-plus/config/settings/base.py:438
+#: adhocracy-plus/config/settings/base.py:439
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: adhocracy-plus/config/settings/base.py:439
+#: adhocracy-plus/config/settings/base.py:440
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: adhocracy-plus/config/settings/base.py:453
+#: adhocracy-plus/config/settings/base.py:454
 msgid "Anti-discrimination"
 msgstr "Anti-discrimination"
 
-#: adhocracy-plus/config/settings/base.py:454
+#: adhocracy-plus/config/settings/base.py:455
 msgid "Work & economy"
 msgstr "Work & economy"
 
-#: adhocracy-plus/config/settings/base.py:455
+#: adhocracy-plus/config/settings/base.py:456
 msgid "Building & living"
 msgstr "Building & living"
 
-#: adhocracy-plus/config/settings/base.py:456
+#: adhocracy-plus/config/settings/base.py:457
 msgid "Education & research"
 msgstr "Education & research"
 
-#: adhocracy-plus/config/settings/base.py:457
+#: adhocracy-plus/config/settings/base.py:458
 msgid "Children, youth & family"
 msgstr "Children, youth & family"
 
-#: adhocracy-plus/config/settings/base.py:458
+#: adhocracy-plus/config/settings/base.py:459
 msgid "Finances"
 msgstr "Finances"
 
-#: adhocracy-plus/config/settings/base.py:459
+#: adhocracy-plus/config/settings/base.py:460
 msgid "Health & sports"
 msgstr "Health & sports"
 
-#: adhocracy-plus/config/settings/base.py:460
+#: adhocracy-plus/config/settings/base.py:461
 msgid "Integration"
 msgstr "Integration"
 
-#: adhocracy-plus/config/settings/base.py:461
+#: adhocracy-plus/config/settings/base.py:462
 msgid "Culture & leisure"
 msgstr "Culture & leisure"
 
-#: adhocracy-plus/config/settings/base.py:462
+#: adhocracy-plus/config/settings/base.py:463
 msgid "Neighborhood & participation"
 msgstr "Neighborhood & participation"
 
-#: adhocracy-plus/config/settings/base.py:463
+#: adhocracy-plus/config/settings/base.py:464
 msgid "Urban development"
 msgstr "Urban development"
 
-#: adhocracy-plus/config/settings/base.py:464
+#: adhocracy-plus/config/settings/base.py:465
 msgid "Environment & public green space"
 msgstr "Environment & public green space"
 
-#: adhocracy-plus/config/settings/base.py:465
+#: adhocracy-plus/config/settings/base.py:466
 msgid "Traffic"
 msgstr "Traffic"
 
