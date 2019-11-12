@@ -1,3 +1,4 @@
+from allauth.account.forms import LoginForm
 from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
@@ -41,3 +42,10 @@ class SocialTermsSignupForm(SocialSignupForm):
         user.get_newsletters = self.cleaned_data['get_newsletters']
         user.save()
         return user
+
+
+class ExtraLabelLoginForm(LoginForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['login'].label = _('username/e-mail address')
