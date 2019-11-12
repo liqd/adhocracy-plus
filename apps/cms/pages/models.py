@@ -47,7 +47,7 @@ class HomePage(Page):
     body_en = fields.RichTextField(blank=True)
 
     body_streamfield_de = fields.StreamField([
-        ('columns_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
         ('background_cta_block', cms_blocks.ColBackgroundCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('html', blocks.RawHTMLBlock()),
@@ -57,7 +57,7 @@ class HomePage(Page):
     ], blank=True)
 
     body_streamfield_en = fields.StreamField([
-        ('columns_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
         ('background_cta_block', cms_blocks.ColBackgroundCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('html', blocks.RawHTMLBlock()),
@@ -134,7 +134,7 @@ class SimplePage(Page):
         ('image', ImageChooserBlock()),
         ('faq', cms_blocks.AccordeonListBlock()),
         ('image_cta', cms_blocks.ImageCTABlock()),
-        ('columns_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
@@ -145,7 +145,7 @@ class SimplePage(Page):
         ('image', ImageChooserBlock()),
         ('faq', cms_blocks.AccordeonListBlock()),
         ('image_cta', cms_blocks.ImageCTABlock()),
-        ('columns_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
