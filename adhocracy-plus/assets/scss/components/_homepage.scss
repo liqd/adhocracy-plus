@@ -14,6 +14,19 @@ $spacer-xl: 7.5rem;
             font-size: $font-size-md;
         }
     }
+
+    .block-row-3 {
+        padding: $padding;
+        background-color: $body-bg;
+
+        @media screen and (min-width: $breakpoint-xs) {
+            padding: $padding $block-padding $block-padding $block-padding;
+        }
+
+        @media screen and (min-width: $breakpoint-md) {
+            padding: $padding $block-padding-md $block-padding-md $block-padding-md;
+        }
+    }
 }
 
 .homepage-header {
