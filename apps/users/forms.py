@@ -11,6 +11,11 @@ class TermsSignupForm(SignupForm):
     get_newsletters = forms.BooleanField(
         label=_('Send me newsletters'), required=False)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].help_text = \
+            _("Your username will appear publicly next to your posts.")
+
     def save(self, request):
         user = super(TermsSignupForm, self).save(request)
         user.get_newsletters = self.cleaned_data['get_newsletters']
@@ -25,6 +30,11 @@ class SocialTermsSignupForm(SocialSignupForm):
     })
     get_newsletters = forms.BooleanField(
         label=_('Send me newsletters'), required=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].help_text = \
+            _("Your username will appear publicly next to your posts.")
 
     def save(self, request):
         user = super(SocialTermsSignupForm, self).save(request)
