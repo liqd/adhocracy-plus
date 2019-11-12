@@ -102,28 +102,12 @@ $block-padding-md: 7.5*$padding;
 .block-img-col-2 {
     @extend .col-md-5;
 
-    .rich-text,
-    .block-col_cta-content {
-        padding: 2*$padding $padding 0 2*$padding;
-
-        @media screen and (min-width: $breakpoint-md) {
-            padding-right: $block-padding-md;
-        }
-
-        @media screen and (min-width: $breakpoint-xl) {
-            padding-left: 3*$padding;
-        }
-    }
-
     .block-img-col__image {
         width: 100%;
         position: relative;
-        right: -$spacer;
-        margin-top: $r-spacer;
 
         @media screen and (min-width: $breakpoint-xxl) {
             margin-top: 2*$spacer;
-            right: 3*-$spacer;
         }
     }
 }
