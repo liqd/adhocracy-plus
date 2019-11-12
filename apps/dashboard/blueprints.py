@@ -36,21 +36,6 @@ blueprints = [
          image='images/map-brainstorming.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
-    ('map-idea-collection',
-     ProjectBlueprint(
-         title=_('Spatial Idea Challenge'),
-         description=_(
-             'In a first phase, participants can submit their own ideas, '
-             'mark them on a map, and discuss the ideas of others. In a '
-             'second phase, the ideas can be rated (pro/contra).'
-         ),
-         content=[
-             mapideas_phases.CollectPhase(),
-             mapideas_phases.RatingPhase()
-         ],
-         image='images/map-idea-collection.svg',
-         settings_model=('a4maps', 'AreaSettings'),
-     )),
     ('agenda-setting',
      ProjectBlueprint(
          title=_('Idea Challenge'),
@@ -65,6 +50,21 @@ blueprints = [
          ],
          image='images/agenda-setting.svg',
          settings_model=None,
+     )),
+    ('map-idea-collection',
+     ProjectBlueprint(
+         title=_('Spatial Idea Challenge'),
+         description=_(
+             'In a first phase, participants can submit their own ideas, '
+             'mark them on a map, and discuss the ideas of others. In a '
+             'second phase, the ideas can be rated (pro/contra).'
+         ),
+         content=[
+             mapideas_phases.CollectPhase(),
+             mapideas_phases.RatingPhase()
+         ],
+         image='images/map-idea-collection.svg',
+         settings_model=('a4maps', 'AreaSettings'),
      )),
     ('text-review',
      ProjectBlueprint(
