@@ -27,8 +27,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Spatial Brainstorming'),
          description=_(
-             'Participants can submit their own ideas and mark them on a '
-             'map. They can discuss the ideas of others.'
+             'Participants can submit their own ideas and locate them on a '
+             'map. They can also discuss the ideas of others.'
          ),
          content=[
              mapideas_phases.CollectPhase(),
@@ -70,8 +70,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Text Review'),
          description=_(
-             'Participants can discuss the paragraphs of a previously added '
-             'text.'
+             'Participants can discuss the paragraphs of a text that you '
+             'added beforehand.'
          ),
          content=[
              documents_phases.CommentPhase(),
@@ -97,8 +97,9 @@ blueprints = [
          title=_('Participatory budgeting'),
          description=_(
              'Participants can submit their own suggestions, mark them on '
-             'a map, and add a budget. The ideas of others can be discussed '
-             'and rated (pro/contra).'),
+             'a map, and add a budget. The ideas of others can be '
+             'discussed and rated (pro/contra).'
+         ),
          content=[
              budgeting_phases.RequestPhase()],
          image='images/participatory-budgeting.svg',
@@ -106,10 +107,12 @@ blueprints = [
      )),
     ('speakup',
      ProjectBlueprint(
-         title=_('Speak Up'),
+         title=_('Interactive Event'),
          description=_(
              'The participants of an event can ask their questions online. '
-             'Other participants can support the question. '
+             'Other participants can support the question. You as the '
+             'moderator can sort the questions by support or '
+             'characteristic.'
          ),
          content=[
              question_phases.IssuePhase(),
@@ -122,7 +125,8 @@ blueprints = [
          title=_('Priorization'),
          description=_(
              'Participants can discuss and rate (pro/contra) previously '
-             'added ideas and topics.'
+             'added ideas and topics. Participants cannot add ideas or '
+             'topics.'
          ),
          content=[
              topicprio_phases.PrioritizePhase(),
