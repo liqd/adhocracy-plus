@@ -2,9 +2,17 @@
 
 <div class="block block__background">
     <div class="container">
-        <div class="block mb-5 pb-2 pt-4 text-center text-light">
-            {{ page.image }}
-            {{ page.body|richtext }}
+        <div class="block mb-5 pb-2 pt-4 text-center">
+            {% if value.image %}
+            {% image value.image width-500 as image %}
+            <img src="{{ image.url }}" alt="{{ image.alt }}" class="block-img-col__image pb-3" />
+            {% endif %}
+            {{ value.body|richtext }}
+            {% if value.link %}
+            <div class="block-col_cta-content pb-3 pb-md-5">
+                <a href="{{ column.link }}" class="btn btn--full btn--transparent">{{ value.link_text }}</a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
