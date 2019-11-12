@@ -7,7 +7,7 @@
     <div class="l-wrapper">
         <div class="row">
             <div class="col-12 tabs user-profile__tablist tablist">
-                <nav class="nav" role="tablist">
+                <nav class="nav l-col-9-3" role="tablist">
                     <a
                         id="tab-user-{{ user.pk }}-info"
                         class="tab d-md-none"
@@ -49,7 +49,7 @@
                   role="tabpanel"
                   aria-labelledby="tab-user-{{ user.pk }}-info"
                   aria-expanded="false">
-                    {% if object.avatar %}<img class="user-profile__avatar" src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
+                    {% if object.avatar %}<img class="user-profile__avatar pb-2" src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
 
                     <h1 class="u-first-heading u-word-break-all">
                     {{ object.username }}

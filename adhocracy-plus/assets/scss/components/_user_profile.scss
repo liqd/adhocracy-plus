@@ -5,10 +5,10 @@
 }
 
 .user-profile__avatar {
-    float: right;
     border-radius: 50%;
     shape-outside: circle();
     box-shadow: 0 0 2em rgba(0, 0, 0, 0.1);
+    position: relative;
 
     ~ h2 {
         clear: both;
