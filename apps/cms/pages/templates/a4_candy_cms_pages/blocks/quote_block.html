@@ -12,8 +12,8 @@
                     {% endif %}
                     </div>
                     <div class="col-sm-9">
-                        <div class="block-quote__text">“{{ value.quote }}”</div>
-                        <div class="block-quote__author mb-3">- {{ value.quote_author }}</div>
+                        <div class="block-quote__text">{{ value.quote }}</div>
+                        <div class="block-quote__author mb-3">{{ value.quote_author }}</div>
                         <div>
                             {% if value.link %}
                                 <a href="{{ value.link }}" class="btn btn--transparent block-bg_btn">{{ value.link_text }}</a>
