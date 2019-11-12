@@ -53,6 +53,6 @@ class ExtraLabelLoginForm(LoginForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['login'].label = _('Username/e-mail address')
+        self.fields['login'].label = _('Username/e-mail')
         del self.fields['login'].widget.attrs['placeholder']
         del self.fields['password'].widget.attrs['placeholder']
