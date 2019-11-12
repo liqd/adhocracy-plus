@@ -285,7 +285,7 @@ $block-padding-md: 7.5*$padding;
 }
 
 .block-quote {
-    padding: $spacer;
+    padding: 3*$padding $padding;
 }
 
 .block-quote--turquoise {
@@ -300,6 +300,16 @@ $block-padding-md: 7.5*$padding;
     .btn {
         color: $text-color-inverted;
         border-color: $text-color-inverted;
+
+        &,
+        &:focus,
+        &:hover,
+        &:active,
+        &:disabled,
+        &.is-disabled {
+            color: $text-color-inverted;
+            border-color: $text-color-inverted;
+        }
     }
 }
 
