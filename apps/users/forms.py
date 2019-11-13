@@ -10,7 +10,11 @@ class TermsSignupForm(SignupForm):
         'required': _('Please accept the terms of use.')
     })
     get_newsletters = forms.BooleanField(
-        label=_('Send me newsletters'), required=False)
+        label=_('Info Mails'),
+        help_text=_('Projects I follow are allowed to send me '
+                    'information mails.'),
+        required=False
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -34,7 +38,11 @@ class SocialTermsSignupForm(SocialSignupForm):
         'required': _('Please accept the terms of use.')
     })
     get_newsletters = forms.BooleanField(
-        label=_('Send me newsletters'), required=False)
+        label=_('Info Mails'),
+        help_text=_('Projects I follow are allowed to send me '
+                    'information mails.'),
+        required=False
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
