@@ -2745,11 +2745,11 @@ msgstr "Bitte akzeptieren sie die Nutzungsbedingungen."
 
 #: apps/users/forms.py:13 apps/users/forms.py:41
 msgid "Info Mails"
-msgstr ""
+msgstr "Info-Mails"
 
 #: apps/users/forms.py:14 apps/users/forms.py:42
 msgid "Projects I follow are allowed to send me information mails."
-msgstr ""
+msgstr "Projekte, denen ich folge, dürfen mir Informations-Mails schicken."
 
 #: apps/users/forms.py:22 apps/users/forms.py:50
 msgid "Your username will appear publicly next to your posts."
@@ -3314,6 +3314,12 @@ msgid ""
 "a>.\n"
 "                "
 msgstr ""
+"\n"
+"                Hiermit bestätige ich, dass ich die <a href="
+"\"%(terms_of_use_url)s\" target=\"_blank\">Nutzungsbedingungen</a> und die <a href="
+"\"%(data_protection_policy)s\" target=\"_blank\">Datenschutzerklärung</"
+"a> gelesen habe und akzeptiere.\n"
+"                "
 
 #: adhocracy-plus/templates/account/signup.html:48
 #, python-format
@@ -3327,6 +3333,15 @@ msgid ""
 "\">further information here</a>.\n"
 "        "
 msgstr ""
+"\n"
+"            Mit Ihrem Account auf adhocracy+ können Sie sich an allen "
+"öffentlichen Beteiligungsprojekten auf der Plattform beteiligen. "
+"Die Plattform bietet allen Organisationen und Initiativen die "
+"Möglichkeit, digitale Beteiligungsprojekte zu starten.\n"
+"            Sollten Sie Fragen zum Datenschutz auf der Plattform haben finden Sie "
+"<a href=\"%(data_protection_url)s\" target=\"_blank"
+"\">hier weitere Informationen</a>.\n"
+"        "
 
 #: adhocracy-plus/templates/base.html:60
 msgid "Skip to content "
