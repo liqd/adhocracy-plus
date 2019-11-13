@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-13 13:57+0100\n"
+"POT-Creation-Date: 2019-11-13 14:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2355,8 +2355,8 @@ msgstr "Proceed to login"
 #: apps/users/templates/a4_candy_users/indicator.html:49
 #: adhocracy-plus/templates/account/signup.html:4
 #: adhocracy-plus/templates/account/signup.html:7
-#: adhocracy-plus/templates/account/signup.html:42
-#: adhocracy-plus/templates/socialaccount/signup.html:47
+#: adhocracy-plus/templates/account/signup.html:43
+#: adhocracy-plus/templates/socialaccount/signup.html:48
 msgid "Register"
 msgstr "Register"
 
@@ -2616,7 +2616,7 @@ msgstr "Important dates"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Please enter correct email addresses, separated by commas."
 
-#: apps/users/forms.py:9 apps/users/forms.py:33
+#: apps/users/forms.py:9 apps/users/forms.py:37
 #: adhocracy-plus/templates/email_base.html:63
 #: adhocracy-plus/templates/email_base.txt:17
 #: adhocracy-plus/templates/footer.html:43
@@ -2625,19 +2625,23 @@ msgstr "Please enter correct email addresses, separated by commas."
 msgid "Terms of use"
 msgstr "Terms of use"
 
-#: apps/users/forms.py:10 apps/users/forms.py:34
+#: apps/users/forms.py:10 apps/users/forms.py:38
 msgid "Please accept the terms of use."
 msgstr "Please accept the terms of use."
 
-#: apps/users/forms.py:13 apps/users/forms.py:37 apps/users/models.py:68
-msgid "Send me newsletters"
-msgstr "Send me newsletters"
+#: apps/users/forms.py:13 apps/users/forms.py:41
+msgid "Info Mails"
+msgstr "Info Mails"
 
-#: apps/users/forms.py:18 apps/users/forms.py:42
+#: apps/users/forms.py:14 apps/users/forms.py:42
+msgid "Projects I follow are allowed to send me information mails."
+msgstr "Projects I follow are allowed to send me information mails."
+
+#: apps/users/forms.py:22 apps/users/forms.py:50
 msgid "Your username will appear publicly next to your posts."
 msgstr "Your username will appear publicly next to your posts."
 
-#: apps/users/forms.py:56
+#: apps/users/forms.py:64
 msgid "Username/e-mail"
 msgstr "Username/e-mail"
 
@@ -2690,6 +2694,10 @@ msgid ""
 msgstr ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
+
+#: apps/users/models.py:68
+msgid "Send me newsletters"
+msgstr "Send me newsletters"
 
 #: apps/users/models.py:71
 msgid ""
@@ -3180,44 +3188,35 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                I accept the <a href=\"%(terms_of_use_url)s\" target=\"_blank"
-"\">terms of use</a>.\n"
+"                I confirm that I have read and accepted the <a href="
+"\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the <a href="
+"\"%(data_protection_policy)s\" target=\"_blank\">data protection policy</"
+"a>.\n"
 "                "
 msgstr ""
 "\n"
-"                I accept the <a href=\"%(terms_of_use_url)s\" target=\"_blank"
-"\">terms of use</a>.\n"
+"                I confirm that I have read and accepted the <a href="
+"\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the <a href="
+"\"%(data_protection_policy)s\" target=\"_blank\">data protection policy</"
+"a>.\n"
 "                "
 
-#: adhocracy-plus/templates/account/signup.html:32
-#: adhocracy-plus/templates/socialaccount/signup.html:37
-msgid ""
-"\n"
-"                Send me newsletters\n"
-"                "
-msgstr ""
-"\n"
-"                Send me newsletters\n"
-"                "
-
-#: adhocracy-plus/templates/account/signup.html:47
+#: adhocracy-plus/templates/account/signup.html:48
 #, python-format
 msgid ""
 "\n"
-"            With your account on adhocracy+ you may participate in every "
-"public process on this platform.\n"
-"            This platform allows organisations in Germany, to involve "
-"citizens in the urban development via online participation.\n"
+"            With your account on adhocracy+, you can take part in every "
+"public participation project on this platform. This platform allows "
+"organisations initiatives to conduct digital participation projects.\n"
 "            If you have any questions regarding the data protection on this "
 "platform you can find <a href=\"%(data_protection_url)s\" target=\"_blank"
 "\">further information here</a>.\n"
 "        "
 msgstr ""
 "\n"
-"            With your account on adhocracy+ you may participate in every "
-"public process on this platform.\n"
-"            This platform allows organisations in Germany, to involve "
-"citizens in the urban development via online participation.\n"
+"            With your account on adhocracy+, you can take part in every "
+"public participation project on this platform. This platform allows "
+"organisations initiatives to conduct digital participation projects.\n"
 "            If you have any questions regarding the data protection on this "
 "platform you can find <a href=\"%(data_protection_url)s\" target=\"_blank"
 "\">further information here</a>.\n"
@@ -3333,6 +3332,47 @@ msgstr "Login with social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Login with "
+
+#~ msgid ""
+#~ "\n"
+#~ "                I accept the <a href=\"%(terms_of_use_url)s\" target="
+#~ "\"_blank\">terms of use</a>.\n"
+#~ "                "
+#~ msgstr ""
+#~ "\n"
+#~ "                I accept the <a href=\"%(terms_of_use_url)s\" target="
+#~ "\"_blank\">terms of use</a>.\n"
+#~ "                "
+
+#~ msgid ""
+#~ "\n"
+#~ "                Send me newsletters\n"
+#~ "                "
+#~ msgstr ""
+#~ "\n"
+#~ "                Send me newsletters\n"
+#~ "                "
+
+#~ msgid ""
+#~ "\n"
+#~ "            With your account on adhocracy+ you may participate in every "
+#~ "public process on this platform.\n"
+#~ "            This platform allows organisations in Germany, to involve "
+#~ "citizens in the urban development via online participation.\n"
+#~ "            If you have any questions regarding the data protection on "
+#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
+#~ "\"_blank\">further information here</a>.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "            With your account on adhocracy+ you may participate in every "
+#~ "public process on this platform.\n"
+#~ "            This platform allows organisations in Germany, to involve "
+#~ "citizens in the urban development via online participation.\n"
+#~ "            If you have any questions regarding the data protection on "
+#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
+#~ "\"_blank\">further information here</a>.\n"
+#~ "        "
 
 #~ msgid ""
 #~ "adhocracy+ is a platform provided by Liquid Democracy e.V. in Berlin. "
