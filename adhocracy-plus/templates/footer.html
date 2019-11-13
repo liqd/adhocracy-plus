@@ -2,6 +2,7 @@
 {% get_settings %}
 
 <footer class="footer pt-3 pt-sm-4{% if not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer__margin-for-banner{% endif %}{% endif %}">
+    {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
     <div class="container">
         <div class="row mt-3 mb-2 justify-content-lg-center">
             <div class="col-lg-6">
@@ -11,18 +12,21 @@
             </div>
             <div class="col-lg-6">
                 <div class="row">
+                {% if pages.open_content_link %}
                 <div class="col-sm-6 d-flex flex-column">
-                    <a class="btn btn--transparent footer__info-btn" href="https://creativecommons.org/licenses/by-sa/4.0/">Open Content CC-BY-SA</a>
+                    <a class="btn btn--transparent footer__info-btn" href="{{ pages.open_content_link }}">Open Content</a>
                 </div>
+                {% endif %}
+                {% if pages.github_repo_link %}
                 <div class="col-sm-6 d-flex flex-column mt-4 mt-sm-0">
-                    <a class="btn btn--transparent footer__info-btn" href="https://github.com/liqd/a4-product">Open Source AGPLv3</a>
+                    <a class="btn btn--transparent footer__info-btn" href="{{ pages.github_repo_link }}">Open Source</a>
                 </div>
+                {% endif %}
                 </div>
             </div>
         </div>
-
         <div class="row justify-content-lg-center">
-            {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
+
             <div class="col-12 col-md-8 col-lg-12">
                 <nav class="navi p-0">
                     <ul class="navi__list mb-2 d-sm-flex flex-wrap">
@@ -57,9 +61,9 @@
                     </ul>
                 </nav>
             </div>
-        {% endwith %}
         </div>
     </div>
+    {% endwith %}
 </footer>
 {% if ORGANISATION %}
 <div class="u-page-ribbon"></div>
