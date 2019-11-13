@@ -16,6 +16,19 @@ $spacer-xl: 7.5rem;
     }
 }
 
+//single col cta styling - for headline
+.homepage__wrapper .block-row-1 {
+    background-color: $body-bg;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding-top: $block-padding;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding-top: $block-padding-md;
+    }
+}
+
 .homepage__wrapper .block-row-3 {
     padding: $padding;
     background-color: $body-bg;
