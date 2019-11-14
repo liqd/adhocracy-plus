@@ -2,6 +2,7 @@ from allauth.account.forms import LoginForm
 from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
+from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -28,6 +29,7 @@ class TermsSignupForm(SignupForm):
     def save(self, request):
         user = super(TermsSignupForm, self).save(request)
         user.get_newsletters = self.cleaned_data['get_newsletters']
+        user.language = get_language()
         user.save()
         return user
 
@@ -53,6 +55,7 @@ class SocialTermsSignupForm(SocialSignupForm):
     def save(self, request):
         user = super(SocialTermsSignupForm, self).save(request)
         user.get_newsletters = self.cleaned_data['get_newsletters']
+        user.language = get_language()
         user.save()
         return user
 
