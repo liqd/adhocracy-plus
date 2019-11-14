@@ -5,7 +5,6 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.images.fields import ConfiguredImageField
@@ -138,14 +137,6 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     def get_full_name(self):
         full_name = '%s <%s>' % (self.username, self.email)
         return full_name.strip()
-
-    def signup(self, username, email, commit=True):
-        """Update the fields required for sign-up."""
-        self.username = username
-        self.email = email
-        self.language = get_language()
-        if commit:
-            self.save()
 
     def get_absolute_url(self):
         return reverse('profile', args=[str(self.username)])
