@@ -112,7 +112,7 @@ export default class QuestionBox extends React.Component {
   getUrl () {
     const url = this.props.questions_api_url
     if (this.state.orderedByLikes) {
-      return url + '&ordering=-like_count'
+      return url + '?ordering=-like_count'
     }
     return url
   }
