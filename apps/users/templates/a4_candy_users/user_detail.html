@@ -49,7 +49,7 @@
                   role="tabpanel"
                   aria-labelledby="tab-user-{{ user.pk }}-info"
                   aria-expanded="false">
-                    {% if object.avatar %}<img class="user-profile__avatar pb-2" src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
+                    {% if object.avatar %}<img class="user-profile__avatar" src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
 
                     <h1 class="u-first-heading u-word-break-all">
                     {{ object.username }}
@@ -79,7 +79,7 @@
                     </ul>
 
                     {% comment 'This code can be used as soon as we several partners on the plattform' %}
-                    <h2 class="heading2">{% trans 'Active in these platforms' %}</h2>
+                    <h2 class="heading--sm text-uppercase">{% trans 'Active in these platforms' %}</h2>
                     {% if view.organisations %}
                         <ul class="u-list-reset">
                             {% for organisation in view.organisations %}
