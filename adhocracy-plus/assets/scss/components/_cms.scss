@@ -9,16 +9,6 @@
     }
 }
 
-.cms__title--serif {
-    font-family: $font-family-serif;
-    font-weight: normal;
-}
-
-.cms__title--bold {
-    font-family: $font-family-base;
-    font-weight: bold;
-}
-
 .cms__title--underlined {
     position: relative;
     margin-bottom: 3 * $r-spacer;
@@ -30,22 +20,6 @@
         bottom: -20px;
         width: 80px;
         border-bottom: solid 8px $brand-secondary;
-    }
-}
-
-.cms__title--h2-size {
-    font-size: $font-size-xxl;
-
-    @media screen and (max-width: $breakpoint-xs-down) {
-        font-size: $mobile-headline-size*$font-size-xxl;
-    }
-}
-
-.cms__title--h3-size {
-    font-size: $font-size-xl;
-
-    @media screen and (max-width: $breakpoint-xs-down) {
-        font-size: $mobile-headline-size*$font-size-xl;
     }
 }
 
