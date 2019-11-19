@@ -1,8 +1,8 @@
 {% load i18n %}
 <div class="timeline-carousel">
+    <div class="timeline-carousel__line"></div>
     <div class="container">
         <div id="timeline-carousel" data-initial-slide="{{ initial_slide }}">
-            <div class="timeline-carousel__line"></div>
             <div class="timeline-carousel__item">
                 {% for date in dates %}
                     <a href="{{ project.get_absolute_url }}?initialSlide={{ forloop.counter0 }}"
