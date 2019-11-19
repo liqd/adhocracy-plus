@@ -7,14 +7,14 @@
     <div class="hero-unit" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});"></div>
 
     {% if organisation.logo %}
-    <div class="l-wrapper">
+    <div class="container">
         <div class="organisation__logo-box">
             <img src="{% thumbnail organisation.logo '0x160' %}" height="80" alt="{{ organisation.name }}" class="organisation__logo-img" />
         </div>
     </div>
     {% endif %}
 
-    <div class="l-wrapper organisation__header">
+    <div class="container organisation__header">
         <div class="row">
             <div class="l-col-6-0">
                 <h1 class="u-no-margin marked-box">{{ organisation.title }}</h1>
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div class="l-wrapper">
+    <div class="container">
         <div class="row">
             <div class="l-col-8-0">
                 <ul class="u-list-reset">

@@ -4,7 +4,7 @@
 {% block title %}{% trans 'Projects' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
+    <div class="container">
         {% include "a4_candy_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
         {% filter_has_perm 'a4_candy_projects.view_project' request.user project_list as filtered_projects %}

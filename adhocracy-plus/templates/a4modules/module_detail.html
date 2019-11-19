@@ -10,7 +10,7 @@
     {% if project.is_draft %}
         <ul class="messages">
             <li class="alert alert--warning" role="alert">
-                <div class="l-wrapper">
+                <div class="container">
                     {% trans 'This project is in not published yet.' %}
                 </div>
             </li>
@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
+    <div class="container">
         {% block module_nav %}
         {% if module.is_in_module_cluster  %}
             <div class="u-align-right u-spacer-bottom-double">
@@ -108,7 +108,7 @@
 
     </div>
     <div>
-        <div class="l-wrapper">
+        <div class="container">
             <div class="row">
                 <div class="l-center-6">
                 {% block project_action %}{% endblock %}
@@ -119,7 +119,7 @@
     </div>
     {% block other_modules %}
     {% if module.is_in_module_cluster %}
-    <div class="l-wrapper">
+    <div class="container">
         <div class="participation-tile__wrapper">
             <div class="participation-tile__list-container">
                 <ul class="u-list-reset participation-tile__list">

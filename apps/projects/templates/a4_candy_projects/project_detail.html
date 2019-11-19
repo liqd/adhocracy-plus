@@ -9,7 +9,7 @@
     {% if project.is_draft %}
         <ul class="messages">
             <li class="alert alert--warning" role="alert">
-                <div class="l-wrapper">
+                <div class="container">
                     {% trans 'This project is in not published yet.' %}
                 </div>
             </li>
@@ -21,7 +21,7 @@
     <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
                    background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                    {% endif %}">
-        <div class="l-wrapper">
+        <div class="container">
             <div class="row">
                 <div class="l-center-6">
                     {% with container=project.containers.first %}
@@ -46,7 +46,7 @@
     </div>
 
     <div class="tablist tablist--left">
-        <div class="l-wrapper">
+        <div class="container">
             <div class="tablist__right">
                 {% has_perm 'a4_candy_projects.change_project' request.user view.project as user_may_change %}
                 {% if user_may_change %}
@@ -95,7 +95,7 @@
         role="tabpanel"
         aria-labelledby="tab-project-{{ project.pk }}-information"
         aria-expanded="false">
-        <div class="l-wrapper">
+        <div class="container">
             <div class="row">
                 <div class="l-center-8">
                     {{ project.information | transform_collapsibles | richtext }}
@@ -137,7 +137,7 @@
             {% include "a4_candy_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
         {% endif %}
         </div>
-        <div class="l-wrapper">
+        <div class="container">
             {% if event %}
             <div class="row">
                 <div class="l-center-6">
@@ -219,7 +219,7 @@
         role="tabpanel"
         aria-labelledby="tab-project-{{ project.pk }}-result"
         aria-expanded="false">
-        <div class="l-wrapper">
+        <div class="container">
             <div class="row">
                 <div class="l-center-8">
                     {% if project.result %}

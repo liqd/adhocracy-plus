@@ -163,7 +163,7 @@ export default class QuestionBox extends React.Component {
     return (
       <div>
         <div className="tablist tablist--bg-secondary mb-0">
-          <div className="l-wrapper">
+          <div className="container">
             <nav className="nav justify-content-center">
               <a
                 id="tab-information"
@@ -208,7 +208,7 @@ export default class QuestionBox extends React.Component {
           aria-labelledby="tab-information"
           aria-expanded="false"
         >
-          <div className="l-wrapper">
+          <div className="container">
             <div className="l-center-8">
               {this.props.information}
             </div>
@@ -270,7 +270,7 @@ export default class QuestionBox extends React.Component {
           aria-labelledby="tab-statistics"
           aria-expanded="false"
         >
-          <div className="l-wrapper">
+          <div className="container">
             <div className="l-center-8">
               <StatisticsBox
                 answeredQuestions={this.state.answeredQuestions}
