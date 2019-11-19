@@ -7,9 +7,9 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class TermsSignupForm(SignupForm):
-    terms_of_use = forms.BooleanField(label=_('Terms of use'), error_messages={
-        'required': _('Please accept the terms of use.')
-    })
+    terms_of_use = forms.BooleanField(
+        label=_('Terms of use')
+    )
     get_newsletters = forms.BooleanField(
         label=_('Info Mails'),
         help_text=_('Projects I follow are allowed to send me '
@@ -35,15 +35,17 @@ class TermsSignupForm(SignupForm):
 
 
 class SocialTermsSignupForm(SocialSignupForm):
-    email = forms.EmailField(widget=forms.HiddenInput())
-    terms_of_use = forms.BooleanField(label=_('Terms of use'), error_messages={
-        'required': _('Please accept the terms of use.')
-    })
+    terms_of_use = forms.BooleanField(
+        label=_('Terms of use')
+    )
     get_newsletters = forms.BooleanField(
         label=_('Info Mails'),
         help_text=_('Projects I follow are allowed to send me '
                     'information mails.'),
         required=False
+    )
+    email = forms.EmailField(
+        widget=forms.HiddenInput()
     )
 
     def __init__(self, *args, **kwargs):
