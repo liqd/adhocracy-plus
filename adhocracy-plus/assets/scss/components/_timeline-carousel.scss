@@ -1,5 +1,9 @@
 $timeline-carousel__top-space: 12px;
 
+.timeline-carousel__container {
+    max-width: 1140px; //same width as widest container
+}
+
 .timeline-carousel__item { //to stop items displaying as a list before js is initialized
     visibility: hidden;
 
