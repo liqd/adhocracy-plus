@@ -39,7 +39,7 @@
         {% endif %}
         {% endblock %}
         <div class="row">
-            <div class="l-center-6 project-header">
+            <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3 project-header">
                 <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
                     <ul>
                         <li>
@@ -60,7 +60,7 @@
         {% block phase_info %}
         {% if not module.active_phase %}
         <div class="row">
-            <div class="l-center-6 u-spacer-bottom">
+            <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3 u-spacer-bottom">
                 <strong>
                     {% trans 'Participation is not possible at the moment.' %}
                     {% if not module.past_phases %}
@@ -79,7 +79,7 @@
         {% endif %}
         {% with phase_count=module.phases.count %}
         <div class="row">
-            <div class="l-center-6">
+            <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                 {% for phase in module.phases %}
                     {% if phase.is_over or phase == module.active_phase %}
                     <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
@@ -110,7 +110,7 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="l-center-6">
+                <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                 {% block project_action %}{% endblock %}
                 </div>
             </div>

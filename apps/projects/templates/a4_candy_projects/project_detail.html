@@ -23,7 +23,7 @@
                    {% endif %}">
         <div class="container">
             <div class="row">
-                <div class="l-center-6">
+                <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                     {% with container=project.containers.first %}
                         {% if container %}
                             <a href="{{ container.get_absolute_url }}" class="project-header__link" data-embed-target="external">
@@ -140,7 +140,7 @@
         <div class="container">
             {% if event %}
             <div class="row">
-                <div class="l-center-6">
+                <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                     <h2>{{ event.name }}</h2>
                     <P>{{ event.description | safe}}</P>
                 </div>
@@ -160,7 +160,7 @@
             {% else %} <!-- if no timeline and just one module and no phase view to dispatch to -->
                 {% if not module.active_phase %}
                 <div class="row">
-                    <div class="l-center-6">
+                    <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                         <strong>
                             {% trans 'Participation is not possible at the moment.' %}
                             {% if not module.past_phases %}
@@ -179,7 +179,7 @@
                 {% endif %}
                 {% with phase_count=module.phases.count %}
                 <div class="row">
-                    <div class="l-center-6">
+                    <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                         {% for phase in module.phases %}
                             {% if phase.is_over or phase == module.active_phase %}
                             <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
@@ -207,7 +207,7 @@
             {% endif %}
         </div>
         <!-- these blocks are only filled when in phase view -->
-        <div class="l-center-6">
+        <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
         {% block project_action %}{% endblock %}
         </div>
         {% block phase_content %}{% endblock %}

@@ -5,7 +5,7 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="l-center-6">
+            <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                 <h1>{% blocktrans with project=participantinvite.project.name %}Do you want to take part in "{{ project }}"?{% endblocktrans %}</h1>
                 {{ form.non_field_errors }}
                 <p>
