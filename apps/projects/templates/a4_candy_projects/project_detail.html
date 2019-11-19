@@ -97,7 +97,7 @@
         aria-expanded="false">
         <div class="container">
             <div class="row">
-                <div class="l-center-8">
+                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                     {{ project.information | transform_collapsibles | richtext }}
                     {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
                         <h3 class="u-top-divider">{% trans 'Contact for questions' %}</h3>
@@ -221,7 +221,7 @@
         aria-expanded="false">
         <div class="container">
             <div class="row">
-                <div class="l-center-8">
+                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                     {% if project.result %}
                         {{ project.result | richtext }}
                     {% else %}

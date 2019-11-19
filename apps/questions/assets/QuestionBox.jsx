@@ -209,7 +209,7 @@ export default class QuestionBox extends React.Component {
           aria-expanded="false"
         >
           <div className="container">
-            <div className="l-center-8">
+            <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
               {this.props.information}
             </div>
           </div>
@@ -271,7 +271,7 @@ export default class QuestionBox extends React.Component {
           aria-expanded="false"
         >
           <div className="container">
-            <div className="l-center-8">
+            <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
               <StatisticsBox
                 answeredQuestions={this.state.answeredQuestions}
                 questions_api_url={this.props.questions_api_url}

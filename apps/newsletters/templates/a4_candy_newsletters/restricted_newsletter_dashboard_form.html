@@ -4,7 +4,7 @@
 {% block title %}{% trans "Newsletter" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_content %}
-<div class="l-center-8">
+<div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
     <h1>{% trans "Create Newsletter" %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
