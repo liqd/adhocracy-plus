@@ -1,0 +1,16 @@
+{% load i18n wagtailcore_tags wagtailimages_tags static %}
+
+{% image image fill-700x500 as smallImage %}
+{% image image fill-1700x500-c100 as bigImage %}
+<div class="homepage-hero">
+    <div class="homepage-hero__image d-none d-lg-block" style="background-image: url({{ bigImage.url }})"></div>
+    <div class="homepage-hero__image d-lg-none" style="background-image: url({{ smallImage.url }})"></div>
+    <div class="container homepage-hero__container">
+        <div class="homepage-hero__header">
+            <h1 class="homepage-hero__title">{{ title }}</h1>
+            <div class="homepage-hero__content">
+                    {{ teaser }}
+            </div>
+        </div>
+    </div>
+</div>
