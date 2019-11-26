@@ -1,5 +1,8 @@
+import random
+
 from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import MultiFieldPanel
 from wagtail.admin.edit_handlers import ObjectList
 from wagtail.admin.edit_handlers import PageChooserPanel
 from wagtail.admin.edit_handlers import StreamFieldPanel
@@ -17,13 +20,54 @@ from apps.contrib.translations import TranslatedField
 
 
 class HomePage(Page):
-    image = models.ForeignKey(
+
+    image_1 = models.ForeignKey(
         'a4_candy_cms_images.CustomImage',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        verbose_name="Header Image",
+        verbose_name="Header Image 1",
+        help_text="The Image that is shown on top of the page"
+    )
+
+    image_2 = models.ForeignKey(
+        'a4_candy_cms_images.CustomImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Header Image 2",
+        help_text="The Image that is shown on top of the page"
+    )
+
+    image_3 = models.ForeignKey(
+        'a4_candy_cms_images.CustomImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Header Image 3",
+        help_text="The Image that is shown on top of the page"
+    )
+
+    image_4 = models.ForeignKey(
+        'a4_candy_cms_images.CustomImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Header Image 4",
+        help_text="The Image that is shown on top of the page"
+    )
+
+    image_5 = models.ForeignKey(
+        'a4_candy_cms_images.CustomImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Header Image 5",
         help_text="The Image that is shown on top of the page"
     )
 
@@ -90,6 +134,14 @@ class HomePage(Page):
     def form(self):
         return self.form_page.get_form()
 
+    @property
+    def random_image(self):
+        image_numbers = [i for i in range(1, 6)
+                         if getattr(self, 'image_{}'.format(i))]
+        if image_numbers:
+            return getattr(self,
+                           'image_{}'.format(random.choice(image_numbers)))
+
     en_content_panels = [
         FieldPanel('subtitle_en'),
         FieldPanel('teaser_en'),
@@ -108,7 +160,17 @@ class HomePage(Page):
         FieldPanel('title'),
         FieldPanel('slug'),
         PageChooserPanel('form_page'),
-        ImageChooserPanel('image'),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel('image_1'),
+                ImageChooserPanel('image_2'),
+                ImageChooserPanel('image_3'),
+                ImageChooserPanel('image_4'),
+                ImageChooserPanel('image_5'),
+            ],
+            heading="Images",
+            classname="collapsible"
+        )
     ]
 
     edit_handler = TabbedInterface([
