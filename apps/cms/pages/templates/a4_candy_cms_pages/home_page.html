@@ -1,19 +1,9 @@
 {% extends "base.html" %}
-{% load i18n wagtailcore_tags wagtailimages_tags %}
+{% load i18n wagtailcore_tags wagtailimages_tags static %}
 
 {% block content %}
     <div class="homepage__wrapper">
-        <div class="homepage-header">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1 class="homepage-header__teaser p-3 ml-md-4">{{ page.teaser|richtext }}</h1>
-                </div>
-                <div class="col-lg-6">
-                    {% image page.image width-800 as image %}
-                    <img src="{{ image.url }}" alt="{{ image.alt }}" class="homepage-header__image" />
-                </div>
-            </div>
-        </div>
+    {% include "a4_candy_cms_pages/includes/homepage_hero.html" with image=page.random_image title=page.subtitle teaser=page.teaser|richtext %}
         {% if page.body %}
         <div class="p-3">{{ page.body|richtext }}</div>
         {% endif %}
