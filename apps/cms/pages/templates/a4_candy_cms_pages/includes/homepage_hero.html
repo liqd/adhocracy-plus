@@ -12,8 +12,8 @@
                     {{ teaser }}
             </div>
         </div>
-        {% if caption %}
-            <div class="btn btn--secondary-filled btn--square homepage-hero__btn--info" data-toggle="tooltip" data-placement="top" aria-label="{% trans 'Header image: ' %}{% if caption %}{{ caption }}{% else %}{{ bigImage.alt }}{% endif %}" title="{{ caption }}" tabindex="0">
+        {% if image.caption %}
+            <div class="btn btn--secondary-filled btn--square homepage-hero__btn--info" data-toggle="tooltip" data-placement="top" aria-label="{% trans 'Header image: ' %}{% if image.caption %}{{ image.caption }}{% else %}{{ bigImage.alt }}{% endif %}" title="{{ image.caption }}" tabindex="0">
               <i class="fas fa-info"></i>
             </div>
         {% endif %}
