@@ -90,3 +90,8 @@ module.exports = {
 $(document).on('click', function () {
   $('.collapse').collapse('hide')
 })
+
+// enables bootstrap tooltips
+$(function tooltip () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

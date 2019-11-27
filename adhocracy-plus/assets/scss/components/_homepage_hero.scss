@@ -23,17 +23,15 @@
     bottom: 0;
     left: 0;
 
-    // centering the container vertically and horizontally
+    //positioning items at bottom of img
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
 }
 
 .homepage-hero__header {
-    padding-top: 25%;
+    padding-bottom: 3*$spacer;
     width: 100%;
     color: $body-bg;
-    position: relative;
     z-index: 1;
 }
 
@@ -53,8 +51,9 @@
     }
 }
 
-.homepage-hero__title {
-    margin: rem(0 0 10px 0);
-    color: $body-bg;
-    bottom: 100%;
+.homepage-hero__btn--info {
+    z-index: 2;
+    position: absolute;
+    bottom: $spacer;
+    right: $spacer;
 }

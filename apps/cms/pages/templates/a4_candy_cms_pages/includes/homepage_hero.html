@@ -3,8 +3,8 @@
 {% image image fill-700x500 as smallImage %}
 {% image image fill-1700x500-c100 as bigImage %}
 <div class="homepage-hero">
-    <div class="homepage-hero__image d-none d-lg-block" style="background-image: url({{ bigImage.url }})"></div>
-    <div class="homepage-hero__image d-lg-none" style="background-image: url({{ smallImage.url }})"></div>
+    <div class="homepage-hero__image d-none d-lg-block" role="img" style="background-image: url({{ bigImage.url }})"></div>
+    <div class="homepage-hero__image d-lg-none" role="img" style="background-image: url({{ smallImage.url }})"></div>
     <div class="container homepage-hero__container">
         <div class="homepage-hero__header">
             <h1 class="homepage-hero__title">{{ title }}</h1>
@@ -12,5 +12,10 @@
                     {{ teaser }}
             </div>
         </div>
+        {% if caption %}
+            <div class="btn btn--secondary-filled btn--square homepage-hero__btn--info" data-toggle="tooltip" data-placement="top" aria-label="{% trans 'Header image: ' %}{% if caption %}{{ caption }}{% else %}{{ bigImage.alt }}{% endif %}" title="{{ caption }}" tabindex="0">
+              <i class="fas fa-info"></i>
+            </div>
+        {% endif %}
     </div>
 </div>
