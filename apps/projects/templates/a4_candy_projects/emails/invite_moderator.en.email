@@ -1,9 +1,9 @@
 {% extends 'email_base.'|add:part_type %}
 {% load verbose_name %}
 
-{% block subject %}Invitation to moderate the project {{ moderatorinvite.project.name }}{% endblock %}
+{% block subject %}Invitation to moderate the project: "{{ moderatorinvite.project.name }}"{% endblock %}
 
-{% block headline %}Invitation to the moderate project {{ moderatorinvite.project.name }}{% endblock  %}
+{% block headline %}Invitation to moderate project: "{{ moderatorinvite.project.name }}"{% endblock  %}
 
 {% block content %}you are invited to moderate the project "{{ moderatorinvite.project.name }}" on the participation platform  {{ site.name }}. To be able to moderate and change the project click on "Accept invitation."
 {% endblock %}

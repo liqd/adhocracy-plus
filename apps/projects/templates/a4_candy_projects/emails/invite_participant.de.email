@@ -1,9 +1,9 @@
 {% extends 'email_base.'|add:part_type %}
 {% load verbose_name %}
 
-{% block subject %}Einladung zum privaten Projekt {{ participantinvite.project.name }}{% endblock %}
+{% block subject %}Einladung zum privaten Projekt: "{{ participantinvite.project.name }}"{% endblock %}
 
-{% block headline %}Einladung zum privaten Projekt  {{ participantinvite.project.name }}{% endblock  %}
+{% block headline %}Einladung zum privaten Projekt: "{{ participantinvite.project.name }}"{% endblock  %}
 
 {% block content %}Sie wurden zum privaten Projekt "{{ participantinvite.project.name }}" auf der Beteiligungsplattform {{ site.name }} eingeladen. Um an dem Projekt teilzunehmen, klicken Sie auf "Einladung annehmen". {% endblock %}
 
