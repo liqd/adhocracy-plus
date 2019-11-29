@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-13 14:48+0100\n"
+"POT-Creation-Date: 2019-11-29 11:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1288,6 +1288,10 @@ msgstr "display more"
 msgid "Back to overview"
 msgstr "Back to overview"
 
+#: apps/cms/pages/templates/a4_candy_cms_pages/includes/homepage_hero.html:16
+msgid "Header image: "
+msgstr "Header image: "
+
 #: apps/cms/use_cases/models.py:24
 msgid "Municipalities"
 msgstr "Municipalities"
@@ -2278,7 +2282,7 @@ msgstr "Timeline"
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:18
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:76
 #: apps/projects/templates/a4_candy_projects/project_detail.html:189
-#: apps/users/models.py:47
+#: apps/users/models.py:46
 #: adhocracy-plus/templates/a4modules/module_detail.html:89
 msgid "active"
 msgstr "active"
@@ -2346,12 +2350,12 @@ msgstr ""
 "revisit the invitation link."
 
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:14
-#: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:14
+#: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:16
 msgid "Proceed to login"
 msgstr "Proceed to login"
 
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
-#: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:15
+#: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:18
 #: apps/users/templates/a4_candy_users/indicator.html:49
 #: adhocracy-plus/templates/account/signup.html:4
 #: adhocracy-plus/templates/account/signup.html:7
@@ -2386,8 +2390,8 @@ msgstr "Project: %(project)s"
 
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:9
 #, python-format
-msgid "Do you want to take part in \"%(project)s\"?"
-msgstr "Do you want to take part in \"%(project)s\"?"
+msgid "Invitation to participate in the project \"%(project)s\"?"
+msgstr "Invitation to participate in the project \"%(project)s\"?"
 
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:12
 msgid ""
@@ -2616,7 +2620,7 @@ msgstr "Important dates"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Please enter correct email addresses, separated by commas."
 
-#: apps/users/forms.py:9 apps/users/forms.py:37
+#: apps/users/forms.py:11 apps/users/forms.py:41
 #: adhocracy-plus/templates/email_base.html:63
 #: adhocracy-plus/templates/email_base.txt:17
 #: adhocracy-plus/templates/footer.html:43
@@ -2625,57 +2629,53 @@ msgstr "Please enter correct email addresses, separated by commas."
 msgid "Terms of use"
 msgstr "Terms of use"
 
-#: apps/users/forms.py:10 apps/users/forms.py:38
-msgid "Please accept the terms of use."
-msgstr "Please accept the terms of use."
-
-#: apps/users/forms.py:13 apps/users/forms.py:41
+#: apps/users/forms.py:14 apps/users/forms.py:44
 msgid "Info Mails"
 msgstr "Info Mails"
 
-#: apps/users/forms.py:14 apps/users/forms.py:42
+#: apps/users/forms.py:15 apps/users/forms.py:45
 msgid "Projects I follow are allowed to send me information mails."
 msgstr "Projects I follow are allowed to send me information mails."
 
-#: apps/users/forms.py:22 apps/users/forms.py:50
+#: apps/users/forms.py:23 apps/users/forms.py:56
 msgid "Your username will appear publicly next to your posts."
 msgstr "Your username will appear publicly next to your posts."
 
-#: apps/users/forms.py:64
+#: apps/users/forms.py:71
 msgid "Username/e-mail"
 msgstr "Username/e-mail"
 
-#: apps/users/models.py:19
+#: apps/users/models.py:18
 msgid "username"
 msgstr "username"
 
-#: apps/users/models.py:23
+#: apps/users/models.py:22
 msgid ""
 "Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
 msgstr ""
 "Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
 
-#: apps/users/models.py:29
+#: apps/users/models.py:28
 msgid "A user with that username already exists."
 msgstr "A user with that username already exists."
 
-#: apps/users/models.py:33
+#: apps/users/models.py:32
 msgid "Email address"
 msgstr "Email address"
 
-#: apps/users/models.py:36
+#: apps/users/models.py:35
 msgid "A user with that email address already exists."
 msgstr "A user with that email address already exists."
 
-#: apps/users/models.py:40
+#: apps/users/models.py:39
 msgid "staff status"
 msgstr "staff status"
 
-#: apps/users/models.py:43
+#: apps/users/models.py:42
 msgid "Designates whether the user can log into this admin site."
 msgstr "Designates whether the user can log into this admin site."
 
-#: apps/users/models.py:50
+#: apps/users/models.py:49
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -2683,11 +2683,11 @@ msgstr ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 
-#: apps/users/models.py:60
+#: apps/users/models.py:59
 msgid "Send me email notifications"
 msgstr "Send me email notifications"
 
-#: apps/users/models.py:63
+#: apps/users/models.py:62
 msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
@@ -2695,11 +2695,11 @@ msgstr ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
 
-#: apps/users/models.py:68
+#: apps/users/models.py:67
 msgid "Send me newsletters"
 msgstr "Send me newsletters"
 
-#: apps/users/models.py:71
+#: apps/users/models.py:70
 msgid ""
 "Designates whether you want to receive newsletters. Unselect if you do not "
 "want to receive newsletters."
@@ -2707,42 +2707,42 @@ msgstr ""
 "Designates whether you want to receive newsletters. Unselect if you do not "
 "want to receive newsletters."
 
-#: apps/users/models.py:78
+#: apps/users/models.py:77
 msgid "Biography"
 msgstr "Biography"
 
-#: apps/users/models.py:80
+#: apps/users/models.py:79
 msgid "Tell us about yourself in 255 characters!"
 msgstr "Tell us about yourself in 255 characters!"
 
-#: apps/users/models.py:86
+#: apps/users/models.py:85
 msgid "Twitter handle"
 msgstr "Twitter handle"
 
-#: apps/users/models.py:92
+#: apps/users/models.py:91
 msgid "Facebook name"
 msgstr "Facebook name"
 
-#: apps/users/models.py:94
+#: apps/users/models.py:93
 msgid ""
 "Your facebook name is the last part of the URL, when you access your profile."
 msgstr ""
 "Your facebook name is the last part of the URL, when you access your profile."
 
-#: apps/users/models.py:101
+#: apps/users/models.py:100
 #: apps/users/templates/a4_candy_users/user_detail.html:63
 msgid "Homepage"
 msgstr "Homepage"
 
-#: apps/users/models.py:108
+#: apps/users/models.py:107
 msgid "Avatar picture"
 msgstr "Avatar picture"
 
-#: apps/users/models.py:112
+#: apps/users/models.py:111
 msgid "Your preferred language"
 msgstr "Your preferred language"
 
-#: apps/users/models.py:117
+#: apps/users/models.py:116
 msgid ""
 "Specify your preferred language for the user interface and the notifications "
 "of the platform."
@@ -3332,6 +3332,12 @@ msgstr "Login with social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Login with "
+
+#~ msgid "Do you want to take part in \"%(project)s\"?"
+#~ msgstr "Do you want to take part in \"%(project)s\"?"
+
+#~ msgid "Please accept the terms of use."
+#~ msgstr "Please accept the terms of use."
 
 #~ msgid ""
 #~ "\n"
