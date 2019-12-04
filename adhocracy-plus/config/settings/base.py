@@ -28,6 +28,7 @@ INSTALLED_APPS = (
 
     'widget_tweaks',
     'rest_framework',
+    'django_filters',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -84,6 +85,7 @@ INSTALLED_APPS = (
 
     # General components that define models or helpers
     'apps.actions',
+    'apps.comments',
     'apps.contrib',
     'apps.likes',
     'apps.maps',
@@ -384,6 +386,12 @@ A4_COMMENTABLES = (
     ('a4_candy_polls', 'poll'),
     ('a4_candy_topicprio', 'topic'),
     ('a4_candy_debate', 'subject')
+)
+
+A4_COMMENT_CATEGORIES = (
+    ('sug', _('suggestion')),
+    ('not', _('note')),
+    ('que', _('question'))
 )
 
 A4_REPORTABLES = (
