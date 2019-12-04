@@ -5,14 +5,14 @@
 
 .homepage-hero__image {
     box-shadow: inset 2rem -8rem 8rem 2rem rgba(0, 0, 0, 0.68);
+    min-height: 235px;
     width: 100%;
-    min-height: 500px;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
 
-    @media only screen and (max-width: $breakpoint-xs) {
-        min-height: 235px;
+    @media screen and (min-width: $breakpoint-xs) {
+        min-height: 40vmax;
     }
 }
 
@@ -52,6 +52,7 @@
 }
 
 .homepage-hero__btn--info {
+    border: 1px solid $text-color-inverted;
     z-index: 2;
     position: absolute;
     bottom: $spacer;
