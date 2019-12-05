@@ -19,18 +19,21 @@ Requirements:
 *   libpq (only if postgres should be used)
 
 Installation:
+
     git clone https://github.com/liqd/adhocracy-plus.git
     cd adhocracy-plus
     make install
     make fixtures
 
 Check if it works:
+
     make test
 
 Check it out:
+
     make watch
 
-Go to '''http://localhost:8004/''' and login with admin@liqd.net | password
+Go to http://localhost:8004/ and login with admin@liqd.net | password
 
 ### Contributing
 If you found an issue or want to contribute check out [contributing](https://github.com/liqd/adhocracy-plus/blob/master/docs/contributing.md)
