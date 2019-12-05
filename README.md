@@ -32,5 +32,8 @@ Check it out:
 
 Go to '''http://localhost:8004/''' and login with admin@liqd.net | password
 
+### Contributing
+If you found an issue or want to contribute check out [contributing](https://github.com/liqd/adhocracy-plus/blob/master/docs/contributing.md)
+
 ## Security
 We care about security. So, if you find any issues concerning security, please send us an email at info [at] liqd [dot] net.
