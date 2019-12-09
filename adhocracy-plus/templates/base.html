@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load absolute_url i18n organisation_tags static wagtailsettings_tags wagtailuserbar %}
+{% load absolute_url i18n organisation_tags static wagtailimages_tags wagtailsettings_tags wagtailuserbar %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_organisation as ORGANISATION %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -14,21 +14,34 @@
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
     {% endblock %}
+
     {% block social_meta %}
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="what title">
-    <meta name="twitter:description" content="what content?">
-    <meta name="twitter:image" content="{% get_absolute_uri_static obj='images/logo.svg' %}">
-    <meta name="linkedin:title" content="what title">
-    <meta name="linkedin:description" content="what content?">
-    <meta name="linkedin:image" content="{% get_absolute_uri_static obj='images/logo.svg' %}">
+    <meta name="twitter:title" content="adhocracy+{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}">
+    <meta name="linkedin:title" content="adhocracy+{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:title" content="Adhocracy+">
-    <meta property="og:description" content="Content">
-    <meta property="og:image" content="{% get_absolute_uri_static obj='images/logo.svg' %}">
-    <meta property="og:image:width" content="360">
-    <meta property="og:image:height" content="129">
+    <meta property="og:title" content="adhocracy+{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}">
     {% endblock %}
+
+    {% block social_meta_image %}
+    {% if settings.a4_candy_cms_settings.SocialMedia.fallback_image %}
+    {% image settings.a4_candy_cms_settings.SocialMedia.fallback_image width-400 as fallback_image %}
+    <meta name="twitter:image" content="{{ fallback_image.url }}">
+    <meta name="linkedin:image" content="{{ fallback_image.url }}">
+    <meta property="og:image" content="{{ fallback_image.url }}">
+    <meta property="og:image:width" content="{{ fallback_image.width }}">
+    <meta property="og:image:height" content="{{ fallback_image.height }}">
+    {% endif %}
+    {% endblock %}
+
+    {% block social_meta_description %}
+    {% if settings.a4_candy_cms_settings.SocialMedia.fallback_description %}
+    <meta name="twitter:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
+    <meta name="linkedin:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
+    <meta property="og:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
+    {% endif %}
+    {% endblock %}
+
     {% if ORGANISATION %}
         <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
     {% else %}
