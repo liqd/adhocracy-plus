@@ -4,6 +4,24 @@
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
+{% block social_meta_image %}
+{% if project.image %}
+<meta name="twitter:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
+<meta name="linkedin:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
+<meta property="og:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
+<meta property="og:image:width" content="1500">
+<meta property="og:image:height" content="500">
+{% endif %}
+{% endblock %}
+
+{% block social_meta_description %}
+{% if module.name %}
+<meta name="twitter:description" content="{{ module.name }}">
+<meta name="linkedin:description" content="{{ module.name }}">
+<meta property="og:description" content="{{ module.name }}">
+{% endif %}
+{% endblock %}
+
 {% block extra_messages %}
     {{ block.super }}
 
