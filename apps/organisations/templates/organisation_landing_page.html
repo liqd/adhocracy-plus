@@ -3,6 +3,24 @@
 
 {% block title %}{{organisation.name}}{% endblock %}
 
+{% block social_meta_image %}
+{% if organisation.image %}
+<meta name="twitter:image" content="{% thumbnail organisation.image "1500x610" crop %}">
+<meta name="linkedin:image" content="{% thumbnail organisation.image "1500x610" crop %}">
+<meta property="og:image" content="{% thumbnail organisation.image "1500x610" crop %}">
+<meta property="og:image:width" content="1500">
+<meta property="og:image:height" content="610">
+{% endif %}
+{% endblock %}
+
+{% block social_meta_description %}
+{% if organisation.description %}
+<meta name="twitter:description" content="{{ organisation.description }}">
+<meta name="linkedin:description" content="{{ organisation.description }}">
+<meta property="og:description" content="{{ organisation.description }}">
+{% endif %}
+{% endblock %}
+
 {% block super_content %}
     <div class="hero-unit" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});">
       {% if organisation.image_copyright %}
