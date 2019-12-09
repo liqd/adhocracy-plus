@@ -61,6 +61,12 @@ class Organisation(models.Model):
         upload_to='organisations/backgrounds',
         blank=True
     )
+    image_copyright = models.CharField(
+        max_length=200,
+        verbose_name=_('Header image copyright'),
+        blank=True,
+        help_text=_('Author, which is displayed in the header image.')
+    )
     information = RichTextUploadingField(
         config_name='image-editor',
         verbose_name=_('Information about your organisation'),

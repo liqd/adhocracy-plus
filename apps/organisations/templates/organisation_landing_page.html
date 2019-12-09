@@ -4,7 +4,11 @@
 {% block title %}{{organisation.name}}{% endblock %}
 
 {% block super_content %}
-    <div class="hero-unit" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});"></div>
+    <div class="hero-unit" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});">
+      {% if organisation.image_copyright %}
+      <div class="header__copyright copyright">© {{ organisation.image_copyright }}</div>
+      {% endif %}
+    </div>
 
     {% if organisation.logo %}
     <div class="container">
