@@ -5,6 +5,20 @@
     {{ self.subtitle }} &mdash; {{ block.super }}
 {% endblock %}
 
+{% block social_meta_description %}
+{% if page.subtitle  %}
+<meta name="twitter:description" content="{{ page.subtitle }}">
+<meta name="linkedin:description" content="{{ page.subtitle }}">
+<meta property="og:description" content="{{ page.subtitle }}">
+{% else %}
+{% if settings.a4_candy_cms_settings.SocialMedia.fallback_description %}
+<meta name="twitter:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
+<meta name="linkedin:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
+<meta property="og:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
+{% endif %}
+{% endif %}
+{% endblock %}
+
 {% block content %}
 <div class="cms__wrapper">
     <div class="container">
