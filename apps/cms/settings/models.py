@@ -4,6 +4,9 @@ from wagtail.admin.edit_handlers import PageChooserPanel
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.models import register_setting
 from wagtail.core import fields
+from wagtail.images.edit_handlers import ImageChooserPanel
+
+from apps.contrib.translations import TranslatedField
 
 
 @register_setting
@@ -66,9 +69,30 @@ class SocialMedia(BaseSetting):
     facebook = models.URLField(blank=True)
     twitter = models.URLField(blank=True)
     github = models.URLField(blank=True)
+    fallback_image = models.ForeignKey(
+        'a4_candy_cms_images.CustomImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Fallback Image",
+        help_text="Fallback Image for social meta tags if no other image is there"
+    )
+    fallback_description_de = models.TextField(
+        default='Mit adhocracy+ wird digitale Demokratie einfach – für alle und überall.')
+    fallback_description_en = models.TextField(
+        default='adhocracy+ makes digital democracy easy - for everyone no matter where.')
+
+    fallback_description = TranslatedField(
+        'fallback_description_de',
+        'fallback_description_en'
+    )
 
     panels = [
         FieldPanel('facebook'),
         FieldPanel('twitter'),
-        FieldPanel('github')
+        FieldPanel('github'),
+        ImageChooserPanel('fallback_image'),
+        FieldPanel('fallback_description_de'),
+        FieldPanel('fallback_description_en')
     ]
