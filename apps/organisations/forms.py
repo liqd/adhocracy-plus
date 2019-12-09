@@ -8,7 +8,7 @@ class OrganisationForm(forms.ModelForm):
     class Meta:
         model = Organisation
         fields = ['title', 'logo', 'description', 'slogan', 'image',
-                  'information', 'imprint']
+                  'image_copyright', 'information', 'imprint']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
