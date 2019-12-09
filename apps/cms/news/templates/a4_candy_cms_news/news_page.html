@@ -5,6 +5,14 @@
     {{ self.subtitle }} &mdash; {{ block.super }}
 {% endblock %}
 
+{% block social_meta %}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="adhocracy+{% if page.subtitle %}/{{ page.subtitle }}{% else %}/{{ page.title }}{% endif %}">
+<meta name="linkedin:title" content="adhocracy+{% if page.subtitle %}/{{ page.subtitle }}{% else %}/{{ page.title }}{% endif %}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="adhocracy+{% if page.subtitle %}/{{ page.subtitle }}{% else %}/{{ page.title }}{% endif %}">
+{% endblock %}
+
 {% block social_meta_description %}
 {% if page.teaser  %}
 <meta name="twitter:description" content="{{ page.teaser }}">
