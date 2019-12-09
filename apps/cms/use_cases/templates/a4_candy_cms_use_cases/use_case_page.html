@@ -5,6 +5,14 @@
     {{ self.subtitle }} &mdash; {{ block.super }}
 {% endblock %}
 
+{% block social_meta %}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="adhocracy+/{{ page.title }}">
+<meta name="linkedin:title" content="adhocracy+/{{ page.title }}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="adhocracy+/{{ page.title }}">
+{% endblock %}
+
 {% block social_meta_image %}
 {% if page.image %}
 {% image page.image width-400 as image %}
@@ -25,9 +33,11 @@
 {% endblock %}
 
 {% block social_meta_description %}
+{% if page.subtitle %}
 <meta name="twitter:description" content="{{ page.subtitle }}">
 <meta name="linkedin:description" content="{{ page.subtitle }}">
 <meta property="og:description" content="{{ page.subtitle }}">
+{% endif %}
 {% endblock %}
 
 
