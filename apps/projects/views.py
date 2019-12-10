@@ -2,6 +2,7 @@ import itertools
 
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -173,9 +174,10 @@ class AbstractProjectUserInviteListView(
 
         for email in emails:
             self.invite_model.objects.invite(
-                self.request.user,
-                self.project,
-                email
+                creator=self.request.user,
+                project=self.project,
+                email=email,
+                site=get_current_site(self.request)
             )
 
         messages.success(

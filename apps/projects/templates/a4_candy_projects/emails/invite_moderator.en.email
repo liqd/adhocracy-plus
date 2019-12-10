@@ -5,7 +5,7 @@
 
 {% block headline %}Invitation to moderate project: "{{ moderatorinvite.project.name }}"{% endblock  %}
 
-{% block content %}you are invited to moderate the project "{{ moderatorinvite.project.name }}" on the participation platform  {{ site.name }}. To be able to moderate and change the project click on "Accept invitation."
+{% block content %}you are invited to moderate the project "{{ moderatorinvite.project.name }}" on the participation platform  {{ moderatorinvite.site }}. To be able to moderate and change the project click on "Accept invitation."
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
