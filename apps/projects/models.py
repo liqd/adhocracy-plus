@@ -21,6 +21,7 @@ class Invite(base.TimeStampedModel):
     )
     email = models.EmailField()
     token = models.UUIDField(default=uuid.uuid4, unique=True)
+    site = models.CharField(max_length=200)
 
     class Meta:
         abstract = True
@@ -33,8 +34,9 @@ class Invite(base.TimeStampedModel):
 
 
 class ParticipantInviteManager(models.Manager):
-    def invite(self, creator, project, email):
-        invite = super().create(project=project, creator=creator, email=email)
+    def invite(self, creator, project, email, site):
+        invite = super().create(project=project, creator=creator, email=email,
+                                site=site)
         emails.InviteParticipantEmail.send(invite)
         return invite
 
@@ -61,8 +63,9 @@ class ParticipantInvite(Invite):
 
 
 class ModeratorInviteManager(models.Manager):
-    def invite(self, creator, project, email):
-        invite = super().create(project=project, creator=creator, email=email)
+    def invite(self, creator, project, email, site):
+        invite = super().create(project=project, creator=creator, email=email,
+                                site=site)
         emails.InviteModeratorEmail.send(invite)
         return invite
 
