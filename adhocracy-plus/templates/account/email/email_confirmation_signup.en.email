@@ -1,10 +1,10 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Please confirm your registration on {{ site.name }}{% endblock %}
+{% block subject %}Please confirm your registration on {{ current_site }}{% endblock %}
 
-{% block headline %}Your registration on {{ site.name }}{% endblock %}
+{% block headline %}Your registration on {{ current_site }}{% endblock %}
 
-{% block content %}you have registered with this email and the username "{{ user.username }}" on "{{ site.name }}". To finish the registration and activate your account, please confirm your email. If you did not register on "{{ site.name }}" using this email address, you can ignore this email. We will not send you any further emails.{% endblock %}
+{% block content %}you have registered with this email and the username "{{ user.username }}" on "{{ current_site }}". To finish the registration and activate your account, please confirm your email. If you did not register on "{{ current_site }}" using this email address, you can ignore this email. We will not send you any further emails.{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}Confirm your email address{% endblock %}
