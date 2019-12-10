@@ -130,8 +130,6 @@ MIDDLEWARE = (
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 
-SITE_ID = 1
-
 ROOT_URLCONF = 'adhocracy-plus.config.urls'
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
