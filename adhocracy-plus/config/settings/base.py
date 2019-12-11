@@ -68,6 +68,7 @@ INSTALLED_APPS = (
     'adhocracy4.categories',
     'adhocracy4.ckeditor',
     'adhocracy4.comments',
+    'adhocracy4.comments_async',
     'adhocracy4.dashboard',
     'adhocracy4.filters',
     'adhocracy4.follows',
@@ -85,7 +86,6 @@ INSTALLED_APPS = (
 
     # General components that define models or helpers
     'apps.actions',
-    'apps.comments',
     'apps.contrib',
     'apps.likes',
     'apps.maps',
