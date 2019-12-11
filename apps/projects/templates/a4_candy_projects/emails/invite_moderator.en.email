@@ -8,7 +8,7 @@
 {% block content %}you are invited to moderate the project "{{ moderatorinvite.project.name }}" on the participation platform  {{ moderatorinvite.site }}. To be able to moderate and change the project click on "Accept invitation."
 {% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
+{% block cta_url %}https://{{ moderatorinvite.site }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Accept invitation{% endblock %}
 
 {% block reason %}This email was sent to {{ moderatorinvite.email }}. This email was sent to you because you are invited to moderate a project.{% endblock %}

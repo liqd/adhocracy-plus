@@ -7,7 +7,7 @@
 
 {% block content %}you are invited to participate in the private project "{{ participantinvite.project.name }}" on the participation platform  {{ participantinvite.site }}. To participate click on "Accepct invitation."{% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ participantinvite.get_absolute_url }}{% endblock %}
+{% block cta_url %}https://{{ moderatorinvite.site }}{{ participantinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Accept invitation{% endblock %}
 
 {% block reason %}This email was sent to {{ participantinvite.email }}. This email was sent to you because you are invited to participate in a private project.{% endblock %}
