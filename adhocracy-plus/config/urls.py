@@ -13,9 +13,7 @@ from django.views.defaults import server_error
 from django.views.generic import TemplateView
 from django.views.i18n import JavaScriptCatalog
 from rest_framework import routers
-from wagtail.contrib.sitemaps import views as wagtail_sitemap_views
-from wagtail.contrib.sitemaps.sitemap_generator import \
-    Sitemap as WagtailSitemap
+from wagtail.contrib.sitemaps.views import sitemap as wagtail_sitemap
 from wagtail.documents import urls as wagtaildocs_urls
 
 from adhocracy4.api import routers as a4routers
@@ -24,15 +22,12 @@ from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from apps.contrib import views as contrib_views
-from apps.contrib.sitemaps.product_organisations_sitemap import \
-    ProductOrganisationsSitemap
-from apps.contrib.sitemaps.product_projects_sitemap import \
-    ProductProjectsSitemap
-from apps.contrib.sitemaps.static_sitemap import StaticSitemap
+from apps.contrib.sitemaps import static_sitemap_index
 from apps.documents.api import DocumentViewSet
 from apps.likes.api import LikesViewSet
 from apps.likes.routers import LikesDefaultRouter
 from apps.moderatorremark.api import ModeratorRemarkViewSet
+from apps.organisations.sitemaps import organisations_sitemap_index
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
 from apps.polls.routers import QuestionDefaultRouter
@@ -62,13 +57,6 @@ ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
 
 question_router = QuestionDefaultRouter()
 question_router.register(r'vote', VoteViewSet, basename='vote')
-
-sitemaps = {
-    'organisations': ProductOrganisationsSitemap,
-    'projects': ProductProjectsSitemap,
-    'wagtail': WagtailSitemap,
-    'static': StaticSitemap
-}
 
 urlpatterns = [
     # General platform urls
@@ -122,11 +110,10 @@ urlpatterns = [
              include(('apps.debate.urls', 'a4_candy_debate'),
                      namespace='a4_candy_debate')),
     ])),
-
-    path('sitemap.xml', wagtail_sitemap_views.index,
-         {'sitemaps': sitemaps, 'sitemap_url_name': 'sitemaps'}),
-    re_path(r'^sitemap-(?P<section>.+)\.xml$', wagtail_sitemap_views.sitemap,
-            {'sitemaps': sitemaps}, name='sitemaps'),
+    path('sitemap.xml', static_sitemap_index, name='static-sitemap-index'),
+    path('sitemap-wagtail.xml', wagtail_sitemap, name='wagtail-sitemap'),
+    path('sitemap-organisations.xml', organisations_sitemap_index,
+         name='organisations-sitemap-index'),
     path('robots.txt',
          TemplateView.as_view(template_name='robots.txt',
                               content_type="text/plain"), name="robots_file"),
