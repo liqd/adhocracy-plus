@@ -2,6 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard.blueprints import ProjectBlueprint
 from apps.budgeting import phases as budgeting_phases
+from apps.debate import phases as debate_phases
 from apps.documents import phases as documents_phases
 from apps.ideas import phases as ideas_phases
 from apps.mapideas import phases as mapideas_phases
@@ -130,6 +131,20 @@ blueprints = [
          ),
          content=[
              topicprio_phases.PrioritizePhase(),
+         ],
+         image='images/priorization.svg',
+         settings_model=None,
+     )),
+    ('debate',
+     ProjectBlueprint(
+         title=_('Debate'),
+         description=_(
+             'Participants can discuss previously '
+             'added subjects. Participants cannot add ideas or '
+             'subjects.'
+         ),
+         content=[
+             debate_phases.DebatePhase(),
          ],
          image='images/priorization.svg',
          settings_model=None,
