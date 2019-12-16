@@ -1,0 +1,29 @@
+{% extends extends %}
+{% load i18n module_tags rules static maps_tags %}
+
+{% block phase_content %}
+    <div class="l-top-overlap">
+        <div class="container">
+            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                {% include "a4_candy_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+            </div>
+        </div>
+    </div>
+    <div class="module-content">
+        <div class="container">
+            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                {% if object_list.count > 0 %}
+                    <ul class="u-list-reset">
+                        {% for object in object_list %}
+                            {% include "a4_candy_debate/includes/subject_list_item.html" with object=object %}
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {% trans "Nothing to show" %}
+                {% endif %}
+
+                {% include "a4_candy_contrib/includes/pagination.html" %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
