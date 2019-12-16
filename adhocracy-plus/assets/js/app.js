@@ -14,7 +14,8 @@ require('slick-carousel/slick/slick.css')
 var django = require('django')
 
 // expose react components
-var ReactComments = require('adhocracy4').comments_async
+var ReactComments = require('adhocracy4').comments
+var ReactCommentsAsync = require('adhocracy4').comments_async
 var ReactCommentsWithCategories = require('adhocracy4').comments_async_with_categories
 var ReactRatings = require('adhocracy4').ratings
 var ReactReports = require('adhocracy4').reports
@@ -48,8 +49,9 @@ var initialiseWidget = function (namespace, name, fn) {
 }
 
 var init = function () {
-  initialiseWidget('a4', 'comments_async', ReactComments.renderComment)
-  initialiseWidget('a4', 'comments_async_with_categories', ReactCommentsWithCategories.renderComment)
+  initialiseWidget('a4', 'comment', ReactComments.renderComment)
+  initialiseWidget('a4', 'comment_async', ReactCommentsAsync.renderComment)
+  initialiseWidget('a4', 'comment_async_with_categories', ReactCommentsWithCategories.renderComment)
   initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
   initialiseWidget('a4', 'ratings', ReactRatings.renderRatings)
   initialiseWidget('a4', 'reports', ReactReports.renderReports)
