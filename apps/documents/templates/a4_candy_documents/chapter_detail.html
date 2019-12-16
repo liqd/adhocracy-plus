@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n react_comments_async wagtailcore_tags %}
+{% load i18n react_comments wagtailcore_tags %}
 
 {% block phase_content %}
 
@@ -72,7 +72,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                {% react_comments_async object %}
+                {% react_comments object %}
             </div>
         </div>
     </div>

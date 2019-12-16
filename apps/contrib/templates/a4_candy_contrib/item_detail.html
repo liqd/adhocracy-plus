@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments_async react_ratings react_reports wagtailcore_tags item_tags contrib_tags thumbnail moderatorremark_tags %}
+{% load i18n module_tags rules react_comments_async_with_categories react_ratings react_reports wagtailcore_tags item_tags contrib_tags thumbnail moderatorremark_tags %}
 
 {% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -139,8 +139,8 @@
     {% endblock %}
 
     <div class="row">
-        <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-            {% react_comments_async object %}
+        <div class="col-md-8 offset-md-2">
+            {% react_comments_async_with_categories object %}
         </div>
     </div>
 </div>
