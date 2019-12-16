@@ -17,6 +17,7 @@ from wagtail.contrib.sitemaps.views import sitemap as wagtail_sitemap
 from wagtail.documents import urls as wagtaildocs_urls
 
 from adhocracy4.api import routers as a4routers
+from adhocracy4.comments.api import CommentModerateSet
 from adhocracy4.comments_async.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
@@ -54,6 +55,8 @@ ct_router.register(r'comments', CommentViewSet, basename='comments')
 ct_router.register(r'ratings', RatingViewSet, basename='ratings')
 ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
                    basename='moderatorremarks')
+ct_router.register(r'comment-moderate', CommentModerateSet,
+                   basename='comment-moderate')
 
 question_router = QuestionDefaultRouter()
 question_router.register(r'vote', VoteViewSet, basename='vote')
