@@ -48,9 +48,9 @@ class SubjectCommentExportView(PermissionRequiredMixin,
         return self.module.project
 
     def get_queryset(self):
-        comments = (Comment.objects.filter(topic__module=self.module) |
+        comments = (Comment.objects.filter(subject__module=self.module) |
                     Comment.objects.filter(
-                    parent_comment__topic__module=self.module))
+                    parent_comment__subject__module=self.module))
 
         return comments
 
