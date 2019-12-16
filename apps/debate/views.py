@@ -119,15 +119,10 @@ class SubjectDeleteView(mixins.DashboardBaseMixin,
 
 
 class SubjectDashboardExportView(DashboardExportView):
-    template_name = 'a4_candy_debate/export_dashboard.html'
+    template_name = 'a4_candy_exports/export_dashboard.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['export'] = reverse(
-            'a4dashboard:subject-export',
-            kwargs={
-                'organisation_slug': self.module.project.organisation.slug,
-                'module_slug': self.module.slug})
         context['comment_export'] = reverse(
             'a4dashboard:subject-comment-export',
             kwargs={
