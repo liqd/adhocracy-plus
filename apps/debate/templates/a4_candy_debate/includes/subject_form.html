@@ -1,0 +1,12 @@
+{% load i18n %}
+<form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    {% csrf_token %}
+    {{ form.media }}
+
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.name %}
+
+    <div class="u-spacer-bottom">
+        <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />
+        <a href="{{ cancel }}" class="btn btn--light">{% trans 'Cancel'%}</a>
+    </div>
+</form>
