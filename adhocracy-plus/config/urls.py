@@ -118,6 +118,9 @@ urlpatterns = [
         path('topicprio/',
              include(('apps.topicprio.urls', 'a4_candy_topicprio'),
                      namespace='a4_candy_topicprio')),
+        path('subjects/',
+             include(('apps.debate.urls', 'a4_candy_debate'),
+                     namespace='a4_candy_debate')),
     ])),
 
     path('sitemap.xml', wagtail_sitemap_views.index,
