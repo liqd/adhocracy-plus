@@ -383,6 +383,7 @@ A4_COMMENTABLES = (
     ('a4_candy_budgeting', 'proposal'),
     ('a4_candy_polls', 'poll'),
     ('a4_candy_topicprio', 'topic'),
+    ('a4_candy_debate', 'subject')
 )
 
 A4_REPORTABLES = (
