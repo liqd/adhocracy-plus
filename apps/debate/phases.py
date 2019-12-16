@@ -13,8 +13,8 @@ class DebatePhase(phases.PhaseContent):
     view = views.SubjectListView
 
     name = _('Debate phase')
-    description = _('Debate topics.')
-    module_name = _('topic debate')
+    description = _('Debate subjects.')
+    module_name = _('subject debate')
 
     features = {
         'comment': (models.Subject,)
