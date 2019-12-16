@@ -1,0 +1,172 @@
+.a4-comments__comment {
+    border-top: solid 0.5rem $bg-light;
+    padding: 1.5*$spacer 0 1.5*$spacer 0;
+}
+
+.a4-comments__box > .form-group {
+    border: solid 3px $gray-two;
+    background-color: $bg-light;
+    padding: $spacer;
+}
+
+.a4-comments__box--left {
+    padding-left: 0;
+
+    @extend .col-md-2;
+}
+
+.a4-comments__box--right {
+    border-left: 2px solid $gray-two;
+    padding-right: 0;
+
+    @extend .col-md-10;
+}
+
+.a4-comments__nav__parent {
+    margin: 1.5*$spacer 0 1.5*$spacer 0;
+}
+
+.a4-comments__dropdown {
+    align-content: flex-end;
+}
+
+.a4-comments__nav__search {
+    width: auto;
+}
+
+.a4-comments__navbar {
+    padding: 0.5*$spacer 0;
+}
+
+.a4-comments__nav-btn {
+    margin-left: 0.2*$spacer !important;
+
+    @extend .btn--small;
+    @extend .btn--transparent;
+}
+
+.a4-comments__submit {
+    margin-bottom: 1.5*$spacer;
+}
+
+.a4-comments__border--highlighted {
+    border-left: 2px solid $brand-primary;
+}
+
+.a4-comments__text,
+.a4-comments__author {
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.a4-comments__submission-date {
+    font-style: italic;
+}
+
+.a4-comments__owner {
+    background-color: $bg-light;
+    border-top: solid 0.5rem $bg-light;
+}
+
+.a4-comments__anchor {
+    display: block;
+    position: relative;
+    top: -100px;
+    visibility: hidden;
+    height: 1px;
+}
+
+.a4-comments__child--list {
+    background-color: $brand-danger;
+
+    .a4-comments__comment {
+        background-color: $bg-light;
+        border-bottom: solid 0.5rem $bg-light;
+    }
+
+    label,
+    form {
+        background-color: $body-bg;
+        margin-bottom: 0;
+    }
+
+    .a4-comments__box--left {
+        text-align: right;
+
+        @extend .col-md-12;
+    }
+
+    .a4-comments__box--right {
+        border-left: none;
+
+        @extend .col-12;
+    }
+
+    .a4-comments__author {
+        display: inline-block;
+        margin: 0 0 0.5*$spacer 0;
+    }
+}
+
+.a4-comments__featured,
+.a4-comments__featured--menu {
+    position: absolute;
+    top: 0;
+    right: 3.5rem;
+}
+
+//categories and category badges
+.a4-comments__category__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.a4-comments__category__row {
+    input[type="checkbox"]:checked + span {
+        background-color: $brand-success;
+        color: $white;
+    }
+}
+
+.a4-comments__category__text,
+.a4-comments__badge {
+    background-color: $gray-two;
+    border-radius: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-normal;
+    font-family: $font-family-sans-serif;
+    padding: 0.3*$spacer 0.5*$spacer;
+    margin: 0.5*$spacer 0.5*$spacer 0.5*$spacer 0;
+}
+
+.a4-comments__category {
+    display: inline-block;
+
+    label:hover {
+        text-decoration: underline;
+    }
+}
+
+.a4-comments__badge {
+    color: $white;
+}
+
+.a4-comments__badge--que {
+    background-color: $brand-success;
+}
+
+.a4-comments__badge--not {
+    background-color: $brand-secondary;
+}
+
+.a4-comments__badge--sug {
+    background-color: $brand-primary-tint;
+}
