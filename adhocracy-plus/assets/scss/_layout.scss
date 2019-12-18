@@ -1,6 +1,10 @@
 .container {
     position: relative;
     display: flow-root;
+
+    @media (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
+        max-width: 100%;
+    }
 }
 
 .l-tiles-2,
