@@ -17,6 +17,7 @@ def react_questions(context, obj):
     is_moderator = user.has_perm('a4_candy_questions.moderate_questions', obj)
     categories = [category.name for category in obj.category_set.all()]
     questions_api_url = reverse('questions-list', kwargs={'module_pk': obj.pk})
+    present_url = reverse('question-present', kwargs={'module_slug': obj.slug})
 
     like_permission = 'a4_candy_likes.add_like_model'
     has_liking_permission = user.has_perm(
@@ -33,6 +34,7 @@ def react_questions(context, obj):
     attributes = {
         'information': obj.description,
         'questions_api_url': questions_api_url,
+        'present_url': present_url,
         'isModerator': is_moderator,
         'categories': categories,
         'hasLikingPermission': (has_liking_permission

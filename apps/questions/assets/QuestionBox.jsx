@@ -225,6 +225,16 @@ export default class QuestionBox extends React.Component {
           <div className="container">
             <div className="row mb-5">
               <div className="col-12">
+                {this.props.isModerator &&
+                  <div className="d-flex justify-content-center justify-content-lg-end">
+                    <a className="btn btn--secondary" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
+                      <span className="fa-stack fa-1x">
+                        <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
+                        <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                      </span>
+                      {django.gettext('display on screen')}
+                    </a>
+                  </div>}
                 <Filters
                   categories={this.props.categories}
                   currentCategory={this.state.category}
