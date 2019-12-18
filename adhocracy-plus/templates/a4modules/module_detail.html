@@ -40,18 +40,18 @@
     <div class="container">
         {% block module_nav %}
         {% if module.is_in_module_cluster  %}
-            <div class="u-align-right u-spacer-bottom-double">
+            <div class="my-5 d-flex justify-content-center justify-content-sm-end">
             {% if module.previous_module_in_cluster %}
                 <a class="btn btn--light u-secondary" href="{{ module.previous_module_in_cluster.get_absolute_url }}">
-                    <i class="fa fa-chevron-left u-md-up-display-none"></i>
-                    <span class="u-md-down-display-none">{% trans 'Previous' %}</span>
+                    <i class="fa fa-chevron-left"></i>
+                    <span>{% trans 'Previous' %}</span>
                 </a>
             {% endif %}
                 <span class="u-spacer-left u-spacer-right">{{ module.readable_index_in_cluster }} {% trans 'of' %} {{ module.module_cluster|length }}</span>
             {% if module.next_module_in_cluster %}
                 <a class="btn btn--light u-secondary" href="{{ module.next_module_in_cluster.get_absolute_url }}">
-                    <i class="fa fa-chevron-right u-md-up-display-none"></i>
-                    <span class="u-md-down-display-none">{% trans 'Next' %}</span></a>
+                    <span>{% trans 'Next' %}</span>
+                    <i class="fa fa-chevron-right"></i></a>
             {% endif %}
             </div>
         {% endif %}
