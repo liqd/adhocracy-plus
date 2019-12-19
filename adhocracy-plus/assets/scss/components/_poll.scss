@@ -30,6 +30,11 @@
     margin-bottom: 0.5em;
 
     @include clearfix;
+
+    .radio__text:after {
+        color: $text-color-inverted;
+        font-size: 0.9rem;
+    }
 }
 
 .poll-row__radio,
