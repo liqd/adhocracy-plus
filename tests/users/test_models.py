@@ -31,3 +31,22 @@ def test_image_deleted_after_update(user_factory, ImagePNG):
 
     assert not os.path.isfile(image_path)
     assert not os.path.isfile(thumbnail_path)
+
+
+@pytest.mark.django_db
+def test_absolute_url(client, user):
+    url = user.get_absolute_url()
+    response = client.get(url)
+    assert response.status_code == 200
+    assert response.context['user'] == user
+
+
+@pytest.mark.django_db
+def test_short_name(user):
+    assert user.get_short_name() == user.username
+
+
+@pytest.mark.django_db
+def test_full_name(user):
+    assert user.get_full_name() == \
+        ('%s <%s>' % (user.username, user.email)).strip()
