@@ -8,6 +8,17 @@ from tests.helpers import setup_phase
 
 
 @pytest.mark.django_db
+def test_detail_view_0(client, phase_factory, idea_factory, organisation):
+    phase, module, project, idea = setup_phase(
+        phase_factory, idea_factory, phases.FeedbackPhase)
+    url = idea.get_absolute_url()
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert_template_response(
+            response, 'a4_candy_ideas/idea_detail.html')
+
+
+@pytest.mark.django_db
 def test_detail_view(client, phase_factory, idea_factory):
     phase, module, project, idea = setup_phase(
         phase_factory, idea_factory, phases.FeedbackPhase)
