@@ -111,8 +111,25 @@
     }
 
     .a4-comments__author {
-        display: inline-block;
+        display: inline;
         margin: 0 0 0.5*$spacer 0;
+    }
+
+    .a4-comments__moderator {
+        display: inline;
+        margin-left: 0.5*$spacer;
+    }
+
+    .a4-comments__dropdown {
+        float: right;
+    }
+
+    .a4-comments__text {
+        padding-top: 0.5*$spacer;
+    }
+
+    .a4-comments__navbar {
+        margin-top: $spacer;
     }
 }
 
