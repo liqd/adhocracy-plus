@@ -31,7 +31,15 @@
 }
 
 .a4-comments__nav__search {
-    width: auto;
+    width: 40%;
+}
+
+.a4-comments__nav__search-input {
+    max-width: 70%;
+
+    @media screen and (max-width: $breakpoint-xs-down) {
+        font-size: $font-size-sm;
+    }
 }
 
 .a4-comments__navbar {
