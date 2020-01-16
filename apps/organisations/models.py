@@ -1,11 +1,11 @@
 from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
+from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.images import fields as images_fields
 
 
@@ -67,8 +67,8 @@ class Organisation(models.Model):
         blank=True,
         help_text=_('Author, which is displayed in the header image.')
     )
-    information = RichTextUploadingField(
-        config_name='image-editor',
+    information = RichTextCollapsibleUploadingField(
+        config_name='collapsible-image-editor',
         verbose_name=_('Information about your organisation'),
         help_text=_('You can provide general information about your '
                     'participation platform to your visitors. '
@@ -102,6 +102,6 @@ class Organisation(models.Model):
 
     def save(self, *args, **kwargs):
         self.information = transforms.clean_html_field(
-            self.information, 'image-editor')
+            self.information, 'collapsible-image-editor')
         self.imprint = transforms.clean_html_field(self.imprint)
         super().save(*args, **kwargs)
