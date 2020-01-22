@@ -9,6 +9,11 @@
     padding: $spacer;
 }
 
+.a4-comments__box > .rating-up,
+.a4-comments__box > .rating-down {
+    border: none !important;
+}
+
 .a4-comments__box--left {
     padding-left: 0;
 
@@ -31,18 +36,27 @@
 }
 
 .a4-comments__nav__search {
-    width: auto;
+    width: 30%;
 }
 
-.a4-comments__navbar {
+.a4-comments__nav__search-input {
+    max-width: 70%;
+
+    @media screen and (max-width: $breakpoint-xs-down) {
+        font-size: $font-size-sm;
+    }
+}
+
+.a4-comments__action-bar {
     padding: 0.5*$spacer 0;
+    display: contents;
+    justify-content: space-between;
 }
 
-.a4-comments__nav-btn {
+.a4-comments__action-bar__btn {
     margin-left: 0.2*$spacer !important;
 
     @extend .btn--small;
-    @extend .btn--transparent;
 }
 
 .a4-comments__submit {
@@ -77,11 +91,11 @@
 }
 
 .a4-comments__child--list {
-    background-color: $brand-danger;
+    margin-left: 2.5*$spacer;
+    border-left: solid 0.25rem $bg-light;
 
     .a4-comments__comment {
-        background-color: $bg-light;
-        border-bottom: solid 0.5rem $bg-light;
+        border-top: none;
     }
 
     label,

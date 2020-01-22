@@ -20,9 +20,7 @@
 }
 
 @mixin rating-button($color) {
-    color: $color;
     padding: 0.3em 0.6em;
-    border: 2px solid $color;
 
     &:hover,
     &:focus {
@@ -32,9 +30,7 @@
     }
 
     &.is-selected {
-        background-color: $color;
-        border-color: $color;
-        color: contrast-color($color);
+        color: $color;
     }
 
     i {
