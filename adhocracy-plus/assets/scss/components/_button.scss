@@ -182,6 +182,19 @@
     @include button-color(transparent, transparent);
 }
 
+.btn--no-border {
+    @extend .btn--transparent;
+    border: none;
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:disabled,
+    &.is-disabled {
+        background-color: $gray-lightest;
+    }
+}
+
 .btn--select {
     @include text-truncate;
     max-width: 15em;
