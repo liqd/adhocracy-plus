@@ -2,6 +2,7 @@ from autoslug import AutoSlugField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.urls import reverse
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.comments import models as comment_models
@@ -42,3 +43,31 @@ class Subject(module_models.Item):
                 year=self.created.year
             )
         )
+
+    @cached_property
+    def comment_creator_count(self):
+        creators = self.comments.values_list('creator', flat=True)
+        comment_creator_count = len(list(set(creators)))
+        return comment_creator_count
+
+    @cached_property
+    def comment_creator_count_minus_three(self):
+        if self.comment_creator_count <= 3:
+            return None
+        else:
+            return self.comment_creator_count - 3
+
+    @cached_property
+    def last_three_creators(self):
+        comments = (
+            self.comments.all().select_related('creator').order_by('-created')
+        )
+        last_three_creators = []
+        if comments:
+            for comment in comments:
+                if comment.creator not in last_three_creators \
+                        and not (comment.is_censored or comment.is_removed):
+                    last_three_creators.append(comment.creator)
+                if len(last_three_creators) >= 3:
+                    return last_three_creators
+        return last_three_creators
