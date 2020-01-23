@@ -13,7 +13,7 @@
         <div class="container">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                 {% if object_list.count > 0 %}
-                    <ul class="u-list-reset">
+                    <ul class="u-list-reset pt-5">
                         {% for object in object_list %}
                             {% include "a4_candy_debate/includes/subject_list_item.html" with object=object %}
                         {% endfor %}
