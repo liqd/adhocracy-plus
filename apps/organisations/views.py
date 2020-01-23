@@ -29,18 +29,6 @@ class OrganisationView(DetailView):
         )
         context['project_list'] = project_list
 
-        context['action_list'] = Action.objects\
-            .filter(project__organisation=self.object)\
-            .filter(project__is_archived=False) \
-            .filter_public()\
-            .exclude_updates()[:4]
-
-        context['stats'] = {
-            'users': 1204,
-            'items': 3425,
-            'comments': 23234,
-            'ratings': 134234,
-        }
 
         return context
 
