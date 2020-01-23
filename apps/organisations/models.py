@@ -2,11 +2,14 @@ from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.db import models
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
 from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.images import fields as images_fields
+from adhocracy4.projects.models import Project
+from apps.projects import query
 
 
 class Organisation(models.Model):
@@ -93,6 +96,45 @@ class Organisation(models.Model):
 
     def __str__(self):
         return self.name
+
+    @cached_property
+    def projects(self):
+        return Project.objects \
+            .filter(organisation=self,
+                    is_archived=False,
+                    is_draft=False)
+
+    def get_projects_list(self, user):
+        active_projects = []
+        future_projects = []
+        past_projects = []
+
+        projects = query.filter_viewable(self.projects, user)
+
+        for project in projects:
+            if project.running_modules:
+                active_projects.append(project)
+            elif project.future_modules:
+                future_projects.append(project)
+            elif project.past_modules:
+                past_projects.append(project)
+
+        sorted_active_projects = sorted(
+            active_projects,
+            key=lambda p: p.running_module_ends_next.module_end)
+
+        sorted_future_projects = sorted(
+            future_projects,
+            key=lambda p: p.future_modules.first().module_start)
+
+        sorted_past_projects = sorted(
+            past_projects,
+            key=lambda p: project.past_modules.first().module_start,
+            reverse=True)
+
+        return sorted_active_projects, \
+            sorted_future_projects, \
+            sorted_past_projects
 
     def has_initiator(self, user):
         return (self.initiators.filter(id=user.id).exists())
