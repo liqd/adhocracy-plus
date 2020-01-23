@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load thumbnail i18n humanize %}
+{% load thumbnail i18n humanize rules %}
 
 {% block title %}{{organisation.name}}{% endblock %}
 
@@ -48,17 +48,46 @@
         </div>
     </div>
 
+    {% if object.projects.count > 0 %}
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
-                <ul class="u-list-reset">
-                    {% for project in project_list %}
-                        <li>
-                            {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project %}
-                        </li>
+            <div class="col-lg-12">
+            {% if object.projects.count == 1 %}
+            {% has_perm 'a4_candy_projects.view_project' request.user object.projects.0 as can_view_project %}
+            {% if can_view_project  %}
+            {% include 'a4_candy_projects/includes/project_list_tile.html' with project=object.projects.0 orientation='horizontal' %}
+            {% endif %}
+            {% else %}
+            <div class="col-lg-12">
+                <ul class="u-list-reset row">
+                    {% if active_projects %}
+                    {% for project in active_projects %}
+                    <li class="col-lg-6">
+                        {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+                    </li>
                     {% endfor %}
+                    {% endif %}
+
+                    {% if future_projects %}
+                    {% for project in future_projects %}
+                    <li class="col-lg-6">
+                        {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if past_projects %}
+                    {% for project in past_projects %}
+                    <li class="col-lg-6">
+                        {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+                    </li>
+                    {% endfor %}
+                    {% endif %}
                 </ul>
+            {% endif %}
             </div>
         </div>
     </div>
+    {% endif %}
 {% endblock %}
+
