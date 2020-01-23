@@ -17,19 +17,37 @@
         {% endif %}
     </div>
 
-    <div class="tile__body">
+    <div class="tile__body tile__body-status">
         <h3 class="tile__title" id="project-title-{{ project.pk }}">
             <a href="{{ project|project_url }}">{{ project.name }}</a>
         </h3>
 
         <p class="tile__text">{{ project.description }}</p>
 
-        <p class="tile__date">
-            {% if project.has_finished %}
-                <span><i class="tile__icon fa fa-flag-checkered"></i> {% trans 'Finished' %}</span>
-            {% elif project.end_date  %}
-                <span><i class="tile__icon fa fa-comments"></i> {% trans 'Participation possible until' %} {{ project.end_date|date:'d. M. Y'}}</span>
+
+        {% if project.running_modules %}
+        <div class="status-item status__active">
+            <div class="status-bar__active">
+                <span class="status-bar__active-fill" style="width:{{ project.module_running_progress }}%"></span>
+            </div>
+            <span class="status-bar__status"><i class="fas fa-clock"></i>
+            {% if project.module_running_days_left < 365 %}
+            {% blocktrans with time_left=project.module_running_time_left %} {{ time_left }} remaining {% endblocktrans %}
+            {% else %}
+            <span>{% trans 'more than 1 year remaining' %}</span>
             {% endif %}
-        </p>
+            </span>
+        </div>
+        {% elif project.future_modules %}
+        <div class="status-item status__future">
+        <span class="status-bar__status"><i class="fas fa-clock" ></i>{% blocktrans with date=project.future_modules.first.module_start.date|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktrans %}</span>
+        </div>
+        {% elif project.past_modules %}
+        <div class="status-item status-bar__past">
+        {% blocktrans %}Participation ended. Read result.{% endblocktrans %}
+        </div>
+        {% endif %}
+
+
     </div>
 </div>
