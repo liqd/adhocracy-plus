@@ -1,17 +1,38 @@
-{% load i18n module_tags %}
+{% load i18n module_tags static thumbnail %}
 
-<li class="list-item list-item--squashed">
-    <div class="list-item__stats">
-        {% spaceless %}
-        <span title="{% trans 'Comments' %}">
-            {{ object.comment_count }}
-            <i class="far fa-comment" aria-label="{% trans 'Comments' %}"></i>
-        </span>
-        {% endspaceless %}
-    </div>
-    <h3 class="list-item__title">
-        <a href="{{ object.get_absolute_url }}">
+<li class="list-item list-item--spaced d-flex flex-column justify-content-between">
+    <a class="list-item__link" href="{{ object.get_absolute_url }}"></a>
+    <div class="row">
+        <h3 class="col list-item__hover mt-0">
         {{ object.name }}
-        </a>
-    </h3>
+        </h3>
+    </div>
+    <div class="row align-items-end">
+        <div class="col-12 col-sm-auto">
+            {% if object.last_three_creators %}
+            <div class="creator-count__circles" aria-hidden="true">
+                {% for creator in object.last_three_creators %}
+                    {% if creator.avatar %}
+                    <span class="creator-count__circle creator-count__circle--{{ forloop.counter }}" style="background-image: url({{ creator.avatar | thumbnail_url:'avatar'}});">
+                    </span>
+                    {% else %}
+                    <span class="creator-count__circle creator-count__circle--{{ forloop.counter }}" style="background-image: url({% static 'images/avatar_00.png' %});">
+                    </span>
+                    {% endif %}
+                {% endfor %}
+                {% if object.comment_creator_count_minus_three %}
+                <span class="creator-count__circle creator-count__circle--count">+{{ object.comment_creator_count_minus_three }}</span>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% spaceless %}
+            <div class="creator-count__comment-count">
+                {% blocktrans count count=object.comment_count %} {{ count }} Contribution {% plural %} {{ count }} Contributions {% endblocktrans %}
+            </div>
+            {% endspaceless %}
+        </div>
+        <div class="col-12 col-sm text-right list-item__cta list-item__hover" href="{{ object.get_absolute_url }}">
+            <span class="">{% trans 'Discuss with us!' %}</span>
+        </div>
+    </div>
 </li>
