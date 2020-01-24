@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
-{% load i18n wagtailcore_tags ckeditor_tags %}
+{% load ckeditor_tags i18n thumbnail wagtailcore_tags %}
 
 {% block title %}{% trans 'Information' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
+<div class="hero-unit" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});">
+        {% if organisation.image_copyright %}
+        <div class="header__copyright copyright">© {{ organisation.image_copyright }}</div>
+        {% endif %}
+    </div>
+
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
