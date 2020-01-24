@@ -13,6 +13,7 @@ class SubjectExportView(PermissionRequiredMixin,
                         export_mixins.ItemExportWithReferenceNumberMixin,
                         a4_export_mixins.ItemExportWithLinkMixin,
                         a4_export_mixins.ExportModelFieldsMixin,
+                        a4_export_mixins.ItemExportWithCommentCountMixin,
                         export_mixins.UserGeneratedContentExportMixin,
                         a4_export_views.BaseItemExportView):
     model = models.Subject
