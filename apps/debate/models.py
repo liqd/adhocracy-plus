@@ -19,7 +19,7 @@ class Subject(module_models.Item):
     name = models.CharField(max_length=120, verbose_name=_('Title'))
 
     comments = GenericRelation(comment_models.Comment,
-                               related_query_name='topic',
+                               related_query_name='subject',
                                object_id_field='object_pk')
 
     objects = SubjectQuerySet.as_manager()

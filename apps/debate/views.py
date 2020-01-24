@@ -123,6 +123,11 @@ class SubjectDashboardExportView(DashboardExportView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['export'] = reverse(
+            'a4dashboard:subject-export',
+            kwargs={
+                'organisation_slug': self.module.project.organisation.slug,
+                'module_slug': self.module.slug})
         context['comment_export'] = reverse(
             'a4dashboard:subject-comment-export',
             kwargs={

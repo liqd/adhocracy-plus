@@ -63,7 +63,7 @@ class ExportSubjectComponent(DashboardComponent):
         return 0, 0
 
     def get_base_url(self, module):
-        return reverse('a4dashboard:subject-export', kwargs={
+        return reverse('a4dashboard:subject-export-module', kwargs={
             'organisation_slug': module.project.organisation.slug,
             'module_slug': module.slug,
         })
@@ -72,6 +72,9 @@ class ExportSubjectComponent(DashboardComponent):
         return [
             (r'^modules/(?P<module_slug>[-\w_]+)/export/subjects/$',
              views.SubjectDashboardExportView.as_view(),
+             'subject-export-module'),
+            (r'^modules/(?P<module_slug>[-\w_]+)/export/subjects/subjects/$',
+             exports.SubjectExportView.as_view(),
              'subject-export'),
             (r'^modules/(?P<module_slug>[-\w_]+)/export/subjects/comments/$',
              exports.SubjectCommentExportView.as_view(),
