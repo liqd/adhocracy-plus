@@ -36,14 +36,19 @@
 }
 
 .a4-comments__nav__search {
-    width: 30%;
+    width: 100%;
+
+    @media screen and (min-width: $breakpoint) {
+        width: 30%;
+    }
 }
 
 .a4-comments__nav__search-input {
+    font-size: $font-size-sm;
     max-width: 70%;
 
-    @media screen and (max-width: $breakpoint-xs-down) {
-        font-size: $font-size-sm;
+    @media screen and (min-width: $breakpoint-xs) {
+        font-size: $font-size-base;
     }
 }
 
@@ -57,10 +62,6 @@
     margin-left: 0.2*$spacer !important;
 
     @extend .btn--small;
-}
-
-.a4-comments__submit {
-    margin-bottom: 1.5*$spacer;
 }
 
 .a4-comments__border--highlighted {
@@ -91,8 +92,12 @@
 }
 
 .a4-comments__child--list {
-    margin-left: 2.5*$spacer;
     border-left: solid 0.25rem $bg-light;
+    margin: 0 0 $spacer (-$spacer);
+
+    @media screen and (min-width: $breakpoint) {
+        margin: 0 0 2.5*$spacer 2.5*$spacer;
+    }
 
     .a4-comments__comment {
         border-top: none;
@@ -119,6 +124,10 @@
     .a4-comments__author {
         display: inline-block;
         margin: 0 0 0.5*$spacer 0;
+    }
+
+    .a4-comments__text {
+        margin-top: $spacer;
     }
 }
 
