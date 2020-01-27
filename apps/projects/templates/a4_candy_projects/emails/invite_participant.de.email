@@ -7,7 +7,7 @@
 
 {% block content %}Sie wurden zum privaten Projekt "{{ participantinvite.project.name }}" auf der Beteiligungsplattform {{ participantinvite.site }} eingeladen. Um an dem Projekt teilzunehmen, klicken Sie auf "Einladung annehmen". {% endblock %}
 
-{% block cta_url %}https://{{ moderatorinvite.site }}{{ participantinvite.get_absolute_url }}{% endblock %}
+{% block cta_url %}https://{{ participantinvite.site }}{{ participantinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Einladung annehmen{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ participantinvite.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie zu einem privaten Projekt eingeladen wurden.{% endblock %}
