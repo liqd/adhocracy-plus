@@ -51,6 +51,17 @@
     <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>
     <meta name="viewport" content="width=device-width" />
+    {% if request.user.is_authenticated %}
+    <script>
+        // if this was opened from an embed for login, notify it about success
+        if (window.opener) {
+            window.opener.postMessage(
+                JSON.stringify({name: "popup-close",}),
+                location.origin
+            )
+        }
+    </script>
+    {% endif %}
 
     {% block extra_js %}
         {# Override this in templates to add extra javascript #}

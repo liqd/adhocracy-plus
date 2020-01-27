@@ -1,10 +1,8 @@
-/* Adds extra select dropdown to choose predefined polygon instead of drawing one */
-
 /* global django */
 import { createMap } from 'a4maps_common'
 import 'leaflet-draw'
-import './i18n-leaflet-draw'
-import FileSaver from 'file-saver'
+import '../../../adhocracy-plus/assets/js/i18n-leaflet-draw'
+import { FileSaver } from 'file-saver'
 import { shp } from 'shpjs'
 
 function getBaseBounds (L, polygon, bbox) {
