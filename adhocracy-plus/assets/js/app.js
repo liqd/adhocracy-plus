@@ -1,28 +1,41 @@
-import 'bootstrap' // load bootstrap components
-import 'django'
-import 'slick-carousel' // for project timeline
+/* eslint no-unused-vars: "off", no-new: "off" */
 
-import './unload_warning.js'
-import '../../../apps/actions/assets/timestamps.js'
-import '../../../apps/dashboard/assets/ajax_modal.js'
-import '../../../apps/maps/assets/map-address.js'
-import '../../../apps/moderatorremark/assets/idea_remarks.js'
-import '../../../apps/newsletters/assets/dynamic_fields.js'
+// make jquery available for non-webpack js
+var $ = window.jQuery = window.$ = require('jquery')
+window.Tether = require('tether/dist/js/tether.js')
+
+// load bootstrap components
+require('bootstrap')
+
+// load slick carousel for project timeline
+require('slick-carousel')
+require('slick-carousel/slick/slick.css')
+
+var django = require('django')
 
 // expose react components
-import {
-  comments as ReactComments,
-  comments_async as ReactCommentsAsync,
-  comments_async_with_categories as ReactCommentsWithCategories,
-  ratings as ReactRatings,
-  reports as ReactReports,
-  follows as ReactFollows
-} from 'adhocracy4'
+var ReactComments = require('adhocracy4').comments
+var ReactCommentsAsync = require('adhocracy4').comments_async
+var ReactCommentsWithCategories = require('adhocracy4').comments_async_with_categories
+var ReactRatings = require('adhocracy4').ratings
+var ReactReports = require('adhocracy4').reports
+var ReactFollows = require('adhocracy4').follows
 
-import * as ReactDocuments from '../../../apps/documents/assets/react_documents.jsx'
-import * as ReactPolls from '../../../apps/polls/assets/react_polls.jsx'
-import * as ReactQuestions from '../../../apps/questions/assets/react_questions.jsx'
-import * as ReactQuestionsPresent from '../../../apps/questions/assets/react_questions_present.jsx'
+var ReactDocuments = require('../../../apps/documents/assets/react_documents.jsx')
+var ReactPolls = require('../../../apps/polls/assets/react_polls.jsx')
+
+var ReactQuestions = require('../../../apps/questions/assets/react_questions.jsx')
+var ReactQuestionsPresent = require('../../../apps/questions/assets/react_questions_present.jsx')
+
+var relativeTimestamps = require('../../../apps/actions/assets/timestamps.js')
+var mapAddress = require('./map-address.js')
+var remarkpopover = require('../../../apps/moderatorremark/assets/idea_remarks.js')
+var dynamicFields = require('../../../apps/contrib/assets/dynamic_fields.js')
+
+// This function is overwritten with custom behavior in embed.js.
+var getCurrentPath = function () {
+  return location.pathname
+}
 
 var initialiseWidget = function (namespace, name, fn) {
   var key = 'data-' + namespace + '-widget'
@@ -50,8 +63,12 @@ var init = function () {
   initialiseWidget('speakup', 'questions', ReactQuestions.renderQuestions)
   initialiseWidget('speakup', 'present', ReactQuestionsPresent.renderData)
 
+  function getInitialSlide () {
+    return parseInt($('#timeline-carousel').attr('data-initial-slide'))
+  }
+
   $('.timeline-carousel__item').slick({
-    initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),
+    initialSlide: getInitialSlide(),
     focusOnSelect: false,
     centerMode: true,
     dots: false,
@@ -69,6 +86,10 @@ $(init)
 window.init_widgets = init
 $(document).on('a4.embed.ready', init)
 
+module.exports = {
+  getCurrentPath: getCurrentPath
+}
+
 // Closes bootstrap collapse on click elsewhere
 $(document).on('click', function () {
   $('.collapse').collapse('hide')
@@ -78,8 +99,3 @@ $(document).on('click', function () {
 $(function tooltip () {
   $('[data-toggle="tooltip"]').tooltip()
 })
-
-// This function is overwritten with custom behavior in embed.js.
-export function getCurrentPath () {
-  return location.pathname
-}

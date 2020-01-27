@@ -13,7 +13,3 @@ class EmbedView(generic.View):
 class EmbedProjectView(generic.DetailView, EmbedView):
     model = project_models.Project
     template_name = "a4_candy_embed/embed.html"
-
-
-class EmbedLoginClose(generic.base.TemplateView):
-    template_name = "a4_candy_embed/login_popup_close.html"
