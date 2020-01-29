@@ -55,6 +55,13 @@ class Organisation(models.Model):
                     'information to the title. '
                     'max. 200 characters')
     )
+    url = models.URLField(blank=True,
+                          verbose_name='Organisation website',
+                          help_text=_('Please enter '
+                                      'a full url which '
+                                      'starts with https:// '
+                                      'or http://')
+    )
     image = images_fields.ConfiguredImageField(
         'heroimage',
         verbose_name=_('Header image'),
