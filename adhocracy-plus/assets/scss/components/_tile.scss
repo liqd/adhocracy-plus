@@ -9,7 +9,11 @@
 }
 
 .tile__blueprint {
-    margin: 0.5*$spacer;
+    margin: 0.5*$spacer 0.5*$spacer 2*$spacer 0.5*$spacer;
+}
+
+.organisation__tile {
+    width: 100%;
 }
 
 .tile__head {
@@ -93,6 +97,6 @@
     .tile {
         min-height: 15em;
 
-        margin-bottom: 2 * $padding;
+        margin-bottom: $spacer;
     }
 }
