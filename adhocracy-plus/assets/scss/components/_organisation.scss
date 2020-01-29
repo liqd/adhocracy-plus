@@ -1,18 +1,10 @@
 .organisation__header {
     margin-top: $spacer;
-    margin-bottom: 1.7 * $spacer;
-}
-
-.organisation__slogan {
-    padding-top: $spacer;
-    padding-bottom: $spacer;
-    color: $gray-lighter;
-    font-weight: $demi-bold;
-    line-height: 1.33;
+    margin-bottom: 4 * $spacer;
 }
 
 .organisation__description {
-    font-size: $font-size-sm;
+    padding-top: 0.5 * $spacer;
     padding-bottom: $spacer;
 }
 
@@ -32,16 +24,12 @@
 }
 
 @media (min-width: $breakpoint) {
-    .organisation__description {
-        font-size: $font-size-md;
-    }
-
-    .organisation__slogan,
-    .organisation__description {
-        padding-bottom: 0;
-    }
-
     .organisation__logo-box {
         padding: $padding;
+    }
+
+    .organisation__description {
+        padding-top: $spacer;
+        padding-bottom: $spacer;
     }
 }
