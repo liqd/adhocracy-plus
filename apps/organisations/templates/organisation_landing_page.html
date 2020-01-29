@@ -49,6 +49,7 @@
     </div>
 
     {% if object.projects.count > 0 %}
+    <div class="bg--light">
     <div class="container">
         <div class="row">
             {% if object.projects.count == 1 %}
@@ -86,6 +87,7 @@
             </ul>
         {% endif %}
         </div>
+    </div>
     </div>
     {% endif %}
 {% endblock %}
