@@ -64,7 +64,7 @@ const QuestionForm = (props) => {
           onClick={props.onAppendChoice}
           type="button"
         >
-          <i className="fa fa-plus" /> {django.gettext('Add a new choice')}
+          <i className="fa fa-plus" aria-hidden="true" /> {django.gettext('Add a new choice')}
         </button>
       </div>
 

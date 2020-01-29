@@ -14,7 +14,7 @@
         </div>
         {% if image.caption %}
             <div class="btn btn--text-color-inverted btn--square homepage-hero__btn--info" data-toggle="tooltip" data-placement="top" aria-label="{% trans 'Header image: ' %}{% if image.caption %}{{ image.caption }}{% else %}{{ bigImage.alt }}{% endif %}" title="{{ image.caption }}" tabindex="0">
-              <i class="fas fa-info"></i>
+              <i class="fas fa-info" aria-hidden="true"></i>
             </div>
         {% endif %}
     </div>
