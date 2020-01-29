@@ -38,12 +38,17 @@
 
     <div class="container organisation__header">
         <div class="row">
-            <div class="col-lg-6">
-                <h1 class="u-no-margin marked-box">{{ organisation.title }}</h1>
-                <h3 class="u-no-margin organisation__slogan">{{ organisation.slogan }}</h3>
-            </div>
-            <div class="col-lg-4 offset-lg-2 organisation__description">
-                {{ organisation.description }}
+            <div class="col">
+                <h1 class="marked-box">{{ organisation.title }}</h1>
+                {% if organisation.url %}
+                <a class="ml-3" href="{{ organisation.url }}" target="_blank">
+                    <i class="fas fa-external-link-alt" aria-label="{{ organisation.title }} {% trans 'Opens in new window' %}"></i>
+                </a>
+                {% endif %}
+                <h3>{{ organisation.slogan }}</h3>
+                <div class="organisation__description">
+                    {{ organisation.description }}
+                </div>
             </div>
         </div>
     </div>
