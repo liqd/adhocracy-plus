@@ -1,3 +1,13 @@
+.a4-comments__commentbox__form--hidden,
+.a4-comments__child--list {
+    textarea {
+        width: 100%;
+        overflow: hidden;
+        min-height: 5px;
+        max-height: 400px;
+    }
+}
+
 .a4-comments__comment {
     border-top: solid 0.5rem $bg-light;
     padding: 1.5*$spacer 0 1.5*$spacer 0;
