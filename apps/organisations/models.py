@@ -27,10 +27,10 @@ class Organisation(models.Model):
                     'on the landing page. max. 100 characters')
     )
     description = models.CharField(
-        max_length=400,
+        max_length=800,
         verbose_name=_('Short description of your organisation'),
         help_text=_('The description will be displayed on the '
-                    'landing page. max. 400 characters')
+                    'landing page. max. 800 characters')
     )
     logo = images_fields.ConfiguredImageField(
         'logo',
