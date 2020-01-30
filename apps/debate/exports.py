@@ -10,10 +10,10 @@ from . import models
 
 
 class SubjectExportView(PermissionRequiredMixin,
-                        export_mixins.ItemExportWithReferenceNumberMixin,
-                        a4_export_mixins.ItemExportWithLinkMixin,
                         a4_export_mixins.ExportModelFieldsMixin,
                         a4_export_mixins.ItemExportWithCommentCountMixin,
+                        a4_export_mixins.ItemExportWithLinkMixin,
+                        export_mixins.ItemExportWithReferenceNumberMixin,
                         export_mixins.UserGeneratedContentExportMixin,
                         a4_export_views.BaseItemExportView):
     model = models.Subject
@@ -35,9 +35,11 @@ class SubjectExportView(PermissionRequiredMixin,
 
 class SubjectCommentExportView(PermissionRequiredMixin,
                                a4_export_mixins.ExportModelFieldsMixin,
-                               export_mixins.UserGeneratedContentExportMixin,
+                               a4_export_mixins.ItemExportWithCategoriesMixin,
+                               a4_export_mixins.ItemExportWithRatesMixin,
                                a4_export_mixins.ItemExportWithLinkMixin,
                                export_mixins.ItemExportWithRepliesToMixin,
+                               export_mixins.UserGeneratedContentExportMixin,
                                a4_export_views.BaseItemExportView):
 
     model = Comment
