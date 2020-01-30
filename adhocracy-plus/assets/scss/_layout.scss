@@ -18,6 +18,10 @@
 }
 
 @media (min-width: $breakpoint) {
+    .l-tiles-2 {
+        margin: -$r-spacer;
+    }
+
     .l-tiles-2 > div,
     .l-tiles-2 > li {
         width: calc(100% * (1 / 2) - 32px - 1px);
@@ -51,4 +55,11 @@
     position: relative;
     z-index: 1;
     top: -1em;
+}
+
+.l-two-col {
+    -moz-column-count: 2;
+    -moz-column-gap: 2*$r-spacer;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 2*$r-spacer;
 }
