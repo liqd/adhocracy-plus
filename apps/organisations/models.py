@@ -89,6 +89,21 @@ class Organisation(models.Model):
                     'can be reached via the main menu.'),
         blank=True
     )
+    twitter_handle = models.CharField(
+        max_length=100,
+        blank=True,
+        verbose_name='Twitter handle',
+    )
+    facebook_handle = models.CharField(
+        max_length=100,
+        blank=True,
+        verbose_name='Facebook handle',
+    )
+    instagram_handle = models.CharField(
+        max_length=100,
+        blank=True,
+        verbose_name='Instagram handle',
+    )
     imprint = RichTextField(
         verbose_name=_('Imprint'),
         help_text=_('Please provide all the legally '
@@ -149,6 +164,12 @@ class Organisation(models.Model):
 
     def get_absolute_url(self):
         return '/{}'.format(self.name).lower()
+
+    def has_social_share(self):
+        return (
+            self.twitter_handle or self.facebook_handle
+            or self.instagram_handle
+        )
 
     def save(self, *args, **kwargs):
         self.information = transforms.clean_html_field(

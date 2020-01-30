@@ -18,4 +18,29 @@
         </div>
     </div>
 </div>
+
+{% if organisation.has_social_share %}
+<div class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 text-center pb-4">
+              <h2>{% trans 'Social media' %}</h2>
+                {% if organisation.facebook_handle  %}
+                <div class="d-flex flex-row justify-content-center">
+                <a href="https://www.facebook.com/{{ organisation.facebook_handle }}" target="_blank"><div class="organisation__social-link m-2"><i class="fab fa-facebook-f"></i></div></a>
+                {% endif %}
+                {% if organisation.twitter_handle %}
+                <a href="https://twitter.com/{{ organisation.twitter_handle }}" target="_blank"><div class="organisation__social-link m-2"><i class="fab fa-twitter"></i></div></a>
+                {% endif %}
+                {% if organisation.instagram_handle %}
+                <a href="https://www.instagram.com/{{ organisation.instagram_handle }}" target="_blank">
+                  <div class="organisation__social-link m-2"><i class="fab fa-instagram"></i></div></a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}
