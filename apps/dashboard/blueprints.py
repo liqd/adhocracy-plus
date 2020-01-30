@@ -139,14 +139,16 @@ blueprints = [
      ProjectBlueprint(
          title=_('Debate'),
          description=_(
-             'Participants can discuss previously '
-             'added subjects. Participants cannot add ideas or '
-             'subjects.'
+             'Participants can discuss posted topics or questions '
+             'online. To do this, the participants comment on posted '
+             'topics / questions as well as on contributions from other '
+             'users.'
+
          ),
          content=[
              debate_phases.DebatePhase(),
          ],
-         image='images/priorization.svg',
+         image='images/debate.svg',
          settings_model=None,
      )),
 ]
