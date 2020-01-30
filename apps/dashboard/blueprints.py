@@ -139,8 +139,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Debate'),
          description=_(
-             'Participants can discuss posted topics or questions '
-             'online. To do this, the participants comment on posted '
+             'Participants can discuss posted topics or questions. '
+             'To do this, the participants comment on posted '
              'topics / questions as well as on contributions from other '
              'users.'
 
