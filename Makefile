@@ -1,6 +1,11 @@
 VIRTUAL_ENV ?= venv
 NODE_BIN = node_modules/.bin
 
+SED = sed
+ifneq (, $(shell command -v gsed))
+	SED = gsed
+endif
+
 .PHONY: all
 all: help
 
@@ -102,7 +107,7 @@ lint-quick:
 po:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs
-	sed -i 's%#: .*/adhocracy4%#: adhocracy4%' locale/*/LC_MESSAGES/django*.po
+	$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' locale/*/LC_MESSAGES/django*.po
 	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
 	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
 
