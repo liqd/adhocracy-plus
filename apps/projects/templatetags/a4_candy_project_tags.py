@@ -32,5 +32,6 @@ def get_num_entries(module):
         + Comment.objects.filter(paragraph__chapter__module=module).count() \
         + Comment.objects.filter(chapter__module=module).count() \
         + Comment.objects.filter(poll__module=module).count() \
+        + Comment.objects.filter(topic__module=module).count() \
         + Vote.objects.filter(choice__question__poll__module=module).count()
     return item_count
