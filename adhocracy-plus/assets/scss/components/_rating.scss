@@ -22,15 +22,14 @@
 @mixin rating-button($color) {
     padding: 0.3em 0.6em;
 
+    &.is-selected {
+        color: $color;
+    }
+
     &:hover,
     &:focus {
         background: $color;
-        border-color: $color;
         color: contrast-color($color);
-    }
-
-    &.is-selected {
-        color: $color;
     }
 
     i {
@@ -39,9 +38,8 @@
 
     &.is-read-only,
     &:disabled {
-        color: $print-black;
-        background: none;
-        border: 0;
+        color: $text-color;
+        cursor: not-allowed;
     }
 }
 
