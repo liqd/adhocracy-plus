@@ -29,6 +29,12 @@ def test_project(subject):
 
 
 @pytest.mark.django_db
+def test_reference_number(subject):
+    reference_number = '{:d}-{:05d}'.format(subject.created.year, subject.pk)
+    assert subject.reference_number == reference_number
+
+
+@pytest.mark.django_db
 def test_delete_subject(subject_factory, comment_factory, rating_factory):
     subject = subject_factory()
 
