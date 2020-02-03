@@ -4,7 +4,8 @@
 <header class="main-header" aria-label="{% trans 'Header' %}">
     <div class="u-page-ribbon"></div>
     <div class="container u-position-relative">
-        <div class="main-header__brand">
+        <div class="row">
+        <div class="col-9 col-md-6 col-lg-7 pt-1 main-header__brand">
             {% include 'includes/header_logo_link.html' %}
         </div>
         <nav class="main-header__nav">
@@ -16,5 +17,6 @@
             </div>
             {% include 'includes/header_mobile_toggle.html' %}
         </nav>
+        </div>
     </div>
 </header>
