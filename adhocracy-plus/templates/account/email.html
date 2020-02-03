@@ -6,7 +6,7 @@
 {% block title %}{% trans 'Email Addresses' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
-<h1 class="u-first-heading">{% trans 'Email Addresses' %}</h1>
+<h1 class="mt-0">{% trans 'Email Addresses' %}</h1>
 
 <form class="multiform" action="{% url 'account_email' %}?next={{ request.path|urlencode }}" method="post">
     {% csrf_token %}
@@ -29,7 +29,7 @@
     </div>
     {% endfor %}
 
-    <div class="u-spacer-bottom">
+    <div class="mb-3">
         <button class="btn btn--primary" type="submit" name="action_primary">{% trans 'Make Primary' %}</button>
         <button class="btn btn--secondary" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button>
         <button class="btn btn--secondary" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
@@ -51,7 +51,7 @@
         {{ form.email.errors }}
         {{ form.email|add_class:"form-control" }}
     </div>
-    <div class="u-spacer-bottom">
+    <div class="mb-3">
         <input class="btn btn--primary" name="action_add" type="submit" value="{% trans 'Add Email' %}"/>
     </div>
 </form>

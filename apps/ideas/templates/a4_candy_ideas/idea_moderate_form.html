@@ -33,7 +33,7 @@
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=forms.statement.statement %}
 
 
-                <div class="u-spacer-bottom">
+                <div class="mb-3">
                     <input type="submit" class="btn btn--primary" value="{% trans 'Save' %}" />
                     <a href="{{ object.get_absolute_url }}" class="btn btn--light">{% trans 'Cancel' %}</a>
                 </div>

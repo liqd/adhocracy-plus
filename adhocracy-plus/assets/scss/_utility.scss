@@ -2,12 +2,6 @@
     margin-top: (-1.5 * $padding);
 }
 
-// should be replaced by a better class or rule to
-// unify the template structure
-.u-move-element-down-after-header {
-    margin-top: 3rem;
-}
-
 .u-bg-body {
     background-color: $body-bg;
     padding: $padding;
@@ -20,40 +14,12 @@
     padding-bottom: 3rem;
 }
 
-.u-no-margin {
-    margin: 0;
-}
-
-.u-first-heading {
+.mt-0 {
     margin-top: 0;
 }
 
 .u-body {
     color: $body-bg;
-}
-
-.u-primary {
-    color: $brand-primary;
-}
-
-.u-secondary {
-    color: $brand-secondary;
-}
-
-.u-spacer-left {
-    margin-left: $spacer;
-}
-
-.u-spacer-right {
-    margin-right: $spacer;
-}
-
-.u-spacer-bottom {
-    margin-bottom: $spacer;
-}
-
-.u-spacer-bottom-half {
-    margin-bottom: ($spacer / 2);
 }
 
 .u-spacer-bottom-double {
@@ -98,22 +64,10 @@
     text-align: right;
 }
 
-.u-danger {
-    color: $brand-danger;
-}
-
-.u-position-relative {
-    position: relative;
-}
-
 .u-no-border,
 .u-no-border:first-child,
 .u-no-border:last-child {
     border: none;
-}
-
-.d-none {
-    display: none;
 }
 
 .u-top-divider {

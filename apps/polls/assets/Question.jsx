@@ -170,7 +170,7 @@ class Question extends React.Component {
                   <div className="poll-row" key={choice.id}>
                     <div className="poll-row__number">{percent}%</div>
                     <div className="poll-row__label">{choice.label}</div>
-                    {chosen ? <i className="fa fa-check-circle u-primary" aria-label={django.gettext('Your choice')} /> : ''}
+                    {chosen ? <i className="fa fa-check-circle text-primary" aria-label={django.gettext('Your choice')} /> : ''}
                     <div
                       className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
                       ref={node => this.doBarTransition(node, { width: percent + '%' })}
