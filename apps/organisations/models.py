@@ -2,6 +2,7 @@ from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
@@ -152,7 +153,7 @@ class Organisation(models.Model):
 
         sorted_past_projects = sorted(
             past_projects,
-            key=lambda p: project.past_modules.first().module_start,
+            key=lambda p: p.past_modules.first().module_start,
             reverse=True)
 
         return sorted_active_projects, \
@@ -163,7 +164,9 @@ class Organisation(models.Model):
         return (self.initiators.filter(id=user.id).exists())
 
     def get_absolute_url(self):
-        return '/{}'.format(self.name).lower()
+        return reverse('organisation', kwargs={
+            'organisation_slug': self.slug
+        })
 
     def has_social_share(self):
         return (

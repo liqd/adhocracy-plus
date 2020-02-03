@@ -34,6 +34,8 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
         django_get_or_create = ('name',)
 
     name = factory.Faker('company')
+    description = factory.Faker('text')
+    imprint = factory.Faker('text')
 
     @factory.post_generation
     def initiators(self, create, extracted, **kwargs):
