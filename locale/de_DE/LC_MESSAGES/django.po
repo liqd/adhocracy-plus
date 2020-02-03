@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 11:31+0100\n"
+"POT-Creation-Date: 2020-02-03 15:24+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -183,6 +183,7 @@ msgstr "Projektentwurf anlegen"
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:15
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
 #: apps/debate/templates/a4_candy_debate/includes/subject_form.html:10
+#: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:15
 #: apps/embed/templates/a4_candy_embed/embed.html:49
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:16
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:38
@@ -367,7 +368,7 @@ msgid "Category icon"
 msgstr "Kategorieicon"
 
 #: adhocracy4/comments/models.py:52
-#: apps/budgeting/exports.py:72 apps/debate/exports.py:60
+#: apps/budgeting/exports.py:72 apps/debate/exports.py:62
 #: apps/documents/exports.py:40 apps/ideas/exports.py:69
 #: apps/mapideas/exports.py:70 apps/polls/exports.py:36
 #: apps/topicprio/exports.py:67
@@ -487,6 +488,7 @@ msgstr "Nein"
 #: adhocracy4/dashboard/filter.py:21
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:14
 #: apps/budgeting/views.py:32
+#: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:12
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:14
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:14
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:12
@@ -969,12 +971,12 @@ msgstr ""
 
 #: adhocracy4/projects/models.py:225
 #: adhocracy4/projects/models.py:231
-#: apps/organisations/models.py:68
+#: apps/organisations/models.py:69
 msgid "Header image"
 msgstr "Headerbild"
 
 #: adhocracy4/projects/models.py:227
-#: apps/organisations/models.py:70
+#: apps/organisations/models.py:71
 msgid "The image will be shown as a decorative background image."
 msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
@@ -1068,7 +1070,7 @@ msgid "Your profile"
 msgstr "Dein Profil"
 
 #: apps/account/templates/a4_candy_account/profile.html:22
-#: apps/organisations/templates/organisation_form.html:26
+#: apps/organisations/templates/organisation_form.html:29
 msgid "Save changes"
 msgstr "Änderungen speichern"
 
@@ -1164,14 +1166,14 @@ msgstr "Informationen zur Vor-Ort-Beteiligung bearbeiten"
 msgid "Export Excel"
 msgstr "Excel exportieren"
 
-#: apps/budgeting/exports.py:71 apps/debate/exports.py:59
+#: apps/budgeting/exports.py:71 apps/debate/exports.py:61
 #: apps/documents/exports.py:39 apps/ideas/exports.py:68
 #: apps/mapideas/exports.py:69 apps/polls/exports.py:35
 #: apps/topicprio/exports.py:66
 msgid "ID"
 msgstr "ID"
 
-#: apps/budgeting/exports.py:73 apps/debate/exports.py:61
+#: apps/budgeting/exports.py:73 apps/debate/exports.py:63
 #: apps/documents/exports.py:41 apps/exports/mixins.py:68
 #: apps/ideas/exports.py:70 apps/mapideas/exports.py:71
 #: apps/polls/exports.py:37 apps/topicprio/exports.py:68
@@ -1317,6 +1319,7 @@ msgid "Moderate proposal"
 msgstr "Vorschlag moderieren"
 
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_update_form.html:4
+#: apps/debate/templates/a4_candy_debate/subject_update_form.html:4
 #: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:4
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:4
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_update_form.html:4
@@ -1392,6 +1395,10 @@ msgstr "mehr anzeigen"
 msgid "Back to overview"
 msgstr "Zurück zur Übersicht"
 
+#: apps/cms/pages/templates/a4_candy_cms_pages/blocks/download_block.html:3
+msgid "Download"
+msgstr ""
+
 #: apps/cms/pages/templates/a4_candy_cms_pages/includes/homepage_hero.html:16
 msgid "Header image: "
 msgstr ""
@@ -1438,6 +1445,7 @@ msgstr "Weitere Möglichkeiten anschauen"
 msgid "Share on Twitter"
 msgstr "Auf Twitter teilen"
 
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/includes/use_case_share_btns.html:4
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/includes/use_case_share_btns.html:6
 msgid "Share on Facebook"
 msgstr "Auf Facebook teilen"
@@ -1723,9 +1731,9 @@ msgid ""
 "contributions from other users."
 msgstr ""
 "Die Teilnehmer*innen können eine oder mehrere eingestellte Themen oder "
-"Fragestellungen diskutieren. Zur Strukturierung der Debatte werden "
-"die Antworten in Kategorien eingeordnet und können durchsucht, sortiert "
-"und gefiltert werden."
+"Fragestellungen diskutieren. Zur Strukturierung der Debatte werden die "
+"Antworten in Kategorien eingeordnet und können durchsucht, sortiert und "
+"gefiltert werden."
 
 #: apps/dashboard/forms.py:13
 msgid "Organisation name"
@@ -1768,6 +1776,14 @@ msgstr[1] ""
 msgid "Discuss with us!"
 msgstr ""
 
+#: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:4
+msgid "Confirm Subject Deletion"
+msgstr ""
+
+#: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:8
+msgid "Are you sure you want to delete the subject?"
+msgstr ""
+
 #: apps/debate/templates/a4_candy_debate/subject_create_form.html:4
 #: apps/debate/templates/a4_candy_debate/subject_create_form.html:8
 msgid "Add a new subject"
@@ -1781,6 +1797,10 @@ msgstr "Betreff"
 
 #: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:13
 msgid "Add Subject"
+msgstr ""
+
+#: apps/debate/templates/a4_candy_debate/subject_update_form.html:8
+msgid "Edit subject"
 msgstr ""
 
 #: apps/debate/views.py:101
@@ -2252,11 +2272,11 @@ msgstr "Veranstaltung bearbeiten"
 msgid "The offline event has been deleted"
 msgstr "Die Veranstaltung wurde gelöscht."
 
-#: apps/organisations/models.py:23
+#: apps/organisations/models.py:24
 msgid "Title of your organisation"
 msgstr "Titel Ihrer Plattform"
 
-#: apps/organisations/models.py:26
+#: apps/organisations/models.py:27
 msgid ""
 "The title of your organisation will be shown on the landing page. max. 100 "
 "characters"
@@ -2265,21 +2285,20 @@ msgstr ""
 "die Nutzer*innen deutlich werden, dass es sich um eine Beteiligungsplattform "
 "handelt. Max. 100 Zeichen"
 
-#: apps/organisations/models.py:31
+#: apps/organisations/models.py:32
 msgid "Short description of your organisation"
 msgstr "Kurze Beschreibung Ihrer Organisation"
 
-#: apps/organisations/models.py:32
+#: apps/organisations/models.py:33
 msgid ""
-"The description will be displayed on the landing page. max. 400 characters"
+"The description will be displayed on the landing page. max. 800 characters"
 msgstr ""
-"Die Kurzbeschreibung wird auf der Startseite angezeigt. Max. 400 Zeichen"
 
-#: apps/organisations/models.py:37
+#: apps/organisations/models.py:38
 msgid "Logo"
 msgstr "Logo"
 
-#: apps/organisations/models.py:38
+#: apps/organisations/models.py:39
 msgid ""
 "The Logo representing your organisation. The image must be square and it "
 "should be min. 200 pixels wide and 200 pixels tall. Allowed file formats are "
@@ -2289,11 +2308,11 @@ msgstr ""
 "mindestens 200 Pixel breit und 200 Pixel hoch sein. Erlaubte Dateiformate: "
 "png, jpeg, gif. Die maximale Dateigröße beträgt 5 MB."
 
-#: apps/organisations/models.py:49
+#: apps/organisations/models.py:50
 msgid "Slogan"
 msgstr "Slogan"
 
-#: apps/organisations/models.py:51
+#: apps/organisations/models.py:52
 msgid ""
 "The slogan will be shown below the title of your organisation on the landing "
 "page. The slogan can provide context or additional information to the title. "
@@ -2302,23 +2321,23 @@ msgstr ""
 "Der Slogan wird unter dem Titel ihrer Plattform auf der Startseite angezeigt "
 "und kann den Titel ergänzen oder erläutern. Max. 200 Zeichen"
 
-#: apps/organisations/models.py:61
+#: apps/organisations/models.py:62
 msgid "Please enter a full url which starts with https:// or http://"
 msgstr ""
 
-#: apps/organisations/models.py:77
+#: apps/organisations/models.py:78
 msgid "Header image copyright"
 msgstr ""
 
-#: apps/organisations/models.py:79
+#: apps/organisations/models.py:80
 msgid "Author, which is displayed in the header image."
 msgstr ""
 
-#: apps/organisations/models.py:83
+#: apps/organisations/models.py:84
 msgid "Information about your organisation"
 msgstr "Beschreibung Ihrer Organisation"
 
-#: apps/organisations/models.py:84
+#: apps/organisations/models.py:85
 msgid ""
 "You can provide general information about your participation platform to "
 "your visitors. It’s also helpful to name a general person of contact for "
@@ -2330,7 +2349,7 @@ msgstr ""
 "einen Ansprechpartner*in für Anfragen benennen. Die Informationen werden auf "
 "einer separaten Seite angezeigt, die man über das Hauptmenü erreicht."
 
-#: apps/organisations/models.py:93
+#: apps/organisations/models.py:109
 #: apps/organisations/templates/organisation_imprint.html:4
 #: apps/organisations/templates/organisation_imprint.html:10
 #: adhocracy-plus/templates/footer.html:38
@@ -2338,7 +2357,7 @@ msgstr ""
 msgid "Imprint"
 msgstr "Impressum"
 
-#: apps/organisations/models.py:94
+#: apps/organisations/models.py:110
 msgid ""
 "Please provide all the legally required information of your imprint. The "
 "imprint will be shown on a separate page."
@@ -2346,11 +2365,11 @@ msgstr ""
 "Bitte geben Sie alle rechtlich nötigen Informationen zum Impressum an. Das "
 "Impressum wird auf einer separaten Seite angezeigt."
 
-#: apps/organisations/models.py:100
+#: apps/organisations/models.py:116
 msgid "is a supporting organisation"
 msgstr "ist eine unterstützende Organisation"
 
-#: apps/organisations/models.py:101
+#: apps/organisations/models.py:117
 msgid ""
 "For supporting organisations, the banner asking for donations is not "
 "displayed on their pages."
@@ -2361,6 +2380,10 @@ msgstr ""
 #: apps/organisations/templates/organisation_form.html:10
 msgid "Edit your organisation information"
 msgstr "Organisationsinformationen bearbeiten"
+
+#: apps/organisations/templates/organisation_information.html:27
+msgid "Social media"
+msgstr ""
 
 #: apps/organisations/templates/organisation_landing_page.html:45
 msgid "Opens in new window"
@@ -3586,6 +3609,11 @@ msgstr "Mit Konto eines sozialen Netzwerks einloggen"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Einloggen mit "
+
+#~ msgid ""
+#~ "The description will be displayed on the landing page. max. 400 characters"
+#~ msgstr ""
+#~ "Die Kurzbeschreibung wird auf der Startseite angezeigt. Max. 400 Zeichen"
 
 #~ msgid "Activity"
 #~ msgstr "Aktivitäten"
