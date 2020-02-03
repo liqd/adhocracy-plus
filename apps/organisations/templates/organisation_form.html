@@ -13,17 +13,17 @@
                 {% csrf_token %}
                 <h2>{{ object.name }}</h2>
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=form.title %}
-                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.logo %}
-                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.description %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=form.slogan %}
-                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.url %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.description %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.information %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.imprint %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.logo %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=form.image %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=form.image_copyright %}
-                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.information %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.url %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=form.twitter_handle %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=form.facebook_handle %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=form.instagram_handle %}
-                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.imprint %}
 
                 <div class="u-spacer-bottom">
                     <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
