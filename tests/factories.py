@@ -14,6 +14,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     username = factory.Sequence(lambda n: 'user%d' % n)
     email = factory.Sequence(lambda n: 'user%d@liqd.net' % n)
     password = make_password('password')
+    language = 'en'
 
 
 class AdminFactory(factory.django.DjangoModelFactory):
@@ -25,6 +26,7 @@ class AdminFactory(factory.django.DjangoModelFactory):
     email = factory.Sequence(lambda n: 'admin%d@liqd.net' % n)
     password = make_password('password')
     is_superuser = True
+    language = 'en'
 
 
 class OrganisationFactory(factory.django.DjangoModelFactory):
