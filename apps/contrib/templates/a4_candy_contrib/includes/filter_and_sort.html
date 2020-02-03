@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="filter-bar form-inline mb-2" role="group" aria-label="{% trans 'Filter bar '%}">
+<div class="filter-bar d-flex mb-2" role="group" aria-label="{% trans 'Filter bar '%}">
     {% for field in filter.form %}
         {% if field.name != 'ordering' %}
         <div class="mr-1 mt-2 mt-sm-0">
