@@ -80,7 +80,7 @@ var init = function () {
           '<div class="modal-dialog modal-lg" role="document">' +
             '<div class="modal-content">' +
               '<div class="modal-header">' +
-                '<h2 class="modal-title u-first-heading">' + modalTitle + '</h2>' +
+                '<h2 class="modal-title mt-0">' + modalTitle + '</h2>' +
                 '<button class="close" aria-label="' + django.gettext('Close') + '" data-dismiss="modal"><i class="fa fa-times"></i></button>' +
               '</div>' +
               '<div class="modal-body">' +

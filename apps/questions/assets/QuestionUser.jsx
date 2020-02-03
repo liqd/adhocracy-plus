@@ -58,7 +58,7 @@ export default class QuestionUser extends React.Component {
         <div>
           <p>
             {this.props.is_on_shortlist &&
-              <i className="icon-in-list pr-1 text-secondary" aria-label={shortlistText} />}
+              <i className="icon-in-list pr-1 text-muted" aria-label={shortlistText} />}
             {this.props.children}
           </p>
         </div>

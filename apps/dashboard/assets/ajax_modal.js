@@ -8,7 +8,7 @@ $(function () {
     '<div class="modal" tabindex="-1" role="dialog">' +
       '<div class="modal-dialog modal-lg" role="document">' +
         '<div class="modal-content">' +
-          '<div class="modal-header"><h2 class="modal-title u-first-heading"></h2>' +
+          '<div class="modal-header"><h2 class="modal-title mt-0"></h2>' +
             '<button type="button" class="close" data-dismiss="modal" aria-label="' + django.gettext('Close') + '"><span aria-hidden="true">&times;</span></button>' +
           '</div>' +
           '<div class="modal-body"></div>' +
