@@ -100,7 +100,7 @@ class SubjectDeleteView(mixins.DashboardBaseMixin,
     model = models.Subject
     success_message = _('The subject has been deleted')
     permission_required = 'a4_candy_debate.change_subject'
-    template_name = 'a4_candy_subject/subject_confirm_delete.html'
+    template_name = 'a4_candy_debate/subject_confirm_delete.html'
 
     @property
     def organisation(self):
