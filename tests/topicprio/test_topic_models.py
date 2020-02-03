@@ -39,6 +39,12 @@ def test_project(topic):
 
 
 @pytest.mark.django_db
+def test_reference_number(topic):
+    reference_number = '{:d}-{:05d}'.format(topic.created.year, topic.pk)
+    assert topic.reference_number == reference_number
+
+
+@pytest.mark.django_db
 def test_delete_idea(topic_factory, comment_factory, rating_factory, ImagePNG):
     idea = topic_factory(image=ImagePNG)
     image_path = os.path.join(settings.MEDIA_ROOT, idea.image.path)
