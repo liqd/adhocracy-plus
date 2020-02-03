@@ -25,7 +25,7 @@
         {{ form.receivers }}
         <input type="hidden" id="{{ form.organisation.id_for_label}}" name="{{form.organisation.html_name}}" value="{{view.organisation.id}}" />
 
-        <div class="u-spacer-bottom">
+        <div class="mb-3">
             <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send'%}" />
             <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--light">{% trans 'Cancel'%}</a>
         </div>

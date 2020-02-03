@@ -5,7 +5,7 @@
 {% block title %}{% trans "Social Connections" %}{% endblock %}
 
 {% block dashboard_content %}
-    <h1 class="u-first-heading">{% trans "Social Connections" %}</h1>
+    <h1 class="mt-0">{% trans "Social Connections" %}</h1>
     <h4>{% trans 'Remove existing connections' %}</h4>
     {% if form.accounts %}
     <p>{% blocktrans %}You can sign in to your account using any of the following third party
@@ -27,7 +27,7 @@
                 </div>
             {% endwith %}
         {% endfor %}
-        <div class="u-spacer-bottom">
+        <div class="mb-3">
             <button class="btn btn--small btn--danger" type="submit">{% trans 'Remove' %}</button>
         </div>
     </form>

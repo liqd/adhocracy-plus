@@ -5,7 +5,7 @@
 
 {% block dashboard_project_content %}
 <div class="container">
-    <h1 class="u-first-heading">{% trans 'Are you sure you want to delete the topic?' %}</h1>
+    <h1 class="mt-0">{% trans 'Are you sure you want to delete the topic?' %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
