@@ -1397,11 +1397,11 @@ msgstr "Zurück zur Übersicht"
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/blocks/download_block.html:3
 msgid "Download"
-msgstr ""
+msgstr "herunter laden"
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/includes/homepage_hero.html:16
 msgid "Header image: "
-msgstr ""
+msgstr "Kopfzeilenbild: "
 
 #: apps/cms/use_cases/models.py:24
 msgid "Municipalities"
@@ -1722,7 +1722,7 @@ msgstr ""
 
 #: apps/dashboard/blueprints.py:140
 msgid "Debate"
-msgstr ""
+msgstr "Debatte"
 
 #: apps/dashboard/blueprints.py:142
 msgid ""
@@ -1746,7 +1746,7 @@ msgstr "Neues Modul"
 
 #: apps/debate/dashboard.py:15
 msgid "Subjects"
-msgstr ""
+msgstr "Themen"
 
 #: apps/debate/filters.py:22 apps/debate/filters.py:44
 #: apps/topicprio/views.py:31 apps/topicprio/views.py:76
@@ -1755,39 +1755,39 @@ msgstr "Alphabetisch"
 
 #: apps/debate/phases.py:15
 msgid "Debate phase"
-msgstr ""
+msgstr "Debattierphase"
 
 #: apps/debate/phases.py:16
 msgid "Debate subjects."
-msgstr ""
+msgstr "Debattiere Themen"
 
 #: apps/debate/phases.py:17
 msgid "subject debate"
-msgstr ""
+msgstr "Themendebatte"
 
 #: apps/debate/templates/a4_candy_debate/includes/subject_list_item.html:30
 #, python-format
 msgid " %(count)s Contribution "
 msgid_plural " %(count)s Contributions "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " %(count)s Beitrag "
+msgstr[1] " %(count)s Beiträge "
 
 #: apps/debate/templates/a4_candy_debate/includes/subject_list_item.html:35
 msgid "Discuss with us!"
-msgstr ""
+msgstr "Jetzt mitmachen!"
 
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:4
 msgid "Confirm Subject Deletion"
-msgstr ""
+msgstr "Themenlöschung bestätigen"
 
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:8
 msgid "Are you sure you want to delete the subject?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie das Thema löschen möchten?"
 
 #: apps/debate/templates/a4_candy_debate/subject_create_form.html:4
 #: apps/debate/templates/a4_candy_debate/subject_create_form.html:8
 msgid "Add a new subject"
-msgstr ""
+msgstr "Ein neues Thema hinzu fügen"
 
 #: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:4
 #: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:9
@@ -1797,15 +1797,15 @@ msgstr "Betreff"
 
 #: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:13
 msgid "Add Subject"
-msgstr ""
+msgstr "Thema hinzu fügen"
 
 #: apps/debate/templates/a4_candy_debate/subject_update_form.html:8
 msgid "Edit subject"
-msgstr ""
+msgstr "Thema bearbeiten"
 
 #: apps/debate/views.py:101
 msgid "The subject has been deleted"
-msgstr ""
+msgstr "das Thema wurde gelöscht"
 
 #: apps/documents/dashboard.py:15
 msgid "Document"
@@ -2293,6 +2293,7 @@ msgstr "Kurze Beschreibung Ihrer Organisation"
 msgid ""
 "The description will be displayed on the landing page. max. 800 characters"
 msgstr ""
+"Die Beschreibung wird auf der Startseite angezeigt. Max. 800 Zeichen."
 
 #: apps/organisations/models.py:38
 msgid "Logo"
@@ -2323,15 +2324,15 @@ msgstr ""
 
 #: apps/organisations/models.py:62
 msgid "Please enter a full url which starts with https:// or http://"
-msgstr ""
+msgstr "Geben Sie bitte eine komplette URL ein, die mit https:// oder http:// anfängt."
 
 #: apps/organisations/models.py:78
 msgid "Header image copyright"
-msgstr ""
+msgstr "Urheberrecht des Kopfzeilenbildes"
 
 #: apps/organisations/models.py:80
 msgid "Author, which is displayed in the header image."
-msgstr ""
+msgstr "Autor, der auf dem Kopfzeilenbild dargestellt wird."
 
 #: apps/organisations/models.py:84
 msgid "Information about your organisation"
@@ -2383,11 +2384,11 @@ msgstr "Organisationsinformationen bearbeiten"
 
 #: apps/organisations/templates/organisation_information.html:27
 msgid "Social media"
-msgstr ""
+msgstr "Soziale Medien"
 
 #: apps/organisations/templates/organisation_landing_page.html:45
 msgid "Opens in new window"
-msgstr ""
+msgstr "Öffnet in neuem Fenster"
 
 #: apps/organisations/views.py:47
 msgid "Organisation successfully updated."
@@ -2440,27 +2441,27 @@ msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:35
 #, python-format
 msgid " %(time_left)s remaining "
-msgstr ""
+msgstr " noch %(time_left)s "
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:37
 msgid "more than 1 year remaining"
-msgstr ""
+msgstr "noch länger als 1 Jahr"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:43
 #, python-format
 msgid " Participation: from %(date)s"
-msgstr ""
+msgstr " Beteiligung: ab %(date)s"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:47
 msgid "Participation ended. Read result."
-msgstr ""
+msgstr "Beteiligung beendet. Ergebnis lesen."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:12
 #, python-format
 msgid "%(num_entries)s Contribution"
 msgid_plural "%(num_entries)s Contributions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num_entries)s Beitrag"
+msgstr[1] "%(num_entries)s Beiträge"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:21
 #, python-format
@@ -3057,15 +3058,15 @@ msgstr "Deutsch"
 
 #: adhocracy-plus/config/settings/base.py:392
 msgid "suggestion"
-msgstr ""
+msgstr "Vorschlag"
 
 #: adhocracy-plus/config/settings/base.py:393
 msgid "note"
-msgstr ""
+msgstr "Anmerkung"
 
 #: adhocracy-plus/config/settings/base.py:394
 msgid "question"
-msgstr ""
+msgstr "Frage"
 
 #: adhocracy-plus/config/settings/base.py:435
 msgid "Pin without icon"
@@ -3532,27 +3533,27 @@ msgstr "Kopfzeile"
 
 #: adhocracy-plus/templates/header.html:29
 msgid "Our projects"
-msgstr ""
+msgstr "Übersicht"
 
 #: adhocracy-plus/templates/header.html:34
 msgid "About"
-msgstr ""
+msgstr "Hintergrund"
 
 #: adhocracy-plus/templates/includes/header_language_switch.html:13
 msgid "German language selected"
-msgstr ""
+msgstr "Deutsche Sprache ausgesucht"
 
 #: adhocracy-plus/templates/includes/header_language_switch.html:13
 msgid "select English language"
-msgstr ""
+msgstr "Englische Sprache aussuchen"
 
 #: adhocracy-plus/templates/includes/header_language_switch.html:15
 msgid "select German language"
-msgstr ""
+msgstr "Deutsche Sprache aussuchen"
 
 #: adhocracy-plus/templates/includes/header_language_switch.html:15
 msgid "English language selected"
-msgstr ""
+msgstr "Englische Sprache ausgesucht"
 
 #: adhocracy-plus/templates/includes/header_mobile_toggle.html:4
 msgid "Menu"
