@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 11:31+0100\n"
+"POT-Creation-Date: 2020-02-03 15:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,15 +51,20 @@ msgstr[0] "view one reply"
 msgstr[1] "view %s replies"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:30
+#: adhocracy4/comments_async/static/comments/comment.jsx:245
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:9
 msgid "Answer"
 msgstr "Answer"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
+#: adhocracy4/comments_async/static/comments/comment.jsx:284
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:398
 msgid "Your reply here"
 msgstr "Your reply here"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
+#: adhocracy4/comments_async/static/comments/comment.jsx:198
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:258
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -71,29 +76,43 @@ msgstr ""
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
+#: adhocracy4/comments_async/static/comments/comment.jsx:187
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:237
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
+#: adhocracy4/comments_async/static/comments/comment.jsx:182
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:232
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:147
+#: adhocracy4/comments_async/static/comments/comment.jsx:163
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:197
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:148
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
+#: adhocracy4/comments_async/static/comments/comment.jsx:165
+#: adhocracy4/comments_async/static/comments/comment_manage_dropdown.jsx:21
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:199
+#: adhocracy4/comments_async/static/comments_with_categories/comment_manage_dropdown.jsx:22
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:14
 #: apps/documents/assets/ChapterNavItem.jsx:56
 #: apps/documents/assets/ChapterNavItem.jsx:61
 #: apps/documents/assets/ParagraphForm.jsx:133
 #: apps/documents/assets/ParagraphForm.jsx:138
+#: apps/polls/assets/QuestionForm.jsx:99 apps/polls/assets/QuestionForm.jsx:104
 msgid "Delete"
 msgstr "Delete"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments_async/static/comments/comment.jsx:166
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:200
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
 msgid "Abort"
 msgstr "Abort"
@@ -146,6 +165,7 @@ msgid "Edit"
 msgstr "Edit"
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
+#: adhocracy4/comments_async/static/comments/comment.jsx:251
 msgid "Report"
 msgstr "Report"
 
@@ -153,6 +173,21 @@ msgstr "Report"
 #: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:20
 msgid "Entry successfully created"
 msgstr "Entry successfully created"
+
+#: adhocracy4/comments_async/static/comments/comment.jsx:205
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:265
+msgid "Share link"
+msgstr "Share link"
+
+#: adhocracy4/comments_async/static/comments/comment.jsx:228
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:326
+msgid "Read more..."
+msgstr "Read more..."
+
+#: adhocracy4/comments_async/static/comments/comment.jsx:229
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:327
+msgid "Read less"
+msgstr "Read less"
 
 #: adhocracy4/comments_async/static/comments/comment_box.jsx:14
 #: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:15
@@ -251,6 +286,18 @@ msgstr "hide comments"
 msgid "Comment"
 msgstr "Comment"
 
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:312
+msgid "Categories: "
+msgstr "Categories: "
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:352
+msgid "Share"
+msgstr "Share"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:359
+msgid " Report"
+msgstr " Report"
+
 #: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:20
 msgid "Recommended"
 msgstr "Recommended"
@@ -259,6 +306,10 @@ msgstr "Recommended"
 msgid "display: "
 msgstr "display: "
 
+#: adhocracy4/comments_async/static/comments_with_categories/comment_manage_dropdown.jsx:28
+msgid "Recommend"
+msgstr "Recommend"
+
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:31
 msgid "Recommend comment"
 msgstr "Recommend comment"
@@ -266,6 +317,10 @@ msgstr "Recommend comment"
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:35
 msgid "Is recommended"
 msgstr "Is recommended"
+
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
+msgid "Submit"
+msgstr "Submit"
 
 #: adhocracy4/comments_async/static/modals/report_modal.jsx:62
 #: adhocracy4/reports/static/reports/ReportModal.jsx:60
@@ -329,6 +384,7 @@ msgid "Save"
 msgstr "Save"
 
 #: adhocracy4/polls/static/polls/Question.jsx:9
+#: apps/polls/assets/Question.jsx:173
 msgid "Your choice"
 msgstr "Your choice"
 
@@ -357,14 +413,17 @@ msgid "Please login to vote"
 msgstr "Please login to vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:140
+#: apps/polls/assets/Question.jsx:138
 msgid "To poll"
 msgstr "To poll"
 
 #: adhocracy4/polls/static/polls/Question.jsx:142
+#: apps/polls/assets/Question.jsx:141
 msgid "Change vote"
 msgstr "Change vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:145
+#: apps/polls/assets/Question.jsx:145
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
@@ -386,6 +445,7 @@ msgid "Users can select more than one answer."
 msgstr "Users can select more than one answer."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
+#: apps/polls/assets/QuestionForm.jsx:67
 msgid "Add a new choice"
 msgstr "Add a new choice"
 
@@ -394,6 +454,7 @@ msgstr "Add a new choice"
 #: apps/documents/assets/ChapterNavItem.jsx:37
 #: apps/documents/assets/ParagraphForm.jsx:110
 #: apps/documents/assets/ParagraphForm.jsx:115
+#: apps/polls/assets/QuestionForm.jsx:76 apps/polls/assets/QuestionForm.jsx:81
 msgid "Move up"
 msgstr "Move up"
 
@@ -402,6 +463,7 @@ msgstr "Move up"
 #: apps/documents/assets/ChapterNavItem.jsx:49
 #: apps/documents/assets/ParagraphForm.jsx:122
 #: apps/documents/assets/ParagraphForm.jsx:127
+#: apps/polls/assets/QuestionForm.jsx:88 apps/polls/assets/QuestionForm.jsx:93
 msgid "Move down"
 msgstr "Move down"
 
@@ -410,7 +472,8 @@ msgstr "Move down"
 msgid "Choice"
 msgstr "Choice"
 
-#: adhocracy4/static/Alert.jsx:5 apps/dashboard/assets/ajax_modal.js:12
+#: adhocracy4/static/Alert.jsx:5 apps/contrib/assets/Alert.jsx:10
+#: apps/contrib/assets/Alert.jsx:11 apps/dashboard/assets/ajax_modal.js:12
 #: apps/embed/assets/embed.js:54 apps/embed/assets/embed.js:55
 #: apps/maps/assets/map_choose_polygon_with_preset.js:84
 msgid "Close"
