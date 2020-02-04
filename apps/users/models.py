@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth import models as auth_models
 from django.core import validators
 from django.db import models
+from django.templatetags.static import static
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -130,6 +131,10 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     def avatar(self):
         if self._avatar:
             return self._avatar
+
+    @cached_property
+    def avatar_fallback(self):
+        return static('images/avatar_00.png')
 
     def get_short_name(self):
         return self.username
