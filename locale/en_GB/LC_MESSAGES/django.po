@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 15:24+0100\n"
+"POT-Creation-Date: 2020-02-05 16:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -315,14 +315,15 @@ msgstr "Category name"
 msgid "Category icon"
 msgstr "Category icon"
 
-#: adhocracy4/comments/models.py:52 apps/budgeting/exports.py:72
-#: apps/debate/exports.py:62 apps/documents/exports.py:40
-#: apps/ideas/exports.py:69 apps/mapideas/exports.py:70
-#: apps/polls/exports.py:36 apps/topicprio/exports.py:67
+#: adhocracy4/comments/models.py:53 apps/budgeting/exports.py:73
+#: apps/debate/exports.py:63 apps/documents/exports.py:41
+#: apps/ideas/exports.py:70 apps/mapideas/exports.py:71
+#: apps/polls/exports.py:37 apps/topicprio/exports.py:68
+msgctxt "noun"
 msgid "Comment"
 msgstr "Comment"
 
-#: adhocracy4/comments/models.py:53 adhocracy4/exports/mixins.py:122
+#: adhocracy4/comments/models.py:54 adhocracy4/exports/mixins.py:122
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:16
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:17
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:18
@@ -334,13 +335,13 @@ msgstr "Comment"
 msgid "Comments"
 msgstr "Comments"
 
-#: adhocracy4/comments/models.py:73
-#: adhocracy4/comments_async/serializers.py:135
+#: adhocracy4/comments/models.py:74
+#: adhocracy4/comments_async/serializers.py:138
 msgid "deleted by creator"
 msgstr "deleted by creator"
 
-#: adhocracy4/comments/models.py:76
-#: adhocracy4/comments_async/serializers.py:137
+#: adhocracy4/comments/models.py:77
+#: adhocracy4/comments_async/serializers.py:140
 msgid "deleted by moderator"
 msgstr "deleted by moderator"
 
@@ -1075,17 +1076,17 @@ msgstr "Edit face to face participation information"
 msgid "Export Excel"
 msgstr "Export Excel"
 
-#: apps/budgeting/exports.py:71 apps/debate/exports.py:61
-#: apps/documents/exports.py:39 apps/ideas/exports.py:68
-#: apps/mapideas/exports.py:69 apps/polls/exports.py:35
-#: apps/topicprio/exports.py:66
+#: apps/budgeting/exports.py:72 apps/debate/exports.py:62
+#: apps/documents/exports.py:40 apps/ideas/exports.py:69
+#: apps/mapideas/exports.py:70 apps/polls/exports.py:36
+#: apps/topicprio/exports.py:67
 msgid "ID"
 msgstr "ID"
 
-#: apps/budgeting/exports.py:73 apps/debate/exports.py:63
-#: apps/documents/exports.py:41 apps/exports/mixins.py:68
-#: apps/ideas/exports.py:70 apps/mapideas/exports.py:71
-#: apps/polls/exports.py:37 apps/topicprio/exports.py:68
+#: apps/budgeting/exports.py:74 apps/debate/exports.py:64
+#: apps/documents/exports.py:42 apps/exports/mixins.py:68
+#: apps/ideas/exports.py:71 apps/mapideas/exports.py:72
+#: apps/polls/exports.py:38 apps/topicprio/exports.py:69
 msgid "Created"
 msgstr "Created"
 
@@ -1491,9 +1492,7 @@ msgid "Next page"
 msgstr "Next page"
 
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:57
-#: apps/debate/templates/a4_candy_debate/subject_detail.html:24
 #: apps/exports/mixins.py:12
-#: apps/topicprio/templates/a4_candy_topicprio/topic_detail.html:45
 msgid "Reference No."
 msgstr "Reference No."
 
@@ -1670,9 +1669,13 @@ msgid_plural " %(count)s Contributions "
 msgstr[0] " %(count)s Contribution "
 msgstr[1] " %(count)s Contributions "
 
-#: apps/debate/templates/a4_candy_debate/includes/subject_list_item.html:35
+#: apps/debate/templates/a4_candy_debate/includes/subject_list_item.html:37
 msgid "Discuss with us!"
 msgstr "Discuss with us!"
+
+#: apps/debate/templates/a4_candy_debate/includes/subject_list_item.html:39
+msgid "Read more"
+msgstr "Read more"
 
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:4
 msgid "Confirm Subject Deletion"
@@ -3485,6 +3488,9 @@ msgstr "Login with social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Login with "
+
+#~ msgid "Comment"
+#~ msgstr "Comment"
 
 #~ msgid ""
 #~ "The description will be displayed on the landing page. max. 400 characters"
