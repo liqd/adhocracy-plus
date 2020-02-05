@@ -1,4 +1,4 @@
-{% load i18n module_tags static thumbnail %}
+{% load discovery_tags i18n module_tags static thumbnail %}
 
 <li class="list-item list-item--spaced d-flex flex-column justify-content-between">
     <a class="list-item__link" href="{{ object.get_absolute_url }}"><span class="sr-only">{{ object.name }}</span></a>
@@ -32,7 +32,12 @@
             {% endspaceless %}
         </div>
         <div class="col-12 col-sm text-right list-item__cta list-item__hover" href="{{ object.get_absolute_url }}">
+            {% has_or_would_have_perm 'a4_candy_debate.comment_subject' request.user object as debate_allowed %}
+            {% if debate_allowed %}
             <span class="">{% trans 'Discuss with us!' %}</span>
+            {% else %}
+            <span class="">{% trans 'Read more' %}</span>
+            {% endif %}
         </div>
     </div>
 </li>
