@@ -1,3 +1,4 @@
+from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
 from rules.contrib.views import PermissionRequiredMixin
 
@@ -59,7 +60,7 @@ class SubjectCommentExportView(PermissionRequiredMixin,
 
     def get_virtual_fields(self, virtual):
         virtual.setdefault('id', _('ID'))
-        virtual.setdefault('comment', _('Comment'))
+        virtual.setdefault('comment', pgettext('noun', 'Comment'))
         virtual.setdefault('created', _('Created'))
         return super().get_virtual_fields(virtual)
 
