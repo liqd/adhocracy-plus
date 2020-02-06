@@ -6,7 +6,7 @@ from apps.exports import mixins
 
 @pytest.mark.django_db
 def test_reply_to_mixin(idea, comment_factory):
-    mixin = mixins.ItemExportWithRepliesToMixin()
+    mixin = mixins.CommentExportWithRepliesToMixin()
 
     virtual = mixin.get_virtual_fields({})
     assert 'replies_to' in virtual
