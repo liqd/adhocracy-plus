@@ -19,4 +19,4 @@ EOF
     chmod 600 ~/id_rsa
 fi
 
-ssh ${SSH_ID_ARG} -oStrictHostKeyChecking=no build@conway.liqd.net deploy adhocracy-plus master
+ssh ${SSH_ID_ARG} -oStrictHostKeyChecking=no build@build.liqd.net deploy adhocracy-plus master
