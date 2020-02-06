@@ -3,18 +3,19 @@ from django.utils.translation import ugettext as _
 from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.comments.models import Comment
-from adhocracy4.exports import mixins as export_mixins
-from adhocracy4.exports import views as export_views
-from apps.exports import mixins as mb_export_mixins
+from adhocracy4.exports import mixins as a4_export_mixins
+from adhocracy4.exports import views as a4_export_views
+from apps.exports import mixins as export_mixins
 
 
 class PollCommentExportView(
         PermissionRequiredMixin,
-        export_mixins.ExportModelFieldsMixin,
-        mb_export_mixins.UserGeneratedContentExportMixin,
-        export_mixins.ItemExportWithLinkMixin,
-        mb_export_mixins.ItemExportWithRepliesToMixin,
-        export_views.BaseItemExportView
+        a4_export_mixins.ItemExportWithLinkMixin,
+        a4_export_mixins.ExportModelFieldsMixin,
+        export_mixins.UserGeneratedContentExportMixin,
+        a4_export_mixins.ItemExportWithRatesMixin,
+        export_mixins.ItemExportWithRepliesToMixin,
+        a4_export_views.BaseItemExportView
 ):
 
     model = Comment
