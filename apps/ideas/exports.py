@@ -14,13 +14,13 @@ class IdeaExportView(PermissionRequiredMixin,
                      export_mixins.ItemExportWithReferenceNumberMixin,
                      a4_export_mixins.ItemExportWithLinkMixin,
                      a4_export_mixins.ExportModelFieldsMixin,
-                     a4_export_mixins.ItemExportWithRatesMixin,
                      a4_export_mixins.ItemExportWithCategoriesMixin,
                      a4_export_mixins.ItemExportWithLabelsMixin,
+                     export_mixins.UserGeneratedContentExportMixin,
+                     a4_export_mixins.ItemExportWithRatesMixin,
                      a4_export_mixins.ItemExportWithCommentCountMixin,
                      export_mixins.ItemExportWithModeratorFeedback,
                      export_mixins.ItemExportWithModeratorRemark,
-                     export_mixins.UserGeneratedContentExportMixin,
                      a4_export_views.BaseItemExportView):
     model = models.Idea
     fields = ['name', 'description']
@@ -43,9 +43,9 @@ class IdeaExportView(PermissionRequiredMixin,
 
 
 class IdeaCommentExportView(PermissionRequiredMixin,
+                            a4_export_mixins.ItemExportWithLinkMixin,
                             a4_export_mixins.ExportModelFieldsMixin,
                             export_mixins.UserGeneratedContentExportMixin,
-                            a4_export_mixins.ItemExportWithLinkMixin,
                             a4_export_mixins.ItemExportWithRatesMixin,
                             export_mixins.ItemExportWithRepliesToMixin,
                             a4_export_views.BaseItemExportView):
