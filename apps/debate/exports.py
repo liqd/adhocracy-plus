@@ -11,18 +11,18 @@ from . import models
 
 
 class SubjectExportView(PermissionRequiredMixin,
-                        a4_export_mixins.ExportModelFieldsMixin,
-                        a4_export_mixins.ItemExportWithCommentCountMixin,
-                        a4_export_mixins.ItemExportWithLinkMixin,
                         export_mixins.ItemExportWithReferenceNumberMixin,
+                        a4_export_mixins.ItemExportWithLinkMixin,
+                        a4_export_mixins.ExportModelFieldsMixin,
                         export_mixins.UserGeneratedContentExportMixin,
+                        a4_export_mixins.ItemExportWithCommentCountMixin,
                         a4_export_views.BaseItemExportView):
     model = models.Subject
     fields = ['name']
-    permission_required = 'a4projects.change_project'
+    permission_required = 'a4_candy_debate.change_subject'
 
     def get_permission_object(self):
-        return self.module.project
+        return self.module
 
     def get_queryset(self):
         return super().get_queryset() \
@@ -35,21 +35,21 @@ class SubjectExportView(PermissionRequiredMixin,
 
 
 class SubjectCommentExportView(PermissionRequiredMixin,
+                               a4_export_mixins.ItemExportWithLinkMixin,
                                a4_export_mixins.ExportModelFieldsMixin,
                                a4_export_mixins.ItemExportWithCategoriesMixin,
-                               a4_export_mixins.ItemExportWithRatesMixin,
-                               a4_export_mixins.ItemExportWithLinkMixin,
-                               export_mixins.ItemExportWithRepliesToMixin,
                                export_mixins.UserGeneratedContentExportMixin,
+                               a4_export_mixins.ItemExportWithRatesMixin,
+                               export_mixins.CommentExportWithRepliesToMixin,
                                a4_export_views.BaseItemExportView):
 
     model = Comment
 
     fields = ['id', 'comment', 'created']
-    permission_required = 'a4projects.change_project'
+    permission_required = 'a4_candy_debate.change_subject'
 
     def get_permission_object(self):
-        return self.module.project
+        return self.module
 
     def get_queryset(self):
         comments = (Comment.objects.filter(subject__module=self.module) |

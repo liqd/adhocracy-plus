@@ -14,14 +14,14 @@ class MapIdeaExportView(PermissionRequiredMixin,
                         export_mixins.ItemExportWithReferenceNumberMixin,
                         a4_export_mixins.ItemExportWithLinkMixin,
                         a4_export_mixins.ExportModelFieldsMixin,
-                        a4_export_mixins.ItemExportWithRatesMixin,
                         a4_export_mixins.ItemExportWithCategoriesMixin,
                         a4_export_mixins.ItemExportWithLabelsMixin,
-                        a4_export_mixins.ItemExportWithCommentCountMixin,
                         a4_export_mixins.ItemExportWithLocationMixin,
+                        export_mixins.UserGeneratedContentExportMixin,
+                        a4_export_mixins.ItemExportWithRatesMixin,
+                        a4_export_mixins.ItemExportWithCommentCountMixin,
                         export_mixins.ItemExportWithModeratorFeedback,
                         export_mixins.ItemExportWithModeratorRemark,
-                        export_mixins.UserGeneratedContentExportMixin,
                         a4_export_views.BaseItemExportView):
     model = models.MapIdea
     fields = ['name', 'description']
@@ -44,9 +44,9 @@ class MapIdeaExportView(PermissionRequiredMixin,
 
 
 class MapIdeaCommentExportView(PermissionRequiredMixin,
+                               a4_export_mixins.ItemExportWithLinkMixin,
                                a4_export_mixins.ExportModelFieldsMixin,
                                export_mixins.UserGeneratedContentExportMixin,
-                               a4_export_mixins.ItemExportWithLinkMixin,
                                a4_export_mixins.ItemExportWithRatesMixin,
                                export_mixins.ItemExportWithRepliesToMixin,
                                a4_export_views.BaseItemExportView):
