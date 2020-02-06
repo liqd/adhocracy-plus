@@ -48,18 +48,6 @@ class ItemExportWithModeratorRemark(VirtualFieldMixin):
         return ''
 
 
-class ItemExportWithRepliesToMixin(VirtualFieldMixin):
-    def get_virtual_fields(self, virtual):
-        virtual['replies_to'] = _('replies to')
-        return super().get_virtual_fields(virtual)
-
-    def get_replies_to_data(self, comment):
-        try:
-            return comment.parent_comment.get().pk
-        except ObjectDoesNotExist:
-            return ''
-
-
 class UserGeneratedContentExportMixin(VirtualFieldMixin):
     def get_virtual_fields(self, virtual):
         if 'creator' not in virtual:
@@ -73,3 +61,15 @@ class UserGeneratedContentExportMixin(VirtualFieldMixin):
 
     def get_created_data(self, item):
         return item.created.isoformat()
+
+
+class CommentExportWithRepliesToMixin(VirtualFieldMixin):
+    def get_virtual_fields(self, virtual):
+        virtual['replies_to'] = _('reply to comment')
+        return super().get_virtual_fields(virtual)
+
+    def get_replies_to_data(self, comment):
+        try:
+            return comment.parent_comment.get().pk
+        except ObjectDoesNotExist:
+            return ''
