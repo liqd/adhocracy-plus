@@ -14,7 +14,7 @@ class DocumentExportView(
         a4_export_mixins.ExportModelFieldsMixin,
         export_mixins.UserGeneratedContentExportMixin,
         a4_export_mixins.ItemExportWithRatesMixin,
-        export_mixins.ItemExportWithRepliesToMixin,
+        export_mixins.CommentExportWithRepliesToMixin,
         a4_export_views.BaseItemExportView
 ):
 
