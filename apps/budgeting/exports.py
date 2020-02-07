@@ -43,13 +43,16 @@ class ProposalExportView(PermissionRequiredMixin,
         return self.request.user.is_authenticated
 
 
-class ProposalCommentExportView(PermissionRequiredMixin,
-                                a4_export_mixins.ItemExportWithLinkMixin,
-                                a4_export_mixins.ExportModelFieldsMixin,
-                                export_mixins.UserGeneratedContentExportMixin,
-                                a4_export_mixins.ItemExportWithRatesMixin,
-                                export_mixins.CommentExportWithRepliesToMixin,
-                                a4_export_views.BaseItemExportView):
+class ProposalCommentExportView(
+        PermissionRequiredMixin,
+        a4_export_mixins.ItemExportWithLinkMixin,
+        a4_export_mixins.ExportModelFieldsMixin,
+        export_mixins.UserGeneratedContentExportMixin,
+        a4_export_mixins.ItemExportWithRatesMixin,
+        export_mixins.ReferenceExportWithRepliesToMixin,
+        export_mixins.CommentExportWithRepliesToMixin,
+        a4_export_views.BaseItemExportView
+):
 
     model = Comment
 
