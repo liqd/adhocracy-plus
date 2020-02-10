@@ -19,6 +19,8 @@
 
             <div class="item-detail">
                 <h1 class="item-detail__title">{{ object.name }}</h1>
+                <p class="item-detail__description">{{ object.description }}</p>
+
                 {% react_comments_async_with_categories object %}
             </div>
         </div>
