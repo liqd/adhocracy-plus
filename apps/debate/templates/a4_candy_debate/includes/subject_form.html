@@ -4,6 +4,7 @@
     {{ form.media }}
 
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.name %}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.description %}
 
     <div class="mb-3">
         <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />

@@ -11,4 +11,4 @@ class SubjectForm(forms.ModelForm):
 
     class Meta:
         model = models.Subject
-        fields = ['name']
+        fields = ['name', 'description']
