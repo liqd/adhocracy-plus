@@ -1,11 +1,16 @@
 .tile {
     display: flex;
     flex-direction: column;
-    margin-bottom: $spacer;
     page-break-inside: avoid;
     overflow-wrap: break-word;
     background-color: $body-bg;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 22px 0 rgba(0, 0, 0, 0.06);
+    position: relative;
+    margin-bottom: $spacer;
+
+    &:hover {
+        box-shadow: 0 2px 26px 0 rgba(0, 0, 0, 0.12);
+    }
 }
 
 .tile__blueprint {
@@ -26,6 +31,15 @@
 
 .tile__icon {
     color: $brand-primary;
+}
+
+.tile__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 4;
 }
 
 .tile__image {
@@ -63,7 +77,6 @@
 
 .tile__text {
     flex: 1 0 auto;
-    font-size: $font-size-md;
 }
 
 .tile__title {
@@ -85,7 +98,17 @@
     color: $text-secondary-color;
 }
 
+@media (min-width: $breakpoint-xs) {
+    .tile--vertical {
+        margin: $r-spacer;
+    }
+}
+
 @media (min-width: $breakpoint) {
+    .tile {
+        min-height: 15em;
+    }
+
     .tile--horizontal {
         flex-direction: row;
 
@@ -94,9 +117,11 @@
         }
     }
 
-    .tile {
-        min-height: 15em;
+    .tile__image {
+        min-height: 20rem;
+    }
 
-        margin-bottom: $spacer;
+    .tile__image--contained {
+        min-height: 13rem;
     }
 }
