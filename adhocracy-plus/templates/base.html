@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-{% load absolute_url i18n organisation_tags static wagtailimages_tags wagtailsettings_tags wagtailuserbar %}
-{% get_current_language as LANGUAGE_CODE %}
+{% load absolute_url i18n force_translation organisation_tags static wagtailimages_tags wagtailsettings_tags wagtailuserbar %}
 {% get_current_organisation as ORGANISATION %}
-<html lang="{{ LANGUAGE_CODE }}">
+<html lang="de">
 <head>
+    {% force_translation 'de' %}
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{% block title %}adhocracy+{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}{% endblock %}</title>
@@ -55,8 +55,10 @@
     {% block extra_js %}
         {# Override this in templates to add extra javascript #}
     {% endblock %}
+    {% endforce_translation %}
 </head>
 <body>
+    {% force_translation 'de' %}
     {% wagtailuserbar %}
     <div class="min-height__wrapper d-flex flex-column">
         <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
@@ -111,5 +113,6 @@
         {% endif %}
         {% endblock %}
     </div>
+    {% endforce_translation %}
 </body>
 </html>
