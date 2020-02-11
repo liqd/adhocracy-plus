@@ -233,7 +233,6 @@ def test_profile_edit(client, user):
         'twitter_handle': 'Birdybird',
         'facebook_handle': 'Birdybird',
         'homepage': 'http://example.com/',
-        'language': 'en',
     })
 
     assert response.status_code == 302

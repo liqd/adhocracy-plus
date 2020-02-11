@@ -6,7 +6,6 @@ from django.views import generic
 from django.views.generic.base import RedirectView
 
 from apps.users.models import User
-from apps.users.utils import set_session_language
 
 from . import forms
 
@@ -32,9 +31,3 @@ class ProfileUpdateView(LoginRequiredMixin,
 
     def get_success_url(self):
         return self.request.path
-
-    def form_valid(self, form):
-        set_session_language(self.request.user.email,
-                             form.cleaned_data['language'],
-                             self.request)
-        return super(ProfileUpdateView, self).form_valid(form)
