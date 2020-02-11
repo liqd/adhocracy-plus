@@ -16,7 +16,7 @@
                     <span class="creator-count__circle creator-count__circle--{{ forloop.counter }}" style="background-image: url({{ creator.avatar | thumbnail_url:'avatar'}});">
                     </span>
                     {% else %}
-                    <span class="creator-count__circle creator-count__circle--{{ forloop.counter }}" style="background-image: url({% static 'images/avatar_00.png' %});">
+                    <span class="creator-count__circle creator-count__circle--{{ forloop.counter }}" style="background-image: url({{ creator.avatar_fallback }});">
                     </span>
                     {% endif %}
                 {% endfor %}

@@ -11,7 +11,7 @@
             aria-expanded="false"
             id="user-actions"
         >
-            <div class="userindicator__btn-img" style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar'}}) {% else %}  url({% static 'images/avatar_00.png' %}) {% endif %}"></div>
+            <div class="userindicator__btn-img" style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar'}}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}"></div>
             <div class="userindicator__btn-text text-left">
                 <span class="userindicator__hello">{% trans "Hello" %}</span>
                 <br>
