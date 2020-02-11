@@ -2,41 +2,38 @@
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 
-<li class="tile organisation__tile tile--{{ orientation }} m-2 m-sm-3">
+<li class="tile organisation__tile tile--{{ orientation }}">
     <div class="tile__head">
-        <a tabindex="-1"
-           class="tile__image"
-           aria-labelledby="project-title-{{ project.pk }}"
-           {% if project_image %}
-               style="background-image: url({{ project_image|thumbnail_url:'project_thumbnail' }})"
-           {% endif %}
-           href="{{ project|project_url }}">
-        </a>
-        {% if project_image_copyright %}
-            <div class="tile__image__copyright copyright">© {{ project_image_copyright }}</div>
-        {% endif %}
+        <div class="tile__image"
+          {% if project_image %}
+              style="background-image: url({{ project_image|thumbnail_url:'project_thumbnail' }})"
+          {% endif %}>
+          {% if project_image_copyright %}
+              <div class="tile__image__copyright copyright">© {{ project_image_copyright }}</div>
+          {% endif %}
+        </div>
     </div>
-
     <div class="tile__body tile__body-status">
         <h3 class="tile__title" id="project-title-{{ project.pk }}">
             <a href="{{ project|project_url }}">{{ project.name }}</a>
         </h3>
-
         <p class="tile__text">{{ project.description }}</p>
-
 
         {% if project.running_modules %}
         <div class="status-item status__active">
             <div class="status-bar__active">
                 <span class="status-bar__active-fill" style="width:{{ project.module_running_progress }}%"></span>
             </div>
-            <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>
-            {% if project.module_running_days_left < 365 %}
-            {% blocktrans with time_left=project.module_running_time_left %} {{ time_left }} remaining {% endblocktrans %}
-            {% else %}
-            <span>{% trans 'more than 1 year remaining' %}</span>
-            {% endif %}
-            </span>
+            <div class="d-flex justify-content-between">
+                <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>
+                {% if project.module_running_days_left < 365 %}
+                {% blocktrans with time_left=project.module_running_time_left %} {{ time_left }} remaining {% endblocktrans %}
+                {% else %}
+                <span>{% trans 'more than 1 year remaining' %}</span>
+                {% endif %}
+                </span>
+                <a class="text-info" href="{{ project|project_url }}">{% trans 'JOIN IN' %}</a>
+            </div>
         </div>
         {% elif project.future_modules %}
         <div class="status-item status__future">
@@ -47,6 +44,7 @@
         {% blocktrans %}Participation ended. Read result.{% endblocktrans %}
         </div>
         {% endif %}
-
     </div>
+    <a class="tile__link" aria-labelledby="project-title-{{ project.pk }}" href="{{ project|project_url }}">
+    </a>
 </li>
