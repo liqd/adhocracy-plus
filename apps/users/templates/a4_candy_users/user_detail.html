@@ -49,7 +49,7 @@
                   role="tabpanel"
                   aria-labelledby="tab-user-{{ user.pk }}-info"
                   aria-expanded="false">
-                    {% if object.avatar %}<img class="user-profile__avatar" src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
+                    {% if object.avatar %}<img class="user-profile__avatar mb-2" src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
 
                     <h1 class="mt-0 u-word-break-all">
                     {{ object.username }}
@@ -106,11 +106,13 @@
                     role="tabpanel"
                     aria-labelledby="tab-user-{{ user.pk }}-participation"
                     aria-expanded="true">
+                    <ul class="l-tiles-2">
                     {% for project in view.projects %}
-                            {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project %}
+                            {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
                     {% empty %}
                         {% trans 'This user is not active in any projects yet.' %}
                     {% endfor %}
+                    </ul>
                 </div>
                 <div
                     class="user-profile__main col-md-9 tabpanel"
