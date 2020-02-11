@@ -134,7 +134,8 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     @cached_property
     def avatar_fallback(self):
-        return static('images/avatar_00.png')
+        number = self.pk % 5
+        return static('images/avatar-{0:02d}.svg'.format(number))
 
     def get_short_name(self):
         return self.username
