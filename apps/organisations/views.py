@@ -22,6 +22,16 @@ class OrganisationView(DetailView):
         context['active_projects'] = active
         context['future_projects'] = future
         context['past_projects'] = past
+
+        project_headline = ''
+        if active:
+            project_headline = _('Participate now!')
+        elif future:
+            project_headline = _('Upcoming participation')
+        elif past:
+            project_headline = _('Ended participation')
+        context['project_headline'] = project_headline
+
         return context
 
 

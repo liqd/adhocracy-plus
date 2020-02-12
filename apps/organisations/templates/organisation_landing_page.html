@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load thumbnail i18n humanize rules %}
+{% load humanize i18n rules thumbnail %}
 
 {% block title %}{{organisation.name}}{% endblock %}
 
@@ -57,40 +57,52 @@
         </div>
     </div>
 
-    {% if object.projects.count > 0 %}
     <div class="bg--light">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-              {% if object.projects.count == 1 %}
-                {% has_perm 'a4_candy_projects.view_project' request.user object.projects.0 as can_view_project %}
-                {% if can_view_project  %}
-                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=object.projects.0 orientation='horizontal' %}
-              {% endif %}
-              {% else %}
-                <ul class="l-tiles-2">
-                    {% if active_projects %}
-                    {% for project in active_projects %}
-                        {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
-                    {% endfor %}
-                    {% endif %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                {% if object.projects.count > 0 %}
+                    <h2>{{ project_headline }}</h2>
+                    {% if object.projects.count == 1 %}
+                        {% has_perm 'a4_candy_projects.view_project' request.user object.projects.0 as can_view_project %}
+                        {% if can_view_project  %}
+                            {% include 'a4_candy_projects/includes/project_list_tile.html' with project=object.projects.0 orientation='horizontal' %}
+                        {% endif %}
+                    {% else %}
+                        <ul class="l-tiles-2">
+                            {% if active_projects %}
+                            {% for project in active_projects %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+                            {% endfor %}
+                            {% endif %}
 
-                    {% if future_projects %}
-                    {% for project in future_projects %}
-                        {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
-                    {% endfor %}
-                    {% endif %}
+                            {% if future_projects %}
+                            {% for project in future_projects %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+                            {% endfor %}
+                            {% endif %}
 
-                    {% if past_projects %}
-                    {% for project in past_projects %}
-                        {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' status='past' %}
-                    {% endfor %}
+                            {% if past_projects %}
+                            {% for project in past_projects %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' status='past' %}
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
                     {% endif %}
-                </ul>
-        {% endif %}
+                {% else %}
+                    {% if organisation.information %}
+                        {% url 'account_login' as account_login_url %}
+                        {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
+                        {% url 'organisation-information' organisation_slug=organisation.slug as organisation_information_url %}
+                        <p>{% blocktrans %}Currently, there are no public participation processes. Sign in <a href="{{ account_login_url }}?next={{ organisation_url }}">here</a> or read more in <a href="{{ organisation_information_url }}">About</a>.{% endblocktrans %}</p>
+                    {% else %}
+                        {% url 'account_login' as account_login_url %}
+                        {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
+                        <p>{% blocktrans %}Currently, there are no public participation processes. Sign in <a href="{{ account_login_url }}?next={{ organisation_url }}">here</a>.{% endblocktrans %}</p>
+                    {% endif %}
+                {% endif %}
+                </div>
             </div>
         </div>
     </div>
-    </div>
-    {% endif %}
 {% endblock %}
