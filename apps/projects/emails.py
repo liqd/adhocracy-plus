@@ -1,3 +1,5 @@
+from email.mime.image import MIMEImage
+
 from apps.projects import tasks
 from apps.users.emails import EmailWithUserLanguage as Email
 
@@ -8,12 +10,46 @@ class InviteParticipantEmail(Email):
     def get_receivers(self):
         return [self.object.email]
 
+    def get_attachments(self):
+        attachments = super().get_attachments()
+
+        organisation = self.object.project.organisation
+        if organisation and organisation.logo:
+            f = open(organisation.logo.path, 'rb')
+            logo = MIMEImage(f.read())
+            logo.add_header('Content-ID', '<{}>'.format('organisation_logo'))
+            attachments += [logo]
+
+        return attachments
+
+    def get_context(self):
+        context = super().get_context()
+        context['organisation'] = self.object.project.organisation
+        return context
+
 
 class InviteModeratorEmail(Email):
     template_name = 'a4_candy_projects/emails/invite_moderator'
 
     def get_receivers(self):
         return [self.object.email]
+
+    def get_attachments(self):
+        attachments = super().get_attachments()
+
+        organisation = self.object.project.organisation
+        if organisation and organisation.logo:
+            f = open(organisation.logo.path, 'rb')
+            logo = MIMEImage(f.read())
+            logo.add_header('Content-ID', '<{}>'.format('organisation_logo'))
+            attachments += [logo]
+
+        return attachments
+
+    def get_context(self):
+        context = super().get_context()
+        context['organisation'] = self.object.project.organisation
+        return context
 
 
 class DeleteProjectEmail(Email):
