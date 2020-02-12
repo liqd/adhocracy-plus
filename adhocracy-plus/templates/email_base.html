@@ -10,7 +10,11 @@
            style="width: 100%; max-width: 500px; margin: auto;">
       <tr>
         <td style="padding-top: 20px; text-align: center;" align="center">
-          <img style="max-width: 200px;" src="cid:logo" alt="adhocracy+" >
+          {% if organisation and organisation.logo %}
+            <img src="cid:organisation_logo" style="width: 15%;" alt="Logo" >
+          {% else %}
+            <img src="cid:logo" style="width: 15%;" alt="Logo" >
+          {% endif %}
         </td>
       </tr>
       <tr>
