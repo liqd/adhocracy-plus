@@ -5,6 +5,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
+from jsonfield.fields import JSONField
 
 from adhocracy4 import transforms
 from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
@@ -179,3 +180,17 @@ class Organisation(models.Model):
             self.information, 'collapsible-image-editor')
         self.imprint = transforms.clean_html_field(self.imprint)
         super().save(*args, **kwargs)
+
+
+class Member(models.Model):
+    member = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               on_delete=models.CASCADE)
+    organisation = models.ForeignKey(settings.A4_ORGANISATIONS_MODEL,
+                                     on_delete=models.CASCADE)
+    additional_info = JSONField(blank=True)
+
+    class Meta:
+        unique_together = [('member', 'organisation')]
+
+    def __str__(self):
+        return '{}_{}'.format(self.organisation, self.member)
