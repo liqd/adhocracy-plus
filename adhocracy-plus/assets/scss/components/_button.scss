@@ -37,7 +37,6 @@
     $background: mix($color, $body-bg, 15%);
 
     @include button-color($body-bg, $background);
-    box-shadow: 2px 2px 0 0 $shadow;
 
     &,
     &:focus,
@@ -49,7 +48,6 @@
     }
 
     &:active {
-        box-shadow: 1px 1px 0 0 $shadow;
         position: relative;
         top: 1px;
         left: 1px;
@@ -90,6 +88,7 @@
     &:disabled,
     &.is-disabled {
         border-color: $border-color;
+        box-shadow: none;
     }
 }
 
