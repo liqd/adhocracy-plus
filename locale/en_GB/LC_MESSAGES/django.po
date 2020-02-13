@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-05 16:41+0100\n"
+"POT-Creation-Date: 2020-02-13 11:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgstr "Missing fields for publication"
 #: apps/activities/templates/a4_candy_activities/activities_dashboard.html:17
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:29
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:37
-#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:9
+#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:10
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:37
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:23
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:27
@@ -154,7 +154,7 @@ msgstr "Create draft"
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:30
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:15
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
-#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:10
+#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:11
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:15
 #: apps/embed/templates/a4_candy_embed/embed.html:49
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:16
@@ -336,22 +336,22 @@ msgid "Comments"
 msgstr "Comments"
 
 #: adhocracy4/comments/models.py:74
-#: adhocracy4/comments_async/serializers.py:138
+#: adhocracy4/comments_async/serializers.py:150
 msgid "deleted by creator"
 msgstr "deleted by creator"
 
 #: adhocracy4/comments/models.py:77
-#: adhocracy4/comments_async/serializers.py:140
+#: adhocracy4/comments_async/serializers.py:152
 msgid "deleted by moderator"
 msgstr "deleted by moderator"
 
 #: adhocracy4/comments/serializers.py:52 adhocracy4/comments/serializers.py:151
-#: adhocracy4/comments_async/serializers.py:57
+#: adhocracy4/comments_async/serializers.py:58
 msgid "Please choose a category"
 msgstr "Please choose a category"
 
 #: adhocracy4/comments/serializers.py:61
-#: adhocracy4/comments_async/serializers.py:77
+#: adhocracy4/comments_async/serializers.py:78
 msgid "unknown user"
 msgstr "unknown user"
 
@@ -726,7 +726,8 @@ msgid "seconds"
 msgstr "seconds"
 
 #: adhocracy4/phases/models.py:70 apps/activities/models.py:21
-#: apps/ideas/models.py:32 apps/offlineevents/models.py:34
+#: apps/debate/models.py:23 apps/ideas/models.py:32
+#: apps/offlineevents/models.py:34
 msgid "Description"
 msgstr "Description"
 
@@ -1650,6 +1651,14 @@ msgstr "Subjects"
 msgid "Alphabetical"
 msgstr "Alphabetical"
 
+#: apps/debate/models.py:24
+msgid ""
+"In addition to the title, you can insert an optional explanatory text. This "
+"field is only shown in the participation if it is filled out"
+msgstr ""
+"In addition to the title, you can insert an optional explanatory text. This "
+"field is only shown in the participation if it is filled out"
+
 #: apps/debate/phases.py:15
 msgid "Debate phase"
 msgstr "Debate phase"
@@ -2406,7 +2415,7 @@ msgstr "Timeline"
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:18
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:76
 #: apps/projects/templates/a4_candy_projects/project_detail.html:207
-#: apps/users/models.py:46
+#: apps/users/models.py:47
 #: adhocracy-plus/templates/a4modules/module_detail.html:107
 msgid "active"
 msgstr "active"
@@ -2765,37 +2774,37 @@ msgstr "Your username will appear publicly next to your posts."
 msgid "Username/e-mail"
 msgstr "Username/e-mail"
 
-#: apps/users/models.py:18
+#: apps/users/models.py:19
 msgid "username"
 msgstr "username"
 
-#: apps/users/models.py:22
+#: apps/users/models.py:23
 msgid ""
 "Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
 msgstr ""
 "Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
 
-#: apps/users/models.py:28
+#: apps/users/models.py:29
 msgid "A user with that username already exists."
 msgstr "A user with that username already exists."
 
-#: apps/users/models.py:32
+#: apps/users/models.py:33
 msgid "Email address"
 msgstr "Email address"
 
-#: apps/users/models.py:35
+#: apps/users/models.py:36
 msgid "A user with that email address already exists."
 msgstr "A user with that email address already exists."
 
-#: apps/users/models.py:39
+#: apps/users/models.py:40
 msgid "staff status"
 msgstr "staff status"
 
-#: apps/users/models.py:42
+#: apps/users/models.py:43
 msgid "Designates whether the user can log into this admin site."
 msgstr "Designates whether the user can log into this admin site."
 
-#: apps/users/models.py:49
+#: apps/users/models.py:50
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -2803,11 +2812,11 @@ msgstr ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 
-#: apps/users/models.py:59
+#: apps/users/models.py:60
 msgid "Send me email notifications"
 msgstr "Send me email notifications"
 
-#: apps/users/models.py:62
+#: apps/users/models.py:63
 msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
@@ -2815,11 +2824,11 @@ msgstr ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
 
-#: apps/users/models.py:67
+#: apps/users/models.py:68
 msgid "Send me newsletters"
 msgstr "Send me newsletters"
 
-#: apps/users/models.py:70
+#: apps/users/models.py:71
 msgid ""
 "Designates whether you want to receive newsletters. Unselect if you do not "
 "want to receive newsletters."
@@ -2827,42 +2836,42 @@ msgstr ""
 "Designates whether you want to receive newsletters. Unselect if you do not "
 "want to receive newsletters."
 
-#: apps/users/models.py:77
+#: apps/users/models.py:78
 msgid "Biography"
 msgstr "Biography"
 
-#: apps/users/models.py:79
+#: apps/users/models.py:80
 msgid "Tell us about yourself in 255 characters!"
 msgstr "Tell us about yourself in 255 characters!"
 
-#: apps/users/models.py:85
+#: apps/users/models.py:86
 msgid "Twitter handle"
 msgstr "Twitter handle"
 
-#: apps/users/models.py:91
+#: apps/users/models.py:92
 msgid "Facebook name"
 msgstr "Facebook name"
 
-#: apps/users/models.py:93
+#: apps/users/models.py:94
 msgid ""
 "Your facebook name is the last part of the URL, when you access your profile."
 msgstr ""
 "Your facebook name is the last part of the URL, when you access your profile."
 
-#: apps/users/models.py:100
+#: apps/users/models.py:101
 #: apps/users/templates/a4_candy_users/user_detail.html:63
 msgid "Homepage"
 msgstr "Homepage"
 
-#: apps/users/models.py:107
+#: apps/users/models.py:108
 msgid "Avatar picture"
 msgstr "Avatar picture"
 
-#: apps/users/models.py:111
+#: apps/users/models.py:112
 msgid "Your preferred language"
 msgstr "Your preferred language"
 
-#: apps/users/models.py:116
+#: apps/users/models.py:117
 msgid ""
 "Specify your preferred language for the user interface and the notifications "
 "of the platform."
