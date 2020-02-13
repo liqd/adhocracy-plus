@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-05 16:41+0100\n"
+"POT-Creation-Date: 2020-02-13 11:09+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -61,7 +61,7 @@ msgstr "Benötigte Felder zur Veröffentlichung"
 #: apps/activities/templates/a4_candy_activities/activities_dashboard.html:17
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:29
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:37
-#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:9
+#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:10
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:37
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:23
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:27
@@ -182,7 +182,7 @@ msgstr "Projektentwurf anlegen"
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:30
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:15
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
-#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:10
+#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:11
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:15
 #: apps/embed/templates/a4_candy_embed/embed.html:49
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:16
@@ -390,23 +390,23 @@ msgid "Comments"
 msgstr "Kommentare"
 
 #: adhocracy4/comments/models.py:74
-#: adhocracy4/comments_async/serializers.py:138
+#: adhocracy4/comments_async/serializers.py:150
 msgid "deleted by creator"
 msgstr "Vom Ersteller gelöscht"
 
 #: adhocracy4/comments/models.py:77
-#: adhocracy4/comments_async/serializers.py:140
+#: adhocracy4/comments_async/serializers.py:152
 msgid "deleted by moderator"
 msgstr "Vom Moderator gelöscht"
 
 #: adhocracy4/comments/serializers.py:52
 #: adhocracy4/comments/serializers.py:151
-#: adhocracy4/comments_async/serializers.py:57
+#: adhocracy4/comments_async/serializers.py:58
 msgid "Please choose a category"
 msgstr "Bitte wählen Sie eine Kategorie"
 
 #: adhocracy4/comments/serializers.py:61
-#: adhocracy4/comments_async/serializers.py:77
+#: adhocracy4/comments_async/serializers.py:78
 msgid "unknown user"
 msgstr "unbekannter Nutzer"
 
@@ -800,8 +800,8 @@ msgid "seconds"
 msgstr "Sekunden"
 
 #: adhocracy4/phases/models.py:70
-#: apps/activities/models.py:21 apps/ideas/models.py:32
-#: apps/offlineevents/models.py:34
+#: apps/activities/models.py:21 apps/debate/models.py:23
+#: apps/ideas/models.py:32 apps/offlineevents/models.py:34
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -1752,6 +1752,14 @@ msgstr "Themen"
 msgid "Alphabetical"
 msgstr "Alphabetisch"
 
+#: apps/debate/models.py:24
+msgid ""
+"In addition to the title, you can insert an optional explanatory text. This "
+"field is only shown in the participation if it is filled out"
+msgstr ""
+"Zusätzlich zum Titel können Sie einen optionalen Erklärungstext einfügen. "
+"Dieses Feld wird in der Beteiligung nur angezeigt, wenn es ausgefüllt ist."
+
 #: apps/debate/phases.py:15
 msgid "Debate phase"
 msgstr "Debattierphase"
@@ -1777,7 +1785,7 @@ msgstr "Jetzt mitmachen!"
 
 #: apps/debate/templates/a4_candy_debate/includes/subject_list_item.html:39
 msgid "Read more"
-msgstr ""
+msgstr "Weiterlesen"
 
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:4
 msgid "Confirm Subject Deletion"
@@ -2520,7 +2528,7 @@ msgstr "Zeitleiste"
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:18
 #: apps/projects/templates/a4_candy_projects/includes/timeline.html:76
 #: apps/projects/templates/a4_candy_projects/project_detail.html:207
-#: apps/users/models.py:46
+#: apps/users/models.py:47
 #: adhocracy-plus/templates/a4modules/module_detail.html:107
 msgid "active"
 msgstr "aktiv"
@@ -2883,40 +2891,40 @@ msgstr "Ihr Benutzername erscheint öffentlich neben Ihren Beiträgen."
 msgid "Username/e-mail"
 msgstr "Benutzername/E-Mail"
 
-#: apps/users/models.py:18
+#: apps/users/models.py:19
 msgid "username"
 msgstr "Nutzername"
 
-#: apps/users/models.py:22
+#: apps/users/models.py:23
 msgid ""
 "Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
 msgstr ""
 "Erforderlich. Max. 60 Zeichen. Buchstaben, Zahlen, Leerzeichen und nur @/./"
 "+/-/_ "
 
-#: apps/users/models.py:28
+#: apps/users/models.py:29
 msgid "A user with that username already exists."
 msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
-#: apps/users/models.py:32
+#: apps/users/models.py:33
 msgid "Email address"
 msgstr "E-Mail Adresse"
 
-#: apps/users/models.py:35
+#: apps/users/models.py:36
 msgid "A user with that email address already exists."
 msgstr "Der Nutzer mit dieser E-Mail Adresse existiert bereits."
 
-#: apps/users/models.py:39
+#: apps/users/models.py:40
 msgid "staff status"
 msgstr "Mitarbeiterstatus"
 
-#: apps/users/models.py:42
+#: apps/users/models.py:43
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 "Bitte bestätigen Sie, dass der Nutzer auf dieser Seite als Admin agieren "
 "kann."
 
-#: apps/users/models.py:49
+#: apps/users/models.py:50
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -2924,11 +2932,11 @@ msgstr ""
 "Bitte setzen Sie einen Haken, um den Nutzer aktiv zu schalten. Nehmen Sie "
 "den Haken raus, um den Nutzer inaktiv zu schalten."
 
-#: apps/users/models.py:59
+#: apps/users/models.py:60
 msgid "Send me email notifications"
 msgstr "Bitte senden Sie mir E-Mail Benachrichtigungen"
 
-#: apps/users/models.py:62
+#: apps/users/models.py:63
 msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
@@ -2937,11 +2945,11 @@ msgstr ""
 "erhalten möchten. Nehmen Sie den Haken raus, falls Sie keine "
 "Benachrichtigungen per E-Mail erhalten möchten."
 
-#: apps/users/models.py:67
+#: apps/users/models.py:68
 msgid "Send me newsletters"
 msgstr "Bitte senden Sie mir E-Mail Newsletter"
 
-#: apps/users/models.py:70
+#: apps/users/models.py:71
 msgid ""
 "Designates whether you want to receive newsletters. Unselect if you do not "
 "want to receive newsletters."
@@ -2949,43 +2957,43 @@ msgstr ""
 "Bitte setzen Sie einen Haken, falls Sie Newsletter erhalten möchten. Nehmen "
 "Sie den Haken raus, falls Sie keine Newsletter erhalten möchten."
 
-#: apps/users/models.py:77
+#: apps/users/models.py:78
 msgid "Biography"
 msgstr "Biografie"
 
-#: apps/users/models.py:79
+#: apps/users/models.py:80
 msgid "Tell us about yourself in 255 characters!"
 msgstr "Erzählen Sie von sich - in 255 Zeichen!"
 
-#: apps/users/models.py:85
+#: apps/users/models.py:86
 msgid "Twitter handle"
 msgstr "Twitter handle"
 
-#: apps/users/models.py:91
+#: apps/users/models.py:92
 msgid "Facebook name"
 msgstr "Facebook Name"
 
-#: apps/users/models.py:93
+#: apps/users/models.py:94
 msgid ""
 "Your facebook name is the last part of the URL, when you access your profile."
 msgstr ""
 "Ihr Facebook-Name ist der letzte Teil der URL, wenn Sie ihr Facebook-Profil "
 "aufrufen"
 
-#: apps/users/models.py:100
+#: apps/users/models.py:101
 #: apps/users/templates/a4_candy_users/user_detail.html:63
 msgid "Homepage"
 msgstr "Homepage"
 
-#: apps/users/models.py:107
+#: apps/users/models.py:108
 msgid "Avatar picture"
 msgstr "Avatar Bild"
 
-#: apps/users/models.py:111
+#: apps/users/models.py:112
 msgid "Your preferred language"
 msgstr "Ihre bevorzugte Sprache"
 
-#: apps/users/models.py:116
+#: apps/users/models.py:117
 msgid ""
 "Specify your preferred language for the user interface and the notifications "
 "of the platform."
