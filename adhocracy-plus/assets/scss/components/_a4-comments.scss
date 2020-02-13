@@ -14,14 +14,8 @@
 }
 
 .a4-comments__comment {
-    border-top: solid 0.5rem $bg-light;
-    padding: 1.5*$spacer 0 1.5*$spacer 0;
-}
-
-.a4-comments__box > .form-group {
-    border: solid 3px $gray-two;
-    background-color: $bg-light;
-    padding: $spacer;
+    border-top: solid 1px $gray-lightest;
+    padding: 1.5*$spacer 0 $spacer 0;
 }
 
 .a4-comments__box--left {
@@ -31,7 +25,7 @@
 }
 
 .a4-comments__box--right {
-    border-left: 2px solid $gray-two;
+    border-left: 1px solid $gray-lightest;
     padding-right: 0;
 
     @extend .col-md-10;
@@ -39,27 +33,35 @@
 
 .a4-comments__nav__parent {
     margin: 1.5*$spacer 0 1.5*$spacer 0;
+
+    button {
+        @extend .btn--light;
+    }
+}
+
+.a4-comments__filters__btn {
+    .fa-check {
+        font-size: $font-size-sm;
+        padding-top: inherit;
+    }
 }
 
 .a4-comments__dropdown {
     align-content: flex-end;
 }
 
-.a4-comments__nav__search {
-    width: 100%;
-
-    @media screen and (min-width: $breakpoint) {
-        width: 30%;
-    }
-}
-
-.a4-comments__nav__search-input {
+.a4-comments__filters__search-input {
     font-size: $font-size-sm;
-    max-width: 70%;
 
     @media screen and (min-width: $breakpoint-xs) {
         font-size: $font-size-base;
     }
+}
+
+.a4-comments__filters__search-result {
+    position: absolute;
+    right: 70px;
+    top: 10px;
 }
 
 .a4-comments__action-bar {
@@ -101,22 +103,28 @@
     height: 1px;
 }
 
+.a4-comments__author {
+    display: inline-block;
+    margin: 0 (0.25*$spacer) 0 0;
+}
+
+.a4-comments__moderator {
+    font-size: $font-size-sm;
+    font-style: italic;
+    color: $gray-two;
+}
+
 .a4-comments__child--list {
-    border-left: solid 0.25rem $bg-light;
+    border-left: solid 1px $gray-lightest;
     margin: 0 0 $spacer (-$spacer);
 
     @media screen and (min-width: $breakpoint) {
         margin: 0 0 2.5*$spacer 2.5*$spacer;
     }
 
-    .a4-comments__comment {
-        border-top: none;
-    }
-
-    label,
     form {
-        background-color: $body-bg;
-        margin-bottom: 0;
+        padding-top: $spacer;
+        border-top: solid 1px $gray-lightest;
     }
 
     .a4-comments__box--left {
@@ -131,21 +139,9 @@
         @extend .col-12;
     }
 
-    .a4-comments__author {
-        display: inline-block;
-        margin: 0 0 0.5*$spacer 0;
-    }
-
     .a4-comments__text {
         margin-top: $spacer;
     }
-}
-
-.a4-comments__featured,
-.a4-comments__featured--menu {
-    position: absolute;
-    top: 0;
-    right: 3.5rem;
 }
 
 //categories and category badges
@@ -161,15 +157,21 @@
 }
 
 .a4-comments__category__row {
-    input[type="checkbox"]:checked + span {
-        background-color: $brand-success;
-        color: $white;
+    input[type="checkbox"] + span:before {
+        font-family: 'Font Awesome\ 5 Free', sans-serif;
+        font-weight: 900;
+        font-size: $font-size-xs;
+        content: '\f067'; // plus
+    }
+
+    input[type="checkbox"]:checked + span:before {
+        content: '\f00c'; // tick
     }
 }
 
 .a4-comments__category__text,
 .a4-comments__badge {
-    background-color: $brand-primary-tint;
+    background-color: $gray-lightest;
     border-radius: 1rem;
     text-decoration: none;
     text-transform: uppercase;
@@ -182,31 +184,20 @@
 
 .a4-comments__category {
     display: inline-block;
-
-    label:hover {
-        text-decoration: underline;
-    }
 }
 
 .a4-comments__badge {
-    color: $white;
+    color: $gray-light;
 }
 
 .a4-comments__badge--que {
-    background-color: $brand-success;
+    background-color: $blue-light;
 }
 
 .a4-comments__badge--not {
-    background-color: $brand-secondary;
+    background-color: $purple-light;
 }
 
 .a4-comments__badge--sug {
-    background-color: $bg-tertiary;
-}
-
-.a4-comments__nav__btn {
-    .fa-check {
-        font-size: $font-size-sm;
-        padding-top: inherit;
-    }
+    background-color: $green-light;
 }
