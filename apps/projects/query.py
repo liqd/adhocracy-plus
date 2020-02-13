@@ -12,9 +12,10 @@ def filter_viewable(queryset, user):
     elif user.is_authenticated:
         return queryset.filter(
             Q(is_public=True) |
-            Q(participants__in=[user.pk]) |
-            Q(organisation__initiators__id__in=[user.pk]) |
-            Q(moderators__in=[user.pk])
+            Q(participants__in=[user.id]) |
+            Q(organisation__initiators__id__in=[user.id]) |
+            Q(moderators__in=[user.id]) |
+            Q(organisation__member__member__id=user.id)
         ).distinct()
     else:
         return queryset.filter(

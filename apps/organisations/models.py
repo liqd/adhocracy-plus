@@ -164,6 +164,11 @@ class Organisation(models.Model):
     def has_initiator(self, user):
         return (self.initiators.filter(id=user.id).exists())
 
+    def has_org_member(self, user):
+        return (Member.objects.filter(
+            member__id=user.id,
+            organisation__id=self.id).exists())
+
     def get_absolute_url(self):
         return reverse('organisation', kwargs={
             'organisation_slug': self.slug
