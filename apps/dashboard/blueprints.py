@@ -123,7 +123,7 @@ blueprints = [
      )),
     ('topic-prioritization',
      ProjectBlueprint(
-         title=_('Priorization'),
+         title=_('Prioritization'),
          description=_(
              'Participants can discuss and rate (pro/contra) previously '
              'added ideas and topics. Participants cannot add ideas or '
