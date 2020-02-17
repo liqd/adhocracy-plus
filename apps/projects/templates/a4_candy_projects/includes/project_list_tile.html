@@ -11,6 +11,13 @@
           {% if project_image_copyright %}
               <div class="tile__image__copyright copyright">© {{ project_image_copyright }}</div>
           {% endif %}
+          {% if not project.is_public %}
+            <div class="tile__private-badge">
+                <div class="tile__private-badge--top"></div>
+                    <i class="fas fa-lock"></i>
+                <div class="tile__private-badge--left"></div>
+            </div>
+          {% endif %}
         </div>
     </div>
     <div class="tile__body tile__body-status">
