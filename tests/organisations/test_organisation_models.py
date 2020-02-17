@@ -128,6 +128,17 @@ def test_has_initiator(organisation, user):
 
 
 @pytest.mark.django_db
+def test_has_org_member(member, user_factory):
+    organisation = member.organisation
+    member = member.member
+    user = user_factory()
+
+    assert user != member
+    assert organisation.has_org_member(member)
+    assert not organisation.has_org_member(user)
+
+
+@pytest.mark.django_db
 def test_get_projects_list(module_factory, organisation, phase_factory,
                            project_factory, admin, user):
     pro1 = project_factory(organisation=organisation)
