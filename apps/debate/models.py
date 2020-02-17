@@ -16,14 +16,17 @@ class SubjectQuerySet(query.CommentableQuerySet):
 
 class Subject(module_models.Item):
     slug = AutoSlugField(populate_from='name', unique=True)
-    name = models.CharField(max_length=120, verbose_name=_('Title'))
+    name = models.CharField(
+        max_length=120,
+        verbose_name=_('Title'),
+        help_text=_('max 120 characters'))
     description = models.CharField(
-        max_length=320,
+        max_length=350,
         blank=True,
         verbose_name=_('Description'),
         help_text=_('In addition to the title, you can insert an optional '
-                    'explanatory text. This field is only shown in the '
-                    'participation if it is filled out'))
+                    'explanatory text (max. 350 char.). This field is only '
+                    'shown in the participation if it is filled out.'))
 
     comments = GenericRelation(comment_models.Comment,
                                related_query_name='subject',
