@@ -29,6 +29,7 @@ register(factories.UserFactory)
 register(factories.UserFactory, 'user2')
 register(factories.AdminFactory, 'admin')
 register(factories.OrganisationFactory)
+register(factories.MemberFactory)
 
 register(factories.PhaseFactory)
 register(factories.PhaseContentFactory)

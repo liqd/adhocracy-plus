@@ -51,6 +51,14 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
                 self.initiators.add(user)
 
 
+class MemberFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = 'a4_candy_organisations.Member'
+
+    member = factory.SubFactory(UserFactory)
+    organisation = factory.SubFactory(OrganisationFactory)
+
+
 # FIXME: move to core
 class PhaseContentFactory(factory.Factory):
     class Meta:
