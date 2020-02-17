@@ -41,7 +41,7 @@
             <div class="col">
                 <h1 class="marked-box">{{ organisation.title }}</h1>
                 {% if organisation.url %}
-                <a class="ml-3" href="{{ organisation.url }}" target="_blank">
+                <a class="ml-3 text-muted" href="{{ organisation.url }}" target="_blank" title="{{ organisation.url }}">
                     <i class="fas fa-external-link-alt" aria-label="{{ organisation.title }} {% trans 'Opens in new window' %}"></i>
                 </a>
                 {% endif %}
