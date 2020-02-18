@@ -145,11 +145,14 @@ def test_get_projects_list(module_factory, organisation, phase_factory,
     pro2 = project_factory(organisation=organisation)
     pro3 = project_factory(is_public=False, organisation=organisation)
     pro4 = project_factory(is_public=False, organisation=organisation)
+    pro5 = project_factory(organisation=organisation)
 
     module1 = module_factory(project=pro1)
     module2 = module_factory(project=pro2)
     module3 = module_factory(project=pro3)
     module4 = module_factory(project=pro4)
+    module5 = module_factory(project=pro5)
+    module6 = module_factory(project=pro5)
 
     phase_factory(
         module=module1,
@@ -175,6 +178,18 @@ def test_get_projects_list(module_factory, organisation, phase_factory,
         end_date=parse('2013-01-01 17:00:00 UTC')
     )
 
+    phase_factory(
+        module=module5,
+        start_date=parse('2013-01-01 17:10:00 UTC'),
+        end_date=parse('2013-01-01 17:30:00 UTC'),
+    )
+
+    phase_factory(
+        module=module6,
+        start_date=parse('2013-01-01 18:10:00 UTC'),
+        end_date=parse('2013-01-01 19:05:00 UTC'),
+    )
+
     with freeze_time(parse('2013-01-01 18:00:00 UTC')):
         projects_list = organisation.get_projects_list(user)
         active_projects = projects_list[0]
@@ -182,7 +197,7 @@ def test_get_projects_list(module_factory, organisation, phase_factory,
         past_projects = projects_list[2]
 
         assert projects_list
-        assert len(active_projects) == 1
+        assert len(active_projects) == 2
         assert len(future_projects) == 1
         assert not past_projects
 
@@ -192,6 +207,6 @@ def test_get_projects_list(module_factory, organisation, phase_factory,
         past_projects = projects_list[2]
 
         assert projects_list
-        assert len(active_projects) == 2
+        assert len(active_projects) == 3
         assert len(future_projects) == 1
         assert len(past_projects) == 1
