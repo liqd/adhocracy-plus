@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-13 11:09+0100\n"
+"POT-Creation-Date: 2020-02-17 17:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,7 +150,7 @@ msgid "Report"
 msgstr "Report"
 
 #: adhocracy4/comments_async/static/comments/comment.jsx:19
-#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:20
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:19
 msgid "Entry successfully created"
 msgstr "Entry successfully created"
 
@@ -181,8 +181,8 @@ msgstr "Last discussed"
 
 #: adhocracy4/comments_async/static/comments/comment_box.jsx:49
 #: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:51
-#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:335
-#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:550
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:310
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:532
 #: apps/questions/assets/Filters.jsx:20
 msgid "all"
 msgstr "all"
@@ -190,7 +190,7 @@ msgstr "all"
 #: adhocracy4/comments_async/static/comments/comment_box.jsx:451
 #: adhocracy4/comments_async/static/comments/comment_edit_form.jsx:41
 #: adhocracy4/comments_async/static/comments/comment_form.jsx:48
-#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:521
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:496
 #: adhocracy4/comments_async/static/comments_with_categories/comment_edit_form.jsx:69
 #: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:101
 msgid "Write contribution"
@@ -198,30 +198,30 @@ msgstr "Write contribution"
 
 #: adhocracy4/comments_async/static/comments/comment_box.jsx:462
 #: adhocracy4/comments_async/static/comments/comment_box.jsx:463
-#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:532
-#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:533
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:511
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:515
 msgid "Search contributions"
 msgstr "Search contributions"
 
 #: adhocracy4/comments_async/static/comments/comment_box.jsx:472
-#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:570
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:552
 msgid "sorted by: "
 msgstr "sorted by: "
 
 #: adhocracy4/comments_async/static/comments/comment_box.jsx:496
-#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:598
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:581
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "entry found for "
 msgstr[1] "entries found for "
 
 #: adhocracy4/comments_async/static/comments/comment_box.jsx:498
-#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:600
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:513
 msgid "Clear search"
 msgstr "Clear search"
 
 #: adhocracy4/comments_async/static/comments/comment_box.jsx:502
-#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:594
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:577
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "entry"
@@ -235,29 +235,57 @@ msgstr "The maximal length of your contribution is 4000 characters"
 msgid "Choose categories for your comment"
 msgstr "Choose categories for your comment"
 
-#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:28
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:20
+msgid "Read more..."
+msgstr "Read more..."
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:21
+msgid "Read less"
+msgstr "Read less"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:22
+msgid "Share"
+msgstr "Share"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:23
+msgid " Report"
+msgstr " Report"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:31
 #, javascript-format
 msgid "1 comment"
 msgid_plural "%s comments"
 msgstr[0] "1 comment"
 msgstr[1] "%s comments"
 
-#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:35
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:38
 msgid "hide comments"
 msgstr "hide comments"
 
-#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:37
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:40
 msgctxt "verb"
 msgid "Comment"
 msgstr "Comment"
 
-#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:20
-msgid "Recommended"
-msgstr "Recommended"
-
-#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:542
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:524
 msgid "display: "
 msgstr "display: "
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:585
+msgid "Filters"
+msgstr "Filters"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:585
+msgid "Show filters"
+msgstr "Show filters"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:588
+msgid "Hide Filters"
+msgstr "Hide Filters"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:588
+msgid "Hide filters"
+msgstr "Hide filters"
 
 #: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:110
 msgid " characters"
@@ -285,10 +313,6 @@ msgstr "Your message"
 #: adhocracy4/reports/static/reports/ReportModal.jsx:62
 msgid "Send Report"
 msgstr "Send Report"
-
-#: adhocracy4/comments_async/static/modals/url_modal.jsx:15
-msgid "Share comment URL"
-msgstr "Share comment URL"
 
 #: adhocracy4/comments_async/static/modals/url_modal.jsx:20
 msgid "Copy"
@@ -673,23 +697,17 @@ msgstr "Questions Answered"
 msgid "If you leave this page changes you made will not be saved."
 msgstr "If you leave this page changes you made will not be saved."
 
+#~ msgid "Recommended"
+#~ msgstr "Recommended"
+
+#~ msgid "Share comment URL"
+#~ msgstr "Share comment URL"
+
 #~ msgid "Share link"
 #~ msgstr "Share link"
 
-#~ msgid "Read more..."
-#~ msgstr "Read more..."
-
-#~ msgid "Read less"
-#~ msgstr "Read less"
-
 #~ msgid "Categories: "
 #~ msgstr "Categories: "
-
-#~ msgid "Share"
-#~ msgstr "Share"
-
-#~ msgid " Report"
-#~ msgstr " Report"
 
 #~ msgid "Recommend"
 #~ msgstr "Recommend"
