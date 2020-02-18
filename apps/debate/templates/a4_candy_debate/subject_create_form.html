@@ -7,7 +7,7 @@
 <div class="container">
     <h1 class="mt-0">{% trans 'Add a new subject'%}</h1>
 
-    {% url 'a4dashboard:subject-list' organisation_slug=organisation.slug module_slug=module.slug as cancel %}
+    {% url 'a4dashboard:subject-list' organisation_slug=project.organisation.slug module_slug=module.slug as cancel %}
     {% include "a4_candy_debate/includes/subject_form.html" with cancel=cancel %}
 </div>
 {% endblock %}
