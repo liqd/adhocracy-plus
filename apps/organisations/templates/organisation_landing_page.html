@@ -50,7 +50,7 @@
                         <h3>{{ organisation.slogan }}</h3>
                     </div>
                 </div>
-                <div class="l-two-col organisation__description">
+                <div class="organisation__description {% if organisation.description|length > 500 %} l-two-col {% endif %}">
                     {{ organisation.description }}
                 </div>
             </div>
