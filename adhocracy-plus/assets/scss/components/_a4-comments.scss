@@ -5,7 +5,6 @@
         overflow: hidden;
         min-height: 5px;
         max-height: 400px;
-        border: none;
     }
 
     fieldset {
@@ -48,6 +47,14 @@
 
 .a4-comments__dropdown {
     align-content: flex-end;
+}
+
+.a4-comments__filters__search {
+    margin-bottom: 0.5*$spacer;
+
+    @media screen and (min-width: $breakpoint) {
+        margin-bottom: 0;
+    }
 }
 
 .a4-comments__filters__search-input {
@@ -188,6 +195,20 @@
 
 .a4-comments__badge {
     color: $gray-light;
+}
+
+.a4-comments__category__input:checked {
+    + .a4-comments__category__que {
+        background-color: $blue-light;
+    }
+
+    + .a4-comments__category__not {
+        background-color: $purple-light;
+    }
+
+    + .a4-comments__category__sug {
+        background-color: $green-light;
+    }
 }
 
 .a4-comments__badge--que {
