@@ -3,6 +3,7 @@ from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from jsonfield.fields import JSONField
@@ -130,32 +131,26 @@ class Organisation(models.Model):
                     is_draft=False)
 
     def get_projects_list(self, user):
-        active_projects = []
-        future_projects = []
-        past_projects = []
-
         projects = query.filter_viewable(self.projects, user)
+        now = timezone.now()
 
-        for project in projects:
-            if project.running_modules:
-                active_projects.append(project)
-            elif project.future_modules:
-                future_projects.append(project)
-            elif project.past_modules:
-                past_projects.append(project)
+        sorted_active_projects = projects\
+            .annotate(project_start=models.Min('module__phase__start_date'))\
+            .annotate(project_end=models.Max('module__phase__end_date'))\
+            .filter(project_start__lte=now, project_end__gt=now)\
+            .order_by('project_end')
 
-        sorted_active_projects = sorted(
-            active_projects,
-            key=lambda p: p.running_module_ends_next.module_end)
+        sorted_future_projects = projects\
+            .annotate(project_start=models.Min('module__phase__start_date'))\
+            .filter(models.Q(project_start__gt=now)
+                    | models.Q(project_start=None))\
+            .order_by('project_start')
 
-        sorted_future_projects = sorted(
-            future_projects,
-            key=lambda p: p.future_modules.first().module_start)
-
-        sorted_past_projects = sorted(
-            past_projects,
-            key=lambda p: p.past_modules.first().module_start,
-            reverse=True)
+        sorted_past_projects = projects\
+            .annotate(project_start=models.Min('module__phase__start_date'))\
+            .annotate(project_end=models.Max('module__phase__end_date'))\
+            .filter(project_end__lt=now)\
+            .order_by('project_start')
 
         return sorted_active_projects, \
             sorted_future_projects, \
