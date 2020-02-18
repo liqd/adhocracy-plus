@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-13 11:09+0100\n"
+"POT-Creation-Date: 2020-02-17 17:15+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -368,10 +368,10 @@ msgid "Category icon"
 msgstr "Kategorieicon"
 
 #: adhocracy4/comments/models.py:53
-#: apps/budgeting/exports.py:73 apps/debate/exports.py:63
-#: apps/documents/exports.py:41 apps/ideas/exports.py:70
-#: apps/mapideas/exports.py:71 apps/polls/exports.py:37
-#: apps/topicprio/exports.py:68
+#: apps/budgeting/exports.py:76 apps/debate/exports.py:64
+#: apps/documents/exports.py:41 apps/ideas/exports.py:71
+#: apps/mapideas/exports.py:72 apps/polls/exports.py:38
+#: apps/topicprio/exports.py:69
 msgctxt "noun"
 msgid "Comment"
 msgstr "Kommentar"
@@ -390,25 +390,28 @@ msgid "Comments"
 msgstr "Kommentare"
 
 #: adhocracy4/comments/models.py:74
-#: adhocracy4/comments_async/serializers.py:150
+#: adhocracy4/comments_async/serializers.py:151
 msgid "deleted by creator"
 msgstr "Vom Ersteller gelöscht"
 
 #: adhocracy4/comments/models.py:77
-#: adhocracy4/comments_async/serializers.py:152
+#: adhocracy4/comments_async/serializers.py:153
 msgid "deleted by moderator"
 msgstr "Vom Moderator gelöscht"
 
 #: adhocracy4/comments/serializers.py:52
 #: adhocracy4/comments/serializers.py:151
-#: adhocracy4/comments_async/serializers.py:58
 msgid "Please choose a category"
 msgstr "Bitte wählen Sie eine Kategorie"
 
 #: adhocracy4/comments/serializers.py:61
-#: adhocracy4/comments_async/serializers.py:78
+#: adhocracy4/comments_async/serializers.py:79
 msgid "unknown user"
 msgstr "unbekannter Nutzer"
+
+#: adhocracy4/comments_async/serializers.py:58
+msgid "Please choose one or more categories."
+msgstr "Bitte wählen Sie eine oder mehrere Kategorien aus."
 
 #: adhocracy4/dashboard/components/forms/views.py:22
 msgid "Project successfully updated."
@@ -800,7 +803,7 @@ msgid "seconds"
 msgstr "Sekunden"
 
 #: adhocracy4/phases/models.py:70
-#: apps/activities/models.py:21 apps/debate/models.py:23
+#: apps/activities/models.py:21 apps/debate/models.py:26
 #: apps/ideas/models.py:32 apps/offlineevents/models.py:34
 msgid "Description"
 msgstr "Beschreibung"
@@ -867,7 +870,6 @@ msgstr "Bilder"
 
 #: adhocracy4/projects/admin.py:59
 #: apps/projects/admin.py:55 adhocracy-plus/templates/footer.html:53
-#: adhocracy-plus/templates/newsletter_base.txt:13
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -972,12 +974,12 @@ msgstr ""
 
 #: adhocracy4/projects/models.py:225
 #: adhocracy4/projects/models.py:231
-#: apps/organisations/models.py:69
+#: apps/organisations/models.py:70
 msgid "Header image"
 msgstr "Headerbild"
 
 #: adhocracy4/projects/models.py:227
-#: apps/organisations/models.py:71
+#: apps/organisations/models.py:72
 msgid "The image will be shown as a decorative background image."
 msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
@@ -1126,7 +1128,7 @@ msgstr "in <a href=\"%(url)s\">%(name)s</a>"
 msgid "Face-to-Face Information"
 msgstr "Informationen Vor-Ort-Beteiligung"
 
-#: apps/activities/models.py:12 apps/debate/models.py:19
+#: apps/activities/models.py:12 apps/debate/models.py:21
 #: apps/ideas/models.py:31 apps/offlineevents/models.py:26
 #: apps/topicprio/models.py:28
 msgid "Title"
@@ -1167,17 +1169,17 @@ msgstr "Informationen zur Vor-Ort-Beteiligung bearbeiten"
 msgid "Export Excel"
 msgstr "Excel exportieren"
 
-#: apps/budgeting/exports.py:72 apps/debate/exports.py:62
-#: apps/documents/exports.py:40 apps/ideas/exports.py:69
-#: apps/mapideas/exports.py:70 apps/polls/exports.py:36
-#: apps/topicprio/exports.py:67
+#: apps/budgeting/exports.py:75 apps/debate/exports.py:63
+#: apps/documents/exports.py:40 apps/ideas/exports.py:70
+#: apps/mapideas/exports.py:71 apps/polls/exports.py:37
+#: apps/topicprio/exports.py:68
 msgid "ID"
 msgstr "ID"
 
-#: apps/budgeting/exports.py:74 apps/debate/exports.py:64
-#: apps/documents/exports.py:42 apps/exports/mixins.py:68
-#: apps/ideas/exports.py:71 apps/mapideas/exports.py:72
-#: apps/polls/exports.py:38 apps/topicprio/exports.py:69
+#: apps/budgeting/exports.py:77 apps/debate/exports.py:65
+#: apps/documents/exports.py:42 apps/exports/mixins.py:56
+#: apps/ideas/exports.py:72 apps/mapideas/exports.py:73
+#: apps/polls/exports.py:39 apps/topicprio/exports.py:70
 msgid "Created"
 msgstr "Erstellt"
 
@@ -1707,7 +1709,7 @@ msgstr ""
 "sortieren."
 
 #: apps/dashboard/blueprints.py:126
-msgid "Priorization"
+msgid "Prioritization"
 msgstr "Priorisierung"
 
 #: apps/dashboard/blueprints.py:128
@@ -1752,13 +1754,19 @@ msgstr "Themen"
 msgid "Alphabetical"
 msgstr "Alphabetisch"
 
-#: apps/debate/models.py:24
+#: apps/debate/models.py:22
+msgid "max 120 characters"
+msgstr "max 120 Zeichen"
+
+#: apps/debate/models.py:27
 msgid ""
-"In addition to the title, you can insert an optional explanatory text. This "
-"field is only shown in the participation if it is filled out"
+"In addition to the title, you can insert an optional explanatory text (max. "
+"350 char.). This field is only shown in the participation if it is filled "
+"out."
 msgstr ""
-"Zusätzlich zum Titel können Sie einen optionalen Erklärungstext einfügen. "
-"Dieses Feld wird in der Beteiligung nur angezeigt, wenn es ausgefüllt ist."
+"Zusätzlich zum Titel können Sie einen optionalen Erklärungstext von max. "
+"350 Zeichen einfügen. Dieses Feld wird in der Beteiligung nur angezeigt, "
+"wenn es ausgefüllt ist."
 
 #: apps/debate/phases.py:15
 msgid "Debate phase"
@@ -1918,13 +1926,17 @@ msgstr "Rückmeldung der Moderation"
 msgid "Remark"
 msgstr "Notiz"
 
-#: apps/exports/mixins.py:53
-msgid "replies to"
-msgstr "Antwort auf"
-
-#: apps/exports/mixins.py:66
+#: apps/exports/mixins.py:54
 msgid "Creator"
 msgstr "Urheber"
+
+#: apps/exports/mixins.py:68
+msgid "Reply to Comment"
+msgstr "Antwort auf den Kommentar"
+
+#: apps/exports/mixins.py:80
+msgid "Reply to Reference"
+msgstr "Antwort auf Referenz"
 
 #: apps/exports/templates/a4_candy_exports/export_dashboard.html:5
 #: apps/exports/templates/a4_candy_exports/export_dashboard.html:23
@@ -2283,11 +2295,11 @@ msgstr "Veranstaltung bearbeiten"
 msgid "The offline event has been deleted"
 msgstr "Die Veranstaltung wurde gelöscht."
 
-#: apps/organisations/models.py:24
+#: apps/organisations/models.py:25
 msgid "Title of your organisation"
 msgstr "Titel Ihrer Plattform"
 
-#: apps/organisations/models.py:27
+#: apps/organisations/models.py:28
 msgid ""
 "The title of your organisation will be shown on the landing page. max. 100 "
 "characters"
@@ -2296,20 +2308,20 @@ msgstr ""
 "die Nutzer*innen deutlich werden, dass es sich um eine Beteiligungsplattform "
 "handelt. Max. 100 Zeichen"
 
-#: apps/organisations/models.py:32
+#: apps/organisations/models.py:33
 msgid "Short description of your organisation"
 msgstr "Kurze Beschreibung Ihrer Organisation"
 
-#: apps/organisations/models.py:33
+#: apps/organisations/models.py:34
 msgid ""
 "The description will be displayed on the landing page. max. 800 characters"
 msgstr "Die Beschreibung wird auf der Startseite angezeigt. Max. 800 Zeichen."
 
-#: apps/organisations/models.py:38
+#: apps/organisations/models.py:39
 msgid "Logo"
 msgstr "Logo"
 
-#: apps/organisations/models.py:39
+#: apps/organisations/models.py:40
 msgid ""
 "The Logo representing your organisation. The image must be square and it "
 "should be min. 200 pixels wide and 200 pixels tall. Allowed file formats are "
@@ -2319,11 +2331,11 @@ msgstr ""
 "mindestens 200 Pixel breit und 200 Pixel hoch sein. Erlaubte Dateiformate: "
 "png, jpeg, gif. Die maximale Dateigröße beträgt 5 MB."
 
-#: apps/organisations/models.py:50
+#: apps/organisations/models.py:51
 msgid "Slogan"
 msgstr "Slogan"
 
-#: apps/organisations/models.py:52
+#: apps/organisations/models.py:53
 msgid ""
 "The slogan will be shown below the title of your organisation on the landing "
 "page. The slogan can provide context or additional information to the title. "
@@ -2332,25 +2344,25 @@ msgstr ""
 "Der Slogan wird unter dem Titel ihrer Plattform auf der Startseite angezeigt "
 "und kann den Titel ergänzen oder erläutern. Max. 200 Zeichen"
 
-#: apps/organisations/models.py:62
+#: apps/organisations/models.py:63
 msgid "Please enter a full url which starts with https:// or http://"
 msgstr ""
 "Geben Sie bitte eine komplette URL ein, die mit https:// oder http:// "
 "anfängt."
 
-#: apps/organisations/models.py:78
+#: apps/organisations/models.py:79
 msgid "Header image copyright"
-msgstr "Urheberrecht des Headerbild"
+msgstr "Urheberrecht des Headerbildes"
 
-#: apps/organisations/models.py:80
+#: apps/organisations/models.py:81
 msgid "Author, which is displayed in the header image."
 msgstr "Autor*in, der auf dem Headerbild dargestellt wird."
 
-#: apps/organisations/models.py:84
+#: apps/organisations/models.py:85
 msgid "Information about your organisation"
 msgstr "Beschreibung Ihrer Organisation"
 
-#: apps/organisations/models.py:85
+#: apps/organisations/models.py:86
 msgid ""
 "You can provide general information about your participation platform to "
 "your visitors. It’s also helpful to name a general person of contact for "
@@ -2362,7 +2374,7 @@ msgstr ""
 "einen Ansprechpartner*in für Anfragen benennen. Die Informationen werden auf "
 "einer separaten Seite angezeigt, die man über das Hauptmenü erreicht."
 
-#: apps/organisations/models.py:109
+#: apps/organisations/models.py:110
 #: apps/organisations/templates/organisation_imprint.html:4
 #: apps/organisations/templates/organisation_imprint.html:10
 #: adhocracy-plus/templates/footer.html:38
@@ -2370,7 +2382,7 @@ msgstr ""
 msgid "Imprint"
 msgstr "Impressum"
 
-#: apps/organisations/models.py:110
+#: apps/organisations/models.py:111
 msgid ""
 "Please provide all the legally required information of your imprint. The "
 "imprint will be shown on a separate page."
@@ -2378,11 +2390,11 @@ msgstr ""
 "Bitte geben Sie alle rechtlich nötigen Informationen zum Impressum an. Das "
 "Impressum wird auf einer separaten Seite angezeigt."
 
-#: apps/organisations/models.py:116
+#: apps/organisations/models.py:117
 msgid "is a supporting organisation"
 msgstr "ist eine unterstützende Organisation"
 
-#: apps/organisations/models.py:117
+#: apps/organisations/models.py:118
 msgid ""
 "For supporting organisations, the banner asking for donations is not "
 "displayed on their pages."
@@ -2402,7 +2414,41 @@ msgstr "Soziale Medien"
 msgid "Opens in new window"
 msgstr "Öffnet in neuem Fenster"
 
-#: apps/organisations/views.py:47
+#: apps/organisations/templates/organisation_landing_page.html:97
+#, python-format
+msgid ""
+"Currently, there are no public participation processes. Sign in <a href="
+"\"%(account_login_url)s?next=%(organisation_url)s\">here</a> or read more in "
+"<a href=\"%(organisation_information_url)s\">About</a>."
+msgstr ""
+"Derzeit sind keine öffentlichen Beteiligungsprozesse sichtbar. Melden "
+"Sie sich <a href=\"%(account_login_url)s?next=%(organisation_url)s\">"
+"hier</a> an oder lesen Sie unter Hintergrund "
+"<a href=\"%(organisation_information_url)s\">mehr</a>."
+
+#: apps/organisations/templates/organisation_landing_page.html:101
+#, python-format
+msgid ""
+"Currently, there are no public participation processes. Sign in <a href="
+"\"%(account_login_url)s?next=%(organisation_url)s\">here</a>."
+msgstr ""
+"Derzeit sind keine öffentlichen Beteiligungsprozesse sichtbar. Melden "
+"Sie sich <a href=\"%(account_login_url)s?next=%(organisation_url)s\">"
+"hier</a>."
+
+#: apps/organisations/views.py:28
+msgid "Participate now!"
+msgstr "Jetzt beteiligen!"
+
+#: apps/organisations/views.py:30
+msgid "Upcoming participation"
+msgstr "Anstehende Beteiligung"
+
+#: apps/organisations/views.py:32
+msgid "Ended participation"
+msgstr "Abgeschlossene Beteiligung"
+
+#: apps/organisations/views.py:57
 msgid "Organisation successfully updated."
 msgstr "Organisation erfolgreich aktualisiert"
 
@@ -2450,14 +2496,18 @@ msgstr "Laden Sie eine CSV-Datei hoch, die E-Mail Adressen beinhaltet."
 msgid "Please enter email addresses or upload a file"
 msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:35
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:33
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr " noch %(time_left)s "
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:37
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:35
 msgid "more than 1 year remaining"
 msgstr "noch länger als 1 Jahr"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:38
+msgid "JOIN IN"
+msgstr "MITMACHEN"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:43
 #, python-format
@@ -2867,11 +2917,9 @@ msgid "Please enter correct email addresses, separated by commas."
 msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 
 #: apps/users/forms.py:11 apps/users/forms.py:41
-#: adhocracy-plus/templates/email_base.html:63
+#: adhocracy-plus/templates/email_base.html:67
 #: adhocracy-plus/templates/email_base.txt:17
 #: adhocracy-plus/templates/footer.html:43
-#: adhocracy-plus/templates/newsletter_base.html:59
-#: adhocracy-plus/templates/newsletter_base.txt:14
 msgid "Terms of use"
 msgstr "Nutzungsbedingungen"
 
@@ -3002,9 +3050,8 @@ msgstr ""
 "der Plattform verfasst sein sollen."
 
 #: apps/users/templates/a4_candy_users/indicator.html:16
-#: adhocracy-plus/templates/email_base.html:27
+#: adhocracy-plus/templates/email_base.html:31
 #: adhocracy-plus/templates/email_base.txt:5
-#: adhocracy-plus/templates/newsletter_base.html:24
 msgid "Hello"
 msgstr "Guten Tag"
 
@@ -3052,11 +3099,11 @@ msgstr "Diese Nutzer*in ist bislang noch in keiner Plattform aktiv."
 msgid "Check some platforms out."
 msgstr "Entdecke weitere Platformen."
 
-#: apps/users/templates/a4_candy_users/user_detail.html:112
+#: apps/users/templates/a4_candy_users/user_detail.html:113
 msgid "This user is not active in any projects yet."
 msgstr "Dise Nutzer*in ist bislang noch in keinem Projekt aktiv."
 
-#: apps/users/templates/a4_candy_users/user_detail.html:124
+#: apps/users/templates/a4_candy_users/user_detail.html:126
 msgid "No activity yet. "
 msgstr "Noch keine Aktivität."
 
@@ -3511,10 +3558,8 @@ msgstr "Spende jetzt für adhocracy+"
 msgid "Error"
 msgstr "Fehler"
 
-#: adhocracy-plus/templates/email_base.html:54
+#: adhocracy-plus/templates/email_base.html:58
 #: adhocracy-plus/templates/email_base.txt:13
-#: adhocracy-plus/templates/newsletter_base.html:50
-#: adhocracy-plus/templates/newsletter_base.txt:10
 msgid "adhocracy+ is a participation platform operated by"
 msgstr "adhocracy+ ist eine Plattform für Beteiligung, betrieben durch"
 
@@ -3622,6 +3667,19 @@ msgstr "Mit Konto eines sozialen Netzwerks einloggen"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Einloggen mit "
+
+#~ msgid "Priorization"
+#~ msgstr "Priorisierung"
+
+#~ msgid ""
+#~ "In addition to the title, you can insert an optional explanatory text. "
+#~ "This field is only shown in the participation if it is filled out"
+#~ msgstr ""
+#~ "Zusätzlich zum Titel können Sie einen optionalen Erklärungstext einfügen. "
+#~ "Dieses Feld wird in der Beteiligung nur angezeigt, wenn es ausgefüllt ist."
+
+#~ msgid "replies to"
+#~ msgstr "Antwort auf"
 
 #~ msgid "Comment"
 #~ msgstr "Kommentar"
