@@ -31,6 +31,7 @@ class DefaultSignupForm(SignupForm):
                     'information mails.'),
         required=False
     )
+    captcha = CaptcheckCaptchaField()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
