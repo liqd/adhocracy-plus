@@ -27,6 +27,9 @@ module.exports = {
       'react-flip-move',
       'typeface-libre-franklin'
     ],
+    captcheck: [
+      './adhocracy-plus/assets/js/captcheck.js'
+    ],
     datepicker: [
       './adhocracy-plus/assets/js/init-picker.js',
       'datepicker/css/datepicker.min.css'
