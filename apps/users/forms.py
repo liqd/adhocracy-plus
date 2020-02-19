@@ -5,8 +5,11 @@ from django import forms
 from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 
+from apps.captcha.fields import CaptcheckCaptchaField
+from apps.captcha.mixins import CaptcheckCaptchaFormMixin
 
-class TermsSignupForm(SignupForm):
+
+class TermsSignupForm(CaptcheckCaptchaFormMixin, SignupForm):
     terms_of_use = forms.BooleanField(
         label=_('Terms of use')
     )
@@ -16,6 +19,7 @@ class TermsSignupForm(SignupForm):
                     'information mails.'),
         required=False
     )
+    captcha = CaptcheckCaptchaField()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
