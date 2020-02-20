@@ -14,4 +14,6 @@
 Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
 
 {% get_settings use_default_site=True %}
-{% trans 'Terms of use' %}: {{ settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url }}
+{% if settings.a4_candy_cms_settings.ImportantPages.terms_of_use %}
+{% trans 'Terms of use' %}: {{ email.get_host }}{{ settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url }}
+{% endif %}
