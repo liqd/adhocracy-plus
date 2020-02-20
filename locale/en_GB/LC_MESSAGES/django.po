@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-17 17:15+0100\n"
+"POT-Creation-Date: 2020-02-20 10:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -890,11 +890,11 @@ msgstr ""
 "description will always be visible to everyone"
 
 #: adhocracy4/projects/models.py:225 adhocracy4/projects/models.py:231
-#: apps/organisations/models.py:70
+#: apps/organisations/models.py:71
 msgid "Header image"
 msgstr "Header image"
 
-#: adhocracy4/projects/models.py:227 apps/organisations/models.py:72
+#: adhocracy4/projects/models.py:227 apps/organisations/models.py:73
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
@@ -1262,6 +1262,14 @@ msgstr "Most commented"
 #: apps/budgeting/views.py:97
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
+
+#: apps/captcha/mixins.py:29
+msgid "Your answer to the captcha was wrong."
+msgstr "Your answer to the captcha was wrong."
+
+#: apps/captcha/mixins.py:31
+msgid "Please answer the captcha"
+msgstr "Please answer the captcha"
 
 #: apps/cms/contacts/models.py:119
 msgid "I want to receive a copy of my message"
@@ -2183,11 +2191,11 @@ msgstr "Edit offline event"
 msgid "The offline event has been deleted"
 msgstr "The offline event has been deleted"
 
-#: apps/organisations/models.py:25
+#: apps/organisations/models.py:26
 msgid "Title of your organisation"
 msgstr "Title of your organisation"
 
-#: apps/organisations/models.py:28
+#: apps/organisations/models.py:29
 msgid ""
 "The title of your organisation will be shown on the landing page. max. 100 "
 "characters"
@@ -2195,21 +2203,21 @@ msgstr ""
 "The title of your organisation will be shown on the landing page. max. 100 "
 "characters"
 
-#: apps/organisations/models.py:33
+#: apps/organisations/models.py:34
 msgid "Short description of your organisation"
 msgstr "Short description of your organisation"
 
-#: apps/organisations/models.py:34
+#: apps/organisations/models.py:35
 msgid ""
 "The description will be displayed on the landing page. max. 800 characters"
 msgstr ""
 "The description will be displayed on the landing page. max. 800 characters"
 
-#: apps/organisations/models.py:39
+#: apps/organisations/models.py:40
 msgid "Logo"
 msgstr "Logo"
 
-#: apps/organisations/models.py:40
+#: apps/organisations/models.py:41
 msgid ""
 "The Logo representing your organisation. The image must be square and it "
 "should be min. 200 pixels wide and 200 pixels tall. Allowed file formats are "
@@ -2219,11 +2227,11 @@ msgstr ""
 "should be min. 200 pixels wide and 200 pixels tall. Allowed file formats are "
 "png, jpeg, gif. The file size should be max. 5 MB."
 
-#: apps/organisations/models.py:51
+#: apps/organisations/models.py:52
 msgid "Slogan"
 msgstr "Slogan"
 
-#: apps/organisations/models.py:53
+#: apps/organisations/models.py:54
 msgid ""
 "The slogan will be shown below the title of your organisation on the landing "
 "page. The slogan can provide context or additional information to the title. "
@@ -2233,23 +2241,23 @@ msgstr ""
 "page. The slogan can provide context or additional information to the title. "
 "max. 200 characters"
 
-#: apps/organisations/models.py:63
+#: apps/organisations/models.py:64
 msgid "Please enter a full url which starts with https:// or http://"
 msgstr "Please enter a full url which starts with https:// or http://"
 
-#: apps/organisations/models.py:79
+#: apps/organisations/models.py:80
 msgid "Header image copyright"
 msgstr "Header image copyright"
 
-#: apps/organisations/models.py:81
+#: apps/organisations/models.py:82
 msgid "Author, which is displayed in the header image."
 msgstr "Author, which is displayed in the header image."
 
-#: apps/organisations/models.py:85
+#: apps/organisations/models.py:86
 msgid "Information about your organisation"
 msgstr "Information about your organisation"
 
-#: apps/organisations/models.py:86
+#: apps/organisations/models.py:87
 msgid ""
 "You can provide general information about your participation platform to "
 "your visitors. It’s also helpful to name a general person of contact for "
@@ -2261,7 +2269,7 @@ msgstr ""
 "inquiries. The information will be shown on a separate page that can be "
 "reached via the main menu."
 
-#: apps/organisations/models.py:110
+#: apps/organisations/models.py:111
 #: apps/organisations/templates/organisation_imprint.html:4
 #: apps/organisations/templates/organisation_imprint.html:10
 #: adhocracy-plus/templates/footer.html:38
@@ -2269,7 +2277,7 @@ msgstr ""
 msgid "Imprint"
 msgstr "Imprint"
 
-#: apps/organisations/models.py:111
+#: apps/organisations/models.py:112
 msgid ""
 "Please provide all the legally required information of your imprint. The "
 "imprint will be shown on a separate page."
@@ -2277,11 +2285,11 @@ msgstr ""
 "Please provide all the legally required information of your imprint. The "
 "imprint will be shown on a separate page."
 
-#: apps/organisations/models.py:117
+#: apps/organisations/models.py:118
 msgid "is a supporting organisation"
 msgstr "is a supporting organisation"
 
-#: apps/organisations/models.py:118
+#: apps/organisations/models.py:119
 msgid ""
 "For supporting organisations, the banner asking for donations is not "
 "displayed on their pages."
@@ -2381,25 +2389,25 @@ msgstr "Upload a csv file containing email addresses."
 msgid "Please enter email addresses or upload a file"
 msgstr "Please enter email addresses or upload a file"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:33
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:37
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr " %(time_left)s remaining "
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:35
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:39
 msgid "more than 1 year remaining"
 msgstr "more than 1 year remaining"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:38
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:42
 msgid "JOIN IN"
 msgstr "JOIN IN"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:43
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:47
 #, python-format
 msgid " Participation: from %(date)s"
 msgstr " Participation: from %(date)s"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:47
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:51
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
