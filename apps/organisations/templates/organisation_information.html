@@ -22,9 +22,10 @@
 {% if organisation.has_social_share %}
 <div class="bg-light">
     <div class="container">
-        <div class="row">
+        <div class="row my-4">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 text-center pb-4">
-              <h2>{% trans 'Social media' %}</h2>
+              <h2>{% trans 'More about ' %}{{ organisation.name }}</h2>
+              <p>{% trans 'Find us on social media and share your insights of this participation.' %}</p>
                 {% if organisation.facebook_handle  %}
                 <div class="d-flex flex-row justify-content-center">
                 <a href="https://www.facebook.com/{{ organisation.facebook_handle }}" target="_blank"><div class="organisation__social-link m-2"><i class="fab fa-facebook-f"></i></div></a>
