@@ -88,7 +88,7 @@ class Organisation(models.Model):
                     'participation platform to your visitors. '
                     'It’s also helpful to name a general person '
                     'of contact for inquiries. The information '
-                    'will be shown on a separate page that '
+                    'will be shown on a separate "About" page that '
                     'can be reached via the main menu.'),
         blank=True
     )
