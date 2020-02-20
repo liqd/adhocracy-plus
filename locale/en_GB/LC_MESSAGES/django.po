@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-20 10:58+0100\n"
+"POT-Creation-Date: 2020-02-20 13:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1450,6 +1450,10 @@ msgstr "You must select a minimum of  %(limit_value)d choices."
 msgid "You must select a maximum of  %(limit_value)d choices."
 msgstr "You must select a maximum of  %(limit_value)d choices."
 
+#: apps/contrib/django_standard_messages.py:18
+msgid "Ensure this field has no more than 4000 characters."
+msgstr "Ensure this field has no more than 4000 characters."
+
 #: apps/contrib/filters.py:10
 msgid "Ordering"
 msgstr "Ordering"
@@ -2261,13 +2265,13 @@ msgstr "Information about your organisation"
 msgid ""
 "You can provide general information about your participation platform to "
 "your visitors. It’s also helpful to name a general person of contact for "
-"inquiries. The information will be shown on a separate page that can be "
-"reached via the main menu."
+"inquiries. The information will be shown on a separate \"About\" page that "
+"can be reached via the main menu."
 msgstr ""
 "You can provide general information about your participation platform to "
 "your visitors. It’s also helpful to name a general person of contact for "
-"inquiries. The information will be shown on a separate page that can be "
-"reached via the main menu."
+"inquiries. The information will be shown on a separate \"About\" page that "
+"can be reached via the main menu."
 
 #: apps/organisations/models.py:111
 #: apps/organisations/templates/organisation_imprint.html:4
@@ -2302,8 +2306,12 @@ msgid "Edit your organisation information"
 msgstr "Edit your organisation information"
 
 #: apps/organisations/templates/organisation_information.html:27
-msgid "Social media"
-msgstr "Social media"
+msgid "More about "
+msgstr "More about "
+
+#: apps/organisations/templates/organisation_information.html:28
+msgid "Find us on social media and share your insights of this participation."
+msgstr "Find us on social media and share your insights of this participation."
 
 #: apps/organisations/templates/organisation_landing_page.html:45
 msgid "Opens in new window"
@@ -3548,6 +3556,20 @@ msgstr "Login with social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Login with "
+
+#~ msgid ""
+#~ "You can provide general information about your participation platform to "
+#~ "your visitors. It’s also helpful to name a general person of contact for "
+#~ "inquiries. The information will be shown on a separate page that can be "
+#~ "reached via the main menu."
+#~ msgstr ""
+#~ "You can provide general information about your participation platform to "
+#~ "your visitors. It’s also helpful to name a general person of contact for "
+#~ "inquiries. The information will be shown on a separate page that can be "
+#~ "reached via the main menu."
+
+#~ msgid "Social media"
+#~ msgstr "Social media"
 
 #~ msgid "Priorization"
 #~ msgstr "Priorization"
