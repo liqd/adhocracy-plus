@@ -24,6 +24,12 @@ the sale, use or other dealings in this Software without prior written
 authorization from Netsyms Technologies.
 */
 
+/* global django */
+
+const textImageMode = '&gt; ' + django.gettext('Image mode')
+const textTextMode = '&gt; ' + django.gettext('Text mode')
+const textLabel = django.gettext('Switch between image and text question')
+
 window.onload = function () {
   function chooseAnswer (idp, ans) {
     var box = document.getElementById('captcheck_' + idp + '_answer_' + ans)
@@ -37,15 +43,15 @@ window.onload = function () {
     var accQ = document.getElementById('captcheck_' + idp + '_question_access')
     var imgA = document.getElementById('captcheck_' + idp + '_answer_images')
     var accA = document.getElementById('captcheck_' + idp + '_answer_access')
-    if (switchLabel.innerHTML === '&gt; Text mode') {
-      switchLabel.innerHTML = '&gt; Image mode'
+    if (switchLabel.innerHTML === textTextMode) {
+      switchLabel.innerHTML = textImageMode
       imgQ.style.display = 'none'
       accQ.style.display = 'initial'
       imgA.style.display = 'none'
       accA.style.display = 'initial'
       accA.innerHTML = "<input type='text' name='captcheck_selected_answer' aria-label='Type your answer here.' autocomplete='off' autofill='off'/>"
     } else {
-      switchLabel.innerHTML = '&gt; Text mode'
+      switchLabel.innerHTML = textTextMode
       imgQ.style.display = 'initial'
       accQ.style.display = 'none'
       imgA.style.display = 'initial'
@@ -93,7 +99,7 @@ window.onload = function () {
           var questionDiv = document.createElement('div')
           questionDiv.setAttribute('class', 'captcheck_label_message')
           questionDiv.setAttribute('id', 'captcheck_' + idp + '_label_message')
-          questionDiv.innerHTML = "<span class='captcheck_question_image' id='captcheck_" + idp + "_question_image'>" + data.question_i + "</span><span class='captcheck_question_access' id='captcheck_" + idp + "_question_access'>" + data.question_a + "</span><a href='' class='captcheck_alt_question_button' data-prefix='" + idp + "' id='captcheck_" + idp + "_alt_question_button' aria-role='button' aria-label='Switch between image and text question' tabindex='0'>&gt; Text mode</a>"
+          questionDiv.innerHTML = "<span class='captcheck_question_image' id='captcheck_" + idp + "_question_image'>" + data.question_i + "</span><span class='captcheck_question_access' id='captcheck_" + idp + "_question_access'>" + data.question_a + "</span><a href='' class='captcheck_alt_question_button' data-prefix='" + idp + "' id='captcheck_" + idp + "_alt_question_button' aria-role='button' aria-label=" + textLabel + " tabindex='0'>" + textTextMode + '</a>'
 
           /* Add question and answers */
           captcha.appendChild(questionDiv)

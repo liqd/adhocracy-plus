@@ -28,7 +28,7 @@ module.exports = {
       'typeface-libre-franklin'
     ],
     captcheck: [
-      './adhocracy-plus/assets/js/captcheck.js'
+      './apps/captcha/assets/captcheck.js'
     ],
     datepicker: [
       './adhocracy-plus/assets/js/init-picker.js',
