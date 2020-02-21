@@ -183,10 +183,18 @@ class Organisation(models.Model):
 
 
 class Member(models.Model):
-    member = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               on_delete=models.CASCADE)
-    organisation = models.ForeignKey(settings.A4_ORGANISATIONS_MODEL,
-                                     on_delete=models.CASCADE)
+    member = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    organisation = models.ForeignKey(
+        settings.A4_ORGANISATIONS_MODEL,
+        on_delete=models.CASCADE
+    )
+    member_number = models.CharField(
+        max_length=50,
+        blank=True,
+    )
     additional_info = JSONField(blank=True)
 
     class Meta:
