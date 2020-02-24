@@ -11,6 +11,7 @@ Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 
 
 class RestrictedNewsletterForm(forms.ModelForm):
+    """Hide receiver choices - only show project follows."""
 
     class Meta:
         model = models.Newsletter
@@ -25,12 +26,6 @@ class RestrictedNewsletterForm(forms.ModelForm):
         project_qs = Project.objects
         if organisation:
             project_qs = Project.objects.filter(organisation=organisation.id)
-            if user and not user.is_superuser:
-                user_groups = user.groups.all()
-                org_groups = organisation.groups.all()
-                shared_groups = user_groups & org_groups
-                group = shared_groups.distinct().first()
-                project_qs = project_qs.filter(group=group)
 
         self.fields['project'] = forms.ModelChoiceField(
             label=_('Project'),
