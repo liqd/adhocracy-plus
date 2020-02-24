@@ -77,9 +77,7 @@ class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['organisation'] = self.organisation
-        user = self.request.user
-        if not self.organisation.has_initiator(user) or user.is_superuser:
-            kwargs['initial']['receivers'] = models.PROJECT
+        kwargs['initial']['receivers'] = models.PROJECT
         return kwargs
 
     def get_success_url(self):
