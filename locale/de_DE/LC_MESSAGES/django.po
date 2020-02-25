@@ -2684,7 +2684,7 @@ msgid ""
 "able to moderate the project."
 msgstr ""
 "Sie wurden von den Initiator*innen des Projekts eingeladen. Wenn Sie "
-"akzeptieren können sie das Projekt moderieren."
+"akzeptieren, können Sie das Projekt moderieren."
 
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_form.html:16
 #: apps/projects/templates/a4_candy_projects/participantinvite_form.html:19
@@ -2947,14 +2947,14 @@ msgstr "Nutzungsbedingungen"
 
 #: apps/users/forms.py:30 apps/users/forms.py:164 apps/users/models.py:68
 msgid "I would like to receive further information"
-msgstr "Ich möchte weitere Informationen erhalten."
+msgstr "Sie werden per Mail zu der Veranstaltung eingeladen."
 
 #: apps/users/forms.py:31 apps/users/forms.py:165 apps/users/models.py:71
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
-"Projekte, denen Sie folgen, können Ihnen E-Mails mit weiteren Informationen "
-"schicken."
+"Ihnen wird eine einmalige Mail mit einer Veranstaltungseinladung zur "
+"Vorstellung der Ergebnisse dieser Online-Beteiligung geschickt."
 
 #: apps/users/forms.py:39 apps/users/forms.py:176
 msgid "Your username will appear publicly next to your posts."
@@ -3318,7 +3318,7 @@ msgstr "Diese Seite konnte nicht gefunden werden."
 
 #: adhocracy-plus/templates/500.html:4
 msgid "adhocracy+"
-msgstr "adhocracy+"
+msgstr "enquetebeteiligung.de"
 
 #: adhocracy-plus/templates/500.html:25
 msgid "Internal server error."
@@ -3327,7 +3327,7 @@ msgstr "Interner Serverfehler."
 #: adhocracy-plus/templates/500.html:26
 #: adhocracy-plus/templates/base_errors.html:12
 msgid "Back to adhocracy+"
-msgstr "Zurück zu adhocracy+"
+msgstr "Zurück zu enquetebeteiligung.de"
 
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:15
 msgid "Organisations"
@@ -3564,8 +3564,12 @@ msgid ""
 "Already have an account? Then please\n"
 "        <a href=\"%(login_url)s\">login</a>."
 msgstr ""
-"Haben Sie schon ein Nutzerkonto? Dann <a href=\"%(login_url)s\">melden Sie "
-"sich bitte an</a>."
+"Sie haben schon ein Nutzerkonto? Dann <a href=\"%(login_url)s\">melden Sie "
+"sich bitte an</a>. Registrieren Sie sich hier, um an der Diskussion um die "
+"Themen der Enquete-Kommission „Künstliche Intelligenz – Gesellschaftliche "
+"Verantwortung und wirtschaftliche, soziale und ökologische Potenziale“ "
+"teilzunehmen. Die Beiträge werden für das Gutachten an die "
+"Enquete-Kommission Künstliche Intelligenz verwendet."
 
 #: adhocracy-plus/templates/account/signup.html:23
 #: adhocracy-plus/templates/socialaccount/signup.html:28
@@ -3598,13 +3602,10 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Mit Ihrem Account auf adhocracy+ können Sie sich an allen "
-"öffentlichen Beteiligungsprojekten auf der Plattform beteiligen. Die "
-"Plattform bietet allen Organisationen und Initiativen die Möglichkeit, "
-"digitale Beteiligungsprojekte zu starten.\n"
-"            Sollten Sie Fragen zum Datenschutz auf der Plattform haben "
-"finden Sie <a href=\"%(data_protection_url)s\" target=\"_blank\">hier "
-"weitere Informationen</a>.\n"
+"Es ist möglich, dass einzelne Beiträge direkt oder indirekt zitiert und "
+"veröffentlicht werden. Weitere Informationen zur Verwendung entnehmen "
+"Sie der <a href=\"%(data_protection_url)s\" target=\"_blank"
+"\">Datenschutzerklärung</a>.\n"
 "        "
 
 #: adhocracy-plus/templates/base.html:62
@@ -3630,23 +3631,28 @@ msgstr "Fehler"
 #: adhocracy-plus/templates/email_base.html:58
 #: adhocracy-plus/templates/email_base.txt:13
 msgid "adhocracy+ is a participation platform operated by"
-msgstr "adhocracy+ ist eine Plattform für Beteiligung, betrieben durch"
+msgstr ""
+"Die Beteiligungsplattform enquetebeteiligung.de basiert auf der Plattform "
+"adhocracy.plus, wird bereit gestellt von der Bietergemeinschaft "
+"Liquid Democracy e.V. und nexus Institut für Kooperationsmanagement und interdisziplinäre Forschung GmbH und wird betrieben durch den"
 
 #: adhocracy-plus/templates/footer.html:10
 msgid ""
 "<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
 "liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
 msgstr ""
-"<a href=\"/\">adhocracy+</a> ist eine Plattform, die von <a href=\"https://"
-"liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin bereitgestellt wird."
+"Die Beteiligungsplattform <a href=\"/\">enquetebeteiligung.de</a> basiert "
+"auf der Plattform <a href=\"https://adhocracy.plus\" target=\"_blank\">"
+"adhocracy.plus</a> und wird bereitgestellt von der Bietergemeinschaft "
+"<a href=\"https://liqd.net/de/\" target=\"_blank\">Liquid Democracy e.V.</a> "
+"und <a href=\"https://www.nexusinstitut.de/\" target=\"_blank\">nexus Institut für Kooperationsmanagement und interdisziplinäre Forschung GmbH</a>."
 
 #: adhocracy-plus/templates/footer.html:10
 msgid ""
 "Only the respective operator of the offer is responsible for the editorial "
 "content."
 msgstr ""
-"Für die redaktionellen Inhalte ist allein der jeweilige Betreiber des "
-"Angebots verantwortlich."
+" "
 
 #: adhocracy-plus/templates/footer.html:48
 msgid "Data protection policy"
@@ -3663,7 +3669,7 @@ msgstr "Übersicht"
 
 #: adhocracy-plus/templates/header.html:36
 msgid "About"
-msgstr "Hintergrund"
+msgstr "FAQ"
 
 #: adhocracy-plus/templates/includes/header_language_switch.html:13
 msgid "German language selected"
