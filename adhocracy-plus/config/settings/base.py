@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'apps.exports',
     'apps.offlineevents',
     'apps.projects',
+    'apps.captcha',
 
     # Apps defining phases
     'apps.activities',

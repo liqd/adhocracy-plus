@@ -11,9 +11,10 @@
 
     <form id="signup_form" method="post" action="{% url 'account_signup' %}">
         {{ form.non_field_errors }}
+        {{ form.media }}
         {% csrf_token %}
         {% for field in form %}
-            {% if field is not form.terms_of_use and field is not form.terms_of_use_extra and field is not form.get_newsletters %}
+            {% if field is not form.terms_of_use and field is not form.terms_of_use_extra and field is not form.get_newsletters and field is not form.captcha %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
             {% endif %}
         {% endfor %}
@@ -48,6 +49,9 @@
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
+
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.captcha %}
+
         <div class="u-spacer-bottom-double">
             <button class="btn btn--primary" type="submit">{% trans "Register" %}</button>
         </div>
