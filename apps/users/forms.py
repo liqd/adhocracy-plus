@@ -26,9 +26,9 @@ class DefaultSignupForm(SignupForm):
         label=_('Terms of use')
     )
     get_newsletters = forms.BooleanField(
-        label=_('Info Mails'),
-        help_text=_('Projects I follow are allowed to send me '
-                    'information mails.'),
+        label=_('I would like to receive further information'),
+        help_text=_('Projects you are following can send you '
+                    'additional information via email.'),
         required=False
     )
 
