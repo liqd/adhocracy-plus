@@ -14,7 +14,6 @@
             </div>
         </div>
         <nav class="main-header__nav">
-            {% include 'includes/header_language_switch.html' %}
             {% if ORGANISATION.logo %}
             {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
             {% if not request.get_full_path == organisation_url %}
