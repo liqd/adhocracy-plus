@@ -37,32 +37,27 @@ h3,
 h4,
 h5,
 h6 {
+    font-family: $font-family-serif;
     line-height: 1.2;
     margin-bottom: 0.8 * $r-spacer;
     margin-top: 1.5 * $r-spacer;
-    font-weight: bold;
-}
-
-h1,
-h2 {
-    font-family: $font-family-serif;
     font-weight: normal;
 }
 
 h1 {
-    font-size: $font-size-xxxl;
-}
-
-h2 {
     font-size: $font-size-xxl;
 }
 
-h3 {
+h2 {
     font-size: $font-size-xl;
 }
 
-h4 {
+h3 {
     font-size: $font-size-lg;
+}
+
+h4 {
+    font-size: $font-size-md;
 }
 
 h5 {
@@ -85,7 +80,7 @@ h6 {
     h3,
     h4,
     h5 {
-        font-size: $font-size-md;
+        font-size: $font-size-lg;
     }
 }
 
@@ -112,7 +107,7 @@ h6 {
     h3,
     h4,
     h5 {
-        font-size: $font-size-base;
+        font-size: $font-size-md;
     }
 }
 
