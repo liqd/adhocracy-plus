@@ -10,13 +10,15 @@
         {% csrf_token %}
 
         {% for field in form %}
-            {% if not field.name == 'get_notifications' and not field.name == 'get_newsletters' %}
+            {% if not field.name == 'get_notifications' and not field.name == 'get_newsletters' and not field.name == 'language' %}
             {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
             {% endif %}
         {% endfor %}
 
         {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
         {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
+
+        <input type="hidden" name="{{ form.language.name }}" value="{{ form.language.value }}"/>
 
         <div class="mb-3">
             <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
