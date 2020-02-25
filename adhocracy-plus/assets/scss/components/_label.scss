@@ -2,7 +2,7 @@
     display: inline-block;
     background-color: $text-color;
     color: contrast-color($text-color);
-    font-size: $font-size-xs;
+    font-size: $font-size-sm;
     font-weight: normal;
     border-radius: 0.4em;
     padding: 0.2em 0.7em;
@@ -48,6 +48,6 @@
 @media screen and (max-width: $breakpoint-xs-down) {
     .label--big {
         padding: 0.2em 0.7em;
-        font-size: $font-size-xs;
+        font-size: $font-size-sm;
     }
 }
