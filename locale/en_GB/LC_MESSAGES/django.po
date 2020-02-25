@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-20 13:33+0100\n"
+"POT-Creation-Date: 2020-02-25 12:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -729,7 +729,7 @@ msgid "seconds"
 msgstr "seconds"
 
 #: adhocracy4/phases/models.py:70 apps/activities/models.py:21
-#: apps/debate/models.py:26 apps/ideas/models.py:32
+#: apps/debate/models.py:27 apps/ideas/models.py:32
 #: apps/offlineevents/models.py:34
 msgid "Description"
 msgstr "Description"
@@ -768,7 +768,7 @@ msgstr "Only one vote per question is allowed per user."
 msgid "Choice has to belong to the question set in the url."
 msgstr "Choice has to belong to the question set in the url."
 
-#: adhocracy4/projects/admin.py:8 apps/newsletters/forms.py:36
+#: adhocracy4/projects/admin.py:8 apps/newsletters/forms.py:31
 msgid "Project"
 msgstr "Project"
 
@@ -1669,7 +1669,7 @@ msgstr "Alphabetical"
 msgid "max 120 characters"
 msgstr "max 120 characters"
 
-#: apps/debate/models.py:27
+#: apps/debate/models.py:28
 msgid ""
 "In addition to the title, you can insert an optional explanatory text (max. "
 "350 char.). This field is only shown in the participation if it is filled "
@@ -2076,11 +2076,11 @@ msgstr "Write down your remark!"
 msgid "Note only visible internally within project."
 msgstr "Note only visible internally within project."
 
-#: apps/newsletters/forms.py:39
+#: apps/newsletters/forms.py:34
 msgid "Receivers are all users which follow the following project:"
 msgstr "Receivers are all users which follow the following project:"
 
-#: apps/newsletters/forms.py:43
+#: apps/newsletters/forms.py:38
 msgid "Organisation"
 msgstr "Organisation"
 
@@ -2813,28 +2813,52 @@ msgstr "Important dates"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Please enter correct email addresses, separated by commas."
 
-#: apps/users/forms.py:11 apps/users/forms.py:41
-#: adhocracy-plus/templates/email_base.html:67
-#: adhocracy-plus/templates/email_base.txt:17
+#: apps/users/forms.py:19
+msgid "Username/e-mail"
+msgstr "Username/e-mail"
+
+#: apps/users/forms.py:26 apps/users/forms.py:144
+#: adhocracy-plus/templates/email_base.html:68
+#: adhocracy-plus/templates/email_base.txt:18
 #: adhocracy-plus/templates/footer.html:43
 msgid "Terms of use"
 msgstr "Terms of use"
 
-#: apps/users/forms.py:14 apps/users/forms.py:44
+#: apps/users/forms.py:29 apps/users/forms.py:147
 msgid "Info Mails"
 msgstr "Info Mails"
 
-#: apps/users/forms.py:15 apps/users/forms.py:45
+#: apps/users/forms.py:30 apps/users/forms.py:148
 msgid "Projects I follow are allowed to send me information mails."
 msgstr "Projects I follow are allowed to send me information mails."
 
-#: apps/users/forms.py:23 apps/users/forms.py:56
+#: apps/users/forms.py:38 apps/users/forms.py:159
 msgid "Your username will appear publicly next to your posts."
 msgstr "Your username will appear publicly next to your posts."
 
-#: apps/users/forms.py:71
-msgid "Username/e-mail"
-msgstr "Username/e-mail"
+#: apps/users/forms.py:56
+msgid "Membership number of IG BCE"
+msgstr "Membership number of IG BCE"
+
+#: apps/users/forms.py:57
+msgid ""
+"The membership number consists of a seven-digit number and can be found on "
+"the membership card."
+msgstr ""
+"The membership number consists of a seven-digit number and can be found on "
+"the membership card."
+
+#: apps/users/forms.py:63
+msgid "Date of birth"
+msgstr "Date of birth"
+
+#: apps/users/forms.py:64
+msgid ""
+"Please also enter your date of birth in the format DD/MM/YYYY for "
+"authentication. Only members of the IG BCE can participate."
+msgstr ""
+"Please also enter your date of birth in the format DD/MM/YYYY for "
+"authentication. Only members of the IG BCE can participate."
 
 #: apps/users/models.py:19
 msgid "username"
