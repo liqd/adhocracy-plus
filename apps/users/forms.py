@@ -53,14 +53,17 @@ class DefaultSignupForm(SignupForm):
 
 class IgbceSignupForm(DefaultSignupForm):
     member_number = forms.IntegerField(
-        label=_('IG-BCE member number'),
-        help_text=_('Some helptext.'),
+        label=_('Membership number of IG BCE'),
+        help_text=_('The membership number consists of a seven-digit number '
+                    'and can be found on the membership card.'),
         max_value=99999999999999999999,
         min_value=0
     )
     birth_date = forms.DateField(
-        label=_('Birth date'),
-        help_text=_('Some helptext.')
+        label=_('Date of birth'),
+        help_text=_('Please also enter your date of birth in the format '
+                    'DD/MM/YYYY for authentication. Only members of the '
+                    'IG BCE can participate.')
     )
 
     def validateMemberNumberAndDate(self, member_number, birth_date):
@@ -68,12 +71,14 @@ class IgbceSignupForm(DefaultSignupForm):
         if (not hasattr(settings, 'IGBCE_NAV_URL') or
                 not hasattr(settings, 'IGBCE_NAV_SECURITYID')):
             raise forms.ValidationError(
-                "Something is wrong with the setup - please try again later"
+                'Something is wrong with the setup - please try again later'
             )
 
         if Member.objects.filter(member_number=member_number).exists():
             raise forms.ValidationError(
-                "A member with that number already exists."
+                'There is already a participant with this membership number. '
+                'Please check your entry. If this is your membership number, '
+                'please send an email to "zukunftsgewerkschaft@igbce.de".'
             )
 
         client = Client('{}'.format(settings.IGBCE_NAV_URL))
@@ -98,8 +103,9 @@ class IgbceSignupForm(DefaultSignupForm):
 
         if not result:
             raise forms.ValidationError(
-                "Your credentials couldn't be connected to an IGBCE member. "
-                "Please check your member number and birthdate again."
+                'Unfortunately, the member number and / or date of birth '
+                'could not be linked to an active member account. Please '
+                'check your input and try again.'
             )
 
     def clean(self):
