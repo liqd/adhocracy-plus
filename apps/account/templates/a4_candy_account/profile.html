@@ -10,7 +10,7 @@
         {% csrf_token %}
 
         {% for field in form %}
-            {% if not field.name == 'get_notifications' and not field.name == 'get_newsletters' %}
+            {% if not field.name == 'get_notifications' and not field.name == 'get_newsletters' and not field.name == 'language' %}
             {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
             {% endif %}
         {% endfor %}
