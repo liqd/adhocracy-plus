@@ -14,7 +14,6 @@
             </div>
         </div>
         <nav class="main-header__nav">
-            {% include 'includes/header_language_switch.html' %}
             {% if ORGANISATION.logo %}
             {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
             {% if not request.get_full_path == organisation_url %}
@@ -36,10 +35,6 @@
                             <a href="{{ organisation_information_url }}" class="organisation-header__nav-link"><span class="{% if request.path == organisation_information_url %}is-active{% endif %}">{% trans 'About' %}</span></a>
                         </li>
                         {% endif %}
-                        <li class="organisation-header__nav-item">
-                            {% url 'organisation-imprint' organisation_slug=ORGANISATION.slug as organisation_imprint_url %}
-                            <a href="{{ organisation_imprint_url }}" class="organisation-header__nav-link"><span class="{% if request.path == organisation_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>
-                        </li>
                     </ul>
                     {% endif %}
                 <div class="main-header__user">
