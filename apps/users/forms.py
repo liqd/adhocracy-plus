@@ -71,14 +71,15 @@ class IgbceSignupForm(DefaultSignupForm):
         if (not hasattr(settings, 'IGBCE_NAV_URL') or
                 not hasattr(settings, 'IGBCE_NAV_SECURITYID')):
             raise forms.ValidationError(
-                'Something is wrong with the setup - please try again later'
+                _('Something is wrong with the setup - please try again later')
             )
 
         if Member.objects.filter(member_number=member_number).exists():
             raise forms.ValidationError(
-                'There is already a participant with this membership number. '
-                'Please check your entry. If this is your membership number, '
-                'please send an email to "zukunftsgewerkschaft@igbce.de".'
+                _('There is already a participant with this membership '
+                  'number. Please check your entry. If this is your '
+                  'membership number, please send an email to '
+                  '"zukunftsgewerkschaft@igbce.de".')
             )
 
         client = Client('{}'.format(settings.IGBCE_NAV_URL))
@@ -103,9 +104,9 @@ class IgbceSignupForm(DefaultSignupForm):
 
         if not result:
             raise forms.ValidationError(
-                'Unfortunately, the member number and / or date of birth '
-                'could not be linked to an active member account. Please '
-                'check your input and try again.'
+                _('Unfortunately, the member number and / or date of birth '
+                  'could not be linked to an active member account. Please '
+                  'check your input and try again.')
             )
 
     def clean(self):
