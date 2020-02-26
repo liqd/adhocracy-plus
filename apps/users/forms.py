@@ -62,7 +62,7 @@ class IgbceSignupForm(DefaultSignupForm):
     birth_date = forms.DateField(
         label=_('Date of birth'),
         help_text=_('Please also enter your date of birth in the format '
-                    'DD/MM/YYYY for authentication. Only members of the '
+                    'MM/DD/YYYY for authentication. Only members of the '
                     'IG BCE can participate.')
     )
 
