@@ -1,6 +1,6 @@
 from django.contrib import auth
 
-from apps.users.emails import EmailWithUserLanguage as Email
+from apps.users.emails import EmailAplus as Email
 
 User = auth.get_user_model()
 
@@ -37,6 +37,9 @@ def _exclude_notifications_disabled(receivers):
 class NotifyCreatorEmail(Email):
     template_name = 'a4_candy_notifications/emails/notify_creator'
 
+    def get_organisation(self):
+        return self.object.project.organisation
+
     def get_receivers(self):
         action = self.object
         if hasattr(action.target, 'creator'):
@@ -52,6 +55,9 @@ class NotifyCreatorOnModeratorFeedback(Email):
     template_name = \
         'a4_candy_notifications/emails/notify_creator_on_moderator_feedback'
 
+    def get_organisation(self):
+        return self.object.project.organisation
+
     def get_receivers(self):
         receivers = [self.object.creator]
         receivers = _exclude_notifications_disabled(receivers)
@@ -66,6 +72,9 @@ class NotifyCreatorOnModeratorFeedback(Email):
 class NotifyModeratorsEmail(Email):
     template_name = 'a4_candy_notifications/emails/notify_moderator'
 
+    def get_organisation(self):
+        return self.object.project.organisation
+
     def get_receivers(self):
         action = self.object
         receivers = action.project.moderators.all()
@@ -77,6 +86,9 @@ class NotifyModeratorsEmail(Email):
 class NotifyInitiatorsOnProjectCreatedEmail(Email):
     template_name = \
         'a4_candy_notifications/emails/notify_initiators_project_created'
+
+    def get_organisation(self):
+        return self.object.organisation
 
     def get_receivers(self):
         project = self.object
@@ -98,6 +110,9 @@ class NotifyFollowersOnPhaseStartedEmail(Email):
     template_name = 'a4_candy_notifications/emails' \
                     '/notify_followers_phase_started'
 
+    def get_organisation(self):
+        return self.object.project.organisation
+
     def get_receivers(self):
         action = self.object
         receivers = User.objects.filter(
@@ -112,6 +127,9 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
     template_name = 'a4_candy_notifications/emails' \
                     '/notify_followers_phase_over_soon'
 
+    def get_organisation(self):
+        return self.object.project.organisation
+
     def get_receivers(self):
         action = self.object
         receivers = User.objects.filter(
@@ -125,6 +143,9 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
 class NotifyFollowersOnUpcommingEventEmail(Email):
     template_name = 'a4_candy_notifications/emails' \
                     '/notify_followers_event_upcomming'
+
+    def get_organisation(self):
+        return self.object.project.organisation
 
     def get_receivers(self):
         action = self.object

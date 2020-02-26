@@ -1,11 +1,14 @@
 from email.mime.image import MIMEImage
 
 from apps.projects import tasks
-from apps.users.emails import EmailWithUserLanguage as Email
+from apps.users.emails import EmailAplus as Email
 
 
 class InviteParticipantEmail(Email):
     template_name = 'a4_candy_projects/emails/invite_participant'
+
+    def get_organisation(self):
+        return self.object.project.organisation
 
     def get_receivers(self):
         return [self.object.email]
@@ -30,6 +33,9 @@ class InviteParticipantEmail(Email):
 
 class InviteModeratorEmail(Email):
     template_name = 'a4_candy_projects/emails/invite_moderator'
+
+    def get_organisation(self):
+        return self.object.project.organisation
 
     def get_receivers(self):
         return [self.object.email]
@@ -69,6 +75,9 @@ class DeleteProjectEmail(Email):
             cls.__module__, cls.__name__,
             object_dict, args, kwargs)
         return []
+
+    def get_organisation(self):
+        return self.object.organisation
 
     def get_receivers(self):
         return self.object['initiators']

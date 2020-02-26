@@ -131,10 +131,6 @@ class Organisation(models.Model):
         return self.name
 
     @cached_property
-    def get_site(self):
-        return self.site
-
-    @cached_property
     def projects(self):
         return Project.objects \
             .filter(organisation=self,
