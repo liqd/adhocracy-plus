@@ -72,6 +72,7 @@
     font-weight: 900;
     content: '\f0c9';
     background-color: inherit;
+    font-size: $font-size-md;
 }
 
 .show ~ .main-header__mobile-toggle:after {
@@ -84,10 +85,6 @@
 
 .main-header__mobile-toggle--platform {
     top: 1.5*$r-spacer;
-}
-
-.show + .main-header__mobile-toggle {
-    background-color: $bg-secondary;
 }
 
 .show + .main-header__mobile-toggle--platform {
