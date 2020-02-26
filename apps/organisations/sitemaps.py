@@ -1,4 +1,5 @@
 from django.contrib.sitemaps.views import x_robots_tag
+from django.contrib.sites.shortcuts import get_current_site
 from django.template.response import TemplateResponse
 from django.urls import reverse
 
@@ -17,14 +18,16 @@ def organisations_sitemap_index(request):
     organisations = Organisation.objects.all().order_by('id')
 
     for organisation in organisations:
-        urls.append(
-            request.build_absolute_uri(
-                reverse(
-                    'organisation-sitemap-index',
-                    kwargs=dict(organisation_slug=organisation.slug)
+        if not organisation.site or \
+                organisation.site is get_current_site(request):
+            urls.append(
+                request.build_absolute_uri(
+                    reverse(
+                        'organisation-sitemap-index',
+                        kwargs=dict(organisation_slug=organisation.slug)
+                    )
                 )
             )
-        )
 
     return TemplateResponse(request, template_name, {'sitemaps': urls},
                             content_type=content_type)
