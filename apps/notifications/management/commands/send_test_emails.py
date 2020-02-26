@@ -18,12 +18,17 @@ from apps.ideas.models import Idea
 from apps.notifications import emails as notification_emails
 from apps.organisations.models import Organisation
 from apps.projects import models as project_models
-from apps.users.emails import EmailWithUserLanguage as Email
+from apps.users.emails import EmailAplus as Email
 
 User = get_user_model()
 
 
 class TestEmail(SyncEmailMixin, Email):
+    def get_organisation(self):
+        project = getattr(self.object, 'project', None)
+        if project:
+            return project.organisation
+
     def get_receivers(self):
         return self.kwargs['receiver']
 
