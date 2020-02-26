@@ -1,4 +1,4 @@
-from apps.users.emails import EmailWithUserLanguage as Email
+from apps.users.emails import EmailAplus as Email
 
 
 class AnswerToContactFormEmail(Email):
