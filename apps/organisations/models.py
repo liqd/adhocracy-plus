@@ -1,6 +1,7 @@
 from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -119,9 +120,19 @@ class Organisation(models.Model):
         help_text=_('For supporting organisations, the banner asking '
                     'for donations is not displayed on their pages.')
     )
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return self.name
+
+    @cached_property
+    def get_site(self):
+        return self.site
 
     @cached_property
     def projects(self):
