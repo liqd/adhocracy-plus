@@ -67,8 +67,7 @@ class IgbceSignupForm(DefaultSignupForm):
                     'IG BCE can participate.')
     )
     terms_of_use_extra = forms.BooleanField(
-        label=mark_safe(_('I confirm that I have read and accepted the data '
-                          'protection policy '
+        label=mark_safe(_('I confirm that I have read and accepted the '
                           '<a href="/info/ig-bce-datenschutz/" '
                           'target="_blank">data protection policy</a> of IG '
                           'BCE.'))
