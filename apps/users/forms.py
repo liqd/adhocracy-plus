@@ -4,6 +4,7 @@ from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
 from django.conf import settings
+from django.utils.safestring import mark_safe
 from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 from zeep import Client
@@ -64,6 +65,13 @@ class IgbceSignupForm(DefaultSignupForm):
         help_text=_('Please also enter your date of birth in the format '
                     'MM/DD/YYYY for authentication. Only members of the '
                     'IG BCE can participate.')
+    )
+    terms_of_use_extra = forms.BooleanField(
+        label=mark_safe(_('I confirm that I have read and accepted the data '
+                          'protection policy '
+                          '<a href="/info/ig-bce-datenschutz/" '
+                          'target="_blank">data protection policy</a> of IG '
+                          'BCE.'))
     )
 
     def validateMemberNumberAndDate(self, member_number, birth_date):
