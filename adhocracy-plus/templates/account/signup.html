@@ -13,7 +13,7 @@
         {{ form.non_field_errors }}
         {% csrf_token %}
         {% for field in form %}
-            {% if field is not form.terms_of_use and field is not form.get_newsletters %}
+            {% if field is not form.terms_of_use and field is not form.terms_of_use_extra and field is not form.get_newsletters %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
             {% endif %}
         {% endfor %}
@@ -26,6 +26,15 @@
             </label>
             {{ form.terms_of_use.errors }}
         </div>
+        {% if form.terms_of_use_extra %}
+        <div class="form-check">
+          <label class="form-check__label">
+            {{ form.terms_of_use_extra }}
+            {{ form.terms_of_use_extra.label}}
+            </label>
+            {{ form.terms_of_use.errors }}
+        </div>
+        {% endif %}
         <div class="form-check">
             <label class="form-check__label">
                 {{ form.get_newsletters }}
