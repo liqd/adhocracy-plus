@@ -14,9 +14,9 @@ class MemberInline(admin.TabularInline):
 
 @admin.register(models.Organisation)
 class OrganisationAdmin(admin.ModelAdmin):
-    search_fields = ('name',)
+    search_fields = ('name', 'slug')
     list_display = (
-        'id', 'name'
+        'id', 'name', 'slug', 'site'
     )
     raw_id_fields = ('initiators',)
     inlines = [
@@ -29,3 +29,4 @@ class MemberAdmin(admin.ModelAdmin):
     list_display = (
         'id', '__str__', 'organisation', 'member'
     )
+    raw_id_fields = ('member',)
