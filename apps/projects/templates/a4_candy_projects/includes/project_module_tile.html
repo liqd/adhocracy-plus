@@ -5,7 +5,7 @@
     <a href="{{ module.get_absolute_url }}">
         <div class="participation-tile__type">
             <div class="participation-tile__content">
-                <h3 class="participation-tile__title">{{ module.name }}</h3>
+                <h3 class="participation-tile__title">{{ module.name|truncatechars:100 }}</h3>
                 <span class="participation-tile__item-count">
                     <i class="fas fa-comments" aria-hidden="true"></i>
                     {% get_num_entries module as num_entries %}
