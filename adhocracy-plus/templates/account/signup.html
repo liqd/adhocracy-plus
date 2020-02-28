@@ -30,7 +30,7 @@
         <div class="form-check">
           <label class="form-check__label">
             {{ form.terms_of_use_extra }}
-            {{ form.terms_of_use_extra.label}}
+            {{ form.terms_of_use_extra.label|safe}}
             </label>
             {{ form.terms_of_use.errors }}
         </div>
