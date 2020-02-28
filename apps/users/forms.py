@@ -4,7 +4,6 @@ from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
 from django.conf import settings
-from django.utils.safestring import mark_safe
 from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 from zeep import Client
@@ -67,10 +66,10 @@ class IgbceSignupForm(DefaultSignupForm):
                     'IG BCE can participate.')
     )
     terms_of_use_extra = forms.BooleanField(
-        label=mark_safe(_('I confirm that I have read and accepted the '
-                          '<a href="/info/ig-bce-datenschutz/" '
-                          'target="_blank">data protection policy</a> of IG '
-                          'BCE.'))
+        label=_('I confirm that I have read and accepted the '
+                '<a href="/info/ig-bce-datenschutz/" '
+                'target="_blank">data protection policy</a> of IG '
+                'BCE.')
     )
 
     def validateMemberNumberAndDate(self, member_number, birth_date):
@@ -113,7 +112,8 @@ class IgbceSignupForm(DefaultSignupForm):
             raise forms.ValidationError(
                 _('Unfortunately, the member number and / or date of birth '
                   'could not be linked to an active member account. Please '
-                  'check your input and try again.')
+                  'check your input and try again. If you still have '
+                  'problems, please contact "zukunftsgewerkschaft@igbce.de".')
             )
 
     def clean(self):
