@@ -8,8 +8,10 @@
     {% endif %}
 
     <div class="container position-relative">
-        <div class="main-header__brand">
-            {% include 'includes/header_logo_link.html' %}
+        <div class="row">
+            <div class="col-9 col-sm-8 col-md-6 col-lg-7 pt-1 main-header__brand">
+                {% include 'includes/header_logo_link.html' %}
+            </div>
         </div>
         <nav class="main-header__nav">
             {% if ORGANISATION.logo %}
