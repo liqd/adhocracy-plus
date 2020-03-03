@@ -121,6 +121,7 @@ MIDDLEWARE = (
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
     'django_cloudflare_push.middleware.push_middleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -476,3 +477,7 @@ A4_PROJECT_TOPICS = (
 )
 
 A4_ACTIONS_PHASE_ENDS_HOURS = 48
+
+# Disable CSP by default
+CSP_REPORT_ONLY = True
+CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'data:', 'blob:', '*']
