@@ -8,6 +8,7 @@ from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 from zeep import Client
 
+from apps.contrib.tasks import raise_background_error
 from apps.organisations.models import Member
 from apps.organisations.models import Organisation
 
@@ -88,25 +89,33 @@ class IgbceSignupForm(DefaultSignupForm):
                   '"zukunftsgewerkschaft@igbce.de".')
             )
 
-        client = Client('{}'.format(settings.IGBCE_NAV_URL))
-        parameters = "{};{}".format(member_number,
-                                    birth_date.strftime("%d.%m.%Y"))
-        connection_parameters = \
-            "ObjectID:0;SecurityID:{};SetSize:0;UnitopProxyVersion:2.0" \
-            .format(settings.IGBCE_NAV_SECURITYID)
-
-        response = client.service.SendRequest(
-            functionName="CALCONNECT_MemberNoBirthDate",
-            functionParameters=parameters,
-            filters="",
-            connectionParameters=connection_parameters
-        )
-
-        result_str = (xmltodict.parse(response)['Response']['ResponseData']
-                      ['Object']['CalConnectorResult'])
         result = False
-        if result_str == 'true':
-            result = True
+        try:
+            client = Client('{}'.format(settings.IGBCE_NAV_URL))
+            parameters = "{};{}".format(member_number,
+                                        birth_date.strftime("%d.%m.%Y"))
+            connection_parameters = \
+                "ObjectID:0;SecurityID:{};SetSize:0;UnitopProxyVersion:2.0" \
+                .format(settings.IGBCE_NAV_SECURITYID)
+
+            response = client.service.SendRequest(
+                functionName="CALCONNECT_MemberNoBirthDate",
+                functionParameters=parameters,
+                filters="",
+                connectionParameters=connection_parameters
+            )
+
+            result_str = (xmltodict.parse(response)['Response']['ResponseData']
+                          ['Object']['CalConnectorResult'])
+
+            if result_str == 'true':
+                result = True
+
+        except Exception as e:
+            raise_background_error(str(e))
+            raise forms.ValidationError(
+                _('Something is wrong with the setup - please try again later')
+            )
 
         if not result:
             raise forms.ValidationError(
