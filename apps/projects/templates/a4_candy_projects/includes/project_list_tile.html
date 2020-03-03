@@ -39,7 +39,7 @@
                 <span>{% trans 'more than 1 year remaining' %}</span>
                 {% endif %}
                 </span>
-                <a class="text-info" href="{{ project|project_url }}">{% trans 'JOIN IN' %}</a>
+                <a class="list-item__cta list-item__hover" href="{{ project|project_url }}">{% trans 'JOIN IN' %}</a>
             </div>
         </div>
         {% elif project.future_modules %}
