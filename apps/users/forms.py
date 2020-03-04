@@ -1,3 +1,5 @@
+import logging
+
 import xmltodict
 from allauth.account.forms import LoginForm
 from allauth.account.forms import SignupForm
@@ -8,9 +10,10 @@ from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 from zeep import Client
 
-from apps.contrib.tasks import raise_background_error
 from apps.organisations.models import Member
 from apps.organisations.models import Organisation
+
+logger = logging.getLogger(__name__)
 
 
 class DefaultLoginForm(LoginForm):
@@ -111,8 +114,8 @@ class IgbceSignupForm(DefaultSignupForm):
             if result_str == 'true':
                 result = True
 
-        except Exception as e:
-            raise_background_error(str(e))
+        except BaseException:
+            logger.exception("IGBCE API error")
             raise forms.ValidationError(
                 _('Something is wrong with the setup - please try again later')
             )
