@@ -77,7 +77,7 @@ class DeleteProjectEmail(Email):
         return []
 
     def get_organisation(self):
-        return self.object.organisation
+        return self.object['organisation']
 
     def get_receivers(self):
         return self.object['initiators']
