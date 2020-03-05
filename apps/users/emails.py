@@ -1,5 +1,7 @@
 from email.mime.image import MIMEImage
 
+from django.conf import settings
+
 from adhocracy4.emails import Email
 
 from .models import User
@@ -19,13 +21,15 @@ class EmailAplus(Email):
         return super().get_site()
 
     def get_languages(self, receiver):
-        res = []
-        try:
-            language = User.objects.get(email=receiver).language
-            res = [language, self.fallback_language]
-        except User.DoesNotExist:
-            res = super().get_languages(receiver)
-        return res
+        languages = super().get_languages(receiver)
+
+        if hasattr(settings, 'DEFAULT_USER_LANGUAGE_CODE'):
+            languages.insert(0, settings.DEFAULT_USER_LANGUAGE_CODE)
+
+        if User.objects.filter(email=receiver).exists():
+            languages.insert(0, User.objects.get(email=receiver).language)
+
+        return languages
 
     def get_context(self):
         context = super().get_context()
