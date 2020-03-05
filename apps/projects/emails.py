@@ -1,5 +1,6 @@
 from email.mime.image import MIMEImage
 
+from apps.organisations.models import Organisation
 from apps.projects import tasks
 from apps.users.emails import EmailAplus as Email
 
@@ -25,11 +26,6 @@ class InviteParticipantEmail(Email):
 
         return attachments
 
-    def get_context(self):
-        context = super().get_context()
-        context['organisation'] = self.object.project.organisation
-        return context
-
 
 class InviteModeratorEmail(Email):
     template_name = 'a4_candy_projects/emails/invite_moderator'
@@ -52,11 +48,6 @@ class InviteModeratorEmail(Email):
 
         return attachments
 
-    def get_context(self):
-        context = super().get_context()
-        context['organisation'] = self.object.project.organisation
-        return context
-
 
 class DeleteProjectEmail(Email):
     template_name = 'a4_candy_projects/emails/delete_project'
@@ -69,7 +60,7 @@ class DeleteProjectEmail(Email):
             'initiators': list(organisation.initiators.all()
                                .distinct()
                                .values_list('email', flat=True)),
-            'organisation': organisation.name
+            'organisation_id': organisation.id
         }
         tasks.send_async_no_object(
             cls.__module__, cls.__name__,
@@ -77,7 +68,7 @@ class DeleteProjectEmail(Email):
         return []
 
     def get_organisation(self):
-        return self.object['organisation']
+        return Organisation.objects.get(id=self.object['organisation_id'])
 
     def get_receivers(self):
         return self.object['initiators']
@@ -85,5 +76,4 @@ class DeleteProjectEmail(Email):
     def get_context(self):
         context = super().get_context()
         context['name'] = self.object['name']
-        context['organisation'] = self.object['organisation']
         return context
