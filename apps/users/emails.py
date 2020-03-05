@@ -24,3 +24,8 @@ class EmailAplus(Email):
         except User.DoesNotExist:
             res = super().get_languages(receiver)
         return res
+
+    def get_context(self):
+        context = super().get_context()
+        context['organisation'] = self.get_organisation()
+        return context
