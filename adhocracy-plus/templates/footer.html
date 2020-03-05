@@ -48,6 +48,11 @@
                             <a href="{{ pages.data_protection_policy.url }}" class="navi__link">{% trans 'Data protection policy' %}</a>
                         </li>
                         {% endif %}
+                        {% if pages.netiquette %}
+                        <li class="navi__item footer__link">
+                            <a href="{{ pages.data_protection_policy.url }}" class="navi__link">{% trans 'Netiquette' %}</a>
+                        </li>
+                        {% endif %}
                         {% if pages.contact %}
                         <li class="navi__item footer__link">
                             <a href="{{ pages.contact.url }}" class="navi__link">{% trans 'Contact' %}</a>
