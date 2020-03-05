@@ -1,5 +1,3 @@
-from email.mime.image import MIMEImage
-
 from apps.organisations.models import Organisation
 from apps.projects import tasks
 from apps.users.emails import EmailAplus as Email
@@ -14,18 +12,6 @@ class InviteParticipantEmail(Email):
     def get_receivers(self):
         return [self.object.email]
 
-    def get_attachments(self):
-        attachments = super().get_attachments()
-
-        organisation = self.object.project.organisation
-        if organisation and organisation.logo:
-            f = open(organisation.logo.path, 'rb')
-            logo = MIMEImage(f.read())
-            logo.add_header('Content-ID', '<{}>'.format('organisation_logo'))
-            attachments += [logo]
-
-        return attachments
-
 
 class InviteModeratorEmail(Email):
     template_name = 'a4_candy_projects/emails/invite_moderator'
@@ -35,18 +21,6 @@ class InviteModeratorEmail(Email):
 
     def get_receivers(self):
         return [self.object.email]
-
-    def get_attachments(self):
-        attachments = super().get_attachments()
-
-        organisation = self.object.project.organisation
-        if organisation and organisation.logo:
-            f = open(organisation.logo.path, 'rb')
-            logo = MIMEImage(f.read())
-            logo.add_header('Content-ID', '<{}>'.format('organisation_logo'))
-            attachments += [logo]
-
-        return attachments
 
 
 class DeleteProjectEmail(Email):

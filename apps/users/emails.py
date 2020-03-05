@@ -1,3 +1,5 @@
+from email.mime.image import MIMEImage
+
 from adhocracy4.emails import Email
 
 from .models import User
@@ -29,3 +31,15 @@ class EmailAplus(Email):
         context = super().get_context()
         context['organisation'] = self.get_organisation()
         return context
+
+    def get_attachments(self):
+        attachments = super().get_attachments()
+
+        organisation = self.get_organisation()
+        if organisation and organisation.logo:
+            f = open(organisation.logo.path, 'rb')
+            logo = MIMEImage(f.read())
+            logo.add_header('Content-ID', '<{}>'.format('organisation_logo'))
+            attachments += [logo]
+
+        return attachments
