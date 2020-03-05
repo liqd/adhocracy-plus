@@ -29,6 +29,12 @@ class ImportantPages(BaseSetting):
         null=True,
         blank=True,
         on_delete=models.SET_NULL)
+    netiquette = models.ForeignKey(
+        'wagtailcore.Page',
+        related_name='important_page_netiquette',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL)
     contact = models.ForeignKey(
         'wagtailcore.Page',
         related_name='important_page_contact',
@@ -45,6 +51,7 @@ class ImportantPages(BaseSetting):
         PageChooserPanel('terms_of_use'),
         PageChooserPanel('imprint'),
         PageChooserPanel('data_protection_policy'),
+        PageChooserPanel('netiquette'),
         PageChooserPanel('contact'),
         FieldPanel('donate_link'),
         FieldPanel('manual_link'),
