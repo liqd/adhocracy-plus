@@ -67,10 +67,7 @@ watch:
 
 .PHONY: background
 background:
-	trap 'kill %1; kill %2' KILL; \
-	npm run watch & \
-	$(VIRTUAL_ENV)/bin/python3 manage.py process_tasks & \
-	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8004
+	$(VIRTUAL_ENV)/bin/python3 manage.py process_tasks
 
 .PHONY: test
 test:
