@@ -23,6 +23,9 @@ class DefaultLoginForm(LoginForm):
         self.fields['login'].label = _('Username/e-mail')
         del self.fields['login'].widget.attrs['placeholder']
         del self.fields['password'].widget.attrs['placeholder']
+        self.fields['login'].widget.attrs['autocomplete'] = 'username'
+        self.fields['password'].widget.attrs['autocomplete'] = \
+            'current-password'
 
 
 class DefaultSignupForm(SignupForm):
@@ -46,6 +49,9 @@ class DefaultSignupForm(SignupForm):
         del self.fields['email'].widget.attrs['placeholder']
         del self.fields['password1'].widget.attrs['placeholder']
         del self.fields['password2'].widget.attrs['placeholder']
+        self.fields['email'].widget.attrs['autocomplete'] = 'username'
+        self.fields['password1'].widget.attrs['autocomplete'] = 'new-password'
+        self.fields['password2'].widget.attrs['autocomplete'] = 'new-password'
 
     def save(self, request):
         user = super().save(request)
