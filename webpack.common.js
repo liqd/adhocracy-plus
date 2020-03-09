@@ -158,7 +158,8 @@ module.exports = {
       tether: 'tether',
       Tether: 'tether',
       'window.Tether': 'tether',
-      timeago: 'timeago.js'
+      timeago: 'timeago.js',
+      Promise: ['es6-promise', 'Promise']
     }),
     new webpack.optimize.SplitChunksPlugin({
       name: 'vendor',
