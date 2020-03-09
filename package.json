@@ -28,6 +28,7 @@
     "copy-webpack-plugin": "5.1.1",
     "css-loader": "3.4.2",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
+    "es6-promise": "4.2.8",
     "feature-detect": "1.0.0",
     "file-loader": "5.1.0",
     "file-saver": "2.0.2",
@@ -78,7 +79,7 @@
     "build": "webpack --config webpack.dev.js --mode development",
     "watch": "webpack --config webpack.dev.js --watch --mode development"
   },
-  "browserslist": "defaults and not dead and >= 0.5%",
+  "browserslist": "defaults and not dead and >= 0.5%, ie >= 11",
   "husky": {
     "hooks": {
       "pre-commit": "make lint-quick"
