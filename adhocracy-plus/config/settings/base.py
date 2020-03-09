@@ -311,13 +311,13 @@ CKEDITOR_CONFIGS = {
 
 BLEACH_LIST = {
     'default' : {
-        'tags': ['p','strong','em','u','ol','li','ul','a','h2','h3','h4'],
+        'tags': ['p','strong','em','u','ol','li','ul','a','h1','h2','h3','h4'],
         'attributes': {
             'a': ['href', 'rel', 'target'],
         },
     },
     'image-editor': {
-        'tags': ['p','strong','em','u','ol','li','ul','a','img','h2','h3','h4'],
+        'tags': ['p','strong','em','u','ol','li','ul','a','img','h1','h2','h3','h4'],
         'attributes': {
             'a': ['href', 'rel', 'target'],
             'img': ['src', 'alt', 'style']
@@ -336,7 +336,7 @@ BLEACH_LIST = {
     },
     'collapsible-image-editor': {
         'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img',
-                 'div','h2','h3','h4'],
+                 'div','h1','h2','h3','h4'],
         'attributes': {
             'a': ['href', 'rel', 'target'],
             'img': ['src', 'alt', 'style'],
