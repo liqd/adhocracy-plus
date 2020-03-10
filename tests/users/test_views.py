@@ -58,7 +58,6 @@ def test_logout_with_next(user, client, logout_url):
 
 @pytest.mark.django_db
 def test_register(client, signup_url):
-    return
     assert EmailAddress.objects.count() == 0
     email = 'testuser@liqd.de'
     response = client.post(
@@ -68,6 +67,8 @@ def test_register(client, signup_url):
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
+            'captcha': 0,
+            'captcheck_selected_answer': 'test_pass',
             'get_newsletters': 'on'
         }
     )
@@ -96,7 +97,6 @@ def test_register(client, signup_url):
 
 @pytest.mark.django_db
 def test_register_with_next(client, signup_url):
-    return
     assert EmailAddress.objects.count() == 0
     email = 'testuser@liqd.de'
     response = client.post(
@@ -106,6 +106,8 @@ def test_register_with_next(client, signup_url):
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
+            'captcha': 0,
+            'captcheck_selected_answer': 'test_pass',
             'next': '/en/projects/pppp/',
         }
     )
@@ -133,14 +135,15 @@ def test_register_with_next(client, signup_url):
 
 @pytest.mark.django_db
 def test_reregister_same_username(client, signup_url):
-    return
     assert EmailAddress.objects.count() == 0
     data = {
         'username': 'testuser2',
         'email': 'testuser@liqd.de',
         'password1': 'password',
         'password2': 'password',
-        'terms_of_use': 'on'
+        'terms_of_use': 'on',
+        'captcha': 0,
+        'captcheck_selected_answer': 'test_pass',
     }
     response = client.post(signup_url, data)
     assert response.status_code == 302
@@ -152,7 +155,7 @@ def test_reregister_same_username(client, signup_url):
 
 
 @pytest.mark.django_db
-def test_register_invalid(client, signup_url):
+def test_register_invalid_no_matching_passwords(client, signup_url):
     username = 'testuser2'
     response = client.post(
         signup_url + '?next=/', {
@@ -160,7 +163,44 @@ def test_register_invalid(client, signup_url):
             'email': 'testuser@liqd.de',
             'password1': 'password',
             'password2': 'wrong_password',
-            'terms_of_use': 'on'
+            'terms_of_use': 'on',
+            'captcha': 0,
+            'captcheck_selected_answer': 'test_pass',
+        }
+    )
+    assert response.status_code == 200
+    assert models.User.objects.filter(username=username).count() == 0
+
+
+@pytest.mark.django_db
+def test_register_invalid_no_captcha(client, signup_url):
+    username = 'testuser2'
+    response = client.post(
+        signup_url + '?next=/', {
+            'username': username,
+            'email': 'testuser@liqd.de',
+            'password1': 'password',
+            'password2': 'password',
+            'terms_of_use': 'on',
+            'captcha': 0,
+        }
+    )
+    assert response.status_code == 200
+    assert models.User.objects.filter(username=username).count() == 0
+
+
+@pytest.mark.django_db
+def test_register_invalid_wrong_captcha(client, signup_url):
+    username = 'testuser2'
+    response = client.post(
+        signup_url + '?next=/', {
+            'username': username,
+            'email': 'testuser@liqd.de',
+            'password1': 'password',
+            'password2': 'password',
+            'terms_of_use': 'on',
+            'captcha': 0,
+            'captcheck_selected_answer': 'test_fail',
         }
     )
     assert response.status_code == 200
