@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n react_comments_async module_tags react_ratings wagtailcore_tags thumbnail %}
+{% load i18n react_comments_async_with_categories module_tags react_ratings wagtailcore_tags thumbnail %}
 
 {% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
 {% block content %}
@@ -21,7 +21,7 @@
                 <h1 class="item-detail__title">{{ object.name }}</h1>
                 <p class="item-detail__description">{{ object.description }}</p>
 
-                {% react_comments_async object True %}
+                {% react_comments_async_with_categories object %}
             </div>
         </div>
     </div>
