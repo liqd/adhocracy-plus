@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load react_polls react_comments %}
+{% load react_polls react_comments_async %}
 
 
 {% block phase_content %}
@@ -13,9 +13,12 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="container mt-5">
     <div class="row">
-        <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-            {% react_comments object %}
+        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+            {% react_comments_async object False %}
         </div>
     </div>
 </div>
