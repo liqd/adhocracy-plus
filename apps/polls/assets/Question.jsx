@@ -103,7 +103,7 @@ class Question extends React.Component {
       return (
         <button
           type="submit"
-          className="btn btn--primary"
+          className="btn btn-primary"
           disabled={disabled}
         >
           {django.gettext('Vote')}
@@ -111,7 +111,7 @@ class Question extends React.Component {
       )
     } else {
       return (
-        <a href={config.getLoginUrl()} className="btn btn--primary">
+        <a href={config.getLoginUrl()} className="btn btn-primary">
           {django.gettext('Please login to vote')}
         </a>
       )
@@ -133,8 +133,7 @@ class Question extends React.Component {
     let toggleShowResultButtonText
 
     if (this.state.showResult) {
-      showTotalOrVoteButton =
-        `${total} ${django.ngettext('vote', 'votes', total)}`
+      showTotalOrVoteButton = <span className="btn btn--none">{`${total} ${django.ngettext('vote', 'votes', total)}`}</span>
       toggleShowResultButtonText = django.gettext('To poll')
 
       if (this.state.selectedChoices.length !== 0) {
@@ -218,9 +217,9 @@ class Question extends React.Component {
 
         <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
         <div className="poll__actions">
-          {showTotalOrVoteButton}
-          &nbsp;
           {toggleShowResultButton}
+          &nbsp;
+          {showTotalOrVoteButton}
         </div>
       </form>
     )
