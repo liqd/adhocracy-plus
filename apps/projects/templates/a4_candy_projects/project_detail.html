@@ -160,6 +160,9 @@
             <div class="row">
                 <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                     <h2>{{ event.name }}</h2>
+                    <div class="phase-info__item__subtitle">
+                        {% html_date event.date 'DATETIME_FORMAT' %}
+                    </div>
                     <P>{{ event.description | safe}}</P>
                 </div>
             </div>
