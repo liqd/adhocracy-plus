@@ -1,6 +1,7 @@
 /* Adds extra select dropdown to choose predefined polygon instead of drawing one */
 
 /* global django */
+import 'bootstrap' // needed for $(...).modal(...)
 import { createMap } from 'a4maps_common'
 import 'leaflet-draw'
 import './i18n-leaflet-draw'
@@ -136,6 +137,7 @@ var init = function () {
               })
               this._addToMap(map, shape)
             } catch (e) {
+              console.log('Import error: ', e)
               this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
             }
           }, (e) => this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
@@ -154,6 +156,7 @@ var init = function () {
             })
             this._addToMap(map, shape)
           } catch (e) {
+            console.log('Import error: ', e)
             this._showUploadError(django.gettext('The uploaded file is not a valid geojson file.'))
           }
         }
@@ -165,6 +168,8 @@ var init = function () {
 
     _addToMap: function (map, shape) {
       $('#map-import-modal').modal('hide')
+      // work around boostrap backdrop bug
+      $('.modal-backdrop').remove()
 
       this._layer.clearLayers()
       shape.eachLayer((layer) => {
