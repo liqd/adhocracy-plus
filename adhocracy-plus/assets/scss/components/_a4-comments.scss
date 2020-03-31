@@ -1,15 +1,25 @@
 .a4-comments__commentbox__form,
 .a4-comments__child--list {
-    textarea {
-        width: 100%;
-        overflow: hidden;
-        min-height: 5px;
-        max-height: 400px;
-    }
-
     fieldset {
         margin-bottom: 0;
     }
+}
+
+.a4-comments__textarea--big,
+.a4-comments__textarea--small {
+    width: 100%;
+    overflow: hidden;
+    max-height: 400px;
+    min-height: 100px;
+}
+
+//comments and debate comments have different sized text boxes
+.a4-comments__textarea--big {
+    min-height: 100px;
+}
+
+.a4-comments__textarea--small {
+    min-height: 46px;
 }
 
 .a4-comments__comment {
