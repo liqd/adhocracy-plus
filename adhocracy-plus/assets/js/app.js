@@ -13,7 +13,6 @@ import '../../../apps/newsletters/assets/dynamic_fields.js'
 import {
   comments as ReactComments,
   comments_async as ReactCommentsAsync,
-  comments_async_with_categories as ReactCommentsWithCategories,
   ratings as ReactRatings,
   reports as ReactReports,
   follows as ReactFollows
@@ -38,7 +37,6 @@ var initialiseWidget = function (namespace, name, fn) {
 var init = function () {
   initialiseWidget('a4', 'comment', ReactComments.renderComment)
   initialiseWidget('a4', 'comment_async', ReactCommentsAsync.renderComment)
-  initialiseWidget('a4', 'comment_async_with_categories', ReactCommentsWithCategories.renderComment)
   initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
   initialiseWidget('a4', 'ratings', ReactRatings.renderRatings)
   initialiseWidget('a4', 'reports', ReactReports.renderReports)
