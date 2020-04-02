@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Settings" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% trans "Settings" %} &mdash; {{ block.super }}{% endblock %}
 
-{% block content %}
+{% block dashboard_content %}
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
@@ -26,7 +26,7 @@
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=form.instagram_handle %}
 
                 <div class="mb-3">
-                    <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
+                    <button type="submit" class="btn btn--primary">{% trans 'Save changes' %}</button>
                 </div>
             </form>
             {{ form.media }}

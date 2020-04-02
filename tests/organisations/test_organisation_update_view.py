@@ -9,7 +9,7 @@ from apps.organisations import models
 def test_initiator_can_update(client, organisation):
     initiator = organisation.initiators.first()
     client.login(username=initiator, password='password')
-    url = reverse('organisation-settings',
+    url = reverse('a4dashboard:organisation-settings',
                   kwargs={'organisation_slug': organisation.slug})
     response = client.get(url)
     assert response.status_code == 200
@@ -30,7 +30,7 @@ def test_initiator_can_update(client, organisation):
 @pytest.mark.django_db
 def test_user_cannot_update(client, organisation, user):
     client.login(username=user, password='password')
-    url = reverse('organisation-settings',
+    url = reverse('a4dashboard:organisation-settings',
                   kwargs={'organisation_slug': organisation.slug})
     response = client.get(url)
     assert response.status_code == 403
@@ -48,7 +48,7 @@ def test_moderator_cannot_update(client, project):
     organisation = project.organisation
     moderator = project.moderators.first()
     client.login(username=moderator, password='password')
-    url = reverse('organisation-settings',
+    url = reverse('a4dashboard:organisation-settings',
                   kwargs={'organisation_slug': organisation.slug})
     response = client.get(url)
     assert response.status_code == 403
@@ -65,7 +65,7 @@ def test_moderator_cannot_update(client, project):
 def test_member_cannot_update(client, member):
     organisation = member.organisation
     client.login(username=member.member, password='password')
-    url = reverse('organisation-settings',
+    url = reverse('a4dashboard:organisation-settings',
                   kwargs={'organisation_slug': organisation.slug})
     response = client.get(url)
     assert response.status_code == 403
