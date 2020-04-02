@@ -63,6 +63,10 @@
 
         {% block header %}
         {% include 'header.html' %}
+
+        {% if ORGANISATION %}
+            {% include 'header_lower.html' %}
+        {% endif %}
         {% endblock %}
 
         <main id="main" class="flex-fill">
@@ -89,6 +93,9 @@
 
         {% block before_footer %}{% endblock %}
         {% block footer %}
+        {% if ORGANISATION %}
+            {% include 'footer_upper.html' %}
+        {% endif %}
         {% include 'footer.html' %}
         {% endblock %}
 
