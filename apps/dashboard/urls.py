@@ -4,6 +4,7 @@ from django.conf.urls import url
 from adhocracy4.dashboard import components as a4dashboard_components
 from adhocracy4.dashboard import views as a4dashborad_views
 from apps.newsletters import views as newsletter_views
+from apps.organisations import views as organisation_views
 
 from . import views
 
@@ -20,6 +21,9 @@ urlpatterns = [
     url(r'^newsletters/create/$',
         newsletter_views.DashboardNewsletterCreateView.as_view(),
         name='newsletter-create'),
+    url(r'^settings/$',
+        organisation_views.DashboardOrganisationUpdateView.as_view(),
+        name='organisation-settings'),
 ]
 
 # a4 dashboard urls without organisation slug

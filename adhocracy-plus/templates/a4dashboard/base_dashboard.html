@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n rules wagtailsettings_tags %}
+{% get_settings %}
 
 {% block header %}
     {% include 'header_dashboard.html' %}
@@ -47,6 +48,13 @@
                class="tab {% ifequal view.menu_item 'newsletter' %}active{% endifequal %}">
                 {% trans 'Newsletter' %}
             </a>
+            {% has_perm 'a4_candy_organisations.change_organisation' request.user view.organisation as user_may_change_organisation %}
+            {% if user_may_change_organisation %}
+            <a href="{% url 'a4dashboard:organisation-settings' organisation_slug=view.organisation.slug %}"
+               class="tab {% ifequal view.menu_item 'organisation' %}active{% endifequal %}">
+                {% trans 'Organisation settings' %}
+            </a>
+            {% endif %}
         </nav>
     </div>
 </div>
