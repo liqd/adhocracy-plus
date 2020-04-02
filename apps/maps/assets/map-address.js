@@ -106,9 +106,7 @@ var renderPoints = function (points) {
   }
 }
 
-var init = function () {
-  var $ = window.jQuery
-
+function init () {
   $('[data-map="address"]').each(function (i, e) {
     var $group = $(e)
     var name = $group.data('name')
@@ -155,5 +153,5 @@ var init = function () {
   })
 }
 
-window.jQuery(init)
-window.jQuery(document).on('a4.embed.ready', init)
+document.addEventListener('DOMContentLoaded', init, false)
+document.addEventListener('a4.embed.ready', init, false)
