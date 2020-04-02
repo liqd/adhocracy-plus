@@ -23,7 +23,7 @@ help:
 	@echo "  make fixtures        -- load example data"
 	@echo "  make server          -- start a dev server"
 	@echo "  make watch           -- start a dev server and rebuild js and css files on changes"
-	@echo "  make background      -- start a dev server, rebuild js and css files on changes, and start background processes"
+	@echo "  make background      -- start background processes"
 	@echo "  make test            -- run all test cases with pytest"
 	@echo "  make test-lastfailed -- run test that failed last"
 	@echo "  make test-clean      -- test on new database"
