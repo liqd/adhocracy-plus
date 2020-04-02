@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules wagtailsettings_tags %}
-{% get_settings %}
+{% load i18n rules %}
 
 {% block header %}
     {% include 'header_dashboard.html' %}
@@ -8,6 +7,7 @@
 
 {% block content %}
 
+{% block dashboard_nav %}
 <div class="tablist tablist--right tablist--background">
     <div class="container">
         <div class="tablist__left dropdown">
@@ -58,6 +58,7 @@
         </nav>
     </div>
 </div>
+{% endblock %}
 
 <div class="container">
     {% block dashboard_content %}{% endblock %}
