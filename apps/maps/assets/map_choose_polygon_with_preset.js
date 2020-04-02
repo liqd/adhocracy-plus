@@ -19,8 +19,7 @@ function getBaseBounds (L, polygon, bbox) {
   }
 }
 
-var init = function () {
-  const $ = window.jQuery
+function init () {
   const L = window.L
 
   const ImportControl = L.Control.extend({
@@ -295,5 +294,5 @@ var init = function () {
   })
 }
 
-window.jQuery(init)
-window.jQuery(document).on('a4.embed.ready', init)
+document.addEventListener('DOMContentLoaded', init, false)
+document.addEventListener('a4.embed.ready', init, false)

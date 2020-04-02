@@ -23,7 +23,7 @@ import * as ReactPolls from '../../../apps/polls/assets/react_polls.jsx'
 import * as ReactQuestions from '../../../apps/questions/assets/react_questions.jsx'
 import * as ReactQuestionsPresent from '../../../apps/questions/assets/react_questions_present.jsx'
 
-var initialiseWidget = function (namespace, name, fn) {
+function initialiseWidget (namespace, name, fn) {
   var key = 'data-' + namespace + '-widget'
   var selector = '[' + key + '=' + name + ']'
   $(selector).each(function (i, el) {
@@ -34,7 +34,7 @@ var initialiseWidget = function (namespace, name, fn) {
   })
 }
 
-var init = function () {
+function init () {
   initialiseWidget('a4', 'comment', ReactComments.renderComment)
   initialiseWidget('a4', 'comment_async', ReactCommentsAsync.renderComment)
   initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
@@ -63,9 +63,8 @@ var init = function () {
   })
 }
 
-$(init)
-window.init_widgets = init
-$(document).on('a4.embed.ready', init)
+document.addEventListener('DOMContentLoaded', init, false)
+document.addEventListener('a4.embed.ready', init, false)
 
 // Closes bootstrap collapse on click elsewhere
 $(document).on('click', function () {
