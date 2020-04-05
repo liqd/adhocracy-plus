@@ -10,7 +10,7 @@ from .models import Organisation
 
 
 class OrganisationView(DetailView):
-    template_name = 'organisation_landing_page.html'
+    template_name = 'a4_candy_organisations/organisation_landing_page.html'
     model = Organisation
     slug_url_kwarg = 'organisation_slug'
 
@@ -36,13 +36,31 @@ class OrganisationView(DetailView):
 
 
 class InformationView(DetailView):
-    template_name = 'organisation_information.html'
+    template_name = 'a4_candy_organisations/organisation_information.html'
     model = Organisation
     slug_url_kwarg = 'organisation_slug'
 
 
 class ImprintView(DetailView):
-    template_name = 'organisation_imprint.html'
+    template_name = 'a4_candy_organisations/organisation_imprint.html'
+    model = Organisation
+    slug_url_kwarg = 'organisation_slug'
+
+
+class TermsOfUseView(DetailView):
+    template_name = 'a4_candy_organisations/organisation_terms_of_use.html'
+    model = Organisation
+    slug_url_kwarg = 'organisation_slug'
+
+
+class NetiquetteView(DetailView):
+    template_name = 'a4_candy_organisations/organisation_netiquette.html'
+    model = Organisation
+    slug_url_kwarg = 'organisation_slug'
+
+
+class DataProtectionView(DetailView):
+    template_name = 'a4_candy_organisations/organisation_data_protection.html'
     model = Organisation
     slug_url_kwarg = 'organisation_slug'
 
@@ -53,7 +71,7 @@ class DashboardOrganisationUpdateView(a4dashboard_mixins.DashboardBaseMixin,
     model = Organisation
     form_class = forms.OrganisationForm
     slug_url_kwarg = 'organisation_slug'
-    template_name = 'organisation_form.html'
+    template_name = 'a4_candy_organisations/organisation_form.html'
     success_message = _('Organisation successfully updated.')
     permission_required = 'a4_candy_organisations.change_organisation'
     menu_item = 'organisation'
