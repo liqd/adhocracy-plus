@@ -29,4 +29,13 @@ urlpatterns = [
             TemplateView.as_view(template_name='robots.txt',
                                  content_type="text/plain"),
             name="robots_file"),
+    re_path(r'^(?P<organisation_slug>[-\w_]+)/terms-of-use/$',
+            views.TermsOfUseView.as_view(),
+            name='organisation-terms-of-use'),
+    re_path(r'^(?P<organisation_slug>[-\w_]+)/netiquette/$',
+            views.NetiquetteView.as_view(),
+            name='organisation-netiquette'),
+    re_path(r'^(?P<organisation_slug>[-\w_]+)/data-protection/$',
+            views.DataProtectionView.as_view(),
+            name='organisation-data-protection'),
 ]
