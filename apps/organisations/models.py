@@ -28,13 +28,15 @@ class Organisation(models.Model):
         max_length=100,
         default='Organisation',
         help_text=_('The title of your organisation will be shown '
-                    'on the landing page. max. 100 characters')
+                    'on the landing page. max. 100 characters'),
+        blank=True
     )
     description = models.CharField(
         max_length=800,
         verbose_name=_('Short description of your organisation'),
         help_text=_('The description will be displayed on the '
-                    'landing page. max. 800 characters')
+                    'landing page. max. 800 characters'),
+        blank=True
     )
     logo = images_fields.ConfiguredImageField(
         'logo',
@@ -112,7 +114,23 @@ class Organisation(models.Model):
         verbose_name=_('Imprint'),
         help_text=_('Please provide all the legally '
                     'required information of your imprint. '
-                    'The imprint will be shown on a separate page.')
+                    'The imprint will be shown on a separate page.'),
+        blank=True
+    )
+    terms_of_use = RichTextField(
+        verbose_name=_('Terms of use'),
+        help_text=_('Please provide your terms of use.'),
+        blank=True
+    )
+    data_protection = RichTextField(
+        verbose_name=_('Data protection'),
+        help_text=_('Please provide your data protection information.'),
+        blank=True
+    )
+    netiquette = RichTextField(
+        verbose_name=_('Netiquette'),
+        help_text=_('Please provide your rules for online discussions.'),
+        blank=True
     )
     is_supporting = models.BooleanField(
         default=False,

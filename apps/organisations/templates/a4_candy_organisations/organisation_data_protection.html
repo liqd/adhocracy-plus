@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n wagtailcore_tags %}
+
+{% block title %}{% trans 'Data protection' %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+            <h1>{% trans 'Data protection' %}</h1>
+            {{ organisation.data_protection|richtext }}
+        </div>
+    </div>
+</div>
+{% endblock %}
