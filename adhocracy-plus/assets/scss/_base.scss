@@ -118,11 +118,11 @@ h6 {
 
 a {
     color: $link-color;
-}
+    text-decoration: underline;
 
-p {
-    a {
-        text-decoration: underline;
+    &:hover,
+    &:focus {
+        text-decoration: none;
     }
 }
 
