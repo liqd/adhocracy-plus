@@ -1,6 +1,6 @@
 {% load i18n %}
-<div class="upload-wrapper form-control-upload">
-    <div class="upload-wrapper__fields form-inline">
+<div class="upload-wrapper form-control-upload row">
+    <div class="upload-wrapper__fields form-inline col-sm-6 d-flex align-items-start">
         {{ file_input }}
         {{ text_input }}
         <div class="input-group-append">
@@ -19,7 +19,7 @@
         {% endif %}
         </div>
     </div>
-    <div class="form-{{ id }} upload-wrapper__preview">
+    <div class="form-{{ id }} upload-wrapper__preview col-sm-3">
         {{ checkbox_input }}
         <img id="{{ file_id }}"
              src="{% if has_image_set %}{{ file_url }}{% else %}data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs={% endif %}"
@@ -27,7 +27,7 @@
              alt=""
         >
     </div>
-    <div class="alert alert--info upload-wrapper__alert" role="alert">
+    <div class="alert alert--info upload-wrapper__alert col-12 mx-3" role="alert">
         {% trans 'Your image will be uploaded/removed once you save your changes at the end of this page.' %}
     </div>
 </div>
