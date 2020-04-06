@@ -24,6 +24,9 @@ urlpatterns = [
     url(r'^settings/$',
         organisation_views.DashboardOrganisationUpdateView.as_view(),
         name='organisation-settings'),
+    url(r'^settings/legal-information$',
+        organisation_views.DashboardLegalInformationUpdateView.as_view(),
+        name='organisation-legal-information'),
 ]
 
 # a4 dashboard urls without organisation slug
