@@ -1,0 +1,34 @@
+{% extends "a4dashboard/base_dashboard.html" %}
+{% load i18n rules wagtailsettings_tags %}
+{% get_settings %}
+
+{% block dashboard_content %}
+<div class="l-menu">
+    <nav class="l-menu__menu" aria-label="{% trans 'Organisation settings' %}">
+        <div class="dashboard-nav">
+            <div class="dashboard-nav__dropdown">
+                <div class="dashboard-nav__item">{% trans "Organisation settings" %}</div>
+            </div>
+            <ul class="dashboard-nav__pages">
+                <li class="dashboard-nav__page">
+                    <a href="{% url 'a4dashboard:organisation-settings' organisation_slug=view.organisation.slug %}"
+                        class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'organisation-settings' %}is-active{% endif %}">
+                        {% trans "General information" %}
+                    </a>
+                </li>
+                <li class="dashboard-nav__page">
+                    <a href="{% url 'a4dashboard:organisation-legal-information' organisation_slug=view.organisation.slug %}"
+                        class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'organisation-legal-information' %}is-active{% endif %}">
+                        {% trans "Legal information" %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="l-menu__content">
+        {% block organisation_form %}{% endblock %}
+    </div>
+</div>
+{% endblock %}
