@@ -13,9 +13,9 @@ label {
     border-radius: 0;
 }
 
-input,
 textarea,
-select {
+select,
+input {
     @extend %input-base;
     display: block;
     max-width: 100%;
@@ -49,6 +49,7 @@ input[type="radio"] {
     padding: 0;
     border: 0;
     box-shadow: none;
+    max-width: 13px;
 }
 
 div.cke_focus {
@@ -67,10 +68,6 @@ div.cke_focus {
 .django-ckeditor-widget {
     display: block !important;
     margin-bottom: $spacer;
-}
-
-.form-check {
-    padding-left: 0;
 }
 
 .form-check,
@@ -103,8 +100,6 @@ div.cke_focus {
 }
 
 .form-check__label {
-    padding-left: 1.25em;
-
     input {
         display: inline;
         width: auto;
