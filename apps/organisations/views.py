@@ -72,7 +72,26 @@ class DashboardOrganisationUpdateView(a4dashboard_mixins.DashboardBaseMixin,
     form_class = forms.OrganisationForm
     slug_url_kwarg = 'organisation_slug'
     template_name = 'a4_candy_organisations/organisation_form.html'
-    success_message = _('Organisation successfully updated.')
+    success_message = _('Organisation information successfully updated.')
+    permission_required = 'a4_candy_organisations.change_organisation'
+    menu_item = 'organisation'
+
+    def get_permission_object(self):
+        return self.organisation
+
+    def get_success_url(self):
+        return self.request.path
+
+
+class DashboardLegalInformationUpdateView(
+        a4dashboard_mixins.DashboardBaseMixin,
+        SuccessMessageMixin,
+        generic.UpdateView):
+    model = Organisation
+    form_class = forms.OrganisationLegalInformationForm
+    slug_url_kwarg = 'organisation_slug'
+    template_name = 'a4_candy_organisations/organisation_form_legal_info.html'
+    success_message = _('Legal information successfully updated.')
     permission_required = 'a4_candy_organisations.change_organisation'
     menu_item = 'organisation'
 
