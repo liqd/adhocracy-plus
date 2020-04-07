@@ -119,17 +119,24 @@ class Organisation(models.Model):
     )
     terms_of_use = RichTextField(
         verbose_name=_('Terms of use'),
-        help_text=_('Please provide your terms of use.'),
+        help_text=_('Please provide all the legally '
+                    'required information of your terms of use. '
+                    'The terms of use will be shown on a separate page.'),
         blank=True
     )
     data_protection = RichTextField(
-        verbose_name=_('Data protection'),
-        help_text=_('Please provide your data protection information.'),
+        verbose_name=_('Data protection policy'),
+        help_text=_('Please provide all the legally '
+                    'required information of your data protection. '
+                    'The data protection policy will be shown on a '
+                    'separate page.'),
         blank=True
     )
     netiquette = RichTextField(
         verbose_name=_('Netiquette'),
-        help_text=_('Please provide your rules for online discussions.'),
+        help_text=_('Please provide a netiquette for the participants. '
+                    'The netiquette helps improving the climate of '
+                    'online discussions and supports the moderation.'),
         blank=True
     )
     is_supporting = models.BooleanField(
