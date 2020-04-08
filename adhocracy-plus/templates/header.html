@@ -5,14 +5,20 @@
     <div class="u-page-ribbon--platform"></div>
 
     <div class="container position-relative">
-        <nav class="main-header__nav">
-            {% include 'includes/header_language_switch.html' %}
-            <div class="main-header__mobile-menu main-header__mobile-menu--platform collapse" id="main-header-collapse">
-                <div class="main-header__user">
-                    {% userindicator %}
+        <div class="row">
+            <div class="col-9 col-sm-8 col-md-6 col-lg-7 pt-1 main-header__brand">
+              <a href="/">
+                  <img src="/static/images/logo.svg" alt="Adhocracy+" class="main-header__brand-img" />
+              </a>        </div>
+            <nav class="main-header__nav">
+                {% include 'includes/header_language_switch.html' %}
+                <div class="main-header__mobile-menu main-header__mobile-menu--platform collapse" id="main-header-collapse">
+                    <div class="main-header__user">
+                        {% userindicator %}
+                    </div>
                 </div>
-            </div>
-            {% include 'includes/header_mobile_toggle.html' %}
-        </nav>
+                {% include 'includes/header_mobile_toggle.html' %}
+            </nav>
+        </div>
     </div>
 </header>
