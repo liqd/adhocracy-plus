@@ -1,11 +1,15 @@
 .container {
     position: relative;
     display: flow-root;
-    background-color: $body-bg;
 
     @media (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
         max-width: 100%;
     }
+}
+
+.container--base {
+    background-color: $body-bg;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.02), 0 2px 27px 0 rgba(0, 0, 0, 0.05);
 }
 
 .l-tiles-2,

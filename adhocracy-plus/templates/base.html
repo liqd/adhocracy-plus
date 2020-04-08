@@ -58,16 +58,16 @@
 </head>
 <body>
     {% wagtailuserbar %}
-    <div class="min-height__wrapper d-flex flex-column">
+    <div class="min-height__wrapper d-flex flex-column u-bg-light">
         <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
 
         {% block header %}
         {% include 'header.html' %}
         {% endblock %}
 
-        <main id="main" class="flex-fill u-bg-secondary">
-            <div class="container my-5">
-                {% if messages %}
+        <main id="main" class="flex-fill">
+            {% if messages %}
+            <div class="row">
                 <ul class="messages">
                     {% for message in messages %}
                     <li class="alert alert--{{ message.tags }}">
@@ -77,17 +77,14 @@
                     </li>
                     {% endfor %}
                 </ul>
-                {% endif %}
-
-                {% block extra_messages %}{% endblock %}
-
-                {% block super_content %}
-                    {% block content %}{% endblock %}
-                {% endblock %}
-                {% if ORGANISATION %}
-                    {% include 'footer_upper.html' %}
-                {% endif %}
             </div>
+            {% endif %}
+
+            {% block extra_messages %}{% endblock %}
+
+            {% block super_content %}
+                {% block content %}{% endblock %}
+            {% endblock %}
         </main>
 
         {% block before_footer %}{% endblock %}

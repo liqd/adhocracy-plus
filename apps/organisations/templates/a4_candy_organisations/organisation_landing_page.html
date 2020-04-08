@@ -22,17 +22,13 @@
 {% endblock %}
 
 {% block super_content %}
+<div class="container container--base my-4">
     <div class="hero-unit row" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});">
         {% if organisation.image_copyright %}
         <div class="header__copyright copyright">© {{ organisation.image_copyright }}</div>
         {% endif %}
+        {% include 'header_lower.html' %}
     </div>
-    <!-- {% if organisation.logo %}
-    <div class="organisation__logo-box">
-        <img src="{% thumbnail organisation.logo '0x160' %}" height="80" alt="{{ organisation.name }}" class="organisation__logo-img" />
-    </div>
-    {% endif %} -->
-    {% include 'header_lower.html' %}
 
     <div class="organisation-page__header">
         <div class="row">
@@ -97,4 +93,6 @@
         {% endif %}
     {% endif %}
     </div>
+    {% include 'footer_upper.html' %}
+</div>
 {% endblock %}

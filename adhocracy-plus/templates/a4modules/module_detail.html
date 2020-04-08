@@ -26,17 +26,20 @@
     {{ block.super }}
 
     {% if project.is_draft %}
-        <ul class="messages">
-            <li class="alert alert--warning" role="alert">
-                <div class="container">
-                    {% trans 'This project is in not published yet.' %}
-                </div>
-            </li>
-        </ul>
+        <div class="row">
+            <ul class="messages">
+                <li class="alert alert--warning" role="alert">
+                    <div class="container">
+                        {% trans 'This project is in not published yet.' %}
+                    </div>
+                </li>
+            </ul>
+        </div>
     {% endif %}
 {% endblock %}
 
 {% block content %}
+    <div class="container container--base my-4">
         {% block module_nav %}
         {% if module.is_in_module_cluster  %}
             <div class="my-5 d-flex justify-content-center justify-content-sm-end">
@@ -147,4 +150,6 @@
         </div>
     {% endif %}
     {% endblock %}
+    {% include 'footer_upper.html' %}
+</div>
 {% endblock %}

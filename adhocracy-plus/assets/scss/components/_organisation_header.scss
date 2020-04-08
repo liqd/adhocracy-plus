@@ -1,9 +1,22 @@
+.organisation-header__position {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.organisation-header__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
 .organisation-header__logo-box {
     display: inline-block;
-    position: relative;
-    top: -2.5*$spacer;
     padding: 0.5*$padding;
-    vertical-align: middle;
+    position: relative;
+    bottom: -3*$spacer;
 
     background-color: $body-bg;
     z-index: 1;
@@ -23,12 +36,9 @@
     width: auto;
 }
 
-.organisation-header__nav {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
+.organisation-header__nav-list {
+    position: relative;
+    bottom: -6*$spacer;
 }
 
 .organisation-header__nav-item {
@@ -69,5 +79,6 @@
 
     .organisation-header__nav-link:first-child {
         padding-left: 0;
+        text-decoration-line: none;
     }
 }
