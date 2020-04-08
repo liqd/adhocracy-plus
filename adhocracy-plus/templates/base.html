@@ -63,39 +63,35 @@
 
         {% block header %}
         {% include 'header.html' %}
-
-        {% if ORGANISATION %}
-            {% include 'header_lower.html' %}
-        {% endif %}
         {% endblock %}
 
-        <main id="main" class="flex-fill">
+        <main id="main" class="flex-fill u-bg-secondary">
+            <div class="container">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li class="alert alert--{{ message.tags }}">
+                        <div class="container">
+                            {{ message }}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
 
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li class="alert alert--{{ message.tags }}">
-                    <div class="container">
-                        {{ message }}
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+                {% block extra_messages %}{% endblock %}
 
-            {% block extra_messages %}{% endblock %}
-
-            {% block super_content %}
-                {% block content %}{% endblock %}
-            {% endblock %}
-
+                {% block super_content %}
+                    {% block content %}{% endblock %}
+                {% endblock %}
+                {% if ORGANISATION %}
+                    {% include 'footer_upper.html' %}
+                {% endif %}
+            </div>
         </main>
 
         {% block before_footer %}{% endblock %}
         {% block footer %}
-        {% if ORGANISATION %}
-            {% include 'footer_upper.html' %}
-        {% endif %}
         {% include 'footer.html' %}
         {% endblock %}
 
