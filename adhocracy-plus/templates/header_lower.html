@@ -1,22 +1,22 @@
 {% load userindicator static i18n thumbnail %}
 {% get_current_language as LANGUAGE_CODE %}
 
-<div class="position-relative">
-
-    <nav class="main-header__nav">
+<div class="row position-relative">
+    <div class="col-md-10 offset-md-1">
+    <nav class="organisation-header__nav">
         {% if ORGANISATION.logo %}
           {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
             <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}" class="organisation-header__logo-box" rel="home">
                 <img src="{% thumbnail ORGANISATION.logo '0x160' %}" height="80" alt="{{ ORGANISATION.name }}" class="organisation-header__logo-img" />
             </a>
         {% else %}
-          <div class="main-header__brand">
+          <div class="organisation-header__brand">
               {% include 'includes/header_logo_link.html' %}
           </div>
         {% endif %}
 
         <div class="main-header__mobile-menu collapse" id="main-header-collapse">
-            <ul class="organisation-header__nav">
+            <ul class="">
                 <li class="organisation-header__nav-item">
                     {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
                     <a href="{{ organisation_url }}" class="organisation-header__nav-link"><span class="{% if request.path == organisation_url %}is-active{% endif %}">{% trans 'Our projects' %}</span></a>

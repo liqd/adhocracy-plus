@@ -1,19 +1,25 @@
 .organisation-header__logo-box {
     display: inline-block;
-    margin: $spacer $spacer (-$spacer) 0;
+    position: relative;
+    top: -2.5*$spacer;
     padding: 0.5*$padding;
     vertical-align: middle;
 
     background-color: $body-bg;
     z-index: 1;
-    position: relative;
-
     box-shadow: 0 0 8px 0 $shadow;
 }
 
 .organisation-header__logo-img {
     display: block;
-    height: 3rem;
+    height: 5rem;
+    width: auto;
+}
+
+.organisation-header__brand-img {
+    padding-top: 0.5 * $padding;
+    display: block;
+    height: 2.5rem;
     width: auto;
 }
 
@@ -21,10 +27,13 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .organisation-header__nav-item {
     display: block;
+    line-height: 4rem;
 
     .is-active {
         padding-bottom: 0.1em;
@@ -39,14 +48,13 @@
 }
 
 @media screen and (min-width: $breakpoint) {
-    .organisation-header__logo-box {
-        padding: $padding;
-    }
+    // .organisation-header__logo-box {
+    //     padding: $padding;
+    // }
 
-    .organisation-header__nav {
-        line-height: 4em;
-        display: inline-block;
-    }
+    // .organisation-header__nav {
+    //     line-height: 4em;
+    // }
 
     .organisation-header__nav-item {
         display: inline;
