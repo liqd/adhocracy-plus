@@ -7,16 +7,7 @@
 
     text-align: center;
 
-    @media print {
-        padding-top: 0;
-    }
-}
-
-.project-header--image {
-    margin-bottom: 1em;
     min-height: $hero-height-mobile;
-    background-size: cover;
-    color: contrast-color(#000);
 
     @media (min-width: $breakpoint) {
         min-height: ($hero-height-mobile + $hero-height-secondary) / 2;
@@ -25,6 +16,16 @@
     @media (min-width: $breakpoint-md) {
         min-height: $hero-height-secondary;
     }
+
+    @media print {
+        padding-top: 0;
+    }
+}
+
+.project-header--image {
+    margin-bottom: 1em;
+    background-size: cover;
+    color: contrast-color(#000);
 
     &:before {
         content: "";

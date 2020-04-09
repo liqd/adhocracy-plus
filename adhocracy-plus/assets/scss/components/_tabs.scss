@@ -10,7 +10,7 @@
     border-bottom: 2px solid $brand-info;
     text-align: center;
     margin-bottom: $spacer * 2;
-    padding-top: 0.5em;
+    // padding-top: 0.5em;
 }
 
 .tab {
@@ -39,33 +39,55 @@
     }
 }
 
+// This element is meant to be in combination with tablist--{opposite}
+// It should contain elements with class .btn.btn--small
+
+// .tablist__right,
+// .tablist__left {
+//     font-size: $font-size-sm;
+//     // float: right;
+//
+//     &.dropdown {
+//         margin-bottom: 0;
+//     }
+// }
+
+// .tablist--left {
+//     text-align: left;
+// }
+
 .tablist--right {
     text-align: right;
 }
 
-.tablist--left {
-    text-align: left;
+.tablist__left {
+    float: left;
+}
+
+.tablist__overlap {
+    position: relative;
+    top: -6.8rem;
+    justify-content: end;
+    padding-bottom: 0;
+
+    .tab {
+        color: $text-color;
+    }
+}
+
+.project-header--image ~ .tablist__overlap {
+    .tab {
+        color: $white;
+
+        &.active {
+            color: $text-color;
+        }
+    }
 }
 
 .tablist--background {
     background-color: $bg-secondary;
-}
-
-// This element is meant to be in combination with tablist--{opposite}
-// It should contain elements with class .btn.btn--small
-
-.tablist__right,
-.tablist__left {
-    font-size: $font-size-sm;
-    float: right;
-
-    &.dropdown {
-        margin-bottom: 0;
-    }
-}
-
-.tablist__left {
-    float: left;
+    padding-top: $spacer;
 }
 
 .tablist--bg-secondary {
