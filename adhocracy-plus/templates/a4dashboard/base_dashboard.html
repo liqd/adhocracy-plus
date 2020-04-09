@@ -2,62 +2,60 @@
 {% load i18n rules %}
 
 {% block content %}
+<div class="container container--shadow">
+    {% block dashboard_nav %}
+    <div class="tablist tablist--right tablist--background">
+            <div class="tablist__left dropdown">
+                {% if view.other_organisations_of_user %}
+                    <button
+                            title="{% trans 'Organisations' %}"
+                            type="button"
+                            class="dropdown-toggle btn btn--none btn--small"
+                            data-toggle="dropdown"
+                            data-flip="false"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            id="organisation-selection"
+                    >
+                        {{ view.organisation.name }}
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="organisation-selection">
+                        {% for organisation in view.other_organisations_of_user %}
+                            <a
+                                class="dropdown-item"
+                                href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
+                                {{ organisation.name }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <span class="btn btn--none btn--small">{{ view.organisation.name }}</span>
+                {% endif %}
+            </div>
 
-{% block dashboard_nav %}
-<div class="tablist tablist--right tablist--background">
-    <div class="container">
-        <div class="tablist__left dropdown">
-            {% if view.other_organisations_of_user %}
-                <button
-                        title="{% trans 'Organisations' %}"
-                        type="button"
-                        class="dropdown-toggle btn btn--none btn--small"
-                        data-toggle="dropdown"
-                        data-flip="false"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        id="organisation-selection"
-                >
-                    {{ view.organisation.name }}
-                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="organisation-selection">
-                    {% for organisation in view.other_organisations_of_user %}
-                        <a
-                            class="dropdown-item"
-                            href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
-                            {{ organisation.name }}
-                        </a>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <span class="btn btn--none btn--small">{{ view.organisation.name }}</span>
-            {% endif %}
+            <nav aria-label="{% trans 'Dashboard' %}">
+                <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
+                   class="tab {% ifequal view.menu_item 'project' %}active{% endifequal %}">
+                    {% trans 'Participation projects' %}
+                </a>
+                <a href="{% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug %}"
+                   class="tab {% ifequal view.menu_item 'newsletter' %}active{% endifequal %}">
+                    {% trans 'Newsletter' %}
+                </a>
+                {% has_perm 'a4_candy_organisations.change_organisation' request.user view.organisation as user_may_change_organisation %}
+                {% if user_may_change_organisation %}
+                <a href="{% url 'a4dashboard:organisation-settings' organisation_slug=view.organisation.slug %}"
+                   class="tab {% ifequal view.menu_item 'organisation' %}active{% endifequal %}">
+                    {% trans 'Organisation settings' %}
+                </a>
+                {% endif %}
+            </nav>
         </div>
+    {% endblock %}
 
-        <nav aria-label="{% trans 'Dashboard' %}">
-            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
-               class="tab {% ifequal view.menu_item 'project' %}active{% endifequal %}">
-                {% trans 'Participation projects' %}
-            </a>
-            <a href="{% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug %}"
-               class="tab {% ifequal view.menu_item 'newsletter' %}active{% endifequal %}">
-                {% trans 'Newsletter' %}
-            </a>
-            {% has_perm 'a4_candy_organisations.change_organisation' request.user view.organisation as user_may_change_organisation %}
-            {% if user_may_change_organisation %}
-            <a href="{% url 'a4dashboard:organisation-settings' organisation_slug=view.organisation.slug %}"
-               class="tab {% ifequal view.menu_item 'organisation' %}active{% endifequal %}">
-                {% trans 'Organisation settings' %}
-            </a>
-            {% endif %}
-        </nav>
-    </div>
-</div>
-{% endblock %}
+        {% block dashboard_content %}{% endblock %}
 
-<div class="container">
-    {% block dashboard_content %}{% endblock %}
 </div>
 
 {% endblock %}

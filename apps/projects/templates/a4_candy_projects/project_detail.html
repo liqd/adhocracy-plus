@@ -22,6 +22,7 @@
 {% endblock %}
 
 {% block extra_messages %}
+<div class="container container--shadow my-4">
     {{ block.super }}
 
     {% if project.is_draft %}
@@ -38,7 +39,6 @@
 {% endblock %}
 
 {% block content %}
-<div class="container container--base my-4">
     <div class="project-header{% if project.image %} project-header--image{% endif %} row" style="{% if view.project.image %}
                    background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                    {% endif %}">

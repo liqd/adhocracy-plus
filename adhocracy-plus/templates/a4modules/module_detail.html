@@ -23,6 +23,8 @@
 {% endblock %}
 
 {% block extra_messages %}
+<div class="container container--shadow my-4">
+
     {{ block.super }}
 
     {% if project.is_draft %}
@@ -39,7 +41,6 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container container--base my-4">
         {% block module_nav %}
         {% if module.is_in_module_cluster  %}
             <div class="my-5 d-flex justify-content-center justify-content-sm-end">
