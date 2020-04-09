@@ -31,3 +31,4 @@ except NameError:
 
 BASE_URL = 'http://localhost:8004'
 CAPTCHA_URL = 'https://captcheck.netsyms.com/api.php'
+SITE_ID = 1
