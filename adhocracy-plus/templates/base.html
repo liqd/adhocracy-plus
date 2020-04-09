@@ -66,17 +66,18 @@
         {% endblock %}
 
         <main id="main" class="flex-fill">
-
             {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li class="alert alert--{{ message.tags }}">
-                    <div class="container">
-                        {{ message }}
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
+            <div class="row">
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li class="alert alert--{{ message.tags }}">
+                        <div class="container">
+                            {{ message }}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
             {% endif %}
 
             {% block extra_messages %}{% endblock %}
@@ -84,7 +85,6 @@
             {% block super_content %}
                 {% block content %}{% endblock %}
             {% endblock %}
-
         </main>
 
         {% block before_footer %}{% endblock %}
