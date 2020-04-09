@@ -1,30 +1,49 @@
-.organisation-header__logo-box {
-    display: inline-block;
-    margin: $spacer $spacer (-$spacer) 0;
-    padding: 0.5*$padding;
-    vertical-align: middle;
-
-    background-color: $body-bg;
-    z-index: 1;
-    position: relative;
-
-    box-shadow: 0 0 8px 0 $shadow;
-}
-
-.organisation-header__logo-img {
-    display: block;
-    height: 3rem;
-    width: auto;
+.organisation-header__position {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .organisation-header__nav {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.organisation-header__logo-box {
+    display: inline-block;
+    padding: 0.5*$padding;
+    position: relative;
+    bottom: -3*$spacer;
+
+    background-color: $body-bg;
+    z-index: 1;
+    box-shadow: 0 0 8px 0 $shadow;
+}
+
+.organisation-header__logo-img {
+    display: block;
+    height: 5rem;
+    width: auto;
+}
+
+.organisation-header__brand-img {
+    padding-top: 0.5 * $padding;
+    display: block;
+    height: 2.5rem;
+    width: auto;
+}
+
+.organisation-header__nav-list {
+    position: relative;
+    bottom: -6*$spacer;
 }
 
 .organisation-header__nav-item {
     display: block;
+    line-height: 4rem;
 
     .is-active {
         padding-bottom: 0.1em;
@@ -39,14 +58,13 @@
 }
 
 @media screen and (min-width: $breakpoint) {
-    .organisation-header__logo-box {
-        padding: $padding;
-    }
+    // .organisation-header__logo-box {
+    //     padding: $padding;
+    // }
 
-    .organisation-header__nav {
-        line-height: 4em;
-        display: inline-block;
-    }
+    // .organisation-header__nav {
+    //     line-height: 4em;
+    // }
 
     .organisation-header__nav-item {
         display: inline;
@@ -61,5 +79,6 @@
 
     .organisation-header__nav-link:first-child {
         padding-left: 0;
+        text-decoration-line: none;
     }
 }
