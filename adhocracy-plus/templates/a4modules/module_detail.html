@@ -23,21 +23,25 @@
 {% endblock %}
 
 {% block extra_messages %}
+<div class="u-bg-light py-4">
+<div class="container container--shadow">
+
     {{ block.super }}
 
     {% if project.is_draft %}
-        <ul class="messages">
-            <li class="alert alert--warning" role="alert">
-                <div class="container">
-                    {% trans 'This project is in not published yet.' %}
-                </div>
-            </li>
-        </ul>
+        <div class="row">
+            <ul class="messages">
+                <li class="alert alert--warning" role="alert">
+                    <div class="container">
+                        {% trans 'This project is in not published yet.' %}
+                    </div>
+                </li>
+            </ul>
+        </div>
     {% endif %}
 {% endblock %}
 
 {% block content %}
-    <div class="container">
         {% block module_nav %}
         {% if module.is_in_module_cluster  %}
             <div class="my-5 d-flex justify-content-center justify-content-sm-end">
@@ -121,23 +125,19 @@
                 {% endfor %}
             </div>
         </div>
-            {% endwith %}
-        {% endblock %}
+        {% endwith %}
+    {% endblock %}
 
-    </div>
     <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-                {% block project_action %}{% endblock %}
-                </div>
+        <div class="row">
+            <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+            {% block project_action %}{% endblock %}
             </div>
         </div>
-        {% block phase_content %}{% endblock %}
     </div>
+        {% block phase_content %}{% endblock %}
     {% block other_modules %}
     {% if module.is_in_module_cluster %}
-    <div class="container">
         <div class="participation-tile__wrapper">
             <div class="participation-tile__list-container">
                 <ul class="u-list-reset participation-tile__list">
@@ -150,7 +150,9 @@
                 </ul>
             </div>
         </div>
-    </div>
     {% endif %}
     {% endblock %}
+    {% include 'footer_upper.html' %}
+</div>
+</div>
 {% endblock %}
