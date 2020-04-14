@@ -1,26 +1,26 @@
-.main-header {
+.header-upper {
     min-height: 100px;
 }
 
-.main-header__brand {
+.header-upper__brand {
     font-size: $font-size-lg;
     line-height: inherit;
 }
 
-.main-header__brand-img {
+.header-upper__brand-img {
     padding-top: 0.5 * $padding;
     display: block;
     height: 2.5rem;
     width: auto;
 }
 
-.main-header__lang {
+.header-upper__lang {
     position: absolute;
     right: 50px;
     top: 0;
 }
 
-.main-header__mobile-menu {
+.header-upper__mobile-menu {
     border-bottom: 1px solid $body-bg;
 
     position: absolute;
@@ -48,12 +48,12 @@
     }
 }
 
-.main-header__mobile-menu--platform {
+.header-upper__mobile-menu--platform {
     background-color: $brand-secondary;
     color: contrast-color($brand-secondary);
 }
 
-.main-header__mobile-toggle {
+.header-upper__mobile-toggle {
     position: absolute;
     right: $padding;
     top: 0;
@@ -62,7 +62,7 @@
     font-weight: bold;
 }
 
-.main-header__mobile-toggle:after {
+.header-upper__mobile-toggle:after {
     font-family: "Font Awesome 5 Free", sans-serif;
     font-style: normal;
     font-weight: 900;
@@ -71,7 +71,7 @@
     font-size: $font-size-md;
 }
 
-.show ~ .main-header__mobile-toggle:after {
+.show ~ .header-upper__mobile-toggle:after {
     font-family: "Font Awesome 5 Free", sans-serif;
     font-style: normal;
     font-weight: 900;
@@ -79,33 +79,33 @@
     background-color: inherit;
 }
 
-.main-header__mobile-toggle--platform {
+.header-upper__mobile-toggle--platform {
     top: 1.5*$r-spacer;
 }
 
-.show + .main-header__mobile-toggle--platform {
+.show + .header-upper__mobile-toggle--platform {
     // use same color as used for hover styles
     // (defined in meinberlin's _button.scss)
     background-color: mix($brand-secondary, $body-bg, 50%);
 }
 
 @media screen and (min-width: $breakpoint-xs) {
-    .main-header__lang {
+    .header-upper__lang {
         right: 100px;
     }
 }
 
 @media screen and (min-width: $breakpoint) {
-    .main-header__brand-img {
+    .header-upper__brand-img {
         height: 3rem;
     }
 
-    .main-header__lang {
+    .header-upper__lang {
         right: 300px;
         top: 0.3*$r-spacer;
     }
 
-    .main-header__mobile-menu {
+    .header-upper__mobile-menu {
         padding: 0;
         border: 0;
         position: static;
@@ -115,22 +115,13 @@
         &.collapse {
             display: inline-block;
         }
-
-        .organisation-header__nav-link {
-            display: inline;
-
-            &:hover {
-                text-decoration: none;
-                color: $brand-primary;
-            }
-        }
     }
 
-    .main-header__mobile-toggle {
+    .header-upper__mobile-toggle {
         display: none;
     }
 
-    .main-header__user {
+    .header-upper__user {
         position: absolute;
         top: 0;
         right: 0;
@@ -138,14 +129,14 @@
 }
 
 @media screen and (min-width: $breakpoint-xl) {
-    .main-header__lang {
+    .header-upper__lang {
         right: 350px;
     }
 }
 
 // overwrite dropdown style on mobile
 @media screen and (max-width: $breakpoint-down) {
-    .main-header__user {
+    .header-upper__user {
         .dropdown {
             margin-bottom: 0;
         }
