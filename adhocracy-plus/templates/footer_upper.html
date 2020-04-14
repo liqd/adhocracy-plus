@@ -11,7 +11,7 @@
         <ul class="navbar-nav">
             <li class="nav-item">
               {% url 'organisation-imprint' organisation_slug=ORGANISATION.slug as organisation_imprint_url %}
-              <a href="{{ organisation_imprint_url }}" class="organisation-header__nav-link"><span class="{% if request.path == organisation_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>                    </li>
+              <a href="{{ organisation_imprint_url }}" class="header-lower__nav-link"><span class="{% if request.path == organisation_imprint_url %}is-active{% endif %}">{% trans 'Imprint' %}</span></a>                    </li>
         </ul>
     </nav>
 </div>
