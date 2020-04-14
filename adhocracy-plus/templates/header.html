@@ -1,19 +1,19 @@
 {% load userindicator static i18n thumbnail %}
 {% get_current_language as LANGUAGE_CODE %}
 
-<header class="main-header" aria-label="{% trans 'Header' %}">
+<header class="header-upper" aria-label="{% trans 'Header' %}">
     <div class="u-page-ribbon"></div>
 
     <div class="container position-relative">
         <div class="row">
-            <div class="col-9 col-sm-8 col-md-6 col-lg-7 pt-1 main-header__brand">
+            <div class="col-9 col-sm-8 col-md-6 col-lg-7 pt-1 header-upper__brand">
               <a href="/">
-                  <img src="/static/images/logo.svg" alt="Adhocracy+" class="main-header__brand-img" />
+                  <img src="/static/images/logo.svg" alt="Adhocracy+" class="header-upper__brand-img" />
               </a>        </div>
-            <nav class="main-header__nav">
+            <nav class="header-upper__nav">
                 {% include 'includes/header_language_switch.html' %}
-                <div class="main-header__mobile-menu main-header__mobile-menu--platform collapse" id="main-header-collapse">
-                    <div class="main-header__user">
+                <div class="header-upper__mobile-menu header-upper__mobile-menu--platform collapse" id="header-upper-collapse">
+                    <div class="header-upper__user">
                         {% userindicator %}
                     </div>
                 </div>

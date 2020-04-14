@@ -18,20 +18,18 @@
             {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
 
             {% if request.get_full_path == organisation_url or '/information' in request.get_full_path %}
-                <div class="main-header__mobile-menu collapse" id="main-header-collapse">
-                    <ul class="organisation-header__nav-list">
-                        <li class="organisation-header__nav-item">
-                            {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
-                            <a href="{{ organisation_url }}" class="organisation-header__nav-link"><span class="{% if request.path == organisation_url %}is-active{% endif %}">{% trans 'Our projects' %}</span></a>
-                        </li>
-                        {% if ORGANISATION.information %}
-                        <li class="organisation-header__nav-item">
-                            {% url 'organisation-information' organisation_slug=ORGANISATION.slug as organisation_information_url %}
-                            <a href="{{ organisation_information_url }}" class="organisation-header__nav-link"><span class="{% if request.path == organisation_information_url %}is-active{% endif %}">{% trans 'About' %}</span></a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
+                <ul class="organisation-header__nav-list">
+                    <li class="organisation-header__nav-item">
+                        {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
+                        <a href="{{ organisation_url }}" class="organisation-header__nav-link"><span class="{% if request.path == organisation_url %}is-active{% endif %}">{% trans 'Our projects' %}</span></a>
+                    </li>
+                    {% if ORGANISATION.information %}
+                    <li class="organisation-header__nav-item">
+                        {% url 'organisation-information' organisation_slug=ORGANISATION.slug as organisation_information_url %}
+                        <a href="{{ organisation_information_url }}" class="organisation-header__nav-link"><span class="{% if request.path == organisation_information_url %}is-active{% endif %}">{% trans 'About' %}</span></a>
+                    </li>
+                    {% endif %}
+                </ul>
             {% endif %}
         </nav>
     </div>
