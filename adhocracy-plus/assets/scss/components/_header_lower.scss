@@ -1,10 +1,10 @@
-.organisation-header__position {
+.header-lower__position {
     position: absolute;
     bottom: 0;
     width: 100%;
 }
 
-.organisation-header__nav {
+.header-lower__nav {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -12,7 +12,7 @@
     justify-content: space-between;
 }
 
-.organisation-header__logo-box {
+.header-lower__logo-box {
     display: inline-block;
     padding: 0.5*$padding;
     position: relative;
@@ -23,25 +23,25 @@
     box-shadow: 0 0 8px 0 $shadow;
 }
 
-.organisation-header__logo-img {
+.header-lower__logo-img {
     display: block;
     height: 5rem;
     width: auto;
 }
 
-.organisation-header__brand-img {
+.header-lower__brand-img {
     padding-top: 0.5 * $padding;
     display: block;
     height: 2.5rem;
     width: auto;
 }
 
-.organisation-header__nav-list {
+.header-lower__nav-list {
     position: relative;
     bottom: -6*$spacer;
 }
 
-.organisation-header__nav-item {
+.header-lower__nav-item {
     display: block;
     line-height: 4rem;
 
@@ -58,7 +58,7 @@
     }
 }
 
-// .organisation-header__nav-link {
+// .header-lower__nav-link {
 //     display: inline;
 //
 //     &:hover {
@@ -67,15 +67,15 @@
 // }
 
 @media screen and (min-width: $breakpoint) {
-    // .organisation-header__logo-box {
+    // .header-lower__logo-box {
     //     padding: $padding;
     // }
 
-    // .organisation-header__nav {
+    // .header-lower__nav {
     //     line-height: 4em;
     // }
 
-    .organisation-header__nav-item {
+    .header-lower__nav-item {
         display: inline;
         margin-right: $spacer;
 
@@ -86,7 +86,7 @@
         }
     }
 
-    .organisation-header__nav-link:first-child {
+    .header-lower__nav-link:first-child {
         padding-left: 0;
         text-decoration-line: none;
     }
