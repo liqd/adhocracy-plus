@@ -4,6 +4,7 @@
     justify-content: center;
     padding: 1.3em 0;
     position: relative;
+    margin-bottom: 1em;
 
     text-align: center;
 
@@ -22,8 +23,30 @@
     }
 }
 
+.project-header__tabs {
+    position: absolute;
+    left: $spacer;
+    right: $spacer;
+    bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 0 !important;
+    z-index: 1;
+    justify-content: end;
+
+    .tab {
+        color: $white;
+
+        &.active {
+            color: $text-color;
+        }
+    }
+}
+
+@media print {
+    padding-top: 0;
+}
+
 .project-header--image {
-    margin-bottom: 1em;
     background-size: cover;
     color: contrast-color(#000);
 

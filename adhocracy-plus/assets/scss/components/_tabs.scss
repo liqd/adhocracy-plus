@@ -64,27 +64,6 @@
     float: left;
 }
 
-.tablist__overlap {
-    position: relative;
-    top: -6.8rem;
-    justify-content: end;
-    padding-bottom: 0;
-
-    .tab {
-        color: $text-color;
-    }
-}
-
-.project-header--image ~ .tablist__overlap {
-    .tab {
-        color: $white;
-
-        &.active {
-            color: $text-color;
-        }
-    }
-}
-
 .tablist--background {
     background-color: $bg-secondary;
     padding-top: $spacer;

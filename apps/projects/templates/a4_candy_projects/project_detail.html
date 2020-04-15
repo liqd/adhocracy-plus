@@ -44,7 +44,7 @@
                    background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                    {% endif %}">
         <div class="container">
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                     {% with container=project.containers.first %}
                         {% if container %}
@@ -65,6 +65,41 @@
         {% if project.image_copyright %}
         <div class="header__copyright copyright">© {{ project.image_copyright }}</div>
         {% endif %}
+        <div class="tablist project-header__tabs row">
+            <nav class="nav d-none d-md-inline-block" role="tablist">
+                <a
+                    id="tab-project-{{ project.pk }}-information"
+                    class="tab"
+                    data-toggle="tab"
+                    href="#tabpanel-project-{{ project.pk }}-information"
+                    role="tab"
+                    aria-controls="tabpanel-project-{{ project.pk }}-information"
+                    aria-expanded="false">
+                    {% trans 'Information' %}
+                </a>
+                <a
+                    id="tab-project-{{ project.pk }}-participation"
+                    class="tab active"
+                    data-toggle="tab"
+                    href="#tabpanel-project-{{ project.pk }}-participation"
+                    role="tab"
+                    aria-controls="tabpanel-project-{{ project.pk }}-participation"
+                    aria-expanded="true">
+                    {% trans 'Participation' %}
+                </a>
+                <a
+                    id="tab-project-{{ project.pk }}-result"
+                    class="tab"
+                    data-toggle="tab"
+                    href="#tabpanel-project-{{ project.pk }}-result"
+                    role="tab"
+                    aria-controls="tabpanel-project-{{ project.pk }}-result"
+                    aria-expanded="false">
+                    {% trans 'Result' %}
+                </a>
+            </nav>
+            {% include 'includes/project_header_mobile_toggle.html' %}
+        </div>
         {% include 'header_lower.html' %}
     </div>
 
@@ -74,41 +109,6 @@
         <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
     </div>
     {% endif %}
-
-    <div class="tablist tablist__overlap row">
-        <nav class="nav" role="tablist">
-            <a
-                id="tab-project-{{ project.pk }}-information"
-                class="tab"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-information"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-information"
-                aria-expanded="false">
-                {% trans 'Information' %}
-            </a>
-            <a
-                id="tab-project-{{ project.pk }}-participation"
-                class="tab active"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-participation"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-participation"
-                aria-expanded="true">
-                {% trans 'Participation' %}
-            </a>
-            <a
-                id="tab-project-{{ project.pk }}-result"
-                class="tab"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-result"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-result"
-                aria-expanded="false">
-                {% trans 'Result' %}
-            </a>
-        </nav>
-    </div>
 
     <div
         class="tabpanel"
