@@ -1,5 +1,10 @@
 {% load userindicator static i18n thumbnail %}
 
-<button class="btn header-upper__mobile-toggle {% if ORGANISATION %}btn--bg-tertiary{% else %}btn--secondary-filled{% endif %} btn--square btn--small btn--attached-top" data-toggle="collapse" data-target="#header-upper-collapse" aria-expanded="false" aria-controls="header-upper-collapse">
+<button
+    class="btn header-upper__mobile-toggle {% if ORGANISATION %}btn--bg-tertiary{% else %}btn--secondary-filled{% endif %} btn--square btn--small btn--attached-top"
+    data-toggle="collapse"
+    data-target="#header-upper-collapse"
+    aria-expanded="false"
+    aria-controls="header-upper-collapse">
     <span class="d-none d-sm-inline-block">{% trans 'Menu' %}</span>
 </button>

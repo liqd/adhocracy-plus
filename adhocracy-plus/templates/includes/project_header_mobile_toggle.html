@@ -1,0 +1,45 @@
+{% load userindicator static i18n thumbnail %}
+
+    <ul class="nav d-inline-block d-md-none" role="tablist">
+        <li class="nav-item dropdown">
+          <a
+              class="nav-link dropdown-toggle tab active mr-2"
+              data-toggle="dropdown"
+              href="#"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false">
+              {% trans 'Project' %}
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+              <a
+                  class="dropdown-item"
+                  id="tab-project-{{ project.pk }}-information"
+                  href="#tabpanel-project-{{ project.pk }}-information"
+                  aria-controls="tabpanel-project-{{ project.pk }}-information"
+                  aria-expanded="false"
+                  data-toggle="tab">
+                  {% trans 'Information' %}
+              </a>
+              <a
+                  class="dropdown-item"
+                  id="tab-project-{{ project.pk }}-participation"
+                  href="#tabpanel-project-{{ project.pk }}-participation"
+                  aria-controls="tabpanel-project-{{ project.pk }}-participation"
+                  aria-expanded="true"
+                  data-toggle="tab">
+                  {% trans 'Participation' %}
+              </a>
+              <a
+                  class="dropdown-item"
+                  href="#tabpanel-project-{{ project.pk }}-result"
+                  id="tab-project-{{ project.pk }}-result"
+                  aria-controls="tabpanel-project-{{ project.pk }}-result"
+                  aria-expanded="false"
+                  data-toggle="tab">
+                  {% trans 'Result' %}
+              </a>
+          </div>
+        </li>
+    </ul>

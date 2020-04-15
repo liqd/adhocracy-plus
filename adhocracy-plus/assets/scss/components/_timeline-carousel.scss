@@ -38,8 +38,8 @@ $timeline-carousel__top-space: 12px;
 
 .timeline-carousel__line {
     position: absolute;
-    width: 100%;
-    left: 0;
+    left: $spacer;
+    right: $spacer;
     top: $timeline-carousel__top-space;
     border-top: 1px dotted $border-color;
 }
