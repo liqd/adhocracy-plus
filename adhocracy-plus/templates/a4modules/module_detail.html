@@ -24,135 +24,162 @@
 
 {% block extra_messages %}
 <div class="u-bg-light py-4">
-<div class="container container--shadow">
+    <div class="container container--shadow">
 
-    {{ block.super }}
+        {{ block.super }}
 
-    {% if project.is_draft %}
-        <div class="row">
-            <ul class="messages">
-                <li class="alert alert--warning" role="alert">
-                    <div class="container">
-                        {% trans 'This project is in not published yet.' %}
+        {% if project.is_draft %}
+            <div class="row">
+                <ul class="messages">
+                    <li class="alert alert--warning" role="alert">
+                        <div class="container">
+                            {% trans 'This project is in not published yet.' %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block content %}
+        <div class="project-header{% if project.image %} project-header--image{% endif %} row" style="{% if view.project.image %}
+                       background-image: url({{ project.image |thumbnail_url:'heroimage' }});
+                       {% endif %}">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+                        {% with container=project.containers.first %}
+                            {% if container %}
+                                <a href="{{ container.get_absolute_url }}" class="project-header__link" data-embed-target="external">
+                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                    {% blocktrans with name=container.name %}to project collection {{ name }}{% endblocktrans %}
+                                </a>
+                            {% endif %}
+                        {% endwith %}
+                        <h1 class="project-header__title">{{ project.name }}</h1>
+                        <p class="project-header__description">{{ project.description }}</p>
+                        {% if request.user.is_authenticated %}
+                            {% react_follows project %}
+                        {% endif %}
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
+            {% if project.image_copyright %}
+            <div class="header__copyright copyright">© {{ project.image_copyright }}</div>
+            {% endif %}
+            {% include 'header_lower.html' %}
         </div>
-    {% endif %}
-{% endblock %}
+            {% block module_nav %}
+            {% if module.is_in_module_cluster  %}
+                <div class="my-5 d-flex justify-content-center justify-content-sm-end">
+                {% if module.previous_module_in_cluster %}
+                    <a class="btn btn--light text-muted" href="{{ module.previous_module_in_cluster.get_absolute_url }}">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        <span>{% trans 'Previous' %}</span>
+                    </a>
+                {% endif %}
+                    <span class="my-2 mx-3">{{ module.readable_index_in_cluster }} {% trans 'of' %} {{ module.module_cluster|length }}</span>
+                {% if module.next_module_in_cluster %}
+                    <a class="btn btn--light text-muted" href="{{ module.next_module_in_cluster.get_absolute_url }}">
+                        <span>{% trans 'Next' %}</span>
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                {% endif %}
+                </div>
+            {% endif %}
+            {% endblock %}
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
+                        <ul>
+                            <li>
+                                <a href="{{ project.get_absolute_url }}">
+                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                    {{ project.name }}
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    {% block module_description %}
+                    <h1 class="project-header__title">{{ module.name }}</h1>
+                    <p class="project-header__description">{{ module.description }}</p>
+                    {% endblock %}
 
-{% block content %}
-        {% block module_nav %}
-        {% if module.is_in_module_cluster  %}
-            <div class="my-5 d-flex justify-content-center justify-content-sm-end">
-            {% if module.previous_module_in_cluster %}
-                <a class="btn btn--light text-muted" href="{{ module.previous_module_in_cluster.get_absolute_url }}">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                    <span>{% trans 'Previous' %}</span>
-                </a>
+                </div>
+            </div>
+            {% block phase_info %}
+            {% if not module.active_phase %}
+            <div class="row">
+                <div class="col-md-8 offset-md-2 mb-3">
+                    <strong>
+                        {% trans 'Participation is not possible at the moment.' %}
+                        {% if not module.past_phases %}
+                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                            {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                        {% elif module.future_phases %}
+                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                            {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                        {% else %}
+                            {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
+                            {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                        {% endif %}
+                    </strong>
+                </div>
+            </div>
             {% endif %}
-                <span class="my-2 mx-3">{{ module.readable_index_in_cluster }} {% trans 'of' %} {{ module.module_cluster|length }}</span>
-            {% if module.next_module_in_cluster %}
-                <a class="btn btn--light text-muted" href="{{ module.next_module_in_cluster.get_absolute_url }}">
-                    <span>{% trans 'Next' %}</span>
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-            {% endif %}
+            {% with phase_count=module.phases.count %}
+            <div class="row">
+                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                    {% for phase in module.phases %}
+                        {% if phase.is_over or phase == module.active_phase %}
+                        <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
+                            <div class="font-weight-bold{% if phase == module.active_phase %} lr-bar{% endif %}">
+                                {% if phase == module.active_phase %}
+                                    <span class="lr-bar__left">{{ phase.name }}</span>
+                                    <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
+                                {% else %}
+                                    {{ phase.name }}
+                                {% endif %}
+                            </div>
+                            <div class="phase-info__item__subtitle">
+                                {% html_date phase.start_date 'DATETIME_FORMAT' %}
+                                &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
+                            </div>
+                            <div class="phase-info__item__description">
+                                {{ phase.description }}
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endwith %}
+        {% endblock %}
+
+        <div>
+            <div class="row">
+                <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+                {% block project_action %}{% endblock %}
+                </div>
+            </div>
+        </div>
+            {% block phase_content %}{% endblock %}
+        {% block other_modules %}
+        {% if module.is_in_module_cluster %}
+            <div class="participation-tile__wrapper">
+                <div class="participation-tile__list-container">
+                    <ul class="u-list-reset participation-tile__list">
+                        <h3 class="participation-tile__list-header">{%  trans 'More questions from this online participation' %}</h3>
+                        {% for other_module in module.module_cluster %}
+                            {% if not other_module == module %}
+                                {% include "a4_candy_projects/includes/project_module_tile.html" with project=project module=other_module %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         {% endif %}
         {% endblock %}
-        <div class="row">
-            <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3 project-header">
-                <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
-                    <ul>
-                        <li>
-                            <a href="{{ project.get_absolute_url }}">
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                {{ project.name }}
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                {% block module_description %}
-                <h1 class="project-header__title">{{ module.name }}</h1>
-                <p class="project-header__description">{{ module.description }}</p>
-                {% endblock %}
-
-            </div>
-        </div>
-        {% block phase_info %}
-        {% if not module.active_phase %}
-        <div class="row">
-            <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3 mb-3">
-                <strong>
-                    {% trans 'Participation is not possible at the moment.' %}
-                    {% if not module.past_phases %}
-                        {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                        {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
-                    {% elif module.future_phases %}
-                        {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                        {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
-                    {% else %}
-                        {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
-                        {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
-                    {% endif %}
-                </strong>
-            </div>
-        </div>
-        {% endif %}
-        {% with phase_count=module.phases.count %}
-        <div class="row">
-            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                {% for phase in module.phases %}
-                    {% if phase.is_over or phase == module.active_phase %}
-                    <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
-                        <div class="font-weight-bold{% if phase == module.active_phase %} lr-bar{% endif %}">
-                            {% if phase == module.active_phase %}
-                                <span class="lr-bar__left">{{ phase.name }}</span>
-                                <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
-                            {% else %}
-                                {{ phase.name }}
-                            {% endif %}
-                        </div>
-                        <div class="phase-info__item__subtitle">
-                            {% html_date phase.start_date 'DATETIME_FORMAT' %}
-                            &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
-                        </div>
-                        <div class="phase-info__item__description">
-                            {{ phase.description }}
-                        </div>
-                    </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-        {% endwith %}
-    {% endblock %}
-
-    <div>
-        <div class="row">
-            <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-            {% block project_action %}{% endblock %}
-            </div>
-        </div>
+        {% include 'footer_upper.html' %}
     </div>
-        {% block phase_content %}{% endblock %}
-    {% block other_modules %}
-    {% if module.is_in_module_cluster %}
-        <div class="participation-tile__wrapper">
-            <div class="participation-tile__list-container">
-                <ul class="u-list-reset participation-tile__list">
-                    <h3 class="participation-tile__list-header">{%  trans 'More questions from this online participation' %}</h3>
-                    {% for other_module in module.module_cluster %}
-                        {% if not other_module == module %}
-                            {% include "a4_candy_projects/includes/project_module_tile.html" with project=project module=other_module %}
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    {% endif %}
-    {% endblock %}
-    {% include 'footer_upper.html' %}
-</div>
 </div>
 {% endblock %}
