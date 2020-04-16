@@ -42,7 +42,8 @@
 }
 
 .header-lower__nav-item {
-    display: block;
+    display: inline;
+    margin-right: $spacer;
     line-height: 4rem;
 
     .is-active {
@@ -58,36 +59,14 @@
     }
 }
 
-// .header-lower__nav-link {
-//     display: inline;
-//
-//     &:hover {
-//         color: $brand-primary;
-//     }
-// }
+.header-lower__nav-link {
+    display: inline;
 
-@media screen and (min-width: $breakpoint) {
-    // .header-lower__logo-box {
-    //     padding: $padding;
-    // }
-
-    // .header-lower__nav {
-    //     line-height: 4em;
-    // }
-
-    .header-lower__nav-item {
-        display: inline;
-        margin-right: $spacer;
-
-        a,
-        button {
-            border-bottom: inherit;
-            font-weight: inherit;
-        }
+    &:hover {
+        color: $brand-primary;
     }
+}
 
-    .header-lower__nav-link:first-child {
-        padding-left: 0;
-        text-decoration-line: none;
-    }
+.header-lower__nav-link:first-child {
+    padding-left: 0;
 }
