@@ -32,14 +32,6 @@
     margin-bottom: 0 !important;
     z-index: 1;
     justify-content: end;
-
-    .tab {
-        color: $white;
-
-        &.active {
-            color: $text-color;
-        }
-    }
 }
 
 @media print {
@@ -68,6 +60,19 @@
 
         &:before {
             content: none;
+        }
+    }
+
+    .tab {
+        color: $white;
+
+        &:focus,
+        &:hover {
+            color: $white;
+        }
+
+        &.active {
+            color: $text-color;
         }
     }
 }
