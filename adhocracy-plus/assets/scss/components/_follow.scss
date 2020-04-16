@@ -5,7 +5,11 @@
 }
 
 //nasty overwrite, needs to be changed in a4
-.follow > .btn--light {
-    color: $white;
-    background-color: transparent;
+.project-header--image {
+    .follow > .btn--light,
+    .follow > .btn--secondary {
+        color: $white;
+        background-color: transparent;
+        border: 1px solid $border-color;
+    }
 }
