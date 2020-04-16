@@ -1,11 +1,22 @@
 {% extends "base.html" %}
-{% load i18n rules %}
+{% load i18n rules thumbnail %}
 
 {% block content %}
     {% block dashboard_nav %}
     <div class="tablist tablist--right tablist--background">
         <div class="container">
-            <div class="tablist__left dropdown">
+        <div class="tablist__left d-flex">
+            {% if ORGANISATION.logo %}
+              {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
+                <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}" rel="home">
+                    <img src="{% thumbnail ORGANISATION.logo '0x160' %}" height="80" alt="{{ ORGANISATION.name }}" class="dashboard-nav__logo" />
+                </a>
+            {% else %}
+              <div class="dashboard-nav__logo-link">
+                  {% include 'includes/header_logo_link.html' %}
+              </div>
+            {% endif %}
+            <div class="dropdown">
                 {% if view.other_organisations_of_user %}
                     <button
                             title="{% trans 'Organisations' %}"
@@ -33,6 +44,7 @@
                     <span class="btn btn--none btn--small">{{ view.organisation.name }}</span>
                 {% endif %}
             </div>
+          </div>
 
             <nav aria-label="{% trans 'Dashboard' %}">
                 <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
