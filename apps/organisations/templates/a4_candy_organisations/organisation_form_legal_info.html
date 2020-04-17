@@ -12,10 +12,10 @@
             <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
                 {% csrf_token %}
                 <h2>{{ object.name }}</h2>
-                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.imprint %}
-                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.terms_of_use %}
-                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.data_protection %}
-                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.netiquette %}
+                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.imprint important=True%}
+                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.terms_of_use important=True%}
+                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.data_protection important=True%}
+                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.netiquette %}
 
                 <div class="mb-3">
                     <button type="submit" class="btn btn--primary">{% trans 'Save changes' %}</button>
