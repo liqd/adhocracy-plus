@@ -1,0 +1,8 @@
+{% extends "a4_candy_contrib/includes/form_field.html" %}
+{% load i18n %}
+
+{% block after_label %}
+    {% if important and not field.value %}
+        <i class="fa fa-exclamation-circle text-danger" title="{% trans 'Missing important field' %}" aria-label="{% trans 'Missing important field' %}"></i>
+    {% endif %}
+{% endblock %}
