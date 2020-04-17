@@ -26,7 +26,6 @@ class Organisation(models.Model):
     title = models.CharField(
         verbose_name=_('Title of your organisation'),
         max_length=100,
-        default='Organisation',
         help_text=_('The title of your organisation will be shown '
                     'on the landing page. max. 100 characters'),
         blank=True
