@@ -24,6 +24,3 @@ class OrganisationLegalInformationForm(forms.ModelForm):
         model = Organisation
         fields = ['imprint', 'terms_of_use', 'data_protection',
                   'netiquette']
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
