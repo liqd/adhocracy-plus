@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext as _
 
@@ -73,6 +74,31 @@ class CommentExportWithRepliesToMixin(VirtualFieldMixin):
             return comment.parent_comment.get().pk
         except ObjectDoesNotExist:
             return ''
+
+
+class CommentExportWithCategoriesMixin(VirtualFieldMixin):
+
+    def get_virtual_fields(self, virtual):
+        if 'categories' not in virtual:
+            virtual['categories'] = _('Categories')
+        return super().get_virtual_fields(virtual)
+
+    def get_categories_data(self, item):
+        category_choices = getattr(settings,
+                                   'A4_COMMENT_CATEGORIES', '')
+        if category_choices:
+            category_choices = dict((x, str(y)) for x, y
+                                    in category_choices)
+        if hasattr(item, 'comment_categories') and item.comment_categories:
+            categories = []
+            category_list = item.comment_categories.strip('[]').split(',')
+            for category in category_list:
+                if category in category_choices:
+                    categories.append(category_choices[category])
+                else:
+                    categories.append(category)
+            return ", ".join(categories)
+        return ''
 
 
 class ReferenceExportWithRepliesToMixin(VirtualFieldMixin):
