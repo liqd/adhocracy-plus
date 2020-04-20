@@ -6,11 +6,13 @@
         {% block after_label %}
         {% endblock %}
     </label>
+    {% block help_text %}
     {% if field.help_text %}
     <div class="form-hint">
         {{ field.help_text }}
     </div>
     {% endif %}
+    {% endblock %}
     {% block field %}
         <div class="widget widget--{{ field|widget_type }}">
             {{ field }}

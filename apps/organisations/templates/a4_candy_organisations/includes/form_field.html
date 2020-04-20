@@ -6,3 +6,11 @@
         <i class="fa fa-exclamation-circle text-danger" title="{% trans 'Missing important field' %}" aria-label="{% trans 'Missing important field' %}"></i>
     {% endif %}
 {% endblock %}
+
+{% block help_text %}
+    {% if field.help_text %}
+    <div class="form-hint">
+        {{ field.help_text|safe }}
+    </div>
+    {% endif %}
+{% endblock %}
