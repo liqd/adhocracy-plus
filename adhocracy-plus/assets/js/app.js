@@ -15,7 +15,8 @@ import {
   comments_async as ReactCommentsAsync,
   ratings as ReactRatings,
   reports as ReactReports,
-  follows as ReactFollows
+  follows as ReactFollows,
+  widget as ReactWidget
 } from 'adhocracy4'
 
 import * as ReactDocuments from '../../../apps/documents/assets/react_documents.jsx'
@@ -23,30 +24,19 @@ import * as ReactPolls from '../../../apps/polls/assets/react_polls.jsx'
 import * as ReactQuestions from '../../../apps/questions/assets/react_questions.jsx'
 import * as ReactQuestionsPresent from '../../../apps/questions/assets/react_questions_present.jsx'
 
-function initialiseWidget (namespace, name, fn) {
-  var key = 'data-' + namespace + '-widget'
-  var selector = '[' + key + '=' + name + ']'
-  $(selector).each(function (i, el) {
-    fn(el)
-
-    // avoid double-initialisation
-    el.removeAttribute(key)
-  })
-}
-
 function init () {
-  initialiseWidget('a4', 'comment', ReactComments.renderComment)
-  initialiseWidget('a4', 'comment_async', ReactCommentsAsync.renderComment)
-  initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
-  initialiseWidget('a4', 'ratings', ReactRatings.renderRatings)
-  initialiseWidget('a4', 'reports', ReactReports.renderReports)
+  ReactWidget.initialise('a4', 'comment', ReactComments.renderComment)
+  ReactWidget.initialise('a4', 'comment_async', ReactCommentsAsync.renderComment)
+  ReactWidget.initialise('a4', 'follows', ReactFollows.renderFollow)
+  ReactWidget.initialise('a4', 'ratings', ReactRatings.renderRatings)
+  ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
 
-  initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
-  initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
-  initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
+  ReactWidget.initialise('mb', 'document-management', ReactDocuments.renderDocumentManagement)
+  ReactWidget.initialise('mb', 'polls', ReactPolls.renderPolls)
+  ReactWidget.initialise('mb', 'poll-management', ReactPolls.renderPollManagement)
 
-  initialiseWidget('speakup', 'questions', ReactQuestions.renderQuestions)
-  initialiseWidget('speakup', 'present', ReactQuestionsPresent.renderData)
+  ReactWidget.initialise('speakup', 'questions', ReactQuestions.renderQuestions)
+  ReactWidget.initialise('speakup', 'present', ReactQuestionsPresent.renderData)
 
   $('.timeline-carousel__item').slick({
     initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),
