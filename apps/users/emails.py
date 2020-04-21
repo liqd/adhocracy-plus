@@ -45,5 +45,9 @@ class EmailAplus(Email):
             logo = MIMEImage(f.read())
             logo.add_header('Content-ID', '<{}>'.format('organisation_logo'))
             attachments += [logo]
+            # need to remove standard email logo bc some email clients
+            # display all attachments, even if not used
+            attachments = [a for a in attachments
+                           if a['Content-Id'] != '<logo>']
 
         return attachments
