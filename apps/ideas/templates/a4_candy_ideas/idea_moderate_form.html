@@ -8,6 +8,11 @@
     <div class="container container--shadow">
         <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 pt-5">
+                <div class="row py-4">
+                    <div class="offset-6 col-sm-3 offset-sm-9 position-relative header-lower__position--right">
+                        {% include 'header_lower.html' %}
+                    </div>
+                </div>
                 <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
                     <ul>
                         <li>
@@ -22,12 +27,6 @@
                         </li>
                     </ul>
                 </nav>
-
-                <div class="row pb-5">
-                  <div class="offset-6 col-sm-3 offset-sm-9 position-relative">
-                      {% include 'header_lower.html' %}
-                  </div>
-                </div>
 
                 <h1>{% trans 'Feedback on this idea' %}</h1>
                 <form enctype="multipart/form-data" action="{{ request.path }}" method="post">

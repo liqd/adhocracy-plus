@@ -23,6 +23,17 @@
     box-shadow: 0 0 8px 0 $shadow;
 }
 
+.header-lower__position--right {
+    .header-lower__logo-box {
+        margin-left: auto;
+        margin-right: $spacer;
+
+        @media (min-width: $breakpoint) {
+            margin-right: 0;
+        }
+    }
+}
+
 .header-lower__logo-img {
     display: block;
     height: 5rem;
@@ -43,8 +54,12 @@
 
 .header-lower__nav-item {
     display: inline;
-    margin-right: $spacer;
+    margin-right: 1.5*$spacer;
     line-height: 4rem;
+
+    &:last-child {
+        margin-right: 0;
+    }
 
     .is-active {
         padding-bottom: 0.1em;
@@ -60,6 +75,7 @@
 
 .header-lower__nav-link {
     display: inline;
+    font-size: $font-size-md;
 
     &:hover {
         color: $brand-primary;
