@@ -4,6 +4,7 @@
 <div class="header-lower__position">
     <div class="col-md-10 offset-md-1">
         <nav class="header-lower__nav">
+
             {% if ORGANISATION.logo %}
               {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
                 <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}" class="header-lower__logo-box" rel="home">
