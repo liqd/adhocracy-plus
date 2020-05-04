@@ -23,7 +23,13 @@
         <nav class="l-menu__menu" aria-label="{% trans 'Project Settings' %}">
             <div class="dashboard-nav">
                 <div class="dashboard-nav__dropdown">
-                    <div class="dashboard-nav__item">{{ project.name }}</div>
+                    <div class="dashboard-nav__item">{{ project.name }}
+                        {% if project_progress.project_is_complete %}
+                        <i class="fas fa-check-circle text-success" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+                        {% else %}
+                        <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+                        {% endif %}
+                    </div>
                 </div>
                 <ul class="dashboard-nav__pages">
                     {% for item in dashboard_menu.project %}
@@ -43,7 +49,14 @@
             {% for module_menu in dashboard_menu.modules %}
                 <div class="dashboard-nav">
                     <div class="dashboard-nav__dropdown">
-                        <div class="dashboard-nav__item">{{ module_menu.module.name }}</div>
+                        <div class="dashboard-nav__item">{{ module_menu.module.name }}
+                          {% if module_menu.is_complete %}
+                              <i class="fas fa-check-circle text-success" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
+                          {% else %}
+                              <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Module not ready for addition' %}" aria-label="{% trans 'Module not ready for addition' %}"></i>
+                          {% endif %}
+                        </div>
+
                     </div>
                     <ul class="dashboard-nav__pages">
                         {% for item in module_menu.menu %}
