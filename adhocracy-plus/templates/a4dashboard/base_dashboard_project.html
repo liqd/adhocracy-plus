@@ -22,24 +22,26 @@
     <div class="l-menu">
         <nav class="l-menu__menu" aria-label="{% trans 'Project Settings' %}">
             <div class="dashboard-nav">
-                <div class="dashboard-nav__dropdown">
-                    <div class="dashboard-nav__item">{{ project.name }}
-                        {% if project_progress.project_is_complete %}
-                        <i class="fas fa-check-circle text-success" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
-                        {% else %}
-                        <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
-                        {% endif %}
+                <div class="dashboard-nav__dropdown" data-toggle="collapse" href="#dashboardCollapseProj" aria-expanded="true" aria-controls="#dashboardCollapseProj" data-target="#dashboardCollapseProj">
+                    <div class="dashboard-nav__item">
+                    {% if project_progress.project_is_complete %}
+                    <i class="fas fa-check-circle text-success" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+                    {% else %}
+                    <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+                    {% endif %}
+                    {{ project.name }}
+                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
                     </div>
                 </div>
-                <ul class="dashboard-nav__pages">
+                <ul class="dashboard-nav__pages collapse show" id="dashboardCollapseProj" aria-hidden="false">
                     {% for item in dashboard_menu.project %}
                         <li class="dashboard-nav__page">
                             <a href="{{ item.url }}"
                                class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
+                                 {% if not item.is_complete %}
+                                     <i class="fa fa-exclamation-circle text-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
+                                 {% endif %}
                                 {{ item.label }}
-                                {% if not item.is_complete %}
-                                    <i class="fa fa-exclamation-circle text-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
-                                {% endif %}
                             </a>
                         </li>
                     {% endfor %}
@@ -48,25 +50,24 @@
 
             {% for module_menu in dashboard_menu.modules %}
                 <div class="dashboard-nav">
-                    <div class="dashboard-nav__dropdown">
-                        <div class="dashboard-nav__item">{{ module_menu.module.name }}
-                          {% if module_menu.is_complete %}
-                              <i class="fas fa-check-circle text-success" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
-                          {% else %}
-                              <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Module not ready for addition' %}" aria-label="{% trans 'Module not ready for addition' %}"></i>
-                          {% endif %}
-                        </div>
-
+                    <div class="dashboard-nav__dropdown dashboard-nav__item" data-toggle="collapse" href="#dashboardCollapse" aria-expanded="true" aria-controls="#dashboardCollapse" data-target="#dashboardCollapse">
+                      {% if module_menu.is_complete %}
+                          <i class="fas fa-check-circle text-success" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
+                      {% else %}
+                          <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Module not ready for addition' %}" aria-label="{% trans 'Module not ready for addition' %}"></i>
+                      {% endif %}
+                      {{ module_menu.module.name }}
+                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
                     </div>
-                    <ul class="dashboard-nav__pages">
+                    <ul class="dashboard-nav__pages collapse show" id="dashboardCollapse" aria-hidden="false">
                         {% for item in module_menu.menu %}
                             <li class="dashboard-nav__page">
-                                <a href="{{ item.url }}"
-                                   class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
-                                    {{ item.label }}
+                              <a href="{{ item.url }}"
+                                 class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
                                     {% if not item.is_complete %}
                                         <i class="fa fa-exclamation-circle text-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
                                     {% endif %}
+                                    {{ item.label }}
                                 </a>
                             </li>
                         {% endfor %}
