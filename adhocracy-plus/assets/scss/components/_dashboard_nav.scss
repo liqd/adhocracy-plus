@@ -6,6 +6,7 @@
 
 .dashboard-nav__dropdown {
     background-color: $bg-secondary;
+    position: relative;
 
     .dropdown,
     &.dropdown,
@@ -19,8 +20,15 @@
         border: 0;
     }
 
-    i {
-        float: right;
+    i.fa-chevron-up {
+        position: absolute;
+        top: $spacer;
+        right: $spacer;
+        transition: transform 0.3s;
+    }
+
+    &.collapsed i.fa-chevron-up {
+        transform: rotate(-180deg);
     }
 }
 
@@ -35,12 +43,20 @@
 }
 
 .dashboard-nav__item {
+    position: relative;
     display: block;
-    padding: 0.7em;
+    padding: 0.7*$spacer 0.7*$spacer 0.7*$spacer 2*$spacer;
     border-left: 0.3em solid transparent;
 
     color: $text-color;
     text-decoration: none;
+
+    .fa-exclamation-circle,
+    .fa-check-circle {
+        position: absolute;
+        left: 0.5*$spacer;
+        top: $spacer;
+    }
 }
 
 .dashboard-nav__item--interactive {
@@ -52,11 +68,6 @@
     &.is-active {
         color: $brand-primary;
         border-left-color: $brand-primary;
-    }
-
-    i {
-        float: right;
-        line-height: inherit;
     }
 }
 
