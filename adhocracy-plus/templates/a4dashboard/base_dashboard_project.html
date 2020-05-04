@@ -70,6 +70,14 @@
                                 </a>
                             </li>
                         {% endfor %}
+                        <li class="dashboard-nav__page">
+                            <div class="dashboard-nav__item switch">
+                                <div class="custom-control custom-switch" role="group">
+                                  <input type="checkbox" class="custom-control-input" id="dashboardToggle">
+                                  <label class="custom-control-label dashboard-nav__toggle-label" for="dashboardToggle">{% trans 'Add to project' %}</label>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             {% endfor %}
