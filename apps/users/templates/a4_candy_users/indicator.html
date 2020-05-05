@@ -17,7 +17,7 @@
                 <br>
                 <div class="u-overflow-ellipsis">{{ request.user.username }}</div>
             </div>
-            <i class="fa fa-angle-down" aria-hidden="true"></i>
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right userindicator__dropdown-menu {% if not ORGANISATION %}userindicator__dropdown-menu--platform{% endif %}" aria-labelledby="user-actions">
             {% if request.user.is_superuser %}
