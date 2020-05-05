@@ -56,9 +56,9 @@ function init () {
 document.addEventListener('DOMContentLoaded', init, false)
 document.addEventListener('a4.embed.ready', init, false)
 
-// Closes bootstrap collapse on click elsewhere
+// Closes selected collapsable elements on click elsewhere - still not sure if we need this?!
 $(document).on('click', function () {
-  $('.collapse').collapse('hide')
+  $('.js-selector-collapse').collapse('hide')
 })
 
 // enables bootstrap tooltips
