@@ -83,7 +83,7 @@
                 </div>
             {% endfor %}
 
-            {% has_perm 'a4projects.add_project' request.user view.project as user_may_add %}
+            {% has_perm 'a4projects.change_project' request.user view.project as user_may_add %}
             {% if user_may_add %}
                 <a class="btn btn--secondary btn--full" href="{% url 'a4dashboard:module-blueprint-list' organisation_slug=project.organisation.slug project_slug=project.slug %}">{% trans 'Add Module' %}</a>
             {% endif %}

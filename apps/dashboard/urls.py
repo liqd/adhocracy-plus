@@ -31,16 +31,12 @@ urlpatterns = [
 
 # a4 dashboard urls without organisation slug
 urlpatterns += [
+    url(r'^organisations/projects/create$',
+        views.ProjectCreateView.as_view(),
+        name='project-create'),
     url(r'^organisations/projects/$',
         a4dashborad_views.ProjectListView.as_view(),
         name='project-list'),
-    url(r'^organisations/blueprints/$',
-        a4dashborad_views.BlueprintListView.as_view(),
-        name='blueprint-list'),
-    url(r'^organisations/blueprints/'
-        r'(?P<blueprint_slug>[-\w_]+)/$',
-        a4dashborad_views.ProjectCreateView.as_view(),
-        name='project-create'),
     url(r'^projects/(?P<project_slug>[-\w_]+)/$',
         a4dashborad_views.ProjectUpdateView.as_view(),
         name='project-edit'),
