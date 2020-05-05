@@ -1,6 +1,8 @@
 from django.apps import apps
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
+from django.urls import resolve
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
@@ -44,13 +46,20 @@ class ModuleCreateView(ProjectMixin,
     permission_required = 'a4projects.change_project'
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
+    success_message = _('The module was created')
 
     def post(self, request, *args, **kwargs):
         project = self.get_object()
+        weight = 1
+        if project.modules:
+            weight = max(
+                project.modules.values_list('weight', flat=True)
+            ) + 1
         module = module_models.Module(
             name=self.blueprint.title,
-            weight=len(project.modules) + 1,
+            weight=weight,
             project=project,
+            is_draft=True,
         )
         module.save()
         signals.module_created.send(sender=None,
@@ -59,6 +68,7 @@ class ModuleCreateView(ProjectMixin,
 
         self._create_module_settings(module)
         self._create_phases(module, self.blueprint.content)
+        messages.success(self.request, self.success_message)
 
         return HttpResponseRedirect(self.get_next(module))
 
@@ -89,6 +99,107 @@ class ModuleCreateView(ProjectMixin,
         return self.project
 
 
+class ModulePublishView(SingleObjectMixin,
+                        generic.View):
+    permission_required = 'a4projects.change_project'
+    model = module_models.Module
+    slug_url_kwarg = 'module_slug'
+
+    def get_permission_object(self):
+        return self.get_object().project
+
+    def post(self, request, *args, **kwargs):
+        action = request.POST.get('action', None)
+        if action == 'publish':
+            self.publish_module()
+        elif action == 'unpublish':
+            self.unpublish_module()
+        else:
+            messages.warning(self.request, _('Invalid action'))
+
+        return HttpResponseRedirect(self.get_next())
+
+    def get_next(self):
+        if 'referrer' in self.request.POST:
+            return self.request.POST['referrer']
+        elif 'HTTP_REFERER' in self.request.META:
+            return self.request.META['HTTP_REFERER']
+
+        return reverse('a4dashboard:project-edit', kwargs={
+            'project_slug': self.project.slug
+        })
+
+    def publish_module(self):
+        module = self.get_object()
+        if not module.is_draft:
+            messages.info(self.request, _('Module is already added'))
+            return
+
+        module.is_draft = False
+        module.save()
+
+        signals.module_published.send(sender=None,
+                                      module=module,
+                                      user=self.request.user)
+
+        messages.success(self.request,
+                         _('The module is displayed in the project.'))
+
+    def unpublish_module(self):
+        module = self.get_object()
+        if module.is_draft:
+            messages.info(self.request, _('Module is already removed'))
+            return
+        if not module.project.is_draft:
+            messages.error(self.request,
+                           _('Module cannot be removed '
+                             'from a published project.'))
+            return
+        if module.project.published_modules.count() == 1:
+            messages.error(self.request,
+                           _('Module cannot be removed. '
+                             'It is the only module added to the project.'))
+            return
+
+        module.is_draft = True
+        module.save()
+
+        signals.module_unpublished.send(sender=None,
+                                        module=module,
+                                        user=self.request.user)
+
+        messages.success(self.request,
+                         _('The module is no longer displayed in the project.'
+                           ))
+
+
+class ModuleDeleteView(generic.DeleteView):
+    permission_required = 'a4projects.change_project'
+    model = module_models.Module
+    success_message = _('The module has been deleted')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super().delete(request, *args, **kwargs)
+
+    def get_permission_object(self):
+        return self.get_object().project
+
+    def get_success_url(self):
+        referrer = self.request.POST.get('referrer', None) \
+            or self.request.META.get('HTTP_REFERER', None)
+        if referrer:
+            view, args, kwargs = resolve(referrer)
+            if 'module_slug' not in kwargs \
+                    or not kwargs['module_slug'] == self.get_object().slug:
+                return referrer
+
+        return reverse('a4dashboard:project-edit', kwargs={
+            'project_slug': self.get_object().project.slug,
+            'organisation_slug': self.get_object().project.organisation.slug
+        })
+
+
 class ProjectCreateView(mixins.DashboardBaseMixin,
                         SuccessMessageMixin,
                         generic.CreateView):
@@ -112,7 +223,7 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
     def get_success_url(self):
         return reverse('a4dashboard:project-edit',
                        kwargs={'project_slug': self.object.slug,
-                                'organisation_slug': self.organisation.slug})
+                               'organisation_slug': self.organisation.slug})
 
     def form_valid(self, form):
         response = super().form_valid(form)
