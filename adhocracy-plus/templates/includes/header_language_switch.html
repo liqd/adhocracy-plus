@@ -1,20 +1,36 @@
 {% load userindicator static i18n thumbnail %}
 {% get_current_language as LANGUAGE_CODE %}
-
-<div class="header-upper__lang">
+<li class="nav-item dropdown">
     {% get_available_languages as languages %}
-    {% for lang_code, lang_name in languages %}
-        {% if lang_code != LANGUAGE_CODE %}
-            {% get_language_info for lang_code as lang %}
-                <form class="lang__switch" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                    <input name="next" type="hidden" value="{{ redirect_to }}" />
-                    <input name="language" type="hidden" value="{{ lang_code }}">
-                    {% if LANGUAGE_CODE == 'de' %}
-                    <a class="lang__btn--left active" aria-label="{% trans 'German language selected' %}" role="button">de</a><button class="lang__btn--right" type="submit" aria-label="{% trans 'select English language' %}">en</button>
-                    {% else %}
-                    <button class="lang__btn--left" aria-label="{% trans 'select German language' %}" type="submit">de</button><a class="lang__btn--right active"  role="button" aria-label="{% trans 'English language selected' %}">en</a>
-                    {% endif %}
-                </form>
+    <a class="nav-link dropdown-toggle"
+      href="#"
+      id="navbarDropdown"
+      role="button"
+      aria-label="{% trans 'Language selector, ' %}
+      {% for lang_code, lang_name in languages %}
+        {% if lang_code == LANGUAGE_CODE %}
+          {{ lang_name }}
+        {% endif %}
+      {% endfor %}
+      {% trans ' selected' %}"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false">
+      {{ LANGUAGE_CODE }}
+      <i class="fa fa-caret-down pl-1" aria-hidden="true"></i>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      {% for lang_code, lang_name in languages %}
+          {% if lang_code != LANGUAGE_CODE %}
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}" />
+                <input name="language" type="hidden" value="{{ lang_code }}">
+                <button class="dropdown-item" role="button" type="submit" aria-label="{% trans 'select ' %}{{ lang_name }}">
+                  {{ lang_name }}
+                </button>
+            </form>
         {% endif %}
     {% endfor %}
-</div>
+    </div>
+</li>
