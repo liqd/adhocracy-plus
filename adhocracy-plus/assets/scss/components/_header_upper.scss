@@ -15,9 +15,7 @@
 }
 
 .header-upper__lang {
-    position: absolute;
-    right: 50px;
-    top: 0;
+    margin-right: 20rem;
 }
 
 .header-upper__mobile-menu {
@@ -89,21 +87,21 @@
     background-color: mix($brand-secondary, $body-bg, 50%);
 }
 
-@media screen and (min-width: $breakpoint-xs) {
-    .header-upper__lang {
-        right: 100px;
-    }
-}
+// @media screen and (min-width: $breakpoint-xs) {
+//     .header-upper__lang {
+//         right: 100px;
+//     }
+// }
 
 @media screen and (min-width: $breakpoint) {
     .header-upper__brand-img {
         height: 3rem;
     }
 
-    .header-upper__lang {
-        right: 300px;
-        top: 0.3*$r-spacer;
-    }
+    // .header-upper__lang {
+    //     right: 300px;
+    //     top: 0.3*$r-spacer;
+    // }
 
     .header-upper__mobile-menu {
         padding: 0;
@@ -128,11 +126,11 @@
     }
 }
 
-@media screen and (min-width: $breakpoint-xl) {
-    .header-upper__lang {
-        right: 350px;
-    }
-}
+// @media screen and (min-width: $breakpoint-xl) {
+//     .header-upper__lang {
+//         right: 350px;
+//     }
+// }
 
 // overwrite dropdown style on mobile
 @media screen and (max-width: $breakpoint-down) {
