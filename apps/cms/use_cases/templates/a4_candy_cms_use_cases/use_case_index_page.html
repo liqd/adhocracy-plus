@@ -35,9 +35,9 @@
                 <h1 class="cms__title--serif cms__title--underlined cms__title--h2-size text-center">{{ page.subtitle }}</h1>
             </div>
         </div>
-        <div class="row justify-content-center mb-5">
+        <div class="row justify-content-center">
           <!-- tablet and above category chooser-->
-            <div class="d-none d-md-block col-lg-10 cms-use-case__filter">
+            <div class="d-none d-md-block col-lg-10 cms-use-case__filter mb-5">
                 <div class="d-flex justify-content-between">
                 {% for category in categories %}
                     <div>
@@ -68,17 +68,17 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center mb-5">
+        <div class="row justify-content-center">
         <!-- mobile category chooser -->
-            <div class="col-12 col-lg-8">
-                <div class="d-md-none dropdown cms-usecase__dropdown">
+            <div class="d-md-none col-12 col-lg-8 mb-5">
+                <div class="dropdown cms-usecase__dropdown">
                     <a class="btn btn--transparent btn-block dropdown-toggle d-flex justify-content-between" href="?category={{ category.0 }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {% if current_category %}
                           {{ get_current_category_display }}
                         {% else %}
                           <span class="text-muted">{% trans 'Choose Category' %}</span>
                         {% endif %}
-                          <i class="fa fa-angle-down" aria-hidden="true"></i>
+                          <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         {% for category in categories %}
