@@ -7,7 +7,7 @@
             {% html_date object.date class='list-item__date' %}
         </div>
         <div class="lr-bar__right">
-            <div class="btn-group">
+            <div class="btn--group">
                 {% spaceless %}
                     <a href="{% url 'a4_candy_offlineevents:offlineevent-detail' organisation_slug=project.organisation.slug slug=object.slug %}"
                        class="btn btn--small btn--light">
