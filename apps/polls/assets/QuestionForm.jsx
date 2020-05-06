@@ -68,7 +68,7 @@ const QuestionForm = (props) => {
         </button>
       </div>
 
-      <div className="commenting__actions btn-group" role="group">
+      <div className="commenting__actions btn--group" role="group">
         <button
           className="btn btn--light btn--small"
           onClick={props.onMoveUp}

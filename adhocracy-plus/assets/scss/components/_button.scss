@@ -234,7 +234,9 @@
     top: -(0.5*$spacer);
 }
 
-.btn-group {
+.btn--group {
+    @extend .btn--group;
+
     .dropdown {
         display: inline-block;
     }

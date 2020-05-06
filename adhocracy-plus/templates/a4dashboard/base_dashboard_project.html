@@ -23,7 +23,6 @@
         <nav class="l-menu__menu" aria-label="{% trans 'Project Settings' %}">
             <div class="dashboard-nav">
                 <div class="dashboard-nav__dropdown" data-toggle="collapse" href="#dashboardCollapseProj" aria-expanded="true" aria-controls="#dashboardCollapseProj" data-target="#dashboardCollapseProj">
-                    <div class="dashboard-nav__item">
                     {% if project_progress.project_is_complete %}
                     <i class="fas fa-check-circle text-success" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
                     {% else %}
@@ -31,7 +30,6 @@
                     {% endif %}
                     {{ project.name }}
                     <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                    </div>
                 </div>
                 <ul class="dashboard-nav__pages collapse show" id="dashboardCollapseProj" aria-hidden="false">
                     {% for item in dashboard_menu.project %}
@@ -49,8 +47,25 @@
             </div>
 
             {% for module_menu in dashboard_menu.modules %}
-                <div class="dashboard-nav">
-                    <div class="dashboard-nav__dropdown dashboard-nav__item" data-toggle="collapse" href="#dashboardCollapse" aria-expanded="true" aria-controls="#dashboardCollapse" data-target="#dashboardCollapse">
+            <div class="btn-group d-flex" role="group">
+                <div class="btn btn--none px-0 dropdown dashboard-nav__module-dropdown" type="button">
+                    <button class="dropdown-toggle" type="button" id="dashboardModuleMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dashboardModuleMenu">
+                      <a class="dropdown-item" href="#">
+                        <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug organisation_slug=project.organisation.slug %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="referrer" value="{{ request.path }}" />
+                        <button type="submit" class="btn btn--none" value="{% trans 'Delete' %}">
+                            {% trans 'Delete' %}
+                        </button>
+                        </form>
+                      </a>
+                    </div>
+                </div>
+                <div class="dashboard-nav" type="button">
+                    <div class="dashboard-nav__dropdown" data-toggle="collapse" href="#dashboardCollapse_{{ forloop.counter }}" aria-expanded="true" aria-controls="#dashboardCollapse_{{ forloop.counter }}" data-target="#dashboardCollapse_{{ forloop.counter }}">
                       {% if module_menu.is_complete %}
                           <i class="fas fa-check-circle text-success" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
                       {% else %}
@@ -59,7 +74,8 @@
                       {{ module_menu.module.name }}
                       <i class="fa fa-chevron-up" aria-hidden="true"></i>
                     </div>
-                    <ul class="dashboard-nav__pages collapse show" id="dashboardCollapse" aria-hidden="false">
+
+                    <ul class="dashboard-nav__pages collapse show" id="dashboardCollapse_{{ forloop.counter }}" aria-hidden="false">
                         {% for item in module_menu.menu %}
                             <li class="dashboard-nav__page">
                               <a href="{{ item.url }}"
@@ -74,33 +90,33 @@
                         <li class="dashboard-nav__page">
                             <div class="dashboard-nav__item switch">
                                 <div class="custom-control custom-switch" role="group">
-                                  <input type="checkbox" class="custom-control-input" id="dashboardToggle">
-                                  <label class="custom-control-label dashboard-nav__toggle-label" for="dashboardToggle">{% trans 'Add to project' %}</label>
+                                  <form class="dashboard_nav__form--project" action="{% url 'a4dashboard:module-publish' module_slug=module_menu.module.slug organisation_slug=project.organisation.slug %}" method="post" data-ignore-submit="true">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="referrer" value="{{ request.path }}" />
+
+                                  {% if not module_menu.module.is_draft %}
+                                      <button name="action" value="unpublish" class="">
+                                      <input type="checkbox" class="custom-control-input" id="dashboardToggle_{{ forloop.counter }}" checked>
+                                      <label class="custom-control-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
+                                          {% trans 'Hide from project' %}
+                                      </label>
+                                      </button>
+                                  {% else %}
+                                      <button name="action" value="publish" class="">
+                                      <input type="checkbox" class="custom-control-input" id="dashboardToggle_{{ forloop.counter }}">
+                                      <label class="custom-control-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
+                                        {% trans 'Add to project' %}
+                                      </label>
+                                      </button>
+                                  {% endif %}
+
+                                </form>
                                 </div>
                             </div>
                         </li>
-                        <form class="dashboard_nav__form--project" action="{% url 'a4dashboard:module-publish' module_slug=module_menu.module.slug organisation_slug=project.organisation.slug %}" method="post" data-ignore-submit="true">
-                        {% csrf_token %}
-                        <input type="hidden" name="referrer" value="{{ request.path }}" />
-                        {% if module_menu.module.is_draft %}
-                            <button name="action" value="publish" class="">
-                                {% trans 'Show in project' %}
-                            </button>
-                        {% else %}
-                            <button name="action" value="unpublish" class="">
-                                {% trans 'Hide from project' %}
-                            </button>
-                        {% endif %}
-                        </form>
-                        <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug organisation_slug=project.organisation.slug %}" method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="referrer" value="{{ request.path }}" />
-                        <button type="submit" class="btn btn--light" value="{% trans 'Delete' %}">
-                            <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
-                        </button>
-                        </form>
                     </ul>
                 </div>
+            </div>
             {% endfor %}
 
             {% has_perm 'a4projects.change_project' request.user view.project as user_may_add %}
