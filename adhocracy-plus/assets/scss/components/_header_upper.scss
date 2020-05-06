@@ -8,55 +8,24 @@
 }
 
 .header-upper__brand-img {
-    padding-top: 0.5 * $padding;
     display: block;
-    height: 2.5rem;
+    height: 2rem;
     width: auto;
 }
 
 .header-upper__lang {
-    position: absolute;
-    right: 50px;
-    top: 0;
-}
+    margin-right: 2*$spacer;
 
-.header-upper__mobile-menu {
-    border-bottom: 1px solid $body-bg;
-
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-
-    background-color: $bg-tertiary;
-    color: contrast-color($bg-tertiary);
-    z-index: 2;
-
-    button,
-    a {
-        display: block;
-        width: 100%;
-        padding: 0.5em;
-    }
-
-    @media screen and (max-width: $breakpoint-down) {
-        // overwrite link style on mobile
-        li :hover {
-            background-color: $bg-secondary;
-            color: $brand-primary;
-        }
+    .dropdown-menu {
+        position: absolute;
     }
 }
 
-.header-upper__mobile-menu--platform {
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
+.header-upper__nav {
+    flex-direction: row;
 }
 
 .header-upper__mobile-toggle {
-    position: absolute;
-    right: $padding;
-    top: 0;
     z-index: 2;
 
     font-weight: bold;
@@ -71,7 +40,7 @@
     font-size: $font-size-md;
 }
 
-.show ~ .header-upper__mobile-toggle:after {
+.show > .header-upper__mobile-toggle:after {
     font-family: "Font Awesome 5 Free", sans-serif;
     font-style: normal;
     font-weight: 900;
@@ -79,80 +48,8 @@
     background-color: inherit;
 }
 
-.header-upper__mobile-toggle--platform {
-    top: 1.5*$r-spacer;
-}
-
-.show + .header-upper__mobile-toggle--platform {
-    // use same color as used for hover styles
-    // (defined in meinberlin's _button.scss)
-    background-color: mix($brand-secondary, $body-bg, 50%);
-}
-
-@media screen and (min-width: $breakpoint-xs) {
-    .header-upper__lang {
-        right: 100px;
-    }
-}
-
 @media screen and (min-width: $breakpoint) {
     .header-upper__brand-img {
         height: 3rem;
-    }
-
-    .header-upper__lang {
-        right: 300px;
-        top: 0.3*$r-spacer;
-    }
-
-    .header-upper__mobile-menu {
-        padding: 0;
-        border: 0;
-        position: static;
-        background-color: transparent;
-        color: inherit;
-
-        &.collapse {
-            display: inline-block;
-        }
-    }
-
-    .header-upper__mobile-toggle {
-        display: none;
-    }
-
-    .header-upper__user {
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
-}
-
-@media screen and (min-width: $breakpoint-xl) {
-    .header-upper__lang {
-        right: 350px;
-    }
-}
-
-// overwrite dropdown style on mobile
-@media screen and (max-width: $breakpoint-down) {
-    .header-upper__user {
-        .dropdown {
-            margin-bottom: 0;
-        }
-
-        .dropdown-toggle {
-            display: none;
-        }
-
-        .dropdown-menu {
-            display: block;
-            padding: 0;
-            border: 0;
-
-            box-shadow: none;
-
-            position: static;
-        }
     }
 }

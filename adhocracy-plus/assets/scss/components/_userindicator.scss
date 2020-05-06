@@ -35,8 +35,12 @@
 }
 
 .userindicator__dropdown-menu {
-    background-color: $bg-tertiary;
-    color: contrast-color($bg-tertiary);
+    position: fixed !important;
+    min-width: 100%;
+    top: 0.5*$spacer;
+    margin: 0;
+    background-color: $brand-secondary;
+    color: contrast-color($brand-secondary);
     border: 1px solid $body-bg;
 
     a,
@@ -46,21 +50,10 @@
     }
 }
 
-.userindicator__dropdown-menu--platform {
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
-}
-
-.userindicator__navi {
-    @media screen and (min-width: $breakpoint) {
-        padding: 0.5*$r-spacer $r-spacer 0.5*$r-spacer $r-spacer;
+@media screen and (min-width: $breakpoint) {
+    .userindicator__dropdown-menu {
+        position: absolute !important;
+        top: auto;
+        margin-top: -(0.5*$spacer); // reposition to allign with btn--attached-to
     }
-}
-
-.userindicator__navi--bg-tertiary {
-    background-color: $bg-tertiary;
-}
-
-.userindicator__navi--secondary {
-    background-color: $brand-secondary;
 }
