@@ -8,19 +8,19 @@ from tests.helpers import setup_users
 def test_facetoface_in_blueprints(client, project):
     anonymous, moderator, initiator = setup_users(project)
     client.login(username=initiator.email, password='password')
-    blueprints_url = reverse(
-        'a4dashboard:blueprint-list',
-        kwargs={
-            'organisation_slug': project.organisation.slug
-        })
+    # blueprints_url = reverse(
+    #     'a4dashboard:blueprint-list',
+    #     kwargs={
+    #         'organisation_slug': project.organisation.slug
+    #     })
     # facetoface_blueprint_url = reverse(
     #     'a4dashboard:project-create',
     #     kwargs={
     #         'blueprint_slug': 'facetoface',
     #         'organisation_slug': project.organisation.slug
     #     })
-    resp = client.get(blueprints_url, follow=True)
-    assert resp.status_code == 200
+    # resp = client.get(blueprints_url, follow=True)
+    # assert resp.status_code == 200
     # assert facetoface_blueprint_url in resp.content.decode()
 
 
