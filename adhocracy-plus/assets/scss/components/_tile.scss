@@ -13,10 +13,6 @@
     }
 }
 
-.tile__blueprint {
-    margin: 0.5*$spacer 0.5*$spacer 2*$spacer 0.5*$spacer;
-}
-
 .organisation__tile {
     width: 100%;
 }
@@ -154,4 +150,20 @@
     .tile__image--contained {
         min-height: 13rem;
     }
+}
+
+.blueprint__tile {
+    position: relative;
+    border-radius: 0;
+    margin-bottom: $spacer;
+}
+
+.blueprint__image {
+    border-radius: 0;
+    min-height: 7*$spacer;
+    height: 100%;
+    background-color: $brand-info;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
