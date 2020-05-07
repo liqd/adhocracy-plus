@@ -42,11 +42,7 @@
     {% endif %}
     {% endblock %}
 
-    {% if ORGANISATION %}
-        <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
-    {% else %}
-        <link rel="stylesheet" type="text/css" href="{% static 'platform.css' %}" />
-    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>

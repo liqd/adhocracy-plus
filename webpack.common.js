@@ -11,9 +11,6 @@ module.exports = {
       './adhocracy-plus/assets/scss/style.scss',
       './adhocracy-plus/assets/js/app.js'
     ],
-    platform: [
-      './adhocracy-plus/assets/scss/platform.scss'
-    ],
     vendor: [
       '@fortawesome/fontawesome-free/scss/fontawesome.scss',
       '@fortawesome/fontawesome-free/scss/brands.scss',
