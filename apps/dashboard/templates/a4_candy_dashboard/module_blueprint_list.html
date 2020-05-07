@@ -4,13 +4,9 @@
 {% block title %}{% trans "New Module" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_content %}
-<div class="col-lg-10 offset-lg-1">
-    <h1>{% trans "New Module" %}</h1>
+<h1 class="mt-0">{% trans "New Module" %}</h1>
 
-    <ul class="l-tiles-3">
-        {% for blueprint_slug, blueprint in view.blueprints %}
-            {% include "a4_candy_dashboard/includes/module_blueprint_list_tile.html" with blueprint=blueprint %}
-        {% endfor %}
-    </ul>
-</div>
+    {% for blueprint_slug, blueprint in view.blueprints %}
+        {% include "a4_candy_dashboard/includes/module_blueprint_list_tile.html" with blueprint=blueprint %}
+    {% endfor %}
 {% endblock %}

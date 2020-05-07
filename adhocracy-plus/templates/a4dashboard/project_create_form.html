@@ -21,8 +21,8 @@
 {% endblock %}
 
 {% block dashboard_content %}
-    <div class="l-menu">
-        <div class="l-menu__content--aside">
+    <div class="row mb-5">
+        <div class="col-md-6 offset-md-3">
             <h1 class="mt-0">{% trans "Create project" %}</h1>
 
             {% for error in form.non_field_errors %}
@@ -40,10 +40,10 @@
 
                 <p>{% trans 'After saving the draft project you can further customize and edit your project and eventually publish it.' %}</p>
 
-                <div class="mb-3">
-                    <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Create draft' %}"/>
+                <div class="d-flex justify-content-end">
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
-                       class="btn btn--light">{% trans 'Cancel' %}</a>
+                       class="btn btn--light mr-2">{% trans 'Cancel' %}</a>
+                    <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Create draft' %}"/>
                 </div>
             </form>
         </div>
