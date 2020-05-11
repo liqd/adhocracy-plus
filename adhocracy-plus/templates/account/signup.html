@@ -21,8 +21,9 @@
             <label class="form-check__label">
                 {{ form.terms_of_use }}
                 {% blocktrans with terms_of_use_url=settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url data_protection_policy=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url %}
-                I confirm that I have read and accepted the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{data_protection_policy}}" target="_blank">data protection policy</a>.*
+                I confirm that I have read and accepted the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{data_protection_policy}}" target="_blank">data protection policy</a>.
                 {% endblocktrans %}
+                {% if form.terms_of_use.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
             </label>
             {{ form.terms_of_use.errors }}
         </div>
@@ -31,6 +32,7 @@
           <label class="form-check__label">
             {{ form.terms_of_use_extra }}
             {{ form.terms_of_use_extra.label|safe}}
+            {% if form.terms_of_use_extra.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
             </label>
             {{ form.terms_of_use.errors }}
         </div>
