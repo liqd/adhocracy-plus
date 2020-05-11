@@ -79,7 +79,7 @@ class IgbceSignupForm(DefaultSignupForm):
         label=_('I confirm that I have read and accepted the '
                 '<a href="/info/ig-bce-datenschutz/" '
                 'target="_blank">data protection policy</a> of IG '
-                'BCE.*')
+                'BCE.')
     )
 
     def validateMemberNumberAndDate(self, member_number, birth_date):
