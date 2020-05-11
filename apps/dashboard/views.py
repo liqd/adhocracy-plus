@@ -101,6 +101,7 @@ class ModuleCreateView(ProjectMixin,
 
 
 class ModulePublishView(SingleObjectMixin,
+                        mixins.DashboardBaseMixin,
                         generic.View):
     permission_required = 'a4projects.change_project'
     model = module_models.Module
@@ -174,7 +175,8 @@ class ModulePublishView(SingleObjectMixin,
                            ))
 
 
-class ModuleDeleteView(generic.DeleteView):
+class ModuleDeleteView(mixins.DashboardBaseMixin,
+                       generic.DeleteView):
     permission_required = 'a4projects.change_project'
     model = module_models.Module
     success_message = _('The module has been deleted')
