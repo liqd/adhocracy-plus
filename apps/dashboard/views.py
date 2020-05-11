@@ -21,6 +21,7 @@ from .forms import DashboardProjectCreateForm
 
 class ModuleBlueprintListView(ProjectMixin,
                               mixins.DashboardBaseMixin,
+                              mixins.DashboardComponentMixin,
                               generic.DetailView):
     template_name = 'a4_candy_dashboard/module_blueprint_list.html'
     permission_required = 'a4projects.change_project'

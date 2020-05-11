@@ -2,10 +2,10 @@
 
 <li class="card blueprint__tile">
   <div class="row no-gutters">
-    <div class="col-lg-3 d-flex">
+    <div class="col-lg-4 d-flex">
       <div class="card-img-top blueprint__image" style="background-image: url({% static blueprint.image %});"></div>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-8">
         <form class="card-body" action="{% url 'a4dashboard:module-create' organisation_slug=project.organisation.slug project_slug=project.slug blueprint_slug=blueprint_slug %}" method="POST">
             {% csrf_token %}
 
