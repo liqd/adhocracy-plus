@@ -2,7 +2,6 @@ from django.urls import reverse
 
 from adhocracy4.dashboard.components.forms import ModuleFormComponent
 from adhocracy4.dashboard.components.forms import ProjectFormComponent
-from adhocracy4.dashboard.views import ProjectCreateView
 from adhocracy4.modules.models import Module
 from adhocracy4.projects.models import Project
 
@@ -39,15 +38,7 @@ def module_get_base_url(self, module):
     })
 
 
-def get_success_url(self):
-    return reverse('a4dashboard:project-edit', kwargs={
-        'organisation_slug': self.object.organisation.slug,
-        'project_slug': self.object.slug
-    })
-
-
 Module.add_to_class("get_absolute_url", module_get_absolute_url)
 Project.add_to_class("get_absolute_url", project_get_absolute_url)
 ProjectFormComponent.get_base_url = project_get_base_url
 ModuleFormComponent.get_base_url = module_get_base_url
-ProjectCreateView.get_success_url = get_success_url
