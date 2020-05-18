@@ -5,6 +5,9 @@
 
 {% block dashboard_project_content %}
 <h1 class="mt-0">{% trans "New Module" %}</h1>
+<div class="form-hint">
+    {% trans 'Please add a module from the list. You can later add more modules to the project, edit them or remove them again.' %}
+</div>
 
     {% for blueprint_slug, blueprint in view.blueprints %}
         {% include "a4_candy_dashboard/includes/module_blueprint_list_tile.html" with blueprint=blueprint %}
