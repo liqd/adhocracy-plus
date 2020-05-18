@@ -54,13 +54,12 @@
 </head>
 <body>
     {% wagtailuserbar %}
-    <div class="min-height__wrapper d-flex flex-column">
         <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
 
         {% block header %}
         {% include 'header.html' %}
         {% endblock %}
-
+        <div class="min-height__wrapper d-flex flex-column">
         <main id="main" class="flex-fill">
             {% if messages %}
             <div class="row">
