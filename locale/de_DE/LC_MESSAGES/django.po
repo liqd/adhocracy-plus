@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:15+0200\n"
+"POT-Creation-Date: 2020-05-20 13:50+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -49,8 +49,8 @@ msgstr "Projekteinstellungen"
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:35
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:55
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:40
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:84
 msgid "Missing fields for publication"
 msgstr "Benötigte Felder zur Veröffentlichung"
 
@@ -62,10 +62,10 @@ msgstr "Benötigte Felder zur Veröffentlichung"
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:29
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
 #: apps/debate/templates/a4_candy_debate/includes/subject_form.html:10
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:44
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:43
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:23
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:27
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:43
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:42
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:27
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:14
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_form.html:21
@@ -92,7 +92,6 @@ msgstr "Phase"
 
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
-#: apps/dashboard/templates/a4_candy_dashboard/includes/module_blueprint_list_tile.html:15
 #: adhocracy-plus/templates/a4dashboard/includes/blueprint_list_tile.html:15
 msgid "Select"
 msgstr "Auswählen"
@@ -154,14 +153,12 @@ msgstr "Depublizieren"
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
-#: adhocracy-plus/templates/a4dashboard/project_create_form.html:4
-#: adhocracy-plus/templates/a4dashboard/project_create_form.html:9
 msgid "Create project based on"
 msgstr "Projekt anlegen basierend auf"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
-#: adhocracy-plus/templates/a4dashboard/project_create_form.html:25
+#: adhocracy-plus/templates/a4dashboard/project_create_form.html:41
 msgid ""
 "After saving the draft project you can further customize and edit your "
 "project and eventually publish it."
@@ -173,7 +170,7 @@ msgstr ""
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
-#: adhocracy-plus/templates/a4dashboard/project_create_form.html:28
+#: adhocracy-plus/templates/a4dashboard/project_create_form.html:46
 msgid "Create draft"
 msgstr "Projektentwurf anlegen"
 
@@ -186,17 +183,17 @@ msgstr "Projektentwurf anlegen"
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:15
 #: apps/embed/templates/a4_candy_embed/embed.html:49
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:16
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:45
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:44
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:24
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:28
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:15
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:44
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:43
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:30
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:15
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:15
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_form.html:22
 #: apps/topicprio/templates/a4_candy_topicprio/topic_confirm_delete.html:15
-#: adhocracy-plus/templates/a4dashboard/project_create_form.html:30
+#: adhocracy-plus/templates/a4dashboard/project_create_form.html:45
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -225,7 +222,7 @@ msgstr "privat"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:45
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:45
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:104
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:103
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
 #: apps/projects/templates/a4_candy_projects/project_detail.html:109
@@ -260,6 +257,9 @@ msgstr "Suchen"
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
+#: adhocracy-plus/templates/account/signup.html:26
+#: adhocracy-plus/templates/account/signup.html:35
+#: adhocracy-plus/templates/socialaccount/signup.html:31
 msgid "This field is required"
 msgstr "Dieses Feld muss ausgefüllt werden"
 
@@ -344,6 +344,7 @@ msgid "Edit poll"
 msgstr "Umfrage bearbeiten"
 
 #: adhocracy4/categories/dashboard.py:13
+#: apps/exports/mixins.py:83
 msgid "Categories"
 msgstr "Kategorien"
 
@@ -503,10 +504,12 @@ msgid "Yes"
 msgstr "Ja"
 
 #: adhocracy4/dashboard/forms.py:70
+#: apps/dashboard/forms.py:27
 msgid "All users can participate (public)."
 msgstr "Alle Nutzerinnen und Nutzer können sich beteiligen (öffentlich)."
 
 #: adhocracy4/dashboard/forms.py:71
+#: apps/dashboard/forms.py:28
 msgid "Only invited users can participate (private)."
 msgstr ""
 "Nur eingeladene Nutzerinnen und Nutzer können sich beteiligen (privat)."
@@ -584,6 +587,7 @@ msgid "Project successfully created."
 msgstr "Projekt erfolgreich erstellt."
 
 #: adhocracy4/dashboard/views.py:154
+#: apps/dashboard/views.py:120
 msgid "Invalid action"
 msgstr "Ungültige Aktion"
 
@@ -1043,7 +1047,7 @@ msgid "Online Participation"
 msgstr "Online-Beteiligung"
 
 #: adhocracy4/reports/templatetags/react_reports.py:29
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:115
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:114
 msgid "Report"
 msgstr "Melden"
 
@@ -1187,7 +1191,7 @@ msgid "ID"
 msgstr "ID"
 
 #: apps/budgeting/exports.py:77 apps/debate/exports.py:65
-#: apps/documents/exports.py:42 apps/exports/mixins.py:56
+#: apps/documents/exports.py:42 apps/exports/mixins.py:57
 #: apps/ideas/exports.py:72 apps/mapideas/exports.py:73
 #: apps/polls/exports.py:39 apps/topicprio/exports.py:70
 msgid "Created"
@@ -1257,41 +1261,42 @@ msgstr "Sind Sie sicher, dass Sie diesen Vorschlag löschen möchten?"
 msgid "Create a new proposal"
 msgstr "Anlegen eines neuen Vorschlags"
 
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_create_form.html:10
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:10
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_update_form.html:11
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:12
-#: apps/debate/templates/a4_candy_debate/subject_detail.html:10
-#: apps/documents/templates/a4_candy_documents/paragraph_detail.html:11
-#: apps/ideas/templates/a4_candy_ideas/idea_create_form.html:10
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:11
-#: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:11
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_create_form.html:10
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:10
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:11
-#: apps/topicprio/templates/a4_candy_topicprio/topic_detail.html:8
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:7
-#: adhocracy-plus/templates/a4dashboard/blueprint_list.html:9
-#: adhocracy-plus/templates/a4modules/module_detail.html:92
-msgid "breadcrumbs"
-msgstr "breadcrumbs"
-
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_create_form.html:15
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:15
+#: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:10
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_update_form.html:16
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:17
-#: apps/debate/templates/a4_candy_debate/subject_detail.html:15
+#: apps/debate/templates/a4_candy_debate/subject_detail.html:16
+#: apps/documents/templates/a4_candy_documents/paragraph_detail.html:11
 #: apps/ideas/templates/a4_candy_ideas/idea_create_form.html:15
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:16
 #: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:16
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_create_form.html:15
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:15
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:16
+#: apps/topicprio/templates/a4_candy_topicprio/topic_detail.html:8
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:7
+#: adhocracy-plus/templates/a4dashboard/blueprint_list.html:11
+#: adhocracy-plus/templates/a4dashboard/project_create_form.html:9
+#: adhocracy-plus/templates/a4modules/module_detail.html:92
+msgid "breadcrumbs"
+msgstr "breadcrumbs"
+
+#: apps/budgeting/templates/a4_candy_budgeting/proposal_create_form.html:20
+#: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:15
+#: apps/budgeting/templates/a4_candy_budgeting/proposal_update_form.html:21
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:22
+#: apps/debate/templates/a4_candy_debate/subject_detail.html:21
+#: apps/ideas/templates/a4_candy_ideas/idea_create_form.html:20
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:21
+#: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:21
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_create_form.html:20
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:20
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:21
 #: apps/topicprio/templates/a4_candy_topicprio/topic_detail.html:13
 msgid "go back"
 msgstr "zurück"
 
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_create_form.html:26
+#: apps/budgeting/templates/a4_candy_budgeting/proposal_create_form.html:25
 msgid "Submit a new proposal for this project"
 msgstr "Einen neuen Vorschlag für dieses Projekt anlegen"
 
@@ -1313,7 +1318,7 @@ msgstr "auszoomen"
 #: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:26
 #: apps/debate/templates/a4_candy_debate/subject_list.html:25
 #: apps/ideas/templates/a4_candy_ideas/idea_list.html:34
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_list.html:56
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_list.html:64
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:27
 #: apps/topicprio/templates/a4_candy_topicprio/topic_dashboard_list.html:26
 #: apps/topicprio/templates/a4_candy_topicprio/topic_list.html:22
@@ -1325,7 +1330,7 @@ msgid "Moderate"
 msgstr "Moderieren"
 
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:20
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_update_form.html:21
+#: apps/budgeting/templates/a4_candy_budgeting/proposal_update_form.html:26
 msgid "back to proposal"
 msgstr "Zurück zum Vorschlag"
 
@@ -1343,7 +1348,7 @@ msgstr "Vorschlag moderieren"
 msgid "Edit %(title)s"
 msgstr "%(title)s bearbeiten"
 
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_update_form.html:32
+#: apps/budgeting/templates/a4_candy_budgeting/proposal_update_form.html:31
 msgid "Edit proposal"
 msgstr "Vorschlag bearbeiten"
 
@@ -1615,30 +1620,32 @@ msgstr " von "
 msgid "Next page"
 msgstr "Nächste Seite"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:64
-#: apps/exports/mixins.py:12
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:63
+#: apps/exports/mixins.py:13
 msgid "Reference No."
 msgstr "Refernznr."
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:90
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:99
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:89
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:98
 msgid "Actions"
 msgstr "Aktionen"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:106
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:105
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:24
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:25
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:24
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:60
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:61
 msgid "Delete"
 msgstr "Löschen"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:110
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:109
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:4
 msgid "Give feedback"
 msgstr "Zurück melden"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:132
-#: apps/exports/mixins.py:26
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:131
+#: apps/exports/mixins.py:27
 msgid "Official Statement"
 msgstr "Offizielle Rückmeldung"
 
@@ -1765,14 +1772,60 @@ msgstr ""
 "Antworten in Kategorien eingeordnet und können durchsucht, sortiert und "
 "gefiltert werden."
 
-#: apps/dashboard/forms.py:13
+#: apps/dashboard/forms.py:15
 msgid "Organisation name"
 msgstr "Organisationsname"
 
+#: apps/dashboard/templates/a4_candy_dashboard/includes/module_blueprint_list_tile.html:17
+msgid "Add module"
+msgstr ""
+
 #: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:4
-#: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:8
+#: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:7
 msgid "New Module"
 msgstr "Neues Modul"
+
+#: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:9
+msgid ""
+"Please add a module from the list. You can later add more modules to the "
+"project, edit them or remove them again."
+msgstr ""
+
+#: apps/dashboard/views.py:50
+msgid "The module was created"
+msgstr ""
+
+#: apps/dashboard/views.py:137
+msgid "Module is already added"
+msgstr ""
+
+#: apps/dashboard/views.py:148
+msgid "The module is displayed in the project."
+msgstr ""
+
+#: apps/dashboard/views.py:153
+msgid "Module is already removed"
+msgstr ""
+
+#: apps/dashboard/views.py:157
+msgid "Module cannot be removed from a published project."
+msgstr ""
+
+#: apps/dashboard/views.py:162
+msgid "Module cannot be removed. It is the only module added to the project."
+msgstr ""
+
+#: apps/dashboard/views.py:174
+msgid "The module is no longer displayed in the project."
+msgstr ""
+
+#: apps/dashboard/views.py:182
+msgid "The module has been deleted"
+msgstr ""
+
+#: apps/dashboard/views.py:215
+msgid "Project was created."
+msgstr ""
 
 #: apps/debate/dashboard.py:15
 msgid "Subjects"
@@ -1907,7 +1960,7 @@ msgstr "Für dieses Dokument wurden noch keine Kapitel angelegt"
 
 #: apps/embed/templates/a4_candy_embed/embed.html:26
 #: apps/embed/templates/a4_candy_embed/embed.html:48
-#: apps/users/templates/a4_candy_users/indicator.html:47
+#: apps/users/templates/a4_candy_users/indicator.html:56
 #: adhocracy-plus/templates/account/login.html:4
 #: adhocracy-plus/templates/account/login.html:7
 #: adhocracy-plus/templates/account/login.html:27
@@ -1919,8 +1972,8 @@ msgid "You are logged in as "
 msgstr "Sie sind angemeldet als "
 
 #: apps/embed/templates/a4_candy_embed/embed.html:31
-#: apps/users/templates/a4_candy_users/indicator.html:38
-#: apps/users/templates/a4_candy_users/indicator.html:41
+#: apps/users/templates/a4_candy_users/indicator.html:47
+#: apps/users/templates/a4_candy_users/indicator.html:50
 msgid "Logout"
 msgstr "Abmelden"
 
@@ -1945,25 +1998,25 @@ msgstr ""
 msgid "Embed Code"
 msgstr "Code zum Einbetten des Projekts"
 
-#: apps/exports/mixins.py:24
+#: apps/exports/mixins.py:25
 msgid "Moderator feedback"
 msgstr "Rückmeldung der Moderation"
 
-#: apps/exports/mixins.py:41 apps/moderatorremark/models.py:18
+#: apps/exports/mixins.py:42 apps/moderatorremark/models.py:18
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:5
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:21
 msgid "Remark"
 msgstr "Notiz"
 
-#: apps/exports/mixins.py:54
+#: apps/exports/mixins.py:55
 msgid "Creator"
 msgstr "Urheber"
 
-#: apps/exports/mixins.py:68
+#: apps/exports/mixins.py:69
 msgid "Reply to Comment"
 msgstr "Antwort auf den Kommentar"
 
-#: apps/exports/mixins.py:80
+#: apps/exports/mixins.py:106
 msgid "Reply to Reference"
 msgstr "Antwort auf Referenz"
 
@@ -2058,8 +2111,8 @@ msgstr "Bestätigung der Löschung der Idee"
 msgid "Are you sure you want to delete the idea?"
 msgstr "Sind Sie sicher, dass Sie diese Idee löschen möchten?"
 
-#: apps/ideas/templates/a4_candy_ideas/idea_create_form.html:25
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_create_form.html:26
+#: apps/ideas/templates/a4_candy_ideas/idea_create_form.html:26
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_create_form.html:25
 msgid "Submit a new idea for this project"
 msgstr "Eine neue Idee für dieses Projekt anlegen"
 
@@ -2067,19 +2120,19 @@ msgstr "Eine neue Idee für dieses Projekt anlegen"
 msgid "Submit idea"
 msgstr "Idee anlegen"
 
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:21
-#: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:21
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:20
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:21
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:26
+#: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:26
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:25
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:26
 msgid "back to idea"
 msgstr "Zurück zur Idee"
 
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:32
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:31
 msgid "Feedback on this idea"
 msgstr "Rückmeldung zu dieser Idee"
 
-#: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:32
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:32
+#: apps/ideas/templates/a4_candy_ideas/idea_update_form.html:31
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_update_form.html:31
 msgid "Edit idea"
 msgstr "Idee bearbeiten"
 
@@ -2143,7 +2196,7 @@ msgstr "Idee anlegen"
 msgid "Moderate %(name)s"
 msgstr "%(name)s moderieren"
 
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:31
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:30
 msgid "Moderate idea"
 msgstr "Idee moderieren"
 
@@ -2245,6 +2298,8 @@ msgstr "Empfänger*innen"
 
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:4
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:56
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:82
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:97
 msgid "Newsletter"
 msgstr "Newsletter"
 
@@ -2426,7 +2481,7 @@ msgstr ""
 #: adhocracy-plus/templates/email_base.html:77
 #: adhocracy-plus/templates/email_base.html:104
 #: adhocracy-plus/templates/footer.html:38
-#: adhocracy-plus/templates/footer_upper.html:14
+#: adhocracy-plus/templates/footer_upper.html:16
 msgid "Imprint"
 msgstr "Impressum"
 
@@ -2446,7 +2501,7 @@ msgstr ""
 #: adhocracy-plus/templates/email_base.html:110
 #: adhocracy-plus/templates/email_base.txt:18
 #: adhocracy-plus/templates/footer.html:43
-#: adhocracy-plus/templates/footer_upper.html:22
+#: adhocracy-plus/templates/footer_upper.html:24
 msgid "Terms of use"
 msgstr "Nutzungsbedingungen"
 
@@ -2462,7 +2517,7 @@ msgstr ""
 #: apps/organisations/models.py:127
 #: adhocracy-plus/templates/email_base.html:107
 #: adhocracy-plus/templates/footer.html:48
-#: adhocracy-plus/templates/footer_upper.html:18
+#: adhocracy-plus/templates/footer_upper.html:20
 msgid "Data protection policy"
 msgstr "Datenschutz"
 
@@ -2478,7 +2533,7 @@ msgstr ""
 #: apps/organisations/templates/a4_candy_organisations/organisation_netiquette.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_netiquette.html:10
 #: adhocracy-plus/templates/footer.html:53
-#: adhocracy-plus/templates/footer_upper.html:27
+#: adhocracy-plus/templates/footer_upper.html:29
 msgid "Netiquette"
 msgstr "Netiquette"
 
@@ -2534,7 +2589,7 @@ msgstr ""
 msgid "Opens in new window"
 msgstr "Öffnet in neuem Fenster"
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:89
+#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:90
 #, python-format
 msgid ""
 "Currently, there are no public participation processes. Sign in <a href="
@@ -2546,7 +2601,7 @@ msgstr ""
 "oder lesen Sie unter Hintergrund <a href=\"%(organisation_information_url)s"
 "\">mehr</a>."
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:93
+#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:94
 #, python-format
 msgid ""
 "Currently, there are no public participation processes. Sign in <a href="
@@ -2775,11 +2830,11 @@ msgstr "Weiter zur Anmeldung"
 
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:15
-#: apps/users/templates/a4_candy_users/indicator.html:49
+#: apps/users/templates/a4_candy_users/indicator.html:58
 #: adhocracy-plus/templates/account/signup.html:4
 #: adhocracy-plus/templates/account/signup.html:7
-#: adhocracy-plus/templates/account/signup.html:52
-#: adhocracy-plus/templates/socialaccount/signup.html:48
+#: adhocracy-plus/templates/account/signup.html:54
+#: adhocracy-plus/templates/socialaccount/signup.html:49
 msgid "Register"
 msgstr "Registrieren"
 
@@ -3218,21 +3273,26 @@ msgstr ""
 "Geben Sie an, in welcher Sprache die Bedienoberfläche und Benachrichtigungen "
 "der Plattform verfasst sein sollen."
 
-#: apps/users/templates/a4_candy_users/indicator.html:16
+#: apps/users/templates/a4_candy_users/indicator.html:13
+#: adhocracy-plus/templates/includes/header_mobile_toggle.html:9
+msgid "Menu"
+msgstr "Menü"
+
+#: apps/users/templates/a4_candy_users/indicator.html:26
 #: adhocracy-plus/templates/email_base.html:40
 #: adhocracy-plus/templates/email_base.txt:5
 msgid "Hello"
 msgstr "Guten Tag"
 
-#: apps/users/templates/a4_candy_users/indicator.html:24
+#: apps/users/templates/a4_candy_users/indicator.html:35
 msgid "Admin"
 msgstr "Admin"
 
-#: apps/users/templates/a4_candy_users/indicator.html:26
+#: apps/users/templates/a4_candy_users/indicator.html:37
 msgid "Account Settings"
 msgstr "Nutzerkonto Einstellungen"
 
-#: apps/users/templates/a4_candy_users/indicator.html:28
+#: apps/users/templates/a4_candy_users/indicator.html:39
 msgid "View your profile"
 msgstr "Dein Profil"
 
@@ -3420,11 +3480,11 @@ msgstr "Diese Seite konnte nicht gefunden werden."
 msgid "adhocracy+"
 msgstr "adhocracy+"
 
-#: adhocracy-plus/templates/500.html:25
+#: adhocracy-plus/templates/500.html:24
 msgid "Internal server error."
 msgstr "Interner Serverfehler."
 
-#: adhocracy-plus/templates/500.html:26
+#: adhocracy-plus/templates/500.html:25
 #: adhocracy-plus/templates/base_errors.html:12
 msgid "Back to adhocracy+"
 msgstr "Zurück zu adhocracy+"
@@ -3434,23 +3494,52 @@ msgid "Organisations"
 msgstr "Organisationen"
 
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:52
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:80
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:92
 #: adhocracy-plus/templates/a4dashboard/base_project_list.html:7
 #: adhocracy-plus/templates/a4dashboard/base_project_list.html:10
 msgid "Participation projects"
 msgstr "Beteiligungsprojekte"
 
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:62
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:84
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:104
 #: adhocracy-plus/templates/a4dashboard/organisation_form_base.html:7
 #: adhocracy-plus/templates/a4dashboard/organisation_form_base.html:10
 msgid "Organisation settings"
 msgstr "Organisation bearbeiten"
 
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:12
-#: adhocracy-plus/templates/a4dashboard/blueprint_list.html:14
+#: adhocracy-plus/templates/a4dashboard/blueprint_list.html:16
+#: adhocracy-plus/templates/a4dashboard/project_create_form.html:14
 msgid "All projects"
 msgstr "Alle Projekte"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:66
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:27
+msgid "Project ready for publication"
+msgstr ""
+
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:29
+msgid "Project not ready for publication"
+msgstr ""
+
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:70
+msgid "Module ready for addition"
+msgstr ""
+
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:72
+msgid "Module not ready for addition"
+msgstr ""
+
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:101
+msgid "Hide from project"
+msgstr ""
+
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:108
+msgid "Add to project"
+msgstr ""
+
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:124
 msgid "Add Module"
 msgstr "Modul hinzufügen"
 
@@ -3468,7 +3557,7 @@ msgstr ""
 msgid "Manual"
 msgstr "Anleitung"
 
-#: adhocracy-plus/templates/a4dashboard/blueprint_list.html:25
+#: adhocracy-plus/templates/a4dashboard/blueprint_list.html:27
 msgid "Create a new Project"
 msgstr "Neues Projekt anlegen"
 
@@ -3504,6 +3593,11 @@ msgstr "Wichtige Felder fehlen"
 #: adhocracy-plus/templates/a4dashboard/organisation_form_base.html:26
 msgid "Legal information"
 msgstr "Rechtliche Informationen"
+
+#: adhocracy-plus/templates/a4dashboard/project_create_form.html:4
+#: adhocracy-plus/templates/a4dashboard/project_create_form.html:26
+msgid "Create project"
+msgstr ""
 
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:31
 msgid ""
@@ -3705,7 +3799,7 @@ msgstr ""
 "\">Datenschutzerklärung</a> gelesen habe und akzeptiere.\n"
 "                "
 
-#: adhocracy-plus/templates/account/signup.html:57
+#: adhocracy-plus/templates/account/signup.html:59
 #, python-format
 msgid ""
 "\n"
@@ -3727,19 +3821,19 @@ msgstr ""
 "weitere Informationen</a>.\n"
 "        "
 
-#: adhocracy-plus/templates/base.html:62
+#: adhocracy-plus/templates/base.html:57
 msgid "Skip to content "
 msgstr "Zum Inhalt springen"
 
-#: adhocracy-plus/templates/base.html:101
+#: adhocracy-plus/templates/base.html:96
 msgid "adhocracy+ is funded by donations."
 msgstr "adhocracy+ finanziert sich durch Spenden."
 
-#: adhocracy-plus/templates/base.html:103
+#: adhocracy-plus/templates/base.html:98
 msgid "Donate now"
 msgstr "Jetzt unterstützen"
 
-#: adhocracy-plus/templates/base.html:106
+#: adhocracy-plus/templates/base.html:101
 msgid "Donate now to adhocracy+"
 msgstr "Spende jetzt für adhocracy+"
 
@@ -3748,8 +3842,8 @@ msgid "Error"
 msgstr "Fehler"
 
 #: adhocracy-plus/templates/email_base.html:66
-msgid "Responsible for the content of this e-mail:"
-msgstr "Verantwortlich für den Inhalt dieser E-mail:"
+msgid "Responsible for the participation project:"
+msgstr ""
 
 #: adhocracy-plus/templates/email_base.html:94
 #: adhocracy-plus/templates/email_base.txt:13
@@ -3780,33 +3874,25 @@ msgstr "Verantwortlich für den Inhalt dieser Seite:"
 msgid "Header"
 msgstr "Kopfzeile"
 
-#: adhocracy-plus/templates/header_lower.html:24
+#: adhocracy-plus/templates/header_lower.html:25
 msgid "Our projects"
 msgstr "Übersicht"
 
-#: adhocracy-plus/templates/header_lower.html:29
+#: adhocracy-plus/templates/header_lower.html:30
 msgid "About"
 msgstr "Hintergrund"
 
-#: adhocracy-plus/templates/includes/header_language_switch.html:13
-msgid "German language selected"
-msgstr "Deutsche Sprache ausgesucht"
+#: adhocracy-plus/templates/includes/header_language_switch.html:11
+msgid "Language selector, "
+msgstr ""
 
-#: adhocracy-plus/templates/includes/header_language_switch.html:13
-msgid "select English language"
-msgstr "Englische Sprache aussuchen"
+#: adhocracy-plus/templates/includes/header_language_switch.html:17
+msgid " selected"
+msgstr ""
 
-#: adhocracy-plus/templates/includes/header_language_switch.html:15
-msgid "select German language"
-msgstr "Deutsche Sprache aussuchen"
-
-#: adhocracy-plus/templates/includes/header_language_switch.html:15
-msgid "English language selected"
-msgstr "Englische Sprache ausgesucht"
-
-#: adhocracy-plus/templates/includes/header_mobile_toggle.html:9
-msgid "Menu"
-msgstr "Menü"
+#: adhocracy-plus/templates/includes/header_language_switch.html:31
+msgid "select "
+msgstr ""
 
 #: adhocracy-plus/templates/socialaccount/connections.html:5
 #: adhocracy-plus/templates/socialaccount/connections.html:8
@@ -3859,6 +3945,21 @@ msgstr "Mit Konto eines sozialen Netzwerks einloggen"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Einloggen mit "
+
+#~ msgid "Responsible for the content of this e-mail:"
+#~ msgstr "Verantwortlich für den Inhalt dieser E-mail:"
+
+#~ msgid "German language selected"
+#~ msgstr "Deutsche Sprache ausgesucht"
+
+#~ msgid "select English language"
+#~ msgstr "Englische Sprache aussuchen"
+
+#~ msgid "select German language"
+#~ msgstr "Deutsche Sprache aussuchen"
+
+#~ msgid "English language selected"
+#~ msgstr "Englische Sprache ausgesucht"
 
 #~ msgid "Project successfully updated."
 #~ msgstr "Projekt erfolgreich aktualisiert."
