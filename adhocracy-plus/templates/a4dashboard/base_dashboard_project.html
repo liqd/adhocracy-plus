@@ -48,8 +48,8 @@
 
             {% for module_menu in dashboard_menu.modules %}
             <div class="btn-group d-flex" role="group">
-                <div class="btn btn--none px-0 dropdown dashboard-nav__module-dropdown" type="button">
-                    <button class="dropdown-toggle" type="button" id="dashboardModuleMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="btn btn--none px-0 dropdown dashboard-nav__module-dropdown">
+                    <button class="dropdown-toggle" id="dashboardModuleMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dashboardModuleMenu">
@@ -64,7 +64,7 @@
                       </a>
                     </div>
                 </div>
-                <div class="dashboard-nav" type="button">
+                <div class="dashboard-nav">
                     <div class="dashboard-nav__dropdown" data-toggle="collapse" href="#dashboardCollapse_{{ forloop.counter }}" aria-expanded="true" aria-controls="#dashboardCollapse_{{ forloop.counter }}" data-target="#dashboardCollapse_{{ forloop.counter }}">
                       {% if module_menu.is_complete %}
                           <i class="fas fa-check-circle text-success" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
