@@ -46,7 +46,7 @@
             </div>
           </div>
 
-            <nav aria-label="{% trans 'Dashboard' %}">
+            <nav class="d-none d-sm-inline-block" aria-label="{% trans 'Dashboard' %}">
                 <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
                    class="tab {% ifequal view.menu_item 'project' %}active{% endifequal %}">
                     {% trans 'Participation projects' %}
@@ -63,6 +63,52 @@
                 </a>
                 {% endif %}
             </nav>
+
+            <!-- mobile tab version -->
+            <ul class="nav d-sm-none tablist__right">
+                <li class="nav-item dropdown">
+                  <a
+                      class="nav-link dropdown-toggle tab active mr-2"
+                      data-toggle="dropdown"
+                      href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
+                      role="button"
+                      aria-expanded="false"
+                      data-toggle="tab">
+                      {% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug as project_list %}
+                      {% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug as newsletter_create %}
+                      {% if request.path ==  project_list %}
+                        {% trans 'Participation projects' %}
+                      {% elif request.path == newsletter_create %}
+                        {% trans 'Newsletter' %}
+                      {% else %}
+                        {% trans 'Organisation settings' %}
+                      {% endif %}
+                      <i class="fa fa-caret-down" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                      <a
+                          class="dropdown-item"
+                          href="{{ project_list }}">
+                          {% trans 'Participation projects' %}
+                      </a>
+                      <a
+                          class="dropdown-item"
+                          href="{{ newsletter_create }}">
+                          {% trans 'Newsletter' %}
+                      </a>
+                      {% has_perm 'a4_candy_organisations.change_organisation' request.user view.organisation as user_may_change_organisation %}
+                      {% if user_may_change_organisation %}
+                      <a
+                          class="dropdown-item"
+                          href="{% url 'a4dashboard:organisation-settings' organisation_slug=view.organisation.slug %}">
+                          {% trans 'Organisation settings' %}
+                      </a>
+                      {% endif %}
+                  </div>
+                </li>
+            </ul>
+
+
         </div>
     </div>
     {% endblock %}
