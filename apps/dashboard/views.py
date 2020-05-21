@@ -157,11 +157,6 @@ class ModulePublishView(SingleObjectMixin,
                            _('Module cannot be removed '
                              'from a published project.'))
             return
-        if module.project.published_modules.count() == 1:
-            messages.error(self.request,
-                           _('Module cannot be removed. '
-                             'It is the only module added to the project.'))
-            return
 
         module.is_draft = True
         module.save()
