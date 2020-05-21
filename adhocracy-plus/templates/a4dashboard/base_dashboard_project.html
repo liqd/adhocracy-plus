@@ -96,7 +96,7 @@
 
                                   {% if not module_menu.module.is_draft %}
                                       <button name="action" value="unpublish" class="">
-                                      <input type="checkbox" class="custom-control-input" id="dashboardToggle_{{ forloop.counter }}" checked>
+                                      <input type="checkbox" class="custom-control-input" id="dashboardToggle_{{ forloop.counter }}" checked {% if not project.is_draft %}disabled{% endif %}>
                                       <label class="custom-control-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
                                           {% trans 'Hide from project' %}
                                       </label>
