@@ -11,8 +11,10 @@
                     <img src="{% thumbnail ORGANISATION.logo '0x160' %}" height="80" alt="{{ ORGANISATION.name }}" class="header-lower__logo-img" />
                 </a>
             {% else %}
-              <div class="header-lower__brand">
-                  {% include 'includes/header_logo_link.html' %}
+              <div class="header-lower__brand u-bg-body">
+                <a class="font-weight-bold" href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
+                    {{ ORGANISATION.name }}
+                </a>
               </div>
             {% endif %}
 
