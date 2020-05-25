@@ -13,7 +13,9 @@
                 </a>
             {% else %}
               <div class="dashboard-nav__logo-link">
-                  {% include 'includes/header_logo_link.html' %}
+                <a class="font-weight-bold" href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
+                  <i class="fas fa-home pt-2" aria-label="{{ ORGANISATION.name }} {% trans 'Home' %}"></i>
+                </a>
               </div>
             {% endif %}
             <div class="dropdown">
