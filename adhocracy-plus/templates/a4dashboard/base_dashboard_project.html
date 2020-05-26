@@ -103,7 +103,7 @@
                                       </button>
                                   {% else %}
                                       <button name="action" value="publish" class="">
-                                      <input type="checkbox" class="custom-control-input" id="dashboardToggle_{{ forloop.counter }}">
+                                      <input type="checkbox" class="custom-control-input" id="dashboardToggle_{{ forloop.counter }}" {% if not module_menu.is_complete %}disabled{% endif %}>
                                       <label class="custom-control-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
                                         {% trans 'Add to project' %}
                                       </label>
