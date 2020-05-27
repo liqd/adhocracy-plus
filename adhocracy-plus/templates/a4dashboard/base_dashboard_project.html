@@ -48,6 +48,7 @@
 
             {% for module_menu in dashboard_menu.modules %}
             <div class="btn-group d-flex" role="group">
+                {% if module_menu.module.is_draft %}
                 <div class="btn btn--none px-0 dropdown dashboard-nav__module-dropdown">
                     <button class="dropdown-toggle" id="dashboardModuleMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v"></i>
@@ -64,6 +65,7 @@
                       </a>
                     </div>
                 </div>
+                {% endif %}
                 <div class="dashboard-nav">
                     <div class="dashboard-nav__dropdown" data-toggle="collapse" href="#dashboardCollapse_{{ forloop.counter }}" aria-expanded="true" aria-controls="#dashboardCollapse_{{ forloop.counter }}" data-target="#dashboardCollapse_{{ forloop.counter }}">
                       {% if module_menu.is_complete %}
