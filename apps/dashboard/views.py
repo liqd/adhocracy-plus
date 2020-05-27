@@ -129,7 +129,8 @@ class ModulePublishView(SingleObjectMixin,
             return self.request.META['HTTP_REFERER']
 
         return reverse('a4dashboard:project-edit', kwargs={
-            'project_slug': self.project.slug
+            'project_slug': self.get_object().project.slug,
+            'organisation_slug': self.get_object().project.organisation.slug
         })
 
     def publish_module(self):
@@ -188,6 +189,12 @@ class ModuleDeleteView(mixins.DashboardBaseMixin,
     success_message = _('The module has been deleted')
 
     def delete(self, request, *args, **kwargs):
+        if not self.get_object().is_draft:
+            messages.error(self.request,
+                           _('Module cannot be deleted. '
+                             'It has to be removed from the project first.'))
+            failure_url = self.get_failure_url()
+            return HttpResponseRedirect(failure_url)
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)
 
@@ -202,6 +209,17 @@ class ModuleDeleteView(mixins.DashboardBaseMixin,
             if 'module_slug' not in kwargs \
                     or not kwargs['module_slug'] == self.get_object().slug:
                 return referrer
+
+        return reverse('a4dashboard:project-edit', kwargs={
+            'project_slug': self.get_object().project.slug,
+            'organisation_slug': self.get_object().project.organisation.slug
+        })
+
+    def get_failure_url(self):
+        if 'referrer' in self.request.POST:
+            return self.request.POST['referrer']
+        elif 'HTTP_REFERER' in self.request.META:
+            return self.request.META['HTTP_REFERER']
 
         return reverse('a4dashboard:project-edit', kwargs={
             'project_slug': self.get_object().project.slug,
