@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags static maps_tags %}
+{% load i18n discovery_tags static maps_tags module_tags %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
@@ -30,7 +30,7 @@
         </div>
     </div>
     {% if view.mode == 'map' %}
-        <div class="map-list row">
+        <div class="map-list">
             <div class="map-list__controls">
                 <div class="container">
                     <div class="leaflet-control-zoom leaflet-bar leaflet-control">
@@ -39,23 +39,33 @@
                     </div>
                 </div>
             </div>
-            {% map_display_points object_list module.settings_instance.polygon %}
+            {% if object_list %}
+              {% if true %}
+                {% map_display_points object_list module.settings_instance.polygon %}
+              {% else %}
+                {% map_display_points object_list module.settings_instance.polygon 'true' %}
+              {% endif %}
+            {% else %}
+              {% map_display_points object_list module.settings_instance.polygon %}
+            {% endif %}
         </div>
     {% else %}
         <div class="bg--light">
-            <div class="row">
-                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                    {% if object_list.count > 0 %}
-                        <ul class="u-list-reset">
-                            {% for object in object_list %}
-                                {% include "a4_candy_budgeting/includes/proposal_list_item.html" with object=object %}
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        {% trans "Nothing to show" %}
-                    {% endif %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                        {% if object_list.count > 0 %}
+                            <ul class="u-list-reset">
+                                {% for object in object_list %}
+                                    {% include "a4_candy_budgeting/includes/proposal_list_item.html" with object=object %}
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            {% trans "Nothing to show" %}
+                        {% endif %}
 
-                    {% include "a4_candy_contrib/includes/pagination.html" %}
+                        {% include "a4_candy_contrib/includes/pagination.html" %}
+                    </div>
                 </div>
             </div>
         </div>
