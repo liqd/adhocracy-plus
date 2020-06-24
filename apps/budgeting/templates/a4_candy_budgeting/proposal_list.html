@@ -40,7 +40,7 @@
                 </div>
             </div>
             {% if object_list %}
-              {% if true %}
+              {% if object_list.0|has_feature:"rate" %}
                 {% map_display_points object_list module.settings_instance.polygon %}
               {% else %}
                 {% map_display_points object_list module.settings_instance.polygon 'true' %}
