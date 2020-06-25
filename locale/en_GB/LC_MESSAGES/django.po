@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-20 13:50+0200\n"
+"POT-Creation-Date: 2020-06-25 18:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgid "Add category"
 msgstr "Add category"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:49
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:51
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -45,7 +45,7 @@ msgstr "Project Settings"
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:40
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:84
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:86
 msgid "Missing fields for publication"
 msgstr "Missing fields for publication"
 
@@ -521,7 +521,7 @@ msgstr "Project successfully duplicated."
 msgid "Project successfully created."
 msgstr "Project successfully created."
 
-#: adhocracy4/dashboard/views.py:154 apps/dashboard/views.py:120
+#: adhocracy4/dashboard/views.py:154 apps/dashboard/views.py:121
 msgid "Invalid action"
 msgstr "Invalid action"
 
@@ -795,7 +795,7 @@ msgid "Images"
 msgstr "Images"
 
 #: adhocracy4/projects/admin.py:59 apps/projects/admin.py:55
-#: adhocracy-plus/templates/email_base.html:113
+#: adhocracy-plus/templates/email_base.html:114
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "Contact"
@@ -1220,7 +1220,7 @@ msgstr "Zoom in"
 msgid "Zoom out"
 msgstr "Zoom out"
 
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_list.html:55
+#: apps/budgeting/templates/a4_candy_budgeting/proposal_list.html:64
 #: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:26
 #: apps/debate/templates/a4_candy_debate/subject_list.html:25
 #: apps/ideas/templates/a4_candy_ideas/idea_list.html:34
@@ -1537,8 +1537,8 @@ msgstr "Actions"
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:24
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:25
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:24
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:60
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:61
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:62
 msgid "Delete"
 msgstr "Delete"
 
@@ -1687,39 +1687,43 @@ msgstr ""
 "Please add a module from the list. You can later add more modules to the "
 "project, edit them or remove them again."
 
-#: apps/dashboard/views.py:50
+#: apps/dashboard/views.py:51
 msgid "The module was created"
 msgstr "The module was created"
 
-#: apps/dashboard/views.py:137
+#: apps/dashboard/views.py:139
 msgid "Module is already added"
 msgstr "Module is already added"
 
 #: apps/dashboard/views.py:148
+msgid "Module cannot be added. Required fields are missing."
+msgstr "Module cannot be added. Required fields are missing."
+
+#: apps/dashboard/views.py:160
 msgid "The module is displayed in the project."
 msgstr "The module is displayed in the project."
 
-#: apps/dashboard/views.py:153
+#: apps/dashboard/views.py:165
 msgid "Module is already removed"
 msgstr "Module is already removed"
 
-#: apps/dashboard/views.py:157
+#: apps/dashboard/views.py:169
 msgid "Module cannot be removed from a published project."
 msgstr "Module cannot be removed from a published project."
 
-#: apps/dashboard/views.py:162
-msgid "Module cannot be removed. It is the only module added to the project."
-msgstr "Module cannot be removed. It is the only module added to the project."
-
-#: apps/dashboard/views.py:174
+#: apps/dashboard/views.py:181
 msgid "The module is no longer displayed in the project."
 msgstr "The module is no longer displayed in the project."
 
-#: apps/dashboard/views.py:182
+#: apps/dashboard/views.py:189
 msgid "The module has been deleted"
 msgstr "The module has been deleted"
 
-#: apps/dashboard/views.py:215
+#: apps/dashboard/views.py:194
+msgid "Module cannot be deleted. It has to be removed from the project first."
+msgstr "Module cannot be deleted. It has to be removed from the project first."
+
+#: apps/dashboard/views.py:239
 msgid "Project was created."
 msgstr "Project was created."
 
@@ -2184,9 +2188,9 @@ msgid "Receivers"
 msgstr "Receivers"
 
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:4
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:56
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:82
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:97
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:58
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:84
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:99
 msgid "Newsletter"
 msgstr "Newsletter"
 
@@ -2362,7 +2366,7 @@ msgstr ""
 #: apps/organisations/templates/a4_candy_organisations/organisation_imprint.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_imprint.html:10
 #: adhocracy-plus/templates/email_base.html:77
-#: adhocracy-plus/templates/email_base.html:104
+#: adhocracy-plus/templates/email_base.html:105
 #: adhocracy-plus/templates/footer.html:38
 #: adhocracy-plus/templates/footer_upper.html:16
 msgid "Imprint"
@@ -2381,8 +2385,7 @@ msgstr ""
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:10
 #: apps/users/forms.py:33 apps/users/forms.py:170
 #: adhocracy-plus/templates/email_base.html:81
-#: adhocracy-plus/templates/email_base.html:110
-#: adhocracy-plus/templates/email_base.txt:18
+#: adhocracy-plus/templates/email_base.html:111
 #: adhocracy-plus/templates/footer.html:43
 #: adhocracy-plus/templates/footer_upper.html:24
 msgid "Terms of use"
@@ -2397,7 +2400,7 @@ msgstr ""
 "The terms of use will be shown on a separate page."
 
 #: apps/organisations/models.py:127
-#: adhocracy-plus/templates/email_base.html:107
+#: adhocracy-plus/templates/email_base.html:108
 #: adhocracy-plus/templates/footer.html:48
 #: adhocracy-plus/templates/footer_upper.html:20
 msgid "Data protection policy"
@@ -3145,7 +3148,6 @@ msgstr "Menu"
 
 #: apps/users/templates/a4_candy_users/indicator.html:26
 #: adhocracy-plus/templates/email_base.html:40
-#: adhocracy-plus/templates/email_base.txt:5
 msgid "Hello"
 msgstr "Hello"
 
@@ -3354,21 +3356,25 @@ msgstr "Internal server error."
 msgid "Back to adhocracy+"
 msgstr "Back to adhocracy+"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:22
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:17
+msgid "Home"
+msgstr "Home"
+
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:24
 msgid "Organisations"
 msgstr "Organisations"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:52
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:80
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:92
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:54
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:82
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:94
 #: adhocracy-plus/templates/a4dashboard/base_project_list.html:7
 #: adhocracy-plus/templates/a4dashboard/base_project_list.html:10
 msgid "Participation projects"
 msgstr "Participation projects"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:62
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:84
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:104
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:64
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:86
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:106
 #: adhocracy-plus/templates/a4dashboard/organisation_form_base.html:7
 #: adhocracy-plus/templates/a4dashboard/organisation_form_base.html:10
 msgid "Organisation settings"
@@ -3388,23 +3394,23 @@ msgstr "Project ready for publication"
 msgid "Project not ready for publication"
 msgstr "Project not ready for publication"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:70
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:72
 msgid "Module ready for addition"
 msgstr "Module ready for addition"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:72
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:74
 msgid "Module not ready for addition"
 msgstr "Module not ready for addition"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:101
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:103
 msgid "Hide from project"
 msgstr "Hide from project"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:108
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:110
 msgid "Add to project"
 msgstr "Add to project"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:124
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:126
 msgid "Add Module"
 msgstr "Add Module"
 
@@ -3519,6 +3525,112 @@ msgstr "Add another Email"
 #: adhocracy-plus/templates/account/email.html:55
 msgid "Add Email"
 msgstr "Add Email"
+
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:3
+#, python-format
+msgid "Please confirm your email address on %(current_site)s"
+msgstr "Please confirm your email address on %(current_site)s"
+
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:5
+#, python-format
+msgid "Your email address on %(current_site)s"
+msgstr "Your email address on %(current_site)s"
+
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:7
+#, python-format
+msgid ""
+"this email address has been added to the user account \"%(username)s\" on "
+"\"%(current_site)s\". Please confirm this address. If you did not add this "
+"email address, you can ignore this email. We will not send you any further "
+"emails."
+msgstr ""
+"this email address has been added to the user account \"%(username)s\" on "
+"\"%(current_site)s\". Please confirm this address. If you did not add this "
+"email address, you can ignore this email. We will not send you any further "
+"emails."
+
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:10
+msgid "Confirm your email address"
+msgstr "Confirm your email address"
+
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:12
+#, python-format
+msgid ""
+"This email was sent to %(receiver)s. If you have any further questions, "
+"please contact us via %(contact_email)s"
+msgstr ""
+"This email was sent to %(receiver)s. If you have any further questions, "
+"please contact us via %(contact_email)s"
+
+#: adhocracy-plus/templates/account/email/email_confirmation_signup.en.email:4
+#, python-format
+msgid "Please confirm your registration on %(current_site)s"
+msgstr "Please confirm your registration on %(current_site)s"
+
+#: adhocracy-plus/templates/account/email/email_confirmation_signup.en.email:6
+#, python-format
+msgid "Your registration on %(current_site)s"
+msgstr "Your registration on %(current_site)s"
+
+#: adhocracy-plus/templates/account/email/email_confirmation_signup.en.email:8
+#, python-format
+msgid ""
+"You have registered with the username \"%(username)s\" on the participation "
+"platform \"%(current_site)s\". Click \"Confirm email address\" to complete "
+"your registration. As soon as you are registered, you can participate on "
+"\"%(current_site)s\". If you haven't registered, you can ignore this message."
+msgstr ""
+"You have registered with the username \"%(username)s\" on the participation "
+"platform \"%(current_site)s\". Click \"Confirm email address\" to complete "
+"your registration. As soon as you are registered, you can participate on "
+"\"%(current_site)s\". If you haven't registered, you can ignore this message."
+
+#: adhocracy-plus/templates/account/email/email_confirmation_signup.en.email:11
+msgid "Confirm email address"
+msgstr "Confirm email address"
+
+#: adhocracy-plus/templates/account/email/email_confirmation_signup.en.email:13
+#, python-format
+msgid ""
+"This email was sent to %(useremail)s. If you have any further questions, "
+"please contact us via %(contact_email)s"
+msgstr ""
+"This email was sent to %(useremail)s. If you have any further questions, "
+"please contact us via %(contact_email)s"
+
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:3
+#, python-format
+msgid "Reset password request for %(current_site)s"
+msgstr "Reset password request for %(current_site)s"
+
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:5
+#, python-format
+msgid "Password reset for your account %(username)s"
+msgstr "Password reset for your account %(username)s"
+
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:7
+#, python-format
+msgid ""
+"you have requested a password reset. Please click on \"Reset password\" to "
+"set a new password. If you have not requested a password reset, you can "
+"ighnore this email and your %(current_site)s password stays unchanged."
+msgstr ""
+"you have requested a password reset. Please click on \"Reset password\" to "
+"set a new password. If you have not requested a password reset, you can "
+"ighnore this email and your %(current_site)s password stays unchanged."
+
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:10
+msgid "Reset password"
+msgstr "Reset password"
+
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:12
+#, python-format
+msgid ""
+"This email was sent to %(useremail)s. You receive this email because your "
+"password on %(current_site)s has been reset."
+msgstr ""
+"This email was sent to %(useremail)s. You receive this email because your "
+"password on %(current_site)s has been reset."
 
 #: adhocracy-plus/templates/account/email_confirm.html:4
 #: adhocracy-plus/templates/account/email_confirm.html:7
@@ -3708,8 +3820,7 @@ msgstr "Error"
 msgid "Responsible for the participation project:"
 msgstr "Responsible for the participation project:"
 
-#: adhocracy-plus/templates/email_base.html:94
-#: adhocracy-plus/templates/email_base.txt:13
+#: adhocracy-plus/templates/email_base.html:95
 msgid "adhocracy+ is a participation platform operated by"
 msgstr "adhocracy+ is a participation platform operated by"
 
@@ -3737,11 +3848,11 @@ msgstr "Responsible for the content of this page:"
 msgid "Header"
 msgstr "Header"
 
-#: adhocracy-plus/templates/header_lower.html:25
+#: adhocracy-plus/templates/header_lower.html:27
 msgid "Our projects"
 msgstr "Our projects"
 
-#: adhocracy-plus/templates/header_lower.html:30
+#: adhocracy-plus/templates/header_lower.html:32
 msgid "About"
 msgstr "About"
 
@@ -3807,6 +3918,11 @@ msgstr "Login with social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Login with "
+
+#~ msgid ""
+#~ "Module cannot be removed. It is the only module added to the project."
+#~ msgstr ""
+#~ "Module cannot be removed. It is the only module added to the project."
 
 #~ msgid "Responsible for the content of this e-mail:"
 #~ msgstr "Responsible for the content of this e-mail:"
