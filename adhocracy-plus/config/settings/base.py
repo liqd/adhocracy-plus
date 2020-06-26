@@ -190,7 +190,8 @@ USE_TZ = True
 
 LANGUAGES = [
     ('en', _('English')),
-    ('de', _('German'))
+    ('de', _('German')),
+    ('nl', _('Dutch'))
 ]
 
 
