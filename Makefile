@@ -112,6 +112,11 @@ po:
 mo:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
+.PHONY: tx-mo
+tx-mo:
+	$(VIRTUAL_ENV)/bin/tx pull -a
+	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
+
 .PHONY: release
 release: export DJANGO_SETTINGS_MODULE ?= adhocracy-plus.config.settings.build
 release:
