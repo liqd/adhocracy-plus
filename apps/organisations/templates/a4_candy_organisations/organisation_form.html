@@ -13,9 +13,6 @@
                 {% csrf_token %}
                 <h2>{{ object.name }}</h2>
                 {% include 'a4_candy_organisations/includes/form_field.html' with field=form.title important=True %}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.slogan %}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.description %}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.information %}
                 {% include 'a4_candy_organisations/includes/form_field.html' with field=form.logo %}
                 {% include 'a4_candy_organisations/includes/form_field.html' with field=form.image %}
                 {% include 'a4_candy_organisations/includes/form_field.html' with field=form.image_copyright %}
@@ -23,6 +20,19 @@
                 {% include 'a4_candy_organisations/includes/form_field.html' with field=form.twitter_handle %}
                 {% include 'a4_candy_organisations/includes/form_field.html' with field=form.facebook_handle %}
                 {% include 'a4_candy_organisations/includes/form_field.html' with field=form.instagram_handle %}
+                <div class="form-group">
+                    <label>{% trans "Language availability" %}</label>
+                    <div class="form-hint">{% trans "Manage here the content of your page in the desired languages. You can add or delete them." %}</div>
+                    <div class="language-choice-list"
+                         id="language-choice-list"
+                         data-euth-widget="language-choice"
+                         data-languages="{{ form.languages|join:' ' }}"
+                         data-active-languages="{{ form.prefilled_languages|join:' ' }}"
+                    ></div>
+                </div>
+                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.slogan %}
+                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.description %}
+                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.information %}
 
                 <div class="mb-3">
                     <button type="submit" class="btn btn--primary">{% trans 'Save changes' %}</button>

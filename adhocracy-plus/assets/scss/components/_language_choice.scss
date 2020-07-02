@@ -1,0 +1,47 @@
+.language-choice-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.language-choice-list label {
+    display: block;
+}
+
+.checkbox-list {
+    padding-left: 0;
+    margin-left: 0;
+    list-style: none;
+
+    input {
+        display: none;
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        color: $black;
+        margin-right: 2px;
+    }
+}
+
+.language-choice-list .dropdown {
+    float: left;
+}
+
+.language-choice {
+    display: none;
+}
+
+:checked + .language-choice {
+    display: block;
+}
+
+.language-choice-panel {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
