@@ -1,18 +1,19 @@
 {% extends 'email_base.'|add:part_type %}
+{% load i18n %}
 
-{% block subject %}We received your message on {{ site.name }}{% endblock %}
+{% block subject %}{% blocktrans with site_name=site.name %}We received your message on {{ site_name }}{% endblocktrans %}{% endblock %}
 
-{% block headline %} We received your message {% endblock  %}
+{% block headline %}{% blocktrans %}We received your message{% endblocktrans %}{% endblock  %}
 
-{% block content %} This is the data we received from you:
+{% block content %}{% blocktrans with sender_mail=customformsubmission.email message=customformsubmission.message %}This is the data we received from you:
 
-Your email address: {{ customformsubmission.email }}
+Your email address: {{ sender_mail }}
 
-Your message: {{ customformsubmission.message }}
-{% if customformsubmission.telephone_number %}Your telephone number: {{ customformsubmission.telephone_number }}{% endif %}
+Your message: {{ message }}{% endblocktrans %}
 
-{% if customformsubmission.name %}Your Name: {{ customformsubmission.name }}{% endif %}
+{% if customformsubmission.telephone_number %}{% blocktrans with sender_phone=customformsubmission.telephone_number %}Your telephone number: {{ sender_phone }}{% endblocktrans %}{% endif %}
 
+{% if customformsubmission.name %}{% blocktrans with sender_name=customformsubmission.name %}Your Name: {{ sender_name }}{% endblocktrans %}{% endif %}
 {% endblock %}
 
-{% block reason %} This message was sent to {{ receiver }}. It was sent because you wrote us a message via our contact form and asked us to send you a copy .{% endblock %}
+{% block reason %} {% blocktrans %}This message was sent to {{ receiver }}. It was sent because you wrote us a message via our contact form and asked us to send you a copy.{% endblocktrans %}{% endblock %}
