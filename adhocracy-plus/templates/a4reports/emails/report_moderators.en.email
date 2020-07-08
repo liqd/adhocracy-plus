@@ -1,0 +1,16 @@
+{% extends 'email_base.'|add:part_type %}
+{% load reports_tags i18n %}
+
+{% block subject %}{% blocktrans with project_name=report.project site_name=site.name %}Moderation request in the project {{ project_name }} on {{ site_name }}{% endblocktrans %}{% endblock %}
+
+{% block headline %}{% blocktrans with project_name=report.project %}Moderation request in the project {{ project_name }}{% endblocktrans %}{% endblock %}
+
+{% block content %}{% blocktrans with user_name=report.creator.username project_name=report.project %}User {{ user_name }} reported a post in your project "{{ project_name }}". It is possible, the message could also be spam. As a moderator, you can review the post and delete it if necessary. The following reasons were given:{% endblocktrans %}
+
+{{ report.description }}
+{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}
+{% block cta_label %}{% blocktrans %}Review post{% endblocktrans %}{% endblock %}
+
+{% block reason %}{% blocktrans with receiver_mail=receiver.email %}This email has been sent to {{ receiver_mail }}. The email was sent to you as you are the moderator of the project.{% endblocktrans %} {{ account_link | safe }}{% endblock %}
