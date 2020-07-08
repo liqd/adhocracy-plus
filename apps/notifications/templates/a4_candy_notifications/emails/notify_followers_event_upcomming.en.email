@@ -1,17 +1,18 @@
 {% extends 'email_base.'|add:part_type %}
+{% load i18n %}
 
-{% block subject %}Invitation to an event in project {{ action.project.name }}{% endblock %}
+{% block subject %}{% blocktrans with project_name=action.project.name %}Invitation to an event in project {{ project_name }}{% endblocktrans %}{% endblock %}
 
-{% block headline %}Event{% endblock %}
+{% block headline %}{% blocktrans %}Event{% endblocktrans %}{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}
 
-{% block greeting %}Hello {{ receiver.username }},{% endblock %}
+{% block greeting %}{% blocktrans with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktrans %}{% endblock %}
 
-{% block content %}The following event takes place on {{ action.obj.date }}:
-<b>{{ action.obj.name }}</b>
-Further information about the event can be found in the project.{% endblock %}
+{% block content %}{% blocktrans with date=action.obj.date event_name=action.obj.name %}The following event takes place on {{ date }}:
+<b>{{ event_name }}</b>
+Further information about the event can be found in the project.{% endblocktrans %}{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% endblock %}
-{% block cta_label %}Show Event{% endblock %}
+{% block cta_label %}{% blocktrans %}Show Event{% endblocktrans %}{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">project</a> or change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}
+{% block reason %}{% blocktrans with receiver_mail=receiver.email host=email.get_host project_url=action.project.get_absolute_url%}This email was sent to {{ receiver_mail }}. You have received the e-mail because you are following the above project.{% endblocktrans %} {{ project_link | safe }} {{ account_link | safe }}{% endblock %}
