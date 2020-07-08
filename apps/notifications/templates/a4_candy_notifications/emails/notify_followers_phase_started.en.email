@@ -1,17 +1,18 @@
 {% extends 'email_base.'|add:part_type %}
+{% load i18n %}
 
-{% block subject %}Here we go: {{ action.project.name }} starts now!{% endblock %}
+{% block subject %}{% blocktrans with project_name=action.project.name %}Here we go: {{ project_name }} starts now!{% endblocktrans %}{% endblock %}
 
-{% block headline %}Here we go!{% endblock %}
+{% block headline %}{% blocktrans %}Here we go!{% endblocktrans %}{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}
 
-{% block greeting %}Hello {{ receiver.username }},{% endblock %}
+{% block greeting %}{% blocktrans with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktrans %}{% endblock %}
 
-{% block content %}Online participation for the above project has started.
+{% block content %}{% blocktrans with end_date=action.obj.end_date %}Online participation for the above project has started.
 
-<b>You can participate untill {{ action.obj.end_date }}.</b>{% endblock %}
+<b>You can participate until {{ end_date }}.</b>{% endblocktrans %}{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_detail_url }}{% endblock %}
-{% block cta_label %}Join now{% endblock %}
+{% block cta_label %}{% blocktrans %}Join now{% endblocktrans %}{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">project</a> or change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}
+{% block reason %}{% blocktrans with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. You have received the e-mail because you are following the above project.{% endblocktrans %} {{ project_link | safe }} {{ account_link | safe }}{% endblock %}
