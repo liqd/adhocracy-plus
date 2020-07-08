@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-25 18:03+0200\n"
+"POT-Creation-Date: 2020-07-17 16:07+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1398,6 +1398,50 @@ msgstr "Ihre Telefonnumer"
 msgid "Your name"
 msgstr "Ihr Name"
 
+#: apps/cms/contacts/templates/a4_candy_cms_contacts/emails/answer_to_contact_form.en.email:4
+#, python-format
+msgid "We received your message on %(site_name)s"
+msgstr "Wir haben Ihre Nachricht auf %(site_name)s erhalten"
+
+#: apps/cms/contacts/templates/a4_candy_cms_contacts/emails/answer_to_contact_form.en.email:6
+msgid "We received your message"
+msgstr "Wir haben Ihre Nachricht erhalten"
+
+#: apps/cms/contacts/templates/a4_candy_cms_contacts/emails/answer_to_contact_form.en.email:8
+#, python-format
+msgid ""
+"This is the data we received from you:\n"
+"\n"
+"Your email address: %(sender_mail)s\n"
+"\n"
+"Your message: %(message)s"
+msgstr ""
+"Dies sind die Daten, die wir von Ihnen erhalten haben:\n"
+"\n"
+"Ihre Email-Adresse: %(sender_mail)s\n"
+"\n"
+"Ihre Nachricht: %(message)s"
+
+#: apps/cms/contacts/templates/a4_candy_cms_contacts/emails/answer_to_contact_form.en.email:14
+#, python-format
+msgid "Your telephone number: %(sender_phone)s"
+msgstr "Ihre Telefonnummer: %(sender_phone)s"
+
+#: apps/cms/contacts/templates/a4_candy_cms_contacts/emails/answer_to_contact_form.en.email:16
+#, python-format
+msgid "Your Name: %(sender_name)s"
+msgstr "Ihr Name: %(sender_name)s"
+
+#: apps/cms/contacts/templates/a4_candy_cms_contacts/emails/answer_to_contact_form.en.email:19
+#, python-format
+msgid ""
+"This message was sent to %(receiver)s. It was sent because you wrote us a "
+"message via our contact form and asked us to send you a copy."
+msgstr ""
+"Diese E-Mail wurde an %(receiver)s gesendet. Sie wurde an Sie gesendet, da "
+"Sie uns über unser Kontaktformular kontaktiert haben und uns gebeten haben, "
+"Ihnen eine Kopie der Nachricht zu senden."
+
 #: apps/cms/contacts/templates/a4_candy_cms_contacts/includes/form.html:16
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:29
 msgid "Send"
@@ -2303,6 +2347,18 @@ msgstr "Senden"
 msgid "Receivers"
 msgstr "Empfänger*innen"
 
+#: apps/newsletters/templates/a4_candy_newsletters/emails/newsletter_email.en.email:10
+#, python-format
+msgid ""
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are registered on %(site_name)s. If you don't want to receive "
+"newsletters anymore, you may disable them in your user account settings."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Die E-Mail wurde an Sie "
+"gesendet, da Sie auf %(site_name)s registriert sind. Wenn Sie keine "
+"Newsletter mehr erhalten wollen, können Sie diese in Ihrem Benutzerkonto "
+"deaktivieren."
+
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:4
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:58
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:84
@@ -2318,6 +2374,320 @@ msgstr "Newsletter erstellen"
 msgid "Newsletter has been saved and will be sent to the recipients."
 msgstr ""
 "Der Newsletter wurde gespeichert und wird an die Empfänger*innen gesendet."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:4
+#, python-format
+msgid "Reaction to your contribution in project %(project_name)s"
+msgstr "Reaktion auf Ihren Beitrag im Projekt %(project_name)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:6
+msgid "Reaction to your contribution"
+msgstr "Reaktion auf Ihren Beitrag"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:9
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:9
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:9
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:9
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:9
+#, python-format
+msgid "Hello %(receiver_name)s,"
+msgstr "Hallo %(receiver_name)s,"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:11
+#, python-format
+msgid "%(actor_name)s commented on your post:"
+msgstr "%(actor_name)s hat Ihren Beitrag kommentiert:"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:15
+msgid "Would you like to answer?"
+msgstr "Möchten Sie antworten?"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:18
+msgid "View Post"
+msgstr "Beitrag anzeigen"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:18
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:24
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:53
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:55
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:57
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:59
+msgid "Visit the project"
+msgstr "Projekt anzeigen"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:20
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:26
+#, python-format
+msgid ""
+"This email was sent to %(receiver_mail)s. You have received the e-mail "
+"because you added a contribution to the above project."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Sie haben die E-Mail "
+"erhalten, weil Sie einen Beitrag in einem Projekt erstellt haben."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:4
+#, python-format
+msgid "Feedback for your contribution on %(site_name)s"
+msgstr "Rückmeldung zu Ihrem Beitrag auf %(site_name)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:6
+msgid "Feedback for your contribution"
+msgstr "Rückmeldung zu Ihrem Beitrag"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:12
+#, python-format
+msgid "%(organisation_name)s reacted on your contribution."
+msgstr "%(organisation_name)s hat auf Ihren Beitrag reagiert."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:14
+#, python-format
+msgid "Your contribution is %(feedback)s."
+msgstr "Ihr Beitrag %(feedback)s."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:17
+#, python-format
+msgid "Official feedback: %(statement)s"
+msgstr "Offizielle Rückmeldung: %(statement)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:20
+msgid "Do you want to answer?"
+msgstr "Möchten Sie antworten?"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:24
+msgid "Check your contribution"
+msgstr "Beitrag anzeigen"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:4
+#, python-format
+msgid "Invitation to an event in project %(project_name)s"
+msgstr "Einladung zu einer Veranstaltung im Projekt %(project_name)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:6
+msgid "Event"
+msgstr "Veranstaltung"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:11
+#, python-format
+msgid ""
+"The following event takes place on %(date)s:\n"
+"<b>%(event_name)s</b>\n"
+"Further information about the event can be found in the project."
+msgstr ""
+"am %(date)s Uhr findet die folgende Veranstaltung statt:\n"
+"<b>%(event_name)s</b>\n"
+"Weitere Informationen zu der Veranstaltung finden Sie im Projekt."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:16
+msgid "Show Event"
+msgstr "Veranstaltung anzeigen"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:18
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:18
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:18
+#, python-format
+msgid ""
+"This email was sent to %(receiver_mail)s. You have received the e-mail "
+"because you are following the above project."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Sie haben die E-Mail "
+"erhalten, weil Sie oben genanntem Projekt folgen."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:4
+#, python-format
+msgid "Participation ends soon for %(project_name)s"
+msgstr "Beteiligung endet bald für %(project_name)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:6
+msgid "Participation ends soon!"
+msgstr "Beteiligung endet bald!"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:11
+#, python-format
+msgid ""
+"the online participation in the above mentioned project will end soon.\n"
+"\n"
+"<b>You can still participate until %(end_date)s.</b>"
+msgstr ""
+"die Online-Beteiligung im oben genannten Projekt endet bald.\n"
+"\n"
+"<b>Sie können noch bis zum %(end_date)s Uhr daran teilnehmen.</b>"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:16
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:16
+#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:37
+msgid "Join now"
+msgstr "Jetzt mitmachen"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:4
+#, python-format
+msgid "Here we go: %(project_name)s starts now!"
+msgstr "Los geht's: %(project_name)s startet jetzt!"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:6
+msgid "Here we go!"
+msgstr "Los geht’s!"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:11
+#, python-format
+msgid ""
+"Online participation for the above project has started.\n"
+"\n"
+"<b>You can participate until %(end_date)s.</b>"
+msgstr ""
+"die Online-Beteiligung im oben genannten Projekt hat begonnen.\n"
+"\n"
+"<b>Sie können bis zum %(end_date)s Uhr daran teilnehmen.</b>"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:4
+#, python-format
+msgid "New project %(project_name)s on %(site_name)s"
+msgstr "Neues Projekt %(project_name)s auf %(site_name)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:6
+#, python-format
+msgid "The new project %(project_name)s was created for %(organisation_name)s"
+msgstr "Neues Projekt %(project_name)s bei %(organisation_name)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:8
+#, python-format
+msgid ""
+"%(creator_name)s has created the project %(project_name)s for "
+"%(organisation_name)s."
+msgstr ""
+"%(creator_name)s hat ein neues Projekt %(project_name)s bei "
+"%(organisation_name)s erstellt."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:11
+msgid "Show project"
+msgstr "Projekt anzeigen"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:13
+#, python-format
+msgid ""
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are an intiator of %(organisation_name)s."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Die E-Mail wurde an Sie "
+"gesendet, da Sie Initiator*in der Organisation %(organisation_name)s sind."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:7
+#, python-format
+msgid "A comment was added to the project %(project_name)s"
+msgstr "Neuer Kommentar im Projekt %(project_name)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:9
+#, python-format
+msgid "An idea was added to the project %(project_name)s"
+msgstr "Neue Idee im Projekt %(project_name)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:11
+#, python-format
+msgid "A proposal was added to the project %(project_name)s"
+msgstr "Neuer Vorschlag im Projekt %(project_name)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:13
+#, python-format
+msgid "A contribution was added to the project %(project_name)s"
+msgstr "Neuer Beitrag im Projekt %(project_name)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:21
+#, python-format
+msgid "%(actor_name)s created a comment on the project %(project_name)s"
+msgstr ""
+"%(actor_name)s hat im Projekt %(project_name)s einen neuen Kommentar erstellt"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:23
+#, python-format
+msgid "%(actor_name)s created an idea on the project %(project_name)s"
+msgstr "%(actor_name)s hat im Projekt %(project_name)s eine neue Idee angelegt"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:25
+#, python-format
+msgid "%(actor_name)s created a proposal on the project %(project_name)s"
+msgstr ""
+"%(actor_name)s hat im Projekt %(project_name)s einen neuen Vorschlag angelegt"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:27
+#, python-format
+msgid "%(actor_name)s created a contribution on the project %(project_name)s"
+msgstr ""
+"%(actor_name)s hat im Projekt %(project_name)s eine neuen Beitrag erstellt"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:35
+#, python-format
+msgid "on the project %(project_name)s a comment was added by %(actor_name)s."
+msgstr ""
+"im Projekt %(project_name)s wurde von %(actor_name)s ein Kommentar "
+"hinzugefügt."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:35
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:37
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:39
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:41
+#, python-format
+msgid ""
+"Checkout what happend on the project %(project_name)s on %(site_name)s by "
+"clicking the link below."
+msgstr ""
+"Schauen Sie nach, was in dem Projekt %(project_name)s auf %(site_name)s "
+"aktuell passiert, indem Sie auf den Link unten klicken."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:35
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:37
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:39
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:41
+#, python-format
+msgid ""
+"Checkout what happend on the project %(project_name)s on %(site_name)s by "
+"clicking the button below."
+msgstr ""
+"Schauen Sie nach, was in dem Projekt %(project_name)s auf %(site_name)s "
+"aktuell passiert, indem Sie auf den Button unten klicken."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:37
+#, python-format
+msgid "on the project %(project_name)s an idea was added by %(actor_name)s."
+msgstr ""
+"im Projekt %(project_name)s wurde von %(actor_name)s eine Idee hinzugefügt."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:39
+#, python-format
+msgid "on the project %(project_name)s a proposal was added by %(actor_name)s."
+msgstr ""
+"im Projekt %(project_name)s wurde von %(actor_name)s ein Vorschlag "
+"hinzugefügt."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:41
+#, python-format
+msgid ""
+"on the project %(project_name)s a contribution was added by %(actor_name)s."
+msgstr ""
+"im Projekt %(project_name)s wurde von %(actor_name)s ein Beitrag hinzugefügt."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:53
+msgid "Check the comment"
+msgstr "Kommentar anzeigen"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:55
+msgid "Check the idea"
+msgstr "Idee anzeigen"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:57
+msgid "Check the proposal"
+msgstr "Vorschlag anzeigen"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:59
+msgid "Check the contribution"
+msgstr "Beitrag anzeigen"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:65
+#, python-format
+msgid ""
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are a moderator in the project."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Die E-Mail wurde an Sie "
+"gesendet, da Sie Moderator*in des Projekts sind."
 
 #: apps/offlineevents/dashboard.py:13
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:9
@@ -2680,6 +3050,96 @@ msgstr "Laden Sie eine CSV-Datei hoch, die E-Mail Adressen beinhaltet."
 msgid "Please enter email addresses or upload a file"
 msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 
+#: apps/projects/templates/a4_candy_projects/emails/delete_project.en.email:4
+msgid "Deletion of project"
+msgstr "Löschung eines Projekts"
+
+#: apps/projects/templates/a4_candy_projects/emails/delete_project.en.email:6
+#, python-format
+msgid "The project %(name)s was deleted."
+msgstr "Löschung des Projekts %(name)s"
+
+#: apps/projects/templates/a4_candy_projects/emails/delete_project.en.email:8
+#, python-format
+msgid ""
+"The project \"%(name)s\" on the participation platform %(site_name)s was "
+"deleted."
+msgstr ""
+"Das Projekt \"%(name)s\" auf der Beteiligungsplattform %(site_name)s wurde "
+"gelöscht."
+
+#: apps/projects/templates/a4_candy_projects/emails/delete_project.en.email:10
+#, python-format
+msgid ""
+"This email was sent to %(receiver)s. This email was sent to you because you "
+"are an initiator of the organisation '%(organisation_name)s', in which a "
+"project was deleted."
+msgstr ""
+"Diese E-Mail wurde an %(receiver)s gesendet. Die E-Mail wurde an Sie "
+"gesendet, da Sie Initiator*in der Organisation '%(organisation_name)s' sind, "
+"in der ein Projekt gelöscht wurde."
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:4
+#, python-format
+msgid "Invitation to moderate the project: \"%(project_name)s\""
+msgstr "Einladung zum Moderieren des Projekts: \"%(project_name)s\""
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:6
+#, python-format
+msgid "Invitation to moderate project: \"%(project_name)s\""
+msgstr "Einladung zum Moderieren des Projekts: \"%(project_name)s\""
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:8
+#, python-format
+msgid ""
+"you are invited to moderate the project \"%(project_name)s\" on the "
+"participation platform %(site_name)s. To be able to moderate and change the "
+"project click on \"Accept invitation\"."
+msgstr ""
+"Sie wurden als Moderator*in im Projekt \"%(project_name)s\" auf der "
+"Beteiligungsplattform %(site_name)s eingeladen. Um das Projekt modifizieren "
+"zu können, klicken Sie auf \"Einladung annehmen\"."
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:12
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:11
+msgid "Accept invitation"
+msgstr "Einladung annehmen"
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:14
+#, python-format
+msgid ""
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are invited to moderate a project."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Die E-Mail wurde an Sie "
+"gesendet, da Sie als Moderator*in in einem Projekt eingeladen wurden."
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:4
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:6
+#, python-format
+msgid "Invitation to the private project: \"%(project_name)s\""
+msgstr "Einladung zum privaten Projekt: \"%(project_name)s\""
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:8
+#, python-format
+msgid ""
+"you are invited to participate in the private project \"%(project_name)s\" "
+"on the participation platform  %(site_name)s. To participate click on "
+"\"Accepct invitation\"."
+msgstr ""
+"Sie wurden zum privaten Projekt \"%(project_name)s\" auf der "
+"Beteiligungsplattform %(site_name)s eingeladen. Um an dem Projekt "
+"teilzunehmen, klicken Sie auf \"Einladung annehmen\"."
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:13
+#, python-format
+msgid ""
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are invited to participate in a private project."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Die E-Mail wurde an Sie "
+"gesendet, da Sie zu einem privaten Projekt eingeladen wurden."
+
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:37
 #, python-format
 msgid " %(time_left)s remaining "
@@ -2722,10 +3182,6 @@ msgstr "Beteiligung: startet am %(date)s"
 #: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:32
 msgid "Participation ended. Read result"
 msgstr "Beteiligung beendet. Ergebnis lesen."
-
-#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:37
-msgid "Join now"
-msgstr "jetzt mitmachen"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:12
 msgid "Timeline item"
@@ -3097,6 +3553,22 @@ msgstr "Rechte"
 #: apps/users/admin.py:12
 msgid "Important dates"
 msgstr "Wichtige Daten"
+
+#: apps/users/emails.py:13
+msgid ""
+"If you no longer want to receive any notifications, change the settings for "
+"your {}account{}."
+msgstr ""
+"Wenn Sie allgemein keine Benachrichtigungen mehr erhalten möchten, ändern "
+"Sie die Einstellungen zu Ihrem {}Account{}."
+
+#: apps/users/emails.py:15
+msgid ""
+"If you no longer want to receive notifications about this project, "
+"unsubscribe from the {}project{}."
+msgstr ""
+"Wenn Sie zu diesem Projekt keine Benachrichtigungen mehr erhalten möchten, "
+"entfolgen Sie dem {}Projekt{}."
 
 #: apps/users/fields.py:12
 msgid "Please enter correct email addresses, separated by commas."
@@ -3632,6 +4104,41 @@ msgstr "Nächste"
 msgid "More questions from this online participation"
 msgstr "Mehr Fragen aus dieser Online-Beteiligung"
 
+#: adhocracy-plus/templates/a4reports/emails/report_moderators.en.email:4
+#, python-format
+msgid "Moderation request in the project %(project_name)s on %(site_name)s"
+msgstr "Moderationsanfrage im Projekt %(project_name)s auf %(site_name)s"
+
+#: adhocracy-plus/templates/a4reports/emails/report_moderators.en.email:6
+#, python-format
+msgid "Moderation request in the project %(project_name)s"
+msgstr "Moderationsanfrage im Projekt %(project_name)s"
+
+#: adhocracy-plus/templates/a4reports/emails/report_moderators.en.email:8
+#, python-format
+msgid ""
+"User %(user_name)s reported a post in your project \"%(project_name)s\". It "
+"is possible, the message could also be spam. As a moderator, you can review "
+"the post and delete it if necessary. The following reasons were given:"
+msgstr ""
+"Benutzer*in %(user_name)s hat einen Beitrag in Ihrem Projekt "
+"\"%(project_name)s\" gemeldet. Gegebenenfalls könnte die Nachricht auch Spam "
+"sein. Als Moderator*in können Sie den Beitrag prüfen und ggf. löschen. Es "
+"wurde folgende Begründung angegeben:"
+
+#: adhocracy-plus/templates/a4reports/emails/report_moderators.en.email:14
+msgid "Review post"
+msgstr "Beitrag prüfen"
+
+#: adhocracy-plus/templates/a4reports/emails/report_moderators.en.email:16
+#, python-format
+msgid ""
+"This email has been sent to %(receiver_mail)s. The email was sent to you as "
+"you are the moderator of the project."
+msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Die E-Mail wurde an Sie "
+"gesendet, da Sie Moderator*in des Projekts sind."
+
 #: adhocracy-plus/templates/account/email.html:6
 #: adhocracy-plus/templates/account/email.html:9
 msgid "Email Addresses"
@@ -3665,17 +4172,17 @@ msgstr "E-Mail Adresse hinzufügen"
 msgid "Add Email"
 msgstr "E-Mail Adresse hinzufügen"
 
-#: adhocracy-plus/templates/account/email/email_confirmation.en.email:3
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:4
 #, python-format
 msgid "Please confirm your email address on %(current_site)s"
 msgstr "Bitte bestätigen Sie Ihre E-Mail Adresse auf %(current_site)s"
 
-#: adhocracy-plus/templates/account/email/email_confirmation.en.email:5
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:6
 #, python-format
 msgid "Your email address on %(current_site)s"
 msgstr "Ihre E-Mail Adresse auf %(current_site)s"
 
-#: adhocracy-plus/templates/account/email/email_confirmation.en.email:7
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:8
 #, python-format
 msgid ""
 "this email address has been added to the user account \"%(username)s\" on "
@@ -3689,11 +4196,11 @@ msgstr ""
 "angelegt haben, können Sie diese Nachricht ignorieren. Wir werden Ihnen "
 "keine weiteren E-Mails senden."
 
-#: adhocracy-plus/templates/account/email/email_confirmation.en.email:10
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:11
 msgid "Confirm your email address"
 msgstr "Bestätigen Sie Ihre E-Mail Adresse"
 
-#: adhocracy-plus/templates/account/email/email_confirmation.en.email:12
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:13
 #, python-format
 msgid ""
 "This email was sent to %(receiver)s. If you have any further questions, "
@@ -3740,17 +4247,17 @@ msgstr ""
 "Diese E-Mail wurde an %(useremail)s gesendet. Bei Fragen können Sie sich "
 "gerne unter %(contact_email)s an uns wenden"
 
-#: adhocracy-plus/templates/account/email/password_reset_key.en.email:3
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:4
 #, python-format
 msgid "Reset password request for %(current_site)s"
 msgstr "Passwort zurücksetzen auf %(current_site)s"
 
-#: adhocracy-plus/templates/account/email/password_reset_key.en.email:5
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:6
 #, python-format
 msgid "Password reset for your account %(username)s"
 msgstr "Passwort zurücksetzen für Ihr Benutzerkonto %(username)s"
 
-#: adhocracy-plus/templates/account/email/password_reset_key.en.email:7
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:8
 #, python-format
 msgid ""
 "you have requested a password reset. Please click on \"Reset password\" to "
@@ -3763,11 +4270,11 @@ msgstr ""
 "Mail ignorieren. Ihr Passwort wird nicht verändert und Ihr Konto auf "
 "%(current_site)s ist nach wie vor geschützt."
 
-#: adhocracy-plus/templates/account/email/password_reset_key.en.email:10
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:11
 msgid "Reset password"
 msgstr "Passwort zurücksetzen"
 
-#: adhocracy-plus/templates/account/email/password_reset_key.en.email:12
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:13
 #, python-format
 msgid ""
 "This email was sent to %(useremail)s. You receive this email because your "
@@ -3964,7 +4471,7 @@ msgstr "Fehler"
 
 #: adhocracy-plus/templates/email_base.html:66
 msgid "Responsible for the participation project:"
-msgstr ""
+msgstr "Verantwortlich für das Beteiligungsprojekt:"
 
 #: adhocracy-plus/templates/email_base.html:95
 msgid "adhocracy+ is a participation platform operated by"
