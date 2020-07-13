@@ -206,7 +206,7 @@ export default class QuestionBox extends React.Component {
           id="tabpanel-information"
           role="tabpanel"
           aria-labelledby="tab-information"
-          aria-expanded="false"
+          aria-hidden="false"
         >
           <div className="container">
             <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
@@ -220,7 +220,7 @@ export default class QuestionBox extends React.Component {
           id="tabpanel-questions"
           role="tabpanel"
           aria-labelledby="tab-questions"
-          aria-expanded="true"
+          aria-hidden="true"
         >
           <div className="container">
             <div className="row mb-5">
@@ -278,7 +278,7 @@ export default class QuestionBox extends React.Component {
           id="tabpanel-statistics"
           role="tabpanel"
           aria-labelledby="tab-statistics"
-          aria-expanded="false"
+          aria-hidden="false"
         >
           <div className="container">
             <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
