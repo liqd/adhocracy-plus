@@ -7,10 +7,9 @@
 }
 
 .tablist {
-    border-bottom: 2px solid $brand-info;
+    border-bottom: 2px solid $brand-primary;
     text-align: center;
     margin-bottom: $spacer * 2;
-    // padding-top: 0.5em;
 }
 
 .tab {
@@ -18,7 +17,7 @@
     position: relative;
     vertical-align: bottom;
     text-decoration: none;
-    color: $text-secondary-color;
+    color: $text-color-gray;
     padding: 0.6em 1em;
     margin-right: 0.5em;
     margin-bottom: -2px;
@@ -34,27 +33,10 @@
     }
 
     &.active {
-        border-color: $brand-info;
+        border-color: $brand-primary;
         background-color: $body-bg;
     }
 }
-
-// This element is meant to be in combination with tablist--{opposite}
-// It should contain elements with class .btn.btn--small
-
-// .tablist__right,
-// .tablist__left {
-//     font-size: $font-size-sm;
-//     // float: right;
-//
-//     &.dropdown {
-//         margin-bottom: 0;
-//     }
-// }
-
-// .tablist--left {
-//     text-align: left;
-// }
 
 .tablist--right {
     text-align: right;
