@@ -1,16 +1,16 @@
 // subset of bootstrap variables
-$brand-primary: #2d40cc; // ultramarine
+$brand-primary: #006ab3 !default; // dark blue
 
-$brand-secondary: #90efe4 !default; // terquoise
-$brand-secondary-dark: #46caad !default; //darker terquoise
+$brand-secondary: #d9e9f4 !default; // greeny blue
+$brand-secondary-dark: #57bab1 !default; // same as above
 
-$brand-tertiary: #008dc5 !default; // prussian blue
+$brand-tertiary: #73add5 !default; // lighter blue
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
-$brand-success: #a3ef90 !default;
-$brand-info: $brand-primary !default; // $brand-primary from platform.scss
-$brand-warning: #ffc107 !default;
-$brand-danger: #a72b1e !default;
+$brand-success: #d7e4ac !default;
+$brand-info: #006ab3 !default; // $brand-primary from platform.scss
+$brand-warning: #e58110 !default;
+$brand-danger: #962737 !default;
 
 $primary:       $brand-primary !default;
 $secondary:     $brand-secondary !default;
@@ -45,9 +45,9 @@ $brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg,
 $brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
 $brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
 
-$bg-tertiary: contrast-stretch($text-color, mix($brand-tertiary, $body-bg, 30%), 7) !default;
-$bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
-$bg-light: #f7f7f7;
+$bg-tertiary: #d9e9f4 !default;
+$bg-secondary: #c1d9e1 !default;
+$bg-light: #fbfbfb;
 
 $demi-bold: 600;
 $headings-font-weight: $demi-bold !default;
