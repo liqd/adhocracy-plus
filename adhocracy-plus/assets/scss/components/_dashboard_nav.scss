@@ -99,6 +99,11 @@
     border-radius: $spacer !important;
 }
 
+.custom-control-input:checked ~ .dashboard-nav__toggle-label:before {
+    border-color: $brand-primary !important;
+    background-color: $brand-primary !important;
+}
+
 .dashboard-nav__toggle-label:after {
     height: $spacer !important;
     width: $spacer !important;
