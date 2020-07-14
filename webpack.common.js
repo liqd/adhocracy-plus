@@ -167,15 +167,11 @@ module.exports = {
       chunkFilename: '[id].css'
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: './adhocracy-plus/assets/images/**/*',
-          to: 'images/',
-          globOptions: {
-            flatten: true
-          }
-        }
-      ]
+      patterns: [{
+        from: './adhocracy-plus/assets/images/**/*',
+        to: 'images/',
+        flatten: true
+      }]
     })
   ]
 }
