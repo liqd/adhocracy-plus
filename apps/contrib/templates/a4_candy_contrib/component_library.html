@@ -216,24 +216,23 @@
                             <li>Brand primary <span class="primary colour-block"></span></li>
                             <li>Brand primary tint<span class="primary-tint colour-block"></span></li>
                             <li>Brand-secondary<span class="secondary colour-block"></span></li>
+                            <li>Brand-secondary-dark<span class="secondary-dark colour-block"></span></li>
+                            <li>Brand-tertiary<span class="tertiary colour-block"></span></li>
+                            <li>Background-tertiary<span class="bg-tertiary colour-block"></span></li>
                             <li>Brand-success<span class="sucess colour-block"></span></li>
                             <li>Brand-info<span class="info colour-block"></span></li>
                             <li>Brand-warning<span class="warning colour-block"></span></li>
                             <li>Brand-danger<span class="danger colour-block"></span></li>
                             <li>Body-background<span class="background colour-block"></span></li>
-                            <li>Body-background-darker<span class="background-darker colour-block"></span></li>
                             <li>Background-secondary<span class="bg-secondary colour-block"></span></li>
-                            <li>Background-tertiary<span class="bg-tertiary colour-block"></span></li>
                             <li>Gray<span class="gray colour-block"></span></li>
-                            <li>Gray-two<span class="gray-two colour-block"></span></li>
                             <li>Gray-light<span class="gray-light colour-block"></span></li>
-                            <li>Gray-lighter<span class="gray-lighter colour-block"></span></li>
+                            <li>Gray-lighter / text-colour-gray<span class="gray-lighter colour-block"></span></li>
                             <li>Gray-lightest<span class="gray-lightest colour-block"></span></li>
                         </div>
                         <div class="col-6">
                             <li>Text-colour<span class="text-colour colour-block"></span></li>
                             <li>Text-color-inverted<span class="text-inverted colour-block"></span></li>
-                            <li>Text-color-gray<span class="text-gray colour-block"></span></li>
                             <li>Print-black<span class="print-black colour-block"></span></li>
                             <li>Print-link<span class="print-link colour-block"></span></li>
                             <li>Link-color<span class="link-color colour-block"></span></li>
@@ -1695,35 +1694,80 @@
                 </div>
 
 
-                <h2 id="cl-tile">Tile</h2>
+                <h2 id="cl-tile">Tiles - Participation, Project and Blueprint</h2>
 
                 <div class="cl-example">
-                    <ul class="l-tiles-4">
-                        <li class="tile ">
-                            <div class="tile__head">
-                                <img src="/static/images/avatar_00.png" alt="Project on adhocracy-plus" class="tile__badge">
+                    <li class="tile organisation__tile tile--horizontal">
+                        <div class="tile__head">
+                            <div class="tile__image">
                             </div>
-                            <div class="tile__body">
-                                <h3 class="tile__title" id="project-title-3">
-                                    <a href="#" target="_self">Blueprint - finished</a>
-                                </h3>
-                                <p class="tile__text">Blueprint description</p>
-                                <p class="tile__hint">
-                                    Participation possible until
-                                    <time datetime="2018-06-14T00:00:00+02:00">14.06.2018</time>
-                                </p>
+                        </div>
+                        <div class="tile__body tile__body-status">
+                            <h3 class="tile__title" id="project-title-13">
+                                <a href="/philli-org/projects/lonely-project-of-lonelyness/">Lonely project of lonelyness</a>
+                            </h3>
+                            <p class="tile__text">Etenim semper illud extra est, quod arte comprehenditur. At certe gravius. Omnia contraria, quos etiam insanos esse vultis. Quid ait Aristoteles reliquique Platonis alumni?</p>
+                            <div class="status-item status-bar__past">
+                            Beteiligung beendet. Ergebnis lesen.
                             </div>
+                        </div>
+                    </li>
+                    <ul class="u-list-reset participation-tile__list">
+                        <li class="participation-tile__vertical">
+                          <div class="participation-tile__type">
+                              <div class="participation-tile__content">
+                                  <h3 class="participation-tile__title">Idea Challenge</h3>
+                                  <span class="participation-tile__item-count"><i class="fas fa-comments" aria-hidden="true"></i>9 Beiträge</span>
+                                  <div class="status-item status-bar__past">
+                                      <span class="participation-tile__status">Beteiligung beendet.</span>
+                                  </div>
+                                  <div class="participation-tile__spacer"></div>
+                                      <div class="participation-tile__btn">
+                                      <a class="btn btn--full btn--small" href="/liqd-orga/projects/module/idea-challenge/">join</a>
+                                  </div>
+                              </div>
+                          </div>
                         </li>
-                        <li class="tile ">
-                            <div class="tile__head">
-                                <img src="/static/images/avatar_00.png" alt="" class="tile__badge">
+                        <ul class="l-tiles-2">
+                            <li class="tile organisation__tile tile--vertical">
+                                <div class="tile__head">
+                                    <div class="tile__image">
+                                    </div>
+                                </div>
+                                <div class="tile__body tile__body-status">
+                                    <h3 class="tile__title" id="project-title-26">
+                                        this is a questions (speakup) project
+                                    </h3>
+                                    <p class="tile__text">Honesta oratio, Socratica, Platonis etiam. Quae duo sunt, unum facit. Ratio quidem vestra sic cogit. An eiusdem modi? Id mihi magnum videtur.</p>
+                                    <div class="status-item status__active">
+                                        <div class="status-bar__active">
+                                            <span class="status-bar__active-fill" style="width:46%"></span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>noch 16 Tage</span>
+                                            <a class="list-item__cta list-item__hover">MITMACHEN</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <li class="card blueprint__tile mt-4">
+                          <div class="row no-gutters">
+                            <div class="col-lg-4 d-flex">
+                              <div class="card-img-top blueprint__image" style="background-image: url(/static/images/brainstorming.svg);"></div>
                             </div>
-                            <div class="tile__body">
-                                <h3 class="tile__title" id="project-title-2">
-                                    <a href="#" target="_self">Blueprint - active</a>
-                                </h3>
-                                <p class="tile__text">Blueprint description</p>
+                            <div class="col-lg-8">
+                                <form class="card-body">
+                                    <h5 class="card-title m-0">Brainstorming</h5>
+                                    <p class="card-text">
+                                        </p><p>Die Teilnehmer*innen können eigene Ideen einreichen und die Ideen Anderer diskutieren.</p>
+                                    <p></p>
+
+                                    <input type="submit" class="list-item__cta ml-auto" value="Modul hinzufügen">
+                                </form>
                             </div>
+                          </div>
                         </li>
                     </ul>
                 </div>
@@ -1742,7 +1786,7 @@
                                         <div class="slick-list draggable">
                                             <div class="slick-track" style="opacity: 1; width: 10000px; transform: translate3d(64px, 0px, 0px);">
                                                 <div class="slick-slide slick-current slick-center" data-slick-index="0" aria-hidden="false">
-                                                    <div><a href="/liqd-orga/projects/text-commenting-documents/?initialSlide=0" aria-labelledby="timeline_item timeline_entry_1" style="width: 100%; display: inline-block;" tabindex="0">
+                                                    <div><a href="" aria-labelledby="timeline_item timeline_entry_1" style="width: 100%; display: inline-block;" tabindex="0">
                                                             <div id="timeline_item" class="timeline-carousel__dot  initial ">
                                                                 <span class="sr-only">Timeline item</span>
                                                             </div>
