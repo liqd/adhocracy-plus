@@ -47,6 +47,11 @@
     button {
         border-bottom: 1px solid $body-bg;
         font-weight: bold;
+
+        &:hover,
+        &:focus {
+            color: $brand-primary;
+        }
     }
 }
 
