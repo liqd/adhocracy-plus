@@ -14,7 +14,7 @@ Are you missing a feature or have a great idea? Please add and/or discuss it on 
 Open a [pull request on github](https://github.com/liqd/adhocracy-plus/pulls). Make sure to include the issue number and a good explanation.
 
 ## Want to implement a new feature?
-If you want to implement somthing you found on the [list](https://adhocracy.plus/feedback/projects/deine-ideen-fur-a/) or already implemented a feature in your fork that seems to work great, please get in touch with us! info [at] liqd [dot] net
+If you want to implement something you found on the [list](https://adhocracy.plus/feedback/projects/deine-ideen-fur-a/) or already implemented a feature in your fork that seems to work great, please get in touch with us! info [at] liqd [dot] net
 
 ## Want to contribute, but don't know where to start?
 -   Find an issue you want to fix on [issues](https://github.com/liqd/adhocracy-plus/issues).
