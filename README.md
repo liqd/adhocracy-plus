@@ -158,6 +158,11 @@ python manage.py runserver
 
 This should launch the server on port 8000. Cancel after testing.
 
+Create admin user:
+```
+python manage.py createsuperuser
+```
+
 Restart server (as `root` or using `sudo`)
 ```
 systemctl start adhocracy-plus
