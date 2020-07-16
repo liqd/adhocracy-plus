@@ -8,9 +8,16 @@ $brand-tertiary: #008dc5 !default; // prussian blue
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
 $brand-success: #a3ef90 !default;
-$brand-info: #2d40cc !default; // $brand-primary from platform.scss
+$brand-info: $brand-primary !default; // $brand-primary from platform.scss
 $brand-warning: #ffc107 !default;
 $brand-danger: #a72b1e !default;
+
+$primary:       $brand-primary !default;
+$secondary:     $brand-secondary !default;
+$success:       $brand-success !default;
+$info:          $brand-info !default;
+$warning:       $brand-warning !default;
+$danger:        $brand-danger !default;
 
 $body-bg: #fff !default;
 
@@ -23,6 +30,9 @@ $gray: #464a4c !default;
 $gray-light: #4d4d4d;
 $gray-lighter: $text-color-gray;
 $gray-lightest: #d8d8d8;
+
+$light:         $gray-lightest !default;
+$dark:          $gray !default;
 
 $blue-light: #d6eff9;
 $purple-light: #ecdbff;
