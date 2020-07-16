@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'ckeditor_uploader',
     'capture_tag',
     'background_task',
+    'shibboleth',
 
     # Wagtail cms components
     'wagtail.contrib.forms',
@@ -128,6 +129,7 @@ MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
 
     'apps.embed.middleware.AjaxPathMiddleware',
     'wagtail.core.middleware.SiteMiddleware',
@@ -244,6 +246,7 @@ AUTHENTICATION_BACKENDS = (
     'rules.permissions.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+    'shibboleth.backends.ShibbolethRemoteUserBackend',
 )
 
 ACCOUNT_ADAPTER = 'apps.users.adapters.AccountAdapter'
@@ -269,6 +272,12 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+SHIBBOLETH_ATTRIBUTE_MAP = {
+    "displayName": (True, "username"),
+    "mail": (True, "email"),
+}
+
+LOGIN_URL = "idp-test.uni-duesseldorf.de/idp/shibboleth"
 
 # CKEditor
 

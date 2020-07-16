@@ -73,6 +73,7 @@ urlpatterns = [
     re_path(r'^profile/', include('apps.users.urls')),
     re_path(r'^questions/', include('apps.questions.urls')),
     re_path(r'^i18n/', include(i18n)),
+    re_path(r'^shib/', include('shibboleth.urls'), name='shibboleth'),
 
     # API urls
     re_path(r'^api/', include(ct_router.urls)),
