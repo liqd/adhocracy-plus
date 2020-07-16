@@ -23,80 +23,82 @@
 
 {% block super_content %}
 <div class="u-bg-light py-5">
-    <div class="container container--shadow">
-        <div class="hero-unit row" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});">
-            {% if organisation.image_copyright %}
-            <div class="header__copyright copyright">© {{ organisation.image_copyright }}</div>
-            {% endif %}
-            {% include 'header_lower.html' %}
-        </div>
+    <div class="container u-bg-light">
+        <div class="col-12 container--shadow">
+            <div class="hero-unit row" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});">
+                {% if organisation.image_copyright %}
+                <div class="header__copyright copyright">© {{ organisation.image_copyright }}</div>
+                {% endif %}
+                {% include 'header_lower.html' %}
+            </div>
 
-        <div class="organisation-page__header">
-            <div class="row">
-                <div class="col-md-10 offset-md-1">
-                    <h1 class="marked-box">{{ organisation.title }}</h1>
-                    {% if organisation.url %}
-                    <a class="ml-3 text-muted" href="{{ organisation.url }}" target="_blank" title="{{ organisation.url }}">
-                        <i class="fas fa-external-link-alt" aria-label="{{ organisation.title }} {% trans 'Opens in new window' %}"></i>
-                    </a>
-                    {% endif %}
-                    <div class="row">
-                        <div class="col">
-                            <h3>{{ organisation.slogan }}</h3>
+            <div class="organisation-page__header">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <h1 class="marked-box">{{ organisation.title }}</h1>
+                        {% if organisation.url %}
+                        <a class="ml-3 text-muted" href="{{ organisation.url }}" target="_blank" title="{{ organisation.url }}">
+                            <i class="fas fa-external-link-alt" aria-label="{{ organisation.title }} {% trans 'Opens in new window' %}"></i>
+                        </a>
+                        {% endif %}
+                        <div class="row">
+                            <div class="col">
+                                <h3>{{ organisation.slogan }}</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="organisation__description {% if organisation.description|length > 500 %} l-two-col {% endif %}">
-                        {{ organisation.description }}
+                        <div class="organisation__description {% if organisation.description|length > 500 %} l-two-col {% endif %}">
+                            {{ organisation.description }}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-10 offset-md-1">
-            {% if active_projects or future_projects or past_projects %}
-                <h2>{{ project_headline }}</h2>
-                {% if object.projects.count == 1 %}
-                    {% has_perm 'a4_candy_projects.view_project' request.user object.projects.0 as can_view_project %}
-                    {% if can_view_project  %}
-                        {% include 'a4_candy_projects/includes/project_list_tile.html' with project=object.projects.0 orientation='horizontal' %}
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                {% if active_projects or future_projects or past_projects %}
+                    <h2>{{ project_headline }}</h2>
+                    {% if object.projects.count == 1 %}
+                        {% has_perm 'a4_candy_projects.view_project' request.user object.projects.0 as can_view_project %}
+                        {% if can_view_project  %}
+                            {% include 'a4_candy_projects/includes/project_list_tile.html' with project=object.projects.0 orientation='horizontal' %}
+                        {% endif %}
+                    {% else %}
+                        <ul class="l-tiles-2">
+                            {% if active_projects %}
+                            {% for project in active_projects %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+                            {% endfor %}
+                            {% endif %}
+
+                            {% if future_projects %}
+                            {% for project in future_projects %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+                            {% endfor %}
+                            {% endif %}
+
+                            {% if past_projects %}
+                            {% for project in past_projects %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' status='past' %}
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
                     {% endif %}
                 {% else %}
-                    <ul class="l-tiles-2">
-                        {% if active_projects %}
-                        {% for project in active_projects %}
-                            {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
-                        {% endfor %}
-                        {% endif %}
-
-                        {% if future_projects %}
-                        {% for project in future_projects %}
-                            {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
-                        {% endfor %}
-                        {% endif %}
-
-                        {% if past_projects %}
-                        {% for project in past_projects %}
-                            {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' status='past' %}
-                        {% endfor %}
-                        {% endif %}
-                    </ul>
+                    {% if organisation.information %}
+                        {% url 'account_login' as account_login_url %}
+                        {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
+                        {% url 'organisation-information' organisation_slug=organisation.slug as organisation_information_url %}
+                        <p>{% blocktrans %}Currently, there are no public participation processes. Sign in <a href="{{ account_login_url }}?next={{ organisation_url }}">here</a> or read more in <a href="{{ organisation_information_url }}">About</a>.{% endblocktrans %}</p>
+                    {% else %}
+                        {% url 'account_login' as account_login_url %}
+                        {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
+                        <p>{% blocktrans %}Currently, there are no public participation processes. Sign in <a href="{{ account_login_url }}?next={{ organisation_url }}">here</a>.{% endblocktrans %}</p>
+                    {% endif %}
                 {% endif %}
-            {% else %}
-                {% if organisation.information %}
-                    {% url 'account_login' as account_login_url %}
-                    {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
-                    {% url 'organisation-information' organisation_slug=organisation.slug as organisation_information_url %}
-                    <p>{% blocktrans %}Currently, there are no public participation processes. Sign in <a href="{{ account_login_url }}?next={{ organisation_url }}">here</a> or read more in <a href="{{ organisation_information_url }}">About</a>.{% endblocktrans %}</p>
-                {% else %}
-                    {% url 'account_login' as account_login_url %}
-                    {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
-                    <p>{% blocktrans %}Currently, there are no public participation processes. Sign in <a href="{{ account_login_url }}?next={{ organisation_url }}">here</a>.{% endblocktrans %}</p>
-                {% endif %}
-            {% endif %}
+                </div>
             </div>
+            {% include 'footer_upper.html' %}
         </div>
-        {% include 'footer_upper.html' %}
     </div>
 </div>
 {% endblock %}
