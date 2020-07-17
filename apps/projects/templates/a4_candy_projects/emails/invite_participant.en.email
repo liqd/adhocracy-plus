@@ -1,13 +1,13 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name %}
+{% load i18n %}
 
-{% block subject %}Invitation to the private project: "{{ participantinvite.project.name }}"{% endblock %}
+{% block subject %}{% blocktrans with project_name=participantinvite.project.name %}Invitation to the private project: "{{ project_name }}"{% endblocktrans %}{% endblock %}
 
-{% block headline %}Invitation to the private project: "{{ participantinvite.project.name }}"{% endblock  %}
+{% block headline %}{% blocktrans with project_name=participantinvite.project.name %}Invitation to the private project: "{{ project_name }}"{% endblocktrans %}{% endblock  %}
 
-{% block content %}you are invited to participate in the private project "{{ participantinvite.project.name }}" on the participation platform  {{ participantinvite.site }}. To participate click on "Accepct invitation."{% endblock %}
+{% block content %}{% blocktrans with project_name=participantinvite.project.name site_name=participantinvite.site %}you are invited to participate in the private project "{{ project_name }}" on the participation platform  {{ site_name }}. To participate click on "Accepct invitation".{% endblocktrans %}{% endblock %}
 
 {% block cta_url %}https://{{ participantinvite.site }}{{ participantinvite.get_absolute_url }}{% endblock %}
-{% block cta_label %}Accept invitation{% endblock %}
+{% block cta_label %}{% blocktrans %}Accept invitation{% endblocktrans %}{% endblock %}
 
-{% block reason %}This email was sent to {{ participantinvite.email }}. This email was sent to you because you are invited to participate in a private project.{% endblock %}
+{% block reason %}{% blocktrans with receiver_mail=participantinvite.email %}This email was sent to {{ receiver_mail }}. This email was sent to you because you are invited to participate in a private project.{% endblocktrans %}{% endblock %}
