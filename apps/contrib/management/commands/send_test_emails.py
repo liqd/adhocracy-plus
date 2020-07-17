@@ -10,8 +10,12 @@ from adhocracy4.emails.mixins import SyncEmailMixin
 from adhocracy4.projects.models import Project
 from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
+from apps.cms.contacts.models import CustomFormSubmission
+from apps.cms.contacts.models import FormPage
 from apps.ideas.models import Idea
 from apps.notifications import emails as notification_emails
+from apps.offlineevents.models import OfflineEvent
+from apps.projects import emails as project_emails
 from apps.projects import models as project_models
 from apps.users.emails import EmailAplus as Email
 
@@ -48,11 +52,17 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('email')
 
+    '''
+    test missing for:   - newsletter_email
+                        - notify_creator_on_moderator_feedback
+    '''
     def handle(self, *args, **options):
+
         self.user = User.objects.get(email=options['email'])
 
         self._send_notifications_create_idea()
         self._send_notifications_comment_idea()
+        self._send_notification_event_upcoming()
         self._send_notification_phase()
         self._send_notification_project_created()
 
@@ -63,6 +73,9 @@ class Command(BaseCommand):
 
         self._send_invitation_private_project()
         self._send_invitation_moderator()
+        self._send_delete_project()
+
+        self._send_form_mail()
 
     def _send_notifications_create_idea(self):
         # Send notification for a newly created item
@@ -100,13 +113,26 @@ class Command(BaseCommand):
             action,
             receiver=[self.user],
             template_name=notification_emails.
-            NotifyFollowersOnNewItemCreated.template_name)
+            NotifyModeratorsEmail.template_name)
+
+    def _send_notification_event_upcoming(self):
+        offlineevent = OfflineEvent.objects.first()
+        if not offlineevent:
+            self.stderr.write('At least one offline event is required')
+            return
+        action = Action.objects.create(
+            obj_content_type=ContentType.objects.get_for_model(OfflineEvent),
+            obj=offlineevent,
+            project=offlineevent.project,
+            verb=Verbs.SCHEDULE)
 
         TestEmail.send(
             action,
             receiver=[self.user],
             template_name=notification_emails.
-            NotifyModeratorsEmail.template_name)
+            NotifyFollowersOnUpcommingEventEmail.template_name
+        )
+        action.delete()
 
     def _send_notification_phase(self):
         action = Action.objects.filter(
@@ -121,6 +147,13 @@ class Command(BaseCommand):
             receiver=[self.user],
             template_name=notification_emails.
             NotifyFollowersOnPhaseIsOverSoonEmail.template_name
+        )
+
+        TestEmail.send(
+            action,
+            receiver=[self.user],
+            template_name=notification_emails.
+            NotifyFollowersOnPhaseStartedEmail.template_name
         )
 
     def _send_notification_project_created(self):
@@ -139,12 +172,6 @@ class Command(BaseCommand):
         if not report:
             self.stderr.write('At least on report is required')
             return
-
-        TestEmail.send(
-            report,
-            receiver=[self.user],
-            template_name=reports_emails.ReportCreatorEmail.template_name
-        )
 
         TestEmail.send(
             report,
@@ -210,3 +237,37 @@ class Command(BaseCommand):
             receiver=[self.user],
             template_name='a4_candy_projects/emails/invite_moderator'
         )
+
+    def _send_delete_project(self):
+        project = Project.objects.first()
+        if not project:
+            self.stderr.write('At least one project is required')
+            return
+        TestEmail.send(
+            project,
+            name=project.name,
+            organisation=project.organisation,
+            receiver=[self.user],
+            template_name=project_emails.DeleteProjectEmail.template_name
+        )
+
+    def _send_form_mail(self):
+        formpage = FormPage.objects.first()
+        if not formpage:
+            self.stderr.write('At least one emailformpage obj is required')
+            return
+
+        submission = CustomFormSubmission.objects.create(
+            page=formpage,
+            email='me@you.net',
+            message='This is an example message.',
+            telephone_number='12345',
+            name='your name'
+        )
+
+        TestEmail.send(
+            submission,
+            receiver=[self.user],
+            template_name='a4_candy_cms_contacts/emails/answer_to_contact_form'
+        )
+        submission.delete()
