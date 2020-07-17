@@ -1,9 +1,10 @@
 {% extends 'email_base.'|add:part_type %}
+{% load i18n %}
 
-{% block subject %}Deletion of project{% endblock %}
+{% block subject %}{% blocktrans %}Deletion of project{% endblocktrans %}{% endblock %}
 
-{% block headline %}The project {{ name }} was deleted.{% endblock  %}
+{% block headline %}{% blocktrans %}The project {{ name }} was deleted.{% endblocktrans %}{% endblock  %}
 
-{% block content %}The project "{{ name }}" on the participation platform {{ site.name }} was deleted.{% endblock  %}
+{% block content %}{% blocktrans with site_name=site.name %}The project "{{ name }}" on the participation platform {{ site_name }} was deleted.{% endblocktrans %}{% endblock  %}
 
-{% block reason %}This email was sent to {{ receiver }}. This email was sent to you because you are an initiator of the '{{ organisation.name }}', in wich a project was deleted.{% endblock %}
+{% block reason %}{% blocktrans with organisation_name=organisation.name %}This email was sent to {{ receiver }}. This email was sent to you because you are an initiator of the organisation '{{ organisation_name }}', in which a project was deleted.{% endblocktrans %}{% endblock %}
