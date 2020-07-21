@@ -1,42 +1,38 @@
 // subset of bootstrap variables
-$primary: #2d40cc !default; // added from platform.scss
-$primary-other: #008dc5 !default;
+$brand-primary: #2d40cc; // ultramarine
 
-$secondary: #90efe4 !default; // added from platform.scss
-$secondary-other: #00a747 !default;
-$info: #2d40cc !default;
+$brand-secondary: #90efe4 !default; // terquoise
+$brand-secondary-dark: #46caad !default; //darker terquoise
 
-$brand-primary: #2d40cc; // added from platform.scss
-$brand-primary-other: #008dc5 !default;
-
-$brand-secondary: #90efe4 !default; // added from platform.scss
-$brand-secondary-other: #2d40cc !default; //same as $brand-info
-
-$brand-danger: #a72b1e !default;
-$platform-logo: #90efe4 !default; //same as secondary, to be used in org when we still need the turquiose
+$brand-tertiary: #008dc5 !default; // prussian blue
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
 $brand-success: #a3ef90 !default;
-$brand-info: #2d40cc !default; // $brand-primary from platform.scss
+$brand-info: $brand-primary !default; // $brand-primary from platform.scss
 $brand-warning: #ffc107 !default;
-$brand-danger: #d0011b !default; // $plattform-danger
+$brand-danger: #a72b1e !default;
 
-$platform-primary: #46caad !default;
-$platform-danger: #d0011b !default;
+$primary:       $brand-primary !default;
+$secondary:     $brand-secondary !default;
+$success:       $brand-success !default;
+$info:          $brand-info !default;
+$warning:       $brand-warning !default;
+$danger:        $brand-danger !default;
 
 $body-bg: #fff !default;
 
 $text-color: #1a1a1a !default;
 $text-color-inverted: $body-bg !default;
 $text-color-gray: #666 !default;
-$text-secondary-color: #666 !default;
 $overlay: rgba(#000, 0.5) !default;
 
 $gray: #464a4c !default;
-$gray-two: #636c72 !default;
 $gray-light: #4d4d4d;
-$gray-lighter: $text-secondary-color;
+$gray-lighter: $text-color-gray;
 $gray-lightest: #d8d8d8;
+
+$light:         $gray-lightest !default;
+$dark:          $gray !default;
 
 $blue-light: #d6eff9;
 $purple-light: #ecdbff;
@@ -49,7 +45,7 @@ $brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg,
 $brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
 $brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
 
-$bg-tertiary: $brand-primary-tint !default;
+$bg-tertiary: contrast-stretch($text-color, mix($brand-tertiary, $body-bg, 30%), 7) !default;
 $bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
 $bg-light: #f7f7f7;
 

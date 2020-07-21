@@ -3,20 +3,23 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Katharina Schmid <k.schmid@liqd.net>, 2020
+#
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-17 16:07+0200\n"
-"PO-Revision-Date: 2017-10-16 13:42+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: de\n"
+"POT-Creation-Date: 2020-05-20 13:50+0200\n"
+"PO-Revision-Date: 2020-06-26 14:15+0000\n"
+"Last-Translator: Katharina Schmid <k.schmid@liqd.net>, 2020\n"
+"Language-Team: German (Germany) (https://www.transifex.com/liqd/teams/111081/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.1\n"
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
@@ -35,7 +38,7 @@ msgstr "Kategorie hinzufügen"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:51
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:49
 msgid "Dashboard"
 msgstr "Organisationsverwaltung"
 
@@ -50,7 +53,7 @@ msgstr "Projekteinstellungen"
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:40
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:86
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:84
 msgid "Missing fields for publication"
 msgstr "Benötigte Felder zur Veröffentlichung"
 
@@ -245,9 +248,8 @@ msgid "We could not find any projects."
 msgstr "Wir konnten keine Projekte finden."
 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: adhocracy4/dashboard/filter.py:11
-#: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: apps/debate/filters.py:12 apps/ideas/views.py:28 apps/topicprio/views.py:21
+#: adhocracy4/dashboard/filter.py:11 apps/debate/filters.py:12
+#: apps/ideas/views.py:28 apps/topicprio/views.py:21
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:4
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:11
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:12
@@ -587,7 +589,7 @@ msgid "Project successfully created."
 msgstr "Projekt erfolgreich erstellt."
 
 #: adhocracy4/dashboard/views.py:154
-#: apps/dashboard/views.py:121
+#: apps/dashboard/views.py:120
 msgid "Invalid action"
 msgstr "Ungültige Aktion"
 
@@ -881,7 +883,7 @@ msgid "Images"
 msgstr "Bilder"
 
 #: adhocracy4/projects/admin.py:59
-#: apps/projects/admin.py:55 adhocracy-plus/templates/email_base.html:114
+#: apps/projects/admin.py:55 adhocracy-plus/templates/email_base.html:113
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "Kontakt"
@@ -1112,8 +1114,7 @@ msgstr ""
 #: apps/actions/templates/a4_candy_actions/includes/action.html:10
 #, python-format
 msgid "%(name)s updated a <a href=\"%(comment_url)s\">comment</a>"
-msgstr ""
-"%(name)s hat einen <a href=\"%(comment_url)s\">Kommentar</a> aktualisiert"
+msgstr "%(name)s hat einen <a href=\"%(comment_url)s\">Kommentar</a> aktualisiert"
 
 #: apps/actions/templates/a4_candy_actions/includes/action.html:12
 #, python-format
@@ -1848,6 +1849,7 @@ msgstr "Modul ist bereits hinzugefügt"
 #: apps/dashboard/views.py:148
 msgid "Module cannot be added. Required fields are missing."
 msgstr ""
+"Das Modul kann nicht hinzugefügt werden. Es fehlen benötigte Felder."
 
 #: apps/dashboard/views.py:160
 msgid "The module is displayed in the project."
@@ -1873,6 +1875,8 @@ msgstr "Das Modul wurde gelöscht"
 #: apps/dashboard/views.py:194
 msgid "Module cannot be deleted. It has to be removed from the project first."
 msgstr ""
+"Modul kann nicht gelöscht werden. Es muss zuerst aus dem Projekt "
+"entfernt werden."
 
 #: apps/dashboard/views.py:239
 msgid "Project was created."
@@ -4296,8 +4300,8 @@ msgid ""
 "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an\n"
 "            email address for user %(user_display)s."
 msgstr ""
-"Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> eine E-"
-"Mail Adresse der Nutzer*in %(user_display)s ist."
+"Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> eine "
+"E-Mail Adresse der Nutzer*in %(user_display)s ist."
 
 #: adhocracy-plus/templates/account/email_confirm.html:17
 msgid "Confirm"
@@ -4572,12 +4576,6 @@ msgstr "Mit Konto eines sozialen Netzwerks einloggen"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Einloggen mit "
-
-#~ msgid ""
-#~ "Module cannot be removed. It is the only module added to the project."
-#~ msgstr ""
-#~ "Modul kann nicht entfernt werden. Es ist das einzige dem Projekt "
-#~ "hinzugefügte Modul."
 
 #~ msgid "Responsible for the content of this e-mail:"
 #~ msgstr "Verantwortlich für den Inhalt dieser E-mail:"
@@ -5751,6 +5749,12 @@ msgstr "Einloggen mit "
 
 #~ msgid "participation platform for"
 #~ msgstr "Mein"
+
+#~ msgid "Face to Face Participation"
+#~ msgstr ""
+
+#~ msgid "Share info about a face to face participation event."
+#~ msgstr ""
 
 #~ msgid ""
 #~ "In this section, you can create\n"
