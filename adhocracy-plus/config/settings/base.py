@@ -482,3 +482,5 @@ A4_ACTIONS_PHASE_ENDS_HOURS = 48
 # Disable CSP by default
 CSP_REPORT_ONLY = True
 CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'data:', 'blob:', '*']
+
+SITE_ID = 1 # overwrite this in local.py if needed
