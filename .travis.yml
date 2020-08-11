@@ -23,7 +23,9 @@ script:
 - python manage.py collectstatic > /dev/null
 - py.test --cov
 - python manage.py makemigrations --dry-run --check --noinput
-- "./node_modules/.bin/polylint -F"
+- isort --diff -c adhocracy-plus apps tests
+- flake8 adhocracy-plus apps tests --exclude migrations,settings
+- npm run lint
 - rm -rf static/
 after_success:
 - coveralls
