@@ -77,7 +77,8 @@
   "scripts": {
     "build:prod": "webpack --config webpack.prod.js --mode production",
     "build": "webpack --config webpack.dev.js --mode development",
-    "watch": "webpack --config webpack.dev.js --watch --mode development"
+    "watch": "webpack --config webpack.dev.js --watch --mode development",
+    "lint": "eslint apps adhocracy-plus/assets --ext .js,.jsx && stylelint 'adhocracy-plus/assets/scss/**/*.scss' --syntax scss"
   },
   "browserslist": "defaults and not dead and >= 0.5%, ie >= 11",
   "husky": {
