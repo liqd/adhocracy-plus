@@ -1,5 +1,6 @@
 VIRTUAL_ENV ?= venv
 NODE_BIN = node_modules/.bin
+SOURCE_DIRS = adhocracy-plus apps tests
 
 SED = sed
 ifneq (, $(shell command -v gsed))
@@ -89,14 +90,16 @@ coverage:
 .PHONY: lint
 lint:
 	EXIT_STATUS=0; \
-	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint || EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/isort --diff -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
+	npm run lint ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-quick
 lint-quick:
 	EXIT_STATUS=0; \
-	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint -SF || EXIT_STATUS=$$?; \
+	npm run lint-staged ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
