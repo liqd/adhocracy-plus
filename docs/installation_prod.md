@@ -204,7 +204,7 @@ server {
   # serve media files directly, without going through adhocracy-plus.
   # See MEDIA_ROOT in local.py
   location /media {
-    root /home/aplus/aplus-media;
+    alias /home/aplus/aplus-media;
   }
 
   # max upload size for images and documents
