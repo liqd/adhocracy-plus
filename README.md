@@ -36,11 +36,11 @@ Go to http://localhost:8004/ and login with admin@liqd.net | password
 
 ## Installation on a production system
 
-You like adhocracy+ and want to run your own version? An installation guide for production systems can be found [here](https://github.com/liqd/adhocracy-plus/blob/master/docs/installation_prod.md).
+You like adhocracy+ and want to run your own version? An installation guide for production systems can be found [here](./docs/installation_prod.md).
 
 ## Contributing or maintaining your own fork
 
-If you found an issue, want to contribute, or would like to add your own features to your own version of adhocracy+, check out [contributing](https://github.com/liqd/adhocracy-plus/blob/master/docs/contributing.md).
+If you found an issue, want to contribute, or would like to add your own features to your own version of adhocracy+, check out [contributing](./docs/contributing.md).
 
 ## Security
 We care about security. So, if you find any issues concerning security, please send us an email at info [at] liqd [dot] net.
