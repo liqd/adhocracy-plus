@@ -89,6 +89,7 @@
   },
   "lint-staged": {
       "*.{js,jsx}": ["eslint"],
-      "*.scss": ["stylelint"]
+      "*.scss": ["stylelint"],
+      "*.py": ["make lint-python-files"]
   }
 }
