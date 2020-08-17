@@ -4,13 +4,20 @@
 {% block title %}{% trans 'Data protection' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-            <h1>{% trans 'Data protection' %}</h1>
-            {{ organisation.data_protection|richtext }}
+<div class="u-bg-light py-5">
+    <div class="container container--shadow">
+        <div class="row">
+            <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3 pt-5">
+                <div class="row py-4">
+                    <div class="offset-6 col-sm-3 offset-sm-9 position-relative header-lower__position--right">
+                        {% include 'header_lower.html' %}
+                    </div>
+                </div>
+                <h1>{% trans 'Data protection' %}</h1>
+                {{ organisation.data_protection|richtext }}
+            </div>
         </div>
-    </div>
     {% include 'footer_upper.html' %}
+    </div>
 </div>
 {% endblock %}
