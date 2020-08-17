@@ -26,8 +26,8 @@ cd
 
 #### Get the code
 ```
-git clone https://github.com/liqd/adhocracy-plus.git
-cd adhocracy-plus
+git clone https://gitlab.cs.uni-duesseldorf.de/diid/diid_adplus.git
+cd diid_adplus
 git checkout release
 ```
 
