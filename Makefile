@@ -1,6 +1,7 @@
 VIRTUAL_ENV ?= venv
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = adhocracy-plus apps tests
+ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
 
 SED = sed
 ifneq (, $(shell command -v gsed))
@@ -101,6 +102,13 @@ lint-quick:
 	EXIT_STATUS=0; \
 	npm run lint-staged ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
+
+.PHONY: lint-python-files
+lint-python-files:
+	EXIT_STATUS=0; \
+	$(VIRTUAL_ENV)/bin/isort --df -c $(ARGUMENTS) || EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: po
