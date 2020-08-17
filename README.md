@@ -19,8 +19,8 @@ adhocracy+ is designed to make online participation easy and accessible to every
 
 ### Installation:
 
-    git clone https://github.com/liqd/adhocracy-plus.git
-    cd adhocracy-plus
+    git clone https://gitlab.cs.uni-duesseldorf.de/diid/diid_adplus.git
+    cd diid_adplus
     make install
     make fixtures
 
