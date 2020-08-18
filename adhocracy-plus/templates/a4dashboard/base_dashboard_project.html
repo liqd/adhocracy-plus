@@ -24,7 +24,7 @@
             <div class="dashboard-nav">
                 <div class="dashboard-nav__dropdown" data-toggle="collapse" href="#dashboardCollapseProj" aria-expanded="true" aria-controls="#dashboardCollapseProj" data-target="#dashboardCollapseProj">
                     {% if project_progress.project_is_complete %}
-                    <i class="fas fa-check-circle text-success" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+                    <i class="fas fa-check-circle text-info" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
                     {% else %}
                     <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
                     {% endif %}
@@ -69,7 +69,7 @@
                 <div class="dashboard-nav">
                     <div class="dashboard-nav__dropdown" data-toggle="collapse" href="#dashboardCollapse_{{ forloop.counter }}" aria-expanded="true" aria-controls="#dashboardCollapse_{{ forloop.counter }}" data-target="#dashboardCollapse_{{ forloop.counter }}">
                       {% if module_menu.is_complete %}
-                          <i class="fas fa-check-circle text-success" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
+                          <i class="fas fa-check-circle text-info" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
                       {% else %}
                           <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Module not ready for addition' %}" aria-label="{% trans 'Module not ready for addition' %}"></i>
                       {% endif %}
