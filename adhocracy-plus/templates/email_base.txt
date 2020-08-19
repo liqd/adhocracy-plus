@@ -10,8 +10,6 @@
 {% block reason %}{% endblock %}
 
 ---
-{% trans 'adhocracy+ is a participation platform operated by' %}
-Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
 
 {% get_settings use_default_site=True %}
 {% if settings.a4_candy_cms_settings.ImportantPages.terms_of_use %}
