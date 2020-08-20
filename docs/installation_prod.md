@@ -1,8 +1,8 @@
-## Installation guide for production systems
+# Installation guide for production systems
 
 This guide will focus on Debian/Ubuntu-like systems - however, it works very similar on e.g. Fedora and friends.
 
-### Package requirements:
+## Required packages:
  * python3
  * python3-pip
  * virtualenvwrapper
@@ -13,9 +13,9 @@ This guide will focus on Debian/Ubuntu-like systems - however, it works very sim
  * nginx / apache webserver
  * optionally: a database like postgresql / mariadb
 
-### Step-by-step setup
+## Step-by-step setup
 
-#### Create user
+### Create user
 Create and switch to user (as `root` or using `sudo`)
 
 ```
@@ -24,21 +24,21 @@ su aplus
 cd
 ```
 
-#### Get the code
+### Get the code
 ```
 git clone https://gitlab.cs.uni-duesseldorf.de/diid/diid_adplus.git
 cd diid_adplus
 git checkout release
 ```
 
-#### Create and launch virtual environment
+### Create and launch virtual environment
 ```
 mkvirtualenv --python=/usr/bin/python3 aplus
 ```
 
 Note: you won't need the `--python` part when using a recent distribution.
 
-#### Install dependencies and build static optimized JS code
+### Install dependencies and build static optimized JS code
 ```
 npm install
 npm run build:prod
@@ -48,7 +48,7 @@ python manage.py compilemessages
 python manage.py collectstatic
 ```
 
-#### Static configuration (`local.py`)
+### Static configuration (`local.py`)
 
 Create a config file at `~/adhocracy-plus/adhocracy-plus/config/settings/local.py`
 
@@ -87,7 +87,7 @@ SESSION_COOKIE_HTTPONLY = True
 FILE_UPLOAD_PERMISSIONS = 0o644
 ```
 
-#### Populate database
+### Populate database
 
 This will create all required tables via so called **migrations**
 
@@ -95,7 +95,7 @@ This will create all required tables via so called **migrations**
 python manage.py migrate
 ```
 
-#### Test run
+### Test run
 
 Try starting the server:
 
@@ -114,7 +114,7 @@ You should now get valid HTML output.
 
 Cancel the server after testing via `ctrl`+`c`
 
-### Run the server as system daemon
+## Run the server as system daemon
 
 In order to start up the software as a regular system daemon, similar to a database or webserver, we need to create unit files.
 
@@ -179,7 +179,7 @@ systemctl enable adhocracy-plus
 systemctl enable adhocracy-plus-background-task
 ```
 
-### Setting up a proxy webserver
+## Setting up a proxy webserver
 
 Finally, we need to set up a proxy webserver which handles the communication with the outside world. The following example is a simple config for `nginx`:
 
@@ -215,11 +215,11 @@ server {
 
 The website should now be reachable
 
-### Admin user and first organization
+## Admin user and first organization
 
 You can now continue setting up the website in the `django-admin` configuration page. Please also see the [manual](https://manual.adhocracy.plus/) for a more comprehensive documentation.
 
-#### Create initial admin user
+### Create initial admin user
 
 ```
 su aplus
@@ -228,59 +228,59 @@ workon aplus
 python manage.py createsuperuser
 ```
 
-#### Django-admin
+### Django-admin
 
 Visit `http[s]://your.domain/django-admin` and log in with the user you just created.
 
-#### Domain settings
+### Domain settings
 
 In the `sites` (german: `Websites`) section, change the domain name of the existing site to `your.domain`
 
-#### First organisation
+### First organisation
 
 In the `Organisations` section, add a new organization. For the moment, all you need is setting the name and adding you user to the `Initiators`.
 
 You can now visit `http[s]://your.domain/` and select the organization from the user dropdown menu - it will bring you to the `dashboard`. See the [manual](https://manual.adhocracy.plus/).
 
-#### Landing page
+### Landing page
 
 The landing page is managed via [wagtail](https://wagtail.io/). You can find the settings at `http[s]://your.domain/admin`.
 
-### Updating
+## Updating
 
-#### Stop server
+### Stop server
 
 ```
 systemctl stop adhocracy-plus
 systemctl stop adhocracy-plus-background-task
 ```
 
-#### Switch to user
+### Switch to user
 
 ```
 su aplus
 cd ~/adhocracy-plus
 ```
 
-####  Enable virtual environment
+###  Enable virtual environment
 
 ```
 workon aplus
 ```
 
-#### Update the code
+### Update the code
 
 ```
 git pull
 ```
 
-#### Cleanup old static files
+### Cleanup old static files
 
 ```
 rm -rf static/*
 ```
 
-#### Update dependencies and rebuild static optimized JS code
+### Update dependencies and rebuild static optimized JS code
 
 ```
 npm install
@@ -291,22 +291,99 @@ python manage.py compilemessages
 python manage.py collectstatic
 ```
 
-#### Update Database
+### Update Database
 
 ```
 python manage.py migrate
 ```
 
-#### Try starting the server
+### Try starting the server
 
 ```
 export DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.production
 python manage.py runserver
 ```
 
-#### Restart server (as `root` or using `sudo`)
+### Restart server (as `root` or using `sudo`)
 
 ```
 systemctl start adhocracy-plus
 systemctl start adhocracy-plus-background-task
 ```
+
+## SAML2 / Shibolleth configuration for DIID
+
+SAML2 currently does not integrate very well into the `django-allauth` system, thus some extra configuration is required.
+
+### Required packages
+
+  * xmlsec1
+
+### Configuration
+
+Add the following to your `local.py` and adapt as necassary:
+
+```
+import os
+from os import path
+import saml2
+import saml2.saml
+
+BASEDIR = path.dirname(path.abspath(__file__))
+
+SAML_CONFIG = {
+  'xmlsec_binary': '/usr/bin/xmlsec1',
+  'entityid': 'https://your.domain/saml2/metadata/',
+  'allow_unknown_attributes': True,
+  'attribute_map_dir': path.join(BASEDIR, 'saml', 'attribute-maps'),
+  'service': {
+    'sp': {
+      'name': 'Federated Django sample SP',
+      'name_id_format': saml2.saml.NAMEID_FORMAT_PERSISTENT,
+      'allow_unsolicited': True,
+      'endpoints': {
+        'single_logout_service': [
+          ('https://your.domain/saml2/ls/post', saml2.BINDING_HTTP_POST),
+          ('https://your.domain/saml2/ls/', saml2.BINDING_HTTP_REDIRECT),
+        ],
+        'assertion_consumer_service': [
+          ('https://your.domain/saml2/acs/', saml2.BINDING_HTTP_POST),
+        ],
+      },
+      'required_attributes': ['mail'],
+    },
+  },
+  'metadata': {
+    # Only use the HHU IDP
+    'remote': [{"url": "https://idp.uni-duesseldorf.de/idp/shibboleth"},],
+    # Allow all members of in the DNF - comment out the remote above if used
+    #'remote': [{"url": "https://www.aai.dfn.de/fileadmin/metadata/dfn-aai-test-metadata.xml"},],
+  },
+  'key_file': path.join(BASEDIR, 'saml', 'private.key'),  # private part
+  'cert_file': path.join(BASEDIR, 'saml', 'cert.pem'),  # public part
+  'encryption_keypairs': [{
+    'key_file': path.join(BASEDIR, 'saml', 'private.key'),  # private part
+    'cert_file': path.join(BASEDIR, 'saml', 'cert.pem'),  # public part
+  }],
+  'valid_for': 17520,
+}
+SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'
+SAML_LOGOUT_REQUEST_PREFERRED_BINDING = saml2.BINDING_HTTP_REDIRECT
+SAML_ATTRIBUTE_MAPPING = {
+    'mail': ['email', 'set_username_from_email'],
+}
+```
+
+### Key and cert
+
+In the `settings` folder, where your `local.py` resides, create a new key and cert:
+
+```
+mkdir saml
+cd saml
+openssl req -x509 -nodes -newkey rsa:4096 -keyout private.key -out cert.pem -days 365
+```
+
+### Registering
+
+Restart the server and you can find you metadate at `https://your.domain/saml2/metadata/`. These are needed in order to register your instance with the IDP. Once the registration is done, you should be able to login using Shibolleth.
