@@ -30,6 +30,7 @@ If you want to implement somthing you found on the [list](https://adhocracy.plus
     -   Fetch the changes from upstream:
         `git fetch upstream`
     -   And rebase: `git rebase upstream/master` or `git rebase upstream/release` or whatever branch of upstream you would like to update to.
+    -   If you run into conflicts, you may have to run `git rebase --skip` or `git reset --hard upstream/master` to get a clean branch
     -   A longer explanation can be found [here](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks). Even though, contrary to what we said above, this says to merge instead of rebase. A nice discussion about the pros and cons can be found [here](https://strongbox.github.io/developer-guide/git/rebase-vs-merge.html).
 
 ### Migrations
