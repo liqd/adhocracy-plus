@@ -6,4 +6,4 @@ class Config(AppConfig):
     label = 'a4_candy_projects'
 
     def ready(self):
-        import apps.projects.signals # noqa
+        import apps.projects.signals  # noqa

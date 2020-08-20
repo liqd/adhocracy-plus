@@ -6,4 +6,4 @@ class Config(AppConfig):
     label = 'a4_candy_organisations'
 
     def ready(self):
-        from . import function_overwrites # noqa
+        from . import function_overwrites  # noqa
