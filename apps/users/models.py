@@ -146,3 +146,8 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     def get_absolute_url(self):
         return reverse('profile', args=[str(self.username)])
+
+    def set_username_from_email(self, email):
+        if not self.username:
+            name = email[0].split("@", 1)[0]
+            self.username = name
