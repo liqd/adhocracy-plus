@@ -41,6 +41,7 @@
     "mapbox-gl-leaflet": "0.0.12",
     "mini-css-extract-plugin": "0.10.0",
     "node-sass": "4.14.1",
+    "popper.js": "1.16.1",
     "postcss-loader": "3.0.0",
     "react-flip-move": "3.0.4",
     "sass-loader": "9.0.3",
@@ -88,8 +89,14 @@
     }
   },
   "lint-staged": {
-      "*.{js,jsx}": ["eslint"],
-      "*.scss": ["stylelint"],
-      "*.py": ["make lint-python-files"]
+    "*.{js,jsx}": [
+      "eslint"
+    ],
+    "*.scss": [
+      "stylelint"
+    ],
+    "*.py": [
+      "make lint-python-files"
+    ]
   }
 }
