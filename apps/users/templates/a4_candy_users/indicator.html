@@ -54,8 +54,6 @@
     {% else %}
         <div class="btn btn--secondary-filled btn--huge btn--attached-top">
             <span class="navi__item"><a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a></span>
-                <span class="d-none d-md-inline">/</span>
-            <span class="navi__item"><a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a></span>
         </div>
     </div>
 {% endif %}
