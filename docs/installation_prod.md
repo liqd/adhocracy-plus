@@ -332,6 +332,7 @@ import saml2.saml
 BASEDIR = path.dirname(path.abspath(__file__))
 
 SAML_CONFIG = {
+  'xmlsec_binary': '/usr/bin/xmlsec1',
   'entityid': 'https://your.domain/saml2/metadata/',
   'allow_unknown_attributes': True,
   'attribute_map_dir': path.join(BASEDIR, 'attribute-maps'),
@@ -353,7 +354,10 @@ SAML_CONFIG = {
     },
   },
   'metadata': {
+    # Only use the HHU IDP
     'remote': [{"url": "https://idp.uni-duesseldorf.de/idp/shibboleth"},],
+    # Allow all members of in the DNF - comment out the remote above if used
+    #'remote': [{"url": "https://www.aai.dfn.de/fileadmin/metadata/dfn-aai-test-metadata.xml"},],
   },
   'key_file': path.join(BASEDIR, 'saml', 'private.key'),  # private part
   'cert_file': path.join(BASEDIR, 'saml', 'cert.pem'),  # public part
@@ -377,7 +381,7 @@ In the `settings` folder, where your `local.py` resides, create a new key and ce
 ```
 mkdir saml
 cd saml
-openssl req -x509 -newkey rsa:4096 -keyout private.key -out cert.pem -days 365
+openssl req -x509 -nodes -newkey rsa:4096 -keyout private.key -out cert.pem -days 365
 ```
 
 ### Registering
