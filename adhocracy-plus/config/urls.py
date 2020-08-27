@@ -71,7 +71,6 @@ urlpatterns = [
     re_path(r'^account/', include('apps.account.urls')),
     re_path(r'^embed/', include('apps.embed.urls')),
     re_path(r'^profile/', include('apps.users.urls')),
-    re_path(r'^questions/', include('apps.questions.urls')),
     re_path(r'^i18n/', include(i18n)),
 
     # API urls
@@ -104,6 +103,7 @@ urlpatterns = [
              include(('apps.offlineevents.urls', 'a4_candy_offlineevents'),
                      namespace='a4_candy_offlineevents')),
         path('projects/', include('apps.projects.urls')),
+        path('questions/', include('apps.questions.urls')),
         path('text/', include(('apps.documents.urls', 'a4_candy_documents'),
                               namespace='a4_candy_documents')),
         path('topicprio/',
