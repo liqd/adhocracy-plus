@@ -4,6 +4,7 @@ import adhocracy4.images.fields
 import autoslug.fields
 import ckeditor.fields
 import ckeditor_uploader.fields
+import parler.models
 from django.conf import settings
 from django.db import migrations, models
 
@@ -33,5 +34,6 @@ class Migration(migrations.Migration):
                 ('is_supporting', models.BooleanField(default=False, help_text='For supporting organisations, the banner asking for donations is not displayed on their pages.', verbose_name='is a supporting organisation')),
                 ('initiators', models.ManyToManyField(blank=True, to=settings.AUTH_USER_MODEL)),
             ],
+            bases=(parler.models.TranslatableModelMixin, models.Model),
         ),
     ]
