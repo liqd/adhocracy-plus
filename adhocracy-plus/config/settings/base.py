@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'ckeditor_uploader',
     'capture_tag',
     'background_task',
+    'parler',
 
     # Wagtail cms components
     'wagtail.contrib.forms',
@@ -194,6 +195,11 @@ LANGUAGES = [
     ('nl', _('Dutch'))
 ]
 
+PARLER_LANGUAGES = {
+    1: [{'code': language_code} for language_code, language in LANGUAGES],
+    'default': {'fallbacks': ['en', 'de'],
+                }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
