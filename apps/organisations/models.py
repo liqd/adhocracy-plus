@@ -8,6 +8,8 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from jsonfield.fields import JSONField
+from parler.models import TranslatableModel
+from parler.models import TranslatedFields
 
 from adhocracy4 import transforms
 from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
@@ -16,7 +18,7 @@ from adhocracy4.projects.models import Project
 from apps.projects import query
 
 
-class Organisation(models.Model):
+class Organisation(TranslatableModel):
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(max_length=512)
     initiators = models.ManyToManyField(
@@ -30,7 +32,37 @@ class Organisation(models.Model):
                     'on the landing page. max. 100 characters'),
         blank=True
     )
-    description = models.CharField(
+
+    translations = TranslatedFields(
+        description=models.CharField(max_length=800,
+                                     verbose_name=_('Short description of '
+                                                    'your organisation'),
+                                     help_text=_('The description will be '
+                                                 'displayed on the landing '
+                                                 'page. max. 800 characters'),
+                                     blank=True),
+        slogan=models.CharField(max_length=200,
+                                verbose_name=_('Slogan'),
+                                help_text=_('The slogan will be shown below '
+                                            'the title of your organisation '
+                                            'on the landing page. The slogan '
+                                            'can provide context or '
+                                            'additional information to the '
+                                            'title. max. 200 characters'),
+                                blank=True),
+        information=RichTextCollapsibleUploadingField(
+            config_name='collapsible-image-editor',
+            verbose_name=_('Information about your organisation'),
+            help_text=_('You can provide general information about your '
+                        'participation platform to your visitors. '
+                        'It’s also helpful to name a general person '
+                        'of contact for inquiries. The information '
+                        'will be shown on a separate "About" page that '
+                        'can be reached via the main menu.'),
+            blank=True),
+    )
+
+    description_untranslated = models.CharField(
         max_length=800,
         verbose_name=_('Short description of your organisation'),
         help_text=_('The description will be displayed on the '
@@ -49,7 +81,7 @@ class Organisation(models.Model):
         upload_to='organisations/logos',
         blank=True
     )
-    slogan = models.CharField(
+    slogan_untranslated = models.CharField(
         max_length=200,
         verbose_name=_('Slogan'),
         blank=True,
@@ -83,7 +115,7 @@ class Organisation(models.Model):
         blank=True,
         help_text=_('Author, which is displayed in the header image.')
     )
-    information = RichTextCollapsibleUploadingField(
+    information_untranslated = RichTextCollapsibleUploadingField(
         config_name='collapsible-image-editor',
         verbose_name=_('Information about your organisation'),
         help_text=_('You can provide general information about your '

@@ -16,7 +16,8 @@ class OrganisationForm(forms.ModelForm):
 
     class Meta:
         model = Organisation
-        fields = ['title', 'slogan', 'description', 'information',
+        fields = ['title', 'slogan_untranslated', 'description_untranslated',
+                  'information_untranslated',
                   'logo', 'image', 'image_copyright', 'url',
                   'twitter_handle', 'facebook_handle', 'instagram_handle']
 
