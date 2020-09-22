@@ -210,7 +210,11 @@ export default class QuestionBox extends React.Component {
         >
           <div className="container">
             <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-              {this.props.information}
+              <div class="row m-0 bg-white py-4">
+                <div class="col">
+                  {this.props.information}
+                </div>
+              </div>
             </div>
           </div>
         </div>
