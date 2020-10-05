@@ -1,4 +1,5 @@
 from django.contrib import admin
+from parler.admin import TranslatableAdmin
 
 from . import models
 
@@ -13,7 +14,7 @@ class MemberInline(admin.TabularInline):
 
 
 @admin.register(models.Organisation)
-class OrganisationAdmin(admin.ModelAdmin):
+class OrganisationAdmin(TranslatableAdmin):
     search_fields = ('name', 'slug')
     list_display = (
         'id', 'name', 'slug', 'site'
