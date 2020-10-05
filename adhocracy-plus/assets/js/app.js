@@ -23,6 +23,7 @@ import * as ReactDocuments from '../../../apps/documents/assets/react_documents.
 import * as ReactPolls from '../../../apps/polls/assets/react_polls.jsx'
 import * as ReactQuestions from '../../../apps/questions/assets/react_questions.jsx'
 import * as ReactQuestionsPresent from '../../../apps/questions/assets/react_questions_present.jsx'
+import * as ReactLanguageChoice from '../../../apps/organisations/assets/react_language_choice.jsx'
 
 function init () {
   ReactWidget.initialise('a4', 'comment', ReactComments.renderComment)
@@ -37,6 +38,8 @@ function init () {
 
   ReactWidget.initialise('speakup', 'questions', ReactQuestions.renderQuestions)
   ReactWidget.initialise('speakup', 'present', ReactQuestionsPresent.renderData)
+
+  ReactWidget.initialise('euth', 'language-choice', ReactLanguageChoice.renderLanguageChoice)
 
   $('.timeline-carousel__item').slick({
     initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),
