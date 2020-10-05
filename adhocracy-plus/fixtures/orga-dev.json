@@ -5,9 +5,26 @@
     "fields": {
       "name": "liqd-orga",
       "slug": "liqd-orga",
-      "description": "description liqd-orga",
       "imprint": "imprint liqd-orga",
       "initiators": ["1","3"]
+    }
+  },
+  {
+  "model": "a4_candy_organisations.organisationtranslation",
+  "pk": 1,
+  "fields": {
+    "language_code": "de",
+    "description": "Beschreibung liqd-orga",
+    "master": 1
+    }
+  },
+  {
+    "model": "a4_candy_organisations.organisationtranslation",
+    "pk": 2,
+    "fields": {
+      "language_code": "en",
+      "description": "description liqd-orga",
+      "master": 1
     }
   }
 ]
