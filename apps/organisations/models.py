@@ -239,8 +239,6 @@ class Organisation(TranslatableModel):
         )
 
     def save(self, *args, **kwargs):
-        self.information = transforms.clean_html_field(
-            self.information, 'collapsible-image-editor')
         self.imprint = transforms.clean_html_field(self.imprint)
         super().save(*args, **kwargs)
 
