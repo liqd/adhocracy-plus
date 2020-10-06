@@ -176,6 +176,15 @@ class Organisation(TranslatableModel):
         help_text=_('For supporting organisations, the banner asking '
                     'for donations is not displayed on their pages.')
     )
+    language = models.CharField(
+        verbose_name=_('Default language for e-mails'),
+        choices=settings.LANGUAGES,
+        default=settings.DEFAULT_USER_LANGUAGE_CODE,
+        max_length=4,
+        help_text=_(
+            'All e-mails to unregistered users (invites) will be sent '
+            'in this language.'),
+    )
     site = models.ForeignKey(
         Site,
         on_delete=models.SET_NULL,

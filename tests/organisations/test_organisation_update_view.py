@@ -15,6 +15,7 @@ def test_initiator_can_update(client, organisation):
     assert response.status_code == 200
     data = {
         'title': 'Organisation platform title',
+        'language': 'de',
         'en': 'en',
         'en__description': 'some very short description of the organisation'
     }
@@ -25,6 +26,7 @@ def test_initiator_can_update(client, organisation):
     assert updated_organisation.title == 'Organisation platform title'
     assert updated_organisation.description == \
         'some very short description of the organisation'
+    assert updated_organisation.language == 'de'
 
 
 @pytest.mark.django_db
@@ -56,6 +58,7 @@ def test_user_cannot_update(client, organisation, user):
     assert response.status_code == 403
     data = {
         'title': 'Organisation platform title',
+        'language': 'de',
         'en': 'en',
         'en__description': 'some very short description of the organisation'
     }
@@ -89,8 +92,9 @@ def test_moderator_cannot_update(client, project):
     assert response.status_code == 403
     data = {
         'title': 'Organisation platform title',
+        'language': 'de',
         'en': 'en',
-        'en__description': 'some very short description of the organisation',
+        'en__description': 'some very short description of the organisation'
     }
     response = client.post(url, data)
     assert response.status_code == 403
@@ -123,8 +127,9 @@ def test_member_cannot_update(client, member):
     assert response.status_code == 403
     data = {
         'title': 'Organisation platform title',
+        'language': 'de',
         'en': 'en',
-        'en__description': 'some very short description of the organisation',
+        'en__description': 'some very short description of the organisation'
     }
     response = client.post(url, data)
     assert response.status_code == 403
