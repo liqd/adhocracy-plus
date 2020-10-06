@@ -72,7 +72,7 @@ class LanguageChoice extends React.Component {
   render () {
     return (
       <div className="language-choice-container">
-        <ul className="checkbox-list" ref="checkboxList">
+        <ul className="checkbox-list btn--group" ref="checkboxList">
           {
             this.props.languages.map((languageCode, i) => {
               return (
@@ -91,52 +91,52 @@ class LanguageChoice extends React.Component {
             })
           }
         </ul>
-
-        <div className="dropdown ml-5">
-          <button className="dropdown-toggle btn btn--light btn--small" type="button" data-toggle="dropdown" ref="toggleButton">
-            <i className="fa fa-plus" />
-          </button>
-          <ul className="dropdown-menu">
-            {
-              this.props.languages.map((languageCode, i) => {
-                return (
-                  <span key={languageCode}>
-                    {this.state.activeLanguages.indexOf(languageCode) === -1 &&
-                      <li className="dropdown-item" key={languageCode}>
-                        <a
-                          href={'#' + languageCode + '_language_panel'} className={'dropdown-item ' + (languageCode === this.state.activeTab ? 'active' : '')}
-                          data-toggle="tab" onClick={this.addLanguage.bind(this)}
-                        >{languageCode}
-                        </a>
-                      </li>}
-                  </span>
-                )
-              })
-            }
-          </ul>
-        </div>
-
-        {this.state.activeLanguages.length > 1 &&
+        <div className="btn--group ml-5">
           <div className="dropdown">
             <button className="dropdown-toggle btn btn--light btn--small" type="button" data-toggle="dropdown" ref="toggleButton">
-              <i className="fa fa-minus" />
+              <i className="fa fa-plus" />
             </button>
-            <ul className="dropdown-menu">
+            <div className="dropdown-menu">
               {
-                this.state.activeLanguages.map(languageCode => {
+                this.props.languages.map((languageCode, i) => {
                   return (
-                    <li className="dropdown-item" key={languageCode}>
-                      <a
-                        href={'#' + this.getNewActiveTab(languageCode) + '_language_panel'} className={'dropdown-item ' + (languageCode === this.getNewActiveTab(languageCode) ? 'active' : '')}
-                        data-toggle="tab" onClick={this.removeLanguage.bind(this)}
-                      >{languageCode}
-                      </a>
-                    </li>
+                    <span key={languageCode}>
+                      {this.state.activeLanguages.indexOf(languageCode) === -1 &&
+                        <a
+                          href={'#' + languageCode + '_language_panel'} className={'dropdown-item ' + (languageCode === this.state.activeTab ? 'active' : '')}
+                          data-toggle="tab"
+                          onClick={this.addLanguage.bind(this)}
+                          key={languageCode}
+                        >{languageCode}
+                        </a>}
+                    </span>
                   )
                 })
               }
-            </ul>
-          </div>}
+            </div>
+          </div>
+
+          {this.state.activeLanguages.length > 1 &&
+            <div className="dropdown">
+              <button className="dropdown-toggle btn btn--light btn--small" type="button" data-toggle="dropdown" ref="toggleButton">
+                <i className="fa fa-minus" />
+              </button>
+              <div className="dropdown-menu">
+                {this.state.activeLanguages.map(languageCode => {
+                  return (
+                    <a
+                      href={'#' + this.getNewActiveTab(languageCode) + '_language_panel'}
+                      className={'dropdown-item ' + (languageCode === this.getNewActiveTab(languageCode) ? 'active' : '')}
+                      data-toggle="tab"
+                      onClick={this.removeLanguage.bind(this)}
+                      key={languageCode}
+                    >{languageCode}
+                    </a>
+                  )
+                })}
+              </div>
+            </div>}
+        </div>
       </div>
     )
   }
