@@ -87,21 +87,26 @@ def fa_class(icon):
 
 
 @register.simple_tag()
-def tracking_enabled():
-    return settings.TRACKING_ENABLED
+def matomo_enabled():
+    if hasattr(settings, 'MATOMO_ENABLED'):
+        return settings.MATOMO_ENABLED
+    return False
 
 
 @register.inclusion_tag('a4_candy_contrib/matomo/tracking_code.html')
-def tracking_code():
-    try:
-        id = settings.MATOMO_SITE_ID
-    except AttributeError:
+def matomo_tracking_code():
+    if not hasattr(settings, 'MATOMO_SITE_ID'):
         raise ImproperlyConfigured('MATOMO_SITE_ID does not exist.')
-    try:
-        url = settings.MATOMO_URL
-    except AttributeError:
+
+    if not hasattr(settings, 'MATOMO_URL'):
         raise ImproperlyConfigured('MATOMO_URL does not exist.')
-    return {'id': id, 'url': url}
+
+    cookie_disabled = False
+    if hasattr(settings, 'MATOMO_COOKIE_DISABLED'):
+        cookie_disabled = settings.MATOMO_COOKIE_DISABLED
+
+    return {'id': settings.MATOMO_SITE_ID, 'url': settings.MATOMO_URL,
+            'cookie_disabled': cookie_disabled}
 
 
 @register.filter
