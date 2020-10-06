@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load absolute_url i18n organisation_tags static wagtailimages_tags wagtailsettings_tags wagtailuserbar %}
+{% load absolute_url contrib_tags i18n organisation_tags static wagtailimages_tags wagtailsettings_tags wagtailuserbar %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_organisation as ORGANISATION %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -51,6 +51,8 @@
     {% block extra_js %}
         {# Override this in templates to add extra javascript #}
     {% endblock %}
+    {% matomo_enabled as matomo %}
+    {% if matomo %} {% matomo_tracking_code %} {% endif %}
 </head>
 <body>
     {% wagtailuserbar %}
