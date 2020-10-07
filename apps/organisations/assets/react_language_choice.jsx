@@ -38,7 +38,7 @@ class LanguageChoice extends React.Component {
   }
 
   addLanguage (e) {
-    var languageCode = e.target.textContent
+    var languageCode = e.target.getAttribute('languageCode')
     var index = this.state.activeLanguages.indexOf(languageCode)
     var newActiveLanguages = this.state.activeLanguages.concat([])
     if (index === -1) {
@@ -52,7 +52,7 @@ class LanguageChoice extends React.Component {
   }
 
   removeLanguage (e) {
-    var languageCode = e.target.textContent
+    var languageCode = e.target.getAttribute('languageCode')
     var index = this.state.activeLanguages.indexOf(languageCode)
     var newActiveLanguages = this.state.activeLanguages.concat([])
     if (index !== -1) {
@@ -98,16 +98,17 @@ class LanguageChoice extends React.Component {
             </button>
             <div className="dropdown-menu">
               {
-                this.props.languages.map((languageCode, i) => {
+                Object.entries(this.props.languageDict).map(([languageCode, languageString]) => {
                   return (
                     <span key={languageCode}>
                       {this.state.activeLanguages.indexOf(languageCode) === -1 &&
                         <a
                           href={'#' + languageCode + '_language_panel'} className={'dropdown-item ' + (languageCode === this.state.activeTab ? 'active' : '')}
                           data-toggle="tab"
+                          languageCode={languageCode}
                           onClick={this.addLanguage.bind(this)}
                           key={languageCode}
-                        >{languageCode}
+                        >{languageString}
                         </a>}
                     </span>
                   )
@@ -122,18 +123,24 @@ class LanguageChoice extends React.Component {
                 <i className="fa fa-minus" />
               </button>
               <div className="dropdown-menu">
-                {this.state.activeLanguages.map(languageCode => {
-                  return (
-                    <a
-                      href={'#' + this.getNewActiveTab(languageCode) + '_language_panel'}
-                      className={'dropdown-item ' + (languageCode === this.getNewActiveTab(languageCode) ? 'active' : '')}
-                      data-toggle="tab"
-                      onClick={this.removeLanguage.bind(this)}
-                      key={languageCode}
-                    >{languageCode}
-                    </a>
-                  )
-                })}
+                {
+                  Object.entries(this.props.languageDict).map(([languageCode, languageString]) => {
+                    return (
+                      <span key={languageCode}>
+                        {this.state.activeLanguages.indexOf(languageCode) !== -1 &&
+                          <a
+                            href={'#' + this.getNewActiveTab(languageCode) + '_language_panel'}
+                            className={'dropdown-item ' + (languageCode === this.getNewActiveTab(languageCode) ? 'active' : '')}
+                            data-toggle="tab"
+                            languageCode={languageCode}
+                            onClick={this.removeLanguage.bind(this)}
+                            key={languageCode}
+                          >{languageString}
+                          </a>}
+                      </span>
+                    )
+                  })
+                }
               </div>
             </div>}
         </div>
@@ -149,8 +156,9 @@ LanguageChoice.propTypes = {
 module.exports.renderLanguageChoice = function (el) {
   const languages = el.getAttribute('data-languages').split(' ')
   const activeLanguages = el.getAttribute('data-active-languages').split(' ')
+  const languageDict = JSON.parse(el.getAttribute('data-language-dict'))
   ReactDOM.render(
-    <LanguageChoice languages={languages} activeLanguages={activeLanguages} />,
+    <LanguageChoice languages={languages} activeLanguages={activeLanguages} languageDict={languageDict} />,
     el
   )
 }
