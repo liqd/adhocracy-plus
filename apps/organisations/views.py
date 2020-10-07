@@ -1,4 +1,8 @@
+import json
+
+from django.conf import settings
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 from django.views.generic import DetailView
@@ -81,6 +85,19 @@ class DashboardOrganisationUpdateView(a4dashboard_mixins.DashboardBaseMixin,
 
     def get_success_url(self):
         return self.request.path
+
+    def get_project_languages(self):
+        languages = getattr(settings, 'LANGUAGES', None)
+        if languages:
+            language_dict = dict((x, str(y)) for x, y in languages)
+            return json.dumps(language_dict)
+        else:
+            raise ImproperlyConfigured('set LANGUAGES in settings')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['language_dict'] = self.get_project_languages()
+        return context
 
 
 class DashboardLegalInformationUpdateView(
