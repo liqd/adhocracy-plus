@@ -31,10 +31,13 @@ class EmailAplus(Email):
 
     def get_languages(self, receiver):
         languages = super().get_languages(receiver)
-        if hasattr(settings, 'DEFAULT_USER_LANGUAGE_CODE'):
-            languages.insert(0, settings.DEFAULT_USER_LANGUAGE_CODE)
+        organisation = self.get_organisation()
         if User.objects.filter(email=receiver).exists():
             languages.insert(0, User.objects.get(email=receiver).language)
+        elif organisation is not None:
+            languages.insert(0, organisation.language)
+        elif hasattr(settings, 'DEFAULT_USER_LANGUAGE_CODE'):
+            languages.insert(0, settings.DEFAULT_USER_LANGUAGE_CODE)
 
         return languages
 
