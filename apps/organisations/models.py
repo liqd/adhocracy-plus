@@ -32,7 +32,6 @@ class Organisation(TranslatableModel):
                     'on the landing page. max. 100 characters'),
         blank=True
     )
-
     translations = TranslatedFields(
         description=models.CharField(max_length=800,
                                      verbose_name=_('Short description of '
@@ -62,13 +61,6 @@ class Organisation(TranslatableModel):
             blank=True),
     )
 
-    description_untranslated = models.CharField(
-        max_length=800,
-        verbose_name=_('Short description of your organisation'),
-        help_text=_('The description will be displayed on the '
-                    'landing page. max. 800 characters'),
-        blank=True
-    )
     logo = images_fields.ConfiguredImageField(
         'logo',
         verbose_name=_('Logo'),
@@ -80,17 +72,6 @@ class Organisation(TranslatableModel):
                     'should be max. 5 MB.'),
         upload_to='organisations/logos',
         blank=True
-    )
-    slogan_untranslated = models.CharField(
-        max_length=200,
-        verbose_name=_('Slogan'),
-        blank=True,
-        help_text=_('The slogan will be shown below '
-                    'the title of your organisation on '
-                    'the landing page. The slogan can '
-                    'provide context or additional '
-                    'information to the title. '
-                    'max. 200 characters')
     )
     url = models.URLField(
         blank=True,
@@ -114,17 +95,6 @@ class Organisation(TranslatableModel):
         verbose_name=_('Header image copyright'),
         blank=True,
         help_text=_('Author, which is displayed in the header image.')
-    )
-    information_untranslated = RichTextCollapsibleUploadingField(
-        config_name='collapsible-image-editor',
-        verbose_name=_('Information about your organisation'),
-        help_text=_('You can provide general information about your '
-                    'participation platform to your visitors. '
-                    'It’s also helpful to name a general person '
-                    'of contact for inquiries. The information '
-                    'will be shown on a separate "About" page that '
-                    'can be reached via the main menu.'),
-        blank=True
     )
     twitter_handle = models.CharField(
         max_length=100,
