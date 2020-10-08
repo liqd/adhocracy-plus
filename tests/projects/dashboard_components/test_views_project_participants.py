@@ -1,4 +1,8 @@
+import os
+
 import pytest
+from django.core import mail
+from django.test import override_settings
 
 from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
@@ -10,10 +14,24 @@ from tests.helpers import setup_phase
 component = components.projects.get('participants')
 
 
+@override_settings(
+    USE_I18N=True,
+    LOCALE_PATHS=[
+        os.path.join(os.path.dirname(__file__), 'locale'),
+    ],
+    LANGUAGE_CODE='en',
+    LANGUAGES=[
+        ('en', 'English'),
+        ('de', 'German'),
+    ],
+)
 @pytest.mark.django_db
 def test_initiator_can_edit(client, phase_factory):
     phase, module, project, idea = setup_phase(
         phase_factory, None, CollectFeedbackPhase)
+    organisation = project.organisation
+    organisation.language = 'de'
+    organisation.save()
     url = component.get_base_url(project)
     initiator = module.project.organisation.initiators.first()
     client.login(username=initiator.email, password='password')
@@ -29,6 +47,35 @@ def test_initiator_can_edit(client, phase_factory):
         'dashboard-{}-edit'.format(component.identifier)
     assert ParticipantInvite.objects.get(email='test1@foo.bar')
     assert ParticipantInvite.objects.get(email='test2@foo.bar')
+    assert len(mail.outbox) == 2
+    assert mail.outbox[0].subject.startswith(
+        'Einladung zum privaten Projekt:')
+
+
+@pytest.mark.django_db
+def test_registered_user_gets_email_in_english(client, phase_factory, user):
+    phase, module, project, idea = setup_phase(
+        phase_factory, None, CollectFeedbackPhase)
+    organisation = project.organisation
+    organisation.language = 'de'
+    organisation.save()
+    url = component.get_base_url(project)
+    initiator = module.project.organisation.initiators.first()
+    client.login(username=initiator.email, password='password')
+    response = client.get(url)
+    assert_template_response(
+        response, 'a4_candy_projects/project_participants.html')
+
+    data = {
+        'add_users': user.email,
+    }
+    response = client.post(url, data)
+    assert redirect_target(response) == \
+        'dashboard-{}-edit'.format(component.identifier)
+    assert ParticipantInvite.objects.get(email=user.email)
+    assert len(mail.outbox) == 1
+    assert mail.outbox[0].subject.startswith(
+        'Invitation to the private project:')
 
 
 @pytest.mark.django_db
