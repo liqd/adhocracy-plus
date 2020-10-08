@@ -5,15 +5,16 @@
 #
 # Translators:
 # Katharina Schmid <k.schmid@liqd.net>, 2020
+# Katharina Albers <katharina.albers@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-07 13:40+0200\n"
+"POT-Creation-Date: 2020-10-08 12:38+0200\n"
 "PO-Revision-Date: 2020-06-26 14:15+0000\n"
-"Last-Translator: Katharina Schmid <k.schmid@liqd.net>, 2020\n"
+"Last-Translator: Katharina Albers <katharina.albers@gmail.com>, 2020\n"
 "Language-Team: German (Germany) (https://www.transifex.com/liqd/teams/111081/"
 "de_DE/)\n"
 "Language: de_DE\n"
@@ -2963,13 +2964,15 @@ msgstr "Organisationsinformationen bearbeiten"
 
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:26
 msgid "Language availability"
-msgstr ""
+msgstr "Verfügbarkeit von Sprachen für Ihre Organisation"
 
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:27
 msgid ""
 "Manage here the content of your page in the desired languages. You can add "
 "or delete them."
 msgstr ""
+"Bearbeiten Sie hier die Inhalte Ihrer Seite in den verfügbaren Sprachen. Sie "
+"können Sprachen hinzufügen oder entfernen."
 
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:10
 msgid "Edit your legal information"
@@ -3009,23 +3012,23 @@ msgstr ""
 "Derzeit sind keine öffentlichen Beteiligungsprozesse sichtbar. Melden Sie "
 "sich <a href=\"%(account_login_url)s?next=%(organisation_url)s\">hier</a> an."
 
-#: apps/organisations/views.py:28
+#: apps/organisations/views.py:32
 msgid "Participate now!"
 msgstr "Jetzt beteiligen!"
 
-#: apps/organisations/views.py:30
+#: apps/organisations/views.py:34
 msgid "Upcoming participation"
 msgstr "Anstehende Beteiligung"
 
-#: apps/organisations/views.py:32
+#: apps/organisations/views.py:36
 msgid "Ended participation"
 msgstr "Abgeschlossene Beteiligung"
 
-#: apps/organisations/views.py:75
+#: apps/organisations/views.py:79
 msgid "Organisation information successfully updated."
 msgstr "Organisationsinformationen erfolgreich aktualisiert."
 
-#: apps/organisations/views.py:94
+#: apps/organisations/views.py:111
 msgid "Legal information successfully updated."
 msgstr "Rechtliche Informationen erfolgreich aktualisiert."
 
@@ -3150,9 +3153,6 @@ msgid ""
 "on the participation platform  %(site_name)s. To participate click on "
 "\"Accept invitation\"."
 msgstr ""
-"Sie wurden zum privaten Projekt \"%(project_name)s\" auf der "
-"Beteiligungsplattform %(site_name)s eingeladen. Um an dem Projekt "
-"teilzunehmen, klicken Sie auf \"Einladung annehmen\"."
 
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:13
 #, python-format
@@ -3486,11 +3486,11 @@ msgstr "Zur Veranstaltung"
 
 #: apps/questions/templates/a4_candy_questions/question_present_list.html:11
 msgid "join in "
-msgstr "Mitmachen "
+msgstr "Mitmachen"
 
 #: apps/questions/templates/a4_candy_questions/question_present_list.html:19
 msgid "Enter event link"
-msgstr "Link zur Veranstaltung eingeben"
+msgstr "Link zur veranstaltung eingeben"
 
 #: apps/questions/templates/a4_candy_questions/question_present_list.html:30
 msgid "Like questions"
@@ -4459,19 +4459,19 @@ msgstr ""
 "weitere Informationen</a>.\n"
 "        "
 
-#: adhocracy-plus/templates/base.html:57
+#: adhocracy-plus/templates/base.html:59
 msgid "Skip to content "
 msgstr "Zum Inhalt springen"
 
-#: adhocracy-plus/templates/base.html:96
+#: adhocracy-plus/templates/base.html:98
 msgid "adhocracy+ is funded by donations."
 msgstr "adhocracy+ finanziert sich durch Spenden."
 
-#: adhocracy-plus/templates/base.html:98
+#: adhocracy-plus/templates/base.html:100
 msgid "Donate now"
 msgstr "Jetzt unterstützen"
 
-#: adhocracy-plus/templates/base.html:101
+#: adhocracy-plus/templates/base.html:103
 msgid "Donate now to adhocracy+"
 msgstr "Spende jetzt für adhocracy+"
 
@@ -4584,11 +4584,6 @@ msgid "Login with "
 msgstr "Einloggen mit "
 
 #~ msgid ""
-#~ "Module cannot be removed. It is the only module added to the project."
-#~ msgstr ""
-#~ "Module können nicht aus einem veröffentlichten Projekt entfernt werden."
-
-#~ msgid ""
 #~ "you are invited to participate in the private project \"%(project_name)s"
 #~ "\" on the participation platform  %(site_name)s. To participate click on "
 #~ "\"Accepct invitation\"."
@@ -4602,6 +4597,11 @@ msgstr "Einloggen mit "
 
 #~ msgid "current page"
 #~ msgstr "aktuelle Seite"
+
+#~ msgid ""
+#~ "Module cannot be removed. It is the only module added to the project."
+#~ msgstr ""
+#~ "Module können nicht aus einem veröffentlichten Projekt entfernt werden."
 
 #~ msgid "Responsible for the content of this e-mail:"
 #~ msgstr "Verantwortlich für den Inhalt dieser E-mail:"
