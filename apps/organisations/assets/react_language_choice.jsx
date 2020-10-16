@@ -81,11 +81,11 @@ class LanguageChoice extends React.Component {
                     type="checkbox" name={languageCode} id={languageCode + '_language-choice'} value={languageCode}
                     checked={this.state.activeLanguages.indexOf(languageCode) !== -1} readOnly
                   />
-                  <a
+                  <button
                     href={'#' + languageCode + '_language_panel'} className={'btn btn--light btn--small language-choice ' + (languageCode === this.state.activeTab ? 'active' : '')}
                     data-toggle="tab" onClick={this.activateTab.bind(this)}
                   >{languageCode}
-                  </a>
+                  </button>
                 </li>
               )
             })
@@ -102,7 +102,7 @@ class LanguageChoice extends React.Component {
                   return (
                     <span key={languageCode}>
                       {this.state.activeLanguages.indexOf(languageCode) === -1 &&
-                        <a
+                        <button
                           href={'#' + languageCode + '_language_panel'}
                           className="dropdown-item"
                           data-toggle="tab"
@@ -110,7 +110,7 @@ class LanguageChoice extends React.Component {
                           onClick={this.addLanguage.bind(this)}
                           key={languageCode}
                         >{languageString}
-                        </a>}
+                        </button>}
                     </span>
                   )
                 })
@@ -129,7 +129,7 @@ class LanguageChoice extends React.Component {
                     return (
                       <span key={languageCode}>
                         {this.state.activeLanguages.indexOf(languageCode) !== -1 &&
-                          <a
+                          <button
                             href={languageCode === this.state.activeTab ? '#' + this.getNewActiveTab(languageCode) + '_language_panel' : ''}
                             className="dropdown-item"
                             data-toggle="tab"
@@ -137,7 +137,7 @@ class LanguageChoice extends React.Component {
                             onClick={this.removeLanguage.bind(this)}
                             key={languageCode}
                           >{languageString}
-                          </a>}
+                          </button>}
                       </span>
                     )
                   })
