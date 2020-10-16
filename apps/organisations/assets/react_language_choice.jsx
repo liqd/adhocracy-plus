@@ -103,7 +103,8 @@ class LanguageChoice extends React.Component {
                     <span key={languageCode}>
                       {this.state.activeLanguages.indexOf(languageCode) === -1 &&
                         <a
-                          href={'#' + languageCode + '_language_panel'} className={'dropdown-item ' + (languageCode === this.state.activeTab ? 'active' : '')}
+                          href={'#' + languageCode + '_language_panel'}
+                          className="dropdown-item"
                           data-toggle="tab"
                           languageCode={languageCode}
                           onClick={this.addLanguage.bind(this)}
@@ -129,8 +130,8 @@ class LanguageChoice extends React.Component {
                       <span key={languageCode}>
                         {this.state.activeLanguages.indexOf(languageCode) !== -1 &&
                           <a
-                            href={'#' + this.getNewActiveTab(languageCode) + '_language_panel'}
-                            className={'dropdown-item ' + (languageCode === this.getNewActiveTab(languageCode) ? 'active' : '')}
+                            href={languageCode === this.state.activeTab ? '#' + this.getNewActiveTab(languageCode) + '_language_panel' : ''}
+                            className="dropdown-item"
                             data-toggle="tab"
                             languageCode={languageCode}
                             onClick={this.removeLanguage.bind(this)}
