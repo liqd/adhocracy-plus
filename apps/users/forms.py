@@ -32,10 +32,19 @@ class DefaultSignupForm(SignupForm):
     terms_of_use = forms.BooleanField(
         label=_('Terms of use')
     )
+    data_protection = forms.BooleanField(
+        label=_('Data protection')
+    )
+    get_notifications = forms.BooleanField(
+        label=_('Notifications: Yes, I would like to be notified by e-mail '
+                'about the beginning and end of participation opportunities '
+                'and about comments on my contributions by other users. This '
+                'applies to all projects I follow.'),
+        required=False
+    )
     get_newsletters = forms.BooleanField(
-        label=_('I would like to receive further information'),
-        help_text=_('Projects you are following can send you '
-                    'additional information via email.'),
+        label=_('Newsletter: Yes, I would like to receive e-mail newsletters '
+                'about the projects I follow.'),
         required=False
     )
 
