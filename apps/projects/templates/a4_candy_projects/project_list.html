@@ -7,7 +7,7 @@
     <div class="container">
         {% include "a4_candy_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
-        {% filter_has_perm 'a4_candy_projects.view_project' request.user project_list as filtered_projects %}
+        {% filter_has_perm 'a4projects.view_project' request.user project_list as filtered_projects %}
         {% if filtered_projects|length > 0 %}
             <ul class="l-tiles-4">
                 {% for project in filtered_projects %}

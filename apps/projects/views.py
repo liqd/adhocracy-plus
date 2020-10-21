@@ -208,7 +208,7 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
     template_name = 'a4_candy_projects/project_moderators.html'
-    permission_required = 'a4_candy_projects.change_project'
+    permission_required = 'a4projects.change_project'
     menu_item = 'project'
 
     related_users_field = 'moderators'
@@ -228,7 +228,7 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
     template_name = 'a4_candy_projects/project_participants.html'
-    permission_required = 'a4_candy_projects.change_project'
+    permission_required = 'a4projects.change_project'
     menu_item = 'project'
 
     related_users_field = 'participants'
@@ -248,7 +248,7 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 class ProjectDeleteView(PermissionRequiredMixin,
                         generic.DeleteView):
     model = project_models.Project
-    permission_required = 'a4_candy_projects.delete_project'
+    permission_required = 'a4projects.delete_project'
     http_method_names = ['post']
     success_message = _("Project '%(name)s' was deleted successfully.")
 
