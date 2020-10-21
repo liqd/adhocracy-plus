@@ -1,4 +1,4 @@
-{% load i18n project_tags a4_candy_project_tags contrib_tags thumbnail %}
+{% load i18n project_tags a4_candy_project_tags contrib_tags thumbnail rules %}
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 
@@ -11,12 +11,19 @@
           {% if project_image_copyright %}
               <div class="tile__image__copyright copyright">© {{ project_image_copyright }}</div>
           {% endif %}
-          {% if not project.is_public %}
+          {% if project.is_private %}
             <div class="tile__private-badge">
                 <div class="tile__private-badge--top"></div>
                     <i class="fas fa-lock"></i>
                 <div class="tile__private-badge--left"></div>
             </div>
+          {% elif project.is_semipublic %}
+            <div class="tile__private-badge">
+                <div class="tile__private-badge--top"></div>
+                    <i class="fas fa-eye"></i>
+                <div class="tile__private-badge--left"></div>
+            </div>
+
           {% endif %}
         </div>
     </div>
@@ -39,7 +46,12 @@
                 <span>{% trans 'more than 1 year remaining' %}</span>
                 {% endif %}
                 </span>
-                <a class="list-item__cta list-item__hover" href="{{ project|project_url }}">{% trans 'JOIN IN' %}</a>
+                {% has_perm 'a4projects.participate_in_project' request.user project as user_may_participate_in_project %}
+                {% if user_may_participate_in_project %}
+                    <a class="list-item__cta list-item__hover" href="{{ project|project_url }}">{% trans 'JOIN IN' %}</a>
+                {% else %}
+                    <a class="list-item__cta list-item__hover" href="{{ project|project_url }}">{% trans 'READ' %}</a>
+                {% endif %}
             </div>
         </div>
         {% elif project.future_modules %}
