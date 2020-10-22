@@ -12,12 +12,12 @@
     <tr>
             <td style="padding: 0px; position: relative; top: -4.5em;" align="center">
                     {% if organisation and organisation.logo %}
-                    <div style="width: 100px; height: 100px; box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.08); background-color: #ffffff;">
+                    <div style="width: 100px; height: auto; box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.08); background-color: #ffffff;">
                         <img src="cid:organisation_logo" height="80" width="80" alt="{{ organisation.name }} logo" style="margin: 10px;" />
                     </div>
                     {% else %}
-                    <div  style="width: 150px; height: 100px; box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.08); background-color: #ffffff;">
-                        <img src="cid:logo" height="80" alt="adhocracy-plus logo" style="margin: 10px;" />
+                    <div  style="width: 100px; height: auto; box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.08); background-color: #ffffff;">
+                        <img src="cid:logo" height="80" width="80" alt="adhocracy-plus logo" style="margin: 10px;" />
                     </div>
                     {% endif %}
             </td>
