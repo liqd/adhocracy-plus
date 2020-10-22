@@ -8,15 +8,11 @@ from rest_framework.test import APIClient
 from adhocracy4.test import factories as a4_factories
 from adhocracy4.test.factories.maps import AreaSettingsFactory
 from adhocracy4.test.helpers import patch_background_task_decorator
-from apps.django_overwrites.urlresolvers import patch_reverse
 
 from . import factories
 
 
 def pytest_configure(config):
-    # Patch the reverse function.
-    # This is required as modules are imported by pytest prior to app init
-    patch_reverse()
     # Patch email background_task decorators for all tests
     patch_background_task_decorator('adhocracy4.emails.tasks')
 
