@@ -29,13 +29,18 @@ class DefaultLoginForm(LoginForm):
 
 
 class DefaultSignupForm(SignupForm):
+    terms_of_use_diid = forms.BooleanField(
+        label=_('Terms of use DIID')
+    )
     terms_of_use = forms.BooleanField(
         label=_('Terms of use')
     )
+    get_notifications = forms.BooleanField(
+        label=_('Get Notifications'),
+        required=False
+    )
     get_newsletters = forms.BooleanField(
-        label=_('I would like to receive further information'),
-        help_text=_('Projects you are following can send you '
-                    'additional information via email.'),
+        label=_('Get Newsletter'),
         required=False
     )
 
