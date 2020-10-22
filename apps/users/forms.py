@@ -29,6 +29,20 @@ class DefaultLoginForm(LoginForm):
 
 
 class DefaultSignupForm(SignupForm):
+    data_protection_diid = forms.BooleanField(
+        label=_('Data protection DIID')
+    )
+    terms_of_use_diid = forms.BooleanField(
+        label=_('Terms of use DIID')
+    )
+    get_notifications_diid = forms.BooleanField(
+        label=_('Get Notifications DIID'),
+        required=False
+    )
+    get_newsletters_diid = forms.BooleanField(
+        label=_('Get Newsletter DIID'),
+        required=False
+    )
     terms_of_use = forms.BooleanField(
         label=_('Terms of use')
     )
