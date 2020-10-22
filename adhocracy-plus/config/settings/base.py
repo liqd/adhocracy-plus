@@ -25,6 +25,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'apps.djangosaml2_overwrites',
     'djangosaml2',
 
     'widget_tweaks',
