@@ -1,0 +1,83 @@
+{% extends "socialaccount/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans with  site_name=site.name %}You are about to use your HHU account to login.
+As a final step, please complete the following form:{% endblocktrans %}</p>
+
+<form id="signup_form" method="post" action="{% url 'saml2_signup' %}">
+        {{ form.non_field_errors }}
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+                {{ hidden.errors }}
+        {% endfor %}
+
+        <div class="form-group">
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.username %}
+        </div>
+
+        <div class="form-check">
+            <label class="form-check__label">
+                {{ form.data_protection }}
+                {% blocktrans with data_protection_policy=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url %}
+                I hereby voluntarily agree that my data and in particular my contributions to the participation platform teilhabe.diid.hhu.de are collected, processed and published in accordance with sections 2.3 & 2.4 of the <a href="{{data_protection_policy}}" target="_blank">data protection policy</a>. My consent also expressly refers to the processing of special categories of personal data within the meaning of Art. 9 DSGVO, if I have mentioned these in my own contributions. I am aware that the consents are voluntary and can be refused without any disadvantages (even individually) or revoked at any time without giving reasons. I am aware that in the event of revocation, the legality of the processing carried out on the basis of the consent until revocation is not affected. I understand that I can simply contact the contact person named in the data protection policy for a revocation. I have been informed of the <a href="{{data_protection_policy}}" target="_blank">data protection policy</a> for teilhabe.diid.hhu.de and made available.
+                {% endblocktrans %}
+                {% if form.data_protection.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
+            </label>
+            {{ form.data_protection.errors }}
+        </div>
+        <div class="form-check">
+            <label class="form-check__label">
+                {{ form.terms_of_use }}
+                {% blocktrans with terms_of_use_url=settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url %}
+                I confirm that I have read and accepted the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a>.
+                {% endblocktrans %}
+                {% if form.terms_of_use.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
+            </label>
+            {{ form.terms_of_use.errors }}
+        </div>
+        {% if form.terms_of_use_extra %}
+        <div class="form-check">
+          <label class="form-check__label">
+            {{ form.terms_of_use_extra }}
+            {{ form.terms_of_use_extra.label|safe}}
+            {% if form.terms_of_use_extra.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
+            </label>
+            {{ form.terms_of_use.errors }}
+        </div>
+        {% endif %}
+        <div class="form-check">
+            <label class="form-check__label">
+                {{ form.get_notifications }}
+                {{ form.get_notifications.label }}
+            </label>
+            <div class="form-hint">
+                {{ form.get_notifications.help_text }}
+            </div>
+            {{ form.get_notifications.errors }}
+        </div>
+        <div class="form-check">
+            <label class="form-check__label">
+                {{ form.get_newsletters }}
+                {{ form.get_newsletters.label }}
+            </label>
+            <div class="form-hint">
+                {{ form.get_newsletters.help_text }}
+            </div>
+            {{ form.get_newsletters.errors }}
+        </div>
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <div class="u-spacer-bottom-double">
+            <button class="btn btn--primary" type="submit">{% trans "Register" %}</button>
+        </div>
+    </form>
+
+{% endblock %}
