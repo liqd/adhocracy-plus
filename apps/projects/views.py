@@ -271,7 +271,7 @@ class ProjectDetailView(PermissionRequiredMixin,
                         ):
 
     model = models.Project
-    permission_required = 'a4projects.view_project'
+    permission_required = 'a4_candy_projects.view_project'
     template_name = 'a4_candy_projects/project_detail.html'
 
     def get_permission_object(self):
