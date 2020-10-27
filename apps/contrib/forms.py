@@ -3,10 +3,14 @@
 from django.core.exceptions import ImproperlyConfigured
 from django.db import transaction
 from django.forms import models as model_forms
+from django.forms.widgets import ChoiceWidget
 from django.forms.formsets import all_valid
 from django.http import HttpResponseRedirect
 from django.utils.encoding import force_text
 from django.views import generic
+
+from warnings import warn
+import copy
 
 
 class MultiFormMixin(generic.base.ContextMixin):
@@ -207,3 +211,31 @@ class BaseMultiModelFormView(MultiModelFormMixin, ProcessMultiFormView):
     """
     A base view for displaying multiple forms that may contain ModelForms.
     """
+
+
+class RadioSelect(ChoiceWidget):
+    input_type = 'radio'
+    template_name = 'a4_candy_contrib/radio.html'
+    option_template_name = 'a4_candy_contrib/radio_option.html'
+
+    def __init__(self, attrs=None, choices=()):
+        super().__init__(attrs, choices)
+
+        warn("init[{}] choices: {}".format(self, self.choices))
+
+
+    def __deepcopy__(self, memo):
+        obj = copy.copy(self)
+        obj.attrs = self.attrs.copy()
+        obj.choices = copy.copy(self.choices)
+        memo[id(self)] = obj
+        warn("deepcopy[{}] choices: {} obj {} new choices: {}".format(self, self.choices, obj, obj.choices))
+        return obj
+
+
+    def get_context(self, name, value, attrs):
+        warn("get_context[{}] self.choices: {}".format(self, self.choices))
+        context = super().get_context(name, value, attrs)
+        context['widget']['optgroups'] = self.optgroups(name, context['widget']['value'], attrs)
+        warn("get_context[{}] self.choices: {}".format(self, self.choices))
+        return context

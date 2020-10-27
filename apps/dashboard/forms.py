@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.dashboard.forms import ProjectCreateForm
 from adhocracy4.projects import models as project_models
 from apps.organisations.models import Organisation
+from apps.contrib.forms import RadioSelect
 
 
 class OrganisationForm(forms.ModelForm):
@@ -20,10 +21,10 @@ class DashboardProjectCreateForm(ProjectCreateForm):
 
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'access']
+        fields = ['name', 'description', 'access', 'is_draft']
         widgets = {
-            'access': forms.RadioSelect(
-                choices=[
+            'access': RadioSelect(
+                choices=(
                     (project_models.Access.PUBLIC.value,
                      _('All users can participate (public).')),
                     (project_models.Access.SEMIPUBLIC.value,
@@ -31,6 +32,14 @@ class DashboardProjectCreateForm(ProjectCreateForm):
                        'can participate (semipublic).')),
                     (project_models.Access.PRIVATE.value,
                      _('Only invited users can participate (private).'))
+                )
+            ),
+            'is_draft': RadioSelect(
+                choices=[
+                    (project_models.Access.PUBLIC.value,
+                     _('Bla')),
+                    (project_models.Access.PRIVATE.value,
+                     _('Blubb'))
                 ]
             ),
         }
