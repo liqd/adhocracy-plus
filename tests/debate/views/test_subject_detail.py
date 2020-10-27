@@ -1,5 +1,6 @@
 import pytest
 
+from adhocracy4.projects.enums import Access
 from adhocracy4.test.helpers import redirect_target
 from apps.debate import phases
 from tests.helpers import assert_template_response
@@ -26,7 +27,7 @@ def test_detail_view_private_not_visible_anonymous(client,
                                                    subject_factory):
     phase, module, project, subject = setup_phase(
         phase_factory, subject_factory, phases.DebatePhase)
-    subject.module.project.is_public = False
+    subject.module.project.access = Access.PRIVATE
     subject.module.project.save()
     url = subject.get_absolute_url()
     response = client.get(url)
@@ -42,7 +43,7 @@ def test_detail_view_private_not_visible_normal_user(client,
                                                      subject_factory):
     phase, module, project, subject = setup_phase(
         phase_factory, subject_factory, phases.DebatePhase)
-    subject.module.project.is_public = False
+    subject.module.project.access = Access.PRIVATE
     subject.module.project.save()
     assert user not in subject.module.project.participants.all()
     client.login(username=user.email,
@@ -60,7 +61,7 @@ def test_detail_view_private_visible_to_participant(client,
                                                     subject_factory):
     phase, module, project, subject = setup_phase(
         phase_factory, subject_factory, phases.DebatePhase)
-    subject.module.project.is_public = False
+    subject.module.project.access = Access.PRIVATE
     subject.module.project.save()
     url = subject.get_absolute_url()
     assert user not in subject.module.project.participants.all()
@@ -78,7 +79,7 @@ def test_detail_view_private_visible_to_moderator(client,
                                                   subject_factory):
     phase, module, project, subject = setup_phase(
         phase_factory, subject_factory, phases.DebatePhase)
-    subject.module.project.is_public = False
+    subject.module.project.access = Access.PRIVATE
     subject.module.project.save()
     url = subject.get_absolute_url()
     user = subject.project.moderators.first()
@@ -95,7 +96,7 @@ def test_detail_view_private_visible_to_initiator(client,
                                                   subject_factory):
     phase, module, project, subject = setup_phase(
         phase_factory, subject_factory, phases.DebatePhase)
-    subject.module.project.is_public = False
+    subject.module.project.access = Access.PRIVATE
     subject.module.project.save()
     url = subject.get_absolute_url()
     user = subject.project.organisation.initiators.first()

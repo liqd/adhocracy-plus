@@ -1,6 +1,7 @@
 import pytest
 import rules
 
+from adhocracy4.projects.enums import Access
 from tests.helpers import setup_users
 
 perm_name = 'a4_candy_offlineevents.view_offlineevent'
@@ -26,7 +27,7 @@ def test_rule(offline_event, user, member_factory):
 @pytest.mark.django_db
 def test_rule_project_private(offline_event_factory, user, user2,
                               member_factory):
-    offline_event = offline_event_factory(project__is_public=False)
+    offline_event = offline_event_factory(project__access=Access.PRIVATE)
     project = offline_event.project
     anonymous, moderator, initiator = setup_users(project)
     member = member_factory(organisation=project.organisation)

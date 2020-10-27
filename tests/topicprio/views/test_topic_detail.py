@@ -1,5 +1,6 @@
 import pytest
 
+from adhocracy4.projects.enums import Access
 from adhocracy4.test.helpers import redirect_target
 from apps.topicprio import phases
 from tests.helpers import assert_template_response
@@ -26,7 +27,7 @@ def test_detail_view_private_not_visible_anonymous(client,
                                                    topic_factory):
     phase, module, project, topic = setup_phase(
         phase_factory, topic_factory, phases.PrioritizePhase)
-    topic.module.project.is_public = False
+    topic.module.project.access = Access.PRIVATE
     topic.module.project.save()
     url = topic.get_absolute_url()
     response = client.get(url)
@@ -42,7 +43,7 @@ def test_detail_view_private_not_visible_normal_user(client,
                                                      topic_factory):
     phase, module, project, topic = setup_phase(
         phase_factory, topic_factory, phases.PrioritizePhase)
-    topic.module.project.is_public = False
+    topic.module.project.access = Access.PRIVATE
     topic.module.project.save()
     assert user not in topic.module.project.participants.all()
     client.login(username=user.email,
@@ -60,7 +61,7 @@ def test_detail_view_private_visible_to_participant(client,
                                                     topic_factory):
     phase, module, project, topic = setup_phase(
         phase_factory, topic_factory, phases.PrioritizePhase)
-    topic.module.project.is_public = False
+    topic.module.project.access = Access.PRIVATE
     topic.module.project.save()
     url = topic.get_absolute_url()
     assert user not in topic.module.project.participants.all()
@@ -78,7 +79,7 @@ def test_detail_view_private_visible_to_moderator(client,
                                                   topic_factory):
     phase, module, project, topic = setup_phase(
         phase_factory, topic_factory, phases.PrioritizePhase)
-    topic.module.project.is_public = False
+    topic.module.project.access = Access.PRIVATE
     topic.module.project.save()
     url = topic.get_absolute_url()
     user = topic.project.moderators.first()
@@ -95,7 +96,7 @@ def test_detail_view_private_visible_to_initiator(client,
                                                   topic_factory):
     phase, module, project, topic = setup_phase(
         phase_factory, topic_factory, phases.PrioritizePhase)
-    topic.module.project.is_public = False
+    topic.module.project.access = Access.PRIVATE
     topic.module.project.save()
     url = topic.get_absolute_url()
     user = topic.project.organisation.initiators.first()
