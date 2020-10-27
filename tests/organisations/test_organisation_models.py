@@ -6,6 +6,7 @@ from django.conf import settings
 from django.urls import reverse
 from freezegun import freeze_time
 
+from adhocracy4.projects.models import Access
 from apps.organisations import models
 from tests import helpers
 
@@ -143,8 +144,8 @@ def test_get_projects_list(module_factory, organisation, phase_factory,
                            project_factory, admin, user):
     pro1 = project_factory(organisation=organisation)
     pro2 = project_factory(organisation=organisation)
-    pro3 = project_factory(is_public=False, organisation=organisation)
-    pro4 = project_factory(is_public=False, organisation=organisation)
+    pro3 = project_factory(access=Access.PRIVATE, organisation=organisation)
+    pro4 = project_factory(access=Access.PRIVATE, organisation=organisation)
     pro5 = project_factory(organisation=organisation)
 
     module1 = module_factory(project=pro1)
