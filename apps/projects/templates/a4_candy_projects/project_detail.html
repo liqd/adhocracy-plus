@@ -104,7 +104,7 @@
                 {% include 'header_lower.html' %}
             </div>
 
-            {% has_perm 'a4_candy_projects.change_project' request.user view.project as user_may_change %}
+            {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
             {% if user_may_change %}
             <div class="tablist--right">
                 <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>

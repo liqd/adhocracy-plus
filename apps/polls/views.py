@@ -54,7 +54,7 @@ class PollDashboardView(ProjectMixin,
                         dashboard_mixins.DashboardComponentMixin,
                         generic.TemplateView):
     template_name = 'a4_candy_polls/poll_dashboard.html'
-    permission_required = 'a4_candy_projects.change_project'
+    permission_required = 'a4projects.change_project'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

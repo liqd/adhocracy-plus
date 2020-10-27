@@ -34,7 +34,7 @@
                 {% endif %}
                 <div class="participation-tile__spacer"></div>
                 <div class="participation-tile__btn">
-                    {% has_perm 'a4_candy_projects.participate_in_project' request.user project as user_may_participate_in_project %}
+                    {% has_perm 'a4projects.participate_in_project' request.user project as user_may_participate_in_project %}
                     <a class="btn btn--full btn--small" href="{{ module.get_absolute_url }}">
                         {% if user_may_participate_in_project %} {% trans 'Join now' %} {% else %} {% trans 'Read now' %} {% endif %}
                     </a>
