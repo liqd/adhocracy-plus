@@ -1,5 +1,6 @@
 import pytest
 
+from adhocracy4.projects.enums import Access
 from adhocracy4.test.helpers import redirect_target
 from apps.mapideas import phases
 from tests.helpers import assert_template_response
@@ -37,7 +38,7 @@ def test_detail_view_private_not_visible_anonymous(client,
                                                    map_idea_factory):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase)
-    mapidea.module.project.is_public = False
+    mapidea.module.project.access = Access.PRIVATE
     mapidea.module.project.save()
     url = mapidea.get_absolute_url()
     response = client.get(url)
@@ -53,7 +54,7 @@ def test_detail_view_private_not_visible_normal_user(client,
                                                      map_idea_factory):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase)
-    mapidea.module.project.is_public = False
+    mapidea.module.project.access = Access.PRIVATE
     mapidea.module.project.save()
     assert user not in mapidea.module.project.participants.all()
     client.login(username=user.email,
@@ -71,7 +72,7 @@ def test_detail_view_private_visible_to_participant(client,
                                                     map_idea_factory):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase)
-    mapidea.module.project.is_public = False
+    mapidea.module.project.access = Access.PRIVATE
     mapidea.module.project.save()
     url = mapidea.get_absolute_url()
     assert user not in mapidea.module.project.participants.all()
@@ -89,7 +90,7 @@ def test_detail_view_private_visible_to_moderator(client,
                                                   map_idea_factory):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase)
-    mapidea.module.project.is_public = False
+    mapidea.module.project.access = Access.PRIVATE
     mapidea.module.project.save()
     url = mapidea.get_absolute_url()
     user = mapidea.project.moderators.first()
@@ -106,7 +107,7 @@ def test_detail_view_private_visible_to_initiator(client,
                                                   map_idea_factory):
     phase, module, project, mapidea = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase)
-    mapidea.module.project.is_public = False
+    mapidea.module.project.access = Access.PRIVATE
     mapidea.module.project.save()
     url = mapidea.get_absolute_url()
     user = mapidea.project.organisation.initiators.first()
