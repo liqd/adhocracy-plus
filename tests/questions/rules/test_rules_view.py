@@ -1,6 +1,7 @@
 import pytest
 import rules
 
+from adhocracy4.projects.enums import Access
 from apps.questions import phases
 from tests.helpers import freeze_phase
 from tests.helpers import freeze_post_phase
@@ -48,7 +49,8 @@ def test_phase_active_project_private(phase_factory, question_factory,
                                       user, user2):
     phase, _, project, item = setup_phase(phase_factory, question_factory,
                                           phases.IssuePhase,
-                                          module__project__is_public=False)
+                                          module__project__access=Access.
+                                          PRIVATE)
     anonymous, moderator, initiator = setup_users(project)
     participant = user2
     project.participants.add(participant)

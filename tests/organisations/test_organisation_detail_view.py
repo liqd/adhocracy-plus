@@ -3,12 +3,14 @@ from dateutil.parser import parse
 from django.urls import reverse
 from freezegun import freeze_time
 
+from adhocracy4.projects.enums import Access
+
 
 @pytest.mark.django_db
 def test_hide_private_projects(client, user, project_factory,
                                module_factory, phase_factory, organisation):
     public = project_factory(organisation=organisation)
-    private = project_factory(is_public=False, organisation=organisation)
+    private = project_factory(access=Access.PRIVATE, organisation=organisation)
 
     module1 = module_factory(project=public, weight=1)
     module2 = module_factory(project=private, weight=2)
@@ -45,7 +47,7 @@ def test_show_private_projects_participant(client, user, project_factory,
                                            organisation):
 
     public = project_factory(organisation=organisation)
-    private = project_factory(is_public=False, organisation=organisation)
+    private = project_factory(access=Access.PRIVATE, organisation=organisation)
     private.participants.add(user)
 
     module1 = module_factory(project=public, weight=1)
@@ -83,7 +85,7 @@ def test_show_private_projects_initiators(client, user, project_factory,
                                           organisation):
 
     public = project_factory(organisation=organisation)
-    private = project_factory(is_public=False, organisation=organisation)
+    private = project_factory(access=Access.PRIVATE, organisation=organisation)
     private.organisation.initiators.add(user)
 
     module1 = module_factory(project=public, weight=1)
@@ -120,7 +122,7 @@ def test_show_private_projects_members(client, member, project_factory,
                                        module_factory, phase_factory):
     organisation = member.organisation
     public = project_factory(organisation=organisation)
-    private = project_factory(is_public=False, organisation=organisation)
+    private = project_factory(access=Access.PRIVATE, organisation=organisation)
 
     module1 = module_factory(project=public, weight=1)
     module2 = module_factory(project=private, weight=2)

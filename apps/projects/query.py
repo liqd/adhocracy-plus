@@ -1,6 +1,6 @@
 from django.db.models import Q
 
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 
 
 def filter_viewable(queryset, user):
