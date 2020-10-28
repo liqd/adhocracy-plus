@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 12:38+0200\n"
+"POT-Creation-Date: 2020-10-28 15:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,21 +89,21 @@ msgid "Missing field for publication"
 msgstr "Missing field for publication"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:36
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
 #: adhocracy-plus/templates/a4dashboard/includes/preview.html:7
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:31
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:34
 msgid "Preview"
 msgstr "Preview"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:38
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
 #: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:8
 #: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:14
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:14
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:15
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:14
 #: adhocracy-plus/templates/a4dashboard/includes/preview.html:9
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:33
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:36
 msgid "View"
 msgstr "View"
 
@@ -184,26 +184,33 @@ msgid "Finished"
 msgstr "Finished"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
+#: adhocracy4/projects/enums.py:15
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:20
+msgid "semipublic"
+msgstr "semipublic"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
+#: adhocracy4/projects/enums.py:13
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:23
 msgid "private"
 msgstr "private"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:45
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:103
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
 #: apps/projects/templates/a4_candy_projects/project_detail.html:110
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:19
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:39
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:42
 msgid "Edit"
 msgstr "Edit"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:54
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:62
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:65
 msgid "Duplicate"
 msgstr "Duplicate"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:62
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
 #: apps/projects/templates/a4_candy_projects/project_list.html:18
 #: adhocracy-plus/templates/a4dashboard/project_list.html:27
 msgid "We could not find any projects."
@@ -444,20 +451,20 @@ msgstr "No"
 msgid "Yes"
 msgstr "Yes"
 
-#: adhocracy4/dashboard/forms.py:70 apps/dashboard/forms.py:27
+#: adhocracy4/dashboard/forms.py:76
 msgid "All users can participate (public)."
 msgstr "All users can participate (public)."
 
-#: adhocracy4/dashboard/forms.py:71 apps/dashboard/forms.py:28
+#: adhocracy4/dashboard/forms.py:78
 msgid "Only invited users can participate (private)."
 msgstr "Only invited users can participate (private)."
 
-#: adhocracy4/dashboard/forms.py:79
+#: adhocracy4/dashboard/forms.py:86
 #: apps/projects/templates/a4_candy_projects/project_detail.html:125
 msgid "Contact for questions"
 msgstr "Contact for questions"
 
-#: adhocracy4/dashboard/forms.py:80
+#: adhocracy4/dashboard/forms.py:87
 msgid ""
 "Please name a contact person. The user will then know who is carrying out "
 "this project and to whom they can address possible questions. The contact "
@@ -467,49 +474,49 @@ msgstr ""
 "this project and to whom they can address possible questions. The contact "
 "person will be shown in the information tab on the project page."
 
-#: adhocracy4/dashboard/forms.py:85
+#: adhocracy4/dashboard/forms.py:92
 msgid "More contact possibilities"
 msgstr "More contact possibilities"
 
-#: adhocracy4/dashboard/forms.py:98 adhocracy4/phases/models.py:69
+#: adhocracy4/dashboard/forms.py:105 adhocracy4/phases/models.py:69
 #: apps/newsletters/models.py:30
 #: apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Name"
 
-#: adhocracy4/dashboard/forms.py:100
+#: adhocracy4/dashboard/forms.py:107
 msgid "Address"
 msgstr "Address"
 
-#: adhocracy4/dashboard/forms.py:103
+#: adhocracy4/dashboard/forms.py:110
 #: apps/projects/templates/a4_candy_projects/project_detail.html:133
 msgid "Telephone"
 msgstr "Telephone"
 
-#: adhocracy4/dashboard/forms.py:105
+#: adhocracy4/dashboard/forms.py:112
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
 #: apps/projects/templates/a4_candy_projects/project_detail.html:137
 msgid "Email"
 msgstr "Email"
 
-#: adhocracy4/dashboard/forms.py:107
+#: adhocracy4/dashboard/forms.py:114
 #: apps/projects/templates/a4_candy_projects/project_detail.html:142
 msgid "Website"
 msgstr "Website"
 
-#: adhocracy4/dashboard/forms.py:135 adhocracy4/phases/models.py:77
+#: adhocracy4/dashboard/forms.py:144 adhocracy4/phases/models.py:77
 msgid "End date"
 msgstr "End date"
 
-#: adhocracy4/dashboard/forms.py:135
+#: adhocracy4/dashboard/forms.py:144
 msgid "End time"
 msgstr "End time"
 
-#: adhocracy4/dashboard/forms.py:141 adhocracy4/phases/models.py:75
+#: adhocracy4/dashboard/forms.py:150 adhocracy4/phases/models.py:75
 msgid "Start date"
 msgstr "Start date"
 
-#: adhocracy4/dashboard/forms.py:141
+#: adhocracy4/dashboard/forms.py:150
 msgid "Start time"
 msgstr "Start time"
 
@@ -702,37 +709,41 @@ msgstr ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 
-#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:578
+#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:588
 msgid "day"
 msgstr "day"
 
-#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:578
+#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:588
 msgid "days"
 msgstr "days"
 
-#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:579
+#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:589
 msgid "hour"
 msgstr "hour"
 
-#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:579
+#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:589
 msgid "hours"
 msgstr "hours"
 
-#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:580
+#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:590
 msgid "minute"
 msgstr "minute"
 
-#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:580
+#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:590
 msgid "minutes"
 msgstr "minutes"
 
-#: adhocracy4/modules/models.py:187
+#: adhocracy4/modules/models.py:187 adhocracy4/projects/models.py:591
 msgid "second"
 msgstr "second"
 
-#: adhocracy4/modules/models.py:187
+#: adhocracy4/modules/models.py:187 adhocracy4/projects/models.py:591
 msgid "seconds"
 msgstr "seconds"
+
+#: adhocracy4/phases/forms.py:21
+msgid "Phases cannot run at the same time and must follow after each other."
+msgstr "Phases cannot run at the same time and must follow after each other."
 
 #: adhocracy4/phases/models.py:71 apps/activities/models.py:21
 #: apps/debate/models.py:27 apps/ideas/models.py:32
@@ -741,8 +752,8 @@ msgid "Description"
 msgstr "Description"
 
 #: adhocracy4/phases/models.py:95
-msgid "End date can not be smallerthan the start date."
-msgstr "End date can not be smallerthan the start date."
+msgid "End date can not be before start date."
+msgstr "End date can not be before start date."
 
 #: adhocracy4/polls/dashboard.py:14 apps/dashboard/blueprints.py:85
 #: apps/polls/dashboard.py:15
@@ -800,7 +811,11 @@ msgstr "Images"
 msgid "Contact"
 msgstr "Contact"
 
-#: adhocracy4/projects/models.py:42
+#: adhocracy4/projects/enums.py:14
+msgid "public"
+msgstr "public"
+
+#: adhocracy4/projects/models.py:43
 msgid ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
@@ -808,19 +823,19 @@ msgstr ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
 
-#: adhocracy4/projects/models.py:48
+#: adhocracy4/projects/models.py:49
 msgid "Postal address"
 msgstr "Postal address"
 
-#: adhocracy4/projects/models.py:57
+#: adhocracy4/projects/models.py:58
 msgid "Contact person"
 msgstr "Contact person"
 
-#: adhocracy4/projects/models.py:77
+#: adhocracy4/projects/models.py:78
 msgid "Can your project be located on the map?"
 msgstr "Can your project be located on the map?"
 
-#: adhocracy4/projects/models.py:78
+#: adhocracy4/projects/models.py:79
 msgid ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
@@ -828,15 +843,15 @@ msgstr ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
 
-#: adhocracy4/projects/models.py:89
+#: adhocracy4/projects/models.py:90
 msgid "Administrative district"
 msgstr "Administrative district"
 
-#: adhocracy4/projects/models.py:173
+#: adhocracy4/projects/models.py:174
 msgid "Title of your project"
 msgstr "Title of your project"
 
-#: adhocracy4/projects/models.py:174
+#: adhocracy4/projects/models.py:175
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -844,11 +859,11 @@ msgstr ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
 
-#: adhocracy4/projects/models.py:190
+#: adhocracy4/projects/models.py:191
 msgid "Short description of your project"
 msgstr "Short description of your project"
 
-#: adhocracy4/projects/models.py:191
+#: adhocracy4/projects/models.py:192
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -856,11 +871,11 @@ msgstr ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
 
-#: adhocracy4/projects/models.py:199
+#: adhocracy4/projects/models.py:200
 msgid "Description of your project"
 msgstr "Description of your project"
 
-#: adhocracy4/projects/models.py:200
+#: adhocracy4/projects/models.py:201
 msgid ""
 "This description should tell participants what the goal of the project is, "
 "how the project’s participation will look like. It will be always visible in "
@@ -870,11 +885,11 @@ msgstr ""
 "how the project’s participation will look like. It will be always visible in "
 "the „Info“ tab on your project’s page."
 
-#: adhocracy4/projects/models.py:208
+#: adhocracy4/projects/models.py:209
 msgid "Results of your project"
 msgstr "Results of your project"
 
-#: adhocracy4/projects/models.py:209
+#: adhocracy4/projects/models.py:210
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
 "how you are planning to use the results. If the project is finished you "
@@ -884,11 +899,11 @@ msgstr ""
 "how you are planning to use the results. If the project is finished you "
 "should add a summary of the results."
 
-#: adhocracy4/projects/models.py:216
+#: adhocracy4/projects/models.py:218
 msgid "Access to the project"
 msgstr "Access to the project"
 
-#: adhocracy4/projects/models.py:217
+#: adhocracy4/projects/models.py:219
 msgid ""
 "Please indicate whether this project should be public or restricted to "
 "invited users. Teasers for your project including title and short "
@@ -898,28 +913,28 @@ msgstr ""
 "invited users. Teasers for your project including title and short "
 "description will always be visible to everyone"
 
-#: adhocracy4/projects/models.py:225 adhocracy4/projects/models.py:231
+#: adhocracy4/projects/models.py:227 adhocracy4/projects/models.py:233
 #: apps/organisations/models.py:105
 msgid "Header image"
 msgstr "Header image"
 
-#: adhocracy4/projects/models.py:227 apps/organisations/models.py:107
+#: adhocracy4/projects/models.py:229 apps/organisations/models.py:107
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
-#: adhocracy4/projects/models.py:234 adhocracy4/projects/models.py:241
+#: adhocracy4/projects/models.py:236 adhocracy4/projects/models.py:243
 msgid "Tile image"
 msgstr "Tile image"
 
-#: adhocracy4/projects/models.py:236
+#: adhocracy4/projects/models.py:238
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
 
-#: adhocracy4/projects/models.py:254
+#: adhocracy4/projects/models.py:256
 msgid "Project is archived"
 msgstr "Project is archived"
 
-#: adhocracy4/projects/models.py:255
+#: adhocracy4/projects/models.py:257
 msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
@@ -927,11 +942,11 @@ msgstr ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
 
-#: adhocracy4/projects/models.py:260
+#: adhocracy4/projects/models.py:262
 msgid "Project topics"
 msgstr "Project topics"
 
-#: adhocracy4/projects/models.py:261
+#: adhocracy4/projects/models.py:263
 msgid "Add topics to your project."
 msgstr "Add topics to your project."
 
@@ -1713,6 +1728,28 @@ msgstr ""
 msgid "Organisation name"
 msgstr "Organisation name"
 
+#: apps/dashboard/forms.py:28 apps/projects/overwrites.py:10
+msgid ""
+"All users can see project tile and content and can participate (public)."
+msgstr ""
+"All users can see project tile and content and can participate (public)."
+
+#: apps/dashboard/forms.py:31 apps/projects/overwrites.py:12
+msgid ""
+"All users can see project tile and content, only invited users can "
+"participate (semi-public)."
+msgstr ""
+"All users can see project tile and content, only invited users can "
+"participate (semi-public)."
+
+#: apps/dashboard/forms.py:34 apps/projects/overwrites.py:8
+msgid ""
+"Only invited users can see project tile and content and can participate "
+"(private)."
+msgstr ""
+"Only invited users can see project tile and content and can participate "
+"(private)."
+
 #: apps/dashboard/templates/a4_candy_dashboard/includes/module_blueprint_list_tile.html:17
 msgid "Add module"
 msgstr "Add module"
@@ -2395,7 +2432,7 @@ msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:16
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:16
-#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:37
+#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:39
 msgid "Join now"
 msgstr "Join now"
 
@@ -3029,25 +3066,29 @@ msgstr ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are invited to participate in a private project."
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:37
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr " %(time_left)s remaining "
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:39
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:46
 msgid "more than 1 year remaining"
 msgstr "more than 1 year remaining"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:42
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:51
 msgid "JOIN IN"
 msgstr "JOIN IN"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:47
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:53
+msgid "READ"
+msgstr "READ"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:59
 #, python-format
 msgid " Participation: from %(date)s"
 msgstr " Participation: from %(date)s"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:51
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:63
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
@@ -3071,6 +3112,10 @@ msgstr "Participation: starts on %(date)s"
 #: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:32
 msgid "Participation ended. Read result"
 msgstr "Participation ended. Read result"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:39
+msgid "Read now"
+msgstr "Read now"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:12
 msgid "Timeline item"
@@ -3683,127 +3728,127 @@ msgstr "German"
 msgid "Dutch"
 msgstr "Dutch"
 
-#: adhocracy-plus/config/settings/base.py:400
+#: adhocracy-plus/config/settings/base.py:402
 msgid "suggestion"
 msgstr "suggestion"
 
-#: adhocracy-plus/config/settings/base.py:401
+#: adhocracy-plus/config/settings/base.py:403
 msgid "note"
 msgstr "note"
 
-#: adhocracy-plus/config/settings/base.py:402
+#: adhocracy-plus/config/settings/base.py:404
 msgid "question"
 msgstr "question"
 
-#: adhocracy-plus/config/settings/base.py:443
+#: adhocracy-plus/config/settings/base.py:445
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: adhocracy-plus/config/settings/base.py:444
+#: adhocracy-plus/config/settings/base.py:446
 msgid "Diamond"
 msgstr "Diamond"
 
-#: adhocracy-plus/config/settings/base.py:445
+#: adhocracy-plus/config/settings/base.py:447
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: adhocracy-plus/config/settings/base.py:446
+#: adhocracy-plus/config/settings/base.py:448
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: adhocracy-plus/config/settings/base.py:447
+#: adhocracy-plus/config/settings/base.py:449
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: adhocracy-plus/config/settings/base.py:448
+#: adhocracy-plus/config/settings/base.py:450
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: adhocracy-plus/config/settings/base.py:449
+#: adhocracy-plus/config/settings/base.py:451
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: adhocracy-plus/config/settings/base.py:450
+#: adhocracy-plus/config/settings/base.py:452
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: adhocracy-plus/config/settings/base.py:451
+#: adhocracy-plus/config/settings/base.py:453
 msgid "Star"
 msgstr "Star"
 
-#: adhocracy-plus/config/settings/base.py:452
+#: adhocracy-plus/config/settings/base.py:454
 msgid "Square"
 msgstr "Square"
 
-#: adhocracy-plus/config/settings/base.py:453
+#: adhocracy-plus/config/settings/base.py:455
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: adhocracy-plus/config/settings/base.py:454
+#: adhocracy-plus/config/settings/base.py:456
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: adhocracy-plus/config/settings/base.py:455
+#: adhocracy-plus/config/settings/base.py:457
 msgid "Circle"
 msgstr "Circle"
 
-#: adhocracy-plus/config/settings/base.py:456
+#: adhocracy-plus/config/settings/base.py:458
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: adhocracy-plus/config/settings/base.py:457
+#: adhocracy-plus/config/settings/base.py:459
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: adhocracy-plus/config/settings/base.py:471
+#: adhocracy-plus/config/settings/base.py:473
 msgid "Anti-discrimination"
 msgstr "Anti-discrimination"
 
-#: adhocracy-plus/config/settings/base.py:472
+#: adhocracy-plus/config/settings/base.py:474
 msgid "Work & economy"
 msgstr "Work & economy"
 
-#: adhocracy-plus/config/settings/base.py:473
+#: adhocracy-plus/config/settings/base.py:475
 msgid "Building & living"
 msgstr "Building & living"
 
-#: adhocracy-plus/config/settings/base.py:474
+#: adhocracy-plus/config/settings/base.py:476
 msgid "Education & research"
 msgstr "Education & research"
 
-#: adhocracy-plus/config/settings/base.py:475
+#: adhocracy-plus/config/settings/base.py:477
 msgid "Children, youth & family"
 msgstr "Children, youth & family"
 
-#: adhocracy-plus/config/settings/base.py:476
+#: adhocracy-plus/config/settings/base.py:478
 msgid "Finances"
 msgstr "Finances"
 
-#: adhocracy-plus/config/settings/base.py:477
+#: adhocracy-plus/config/settings/base.py:479
 msgid "Health & sports"
 msgstr "Health & sports"
 
-#: adhocracy-plus/config/settings/base.py:478
+#: adhocracy-plus/config/settings/base.py:480
 msgid "Integration"
 msgstr "Integration"
 
-#: adhocracy-plus/config/settings/base.py:479
+#: adhocracy-plus/config/settings/base.py:481
 msgid "Culture & leisure"
 msgstr "Culture & leisure"
 
-#: adhocracy-plus/config/settings/base.py:480
+#: adhocracy-plus/config/settings/base.py:482
 msgid "Neighborhood & participation"
 msgstr "Neighborhood & participation"
 
-#: adhocracy-plus/config/settings/base.py:481
+#: adhocracy-plus/config/settings/base.py:483
 msgid "Urban development"
 msgstr "Urban development"
 
-#: adhocracy-plus/config/settings/base.py:482
+#: adhocracy-plus/config/settings/base.py:484
 msgid "Environment & public green space"
 msgstr "Environment & public green space"
 
-#: adhocracy-plus/config/settings/base.py:483
+#: adhocracy-plus/config/settings/base.py:485
 msgid "Traffic"
 msgstr "Traffic"
 
@@ -3904,22 +3949,22 @@ msgstr "Manual"
 msgid "Create a new Project"
 msgstr "Create a new Project"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:50
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:52
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:53
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:55
 msgid "more"
 msgstr "more"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:67
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:90
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:70
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:93
 msgid "delete"
 msgstr "delete"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:82
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:85
 #, python-format
 msgid " Are you sure you want to delete the project '%(project_name)s'? "
 msgstr " Are you sure you want to delete the project '%(project_name)s'? "
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:91
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:94
 msgid "cancel"
 msgstr "cancel"
 
@@ -4424,6 +4469,9 @@ msgstr "Login with social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Login with "
+
+#~ msgid "End date can not be smallerthan the start date."
+#~ msgstr "End date can not be smallerthan the start date."
 
 #~ msgid ""
 #~ "you are invited to participate in the private project \"%(project_name)s"
