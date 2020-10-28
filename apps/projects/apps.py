@@ -6,4 +6,6 @@ class Config(AppConfig):
     label = 'a4_candy_projects'
 
     def ready(self):
-        import apps.projects.signals  # noqa
+        from . import overwrites
+        from . import signals  # noqa
+        overwrites.overwrite_access_enum_label()
