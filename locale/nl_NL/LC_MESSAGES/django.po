@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 12:38+0200\n"
+"POT-Creation-Date: 2020-10-28 15:41+0100\n"
 "PO-Revision-Date: 2020-06-26 14:15+0000\n"
 "Last-Translator: Joop Laan <joop@interconnecting.systems>, 2020\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/liqd/"
@@ -108,25 +108,25 @@ msgid "Missing field for publication"
 msgstr "Ontbrekend veld voor publicatie"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:36
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:36
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
 #: adhocracy-plus/templates/a4dashboard/includes/preview.html:7
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:31
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:34
 msgid "Preview"
 msgstr "Voorbeeld"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:38
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:38
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
 #: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:8
 #: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:14
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:14
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:15
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:14
 #: adhocracy-plus/templates/a4dashboard/includes/preview.html:9
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:33
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:36
 msgid "View"
 msgstr "Bekijk"
 
@@ -220,29 +220,37 @@ msgstr "Beëindigd"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
+#: adhocracy4/projects/enums.py:15
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:20
+msgid "semipublic"
+msgstr ""
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
+#: adhocracy4/projects/enums.py:13
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:23
 msgid "private"
 msgstr "privé"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:45
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:45
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:103
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
 #: apps/projects/templates/a4_candy_projects/project_detail.html:110
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:19
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:39
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:42
 msgid "Edit"
 msgstr "Bewerken"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:54
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:54
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:62
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:65
 msgid "Duplicate"
 msgstr "Dupliceren"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:62
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:62
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
 #: apps/projects/templates/a4_candy_projects/project_list.html:18
 #: adhocracy-plus/templates/a4dashboard/project_list.html:27
 msgid "We could not find any projects."
@@ -507,22 +515,20 @@ msgstr "Nee"
 msgid "Yes"
 msgstr "Ja"
 
-#: adhocracy4/dashboard/forms.py:70
-#: apps/dashboard/forms.py:27
+#: adhocracy4/dashboard/forms.py:76
 msgid "All users can participate (public)."
 msgstr "Alle gebruikers kunnen deelnemen (publiek)."
 
-#: adhocracy4/dashboard/forms.py:71
-#: apps/dashboard/forms.py:28
+#: adhocracy4/dashboard/forms.py:78
 msgid "Only invited users can participate (private)."
 msgstr "Alleen uitgenodigde gebruikers kunnen deelnemen (privé)."
 
-#: adhocracy4/dashboard/forms.py:79
+#: adhocracy4/dashboard/forms.py:86
 #: apps/projects/templates/a4_candy_projects/project_detail.html:125
 msgid "Contact for questions"
 msgstr "Contactpersoon voor vragen"
 
-#: adhocracy4/dashboard/forms.py:80
+#: adhocracy4/dashboard/forms.py:87
 msgid ""
 "Please name a contact person. The user will then know who is carrying out "
 "this project and to whom they can address possible questions. The contact "
@@ -532,52 +538,52 @@ msgstr ""
 "en aan wie hij/zij eventuele vragen kan stellen. De contactpersoon wordt "
 "getoond in het informatietabblad op de projectpagina."
 
-#: adhocracy4/dashboard/forms.py:85
+#: adhocracy4/dashboard/forms.py:92
 msgid "More contact possibilities"
 msgstr "Meer contactmogelijkheden"
 
-#: adhocracy4/dashboard/forms.py:98
+#: adhocracy4/dashboard/forms.py:105
 #: adhocracy4/phases/models.py:69
 #: apps/newsletters/models.py:30
 #: apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Naam"
 
-#: adhocracy4/dashboard/forms.py:100
+#: adhocracy4/dashboard/forms.py:107
 msgid "Address"
 msgstr "Adres"
 
-#: adhocracy4/dashboard/forms.py:103
+#: adhocracy4/dashboard/forms.py:110
 #: apps/projects/templates/a4_candy_projects/project_detail.html:133
 msgid "Telephone"
 msgstr "Telefoon"
 
-#: adhocracy4/dashboard/forms.py:105
+#: adhocracy4/dashboard/forms.py:112
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
 #: apps/projects/templates/a4_candy_projects/project_detail.html:137
 msgid "Email"
 msgstr "E-mail"
 
-#: adhocracy4/dashboard/forms.py:107
+#: adhocracy4/dashboard/forms.py:114
 #: apps/projects/templates/a4_candy_projects/project_detail.html:142
 msgid "Website"
 msgstr "Website"
 
-#: adhocracy4/dashboard/forms.py:135
+#: adhocracy4/dashboard/forms.py:144
 #: adhocracy4/phases/models.py:77
 msgid "End date"
 msgstr "Einddatum"
 
-#: adhocracy4/dashboard/forms.py:135
+#: adhocracy4/dashboard/forms.py:144
 msgid "End time"
 msgstr "Eindtijd"
 
-#: adhocracy4/dashboard/forms.py:141
+#: adhocracy4/dashboard/forms.py:150
 #: adhocracy4/phases/models.py:75
 msgid "Start date"
 msgstr "Startdatum"
 
-#: adhocracy4/dashboard/forms.py:141
+#: adhocracy4/dashboard/forms.py:150
 msgid "Start time"
 msgstr "Starttijd"
 
@@ -775,42 +781,48 @@ msgstr ""
 "max. 512 karakters."
 
 #: adhocracy4/modules/models.py:184
-#: adhocracy4/projects/models.py:578
+#: adhocracy4/projects/models.py:588
 msgid "day"
 msgstr "dag"
 
 #: adhocracy4/modules/models.py:184
-#: adhocracy4/projects/models.py:578
+#: adhocracy4/projects/models.py:588
 msgid "days"
 msgstr "dagen"
 
 #: adhocracy4/modules/models.py:185
-#: adhocracy4/projects/models.py:579
+#: adhocracy4/projects/models.py:589
 msgid "hour"
 msgstr "uur"
 
 #: adhocracy4/modules/models.py:185
-#: adhocracy4/projects/models.py:579
+#: adhocracy4/projects/models.py:589
 msgid "hours"
 msgstr "uren"
 
 #: adhocracy4/modules/models.py:186
-#: adhocracy4/projects/models.py:580
+#: adhocracy4/projects/models.py:590
 msgid "minute"
 msgstr "minuut"
 
 #: adhocracy4/modules/models.py:186
-#: adhocracy4/projects/models.py:580
+#: adhocracy4/projects/models.py:590
 msgid "minutes"
 msgstr "minuten"
 
 #: adhocracy4/modules/models.py:187
+#: adhocracy4/projects/models.py:591
 msgid "second"
 msgstr "seconde"
 
 #: adhocracy4/modules/models.py:187
+#: adhocracy4/projects/models.py:591
 msgid "seconds"
 msgstr "seconden"
+
+#: adhocracy4/phases/forms.py:21
+msgid "Phases cannot run at the same time and must follow after each other."
+msgstr ""
 
 #: adhocracy4/phases/models.py:71
 #: apps/activities/models.py:21 apps/debate/models.py:27
@@ -819,8 +831,8 @@ msgid "Description"
 msgstr "Beschrijving"
 
 #: adhocracy4/phases/models.py:95
-msgid "End date can not be smallerthan the start date."
-msgstr "De einddatum kan niet eerder zijn dan de startdatum."
+msgid "End date can not be before start date."
+msgstr ""
 
 #: adhocracy4/polls/dashboard.py:14
 #: apps/dashboard/blueprints.py:85 apps/polls/dashboard.py:15
@@ -886,7 +898,11 @@ msgstr "Afbeeldingen"
 msgid "Contact"
 msgstr "Contact"
 
-#: adhocracy4/projects/models.py:42
+#: adhocracy4/projects/enums.py:14
+msgid "public"
+msgstr ""
+
+#: adhocracy4/projects/models.py:43
 msgid ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
@@ -894,19 +910,19 @@ msgstr ""
 "Telefoonnummers kunnen alleen cijfers, spaties en de volgende tekens "
 "bevatten: -, +, (, ). Het moet tussen de 8 en 20 karakters lang zijn."
 
-#: adhocracy4/projects/models.py:48
+#: adhocracy4/projects/models.py:49
 msgid "Postal address"
 msgstr "Postadres"
 
-#: adhocracy4/projects/models.py:57
+#: adhocracy4/projects/models.py:58
 msgid "Contact person"
 msgstr "Contactpersoon"
 
-#: adhocracy4/projects/models.py:77
+#: adhocracy4/projects/models.py:78
 msgid "Can your project be located on the map?"
 msgstr "Kan uw project op de kaart worden geplaatst?"
 
-#: adhocracy4/projects/models.py:78
+#: adhocracy4/projects/models.py:79
 msgid ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
@@ -915,15 +931,15 @@ msgstr ""
 "markering in te stellen. Een ingestelde markering kan worden gesleept "
 "wanneer deze wordt ingedrukt."
 
-#: adhocracy4/projects/models.py:89
+#: adhocracy4/projects/models.py:90
 msgid "Administrative district"
 msgstr "Administrative district"
 
-#: adhocracy4/projects/models.py:173
+#: adhocracy4/projects/models.py:174
 msgid "Title of your project"
 msgstr "Titel van uw project"
 
-#: adhocracy4/projects/models.py:174
+#: adhocracy4/projects/models.py:175
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -931,11 +947,11 @@ msgstr ""
 "Deze titel verschijnt in het overzicht en bovenaan de pagina van het "
 "project. Het kan maximaal 120 tekens lang zijn"
 
-#: adhocracy4/projects/models.py:190
+#: adhocracy4/projects/models.py:191
 msgid "Short description of your project"
 msgstr "Korte beschrijving van uw project"
 
-#: adhocracy4/projects/models.py:191
+#: adhocracy4/projects/models.py:192
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -944,11 +960,11 @@ msgstr ""
 "teaser. Het moet kort het doel van het project omschrijven in max. 250 "
 "karakters."
 
-#: adhocracy4/projects/models.py:199
+#: adhocracy4/projects/models.py:200
 msgid "Description of your project"
 msgstr "Beschrijving van uw project"
 
-#: adhocracy4/projects/models.py:200
+#: adhocracy4/projects/models.py:201
 msgid ""
 "This description should tell participants what the goal of the project is, "
 "how the project’s participation will look like. It will be always visible in "
@@ -958,11 +974,11 @@ msgstr ""
 "hoe de deelname aan het project eruit ziet. Het is altijd zichtbaar in de "
 "‘Info’ tab op de pagina van uw project."
 
-#: adhocracy4/projects/models.py:208
+#: adhocracy4/projects/models.py:209
 msgid "Results of your project"
 msgstr "Resultaten van uw project"
 
-#: adhocracy4/projects/models.py:209
+#: adhocracy4/projects/models.py:210
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
 "how you are planning to use the results. If the project is finished you "
@@ -972,11 +988,11 @@ msgstr ""
 "resultaten zullen worden gebruikt. Als het project klaar is, voegt u hier "
 "een samenvatting van de resultaten toe."
 
-#: adhocracy4/projects/models.py:216
+#: adhocracy4/projects/models.py:218
 msgid "Access to the project"
 msgstr "Toegang tot het project"
 
-#: adhocracy4/projects/models.py:217
+#: adhocracy4/projects/models.py:219
 msgid ""
 "Please indicate whether this project should be public or restricted to "
 "invited users. Teasers for your project including title and short "
@@ -986,31 +1002,31 @@ msgstr ""
 "uitgenodigde gebruikers. Introducties voor uw project inclusief titel en "
 "korte beschrijving zullen altijd voor iedereen zichtbaar zijn"
 
-#: adhocracy4/projects/models.py:225
-#: adhocracy4/projects/models.py:231
+#: adhocracy4/projects/models.py:227
+#: adhocracy4/projects/models.py:233
 #: apps/organisations/models.py:105
 msgid "Header image"
 msgstr "Kop afbeelding"
 
-#: adhocracy4/projects/models.py:227
+#: adhocracy4/projects/models.py:229
 #: apps/organisations/models.py:107
 msgid "The image will be shown as a decorative background image."
 msgstr "De afbeelding wordt getoond als een decoratieve achtergrondafbeelding."
 
-#: adhocracy4/projects/models.py:234
-#: adhocracy4/projects/models.py:241
+#: adhocracy4/projects/models.py:236
+#: adhocracy4/projects/models.py:243
 msgid "Tile image"
 msgstr "Beeld voor overzicht"
 
-#: adhocracy4/projects/models.py:236
+#: adhocracy4/projects/models.py:238
 msgid "The image will be shown in the project tile."
 msgstr "Het beeld wordt in de samenvatting van het project getoond."
 
-#: adhocracy4/projects/models.py:254
+#: adhocracy4/projects/models.py:256
 msgid "Project is archived"
 msgstr "Project is gearchiveerd"
 
-#: adhocracy4/projects/models.py:255
+#: adhocracy4/projects/models.py:257
 msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
@@ -1018,11 +1034,11 @@ msgstr ""
 "Gearchiveerde projecten worden niet getoond in het projectoverzicht. Voor "
 "projectinitiatiefnemers zijn ze nog wel zichtbaar in het dashboard."
 
-#: adhocracy4/projects/models.py:260
+#: adhocracy4/projects/models.py:262
 msgid "Project topics"
 msgstr "Projectonderwerpen"
 
-#: adhocracy4/projects/models.py:261
+#: adhocracy4/projects/models.py:263
 msgid "Add topics to your project."
 msgstr "Voeg onderwerpen toe aan uw project."
 
@@ -1814,6 +1830,23 @@ msgstr ""
 msgid "Organisation name"
 msgstr "Naam organisatie"
 
+#: apps/dashboard/forms.py:28 apps/projects/overwrites.py:10
+msgid ""
+"All users can see project tile and content and can participate (public)."
+msgstr ""
+
+#: apps/dashboard/forms.py:31 apps/projects/overwrites.py:12
+msgid ""
+"All users can see project tile and content, only invited users can "
+"participate (semi-public)."
+msgstr ""
+
+#: apps/dashboard/forms.py:34 apps/projects/overwrites.py:8
+msgid ""
+"Only invited users can see project tile and content and can participate "
+"(private)."
+msgstr ""
+
 #: apps/dashboard/templates/a4_candy_dashboard/includes/module_blueprint_list_tile.html:17
 msgid "Add module"
 msgstr "Module toevoegen"
@@ -2508,7 +2541,7 @@ msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:16
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:16
-#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:37
+#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:39
 msgid "Join now"
 msgstr "Nu meedoen"
 
@@ -3144,25 +3177,29 @@ msgstr ""
 "Deze e-mail werd verstuurd naar %(receiver_mail)s. Deze e-mail is naar u "
 "gestuurd omdat u bent uitgenodigd om deel te nemen aan een privéproject."
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:37
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr " Resterend %(time_left)s "
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:39
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:46
 msgid "more than 1 year remaining"
 msgstr "meer dan 1 jaar resterend"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:42
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:51
 msgid "JOIN IN"
 msgstr "DOE MEE"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:47
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:53
+msgid "READ"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:59
 #, python-format
 msgid " Participation: from %(date)s"
 msgstr " Deelname: vanaf %(date)s"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:51
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:63
 msgid "Participation ended. Read result."
 msgstr "De participatie is beëindigd. Lees resultaat."
 
@@ -3186,6 +3223,10 @@ msgstr "Deelname: begint op %(date)s"
 #: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:32
 msgid "Participation ended. Read result"
 msgstr "De deelname is beëindigd. Lees resultaat"
+
+#: apps/projects/templates/a4_candy_projects/includes/project_module_tile.html:39
+msgid "Read now"
+msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:12
 msgid "Timeline item"
@@ -3800,127 +3841,127 @@ msgstr "Duits"
 msgid "Dutch"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:400
+#: adhocracy-plus/config/settings/base.py:402
 msgid "suggestion"
 msgstr "suggestie"
 
-#: adhocracy-plus/config/settings/base.py:401
+#: adhocracy-plus/config/settings/base.py:403
 msgid "note"
 msgstr "notitie"
 
-#: adhocracy-plus/config/settings/base.py:402
+#: adhocracy-plus/config/settings/base.py:404
 msgid "question"
 msgstr "vraag"
 
-#: adhocracy-plus/config/settings/base.py:443
+#: adhocracy-plus/config/settings/base.py:445
 msgid "Pin without icon"
 msgstr "Markeer zonder icoon"
 
-#: adhocracy-plus/config/settings/base.py:444
+#: adhocracy-plus/config/settings/base.py:446
 msgid "Diamond"
 msgstr "Diamant"
 
-#: adhocracy-plus/config/settings/base.py:445
+#: adhocracy-plus/config/settings/base.py:447
 msgid "Triangle up"
 msgstr "Driehoek naar boven"
 
-#: adhocracy-plus/config/settings/base.py:446
+#: adhocracy-plus/config/settings/base.py:448
 msgid "Triangle down"
 msgstr "Driehoek naar beneden"
 
-#: adhocracy-plus/config/settings/base.py:447
+#: adhocracy-plus/config/settings/base.py:449
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: adhocracy-plus/config/settings/base.py:448
+#: adhocracy-plus/config/settings/base.py:450
 msgid "Semi circle"
 msgstr "Halve cirkel"
 
-#: adhocracy-plus/config/settings/base.py:449
+#: adhocracy-plus/config/settings/base.py:451
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: adhocracy-plus/config/settings/base.py:450
+#: adhocracy-plus/config/settings/base.py:452
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: adhocracy-plus/config/settings/base.py:451
+#: adhocracy-plus/config/settings/base.py:453
 msgid "Star"
 msgstr "Ster"
 
-#: adhocracy-plus/config/settings/base.py:452
+#: adhocracy-plus/config/settings/base.py:454
 msgid "Square"
 msgstr "Vierkant"
 
-#: adhocracy-plus/config/settings/base.py:453
+#: adhocracy-plus/config/settings/base.py:455
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: adhocracy-plus/config/settings/base.py:454
+#: adhocracy-plus/config/settings/base.py:456
 msgid "Rectangle"
 msgstr "Rechthoek"
 
-#: adhocracy-plus/config/settings/base.py:455
+#: adhocracy-plus/config/settings/base.py:457
 msgid "Circle"
 msgstr "Cirkel"
 
-#: adhocracy-plus/config/settings/base.py:456
+#: adhocracy-plus/config/settings/base.py:458
 msgid "Right triangle"
 msgstr "Rechter driehoek"
 
-#: adhocracy-plus/config/settings/base.py:457
+#: adhocracy-plus/config/settings/base.py:459
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: adhocracy-plus/config/settings/base.py:471
+#: adhocracy-plus/config/settings/base.py:473
 msgid "Anti-discrimination"
 msgstr "Anti-discriminatie"
 
-#: adhocracy-plus/config/settings/base.py:472
+#: adhocracy-plus/config/settings/base.py:474
 msgid "Work & economy"
 msgstr "Werk & economie"
 
-#: adhocracy-plus/config/settings/base.py:473
+#: adhocracy-plus/config/settings/base.py:475
 msgid "Building & living"
 msgstr "Bouwen & wonen"
 
-#: adhocracy-plus/config/settings/base.py:474
+#: adhocracy-plus/config/settings/base.py:476
 msgid "Education & research"
 msgstr "Onderwijs & onderzoek"
 
-#: adhocracy-plus/config/settings/base.py:475
+#: adhocracy-plus/config/settings/base.py:477
 msgid "Children, youth & family"
 msgstr "Kinderen, jeugd & gezin"
 
-#: adhocracy-plus/config/settings/base.py:476
+#: adhocracy-plus/config/settings/base.py:478
 msgid "Finances"
 msgstr "Financiën"
 
-#: adhocracy-plus/config/settings/base.py:477
+#: adhocracy-plus/config/settings/base.py:479
 msgid "Health & sports"
 msgstr "Gezondheid & sport"
 
-#: adhocracy-plus/config/settings/base.py:478
+#: adhocracy-plus/config/settings/base.py:480
 msgid "Integration"
 msgstr "Integration"
 
-#: adhocracy-plus/config/settings/base.py:479
+#: adhocracy-plus/config/settings/base.py:481
 msgid "Culture & leisure"
 msgstr "Cultuur & vrije tijd"
 
-#: adhocracy-plus/config/settings/base.py:480
+#: adhocracy-plus/config/settings/base.py:482
 msgid "Neighborhood & participation"
 msgstr "Buurt & participatie"
 
-#: adhocracy-plus/config/settings/base.py:481
+#: adhocracy-plus/config/settings/base.py:483
 msgid "Urban development"
 msgstr "Stedelijke ontwikkeling"
 
-#: adhocracy-plus/config/settings/base.py:482
+#: adhocracy-plus/config/settings/base.py:484
 msgid "Environment & public green space"
 msgstr "Milieu & openbaar groen"
 
-#: adhocracy-plus/config/settings/base.py:483
+#: adhocracy-plus/config/settings/base.py:485
 msgid "Traffic"
 msgstr "Verkeer"
 
@@ -4021,23 +4062,23 @@ msgstr "Handleiding"
 msgid "Create a new Project"
 msgstr "Creëer een nieuw project"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:50
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:52
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:53
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:55
 msgid "more"
 msgstr "meer"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:67
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:90
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:70
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:93
 msgid "delete"
 msgstr "verwijderen"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:82
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:85
 #, python-format
 msgid " Are you sure you want to delete the project '%(project_name)s'? "
 msgstr ""
 " Weet u zeker dat u het project \"%(project_name)s\" wilt verwijderen? "
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:91
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:94
 msgid "cancel"
 msgstr "annuleren"
 
@@ -4548,6 +4589,9 @@ msgstr "Inloggen met social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Inloggen met "
+
+#~ msgid "End date can not be smallerthan the start date."
+#~ msgstr "De einddatum kan niet eerder zijn dan de startdatum."
 
 #~ msgid ""
 #~ "you are invited to participate in the private project \"%(project_name)s"
