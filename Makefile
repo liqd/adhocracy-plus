@@ -114,16 +114,16 @@ lint-python-files:
 
 .PHONY: po
 po:
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django --exclude locale-fork/locale --extension html,email,py
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs --exclude locale-fork/locale
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django --exclude locale-fork/* --extension html,email,py
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs --exclude locale-fork/*
 	$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' locale-source/locale/*/LC_MESSAGES/django*.po
 	msgen locale-source/locale/en_GB/LC_MESSAGES/django.po -o locale-source/locale/en_GB/LC_MESSAGES/django.po
 	msgen locale-source/locale/en_GB/LC_MESSAGES/djangojs.po -o locale-source/locale/en_GB/LC_MESSAGES/djangojs.po
 
 .PHONY: po-fork
 po-fork:
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django --exclude locale-source/locale --extension html,email,py
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs --exclude locale-source/locale
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django --exclude locale-source/* --extension html,email,py
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs --exclude locale-source/*
 	$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' locale-fork/locale/*/LC_MESSAGES/django*.po
 	msgen locale-fork/locale/en_GB/LC_MESSAGES/django.po -o locale-fork/locale/en_GB/LC_MESSAGES/django.po
 	msgen locale-fork/locale/en_GB/LC_MESSAGES/djangojs.po -o locale-fork/locale/en_GB/LC_MESSAGES/djangojs.po
