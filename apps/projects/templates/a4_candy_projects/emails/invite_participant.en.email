@@ -1,11 +1,11 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktrans with project_name=participantinvite.project.name %}Invitation to the private project: "{{ project_name }}"{% endblocktrans %}{% endblock %}
+{% block subject %}{% if participantinvite.project.is_semipublic %}{% blocktrans with project_name=participantinvite.project.name %}Invitation to the semi-public project: "{{ project_name }}"{% endblocktrans %}{% else %}{% blocktrans with project_name=participantinvite.project.name %}Invitation to the private project: "{{ project_name }}"{% endblocktrans %}{% endif %}{% endblock %}
 
-{% block headline %}{% blocktrans with project_name=participantinvite.project.name %}Invitation to the private project: "{{ project_name }}"{% endblocktrans %}{% endblock  %}
+{% block headline %}{% if participantinvite.project.is_semipublic %}{% blocktrans with project_name=participantinvite.project.name %}Invitation to the semi-public project: "{{ project_name }}"{% endblocktrans %}{% else %}{% blocktrans with project_name=participantinvite.project.name %}Invitation to the private project: "{{ project_name }}"{% endblocktrans %}{% endif %}{% endblock  %}
 
-{% block content %}{% blocktrans with project_name=participantinvite.project.name site_name=participantinvite.site %}you are invited to participate in the private project "{{ project_name }}" on the participation platform  {{ site_name }}. To participate click on "Accept invitation".{% endblocktrans %}{% endblock %}
+{% block content %}{% if participantinvite.project.is_semipublic %}{% blocktrans with project_name=participantinvite.project.name site_name=participantinvite.site %}you are invited to participate in the semi-public project "{{ project_name }}" on the participation platform  {{ site_name }}. To participate click on "Accept invitation".{% endblocktrans %}{% else %}{% blocktrans with project_name=participantinvite.project.name site_name=participantinvite.site %}you are invited to participate in the private project "{{ project_name }}" on the participation platform  {{ site_name }}. To participate click on "Accept invitation".{% endblocktrans %}{% endif %}{% endblock %}
 
 {% block cta_url %}https://{{ participantinvite.site }}{{ participantinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}{% blocktrans %}Accept invitation{% endblocktrans %}{% endblock %}
