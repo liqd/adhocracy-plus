@@ -32,7 +32,7 @@
                     <ul class="messages">
                         <li class="alert alert--warning" role="alert">
                             <div class="container">
-                                {% trans 'This project is in not published yet.' %}
+                                {% trans 'This project is not yet published.' %}
                             </div>
                         </li>
                     </ul>
@@ -231,6 +231,15 @@
                         {% endwith %}
                     {% endif %}
                 </div>
+                {% if project.is_private %}
+                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs my-4">
+                    <i class="fas fa-lock pr-2" aria-hidden="true"></i>{% trans 'This project is not publicly visible. Only invited users can see contents and actively participate.' %}
+                </div>
+                {% elif project.is_semipublic %}
+                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs my-4">
+                    <i class="fas fa-eye pr-2" aria-hidden="true"></i>{% trans 'This project is publicly visible. Invited users can actively participate.' %}
+                </div>
+                {% endif %}
                 <!-- these blocks are only filled when in phase view -->
                 <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                 {% block project_action %}{% endblock %}
