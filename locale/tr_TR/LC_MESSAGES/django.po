@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 15:41+0100\n"
+"POT-Creation-Date: 2020-10-30 13:24+0100\n"
 "PO-Revision-Date: 2020-06-26 14:15+0000\n"
 "Last-Translator: Dijital Düşün <info@dijitaldusun.org>, 2020\n"
 "Language-Team: Turkish (Turkey) (https://www.transifex.com/liqd/teams/111081/"
@@ -1728,18 +1728,18 @@ msgstr ""
 msgid "Organisation name"
 msgstr ""
 
-#: apps/dashboard/forms.py:28 apps/projects/overwrites.py:10
+#: apps/dashboard/forms.py:30 apps/projects/overwrites.py:10
 msgid ""
 "All users can see project tile and content and can participate (public)."
 msgstr ""
 
-#: apps/dashboard/forms.py:31 apps/projects/overwrites.py:12
+#: apps/dashboard/forms.py:33 apps/projects/overwrites.py:12
 msgid ""
 "All users can see project tile and content, only invited users can "
 "participate (semi-public)."
 msgstr ""
 
-#: apps/dashboard/forms.py:34 apps/projects/overwrites.py:8
+#: apps/dashboard/forms.py:36 apps/projects/overwrites.py:8
 msgid ""
 "Only invited users can see project tile and content and can participate "
 "(private)."
@@ -2949,7 +2949,21 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:4
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:6
 #, python-format
+msgid "Invitation to the semi-public project: \"%(project_name)s\""
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:4
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:6
+#, python-format
 msgid "Invitation to the private project: \"%(project_name)s\""
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:8
+#, python-format
+msgid ""
+"you are invited to participate in the semi-public project \"%(project_name)s"
+"\" on the participation platform  %(site_name)s. To participate click on "
+"\"Accept invitation\"."
 msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:8
@@ -2965,6 +2979,14 @@ msgstr ""
 msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are invited to participate in a private project."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:17
+msgid "Project is private."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:23
+msgid "Project is semi-public."
 msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
@@ -3138,8 +3160,7 @@ msgid ""
 msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:35
-#: adhocracy-plus/templates/a4modules/module_detail.html:36
-msgid "This project is in not published yet."
+msgid "This project is not yet published."
 msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:54
@@ -3182,7 +3203,20 @@ msgstr ""
 msgid "active"
 msgstr ""
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:253
+#: apps/projects/templates/a4_candy_projects/project_detail.html:236
+#: adhocracy-plus/templates/a4modules/module_detail.html:160
+msgid ""
+"This project is not publicly visible. Only invited users can see contents "
+"and actively participate."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/project_detail.html:240
+#: adhocracy-plus/templates/a4modules/module_detail.html:164
+msgid ""
+"This project is publicly visible. Invited users can actively participate."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/project_detail.html:262
 msgid "No results yet."
 msgstr ""
 
@@ -3851,6 +3885,10 @@ msgid ""
 "this page."
 msgstr ""
 
+#: adhocracy-plus/templates/a4modules/module_detail.html:36
+msgid "This project is in not published yet."
+msgstr ""
+
 #: adhocracy-plus/templates/a4modules/module_detail.html:78
 msgid "Previous"
 msgstr ""
@@ -3863,7 +3901,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:171
+#: adhocracy-plus/templates/a4modules/module_detail.html:181
 msgid "More questions from this online participation"
 msgstr ""
 

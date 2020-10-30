@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 15:41+0100\n"
+"POT-Creation-Date: 2020-10-30 13:24+0100\n"
 "PO-Revision-Date: 2020-06-26 14:15+0000\n"
 "Last-Translator: Joop Laan <joop@interconnecting.systems>, 2020\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/liqd/"
@@ -66,13 +66,17 @@ msgid "Answer"
 msgstr "Antwoorden"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:410
 #: adhocracy4/comments/static/comments/Comment.jsx:31
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:410
 msgid "Your reply here"
 msgstr "Uw reactie hier"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:279
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 #: adhocracy4/comments/static/comments/Comment.jsx:32
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:279
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -84,38 +88,53 @@ msgstr ""
 "verwijderd als deze niet voldoet aan onze discussieregels (netiquette)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:256
 #: adhocracy4/comments/static/comments/Comment.jsx:96
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:256
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:251
 #: adhocracy4/comments/static/comments/Comment.jsx:105
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:251
 msgid "Latest edit on"
 msgstr "Laatste bewerking op"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:147
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:232
 #: adhocracy4/comments/static/comments/Comment.jsx:147
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:232
 msgid "Do you really want to delete this comment?"
 msgstr "Wilt u deze opmerking echt verwijderen?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:148
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:234
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:14
 #: adhocracy4/comments/static/comments/Comment.jsx:148
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:234
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:14
 #: apps/documents/assets/ChapterNavItem.jsx:56
 #: apps/documents/assets/ChapterNavItem.jsx:61
 #: apps/documents/assets/ParagraphForm.jsx:133
 #: apps/documents/assets/ParagraphForm.jsx:138
+#: apps/polls/assets/QuestionForm.jsx:99 apps/polls/assets/QuestionForm.jsx:104
 msgid "Delete"
 msgstr "Verwijderen"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:235
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
 #: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:235
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 msgid "Abort"
 msgstr "Afbreken"
 
@@ -234,6 +253,16 @@ msgstr "reacties verbergen"
 msgctxt "verb"
 msgid "Comment"
 msgstr "Reageren"
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:286
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:286
+msgid "Share link"
+msgstr "Link delen"
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:325
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:325
+msgid "Categories: "
+msgstr "Categorieën: "
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
@@ -357,6 +386,11 @@ msgstr "Aanbevolen reactie"
 msgid "Is recommended"
 msgstr "Wordt aanbevolen"
 
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
+msgid "Submit"
+msgstr "Versturen"
+
 #: adhocracy4/comments_async/static/modals/report_modal.jsx:62
 #: adhocracy4/comments_async/static/modals/report_modal.jsx:62
 msgid ""
@@ -443,6 +477,7 @@ msgstr "Bewaren"
 
 #: adhocracy4/polls/static/polls/Question.jsx:9
 #: adhocracy4/polls/static/polls/Question.jsx:9
+#: apps/polls/assets/Question.jsx:172
 msgid "Your choice"
 msgstr "Uw keuze"
 
@@ -477,16 +512,19 @@ msgstr "Log in om te stemmen"
 
 #: adhocracy4/polls/static/polls/Question.jsx:140
 #: adhocracy4/polls/static/polls/Question.jsx:140
+#: apps/polls/assets/Question.jsx:137
 msgid "To poll"
 msgstr "Stemmen"
 
 #: adhocracy4/polls/static/polls/Question.jsx:142
 #: adhocracy4/polls/static/polls/Question.jsx:142
+#: apps/polls/assets/Question.jsx:140
 msgid "Change vote"
 msgstr "Stem aanpassen"
 
 #: adhocracy4/polls/static/polls/Question.jsx:145
 #: adhocracy4/polls/static/polls/Question.jsx:145
+#: apps/polls/assets/Question.jsx:144
 msgid "Show preliminary results"
 msgstr "Toon voorlopige resultaten"
 
@@ -512,6 +550,7 @@ msgstr "Gebruikers kunnen meer dan één antwoord selecteren."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
+#: apps/polls/assets/QuestionForm.jsx:67
 msgid "Add a new choice"
 msgstr "Nieuwe keuze toevoegen"
 
@@ -521,6 +560,7 @@ msgstr "Nieuwe keuze toevoegen"
 #: apps/documents/assets/ChapterNavItem.jsx:37
 #: apps/documents/assets/ParagraphForm.jsx:110
 #: apps/documents/assets/ParagraphForm.jsx:115
+#: apps/polls/assets/QuestionForm.jsx:76 apps/polls/assets/QuestionForm.jsx:81
 msgid "Move up"
 msgstr "Omhoog plaatsten"
 
@@ -530,6 +570,7 @@ msgstr "Omhoog plaatsten"
 #: apps/documents/assets/ChapterNavItem.jsx:49
 #: apps/documents/assets/ParagraphForm.jsx:122
 #: apps/documents/assets/ParagraphForm.jsx:127
+#: apps/polls/assets/QuestionForm.jsx:88 apps/polls/assets/QuestionForm.jsx:93
 msgid "Move down"
 msgstr "Omlaag plaatsen"
 
@@ -545,6 +586,7 @@ msgid "Thank you! We are taking care of it."
 msgstr "Dank u wel! We zorgen ervoor."
 
 #: adhocracy4/static/Alert.jsx:5
+#: apps/contrib/assets/Alert.jsx:10 apps/contrib/assets/Alert.jsx:11
 #: apps/dashboard/assets/ajax_modal.js:12 apps/embed/assets/embed.js:54
 #: apps/embed/assets/embed.js:55
 #: apps/maps/assets/map_choose_polygon_with_preset.js:84
@@ -816,15 +858,6 @@ msgid "If you leave this page changes you made will not be saved."
 msgstr ""
 "Als u deze pagina verlaat, worden de door u aangebrachte wijzigingen niet "
 "opgeslagen."
-
-#~ msgid "Share link"
-#~ msgstr "Link delen"
-
-#~ msgid "Categories: "
-#~ msgstr "Categorieën: "
-
-#~ msgid "Submit"
-#~ msgstr "Versturen"
 
 #~ msgid "The maximal length of your contribution is 4000 characters"
 #~ msgstr "De maximale lengte van uw bijdrage is 4000 tekens"
