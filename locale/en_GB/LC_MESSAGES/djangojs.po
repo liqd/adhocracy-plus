@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 15:41+0100\n"
+"POT-Creation-Date: 2020-10-30 13:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,10 +54,12 @@ msgid "Answer"
 msgstr "Answer"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:410
 msgid "Your reply here"
 msgstr "Your reply here"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:279
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -69,29 +71,37 @@ msgstr ""
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:256
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:251
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:147
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:232
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:148
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:234
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:14
 #: apps/documents/assets/ChapterNavItem.jsx:56
 #: apps/documents/assets/ChapterNavItem.jsx:61
 #: apps/documents/assets/ParagraphForm.jsx:133
 #: apps/documents/assets/ParagraphForm.jsx:138
+#: apps/polls/assets/QuestionForm.jsx:99 apps/polls/assets/QuestionForm.jsx:104
 msgid "Delete"
 msgstr "Delete"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:235
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
 msgid "Abort"
 msgstr "Abort"
@@ -183,6 +193,14 @@ msgstr "hide comments"
 msgctxt "verb"
 msgid "Comment"
 msgstr "Comment"
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:286
+msgid "Share link"
+msgstr "Share link"
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:325
+msgid "Categories: "
+msgstr "Categories: "
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 msgid "Newest"
@@ -279,6 +297,10 @@ msgstr "Recommend comment"
 msgid "Is recommended"
 msgstr "Is recommended"
 
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
+msgid "Submit"
+msgstr "Submit"
+
 #: adhocracy4/comments_async/static/modals/report_modal.jsx:62
 msgid ""
 "Thanks for the feedback. It will be checked by the moderators as soon as "
@@ -348,6 +370,7 @@ msgid "Save"
 msgstr "Save"
 
 #: adhocracy4/polls/static/polls/Question.jsx:9
+#: apps/polls/assets/Question.jsx:172
 msgid "Your choice"
 msgstr "Your choice"
 
@@ -376,14 +399,17 @@ msgid "Please login to vote"
 msgstr "Please login to vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:140
+#: apps/polls/assets/Question.jsx:137
 msgid "To poll"
 msgstr "To poll"
 
 #: adhocracy4/polls/static/polls/Question.jsx:142
+#: apps/polls/assets/Question.jsx:140
 msgid "Change vote"
 msgstr "Change vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:145
+#: apps/polls/assets/Question.jsx:144
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
@@ -405,6 +431,7 @@ msgid "Users can select more than one answer."
 msgstr "Users can select more than one answer."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
+#: apps/polls/assets/QuestionForm.jsx:67
 msgid "Add a new choice"
 msgstr "Add a new choice"
 
@@ -413,6 +440,7 @@ msgstr "Add a new choice"
 #: apps/documents/assets/ChapterNavItem.jsx:37
 #: apps/documents/assets/ParagraphForm.jsx:110
 #: apps/documents/assets/ParagraphForm.jsx:115
+#: apps/polls/assets/QuestionForm.jsx:76 apps/polls/assets/QuestionForm.jsx:81
 msgid "Move up"
 msgstr "Move up"
 
@@ -421,6 +449,7 @@ msgstr "Move up"
 #: apps/documents/assets/ChapterNavItem.jsx:49
 #: apps/documents/assets/ParagraphForm.jsx:122
 #: apps/documents/assets/ParagraphForm.jsx:127
+#: apps/polls/assets/QuestionForm.jsx:88 apps/polls/assets/QuestionForm.jsx:93
 msgid "Move down"
 msgstr "Move down"
 
@@ -433,7 +462,8 @@ msgstr "Choice"
 msgid "Thank you! We are taking care of it."
 msgstr "Thank you! We are taking care of it."
 
-#: adhocracy4/static/Alert.jsx:5 apps/dashboard/assets/ajax_modal.js:12
+#: adhocracy4/static/Alert.jsx:5 apps/contrib/assets/Alert.jsx:10
+#: apps/contrib/assets/Alert.jsx:11 apps/dashboard/assets/ajax_modal.js:12
 #: apps/embed/assets/embed.js:54 apps/embed/assets/embed.js:55
 #: apps/maps/assets/map_choose_polygon_with_preset.js:84
 msgid "Close"
@@ -699,15 +729,6 @@ msgstr "Questions Answered"
 #: adhocracy-plus/assets/js/unload_warning.js:15
 msgid "If you leave this page changes you made will not be saved."
 msgstr "If you leave this page changes you made will not be saved."
-
-#~ msgid "Share link"
-#~ msgstr "Share link"
-
-#~ msgid "Categories: "
-#~ msgstr "Categories: "
-
-#~ msgid "Submit"
-#~ msgstr "Submit"
 
 #~ msgid "The maximal length of your contribution is 4000 characters"
 #~ msgstr "The maximal length of your contribution is 4000 characters"

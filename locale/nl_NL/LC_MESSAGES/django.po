@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 15:41+0100\n"
+"POT-Creation-Date: 2020-10-30 13:24+0100\n"
 "PO-Revision-Date: 2020-06-26 14:15+0000\n"
 "Last-Translator: Joop Laan <joop@interconnecting.systems>, 2020\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/liqd/"
@@ -1830,18 +1830,18 @@ msgstr ""
 msgid "Organisation name"
 msgstr "Naam organisatie"
 
-#: apps/dashboard/forms.py:28 apps/projects/overwrites.py:10
+#: apps/dashboard/forms.py:30 apps/projects/overwrites.py:10
 msgid ""
 "All users can see project tile and content and can participate (public)."
 msgstr ""
 
-#: apps/dashboard/forms.py:31 apps/projects/overwrites.py:12
+#: apps/dashboard/forms.py:33 apps/projects/overwrites.py:12
 msgid ""
 "All users can see project tile and content, only invited users can "
 "participate (semi-public)."
 msgstr ""
 
-#: apps/dashboard/forms.py:34 apps/projects/overwrites.py:8
+#: apps/dashboard/forms.py:36 apps/projects/overwrites.py:8
 msgid ""
 "Only invited users can see project tile and content and can participate "
 "(private)."
@@ -3157,8 +3157,22 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:4
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:6
 #, python-format
+msgid "Invitation to the semi-public project: \"%(project_name)s\""
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:4
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:6
+#, python-format
 msgid "Invitation to the private project: \"%(project_name)s\""
 msgstr "Uitnodiging voor het privéproject: \"%(project_name)s\""
+
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:8
+#, python-format
+msgid ""
+"you are invited to participate in the semi-public project \"%(project_name)s"
+"\" on the participation platform  %(site_name)s. To participate click on "
+"\"Accept invitation\"."
+msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:8
 #, python-format
@@ -3176,6 +3190,14 @@ msgid ""
 msgstr ""
 "Deze e-mail werd verstuurd naar %(receiver_mail)s. Deze e-mail is naar u "
 "gestuurd omdat u bent uitgenodigd om deel te nemen aan een privéproject."
+
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:17
+msgid "Project is private."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:23
+msgid "Project is semi-public."
+msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
 #, python-format
@@ -3361,9 +3383,8 @@ msgstr ""
 "                    "
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:35
-#: adhocracy-plus/templates/a4modules/module_detail.html:36
-msgid "This project is in not published yet."
-msgstr "Dit project is nog niet gepubliceerd."
+msgid "This project is not yet published."
+msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:54
 #: adhocracy-plus/templates/a4modules/module_detail.html:55
@@ -3405,7 +3426,20 @@ msgstr "Het eindigde op %(date)s."
 msgid "active"
 msgstr "actief"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:253
+#: apps/projects/templates/a4_candy_projects/project_detail.html:236
+#: adhocracy-plus/templates/a4modules/module_detail.html:160
+msgid ""
+"This project is not publicly visible. Only invited users can see contents "
+"and actively participate."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/project_detail.html:240
+#: adhocracy-plus/templates/a4modules/module_detail.html:164
+msgid ""
+"This project is publicly visible. Invited users can actively participate."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/project_detail.html:262
 msgid "No results yet."
 msgstr "Nog geen resultaten."
 
@@ -4108,6 +4142,10 @@ msgstr ""
 "Uw afbeelding wordt geüpload/verwijderd zodra u uw wijzigingen aan het einde "
 "van deze pagina opslaat."
 
+#: adhocracy-plus/templates/a4modules/module_detail.html:36
+msgid "This project is in not published yet."
+msgstr "Dit project is nog niet gepubliceerd."
+
 #: adhocracy-plus/templates/a4modules/module_detail.html:78
 msgid "Previous"
 msgstr "Vorige"
@@ -4120,7 +4158,7 @@ msgstr "van"
 msgid "Next"
 msgstr "Volgende"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:171
+#: adhocracy-plus/templates/a4modules/module_detail.html:181
 msgid "More questions from this online participation"
 msgstr "Meer vragen uit deze online participatie"
 
