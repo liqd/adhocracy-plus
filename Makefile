@@ -33,6 +33,8 @@ help:
 	@echo "  make lint            -- lint all project files"
 	@echo "  make lint-quick      -- lint all files staged in git"
 	@echo "  make po              -- create new po files from the source"
+
+	@echo "  make po-fork         -- create new po files from the source in a branch or fork to keep original translations"
 	@echo "  make compilemessages -- create new mo files from the translated po files"
 	@echo "  make release         -- build everything required for a release"
 	@echo
@@ -115,9 +117,15 @@ lint-python-files:
 po:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django --extension html,email,py
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs
-	$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' locale/*/LC_MESSAGES/django*.po
-	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
-	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
+	$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' locale-source/locale/*/LC_MESSAGES/django*.po
+	msgen locale-source/locale/en_GB/LC_MESSAGES/django.po -o locale-source/locale/en_GB/LC_MESSAGES/django.po
+	msgen locale-source/locale/en_GB/LC_MESSAGES/djangojs.po -o locale-source/locale/en_GB/LC_MESSAGES/djangojs.po
+
+.PHONY: po-fork
+po-fork:
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django --extension html,email,py
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs
+	$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' locale-fork/locale/*/LC_MESSAGES/django*.po
 
 .PHONY: mo
 mo:

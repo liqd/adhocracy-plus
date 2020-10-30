@@ -137,7 +137,13 @@ MIDDLEWARE = (
 
 ROOT_URLCONF = 'adhocracy-plus.config.urls'
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+LOCALE_PATHS = [
+    # use the first line in branches and forks to keep the original translations
+    # from main branch and overwrite or add extra translations in fork
+
+    # os.path.join(BASE_DIR, 'locale-fork/locale'),
+    os.path.join(BASE_DIR, 'locale-source/locale')
+]
 
 TEMPLATES = [
     {
