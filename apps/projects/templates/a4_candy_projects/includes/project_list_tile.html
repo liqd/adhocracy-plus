@@ -14,13 +14,13 @@
           {% if project.is_private %}
             <div class="tile__private-badge">
                 <div class="tile__private-badge--top"></div>
-                    <i class="fas fa-lock"></i>
+                    <i class="fas fa-lock" title="{% trans 'Project is private.' %}" aria-label="{% trans 'Project is private.' %}"></i>
                 <div class="tile__private-badge--left"></div>
             </div>
           {% elif project.is_semipublic %}
             <div class="tile__private-badge">
                 <div class="tile__private-badge--top"></div>
-                    <i class="fas fa-eye"></i>
+                    <i class="fas fa-eye" title="{% trans 'Project is semi-public.' %}" aria-label="{% trans 'Project is semi-public.' %}"></i>
                 <div class="tile__private-badge--left"></div>
             </div>
 
