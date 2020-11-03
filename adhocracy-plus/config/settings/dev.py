@@ -42,7 +42,6 @@ import saml2.saml
 BASEDIR = path.dirname(path.abspath(__file__))
 
 SAML_CONFIG = {
-  'xmlsec_binary': '/usr/bin/xmlsec1',
   'entityid': 'http://app.example.com',
   'allow_unknown_attributes': True,
   'attribute_map_dir': path.join(BASEDIR, 'saml', 'attribute-maps'),
