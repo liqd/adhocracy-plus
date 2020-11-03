@@ -67,7 +67,9 @@ def test_register(client, signup_url):
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
-            'get_newsletters': 'on'
+            'get_newsletters': 'on',
+            'data_protection': 'on',
+            'get_notifications': 'on',
         }
     )
     assert response.status_code == 302
@@ -104,6 +106,8 @@ def test_register_with_next(client, signup_url):
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
+            'data_protection': 'on',
+            'get_notifications': 'on',
             'next': '/en/projects/pppp/',
         }
     )
@@ -137,7 +141,9 @@ def test_reregister_same_username(client, signup_url):
         'email': 'testuser@liqd.de',
         'password1': 'password',
         'password2': 'password',
-        'terms_of_use': 'on'
+        'terms_of_use': 'on',
+        'data_protection': 'on',
+        'get_notifications': 'on',
     }
     response = client.post(signup_url, data)
     assert response.status_code == 302
@@ -157,7 +163,9 @@ def test_register_invalid(client, signup_url):
             'email': 'testuser@liqd.de',
             'password1': 'password',
             'password2': 'wrong_password',
-            'terms_of_use': 'on'
+            'terms_of_use': 'on',
+            'data_protection': 'on',
+            'get_notifications': 'on',
         }
     )
     assert response.status_code == 200
