@@ -354,11 +354,9 @@ SAML_CONFIG = {
     },
   },
   'metadata': {
-    # Only use the HHU IDP
-    'remote': [{"url": "https://idp.uni-duesseldorf.de/idp/shibboleth"},],
-    # Allow all members of in the DNF - comment out the remote above if used
-    #'remote': [{"url": "https://www.aai.dfn.de/fileadmin/metadata/dfn-aai-test-metadata.xml"},],
+    'remote': [{"url": "https://www.aai.dfn.de/fileadmin/metadata/dfn-aai-test-metadata.xml"},],
   },
+  'default_idp': "https://idp-test.uni-duesseldorf.de/idp/shibboleth",
   'key_file': path.join(BASEDIR, 'saml', 'private.key'),  # private part
   'cert_file': path.join(BASEDIR, 'saml', 'cert.pem'),  # public part
   'encryption_keypairs': [{
