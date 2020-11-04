@@ -827,7 +827,7 @@ msgstr "Sekunden"
 
 #: adhocracy4/phases/forms.py:21
 msgid "Phases cannot run at the same time and must follow after each other."
-msgstr ""
+msgstr "Phasen können nicht gleichzeitig laufen oder sich überschneiden."
 
 #: adhocracy4/phases/models.py:71
 #: apps/activities/models.py:21 apps/debate/models.py:27
@@ -837,7 +837,7 @@ msgstr "Beschreibung"
 
 #: adhocracy4/phases/models.py:95
 msgid "End date can not be before start date."
-msgstr ""
+msgstr "Enddatum kann nicht vor dem Startdatum liegen."
 
 #: adhocracy4/polls/dashboard.py:14
 #: apps/dashboard/blueprints.py:85 apps/polls/dashboard.py:15
@@ -1891,7 +1891,7 @@ msgstr "Modul ist bereits hinzugefügt"
 
 #: apps/dashboard/views.py:148
 msgid "Module cannot be added. Required fields are missing."
-msgstr ""
+msgstr "Das Modul kann nicht hinzugefügt werden. Es fehlen benötigte Felder."
 
 #: apps/dashboard/views.py:160
 msgid "The module is displayed in the project."
@@ -1917,6 +1917,8 @@ msgstr "Das Modul wurde gelöscht"
 #: apps/dashboard/views.py:194
 msgid "Module cannot be deleted. It has to be removed from the project first."
 msgstr ""
+"Das Modul kann nicht gelöscht werden. Es muss erst vom Projekt entfernt "
+"werden."
 
 #: apps/dashboard/views.py:239
 msgid "Project was created."
@@ -2980,12 +2982,14 @@ msgstr ""
 
 #: apps/organisations/models.py:180
 msgid "Default language for e-mails"
-msgstr ""
+msgstr "Standardsprache für E-mails"
 
 #: apps/organisations/models.py:185
 msgid ""
 "All e-mails to unregistered users (invites) will be sent in this language."
 msgstr ""
+"Alle E-mails an unregistrierte Nutzer*innen (Einladungen) werden in dieser "
+"Sprache geschickt."
 
 #: apps/organisations/templates/a4_candy_organisations/includes/form_field.html:6
 msgid "Missing important field"
@@ -3183,7 +3187,7 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:6
 #, python-format
 msgid "Invitation to the semi-public project: \"%(project_name)s\""
-msgstr ""
+msgstr "Einladung zum halb-öffentlichen Projekt: \"%(project_name)s\""
 
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:4
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:6
@@ -3198,6 +3202,9 @@ msgid ""
 "\" on the participation platform  %(site_name)s. To participate click on "
 "\"Accept invitation\"."
 msgstr ""
+"Sie wurden zum halb-öffentlichen Projekt \"%(project_name)s\" auf der "
+"Beteiligungsplattform %(site_name)s eingeladen. Um an dem Projekt "
+"teilzunehmen, klicken Sie auf \"Einladung annehmen\"."
 
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:8
 #, python-format
@@ -3206,6 +3213,9 @@ msgid ""
 "on the participation platform  %(site_name)s. To participate click on "
 "\"Accept invitation\"."
 msgstr ""
+"Sie wurden zum privaten Projekt \"%(project_name)s\" auf der "
+"Beteiligungsplattform %(site_name)s eingeladen. Um an dem Projekt "
+"teilzunehmen, klicken Sie auf \"Einladung annehmen\"."
 
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:13
 #, python-format
@@ -3218,11 +3228,11 @@ msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:17
 msgid "Project is private."
-msgstr ""
+msgstr "Das Projekt ist privat."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:23
 msgid "Project is semi-public."
-msgstr ""
+msgstr "Das Projekt ist halb-öffentlich."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
 #, python-format
@@ -3914,7 +3924,7 @@ msgstr "Deutsch"
 
 #: adhocracy-plus/config/settings/base.py:201
 msgid "Dutch"
-msgstr ""
+msgstr "Niederländisch"
 
 #: adhocracy-plus/config/settings/base.py:408
 msgid "suggestion"
@@ -4063,7 +4073,7 @@ msgstr "Zurück zu adhocracy+"
 
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:17
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:24
 msgid "Organisations"
