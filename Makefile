@@ -117,8 +117,8 @@ lint-python-files:
 po:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django --extension html,email,py
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs
-	$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' locale-source/locale/*/LC_MESSAGES/django*.po
-	$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' locale-fork/locale/*/LC_MESSAGES/django*.po
+	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
+		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
 	msgen locale-source/locale/en_GB/LC_MESSAGES/django.po -o locale-source/locale/en_GB/LC_MESSAGES/django.po
 	msgen locale-source/locale/en_GB/LC_MESSAGES/djangojs.po -o locale-source/locale/en_GB/LC_MESSAGES/djangojs.po
 
