@@ -25,7 +25,7 @@ As a final step, please complete the following form:{% endblocktrans %}</p>
         <div class="form-check">
             <label class="form-check__label">
                 {{ form.data_protection }}
-                {% blocktrans with data_protection_policy=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url %}
+                {% blocktrans with data_protection_policy=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url context "diid" %}
                 I hereby voluntarily agree that my data and in particular my contributions to the participation platform teilhabe.diid.hhu.de are collected, processed and published in accordance with sections 2.3 & 2.4 of the <a href="{{data_protection_policy}}" target="_blank">data protection policy</a>. My consent also expressly refers to the processing of special categories of personal data within the meaning of Art. 9 DSGVO, if I have mentioned these in my own contributions. I am aware that the consents are voluntary and can be refused without any disadvantages (even individually) or revoked at any time without giving reasons. I am aware that in the event of revocation, the legality of the processing carried out on the basis of the consent until revocation is not affected. I understand that I can simply contact the contact person named in the data protection policy for a revocation. I have been informed of the <a href="{{data_protection_policy}}" target="_blank">data protection policy</a> for teilhabe.diid.hhu.de and made available.
                 {% endblocktrans %}
                 {% if form.data_protection.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}

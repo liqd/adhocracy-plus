@@ -1,5 +1,6 @@
 from allauth.account.models import EmailAddress
 from django import forms
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from apps.users.models import User
@@ -13,15 +14,21 @@ class Djangosaml2SignupForm(forms.ModelForm):
         label=_('Data protection')
     )
     get_notifications = forms.BooleanField(
-        label=_('Notifications: Yes, I would like to be notified by e-mail '
-                'about the beginning and end of participation opportunities '
-                'and about comments on my contributions by other users. This '
-                'applies to all projects I follow.'),
+        label=pgettext_lazy(
+            'diid',
+            'Notifications: Yes, I would like to be notified by e-mail about '
+            'the beginning and end of participation opportunities and about '
+            'comments on my contributions by other users. This applies to all '
+            'projects I follow.'
+        ),
         required=False
     )
     get_newsletters = forms.BooleanField(
-        label=_('Newsletter: Yes, I would like to receive e-mail newsletters '
-                'about the projects I follow.'),
+        label=pgettext_lazy(
+            'diid',
+            'Newsletter: Yes, I would like to receive e-mail newsletters '
+            'about the projects I follow.'
+        ),
         required=False
     )
 
