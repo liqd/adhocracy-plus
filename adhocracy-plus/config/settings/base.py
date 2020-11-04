@@ -144,7 +144,7 @@ LOCALE_PATHS = [
     # use the first line in branches and forks to keep the original translations
     # from main branch and overwrite or add extra translations in fork
 
-    # os.path.join(BASE_DIR, 'locale-fork/locale'),
+    os.path.join(BASE_DIR, 'locale-fork/locale'),
     os.path.join(BASE_DIR, 'locale-source/locale')
 ]
 
