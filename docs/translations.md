@@ -29,7 +29,7 @@ To create the new translations, go to the
 [base settings](https://github.com/liqd/adhocracy-plus/blob/master/adhocracy-plus/config/settings/base.py)
 and uncomment the first path
 (os.path.join(BASE_DIR, 'locale-fork/locale')) in LOCALE_PATHS.
-Now, `make po-fork` creates message files in the locale-fork folder and
+Now, `make po` creates message files in the locale-fork folder and
 uses the translations from this folder first, whenever the messages are
 compiled.
 Here, the English translations are kept untranslated, so that they could
