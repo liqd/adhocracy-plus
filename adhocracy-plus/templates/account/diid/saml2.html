@@ -4,11 +4,11 @@
 
 <div class="row">
     <div class="col pb-4">
-        <a title="{% trans 'Login with HHU' %}"
+        <a title="{% trans 'Login with HHU' context 'diid' %}"
            class="btn btn--primary {% if not saml_config %}disabled{% endif %}"
            href="/saml2/login/?{% if saml_config.default_idp %}idp={{ saml_config.default_idp }}&{% endif %}next={{ redirect_field_value }}"
         >
-           {% trans 'Login with ' %}<span class="u-hhu">hhu.</span>
+           {% trans 'Login with ' context 'diid' %}<span class="u-hhu">hhu.</span>
        </a>
     </div>
 </div>

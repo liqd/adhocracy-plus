@@ -8,7 +8,7 @@
 
     {% include "account/diid/saml2.html" with process="login" %}
 
-    <h4>{% trans "You don't have a HHU account?" %}</h4>
+    <h4>{% trans "You don't have a HHU account?" context "diid" %}</h4>
 
     <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktrans %}</p>
 

@@ -7,6 +7,7 @@ from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
 from django.conf import settings
 from django.utils.translation import get_language
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 from zeep import Client
 
@@ -36,15 +37,21 @@ class DefaultSignupForm(SignupForm):
         label=_('Data protection')
     )
     get_notifications = forms.BooleanField(
-        label=_('Notifications: Yes, I would like to be notified by e-mail '
-                'about the beginning and end of participation opportunities '
-                'and about comments on my contributions by other users. This '
-                'applies to all projects I follow.'),
+        label=pgettext_lazy(
+            'diid',
+            'Notifications: Yes, I would like to be notified by e-mail about '
+            'the beginning and end of participation opportunities and about '
+            'comments on my contributions by other users. This applies to all '
+            'projects I follow.'
+        ),
         required=False
     )
     get_newsletters = forms.BooleanField(
-        label=_('Newsletter: Yes, I would like to receive e-mail newsletters '
-                'about the projects I follow.'),
+        label=pgettext_lazy(
+            'diid',
+            'Newsletter: Yes, I would like to receive e-mail newsletters '
+            'about the projects I follow.'
+        ),
         required=False
     )
 
