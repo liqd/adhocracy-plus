@@ -5,6 +5,52 @@ We take care to make all strings in the code (like texts on buttons, headlines t
 The translations for the main branch are done in transifex. If you want to translate A+ into your language, please get in touch: info [at] liqd [dot] net
 
 ## Transifex
+### No translations have been added locally:
+Create branch and force pull all from transifex to check for any new translations
+(force is needed because the time stamps cause errors).
+
+`tx pull -af`
+
+Create message files with the new strings added during development
+
+`make po`
+
+Test that new messages compile without any errors
+
+`make mo`
+
+Push updated source file with new strings to transifex to be be translated
+
+`tx push -s`
+
+When translations have been added on transifex repeat first 3 steps and commit
+result.
+
+### Translations have been added locally (DE)
+Sometimes it is necessary to add DE translations directly in the .po files and
+not through transifex. This method ensures no translations from DE or other
+languages are overwritten and the DE translation are also added to transifex.
+Create branch and ensure that all new strings are in source file
+
+`make po`
+
+Test that new messages and locally added translations compile without any errors
+
+`make mo`
+
+Push updated source file with new strings to transifex to be be translated
+
+`tx push -s`
+
+Force push locally added DE translations
+
+`tx push -t -f -l de_DE`
+
+After transifex has all the translations you can then force pull and get any new
+translations without risk of over-writing local german ones.
+
+`tx pull -af`
+
 
 ## Extra translations in a branch or fork
 When A+ is used as the basis for another project, it is important to keep
