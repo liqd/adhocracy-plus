@@ -285,7 +285,7 @@ rm -rf static/*
 ```
 npm install
 npm run build:prod
-pip install -r requirements.txt
+pip install --upgrade -r requirements.txt
 export DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.build
 python manage.py compilemessages
 python manage.py collectstatic
