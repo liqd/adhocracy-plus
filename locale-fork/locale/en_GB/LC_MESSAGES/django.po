@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-04 16:50+0100\n"
+"POT-Creation-Date: 2020-11-04 09:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1878,10 +1878,10 @@ msgstr ""
 msgid "The subject has been deleted"
 msgstr ""
 
-#: apps/djangosaml2_overwrites/forms.py:11 apps/organisations/models.py:152
+#: apps/djangosaml2_overwrites/forms.py:10 apps/organisations/models.py:152
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:34 apps/users/forms.py:186
+#: apps/users/forms.py:33 apps/users/forms.py:179
 #: adhocracy-plus/templates/email_base.html:81
 #: adhocracy-plus/templates/email_base.html:107
 #: adhocracy-plus/templates/footer.html:41
@@ -1889,23 +1889,21 @@ msgstr ""
 msgid "Terms of use"
 msgstr ""
 
-#: apps/djangosaml2_overwrites/forms.py:14
+#: apps/djangosaml2_overwrites/forms.py:13
 #: apps/organisations/templates/a4_candy_organisations/organisation_data_protection.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_data_protection.html:16
-#: apps/users/forms.py:37 adhocracy-plus/templates/email_base.html:79
+#: apps/users/forms.py:36 adhocracy-plus/templates/email_base.html:79
 msgid "Data protection"
 msgstr ""
 
-#: apps/djangosaml2_overwrites/forms.py:19 apps/users/forms.py:42
-msgctxt "diid"
+#: apps/djangosaml2_overwrites/forms.py:16 apps/users/forms.py:39
 msgid ""
 "Notifications: Yes, I would like to be notified by e-mail about the "
 "beginning and end of participation opportunities and about comments on my "
 "contributions by other users. This applies to all projects I follow."
 msgstr ""
 
-#: apps/djangosaml2_overwrites/forms.py:29 apps/users/forms.py:52
-msgctxt "diid"
+#: apps/djangosaml2_overwrites/forms.py:23 apps/users/forms.py:46
 msgid ""
 "Newsletter: Yes, I would like to receive e-mail newsletters about the "
 "projects I follow."
@@ -1931,7 +1929,6 @@ msgstr ""
 #: apps/djangosaml2_overwrites/templates/djangosaml2_overwrites/signup.html:28
 #: adhocracy-plus/templates/account/signup.html:23
 #, python-format
-msgctxt "diid"
 msgid ""
 "\n"
 "                I hereby voluntarily agree that my data and in particular my "
@@ -1953,6 +1950,7 @@ msgid ""
 msgstr ""
 
 #: apps/djangosaml2_overwrites/templates/djangosaml2_overwrites/signup.html:38
+#: adhocracy-plus/templates/account/signup.html:33
 #, python-format
 msgid ""
 "\n"
@@ -3469,63 +3467,63 @@ msgstr ""
 msgid "Please enter correct email addresses, separated by commas."
 msgstr ""
 
-#: apps/users/forms.py:24
+#: apps/users/forms.py:23
 msgid "Username/e-mail"
 msgstr ""
 
-#: apps/users/forms.py:61 apps/users/forms.py:201
+#: apps/users/forms.py:54 apps/users/forms.py:194
 msgid "Your username will appear publicly next to your posts."
 msgstr ""
 
-#: apps/users/forms.py:82
+#: apps/users/forms.py:75
 msgid "Membership number of IG BCE"
 msgstr ""
 
-#: apps/users/forms.py:83
+#: apps/users/forms.py:76
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
 msgstr ""
 
-#: apps/users/forms.py:89
+#: apps/users/forms.py:82
 msgid "Date of birth"
 msgstr ""
 
-#: apps/users/forms.py:90
+#: apps/users/forms.py:83
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
 msgstr ""
 
-#: apps/users/forms.py:95
+#: apps/users/forms.py:88
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
 msgstr ""
 
-#: apps/users/forms.py:106 apps/users/forms.py:142
+#: apps/users/forms.py:99 apps/users/forms.py:135
 msgid "Something is wrong with the setup - please try again later"
 msgstr ""
 
-#: apps/users/forms.py:111
+#: apps/users/forms.py:104
 msgid ""
 "There is already a participant with this membership number. Please check "
 "your entry. If this is your membership number, please send an email to "
 "\"zukunftsgewerkschaft@igbce.de\"."
 msgstr ""
 
-#: apps/users/forms.py:147
+#: apps/users/forms.py:140
 msgid ""
 "Unfortunately, the member number and / or date of birth could not be linked "
 "to an active member account. Please check your input and try again. If you "
 "still have problems, please contact \"zukunftsgewerkschaft@igbce.de\"."
 msgstr ""
 
-#: apps/users/forms.py:189 apps/users/models.py:68
+#: apps/users/forms.py:182 apps/users/models.py:68
 msgid "I would like to receive further information"
 msgstr ""
 
-#: apps/users/forms.py:190 apps/users/models.py:71
+#: apps/users/forms.py:183 apps/users/models.py:71
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
@@ -4001,12 +3999,12 @@ msgid ""
 msgstr ""
 
 #: adhocracy-plus/templates/account/diid/saml2.html:7
-msgctxt "diid"
 msgid "Login with HHU"
 msgstr ""
 
 #: adhocracy-plus/templates/account/diid/saml2.html:11
-msgctxt "diid"
+#: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:20
+#: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr ""
 
@@ -4158,7 +4156,6 @@ msgid ""
 msgstr ""
 
 #: adhocracy-plus/templates/account/login.html:11
-msgctxt "diid"
 msgid "You don't have a HHU account?"
 msgstr ""
 
@@ -4247,19 +4244,8 @@ msgid ""
 "        <a href=\"%(login_url)s\">login</a>."
 msgstr ""
 
-#: adhocracy-plus/templates/account/signup.html:33
-#, python-format
-msgctxt "diid"
-msgid ""
-"\n"
-"                I confirm that I have read and accepted the <a href="
-"\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a>.\n"
-"                "
-msgstr ""
-
 #: adhocracy-plus/templates/account/signup.html:79
 #, python-format
-msgctxt "diid"
 msgid ""
 "\n"
 "            With your account on teilhabe.diid.hhu.de, you can take part in "
@@ -4364,9 +4350,4 @@ msgstr ""
 
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:6
 msgid "Login with social media account"
-msgstr ""
-
-#: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:20
-#: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
-msgid "Login with "
 msgstr ""
