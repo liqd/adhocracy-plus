@@ -19,7 +19,7 @@ Test that new messages compile without any errors
 
 `make mo`
 
-Push updated source file with new strings to transifex to be be translated
+Push updated source file with new strings to transifex to be be translated (Note: commented out strings will not be ignored by transifex, but handled as normal source strings, so remove them before from source files)
 
 `tx push -s`
 
@@ -38,7 +38,7 @@ Test that new messages and locally added translations compile without any errors
 
 `make mo`
 
-Push updated source file with new strings to transifex to be be translated
+Push updated source file with new strings to transifex to be be translated (again, remember to first remove commented out strings from source files)
 
 `tx push -s`
 
