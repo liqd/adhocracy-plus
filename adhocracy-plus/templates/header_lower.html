@@ -5,12 +5,12 @@
     <div class="col-md-10 offset-md-1">
         <nav class="header-lower__nav">
 
-            {% if ORGANISATION.logo %}
+            {% if ORGANISATION and ORGANISATION.logo %}
               {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
                 <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}" class="header-lower__logo-box" rel="home">
                     <img src="{% thumbnail ORGANISATION.logo '0x160' %}" height="80" alt="{{ ORGANISATION.name }}" class="header-lower__logo-img" />
                 </a>
-            {% else %}
+            {% elif ORGANISATION %}
               <div class="header-lower__brand u-bg-body">
                 <a class="font-weight-bold" href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
                     {{ ORGANISATION.name }}
@@ -18,21 +18,23 @@
               </div>
             {% endif %}
 
-            {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
+            {% if ORGANISATION %}
+                {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
 
-            {% if request.get_full_path == organisation_url or '/information' in request.get_full_path %}
-                <ul class="header-lower__nav-list">
-                    <li class="header-lower__nav-item">
-                        {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
-                        <a href="{{ organisation_url }}" class="header-lower__nav-link"><span class="{% if request.path == organisation_url %}is-active{% endif %}">{% trans 'Our projects' %}</span></a>
-                    </li>
-                    {% if ORGANISATION.information %}
-                    <li class="header-lower__nav-item">
-                        {% url 'organisation-information' organisation_slug=ORGANISATION.slug as organisation_information_url %}
-                        <a href="{{ organisation_information_url }}" class="header-lower__nav-link"><span class="{% if request.path == organisation_information_url %}is-active{% endif %}">{% trans 'About' %}</span></a>
-                    </li>
-                    {% endif %}
-                </ul>
+                {% if request.get_full_path == organisation_url or '/information' in request.get_full_path %}
+                    <ul class="header-lower__nav-list">
+                        <li class="header-lower__nav-item">
+                            {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
+                            <a href="{{ organisation_url }}" class="header-lower__nav-link"><span class="{% if request.path == organisation_url %}is-active{% endif %}">{% trans 'Our projects' %}</span></a>
+                        </li>
+                        {% if ORGANISATION.information %}
+                        <li class="header-lower__nav-item">
+                            {% url 'organisation-information' organisation_slug=ORGANISATION.slug as organisation_information_url %}
+                            <a href="{{ organisation_information_url }}" class="header-lower__nav-link"><span class="{% if request.path == organisation_information_url %}is-active{% endif %}">{% trans 'About' %}</span></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
             {% endif %}
         </nav>
     </div>
