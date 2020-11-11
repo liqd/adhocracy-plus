@@ -3,13 +3,17 @@
     display: flow-root;
 
     @media (max-width: $breakpoint-down) {
-        max-width: 700px;
+        max-width: 768px;
     }
 }
 
 .container--shadow {
     background-color: $body-bg;
     box-shadow: 2px 4px 27px 0 rgba(0, 0, 0, 0.02), -2px -4px 27px 0 rgba(0, 0, 0, 0.05);
+
+    @media (max-width: $breakpoint-down) {
+        padding: 0 $spacer;
+    }
 }
 
 .l-tiles-2,
