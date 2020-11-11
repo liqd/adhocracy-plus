@@ -29,7 +29,7 @@
                 {% if organisation.image_copyright %}
                 <div class="header__copyright copyright">© {{ organisation.image_copyright }}</div>
                 {% endif %}
-                {% include 'header_lower.html' %}
+                {% include 'header_lower.html' with organisation=organisation %}
             </div>
 
             <div class="organisation-page__header">
@@ -97,7 +97,7 @@
                 {% endif %}
                 </div>
             </div>
-            {% include 'footer_upper.html' %}
+            {% include 'footer_upper.html' with organisation=organisation %}
         </div>
     </div>
 </div>

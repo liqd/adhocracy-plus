@@ -10,14 +10,14 @@
             <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3 pt-5">
                 <div class="row py-4">
                     <div class="offset-6 col-sm-3 offset-sm-9 position-relative header-lower__position--right">
-                        {% include 'header_lower.html' %}
+                        {% include 'header_lower.html' with organisation=organisation %}
                     </div>
                 </div>
                 <h1>{% trans 'Imprint' %}</h1>
                 {{ organisation.imprint|richtext }}
             </div>
         </div>
-    {% include 'footer_upper.html' %}
+    {% include 'footer_upper.html' with organisation=organisation %}
     </div>
 </div>
 {% endblock %}
