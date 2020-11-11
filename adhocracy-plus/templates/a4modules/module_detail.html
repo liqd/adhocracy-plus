@@ -67,7 +67,7 @@
             {% if project.image_copyright %}
             <div class="header__copyright copyright">© {{ project.image_copyright }}</div>
             {% endif %}
-            {% include 'header_lower.html' %}
+            {% include 'header_lower.html' with organisation=project.organisation %}
         </div>
             {% block module_nav %}
             {% if module.is_in_module_cluster  %}
@@ -166,7 +166,7 @@
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs mb-4">
                 <i class="fas fa-eye pr-2" aria-hidden="true"></i>{% trans 'This project is publicly visible. Invited users can actively participate.' %}
             </div>
-        </div>  
+        </div>
         {% endif %}
 
         <div>
@@ -193,7 +193,7 @@
             </div>
         {% endif %}
         {% endblock %}
-        {% include 'footer_upper.html' %}
+        {% include 'footer_upper.html' with organisation=project.organisation %}
     </div>
 </div>
 {% endblock %}
