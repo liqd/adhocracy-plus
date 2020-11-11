@@ -101,7 +101,7 @@
                     </nav>
                     {% include 'includes/project_header_mobile_toggle.html' %}
                 </div>
-                {% include 'header_lower.html' %}
+                {% include 'header_lower.html' with organisation=project.organisation %}
             </div>
 
             {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
@@ -271,7 +271,7 @@
                     </div>
                 </div>
             </div>
-            {% include 'footer_upper.html' %}
+            {% include 'footer_upper.html' with organisation=project.organisation %}
         </div>
     </div>
 </div>
