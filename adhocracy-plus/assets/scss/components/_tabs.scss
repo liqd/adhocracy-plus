@@ -84,6 +84,10 @@
 }
 
 @media (max-width: $breakpoint) {
+    .tabpanel--topnav {
+        margin-top: 2*$spacer;
+    }
+
     .tablist__right + nav,
     .tablist__left + nav {
         clear: both;
