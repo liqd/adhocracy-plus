@@ -21,7 +21,6 @@ def test_detail_view(client, phase_factory, topic_factory):
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrized('topic__module__project__is_public', [False])
 def test_detail_view_private_not_visible_anonymous(client,
                                                    phase_factory,
                                                    topic_factory):
@@ -36,7 +35,6 @@ def test_detail_view_private_not_visible_anonymous(client,
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrized('topic__module__project__is_public', [False])
 def test_detail_view_private_not_visible_normal_user(client,
                                                      user,
                                                      phase_factory,
@@ -54,7 +52,6 @@ def test_detail_view_private_not_visible_normal_user(client,
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrized('topic__module__project__is_public', [False])
 def test_detail_view_private_visible_to_participant(client,
                                                     user,
                                                     phase_factory,
@@ -73,7 +70,6 @@ def test_detail_view_private_visible_to_participant(client,
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrized('topic__module__project__is_public', [False])
 def test_detail_view_private_visible_to_moderator(client,
                                                   phase_factory,
                                                   topic_factory):
@@ -90,7 +86,6 @@ def test_detail_view_private_visible_to_moderator(client,
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrized('topic__module__project__is_public', [False])
 def test_detail_view_private_visible_to_initiator(client,
                                                   phase_factory,
                                                   topic_factory):
