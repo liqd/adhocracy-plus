@@ -12,7 +12,7 @@
                 </a>
             {% elif ORGANISATION %}
               <div class="header-lower__brand u-bg-body">
-                <a class="font-weight-bold" href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
+                <a class="header-lower__brand--link font-weight-bold" href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
                     {{ ORGANISATION.name }}
                 </a>
               </div>
