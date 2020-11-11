@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-04 16:50+0100\n"
+"POT-Creation-Date: 2020-11-11 12:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,7 +100,7 @@ msgid "Missing field for publication"
 msgstr ""
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:36
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
 #: adhocracy-plus/templates/a4dashboard/includes/preview.html:7
@@ -109,7 +109,7 @@ msgid "Preview"
 msgstr ""
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:38
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
 #: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:8
@@ -209,20 +209,13 @@ msgid "Finished"
 msgstr ""
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
-#: adhocracy4/projects/enums.py:14
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:20
-msgid "semipublic"
-msgstr ""
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
 #: adhocracy4/projects/enums.py:15
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:23
 msgid "private"
 msgstr ""
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:45
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:103
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
@@ -233,13 +226,13 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:54
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:65
 msgid "Duplicate"
 msgstr ""
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:62
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
 #: apps/projects/templates/a4_candy_projects/project_list.html:18
 #: adhocracy-plus/templates/a4dashboard/project_list.html:27
@@ -571,6 +564,12 @@ msgstr ""
 
 #: adhocracy4/dashboard/mixins.py:204
 msgid "Project successfully duplicated."
+msgstr ""
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
+#: adhocracy4/projects/enums.py:14
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:20
+msgid "semipublic"
 msgstr ""
 
 #: adhocracy4/dashboard/views.py:69
@@ -1922,10 +1921,9 @@ msgid "Sign Up"
 msgstr ""
 
 #: apps/djangosaml2_overwrites/templates/djangosaml2_overwrites/signup.html:10
-#, python-format
 msgid ""
-"You are about to use your HHU account to login to\n"
-"%(site_name)s. As a final step, please complete the following form:"
+"You are about to use your HHU account to login.\n"
+"As a final step, please complete the following form:"
 msgstr ""
 
 #: apps/djangosaml2_overwrites/templates/djangosaml2_overwrites/signup.html:28
@@ -3269,20 +3267,20 @@ msgstr ""
 msgid "active"
 msgstr ""
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:236
-#: adhocracy-plus/templates/a4modules/module_detail.html:160
+#: apps/projects/templates/a4_candy_projects/project_detail.html:238
+#: adhocracy-plus/templates/a4modules/module_detail.html:161
 msgid ""
 "This project is not publicly visible. Only invited users can see contents "
 "and actively participate."
 msgstr ""
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:240
-#: adhocracy-plus/templates/a4modules/module_detail.html:164
+#: apps/projects/templates/a4_candy_projects/project_detail.html:244
+#: adhocracy-plus/templates/a4modules/module_detail.html:167
 msgid ""
 "This project is publicly visible. Invited users can actively participate."
 msgstr ""
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:262
+#: apps/projects/templates/a4_candy_projects/project_detail.html:268
 msgid "No results yet."
 msgstr ""
 
@@ -3967,7 +3965,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:181
+#: adhocracy-plus/templates/a4modules/module_detail.html:185
 msgid "More questions from this online participation"
 msgstr ""
 

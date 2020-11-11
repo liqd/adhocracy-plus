@@ -7,8 +7,8 @@
 {% block content %}
     <h1>{% trans "Sign Up" %}</h1>
 
-<p>{% blocktrans with  site_name=site.name %}You are about to use your HHU account to login to
-{{site_name}}. As a final step, please complete the following form:{% endblocktrans %}</p>
+<p>{% blocktrans with  site_name=site.name %}You are about to use your HHU account to login.
+As a final step, please complete the following form:{% endblocktrans %}</p>
 
 <form id="signup_form" method="post" action="{% url 'saml2_signup' %}">
         {{ form.non_field_errors }}
