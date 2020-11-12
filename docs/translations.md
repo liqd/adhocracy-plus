@@ -44,7 +44,7 @@ Push updated source file with new strings to transifex to be be translated (agai
 
 Force push locally added DE translations
 
-`tx push -t -f -l de_DE`
+`tx push -t -f -l de`
 
 After transifex has all the translations you can then force pull and get any new
 translations without risk of over-writing local german ones.
@@ -64,7 +64,7 @@ When the settings in base.py are untouched, this will create new message
 files in the locale-source folder, where they can be translated and/or
 pushed to transifex like explained above.
 `make po` will also translate the English strings by themselves, meaning
-that in the en_GB folder, all missing msgstr are filled with the text from
+that in the en folder, all missing msgstr are filled with the text from
 the corresponding msgid.
 
 When a new project is created by forking or branching, only the
