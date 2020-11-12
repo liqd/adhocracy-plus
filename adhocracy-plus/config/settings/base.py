@@ -136,6 +136,7 @@ MIDDLEWARE = (
     'apps.embed.middleware.AjaxPathMiddleware',
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    'apps.djangosaml2_overwrites.middlewares.SamlSignupMiddleware',
 )
 
 ROOT_URLCONF = 'adhocracy-plus.config.urls'
