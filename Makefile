@@ -119,8 +119,8 @@ po:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs --ignore '$(VIRTUAL_ENV)/*'
 	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
 		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
-	msgen locale-source/locale/en_GB/LC_MESSAGES/django.po -o locale-source/locale/en_GB/LC_MESSAGES/django.po
-	msgen locale-source/locale/en_GB/LC_MESSAGES/djangojs.po -o locale-source/locale/en_GB/LC_MESSAGES/djangojs.po
+	msgen locale-source/locale/en/LC_MESSAGES/django.po -o locale-source/locale/en/LC_MESSAGES/django.po
+	msgen locale-source/locale/en/LC_MESSAGES/djangojs.po -o locale-source/locale/en/LC_MESSAGES/djangojs.po
 
 .PHONY: mo
 mo:
