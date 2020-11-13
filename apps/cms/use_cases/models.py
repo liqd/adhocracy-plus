@@ -94,7 +94,7 @@ class UseCaseIndexPage(Page):
         FieldPanel('title'),
         FieldPanel('slug'),
         FieldPanel('demo_link'),
-        PageChooserPanel('form_page'),
+        PageChooserPanel('form_page', 'a4_candy_cms_contacts.FormPage'),
     ]
 
     edit_handler = TabbedInterface([
