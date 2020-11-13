@@ -159,7 +159,7 @@ class HomePage(Page):
     common_panels = [
         FieldPanel('title'),
         FieldPanel('slug'),
-        PageChooserPanel('form_page'),
+        PageChooserPanel('form_page', 'a4_candy_cms_contacts.FormPage'),
         MultiFieldPanel(
             [
                 ImageChooserPanel('image_1'),
