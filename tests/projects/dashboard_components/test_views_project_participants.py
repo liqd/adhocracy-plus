@@ -1,6 +1,7 @@
 import os
 
 import pytest
+from django.contrib.messages import get_messages
 from django.core import mail
 from django.test import override_settings
 
@@ -50,6 +51,105 @@ def test_initiator_can_edit(client, phase_factory):
     assert len(mail.outbox) == 2
     assert mail.outbox[0].subject.startswith(
         'Einladung zum privaten Projekt:')
+
+
+@pytest.mark.django_db
+def test_initiator_can_delete_invitation(client, phase_factory):
+    phase, module, project, idea = setup_phase(
+        phase_factory, None, CollectFeedbackPhase)
+    url = component.get_base_url(project)
+    initiator = module.project.organisation.initiators.first()
+    client.login(username=initiator.email, password='password')
+    response = client.get(url)
+    assert_template_response(
+        response, 'a4_candy_projects/project_participants.html')
+
+    data = {
+        'add_users': 'test1@foo.bar,test2@foo.bar',
+    }
+    response = client.post(url, data)
+    assert redirect_target(response) == \
+        'dashboard-{}-edit'.format(component.identifier)
+    assert ParticipantInvite.objects.get(email='test1@foo.bar')
+    invite_pk = int(ParticipantInvite.objects.get(email='test1@foo.bar').pk)
+    data = {
+        'submit_action': 'remove_invite',
+        'invite_pk': invite_pk
+
+    }
+    response = client.post(url, data)
+    assert redirect_target(response) == \
+        'dashboard-{}-edit'.format(component.identifier)
+    assert response.status_code == 302
+    assert not ParticipantInvite.objects.filter(email='test1@foo.bar').exists()
+    response = client.post(url, data)
+    assert redirect_target(response) == \
+        'dashboard-{}-edit'.format(component.identifier)
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_initiator_can_delete_participant(client, phase_factory, user):
+    phase, module, project, idea = setup_phase(
+        phase_factory, None, CollectFeedbackPhase)
+    assert user not in module.project.participants.all()
+    module.project.participants.add(user)
+    url = component.get_base_url(project)
+    initiator = module.project.organisation.initiators.first()
+    client.login(username=initiator.email, password='password')
+    user_pk = user.pk
+    data = {
+        'submit_action': 'remove_user',
+        'user_pk': user_pk
+
+    }
+    response = client.post(url, data)
+    assert redirect_target(response) == \
+        'dashboard-{}-edit'.format(component.identifier)
+    assert response.status_code == 302
+    assert user not in module.project.participants.all()
+    response = client.post(url, data)
+    assert redirect_target(response) == \
+        'dashboard-{}-edit'.format(component.identifier)
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_participant_can_only_be_invited_once(
+        client, phase_factory, user):
+    phase, module, project, idea = setup_phase(
+        phase_factory, None, CollectFeedbackPhase)
+    assert user not in module.project.participants.all()
+    module.project.participants.add(user)
+    url = component.get_base_url(project)
+    initiator = module.project.organisation.initiators.first()
+    client.login(username=initiator.email, password='password')
+    response = client.get(url)
+    assert_template_response(
+        response, 'a4_candy_projects/project_participants.html')
+
+    data = {
+        'add_users': 'test1@foo.bar, test2@foo.bar, ' + user.email,
+    }
+    response = client.post(url, data)
+    assert redirect_target(response) == \
+        'dashboard-{}-edit'.format(component.identifier)
+    assert ParticipantInvite.objects.get(email='test1@foo.bar')
+    assert ParticipantInvite.objects.get(email='test2@foo.bar')
+    messages = list(get_messages(response.wsgi_request))
+    assert len(messages) == 2
+    assert str(messages[0]) == (
+        'Following users already accepted an invitation: ' + user.email)
+    assert str(messages[1]) == ('2 participants invited.')
+    data = {
+        'add_users': 'test1@foo.bar',
+    }
+    response = client.post(url, data)
+    messages = list(get_messages(response.wsgi_request))
+    assert len(messages) == 4
+    assert str(messages[2]) == (
+        'Following users are already invited: test1@foo.bar')
+    assert str(messages[3]) == ('0 participants invited.')
 
 
 @pytest.mark.django_db
