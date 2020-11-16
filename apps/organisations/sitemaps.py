@@ -3,6 +3,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.response import TemplateResponse
 from django.urls import reverse
 
+from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 
 from .models import Organisation
@@ -100,7 +101,7 @@ def organisation_sitemap_projects(request, organisation_slug):
         organisation=organisation,
         is_archived=False,
         is_draft=False,
-        is_public=True)
+        access=Access.PUBLIC)
 
     urls = []
     for project in projects:
