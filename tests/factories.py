@@ -126,3 +126,11 @@ class ModeratorStatementFactory(factory.django.DjangoModelFactory):
 
     statement = factory.Faker('text')
     creator = factory.SubFactory(UserFactory)
+
+
+class LiveStreamFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'a4_candy_questions.LiveStream'
+
+    module = factory.SubFactory(factories.ModuleFactory)
