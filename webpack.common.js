@@ -35,6 +35,10 @@ module.exports = {
       'bootstrap/js/dist/modal.js',
       './apps/embed/assets/embed.js'
     ],
+    dsgvo_video_embed: [
+      'dsgvo-video-embed/dist/dsgvo-video-embed.min.css',
+      'dsgvo-video-embed/dist/dsgvo-video-embed.min.js'
+    ],
     // A4 dependencies - we want all of them to go through webpack
     a4maps_display_point: [
       'leaflet/dist/leaflet.css',
