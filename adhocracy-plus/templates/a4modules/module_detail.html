@@ -59,21 +59,14 @@
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-                        {% with container=project.containers.first %}
+                        <!-- {% with container=project.containers.first %}
                             {% if container %}
                                 <a href="{{ container.get_absolute_url }}" class="project-header__link" data-embed-target="external">
                                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                                     {% blocktrans with name=container.name %}to project collection {{ name }}{% endblocktrans %}
                                 </a>
                             {% endif %}
-                        {% endwith %}
-                        <!-- Live stream -->
-                        {% for phase in module.phases %}
-                          {% if phase == module.active_phase and live_stream %}
-                              {{ live_stream.live_stream | transform_collapsibles | richtext }}
-                              <span class="label label--active">•{% trans ' Live now' %}</span>
-                          {% endif %}
-                        {% endfor %}
+                        {% endwith %} -->
 
                         <h1 class="project-header__title">{{ project.name }}</h1>
                         <p class="project-header__description">{{ project.description }}</p>
@@ -86,7 +79,9 @@
             {% if project.image_copyright %}
             <div class="header__copyright copyright">© {{ project.image_copyright }}</div>
             {% endif %}
+
             {% include 'header_lower.html' with organisation=project.organisation %}
+
         </div>
             {% block module_nav %}
             {% if module.is_in_module_cluster  %}
@@ -107,7 +102,7 @@
             {% endif %}
             {% endblock %}
             <div class="row">
-                <div class="col-md-8 offset-md-2">
+                <div class="my-5 col-md-8 offset-md-2">
                     <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
                         <ul>
                             <li>
@@ -118,6 +113,17 @@
                             </li>
                         </ul>
                     </nav>
+
+                    <!-- Live stream -->
+                    {% for phase in module.phases %}
+                      {% if phase == module.active_phase and live_stream %}
+                          {{ live_stream.live_stream | transform_collapsibles | richtext }}
+                          <div class="text-center">
+                            <span class="label label--active">•{% trans ' Live now' %}</span>
+                          </div>
+                      {% endif %}
+                    {% endfor %}
+
                     {% block module_description %}
                     <h1 class="project-header__title">{{ module.name }}</h1>
                     <p class="project-header__description">{{ module.description }}</p>
