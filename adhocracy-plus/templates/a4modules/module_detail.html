@@ -53,7 +53,7 @@
     {% endblock %}
 
     {% block content %}
-        <div class="project-header{% if project.image %} project-header--image{% endif %} row" style="{% if view.project.image %}
+        <!-- <div class="project-header{% if project.image %} project-header--image{% endif %} row" style="{% if view.project.image %}
                        background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                        {% endif %}">
             <div class="container">
@@ -66,16 +66,9 @@
                                     {% blocktrans with name=container.name %}to project collection {{ name }}{% endblocktrans %}
                                 </a>
                             {% endif %}
-                        {% endwith %}
-                        <!-- Live stream -->
-                        {% for phase in module.phases %}
-                          {% if phase == module.active_phase and live_stream %}
-                              {{ live_stream.live_stream | transform_collapsibles | richtext }}
-                              <span class="label label--active">•{% trans ' Live now' %}</span>
-                          {% endif %}
-                        {% endfor %}
+                        {% endwith %} -->
 
-                        <h1 class="project-header__title">{{ project.name }}</h1>
+                        <!-- <h1 class="project-header__title">{{ project.name }}</h1>
                         <p class="project-header__description">{{ project.description }}</p>
                         {% if request.user.is_authenticated %}
                             {% react_follows project %}
@@ -86,8 +79,10 @@
             {% if project.image_copyright %}
             <div class="header__copyright copyright">© {{ project.image_copyright }}</div>
             {% endif %}
+
             {% include 'header_lower.html' with organisation=project.organisation %}
-        </div>
+
+        </div> -->
             {% block module_nav %}
             {% if module.is_in_module_cluster  %}
                 <div class="my-5 pt-3 pt-sm-0 d-flex justify-content-center justify-content-sm-end">
@@ -107,7 +102,7 @@
             {% endif %}
             {% endblock %}
             <div class="row">
-                <div class="col-md-8 offset-md-2">
+                <div class="my-5 col-md-8 offset-md-2">
                     <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
                         <ul>
                             <li>
@@ -118,6 +113,17 @@
                             </li>
                         </ul>
                     </nav>
+
+                    <!-- Live stream -->
+                    {% for phase in module.phases %}
+                      {% if phase == module.active_phase and live_stream %}
+                          {{ live_stream.live_stream | transform_collapsibles | richtext }}
+                          <div class="text-center">
+                            <span class="label label--active">•{% trans ' Live now' %}</span>
+                          </div>
+                      {% endif %}
+                    {% endfor %}
+
                     {% block module_description %}
                     <h1 class="project-header__title">{{ module.name }}</h1>
                     <p class="project-header__description">{{ module.description }}</p>
