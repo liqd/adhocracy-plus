@@ -312,14 +312,28 @@ CKEDITOR_CONFIGS = {
     },
     'collapsible-image-editor': {
         'width': '100%',
+        'title': _('Rich text editor'),
         'toolbar': 'Custom',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
             ['Image'],
             ['NumberedList', 'BulletedList'],
             ['Link', 'Unlink'],
-            ['CollapsibleItem']
-        ]
+            ['CollapsibleItem'],
+            ['Embed', 'EmbedBase']
+        ],
+        'removePlugins': 'stylesheetparser',
+        'extraAllowedContent': 'iframe[*]; div[*]',
+    },
+    'video-editor': {
+        'width': '100%',
+        'title': _('Rich text editor'),
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Embed', 'EmbedBase']
+        ],
+        'removePlugins': 'stylesheetparser',
+        'extraAllowedContent': 'iframe[*]; div[*]',
     }
 }
 
@@ -350,11 +364,12 @@ BLEACH_LIST = {
     },
     'collapsible-image-editor': {
         'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img',
-                 'div'],
+                 'div', 'iframe'],
         'attributes': {
             'a': ['href', 'rel', 'target'],
             'img': ['src', 'alt', 'style'],
-            'div': ['class']
+            'div': ['class'],
+            'iframe': ['src', 'alt', 'style']
         },
         'styles': [
             'float',
@@ -367,6 +382,15 @@ BLEACH_LIST = {
             'margin-left',
             'margin-right',
         ],
+    },
+    'video-editor': {
+        'tags': ['a', 'img', 'div', 'iframe'],
+        'attributes': {
+            'a': ['href', 'rel', 'target'],
+            'img': ['src', 'alt', 'style'],
+            'div': ['class'],
+            'iframe': ['src', 'alt', 'style']
+        }
     }
 }
 

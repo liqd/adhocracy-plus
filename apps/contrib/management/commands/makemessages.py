@@ -32,4 +32,9 @@ class Command(makemessages.Command):
             path.relpath(get_module_dir('adhocracy-plus'))
         )
 
-        return a4js_paths + a4_paths + apps_path + adhocracy_plus_paths
+        external_forked_paths = super().find_files(path.join(
+            settings.BASE_DIR, 'node_modules', 'dsgvo-video-embed'
+        ))
+
+        return (a4js_paths + a4_paths + apps_path + adhocracy_plus_paths +
+                external_forked_paths)
