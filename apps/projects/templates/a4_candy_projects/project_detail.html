@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -19,6 +19,16 @@
 <meta name="linkedin:description" content="{{ project.description }}">
 <meta property="og:description" content="{{ project.description }}">
 {% endif %}
+{% endblock %}
+
+{% block extra_css %}
+  {{ block.super }}
+    <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+    <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
 {% endblock %}
 
 {% block extra_messages %}
