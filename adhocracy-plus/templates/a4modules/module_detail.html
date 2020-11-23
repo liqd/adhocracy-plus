@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -20,6 +20,17 @@
 <meta name="linkedin:description" content="{{ module.name }}">
 <meta property="og:description" content="{{ module.name }}">
 {% endif %}
+{% endblock %}
+
+<!-- Extra blocks to ensure cookie banner for live stream -->
+{% block extra_css %}
+  {{ block.super }}
+    <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+    <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
 {% endblock %}
 
 {% block extra_messages %}
@@ -56,6 +67,14 @@
                                 </a>
                             {% endif %}
                         {% endwith %}
+                        <!-- Live stream -->
+                        {% for phase in module.phases %}
+                          {% if phase == module.active_phase and live_stream %}
+                              {{ live_stream.live_stream | transform_collapsibles | richtext }}
+                              <span class="label label--active">•{% trans ' Live now' %}</span>
+                          {% endif %}
+                        {% endfor %}
+
                         <h1 class="project-header__title">{{ project.name }}</h1>
                         <p class="project-header__description">{{ project.description }}</p>
                         {% if request.user.is_authenticated %}

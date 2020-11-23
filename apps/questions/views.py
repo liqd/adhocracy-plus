@@ -1,6 +1,7 @@
 from django.views import generic
 from rules.contrib.views import PermissionRequiredMixin
 
+from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.modules.models import Module
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
@@ -13,6 +14,13 @@ class QuestionModuleDetail(ProjectMixin,
                            generic.TemplateView,
                            DisplayProjectOrModuleMixin):
     template_name = 'a4_candy_questions/question_module_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['live_stream'] = \
+            question_models.LiveStream.objects.filter(
+                module=self.module).first()
+        return context
 
 
 class QuestionPresentationListView(ProjectMixin,
@@ -73,3 +81,25 @@ class QuestionCreateView(PermissionRequiredMixin, generic.CreateView):
                 = self.request.session.get('user_category'
                                            + str(self.module.pk))
         return kwargs
+
+
+class LiveStreamDashboardView(ProjectMixin,
+                              dashboard_mixins.DashboardBaseMixin,
+                              dashboard_mixins.DashboardComponentMixin,
+                              generic.UpdateView):
+    model = question_models.LiveStream
+    template_name = 'a4_candy_questions/livestream_dashboard_form.html'
+    permission_required = 'a4projects.change_project'
+    form_class = forms.LiveStreamForm
+
+    def get_permission_object(self):
+        return self.project
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        form.instance.module = self.module
+        return super().form_valid(form)
+
+    def get_object(self, queryset=None):
+        return question_models.LiveStream.objects.filter(
+            module=self.module).first()
