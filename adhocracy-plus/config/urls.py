@@ -25,14 +25,14 @@ from adhocracy4.reports.api import ReportViewSet
 from apps.contrib import views as contrib_views
 from apps.contrib.sitemaps import static_sitemap_index
 from apps.documents.api import DocumentViewSet
-from apps.likes.api import LikesViewSet
-from apps.likes.routers import LikesDefaultRouter
+from apps.interactiveevents.api import LikesViewSet
+from apps.interactiveevents.api import LiveQuestionViewSet
+from apps.interactiveevents.routers import LikesDefaultRouter
 from apps.moderatorremark.api import ModeratorRemarkViewSet
 from apps.organisations.sitemaps import organisations_sitemap_index
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
 from apps.polls.routers import QuestionDefaultRouter
-from apps.questions.api import QuestionViewSet
 from apps.users.decorators import user_is_project_admin
 
 router = routers.DefaultRouter()
@@ -43,7 +43,8 @@ router.register(r'polls', PollViewSet, basename='polls')
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
 module_router.register(r'documents', DocumentViewSet, basename='chapters')
-module_router.register(r'questions', QuestionViewSet, basename='questions')
+module_router.register(r'interactiveevents/livequestions', LiveQuestionViewSet,
+                       basename='interactiveevents')
 
 likes_router = LikesDefaultRouter()
 likes_router.register(r'likes', LikesViewSet, basename='likes')
@@ -103,7 +104,7 @@ urlpatterns = [
              include(('apps.offlineevents.urls', 'a4_candy_offlineevents'),
                      namespace='a4_candy_offlineevents')),
         path('projects/', include('apps.projects.urls')),
-        path('questions/', include('apps.questions.urls')),
+        path('interactiveevents/', include('apps.interactiveevents.urls')),
         path('text/', include(('apps.documents.urls', 'a4_candy_documents'),
                               namespace='a4_candy_documents')),
         path('topicprio/',

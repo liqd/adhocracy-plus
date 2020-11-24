@@ -4,6 +4,24 @@
     font-family: $font-family-sans-serif;
     min-width: 100% !important;
     border: none;
+    min-height: 25rem;
+
+    @media (min-width: $breakpoint-md) {
+        padding: 3*$spacer;
+
+        div {
+            width: calc(100% - 6rem);
+            top: 5*$spacer;
+        }
+
+        .video-link {
+            bottom: 8*$spacer;
+        }
+
+        button {
+            bottom: 3*$spacer;
+        }
+    }
 }
 
 .video-wall strong,
@@ -14,6 +32,8 @@
 .video-wall button {
     background-color: $brand-info;
     border-radius: 0;
+    background-size: 2*$spacer;
+    height: 3*$spacer;
 }
 
 // Needs updating once we can add a class name to the container div
