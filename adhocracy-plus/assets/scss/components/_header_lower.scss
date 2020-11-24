@@ -52,9 +52,16 @@
     width: auto;
 }
 
-.header-lower__nav-list {
+.header-lower__nav-list--md {
     position: relative;
     bottom: -6*$spacer;
+}
+
+.header-lower__nav-list--sm {
+    position: relative;
+    top: 9*$spacer;
+    justify-content: flex-end;
+    display: flex;
 }
 
 .header-lower__nav-item {
