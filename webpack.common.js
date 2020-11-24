@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const glob = require('glob')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -149,7 +150,11 @@ module.exports = {
     // folder by default. This may result in dependencies being included twice.
     // Setting `resolve.root` forces webpack to resolve all dependencies
     // against the local directory.
-    modules: [path.resolve('./node_modules')]
+    modules: [
+      path.resolve('./node_modules')
+    ].concat(
+      glob.sync('./apps/*/assets/js').map(e => { return path.resolve(e) })
+    )
   },
   plugins: [
     new webpack.ProvidePlugin({

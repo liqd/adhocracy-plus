@@ -33,7 +33,6 @@ register(factories.CategoryFactory)
 register(factories.CommentFactory)
 register(factories.RatingFactory)
 register(factories.ModeratorStatementFactory)
-register(factories.LiveStreamFactory)
 
 register(a4_factories.GroupFactory)
 register(a4_factories.ProjectFactory)
