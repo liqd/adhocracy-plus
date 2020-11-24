@@ -21,8 +21,7 @@ import {
 
 import * as ReactDocuments from '../../../apps/documents/assets/react_documents.jsx'
 import * as ReactPolls from '../../../apps/polls/assets/react_polls.jsx'
-import * as ReactQuestions from '../../../apps/questions/assets/react_questions.jsx'
-import * as ReactQuestionsPresent from '../../../apps/questions/assets/react_questions_present.jsx'
+import * as ReactInteractiveEvents from 'a4_candy_interactive_events'
 import * as ReactLanguageChoice from '../../../apps/organisations/assets/react_language_choice.jsx'
 
 function init () {
@@ -36,8 +35,8 @@ function init () {
   ReactWidget.initialise('mb', 'polls', ReactPolls.renderPolls)
   ReactWidget.initialise('mb', 'poll-management', ReactPolls.renderPollManagement)
 
-  ReactWidget.initialise('speakup', 'questions', ReactQuestions.renderQuestions)
-  ReactWidget.initialise('speakup', 'present', ReactQuestionsPresent.renderData)
+  ReactWidget.initialise('aplus', 'questions', ReactInteractiveEvents.renderLiveQuestions)
+  ReactWidget.initialise('aplus', 'present', ReactInteractiveEvents.renderLiveQuestionsPresent)
 
   ReactWidget.initialise('euth', 'language-choice', ReactLanguageChoice.renderLanguageChoice)
 

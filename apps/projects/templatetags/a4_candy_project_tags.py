@@ -3,10 +3,10 @@ from django import template
 from adhocracy4.comments.models import Comment
 from apps.budgeting.models import Proposal as budget_proposal
 from apps.ideas.models import Idea
+from apps.interactiveevents.models import LiveQuestion
 from apps.likes.models import Like
 from apps.mapideas.models import MapIdea
 from apps.polls.models import Vote
-from apps.questions.models import Question
 
 register = template.Library()
 
@@ -37,7 +37,7 @@ def get_num_entries(module):
         + Comment.objects.filter(topic__module=module).count() \
         + Comment.objects.filter(subject__module=module).count() \
         + Vote.objects.filter(choice__question__poll__module=module).count() \
-        + Question.objects.filter(module=module).count() \
+        + LiveQuestion.objects.filter(module=module).count() \
         + Like.objects.filter(question__module=module).count()
 
     return item_count

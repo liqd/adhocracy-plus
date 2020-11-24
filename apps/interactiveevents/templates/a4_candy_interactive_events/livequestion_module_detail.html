@@ -1,0 +1,50 @@
+{% extends extends %}
+{% load i18n discovery_tags react_interactiveevents ckeditor_tags wagtailcore_tags static %}
+
+<!-- Extra blocks to ensure cookie banner for live stream -->
+{% block extra_css %}
+  {{ block.super }}
+    <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+    <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <nav class="breadcrumbs mt-5 mb-4" aria-label="{% trans 'breadcrumbs' %}">
+            <ul>
+                <li>
+                    <a href="{{ module.get_detail_url }}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'go back' %}</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Live stream -->
+        {% for phase in module.phases %}
+          {% if phase == module.active_phase and live_stream %}
+              {{ live_stream.live_stream | transform_collapsibles | richtext }}
+              <div class="text-center">
+                <span class="label label--active">•{% trans ' Live now' %}</span>
+              </div>
+          {% endif %}
+        {% endfor %}
+
+        <div class="text-center mb-4">
+            <h3>{{ module.name }}</h3>
+            <p>{{ module.description }}</p>
+        </div>
+    </div>
+    <div class="col-12 px-0">
+        {% react_interactiveevents view.module %}
+        {% block other_modules %}{% endblock %}
+    </div>
+</div>
+{% include 'footer_upper.html' with organisation=module.project.organisation %}
+{% endblock %}

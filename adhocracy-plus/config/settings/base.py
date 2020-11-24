@@ -88,6 +88,7 @@ INSTALLED_APPS = (
     # General components that define models or helpers
     'apps.actions',
     'apps.contrib',
+    'apps.interactiveevents',
     'apps.likes',
     'apps.maps',
     'apps.moderatorfeedback',

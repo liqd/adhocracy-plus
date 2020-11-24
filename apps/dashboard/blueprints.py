@@ -5,9 +5,9 @@ from apps.budgeting import phases as budgeting_phases
 from apps.debate import phases as debate_phases
 from apps.documents import phases as documents_phases
 from apps.ideas import phases as ideas_phases
+from apps.interactiveevents import phases as interactiveevent_phases
 from apps.mapideas import phases as mapideas_phases
 from apps.polls import phases as poll_phases
-from apps.questions import phases as question_phases
 from apps.topicprio import phases as topicprio_phases
 
 blueprints = [
@@ -106,7 +106,7 @@ blueprints = [
          image='images/participatory-budgeting.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
-    ('speakup',
+    ('interactive-event',
      ProjectBlueprint(
          title=_('Interactive Event'),
          description=_(
@@ -116,7 +116,7 @@ blueprints = [
              'characteristic.'
          ),
          content=[
-             question_phases.IssuePhase(),
+             interactiveevent_phases.IssuePhase(),
          ],
          image='images/live-discussion.svg',
          settings_model=None,
