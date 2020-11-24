@@ -1,0 +1,13 @@
+{% load userindicator static i18n thumbnail %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<li class="header-lower__nav-item">
+    {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
+    <a href="{{ organisation_url }}" class="header-lower__nav-link"><span class="{% if request.path == organisation_url %}is-active{% endif %}">{% trans 'Our projects' %}</span></a>
+</li>
+{% if organisation.information %}
+<li class="header-lower__nav-item">
+    {% url 'organisation-information' organisation_slug=organisation.slug as organisation_information_url %}
+    <a href="{{ organisation_information_url }}" class="header-lower__nav-link"><span class="{% if request.path == organisation_information_url %}is-active{% endif %}">{% trans 'About' %}</span></a>
+</li>
+{% endif %}
