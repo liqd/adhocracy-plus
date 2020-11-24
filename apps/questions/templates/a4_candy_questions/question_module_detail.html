@@ -2,10 +2,6 @@
 {% load i18n discovery_tags react_questions ckeditor_tags wagtailcore_tags %}
 
 {% block phase_content %}
-    {% if url_name == 'module-detail' %}
-        {% react_questions view.module %}
-        {% block other_modules %}{% endblock %}
-    {% else %}
     <div class="bg--light">
         <div class="container">
             <div class="col-lg-10 offset-lg-1 u-bg-body">
@@ -17,9 +13,10 @@
                 <div class="mb-3">
                     {{ module.description | transform_collapsibles | richtext }}
                 </div>
-                <a class="btn btn--primary" href="{% url 'module-detail' module.project.organisation.slug module.slug %}">{% trans 'Go to event' %}</a>
+                {% if not module.future_phases %}
+                <a class="btn btn--primary" href="{% url 'live-question-module-detail' module.project.organisation.slug module.slug %}">{% trans 'Go to event' %}</a>
+                {% endif %}
             </div>
         </div>
     </div>
-    {% endif %}
 {% endblock %}

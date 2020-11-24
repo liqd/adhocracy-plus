@@ -23,6 +23,19 @@ class QuestionModuleDetail(ProjectMixin,
         return context
 
 
+class LiveQuestionModuleDetail(ProjectMixin,
+                               generic.TemplateView,
+                               DisplayProjectOrModuleMixin):
+    template_name = 'a4_candy_questions/live_question_module_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['live_stream'] = \
+            question_models.LiveStream.objects.filter(
+                module=self.module).first()
+        return context
+
+
 class QuestionPresentationListView(ProjectMixin,
                                    PermissionRequiredMixin,
                                    generic.ListView):

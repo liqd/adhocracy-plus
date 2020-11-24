@@ -22,17 +22,6 @@
 {% endif %}
 {% endblock %}
 
-<!-- Extra blocks to ensure cookie banner for live stream -->
-{% block extra_css %}
-  {{ block.super }}
-    <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
-{% endblock %}
-
-{% block extra_js %}
-  {{ block.super }}
-    <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
-{% endblock %}
-
 {% block extra_messages %}
 <div class="u-bg-light py-5">
     <div class="container container--shadow">
@@ -59,15 +48,6 @@
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-                        <!-- {% with container=project.containers.first %}
-                            {% if container %}
-                                <a href="{{ container.get_absolute_url }}" class="project-header__link" data-embed-target="external">
-                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                    {% blocktrans with name=container.name %}to project collection {{ name }}{% endblocktrans %}
-                                </a>
-                            {% endif %}
-                        {% endwith %} -->
-
                         <h1 class="project-header__title">{{ project.name }}</h1>
                         <p class="project-header__description">{{ project.description }}</p>
                         {% if request.user.is_authenticated %}
@@ -81,8 +61,8 @@
             {% endif %}
 
             {% include 'header_lower.html' with organisation=project.organisation %}
-
         </div>
+
             {% block module_nav %}
             {% if module.is_in_module_cluster  %}
                 <div class="my-5 pt-3 pt-sm-0 d-flex justify-content-center justify-content-sm-end">
@@ -113,16 +93,6 @@
                             </li>
                         </ul>
                     </nav>
-
-                    <!-- Live stream -->
-                    {% for phase in module.phases %}
-                      {% if phase == module.active_phase and live_stream %}
-                          {{ live_stream.live_stream | transform_collapsibles | richtext }}
-                          <div class="text-center">
-                            <span class="label label--active">•{% trans ' Live now' %}</span>
-                          </div>
-                      {% endif %}
-                    {% endfor %}
 
                     {% block module_description %}
                     <h1 class="project-header__title">{{ module.name }}</h1>
