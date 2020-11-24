@@ -2,7 +2,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 <div class="header-lower__position">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-10 offset-md-1 px-md-0">
         <nav class="header-lower__nav">
 
             {% if organisation.logo %}
@@ -21,19 +21,19 @@
             {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
 
             {% if request.get_full_path == organisation_url or '/information' in request.get_full_path %}
-                <ul class="header-lower__nav-list">
-                    <li class="header-lower__nav-item">
-                        {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
-                        <a href="{{ organisation_url }}" class="header-lower__nav-link"><span class="{% if request.path == organisation_url %}is-active{% endif %}">{% trans 'Our projects' %}</span></a>
-                    </li>
-                    {% if organisation.information %}
-                    <li class="header-lower__nav-item">
-                        {% url 'organisation-information' organisation_slug=organisation.slug as organisation_information_url %}
-                        <a href="{{ organisation_information_url }}" class="header-lower__nav-link"><span class="{% if request.path == organisation_information_url %}is-active{% endif %}">{% trans 'About' %}</span></a>
-                    </li>
-                    {% endif %}
+                <ul class="header-lower__nav-list--md d-none d-sm-block">
+                  {% include 'includes/header_lower_org_items.html' %}
                 </ul>
             {% endif %}
         </nav>
     </div>
 </div>
+
+<!-- mobile navigation  -->
+{% if request.get_full_path == organisation_url or '/information' in request.get_full_path %}
+    <div class="col-md-10 offset-md-1 d-sm-none pb-3">
+        <ul class="header-lower__nav-list--sm">
+            {% include 'includes/header_lower_org_items.html' %}
+        </ul>
+    </div>
+{% endif %}
