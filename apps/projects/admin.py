@@ -36,9 +36,6 @@ class ProjectAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('name', 'organisation')
         }),
-        (_('Topic and location'), {
-            'fields': ('topics', 'point', 'administrative_district'),
-        }),
         (_('Information and result'), {
             'fields': ('description', 'information', 'result'),
         }),
