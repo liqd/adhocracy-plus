@@ -1,6 +1,7 @@
 import django from 'django'
 import React from 'react'
 import { updateItem } from './helpers.js'
+import QuestionForm from './livequestion_form'
 import QuestionList from './livequestion_list'
 import InfoBox from './livequestion_info_box'
 import Filter from './livequestion_filters'
@@ -223,31 +224,43 @@ export default class QuestionBox extends React.Component {
           aria-hidden="true"
         >
           <div className="container">
+            {this.props.hasAskQuestionsPermission &&
+              <div className="row mb-5">
+                <div className="col-md-10 offset-md-1">
+                  <QuestionForm
+                    category_dict={this.props.category_dict}
+                    questions_api_url={this.props.questions_api_url}
+                    privatePolicyLabel={this.props.privatePolicyLabel}
+                    termsOfUseUrl={this.props.termsOfUseUrl}
+                    dataProtectionPolicyUrl={this.props.dataProtectionPolicyUrl}
+                  />
+                </div>
+              </div>}
             <div className="row mb-5">
-              <div className="col-12">
-                {this.props.isModerator &&
-                  <div className="d-flex justify-content-center justify-content-lg-end">
-                    <a className="btn btn--secondary" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
+              <div className="col-md-10 offset-md-1">
+                <div className="d-flex justify-content-center">
+                  <Filter
+                    categories={this.props.categories}
+                    currentCategory={this.state.category}
+                    currentCategoryName={this.state.categoryName}
+                    setCategories={this.setCategory.bind(this)}
+                    orderedByLikes={this.state.orderedByLikes}
+                    toggleOrdering={this.toggleOrdering.bind(this)}
+                    displayOnShortlist={this.state.displayOnShortlist}
+                    displayNotHiddenOnly={this.state.displayNotHiddenOnly}
+                    toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
+                    toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
+                    isModerator={this.props.isModerator}
+                  />
+                  {this.props.isModerator &&
+                    <a className="btn btn--secondary ml-3" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
                       <span className="fa-stack fa-1x">
                         <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
                         <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
                       </span>
                       {django.gettext('display on screen')}
-                    </a>
-                  </div>}
-                <Filter
-                  categories={this.props.categories}
-                  currentCategory={this.state.category}
-                  currentCategoryName={this.state.categoryName}
-                  setCategories={this.setCategory.bind(this)}
-                  orderedByLikes={this.state.orderedByLikes}
-                  toggleOrdering={this.toggleOrdering.bind(this)}
-                  displayOnShortlist={this.state.displayOnShortlist}
-                  displayNotHiddenOnly={this.state.displayNotHiddenOnly}
-                  toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
-                  toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
-                  isModerator={this.props.isModerator}
-                />
+                    </a>}
+                </div>
                 <InfoBox
                   isModerator={this.props.isModerator}
                 />
@@ -260,15 +273,6 @@ export default class QuestionBox extends React.Component {
                   togglePollingPaused={this.togglePollingPaused.bind(this)}
                   hasLikingPermission={this.props.hasLikingPermission}
                 />
-                {this.props.hasAskQuestionsPermission &&
-                  <a
-                    href={this.props.askQuestionUrl}
-                    className="btn btn--primary btn--full btn--huge question-list-button mb-4"
-                    id="question-create"
-                  >
-                    <i className="fa fa-plus question-list-button-icon" aria-hidden="true" />
-                    {django.gettext('Add Question')}
-                  </a>}
               </div>
             </div>
           </div>
