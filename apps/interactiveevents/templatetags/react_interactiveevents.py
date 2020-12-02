@@ -46,7 +46,7 @@ def react_interactiveevents(context, obj):
         like_permission, obj
     )
 
-    ask_permissions = 'a4_candy_interactive_events.propose_livequestion'
+    ask_permissions = 'a4_candy_interactive_events.add_livequestion'
     has_ask_questions_permissions = user.has_perm(ask_permissions, obj)
     would_have_ask_questions_permission = NormalUser().would_have_perm(
         ask_permissions, obj)

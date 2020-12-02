@@ -9,7 +9,7 @@ from tests.helpers import freeze_pre_phase
 from tests.helpers import setup_phase
 from tests.helpers import setup_users
 
-perm_name = 'a4_candy_interactive_events.propose_livequestion'
+perm_name = 'a4_candy_interactive_events.add_livequestion'
 
 
 def test_perm_exists():
