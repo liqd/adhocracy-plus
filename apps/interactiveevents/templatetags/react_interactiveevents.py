@@ -3,8 +3,10 @@ import json
 from django import template
 from django.urls import reverse
 from django.utils.html import format_html
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.rules.discovery import NormalUser
+from apps.cms.settings.helpers import get_important_page_url
 
 register = template.Library()
 
@@ -18,8 +20,19 @@ def react_interactiveevents(context, obj):
         user.has_perm('a4_candy_interactive_events.moderate_livequestions',
                       obj)
     categories = [category.name for category in obj.category_set.all()]
+    category_dict = {category.pk: category.name
+                     for category in obj.category_set.all()}
     questions_api_url = reverse('interactiveevents-list',
                                 kwargs={'module_pk': obj.pk})
+
+    private_policy_label = str(_('I confirm that I have read and accepted the '
+                                 '{}terms of use{} and the {}data protection '
+                                 'policy{}.'))
+
+    terms_of_use_url = get_important_page_url('terms_of_use')
+    data_protection_policy_url = \
+        get_important_page_url('data_protection_policy')
+
     likes_api_url = '/api/livequestions/LIVEQUESTIONID/likes/'
     present_url = \
         reverse('question-present',
@@ -45,13 +58,14 @@ def react_interactiveevents(context, obj):
         'present_url': present_url,
         'isModerator': is_moderator,
         'categories': categories,
+        'category_dict': category_dict,
         'hasLikingPermission': (has_liking_permission
                                 or would_have_liking_permission),
         'hasAskQuestionsPermission': (has_ask_questions_permissions
                                       or would_have_ask_questions_permission),
-        'askQuestionUrl':
-            reverse('question-create', kwargs={'slug': obj.slug,
-                    'organisation_slug': obj.project.organisation.slug})
+        'privatePolicyLabel': private_policy_label,
+        'termsOfUseUrl': terms_of_use_url,
+        'dataProtectionPolicyUrl': data_protection_policy_url
     }
 
     return format_html(
