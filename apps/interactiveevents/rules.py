@@ -13,7 +13,7 @@ rules.add_perm('a4_candy_interactive_events.change_livequestion',
                is_superuser | is_context_moderator | is_context_initiator)
 
 
-rules.add_perm('a4_candy_interactive_events.propose_livequestion',
+rules.add_perm('a4_candy_interactive_events.add_livequestion',
                phase_allows_add(LiveQuestion))
 
 
