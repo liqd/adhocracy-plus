@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.sessions.models import Session
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
@@ -15,6 +17,7 @@ from .serializers import LiveQuestionSerializer
 
 
 class LiveQuestionViewSet(ModuleMixin,
+                          mixins.CreateModelMixin,
                           mixins.ListModelMixin,
                           mixins.UpdateModelMixin,
                           viewsets.GenericViewSet,
@@ -40,6 +43,12 @@ class LiveQuestionViewSet(ModuleMixin,
         ):
             live_questions = live_questions.filter(is_hidden=False)
         return live_questions
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            body = json.loads(request.body.decode("utf-8"))
+            kwargs['category'] = body['category']
+        return super().dispatch(request, *args, **kwargs)
 
 
 class LikesViewSet(mixins.CreateModelMixin,
