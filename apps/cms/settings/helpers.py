@@ -23,3 +23,13 @@ def add_link_to_helptext(help_text, important_page_name, link_text=None):
         return '{} {}'.format(help_text, mark_safe(link_text))
 
     return help_text
+
+
+def get_important_page_url(important_page_name):
+    site = Site.objects.filter(is_default_site=True).first()
+    important_pages = ImportantPages.for_site(site)
+    if getattr(important_pages, important_page_name):
+        return getattr(important_pages, important_page_name).url
+    return None
+
+
