@@ -461,7 +461,6 @@ A4_CATEGORIZABLE = (
     ('a4_candy_ideas', 'idea'),
     ('a4_candy_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
-    ('a4_candy_interactive_events', 'livequestion'),
     ('a4_candy_topicprio', 'topic'),
 )
 
