@@ -33,6 +33,7 @@ export default class QuestionForm extends React.Component {
 
   addQuestion (e) {
     e.preventDefault()
+    const anchor = document.getElementById('question-list-end')
     const url = this.props.questions_api_url
     const data = {
       text: this.state.question,
@@ -40,6 +41,7 @@ export default class QuestionForm extends React.Component {
     }
     updateItem(data, url, 'POST')
     this.setState({ question: '' })
+    anchor.scrollIntoView({ behavior: 'smooth', block: 'end' })
   }
 
   render () {
