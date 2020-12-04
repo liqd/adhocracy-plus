@@ -105,7 +105,7 @@ export default class QuestionModerator extends React.Component {
     return (
       <div className="list-group-item border border-bottom rounded-0 mb-2">
         <div>
-          <p className={this.props.is_hidden ? 'text-muted u-text-decoration-line-through' : ''}>{this.props.children}</p>
+          <p className={'live_questions__text ' + (this.props.is_hidden ? 'text-muted u-text-decoration-line-through' : '')}>{this.props.children}</p>
         </div>
         <div className="row justify-content-between">
           <div className="col-12 col-md-4 col-sm-5 mb-3 mb-sm-0">
