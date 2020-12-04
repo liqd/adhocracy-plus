@@ -7,7 +7,8 @@ export default class QuestionForm extends React.Component {
     super(props)
     this.state = {
       question: '',
-      selectedCategory: ''
+      selectedCategory: '',
+      questionCharCount: 0
     }
   }
 
@@ -16,7 +17,10 @@ export default class QuestionForm extends React.Component {
   }
 
   handleTextChange (e) {
-    this.setState({ question: e.target.value })
+    this.setState({
+      question: e.target.value,
+      questionCharCount: e.target.value.length
+    })
   }
 
   getPrivacyPolicyLabelWithLinks () {
@@ -40,14 +44,17 @@ export default class QuestionForm extends React.Component {
       category: this.state.selectedCategory
     }
     updateItem(data, url, 'POST')
-    this.setState({ question: '' })
+    this.setState({
+      question: '',
+      questionCharCount: 0
+    })
     anchor.scrollIntoView({ behavior: 'smooth', block: 'end' })
   }
 
   render () {
     return (
       <div>
-        <form action="" onSubmit={this.addQuestion.bind(this)}>
+        <form id="id-livequestion-form" action="" onSubmit={this.addQuestion.bind(this)}>
           <h2>{django.gettext('Here you can ask your question')}</h2>
           {Object.keys(this.props.category_dict).length > 0 &&
             <div>
@@ -85,7 +92,9 @@ export default class QuestionForm extends React.Component {
             onChange={this.handleTextChange.bind(this)}
             required="required"
             value={this.state.question}
+            maxLength="1000"
           />
+          <label htmlFor="id-livequestion-form" className="live_questions__char-count">{this.state.questionCharCount}/1000{django.gettext(' characters')}</label>
           <div className="form-check">
             <label className="form-check__label">
               <input type="checkbox" name="data_protection" id="data_protection_check" required="required" />
