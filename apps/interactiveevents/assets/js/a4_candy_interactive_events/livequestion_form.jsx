@@ -30,7 +30,8 @@ export default class QuestionForm extends React.Component {
         {splittedLabel[0]}
         <a href={this.props.termsOfUseUrl} target="_blank" rel="noreferrer">{splittedLabel[1]}</a>
         {splittedLabel[2]}
-        <a href={this.props.dataProtectionPolicyUrl} target="_blank" rel="noreferrer">{splittedLabel[3]}</a>.
+        <a href={this.props.dataProtectionPolicyUrl} target="_blank" rel="noreferrer">{splittedLabel[3]}</a>
+        {splittedLabel.length > 4 ? splittedLabel[4] : ''}
       </span>
     )
   }
