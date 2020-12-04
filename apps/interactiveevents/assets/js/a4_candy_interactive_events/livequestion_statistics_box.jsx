@@ -35,26 +35,27 @@ export default class StatisticsBox extends React.Component {
     const questionAnsweredTag = django.gettext('Questions Answered')
     return (
       <div>
-        <div className="row m-0 bg-white justify-content-center pb-4">
-          <div className="col-12 col-md-8">
-            {this.props.categories.map((category, index) => {
-              const countPerCategory = this.countCategory(category)
-              const style = { width: countPerCategory + '%' }
-              return (
-                <div key={index} className="mt-3">
-                  <span>{category}</span>
-                  <div className="progress">
-                    <div
-                      className="progress-bar" style={style} role="progressbar" aria-valuenow="25" aria-valuemin="0"
-                      aria-valuemax="100"
-                    >{countPerCategory}%
+        {this.props.categories.length > 0 &&
+          <div className="row m-0 bg-white justify-content-center pb-4">
+            <div className="col-12 col-md-8">
+              {this.props.categories.map((category, index) => {
+                const countPerCategory = this.countCategory(category)
+                const style = { width: countPerCategory + '%' }
+                return (
+                  <div key={index} className="mt-3">
+                    <span>{category}</span>
+                    <div className="progress">
+                      <div
+                        className="progress-bar" style={style} role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                        aria-valuemax="100"
+                      >{countPerCategory}%
+                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
+                )
+              })}
+            </div>
+          </div>}
         <h3 className="u-serif-header text-center mt-5">{questionAnsweredTag}</h3>
         {this.props.isModerator
           ? (
