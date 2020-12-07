@@ -2,7 +2,7 @@
     padding: 0.7em $padding;
     display: block;
     position: relative;
-    border: 1px solid $border-color;
+    border: 1px solid $gray-lightest;
     background-color: $body-bg;
     margin-bottom: $spacer;
     page-break-inside: avoid;
@@ -16,6 +16,10 @@
         outline: none;
     }
 
+    &:hover {
+        box-shadow: 0 2px 26px 0 rgba(0, 0, 0, 0.12);
+    }
+
     &:hover .list-item__hover {
         text-decoration: underline;
     }
@@ -24,6 +28,10 @@
 .list-item--squashed {
     border: 0;
     margin-bottom: 2px;
+
+    &:hover {
+        box-shadow: none;
+    }
 
     @media print {
         border: 1px solid $border-color;

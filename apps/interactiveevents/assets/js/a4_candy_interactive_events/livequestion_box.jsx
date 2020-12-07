@@ -170,12 +170,12 @@ export default class QuestionBox extends React.Component {
   render () {
     return (
       <div>
-        <div className="tablist tablist--bg-secondary mb-0">
+        <div className="tablist mb-0">
           <div className="container">
             <nav className="nav justify-content-center">
               <a
                 id="tab-information"
-                className="tab tab--bg-secondary"
+                className="tab"
                 data-toggle="tab"
                 href="#tabpanel-information"
                 role="tab"
@@ -186,7 +186,7 @@ export default class QuestionBox extends React.Component {
               </a>
               <a
                 id="tab-questions"
-                className="tab tab--bg-secondary active"
+                className="tab active"
                 data-toggle="tab"
                 href="#tabpanel-questions"
                 role="tab"
@@ -197,7 +197,7 @@ export default class QuestionBox extends React.Component {
               </a>
               <a
                 id="tab-statistics"
-                className="tab tab--bg-secondary"
+                className="tab"
                 data-toggle="tab"
                 href="#tabpanel-statistics"
                 role="tab"
@@ -210,21 +210,23 @@ export default class QuestionBox extends React.Component {
           </div>
         </div>
         <div
-          className="tabpanel tabpanel--bg-secondary"
+          className="tabpanel mt-3"
           id="tabpanel-information"
           role="tabpanel"
           aria-labelledby="tab-information"
           aria-hidden="false"
         >
           <div className="container">
-            <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-              {this.props.information}
+            <div class="row">
+              <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                {this.props.information}
+              </div>
             </div>
           </div>
         </div>
 
         <div
-          className="tabpanel tabpanel--bg-secondary active"
+          className="tabpanel active"
           id="tabpanel-questions"
           role="tabpanel"
           aria-labelledby="tab-questions"
@@ -287,20 +289,22 @@ export default class QuestionBox extends React.Component {
           </div>
         </div>
         <div
-          className="tabpanel tabpanel--bg-secondary"
+          className="tabpanel mt-3"
           id="tabpanel-statistics"
           role="tabpanel"
           aria-labelledby="tab-statistics"
           aria-hidden="false"
         >
           <div className="container">
-            <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-              <StatisticsBox
-                answeredQuestions={this.state.answeredQuestions}
-                questions_api_url={this.props.questions_api_url}
-                categories={this.props.categories}
-                isModerator={this.props.isModerator}
-              />
+            <div class="row">
+              <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                <StatisticsBox
+                  answeredQuestions={this.state.answeredQuestions}
+                  questions_api_url={this.props.questions_api_url}
+                  categories={this.props.categories}
+                  isModerator={this.props.isModerator}
+                />
+              </div>
             </div>
           </div>
         </div>
