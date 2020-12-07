@@ -82,8 +82,25 @@ class CollectFeedbackPhase(phases.PhaseContent):
     }
 
 
+class AllPhase(phases.PhaseContent):
+    app = apps.Config.label
+    phase = 'all_feedback'
+    view = views.IdeaListView
+
+    name = _('Create and collect all the things')
+    description = _('Create new ideas and get feedback through rates and '
+                    'comments.')
+
+    features = {
+        'crud': (models.Idea,),
+        'comment': (models.Idea,),
+        'rate': (models.Idea,),
+    }
+
+
 phases.content.register(IssuePhase())
 phases.content.register(CollectPhase())
 phases.content.register(RatingPhase())
 phases.content.register(FeedbackPhase())
 phases.content.register(CollectFeedbackPhase())
+phases.content.register(AllPhase())

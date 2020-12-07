@@ -151,4 +151,17 @@ blueprints = [
          image='images/debate.svg',
          settings_model=None,
      )),
+    ('all-phase',
+     ProjectBlueprint(
+         title=_('All the Things'),
+         description=_(
+             'Participants can add ideas to be rated and commented on.'
+
+         ),
+         content=[
+             ideas_phases.AllPhase(),
+         ],
+         image='images/debate.svg',
+         settings_model=None,
+     )),
 ]
