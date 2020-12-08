@@ -1,18 +1,6 @@
 {% extends extends %}
 {% load i18n discovery_tags react_interactiveevents ckeditor_tags wagtailcore_tags static %}
 
-<!-- Extra blocks to ensure cookie banner for live stream -->
-{% block extra_css %}
-  {{ block.super }}
-    <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
-{% endblock %}
-
-{% block extra_js %}
-  {{ block.super }}
-    <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
-{% endblock %}
-
-
 {% block content %}
 <div class="row">
     <div class="col-md-10 offset-md-1">
