@@ -70,17 +70,17 @@ export default class QuestionUser extends React.Component {
             <div>
               {this.props.hasLikingPermission
                 ? (
-                  <button type="button" className={this.state.session_like ? 'btn btn--primary-filled u-body float-right px-3' : 'btn btn--primary float-right px-3'} onClick={this.handleLike.bind(this)}>
+                  <button type="button" className={this.state.session_like ? 'rating-button rating-up float-right px-3' : 'rating-button rating-up is-selected float-right px-3'} onClick={this.handleLike.bind(this)}>
                     <span>{this.state.likes} </span>
                     <span className="sr-only">{likesTag}</span>
-                    <i className="icon-like" aria-label={this.state.session_like ? addLikeTag : undoLikeTag} />
+                    <i className="fa fa-chevron-up" aria-label={this.state.session_like ? addLikeTag : undoLikeTag} />
                   </button>
                 )
                 : (
                   <div className="float-right">
                     <span className="text-muted">{this.state.likes}</span>
                     <span className="sr-only">{likesTag}</span>
-                    <i className="icon-like text-muted ml-1" aria-hidden="true" />
+                    <i className="fa fa-chevron-up text-muted ml-1" aria-hidden="true" />
                   </div>
                 )}
             </div>

@@ -30,7 +30,7 @@ export default class InfoBox extends React.Component {
       <div>
         {this.state.displayInfo
           ? (
-            <div className="alert alert--success alert-dismissible mb-2">
+            <div className="alert alert--success alert-dismissible my-2">
               {this.props.isModerator &&
                 <div className="row pt-4">
                   <div className="col-lg-3 pb-2 pb-xl-0">

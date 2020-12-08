@@ -10,7 +10,7 @@ export default class Filter extends React.Component {
 
   getButtonClass () {
     if (this.props.currentCategory === '-1') {
-      return 'btn btn--primary btn-round dropdown-toggle'
+      return 'dropdown-toggle btn btn--light btn--select'
     } else {
       return 'btn btn--secondary btn-round dropdown-toggle'
     }
@@ -29,6 +29,7 @@ export default class Filter extends React.Component {
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
           >
             {this.props.currentCategoryName}
+            <i className="fa fa-caret-down" aria-hidden="true" />
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <button className="dropdown-item" data-value={-1} onClick={this.selectCategory.bind(this)} href="#">{allTag}</button>
@@ -40,7 +41,7 @@ export default class Filter extends React.Component {
         {this.props.isModerator &&
           <div>
             <div className="checkbox-btn">
-              <label htmlFor="markedCheck" className="checkbox-btn__label--primary pl-3">
+              <label htmlFor="markedCheck" className="checkbox-btn__label--light pl-3">
                 <input
                   className="checkbox-btn__input"
                   type="checkbox"
@@ -55,7 +56,7 @@ export default class Filter extends React.Component {
               </label>
             </div>
             <div className="checkbox-btn">
-              <label htmlFor="displayNotHiddenOnly" className="checkbox-btn__label--primary pl-3">
+              <label htmlFor="displayNotHiddenOnly" className="checkbox-btn__label--light pl-3">
                 <input
                   className="checkbox-btn__input"
                   type="checkbox"
@@ -70,7 +71,7 @@ export default class Filter extends React.Component {
               </label>
             </div>
             <div className="checkbox-btn">
-              <label htmlFor="orderedByLikes" className="checkbox-btn__label--primary pl-3">
+              <label htmlFor="orderedByLikes" className="checkbox-btn__label--light pl-3">
                 <input
                   className="checkbox-btn__input"
                   type="checkbox"

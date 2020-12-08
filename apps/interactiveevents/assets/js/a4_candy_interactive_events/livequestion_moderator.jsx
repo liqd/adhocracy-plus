@@ -104,14 +104,14 @@ export default class QuestionModerator extends React.Component {
 
     return (
       <div className="list-group-item border border-bottom rounded-0 mb-2">
+        {this.props.category &&
+          <span className="label mb-2">{this.props.category}</span>}
         <div>
           <p className={'live_questions__text ' + (this.props.is_hidden ? 'text-muted u-text-decoration-line-through' : '')}>{this.props.children}</p>
         </div>
         <div className="row justify-content-between">
           <div className="col-12 col-md-4 col-sm-5 mb-3 mb-sm-0">
-            {this.props.category &&
-              <span className="label label--big mr-1">{this.props.category}</span>}
-            <span className="label label--big bg-primary">{this.state.likes}<i className="icon-like ml-2" /></span>
+            <div className="mt-2">{this.state.likes}<i className="fa fa-chevron-up ml-2" /></div>
           </div>
           <div className="col-12 col-md-8 col-sm-7">
             {this.props.displayIsHidden &&
