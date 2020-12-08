@@ -1,5 +1,6 @@
 import 'bootstrap' // load bootstrap components
 import 'django'
+import 'select2' // used to skin select element used in livequestions
 import 'slick-carousel' // for project timeline
 
 import './unload_warning.js'
@@ -53,6 +54,10 @@ function init () {
     slidesToShow: 1,
     slidesToScroll: 1
   })
+
+  if ($.fn.select2) {
+    $('.js-select2').select2()
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init, false)
