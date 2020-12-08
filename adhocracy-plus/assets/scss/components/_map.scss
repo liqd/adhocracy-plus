@@ -1,3 +1,5 @@
+$map-colour: #0076ae;
+
 .leaflet-popup-content {
     display: flex;
     flex-direction: row-reverse;
@@ -130,7 +132,7 @@
 .map-list-combined__list {
     overflow-y: auto;
     flex: 0 1 44vh;
-    background-color: $bg-secondary;
+    background-color: $map-colour;
 
     @media (min-width: $breakpoint) {
         flex: 0 1 30em;
@@ -142,18 +144,18 @@
 }
 
 .map-list-combined__icon {
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
+    background-color: $map-colour;
+    color: contrast-color($map-colour);
     line-height: 20px;
     text-align: center;
     border-radius: 50%;
-    box-shadow: 0 0 0 1px rgba(contrast-color($brand-secondary), 0.8);
+    box-shadow: 0 0 0 1px rgba(contrast-color($map-colour), 0.8);
 }
 
 .marker-cluster {
     background-clip: padding-box;
     border-radius: 20px;
-    background-color: rgba($brand-secondary, 0.6);
+    background-color: rgba($map-colour, 0.6);
 
     div {
         width: 30px;
@@ -163,7 +165,7 @@
         text-align: center;
         border-radius: 15px;
         font-size: 12px $font-family-base;
-        background-color: $brand-secondary;
+        background-color: $map-colour;
         color: $text-color-inverted;
         line-height: 30px;
     }
