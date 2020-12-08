@@ -297,10 +297,10 @@
     border: 0;
 }
 
-.checkbox-btn__label--primary {
+.checkbox-btn__label--light {
     .checkbox-btn__text {
         @extend .btn;
-        @extend .btn--primary;
+        @extend .btn--light;
     }
 
     input[type="checkbox"]:checked + .checkbox-btn__text {

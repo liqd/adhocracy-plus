@@ -66,20 +66,19 @@ export default class QuestionForm extends React.Component {
               </div>
               <div className="row">
                 <div className="mb-3 col-md-4">
-                  <div className="dropdown">
-                    <select
-                      name="categorySelect"
-                      id="categorySelect"
-                      className="btn btn--light live_questions__filters--select custom-select"
-                      onChange={this.selectCategory.bind(this)}
-                      required="required"
-                    >
-                      <option value="">---------</option>
-                      {Object.keys(this.props.category_dict).map((categoryPk, index) => {
-                        return <option key={index} value={categoryPk}>{this.props.category_dict[categoryPk]}</option>
-                      })}
-                    </select>
-                  </div>
+                  <select
+                    name="categorySelect"
+                    id="categorySelect"
+                    className="js-select2"
+                    onChange={this.selectCategory.bind(this)}
+                    required="required"
+                    data-minimum-results-for-search="Infinity"
+                  >
+                    <option value="">---------</option>
+                    {Object.keys(this.props.category_dict).map((categoryPk, index) => {
+                      return <option key={index} value={categoryPk}>{this.props.category_dict[categoryPk]}</option>
+                    })}
+                  </select>
                 </div>
               </div>
             </div>}
@@ -100,11 +99,12 @@ export default class QuestionForm extends React.Component {
           <div className="form-check">
             <label className="form-check__label">
               <input type="checkbox" name="data_protection" id="data_protection_check" required="required" />
+              &nbsp;
               {this.getPrivacyPolicyLabelWithLinks()}
             </label>
           </div>
           <div className="d-flex justify-content-end">
-            <input type="submit" value={django.gettext('Add Question')} className="submit-button" />
+            <input type="submit" value={django.gettext('Add Question')} className="btn" />
           </div>
         </form>
       </div>

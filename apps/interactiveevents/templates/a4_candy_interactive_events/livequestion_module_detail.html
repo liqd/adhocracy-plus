@@ -18,13 +18,13 @@
         {% for phase in module.phases %}
           {% if phase == module.active_phase and live_stream %}
               {{ live_stream.live_stream | transform_collapsibles | richtext }}
-              <div class="text-center">
-                <span class="label label--active">•{% trans ' Live now' %}</span>
+              <div>
+                <span class="label label--live">•{% trans ' Live now' %}</span>
               </div>
           {% endif %}
         {% endfor %}
 
-        <div class="text-center mb-4">
+        <div class="mb-4">
             <h3>{{ module.name }}</h3>
             <p>{{ module.description }}</p>
         </div>

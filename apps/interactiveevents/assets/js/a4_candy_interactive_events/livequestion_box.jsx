@@ -263,7 +263,7 @@ export default class QuestionBox extends React.Component {
                     isModerator={this.props.isModerator}
                   />
                   {this.props.isModerator &&
-                    <a className="btn btn--secondary ml-3" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
+                    <a className="btn btn--light ml-3" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
                       <span className="fa-stack fa-1x">
                         <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
                         <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
