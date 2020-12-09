@@ -21,3 +21,12 @@
 .livequestions__filters > .btn {
     min-width: 100%;
 }
+
+.live_questions__select > .select2-container {
+    min-width: 100%;
+    margin: 0 0 1rem;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        min-width: 15rem;
+    }
+}
