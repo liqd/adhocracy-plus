@@ -240,7 +240,17 @@ export default class QuestionBox extends React.Component {
               </div>}
             <div className="row mb-5">
               <div className="col-md-10 offset-md-1">
-                <div className="d-flex justify-content-center">
+                <div className="row">
+                  {this.props.isModerator &&
+                    <div className="livequestions__filters col-md order-lg-last">
+                      <a className="btn btn--light" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
+                        <span className="fa-stack fa-1x">
+                          <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
+                          <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                        </span>
+                        {django.gettext('display on screen')}
+                      </a>
+                    </div>}
                   <Filter
                     categories={this.props.categories}
                     currentCategory={this.state.category}
@@ -254,18 +264,11 @@ export default class QuestionBox extends React.Component {
                     toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
                     isModerator={this.props.isModerator}
                   />
-                  {this.props.isModerator &&
-                    <a className="btn btn--light ml-3" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
-                      <span className="fa-stack fa-1x">
-                        <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
-                        <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
-                      </span>
-                      {django.gettext('display on screen')}
-                    </a>}
                 </div>
                 <InfoBox
                   isModerator={this.props.isModerator}
                 />
+
                 <QuestionList
                   questions={this.state.filteredQuestions}
                   removeFromList={this.removeFromList.bind(this)}

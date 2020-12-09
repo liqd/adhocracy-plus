@@ -111,7 +111,7 @@ export default class QuestionModerator extends React.Component {
         </div>
         <div className="row justify-content-between">
           <div className="col-12 col-md-4 col-sm-5 mb-3 mb-sm-0">
-            <div className="mt-2">{this.state.likes}<i className="fa fa-chevron-up ml-2" /></div>
+            <div className="mt-2 text-primary">{this.state.likes}<i className="fa fa-chevron-up ml-2" /></div>
           </div>
           <div className="col-12 col-md-8 col-sm-7">
             {this.props.displayIsHidden &&
@@ -119,7 +119,7 @@ export default class QuestionModerator extends React.Component {
                 type="button" className="btn btn--transparent border-0 float-sm-right px-3"
                 onClick={this.toggleIshidden.bind(this)}
               >
-                <i className={this.props.is_hidden ? 'far fa-eye-slash text-muted' : 'far fa-eye u-text-tertiary'} aria-label={this.props.is_hidden ? hiddenText : undoHiddenText} />
+                <i className={this.props.is_hidden ? 'far fa-eye-slash text-primary' : 'far fa-eye text-muted'} aria-label={this.props.is_hidden ? hiddenText : undoHiddenText} />
               </button>}
 
             {this.props.displayIsAnswered &&
@@ -128,20 +128,20 @@ export default class QuestionModerator extends React.Component {
                 onClick={this.toggleIsAnswered.bind(this)}
               >
                 <i
-                  className={this.props.is_answered ? 'icon-answered u-text-tertiary px-1 text-muted' : 'icon-answered u-text-tertiary px-1 u-text-tertiary'}
+                  className={this.props.is_answered ? 'icon-answered px-1 text-primary' : 'icon-answered  text-muted px-1'}
                   aria-label={doneText}
                 />
               </button>}
             {this.props.displayIsLive &&
               <button type="button" className="btn btn--transparent border-0 float-sm-right px-3" onClick={this.toggleIslive.bind(this)}>
                 <span className="fa-stack fa-1x">
-                  <i className={this.state.is_live ? 'fas fa-tv fa-stack-2x text-muted' : 'fas fa-tv fa-stack-2x u-text-tertiary'} aria-label={this.state.is_live ? addLiveText : removeLiveText} />
-                  <i className={this.state.is_live ? 'fas fa-arrow-up fa-stack-1x fa-inverse text-muted' : 'fas fa-arrow-up fa-stack-1x u-text-tertiary'} aria-hidden="true" />
+                  <i className={this.state.is_live ? 'fas fa-tv fa-stack-2x text-primary' : 'fas fa-tv fa-stack-2x  text-muted'} aria-label={this.state.is_live ? addLiveText : removeLiveText} />
+                  <i className={this.state.is_live ? 'fas fa-arrow-up fa-stack-1x fa-inverse text-primary' : 'fas fa-arrow-up fa-stack-1x text-muted'} aria-hidden="true" />
                 </span>
               </button>}
             {this.props.displayIsOnShortlist &&
               <button type="button" className="btn btn--transparent border-0 float-sm-right px-3" onClick={this.toggleIsOnShortList.bind(this)}>
-                <i className={this.state.is_on_shortlist ? 'icon-in-list text-muted' : 'icon-push-in-list u-text-tertiary'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
+                <i className={this.state.is_on_shortlist ? 'icon-in-list text-primary' : 'icon-push-in-list text-muted'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
               </button>}
           </div>
         </div>
