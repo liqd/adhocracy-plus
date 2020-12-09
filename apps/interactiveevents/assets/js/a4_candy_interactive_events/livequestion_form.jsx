@@ -60,7 +60,7 @@ export default class QuestionForm extends React.Component {
           <h2>{django.gettext('Here you can ask your question')}</h2>
           {Object.keys(this.props.category_dict).length > 0 &&
             <div>
-              <label htmlFor="categorySelect">{django.gettext('Affiliation')}*</label>
+              <label className="mb-0" htmlFor="categorySelect">{django.gettext('Affiliation')}*</label>
               <div className="form-hint">
                 {django.gettext('Answered questions will be displayed in the statistics according to the chosen affiliation.')}
               </div>
@@ -69,7 +69,7 @@ export default class QuestionForm extends React.Component {
                   <select
                     name="categorySelect"
                     id="categorySelect"
-                    className="js-select2"
+                    className="custom-select"
                     onChange={this.selectCategory.bind(this)}
                     required="required"
                     data-minimum-results-for-search="Infinity"

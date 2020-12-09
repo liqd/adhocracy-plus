@@ -12,7 +12,7 @@ export default class Filter extends React.Component {
     if (this.props.currentCategory === '-1') {
       return 'dropdown-toggle btn btn--light btn--select'
     } else {
-      return 'btn btn--secondary btn-round dropdown-toggle'
+      return 'btn btn--secondary dropdown-toggle btn--select'
     }
   }
 
@@ -22,8 +22,8 @@ export default class Filter extends React.Component {
     const displayNotHiddenText = django.gettext('display only questions which are not hidden')
     const orderLikesText = django.gettext('order by likes')
     return (
-      <div className="form-inline">
-        <div className="dropdown">
+      <div className="form-inline col-12 col-lg-8 px-0">
+        <div className={'dropdown livequestions__filters' + (this.props.isModerator ? ' col-md-5 col-lg' : ' col-lg-7')}>
           <button
             className={this.getButtonClass()} type="button" id="dropdownMenuButton"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -39,9 +39,9 @@ export default class Filter extends React.Component {
           </div>
         </div>
         {this.props.isModerator &&
-          <div>
+          <div className="livequestions__filters col-md-7">
             <div className="checkbox-btn">
-              <label htmlFor="markedCheck" className="checkbox-btn__label--light pl-3">
+              <label htmlFor="markedCheck" className="checkbox-btn__label--light">
                 <input
                   className="checkbox-btn__input"
                   type="checkbox"
@@ -81,7 +81,7 @@ export default class Filter extends React.Component {
                   onChange={this.props.toggleOrdering} // eslint-disable-line react/jsx-handler-names
                 />
                 <span className="checkbox-btn__text">
-                  <i className="icon-like" aria-label={orderLikesText} /> likes
+                  <i className="fa fa-chevron-up" aria-label={orderLikesText} /> likes
                 </span>
               </label>
             </div>
