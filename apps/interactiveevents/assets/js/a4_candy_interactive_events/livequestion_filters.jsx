@@ -23,7 +23,7 @@ export default class Filter extends React.Component {
     const orderLikesText = django.gettext('order by likes')
     return (
       <div className="form-inline col-12 col-lg-8 px-0">
-        <div className={'dropdown livequestions__filters' + (this.props.isModerator ? ' col-md-5 col-lg' : ' col-lg-7')}>
+        <div className={'dropdown livequestions__filters' + (this.props.isModerator ? ' col-xl-6 pr-lg-0' : ' col-lg-7')}>
           <button
             className={this.getButtonClass()} type="button" id="dropdownMenuButton"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -39,7 +39,7 @@ export default class Filter extends React.Component {
           </div>
         </div>
         {this.props.isModerator &&
-          <div className="livequestions__filters col-md-7">
+          <div className="livequestions__filters col-xl-6">
             <div className="checkbox-btn">
               <label htmlFor="markedCheck" className="checkbox-btn__label--light">
                 <input
