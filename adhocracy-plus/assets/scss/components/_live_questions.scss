@@ -8,3 +8,16 @@
 .live_questions__text {
     overflow-wrap: break-word;
 }
+
+.livequestions__filters {
+    margin-bottom: $spacer;
+    padding: 0 $spacer;
+
+    @media (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
+        text-align: right;
+    }
+}
+
+.livequestions__filters > .btn {
+    min-width: 100%;
+}
