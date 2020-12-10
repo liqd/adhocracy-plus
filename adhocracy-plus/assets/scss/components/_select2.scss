@@ -30,6 +30,10 @@
         }
     }
 
+    .select2-selection--single .select2-selection__rendered {
+        padding-right: 2*$spacer;
+    }
+
     &.select2-container--open {
         .select2-selection--single > .select2-selection__arrow > b {
             border-width: 0 7px 7px 7px;
@@ -41,4 +45,8 @@
             opacity: 0.5;
         }
     }
+}
+
+.select2-dropdown {
+    border-radius: 0;
 }
