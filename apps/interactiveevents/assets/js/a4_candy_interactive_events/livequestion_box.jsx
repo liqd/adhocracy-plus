@@ -288,7 +288,7 @@ export default class QuestionBox extends React.Component {
                 />
               </div>
             </div>
-            <span id="question-list-end" />
+            <span className="livequestion_anchor" id="question-list-end" />
           </div>
         </div>
         <div
