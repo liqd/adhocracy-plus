@@ -5,6 +5,17 @@ import QuestionUser from './livequestion_user'
 import QuestionModerator from './livequestion_moderator'
 
 export default class StatisticsBox extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { answeredQuestions: props.answeredQuestions }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.answeredQuestions !== prevProps.answeredQuestions) {
+      this.setState({ answeredQuestions: this.props.answeredQuestions })
+    }
+  }
+
   updateQuestion (data, id) {
     const url = this.props.questions_api_url + id + '/'
     return updateItem(data, url, 'PATCH')
