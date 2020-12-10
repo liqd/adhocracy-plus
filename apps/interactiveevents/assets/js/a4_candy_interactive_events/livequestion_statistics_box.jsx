@@ -71,7 +71,7 @@ export default class StatisticsBox extends React.Component {
         {this.props.isModerator
           ? (
             <div className="list-group mt-md-4">
-              {this.props.answeredQuestions.map((question, index) => {
+              {this.state.answeredQuestions.map((question, index) => {
                 return (
                   <QuestionModerator
                     updateQuestion={this.updateQuestion.bind(this)}
@@ -97,7 +97,7 @@ export default class StatisticsBox extends React.Component {
           )
           : (
             <div className="list-group mt-3 mt-md-4">
-              {this.props.answeredQuestions.map((question, index) => {
+              {this.state.answeredQuestions.map((question, index) => {
                 return (
                   <QuestionUser
                     key={question.id}
