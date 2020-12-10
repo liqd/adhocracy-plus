@@ -87,7 +87,10 @@ $timeline-carousel__top-space: 12px;
         border-radius: 100%;
         border: 1px solid $border-color;
         background-color: $body-bg;
-        z-index: 1; //for when tile links overlap
+
+        @media screen and (min-width: $breakpoint) {
+            z-index: 1; //for when tile links overlap - on mobile people swipe
+        }
 
         &:hover,
         :focus {
