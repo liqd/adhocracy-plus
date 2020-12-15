@@ -242,7 +242,7 @@
                         {% endwith %}
                     {% endif %}
                 </div>
-                {% if not view.is_project_view %}
+                {% if not view.is_project_view and not event %}
                 <div class="container">
                     <div class="row">
                     {% if project.is_private %}
