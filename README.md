@@ -1,9 +1,9 @@
-# adhocracy+
+# Kosmo
 
-[adhocracy.plus](https://adhocracy.plus/) is a free Open-Source participation platform maintained and primarily developed by Liquid Democracy e.V.. It is based on [adhocracy 4](https://github.com/liqd/adhocracy4) and [Django](https://github.com/django/django).
+Kosmo is forked from adhocracy.plus. [adhocracy.plus](https://adhocracy.plus/) is a free Open-Source participation platform maintained and primarily developed by Liquid Democracy e.V.. It is based on [adhocracy 4](https://github.com/liqd/adhocracy4) and [Django](https://github.com/django/django).
 
-[![Build Status](https://travis-ci.org/liqd/adhocracy-plus.svg?branch=master)](https://travis-ci.org/liqd/adhocracy-plus)
-[![Coverage Status](https://coveralls.io/repos/github/liqd/adhocracy-plus/badge.svg?branch=master)](https://coveralls.io/github/liqd/adhocracy-plus?branch=master)
+[![Build Status](https://travis-ci.com/liqd/a4-kosmo.svg?branch=master)](https://travis-ci.com/github/liqd/a4-kosmo)
+[![Coverage Status](https://coveralls.io/repos/github/liqd/a4-kosmo/badge.svg?branch=master)](https://coveralls.io/github/liqd/a4-kosmo?branch=master)
 
 ## Getting started
 
@@ -19,7 +19,7 @@ adhocracy+ is designed to make online participation easy and accessible to every
 
 ### Installation:
 
-    git clone https://github.com/liqd/adhocracy-plus.git
+    git clone https://github.com/liqd/a4-kosmo.git
     cd adhocracy-plus
     make install
     make fixtures
