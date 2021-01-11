@@ -5,48 +5,48 @@
     {% block dashboard_nav %}
     <div class="tablist tablist--right tablist--background">
         <div class="container">
-        <div class="tablist__left d-flex">
-            {% if ORGANISATION.logo %}
-              {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
-                <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}" rel="home">
-                    <img src="{% thumbnail ORGANISATION.logo '0x160' %}" height="80" alt="{{ ORGANISATION.name }}" class="dashboard-nav__logo" />
-                </a>
-            {% else %}
-              <div class="dashboard-nav__logo-link">
-                <a class="font-weight-bold" href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
-                  <i class="fas fa-home pt-2" aria-label="{{ ORGANISATION.name }} {% trans 'Home' %}"></i>
-                </a>
-              </div>
-            {% endif %}
-            <div class="dropdown">
-                {% if view.other_organisations_of_user %}
-                    <button
-                            title="{% trans 'Organisations' %}"
-                            type="button"
-                            class="dropdown-toggle btn btn--none btn--small"
-                            data-toggle="dropdown"
-                            data-flip="false"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            id="organisation-selection"
-                    >
-                        {{ view.organisation.name }}
-                        <i class="fa fa-caret-down" aria-hidden="true"></i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="organisation-selection">
-                        {% for organisation in view.other_organisations_of_user %}
-                            <a
-                                class="dropdown-item"
-                                href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
-                                {{ organisation.name }}
-                            </a>
-                        {% endfor %}
-                    </div>
+            <div class="tablist__left d-flex">
+                {% if ORGANISATION.logo %}
+                  {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
+                    <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}" rel="home">
+                        <img src="{% thumbnail ORGANISATION.logo '0x160' %}" height="80" alt="{{ ORGANISATION.name }}" class="dashboard-nav__logo" />
+                    </a>
                 {% else %}
-                    <span class="btn btn--none btn--small">{{ view.organisation.name }}</span>
+                  <div class="dashboard-nav__logo-link">
+                    <a class="font-weight-bold" href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
+                      <i class="fas fa-home pt-2" aria-label="{{ ORGANISATION.name }} {% trans 'Home' %}"></i>
+                    </a>
+                  </div>
                 {% endif %}
+                <div class="dropdown">
+                    {% if view.other_organisations_of_user %}
+                        <button
+                                title="{% trans 'Organisations' %}"
+                                type="button"
+                                class="dropdown-toggle btn btn--none btn--small"
+                                data-toggle="dropdown"
+                                data-flip="false"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                id="organisation-selection"
+                        >
+                            {{ view.organisation.name }}
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="organisation-selection">
+                            {% for organisation in view.other_organisations_of_user %}
+                                <a
+                                    class="dropdown-item"
+                                    href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
+                                    {{ organisation.name }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <span class="btn btn--none btn--small">{{ view.organisation.name }}</span>
+                    {% endif %}
+                </div>
             </div>
-          </div>
 
             <nav class="d-none d-sm-inline-block" aria-label="{% trans 'Dashboard' %}">
                 <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
@@ -109,8 +109,6 @@
                   </div>
                 </li>
             </ul>
-
-
         </div>
     </div>
     {% endblock %}
