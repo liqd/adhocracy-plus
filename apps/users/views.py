@@ -1,6 +1,8 @@
+from django.db.models import Q
 from django.views.generic.detail import DetailView
 
 from adhocracy4.actions.models import Action
+from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 from apps.organisations.models import Organisation
 
@@ -13,8 +15,9 @@ class ProfileView(DetailView):
 
     @property
     def projects(self):
-        return Project.objects.filter(follow__creator=self.object,
-                                      follow__enabled=True)
+        return Project.objects \
+            .filter(follow__creator=self.object, follow__enabled=True) \
+            .filter(Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC))
 
     @property
     def organisations(self):
