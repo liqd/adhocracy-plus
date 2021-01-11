@@ -21,33 +21,54 @@
         </div>
     </div>
 
-    <div class="row pt-4 bg-white">
+    <div class="container">
+        <div class="row pt-4">
 
-        <div class="col-md-2 offset-2">
-            <div
-                class="tabpanel userdashboard-profile userdashboard-profile__side"
-                id="userdashboard-user-{{ user.pk }}-tile"
-                role="tabpanel"
-                aria-labelledby="userdashboard-{{ user.pk }}-tile"
-                aria-expanded="false">
-                <a href="{% url 'profile' user.username %}">
-                    {% if user.avatar %}
-                        <img class="userdashboard-profile__avatar mb-2" src="{% thumbnail user.avatar '170x170' crop %}" alt="" />
-                    {% else %}
-                        <img class="userdashboard-profile__avatar mb-2" src="{{ user.avatar_fallback }}" width="170" height="170" alt="" />
-                    {% endif %}
-                </a>
+            <div class="col-md-3">
+                <div
+                    class="tabpanel userdashboard-profile userdashboard-profile__side"
+                    id="userdashboard-user-{{ user.pk }}-tile"
+                    role="tabpanel"
+                    aria-labelledby="userdashboard-{{ user.pk }}-tile"
+                    aria-expanded="false">
+                    <div class="userdashboard-profile__user">
+                        <a href="{% url 'profile' user.username %}">
+                            {% if user.avatar %}
+                                <img class="userdashboard-profile__avatar mb-2" src="{% thumbnail user.avatar '170x170' crop %}" alt="" />
+                            {% else %}
+                                <img class="userdashboard-profile__avatar mb-2" src="{{ user.avatar_fallback }}" width="170" height="170" alt="" />
+                            {% endif %}
+                        </a>
 
-                <h1 class="mt-0 u-word-break-all">
-                {{ user.username }}
-                </h1>
+                        <h3 class="mt-0 u-word-break-all">
+                        {{ user.username }}
+                        </h3>
+                        <div>
+                            {% trans 'Since' %} {{ request.user.date_joined|date:"d M Y" }}
+                        </div>
+                    </div>
+                    <div>
+                      <h3>{% trans 'Organisations' %}</h3>
+                      {% for organisation in view.organisations %}
+                      <a class="btn btn--link text-decoration-none text-muted" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
+                        {% if organisation.logo %}
+                              <img src="{% thumbnail organisation.logo '0x160' %}" height="80" alt="{{ orgnaisation.name }}" class="dashboard-nav__logo" />
+                        {% else %}
+                              <i class="fas fa-home pt-2" aria-label="{{ orgnaisation.name }} {% trans 'Home' %}"></i>
+                        {% endif %}
+                              &nbsp {{ organisation.name }}
+                          </a>
+                      {% endfor %}
+
+                    </div>
+                </div>
             </div>
-        </div>
-        {% endblock %}
-
-        <div class="col-md-6">
-            {% block dashboard_content %}
             {% endblock %}
+
+            <div class="col-md-9">
+                {% block dashboard_content %}
+                {% endblock %}
+            </div>
         </div>
     </div>
 {% endblock %}

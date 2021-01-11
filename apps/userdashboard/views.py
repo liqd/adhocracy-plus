@@ -1,7 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins
+from adhocracy4.projects.enums import Access
+from adhocracy4.projects.models import Project
+from apps.organisations.models import Organisation
 from apps.users.models import User
 
 
@@ -18,6 +22,19 @@ class UserDashboardOverviewView(LoginRequiredMixin,
     def get(self, request):
         response = self.render_to_response(self.get_context_data())
         return response
+
+    @property
+    def organisations(self):
+        return Organisation.objects.filter(
+            project__follow__creator=self.request.user,
+            project__follow__enabled=True
+        ).distinct()
+
+    @property
+    def projects(self):
+        return Project.objects \
+            .filter(follow__creator=self.request.user, follow__enabled=True) \
+            .filter(Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC))
 
 
 class UserDashboardModerationView(LoginRequiredMixin,

@@ -1,3 +1,16 @@
 {% extends "a4_candy_userdashboard/base_userdashboard.html" %}
+{% load i18n thumbnail %}
 
-{% block dashboard_content %}{% endblock %}
+{% block dashboard_content %}
+
+<h3 class="mt-0">{% trans 'Following' %}</h3>
+<div class="row">
+{% for project in view.projects %}
+<div class="col-sm-6 col-lg-4">
+        {% include 'a4_candy_projects/includes/project_tile_userprofile.html' with project=project orientation='vertical' %}
+</div>
+{% empty %}
+    {% trans 'This user is not active in any projects yet.' %}
+{% endfor %}
+</div>
+{% endblock %}
