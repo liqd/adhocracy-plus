@@ -1,5 +1,6 @@
 from django.views import generic
 
+from adhocracy4.rules import mixins as rules_mixins
 from apps.users.models import User
 
 
@@ -17,12 +18,14 @@ class UserDashboardOverviewView(generic.base.ContextMixin,
         return response
 
 
-class UserDashboardModerationView(generic.base.ContextMixin,
+class UserDashboardModerationView(rules_mixins.PermissionRequiredMixin,
+                                  generic.base.ContextMixin,
                                   generic.base.TemplateResponseMixin,
                                   generic.base.View):
 
     model = User
     template_name = 'a4_candy_userdashboard/userdashboard_moderation.html'
+    permission_required = 'a4_candy_userdashboard.view_moderation_dashboard'
     menu_item = 'moderation'
 
     def get(self, request):
