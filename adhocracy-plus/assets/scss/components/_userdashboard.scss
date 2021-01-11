@@ -1,0 +1,32 @@
+.userdashboard-profile__side {
+    padding: $padding;
+    min-height: 100%;
+    text-align: center;
+    border: 1px solid #dadada;
+}
+
+.userdashboard-profile__avatar {
+    border-radius: 50%;
+    shape-outside: circle();
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.1);
+    position: relative;
+
+    ~ h2 {
+        clear: both;
+    }
+}
+
+.userdashboard-profile__main {
+    padding: 0 $padding;
+}
+
+@media (min-width: $breakpoint) {
+    /* Ensure that info sidebar is always visible in sm
+       and above and only a tab in sm
+     */
+
+    .userdashboard-profile__side {
+        display: block;
+        padding: 2*$padding;
+    }
+}
