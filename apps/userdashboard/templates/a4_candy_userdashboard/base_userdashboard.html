@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n thumbnail %}
+
+{% block content %}
+    {% block dashboard_nav %}
+    <div class="tablist tablist--left tablist--background">
+        <div class="container">
+            <nav class="d-none d-sm-inline-block" aria-label="{% trans 'Dashboard' %}">
+                <a href="{% url 'userdashboard-overview' %}"
+                   class="tab {% ifequal view.menu_item 'overview' %}active{% endifequal %}">
+                    {% trans 'Overview' %}
+                </a>
+                <a href="{% url 'userdashboard-moderation' %}"
+                   class="tab {% ifequal view.menu_item 'moderation' %}active{% endifequal %}">
+                    {% trans 'Moderation' %}
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row pt-4 bg-white">
+
+        <div class="col-md-2 offset-2">
+            <div
+                class="tabpanel userdashboard-profile userdashboard-profile__side"
+                id="userdashboard-user-{{ user.pk }}-tile"
+                role="tabpanel"
+                aria-labelledby="userdashboard-{{ user.pk }}-tile"
+                aria-expanded="false">
+                <a href="{% url 'profile' user.username %}">
+                    {% if user.avatar %}
+                        <img class="userdashboard-profile__avatar mb-2" src="{% thumbnail user.avatar '170x170' crop %}" alt="" />
+                    {% else %}
+                        <img class="userdashboard-profile__avatar mb-2" src="{{ user.avatar_fallback }}" width="170" height="170" alt="" />
+                    {% endif %}
+                </a>
+
+                <h1 class="mt-0 u-word-break-all">
+                {{ user.username }}
+                </h1>
+            </div>
+        </div>
+        {% endblock %}
+
+        <div class="col-md-6">
+            {% block dashboard_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
