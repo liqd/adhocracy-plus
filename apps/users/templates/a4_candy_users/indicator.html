@@ -45,10 +45,11 @@
             {% endfor %}
 
             <form class="form--inline" action="{% url 'account_logout' %}" method="post" aria-label="{% trans 'Logout' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ redirect_field_value }}">
-                    <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ redirect_field_value }}"/>
+                <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
             </form>
+
         </div>
 
     {% else %}

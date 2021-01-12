@@ -1,10 +1,12 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins
 from apps.users.models import User
 
 
-class UserDashboardOverviewView(generic.base.ContextMixin,
+class UserDashboardOverviewView(LoginRequiredMixin,
+                                generic.base.ContextMixin,
                                 generic.base.TemplateResponseMixin,
                                 generic.base.View,
                                 ):
@@ -18,7 +20,8 @@ class UserDashboardOverviewView(generic.base.ContextMixin,
         return response
 
 
-class UserDashboardModerationView(rules_mixins.PermissionRequiredMixin,
+class UserDashboardModerationView(LoginRequiredMixin,
+                                  rules_mixins.PermissionRequiredMixin,
                                   generic.base.ContextMixin,
                                   generic.base.TemplateResponseMixin,
                                   generic.base.View):
