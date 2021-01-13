@@ -31,35 +31,71 @@
                     role="tabpanel"
                     aria-labelledby="userdashboard-{{ user.pk }}-tile"
                     aria-expanded="false">
+
                     <div class="userdashboard-profile__user">
+                        <div class="dropdown text-right">
+                            <button
+                                title="{% trans 'Settings' %}"
+                                type="button"
+                                class="dropdown-toggle btn btn--none btn--small"
+                                data-toggle="dropdown"
+                                data-flip="false"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                id="account-settings"
+                            >
+                                <i class="fa fa-ellipsis-v" aria-label="{% trans 'Settings' %}"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="account-settings">
+                                <a class="dropdown-item" href="{% url 'account' %}">{% trans 'Account Settings' %}</a>
+                            </div>
+                        </div>
+
                         <a href="{% url 'profile' user.username %}">
                             {% if user.avatar %}
                                 <img class="userdashboard-profile__avatar mb-2" src="{% thumbnail user.avatar '170x170' crop %}" alt="" />
                             {% else %}
                                 <img class="userdashboard-profile__avatar mb-2" src="{{ user.avatar_fallback }}" width="170" height="170" alt="" />
                             {% endif %}
+                            <h3 class="mt-0 u-word-break-all">
+                            {{ user.username }}
+                            </h3>
                         </a>
-
-                        <h3 class="mt-0 u-word-break-all">
-                        {{ user.username }}
-                        </h3>
                         <div>
                             {% trans 'Since' %} {{ request.user.date_joined|date:"d M Y" }}
                         </div>
                     </div>
-                    <div>
-                      <h3>{% trans 'Organisations' %}</h3>
-                      {% for organisation in view.organisations %}
-                      <a class="btn btn--link text-decoration-none text-muted" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
-                        {% if organisation.logo %}
-                              <img src="{% thumbnail organisation.logo '0x160' %}" height="80" alt="{{ orgnaisation.name }}" class="dashboard-nav__logo" />
-                        {% else %}
-                              <i class="fas fa-home pt-2" aria-label="{{ orgnaisation.name }} {% trans 'Home' %}"></i>
-                        {% endif %}
-                              &nbsp {{ organisation.name }}
-                          </a>
-                      {% endfor %}
 
+                    {% if request.user.organisations %}
+                    <div>
+                      <h3>{% trans 'Initiator Organisations' %}</h3>
+                      {% for organisation in request.user.organisations %}
+                      <div>
+                          <a class="btn btn--link text-decoration-none text-muted" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
+                            {% if organisation.logo %}
+                              <img src="{% thumbnail organisation.logo '0x40' %}" alt="{{ orgnaisation.name }}" />
+                            {% else %}
+                              <i class="fas fa-edit font--lg pt-1" aria-label="{{ orgnaisation.name }} {% trans 'Home' %}"></i>
+                            {% endif %}
+                            &nbsp{{ organisation.name }}
+                          </a>
+                      </div>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div>
+                        <h3>{% trans 'Organisations' %}</h3>
+                        {% for organisation in view.organisations %}
+                        <a class="btn btn--link text-decoration-none text-muted" href="{% url 'organisation' organisation_slug=organisation.slug %}">
+                          {% if organisation.logo %}
+                            <img src="{% thumbnail organisation.logo '0x40' %}" alt="{{ orgnaisation.name }}" />
+                          {% else %}
+                            <i class="fas fa-home fa--lg pt-1" aria-label="{{ orgnaisation.name }} {% trans 'Home' %}"></i>
+                          {% endif %}
+                            &nbsp {{ organisation.name }}
+                        </a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

@@ -261,7 +261,8 @@ THUMBNAIL_ALIASES = {
         'idea_thumbnail': {'size': (240, 240), 'crop': 'smart'},
         'avatar': {'size': (200, 200), 'crop': 'smart'},
         'item_image': {'size': (330, 0), 'crop': 'scale'},
-        'map_thumbnail': {'size': (200, 200), 'crop': 'smart'}
+        'map_thumbnail': {'size': (200, 200), 'crop': 'smart'},
+        'tiny_thumbnail': {'size': (50, 50), 'crop': 'smart'}
     }
 }
 
