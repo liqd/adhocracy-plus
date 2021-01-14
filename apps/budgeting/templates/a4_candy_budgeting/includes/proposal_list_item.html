@@ -41,7 +41,7 @@
         {% endif %}
     </div>
     <span class="list-item__author">
-        {{ object.creator.username }}
+      <a href="{% url 'profile' object.creator.username %}">{{ object.creator.username }}</a>
     </span>
     {% html_date object.created class='list-item__date' %}
 </li>
