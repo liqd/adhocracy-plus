@@ -16,8 +16,11 @@ class ProfileView(DetailView):
     @property
     def projects(self):
         return Project.objects \
-            .filter(follow__creator=self.object, follow__enabled=True) \
-            .filter(Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC))
+            .filter(follow__creator=self.object,
+                    follow__enabled=True,
+                    is_draft=False) \
+            .filter(Q(access=Access.PUBLIC) |
+                    Q(access=Access.SEMIPUBLIC))
 
     @property
     def organisations(self):
