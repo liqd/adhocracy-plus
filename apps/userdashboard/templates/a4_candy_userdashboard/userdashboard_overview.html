@@ -12,6 +12,9 @@
 {% empty %}
     {% trans 'This user is not active in any projects yet.' %}
 {% endfor %}
+{% if view.projects.count > 9 %}
+  <a class="btn btn--light" href="{% url 'userdashboard-following' %}">{% trans 'View more' %}</a>
+{% endif %}
 </div>
 
 {% for action in view.actions|slice:":5" %}
@@ -20,6 +23,6 @@
     {% trans 'No activity yet. '%}
 {% endfor %}
 {% if view.actions.count > 5 %}
-  <a href="{% url 'userdashboard-activities' %}">{% trans 'View more' %}</a>
+  <a class="btn btn--light" href="{% url 'userdashboard-activities' %}">{% trans 'View more' %}</a>
 {% endif %}
 {% endblock %}
