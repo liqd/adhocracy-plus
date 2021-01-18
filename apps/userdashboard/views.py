@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
+from adhocracy4.actions.models import Action
 from adhocracy4.projects.models import Project
 from adhocracy4.rules import mixins as rules_mixins
 from apps.organisations.models import Organisation
@@ -32,6 +33,12 @@ class UserDashboardOverviewView(LoginRequiredMixin,
     def projects(self):
         return Project.objects.filter(follow__creator=self.request.user,
                                       follow__enabled=True)
+
+    @property
+    def actions(self):
+        return Action.objects.filter(
+            actor=self.request.user,
+        ).exclude_updates()[:5]
 
 
 class UserDashboardModerationView(LoginRequiredMixin,

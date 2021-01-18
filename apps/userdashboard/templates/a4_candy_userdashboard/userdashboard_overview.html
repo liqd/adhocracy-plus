@@ -13,4 +13,11 @@
     {% trans 'This user is not active in any projects yet.' %}
 {% endfor %}
 </div>
+
+{% for action in view.actions %}
+        {% include 'a4_candy_actions/includes/action.html' with action=action %}
+{% empty %}
+    {% trans 'No activity yet. '%}
+{% endfor %}
+
 {% endblock %}
