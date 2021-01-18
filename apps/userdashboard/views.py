@@ -38,7 +38,7 @@ class UserDashboardOverviewView(LoginRequiredMixin,
     def actions(self):
         return Action.objects.filter(
             actor=self.request.user,
-        ).exclude_updates()[:5]
+        ).exclude_updates()
 
 
 class UserDashboardModerationView(LoginRequiredMixin,
@@ -62,3 +62,23 @@ class UserDashboardModerationView(LoginRequiredMixin,
             project__follow__creator=self.request.user,
             project__follow__enabled=True
         ).distinct()
+
+
+class UserDashboardActivitiesView(LoginRequiredMixin,
+                                  generic.base.ContextMixin,
+                                  generic.base.TemplateResponseMixin,
+                                  generic.base.View,
+                                  ):
+
+    model = User
+    template_name = 'a4_candy_userdashboard/userdashboard_activities.html'
+
+    def get(self, request):
+        response = self.render_to_response(self.get_context_data())
+        return response
+
+    @property
+    def actions(self):
+        return Action.objects.filter(
+            actor=self.request.user,
+        ).exclude_updates()

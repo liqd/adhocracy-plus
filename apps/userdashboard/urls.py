@@ -9,4 +9,7 @@ urlpatterns = [
     url(r'^moderation/$',
         views.UserDashboardModerationView.as_view(),
         name='userdashboard-moderation'),
+    url(r'^overview/activities/$',
+        views.UserDashboardActivitiesView.as_view(),
+        name='userdashboard-activities'),
 ]

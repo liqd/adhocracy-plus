@@ -14,10 +14,12 @@
 {% endfor %}
 </div>
 
-{% for action in view.actions %}
+{% for action in view.actions|slice:":5" %}
         {% include 'a4_candy_actions/includes/action.html' with action=action %}
 {% empty %}
     {% trans 'No activity yet. '%}
 {% endfor %}
-
+{% if view.actions.count > 5 %}
+  <a href="{% url 'userdashboard-activities' %}">{% trans 'View more' %}</a>
+{% endif %}
 {% endblock %}
