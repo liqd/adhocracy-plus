@@ -1,153 +1,155 @@
-$timeline-carousel__top-space: 12px;
+.timeline-carousel__wrapper {
+    $timeline-carousel__top-space: 12px;
 
-.timeline-carousel__container {
-    max-width: 1140px; //same width as widest container
-}
-
-.timeline-carousel__item { //to stop items displaying as a list before js is initialized
-    visibility: hidden;
-
-    &.slick-initialized {
-        visibility: visible;
-    }
-}
-
-.timeline-carousel__dot {
-    display: inline-block;
-    background-color: $border-color;
-    padding: 0;
-    margin-bottom: 3px;
-    border-radius: 50%;
-    height: 12px;
-    width: 12px;
-    vertical-align: middle;
-    transition: transform 0.2s;
-    transform-origin: 50% 50%;
-}
-
-.timeline-carousel__label {
-    padding: $padding;
-    margin-top: 2*$spacer;
-    color: $text-color-gray;
-    border: 1px solid $text-color-gray;
-    background-color: $body-bg;
-    text-align: left;
-    transition: transform 0.2s;
-    transform-origin: 50% 50%;
-}
-
-.timeline-carousel__line {
-    position: absolute;
-    left: $spacer;
-    right: $spacer;
-    top: $timeline-carousel__top-space;
-    border-top: 1px dotted $border-color;
-}
-
-//slick overwrites
-.slick-slide {
-    margin: 0 3*$spacer;
-    min-width: 275px;
-
-    & a {
-        text-decoration: none;
+    .timeline-carousel__container {
+        max-width: 1140px; //same width as widest container
     }
 
-    :focus,
-    :hover {
-        outline: none;
+    .timeline-carousel__item { //to stop items displaying as a list before js is initialized
+        visibility: hidden;
 
-        .timeline-carousel__dot {
+        &.slick-initialized {
+            visibility: visible;
+        }
+    }
+
+    .timeline-carousel__dot {
+        display: inline-block;
+        background-color: $border-color;
+        padding: 0;
+        margin-bottom: 3px;
+        border-radius: 50%;
+        height: 12px;
+        width: 12px;
+        vertical-align: middle;
+        transition: transform 0.2s;
+        transform-origin: 50% 50%;
+    }
+
+    .timeline-carousel__label {
+        padding: $padding;
+        margin-top: 2*$spacer;
+        color: $text-color-gray;
+        border: 1px solid $text-color-gray;
+        background-color: $body-bg;
+        text-align: left;
+        transition: transform 0.2s;
+        transform-origin: 50% 50%;
+    }
+
+    .timeline-carousel__line {
+        position: absolute;
+        left: $spacer;
+        right: $spacer;
+        top: $timeline-carousel__top-space;
+        border-top: 1px dotted $border-color;
+    }
+
+    //slick overwrites
+    .slick-slide {
+        margin: 0 3*$spacer;
+        min-width: 275px;
+
+        & a {
+            text-decoration: none;
+        }
+
+        :focus,
+        :hover {
+            outline: none;
+
+            .timeline-carousel__dot {
+                transform: scale(1.85);
+            }
+
+            .timeline-carousel__label {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .slick-track {
+        padding-bottom: $padding;
+    }
+
+    .timeline-carousel {
+        position: relative;
+        color: $brand-primary;
+        text-align: center;
+        margin: $spacer 0;
+
+        //slick overwrites - nested for specificity
+        .slick-prev,
+        .slick-next {
+            top: $timeline-carousel__top-space;
+            text-align: center;
+            width: 25px;
+            height: 25px;
+            border-radius: 100%;
+            border: 1px solid $border-color;
+            background-color: $body-bg;
+
+            @media screen and (min-width: $breakpoint) {
+                z-index: 1; //for when tile links overlap - on mobile people swipe
+            }
+
+            &:hover,
+            :focus {
+                background-color: $body-bg;
+            }
+
+            &:before {
+                color: $brand-primary;
+                opacity: 1;
+                font-family: "Font Awesome 5 Free", sans-serif;
+                font-weight: 900;
+                font-size: $font-size-lg;
+                line-height: 1.3rem;
+            }
+        }
+
+        .slick-prev:before {
+            content: '\f104'; // angle-left
+        }
+
+        .slick-next:before {
+            content: '\f105'; // angle-right
+        }
+    }
+
+    //mobile slick overwrites
+    @media screen and (max-width: $breakpoint-xl-down) {
+        .slick-next {
+            right: 0 !important;
+        }
+
+        .slick-prev {
+            left: 0 !important;
+        }
+    }
+
+    .initial {
+        background: $body-bg;
+        color: $text-color;
+        border: 2px solid $brand-primary;
+
+        &.timeline-carousel__label {
+            padding: 1.5*$padding;
+
+            .timeline-carousel__title {
+                font-weight: bold;
+            }
+        }
+
+        &.timeline-carousel__dot {
             transform: scale(1.85);
         }
+    }
 
-        .timeline-carousel__label {
-            transform: scale(1.05);
+    @media screen and (min-width: $breakpoint-md) {
+        .timeline-carousel__wrapper {
+            margin-top: 4*$r-spacer;
+            margin-bottom: 3*$r-spacer;
         }
-    }
-}
-
-.slick-track {
-    padding-bottom: $padding;
-}
-
-.timeline-carousel {
-    position: relative;
-    color: $brand-primary;
-    text-align: center;
-    margin: $spacer 0;
-
-    //slick overwrites - nested for specificity
-    .slick-prev,
-    .slick-next {
-        top: $timeline-carousel__top-space;
-        text-align: center;
-        width: 25px;
-        height: 25px;
-        border-radius: 100%;
-        border: 1px solid $border-color;
-        background-color: $body-bg;
-
-        @media screen and (min-width: $breakpoint) {
-            z-index: 1; //for when tile links overlap - on mobile people swipe
-        }
-
-        &:hover,
-        :focus {
-            background-color: $body-bg;
-        }
-
-        &:before {
-            color: $brand-primary;
-            opacity: 1;
-            font-family: "Font Awesome 5 Free", sans-serif;
-            font-weight: 900;
-            font-size: $font-size-lg;
-            line-height: 1.3rem;
-        }
-    }
-
-    .slick-prev:before {
-        content: '\f104'; // angle-left
-    }
-
-    .slick-next:before {
-        content: '\f105'; // angle-right
-    }
-}
-
-//mobile slick overwrites
-@media screen and (max-width: $breakpoint-xl-down) {
-    .slick-next {
-        right: 0 !important;
-    }
-
-    .slick-prev {
-        left: 0 !important;
-    }
-}
-
-.initial {
-    background: $body-bg;
-    color: $text-color;
-    border: 2px solid $brand-primary;
-
-    &.timeline-carousel__label {
-        padding: 1.5*$padding;
-
-        .timeline-carousel__title {
-            font-weight: bold;
-        }
-    }
-
-    &.timeline-carousel__dot {
-        transform: scale(1.85);
-    }
-}
-
-@media screen and (min-width: $breakpoint-md) {
-    .timeline-carousel__wrapper {
-        margin-top: 4*$r-spacer;
-        margin-bottom: 3*$r-spacer;
     }
 }

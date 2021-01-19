@@ -1,0 +1,81 @@
+.project-tile-carousel {
+    position: relative;
+    margin: $spacer 0;
+
+    //slick overwrites - nested for specificity
+    .slick-slide {
+        margin: 0 $spacer;
+
+        :focus,
+        :hover {
+            outline: none;
+
+            .project-tile-carousel__dot {
+                transform: scale(1.85);
+            }
+
+            .project-tile-carousel__label {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .slick-track {
+        padding-bottom: $padding;
+    }
+
+    .slick-prev,
+    .slick-next {
+        top: 40%;
+        text-align: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        border: 1px solid $border-color;
+        background-color: $body-bg;
+
+        @media screen and (min-width: $breakpoint) {
+            z-index: 1; //for when tile links overlap - on mobile people swipe
+        }
+
+        &:hover,
+        :focus {
+            background-color: $body-bg;
+        }
+
+        &:before {
+            color: $gray-dark;
+            opacity: 1;
+            font-family: "Font Awesome 5 Free", sans-serif;
+            font-weight: 900;
+            font-size: $font-size-lg;
+            line-height: 1.3rem;
+        }
+    }
+
+    .slick-prev:before {
+        content: '\f104'; // angle-left
+    }
+
+    .slick-next:before {
+        content: '\f105'; // angle-right
+    }
+}
+
+//mobile slick overwrites
+@media screen and (max-width: $breakpoint-xl-down) {
+    .slick-next {
+        right: 0 !important;
+    }
+
+    .slick-prev {
+        left: 0 !important;
+    }
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    .project-tile-carousel__wrapper {
+        margin-top: 4*$r-spacer;
+        margin-bottom: 3*$r-spacer;
+    }
+}

@@ -55,6 +55,20 @@ function init () {
     slidesToScroll: 1
   })
 
+  $('.project-tile-carousel').slick({
+    initialSlide: 0,
+    focusOnSelect: false,
+    centerMode: false,
+    dots: false,
+    arrows: true,
+    centerPadding: 30,
+    mobileFirst: true,
+    infinite: false,
+    variableWidth: false,
+    slidesToShow: 3,
+    slidesToScroll: 1
+  })
+
   if ($.fn.select2) {
     $('.js-select2').select2()
   }
