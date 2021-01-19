@@ -23,6 +23,13 @@ class ProfileView(DetailView):
                     Q(access=Access.SEMIPUBLIC))
 
     @property
+    def projects_carousel(self):
+        sorted_active_projects, sorted_future_projects, sorted_past_projects =\
+            self.object.get_projects_follow_list()
+        return (list(sorted_active_projects) +
+                list(sorted_future_projects))[:9]
+
+    @property
     def organisations(self):
         return Organisation.objects.filter(
             project__follow__creator=self.object,
@@ -33,4 +40,4 @@ class ProfileView(DetailView):
     def actions(self):
         return Action.objects.filter(
             actor=self.object,
-        ).filter_public().exclude_updates()
+        ).filter_public().exclude_updates()[:25]
