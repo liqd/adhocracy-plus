@@ -22,7 +22,7 @@
     </div>
 
     <div class="container">
-        <div class="row py-4">
+        <div class="row py-4 mb-5">
 
             <div class="col-md-3">
                 <div
@@ -91,7 +91,7 @@
                           {% if organisation.logo %}
                             <img src="{% thumbnail organisation.logo '0x40' %}" alt="{{ orgnaisation.name }}" />
                           {% else %}
-                            <i class="fas fa-home fa--lg pt-1" aria-label="{{ orgnaisation.name }} {% trans 'Home' %}"></i>
+                            <i class="fas fa-home font--lg pt-1" aria-label="{{ orgnaisation.name }} {% trans 'Home' %}"></i>
                           {% endif %}
                             &nbsp {{ organisation.name }}
                         </a>

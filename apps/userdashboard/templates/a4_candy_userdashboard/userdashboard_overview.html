@@ -10,19 +10,22 @@
         {% include 'a4_candy_projects/includes/project_tile_userprofile.html' with project=project orientation='vertical' %}
 </div>
 {% empty %}
+<div class="col-sm-6 col-lg-4">
     {% trans 'This user is not active in any projects yet.' %}
+</div>
 {% endfor %}
 {% if view.projects.count > 9 %}
   <a class="btn btn--light" href="{% url 'userdashboard-following' %}">{% trans 'View more' %}</a>
 {% endif %}
 </div>
 
+<h3>{% trans 'Activities' %}</h3>
 {% for action in view.actions|slice:":5" %}
         {% include 'a4_candy_actions/includes/action.html' with action=action %}
 {% empty %}
     {% trans 'No activity yet. '%}
 {% endfor %}
 {% if view.actions.count > 5 %}
-  <a class="btn btn--light" href="{% url 'userdashboard-activities' %}">{% trans 'View more' %}</a>
+  <a class="btn btn--light mt-4" href="{% url 'userdashboard-activities' %}">{% trans 'View more' %}</a>
 {% endif %}
 {% endblock %}
