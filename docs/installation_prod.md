@@ -55,7 +55,8 @@ Create a config file at `~/adhocracy-plus/adhocracy-plus/config/settings/local.p
 See the [django-documentation](https://docs.djangoproject.com/en/2.2/ref/settings/) for a comprehensive list of settings and `config/settings/base.py` for pre-configured ones. The settings you will most likely want to set are:
 
 ```
-# replace 'example.com' with your desired domain
+# replace 'your.domain' with your desired domain
+BASE_URL = 'https://your.domain'
 ALLOWED_HOSTS = [u'your.domain', u'localhost']
 
 # database config - we recommend postgresql for production purposes
@@ -197,6 +198,7 @@ server {
   # forward traffic to adhocracy-plus
   location / {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
     proxy_set_header Host $http_host;
     proxy_pass http://127.0.0.1:8000;
   }
