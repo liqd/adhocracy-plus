@@ -176,21 +176,26 @@ class Organisation(TranslatableModel):
         projects = query.filter_viewable(self.projects, user)
         now = timezone.now()
 
+        min_module_start = models.Min('module__phase__start_date',
+                                      filter=models.Q(module__is_draft=False))
+        max_module_end = models.Max('module__phase__end_date',
+                                    filter=models.Q(module__is_draft=False))
+
         sorted_active_projects = projects\
-            .annotate(project_start=models.Min('module__phase__start_date'))\
-            .annotate(project_end=models.Max('module__phase__end_date'))\
+            .annotate(project_start=min_module_start)\
+            .annotate(project_end=max_module_end)\
             .filter(project_start__lte=now, project_end__gt=now)\
             .order_by('project_end')
 
         sorted_future_projects = projects\
-            .annotate(project_start=models.Min('module__phase__start_date'))\
+            .annotate(project_start=min_module_start)\
             .filter(models.Q(project_start__gt=now)
                     | models.Q(project_start=None))\
             .order_by('project_start')
 
         sorted_past_projects = projects\
-            .annotate(project_start=models.Min('module__phase__start_date'))\
-            .annotate(project_end=models.Max('module__phase__end_date'))\
+            .annotate(project_start=min_module_start)\
+            .annotate(project_end=max_module_end)\
             .filter(project_end__lt=now)\
             .order_by('project_start')
 
