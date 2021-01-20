@@ -9,7 +9,7 @@
         :focus,
         :hover {
             outline: none;
-
+            /* stylelint-disable max-nesting-depth */
             .project-tile-carousel__dot {
                 transform: scale(1.85);
             }
@@ -17,6 +17,7 @@
             .project-tile-carousel__label {
                 transform: scale(1.05);
             }
+            /* stylelint-enable max-nesting-depth */
         }
     }
 

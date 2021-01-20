@@ -57,7 +57,7 @@
         :focus,
         :hover {
             outline: none;
-
+            /* stylelint-disable max-nesting-depth */
             .timeline-carousel__dot {
                 transform: scale(1.85);
             }
@@ -65,6 +65,7 @@
             .timeline-carousel__label {
                 transform: scale(1.05);
             }
+            /* stylelint-enable max-nesting-depth */
         }
     }
 
@@ -89,6 +90,7 @@
             border: 1px solid $border-color;
             background-color: $body-bg;
 
+            /* stylelint-disable max-nesting-depth */
             @media screen and (min-width: $breakpoint) {
                 z-index: 1; //for when tile links overlap - on mobile people swipe
             }
@@ -106,6 +108,7 @@
                 font-size: $font-size-lg;
                 line-height: 1.3rem;
             }
+            /* stylelint-enable max-nesting-depth */
         }
 
         .slick-prev:before {
@@ -135,10 +138,10 @@
 
         &.timeline-carousel__label {
             padding: 1.5*$padding;
+        }
 
-            .timeline-carousel__title {
-                font-weight: bold;
-            }
+        &.timeline-carousel__label > .timeline-carousel__title {
+            font-weight: bold;
         }
 
         &.timeline-carousel__dot {
