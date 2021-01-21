@@ -5,7 +5,7 @@
 
 <h3 class="mt-sm-0 d-inline-block">{% trans 'Following' %}</h3>
 {% if view.projects.count > 3 %}
-  <a class="btn btn--none text-right" href="{% url 'userdashboard-following' %}">{% trans 'View more' %}</a>
+  <a class="btn btn--none float-right pr-0" href="{% url 'userdashboard-following' %}">{% trans 'View more' %}</a>
 {% endif %}
 
 {% if view.projects_carousel %}

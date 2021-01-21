@@ -65,7 +65,21 @@ function init () {
     mobileFirst: true,
     infinite: false,
     variableWidth: false,
-    slidesToShow: 3,
+    slidesToShow: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2
+        }
+      }
+    ],
     slidesToScroll: 1
   })
 

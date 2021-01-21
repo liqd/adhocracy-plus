@@ -24,10 +24,7 @@
         border-radius: 100%;
         border: 1px solid $border-color;
         background-color: $body-bg;
-
-        @media screen and (min-width: $breakpoint) {
-            z-index: 1; //for when tile links overlap - on mobile people swipe
-        }
+        z-index: 1; //for when tile links overlap - on mobile people swipe
 
         &:hover,
         :focus {
@@ -50,17 +47,6 @@
 
     .slick-next:before {
         content: '\f105'; // angle-right
-    }
-}
-
-//mobile slick overwrites
-@media screen and (max-width: $breakpoint-xl-down) {
-    .slick-next {
-        right: 0 !important;
-    }
-
-    .slick-prev {
-        left: 0 !important;
     }
 }
 

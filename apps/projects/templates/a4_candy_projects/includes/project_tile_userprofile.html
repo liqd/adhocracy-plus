@@ -2,7 +2,7 @@
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 
-<li class="tile organisation__tile">
+<li class="tile organisation__tile userdashboard__tile">
     <div class="tile__head">
         <div class="tile__image tile__image--sm"
           {% if project_image %}
@@ -30,11 +30,17 @@
     <div class="tile__body">
         <span class="text-muted">{% trans 'By ' %}{{ project.organisation.name }}</span>
         <h3 class="tile__title mb-4" id="project-title-{{ project.pk }}">
-            <a href="{{ project|project_url }}">{{ project.name }}</a>
+            <a href="{{ project|project_url }}">
+              {% if project.name|length > 40 %}
+                  {{ project.name|slice:40}}...
+              {% else  %}
+                  {{ project.name }}
+              {% endif %}
+            </a>
         </h3>
 
         {% if project.running_modules %}
-        <div class="status__active">
+        <div class="status-item--baseline">
             <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>
             {% if project.module_running_days_left < 365 %}
             {% blocktrans with time_left=project.module_running_time_left %} {{ time_left }} remaining {% endblocktrans %}
@@ -44,12 +50,12 @@
             </span>
         </div>
         {% elif project.future_modules %}
-        <div class="status__future">
-        <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>{% blocktrans with date=project.future_modules.first.module_start.date|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktrans %}</span>
+        <div class="status-item--baseline">
+            <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>{% blocktrans with date=project.future_modules.first.module_start.date|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktrans %}</span>
         </div>
         {% elif project.past_modules %}
-        <div class="status-bar__past">
-        {% blocktrans %}Participation ended. Read result.{% endblocktrans %}
+        <div class="status-item--baseline status-bar__past">
+            {% blocktrans %}Participation ended. Read result.{% endblocktrans %}
         </div>
         {% endif %}
     </div>

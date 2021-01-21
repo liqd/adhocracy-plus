@@ -34,7 +34,7 @@
         <p class="tile__text">{{ project.description }}</p>
 
         {% if project.running_modules %}
-        <div class="status-item status__active">
+        <div class="status-item">
             <div class="status-bar__active">
                 <span class="status-bar__active-fill" style="width:{{ project.module_running_progress }}%"></span>
             </div>
@@ -55,7 +55,7 @@
             </div>
         </div>
         {% elif project.future_modules %}
-        <div class="status-item status__future">
+        <div class="status-item">
         <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>{% blocktrans with date=project.future_modules.first.module_start.date|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktrans %}</span>
         </div>
         {% elif project.past_modules %}

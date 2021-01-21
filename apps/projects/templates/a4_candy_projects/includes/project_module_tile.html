@@ -12,7 +12,7 @@
                     {% blocktrans count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktrans %}
                 </span>
                 {% if module.module_running_time_left %}
-                <div class="status-item status__active">
+                <div class="status-item">
                     <div class="status-bar__active">
                         <span class="status-bar__active-fill" style="width: {{ module.module_running_progress }}%"></span>
                     </div>
@@ -22,7 +22,7 @@
                     </span>
                 </div>
                 {% elif not module.module_has_started %}
-                <div class="status-item status__future">
+                <div class="status-item">
                     <span class="participation-tile__status"><i class="fas fa-clock"  aria-hidden="true"></i>{% html_date module.module_start 'd.m.Y' as start_date %}
                     {% blocktrans with date=start_date %}Participation: starts on {{ date }}{% endblocktrans %}
                     </span>
