@@ -274,7 +274,7 @@
                     <div class="row">
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                             {% if project.result %}
-                                {{ project.result | richtext }}
+                                {{ project.result | transform_collapsibles | richtext }}
                             {% else %}
                                 {% trans 'No results yet.' %}
                             {% endif %}
