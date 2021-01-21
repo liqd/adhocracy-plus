@@ -1,0 +1,26 @@
+{% load i18n %}
+
+    <ul class="nav d-inline-block d-md-none" role="tablist">
+        <li class="nav-item dropdown">
+          <a
+              class="nav-link dropdown-toggle tab active mr-2"
+              data-toggle="dropdown"
+              href="#"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false">
+              {% trans 'Overview' %}
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item"
+                 href="{% url 'userdashboard-overview' %}">
+                  {% trans 'Overview' %}
+              </a>
+              <a class="dropdown-item"
+                 href="{% url 'userdashboard-moderation' %}">
+                  {% trans 'Moderation' %}
+              </a>
+          </div>
+        </li>
+    </ul>

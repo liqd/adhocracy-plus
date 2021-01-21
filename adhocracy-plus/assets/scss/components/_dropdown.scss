@@ -1,3 +1,23 @@
+.dropdown {
+    position: relative;
+    text-align: left;
+
+    i.fa-chevron-up {
+        position: absolute;
+        top: 0;
+        right: 1.5*$spacer;
+        transition: transform 0.3s;
+    }
+
+    &.collapsed i.fa-chevron-up {
+        transform: rotate(-180deg);
+    }
+}
+
+.dropdown-item {
+    font-family: $font-family-base;
+}
+
 .dropdown--right {
     text-align: right;
 }

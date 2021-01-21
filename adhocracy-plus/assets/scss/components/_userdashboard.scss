@@ -1,5 +1,6 @@
 .userdashboard-profile__side {
     min-height: 100%;
+    display: block; //tabpanel se display to none?!
 }
 
 .userdashboard-profile__user {
@@ -11,24 +12,9 @@
 .userdashboard-profile__avatar {
     border-radius: 50%;
     shape-outside: circle();
-    // box-shadow: 0 0 2em rgba(0, 0, 0, 0.1); probably won't need
     position: relative;
-
-    ~ h2 {
-        clear: both;
-    }
 }
 
 .userdashboard-profile__main {
     padding: 0 $padding;
-}
-
-@media (min-width: $breakpoint) {
-    /* Ensure that info sidebar is always visible in sm
-       and above and only a tab in sm
-     */
-
-    .userdashboard-profile__side {
-        display: block;
-    }
 }
