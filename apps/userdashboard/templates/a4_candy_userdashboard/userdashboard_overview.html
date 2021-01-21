@@ -3,21 +3,22 @@
 
 {% block dashboard_content %}
 
-<h3 class="mt-sm-0">{% trans 'Following' %}</h3>
-<div class="row">
-{% for project in view.projects %}
-<div class="col-sm-6 col-lg-4">
-        {% include 'a4_candy_projects/includes/project_tile_userprofile.html' with project=project orientation='vertical' %}
-</div>
-{% empty %}
-<div class="col-sm-6 col-lg-4">
-    {% trans 'This user is not active in any projects yet.' %}
-</div>
-{% endfor %}
-{% if view.projects.count > 9 %}
-  <a class="btn btn--light" href="{% url 'userdashboard-following' %}">{% trans 'View more' %}</a>
+<h3 class="mt-sm-0 d-inline-block">{% trans 'Following' %}</h3>
+{% if view.projects.count > 3 %}
+  <a class="btn btn--none text-right" href="{% url 'userdashboard-following' %}">{% trans 'View more' %}</a>
 {% endif %}
-</div>
+
+{% if view.projects_carousel %}
+  <div class="project-tile-carousel">
+      {% for project in view.projects_carousel %}
+          {% include 'a4_candy_projects/includes/project_tile_userprofile.html' with project=project orientation='vertical' %}
+      {% endfor %}
+  </div>
+  {% else %}
+  <div class="mb-5">
+      {% trans 'This user is not active in any projects yet.' %}
+  </div>
+{% endif %}
 
 <h3>{% trans 'Activities' %}</h3>
 {% for action in view.actions|slice:":5" %}

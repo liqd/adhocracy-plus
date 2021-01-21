@@ -3,22 +3,12 @@
     margin: $spacer 0;
 
     //slick overwrites - nested for specificity
+    .slick-list {
+        margin: 0 -0.5*$spacer;
+    }
+
     .slick-slide {
-        margin: 0 $spacer;
-
-        :focus,
-        :hover {
-            outline: none;
-            /* stylelint-disable max-nesting-depth */
-            .project-tile-carousel__dot {
-                transform: scale(1.85);
-            }
-
-            .project-tile-carousel__label {
-                transform: scale(1.05);
-            }
-            /* stylelint-enable max-nesting-depth */
-        }
+        margin: 0 0.5*$spacer;
     }
 
     .slick-track {
