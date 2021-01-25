@@ -74,9 +74,9 @@
                       <div>
                           <a class="btn btn--link text-decoration-none text-muted" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
                             {% if organisation.logo %}
-                              <img src="{% thumbnail organisation.logo '0x40' %}" alt="{{ orgnaisation.name }}" />
+                              <img src="{% thumbnail organisation.logo '0x40' %}" alt="{{ organisation.name }}" />
                             {% else %}
-                              <i class="fas fa-edit font--lg pt-1" aria-label="{{ orgnaisation.name }} {% trans 'Home' %}"></i>
+                              <i class="fas fa-edit font--lg pt-1" aria-label="{{ organisation.name }} {% trans 'Home' %}"></i>
                             {% endif %}
                             &nbsp{{ organisation.name }}
                           </a>
@@ -120,9 +120,9 @@
                         {% for organisation in view.organisations %}
                         <a class="btn btn--link text-decoration-none text-muted" href="{% url 'organisation' organisation_slug=organisation.slug %}">
                           {% if organisation.logo %}
-                            <img src="{% thumbnail organisation.logo '0x40' %}" alt="{{ orgnaisation.name }}" />
+                            <img src="{% thumbnail organisation.logo '0x40' %}" alt="{{ organisation.name }}" />
                           {% else %}
-                            <i class="fas fa-home font--lg pt-1" aria-label="{{ orgnaisation.name }} {% trans 'Home' %}"></i>
+                            <i class="fas fa-home font--lg pt-1" aria-label="{{ organisation.name }} {% trans 'Home' %}"></i>
                           {% endif %}
                             &nbsp {{ organisation.name }}
                         </a>
