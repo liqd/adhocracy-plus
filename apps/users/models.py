@@ -127,13 +127,13 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
-    def get_projects_follow_list(self):
+    def get_projects_follow_list(self, exclude_private_projects=False):
         projects = Project.objects \
             .filter(follow__creator=self,
                     follow__enabled=True,
-                    is_draft=False) \
-            .filter(models.Q(access=Access.PUBLIC) |
-                    models.Q(access=Access.SEMIPUBLIC))
+                    is_draft=False)
+        if exclude_private_projects:
+            projects = projects.exclude(models.Q(access=Access.PRIVATE))
 
         now = timezone.now()
 
