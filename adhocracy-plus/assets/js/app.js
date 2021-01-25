@@ -74,7 +74,7 @@ function init () {
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 550,
         settings: {
           slidesToShow: 2
         }
