@@ -10,7 +10,7 @@
 {% block reason %}{% endblock %}
 
 ---
-{% trans 'adhocracy+ is a participation platform operated by' %}
+{% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}{{ platformname }} is a participation platform operated by{% endblocktrans %}<br />
 Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
 
 {% get_settings use_default_site=True %}
