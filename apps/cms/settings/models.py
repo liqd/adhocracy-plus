@@ -90,12 +90,19 @@ class ImportantPages(BaseSetting):
     ]
 
 
+# these are settings for platform organisation
 @register_setting
 class OrganisationSettings(BaseSetting):
+    platform_name = models.CharField(
+        max_length=20,
+        default="adhocracy+",
+        verbose_name="Platform name",
+    )
     address = fields.RichTextField()
     contacts = fields.RichTextField()
 
     panels = [
+        FieldPanel('platform_name'),
         FieldPanel('address'),
         FieldPanel('contacts')
     ]
