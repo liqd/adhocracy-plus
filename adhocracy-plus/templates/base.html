@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{% block title %}adhocracy+{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}{% endblock %}</title>
+    <title>{% block title %}{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}{% endblock %}</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
@@ -16,10 +16,10 @@
 
     {% block social_meta %}
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="adhocracy+{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}">
-    <meta name="linkedin:title" content="adhocracy+{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}">
+    <meta name="twitter:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}">
+    <meta name="linkedin:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:title" content="adhocracy+{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}">
+    <meta property="og:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}">
     {% endblock %}
 
     {% block social_meta_image %}
@@ -93,12 +93,12 @@
         <div class="donation-banner">
             <a href="{{ settings.a4_candy_cms_settings.ImportantPages.donate_link }}"  class="btn {% if ORGANISATION %} btn--bg-tertiary {% else %} btn--secondary-filled {% endif %}">
                 <span class="d-none d-md-block">
-                    {% trans 'adhocracy+ is funded by donations.' %}
+                    {% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}{{ platformname }} is funded by donations.{% endblocktrans %}
                     <br>
                     <b>{% trans 'Donate now' %}</b>
                 </span>
                 <span class="d-md-none">
-                    <b>{% trans 'Donate now to adhocracy+' %}</b>
+                    <b>{% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Donate now to {{ platformname }}{% endblocktrans %}</b>
                 </span>
             </a>
         </div>
