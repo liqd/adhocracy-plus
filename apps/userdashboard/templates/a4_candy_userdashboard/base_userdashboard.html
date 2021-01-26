@@ -111,12 +111,12 @@
                             {% endfor %}
                         </ul>
                     </div>
-
                     {% endif %}
 
 
                     <div class="d-none d-sm-block">
                         <h3>{% trans 'Organisations' %}</h3>
+                        {% if view.organisations %}
                         {% for organisation in view.organisations %}
                         <a class="btn btn--link text-decoration-none text-muted" href="{% url 'organisation' organisation_slug=organisation.slug %}">
                           {% if organisation.logo %}
@@ -127,6 +127,11 @@
                             &nbsp {{ organisation.name }}
                         </a>
                         {% endfor %}
+                        {% else %}
+                        <div class="mb-3">
+                            {% trans 'You are not yet following any projects.' %}
+                        </div>
+                        {% endif %}
                     </div>
                     <!-- mobile -->
                     <div class="d-sm-none">
