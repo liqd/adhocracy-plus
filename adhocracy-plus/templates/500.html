@@ -12,7 +12,7 @@
             <div class="u-page-ribbon"></div>
             <div class="container">
                 <div class="header-upper__brand">
-                    <a href="/">adhocracy+</a>
+                    <a href="/">{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}</a>
                 </div>
             </div>
         </header>
@@ -22,7 +22,7 @@
                     <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                         <h1>500</h1>
                         <p class="u-font-size-lg">{% trans 'Internal server error.' %}</p>
-                        <a href="/">{% trans 'Back to adhocracy+' %}</a>
+                        <a href="/">{% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Back to {{ platformname }}{% endblocktrans %}</a>
                     </div>
                 <div class="row">
             </div>
