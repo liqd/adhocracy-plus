@@ -7,10 +7,10 @@
 
 {% block social_meta %}
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="adhocracy+/{{ page.title }}">
-<meta name="linkedin:title" content="adhocracy+/{{ page.title }}">
+<meta name="twitter:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}/{{ page.title }}">
+<meta name="linkedin:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}/{{ page.title }}">
 <meta property="og:url" content="{{ request.build_absolute_uri }}">
-<meta property="og:title" content="adhocracy+/{{ page.title }}">
+<meta property="og:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}/{{ page.title }}">
 {% endblock %}
 
 {% block social_meta_description %}
