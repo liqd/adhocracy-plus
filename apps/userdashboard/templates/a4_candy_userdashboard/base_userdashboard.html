@@ -135,13 +135,14 @@
                     </div>
                     <!-- mobile -->
                     <div class="d-sm-none">
+                      {% if view.organisations %}
                         <div  class="dropdown"
                               data-toggle="collapse"
                               href="#userDashboardCollapseOrg"
                               aria-expanded="true"
                               aria-controls="#userDashboardCollapseOrg"
                               data-target="#userDashboardCollapseOrg">
-                          <h3>{% trans 'Organisations' %}</h3>
+                            <h3>{% trans 'Organisations' %}</h3>
                             <i class="fa fa-chevron-up" aria-hidden="true"></i>
                         </div>
                         <ul class="u-list-reset scollapse show" id="userDashboardCollapseOrg" aria-hidden="false">
@@ -159,6 +160,12 @@
                                 </li>
                             {% endfor %}
                         </ul>
+                        {% else %}
+                        <h3>{% trans 'Organisations' %}</h3>
+                        <div class="mb-3">
+                            {% trans 'You are not yet following any projects.' %}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
