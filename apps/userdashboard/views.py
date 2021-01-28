@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 from django.views import generic
 
 from adhocracy4.actions.models import Action
@@ -12,6 +13,12 @@ class UserDashboardBaseMixin(LoginRequiredMixin,
                              generic.base.ContextMixin,
                              generic.base.TemplateResponseMixin,
                              generic.base.View):
+    """
+    Adds followed projects and organisations as properties.
+
+    To be used in the user dashboard views, as they all need this info.
+    """
+
     model = User
 
     def get(self, request):
@@ -31,6 +38,7 @@ class UserDashboardBaseMixin(LoginRequiredMixin,
                                       follow__enabled=True)
 
 
+# user views
 class UserDashboardOverviewView(UserDashboardBaseMixin):
 
     template_name = 'a4_candy_userdashboard/userdashboard_overview.html'
@@ -50,14 +58,6 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
                 list(sorted_future_projects))[:9]
 
 
-class UserDashboardModerationView(UserDashboardBaseMixin,
-                                  rules_mixins.PermissionRequiredMixin):
-
-    template_name = 'a4_candy_userdashboard/userdashboard_moderation.html'
-    permission_required = 'a4_candy_userdashboard.view_moderation_dashboard'
-    menu_item = 'moderation'
-
-
 class UserDashboardActivitiesView(UserDashboardBaseMixin):
 
     template_name = 'a4_candy_userdashboard/userdashboard_activities.html'
@@ -74,3 +74,22 @@ class UserDashboardFollowingView(UserDashboardBaseMixin):
 
     template_name = 'a4_candy_userdashboard/userdashboard_following.html'
     menu_item = 'overview'
+
+
+# moderation views
+class UserDashboardModerationView(UserDashboardBaseMixin,
+                                  rules_mixins.PermissionRequiredMixin):
+
+    template_name = 'a4_candy_userdashboard/userdashboard_moderation.html'
+    permission_required = 'a4_candy_userdashboard.view_moderation_dashboard'
+    menu_item = 'moderation'
+
+    def get_projects(self):
+        projects = list(self.request.user.project_moderator.all())
+        return projects
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['moderation_projects'] = self. get_projects()
+        context['project_api_url'] = reverse('projects-list')
+        return context
