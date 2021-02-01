@@ -61,6 +61,7 @@ class UserDashboardModerationView(UserDashboardBaseMixin,
 class UserDashboardActivitiesView(UserDashboardBaseMixin):
 
     template_name = 'a4_candy_userdashboard/userdashboard_activities.html'
+    menu_item = 'overview'
 
     @property
     def actions(self):
@@ -72,3 +73,4 @@ class UserDashboardActivitiesView(UserDashboardBaseMixin):
 class UserDashboardFollowingView(UserDashboardBaseMixin):
 
     template_name = 'a4_candy_userdashboard/userdashboard_following.html'
+    menu_item = 'overview'
