@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "User Dashboard" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% trans "My Overview" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 
 <div class="container">
     <div class="l-menu">
 
-        <nav class="l-menu__menu" aria-label="{% trans 'User Dashboard navigation' %}">
+        <nav class="l-menu__menu" aria-label="{% trans 'My Overview navigation' %}">
             <div class="dashboard-nav">
                 <div class="dropdown dashboard-nav__dropdown u-word-break-all">
                     {{ request.user.username }}
