@@ -40,10 +40,8 @@ $(document).ready(function () {
   }
 
   var testCanSetCookie = function () {
-    var cookie = 'can-set-cookie=true;'
-    var regExp = new RegExp(cookie)
-    document.cookie = cookie
-    return regExp.test(document.cookie)
+    document.cookie = 'can-set-cookie=true;SameSite=None;Secure'
+    return document.cookie.indexOf('can-set-cookie=') !== -1
   }
 
   var createAlert = function (text, state, timeout) {
