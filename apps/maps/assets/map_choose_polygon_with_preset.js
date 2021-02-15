@@ -2,7 +2,7 @@
 
 /* global django */
 import 'bootstrap' // needed for $(...).modal(...)
-import { createMap } from 'a4maps_common'
+import { maps } from 'adhocracy4'
 import 'leaflet-draw'
 import './i18n-leaflet-draw'
 import FileSaver from 'file-saver'
@@ -184,7 +184,7 @@ function init () {
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const bbox = JSON.parse(e.getAttribute('data-bbox'))
 
-    const map = createMap(L, e, {
+    const map = maps.createMap(L, e, {
       baseUrl: e.getAttribute('data-baseurl'),
       useVectorMap: e.getAttribute('data-usevectormap'),
       attribution: e.getAttribute('data-attribution'),
