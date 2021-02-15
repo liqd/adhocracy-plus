@@ -69,8 +69,6 @@ var setBusy = function ($group, busy) {
 }
 
 var getPoints = function (address, cb) {
-  var $ = window.jQuery
-
   $.ajax(apiUrl, {
     data: { address: address },
     success: function (geojson) {
