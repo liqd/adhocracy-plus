@@ -13,7 +13,7 @@ import '../../../apps/newsletters/assets/dynamic_fields.js'
 // expose react components
 import {
   comments as ReactComments,
-  comments_async as ReactCommentsAsync,
+  commentsAsync as ReactCommentsAsync,
   ratings as ReactRatings,
   reports as ReactReports,
   follows as ReactFollows,
