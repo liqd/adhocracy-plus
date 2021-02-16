@@ -1,7 +1,6 @@
 /* Adds extra select dropdown to choose predefined polygon instead of drawing one */
 
 /* global django */
-import 'bootstrap' // needed for $(...).modal(...)
 import { maps } from 'adhocracy4'
 import 'leaflet-draw'
 import './i18n-leaflet-draw'
@@ -20,6 +19,7 @@ function getBaseBounds (L, polygon, bbox) {
 }
 
 function init () {
+  const $ = window.$
   const L = window.L
 
   const ImportControl = L.Control.extend({
