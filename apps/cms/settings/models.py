@@ -9,7 +9,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from apps.contrib.translations import TranslatedField
 
 
-@register_setting
+@register_setting(icon='warning')
 class ImportantPages(BaseSetting):
     terms_of_use = models.ForeignKey(
         'wagtailcore.Page',
@@ -91,7 +91,7 @@ class ImportantPages(BaseSetting):
 
 
 # these are settings for platform organisation
-@register_setting
+@register_setting(icon='pick')
 class OrganisationSettings(BaseSetting):
     platform_name = models.CharField(
         max_length=20,
