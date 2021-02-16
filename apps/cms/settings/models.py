@@ -97,9 +97,18 @@ class OrganisationSettings(BaseSetting):
         max_length=20,
         default="adhocracy+",
         verbose_name="Platform name",
+        help_text=("This name appears in the footer of all pages and e-mails "
+                   "as well as in the tab of the browser.")
     )
-    address = fields.RichTextField()
-    contacts = fields.RichTextField()
+    address = fields.RichTextField(
+        help_text="The address is published on the contact form."
+    )
+    contacts = fields.RichTextField(
+        help_text="The contacts are published on the contact form."
+    )
+
+    class Meta:
+        verbose_name = 'Platform settings'
 
     panels = [
         FieldPanel('platform_name'),
