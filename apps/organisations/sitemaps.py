@@ -1,5 +1,6 @@
 from django.contrib.sitemaps.views import x_robots_tag
 from django.contrib.sites.shortcuts import get_current_site
+from django.http import Http404
 from django.template.response import TemplateResponse
 from django.urls import reverse
 
@@ -95,7 +96,12 @@ def organisation_sitemap_projects(request, organisation_slug):
     priority = 0.8
     content_type = 'application/xml'
     template_name = 'sitemap.xml'
-    organisation = Organisation.objects.get(slug=organisation_slug)
+    organisation = None
+
+    try:
+        organisation = Organisation.objects.get(slug=organisation_slug)
+    except Organisation.DoesNotExist:
+        raise Http404("Organisation does not exist")
 
     projects = Project.objects.filter(
         organisation=organisation,
