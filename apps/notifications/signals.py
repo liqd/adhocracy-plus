@@ -43,6 +43,11 @@ def send_project_created_notifications(**kwargs):
         project, creator_pk=creator.pk)
 
 
+@receiver(signals.post_delete, sender=Project)
+def send_project_deleted_notifications(sender, instance, **kwargs):
+    emails.NotifyInitiatorsOnProjectDeletedEmail.send_no_object(instance)
+
+
 @receiver(signals.m2m_changed, sender=Project.moderators.through)
 def autofollow_project_moderators(instance, action, pk_set, reverse, **kwargs):
     if action == 'post_add':
