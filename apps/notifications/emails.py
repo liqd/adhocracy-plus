@@ -128,7 +128,10 @@ class NotifyInitiatorsOnProjectDeletedEmail(Email):
         return []
 
     def get_organisation(self):
-        return Organisation.objects.get(id=self.object['organisation_id'])
+        try:
+            return Organisation.objects.get(id=self.object['organisation_id'])
+        except Organisation.DoesNotExist:
+            pass
 
     def get_receivers(self):
         return self.object['initiators']
