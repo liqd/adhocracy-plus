@@ -7,5 +7,4 @@ class Config(AppConfig):
 
     def ready(self):
         from . import overwrites
-        from . import signals  # noqa
         overwrites.overwrite_access_enum_label()
