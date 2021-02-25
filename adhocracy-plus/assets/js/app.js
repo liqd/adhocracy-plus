@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', init, false)
 document.addEventListener('a4.embed.ready', init, false)
 
 // Closes selected collapsable elements on click elsewhere - still not sure if we need this?!
-$(document).on('click', function () {
+document.addEventListener('click', function () {
   $('.js-selector-collapse').collapse('hide')
 })
 
