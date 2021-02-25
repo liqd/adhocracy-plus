@@ -6,3 +6,5 @@ A4_USER_FACTORY = 'tests.factories.UserFactory'
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 SITE_ID=1
+
+CAPTCHA_TEST_ACCEPTED_ANSWER = 'test_pass'
