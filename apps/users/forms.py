@@ -10,6 +10,8 @@ from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 from zeep import Client
 
+from apps.captcha.fields import CaptcheckCaptchaField
+from apps.captcha.mixins import CaptcheckCaptchaFormMixin
 from apps.organisations.models import Member
 from apps.organisations.models import Organisation
 
@@ -28,7 +30,7 @@ class DefaultLoginForm(LoginForm):
             'current-password'
 
 
-class DefaultSignupForm(SignupForm):
+class DefaultSignupForm(CaptcheckCaptchaFormMixin, SignupForm):
     terms_of_use = forms.BooleanField(
         label=_('Terms of use')
     )
@@ -38,6 +40,7 @@ class DefaultSignupForm(SignupForm):
                     'additional information via email.'),
         required=False
     )
+    captcha = CaptcheckCaptchaField()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
