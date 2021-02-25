@@ -9,6 +9,12 @@ from django.utils.translation import ugettext_lazy as _
 class CaptcheckCaptchaFormMixin:
 
     def verify_captcha(self, answer, session):
+        if hasattr(settings, 'CAPTCHA_TEST_ACCEPTED_ANSWER'):
+            return (answer == settings.CAPTCHA_TEST_ACCEPTED_ANSWER)
+
+        if not hasattr(settings, 'CAPTCHA_URL'):
+            return False
+
         url = settings.CAPTCHA_URL
         data = {
             'session_id': session,
