@@ -17,6 +17,7 @@ from apps.cms import blocks as cms_blocks
 from apps.cms.news.blocks import NewsBlock
 from apps.cms.use_cases.blocks import UseCaseBlock
 from apps.contrib.translations import TranslatedField
+from apps.contrib.translations import TranslatedFieldLegal
 
 
 class HomePage(Page):
@@ -127,7 +128,7 @@ class HomePage(Page):
 
     body = TranslatedField(
         'body_de',
-        'body_en',
+        'body_en'
     )
 
     @property
@@ -213,9 +214,48 @@ class SimplePage(Page):
         ('quote', cms_blocks.QuoteBlock())
     ], blank=True)
 
-    body_streamfield = TranslatedField(
+    body_streamfield_nl = fields.StreamField([
+        ('html', blocks.RawHTMLBlock()),
+        ('richtext', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('faq', cms_blocks.AccordeonListBlock()),
+        ('image_cta', cms_blocks.ImageCTABlock()),
+        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('columns_cta', cms_blocks.ColumnsCTABlock()),
+        ('downloads', cms_blocks.DownloadListBlock()),
+        ('quote', cms_blocks.QuoteBlock())
+    ], blank=True)
+
+    body_streamfield_ky = fields.StreamField([
+        ('html', blocks.RawHTMLBlock()),
+        ('richtext', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('faq', cms_blocks.AccordeonListBlock()),
+        ('image_cta', cms_blocks.ImageCTABlock()),
+        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('columns_cta', cms_blocks.ColumnsCTABlock()),
+        ('downloads', cms_blocks.DownloadListBlock()),
+        ('quote', cms_blocks.QuoteBlock())
+    ], blank=True)
+
+    body_streamfield_ru = fields.StreamField([
+        ('html', blocks.RawHTMLBlock()),
+        ('richtext', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('faq', cms_blocks.AccordeonListBlock()),
+        ('image_cta', cms_blocks.ImageCTABlock()),
+        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('columns_cta', cms_blocks.ColumnsCTABlock()),
+        ('downloads', cms_blocks.DownloadListBlock()),
+        ('quote', cms_blocks.QuoteBlock())
+    ], blank=True)
+
+    body_streamfield = TranslatedFieldLegal(
         'body_streamfield_de',
-        'body_streamfield_en'
+        'body_streamfield_en',
+        'body_streamfield_nl',
+        'body_streamfield_ky',
+        'body_streamfield_ru'
     )
 
     en_content_panels = [
@@ -226,6 +266,18 @@ class SimplePage(Page):
         StreamFieldPanel('body_streamfield_de')
     ]
 
+    nl_content_panels = [
+        StreamFieldPanel('body_streamfield_nl')
+    ]
+
+    ky_content_panels = [
+        StreamFieldPanel('body_streamfield_ky')
+    ]
+
+    ru_content_panels = [
+        StreamFieldPanel('body_streamfield_ru')
+    ]
+
     common_panels = [
         FieldPanel('title'),
         FieldPanel('slug')
@@ -234,7 +286,10 @@ class SimplePage(Page):
     edit_handler = TabbedInterface([
         ObjectList(common_panels, heading='Common'),
         ObjectList(en_content_panels, heading='English'),
-        ObjectList(de_content_panels, heading='German')
+        ObjectList(de_content_panels, heading='German'),
+        ObjectList(nl_content_panels, heading='Dutch'),
+        ObjectList(ky_content_panels, heading='Kyrgyz'),
+        ObjectList(ru_content_panels, heading='Russian')
     ])
 
     subpage_types = ['a4_candy_cms_pages.SimplePage']
