@@ -200,12 +200,14 @@ USE_TZ = True
 LANGUAGES = [
     ('en', _('English')),
     ('de', _('German')),
-    ('nl', _('Dutch'))
+    ('nl', _('Dutch')),
+    ('ky', _('Kyrgyz')),
+    ('ru', _('Russian'))
 ]
 
 PARLER_LANGUAGES = {
     1: [{'code': language_code} for language_code, language in LANGUAGES],
-    'default': {'fallbacks': ['en', 'de'],
+    'default': {'fallbacks': ['en', 'de', 'nl,' 'ky', 'ru'],
                 }
 }
 
