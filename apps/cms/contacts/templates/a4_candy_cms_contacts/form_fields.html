@@ -1,3 +1,8 @@
 {% for field in fields %}
-  {% include 'a4_candy_cms_contacts/form_field.html' with field=field %}
+  {% if field is not fields.captcha %}
+    {% include 'a4_candy_cms_contacts/form_field.html' with field=field %}
+  {% else %}
+    {{ form.media }}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
+  {% endif %}
 {% endfor %}

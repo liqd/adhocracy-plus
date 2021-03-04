@@ -11,12 +11,15 @@ from wagtail.admin.edit_handlers import FieldRowPanel
 from wagtail.admin.edit_handlers import MultiFieldPanel
 from wagtail.admin.edit_handlers import ObjectList
 from wagtail.admin.edit_handlers import TabbedInterface
+from wagtail.contrib.forms.forms import FormBuilder
 from wagtail.contrib.forms.models import AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField
 from wagtail.contrib.forms.models import AbstractFormSubmission
 from wagtail.core.fields import RichTextField
 from wagtail.images.edit_handlers import ImageChooserPanel
 
+from apps.captcha.fields import CaptcheckCaptchaField
+from apps.captcha.mixins import CaptcheckCaptchaFormMixin
 from apps.cms.emails import AnswerToContactFormEmail
 from apps.contrib.translations import TranslatedField
 
@@ -25,6 +28,35 @@ class FormField(AbstractFormField):
     page = ParentalKey('FormPage',
                        on_delete=models.CASCADE,
                        related_name='form_fields')
+
+
+class WagtailCaptchaFormBuilder(CaptcheckCaptchaFormMixin, FormBuilder):
+    @property
+    def formfields(self):
+        # Add captcha to formfields property
+        fields = super(WagtailCaptchaFormBuilder, self).formfields
+        fields['captcha'] = CaptcheckCaptchaField()
+
+        return fields
+
+
+def remove_captcha_field(form):
+    form.fields.pop('captcha', None)
+    form.cleaned_data.pop('captcha', None)
+
+
+class WagtailCaptchaEmailForm(AbstractEmailForm):
+    """For pages implementing AbstractEmailForms with captcha."""
+
+    form_builder = WagtailCaptchaFormBuilder
+
+    def process_form_submission(self, form):
+        remove_captcha_field(form)
+        return super(WagtailCaptchaEmailForm,
+                     self).process_form_submission(form)
+
+    class Meta:
+        abstract = True
 
 
 class CustomFormSubmission(AbstractFormSubmission):
@@ -45,7 +77,7 @@ class CustomFormSubmission(AbstractFormSubmission):
         return form_data
 
 
-class FormPage(AbstractEmailForm):
+class FormPage(WagtailCaptchaEmailForm):
     header_de = models.CharField(
         max_length=500, blank=True, verbose_name="Header")
     header_en = models.CharField(
