@@ -67,8 +67,7 @@ def test_register(client, signup_url):
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
-            'captcha': 0,
-            'captcheck_selected_answer': 'test_pass',
+            'captcha': 'testpass:0',
             'get_newsletters': 'on'
         }
     )
@@ -106,8 +105,7 @@ def test_register_with_next(client, signup_url):
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
-            'captcha': 0,
-            'captcheck_selected_answer': 'test_pass',
+            'captcha': 'testpass:0',
             'next': '/en/projects/pppp/',
         }
     )
@@ -142,8 +140,7 @@ def test_reregister_same_username(client, signup_url):
         'password1': 'password',
         'password2': 'password',
         'terms_of_use': 'on',
-        'captcha': 0,
-        'captcheck_selected_answer': 'test_pass',
+        'captcha': 'testpass:0',
     }
     response = client.post(signup_url, data)
     assert response.status_code == 302
@@ -164,8 +161,7 @@ def test_register_invalid_no_matching_passwords(client, signup_url):
             'password1': 'password',
             'password2': 'wrong_password',
             'terms_of_use': 'on',
-            'captcha': 0,
-            'captcheck_selected_answer': 'test_pass',
+            'captcha': 'testpass:0',
         }
     )
     assert response.status_code == 200
@@ -199,8 +195,7 @@ def test_register_invalid_wrong_captcha(client, signup_url):
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
-            'captcha': 0,
-            'captcheck_selected_answer': 'test_fail',
+            'captcha': 'testfail',
         }
     )
     assert response.status_code == 200
