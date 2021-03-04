@@ -19,7 +19,6 @@ from wagtail.core.fields import RichTextField
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.captcha.fields import CaptcheckCaptchaField
-from apps.captcha.mixins import CaptcheckCaptchaFormMixin
 from apps.cms.emails import AnswerToContactFormEmail
 from apps.contrib.translations import TranslatedField
 
@@ -30,30 +29,20 @@ class FormField(AbstractFormField):
                        related_name='form_fields')
 
 
-class WagtailCaptchaFormBuilder(CaptcheckCaptchaFormMixin, FormBuilder):
+class WagtailCaptchaFormBuilder(FormBuilder):
     @property
     def formfields(self):
         # Add captcha to formfields property
-        fields = super(WagtailCaptchaFormBuilder, self).formfields
+        fields = super().formfields
         fields['captcha'] = CaptcheckCaptchaField()
 
         return fields
-
-
-def remove_captcha_field(form):
-    form.fields.pop('captcha', None)
-    form.cleaned_data.pop('captcha', None)
 
 
 class WagtailCaptchaEmailForm(AbstractEmailForm):
     """For pages implementing AbstractEmailForms with captcha."""
 
     form_builder = WagtailCaptchaFormBuilder
-
-    def process_form_submission(self, form):
-        remove_captcha_field(form)
-        return super(WagtailCaptchaEmailForm,
-                     self).process_form_submission(form)
 
     class Meta:
         abstract = True
@@ -121,6 +110,8 @@ class FormPage(WagtailCaptchaEmailForm):
         return CustomFormSubmission
 
     def process_form_submission(self, form):
+        form.fields.pop('captcha', None)
+        form.cleaned_data.pop('captcha', None)
         data = form.cleaned_data
         submission = self.get_submission_class().objects.create(
             form_data=json.dumps(form.cleaned_data, cls=DjangoJSONEncoder),
