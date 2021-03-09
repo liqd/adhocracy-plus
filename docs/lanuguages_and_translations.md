@@ -80,3 +80,17 @@ uses the translations from this folder first, whenever the messages are
 compiled.
 Here, the English translations are kept untranslated, so that they could
 be used to overwrite strings.
+
+## Adding additional languages ##
+### To Wagtail CMS pages ###
+Add the language to the CMS page models that you require them for. If
+translations are only needed for legal pages such as Data Protection ect. then
+only add language to SimplePage model as this is the page type used for all legal
+information.  
+In translations.py add new language to either the TranslatedField (to enable 
+translations for all CMS page types) or TranslatedFieldLegal to just include it
+for SimplePages.  
+When adding to all page types add fallback descriptions to settings/models.py.
+### To rest of site ###
+Add additional language to base.py.  
+Update tests.
