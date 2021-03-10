@@ -24,6 +24,9 @@ component = components.projects.get('participants')
     LANGUAGES=[
         ('en', 'English'),
         ('de', 'German'),
+        ('nl', 'Dutch'),
+        ('ky', 'Kyrgyz'),
+        ('ru', 'Russian'),
     ],
 )
 @pytest.mark.django_db
