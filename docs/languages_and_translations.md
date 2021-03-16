@@ -6,12 +6,8 @@ The translations for the main branch are done in transifex. If you want to trans
 
 ## Transifex
 ### No translations have been added locally:
-Create branch and force pull all from transifex to check for any new translations
-(force is needed because the time stamps cause errors).
-
-`tx pull -af`
-
-Create message files with the new strings added during development
+#### Push new source strings to transifex
+Make branch and create message files with the new strings added during development
 
 `make po`
 
@@ -23,8 +19,23 @@ Push updated source file with new strings to transifex to be be translated (Note
 
 `tx push -s`
 
-When translations have been added on transifex repeat first 3 steps and commit
-result.
+Commit and push message files to github
+
+#### Pull new translations from transifex
+Once translations have been added on transifex, create branch and force pull all translations from transifex (force is needed because the time stamps cause errors)
+
+`tx pull -af`
+
+Since translations files pulled from transifex have slightly different format, run
+
+`make po`
+
+to standardise.
+Test that new messages compile without any errors
+
+`make mo`
+
+Then commit and push translations to github
 
 ### Translations have been added locally (DE)
 Sometimes it is necessary to add DE translations directly in the .po files and
@@ -86,11 +97,11 @@ be used to overwrite strings.
 Add the language to the CMS page models that you require them for. If
 translations are only needed for legal pages such as Data Protection ect. then
 only add language to SimplePage model as this is the page type used for all legal
-information.  
-In translations.py add new language to either the TranslatedField (to enable 
+information.
+In translations.py add new language to either the TranslatedField (to enable
 translations for all CMS page types) or TranslatedFieldLegal to just include it
-for SimplePages.  
+for SimplePages.
 When adding to all page types add fallback descriptions to settings/models.py.
 ### To rest of site ###
-Add additional language to base.py.  
+Add additional language to base.py.
 Update tests.
