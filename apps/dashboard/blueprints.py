@@ -113,7 +113,7 @@ blueprints = [
              'The participants of an event can ask their questions online. '
              'Other participants can support the question. You as the '
              'moderator can sort the questions by support or '
-             'characteristic.'
+             'affiliation.'
          ),
          content=[
              interactiveevent_phases.IssuePhase(),
