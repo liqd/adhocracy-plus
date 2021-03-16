@@ -117,10 +117,13 @@ lint-python-files:
 po:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs --ignore '$(VIRTUAL_ENV)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs --ignore '$(VIRTUAL_ENV)/*' --ignore '$(CURDIR)/node_modules/datepicker/dist/*'
 	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
 		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
 	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
 		$(SED) -i 's%#: .*/dsgvo-video-embed/js%#: dsgvo-video-embed/js%' $(file);)
+	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
+		$(SED) -i 's%#: .*/datepicker/js%#: datepicker/js%' $(file);)
 	msgen locale-source/locale/en/LC_MESSAGES/django.po -o locale-source/locale/en/LC_MESSAGES/django.po
 	msgen locale-source/locale/en/LC_MESSAGES/djangojs.po -o locale-source/locale/en/LC_MESSAGES/djangojs.po
 
