@@ -3,6 +3,7 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from django.conf import locale
 from django.utils.translation import ugettext_lazy as _
 
 CONFIG_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -204,6 +205,18 @@ LANGUAGES = [
     ('ky', _('Kyrgyz')),
     ('ru', _('Russian'))
 ]
+
+# adding language info for ky
+EXTRA_LANG_INFO = {
+    'ky': {
+        'bidi': False,
+        'code': 'ky',
+        'name': 'Kyrgyz',
+        'name_local': u"Кыргызча",
+    },
+}
+LANG_INFO = dict(locale.LANG_INFO, **EXTRA_LANG_INFO)
+locale.LANG_INFO = LANG_INFO
 
 PARLER_LANGUAGES = {
     1: [{'code': language_code} for language_code, language in LANGUAGES],

@@ -1,7 +1,5 @@
 {% load userindicator static i18n thumbnail %}
 {% get_current_language as LANGUAGE_CODE %}
-{% load userindicator static i18n thumbnail %}
-{% get_current_language as LANGUAGE_CODE %}
 <div class="dropdown ">
     {% get_available_languages as languages %}
     <a class="nav-link dropdown-toggle"
@@ -23,13 +21,14 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
       {% for lang_code, lang_name in languages %}
+          {% get_language_info for lang_code as language %}
           {% if lang_code != LANGUAGE_CODE %}
             <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}" />
                 <input name="language" type="hidden" value="{{ lang_code }}">
                 <button class="dropdown-item" role="button" type="submit" aria-label="{% trans 'select ' %}{{ lang_name }}">
-                  {{ lang_name }}
+                    {{ language.name_local }}
                 </button>
             </form>
         {% endif %}
