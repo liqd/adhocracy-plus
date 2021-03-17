@@ -5,15 +5,17 @@
 #
 # Translators:
 # Кубанычбек Айдаркулов <sleng84@mail.ru>, 2021
+# Sebastian Hess <sebastian.hess@giz.de>, 2021
+# Luca Thüer <l.thueer@liqd.net>, 2021
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-16 17:16+0100\n"
+"POT-Creation-Date: 2021-03-17 09:39+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Кубанычбек Айдаркулов <sleng84@mail.ru>, 2021\n"
+"Last-Translator: Luca Thüer <l.thueer@liqd.net>, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/liqd/teams/109316/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -54,9 +56,10 @@ msgid ""
 "categories. If you create any, each contribution has to be assigned\n"
 "to one of them. This way, content can be classified."
 msgstr ""
-"В этом разделе вы можете создавать категории. Если вы их создаете, каждый "
-"вклад должен быть приписан к одной из категорий. Таким образом, контент "
-"можно классифицировать."
+"В этом разделе вы можете создавать \n"
+"категории. Если вы их создаете, каждый вклад должен \n"
+"быть приписан к одной из категорий. Таким образом, контент можно "
+"классифицировать."
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
 msgid "Add category"
@@ -212,7 +215,7 @@ msgstr "Все пользователи могут участвовать (от�
 
 #: adhocracy4/dashboard/forms.py:78
 msgid "Only invited users can participate (private)."
-msgstr "Только приглашенные пользователи могут участвовать (приватный доступ)."
+msgstr "Только приглашенные пользователи могут участвовать (частный доступ)."
 
 #: adhocracy4/dashboard/forms.py:86
 #: apps/projects/templates/a4_candy_projects/project_detail.html:136
@@ -577,7 +580,7 @@ msgstr "{image_name}авторское право"
 #: adhocracy4/images/fields.py:94
 #, python-brace-format
 msgid "Copyright shown in the {image_name}."
-msgstr "Авторское право отображено в {image_name}"
+msgstr "Авторское право отображено в {image_name}."
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:10
@@ -599,12 +602,13 @@ msgid ""
 "            "
 msgstr ""
 "\n"
-"Ваше изображение будет загружено / удалено после сохранения изменений\n"
-"в конце этой страницы."
+"          Ваше изображение будет загружено / удалено после сохранения "
+"изменений\n"
+"          в конце этой страницы."
 
 #: adhocracy4/images/validators.py:20
 msgid "Unsupported file format. Supported formats are {}."
-msgstr "Неподдерживаемый формат файла. Поддерживаемые форматы: {}."
+msgstr "Неподдерживаемый формат файла. Поддерживаемые форматы {}."
 
 #: adhocracy4/images/validators.py:27
 #, python-brace-format
@@ -625,7 +629,7 @@ msgstr "Изображение должно быть не менее {min_height
 #, python-brace-format
 msgid "Image aspect ratio should be {aspect_width}:{aspect_height}"
 msgstr ""
-"Соотношение сторон изображения должно быть {aspect_width}{aspect_height}"
+"Соотношение сторон изображения должно быть {aspect_width}:{aspect_height}"
 
 #: adhocracy4/images/widgets.py:25
 msgid "Select a picture from your local folder."
@@ -770,7 +774,7 @@ msgstr "Дата окончания не может быть раньше дат
 #: adhocracy4/phases/models.py:100
 #: adhocracy4/phases/models.py:104
 msgid "Either both or no date has to be set."
-msgstr ""
+msgstr "Необходимо установить либо обе даты, либо дату не указывать. "
 
 #: adhocracy4/polls/dashboard.py:14
 #: apps/dashboard/blueprints.py:85 apps/polls/dashboard.py:15
@@ -892,7 +896,7 @@ msgstr "Административный район"
 
 #: adhocracy4/projects/models.py:174
 msgid "Title of your project"
-msgstr "Заголовок вашего проекта"
+msgstr "Название вашего проекта"
 
 #: adhocracy4/projects/models.py:175
 msgid ""
@@ -924,7 +928,7 @@ msgid ""
 "how the project’s participation will look like. It will be always visible in "
 "the „Info“ tab on your project’s page."
 msgstr ""
-"Это описание должно рассказывать участникам, какова цель проекта, как будет "
+"Это описание должно рассказывать участникам какова цель проекта, как будет "
 "выглядеть участие в проекте. Оно всегда будет видно на вкладке «Информация» "
 "на странице вашего проекта."
 
@@ -1115,19 +1119,19 @@ msgstr "Выделенная информация"
 msgid ""
 "Highlight important information like the time or location of your face-to-"
 "face event"
-msgstr "Выделите важную информацию, такую как время или место личной встречи"
+msgstr "Выделите важную информацию, такую как время или место офлайн-встречи"
 
 #: apps/activities/phases.py:14
 msgid "Face to face phase"
-msgstr "Фаза лицом к лицу"
+msgstr "Офлайн фаза "
 
 #: apps/activities/phases.py:15
 msgid "Show information about the face-to-face event/phase."
-msgstr "Отобразить информацию о личном мероприятии / фазе."
+msgstr "Отобразить информацию о мероприятии / фазе в офлайн-режиме."
 
 #: apps/activities/phases.py:16
 msgid "facetoface"
-msgstr "Лицом к лицу"
+msgstr "Офлайн"
 
 #: apps/activities/templates/a4_candy_activities/activities_dashboard.html:5
 msgid "Edit face to face participation information"
@@ -1181,7 +1185,7 @@ msgstr ""
 
 #: apps/budgeting/phases.py:20
 msgid "participatory budgeting"
-msgstr "инициативное бюджетирование"
+msgstr "Принятие бюджета с участием местных жителей"
 
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:7
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:8
@@ -1287,7 +1291,7 @@ msgstr "Нет информации для отображения"
 
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:4
 msgid "Moderate"
-msgstr "Умеренный"
+msgstr "Модерировать"
 
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:20
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_update_form.html:26
@@ -1332,7 +1336,7 @@ msgstr "Ваш запрос бюджета был удален"
 
 #: apps/captcha/fields.py:37 apps/captcha/fields.py:45
 msgid "Something about the answer to the captcha was wrong."
-msgstr ""
+msgstr "Что-то в ответе на капчу было не так."
 
 #: apps/captcha/fields.py:50
 msgid "Your answer to the captcha was wrong."
@@ -1340,7 +1344,7 @@ msgstr "Ваш ответ на капчу был неправильным."
 
 #: apps/cms/contacts/models.py:38 apps/users/forms.py:42
 msgid "I am not a robot"
-msgstr ""
+msgstr "Я не робот"
 
 #: apps/cms/contacts/models.py:144
 msgid "I want to receive a copy of my message"
@@ -1402,7 +1406,7 @@ msgid ""
 "This message was sent to %(receiver)s. It was sent because you wrote us a "
 "message via our contact form and asked us to send you a copy."
 msgstr ""
-"Это сообщение было отправлено%(receiver)s Оно был отправлено, потому что вы "
+"Это сообщение было отправлено%(receiver)s .Оно был отправлено, потому что вы "
 "написали нам сообщение через нашу контактную форму и попросили прислать вам "
 "копию."
 
@@ -1539,7 +1543,7 @@ msgstr "Вы подтвердили %(email)s"
 #: apps/contrib/django_standard_messages.py:10
 #, python-format
 msgid "You cannot remove your primary e-mail address (%(email)s)."
-msgstr "Вы не можете удалить ваш основной адрес электронной почты (%(email)s)"
+msgstr "Вы не можете удалить ваш основной адрес электронной почты (%(email)s)."
 
 #: apps/contrib/django_standard_messages.py:11
 msgid ""
@@ -1657,7 +1661,7 @@ msgstr "Официальное заявление"
 
 #: apps/dashboard/blueprints.py:16
 msgid "Brainstorming"
-msgstr "Коллективное обсуждение"
+msgstr "Групповое обсуждение"
 
 #: apps/dashboard/blueprints.py:18
 msgid ""
@@ -1719,7 +1723,7 @@ msgstr ""
 
 #: apps/dashboard/blueprints.py:98
 msgid "Participatory budgeting"
-msgstr "Инициативное бюджетирование"
+msgstr "Принятие бюджета с участием местных жителей"
 
 #: apps/dashboard/blueprints.py:100
 msgid ""
@@ -1740,10 +1744,13 @@ msgid ""
 "participants can support the question. You as the moderator can sort the "
 "questions by support or affiliation."
 msgstr ""
+"Участники мероприятия могут задать свои вопросы онлайн. Другие участники "
+"могут поддержать вопрос. Вы как модератор можете сортировать вопросы по "
+"поддержке или Принадлежность."
 
 #: apps/dashboard/blueprints.py:126
 msgid "Prioritization"
-msgstr "Упорядочивание"
+msgstr "Приоретизация"
 
 #: apps/dashboard/blueprints.py:128
 msgid ""
@@ -1884,7 +1891,7 @@ msgstr "Темы дебатов"
 
 #: apps/debate/phases.py:17
 msgid "subject debate"
-msgstr "Тематические дебаты"
+msgstr "Тема дебатов"
 
 #: apps/debate/templates/a4_candy_debate/includes/subject_list_item.html:30
 #, python-format
@@ -2202,9 +2209,10 @@ msgid ""
 "evaluated in the\n"
 "    statistics."
 msgstr ""
-"Здесь вы можете указать принадлежность. Пользователи должны соответственно \n"
-"классифицировать вопросы. Вопросы можно фильтровать по принадлежности и \n"
-"оценивать в статистике."
+"Здесь вы можете указать принадлежность. Пользователи должны соответственно "
+"классифицировать \n"
+"вопросы. Вопросы можно фильтровать по принадлежности и оценивать в\n"
+" статистике."
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/includes/module_affiliations_form.html:22
 msgid "Add affiliation"
@@ -2233,7 +2241,7 @@ msgstr "Перейти к мероприятию"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/present_list.html:11
 msgid "join in "
-msgstr "Присоединится"
+msgstr "Присоединиться"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/present_list.html:19
 msgid "Enter event link"
@@ -2241,7 +2249,7 @@ msgstr "Введите ссылку на мероприятие"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/present_list.html:30
 msgid "Like questions"
-msgstr "Похожие вопросы"
+msgstr "Вопросы нравятся"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/present_list.html:41
 msgid "Ask a question yourself!"
@@ -2306,11 +2314,11 @@ msgstr "Отправить идею"
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:4
 #, python-format
 msgid "Moderate %(name)s"
-msgstr "Умеренный %(name)s"
+msgstr "Модерировать %(name)s"
 
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:30
 msgid "Moderate idea"
-msgstr "Умеренная идея"
+msgstr "Модерировать идею"
 
 #: apps/maps/templates/a4_candy_maps/map_choose_polygon_with_preset_widget.html:6
 msgid "You can choose a preset for further customization."
@@ -2354,7 +2362,7 @@ msgid ""
 "green. The idea provider receives a notification."
 msgstr ""
 "Статус редактирования отображается под названием идеи красным, желтым или "
-"зеленым цветом. Поставщик идеи получает уведомление."
+"зеленым цветом. Автор идеи получает уведомление."
 
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:15
 msgid "Moderator remark"
@@ -2509,7 +2517,7 @@ msgstr "%(organisation_name)s отреагировал на ваш вклад."
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:14
 #, python-format
 msgid "Your contribution is %(feedback)s."
-msgstr "Ваш вклад %(feedback)s"
+msgstr "Ваш вклад %(feedback)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:17
 #, python-format
@@ -2576,7 +2584,8 @@ msgid ""
 "<b>You can still participate until %(end_date)s.</b>"
 msgstr ""
 "онлайн-участие в вышеупомянутом проекте скоро закончится. \n"
-"<b>Вы все еще можете участвовать до%(end_date)s</b>"
+"\n"
+"<b>Вы все еще можете участвовать до%(end_date)s.</b>"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:16
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:16
@@ -2601,7 +2610,8 @@ msgid ""
 "<b>You can participate until %(end_date)s.</b>"
 msgstr ""
 "Онлайн-участие в вышеуказанном проекте началось. \n"
-"<b>Вы можете участвовать до%(end_date)s</b>"
+"\n"
+"<b>Вы можете участвовать до%(end_date)s.</b>"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:4
 #, python-format
@@ -2619,7 +2629,7 @@ msgid ""
 "%(creator_name)s has created the project %(project_name)s for "
 "%(organisation_name)s."
 msgstr ""
-"%(creator_name)s создал проект%(project_name)s для%(organisation_name)s./"
+"%(creator_name)s создал проект%(project_name)s для%(organisation_name)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:11
 msgid "Show project"
@@ -2704,7 +2714,7 @@ msgstr "%(actor_name)sсоздал вклад к проекту %(project_name)s
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:35
 #, python-format
 msgid "on the project %(project_name)s a comment was added by %(actor_name)s."
-msgstr "к проекту %(project_name)s был добавлен комментарий от %(actor_name)s"
+msgstr "к проекту %(project_name)s был добавлен комментарий от %(actor_name)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:35
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:37
@@ -2769,7 +2779,7 @@ msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are a moderator in the project."
 msgstr ""
-"Это электронное письмо было отправлено на%(receiver_mail)s Это электронное "
+"Это электронное письмо было отправлено на%(receiver_mail)s. Это электронное "
 "письмо было отправлено вам, потому что вы являетесь модератором проекта."
 
 #: apps/offlineevents/dashboard.py:13
@@ -2796,8 +2806,8 @@ msgid ""
 "than 30 characters e.g. Information event or 3rd public workshop."
 msgstr ""
 "Содержимое этого поля отображается на расписании. Оно должно содержать не "
-"более 30 символов, как например Информационное мероприятие или 3-й открытый "
-"семинар."
+"более 30 символов, как например Информационное мероприятие или 3-й "
+"общественный семинар."
 
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:4
 msgid "Confirm Offline Event Deletion"
@@ -3078,7 +3088,7 @@ msgid ""
 msgstr ""
 "В настоящее время отсутствуют процессы участия общественности. Войдите в "
 "систему <a href=\"%(account_login_url)s?next=%(organisation_url)s\"> здесь</"
-"a> или узнайте больше в <a href=\"%(organisation_information_url)s\">."
+"a> или узнайте больше в <a href=\"%(organisation_information_url)s\">о</a>."
 
 #: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:95
 #, python-format
@@ -3225,11 +3235,11 @@ msgid ""
 msgstr ""
 "Это электронное письмо было отправлено на%(receiver_mail)s Это электронное "
 "письмо было отправлено вам, потому что вы приглашены принять участие в "
-"приватном проекте."
+"частном проекте."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:17
 msgid "Project is private."
-msgstr "Проект является приватным."
+msgstr "Проект является частным."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:23
 msgid "Project is semi-public."
@@ -3314,7 +3324,7 @@ msgstr "Удалить"
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:31
 #: apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:29
 msgid "None"
-msgstr "Нет"
+msgstr "Неизвестно"
 
 #: apps/projects/templates/a4_candy_projects/includes/users_from_email_form.html:26
 msgid "Add"
@@ -3334,7 +3344,7 @@ msgstr "Приглашение в %(project)s"
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_form.html:9
 #, python-format
 msgid "Moderation invitation for %(project)s"
-msgstr "Приглашение на модерацию для %(project)s"
+msgstr "Приглашение на модерирование для %(project)s"
 
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:12
 msgid ""
@@ -3454,7 +3464,7 @@ msgstr "Это продолжится с %(date)s."
 #: adhocracy-plus/templates/a4modules/module_detail.html:126
 #, python-format
 msgid "It ended on %(date)s."
-msgstr "Это закончится %(date)s."
+msgstr "Это закончилось%(date)s."
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:225
 #: apps/users/models.py:47
@@ -3813,7 +3823,7 @@ msgstr "Здравствуйте"
 
 #: apps/users/templates/a4_candy_users/indicator.html:35
 msgid "Admin"
-msgstr "Управлять"
+msgstr "Администратор"
 
 #: apps/users/templates/a4_candy_users/indicator.html:37
 msgid "Account Settings"
@@ -3873,15 +3883,15 @@ msgstr "Немецкий язык"
 
 #: adhocracy-plus/config/settings/base.py:204
 msgid "Dutch"
-msgstr "Нидерландский язык"
+msgstr "Голландский язык"
 
 #: adhocracy-plus/config/settings/base.py:205
 msgid "Kyrgyz"
-msgstr ""
+msgstr "Кыргызский"
 
 #: adhocracy-plus/config/settings/base.py:206
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 #: adhocracy-plus/config/settings/base.py:332
 #: adhocracy-plus/config/settings/base.py:347
@@ -3890,7 +3900,7 @@ msgstr "Редактор форматированного текста"
 
 #: adhocracy-plus/config/settings/base.py:449
 msgid "suggestion"
-msgstr "Предположение"
+msgstr "Предложение"
 
 #: adhocracy-plus/config/settings/base.py:450
 msgid "note"
@@ -4341,8 +4351,7 @@ msgid ""
 msgstr ""
 "вы запросили сброс пароля. Пожалуйста, нажмите «Сбросить пароль», чтобы "
 "установить новый пароль. Если вы не запрашивали сброс пароля, вы можете "
-"игнорировать это письмо, и ваш пароль на %(current_site)sостанется "
-"неизменным."
+"игнорировать это письмо, и ваш %(current_site)sпароль останется неизменным."
 
 #: adhocracy-plus/templates/account/email/password_reset_key.en.email:11
 msgid "Reset password"
@@ -4497,7 +4506,7 @@ msgstr ""
 "\n"
 "Я подтверждаю, что я прочитал и принимаю <a href=\"%(terms_of_use_url)s\" "
 "target=\"_blank\"> условия использования</a> и <a href="
-"\"%(data_protection_policy)s\" target=\"_blank\">политику защиты данных</a>."
+"\"%(data_protection_policy)s\" target=\"_blank\">политику защиты данных</a>. "
 
 #: adhocracy-plus/templates/account/signup.html:63
 #, python-format
@@ -4607,9 +4616,9 @@ msgid ""
 "click the remove button"
 msgstr ""
 "Вы можете войти в свою учетную запись, используя любую из следующих "
-"сторонних учетных записей. \n"
-"Чтобы удалить их, отметьте ту запись, которую вы хотите удалить, и нажмите "
-"кнопку удаления."
+"сторонних\n"
+" учетных записей. Чтобы удалить их, отметьте ту запись, которую вы хотите "
+"удалить, и нажмите кнопку удаления."
 
 #: adhocracy-plus/templates/socialaccount/connections.html:35
 msgid ""
@@ -4632,7 +4641,8 @@ msgid ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
 msgstr ""
-"Вы собираетесь использовать свою учетную запись%(provider_name)s для входа в"
+"Вы собираетесь использовать свою учетную запись%(provider_name)s для входа "
+"в\n"
 "%(site_name)s. В качестве последнего шага, пожалуйста, заполните следующую "
 "форму:"
 
@@ -4644,24 +4654,3 @@ msgstr "Войти в систему через учетную запись в �
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Войти в систему через"
-
-#~ msgid ""
-#~ "The participants of an event can ask their questions online. Other "
-#~ "participants can support the question. You as the moderator can sort the "
-#~ "questions by support or characteristic."
-#~ msgstr ""
-#~ "Участники мероприятия могут задать свои вопросы онлайн. Другие участники "
-#~ "могут поддержать вопрос. Вы как модератор можете сортировать вопросы по "
-#~ "поддержке или характеристике."
-
-#~ msgid ""
-#~ "Please indicate whether this project should be public or restricted to "
-#~ "invited users. Teasers for your project including title and short "
-#~ "description will always be visible to everyone"
-#~ msgstr ""
-#~ "Укажите, должен ли этот проект быть открытым или доступным только для "
-#~ "приглашенных пользователей. Тизеры вашего проекта, включая название и "
-#~ "краткое описание, всегда будут видны всем."
-
-#~ msgid "Please answer the captcha"
-#~ msgstr "Пожалуйста, ответьте на капчу"
