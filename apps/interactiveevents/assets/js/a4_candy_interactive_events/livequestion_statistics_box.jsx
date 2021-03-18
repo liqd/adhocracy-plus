@@ -94,7 +94,7 @@ export default class StatisticsBox extends React.Component {
                 )
               })}
             </div>
-          )
+            )
           : (
             <div className="list-group mt-3 mt-md-4">
               {this.state.answeredQuestions.map((question, index) => {
@@ -114,7 +114,7 @@ export default class StatisticsBox extends React.Component {
                 )
               })}
             </div>
-          )}
+            )}
       </div>
     )
   }

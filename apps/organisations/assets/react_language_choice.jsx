@@ -1,6 +1,6 @@
-var PropTypes = require('prop-types')
-var React = require('react')
-var ReactDOM = require('react-dom')
+const PropTypes = require('prop-types')
+const React = require('react')
+const ReactDOM = require('react-dom')
 
 class LanguageChoice extends React.Component {
   constructor (props) {
@@ -20,8 +20,8 @@ class LanguageChoice extends React.Component {
   }
 
   getNewActiveTab (removedLanguage) {
-    var index = this.state.activeLanguages.indexOf(removedLanguage)
-    var newActiveLanguages = this.state.activeLanguages.concat([])
+    const index = this.state.activeLanguages.indexOf(removedLanguage)
+    const newActiveLanguages = this.state.activeLanguages.concat([])
     if (index !== -1) {
       newActiveLanguages.splice(index, 1)
     }
@@ -33,14 +33,14 @@ class LanguageChoice extends React.Component {
   }
 
   activateTab (e) {
-    var languageCode = e.target.textContent
+    const languageCode = e.target.textContent
     this.setState({ activeTab: languageCode })
   }
 
   addLanguage (e) {
-    var languageCode = e.target.getAttribute('languageCode')
-    var index = this.state.activeLanguages.indexOf(languageCode)
-    var newActiveLanguages = this.state.activeLanguages.concat([])
+    const languageCode = e.target.getAttribute('languageCode')
+    const index = this.state.activeLanguages.indexOf(languageCode)
+    const newActiveLanguages = this.state.activeLanguages.concat([])
     if (index === -1) {
       // adding language
       newActiveLanguages.push(languageCode)
@@ -52,9 +52,9 @@ class LanguageChoice extends React.Component {
   }
 
   removeLanguage (e) {
-    var languageCode = e.target.getAttribute('languageCode')
-    var index = this.state.activeLanguages.indexOf(languageCode)
-    var newActiveLanguages = this.state.activeLanguages.concat([])
+    const languageCode = e.target.getAttribute('languageCode')
+    const index = this.state.activeLanguages.indexOf(languageCode)
+    const newActiveLanguages = this.state.activeLanguages.concat([])
     if (index !== -1) {
       // removing language
       newActiveLanguages.splice(index, 1)
@@ -72,7 +72,7 @@ class LanguageChoice extends React.Component {
   render () {
     return (
       <div className="language-choice-container">
-        <ul className="checkbox-list btn--group" ref="checkboxList">
+        <ul className="checkbox-list btn--group">
           {
             this.props.languages.map((languageCode, i) => {
               return (
@@ -93,7 +93,7 @@ class LanguageChoice extends React.Component {
         </ul>
         <div className="btn--group ml-5">
           <div className="dropdown">
-            <button className="dropdown-toggle btn btn--light btn--small" type="button" data-toggle="dropdown" ref="toggleButton">
+            <button className="dropdown-toggle btn btn--light btn--small" type="button" data-toggle="dropdown">
               <i className="fa fa-plus" />
             </button>
             <div className="dropdown-menu">
@@ -120,7 +120,7 @@ class LanguageChoice extends React.Component {
 
           {this.state.activeLanguages.length > 1 &&
             <div className="dropdown">
-              <button className="dropdown-toggle btn btn--light btn--small" type="button" data-toggle="dropdown" ref="toggleButton">
+              <button className="dropdown-toggle btn btn--light btn--small" type="button" data-toggle="dropdown">
                 <i className="fa fa-minus" />
               </button>
               <div className="dropdown-menu">
