@@ -56,7 +56,7 @@ export default class InfoBox extends React.Component {
                 <span aria-label={ariaCloseInfo}>&times;</span>
               </button>
             </div>
-          )
+            )
           : (
             <div className="row mb-2">
               <div className="col-12 d-flex justify-content-end">
@@ -65,7 +65,7 @@ export default class InfoBox extends React.Component {
                 </button>
               </div>
             </div>
-          )}
+            )}
       </div>
     )
   }

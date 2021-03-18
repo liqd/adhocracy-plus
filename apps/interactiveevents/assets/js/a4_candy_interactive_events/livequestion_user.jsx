@@ -75,17 +75,18 @@ export default class QuestionUser extends React.Component {
                     <span className="sr-only">{likesTag}</span>
                     <i className="fa fa-chevron-up" aria-label={this.state.session_like ? addLikeTag : undoLikeTag} />
                   </button>
-                )
+                  )
                 : (
                   <div className="float-right">
                     <span className="text-muted">{this.state.likes}</span>
                     <span className="sr-only">{likesTag}</span>
                     <i className="fa fa-chevron-up text-muted ml-1" aria-hidden="true" />
                   </div>
-                )}
+                  )}
             </div>
           </div>
         </div>
-      </div>)
+      </div>
+    )
   }
 }
