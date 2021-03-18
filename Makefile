@@ -32,6 +32,7 @@ help:
 	@echo "  make coverage        -- write coverage report to dir htmlcov"
 	@echo "  make lint            -- lint all project files"
 	@echo "  make lint-quick      -- lint all files staged in git"
+	@echo "  make lint-fix      	-- fix linting for all js files staged in git"
 	@echo "  make po              -- create new po files from the source"
 
 	@echo "  make po-fork         -- create new po files from the source in a branch or fork to keep original translations"
@@ -111,6 +112,12 @@ lint-python-files:
 	EXIT_STATUS=0; \
 	$(VIRTUAL_ENV)/bin/isort --diff -c $(ARGUMENTS) --filter-files || EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
+
+.PHONY: lint-fix
+lint-fix:
+	EXIT_STATUS=0; \
+	npm run lint-fix ||  EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: po
