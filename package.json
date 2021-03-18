@@ -86,7 +86,8 @@
     "build": "webpack --config webpack.dev.js --mode development",
     "watch": "webpack --config webpack.dev.js --watch --mode development",
     "lint": "eslint apps adhocracy-plus/assets --ext .js,.jsx && stylelint 'adhocracy-plus/assets/scss/**/*.scss' --syntax scss",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "lint-fix": "eslint --fix --ext .js,.jsx ."
   },
   "browserslist": "defaults and not dead and >= 0.5%, ie >= 11",
   "husky": {
