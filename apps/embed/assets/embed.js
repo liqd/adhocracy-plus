@@ -24,11 +24,11 @@ if (window.opener) {
 }
 
 $(document).ready(function () {
-  var $main = $('main')
-  var currentPath
-  var popup
-  var patternsForPopup = /\/accounts\b/
-  var $top = $('<div tabindex="-1">')
+  const $main = $('main')
+  let currentPath
+  let popup
+  const patternsForPopup = /\/accounts\b/
+  const $top = $('<div tabindex="-1">')
 
   // FIXME: use consistent wording (URL/href/path)
   window.adhocracy4.getCurrentPath = function () {
@@ -40,24 +40,24 @@ $(document).ready(function () {
     return '/embed/login_success'
   }
 
-  var headers = {
+  const headers = {
     'X-Embed': ''
   }
 
-  var testCanSetCookie = function () {
+  const testCanSetCookie = function () {
     document.cookie = 'can-set-cookie=true;SameSite=None;Secure'
     return document.cookie.indexOf('can-set-cookie=') !== -1
   }
 
-  var createAlert = function (text, state, timeout) {
-    var $alert = $('<p class="alert alert--' + state + ' alert--small" role="alert">' + text + '</p>')
-    var $close = $('<button class="alert__close"><i class="fa fa-times"></i></button>')
+  const createAlert = function (text, state, timeout) {
+    const $alert = $('<p class="alert alert--' + state + ' alert--small" role="alert">' + text + '</p>')
+    const $close = $('<button class="alert__close"><i class="fa fa-times"></i></button>')
 
     $alert.append($close)
     $close.attr('title', django.gettext('Close'))
     $close.find('i').attr('aria-label', django.gettext('Close'))
 
-    var removeMessage = function () {
+    const removeMessage = function () {
       $alert.remove()
     }
     $alert.on('click', removeMessage)
@@ -67,11 +67,11 @@ $(document).ready(function () {
     $alert.prependTo($('#embed-status'))
   }
 
-  var extractScripts = function ($root, selector, attr) {
-    var $existingValues = $('head').find(selector).map((i, e) => $(e).attr(attr))
+  const extractScripts = function ($root, selector, attr) {
+    const $existingValues = $('head').find(selector).map((i, e) => $(e).attr(attr))
 
     $root.find(selector).each(function (i, script) {
-      var $script = $(script)
+      const $script = $(script)
       if ($existingValues.filter((i, v) => v === $script.attr(attr)).length) {
         $script.remove()
       } else {
@@ -80,9 +80,9 @@ $(document).ready(function () {
     })
   }
 
-  var loadHtml = function (html, textStatus, xhr) {
-    var $root = $('<div>').html(html)
-    var nextPath = xhr.getResponseHeader('x-ajax-path')
+  const loadHtml = function (html, textStatus, xhr) {
+    const $root = $('<div>').html(html)
+    const nextPath = xhr.getResponseHeader('x-ajax-path')
 
     if (patternsForPopup.test(nextPath)) {
       $('#embed-confirm').modal('show')
@@ -104,8 +104,8 @@ $(document).ready(function () {
     $top.focus()
   }
 
-  var onAjaxError = function (jqxhr) {
-    var text
+  const onAjaxError = function (jqxhr) {
+    let text
     switch (jqxhr.status) {
       case 404:
         text = django.gettext('We couldn\'t find what you were looking for.')
@@ -122,8 +122,8 @@ $(document).ready(function () {
     createAlert(text, 'danger', 6000)
   }
 
-  var getEmbedTarget = function ($element, url) {
-    var embedTarget = $element.data('embedTarget')
+  const getEmbedTarget = function ($element, url) {
+    const embedTarget = $element.data('embedTarget')
 
     if (embedTarget) {
       return embedTarget
@@ -140,9 +140,9 @@ $(document).ready(function () {
 
   $(document).on('click', 'a[href]', function (event) {
     // NOTE: event.target.href is resolved against /embed/
-    var url = event.currentTarget.getAttribute('href')
-    var $link = $(event.target)
-    var embedTarget = getEmbedTarget($link, url)
+    let url = event.currentTarget.getAttribute('href')
+    const $link = $(event.target)
+    const embedTarget = getEmbedTarget($link, url)
 
     if (embedTarget === 'internal') {
       event.preventDefault()
@@ -168,9 +168,9 @@ $(document).ready(function () {
   })
 
   $(document).on('submit', 'form[action]', function (event) {
-    var form = event.target
-    var $form = $(form)
-    var embedTarget = getEmbedTarget($form, form.method)
+    const form = event.target
+    const $form = $(form)
+    const embedTarget = getEmbedTarget($form, form.method)
 
     if (embedTarget === 'internal') {
       event.preventDefault()
@@ -203,7 +203,7 @@ $(document).ready(function () {
     if (e.origin === location.origin) {
       // Browser extensions might use onmessage too, so catch any exceptions
       try {
-        var data = JSON.parse(e.data)
+        const data = JSON.parse(e.data)
 
         if (data.name === 'popup-close' && popup) {
           popup.close()
@@ -215,7 +215,7 @@ $(document).ready(function () {
   }, false)
 
   if (testCanSetCookie() === false) {
-    var text = django.gettext('You have third party cookies disabled. You can still view the content of this project but won\'t be able to login.')
+    const text = django.gettext('You have third party cookies disabled. You can still view the content of this project but won\'t be able to login.')
     createAlert(text, 'info')
   }
 

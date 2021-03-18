@@ -1,6 +1,7 @@
 const $ = require('jquery')
 const a4api = require('adhocracy4').api
 
+/* eslint-disable */
 $(function () {
   const dropdown = $('#idea-remark__dropdown')
   const attributes = dropdown.data('attributes')
@@ -29,7 +30,7 @@ $(function () {
         remark: newVal
       }
 
-      var response
+      let response
       if (remarkId) {
         response = a4api.moderatorremark.change(data, remarkId)
       } else {
@@ -51,3 +52,4 @@ $(function () {
     }
   })
 })
+/* eslint-enable */
