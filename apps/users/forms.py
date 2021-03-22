@@ -6,6 +6,7 @@ from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
 from django.conf import settings
+from django.contrib.auth import forms as auth_forms
 from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 from zeep import Client
@@ -13,6 +14,7 @@ from zeep import Client
 from apps.captcha.fields import CaptcheckCaptchaField
 from apps.organisations.models import Member
 from apps.organisations.models import Organisation
+from apps.users.models import User
 
 logger = logging.getLogger(__name__)
 
@@ -192,3 +194,44 @@ class SocialTermsSignupForm(SocialSignupForm):
         user.language = get_language()
         user.save()
         return user
+
+
+class ChangeUserAdminForm(auth_forms.UserChangeForm):
+
+    def clean_username(self):
+
+        username = self.cleaned_data['username']
+        try:
+            user = User.objects.get(username__iexact=username)
+            if user != self.instance:
+                raise forms.ValidationError(
+                    User._meta.get_field('username').error_messages['unique'])
+        except User.DoesNotExist:
+            pass
+
+        try:
+            user = User.objects.get(email__iexact=username)
+            if user != self.instance:
+                raise forms.ValidationError(User._meta.get_field('username').
+                                            error_messages['used_as_email'])
+        except User.DoesNotExist:
+            pass
+
+        return username
+
+
+class AddUserAdminForm(auth_forms.UserCreationForm):
+
+    def clean_username(self):
+
+        username = self.cleaned_data['username']
+        user = User.objects.filter(username__iexact=username)
+        if user.exists():
+            raise forms.ValidationError(
+                User._meta.get_field('username').error_messages['unique'])
+        else:
+            user = User.objects.filter(email__iexact=username)
+            if user.exists():
+                raise forms.ValidationError(User._meta.get_field('username').
+                                            error_messages['used_as_email'])
+        return username

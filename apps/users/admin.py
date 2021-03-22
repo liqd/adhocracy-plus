@@ -2,10 +2,13 @@ from django.contrib import admin
 from django.contrib import auth
 from django.utils.translation import ugettext_lazy as _
 
+from . import forms
 from . import models
 
 
 class UserAdmin(auth.admin.UserAdmin):
+    form = forms.ChangeUserAdminForm
+    add_form = forms.AddUserAdminForm
     fieldsets = (
         (None, {'fields': ('username', 'email', 'language', 'password')}),
         (_('Permissions'), {'fields': ('is_staff', 'is_superuser')}),
