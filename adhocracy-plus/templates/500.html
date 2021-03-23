@@ -1,24 +1,47 @@
 <html>
-<head>
-    <title>Error &mdash; {{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'vendor.css' %}" />
-</head>
-<body>
-    <div class="l-outer-wrapper">
-        <a href="#main" class="sr-only sr-only-focusable">Skip to content </a>
-        <header class="header-upper" aria-label="Header">
-            <div class="u-page-ribbon"></div>
-            <div class="container">
-                <div class="header-upper__brand">
-                    <a href="/">{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}</a>
+    <head>
+        <title>500 Error</title>
+        <style>
+          html, body         { height: 100%;}
+          body               {margin: 0; position: relative; overflow-x: hidden; font-size: 1.125rem;}
+          h1                 {font-weight: 400; font-size: 2.5rem;}
+          .wide-wrapper        {font-family:"SourceSerifPro",serif; font-size: 1.5rem; margin-left: 20%; margin-right: 20%; padding: 1rem;}
+          .small-wrapper      {margin-left: 25%; margin-right: 25%;}
+          .error_body         {font-family: "SourceSansPro",sans-serif; display: block; margin: auto; padding-top: 3.5rem}
+          .error_link         {color: #e3000f;}
+          .footer-ribbon      {position: absolute; display: flex; right: 0; bottom: 0; left: 0;}
+          .footer             {font-family:"SourceSerifPro",serif; position: absolute; display: flex; align-items: center; right: 0; bottom: 0; left: 0; padding-bottom: 1rem;}
+          .u-page-ribbon      {background:-webkit-gradient(linear,left top,right top,from(#2d40cc),color-stop(33%,#2d40cc),color-stop(66%,#c0c6f0),to(#c0c6f0));background:-o-linear-gradient(left,#2d40cc,#2d40cc 33%,#c0c6f0 66%,#c0c6f0);height:.5em}
+          .u-page-ribbon--platform {background:-webkit-gradient(linear,left top,right top,from(#2d40cc),color-stop(33%,#2d40cc),color-stop(66%,#90efe4),to(#90efe4));background:-o-linear-gradient(left,#2d40cc,#2d40cc 33%,#90efe4 66%,#90efe4);background:linear-gradient(to right,#2d40cc,#2d40cc 33%,#90efe4 66%,#90efe4)}
+        </style>
+        <meta charset=utf-8>
+    </head>
+
+    <body>
+        <div class="u-page-ribbon u-page-ribbon--platform"></div>
+            <header class="main-header" aria-label=Header>
+                <div class="wide-wrapper">
+                    <div class="platform-brand">
+                      <a href="/" class="platform-brand__link">
+                      <title>Kosmo</title>
+                      <?xml version="1.0" encoding="utf-8"?>
+                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                      	 viewBox="0 0 580.5 131.5" style="enable-background:new 0 0 580.5 131.5;" xml:space="preserve">
+                      <style type="text/css">
+                      	.st0{fill:#D8D8D8;}
+                      </style>
+                      <rect class="st0" width="200" height="45.3"/>
+                      </svg>
+                  </a>
+                    </div>
                 </div>
             </header>
             <main id=main>
                 <div class="small-wrapper">
                     <div class=error_body>
                         <h1>500</h1>
-                        <p class="u-font-size-lg">{% trans 'Internal server error.' %}</p>
-                        <a href="/">{% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Back to {{ platformname }}{% endblocktrans %}</a>
+                        <p>Internal server error.</p>
+                        <a  href="/">Back to Kosmo</a>
                     </div>
               </div>
             </main>
