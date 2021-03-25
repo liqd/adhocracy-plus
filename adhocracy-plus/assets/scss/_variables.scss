@@ -1,10 +1,10 @@
 // subset of bootstrap variables
-$brand-primary: #2d40cc; // ultramarine
+$brand-primary: #2a2077; //kosmo dark blue
 
-$brand-secondary: #90efe4 !default; // terquoise
-$brand-secondary-dark: #46caad !default; //darker terquoise
+$brand-secondary: #391df2 !default; //kosmo red
+$brand-secondary-dark: $brand-secondary !default;
 
-$brand-tertiary: #008dc5 !default; // prussian blue
+$brand-tertiary: #391df2 !default; // prussian blue
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
 $brand-success: #a3ef90 !default;
@@ -21,7 +21,7 @@ $danger:        $brand-danger !default;
 
 $body-bg: #fff !default;
 
-$text-color: #1a1a1a !default;
+$text-color: #212529 !default; // kosmo print colour
 $text-color-inverted: $body-bg !default;
 $text-color-gray: #666 !default;
 $overlay: rgba(#000, 0.5) !default;
@@ -64,7 +64,7 @@ $feedback-color-rejected: #dc3818 !default;
 $feedback-color-consideration: #ffae00 !default;
 
 $font-family-base: "SourceSansPro", sans-serif !default;
-$font-family-serif: "SourceSerifPro", serif !default;
+$font-family-serif: "SourceSansPro", sans-serif !default; //quick change for first release
 
 $font-size-xxxl: 2.5rem !default;
 $font-size-xxl: 2rem !default;
