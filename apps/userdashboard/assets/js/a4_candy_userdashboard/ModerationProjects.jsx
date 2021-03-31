@@ -6,55 +6,60 @@ export default class ModerationProjects extends React.Component {
     super(props)
 
     this.state = {
-      projectTitle: [],
-      organisation: [],
-      url: [],
-      projectImage: [],
-      imageCopyright: []
+      items: [],
+      isLoaded: false
     }
-  }
-
-  getProjectData (projectData) {
-    let i = 0
-    for (i = 0; i < projectData.length; i++) {
-      var element = document.createElement('div')
-      element.setAttribute('class', 'col-sm-6 col-lg-4')
-      element.innerHTML = '<li class="tile organisation__tile userdashboard__tile">' + '<a href=' + projectData[i].url + '>' +
-                          '<div class="tile__head">' + '<div class="tile__image tile__image--sm" style="background-image: url(' +
-                          projectData[i].tile_image + ')">' + '</div>' + '</div>' + '<div class="tile__body">' +
-                          '<span class="text-muted">' + projectData[i].organisation + '</span>' +
-                          '<h3 class="tile__title mb-4">' + projectData[i].title + '</h3>' +
-                          '<div>' + projectData[i].tile_image_copyright + '</div>' + '</a>' + '</li>'
-
-      $('#project_list').append(element)
-      this.setState({
-        projectTitle: this.state.projectTitle.concat(projectData[i].title),
-        organisation: this.state.organisation.concat(projectData[i].organisation),
-        url: this.state.url.concat(projectData[i].url),
-        projectImage: this.state.projectImage.concat(projectData[i].tile_image),
-        imageCopyright: this.state.imageCopyright.concat(projectData[i].tile_image_copyright)
-      })
-    }
-  }
-
-  getItems () {
-    fetch(this.props.projectApiUrl)
-      .then((response) => {
-        return response.json()
-      }).then((data) => {
-        this.getProjectData(data)
-      })
   }
 
   componentDidMount () {
-    this.getItems()
+    fetch(this.props.projectApiUrl)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          items: json,
+          isLoaded: true
+        })
+      }).catch((err) => {
+        console.log(err)
+      })
   }
 
   render () {
+    const { isLoaded, items } = this.state
+
+    if (!isLoaded) {
+      return <div>Loading...</div>
+    }
+
     return (
       <div className="row mb-2">
         <h2>Projects</h2>
-        <div class="row" id="project_list" />
+        <div id="project_list">
+          <ul className="pl-0">
+            {items.map(item => (
+              <li key={item.title} className="tile--sm tile--horizontal">
+                <div className="tile__head">
+                  <div className="tile__image tile__image--sm" style={{ backgroundImage: `url(${item.tile_image})` }}>
+                    <div>{item.tile_image_copyright}</div>
+                  </div>
+                </div>
+                <div className="tile__body">
+                  <span className="text-muted">{item.organisation}</span>
+                  <a href={item.url}><h3 className="tile__title mb-4">{item.title}</h3></a>
+                  <div>
+                    <span className="label label--dark">Project visibility</span>
+                  </div>
+                  <div className="d-flex justify-content-between text-muted mt-3">
+                    <span><span class="fa-stack fa-2x" aria-hidden="true"><i className="fas fa-exclamation fa-stack-1x" /><i class="far fa-circle fa-stack-2x" /></span> amount of reports</span>
+                    <span><i className="far fa-comment" aria-hidden="true" /> amount of comments</span>
+                    <span><i className="far fa-clock" aria-hidden="true" /> time remaining</span>
+                  </div>
+                  <a href={item.url} className="tile__link"><span className="sr-only">Link to {item.title}</span></a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     )
   }

@@ -1,6 +1,7 @@
 $svg-colour: #2a3cd4;
 
-.tile {
+.tile,
+.tile--sm {
     display: flex;
     flex-direction: column;
     page-break-inside: avoid;
@@ -134,6 +135,10 @@ $svg-colour: #2a3cd4;
 @media (min-width: $breakpoint) {
     .tile {
         min-height: 15em;
+    }
+
+    .tile--sm {
+        min-height: 10em;
     }
 
     .tile--horizontal {
