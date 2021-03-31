@@ -4,7 +4,7 @@ SOURCE_DIRS = adhocracy-plus apps tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
 
 SED = sed
-ifneq (, $(shell command -v gsed))
+ifneq (, $(shell command -v gsed;))
 	SED = gsed
 endif
 
