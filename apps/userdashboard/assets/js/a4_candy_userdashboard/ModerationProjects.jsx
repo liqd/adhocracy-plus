@@ -1,5 +1,6 @@
 /* global fetch */
 import React from 'react'
+import django from 'django'
 
 export default class ModerationProjects extends React.Component {
   constructor (props) {
@@ -12,6 +13,11 @@ export default class ModerationProjects extends React.Component {
   }
 
   componentDidMount () {
+    this.loadData()
+    this.timer = setInterval(() => this.loadData(), 3000)
+  }
+
+  async loadData () {
     fetch(this.props.projectApiUrl)
       .then(res => res.json())
       .then(json => {
@@ -24,11 +30,21 @@ export default class ModerationProjects extends React.Component {
       })
   }
 
+  componentWillUnmount () {
+    clearInterval(this.timer)
+    this.timer = null
+  }
+
   render () {
     const { isLoaded, items } = this.state
+    const loadingText = django.gettext('Loading...')
+    const commentCountText = django.gettext(' comments')
+    const reportCountText = django.gettext(' reports')
+    const projectLengthText = django.gettext(' remaining')
+    const srLinkText = django.gettext('Link to ')
 
     if (!isLoaded) {
-      return <div>Loading...</div>
+      return <div>{loadingText}</div>
     }
 
     return (
@@ -50,11 +66,11 @@ export default class ModerationProjects extends React.Component {
                     <span className="label label--dark">Project visibility</span>
                   </div>
                   <div className="d-flex justify-content-between text-muted mt-3">
-                    <span><span class="fa-stack fa-2x" aria-hidden="true"><i className="fas fa-exclamation fa-stack-1x" /><i class="far fa-circle fa-stack-2x" /></span> amount of reports</span>
-                    <span><i className="far fa-comment" aria-hidden="true" /> amount of comments</span>
-                    <span><i className="far fa-clock" aria-hidden="true" /> time remaining</span>
+                    <span><span className="fa-stack fa-2x" aria-hidden="true"><i className="fas fa-exclamation fa-stack-1x" /><i className="far fa-circle fa-stack-2x" /></span>{reportCountText}</span>
+                    <span><i className="far fa-comment" aria-hidden="true" />{commentCountText}</span>
+                    <span><i className="far fa-clock" aria-hidden="true" />{projectLengthText}</span>
                   </div>
-                  <a href={item.url} className="tile__link"><span className="sr-only">Link to {item.title}</span></a>
+                  <a href={item.url} className="tile__link"><span className="sr-only">{srLinkText}{item.title}</span></a>
                 </div>
               </li>
             ))}
