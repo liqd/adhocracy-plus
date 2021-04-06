@@ -10,7 +10,11 @@
               role="button"
               aria-haspopup="true"
               aria-expanded="false">
-              {% trans 'Overview' %}
+              {% if view.menu_item == 'moderation' %}
+                {% trans 'Moderation' %}
+              {% else %}
+                {% trans 'Overview' %}
+              {% endif %}
               <i class="fa fa-caret-down" aria-hidden="true"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
