@@ -56,6 +56,7 @@ export default class ModerationProjects extends React.Component {
     const commentCountText = django.gettext(' comments')
     const reportCountText = django.gettext(' reports')
     const srLinkText = django.gettext('Link to ')
+    const publicText = django.gettext('public')
     const privateText = django.gettext('private')
     const semiPrivateText = django.gettext('semiprivate')
 
@@ -64,10 +65,10 @@ export default class ModerationProjects extends React.Component {
     }
 
     return (
-      <div className="row mb-2">
+      <div className="mb-2">
         <h2>Projects</h2>
-        <div id="project_list">
-          <ul className="pl-0">
+        <div className="row" id="project_list">
+          <ul className="col-12">
             {items.map(item => (
               <li key={item.title} className="tile--sm tile--horizontal">
                 <div className="tile__head">
@@ -77,17 +78,18 @@ export default class ModerationProjects extends React.Component {
                 </div>
                 <div className="tile__body">
                   <span className="text-muted">{byText}{item.organisation}</span>
-                  <a href={item.url}><h3 className="tile__title mb-4">{item.title}</h3></a>
+                  <h3 className="tile__title mb-4">{item.offensive > 0 && <span className="text-info">• </span>}{item.title}</h3>
                   <div>
+                    {item.access === 1 && <span className="label label--dark">{publicText}</span>}
                     {item.access === 2 && <span className="label label--dark">{semiPrivateText}</span>}
                     {item.access === 3 && <span className="label label--dark">{privateText}</span>}
                   </div>
                   <div className="row text-muted mt-3">
-                    {item.offensive > 0 && <div className="col-4"><span className="fa-stack fa-2x" aria-hidden="true"><i className="fas fa-exclamation fa-stack-1x" /><i className="far fa-circle fa-stack-2x" /></span> {item.offensive}{reportCountText}</div>}
-                    {item.comment_count > 0 && <div className="col-4"><i className="far fa-comment" aria-hidden="true" /> {item.comment_count}{commentCountText}</div>}
-                    {item.future_phase && !item.active_phase && <div className="col-4"><i className="far fa-clock" aria-hidden="true" /> {item.participation_string}</div>}
-                    {item.active_phase && <div className="col-4"><i className="far fa-clock" aria-hidden="true" /> {this.getTimespan(item)}</div>}
-                    {item.past_phase && !item.active_phase && !item.future_phase && <div className="col-4" />}
+                    {item.offensive > 0 && <div className="col-lg-4"><span className="fa-stack fa-2x" aria-hidden="true"><i className="fas fa-exclamation fa-stack-1x" /><i className="far fa-circle fa-stack-2x" /></span> {item.offensive}{reportCountText}</div>}
+                    {item.comment_count > 0 && <div className="col-lg-4"><i className="far fa-comment" aria-hidden="true" /> {item.comment_count}{commentCountText}</div>}
+                    {item.future_phase && !item.active_phase && <div className="col-lg-4"><i className="far fa-clock" aria-hidden="true" /> {item.participation_string}</div>}
+                    {item.active_phase && <div className="col-lg-4"><i className="far fa-clock" aria-hidden="true" /> {this.getTimespan(item)}</div>}
+                    {item.past_phase && !item.active_phase && !item.future_phase && <div className="col-lg-4" />}
                   </div>
                   <a href={item.url} className="tile__link"><span className="sr-only">{srLinkText}{item.title}</span></a>
                 </div>
