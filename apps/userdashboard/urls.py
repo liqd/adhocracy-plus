@@ -15,4 +15,7 @@ urlpatterns = [
     url(r'^overview/following/$',
         views.UserDashboardFollowingView.as_view(),
         name='userdashboard-following'),
+    url(r'^moderation/detail/$',
+        views.UserDashboardModerationDetailView.as_view(),
+        name='userdashboard-moderation-detail'),
 ]

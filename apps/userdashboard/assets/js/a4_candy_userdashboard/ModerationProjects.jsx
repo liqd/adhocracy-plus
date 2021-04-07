@@ -1,8 +1,8 @@
 /* global fetch */
-import React from 'react'
+import React, { Component } from 'react'
 import django from 'django'
 
-export default class ModerationProjects extends React.Component {
+export default class ModerationProjects extends Component {
   constructor (props) {
     super(props)
 
@@ -65,10 +65,10 @@ export default class ModerationProjects extends React.Component {
     }
 
     return (
-      <div className="mb-2">
-        <h2>Projects</h2>
-        <div className="row" id="project_list">
-          <ul className="col-12">
+      <div className="row">
+        <div className="col-12">
+          <h3 className="mt-sm-0">Projects</h3>
+          <ul className="pl-0">
             {items.map(item => (
               <li key={item.title} className="tile--sm tile--horizontal">
                 <div className="tile__head">
@@ -78,7 +78,7 @@ export default class ModerationProjects extends React.Component {
                 </div>
                 <div className="tile__body">
                   <span className="text-muted">{byText}{item.organisation}</span>
-                  <h3 className="tile__title mb-4">{item.offensive > 0 && <span className="text-info">• </span>}{item.title}</h3>
+                  <h3 className="tile__title mb-4">{item.offensive > 0 && <span className="text-info">• </span>}<a href={item.detail}>{item.title}</a></h3>
                   <div>
                     {item.access === 1 && <span className="label label--dark">{publicText}</span>}
                     {item.access === 2 && <span className="label label--dark">{semiPrivateText}</span>}
@@ -93,7 +93,6 @@ export default class ModerationProjects extends React.Component {
                   </div>
                   <a href={item.url} className="tile__link"><span className="sr-only">{srLinkText}{item.title}</span></a>
                 </div>
-
               </li>
             ))}
           </ul>

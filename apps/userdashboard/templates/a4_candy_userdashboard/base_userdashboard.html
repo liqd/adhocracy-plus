@@ -13,7 +13,7 @@
                 {% has_perm 'a4_candy_userdashboard.view_moderation_dashboard' user as user_is_moderator %}
                 {% if user_is_moderator %}
                 <a href="{% url 'userdashboard-moderation' %}"
-                   class="tab {% ifequal view.menu_item 'moderation' %}active{% endifequal %}">
+                   class="tab {% if view.menu_item == 'moderation' or  '/detail' in request.get_full_path %}active{% endif %}">
                     {% trans 'Moderation' %}
                 </a>
                 {% endif %}
