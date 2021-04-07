@@ -25,7 +25,8 @@
     <div class="container">
         <div class="row py-md-4 mb-5">
 
-            <div class="col-sm-4 col-lg-3">
+          <!-- hide user side menu on load moore pages on mobile -->
+            <div class="col-sm-4 col-lg-3 {% if '/following' in request.get_full_path or '/activities' in request.get_full_path %} d-none d-sm-block {% endif %}">
                 <div
                     class="tabpanel userdashboard-profile userdashboard-profile__side"
                     id="userdashboard-user-{{ user.pk }}-tile"
@@ -33,7 +34,7 @@
                     aria-labelledby="userdashboard-{{ user.pk }}-tile"
                     aria-expanded="false">
 
-                    <div class="userdashboard-profile__user">
+                    <div class="userdashboard-profile__user mb-4 mb-md-5">
                         <div class="dropdown text-right">
                             <button
                                 title="{% trans 'Settings' %}"
@@ -67,9 +68,10 @@
                         </div>
                     </div>
 
+                    <!-- desktop -->
                     {% if request.user.organisations %}
-                    <div class="d-none d-sm-block">
-                      <h3>{% trans 'Initiator Organisations' %}</h3>
+                    <div class="d-none d-sm-block mb-5">
+                      <h4>{% trans 'Initiator Organisations' %}</h4>
                       {% for organisation in request.user.organisations %}
                       <div>
                           <a class="btn btn--link text-decoration-none text-muted" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
@@ -85,14 +87,14 @@
                     </div>
 
                     <!-- mobile -->
-                    <div class="d-sm-none">
+                    <div class="d-sm-none mb-4">
                         <div class="dropdown"
                         data-toggle="collapse"
                         href="#userDashboardCollapseOrgInt"
                         aria-expanded="true"
                         aria-controls="#userDashboardCollapseOrgInt"
                         data-target="#userDashboardCollapseOrgInt">
-                          <h3>{% trans 'Initiator Organisations' %}</h3>
+                          <h4>{% trans 'Initiator Organisations' %}</h4>
                             <i class="fa fa-chevron-up" aria-hidden="true"></i>
                         </div>
                         <ul class="u-list-reset collapse show" id="userDashboardCollapseOrgInt" aria-hidden="false">
@@ -113,9 +115,9 @@
                     </div>
                     {% endif %}
 
-
-                    <div class="d-none d-sm-block">
-                        <h3>{% trans 'Organisations' %}</h3>
+                    <!-- desktop -->
+                    <div class="d-none d-sm-block mb-5">
+                        <h4>{% trans 'Organisations' %}</h4>
                         {% if view.organisations %}
                         {% for organisation in view.organisations %}
                         <a class="btn btn--link text-decoration-none text-muted" href="{% url 'organisation' organisation_slug=organisation.slug %}">
@@ -134,7 +136,7 @@
                         {% endif %}
                     </div>
                     <!-- mobile -->
-                    <div class="d-sm-none">
+                    <div class="d-sm-none mb-4">
                       {% if view.organisations %}
                         <div  class="dropdown"
                               data-toggle="collapse"
@@ -142,7 +144,7 @@
                               aria-expanded="true"
                               aria-controls="#userDashboardCollapseOrg"
                               data-target="#userDashboardCollapseOrg">
-                            <h3>{% trans 'Organisations' %}</h3>
+                            <h4>{% trans 'Organisations' %}</h4>
                             <i class="fa fa-chevron-up" aria-hidden="true"></i>
                         </div>
                         <ul class="u-list-reset scollapse show" id="userDashboardCollapseOrg" aria-hidden="false">

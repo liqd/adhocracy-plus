@@ -1,6 +1,6 @@
 .project-tile-carousel {
     position: relative;
-    margin: $spacer 0;
+    margin: $spacer 0.75*$spacer;
 
     //slick overwrites - nested for specificity
     .slick-list {
@@ -48,9 +48,17 @@
     .slick-next:before {
         content: '\f105'; // angle-right
     }
+
+    .slick-arrow.slick-disabled {
+        display: none !important;
+    }
 }
 
 @media screen and (min-width: $breakpoint-md) {
+    .project-tile-carousel {
+        margin: $spacer 0;
+    }
+
     .project-tile-carousel__wrapper {
         margin-top: 4*$r-spacer;
         margin-bottom: 3*$r-spacer;

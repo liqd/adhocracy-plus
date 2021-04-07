@@ -10,6 +10,7 @@
 }
 
 .userdashboard-profile__avatar {
+    max-width: 120px;
     border-radius: 50%;
     shape-outside: circle();
     position: relative;
@@ -17,4 +18,14 @@
 
 .userdashboard-profile__main {
     padding: 0 $padding;
+}
+
+.userdashboard__mobile-nav-toggle {
+    width: 100%;
+}
+
+.userdashboard__mobile-nav-link {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }

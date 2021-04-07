@@ -1,10 +1,10 @@
 {% load i18n rules %}
     {% has_perm 'a4_candy_userdashboard.view_moderation_dashboard' user as user_is_moderator %}
     {% if user_is_moderator %}
-    <ul class="nav d-inline-block d-sm-none" role="tablist">
+    <ul class="nav d-inline-block d-sm-none userdashboard__mobile-nav-toggle" role="tablist">
         <li class="nav-item dropdown">
           <a
-              class="nav-link dropdown-toggle tab active mr-2"
+              class="nav-link dropdown-toggle tab active userdashboard__mobile-nav-link"
               data-toggle="dropdown"
               href="#"
               role="button"
