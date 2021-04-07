@@ -21,7 +21,6 @@ from adhocracy4.comments.api import CommentModerateSet
 from adhocracy4.comments_async.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
-from adhocracy4.reports.api import ReportViewSet
 from apps.contrib import views as contrib_views
 from apps.contrib.sitemaps import static_sitemap_index
 from apps.documents.api import DocumentViewSet
@@ -34,6 +33,7 @@ from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
 from apps.polls.routers import QuestionDefaultRouter
 from apps.projects.api import ProjectViewSet
+from apps.reports.api import ReportViewSet
 from apps.users.decorators import user_is_project_admin
 
 router = routers.DefaultRouter()
