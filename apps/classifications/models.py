@@ -30,21 +30,9 @@ class Classification(models.Model):
         super().save(*args, **kwargs)
 
 
-"""
-We use the a4 reports for user classifications for now
-until we decided on a final reporting/classification procedure.
-Since we would have to disconnect reports and instead connect
-UserClassification to the comments, this seemed too complicated
-without a clear goal.
-The reports can then be shown in moderation dashboard without
-a classification.
-"""
-
-"""
 class UserClassification(Classification, base.UserGeneratedContentModel):
 
     user_message = models.TextField(max_length=1024)
-"""
 
 
 class AIClassification(Classification, base.TimeStampedModel):
