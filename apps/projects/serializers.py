@@ -6,6 +6,8 @@ from rest_framework import serializers
 
 from adhocracy4.projects.models import Project
 
+from . import helpers
+
 
 class ProjectSerializer(serializers.ModelSerializer):
     title = serializers.SerializerMethodField()
@@ -121,7 +123,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         return False
 
     def get_offensive(self, instance):
-        return ('2')
+        return helpers.get_num_reported_comments(instance)
 
     def get_comment_count(self, instance):
-        return (instance.pk)
+        return helpers.get_num_comments_project(instance)
