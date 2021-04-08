@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import django from 'django'
 
-export default class Filter extends React.Component {
+export default class Filter extends Component {
   selectCategory (e) {
     e.preventDefault()
     const category = e.target.getAttribute('data-value')
@@ -17,7 +17,8 @@ export default class Filter extends React.Component {
   }
 
   render () {
-    const allTag = django.gettext('all')
+    const categories = [...this.props.categories]
+    categories.unshift(django.gettext('all'))
     const onlyShowMarkedText = django.gettext('only show marked questions')
     const displayNotHiddenText = django.gettext('display only questions which are not hidden')
     const orderLikesText = django.gettext('order by likes')
@@ -32,8 +33,7 @@ export default class Filter extends React.Component {
             <i className="fa fa-caret-down" aria-hidden="true" />
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <button className="dropdown-item" data-value={-1} onClick={this.selectCategory.bind(this)} href="#">{allTag}</button>
-            {this.props.categories.map((category, index) => {
+            {categories.map((category, index) => {
               return <button className="dropdown-item" key={index} data-value={category} onClick={this.selectCategory.bind(this)} href="#">{category}</button>
             })}
           </div>
