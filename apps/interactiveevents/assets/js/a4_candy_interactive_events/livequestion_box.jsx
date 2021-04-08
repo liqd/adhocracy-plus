@@ -79,7 +79,8 @@ export default class QuestionBox extends React.Component {
   }
 
   isInFilter (item) {
-    return (this.state.category === '-1' || this.state.category === item.category) &&
+    const { category } = this.state
+    return (category === '-1' || category === django.gettext('all') || category === item.category) &&
       (!this.state.displayOnShortlist || item.is_on_shortlist) && (!this.state.displayNotHiddenOnly || !item.is_hidden)
   }
 
