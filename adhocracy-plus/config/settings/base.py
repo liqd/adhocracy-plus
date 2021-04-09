@@ -541,3 +541,6 @@ CSP_REPORT_ONLY = True
 CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'data:', 'blob:', '*']
 
 SITE_ID = 1 # overwrite this in local.py if needed
+
+AI_API_AUTH_TOKEN = ''
+AI_API_URL = 'https://kosmo-api-dev.liqd.net/api/classify/'
