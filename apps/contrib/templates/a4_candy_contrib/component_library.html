@@ -3,249 +3,248 @@
 {% block title %}Component Library &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="l-menu">
-            <div class="l-menu__menu">
-                <nav class="dashboard-nav">
-                    <div class="dashboard-nav__dropdown">
-                        <div class="dashboard-nav__item">Form</div>
+<div class="container">
+    <div class="l-menu">
+        <div class="l-menu__menu">
+            <nav class="dashboard-nav">
+                <div class="dashboard-nav__dropdown">Form
+                </div>
+                <ul class="dashboard-nav__pages">
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-errorlist" class="dashboard-nav__item dashboard-nav__item--interactive">Errorlist</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-formgroup" class="dashboard-nav__item dashboard-nav__item--interactive">Formgroup</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-formcheck" class="dashboard-nav__item dashboard-nav__item--interactive">Formcheck</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="dashboard-nav">
+                <div class="dashboard-nav__dropdown">Components</div>
+                <ul class="dashboard-nav__pages">
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-accordion" class="dashboard-nav__item dashboard-nav__item--interactive">Accordion</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-actions" class="dashboard-nav__item dashboard-nav__item--interactive">Actions</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-alerts" class="dashboard-nav__item dashboard-nav__item--interactive">Alerts</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-blocks" class="dashboard-nav__item dashboard-nav__item--interactive">Blocks</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-breadcrumbs" class="dashboard-nav__item dashboard-nav__item--interactive">Breadcrumbs</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-buttons" class="dashboard-nav__item dashboard-nav__item--interactive">Buttons</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-category_formset" class="dashboard-nav__item dashboard-nav__item--interactive">Category Formset</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Commenting</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-comments" class="dashboard-nav__item dashboard-nav__item--interactive">Comments</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-complete" class="dashboard-nav__item dashboard-nav__item--interactive">Complete</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-component-library" class="dashboard-nav__item dashboard-nav__item--interactive">Component Library</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-copyright" class="dashboard-nav__item dashboard-nav__item--interactive">Copyright</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-dashboard-nav" class="dashboard-nav__item dashboard-nav__item--interactive">Dashboard Nav</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-datepicker" class="dashboard-nav__item dashboard-nav__item--interactive">Datepicker</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Document</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Doc Toc</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-embed-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Embed Layout</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-form_inline" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-footer" class="dashboard-nav__item dashboard-nav__item--interactive">Footer</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-header" class="dashboard-nav__item dashboard-nav__item--interactive">Header</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-hero-unit" class="dashboard-nav__item dashboard-nav__item--interactive">Hero Unit</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-form-inline" class="dashboard-nav__item dashboard-nav__item--interactive">Input Group</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-overlapping-ctrl-bar" class="dashboard-nav__item dashboard-nav__item--interactive">Overlapping Control Bar</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-idea_remark" class="dashboard-nav__item dashboard-nav__item--interactive">Idea Remark</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-item_detail" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-item_detail-2" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail 2</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-labels" class="dashboard-nav__item dashboard-nav__item--interactive">Labels</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-list_item" class="dashboard-nav__item dashboard-nav__item--interactive">List Item</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-menu-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Menu Layout</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-moderator-statement" class="dashboard-nav__item dashboard-nav__item--interactive">Moderato Statement</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-multiform" class="dashboard-nav__item dashboard-nav__item--interactive">Multiform</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-pagination" class="dashboard-nav__item dashboard-nav__item--interactive">Pagination</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-poll" class="dashboard-nav__item dashboard-nav__item--interactive">Poll</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-progress" class="dashboard-nav__item dashboard-nav__item--interactive">Progress</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-project-header" class="dashboard-nav__item dashboard-nav__item--interactive">Project Header</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-poll" class="dashboard-nav__item dashboard-nav__item--interactive">Radio</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-rating" class="dashboard-nav__item dashboard-nav__item--interactive">Rating</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Select Item</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-table" class="dashboard-nav__item dashboard-nav__item--interactive">Table</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Tabs</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-tile" class="dashboard-nav__item dashboard-nav__item--interactive">Tile</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-timeline" class="dashboard-nav__item dashboard-nav__item--interactive">Timeline</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-upload" class="dashboard-nav__item dashboard-nav__item--interactive">Upload</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="l-menu__content">
+            <h1 class="mt-0">Component Library</h1>
+
+            <h2 class="mt-0">Style Guide</h2>
+
+            <div class="cl-example">
+                <div>
+                    <h1>This is heading 1</h1>
+                    <h2>This is heading 2</h2>
+                    <h3>This is heading 3</h3>
+                    <h4>This is heading 4</h4>
+                    <h5>This is heading 5</h5>
+                    <p>Font stack sans: SourceSansPro, sans-serif</p>
+                    <p>Font stack serif: SourceSerifPro, serif</p>
+                    <p>NOTE: only H1 and H2 are serif all rest are bold sans</p>
+                </div>
+
+                <div>
+                    <p class="cl-fs-xxxl">Font Size: xxxl: 2.5rem, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
+                    <p class="cl-fs-xxl">Font Size: xxl: 2rem, <span> Font Weight: normal</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
+                    <p class="cl-fs-xl">Font Size: xl: 2.5rem, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
+                    <p class="cl-fs-lg">Font Size: lg: 2.5rem, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
+                    <p class="cl-fs-base">Font Size: base: 1.125rem/18px, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
+                    <p class="cl-fs-sm">Font Size: sm: 1rem/16px, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
+                    <p class="cl-fs-xs">Font Size: xs: 0.8rem, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
+                </div>
+
+                <p>This is a paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum dixisset paulumque institisset, Quid est? Sapientem locupletat ipsa natura, cuius divitias Epicurus parabiles esse docuit. Sit sane ista
+                    voluptas. Quae quidem vel cum periculo est quaerenda vobis. An hoc usque quaque, aliter in vita? Eam stabilem appellas. Prave, nequiter, turpiter cenabat; Simus igitur contenti his. Idemne, quod iucunde</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum dixisset paulumque institisset, Quid est? Sapientem locupletat ipsa natura, cuius divitias Epicurus parabiles esse docuit. Sit sane ista voluptas. Quae quidem vel
+                    cum periculo est quaerenda vobis. This is another paragraph. An hoc usque quaque, aliter in vita? Eam stabilem appellas. Prave, nequiter, turpiter cenabat; Simus igitur contenti his. Idemne, quod iucunde</p>
+
+                <blockquote>„This is a normal quote“</blockquote>
+
+                <a href="">This is a link</a>
+
+                <h4>Lists</h4>
+                <ul>
+                    <li>Coffee</li>
+                    <li>Tea</li>
+                    <li>Milk</li>
+                </ul>
+
+                <ol>
+                    <li>Coffee</li>
+                    <li>Tea</li>
+                    <li>Milk</li>
+                </ol>
+
+                <span class="colour-list">Colours:</span>
+                <div class="row">
+                    <div class="col-6">
+                        <li>Brand primary <span class="primary colour-block"></span></li>
+                        <li>Brand primary tint<span class="primary-tint colour-block"></span></li>
+                        <li>Brand-secondary<span class="secondary colour-block"></span></li>
+                        <li>Brand-secondary-dark<span class="secondary-dark colour-block"></span></li>
+                        <li>Brand-tertiary<span class="tertiary colour-block"></span></li>
+                        <li>Background-tertiary<span class="bg-tertiary colour-block"></span></li>
+                        <li>Brand-success<span class="sucess colour-block"></span></li>
+                        <li>Brand-info<span class="info colour-block"></span></li>
+                        <li>Brand-warning<span class="warning colour-block"></span></li>
+                        <li>Brand-danger<span class="danger colour-block"></span></li>
+                        <li>Body-background<span class="background colour-block"></span></li>
+                        <li>Background-secondary<span class="bg-secondary colour-block"></span></li>
+                        <li>Gray<span class="gray colour-block"></span></li>
+                        <li>Gray-light<span class="gray-light colour-block"></span></li>
+                        <li>Gray-lighter / text-colour-gray<span class="gray-lighter colour-block"></span></li>
+                        <li>Gray-lightest<span class="gray-lightest colour-block"></span></li>
                     </div>
-                    <ul class="dashboard-nav__pages">
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-errorlist" class="dashboard-nav__item dashboard-nav__item--interactive">Errorlist</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-formgroup" class="dashboard-nav__item dashboard-nav__item--interactive">Formgroup</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-formcheck" class="dashboard-nav__item dashboard-nav__item--interactive">Formcheck</a>
-                        </li>
-                    </ul>
-                </nav>
-                <nav class="dashboard-nav">
-                    <div class="dashboard-nav__dropdown">
-                        <div class="dashboard-nav__item">Components</div>
+                    <div class="col-6">
+                        <li>Text-colour<span class="text-colour colour-block"></span></li>
+                        <li>Text-color-inverted<span class="text-inverted colour-block"></span></li>
+                        <li>Print-black<span class="print-black colour-block"></span></li>
+                        <li>Print-link<span class="print-link colour-block"></span></li>
+                        <li>Link-color<span class="link-color colour-block"></span></li>
+                        <li>link-hover-color<span class="link-hover-color colour-block"></span></li>
+                        <li>Border-color<span class="border colour-block"></span></li>
+                        <li>Input-border-color<span class="input-border colour-block"></span></li>
+                        <li>Feedback-color-accepted<span class="feedback-accepted colour-block"></span></li>
+                        <li>Feedback-color-rejected<span class="feedback-rejected colour-block"></span></li>
+                        <li>Feedback-color-consideration<span class="feedback-color-consideration colour-block"></span></li>
+                        <li>Feedback-color-consideration<span class="idea-remark-bg colour-block"></span></li>
+                        <li>Feedback-color-consideration<span class="idea-remark colour-block"></span></li>
                     </div>
-                    <ul class="dashboard-nav__pages">
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-accordion" class="dashboard-nav__item dashboard-nav__item--interactive">Accordion</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-actions" class="dashboard-nav__item dashboard-nav__item--interactive">Actions</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-alerts" class="dashboard-nav__item dashboard-nav__item--interactive">Alerts</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-blocks" class="dashboard-nav__item dashboard-nav__item--interactive">Blocks</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-breadcrumbs" class="dashboard-nav__item dashboard-nav__item--interactive">Breadcrumbs</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-buttons" class="dashboard-nav__item dashboard-nav__item--interactive">Buttons</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-category_formset" class="dashboard-nav__item dashboard-nav__item--interactive">Category Formset</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Commenting</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-comments" class="dashboard-nav__item dashboard-nav__item--interactive">Comments</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-complete" class="dashboard-nav__item dashboard-nav__item--interactive">Complete</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-component-library" class="dashboard-nav__item dashboard-nav__item--interactive">Component Library</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-copyright" class="dashboard-nav__item dashboard-nav__item--interactive">Copyright</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-dashboard-nav" class="dashboard-nav__item dashboard-nav__item--interactive">Dashboard Nav</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-datepicker" class="dashboard-nav__item dashboard-nav__item--interactive">Datepicker</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Document</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Doc Toc</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                             <a href="#cl-embed-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Embed Layout</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-form_inline" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-footer" class="dashboard-nav__item dashboard-nav__item--interactive">Footer</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-header" class="dashboard-nav__item dashboard-nav__item--interactive">Header</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-hero-unit" class="dashboard-nav__item dashboard-nav__item--interactive">Hero Unit</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-form-inline" class="dashboard-nav__item dashboard-nav__item--interactive">Input Group</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-overlapping-ctrl-bar" class="dashboard-nav__item dashboard-nav__item--interactive">Overlapping Control Bar</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-idea_remark" class="dashboard-nav__item dashboard-nav__item--interactive">Idea Remark</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-item_detail" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-item_detail-2" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail 2</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-labels" class="dashboard-nav__item dashboard-nav__item--interactive">Labels</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-list_item" class="dashboard-nav__item dashboard-nav__item--interactive">List Item</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-menu-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Menu Layout</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-moderator-statement" class="dashboard-nav__item dashboard-nav__item--interactive">Moderato Statement</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-multiform" class="dashboard-nav__item dashboard-nav__item--interactive">Multiform</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-pagination" class="dashboard-nav__item dashboard-nav__item--interactive">Pagination</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-poll" class="dashboard-nav__item dashboard-nav__item--interactive">Poll</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-progress" class="dashboard-nav__item dashboard-nav__item--interactive">Progress</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-project-header" class="dashboard-nav__item dashboard-nav__item--interactive">Project Header</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-poll" class="dashboard-nav__item dashboard-nav__item--interactive">Radio</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-rating" class="dashboard-nav__item dashboard-nav__item--interactive">Rating</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Select Item</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-table" class="dashboard-nav__item dashboard-nav__item--interactive">Table</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Tabs</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-tile" class="dashboard-nav__item dashboard-nav__item--interactive">Tile</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-timeline" class="dashboard-nav__item dashboard-nav__item--interactive">Timeline</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-upload" class="dashboard-nav__item dashboard-nav__item--interactive">Upload</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            <div class="l-menu__content">
-                <h1 class="mt-0">Component Library</h1>
-
-                <h2 class="mt-0">Style Guide</h2>
-
-                <div class="cl-example">
-                    <div>
-                      <h1>This is heading 1</h1>
-                      <h2>This is heading 2</h2>
-                      <h3>This is heading 3</h3>
-                      <h4>This is heading 4</h4>
-                      <h5>This is heading 5</h5>
-                      <p>Font stack sans: SourceSansPro, sans-serif</p>
-                      <p >Font stack serif: SourceSerifPro, serif</p>
-                      <p >NOTE: only H1 and H2 are serif all rest are bold sans</p>
-                    </div>
-
-                    <div>
-                      <p class="cl-fs-xxxl">Font Size: xxxl: 2.5rem, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
-                      <p class="cl-fs-xxl">Font Size: xxl: 2rem, <span> Font Weight: normal</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
-                      <p class="cl-fs-xl">Font Size: xl: 2.5rem, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
-                      <p class="cl-fs-lg">Font Size: lg: 2.5rem, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
-                      <p class="cl-fs-base">Font Size: base: 1.125rem/18px, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
-                      <p class="cl-fs-sm">Font Size: sm: 1rem/16px, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
-                      <p class="cl-fs-xs">Font Size: xs: 0.8rem, <span> Font Weight: normal,</span><span class="cl-demin-bold"> Font Weight: demi-bold,</span><span class="cl-bold"> Font Weight: bold</span></p>
-                    </div>
-
-                    <p>This is a paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum dixisset paulumque institisset, Quid est? Sapientem locupletat ipsa natura, cuius divitias Epicurus parabiles esse docuit. Sit sane ista voluptas. Quae quidem vel cum periculo est quaerenda vobis. An hoc usque quaque, aliter in vita? Eam stabilem appellas. Prave, nequiter, turpiter cenabat; Simus igitur contenti his. Idemne, quod iucunde</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum dixisset paulumque institisset, Quid est? Sapientem locupletat ipsa natura, cuius divitias Epicurus parabiles esse docuit. Sit sane ista voluptas. Quae quidem vel cum periculo est quaerenda vobis. This is another paragraph. An hoc usque quaque, aliter in vita? Eam stabilem appellas. Prave, nequiter, turpiter cenabat; Simus igitur contenti his. Idemne, quod iucunde</p>
-
-                    <blockquote>„This is a normal quote“</blockquote>
-
-                     <a href="">This is a link</a>
-
-                     <h4>Lists</h4>
-                     <ul>
-                     <li>Coffee</li>
-                     <li>Tea</li>
-                     <li>Milk</li>
-                     </ul>
-
-                    <ol>
-                     <li>Coffee</li>
-                     <li>Tea</li>
-                     <li>Milk</li>
-                    </ol>
-
-                    <span class="colour-list">Colours:</span>
-                    <div class="row">
-                        <div class="col-6">
-                            <li>Brand primary <span class="primary colour-block"></span></li>
-                            <li>Brand primary tint<span class="primary-tint colour-block"></span></li>
-                            <li>Brand-secondary<span class="secondary colour-block"></span></li>
-                            <li>Brand-secondary-dark<span class="secondary-dark colour-block"></span></li>
-                            <li>Brand-tertiary<span class="tertiary colour-block"></span></li>
-                            <li>Background-tertiary<span class="bg-tertiary colour-block"></span></li>
-                            <li>Brand-success<span class="sucess colour-block"></span></li>
-                            <li>Brand-info<span class="info colour-block"></span></li>
-                            <li>Brand-warning<span class="warning colour-block"></span></li>
-                            <li>Brand-danger<span class="danger colour-block"></span></li>
-                            <li>Body-background<span class="background colour-block"></span></li>
-                            <li>Background-secondary<span class="bg-secondary colour-block"></span></li>
-                            <li>Gray<span class="gray colour-block"></span></li>
-                            <li>Gray-light<span class="gray-light colour-block"></span></li>
-                            <li>Gray-lighter / text-colour-gray<span class="gray-lighter colour-block"></span></li>
-                            <li>Gray-lightest<span class="gray-lightest colour-block"></span></li>
-                        </div>
-                        <div class="col-6">
-                            <li>Text-colour<span class="text-colour colour-block"></span></li>
-                            <li>Text-color-inverted<span class="text-inverted colour-block"></span></li>
-                            <li>Print-black<span class="print-black colour-block"></span></li>
-                            <li>Print-link<span class="print-link colour-block"></span></li>
-                            <li>Link-color<span class="link-color colour-block"></span></li>
-                            <li>link-hover-color<span class="link-hover-color colour-block"></span></li>
-                            <li>Border-color<span class="border colour-block"></span></li>
-                            <li>Input-border-color<span class="input-border colour-block"></span></li>
-                            <li>Feedback-color-accepted<span class="feedback-accepted colour-block"></span></li>
-                            <li>Feedback-color-rejected<span class="feedback-rejected colour-block"></span></li>
-                            <li>Feedback-color-consideration<span class="feedback-color-consideration colour-block"></span></li>
-                            <li>Feedback-color-consideration<span class="idea-remark-bg colour-block"></span></li>
-                            <li>Feedback-color-consideration<span class="idea-remark colour-block"></span></li>
-                        </div>
-                    </div>
+                </div>
 
                 <h2 id="cl-errorlist">Errorlist</h2>
 
@@ -310,23 +309,14 @@
 
                 <div class="cl-example">
                     <div class="accordion">
-                        <a
-                            id="accordion-{{ index }}-title"
-                            href="#accordion-{{ index }}-body"
-                            class="accordion__title collapsed"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            data-toggle="collapse">
+                        <a id="accordion-{{ index }}-title" href="#accordion-{{ index }}-body" class="accordion__title collapsed" aria-haspopup="true" aria-expanded="false" data-toggle="collapse">
                             <h2>
                                 Docs Block Title
                                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
                             </h2>
                         </a>
 
-                        <div
-                            class="accordion__body collapse"
-                            id="accordion-{{ index }}-body"
-                            aria-labelledby="accordion-{{ index }}-title">
+                        <div class="accordion__body collapse" id="accordion-{{ index }}-body" aria-labelledby="accordion-{{ index }}-title">
                             This is the body of the docs block,
                             This block is used in wagtail pages.
                             <ul>
@@ -437,14 +427,14 @@
                                 <h3>Coloured background block</h3>
                                 Small amount of content as due to screen size responsive margins do not kick in
                                 <div class="block-col_cta-content">
-                                    <a href="" class="btn btn--full btn--transparent block-bg_btn-1 mt-3">Link text</a>
+                                    <a href="" class="btn btn--full btn--text-color-inverted mt-3">Link text</a>
                                 </div>
                             </div>
                             <div class="block-col-2">
                                 <h3>Coloured background block</h3>
                                 Small amount of content as due to screen size responsive margins do not kick in
                                 <div class="block-col_cta-content">
-                                    <a href="" class="btn btn--full btn--transparent block-bg_btn-2 mt-3">Link text</a>
+                                    <a href="" class="btn btn--full btn--text-color-inverted mt-3">Link text</a>
                                 </div>
                             </div>
                         </div>
@@ -522,7 +512,7 @@
                                 <a class="cms__tile-link" href="">
                                     <img src="/static/images/avatar_00.png" alt="" />
                                     <div class="cms__text pt-4 text-muted cms__text--serif">
-                                    For category
+                                        For category
                                     </div>
                                     <h3 class="cms__title--bold">Use case title</h3>
                                 </a>
@@ -531,7 +521,7 @@
                                 <a class="cms__tile-link" href="">
                                     <img src="/static/images/avatar_00.png" alt="" />
                                     <div class="cms__text pt-4 text-muted cms__text--serif">
-                                    For category
+                                        For category
                                     </div>
                                     <h3 class="cms__title--bold">Use case title</h3>
                                 </a>
@@ -540,7 +530,7 @@
                                 <a class="cms__tile-link" href="">
                                     <img src="/static/images/avatar_00.png" alt="" />
                                     <div class="cms__text pt-4 text-muted cms__text--serif">
-                                    For category
+                                        For category
                                     </div>
                                     <h3 class="cms__title--bold">Use case title</h3>
                                 </a>
@@ -583,7 +573,7 @@
                 <div class="cl-example">
                     <p>
                         <button class="btn" type="button">Button</button>
-                        <input class="btn" type="button" value="Input Button"/>
+                        <input class="btn" type="button" value="Input Button" />
                         <a class="btn" href="#">Link as Button</a>
                     </p>
                     <p>
@@ -594,7 +584,7 @@
                     </p>
                     <p>
                         <button class="btn btn--primary-filled" type="button">Primary Button filled</button>
-                        <button class="btn btn--secondary-filled" type="button">Secondary Button filled</button>
+                        <button class="btn btn--primary-filled" type="button">Secondary Button filled</button>
                         <button class="btn btn--bg-tertiary" type="button">Tertiary background</button>
                     </p>
                     <p>
@@ -671,17 +661,17 @@
                             {% lorem random %}
                         </div>
                         {% spaceless %}
-                            <div class="commenting__actions btn--group" role="group">
-                                <button class="btn btn--light btn--small" title="Move up" type="button">
-                                    <i class="fa fa-chevron-up" aria-label="Move up"></i>
-                                </button>
-                                <button class="btn btn--light btn--small" title="Move down" type="button">
-                                    <i class="fa fa-chevron-down" aria-label="Move down"></i>
-                                </button>
-                                <button class="btn btn--light btn--small" title="Delete" type="button">
-                                    <i class="far fa-trash-alt" aria-label="Delete"></i>
-                                </button>
-                            </div>
+                        <div class="commenting__actions btn--group" role="group">
+                            <button class="btn btn--light btn--small" title="Move up" type="button">
+                                <i class="fa fa-chevron-up" aria-label="Move up"></i>
+                            </button>
+                            <button class="btn btn--light btn--small" title="Move down" type="button">
+                                <i class="fa fa-chevron-down" aria-label="Move down"></i>
+                            </button>
+                            <button class="btn btn--light btn--small" title="Delete" type="button">
+                                <i class="far fa-trash-alt" aria-label="Delete"></i>
+                            </button>
+                        </div>
                         {% endspaceless %}
                     </div>
                     <div class="commenting">
@@ -751,7 +741,8 @@
                                                         <button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-flip="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
                                                         <ul class="dropdown-menu">
                                                             <li><button type="button">Edit</button></li>
-                                                            <li class="divider"></li><li><a href="#">Delete</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#">Delete</a></li>
                                                             <li class="divider"></li>
                                                             <li><a href="#">Report</a></li>
                                                         </ul>
@@ -775,7 +766,7 @@
                                                     </h3>
                                                     <span class="comment-submission-date">11/23/2017, 2:24:34 PM</span>
                                                     <div class="comment-text">
-                                                    This is the answer text to the other comment.
+                                                        This is the answer text to the other comment.
                                                     </div>
                                                     <div class="action-bar">
                                                         <nav class="navbar navbar-default navbar-static">
@@ -783,7 +774,9 @@
                                                                 <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button>
                                                                 <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button>
                                                             </div>
-                                                            <ul class="nav navbar-nav"><li class="dropdown"><button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-flip="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                                                            <ul class="nav navbar-nav">
+                                                                <li class="dropdown"><button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-flip="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h"
+                                                                          aria-hidden="true"></i></button>
                                                             </ul>
                                                         </nav>
                                                     </div>
@@ -853,26 +846,22 @@
                         </div>
                         <ul class="dashboard-nav__pages">
                             <li class="dashboard-nav__page">
-                                <a href="#"
-                                    class="dashboard-nav__item dashboard-nav__item--interactive">
+                                <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive">
                                     Interactive Dashboard nav item
                                 </a>
                             </li>
                             <li class="dashboard-nav__page">
-                                <a href="#"
-                                    class="dashboard-nav__item dashboard-nav__item--interactive">
+                                <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive">
                                     These interactive items are shown in a list
                                 </a>
                             </li>
                             <li class="dashboard-nav__page">
-                                <a href="#"
-                                    class="dashboard-nav__item dashboard-nav__item--interactive is-active">
+                                <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive is-active">
                                     The active item is marked
                                 </a>
                             </li>
                             <li class="dashboard-nav__page">
-                                <a href="#"
-                                    class="dashboard-nav__item dashboard-nav__item--interactive">
+                                <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive">
                                     If there is information missing, a red exclamation mark is shown
                                     <i class="fa fa-exclamation-circle text-danger" title="Missing fields for publication" aria-label="Missing fields for publication"></i>
                                 </a>
@@ -890,8 +879,9 @@
                         <div class="widget widget--datetimeinput">
                             <div class="d-flex category-formset__datetime-input">
                                 <div class="widget--datetimeinput__date input-group">
-                                    <input type="text" name="phase_set-0-start_date_0" value="2019-10-08" id="id_phase_set-0-start_date_date" class="datepicker form-control" placeholder="2019-10-16"><a href="#id_phase_set-0-start_date_date" class="date-picker-control date-picker-dateval"
-                                      title="Show Calendar" id="fd-but-id_phase_set-0-start_date_date" role="button" aria-haspopup="true" tabindex="0"><span>&nbsp;</span><span class="fd-screen-reader">Show Calendar</span></a>
+                                    <input type="text" name="phase_set-0-start_date_0" value="2019-10-08" id="id_phase_set-0-start_date_date" class="datepicker form-control" placeholder="2019-10-16"><a href="#id_phase_set-0-start_date_date"
+                                      class="date-picker-control date-picker-dateval" title="Show Calendar" id="fd-but-id_phase_set-0-start_date_date" role="button" aria-haspopup="true" tabindex="0"><span>&nbsp;</span><span
+                                          class="fd-screen-reader">Show Calendar</span></a>
                                 </div>
                                 <div>
                                     <label class="sr-only" for="id_phase_set-0-start_date_time">Start time</label>
@@ -907,12 +897,7 @@
                 <div class="cl-example">
                     <div class="bg--light">
                         <nav class="doc-toc" aria-label="Table of Contents">
-                            <button
-                                class="doc-toc__toggle collapsed"
-                                data-toggle="collapse"
-                                data-target="#doc-toc__content"
-                                aria-expanded="true"
-                                aria-controls="doc-toc__content">
+                            <button class="doc-toc__toggle collapsed" data-toggle="collapse" data-target="#doc-toc__content" aria-expanded="true" aria-controls="doc-toc__content">
                                 <h2 class="doc-toc__title">Table of Contents</h2>
                                 <i class="fa fa-chevron-up" aria-hidden="true"></i>
                             </button>
@@ -955,7 +940,8 @@
                                     <h3 class="paragraph__title">
                                         One more Paragraph Title/Name
                                     </h3>
-                                    It looks a bit different with the grey background (from bg--light), so I added it, even though it doesn't belong to this component. Oh, but that looks weird again. Normally it should also have grey padding/be surrounded by grey.
+                                    It looks a bit different with the grey background (from bg--light), so I added it, even though it doesn't belong to this component. Oh, but that looks weird again. Normally it should also have grey padding/be
+                                    surrounded by grey.
                                 </div>
                                 <div class="paragraph__actions">
                                     <a class="btn" href="#">
@@ -980,23 +966,21 @@
                 <h2 id="cl-embed-layout">Embed Layout</h2>
 
                 <div class="cl-example">
-                    <html class="embed">
-                        <body>
-                            <header class="embed-header">
-                                You are logged in as Username
-                                <a href="#" class="btn btn--light" target="_blank">Logout</a>
-                                <div id="embed-status" class="embed-status"></div>
-                            </header>
-                            <main class="embed-main">
-                                <p>This is where the actual content of the embed will be.</p>
-                                <p>The class embed status left in above is only an empty div before embed.js puts stuff in there.</p>
-                            </main>
-                            <footer class="embed-footer">
-                                <a href="/" target="_blank">{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}</a>
-                                <a href="#" data-embed-target="external">Go to platform</a>
-                            </footer>
-                        </body>
-                    </html>
+                    <body class="embed">
+                        <header class="embed-header">
+                            You are logged in as Username
+                            <a href="#" class="btn btn--light" target="_blank">Logout</a>
+                            <div id="embed-status" class="embed-status"></div>
+                        </header>
+                        <main class="embed-main">
+                            <p>This is where the actual content of the embed will be.</p>
+                            <p>The class embed status left in above is only an empty div before embed.js puts stuff in there.</p>
+                        </main>
+                        <footer class="embed-footer">
+                            <a href="/" target="_blank">{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}</a>
+                            <a href="#" data-embed-target="external">Go to platform</a>
+                        </footer>
+                    </body>
                 </div>
 
                 <h2 id="cl-form-inline">Filter Bar and Input Group</h2>
@@ -1056,7 +1040,8 @@
                             <div class="row mt-3 mb-3 mb-sm-4 justify-content-lg-center">
                                 <div class="col-lg-6">
                                     <p class="footer__description">
-                                        {{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }} is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial content.
+                                        {{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }} is a platform provided by Liquid Democracy e.V. in Berlin. Only the respective operator of the offer is responsible for the editorial
+                                        content.
                                     </p>
                                 </div>
                                 <div class="col-lg-6">
@@ -1102,72 +1087,147 @@
 
                 <h2 id="cl-header">Header</h2>
                 <div class="cl-example">
-                    <header class="header-upper" aria-label="Header">
-                        <div class="u-page-ribbon"></div>
+                    <div class="u-page-ribbon"></div>
+                    <nav class="navbar navbar-expand-md">
                         <div class="container position-relative">
-                            <div class="header-upper__brand">
-                                <a href="/"><img src="/static/images/logo.svg" alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}" class="header-upper__brand-img"></a>
-                            </div>
-                            <nav class="header-upper__nav">
-                                <div class="header-upper__lang">
-                                    <form class="lang__switch" action="/i18n/setlang/" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="7qffsAn68eoqZx1JUKY57Z8usoEMWQdSWwAfPH7HzKicuXi9qhmFMZcKhexMa4lN">
-                                        <input name="next" type="hidden" value="">
-                                        <input name="language" type="hidden" value="de">
-                                        <button class="lang__btn--left" type="submit">de</button><a class="lang__btn--right active" role="button">en</a>
-                                    </form>
-                                </div>
-                                <div class="header-upper__mobile-menu header-upper__mobile-menu--platform collapse" id="header-upper-collapse">
-                                    <div class="header-upper__user">
-                                        <div class="dropdown dropdown--right userindicator__dropdown">
-                                            <button type="button" class="dropdown-toggle btn btn--secondary-filled btn--square btn--align-left" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false" id="user-actions">
-                                                <div class="userindicator__btn-img" style="background-image:   url(/static/images/avatar_00.png) "></div>
-                                                <div class="userindicator__btn-text text-left">
-                                                    <span class="userindicator__hello">Hello</span>
-                                                    <br>
-                                                    <span>admin</span>
-                                                </div>
-                                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right userindicator__dropdown-menu userindicator__dropdown-menu--platform" aria-labelledby="user-actions">
-                                                <a class="dropdown-item" href="/django-admin/">Admin</a>
-                                                <a class="dropdown-item" href="/account/">Account Settings</a>
-                                                <a class="dropdown-item" href="/profile/admin/">View your profile</a>
-                                                <a class="dropdown-item" href="/liqd-orga/dashboard/organisations/projects/">
-                                                    liqd-orga
-                                                </a>
-                                                <form class="form--inline" action="/accounts/logout/" method="post" aria-label="Logout">
-                                                    <input type="hidden" name="csrfmiddlewaretoken" value="7qffsAn68eoqZx1JUKY57Z8usoEMWQdSWwAfPH7HzKicuXi9qhmFMZcKhexMa4lN">
-                                                    <input type="hidden" name="next" value="/">
-                                                    <button type="submit" class="dropdown-item">Logout</button>
-                                                </form>
-                                            </div>
+                            <a class="navbar-brand header-upper__brand" href="/">
+                                <img src="/static/images/logo.svg" alt="anything blahhhhhhhh" class="header-upper__brand-img">
+                            </a>
+                            <ul class="header-upper__nav navbar-nav ml-auto">
+                                <li class="nav-item header-upper__lang">
+                                    <div class="dropdown ">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-label="Language selector, Deutsch selected" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            de
+                                            <i class="fa fa-caret-down pl-1" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <form>
+                                                <button class="dropdown-item" role="button" type="submit" aria-label="select Englisch">
+                                                    English
+                                                </button>
+                                            </form>
+                                            <form>
+                                                <button class="dropdown-item" role="button" type="submit" aria-label="select Niederländisch">
+                                                    Nederlands
+                                                </button>
+                                            </form>
+                                            <form>
+                                                <button class="dropdown-item" role="button" type="submit" aria-label="select Kyrgyz">
+                                                    Кыргызча
+                                                </button>
+                                            </form>
+                                            <form>
+                                                <button class="dropdown-item" role="button" type="submit" aria-label="select Russisch">
+                                                    Русский
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
-                                </div>
-                                <button class="btn header-upper__mobile-toggle btn--secondary-filled btn--square btn--small btn--attached-top collapsed" data-toggle="collapse" data-target="#header-upper-collapse" aria-expanded="false" aria-controls="header-upper-collapse">
-                                    <span class="d-none d-sm-inline-block">Menu</span>
-                                </button>
-                            </nav>
+                                </li>
+                                <li class="nav-item header-upper__user">
+                                    <div class="dropdown dropdown--right userindicator__dropdown">
+                                        <button class="d-md-none dropdown-toggle btn btn--primary-filled btn--square btn--attached-top header-upper__mobile-toggle" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
+                                          id="user-actions">
+                                            <span class="d-none d-sm-inline-block pr-1">Menü</span>
+                                        </button>
+                                        <button class="d-none d-md-inline-block dropdown-toggle btn btn--primary-filled btn--attached-top btn--square btn--align-left header-upper__toggle" data-toggle="dropdown" data-flip="false"
+                                          aria-haspopup="true" aria-expanded="false" id="user-actions">
+                                            <div class="userindicator__btn-img" style="background-image:   url(/static/images/avatar-01.svg) "></div>
+                                            <div class="userindicator__btn-text text-left">
+                                                <span class="userindicator__hello">Hello</span>
+                                                <br>
+                                                <div class="u-overflow-ellipsis">User Name</div>
+                                            </div>
+                                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right userindicator__dropdown-menu" aria-labelledby="user-actions">
+                                            <a class="dropdown-item" href="/django-admin/">Admin</a>
+                                            <a class="dropdown-item" href="/userdashboard/overview/">My Overview</a>
+                                            <a class="dropdown-item" href="/account/">My Settings</a>
+                                            <a class="dropdown-item" href="/liqd-orga/dashboard/organisations/projects/">
+                                                liqd-orga
+                                            </a>
+                                            <form class="form--inline" aria-label="Logout">
+                                                <button type="submit" class="dropdown-item">Logout</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                    </header>
+                    </nav>
                 </div>
+            </div>
+
+            <h2 id="cl-header">Header mobile</h2>
+            <div class="cl-example">
+                <header class="header-upper" aria-label="Kopfzeile">
+                    <div class="u-page-ribbon"></div>
+                    <nav class="navbar navbar-expand-md">
+                        <div class="container position-relative">
+                            <a class="navbar-brand header-upper__brand" href="/">
+                                <img src="/static/images/logo.svg" alt="adhocracy+" class="header-upper__brand-img">
+                            </a>
+                            <ul class="header-upper__nav navbar-nav ml-auto">
+                                <li class="nav-item header-upper__lang">
+                                    <div class="dropdown ">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-label="Sprachauswahl Deutsch ausgewählt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            de
+                                            <i class="fa fa-caret-down pl-1" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <form action="/i18n/setlang/" method="post">
+                                                <button class="dropdown-item" role="button" type="submit" aria-label="Wählen SieEnglisch">
+                                                    English
+                                                </button>
+                                            </form>
+                                            <form>
+                                                <button class="dropdown-item" role="button" type="submit" aria-label="Wählen SieNiederländisch">
+                                                    Nederlands
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item header-upper__user">
+                                    <div class="dropdown dropdown--right userindicator__dropdown">
+                                        <button class="dropdown-toggle btn btn--primary-filled btn--square btn--attached-top header-upper__mobile-toggle" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
+                                          id="user-actions">
+                                            <span class="d-none d-sm-inline-block pr-1">Menü</span>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right userindicator__dropdown-menu" aria-labelledby="user-actions">
+                                            <a class="dropdown-item" href="">Admin</a>
+                                            <a class="dropdown-item" href="/account/">Nutzerkonto Einstellungen</a <a class="dropdown-item" href="/profile/Philli%20Admin%20Morland/">Dein Profil</a>
+                                            <a class="dropdown-item" href="/teststadt/dashboard/organisations/projects/">
+                                                Teststadt
+                                            </a>
+                                            <form class="form--inline" action="/accounts/logout/" method="post" aria-label="Abmelden">
+                                                <button type="submit" class="dropdown-item">Abmelden</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
 
                 <h2 id="cl-hero-unit">Hero Unit</h2>
+                <p>Please note that class homepage-hero__container has been removed and replaced with bootstrap on container div as absolut positioned elements not behaving.</p>
 
                 <div class="cl-example">
                     <div class="homepage__wrapper">
-                        <div class="homepage-header">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h1 class="homepage-header__teaser p-3 ml-md-4">
-                                        <div class="rich-text">
-                                            <p>Duo Reges: constructio interrete. Nunc haec primum. </p>
-                                        </div>
-                                    </h1>
+                        <div class="homepage-hero__image d-flex flex-column justify-content-end" role="img" style="background-image: url(https://aplus-media-dev.liqd.net/images/adrian-infernus-281832.7a669628.fill-1700x500-c100.jpg)">
+                            <div class="container">
+                                <div class="homepage-hero__header">
+                                    <h1 class="homepage-hero__title">With adhocracy+ your life will be better</h1>
+                                    <div class="homepage-hero__content">
+                                        <h3>Die besten Lösungen entstehen, wenn man sie gemeinsam entwickelt. Mit adhocracy+ wollen wir digitale Demokratie einfach machen: <b>für alle und überall.</b></h3>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-
-                                    <img src="/static/images/avatar_00.png" alt="democracy404 – markus-spiske-unsplash.jpg" class="homepage-header__image">
+                                <div class="btn btn--text-color-inverted btn--square homepage-hero__btn--info" data-toggle="tooltip" data-placement="top" aria-label="Header image: Freigegeben durch unsplash.com Helloquence @helloquence" title=""
+                                  tabindex="0" data-original-title="Freigegeben durch unsplash.com Helloquence @helloquence">
+                                    <i class="fas fa-info" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -1200,11 +1260,11 @@
                                 </button>
                             </div>
 
-                                <div class="dropdown ml-auto">
-                                    <button type="button" class="dropdown-toggle btn btn--light btn--select">
-                                        Ordering: Most recent
-                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                    </button>
+                            <div class="dropdown ml-auto">
+                                <button type="button" class="dropdown-toggle btn btn--light btn--select">
+                                    Ordering: Most recent
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </button>
 
                             </div>
                         </div>
@@ -1251,7 +1311,7 @@
                             </ul>
                         </div>
                         <div class="dropdown dropdown--right">
-                            <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small"  data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
+                            <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small" data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
                                 <i class="fa fa-comment" aria-label="Moderator remark"></i>
                                 <i class="fa fa-check-circle idea-remark__btn__notify  d-none " aria-hidden="true" style="display: inline;"></i>
                             </button>
@@ -1319,16 +1379,20 @@
                         <div class="item-detail-2__factsheet">
                             <ul class="item-detail-2__factsheet-table">
                                 <dl>
-                                    <dt>Facts</dt> <dd>are shown in a table</dd>
+                                    <dt>Facts</dt>
+                                    <dd>are shown in a table</dd>
                                 </dl>
                                 <dl>
-                                    <dt>More facts</dt> <dd>great!</dd>
+                                    <dt>More facts</dt>
+                                    <dd>great!</dd>
                                 </dl>
                                 <dl>
-                                    <dt>Below</dt> <dd>the table</dd>
+                                    <dt>Below</dt>
+                                    <dd>the table</dd>
                                 </dl>
                                 <dl>
-                                    <dt>is a</dt> <dd>border!</dd>
+                                    <dt>is a</dt>
+                                    <dd>border!</dd>
                                 </dl>
                             </ul>
                         </div>
@@ -1356,13 +1420,13 @@
 
                 <div class="cl-example">
                     <p>
-                        <div class="label label--secondary">Label Secondary</div>
-                        <div class="label label--big">Label Big</div>
-                        <div class="label label--active">Label active</div>
-                        <div class="label label--dark">Label Dark</div>
-                        <div class="label label--CONSIDERATION">Label Consideration</div>
-                        <div class="label label--REJECTED">Label Rejected</div>
-                        <div class="label label--ACCEPTED">Label Accepted</div>
+                    <div class="label label--secondary">Label Secondary</div>
+                    <div class="label label--big">Label Big</div>
+                    <div class="label label--active">Label active</div>
+                    <div class="label label--dark">Label Dark</div>
+                    <div class="label label--CONSIDERATION">Label Consideration</div>
+                    <div class="label label--REJECTED">Label Rejected</div>
+                    <div class="label label--ACCEPTED">Label Accepted</div>
                     </p>
                 </div>
 
@@ -1448,7 +1512,7 @@
                                 <div class="dashboard-nav__item">Left Menu - Project nav</div>
                             </div>
                         </nav>
-                        <div class="l-menu__content l-menu__content--aside">
+                        <div class="mb-5 l-menu__content--aside">
                             <h1 class="mt-0">Dashbored content</h1>
                         </div>
                         <div class="l-menu__aside">
@@ -1645,37 +1709,37 @@
                 <h2 id="cl-table">Social icons</h2>
 
                 <div class="cl-example">
-                <div class="container">
-                    <div class="shariff" data-theme="white">
-                        <ul class="theme-white orientation-horizontal col-4">
-                            <li class="shariff-button twitter">
-                                <a href="#" data-rel="popup" rel="nofollow" title="Bei Twitter teilen" role="button" aria-label="Bei Twitter teilen">
-                                    <span class="fab fa-twitter"></span>
-                                    <span class="share_text">tweet</span>
-                                </a>
-                            </li>
-                            <li class="shariff-button ">
-                                <a href="#" data-rel="popup" rel="nofollow" title="Bei Facebook teilen" role="button" aria-label="Bei Facebook teilen">
-                                    <span class="fab fa-facebook"></span>
-                                    <span class="share_text">teilen</span>
-                                </a>
-                            </li>
-                            <li class="shariff-button googleplus">
-                                <a href="#cl-footer" data-rel="popup" rel="nofollow" title="Bei Google+ teilen" role="button" aria-label="Bei Google+ teilen">
-                                    <span class="fab fa-google-plus-g"></span>
-                                    <span class="share_text">teilen</span>
-                                </a>
-                            </li>
-                            <li class="shariff-button info">
-                                <a href="#" title="Weitere Informationen" role="button" aria-label="Weitere Informationen">
-                                    <span class="fa fa-info"></span>
-                                    <span class="share_text">Info</span>
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="container">
+                        <div class="shariff" data-theme="white">
+                            <ul class="theme-white orientation-horizontal col-4">
+                                <li class="shariff-button twitter">
+                                    <a href="#" data-rel="popup" rel="nofollow" title="Bei Twitter teilen" role="button" aria-label="Bei Twitter teilen">
+                                        <span class="fab fa-twitter"></span>
+                                        <span class="share_text">tweet</span>
+                                    </a>
+                                </li>
+                                <li class="shariff-button ">
+                                    <a href="#" data-rel="popup" rel="nofollow" title="Bei Facebook teilen" role="button" aria-label="Bei Facebook teilen">
+                                        <span class="fab fa-facebook"></span>
+                                        <span class="share_text">teilen</span>
+                                    </a>
+                                </li>
+                                <li class="shariff-button googleplus">
+                                    <a href="#cl-footer" data-rel="popup" rel="nofollow" title="Bei Google+ teilen" role="button" aria-label="Bei Google+ teilen">
+                                        <span class="fab fa-google-plus-g"></span>
+                                        <span class="share_text">teilen</span>
+                                    </a>
+                                </li>
+                                <li class="shariff-button info">
+                                    <a href="#" title="Weitere Informationen" role="button" aria-label="Weitere Informationen">
+                                        <span class="fa fa-info"></span>
+                                        <span class="share_text">Info</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <nav class="footer-nav"></nav>
                     </div>
-                    <nav class="footer-nav"></nav>
-                </div>
                 </div>
 
                 <h2 id="cl-table">Table</h2>
@@ -1683,10 +1747,10 @@
                 <div class="cl-example">
                     <table>
                         <thead>
-                        <tr>
-                            <th>Table header</th>
-                            <th>Table header</th>
-                        </tr>
+                            <tr>
+                                <th>Table header</th>
+                                <th>Table header</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr>
@@ -1727,25 +1791,25 @@
                             </h3>
                             <p class="tile__text">Etenim semper illud extra est, quod arte comprehenditur. At certe gravius. Omnia contraria, quos etiam insanos esse vultis. Quid ait Aristoteles reliquique Platonis alumni?</p>
                             <div class="status-item status-bar__past">
-                            Beteiligung beendet. Ergebnis lesen.
+                                Beteiligung beendet. Ergebnis lesen.
                             </div>
                         </div>
                     </li>
                     <ul class="u-list-reset participation-tile__list">
                         <li class="participation-tile__vertical">
-                          <div class="participation-tile__type">
-                              <div class="participation-tile__content">
-                                  <h3 class="participation-tile__title">Idea Challenge</h3>
-                                  <span class="participation-tile__item-count"><i class="fas fa-comments" aria-hidden="true"></i>9 Beiträge</span>
-                                  <div class="status-item status-bar__past">
-                                      <span class="participation-tile__status">Beteiligung beendet.</span>
-                                  </div>
-                                  <div class="participation-tile__spacer"></div>
-                                      <div class="participation-tile__btn">
-                                      <a class="btn btn--full btn--small" href="/liqd-orga/projects/module/idea-challenge/">join</a>
-                                  </div>
-                              </div>
-                          </div>
+                            <div class="participation-tile__type">
+                                <div class="participation-tile__content">
+                                    <h3 class="participation-tile__title">Idea Challenge</h3>
+                                    <span class="participation-tile__item-count"><i class="fas fa-comments" aria-hidden="true"></i>9 Beiträge</span>
+                                    <div class="status-item status-bar__past">
+                                        <span class="participation-tile__status">Beteiligung beendet.</span>
+                                    </div>
+                                    <div class="participation-tile__spacer"></div>
+                                    <div class="participation-tile__btn">
+                                        <a class="btn btn--full btn--small" href="/liqd-orga/projects/module/idea-challenge/">join</a>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                         <ul class="l-tiles-2">
                             <li class="tile organisation__tile tile--vertical">
@@ -1772,21 +1836,22 @@
                         </ul>
 
                         <li class="card blueprint__tile mt-4">
-                          <div class="row no-gutters">
-                            <div class="col-lg-4 d-flex">
-                              <div class="card-img-top blueprint__image" style="background-image: url(/static/images/brainstorming.svg);"></div>
-                            </div>
-                            <div class="col-lg-8">
-                                <form class="card-body">
-                                    <h5 class="card-title m-0">Brainstorming</h5>
-                                    <p class="card-text">
-                                        </p><p>Die Teilnehmer*innen können eigene Ideen einreichen und die Ideen Anderer diskutieren.</p>
-                                    <p></p>
+                            <div class="row no-gutters">
+                                <div class="col-lg-4 d-flex">
+                                    <div class="card-img-top blueprint__image" style="background-image: url(/static/images/brainstorming.svg);"></div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <form class="card-body">
+                                        <h5 class="card-title m-0">Brainstorming</h5>
+                                        <p class="card-text">
+                                        </p>
+                                        <p>Die Teilnehmer*innen können eigene Ideen einreichen und die Ideen Anderer diskutieren.</p>
+                                        <p></p>
 
-                                    <input type="submit" class="list-item__cta ml-auto" value="Modul hinzufügen">
-                                </form>
+                                        <input type="submit" class="list-item__cta ml-auto" value="Modul hinzufügen">
+                                    </form>
+                                </div>
                             </div>
-                          </div>
                         </li>
                     </ul>
                 </div>
@@ -1800,8 +1865,8 @@
                                 <div id="timeline-carousel" data-initial-slide="0">
                                     <div class="timeline-carousel__line"></div>
                                     <div class="timeline-carousel__item slick-initialized slick-slider">
-                                      <!-- arrows commented out due to no js so placement does not work -->
-                                      <!-- <button class="slick-prev slick-arrow slick-disabled" aria-label="Previous" type="button" aria-disabled="true" style=""></button> -->
+                                        <!-- arrows commented out due to no js so placement does not work -->
+                                        <!-- <button class="slick-prev slick-arrow slick-disabled" aria-label="Previous" type="button" aria-disabled="true" style=""></button> -->
                                         <div class="slick-list draggable">
                                             <div class="slick-track" style="opacity: 1; width: 10000px; transform: translate3d(64px, 0px, 0px);">
                                                 <div class="slick-slide slick-current slick-center" data-slick-index="0" aria-hidden="false">
@@ -1833,46 +1898,45 @@
                                                         </a></div>
                                                 </div>
                                             </div>
-                                        <!-- </div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="" aria-disabled="false"></button> -->
+                                            <!-- </div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="" aria-disabled="false"></button> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 id="cl-upload">Upload</h2>
+
+                    <div class="cl-example">
+                        <div class="form-group">
+                            <label for="id_logo">Logo</label>
+                            <div class="form-hint">
+                                The image will be shown in the newsletter in the banner. It must be min. 200 pixel wide and 50 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
+                            </div>
+                            <div class="widget widget--imageinputwidget">
+                                <div class="upload-wrapper form-control-upload">
+                                    <div class="upload-wrapper__fields input-group">
+                                        <input name="logo" id="id_logo" class="form-control form-control-file" type="file">
+                                        <input name="__noname__" class="form-control form-control-file-dummy" placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_logo" type="text">
+                                        <div class="input-group-append">
+                                            <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
+                                                <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-id_logo upload-wrapper__preview">
+                                        <input name="logo-clear" id="logo_id" class="clear-image" data-upload-clear="id_logo" type="checkbox">
+                                        <img id="id_logo-file" src="" data-upload-preview="id_logo" alt="">
+                                    </div>
+                                    <div class="alert alert--info upload-wrapper__alert" role="alert">
+                                        Your image will be uploaded/removed once you save your changes at the end of this page.
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <h2 id="cl-upload">Upload</h2>
-
-                <div class="cl-example">
-                    <div class="form-group">
-                        <label for="id_logo">Logo</label>
-                        <div class="form-hint">
-                            The image will be shown in the newsletter in the banner. It must be min. 200 pixel wide and 50 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
-                        </div>
-                        <div class="widget widget--imageinputwidget">
-                            <div class="upload-wrapper form-control-upload">
-                                <div class="upload-wrapper__fields input-group">
-                                    <input name="logo" id="id_logo" class="form-control form-control-file" type="file">
-                                    <input name="__noname__" class="form-control form-control-file-dummy" placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_logo" type="text">
-                                    <div class="input-group-append">
-                                        <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
-                                            <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-id_logo upload-wrapper__preview">
-                                    <input name="logo-clear" id="logo_id" class="clear-image" data-upload-clear="id_logo" type="checkbox">
-                                    <img id="id_logo-file" src="" data-upload-preview="id_logo" alt="">
-                                </div>
-                                <div class="alert alert--info upload-wrapper__alert" role="alert">
-                                    Your image will be uploaded/removed once you save your changes at the end of this page.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-        </div>
-    </div>
-
-{% endblock %}
+            {% endblock %}
