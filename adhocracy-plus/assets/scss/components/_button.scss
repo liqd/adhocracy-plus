@@ -117,8 +117,11 @@
     @include button-color($brand-primary, $body-bg);
 }
 
-.btn--secondary-filled {
-    @include button-color($brand-secondary, $body-bg);
+.btn--secondary-transparent {
+    @extend .btn--transparent;
+
+    color: $brand-secondary;
+    border-color: $brand-secondary;
 }
 
 .btn--bg-tertiary {

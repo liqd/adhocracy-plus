@@ -1,25 +1,28 @@
 {% load i18n static wagtailsettings_tags %}
 {% get_settings %}
 
-<footer class="footer pt-3 pt-sm-4{% if not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer__margin-for-banner{% endif %}{% endif %}">
+<footer class="footer pt-3 pt-sm-4{% if not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer__padding-for-banner{% endif %}{% endif %}">
     {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
     <div class="container">
         <div class="row mt-3 mb-2 justify-content-lg-center">
             <div class="col-lg-6">
                 <p class="footer__description">
-                    {% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}<a href="/">{{ platformname }}</a> is a platform provided by <a href="https://liqd.net/de/">Liquid Democracy e.V.</a> in Berlin.{% endblocktrans %} {% if ORGANISATION %}{% blocktrans %}Only the respective operator of the offer is responsible for the editorial content.{% endblocktrans %}{% endif %}
+                    {% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}
+                      <a class="text-reset" href="/">{{ platformname }}</a> is a platform provided by <a class="text-reset" href="https://liqd.net/de/">Liquid Democracy e.V.</a> in Berlin.
+                    {% endblocktrans %}
+                    {% if ORGANISATION %}{% blocktrans %}Only the respective operator of the offer is responsible for the editorial content.{% endblocktrans %}{% endif %}
                 </p>
             </div>
             <div class="col-lg-6">
                 <div class="row">
                 {% if pages.open_content_link %}
                 <div class="col-sm-6 d-flex flex-column">
-                    <a class="btn btn--transparent footer__info-btn" href="{{ pages.open_content_link }}">Open Content</a>
+                    <a class="btn btn--secondary-transparent footer__info-btn" href="{{ pages.open_content_link }}">Open Content</a>
                 </div>
                 {% endif %}
                 {% if pages.github_repo_link %}
                 <div class="col-sm-6 d-flex flex-column mt-4 mt-sm-0">
-                    <a class="btn btn--transparent footer__info-btn" href="{{ pages.github_repo_link }}">Open Source</a>
+                    <a class="btn btn--secondary-transparent footer__info-btn" href="{{ pages.github_repo_link }}">Open Source</a>
                 </div>
                 {% endif %}
                 </div>

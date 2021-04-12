@@ -4,7 +4,7 @@
     <div class="dropdown dropdown--right userindicator__dropdown">
 
         <button
-            class="d-md-none dropdown-toggle btn btn--secondary-filled btn--square btn--attached-top header-upper__mobile-toggle"
+            class="d-md-none dropdown-toggle btn btn--primary-filled btn--square btn--attached-top header-upper__mobile-toggle"
             data-toggle="dropdown"
             data-flip="false"
             aria-haspopup="true"
@@ -14,7 +14,7 @@
         </button>
 
         <button
-            class="d-none d-md-inline-block dropdown-toggle btn btn--secondary-filled btn--attached-top btn--square btn--align-left header-upper__toggle"
+            class="d-none d-md-inline-block dropdown-toggle btn btn--primary-filled btn--attached-top btn--square btn--align-left header-upper__toggle"
             data-toggle="dropdown"
             data-flip="false"
             aria-haspopup="true"
@@ -53,10 +53,10 @@
         </div>
 
     {% else %}
-        <div class="btn btn--secondary-filled btn--huge btn--attached-top">
-            <span class="navi__item"><a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a></span>
+        <div class="btn btn--primary-filled btn--huge btn--attached-top">
+            <span class="navi__item"><a class="text-reset" href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a></span>
                 <span class="d-none d-md-inline">/</span>
-            <span class="navi__item"><a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a></span>
+            <span class="navi__item"><a class="text-reset" href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a></span>
         </div>
     </div>
 {% endif %}

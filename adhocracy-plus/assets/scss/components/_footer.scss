@@ -1,5 +1,6 @@
 .footer {
-    border-top: 2px solid $brand-primary;
+    background-color: $brand-primary;
+    color: $text-color-inverted;
 }
 
 .footer--cms {
@@ -9,8 +10,14 @@
 .footer__link {
     padding-right: $padding;
 
-    a {
-        font-weight: normal;
+    .navi__link {
+        text-transform: uppercase;
+        color: $text-color-inverted;
+
+        &:hover,
+        &:active {
+            color: $link-red;
+        }
     }
 }
 
@@ -19,10 +26,10 @@
 }
 
 .footer__margin-for-banner {
-    margin-bottom: 2*$spacer;
+    padding-bottom: 2*$spacer;
 
     @media screen and (min-width: $breakpoint) and (max-width: $breakpoint-lg-down) {
-        margin-bottom: 3.5*$spacer;
+        padding-bottom: 3.5*$spacer;
     }
 }
 
