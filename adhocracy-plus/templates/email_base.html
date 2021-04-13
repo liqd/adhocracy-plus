@@ -17,7 +17,7 @@
                     </div>
                     {% else %}
                     <div  style="width: 150px; height: 100px; box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.08); background-color: #ffffff;">
-                        <img src="cid:logo" height="80" alt="adhocracy-plus logo" style="margin: 10px;" />
+                        <img src="cid:logo" height="80" alt="kosmo logo" style="margin: 10px;" />
                     </div>
                     {% endif %}
             </td>
@@ -52,7 +52,7 @@
           <td style="padding-top: 10px; padding-bottom: 10px; text-align: center;" align="center">
               <a href="{% block cta_url %}{% endblock %}"
                  style="padding: 0 20px; font-weight: bold; line-height: 40px; margin: 0 auto; color: #fff;
-                        background-color: #2d40cc; border-color: #2d40cc; display: inline-block;
+                        background-color: #2a2077; border-color: #2a2077; display: inline-block;
                         vertical-align: middle; text-decoration: none;">
                  {% block cta_label %}{% endblock %}
               </a>
@@ -74,11 +74,11 @@
                 <span style="color: DarkSlateGray; font-weight: bold;">{{ organisation.name }}</span>
               {% endif %}
               {% url 'organisation-imprint' organisation.slug as organisation_imprint_url %}
-              <a href="{{ email.get_host }}{{ organisation_imprint_url }}" style="color:black; text-decoration-line: none; padding-left: 10px;">{% trans 'Imprint' %}</a>
+              <a href="{{ email.get_host }}{{ organisation_imprint_url }}" style="color:#2a2077; text-decoration-line: none; padding-left: 10px;">{% trans 'Imprint' %}</a>
               {% url 'organisation-data-protection' organisation.slug as organisation_data_protection_url %}
-              <a href="{{ email.get_host }}{{ organisation_data_protection_url }}" style="color:black; text-decoration-line: none; padding-left: 10px;">{% trans 'Data protection' %}</a>
+              <a href="{{ email.get_host }}{{ organisation_data_protection_url }}" style="color:#2a2077; text-decoration-line: none; padding-left: 10px;">{% trans 'Data protection' %}</a>
               {% url 'organisation-terms-of-use' organisation.slug as organisation_terms_of_use_url %}
-              <a href="{{ email.get_host }}{{ organisation_terms_of_use_url }}" style="color:black; text-decoration-line: none; padding-left: 10px;">{% trans 'Terms of use' %}</a>
+              <a href="{{ email.get_host }}{{ organisation_terms_of_use_url }}" style="color:#2a2077; text-decoration-line: none; padding-left: 10px;">{% trans 'Terms of use' %}</a>
           </td>
       </tr>
         {% endif %}
