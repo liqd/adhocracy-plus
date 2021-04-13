@@ -84,12 +84,7 @@ class UserDashboardModerationView(UserDashboardBaseMixin,
     permission_required = 'a4_candy_userdashboard.view_moderation_dashboard'
     menu_item = 'moderation'
 
-    def get_projects(self):
-        projects = list(self.request.user.project_moderator.all())
-        return projects
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['moderation_projects'] = self. get_projects()
-        context['project_api_url'] = reverse('projects-list')
+        context['project_api_url'] = reverse('moderationprojects-list')
         return context
