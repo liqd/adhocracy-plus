@@ -24,6 +24,9 @@ adhocracy+ is designed to make online participation easy and accessible to every
     make install
     make fixtures
 
+### Start virtual environment:
+    source venv/bin/activate
+
 ### Check if tests work:
 
     make test
