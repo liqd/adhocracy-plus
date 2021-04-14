@@ -15,7 +15,7 @@ class ProfileView(DetailView):
         sorted_active_projects, sorted_future_projects, sorted_past_projects =\
             self.object.get_projects_follow_list(exclude_private_projects=True)
         return (list(sorted_active_projects) +
-                list(sorted_future_projects))[:9]
+                list(sorted_future_projects))[:6]
 
     @property
     def organisations(self):

@@ -60,27 +60,21 @@ function init () {
     focusOnSelect: false,
     centerMode: false,
     dots: false,
-    arrows: true,
+    arrows: false,
     centerPadding: 30,
     mobileFirst: true,
     infinite: false,
     variableWidth: false,
-    slidesToShow: 1,
+    slidesToShow: 1.2,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3
-        }
-      },
-      {
-        breakpoint: 550,
-        settings: {
-          slidesToShow: 2
+          slidesToShow: 2,
+          arrows: true
         }
       }
-    ],
-    slidesToScroll: 1
+    ]
   })
 
   if ($.fn.select2) {

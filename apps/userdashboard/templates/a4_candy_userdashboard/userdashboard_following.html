@@ -7,12 +7,11 @@
         <span>{% trans 'Back to overview' %}</span>
     </a>
     <h3 class="mt-2">{% trans 'Following' %}</h3>
-    <div class="row">
-        {% for project in view.projects %}
-            <div class="col-sm-6 col-lg-4">
-                {% include 'a4_candy_projects/includes/project_tile_userprofile.html' with project=project orientation='vertical' %}
-            </div>
-        {% endfor %}
-    </div>
+    <ul class="l-tiles-2">
+    {% for project in view.projects %}
+            {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+    {% endfor %}
+    </ul>
+
 
 {% endblock %}

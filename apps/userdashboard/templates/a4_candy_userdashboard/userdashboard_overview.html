@@ -4,14 +4,14 @@
 {% block dashboard_content %}
 
 <h3 class="mt-sm-0 d-inline-block">{% trans 'Following' %}</h3>
-{% if view.projects.count > 3 %}
+{% if view.projects.count > 2 %}
   <a class="btn btn--none float-right pr-0" href="{% url 'userdashboard-following' %}">{% trans 'View more' %}</a>
 {% endif %}
 
 {% if view.projects_carousel %}
   <div class="project-tile-carousel">
       {% for project in view.projects_carousel %}
-          {% include 'a4_candy_projects/includes/project_tile_userprofile.html' with project=project orientation='vertical' %}
+          {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
       {% endfor %}
   </div>
   {% else %}
