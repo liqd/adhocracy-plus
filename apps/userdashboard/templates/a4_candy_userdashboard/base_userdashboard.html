@@ -3,7 +3,7 @@
 
 {% block content %}
     {% block dashboard_nav %}
-    <div class="tablist tablist--left tablist--background">
+    <div class="tablist tablist--left mt-3">
         <div class="container">
             <nav class="d-none d-sm-inline-block" aria-label="{% trans 'Dashboard' %}">
                 <a href="{% url 'userdashboard-overview' %}"
@@ -59,9 +59,9 @@
                             {% else %}
                                 <img class="userdashboard-profile__avatar mb-2" src="{{ user.avatar_fallback }}" width="170" height="170" alt="" />
                             {% endif %}
-                            <h3 class="mt-0 u-break-word">
+                            <h4 class="mt-0 u-break-word">
                             {{ user.username }}
-                            </h3>
+                            </h4>
                         </a>
                         <div>
                             {% trans 'Since' %} {{ request.user.date_joined|date:"d M Y" }}

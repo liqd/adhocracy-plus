@@ -78,7 +78,7 @@ def test_project_serializer(project_factory,
         assert project_data[2]['participation_string'] == \
             _('running')
         assert project_data[3]['participation_string'] == \
-            _('done')
+            _('completed')
 
         assert project_data[0]['active_phase'][0] == 50
         assert '7' in project_data[0]['active_phase'][1]

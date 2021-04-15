@@ -40,11 +40,25 @@ export default class ModerationProjects extends Component {
     const daysRemaining = parseInt(timeRemaining[0])
     if (daysRemaining > 365) {
       return (
-        <span>{django.gettext('More than 1 year remaining')}</span>
+        <span>{django.gettext('Over 1 year left')}</span>
       )
     } else {
       return (
-        <span>{django.gettext('remaining')} {item.active_phase[1]}</span>
+        <span>{django.gettext('left')} {item.active_phase[1]}</span>
+      )
+    }
+  }
+
+  getMobileTimespan (item) {
+    const timeRemaining = item.active_phase[1].split(' ')
+    const daysRemaining = parseInt(timeRemaining[0])
+    if (daysRemaining > 365) {
+      return (
+        <span>{django.gettext('1 year')}</span>
+      )
+    } else {
+      return (
+        <span>{item.active_phase[1]}</span>
       )
     }
   }
@@ -85,11 +99,11 @@ export default class ModerationProjects extends Component {
                     {item.access === 3 && <span className="label label--dark">{privateText}</span>}
                   </div>
                   <div className="row text-muted mt-3">
-                    {item.offensive > 0 && <div className="col-lg-4"><span className="fa-stack fa-2x" aria-hidden="true"><i className="fas fa-exclamation fa-stack-1x" /><i className="far fa-circle fa-stack-2x" /></span> {item.offensive}{reportCountText}</div>}
-                    {item.comment_count > 0 && <div className="col-lg-4"><i className="far fa-comment" aria-hidden="true" /> {item.comment_count}{commentCountText}</div>}
-                    {item.future_phase && !item.active_phase && <div className="col-lg-4"><i className="far fa-clock" aria-hidden="true" /> {item.participation_string}</div>}
-                    {item.active_phase && <div className="col-lg-4"><i className="far fa-clock" aria-hidden="true" /> {this.getTimespan(item)}</div>}
-                    {item.past_phase && !item.active_phase && !item.future_phase && <div className="col-lg-4" />}
+                    {item.offensive > 0 && <div className="col-4"><span className="fa-stack fa-2x" aria-hidden="true"><i className="fas fa-exclamation fa-stack-1x" /><i className="far fa-circle fa-stack-2x" /></span> {item.offensive} <span className="d-none d-lg-inline-block">{reportCountText}</span></div>}
+                    {item.comment_count > 0 && <div className="col-4"><i className="far fa-comment" aria-hidden="true" /> {item.comment_count} <span className="d-none d-lg-inline-block">{commentCountText}</span></div>}
+                    {item.future_phase && !item.active_phase && <div className="col-4"><i className="far fa-clock" aria-hidden="true" /> {item.participation_string}</div>}
+                    {item.active_phase && <div className="col-4"><i className="far fa-clock" aria-hidden="true" /> <span className="d-inline-block d-lg-none">{this.getMobileTimespan(item)}</span> <span className="d-none d-lg-inline-block">{this.getTimespan(item)}</span></div>}
+                    {item.past_phase && !item.active_phase && !item.future_phase && <div className="col-4"> {item.participation_string}</div>}
                   </div>
                   <a href={item.url} className="tile__link"><span className="sr-only">{srLinkText}{item.title}</span></a>
                 </div>

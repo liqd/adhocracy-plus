@@ -52,7 +52,7 @@ class ProjectSerializer(serializers.ModelSerializer):
                 return (_('starts in the future'),
                         True)
         else:
-            return _('done'), False
+            return _('completed'), False
 
     def get_type(self, instance):
         return 'project'
