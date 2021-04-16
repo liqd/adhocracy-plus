@@ -1,5 +1,6 @@
 from functools import lru_cache
 
+from django.urls import reverse
 from django.utils.translation import ugettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
@@ -11,7 +12,6 @@ from . import helpers
 
 class ProjectSerializer(serializers.ModelSerializer):
     title = serializers.SerializerMethodField()
-    url = serializers.SerializerMethodField()
     organisation = serializers.SerializerMethodField()
     tile_image = serializers.SerializerMethodField()
     tile_image_copyright = serializers.SerializerMethodField()
@@ -23,17 +23,19 @@ class ProjectSerializer(serializers.ModelSerializer):
     past_phase = serializers.SerializerMethodField()
     offensive = serializers.SerializerMethodField()
     comment_count = serializers.SerializerMethodField()
+    moderation_detail_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Project
-        fields = ['title', 'url', 'organisation', 'tile_image',
+        fields = ['title', 'organisation', 'tile_image',
                   'tile_image_copyright',
                   'status', 'access',
                   'participation_active',
                   'participation_string',
                   'future_phase', 'active_phase',
                   'past_phase',
-                  'offensive', 'comment_count']
+                  'offensive', 'comment_count',
+                  'moderation_detail_url']
 
     @lru_cache(maxsize=1)
     def _get_participation_status_project(self, instance):
@@ -63,9 +65,6 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     def get_title(self, instance):
         return instance.name
-
-    def get_url(self, instance):
-        return instance.get_absolute_url()
 
     def get_organisation(self, instance):
         return instance.organisation.name
@@ -127,7 +126,11 @@ class ProjectSerializer(serializers.ModelSerializer):
         return False
 
     def get_offensive(self, instance):
-        return helpers.get_num_reported_comments(instance)
+        return helpers.get_num_classifications(instance)
 
     def get_comment_count(self, instance):
         return helpers.get_num_comments_project(instance)
+
+    def get_moderation_detail_url(self, instance):
+        return reverse('userdashboard-moderation-detail',
+                       kwargs={'slug': instance.slug})

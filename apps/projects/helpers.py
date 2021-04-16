@@ -1,8 +1,8 @@
-from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 
 from adhocracy4.comments.models import Comment
-from adhocracy4.reports.models import Report
+from apps.classifications.models import AIClassification
+from apps.classifications.models import UserClassification
 
 
 def get_all_comments_project(project):
@@ -31,30 +31,18 @@ def get_num_comments_project(project):
     return get_all_comments_project(project).count()
 
 
-def get_reports_on_comments(project):
+def get_num_user_classifications(project):
     comments_project = get_all_comments_project(project)
-    comments_project_pks = comments_project.values_list('pk', flat=True)
-    ct_comment = ContentType.objects.get(app_label='a4comments',
-                                         model='comment')
-
-    return Report.objects.filter(content_type=ct_comment).\
-        filter(object_pk__in=comments_project_pks)
+    return UserClassification.objects.filter(
+        comment__in=comments_project).count()
 
 
-def get_reported_comments(project):
+def get_num_ai_classifications(project):
     comments_project = get_all_comments_project(project)
-    ct_comment = ContentType.objects.get(app_label='a4comments',
-                                         model='comment')
-    reported_comments_pks = Report.objects.filter(content_type=ct_comment).\
-        values_list('object_pk', flat=True)
-    return comments_project.filter(pk__in=reported_comments_pks)
+    return AIClassification.objects.filter(
+        comment__in=comments_project).count()
 
 
-def get_num_reported_comments(project):
-    return get_reported_comments(project).count()
-
-
-def get_reported_comments_with_report(project):
-    reports = get_reports_on_comments(project)
-    return[(Comment.objects.get(pk=report.object_pk), report)
-           for report in reports]
+def get_num_classifications(project):
+    return get_num_user_classifications(project) + \
+        get_num_ai_classifications(project)
