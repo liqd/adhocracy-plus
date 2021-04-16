@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-17 17:57+0100\n"
+"POT-Creation-Date: 2021-04-16 10:47+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Katharina Schmid, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/liqd/teams/109316/ru/)\n"
@@ -1343,7 +1343,7 @@ msgstr "Что-то в ответе на капчу было не так."
 msgid "Your answer to the captcha was wrong."
 msgstr "Ваш ответ на капчу был неправильным."
 
-#: apps/cms/contacts/models.py:38 apps/users/forms.py:42
+#: apps/cms/contacts/models.py:38 apps/users/forms.py:44
 msgid "I am not a robot"
 msgstr "Я не робот"
 
@@ -1508,12 +1508,11 @@ msgid "Try it out!"
 msgstr "Попробуйте!"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:111
+#, python-format
 msgid ""
-"Instead of just reading about it, you can test all the features of adhocracy"
-"+ yourself on our demo platform. "
+"Instead of just reading about it, you can test all the features of "
+"%(platformname)s yourself on our demo platform."
 msgstr ""
-"Вместо того, чтобы просто читать об этом, вы можете сами протестировать все "
-"возможности adhocracy + на нашей демонстрационной платформе."
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:112
 msgid "Visit the demo platform"
@@ -2965,7 +2964,7 @@ msgstr ""
 #: apps/organisations/models.py:122
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:34 apps/users/forms.py:171
+#: apps/users/forms.py:36 apps/users/forms.py:173
 #: adhocracy-plus/templates/email_base.html:81
 #: adhocracy-plus/templates/email_base.html:111
 #: adhocracy-plus/templates/footer.html:43
@@ -3468,7 +3467,7 @@ msgid "It ended on %(date)s."
 msgstr "Это закончилось%(date)s."
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:225
-#: apps/users/models.py:47
+#: apps/users/models.py:49
 #: adhocracy-plus/templates/a4modules/module_detail.html:141
 msgid "active"
 msgstr "Активный"
@@ -3612,11 +3611,11 @@ msgstr ""
 "цифры, пробелы и символы @ /. / + / - / _. Оно должно начинаться с цифры или "
 "буквы."
 
-#: apps/users/admin.py:11
+#: apps/users/admin.py:14
 msgid "Permissions"
 msgstr "Разрешения"
 
-#: apps/users/admin.py:12
+#: apps/users/admin.py:15
 msgid "Important dates"
 msgstr "Важные даты"
 
@@ -3641,42 +3640,42 @@ msgid "Please enter correct email addresses, separated by commas."
 msgstr ""
 "Пожалуйста, введите действительные адреса электронной почты через запятую."
 
-#: apps/users/forms.py:24
+#: apps/users/forms.py:26
 msgid "Username/e-mail"
 msgstr "Имя пользователя / электронная почта"
 
-#: apps/users/forms.py:37 apps/users/forms.py:174 apps/users/models.py:68
+#: apps/users/forms.py:39 apps/users/forms.py:176 apps/users/models.py:70
 msgid "I would like to receive further information"
 msgstr "Я хочу получить дополнительную информацию"
 
-#: apps/users/forms.py:38 apps/users/forms.py:175 apps/users/models.py:71
+#: apps/users/forms.py:40 apps/users/forms.py:177 apps/users/models.py:73
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
 "Проекты, на которые вы подписаны, могут отправлять вам дополнительную "
 "информацию по электронной почте."
 
-#: apps/users/forms.py:47 apps/users/forms.py:186
+#: apps/users/forms.py:49 apps/users/forms.py:188
 msgid "Your username will appear publicly next to your posts."
 msgstr ""
 "Ваше имя пользователя будет публично отображаться рядом с вашими сообщениями."
 
-#: apps/users/forms.py:67
+#: apps/users/forms.py:69
 msgid "Membership number of IG BCE"
 msgstr "Членский номер IG BCE"
 
-#: apps/users/forms.py:68
+#: apps/users/forms.py:70
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
 msgstr ""
 "Членский номер состоит из семизначного числа и указан на членской карте."
 
-#: apps/users/forms.py:74
+#: apps/users/forms.py:76
 msgid "Date of birth"
 msgstr "Дата рождения"
 
-#: apps/users/forms.py:75
+#: apps/users/forms.py:77
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
@@ -3684,7 +3683,7 @@ msgstr ""
 "Пожалуйста, также введите дату вашего рождения в формате ММ / ДД / ГГГГ для "
 "подтверждения. Участвовать могут только члены IG BCE."
 
-#: apps/users/forms.py:80
+#: apps/users/forms.py:82
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
@@ -3692,11 +3691,11 @@ msgstr ""
 "Я подтверждаю, что я прочитал и принимаю <a href=\"/info/ig-bce-datenschutz/"
 "\" target=\"_blank\"> политику защиты данных</a>IG BCE."
 
-#: apps/users/forms.py:91 apps/users/forms.py:127
+#: apps/users/forms.py:93 apps/users/forms.py:129
 msgid "Something is wrong with the setup - please try again later"
 msgstr "Что-то не так с настройкой - повторите попытку позже"
 
-#: apps/users/forms.py:96
+#: apps/users/forms.py:98
 msgid ""
 "There is already a participant with this membership number. Please check "
 "your entry. If this is your membership number, please send an email to "
@@ -3706,7 +3705,7 @@ msgstr ""
 "запись. Если это ваш членский номер, отправьте электронное письмо по адресу "
 "«zukunftsgewerkschaft@igbce.de»."
 
-#: apps/users/forms.py:132
+#: apps/users/forms.py:134
 msgid ""
 "Unfortunately, the member number and / or date of birth could not be linked "
 "to an active member account. Please check your input and try again. If you "
@@ -3732,23 +3731,27 @@ msgstr ""
 msgid "A user with that username already exists."
 msgstr "Пользователь с таким именем уже существует."
 
-#: apps/users/models.py:33
+#: apps/users/models.py:30
+msgid "This username is already used as an e-mail address."
+msgstr ""
+
+#: apps/users/models.py:35
 msgid "Email address"
 msgstr "Адрес электронной почты"
 
-#: apps/users/models.py:36
+#: apps/users/models.py:38
 msgid "A user with that email address already exists."
 msgstr "Пользователь с таким адресом электронной почты уже существует."
 
-#: apps/users/models.py:40
+#: apps/users/models.py:42
 msgid "staff status"
 msgstr "Статус сотрудника"
 
-#: apps/users/models.py:43
+#: apps/users/models.py:45
 msgid "Designates whether the user can log into this admin site."
 msgstr "Определяет, может ли пользователь войти на этот сайт администратора."
 
-#: apps/users/models.py:50
+#: apps/users/models.py:52
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -3756,11 +3759,11 @@ msgstr ""
 "Определяет, следует ли считать этого пользователя активным. Снимите этот "
 "флажок вместо удаления учетных записей."
 
-#: apps/users/models.py:60
+#: apps/users/models.py:62
 msgid "Send me email notifications"
 msgstr "Присылайте мне уведомления по электронной почте"
 
-#: apps/users/models.py:63
+#: apps/users/models.py:65
 msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
@@ -3768,43 +3771,43 @@ msgstr ""
 "Указывает, хотите ли вы получать уведомления. Снимите флажок, если вы не "
 "хотите получать уведомления."
 
-#: apps/users/models.py:78
+#: apps/users/models.py:80
 msgid "Biography"
 msgstr "Биография"
 
-#: apps/users/models.py:80
+#: apps/users/models.py:82
 msgid "Tell us about yourself in 255 characters!"
 msgstr "Расскажите о себе не превышая 255 символов!"
 
-#: apps/users/models.py:86
+#: apps/users/models.py:88
 msgid "Twitter handle"
 msgstr "Учетная запись в Twitter"
 
-#: apps/users/models.py:92
+#: apps/users/models.py:94
 msgid "Facebook name"
 msgstr "Имя в Facebook"
 
-#: apps/users/models.py:94
+#: apps/users/models.py:96
 msgid ""
 "Your facebook name is the last part of the URL, when you access your profile."
 msgstr ""
 "Ваше имя на Facebook указывается как последняя часть URL-адреса, когда вы "
 "входите в свой профиль."
 
-#: apps/users/models.py:101
+#: apps/users/models.py:103
 #: apps/users/templates/a4_candy_users/user_detail.html:64
 msgid "Homepage"
 msgstr "Домашняя страница"
 
-#: apps/users/models.py:108
+#: apps/users/models.py:110
 msgid "Avatar picture"
 msgstr "Изображение аватара"
 
-#: apps/users/models.py:112
+#: apps/users/models.py:114
 msgid "Your preferred language"
 msgstr "Ваш предпочтительный язык"
 
-#: apps/users/models.py:117
+#: apps/users/models.py:119
 msgid ""
 "Specify your preferred language for the user interface and the notifications "
 "of the platform."
@@ -4030,19 +4033,6 @@ msgstr "У вас нет доступа к этой странице."
 #: adhocracy-plus/templates/404.html:7
 msgid "This page could not be found."
 msgstr "Страница не найдена."
-
-#: adhocracy-plus/templates/500.html:4
-msgid "adhocracy+"
-msgstr "adhocracy+"
-
-#: adhocracy-plus/templates/500.html:24
-msgid "Internal server error."
-msgstr "Внутренняя ошибка сервера."
-
-#: adhocracy-plus/templates/500.html:25
-#: adhocracy-plus/templates/base_errors.html:12
-msgid "Back to adhocracy+"
-msgstr "Вернуться к adhocracy+"
 
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:17
 msgid "Home"
@@ -4513,57 +4503,57 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"            With your account on adhocracy+, you can take part in every "
-"public participation project on this platform. This platform allows "
+"            With your account on %(platformname)s, you can take part in "
+"every public participation project on this platform. This platform allows "
 "organisations initiatives to conduct digital participation projects.\n"
 "            If you have any questions regarding the data protection on this "
 "platform you can find <a href=\"%(data_protection_url)s\" target=\"_blank"
 "\">further information here</a>.\n"
 "        "
 msgstr ""
-"\n"
-"Имея учетную запись на adhocracy +, вы можете принимать участие во всех "
-"проектах по участию общественности на этой платформе. Эта платформа "
-"позволяет организациям реализовывать проекты цифрового участия. \n"
-"Если у вас есть какие-либо вопросы относительно защиты данных на этой "
-"платформе, вы можете найти <a href=\"%(data_protection_url)s\" target="
-"\"_blank\"> дополнительную информацию здесь</a>."
 
 #: adhocracy-plus/templates/base.html:57
 msgid "Skip to content "
 msgstr "Перейти к контенту"
 
 #: adhocracy-plus/templates/base.html:96
-msgid "adhocracy+ is funded by donations."
-msgstr "adhocracy + финансируется за счет добровольных взносов."
+#, python-format
+msgid "%(platformname)s is funded by donations."
+msgstr ""
 
 #: adhocracy-plus/templates/base.html:98
 msgid "Donate now"
 msgstr "Внести добровольный взнос сейчас"
 
 #: adhocracy-plus/templates/base.html:101
-msgid "Donate now to adhocracy+"
-msgstr "Внести добровольный взнос на счет adhocracy+ сейчас"
+#, python-format
+msgid "Donate now to %(platformname)s"
+msgstr ""
 
 #: adhocracy-plus/templates/base_errors.html:4
 msgid "Error"
 msgstr "Ошибка"
+
+#: adhocracy-plus/templates/base_errors.html:12
+#, python-format
+msgid "Back to %(platformname)s"
+msgstr ""
 
 #: adhocracy-plus/templates/email_base.html:66
 msgid "Responsible for the participation project:"
 msgstr "Ответственный за участие в проекте:"
 
 #: adhocracy-plus/templates/email_base.html:95
-msgid "adhocracy+ is a participation platform operated by"
-msgstr "adhocracy + - это платформа для участия, управляемая"
+#, python-format
+msgid "%(platformname)s is a participation platform operated by"
+msgstr ""
 
 #: adhocracy-plus/templates/footer.html:10
+#, python-format
 msgid ""
-"<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
-"liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
+"<a href=\"/\">%(platformname)s</a> is a platform provided by <a href="
+"\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
 msgstr ""
-"<a href=\"/\">adhocracy + </a> - это платформа, предоставленная <a href="
-"\"https://liqd.net/de/\"> Liquid Democracy e.V.</a> в Берлине."
 
 #: adhocracy-plus/templates/footer.html:10
 msgid ""
@@ -4655,3 +4645,53 @@ msgstr "Войти в систему через учетную запись в �
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Войти в систему через"
+
+#~ msgid ""
+#~ "Instead of just reading about it, you can test all the features of "
+#~ "adhocracy+ yourself on our demo platform. "
+#~ msgstr ""
+#~ "Вместо того, чтобы просто читать об этом, вы можете сами протестировать "
+#~ "все возможности adhocracy + на нашей демонстрационной платформе."
+
+#~ msgid "adhocracy+"
+#~ msgstr "adhocracy+"
+
+#~ msgid "Internal server error."
+#~ msgstr "Внутренняя ошибка сервера."
+
+#~ msgid "Back to adhocracy+"
+#~ msgstr "Вернуться к adhocracy+"
+
+#~ msgid ""
+#~ "\n"
+#~ "            With your account on adhocracy+, you can take part in every "
+#~ "public participation project on this platform. This platform allows "
+#~ "organisations initiatives to conduct digital participation projects.\n"
+#~ "            If you have any questions regarding the data protection on "
+#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
+#~ "\"_blank\">further information here</a>.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "Имея учетную запись на adhocracy +, вы можете принимать участие во всех "
+#~ "проектах по участию общественности на этой платформе. Эта платформа "
+#~ "позволяет организациям реализовывать проекты цифрового участия. \n"
+#~ "Если у вас есть какие-либо вопросы относительно защиты данных на этой "
+#~ "платформе, вы можете найти <a href=\"%(data_protection_url)s\" target="
+#~ "\"_blank\"> дополнительную информацию здесь</a>."
+
+#~ msgid "adhocracy+ is funded by donations."
+#~ msgstr "adhocracy + финансируется за счет добровольных взносов."
+
+#~ msgid "Donate now to adhocracy+"
+#~ msgstr "Внести добровольный взнос на счет adhocracy+ сейчас"
+
+#~ msgid "adhocracy+ is a participation platform operated by"
+#~ msgstr "adhocracy + - это платформа для участия, управляемая"
+
+#~ msgid ""
+#~ "<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
+#~ "liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
+#~ msgstr ""
+#~ "<a href=\"/\">adhocracy + </a> - это платформа, предоставленная <a href="
+#~ "\"https://liqd.net/de/\"> Liquid Democracy e.V.</a> в Берлине."

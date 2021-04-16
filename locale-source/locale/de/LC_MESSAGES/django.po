@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-17 17:57+0100\n"
+"POT-Creation-Date: 2021-04-16 10:47+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Katharina Schmid, 2021\n"
 "Language-Team: German (https://www.transifex.com/liqd/teams/109316/de/)\n"
@@ -1348,7 +1348,7 @@ msgstr "Irgendetwas an der Antwort auf das Captcha war falsch."
 msgid "Your answer to the captcha was wrong."
 msgstr "Ihre Antwort für das Captcha war falsch"
 
-#: apps/cms/contacts/models.py:38 apps/users/forms.py:42
+#: apps/cms/contacts/models.py:38 apps/users/forms.py:44
 msgid "I am not a robot"
 msgstr "Ich bin kein Roboter"
 
@@ -1513,12 +1513,11 @@ msgid "Try it out!"
 msgstr "Jetzt testen!"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:111
+#, python-format
 msgid ""
-"Instead of just reading about it, you can test all the features of adhocracy"
-"+ yourself on our demo platform. "
+"Instead of just reading about it, you can test all the features of "
+"%(platformname)s yourself on our demo platform."
 msgstr ""
-"Nicht nur anschauen sondern ausprobieren: Testen Sie die Funktionen von "
-"adhocracy+ jetzt auf unserer Demo-Plattform."
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:112
 msgid "Visit the demo platform"
@@ -2999,7 +2998,7 @@ msgstr ""
 #: apps/organisations/models.py:122
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:34 apps/users/forms.py:171
+#: apps/users/forms.py:36 apps/users/forms.py:173
 #: adhocracy-plus/templates/email_base.html:81
 #: adhocracy-plus/templates/email_base.html:111
 #: adhocracy-plus/templates/footer.html:43
@@ -3504,7 +3503,7 @@ msgid "It ended on %(date)s."
 msgstr "Sie hat am %(date)s geendet."
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:225
-#: apps/users/models.py:47
+#: apps/users/models.py:49
 #: adhocracy-plus/templates/a4modules/module_detail.html:141
 msgid "active"
 msgstr "aktiv"
@@ -3649,11 +3648,11 @@ msgstr ""
 "Zahlen, Leerzeichen und nur @/./+/-/_ Zeichen erhalten. Der Nutzername muss "
 "mit einem Buchstaben oder einer Zahl anfangen."
 
-#: apps/users/admin.py:11
+#: apps/users/admin.py:14
 msgid "Permissions"
 msgstr "Rechte"
 
-#: apps/users/admin.py:12
+#: apps/users/admin.py:15
 msgid "Important dates"
 msgstr "Wichtige Daten"
 
@@ -3677,30 +3676,30 @@ msgstr ""
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 
-#: apps/users/forms.py:24
+#: apps/users/forms.py:26
 msgid "Username/e-mail"
 msgstr "Benutzername/E-Mail"
 
-#: apps/users/forms.py:37 apps/users/forms.py:174 apps/users/models.py:68
+#: apps/users/forms.py:39 apps/users/forms.py:176 apps/users/models.py:70
 msgid "I would like to receive further information"
 msgstr "Ich möchte weitere Informationen erhalten."
 
-#: apps/users/forms.py:38 apps/users/forms.py:175 apps/users/models.py:71
+#: apps/users/forms.py:40 apps/users/forms.py:177 apps/users/models.py:73
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
 "Projekte, denen Sie folgen, können Ihnen E-Mails mit weiteren Informationen "
 "schicken."
 
-#: apps/users/forms.py:47 apps/users/forms.py:186
+#: apps/users/forms.py:49 apps/users/forms.py:188
 msgid "Your username will appear publicly next to your posts."
 msgstr "Ihr Benutzername erscheint öffentlich neben Ihren Beiträgen."
 
-#: apps/users/forms.py:67
+#: apps/users/forms.py:69
 msgid "Membership number of IG BCE"
 msgstr "Mitgliedsnummer der IG BCE"
 
-#: apps/users/forms.py:68
+#: apps/users/forms.py:70
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
@@ -3708,11 +3707,11 @@ msgstr ""
 "Die Mitgliedsnummer besteht aus einer siebenstelligen Zahlenfolge und ist "
 "auf dem Mitgliedsausweis zu finden."
 
-#: apps/users/forms.py:74
+#: apps/users/forms.py:76
 msgid "Date of birth"
 msgstr "Geburtsdatum"
 
-#: apps/users/forms.py:75
+#: apps/users/forms.py:77
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
@@ -3720,7 +3719,7 @@ msgstr ""
 "Bitte geben Sie zur Authentifizierung außerdem Ihr Geburtsdatum im Format TT."
 "MM.JJJJ an. Nur Mitglieder der IG BCE können teilnehmen."
 
-#: apps/users/forms.py:80
+#: apps/users/forms.py:82
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
@@ -3729,13 +3728,13 @@ msgstr ""
 "target=\"_blank\">Datenschutzerklärung</a> der IG BCE gelesen habe und sie "
 "akzeptiere."
 
-#: apps/users/forms.py:91 apps/users/forms.py:127
+#: apps/users/forms.py:93 apps/users/forms.py:129
 msgid "Something is wrong with the setup - please try again later"
 msgstr ""
 "Mit der Konfiguration stimmt etwas nicht - bitte versuchen Sie es zu einem "
 "späteren Zeitpunkt erneut"
 
-#: apps/users/forms.py:96
+#: apps/users/forms.py:98
 msgid ""
 "There is already a participant with this membership number. Please check "
 "your entry. If this is your membership number, please send an email to "
@@ -3745,7 +3744,7 @@ msgstr ""
 "überprüfen Sie Ihre Eingabe. Sollte dies Ihre Mitgliedsnummer sein, "
 "schreiben Sie umgehend eine Mail an \"zukunftsgewerkschaft@igbce.de\"."
 
-#: apps/users/forms.py:132
+#: apps/users/forms.py:134
 msgid ""
 "Unfortunately, the member number and / or date of birth could not be linked "
 "to an active member account. Please check your input and try again. If you "
@@ -3771,25 +3770,29 @@ msgstr ""
 msgid "A user with that username already exists."
 msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
-#: apps/users/models.py:33
+#: apps/users/models.py:30
+msgid "This username is already used as an e-mail address."
+msgstr ""
+
+#: apps/users/models.py:35
 msgid "Email address"
 msgstr "E-Mail Adresse"
 
-#: apps/users/models.py:36
+#: apps/users/models.py:38
 msgid "A user with that email address already exists."
 msgstr "Der Nutzer mit dieser E-Mail Adresse existiert bereits."
 
-#: apps/users/models.py:40
+#: apps/users/models.py:42
 msgid "staff status"
 msgstr "Mitarbeiterstatus"
 
-#: apps/users/models.py:43
+#: apps/users/models.py:45
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 "Bitte bestätigen Sie, dass der Nutzer auf dieser Seite als Admin agieren "
 "kann."
 
-#: apps/users/models.py:50
+#: apps/users/models.py:52
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -3797,11 +3800,11 @@ msgstr ""
 "Bitte setzen Sie einen Haken, um den Nutzer aktiv zu schalten. Nehmen Sie "
 "den Haken raus, um den Nutzer inaktiv zu schalten."
 
-#: apps/users/models.py:60
+#: apps/users/models.py:62
 msgid "Send me email notifications"
 msgstr "Bitte senden Sie mir E-Mail Benachrichtigungen"
 
-#: apps/users/models.py:63
+#: apps/users/models.py:65
 msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
@@ -3810,43 +3813,43 @@ msgstr ""
 "erhalten möchten. Nehmen Sie den Haken raus, falls Sie keine "
 "Benachrichtigungen per E-Mail erhalten möchten."
 
-#: apps/users/models.py:78
+#: apps/users/models.py:80
 msgid "Biography"
 msgstr "Biografie"
 
-#: apps/users/models.py:80
+#: apps/users/models.py:82
 msgid "Tell us about yourself in 255 characters!"
 msgstr "Erzählen Sie von sich - in 255 Zeichen!"
 
-#: apps/users/models.py:86
+#: apps/users/models.py:88
 msgid "Twitter handle"
 msgstr "Twitter handle"
 
-#: apps/users/models.py:92
+#: apps/users/models.py:94
 msgid "Facebook name"
 msgstr "Facebook Name"
 
-#: apps/users/models.py:94
+#: apps/users/models.py:96
 msgid ""
 "Your facebook name is the last part of the URL, when you access your profile."
 msgstr ""
 "Ihr Facebook-Name ist der letzte Teil der URL, wenn Sie ihr Facebook-Profil "
 "aufrufen"
 
-#: apps/users/models.py:101
+#: apps/users/models.py:103
 #: apps/users/templates/a4_candy_users/user_detail.html:64
 msgid "Homepage"
 msgstr "Homepage"
 
-#: apps/users/models.py:108
+#: apps/users/models.py:110
 msgid "Avatar picture"
 msgstr "Avatar Bild"
 
-#: apps/users/models.py:112
+#: apps/users/models.py:114
 msgid "Your preferred language"
 msgstr "Ihre bevorzugte Sprache"
 
-#: apps/users/models.py:117
+#: apps/users/models.py:119
 msgid ""
 "Specify your preferred language for the user interface and the notifications "
 "of the platform."
@@ -4072,19 +4075,6 @@ msgstr "Sie sind nicht berechtigt, auf diese Seite zuzugreifen."
 #: adhocracy-plus/templates/404.html:7
 msgid "This page could not be found."
 msgstr "Diese Seite konnte nicht gefunden werden."
-
-#: adhocracy-plus/templates/500.html:4
-msgid "adhocracy+"
-msgstr "adhocracy+"
-
-#: adhocracy-plus/templates/500.html:24
-msgid "Internal server error."
-msgstr "Interner Serverfehler."
-
-#: adhocracy-plus/templates/500.html:25
-#: adhocracy-plus/templates/base_errors.html:12
-msgid "Back to adhocracy+"
-msgstr "Zurück zu adhocracy+"
 
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:17
 msgid "Home"
@@ -4562,59 +4552,57 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"            With your account on adhocracy+, you can take part in every "
-"public participation project on this platform. This platform allows "
+"            With your account on %(platformname)s, you can take part in "
+"every public participation project on this platform. This platform allows "
 "organisations initiatives to conduct digital participation projects.\n"
 "            If you have any questions regarding the data protection on this "
 "platform you can find <a href=\"%(data_protection_url)s\" target=\"_blank"
 "\">further information here</a>.\n"
 "        "
 msgstr ""
-"\n"
-"            Mit Ihrem Account auf adhocracy+ können Sie sich an allen "
-"öffentlichen Beteiligungsprojekten auf der Plattform beteiligen. Die "
-"Plattform bietet allen Organisationen und Initiativen die Möglichkeit, "
-"digitale Beteiligungsprojekte zu starten.\n"
-"            Sollten Sie Fragen zum Datenschutz auf der Plattform haben "
-"finden Sie <a href=\"%(data_protection_url)s\" target=\"_blank\">hier "
-"weitere Informationen</a>.\n"
-"        "
 
 #: adhocracy-plus/templates/base.html:57
 msgid "Skip to content "
 msgstr "Zum Inhalt springen"
 
 #: adhocracy-plus/templates/base.html:96
-msgid "adhocracy+ is funded by donations."
-msgstr "adhocracy+ finanziert sich durch Spenden."
+#, python-format
+msgid "%(platformname)s is funded by donations."
+msgstr ""
 
 #: adhocracy-plus/templates/base.html:98
 msgid "Donate now"
 msgstr "Jetzt unterstützen"
 
 #: adhocracy-plus/templates/base.html:101
-msgid "Donate now to adhocracy+"
-msgstr "Spende jetzt für adhocracy+"
+#, python-format
+msgid "Donate now to %(platformname)s"
+msgstr ""
 
 #: adhocracy-plus/templates/base_errors.html:4
 msgid "Error"
 msgstr "Fehler"
+
+#: adhocracy-plus/templates/base_errors.html:12
+#, python-format
+msgid "Back to %(platformname)s"
+msgstr ""
 
 #: adhocracy-plus/templates/email_base.html:66
 msgid "Responsible for the participation project:"
 msgstr "Verantwortlich für das Beteiligungsprojekt:"
 
 #: adhocracy-plus/templates/email_base.html:95
-msgid "adhocracy+ is a participation platform operated by"
-msgstr "adhocracy+ ist eine Plattform für Beteiligung, betrieben durch"
+#, python-format
+msgid "%(platformname)s is a participation platform operated by"
+msgstr ""
 
 #: adhocracy-plus/templates/footer.html:10
+#, python-format
 msgid ""
-"<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
-"liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
+"<a href=\"/\">%(platformname)s</a> is a platform provided by <a href="
+"\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
 msgstr ""
-"<a href=\"/\">adhocracy+</a> ist eine Plattform, die von <a href=\"https://"
-"liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin bereitgestellt wird."
 
 #: adhocracy-plus/templates/footer.html:10
 msgid ""
@@ -4703,3 +4691,56 @@ msgstr "Mit Konto eines sozialen Netzwerks einloggen"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Einloggen mit "
+
+#~ msgid ""
+#~ "Instead of just reading about it, you can test all the features of "
+#~ "adhocracy+ yourself on our demo platform. "
+#~ msgstr ""
+#~ "Nicht nur anschauen sondern ausprobieren: Testen Sie die Funktionen von "
+#~ "adhocracy+ jetzt auf unserer Demo-Plattform."
+
+#~ msgid "adhocracy+"
+#~ msgstr "adhocracy+"
+
+#~ msgid "Internal server error."
+#~ msgstr "Interner Serverfehler."
+
+#~ msgid "Back to adhocracy+"
+#~ msgstr "Zurück zu adhocracy+"
+
+#~ msgid ""
+#~ "\n"
+#~ "            With your account on adhocracy+, you can take part in every "
+#~ "public participation project on this platform. This platform allows "
+#~ "organisations initiatives to conduct digital participation projects.\n"
+#~ "            If you have any questions regarding the data protection on "
+#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
+#~ "\"_blank\">further information here</a>.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "            Mit Ihrem Account auf adhocracy+ können Sie sich an allen "
+#~ "öffentlichen Beteiligungsprojekten auf der Plattform beteiligen. Die "
+#~ "Plattform bietet allen Organisationen und Initiativen die Möglichkeit, "
+#~ "digitale Beteiligungsprojekte zu starten.\n"
+#~ "            Sollten Sie Fragen zum Datenschutz auf der Plattform haben "
+#~ "finden Sie <a href=\"%(data_protection_url)s\" target=\"_blank\">hier "
+#~ "weitere Informationen</a>.\n"
+#~ "        "
+
+#~ msgid "adhocracy+ is funded by donations."
+#~ msgstr "adhocracy+ finanziert sich durch Spenden."
+
+#~ msgid "Donate now to adhocracy+"
+#~ msgstr "Spende jetzt für adhocracy+"
+
+#~ msgid "adhocracy+ is a participation platform operated by"
+#~ msgstr "adhocracy+ ist eine Plattform für Beteiligung, betrieben durch"
+
+#~ msgid ""
+#~ "<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
+#~ "liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
+#~ msgstr ""
+#~ "<a href=\"/\">adhocracy+</a> ist eine Plattform, die von <a href="
+#~ "\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin "
+#~ "bereitgestellt wird."
