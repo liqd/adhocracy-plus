@@ -55,7 +55,8 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
         sorted_active_projects, sorted_future_projects, sorted_past_projects =\
             self.request.user.get_projects_follow_list()
         return (list(sorted_active_projects) +
-                list(sorted_future_projects))[:9]
+                list(sorted_future_projects) +
+                list(sorted_past_projects))[:8]
 
 
 class UserDashboardActivitiesView(UserDashboardBaseMixin):
