@@ -21,6 +21,8 @@ from adhocracy4.comments.api import CommentModerateSet
 from adhocracy4.comments_async.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
+from apps.classifications.api import AIClassificationViewSet
+from apps.classifications.api import UserClassificationViewSet
 from apps.contrib import views as contrib_views
 from apps.contrib.sitemaps import static_sitemap_index
 from apps.documents.api import DocumentViewSet
@@ -34,6 +36,7 @@ from apps.polls.api import VoteViewSet
 from apps.polls.routers import QuestionDefaultRouter
 from apps.projects.api import ModerationProjectsViewSet
 from apps.reports.api import ReportViewSet
+from apps.userdashboard.routers import ModerationDetailDefaultRouter
 from apps.users.decorators import user_is_project_admin
 
 router = routers.DefaultRouter()
@@ -51,6 +54,12 @@ module_router.register(r'interactiveevents/livequestions', LiveQuestionViewSet,
 
 likes_router = LikesDefaultRouter()
 likes_router.register(r'likes', LikesViewSet, basename='likes')
+
+moderation_router = ModerationDetailDefaultRouter()
+moderation_router.register(r'userclassifications', UserClassificationViewSet,
+                           basename='userclassifications')
+moderation_router.register(r'aiclassifications', AIClassificationViewSet,
+                           basename='aiclassifications')
 
 orga_router = a4routers.OrganisationDefaultRouter()
 
@@ -84,6 +93,7 @@ urlpatterns = [
     re_path(r'^api/', include(orga_router.urls)),
     re_path(r'^api/', include(question_router.urls)),
     re_path(r'^api/', include(likes_router.urls)),
+    re_path(r'^api/', include(moderation_router.urls)),
     re_path(r'^api/', include(router.urls)),
 
     re_path(r'^upload/', user_is_project_admin(ck_views.upload),
