@@ -34,8 +34,10 @@
             {% if request.user.is_superuser %}
                 <a class="dropdown-item" href="{% url 'admin:index' %}">{% trans "Admin" %}</a>
             {% endif %}
+            {# Translators: kosmo #}
             <a class="dropdown-item" href="{% url 'userdashboard-overview' %}">{% trans 'My Overview' %}</a>
 
+            {# Translators: kosmo #}
             <a class="dropdown-item" href="{% url 'account' %}">{% trans "My Settings" %}</a>
 
             {% for organisation in request.user.organisations %}

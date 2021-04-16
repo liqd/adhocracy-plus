@@ -4,7 +4,7 @@ import django from 'django'
 import ModerationComment from './ModerationComment'
 
 export default function (props) {
-  const byText = django.gettext('By ')
+  const byText = django.pgettext('kosmo', 'By ')
 
   return (
     <div className="row mb-2">

@@ -5,7 +5,9 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.models import base
 
 CLASSIFICATION_CHOICES = (
+    # Translators: kosmo
     ('OFFENSIVE', _('Offensive')),
+    # Translators: kosmo
     ('OTHER', _('Other')),
 )
 

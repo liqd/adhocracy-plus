@@ -8,12 +8,14 @@
             <nav class="d-none d-sm-inline-block" aria-label="{% trans 'Dashboard' %}">
                 <a href="{% url 'userdashboard-overview' %}"
                    class="tab {% ifequal view.menu_item 'overview' %}active{% endifequal %}">
+                    {# Translators: kosmo #}
                     {% trans 'Overview' %}
                 </a>
                 {% has_perm 'a4_candy_userdashboard.view_moderation_dashboard' user as user_is_moderator %}
                 {% if user_is_moderator %}
                 <a href="{% url 'userdashboard-moderation' %}"
                    class="tab {% if view.menu_item == 'moderation' or  '/detail' in request.get_full_path %}active{% endif %}">
+                    {# Translators: kosmo #}
                     {% trans 'Moderation' %}
                 </a>
                 {% endif %}
@@ -49,6 +51,7 @@
                                 <i class="fa fa-ellipsis-v" aria-label="{% trans 'Settings' %}"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="account-settings">
+                                {# Translators: kosmo #}
                                 <a class="dropdown-item" href="{% url 'account' %}">{% trans 'Account Settings' %}</a>
                             </div>
                         </div>
@@ -64,6 +67,7 @@
                             </h4>
                         </a>
                         <div>
+                            {# Translators: kosmo #}
                             {% trans 'Since' %} {{ request.user.date_joined|date:"d M Y" }}
                         </div>
                     </div>
@@ -71,6 +75,7 @@
                     <!-- desktop -->
                     {% if request.user.organisations %}
                     <div class="d-none d-sm-block mb-5">
+                      {# Translators: kosmo #}
                       <h4>{% trans 'Initiator Organisations' %}</h4>
                       {% for organisation in request.user.organisations %}
                       <div>
@@ -94,6 +99,7 @@
                         aria-expanded="true"
                         aria-controls="#userDashboardCollapseOrgInt"
                         data-target="#userDashboardCollapseOrgInt">
+                          {# Translators: kosmo #}
                           <h4>{% trans 'Initiator Organisations' %}</h4>
                             <i class="fa fa-chevron-up" aria-hidden="true"></i>
                         </div>
@@ -117,6 +123,7 @@
 
                     <!-- desktop -->
                     <div class="d-none d-sm-block mb-5">
+                        {# Translators: kosmo #}
                         <h4>{% trans 'Organisations' %}</h4>
                         {% if view.organisations %}
                         {% for organisation in view.organisations %}
@@ -131,6 +138,7 @@
                         {% endfor %}
                         {% else %}
                         <div class="mb-3">
+                            {# Translators: kosmo #}
                             {% trans 'You are not yet following any projects.' %}
                         </div>
                         {% endif %}
@@ -144,6 +152,7 @@
                               aria-expanded="true"
                               aria-controls="#userDashboardCollapseOrg"
                               data-target="#userDashboardCollapseOrg">
+                            {# Translators: kosmo #}
                             <h4>{% trans 'Organisations' %}</h4>
                             <i class="fa fa-chevron-up" aria-hidden="true"></i>
                         </div>
@@ -163,8 +172,10 @@
                             {% endfor %}
                         </ul>
                         {% else %}
+                        {# Translators: kosmo #}
                         <h3>{% trans 'Organisations' %}</h3>
                         <div class="mb-3">
+                            {# Translators: kosmo #}
                             {% trans 'You are not yet following any projects.' %}
                         </div>
                         {% endif %}

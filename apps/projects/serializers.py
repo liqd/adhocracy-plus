@@ -40,18 +40,22 @@ class ProjectSerializer(serializers.ModelSerializer):
         project_phases = instance.phases
 
         if project_phases.active_phases():
+            # Translators: kosmo
             return _('running'), True
 
         if project_phases.future_phases():
             try:
+                # Translators: kosmo
                 return (_('starts on {}').format
                         (project_phases.future_phases().first().
                          start_date.strftime('%d.%m.%y')),
                         True)
             except AttributeError:
+                # Translators: kosmo
                 return (_('starts in the future'),
                         True)
         else:
+            # Translators: kosmo
             return _('completed'), False
 
     def get_type(self, instance):

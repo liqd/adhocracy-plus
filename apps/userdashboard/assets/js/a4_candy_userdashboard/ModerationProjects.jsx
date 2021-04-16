@@ -40,11 +40,11 @@ export default class ModerationProjects extends Component {
     const daysRemaining = parseInt(timeRemaining[0])
     if (daysRemaining > 365) {
       return (
-        <span>{django.gettext('Over 1 year left')}</span>
+        <span>{django.pgettext('kosmo', 'Over 1 year left')}</span>
       )
     } else {
       return (
-        <span>{django.gettext('left')} {item.active_phase[1]}</span>
+        <span>{django.pgettext('kosmo', 'left')} {item.active_phase[1]}</span>
       )
     }
   }
@@ -54,7 +54,7 @@ export default class ModerationProjects extends Component {
     const daysRemaining = parseInt(timeRemaining[0])
     if (daysRemaining > 365) {
       return (
-        <span>{django.gettext('1 year')}</span>
+        <span>{django.pgettext('kosmo', '1 year')}</span>
       )
     } else {
       return (
@@ -65,14 +65,14 @@ export default class ModerationProjects extends Component {
 
   render () {
     const { isLoaded, items } = this.state
-    const loadingText = django.gettext('Loading...')
-    const byText = django.gettext('By ')
-    const commentCountText = django.gettext(' comments')
-    const reportCountText = django.gettext(' reports')
-    const srLinkText = django.gettext('Link to ')
-    const publicText = django.gettext('public')
-    const privateText = django.gettext('private')
-    const semiPrivateText = django.gettext('semiprivate')
+    const loadingText = django.pgettext('kosmo', 'Loading...')
+    const byText = django.pgettext('kosmo', 'By ')
+    const commentCountText = django.pgettext('kosmo', ' comments')
+    const reportCountText = django.pgettext('kosmo', ' reports')
+    const srLinkText = django.pgettext('kosmo', 'Link to ')
+    const publicText = django.pgettext('kosmo', 'public')
+    const privateText = django.pgettext('kosmo', 'private')
+    const semiPrivateText = django.pgettext('kosmo', 'semiprivate')
 
     if (!isLoaded) {
       return <div>{loadingText}</div>

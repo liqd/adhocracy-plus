@@ -11,12 +11,12 @@ export default class ModerationComment extends Component {
   }
 
   render () {
-    const postedText = django.gettext(' posted a ')
-    const offensiveText = django.gettext(' for being offensive')
-    const categoryText = django.gettext('Categories: ')
-    const blockText = django.gettext(' Block')
-    const dismissText = django.gettext(' Dismiss')
-    const replyText = django.gettext(' Reply')
+    const postedText = django.pgettext('kosmo', ' posted a ')
+    const offensiveText = django.pgettext('kosmo', ' for being offensive')
+    const categoryText = django.pgettext('kosmo', 'Categories: ')
+    const blockText = django.pgettext('kosmo', ' Block')
+    const dismissText = django.pgettext('kosmo', ' Dismiss')
+    const replyText = django.pgettext('kosmo', ' Reply')
 
     return (
       <div className="mt-5">

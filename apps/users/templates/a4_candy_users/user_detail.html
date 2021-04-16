@@ -30,6 +30,7 @@
                                 <i class="fa fa-ellipsis-v" aria-label="{% trans 'Settings' %}"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="account-settings">
+                                {# Translators: kosmo #}
                                 <a class="dropdown-item" href="{% url 'account' %}">{% trans 'Account Settings' %}</a>
                             </div>
                         </div>
@@ -48,6 +49,7 @@
                             </h4>
                         </a>
                         <div>
+                            {# Translators: kosmo #}
                             {% trans 'Since' %} {{ user.date_joined|date:"d M Y" }}
                         </div>
                     </div>
@@ -58,6 +60,7 @@
                     <ul class="u-list-reset">
                         {% if user.homepage %}
                             <li>
+                                {# Translators: kosmo #}
                                 <i class="fas fa-link" aria-label="{% trans 'Homepage' %}" title="{% trans 'Homepage' %}"></i>
                                 <a href="{{ user.homepage }}">{{ user.homepage }}</a>
                             </li>
@@ -100,6 +103,7 @@
             </div>
 
             <div class="col-md-9">
+                {# Translators: kosmo #}
                 <h3 class="mt-0">{% trans 'Following' %}</h3>
                 {% if view.projects_carousel %}
                 <div class="project-tile-carousel">
