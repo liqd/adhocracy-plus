@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-17 17:57+0100\n"
+"POT-Creation-Date: 2021-04-16 10:47+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Katharina Schmid, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/liqd/teams/109316/nl/)\n"
@@ -1342,7 +1342,7 @@ msgstr "Iets aan het antwoord op de captcha was onjuist."
 msgid "Your answer to the captcha was wrong."
 msgstr "Je antwoord op de captcha was verkeerd."
 
-#: apps/cms/contacts/models.py:38 apps/users/forms.py:42
+#: apps/cms/contacts/models.py:38 apps/users/forms.py:44
 msgid "I am not a robot"
 msgstr "Ik ben geen robot"
 
@@ -1507,12 +1507,11 @@ msgid "Try it out!"
 msgstr "Probeer het maar eens!"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:111
+#, python-format
 msgid ""
-"Instead of just reading about it, you can test all the features of adhocracy"
-"+ yourself on our demo platform. "
+"Instead of just reading about it, you can test all the features of "
+"%(platformname)s yourself on our demo platform."
 msgstr ""
-"In plaats van er alleen maar over te lezen, kunt u alle functies van "
-"adhocracy+ zelf testen op ons demoplatform. "
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:112
 msgid "Visit the demo platform"
@@ -2983,7 +2982,7 @@ msgstr ""
 #: apps/organisations/models.py:122
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:34 apps/users/forms.py:171
+#: apps/users/forms.py:36 apps/users/forms.py:173
 #: adhocracy-plus/templates/email_base.html:81
 #: adhocracy-plus/templates/email_base.html:111
 #: adhocracy-plus/templates/footer.html:43
@@ -3482,7 +3481,7 @@ msgid "It ended on %(date)s."
 msgstr "Het eindigde op %(date)s."
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:225
-#: apps/users/models.py:47
+#: apps/users/models.py:49
 #: adhocracy-plus/templates/a4modules/module_detail.html:141
 msgid "active"
 msgstr "actief"
@@ -3626,11 +3625,11 @@ msgstr ""
 "spaties en @/./+/-/_ tekens bevatten. Het moet beginnen met een cijfer of "
 "een letter."
 
-#: apps/users/admin.py:11
+#: apps/users/admin.py:14
 msgid "Permissions"
 msgstr "Permissies"
 
-#: apps/users/admin.py:12
+#: apps/users/admin.py:15
 msgid "Important dates"
 msgstr "Belangrijke datums"
 
@@ -3654,28 +3653,28 @@ msgstr ""
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Voer correcte e-mailadressen in, gescheiden door komma’s."
 
-#: apps/users/forms.py:24
+#: apps/users/forms.py:26
 msgid "Username/e-mail"
 msgstr "Gebruikersnaam/e-mail"
 
-#: apps/users/forms.py:37 apps/users/forms.py:174 apps/users/models.py:68
+#: apps/users/forms.py:39 apps/users/forms.py:176 apps/users/models.py:70
 msgid "I would like to receive further information"
 msgstr "Ik wil graag meer informatie ontvangen"
 
-#: apps/users/forms.py:38 apps/users/forms.py:175 apps/users/models.py:71
+#: apps/users/forms.py:40 apps/users/forms.py:177 apps/users/models.py:73
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr "Projecten die u volgt kunnen u via e-mail extra informatie toesturen."
 
-#: apps/users/forms.py:47 apps/users/forms.py:186
+#: apps/users/forms.py:49 apps/users/forms.py:188
 msgid "Your username will appear publicly next to your posts."
 msgstr "Uw gebruikersnaam wordt in het openbaar naast uw berichten getoond."
 
-#: apps/users/forms.py:67
+#: apps/users/forms.py:69
 msgid "Membership number of IG BCE"
 msgstr "Lidmaatschapsnummer van IG BCE"
 
-#: apps/users/forms.py:68
+#: apps/users/forms.py:70
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
@@ -3683,11 +3682,11 @@ msgstr ""
 "Het lidmaatschapsnummer bestaat uit een zevencijferig nummer en is te vinden "
 "op de lidmaatschapskaart."
 
-#: apps/users/forms.py:74
+#: apps/users/forms.py:76
 msgid "Date of birth"
 msgstr "Geboortedatum"
 
-#: apps/users/forms.py:75
+#: apps/users/forms.py:77
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
@@ -3695,7 +3694,7 @@ msgstr ""
 "Voer ook uw geboortedatum in het formaat MM/DD/JJJ ter verificatie in. "
 "Alleen leden van de IG BCE kunnen deelnemen."
 
-#: apps/users/forms.py:80
+#: apps/users/forms.py:82
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
@@ -3703,11 +3702,11 @@ msgstr ""
 "Ik bevestig dat ik het <a href=\"/info/ig-bce-datenschutz/\" target=\"_blank"
 "\">databeschermingsbeleid</a> van IG BCE heb gelezen en geaccepteerd."
 
-#: apps/users/forms.py:91 apps/users/forms.py:127
+#: apps/users/forms.py:93 apps/users/forms.py:129
 msgid "Something is wrong with the setup - please try again later"
 msgstr "Er is iets mis met de setup - probeer het later nog eens"
 
-#: apps/users/forms.py:96
+#: apps/users/forms.py:98
 msgid ""
 "There is already a participant with this membership number. Please check "
 "your entry. If this is your membership number, please send an email to "
@@ -3717,7 +3716,7 @@ msgstr ""
 "inschrijving. Als dit uw lidmaatschapsnummer is, stuur dan een e-mail naar "
 "\"zukunftsgewerkschaft@igbce.de\"."
 
-#: apps/users/forms.py:132
+#: apps/users/forms.py:134
 msgid ""
 "Unfortunately, the member number and / or date of birth could not be linked "
 "to an active member account. Please check your input and try again. If you "
@@ -3743,23 +3742,27 @@ msgstr ""
 msgid "A user with that username already exists."
 msgstr "Een gebruiker met die gebruikersnaam bestaat al."
 
-#: apps/users/models.py:33
+#: apps/users/models.py:30
+msgid "This username is already used as an e-mail address."
+msgstr ""
+
+#: apps/users/models.py:35
 msgid "Email address"
 msgstr "E-mailadres"
 
-#: apps/users/models.py:36
+#: apps/users/models.py:38
 msgid "A user with that email address already exists."
 msgstr "Er bestaat al een gebruiker met dat e-mailadres."
 
-#: apps/users/models.py:40
+#: apps/users/models.py:42
 msgid "staff status"
 msgstr "staf status"
 
-#: apps/users/models.py:43
+#: apps/users/models.py:45
 msgid "Designates whether the user can log into this admin site."
 msgstr "Geeft aan of de gebruiker kan inloggen op deze admin site."
 
-#: apps/users/models.py:50
+#: apps/users/models.py:52
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -3767,11 +3770,11 @@ msgstr ""
 "Geeft aan of deze gebruiker als actief moet worden behandeld. Deactiveer dit "
 "in plaats van het verwijderen van accounts."
 
-#: apps/users/models.py:60
+#: apps/users/models.py:62
 msgid "Send me email notifications"
 msgstr "Stuur me e-mailberichten"
 
-#: apps/users/models.py:63
+#: apps/users/models.py:65
 msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
@@ -3779,42 +3782,42 @@ msgstr ""
 "Geeft aan of u meldingen wilt ontvangen. De-selecteer als u geen meldingen "
 "wilt ontvangen."
 
-#: apps/users/models.py:78
+#: apps/users/models.py:80
 msgid "Biography"
 msgstr "Biografie"
 
-#: apps/users/models.py:80
+#: apps/users/models.py:82
 msgid "Tell us about yourself in 255 characters!"
 msgstr "Vertel ons over jezelf in 255 karakters!"
 
-#: apps/users/models.py:86
+#: apps/users/models.py:88
 msgid "Twitter handle"
 msgstr "Twitter handle"
 
-#: apps/users/models.py:92
+#: apps/users/models.py:94
 msgid "Facebook name"
 msgstr "Facebook naam"
 
-#: apps/users/models.py:94
+#: apps/users/models.py:96
 msgid ""
 "Your facebook name is the last part of the URL, when you access your profile."
 msgstr ""
 "Uw facebooknaam is het laatste deel van de URL, wanneer u uw profiel opent."
 
-#: apps/users/models.py:101
+#: apps/users/models.py:103
 #: apps/users/templates/a4_candy_users/user_detail.html:64
 msgid "Homepage"
 msgstr "Website"
 
-#: apps/users/models.py:108
+#: apps/users/models.py:110
 msgid "Avatar picture"
 msgstr "Avatar plaatje"
 
-#: apps/users/models.py:112
+#: apps/users/models.py:114
 msgid "Your preferred language"
 msgstr "Uw voorkeurstaal"
 
-#: apps/users/models.py:117
+#: apps/users/models.py:119
 msgid ""
 "Specify your preferred language for the user interface and the notifications "
 "of the platform."
@@ -4040,19 +4043,6 @@ msgstr "U heeft geen toegang tot deze pagina."
 #: adhocracy-plus/templates/404.html:7
 msgid "This page could not be found."
 msgstr "Deze pagina kon niet worden gevonden."
-
-#: adhocracy-plus/templates/500.html:4
-msgid "adhocracy+"
-msgstr "adhocracy+"
-
-#: adhocracy-plus/templates/500.html:24
-msgid "Internal server error."
-msgstr "Interne serverfout."
-
-#: adhocracy-plus/templates/500.html:25
-#: adhocracy-plus/templates/base_errors.html:12
-msgid "Back to adhocracy+"
-msgstr "Terug naar adhocratie+"
 
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:17
 msgid "Home"
@@ -4527,58 +4517,57 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"            With your account on adhocracy+, you can take part in every "
-"public participation project on this platform. This platform allows "
+"            With your account on %(platformname)s, you can take part in "
+"every public participation project on this platform. This platform allows "
 "organisations initiatives to conduct digital participation projects.\n"
 "            If you have any questions regarding the data protection on this "
 "platform you can find <a href=\"%(data_protection_url)s\" target=\"_blank"
 "\">further information here</a>.\n"
 "        "
 msgstr ""
-"\n"
-"            Met uw account op adhocracy+ kunt u deelnemen aan elk "
-"publieksparticipatieproject op dit platform. Dit platform stelt organisaties "
-"in staat om digitale participatieprojecten uit te voeren.\n"
-"            Als u vragen heeft over de gegevensbescherming op dit platform, "
-"kunt u <a href=\"%(data_protection_url)s\" target=\"_blank\">meer informatie "
-"vinden</a>.\n"
-"        "
 
 #: adhocracy-plus/templates/base.html:57
 msgid "Skip to content "
 msgstr "Ga naar de inhoud "
 
 #: adhocracy-plus/templates/base.html:96
-msgid "adhocracy+ is funded by donations."
-msgstr "adhocratie+ wordt gefinancierd door middel van donaties."
+#, python-format
+msgid "%(platformname)s is funded by donations."
+msgstr ""
 
 #: adhocracy-plus/templates/base.html:98
 msgid "Donate now"
 msgstr "Doneer nu"
 
 #: adhocracy-plus/templates/base.html:101
-msgid "Donate now to adhocracy+"
-msgstr "Doneer nu aan adhocracy+"
+#, python-format
+msgid "Donate now to %(platformname)s"
+msgstr ""
 
 #: adhocracy-plus/templates/base_errors.html:4
 msgid "Error"
 msgstr "Fout"
+
+#: adhocracy-plus/templates/base_errors.html:12
+#, python-format
+msgid "Back to %(platformname)s"
+msgstr ""
 
 #: adhocracy-plus/templates/email_base.html:66
 msgid "Responsible for the participation project:"
 msgstr "Verantwoordelijk voor het participatieproject:"
 
 #: adhocracy-plus/templates/email_base.html:95
-msgid "adhocracy+ is a participation platform operated by"
-msgstr "adhocracy+ is een participatieplatform dat wordt beheerd door"
+#, python-format
+msgid "%(platformname)s is a participation platform operated by"
+msgstr ""
 
 #: adhocracy-plus/templates/footer.html:10
+#, python-format
 msgid ""
-"<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
-"liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
+"<a href=\"/\">%(platformname)s</a> is a platform provided by <a href="
+"\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
 msgstr ""
-"<a href=\"/\">adhocracy+</a> is een platform dat wordt aangeboden door <a "
-"href=\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlijn."
 
 #: adhocracy-plus/templates/footer.html:10
 msgid ""
@@ -4668,3 +4657,54 @@ msgstr "Inloggen met social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Inloggen met "
+
+#~ msgid ""
+#~ "Instead of just reading about it, you can test all the features of "
+#~ "adhocracy+ yourself on our demo platform. "
+#~ msgstr ""
+#~ "In plaats van er alleen maar over te lezen, kunt u alle functies van "
+#~ "adhocracy+ zelf testen op ons demoplatform. "
+
+#~ msgid "adhocracy+"
+#~ msgstr "adhocracy+"
+
+#~ msgid "Internal server error."
+#~ msgstr "Interne serverfout."
+
+#~ msgid "Back to adhocracy+"
+#~ msgstr "Terug naar adhocratie+"
+
+#~ msgid ""
+#~ "\n"
+#~ "            With your account on adhocracy+, you can take part in every "
+#~ "public participation project on this platform. This platform allows "
+#~ "organisations initiatives to conduct digital participation projects.\n"
+#~ "            If you have any questions regarding the data protection on "
+#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
+#~ "\"_blank\">further information here</a>.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "            Met uw account op adhocracy+ kunt u deelnemen aan elk "
+#~ "publieksparticipatieproject op dit platform. Dit platform stelt "
+#~ "organisaties in staat om digitale participatieprojecten uit te voeren.\n"
+#~ "            Als u vragen heeft over de gegevensbescherming op dit "
+#~ "platform, kunt u <a href=\"%(data_protection_url)s\" target=\"_blank"
+#~ "\">meer informatie vinden</a>.\n"
+#~ "        "
+
+#~ msgid "adhocracy+ is funded by donations."
+#~ msgstr "adhocratie+ wordt gefinancierd door middel van donaties."
+
+#~ msgid "Donate now to adhocracy+"
+#~ msgstr "Doneer nu aan adhocracy+"
+
+#~ msgid "adhocracy+ is a participation platform operated by"
+#~ msgstr "adhocracy+ is een participatieplatform dat wordt beheerd door"
+
+#~ msgid ""
+#~ "<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
+#~ "liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
+#~ msgstr ""
+#~ "<a href=\"/\">adhocracy+</a> is een platform dat wordt aangeboden door <a "
+#~ "href=\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlijn."
