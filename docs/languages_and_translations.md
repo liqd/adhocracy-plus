@@ -17,6 +17,8 @@ Test that new messages compile without any errors
 
 Push updated source file with new strings to transifex to be be translated (Note: commented out strings will not be ignored by transifex, but handled as normal source strings, so remove them before from source files)
 
+(If you do this the first time, you might need to [generate an API token](https://docs.transifex.com/account/authentication) and add it in the terminal. It will be automatically stored in your `~/.transifexrc`)
+
 `tx push -s`
 
 Commit and push message files to github
@@ -69,6 +71,7 @@ the translations from the main branch separated to be able to overwrite or
 add new translations to the fork, but also keep up with new strings and
 translations from the main branch.
 
+### Enable fork-specific translations
 The message files for the main branch are created by
 `make po`
 When the settings in base.py are untouched, this will create new message
@@ -91,6 +94,18 @@ uses the translations from this folder first, whenever the messages are
 compiled.
 Here, the English translations are kept untranslated, so that they could
 be used to overwrite strings.
+
+### Mark fork-specific translations for translators
+There are two options to mark the strings for translators:
+1. By comments, that are displayed to translators. Django docs on comments for translaters
+    - [in python code](https://docs.djangoproject.com/en/3.2/topics/i18n/translation/#comments-for-translators)
+    - and [in templates](https://docs.djangoproject.com/en/3.2/topics/i18n/translation/#translator-comments-in-templates)
+2. By using the context of the translations. Django docs on contextualizing translations
+    - [in python code]](https://docs.djangoproject.com/en/3.2/topics/i18n/translation/#contextual-markers)
+    - [in templates](https://docs.djangoproject.com/en/3.2/topics/i18n/translation/#std:templatetag-translate)
+    - and [in js](https://docs.djangoproject.com/en/3.2/topics/i18n/translation/#pgettext)
+
+We recommend option 1 because that is more easily changed back if the strings to translate happen to end up in the upstream repo. As of now, there is no option to add these translator comments in JavaScript code, so these have to be marked with the context option if needed.
 
 ## Adding additional languages ##
 ### To Wagtail CMS pages ###
