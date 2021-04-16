@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views import generic
 
@@ -97,4 +98,32 @@ class UserDashboardModerationDetailView(UserDashboardBaseMixin,
     template_name = (
         'a4_candy_userdashboard/userdashboard_moderation_detail.html'
     )
-    permission_required = 'a4_candy_userdashboard.view_moderation_dashboard'
+    permission_required = 'a4_candy_classifications.view_userclassification'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['aiclassification_api_url'] = \
+            reverse('aiclassifications-list',
+                    kwargs={'project_pk': self.project.pk})
+        context['userclassification_api_url'] = \
+            reverse('userclassifications-list',
+                    kwargs={'project_pk': self.project.pk})
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        self.slug = kwargs.pop('slug')
+        return super().dispatch(request, *args, **kwargs)
+
+    @property
+    def project(self):
+        return get_object_or_404(
+            Project,
+            slug=self.slug
+        )
+
+    @property
+    def project_url(self):
+        return self.project.get_absolute_url()
+
+    def get_permission_object(self):
+        return self.project

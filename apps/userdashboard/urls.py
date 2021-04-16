@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^overview/following/$',
         views.UserDashboardFollowingView.as_view(),
         name='userdashboard-following'),
-    url(r'^moderation/detail/$',
+    url(r'^moderation/detail/(?P<slug>[-\w_]+)/$',
         views.UserDashboardModerationDetailView.as_view(),
         name='userdashboard-moderation-detail'),
 ]
