@@ -34,8 +34,6 @@ help:
 	@echo "  make lint-quick      -- lint all files staged in git"
 	@echo "  make lint-fix      	-- fix linting for all js files staged in git"
 	@echo "  make po              -- create new po files from the source"
-
-	@echo "  make po-fork         -- create new po files from the source in a branch or fork to keep original translations"
 	@echo "  make mo              -- create new mo files from the translated po files"
 	@echo "  make release         -- build everything required for a release"
 	@echo
