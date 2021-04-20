@@ -92,7 +92,7 @@ export default class ModerationProjects extends Component {
                 </div>
                 <div className="tile__body">
                   <span className="text-muted">{byText}{item.organisation}</span>
-                  <h3 className="tile__title mb-4">{item.offensive > 0 && <span className="text-info">• </span>}<a href={item.detail}>{item.title}</a></h3>
+                  <h3 className="tile__title mb-4">{item.offensive > 0 && <span className="text-info">• </span>}{item.title}</h3>
                   <div>
                     {item.access === 1 && <span className="label label--dark">{publicText}</span>}
                     {item.access === 2 && <span className="label label--dark">{semiPrivateText}</span>}
@@ -105,7 +105,7 @@ export default class ModerationProjects extends Component {
                     {item.active_phase && <div className="col-4"><i className="far fa-clock" aria-hidden="true" /> <span className="d-inline-block d-lg-none">{this.getMobileTimespan(item)}</span> <span className="d-none d-lg-inline-block">{this.getTimespan(item)}</span></div>}
                     {item.past_phase && !item.active_phase && !item.future_phase && <div className="col-4"> {item.participation_string}</div>}
                   </div>
-                  <a href={item.url} className="tile__link"><span className="sr-only">{srLinkText}{item.title}</span></a>
+                  <a href={item.moderation_detail_url} className="tile__link"><span className="sr-only">{srLinkText}{item.title}</span></a>
                 </div>
               </li>
             ))}
