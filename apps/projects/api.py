@@ -1,3 +1,4 @@
+from rest_framework import permissions
 from rest_framework import viewsets
 
 from apps.projects.serializers import ProjectSerializer
@@ -7,6 +8,7 @@ from . import helpers
 
 class ModerationProjectsViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProjectSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
         project_offensive_count = \
