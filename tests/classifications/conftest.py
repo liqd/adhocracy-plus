@@ -6,3 +6,4 @@ from . import factories
 
 register(idea_factories.IdeaFactory)
 register(factories.UserClassificationFactory)
+register(factories.AIClassificationFactory)
