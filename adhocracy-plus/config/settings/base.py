@@ -544,3 +544,4 @@ SITE_ID = 1 # overwrite this in local.py if needed
 
 AI_API_AUTH_TOKEN = ''
 AI_API_URL = 'https://kosmo-api-dev.liqd.net/api/classify/'
+AI_USAGE = True
