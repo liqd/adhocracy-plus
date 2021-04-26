@@ -12,4 +12,4 @@ def test_ai_classification_receives_post_save_comment_signal(idea,
     assert(get_ai_classification in signals.post_save._live_receivers(Comment))
     comment_factory(content_object=idea,
                     comment='lala')
-    assert('Error connecting to %s' in str(caplog.records[-1]))
+    assert('No ai api auth token provided.' in str(caplog.records[-1]))
