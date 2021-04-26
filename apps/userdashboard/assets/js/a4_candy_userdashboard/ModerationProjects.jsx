@@ -72,7 +72,7 @@ export default class ModerationProjects extends Component {
     const srLinkText = django.pgettext('kosmo', 'Link to ')
     const publicText = django.pgettext('kosmo', 'public')
     const privateText = django.pgettext('kosmo', 'private')
-    const semiPrivateText = django.pgettext('kosmo', 'semiprivate')
+    const semiPrivateText = django.pgettext('kosmo', 'semi-public')
 
     if (!isLoaded) {
       return <div>{loadingText}</div>
