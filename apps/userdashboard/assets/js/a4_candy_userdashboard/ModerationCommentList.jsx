@@ -71,6 +71,7 @@ export default class ModerationCommentList extends Component {
                   created={item.created}
                   userImage={item.comment.user_image}
                   userName={item.comment.user_name}
+                  userProfileUrl={item.comment.user_profile_url}
                 />
               </li>
             ))}
@@ -83,6 +84,7 @@ export default class ModerationCommentList extends Component {
                   created={item.created}
                   userImage={item.comment.user_image}
                   userName={item.comment.user_name}
+                  userProfileUrl={item.comment.user_profile_url}
                   aiClassified
                 />
               </li>

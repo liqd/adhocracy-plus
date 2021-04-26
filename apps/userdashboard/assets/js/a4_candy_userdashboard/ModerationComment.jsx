@@ -3,7 +3,7 @@ import django from 'django'
 
 export default class ModerationComment extends Component {
   render () {
-    const { classification, commentText, commentUrl, created, userImage, userName, aiClassified } = this.props
+    const { classification, commentText, commentUrl, created, userImage, userName, userProfileUrl, aiClassified } = this.props
     const postedText = django.pgettext('kosmo', ' posted a ')
     const offensiveTextReport = django.pgettext('kosmo', ' that has been reported as ')
     const offensiveTextAI = django.pgettext('kosmo', ' that might be ')
@@ -12,6 +12,7 @@ export default class ModerationComment extends Component {
     const blockText = django.pgettext('kosmo', ' Block')
     const dismissText = django.pgettext('kosmo', ' Dismiss')
     const replyText = django.pgettext('kosmo', ' Reply')
+    const commentLinkText = django.pgettext('kosmo', 'comment')
 
     let userImageDiv
     if (userImage) {
@@ -29,8 +30,8 @@ export default class ModerationComment extends Component {
           </div>
           <div className="col-7 col-md-8">
             <div><span className="fa-stack fa-2x" aria-hidden="true"><i className="fas fa-exclamation fa-stack-1x" /><i className="far fa-circle fa-stack-2x" /></span>
-              <a href="/">{userName}</a>
-              <span className="text-lowercase">{postedText}<a href={commentUrl}>comment</a>{aiClassified ? offensiveTextAI : offensiveTextReport}{classification}</span>
+              {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName}
+              <span className="text-lowercase">{postedText}<a href={commentUrl}>{commentLinkText}</a>{aiClassified ? offensiveTextAI : offensiveTextReport}{classification}</span>
             </div>
             <div>{created}</div>
           </div>

@@ -12,10 +12,11 @@ class CommentSerializer(serializers.ModelSerializer):
     comment_url = serializers.SerializerMethodField()
     user_name = serializers.SerializerMethodField()
     user_image = serializers.SerializerMethodField()
+    user_profile_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
-        fields = ['comment_url', 'user_name', 'user_image']
+        fields = ['comment_url', 'user_name', 'user_image', 'user_profile_url']
 
     def get_comment_url(self, instance):
         return instance.get_absolute_url()
@@ -47,6 +48,14 @@ class CommentSerializer(serializers.ModelSerializer):
         except AttributeError:
             pass
         return self.get_user_image_fallback(obj)
+
+    def get_user_profile_url(self, obj):
+        if obj.is_censored or obj.is_removed:
+            return ''
+        try:
+            return obj.creator.get_absolute_url()
+        except AttributeError:
+            return ''
 
 
 class UserClassificationSerializer(serializers.ModelSerializer):
