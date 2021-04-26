@@ -16,17 +16,24 @@ logger = logging.getLogger(__name__)
 
 @receiver(signals.post_save, sender=Comment)
 def get_ai_classification(sender, instance, **kwargs):
-    try:
-        response = call_ai_api(comment=instance)
-        if response.status_code == 200 \
-                and response.json()['classification'] == 'OFFENSE':
+    if hasattr(settings, 'AI_USAGE') and settings.AI_USAGE:
+        if hasattr(settings, 'AI_API_AUTH_TOKEN') and \
+                settings.AI_API_AUTH_TOKEN:
+            try:
+                response = call_ai_api(comment=instance)
+                if response.status_code == 200 \
+                        and response.json()['classification'] == 'OFFENSE':
 
-            classification = AIClassification(
-                comment=instance,
-                classification='OFFENSIVE')
-            classification.save()
-    except httpx.HTTPError:
-        logger.error('Error connecting to %s', settings.AI_API_URL)
+                    classification = AIClassification(
+                        comment=instance,
+                        classification='OFFENSIVE')
+                    classification.save()
+            except httpx.HTTPError as e:
+                logger.error('Error connecting to %s: %s',
+                             settings.AI_API_URL, str(e))
+        else:
+            logger.error('No ai api auth token provided. '
+                         'Disable ai usage or provide token.')
 
 
 def skip_retry(e):
