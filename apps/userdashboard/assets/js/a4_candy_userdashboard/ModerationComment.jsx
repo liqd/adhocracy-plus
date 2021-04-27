@@ -2,17 +2,30 @@ import React, { Component } from 'react'
 import django from 'django'
 
 export default class ModerationComment extends Component {
+  getLink (string, url) {
+    const splitted = string.split('{}')
+    return (
+      <span>
+        {splitted[0]}
+        <a href={url}>{splitted[1]}</a>
+        {splitted[2]}
+      </span>
+    )
+  }
+
   render () {
     const { classification, commentText, commentUrl, created, userImage, userName, userProfileUrl, aiClassified } = this.props
-    const postedText = django.pgettext('kosmo', ' posted a ')
-    const offensiveTextReport = django.pgettext('kosmo', ' that has been reported as ')
-    const offensiveTextAI = django.pgettext('kosmo', ' that might be ')
+    const offensiveTextReport = django.pgettext('kosmo', ' posted a {}comment{} that has been reported as %(classification)s')
+    const offensiveTextAI = django.pgettext('kosmo', ' posted a {}comment{} that might be %(classification)s')
+    /* eslint-disable */
+    const offensiveTextReportInterpolated = django.interpolate(offensiveTextReport, { 'classification': classification }, true)
+    const offensiveTextAIInterpolated = django.interpolate(offensiveTextAI, { 'classification': classification }, true)
+    /* eslint-enable */
     const classificationText = django.pgettext('kosmo', 'Classification: ')
     const aiText = django.pgettext('kosmo', 'AI')
     const blockText = django.pgettext('kosmo', ' Block')
     const dismissText = django.pgettext('kosmo', ' Dismiss')
     const replyText = django.pgettext('kosmo', ' Reply')
-    const commentLinkText = django.pgettext('kosmo', 'comment')
 
     let userImageDiv
     if (userImage) {
@@ -31,7 +44,7 @@ export default class ModerationComment extends Component {
           <div className="col-7 col-md-8">
             <div><span className="fa-stack fa-2x" aria-hidden="true"><i className="fas fa-exclamation fa-stack-1x" /><i className="far fa-circle fa-stack-2x" /></span>
               {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName}
-              <span className="text-lowercase">{postedText}<a href={commentUrl}>{commentLinkText}</a>{aiClassified ? offensiveTextAI : offensiveTextReport}{classification}</span>
+              {aiClassified ? this.getLink(offensiveTextAIInterpolated, commentUrl) : this.getLink(offensiveTextReportInterpolated, commentUrl)}
             </div>
             <div>{created}</div>
           </div>
