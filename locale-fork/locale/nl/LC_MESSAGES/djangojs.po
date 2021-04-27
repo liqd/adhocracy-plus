@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 19:09+0200\n"
+"POT-Creation-Date: 2021-04-27 18:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -863,40 +863,51 @@ msgstr ""
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr ""
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationComment.jsx:14
-msgctxt "kosmo"
-msgid " posted a "
-msgstr ""
-
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationComment.jsx:15
-msgctxt "kosmo"
-msgid " for being offensive"
-msgstr ""
-
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationComment.jsx:16
-msgctxt "kosmo"
-msgid "Categories: "
-msgstr ""
-
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationComment.jsx:17
-msgctxt "kosmo"
-msgid " Block"
-msgstr ""
-
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationComment.jsx:18
 msgctxt "kosmo"
-msgid " Dismiss"
+msgid " posted a {}comment{} that has been reported as %(classification)s"
 msgstr ""
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationComment.jsx:19
 msgctxt "kosmo"
+msgid " posted a {}comment{} that might be %(classification)s"
+msgstr ""
+
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationComment.jsx:24
+msgctxt "kosmo"
+msgid "Classification: "
+msgstr ""
+
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationComment.jsx:25
+msgctxt "kosmo"
+msgid "AI"
+msgstr ""
+
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationComment.jsx:26
+msgctxt "kosmo"
+msgid " Block"
+msgstr ""
+
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationComment.jsx:27
+msgctxt "kosmo"
+msgid " Dismiss"
+msgstr ""
+
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationComment.jsx:28
+msgctxt "kosmo"
 msgid " Reply"
 msgstr ""
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationCommentList.jsx:7
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationCommentList.jsx:52
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:69
 msgctxt "kosmo"
 msgid "By "
+msgstr ""
+
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationCommentList.jsx:53
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:68
+msgctxt "kosmo"
+msgid "Loading..."
 msgstr ""
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:43
@@ -912,11 +923,6 @@ msgstr ""
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:57
 msgctxt "kosmo"
 msgid "1 year"
-msgstr ""
-
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:68
-msgctxt "kosmo"
-msgid "Loading..."
 msgstr ""
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:70
@@ -946,7 +952,7 @@ msgstr ""
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:75
 msgctxt "kosmo"
-msgid "semiprivate"
+msgid "semi-public"
 msgstr ""
 
 #: adhocracy-plus/assets/js/unload_warning.js:15
