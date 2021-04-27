@@ -6,9 +6,9 @@ from adhocracy4.models import base
 
 CLASSIFICATION_CHOICES = (
     # Translators: kosmo
-    ('OFFENSIVE', _('Offensive')),
+    ('OFFENSIVE', _('offensive')),
     # Translators: kosmo
-    ('OTHER', _('Other')),
+    ('OTHER', _('other')),
 )
 
 
