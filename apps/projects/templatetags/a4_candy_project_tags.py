@@ -4,8 +4,8 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.polls.models import Vote
 from apps.budgeting.models import Proposal as budget_proposal
 from apps.ideas.models import Idea
+from apps.interactiveevents.models import Like
 from apps.interactiveevents.models import LiveQuestion
-from apps.likes.models import Like
 from apps.mapideas.models import MapIdea
 
 register = template.Library()
@@ -38,6 +38,6 @@ def get_num_entries(module):
         + Comment.objects.filter(subject__module=module).count() \
         + Vote.objects.filter(choice__question__poll__module=module).count() \
         + LiveQuestion.objects.filter(module=module).count() \
-        + Like.objects.filter(question__module=module).count()
+        + Like.objects.filter(livequestion__module=module).count()
 
     return item_count
