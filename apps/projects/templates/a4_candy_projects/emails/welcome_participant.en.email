@@ -1,0 +1,13 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n %}
+
+{% block subject %}{% if project.is_semipublic %}{% blocktrans with project_name=project.name %}Welcome to the semi-public project: "{{ project_name }}"{% endblocktrans %}{% else %}{% blocktrans with project_name=project.name %}Welcome to the private project: "{{ project_name }}"{% endblocktrans %}{% endif %}{% endblock %}
+
+{% block headline %}{% if project.is_semipublic %}{% blocktrans with project_name=project.name %}Link to semi-public project: "{{ project_name }}"{% endblocktrans %}{% else %}{% blocktrans with project_name=project.name %}Link to private project: "{{ project_name }}"{% endblocktrans %}{% endif %}{% endblock  %}
+
+{% block content %}{% if project.is_semipublic %}{% blocktrans with project_name=project.name %}you have accepted the invitation to the semi-public project "{{ project_name }}". To participate click on "Go to Project".{% endblocktrans %}{% else %}{% blocktrans with project_name=project.name %}you have accepted the invitation to the private project "{{ project_name }}". To participate click on "Go to Project".{% endblocktrans %}{% endif %}{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
+{% block cta_label %}{% blocktrans %}Go to project{% endblocktrans %}{% endblock %}
+
+{% block reason %}{% blocktrans with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. This email was sent to you because you accepted the invitation to participate in a private project.{% endblocktrans %}{% endblock %}
