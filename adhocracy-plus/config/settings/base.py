@@ -94,14 +94,12 @@ INSTALLED_APPS = (
     'apps.captcha',
     'apps.contrib',
     'apps.interactiveevents',
-    'apps.likes',
     'apps.maps',
     'apps.moderatorfeedback',
     'apps.moderatorremark',
     'apps.newsletters',
     'apps.notifications',
     'apps.organisations',
-    'apps.questions',
     'apps.users',
 
     # General apps containing views
