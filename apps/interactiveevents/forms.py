@@ -9,10 +9,10 @@ from adhocracy4.modules import models as module_models
 from . import models
 
 
-class LiveStreamForm(forms.ModelForm):
+class ExtraFieldsForm(forms.ModelForm):
     class Meta:
-        model = models.LiveStream2
-        fields = ['live_stream']
+        model = models.ExtraFieldsInteractiveEvent
+        fields = ['live_stream', 'event_image']
 
 
 class AffiliationForm(category_forms.CategoryForm):

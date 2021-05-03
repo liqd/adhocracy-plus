@@ -16,6 +16,13 @@ class InteractiveEventModuleDetail(ProjectMixin,
     template_name = \
         'a4_candy_interactive_events/module_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['extra_fields'] = \
+            models.ExtraFieldsInteractiveEvent.objects.filter(
+                module=self.module).first()
+        return context
+
 
 class LiveQuestionModuleDetail(ProjectMixin,
                                generic.TemplateView,
@@ -25,8 +32,9 @@ class LiveQuestionModuleDetail(ProjectMixin,
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['live_stream'] = \
-            models.LiveStream2.objects.filter(module=self.module).first()
+        context['extra_fields'] = \
+            models.ExtraFieldsInteractiveEvent.objects.filter(
+                module=self.module).first()
         return context
 
 
@@ -53,15 +61,15 @@ class LiveQuestionPresentationListView(ProjectMixin,
         return full_url
 
 
-class LiveStreamDashboardView(ProjectMixin,
-                              DashboardBaseMixin,
-                              DashboardComponentMixin,
-                              generic.UpdateView):
-    model = models.LiveStream2
+class ExtraFieldsDashboardView(ProjectMixin,
+                               DashboardBaseMixin,
+                               DashboardComponentMixin,
+                               generic.UpdateView):
+    model = models.ExtraFieldsInteractiveEvent
     template_name = \
-        'a4_candy_interactive_events/livestream_dashboard_form.html'
+        'a4_candy_interactive_events/extrafields_dashboard_form.html'
     permission_required = 'a4projects.change_project'
-    form_class = forms.LiveStreamForm
+    form_class = forms.ExtraFieldsForm
 
     def get_permission_object(self):
         return self.project
@@ -72,4 +80,5 @@ class LiveStreamDashboardView(ProjectMixin,
         return super().form_valid(form)
 
     def get_object(self, queryset=None):
-        return models.LiveStream2.objects.filter(module=self.module).first()
+        return models.ExtraFieldsInteractiveEvent.objects.\
+            filter(module=self.module).first()
