@@ -9,10 +9,10 @@ from . import forms
 from . import views
 
 
-class LiveStreamComponent(DashboardComponent):
-    identifier = 'live_stream'
+class MediaComponent(DashboardComponent):
+    identifier = 'extra_fields'
     weight = 20
-    label = _('Live Stream')
+    label = _('Media')
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
@@ -22,16 +22,16 @@ class LiveStreamComponent(DashboardComponent):
         return 0, 0
 
     def get_base_url(self, module):
-        return reverse('a4dashboard:interactiveevents-livestream', kwargs={
+        return reverse('a4dashboard:interactiveevents-media', kwargs={
             'organisation_slug': module.project.organisation.slug,
             'module_slug': module.slug,
         })
 
     def get_urls(self):
         return [(
-            r'^modules/(?P<module_slug>[-\w_]+)/livestream/$',
-            views.LiveStreamDashboardView.as_view(component=self),
-            'interactiveevents-livestream'
+            r'^modules/(?P<module_slug>[-\w_]+)/media/$',
+            views.ExtraFieldsDashboardView.as_view(component=self),
+            'interactiveevents-media'
         )]
 
 
@@ -50,5 +50,5 @@ class ModuleAffiliationsComponent(ModuleFormSetComponent):
         return module_app == 'a4_candy_interactive_events'
 
 
-components.register_module(LiveStreamComponent())
+components.register_module(MediaComponent())
 components.register_module(ModuleAffiliationsComponent())
