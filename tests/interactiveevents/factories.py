@@ -21,8 +21,8 @@ class LikeFactory(factory.django.DjangoModelFactory):
     livequestion = factory.SubFactory(LiveQuestionFactory)
 
 
-class LiveStreamFactory(factory.django.DjangoModelFactory):
+class InteractiveExtraFieldsFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = models.LiveStream2
+        model = models.ExtraFieldsInteractiveEvent
 
     module = factory.SubFactory(a4_factories.ModuleFactory)
