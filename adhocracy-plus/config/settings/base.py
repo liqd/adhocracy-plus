@@ -249,6 +249,7 @@ IMAGE_ALIASES = {
     'logo': {'min_resolution': (200, 200), 'aspect_ratio': (1, 1)},
     'avatar': {'min_resolution': (200, 200)},
     'idea_image': {'min_resolution': (600, 400)},
+    'eventimage': {'min_resolution': (500, 600)},
 }
 
 THUMBNAIL_ALIASES = {
