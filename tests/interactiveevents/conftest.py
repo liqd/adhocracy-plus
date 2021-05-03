@@ -4,4 +4,4 @@ from . import factories
 
 register(factories.LiveQuestionFactory)
 register(factories.LikeFactory)
-register(factories.LiveStreamFactory)
+register(factories.InteractiveExtraFieldsFactory)
