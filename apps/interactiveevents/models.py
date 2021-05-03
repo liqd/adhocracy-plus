@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
 from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
+from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.models.base import TimeStampedModel
 from adhocracy4.modules import models as module_models
 
@@ -76,12 +77,21 @@ class Like(models.Model):
         unique_together = ('session', 'livequestion')
 
 
-class LiveStream2(module_models.Item):
+class ExtraFieldsInteractiveEvent(module_models.Item):
     live_stream = RichTextCollapsibleUploadingField(
         verbose_name='Live Stream',
         blank=True,
         config_name='video-editor'
     )
+
+    event_image = ConfiguredImageField(
+        'eventimage',
+        verbose_name=_('Event image'),
+        help_prefix=_(
+            'The image is displayed next to the event description.'
+        ),
+        upload_to='interactiveevents/images',
+        blank=True)
 
     def save(self, *args, **kwargs):
         self.live_stream = transforms.clean_html_field(
