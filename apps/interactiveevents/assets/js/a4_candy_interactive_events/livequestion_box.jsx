@@ -7,6 +7,10 @@ import InfoBox from './livequestion_info_box'
 import Filter from './livequestion_filters'
 import StatisticsBox from './livequestion_statistics_box'
 
+const textStatistics = django.gettext('Statistics')
+const textQuestionCount = django.gettext('Entries')
+const ariaOpenStatistics = django.gettext('Click to view statistics of answered questions')
+
 export default class QuestionBox extends React.Component {
   constructor (props) {
     super(props)
@@ -24,7 +28,9 @@ export default class QuestionBox extends React.Component {
       orderedByLikes: false,
       filterChanged: false,
       orderingChanged: false,
-      pollingPaused: false
+      pollingPaused: false,
+      showStatistics: false,
+      questionCount: 0
     }
   }
 
@@ -78,6 +84,13 @@ export default class QuestionBox extends React.Component {
     })
   }
 
+  handleToggleStatistics () {
+    const newValue = !this.state.showStatistics
+    this.setState({
+      showStatistics: newValue
+    })
+  }
+
   isInFilter (item) {
     return (this.state.category === '-1' || this.state.category === item.category) &&
       (!this.state.displayOnShortlist || item.is_on_shortlist) && (!this.state.displayNotHiddenOnly || !item.is_hidden)
@@ -127,7 +140,8 @@ export default class QuestionBox extends React.Component {
           questions: data,
           filteredQuestions: this.filterQuestions(data),
           answeredQuestions: this.getAnsweredQuestions(data),
-          orderingChanged: false
+          orderingChanged: false,
+          questionCount: this.filterQuestions(data).length
         }))
     }
   }
@@ -170,68 +184,7 @@ export default class QuestionBox extends React.Component {
   render () {
     return (
       <div>
-        <div className="tablist mb-0">
-          <div className="container">
-            <nav className="nav justify-content-center">
-              <a
-                id="tab-information"
-                className="tab"
-                data-toggle="tab"
-                href="#tabpanel-information"
-                role="tab"
-                aria-controls="tabpanel-information"
-                aria-expanded="false"
-              >
-                {django.gettext('Information')}
-              </a>
-              <a
-                id="tab-questions"
-                className="tab active"
-                data-toggle="tab"
-                href="#tabpanel-questions"
-                role="tab"
-                aria-controls="tabpanel-questions"
-                aria-expanded="true"
-              >
-                {django.gettext('Questions')}
-              </a>
-              <a
-                id="tab-statistics"
-                className="tab"
-                data-toggle="tab"
-                href="#tabpanel-statistics"
-                role="tab"
-                aria-controls="tabpanel-statistics"
-                aria-expanded="false"
-              >
-                {django.gettext('Statistics')}
-              </a>
-            </nav>
-          </div>
-        </div>
-        <div
-          className="tabpanel mt-3"
-          id="tabpanel-information"
-          role="tabpanel"
-          aria-labelledby="tab-information"
-          aria-hidden="false"
-        >
-          <div className="container">
-            <div className="row">
-              <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                {this.props.information}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="tabpanel active"
-          id="tabpanel-questions"
-          role="tabpanel"
-          aria-labelledby="tab-questions"
-          aria-hidden="true"
-        >
+        <div>
           <div className="container">
             {this.props.hasAskQuestionsPermission &&
               <div className="row mb-5">
@@ -248,70 +201,93 @@ export default class QuestionBox extends React.Component {
               </div>}
             <div className="row mb-5">
               <div className="col-md-10 offset-md-1">
-                <div className="row">
-                  {this.props.isModerator &&
-                    <div className="livequestions__filters col-md order-lg-last">
-                      <a className="btn btn--light" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
-                        <span className="fa-stack fa-1x">
-                          <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
-                          <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
-                        </span>
-                        {django.gettext('display on screen')}
-                      </a>
-                    </div>}
-                  <Filter
-                    categories={this.props.categories}
-                    currentCategory={this.state.category}
-                    currentCategoryName={this.state.categoryName}
-                    setCategories={this.setCategory.bind(this)}
-                    orderedByLikes={this.state.orderedByLikes}
-                    toggleOrdering={this.toggleOrdering.bind(this)}
-                    displayOnShortlist={this.state.displayOnShortlist}
-                    displayNotHiddenOnly={this.state.displayNotHiddenOnly}
-                    toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
-                    toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
-                    isModerator={this.props.isModerator}
-                  />
+                <div className={'row ' + (this.props.isModerator ? 'livequestions__control-bar--mod' : 'livequestions__control-bar--user')}>
+                  <div className="livequestions__action-bar">
+                    {this.props.isModerator &&
+                      <div className="livequestions__action-bar--btn">
+                        <a className="btn btn--light" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
+                          <span className="fa-stack fa-1x mr-1">
+                            <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
+                            <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                          </span>
+                          {django.gettext('display on screen')}
+                        </a>
+                      </div>}
+                    <div className="livequestions__action-bar--btn">
+                      <div className="checkbox-btn">
+                        <label htmlFor="displayStatistics" className="checkbox-btn__label--light">
+                          <input
+                            className="checkbox-btn__input"
+                            type="checkbox"
+                            id="displayStatistics"
+                            onChange={this.handleToggleStatistics.bind(this)}
+                          />
+                          <span className="checkbox-btn__text">
+                            <i className="fas fa-chart-bar mr-1" aria-label="hidden" />
+                            {textStatistics}
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  {!this.state.showStatistics &&
+                    <Filter
+                      categories={this.props.categories}
+                      currentCategory={this.state.category}
+                      currentCategoryName={this.state.categoryName}
+                      setCategories={this.setCategory.bind(this)}
+                      orderedByLikes={this.state.orderedByLikes}
+                      toggleOrdering={this.toggleOrdering.bind(this)}
+                      displayOnShortlist={this.state.displayOnShortlist}
+                      displayNotHiddenOnly={this.state.displayNotHiddenOnly}
+                      toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
+                      toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
+                      isModerator={this.props.isModerator}
+                    />}
                 </div>
-                <InfoBox
-                  isModerator={this.props.isModerator}
-                />
+                {!this.state.showStatistics &&
+                  <div className="row">
+                    <div className="col">
+                      <label className="livequestions__count">{this.state.questionCount} {textQuestionCount}</label>
+                      <InfoBox
+                        isModerator={this.props.isModerator}
+                      />
+                    </div>
+                  </div>}
 
-                <QuestionList
-                  questions={this.state.filteredQuestions}
-                  removeFromList={this.removeFromList.bind(this)}
-                  updateQuestion={this.updateQuestion.bind(this)}
-                  handleLike={this.handleLike.bind(this)}
-                  isModerator={this.props.isModerator}
-                  togglePollingPaused={this.togglePollingPaused.bind(this)}
-                  hasLikingPermission={this.props.hasLikingPermission}
-                />
+                {this.state.showStatistics &&
+                  <div
+                    className="mt-3 u-border"
+                    id="livequestion-statistics"
+                    aria-hidden="false"
+                  >
+                    <button type="button" className="close" onClick={this.handleToggleStatistics.bind(this)}>
+                      <span aria-label={ariaOpenStatistics}>&times;</span>
+                    </button>
+                    <StatisticsBox
+                      answeredQuestions={this.state.answeredQuestions}
+                      questions_api_url={this.props.questions_api_url}
+                      categories={this.props.categories}
+                      isModerator={this.props.isModerator}
+                    />
+                  </div>}
+                {!this.state.showStatistics &&
+                  <QuestionList
+                    questions={this.state.filteredQuestions}
+                    removeFromList={this.removeFromList.bind(this)}
+                    updateQuestion={this.updateQuestion.bind(this)}
+                    handleLike={this.handleLike.bind(this)}
+                    isModerator={this.props.isModerator}
+                    togglePollingPaused={this.togglePollingPaused.bind(this)}
+                    hasLikingPermission={this.props.hasLikingPermission}
+                  />}
               </div>
             </div>
-            <span className="livequestion_anchor" id="question-list-end" />
-          </div>
-        </div>
-        <div
-          className="tabpanel mt-3"
-          id="tabpanel-statistics"
-          role="tabpanel"
-          aria-labelledby="tab-statistics"
-          aria-hidden="false"
-        >
-          <div className="container">
-            <div className="row">
-              <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                <StatisticsBox
-                  answeredQuestions={this.state.answeredQuestions}
-                  questions_api_url={this.props.questions_api_url}
-                  categories={this.props.categories}
-                  isModerator={this.props.isModerator}
-                />
-              </div>
-            </div>
+            <span className="livequestions_anchor" id="question-list-end" />
           </div>
         </div>
       </div>
+
     )
   }
 }

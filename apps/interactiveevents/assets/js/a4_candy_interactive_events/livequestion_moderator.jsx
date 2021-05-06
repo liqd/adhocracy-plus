@@ -107,7 +107,7 @@ export default class QuestionModerator extends React.Component {
         {this.props.category &&
           <span className="label mb-2">{this.props.category}</span>}
         <div>
-          <p className={'live_questions__text ' + (this.props.is_hidden ? 'text-muted u-text-decoration-line-through' : '')}>{this.props.children}</p>
+          <p className={'text-break ' + (this.props.is_hidden ? 'text-muted u-text-line-through' : '')}>{this.props.children}</p>
         </div>
         <div className="row justify-content-between">
           <div className="col-12 col-md-4 col-sm-5 mb-3 mb-sm-0">

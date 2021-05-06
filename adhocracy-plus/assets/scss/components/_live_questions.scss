@@ -1,23 +1,4 @@
-.live_questions__char-count {
-    color: $gray-lighter;
-    font-size: $font-size-sm;
-    margin-top: -0.75*$spacer;
-    margin-bottom: $spacer;
-}
-
-.live_questions__text {
-    overflow-wrap: break-word;
-}
-
-.livequestions__filters {
-    margin-bottom: $spacer;
-    padding: 0 $spacer;
-}
-
-.livequestions__filters > .btn {
-    min-width: 100%;
-}
-
+//affiliation picker
 .live_questions__select > .select2-container {
     min-width: 100%;
     margin: 0 0 1rem;
@@ -25,6 +6,79 @@
     @media screen and (min-width: $breakpoint-xs) {
         min-width: 15rem;
     }
+}
+
+.live_questions__char-count {
+    color: $gray-lighter;
+    font-size: $font-size-sm;
+    margin-top: -0.75*$spacer;
+    margin-bottom: $spacer;
+}
+
+.livequestions__control-bar--mod {
+    display: flex;
+    justify-content: space-between;
+
+    .livequestions__action-bar,
+    .livequestions__filter {
+        display: flex;
+        margin-bottom: $spacer;
+        min-width: 100%;
+        position: relative;
+
+        @media screen and (min-width: $breakpoint) {
+            display: inline-block;
+            min-width: inherit;
+            position: inherit;
+        }
+    }
+
+    .livequestions__action-bar--btn,
+    .livequestions__filter--btn {
+        padding: 0 0 0 $spacer;
+        display: block;
+
+        @media screen and (min-width: $breakpoint) {
+            display: inline-block;
+        }
+    }
+}
+
+.livequestions__filter--open {
+    position: absolute;
+    left: $spacer;
+    top: 3.5*$spacer;
+
+    @media screen and (min-width: $breakpoint) {
+        left: inherit;
+        right: $spacer;
+    }
+}
+
+.livequestions__control-bar--user {
+    margin-bottom: $spacer;
+
+    .livequestions__control-bar--btn,
+    .livequestions__filters {
+        padding: 0 0 0 $spacer;
+        display: block;
+        min-width: 100%;
+
+        @media screen and (min-width: $breakpoint) {
+            display: inline-block;
+            min-width: inherit;
+        }
+    }
+}
+
+.livequestion__info-box > .btn {
+    float: right;
+}
+
+.livequestions__count {
+    position: absolute;
+    bottom: 0;
+    color: $text-color-gray;
 }
 
 .livequestion_anchor {
