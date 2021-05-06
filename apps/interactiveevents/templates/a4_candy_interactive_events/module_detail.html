@@ -3,19 +3,21 @@
 
 {% block phase_content %}
     <div class="container">
-        <div class="col-12">
-            <div class="alert" role="alert">
-                <i class="fas fa-info-circle" aria-hidden="true"></i>
-                {% trans 'During this event you can hand in questions with your smartphone' %}
+        <div class="row">
+            <div class="col-md-12 my-2">
+                <div class="alert" role="alert">
+                    <i class="fas fa-info-circle" aria-hidden="true"></i>
+                    {% trans 'During this event you can hand in questions with your smartphone' %}
+                </div>
             </div>
         </div>
-        <div class="row mx-md-4 my-4 justify-content-center">
+        <div class="row justify-content-center">
             {% if extra_fields.event_image %}
-                <div class="col-md-6 mb-4">
+                <div class="col-md-5 my-2">
                     <img src="/media/{{ extra_fields.event_image }}" />
                 </div>
             {% endif %}
-            <div class="col-md-6">
+            <div class="col-md-5 my-2">
                 {% for phase in module.phases %}
                     {% if phase == module.active_phase and extra_fields.live_stream %}
                         <span class="label label--live">•{% trans ' Live now' %}</span>
