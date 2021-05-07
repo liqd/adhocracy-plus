@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.categories import models as category_models
 from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import ModuleFormSetComponent
 from adhocracy4.dashboard import components
@@ -44,6 +45,11 @@ class ModuleAffiliationsComponent(ModuleFormSetComponent):
     form_class = forms.AffiliationFormSet
     form_template_name = \
         'a4_candy_interactive_events/includes/module_affiliations_form.html'
+
+    def get_progress(self, module):
+        if category_models.Category.objects.filter(module=module).exists():
+            return 1, 1
+        return 0, 1
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
