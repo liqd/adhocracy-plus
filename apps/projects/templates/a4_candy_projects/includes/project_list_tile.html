@@ -56,7 +56,7 @@
         </div>
         {% elif project.future_modules %}
         <div class="status-item status__future">
-        <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>{% blocktrans with date=project.future_modules.first.module_start.date|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktrans %}</span>
+        <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>{% blocktrans with date=project.future_modules.first.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktrans %}</span>
         </div>
         {% elif project.past_modules %}
         <div class="status-item status-bar__past">
