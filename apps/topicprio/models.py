@@ -26,7 +26,10 @@ class Topic(module_models.Item):
                                     on_delete=models.CASCADE)
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(max_length=120, verbose_name=_('Title'))
-    description = RichTextUploadingField(config_name='image-editor')
+    description = RichTextUploadingField(
+        config_name='image-editor',
+        verbose_name=_('Description')
+    )
     image = ConfiguredImageField(
         'idea_image',
         verbose_name=_('Add image'),
