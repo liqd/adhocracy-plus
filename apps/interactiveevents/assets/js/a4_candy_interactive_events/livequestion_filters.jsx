@@ -33,10 +33,11 @@ export default class Filter extends React.Component {
 
   render () {
     const textFilters = django.gettext(' Filters')
-    const allTag = django.gettext('all')
-    const onlyShowMarkedText = django.gettext('only show marked questions')
-    const displayNotHiddenText = django.gettext('display only questions which are not hidden')
-    const orderLikesText = django.gettext('order by likes')
+    const ariaOpenFilters = django.gettext('Click to view filters')
+    const allText = django.gettext('all')
+    const ariaDisplayOnlyMarked = django.gettext('Click to only display marked questions')
+    const ariaDisplayNotHidden = django.gettext('Click to only display questions which are not hidden')
+    const ariaOrderLikes = django.gettext('Click to order list by likes')
     return (
       <div className="livequestions__filter">
         <div className={'dropdown livequestions__filter--btn ' + (this.state.showFilters && 'mb-5')}>
@@ -48,7 +49,7 @@ export default class Filter extends React.Component {
             <i className="fa fa-caret-down" aria-hidden="true" />
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <button className="dropdown-item" data-value={-1} onClick={this.selectCategory.bind(this)} href="#">{allTag}</button>
+            <button className="dropdown-item" data-value={-1} onClick={this.selectCategory.bind(this)} href="#">{allText}</button>
             {this.props.categories.map((category, index) => {
               return <button className="dropdown-item" key={index} data-value={category} onClick={this.selectCategory.bind(this)} href="#">{category}</button>
             })}
@@ -56,7 +57,12 @@ export default class Filter extends React.Component {
         </div>
         {this.props.isModerator &&
           <div className="checkbox-btn livequestions__filter--btn pr-3">
-            <label htmlFor="markedCheck" className="checkbox-btn__label--light">
+            <label
+              htmlFor="markedCheck"
+              className="checkbox-btn__label--light"
+              aria-label={ariaOpenFilters}
+              title={ariaOpenFilters}
+            >
               <input
                 className="checkbox-btn__input"
                 type="checkbox"
@@ -66,7 +72,7 @@ export default class Filter extends React.Component {
                 onChange={this.handleToggleFilters.bind(this)} // eslint-disable-line react/jsx-handler-names
               />
               <span className="checkbox-btn__text">
-                <i className="fas fa-sliders-h" aria-label={onlyShowMarkedText} />
+                <i className="fas fa-sliders-h" aria-hidden="true" />
                 {textFilters}
               </span>
             </label>
@@ -74,7 +80,12 @@ export default class Filter extends React.Component {
         {this.state.showFilters &&
           <div className="livequestions__filter--open">
             <div className="checkbox-btn">
-              <label htmlFor="markedCheck" className="checkbox-btn__label--light">
+              <label
+                htmlFor="markedCheck"
+                className="checkbox-btn__label--light"
+                aria-label={ariaDisplayOnlyMarked}
+                title={ariaDisplayOnlyMarked}
+              >
                 <input
                   className="checkbox-btn__input"
                   type="checkbox"
@@ -84,12 +95,17 @@ export default class Filter extends React.Component {
                   onChange={this.props.toggleDisplayOnShortlist} // eslint-disable-line react/jsx-handler-names
                 />
                 <span className="checkbox-btn__text">
-                  <i className="icon-in-list" aria-label={onlyShowMarkedText} />
+                  <i className="icon-in-list" aria-hidden="true" />
                 </span>
               </label>
             </div>
             <div className="checkbox-btn">
-              <label htmlFor="displayNotHiddenOnly" className="checkbox-btn__label--light pl-3">
+              <label
+                htmlFor="displayNotHiddenOnly"
+                className="checkbox-btn__label--light pl-3"
+                aria-label={ariaDisplayNotHidden}
+                title={ariaDisplayNotHidden}
+              >
                 <input
                   className="checkbox-btn__input"
                   type="checkbox"
@@ -99,12 +115,17 @@ export default class Filter extends React.Component {
                   onChange={this.props.toggledisplayNotHiddenOnly} // eslint-disable-line react/jsx-handler-names
                 />
                 <span className="checkbox-btn__text">
-                  <i className="far fa-eye" aria-label={displayNotHiddenText} />
+                  <i className="far fa-eye" aria-hidden="true" />
                 </span>
               </label>
             </div>
             <div className="checkbox-btn">
-              <label htmlFor="orderedByLikes" className="checkbox-btn__label--light pl-3">
+              <label
+                htmlFor="orderedByLikes"
+                className="checkbox-btn__label--light pl-3"
+                aria-label={ariaOrderLikes}
+                title={ariaOrderLikes}
+              >
                 <input
                   className="checkbox-btn__input"
                   type="checkbox"
@@ -114,7 +135,7 @@ export default class Filter extends React.Component {
                   onChange={this.props.toggleOrdering} // eslint-disable-line react/jsx-handler-names
                 />
                 <span className="checkbox-btn__text">
-                  <i className="fa fa-chevron-up" aria-label={orderLikesText} /> likes
+                  <i className="fa fa-chevron-up" aria-hidden="true" /> likes
                 </span>
               </label>
             </div>
