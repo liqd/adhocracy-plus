@@ -10,6 +10,8 @@ import StatisticsBox from './livequestion_statistics_box'
 const textStatistics = django.gettext('Statistics')
 const textQuestionCount = django.gettext('Entries')
 const ariaOpenStatistics = django.gettext('Click to view statistics of answered questions')
+const textDisplayOnScreen = django.gettext('display on screen')
+const ariaDisplayOnScreen = django.gettext('Click to view list of marked questions screen')
 
 export default class QuestionBox extends React.Component {
   constructor (props) {
@@ -205,17 +207,29 @@ export default class QuestionBox extends React.Component {
                   <div className="livequestions__action-bar">
                     {this.props.isModerator &&
                       <div className="livequestions__action-bar--btn">
-                        <a className="btn btn--light" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
+                        <a
+                          className="btn btn--light"
+                          rel="noopener noreferrer"
+                          href={this.props.present_url}
+                          target="_blank"
+                          aria-label={ariaDisplayOnScreen}
+                          title={ariaDisplayOnScreen}
+                        >
                           <span className="fa-stack fa-1x mr-1">
                             <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
                             <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
                           </span>
-                          {django.gettext('display on screen')}
+                          {textDisplayOnScreen}
                         </a>
                       </div>}
                     <div className="livequestions__action-bar--btn">
                       <div className="checkbox-btn">
-                        <label htmlFor="displayStatistics" className="checkbox-btn__label--light">
+                        <label
+                          htmlFor="displayStatistics"
+                          className="checkbox-btn__label--light"
+                          title={ariaOpenStatistics}
+                          aria-label={ariaOpenStatistics}
+                        >
                           <input
                             className="checkbox-btn__input"
                             type="checkbox"
@@ -261,8 +275,8 @@ export default class QuestionBox extends React.Component {
                     id="livequestion-statistics"
                     aria-hidden="false"
                   >
-                    <button type="button" className="close" onClick={this.handleToggleStatistics.bind(this)}>
-                      <span aria-label={ariaOpenStatistics}>&times;</span>
+                    <button type="button" className="close pr-2" onClick={this.handleToggleStatistics.bind(this)}>
+                      <span aria-label="close">&times;</span>
                     </button>
                     <StatisticsBox
                       answeredQuestions={this.state.answeredQuestions}

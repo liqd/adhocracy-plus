@@ -49,9 +49,9 @@ export default class QuestionUser extends React.Component {
 
   render () {
     const shortlistText = django.gettext('on shortlist')
-    const likesTag = django.gettext('likes')
-    const addLikeTag = django.gettext('add like')
-    const undoLikeTag = django.gettext('undo like')
+    const likesText = django.gettext('likes')
+    const ariaAddLike = django.gettext('add like')
+    const ariaUndoLike = django.gettext('undo like')
 
     return (
       <div className="list-group-item border mb-2">
@@ -70,16 +70,22 @@ export default class QuestionUser extends React.Component {
             <div>
               {this.props.hasLikingPermission
                 ? (
-                  <button type="button" className={this.state.session_like ? 'rating-button rating-up float-right px-3' : 'rating-button rating-up is-selected float-right px-3'} onClick={this.handleLike.bind(this)}>
+                  <button
+                    type="button"
+                    className={this.state.session_like ? 'rating-button rating-up float-right px-3' : 'rating-button rating-up is-selected float-right px-3'}
+                    onClick={this.handleLike.bind(this)}
+                    aria-label={this.state.session_like ? ariaAddLike : ariaUndoLike}
+                    title={this.state.session_like ? ariaAddLike : ariaUndoLike}
+                  >
                     <span>{this.state.likes} </span>
-                    <span className="sr-only">{likesTag}</span>
-                    <i className="fa fa-chevron-up" aria-label={this.state.session_like ? addLikeTag : undoLikeTag} />
+                    <span className="sr-only">{likesText}</span>
+                    <i className="fa fa-chevron-up" aria-hidden="true" />
                   </button>
                   )
                 : (
                   <div className="float-right">
                     <span className="text-muted">{this.state.likes}</span>
-                    <span className="sr-only">{likesTag}</span>
+                    <span className="sr-only">{likesText}</span>
                     <i className="fa fa-chevron-up text-muted ml-1" aria-hidden="true" />
                   </div>
                   )}

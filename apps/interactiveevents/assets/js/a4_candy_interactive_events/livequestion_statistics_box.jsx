@@ -47,7 +47,7 @@ export default class StatisticsBox extends React.Component {
     return (
       <div>
         {this.props.categories.length > 0 &&
-          <div className="row m-0 bg-white justify-content-center pb-4">
+          <div className="row justify-content-center py-4">
             <div className="col-12 col-md-8">
               {this.props.categories.map((category, index) => {
                 const countPerCategory = this.countCategory(category)
