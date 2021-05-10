@@ -15,18 +15,23 @@
     margin-bottom: $spacer;
 }
 
-.livequestions__control-bar--mod {
+.livequestions__control-bar--mod,
+.livequestions__control-bar--user {
     display: flex;
     justify-content: space-between;
 
     .livequestions__action-bar,
-    .livequestions__filter {
+    .livequestions__filter-bar {
         display: flex;
-        margin-bottom: $spacer;
         min-width: 100%;
         position: relative;
+        flex-wrap: wrap;
 
         @media screen and (min-width: $breakpoint) {
+            margin-bottom: $spacer;
+        }
+
+        @media screen and (min-width: $breakpoint-lg) {
             display: inline-block;
             min-width: inherit;
             position: inherit;
@@ -35,39 +40,51 @@
 
     .livequestions__action-bar--btn,
     .livequestions__filter--btn {
-        padding: 0 0 0 $spacer;
+        padding: 0.5*$spacer $spacer;
         display: block;
+        flex-basis: 100%;
 
         @media screen and (min-width: $breakpoint) {
+            padding: 0 0 0 $spacer;
+            display: inline-block;
+            flex-basis: 50%;
+        }
+
+        @media screen and (min-width: $breakpoint-lg) {
             display: inline-block;
         }
+    }
+
+    //to ensure flex children fill space
+    .btn--light,
+    .checkbox-btn__text {
+        min-width: 100%;
     }
 }
 
 .livequestions__filter--open {
     position: absolute;
     left: $spacer;
-    top: 3.5*$spacer;
+    top: 8*$spacer;
 
     @media screen and (min-width: $breakpoint) {
+        top: 3.5*$spacer;
+    }
+
+    @media screen and (min-width: $breakpoint-lg) {
         left: inherit;
         right: $spacer;
     }
 }
 
 .livequestions__control-bar--user {
-    margin-bottom: $spacer;
-
-    .livequestions__control-bar--btn,
-    .livequestions__filters {
-        padding: 0 0 0 $spacer;
-        display: block;
+    .livequestions__action-bar--btn,
+    .livequestions__filter--btn {
         min-width: 100%;
+    }
 
-        @media screen and (min-width: $breakpoint) {
-            display: inline-block;
-            min-width: inherit;
-        }
+    .livequestions__filter--btn {
+        padding-right: $spacer;
     }
 }
 
