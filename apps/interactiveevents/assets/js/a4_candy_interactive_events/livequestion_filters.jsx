@@ -39,8 +39,8 @@ export default class Filter extends React.Component {
     const ariaDisplayNotHidden = django.gettext('Click to only display questions which are not hidden')
     const ariaOrderLikes = django.gettext('Click to order list by likes')
     return (
-      <div className="livequestions__filter">
-        <div className={'dropdown livequestions__filter--btn ' + (this.state.showFilters && 'mb-5')}>
+      <div className={'livequestions__filter-bar ' + (this.state.showFilters && 'mb-5')}>
+        <div className="dropdown livequestions__filter--btn">
           <button
             className={this.getButtonClass()} type="button" id="dropdownMenuButton"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
