@@ -37,12 +37,12 @@ export default class PresentBox extends React.Component {
   displayFooterOrInfo () {
     if (this.state.questions.length > 0) {
       $('#id-present-infographic').removeClass('d-none')
-      $('#id-present-infographic').addClass('infographic__info-footer')
-      $('#id-present-infographic').removeClass('infographic__info-screen')
+      $('#id-present-infographic').addClass('infographic__info-footer fixed-bottom')
+      $('#id-present-infographic').removeClass('infographic__info-screen mt-5')
     } else {
       $('#id-present-infographic').removeClass('d-none')
-      $('#id-present-infographic').removeClass('infographic__info-footer')
-      $('#id-present-infographic').addClass('infographic__info-screen')
+      $('#id-present-infographic').removeClass('infographic__info-footer fixed-bottom')
+      $('#id-present-infographic').addClass('infographic__info-screen mt-5')
     }
   }
 
