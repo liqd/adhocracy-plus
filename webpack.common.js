@@ -200,8 +200,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{
         from: './adhocracy-plus/assets/images/**/*',
-        to: 'images/',
-        flatten: true
+        to: 'images/[name][ext]'
       }]
     })
   ]
