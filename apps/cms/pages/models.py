@@ -80,13 +80,15 @@ class HomePage(Page):
         related_name='+',
     )
 
-    subtitle_de = models.CharField(
-        max_length=500, blank=True, verbose_name="Subtitle")
-    subtitle_en = models.CharField(
-        max_length=500, blank=True, verbose_name="Subtitle")
+    hero_title_de = models.CharField(
+        max_length=80, blank=True, verbose_name="Hero title")
+    hero_title_en = models.CharField(
+        max_length=80, blank=True, verbose_name="Hero title")
 
-    teaser_de = fields.RichTextField(blank=True)
-    teaser_en = fields.RichTextField(blank=True)
+    hero_subtitle_de = fields.RichTextField(
+        max_length=150, blank=True, features=['h3', 'bold', 'italic', 'link'])
+    hero_subtitle_en = fields.RichTextField(
+        max_length=150, blank=True, features=['h3', 'bold', 'italic', 'link'])
 
     body_de = fields.RichTextField(blank=True)
     body_en = fields.RichTextField(blank=True)
@@ -111,14 +113,14 @@ class HomePage(Page):
         ('use_cases', UseCaseBlock())
     ], blank=True)
 
-    subtitle = TranslatedField(
-        'subtitle_de',
-        'subtitle_en'
+    hero_title = TranslatedField(
+        'hero_title_de',
+        'hero_title_en'
     )
 
-    teaser = TranslatedField(
-        'teaser_de',
-        'teaser_en'
+    hero_subtitle = TranslatedField(
+        'hero_subtitle_de',
+        'hero_subtitle_en'
     )
 
     body_streamfield = TranslatedField(
@@ -144,15 +146,15 @@ class HomePage(Page):
                            'image_{}'.format(random.choice(image_numbers)))
 
     en_content_panels = [
-        FieldPanel('subtitle_en'),
-        FieldPanel('teaser_en'),
+        FieldPanel('hero_title_en'),
+        FieldPanel('hero_subtitle_en'),
         FieldPanel('body_en'),
         StreamFieldPanel('body_streamfield_en')
     ]
 
     de_content_panels = [
-        FieldPanel('subtitle_de'),
-        FieldPanel('teaser_de'),
+        FieldPanel('hero_title_de'),
+        FieldPanel('hero_subtitle_de'),
         FieldPanel('body_de'),
         StreamFieldPanel('body_streamfield_de')
     ]
