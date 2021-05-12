@@ -222,8 +222,8 @@ export default class QuestionBox extends React.Component {
                           {textDisplayOnScreen}
                         </a>
                       </div>}
-                    <div className="livequestions__action-bar--btn">
-                      <div className="btn--light checkbox-btn pr-md-3">
+                    <div className="livequestions__action-bar--btn pr-md-3">
+                      <div className="btn--light checkbox-btn">
                         <label
                           htmlFor="displayStatistics"
                           className="checkbox-btn__label--light"
@@ -235,6 +235,7 @@ export default class QuestionBox extends React.Component {
                             type="checkbox"
                             id="displayStatistics"
                             onChange={this.handleToggleStatistics.bind(this)}
+                            checked={this.state.showStatistics}
                           />
                           <span className="checkbox-btn__text">
                             <i className="fas fa-chart-bar mr-1" aria-label="hidden" />
