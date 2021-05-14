@@ -28,7 +28,7 @@ class ImageCTABlock(blocks.StructBlock):
         icon = 'view'
 
 
-# 2-col, headline, text, CTA btn, background colors, text colors
+# 2-col, headline, text, CTA btn, image, list
 class ColumnsImageCTABlock(blocks.StructBlock):
     columns_count = blocks.ChoiceBlock(choices=[
         (1, 'One column'),
@@ -45,6 +45,16 @@ class ColumnsImageCTABlock(blocks.StructBlock):
         icon = 'list-ul'
 
 
+class TwoColImageCTABlock(blocks.StructBlock):
+    column1_img = CallToActionBlock(label='CTA column')
+    column2_img = ImageCTABlock(label='Wide image CTA column')
+
+    class Meta:
+        template = 'a4_candy_cms_pages/blocks/col_img_cta_block.html'
+        icon = 'list-ul'
+
+
+# 2-col, headline, text, CTA btn, background colors, text colors
 class ColBackgroundCTABlock(blocks.StructBlock):
     columns_count = blocks.ChoiceBlock(choices=[
         (1, 'One column'),
@@ -55,6 +65,15 @@ class ColBackgroundCTABlock(blocks.StructBlock):
     columns = blocks.ListBlock(
         CallToActionBlock(label='CTA with Background')
     )
+
+    class Meta:
+        template = 'a4_candy_cms_pages/blocks/col_background_cta_block.html'
+        icon = 'tick-inverse'
+
+
+class TwoColBackgroundCTABlock(blocks.StructBlock):
+    column1_bg = CallToActionBlock(label='CTA column light blue')
+    column2_bg = CallToActionBlock(label='CTA column dark blue')
 
     class Meta:
         template = 'a4_candy_cms_pages/blocks/col_background_cta_block.html'

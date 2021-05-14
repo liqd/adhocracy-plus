@@ -95,7 +95,9 @@ class HomePage(Page):
 
     body_streamfield_de = fields.StreamField([
         ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('two_col_image_cta_block', cms_blocks.TwoColImageCTABlock()),
         ('background_cta_block', cms_blocks.ColBackgroundCTABlock()),
+        ('col_background_cta_block', cms_blocks.TwoColBackgroundCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('html', blocks.RawHTMLBlock()),
         ('paragraph', blocks.RichTextBlock()),
@@ -105,7 +107,9 @@ class HomePage(Page):
 
     body_streamfield_en = fields.StreamField([
         ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('two_col_image_cta_block', cms_blocks.TwoColImageCTABlock()),
         ('background_cta_block', cms_blocks.ColBackgroundCTABlock()),
+        ('col_background_cta_block', cms_blocks.TwoColBackgroundCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('html', blocks.RawHTMLBlock()),
         ('paragraph', blocks.RichTextBlock()),
@@ -200,6 +204,7 @@ class SimplePage(Page):
         ('faq', cms_blocks.AccordeonListBlock()),
         ('image_cta', cms_blocks.ImageCTABlock()),
         ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('two_col_image_cta_block', cms_blocks.TwoColImageCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
@@ -211,6 +216,7 @@ class SimplePage(Page):
         ('faq', cms_blocks.AccordeonListBlock()),
         ('image_cta', cms_blocks.ImageCTABlock()),
         ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('two_col_image_cta_block', cms_blocks.TwoColImageCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
@@ -223,6 +229,7 @@ class SimplePage(Page):
         ('faq', cms_blocks.AccordeonListBlock()),
         ('image_cta', cms_blocks.ImageCTABlock()),
         ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('two_col_image_cta_block', cms_blocks.TwoColImageCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
@@ -235,6 +242,7 @@ class SimplePage(Page):
         ('faq', cms_blocks.AccordeonListBlock()),
         ('image_cta', cms_blocks.ImageCTABlock()),
         ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('two_col_image_cta_block', cms_blocks.TwoColImageCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
@@ -247,6 +255,7 @@ class SimplePage(Page):
         ('faq', cms_blocks.AccordeonListBlock()),
         ('image_cta', cms_blocks.ImageCTABlock()),
         ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
+        ('two_col_image_cta_block', cms_blocks.TwoColImageCTABlock()),
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
