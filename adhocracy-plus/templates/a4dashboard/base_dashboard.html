@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules thumbnail %}
+{% load i18n rules thumbnail static %}
 
 {% block content %}
     {% block dashboard_nav %}
@@ -117,4 +117,8 @@
     <div class="container">
         {% block dashboard_content %}{% endblock %}
     </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'unload_warning.js' %}"></script>
 {% endblock %}
