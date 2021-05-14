@@ -84,7 +84,9 @@
                         </ul>
                     {% endif %}
                 {% else %}
-                    {% if organisation.information %}
+                    {% if request.user.is_authenticated %}
+                        <p>{% blocktrans %}Currently, there are no public participation processes. Please check again later.{% endblocktrans %}</p>
+                    {% elif organisation.information %}
                         {% url 'account_login' as account_login_url %}
                         {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
                         {% url 'organisation-information' organisation_slug=organisation.slug as organisation_information_url %}
