@@ -193,7 +193,8 @@
                         </div>
                     </div>
 
-                    {% else %} <!-- if no timeline and just one module and no phase view to dispatch to -->
+                    {% else %} <!-- if just one module and no phase view to dispatch to -->
+                    {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
                         {% if not module.active_phase %}
                         <div class="row">
                             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 mb-3">
@@ -240,6 +241,7 @@
                             </div>
                         </div>
                         {% endwith %}
+                    {% endif %}
                     {% endif %}
                 </div>
                 {% if not view.is_project_view and not event %}
