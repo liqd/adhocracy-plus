@@ -129,3 +129,48 @@ def test_moderator_can_view_and_change_questions(apiclient,
     assert len(models.LiveQuestion.objects.all()) == 1
     question_changed = models.LiveQuestion.objects.first()
     assert question_changed.is_hidden
+
+
+@pytest.mark.django_db
+def test_anonymous_can_add_like_during_active_phase(apiclient,
+                                                    phase_factory,
+                                                    live_question_factory):
+
+    phase, module, project, livequestion = setup_phase(phase_factory,
+                                                       live_question_factory,
+                                                       phases.IssuePhase)
+
+    url = reverse('likes-list', kwargs={'livequestion_pk': livequestion.pk})
+    data = {'value': True}
+    with freeze_phase(phase):
+        response = apiclient.post(url, data)
+
+    assert response.status_code == 201
+    assert models.Like.objects.count() == 1
+
+
+@pytest.mark.django_db
+def test_user_cannot_add_like_during_non_active_phase(apiclient,
+                                                      phase_factory,
+                                                      live_question_factory,
+                                                      user):
+
+    phase, module, project, livequestion = setup_phase(phase_factory,
+                                                       live_question_factory,
+                                                       phases.IssuePhase)
+
+    url = reverse('likes-list', kwargs={'livequestion_pk': livequestion.pk})
+    assert apiclient.login(username=user.email, password='password')
+
+    data = {'value': True}
+    with freeze_pre_phase(phase):
+        response = apiclient.post(url, data)
+
+    assert response.status_code == 403
+    assert models.Like.objects.count() == 0
+
+    with freeze_post_phase(phase):
+        response = apiclient.post(url, data)
+
+    assert response.status_code == 403
+    assert models.Like.objects.count() == 0
