@@ -45,6 +45,12 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    unload_warning: {
+      import: [
+        './adhocracy-plus/assets/js/unload_warning.js'
+      ],
+      dependOn: 'adhocracy4'
+    },
     // A4 dependencies - we want all of them to go through webpack
     a4maps_display_point: {
       import: [
