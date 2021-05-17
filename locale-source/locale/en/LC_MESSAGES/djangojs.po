@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 10:47+0200\n"
+"POT-Creation-Date: 2021-05-17 14:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,7 +231,7 @@ msgstr "Last discussed"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:51
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:544
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:20
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:37
 msgid "all"
 msgstr "all"
 
@@ -406,21 +406,21 @@ msgid "Please login to vote"
 msgstr "Please login to vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:140
-#: apps/polls/assets/Question.jsx:137
-msgid "To poll"
-msgstr "To poll"
+#: apps/polls/assets/Question.jsx:144
+msgid "Show preliminary results"
+msgstr "Show preliminary results"
 
 #: adhocracy4/polls/static/polls/Question.jsx:142
 #: apps/polls/assets/Question.jsx:140
 msgid "Change vote"
 msgstr "Change vote"
 
-#: adhocracy4/polls/static/polls/Question.jsx:145
-#: apps/polls/assets/Question.jsx:144
-msgid "Show preliminary results"
-msgstr "Show preliminary results"
+#: adhocracy4/polls/static/polls/Question.jsx:143
+#: apps/polls/assets/Question.jsx:137
+msgid "To poll"
+msgstr "To poll"
 
-#: adhocracy4/polls/static/polls/Question.jsx:157
+#: adhocracy4/polls/static/polls/Question.jsx:161
 #: apps/polls/assets/Question.jsx:136
 msgid "vote"
 msgid_plural "votes"
@@ -557,26 +557,30 @@ msgstr ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:21
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:49
-msgid "select affiliation"
-msgstr "select affiliation"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:185
-msgid "Information"
-msgstr "Information"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:196
-msgid "Questions"
-msgstr "Questions"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:207
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:10
 msgid "Statistics"
 msgstr "Statistics"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:259
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:11
+msgid "Entries"
+msgstr "Entries"
+
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:12
+msgid "Click to view statistics of answered questions"
+msgstr "Click to view statistics of answered questions"
+
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:13
 msgid "display on screen"
 msgstr "display on screen"
+
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:14
+msgid "Click to view list of marked questions screen"
+msgstr "Click to view list of marked questions screen"
+
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:27
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:57
+msgid "select affiliation"
+msgstr "select affiliation"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_category_select.jsx:15
 msgid "Affiliation"
@@ -590,17 +594,25 @@ msgstr ""
 "Answered questions will be displayed in the statistics according to the "
 "chosen affiliation."
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:21
-msgid "only show marked questions"
-msgstr "only show marked questions"
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:35
+msgid " Filters"
+msgstr " Filters"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:22
-msgid "display only questions which are not hidden"
-msgstr "display only questions which are not hidden"
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:36
+msgid "Click to view filters"
+msgstr "Click to view filters"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:23
-msgid "order by likes"
-msgstr "order by likes"
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:38
+msgid "Click to only display marked questions"
+msgstr "Click to only display marked questions"
+
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:39
+msgid "Click to only display questions which are not hidden"
+msgstr "Click to only display questions which are not hidden"
+
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:40
+msgid "Click to order list by likes"
+msgstr "Click to order list by likes"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_form.jsx:61
 msgid "Here you can ask your question"
@@ -612,30 +624,34 @@ msgid "Add Question"
 msgstr "Add Question"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:4
+msgid "Info"
+msgstr "Info"
+
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:5
 msgid "display question on screen"
 msgstr "display question on screen"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:5
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:6
 msgid "add question to shortlist"
 msgstr "add question to shortlist"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:6
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:7
 msgid "hide question from audience"
 msgstr "hide question from audience"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:7
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:8
 msgid "mark question as answered"
 msgstr "mark question as answered"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:8
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:9
 msgid "is shown in front of a question? It has been marked by the moderation."
 msgstr "is shown in front of a question? It has been marked by the moderation."
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:9
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:10
 msgid "Close information"
 msgstr "Close information"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:10
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:11
 msgid "Open information"
 msgstr "Open information"
 
@@ -652,16 +668,16 @@ msgid "mark as done"
 msgstr "mark as done"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:100
-msgid "added to live list"
-msgstr "added to live list"
+msgid "add to live list"
+msgstr "add to live list"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:101
 msgid "remove from live list"
 msgstr "remove from live list"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:102
-msgid "added to shortlist"
-msgstr "added to shortlist"
+msgid "add to shortlist"
+msgstr "add to shortlist"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:103
 msgid "remove from shortlist"

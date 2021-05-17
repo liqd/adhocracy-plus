@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 10:47+0200\n"
+"POT-Creation-Date: 2021-05-17 14:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,7 +115,7 @@ msgstr "Edit basic settings"
 #: adhocracy4/dashboard/dashboard.py:23
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:18
-#: apps/projects/templates/a4_candy_projects/project_detail.html:90
+#: apps/projects/templates/a4_candy_projects/project_detail.html:82
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:23
 msgid "Information"
 msgstr "Information"
@@ -125,7 +125,7 @@ msgid "Edit project information"
 msgstr "Edit project information"
 
 #: adhocracy4/dashboard/dashboard.py:33
-#: apps/projects/templates/a4_candy_projects/project_detail.html:110
+#: apps/projects/templates/a4_candy_projects/project_detail.html:102
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:41
 msgid "Result"
 msgstr "Result"
@@ -200,7 +200,7 @@ msgid "Only invited users can participate (private)."
 msgstr "Only invited users can participate (private)."
 
 #: adhocracy4/dashboard/forms.py:86
-#: apps/projects/templates/a4_candy_projects/project_detail.html:136
+#: apps/projects/templates/a4_candy_projects/project_detail.html:128
 msgid "Contact for questions"
 msgstr "Contact for questions"
 
@@ -229,18 +229,18 @@ msgid "Address"
 msgstr "Address"
 
 #: adhocracy4/dashboard/forms.py:110
-#: apps/projects/templates/a4_candy_projects/project_detail.html:144
+#: apps/projects/templates/a4_candy_projects/project_detail.html:136
 msgid "Telephone"
 msgstr "Telephone"
 
 #: adhocracy4/dashboard/forms.py:112
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
-#: apps/projects/templates/a4_candy_projects/project_detail.html:148
+#: apps/projects/templates/a4_candy_projects/project_detail.html:140
 msgid "Email"
 msgstr "Email"
 
 #: adhocracy4/dashboard/forms.py:114
-#: apps/projects/templates/a4_candy_projects/project_detail.html:153
+#: apps/projects/templates/a4_candy_projects/project_detail.html:145
 msgid "Website"
 msgstr "Website"
 
@@ -260,7 +260,7 @@ msgstr "Start date"
 msgid "Start time"
 msgstr "Start time"
 
-#: adhocracy4/dashboard/mixins.py:204
+#: adhocracy4/dashboard/mixins.py:207
 msgid "Project successfully duplicated."
 msgstr "Project successfully duplicated."
 
@@ -289,7 +289,7 @@ msgstr "Missing fields for publication"
 #: apps/debate/templates/a4_candy_debate/includes/subject_form.html:11
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:44
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:24
-#: apps/interactiveevents/templates/a4_candy_interactive_events/livestream_dashboard_form.html:18
+#: apps/interactiveevents/templates/a4_candy_interactive_events/extrafields_dashboard_form.html:19
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:28
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:43
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:27
@@ -432,7 +432,7 @@ msgstr "private"
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:103
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
-#: apps/projects/templates/a4_candy_projects/project_detail.html:121
+#: apps/projects/templates/a4_candy_projects/project_detail.html:113
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:19
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:42
 msgid "Edit"
@@ -502,7 +502,7 @@ msgid "Comment count"
 msgstr "Comment count"
 
 #: adhocracy4/exports/mixins.py:164 adhocracy4/labels/dashboard.py:13
-#: apps/ideas/models.py:45 apps/topicprio/models.py:45
+#: apps/ideas/models.py:45 apps/topicprio/models.py:48
 msgid "Labels"
 msgstr "Labels"
 
@@ -687,36 +687,36 @@ msgstr ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 
-#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:584
+#: adhocracy4/modules/models.py:192 adhocracy4/projects/models.py:586
 msgid "day"
 msgstr "day"
 
-#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:584
+#: adhocracy4/modules/models.py:192 adhocracy4/projects/models.py:586
 msgid "days"
 msgstr "days"
 
-#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:585
+#: adhocracy4/modules/models.py:193 adhocracy4/projects/models.py:587
 msgid "hour"
 msgstr "hour"
 
-#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:585
+#: adhocracy4/modules/models.py:193 adhocracy4/projects/models.py:587
 msgid "hours"
 msgstr "hours"
 
-#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:586
+#: adhocracy4/modules/models.py:194 adhocracy4/projects/models.py:588
 msgid "minute"
 msgstr "minute"
 
-#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:586
+#: adhocracy4/modules/models.py:194 adhocracy4/projects/models.py:588
 msgid "minutes"
 msgstr "minutes"
 
-#: adhocracy4/modules/models.py:187 adhocracy4/projects/models.py:587
+#: adhocracy4/modules/models.py:195 adhocracy4/projects/models.py:589
 msgid "second"
 msgstr "second"
 
-#: adhocracy4/modules/models.py:187 adhocracy4/modules/models.py:198
-#: adhocracy4/projects/models.py:587 adhocracy4/projects/models.py:598
+#: adhocracy4/modules/models.py:195 adhocracy4/modules/models.py:206
+#: adhocracy4/projects/models.py:589 adhocracy4/projects/models.py:600
 msgid "seconds"
 msgstr "seconds"
 
@@ -726,7 +726,8 @@ msgstr "Phases cannot run at the same time and must follow after each other."
 
 #: adhocracy4/phases/models.py:71 apps/activities/models.py:21
 #: apps/debate/models.py:27 apps/ideas/models.py:32
-#: apps/offlineevents/models.py:34
+#: apps/offlineevents/models.py:34 apps/topicprio/forms.py:18
+#: apps/topicprio/models.py:31
 msgid "Description"
 msgstr "Description"
 
@@ -905,7 +906,7 @@ msgstr ""
 msgid "Access to the project"
 msgstr "Access to the project"
 
-#: adhocracy4/projects/models.py:223 adhocracy4/projects/models.py:229
+#: adhocracy4/projects/models.py:223 adhocracy4/projects/models.py:230
 #: apps/organisations/models.py:86
 msgid "Header image"
 msgstr "Header image"
@@ -914,19 +915,19 @@ msgstr "Header image"
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
-#: adhocracy4/projects/models.py:232 adhocracy4/projects/models.py:239
+#: adhocracy4/projects/models.py:233 adhocracy4/projects/models.py:241
 msgid "Tile image"
 msgstr "Tile image"
 
-#: adhocracy4/projects/models.py:234
+#: adhocracy4/projects/models.py:235
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
 
-#: adhocracy4/projects/models.py:252
+#: adhocracy4/projects/models.py:254
 msgid "Project is archived"
 msgstr "Project is archived"
 
-#: adhocracy4/projects/models.py:253
+#: adhocracy4/projects/models.py:255
 msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
@@ -934,11 +935,11 @@ msgstr ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
 
-#: adhocracy4/projects/models.py:258
+#: adhocracy4/projects/models.py:260
 msgid "Project topics"
 msgstr "Project topics"
 
-#: adhocracy4/projects/models.py:259
+#: adhocracy4/projects/models.py:261
 msgid "Add topics to your project."
 msgstr "Add topics to your project."
 
@@ -1191,7 +1192,7 @@ msgstr "Create a new proposal"
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:7
 #: adhocracy-plus/templates/a4dashboard/blueprint_list.html:11
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:9
-#: adhocracy-plus/templates/a4modules/module_detail.html:95
+#: adhocracy-plus/templates/a4modules/module_detail.html:99
 msgid "breadcrumbs"
 msgstr "breadcrumbs"
 
@@ -1853,6 +1854,8 @@ msgid "Discuss with us!"
 msgstr "Discuss with us!"
 
 #: apps/debate/templates/a4_candy_debate/includes/subject_list_item.html:39
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:50
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:81
 msgid "Read more"
 msgstr "Read more"
 
@@ -2018,7 +2021,7 @@ msgstr "here you can export all ideas"
 msgid "here you can export all comments"
 msgstr "here you can export all comments"
 
-#: apps/ideas/models.py:35 apps/topicprio/models.py:32
+#: apps/ideas/models.py:35 apps/topicprio/models.py:35
 msgid "Add image"
 msgstr "Add image"
 
@@ -2113,15 +2116,15 @@ msgstr "Edit idea"
 msgid "Your Idea has been deleted"
 msgstr "Your Idea has been deleted"
 
-#: apps/interactiveevents/dashboard.py:15
-msgid "Live Stream"
-msgstr "Live Stream"
+#: apps/interactiveevents/dashboard.py:16
+msgid "Media"
+msgstr "Media"
 
-#: apps/interactiveevents/dashboard.py:41
+#: apps/interactiveevents/dashboard.py:42
 msgid "Affiliations"
 msgstr "Affiliations"
 
-#: apps/interactiveevents/dashboard.py:43
+#: apps/interactiveevents/dashboard.py:44
 msgid "Edit affiliations"
 msgstr "Edit affiliations"
 
@@ -2129,13 +2132,21 @@ msgstr "Edit affiliations"
 msgid "Affiliation"
 msgstr "Affiliation"
 
-#: apps/interactiveevents/models.py:46 apps/questions/models.py:46
+#: apps/interactiveevents/models.py:47 apps/questions/models.py:46
 msgid "Question"
 msgstr "Question"
 
-#: apps/interactiveevents/models.py:54 apps/questions/models.py:54
+#: apps/interactiveevents/models.py:55 apps/questions/models.py:54
 msgid "Characteristic"
 msgstr "Characteristic"
+
+#: apps/interactiveevents/models.py:89
+msgid "Event image"
+msgstr "Event image"
+
+#: apps/interactiveevents/models.py:91
+msgid "The image is displayed next to the event description."
+msgstr "The image is displayed next to the event description."
 
 #: apps/interactiveevents/phases.py:16
 msgid "Add question."
@@ -2144,6 +2155,10 @@ msgstr "Add question."
 #: apps/interactiveevents/phases.py:17
 msgid "Speak Up"
 msgstr "Speak Up"
+
+#: apps/interactiveevents/templates/a4_candy_interactive_events/extrafields_dashboard_form.html:5
+msgid "Edit live stream"
+msgstr "Edit live stream"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/includes/module_affiliations_form.html:3
 msgid ""
@@ -2166,18 +2181,38 @@ msgid "post"
 msgstr "post"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/livequestion_module_detail.html:22
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:22
 msgid " Live now"
 msgstr " Live now"
 
-#: apps/interactiveevents/templates/a4_candy_interactive_events/livestream_dashboard_form.html:5
-msgid "Edit live stream"
-msgstr "Edit live stream"
-
-#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:11
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:10
 msgid "During this event you can hand in questions with your smartphone"
 msgstr "During this event you can hand in questions with your smartphone"
 
-#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:17
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:26
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
+#, python-format
+msgid " %(time_left)s remaining "
+msgstr " %(time_left)s remaining "
+
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:30
+msgid "finished"
+msgstr "finished"
+
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:33
+msgid "Interactive"
+msgstr "Interactive"
+
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:51
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:82
+msgid "Read Less"
+msgstr "Read Less"
+
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:63
+msgid "Type of event"
+msgstr "Type of event"
+
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:90
 msgid "Go to event"
 msgstr "Go to event"
 
@@ -3018,7 +3053,15 @@ msgstr "Find us on social media and share your insights of this participation."
 msgid "Opens in new window"
 msgstr "Opens in new window"
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:91
+#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:88
+msgid ""
+"Currently, there are no public participation processes. Please check again "
+"later."
+msgstr ""
+"Currently, there are no public participation processes. Please check again "
+"later."
+
+#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:93
 #, python-format
 msgid ""
 "Currently, there are no public participation processes. Sign in <a href="
@@ -3029,7 +3072,7 @@ msgstr ""
 "\"%(account_login_url)s?next=%(organisation_url)s\">here</a> or read more in "
 "<a href=\"%(organisation_information_url)s\">About</a>."
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:95
+#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:97
 #, python-format
 msgid ""
 "Currently, there are no public participation processes. Sign in <a href="
@@ -3176,6 +3219,57 @@ msgstr ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are invited to participate in a private project."
 
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
+#, python-format
+msgid "Welcome to the semi-public project: \"%(project_name)s\""
+msgstr "Welcome to the semi-public project: \"%(project_name)s\""
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
+#, python-format
+msgid "Welcome to the private project: \"%(project_name)s\""
+msgstr "Welcome to the private project: \"%(project_name)s\""
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
+#, python-format
+msgid "Link to semi-public project: \"%(project_name)s\""
+msgstr "Link to semi-public project: \"%(project_name)s\""
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
+#, python-format
+msgid "Link to private project: \"%(project_name)s\""
+msgstr "Link to private project: \"%(project_name)s\""
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
+#, python-format
+msgid ""
+"you have accepted the invitation to the semi-public project "
+"\"%(project_name)s\". To participate click on \"Go to Project\"."
+msgstr ""
+"you have accepted the invitation to the semi-public project "
+"\"%(project_name)s\". To participate click on \"Go to Project\"."
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
+#, python-format
+msgid ""
+"you have accepted the invitation to the private project \"%(project_name)s"
+"\". To participate click on \"Go to Project\"."
+msgstr ""
+"you have accepted the invitation to the private project \"%(project_name)s"
+"\". To participate click on \"Go to Project\"."
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:11
+msgid "Go to project"
+msgstr "Go to project"
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:13
+#, python-format
+msgid ""
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you accepted the invitation to participate in a private project."
+msgstr ""
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you accepted the invitation to participate in a private project."
+
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:17
 msgid "Project is private."
 msgstr "Project is private."
@@ -3183,11 +3277,6 @@ msgstr "Project is private."
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:23
 msgid "Project is semi-public."
 msgstr "Project is semi-public."
-
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
-#, python-format
-msgid " %(time_left)s remaining "
-msgstr " %(time_left)s remaining "
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:46
 msgid "more than 1 year remaining"
@@ -3301,7 +3390,7 @@ msgstr "Proceed to login"
 #: apps/users/templates/a4_candy_users/indicator.html:58
 #: adhocracy-plus/templates/account/signup.html:4
 #: adhocracy-plus/templates/account/signup.html:7
-#: adhocracy-plus/templates/account/signup.html:58
+#: adhocracy-plus/templates/account/signup.html:65
 #: adhocracy-plus/templates/socialaccount/signup.html:49
 msgid "Register"
 msgstr "Register"
@@ -3371,47 +3460,42 @@ msgstr ""
 msgid "This project is not yet published."
 msgstr "This project is not yet published."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:65
-#, python-format
-msgid "to project collection %(name)s"
-msgstr "to project collection %(name)s"
-
-#: apps/projects/templates/a4_candy_projects/project_detail.html:100
+#: apps/projects/templates/a4_candy_projects/project_detail.html:92
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:32
 msgid "Participation"
 msgstr "Participation"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:201
-#: adhocracy-plus/templates/a4modules/module_detail.html:117
+#: apps/projects/templates/a4_candy_projects/project_detail.html:194
+#: adhocracy-plus/templates/a4modules/module_detail.html:123
 msgid "Participation is not possible at the moment."
 msgstr "Participation is not possible at the moment."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:204
-#: adhocracy-plus/templates/a4modules/module_detail.html:120
+#: apps/projects/templates/a4_candy_projects/project_detail.html:197
+#: adhocracy-plus/templates/a4modules/module_detail.html:126
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "It starts on %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:207
-#: adhocracy-plus/templates/a4modules/module_detail.html:123
+#: apps/projects/templates/a4_candy_projects/project_detail.html:200
+#: adhocracy-plus/templates/a4modules/module_detail.html:129
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "It continues on %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:210
-#: adhocracy-plus/templates/a4modules/module_detail.html:126
+#: apps/projects/templates/a4_candy_projects/project_detail.html:203
+#: adhocracy-plus/templates/a4modules/module_detail.html:132
 #, python-format
 msgid "It ended on %(date)s."
 msgstr "It ended on %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:225
+#: apps/projects/templates/a4_candy_projects/project_detail.html:218
 #: apps/users/models.py:49
-#: adhocracy-plus/templates/a4modules/module_detail.html:141
+#: adhocracy-plus/templates/a4modules/module_detail.html:147
 msgid "active"
 msgstr "active"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:250
-#: adhocracy-plus/templates/a4modules/module_detail.html:164
+#: apps/projects/templates/a4_candy_projects/project_detail.html:244
+#: adhocracy-plus/templates/a4modules/module_detail.html:171
 msgid ""
 "This project is not publicly visible. Only invited users can see content and "
 "actively participate."
@@ -3419,14 +3503,14 @@ msgstr ""
 "This project is not publicly visible. Only invited users can see content and "
 "actively participate."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:254
-#: adhocracy-plus/templates/a4modules/module_detail.html:170
+#: apps/projects/templates/a4_candy_projects/project_detail.html:248
+#: adhocracy-plus/templates/a4modules/module_detail.html:177
 msgid ""
 "This project is publicly visible. Invited users can actively participate."
 msgstr ""
 "This project is publicly visible. Invited users can actively participate."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:279
+#: apps/projects/templates/a4_candy_projects/project_detail.html:273
 msgid "No results yet."
 msgstr "No results yet."
 
@@ -3828,132 +3912,132 @@ msgstr "Kyrgyz"
 msgid "Russian"
 msgstr "Russian"
 
-#: adhocracy-plus/config/settings/base.py:332
-#: adhocracy-plus/config/settings/base.py:347
+#: adhocracy-plus/config/settings/base.py:333
+#: adhocracy-plus/config/settings/base.py:348
 msgid "Rich text editor"
 msgstr "Rich text editor"
 
-#: adhocracy-plus/config/settings/base.py:449
+#: adhocracy-plus/config/settings/base.py:450
 msgid "suggestion"
 msgstr "suggestion"
 
-#: adhocracy-plus/config/settings/base.py:450
+#: adhocracy-plus/config/settings/base.py:451
 msgid "note"
 msgstr "note"
 
-#: adhocracy-plus/config/settings/base.py:451
+#: adhocracy-plus/config/settings/base.py:452
 msgid "question"
 msgstr "question"
 
-#: adhocracy-plus/config/settings/base.py:491
+#: adhocracy-plus/config/settings/base.py:492
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: adhocracy-plus/config/settings/base.py:492
+#: adhocracy-plus/config/settings/base.py:493
 msgid "Diamond"
 msgstr "Diamond"
 
-#: adhocracy-plus/config/settings/base.py:493
+#: adhocracy-plus/config/settings/base.py:494
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: adhocracy-plus/config/settings/base.py:494
+#: adhocracy-plus/config/settings/base.py:495
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: adhocracy-plus/config/settings/base.py:495
+#: adhocracy-plus/config/settings/base.py:496
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: adhocracy-plus/config/settings/base.py:496
+#: adhocracy-plus/config/settings/base.py:497
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: adhocracy-plus/config/settings/base.py:497
+#: adhocracy-plus/config/settings/base.py:498
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: adhocracy-plus/config/settings/base.py:498
+#: adhocracy-plus/config/settings/base.py:499
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: adhocracy-plus/config/settings/base.py:499
+#: adhocracy-plus/config/settings/base.py:500
 msgid "Star"
 msgstr "Star"
 
-#: adhocracy-plus/config/settings/base.py:500
+#: adhocracy-plus/config/settings/base.py:501
 msgid "Square"
 msgstr "Square"
 
-#: adhocracy-plus/config/settings/base.py:501
+#: adhocracy-plus/config/settings/base.py:502
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: adhocracy-plus/config/settings/base.py:502
+#: adhocracy-plus/config/settings/base.py:503
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: adhocracy-plus/config/settings/base.py:503
+#: adhocracy-plus/config/settings/base.py:504
 msgid "Circle"
 msgstr "Circle"
 
-#: adhocracy-plus/config/settings/base.py:504
+#: adhocracy-plus/config/settings/base.py:505
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: adhocracy-plus/config/settings/base.py:505
+#: adhocracy-plus/config/settings/base.py:506
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: adhocracy-plus/config/settings/base.py:519
+#: adhocracy-plus/config/settings/base.py:520
 msgid "Anti-discrimination"
 msgstr "Anti-discrimination"
 
-#: adhocracy-plus/config/settings/base.py:520
+#: adhocracy-plus/config/settings/base.py:521
 msgid "Work & economy"
 msgstr "Work & economy"
 
-#: adhocracy-plus/config/settings/base.py:521
+#: adhocracy-plus/config/settings/base.py:522
 msgid "Building & living"
 msgstr "Building & living"
 
-#: adhocracy-plus/config/settings/base.py:522
+#: adhocracy-plus/config/settings/base.py:523
 msgid "Education & research"
 msgstr "Education & research"
 
-#: adhocracy-plus/config/settings/base.py:523
+#: adhocracy-plus/config/settings/base.py:524
 msgid "Children, youth & family"
 msgstr "Children, youth & family"
 
-#: adhocracy-plus/config/settings/base.py:524
+#: adhocracy-plus/config/settings/base.py:525
 msgid "Finances"
 msgstr "Finances"
 
-#: adhocracy-plus/config/settings/base.py:525
+#: adhocracy-plus/config/settings/base.py:526
 msgid "Health & sports"
 msgstr "Health & sports"
 
-#: adhocracy-plus/config/settings/base.py:526
+#: adhocracy-plus/config/settings/base.py:527
 msgid "Integration"
 msgstr "Integration"
 
-#: adhocracy-plus/config/settings/base.py:527
+#: adhocracy-plus/config/settings/base.py:528
 msgid "Culture & leisure"
 msgstr "Culture & leisure"
 
-#: adhocracy-plus/config/settings/base.py:528
+#: adhocracy-plus/config/settings/base.py:529
 msgid "Neighborhood & participation"
 msgstr "Neighborhood & participation"
 
-#: adhocracy-plus/config/settings/base.py:529
+#: adhocracy-plus/config/settings/base.py:530
 msgid "Urban development"
 msgstr "Urban development"
 
-#: adhocracy-plus/config/settings/base.py:530
+#: adhocracy-plus/config/settings/base.py:531
 msgid "Environment & public green space"
 msgstr "Environment & public green space"
 
-#: adhocracy-plus/config/settings/base.py:531
+#: adhocracy-plus/config/settings/base.py:532
 msgid "Traffic"
 msgstr "Traffic"
 
@@ -4097,19 +4181,19 @@ msgstr ""
 msgid "This project is in not published yet."
 msgstr "This project is in not published yet."
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:81
+#: adhocracy-plus/templates/a4modules/module_detail.html:85
 msgid "Previous"
 msgstr "Previous"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:84
+#: adhocracy-plus/templates/a4modules/module_detail.html:88
 msgid "of"
 msgstr "of"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:87
+#: adhocracy-plus/templates/a4modules/module_detail.html:91
 msgid "Next"
 msgstr "Next"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:188
+#: adhocracy-plus/templates/a4modules/module_detail.html:195
 msgid "More questions from this online participation"
 msgstr "More questions from this online participation"
 
@@ -4429,7 +4513,7 @@ msgstr ""
 "a>.\n"
 "                "
 
-#: adhocracy-plus/templates/account/signup.html:63
+#: adhocracy-plus/templates/account/signup.html:58
 #, python-format
 msgid ""
 "\n"
@@ -4581,54 +4665,3 @@ msgstr "Login with social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Login with "
-
-#~ msgid ""
-#~ "Instead of just reading about it, you can test all the features of "
-#~ "adhocracy+ yourself on our demo platform. "
-#~ msgstr ""
-#~ "Instead of just reading about it, you can test all the features of "
-#~ "adhocracy+ yourself on our demo platform. "
-
-#~ msgid "adhocracy+"
-#~ msgstr "adhocracy+"
-
-#~ msgid "Internal server error."
-#~ msgstr "Internal server error."
-
-#~ msgid "Back to adhocracy+"
-#~ msgstr "Back to adhocracy+"
-
-#~ msgid ""
-#~ "\n"
-#~ "            With your account on adhocracy+, you can take part in every "
-#~ "public participation project on this platform. This platform allows "
-#~ "organisations initiatives to conduct digital participation projects.\n"
-#~ "            If you have any questions regarding the data protection on "
-#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
-#~ "\"_blank\">further information here</a>.\n"
-#~ "        "
-#~ msgstr ""
-#~ "\n"
-#~ "            With your account on adhocracy+, you can take part in every "
-#~ "public participation project on this platform. This platform allows "
-#~ "organisations initiatives to conduct digital participation projects.\n"
-#~ "            If you have any questions regarding the data protection on "
-#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
-#~ "\"_blank\">further information here</a>.\n"
-#~ "        "
-
-#~ msgid "adhocracy+ is funded by donations."
-#~ msgstr "adhocracy+ is funded by donations."
-
-#~ msgid "Donate now to adhocracy+"
-#~ msgstr "Donate now to adhocracy+"
-
-#~ msgid "adhocracy+ is a participation platform operated by"
-#~ msgstr "adhocracy+ is a participation platform operated by"
-
-#~ msgid ""
-#~ "<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
-#~ "liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
-#~ msgstr ""
-#~ "<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
-#~ "liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
