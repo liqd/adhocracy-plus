@@ -2,29 +2,30 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Translators:
 # Sebastian Hess <sebastian.hess@giz.de>, 2021
 # Luca Thüer <l.thueer@liqd.net>, 2021
 # Katharina Schmid, 2021
 # Кубанычбек Айдаркулов <sleng84@mail.ru>, 2021
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 10:47+0200\n"
+"POT-Creation-Date: 2021-05-17 14:48+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Кубанычбек Айдаркулов <sleng84@mail.ru>, 2021\n"
 "Language-Team: Kyrgyz (https://www.transifex.com/liqd/teams/109316/ky/)\n"
+"Language: ky\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ky\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: adhocracy4/categories/dashboard.py:13 apps/exports/mixins.py:83
+#: adhocracy4/categories/dashboard.py:13
+#: apps/exports/mixins.py:83
 msgid "Categories"
 msgstr "Категориялар"
 
@@ -32,12 +33,15 @@ msgstr "Категориялар"
 msgid "Edit categories"
 msgstr "Категорияларды оңдоо"
 
-#: adhocracy4/categories/fields.py:12 adhocracy4/categories/filters.py:16
-#: adhocracy4/categories/forms.py:45 adhocracy4/exports/mixins.py:151
+#: adhocracy4/categories/fields.py:12
+#: adhocracy4/categories/filters.py:16
+#: adhocracy4/categories/forms.py:45
+#: adhocracy4/exports/mixins.py:151
 msgid "Category"
 msgstr "Категория "
 
-#: adhocracy4/categories/forms.py:38 adhocracy4/labels/forms.py:14
+#: adhocracy4/categories/forms.py:38
+#: adhocracy4/labels/forms.py:14
 msgid "Category name"
 msgstr "Категориянын аталышы"
 
@@ -59,15 +63,17 @@ msgstr ""
 msgid "Add category"
 msgstr "Категорияны кошуу"
 
-#: adhocracy4/comments/models.py:53 apps/budgeting/exports.py:76
-#: apps/debate/exports.py:64 apps/documents/exports.py:41
-#: apps/ideas/exports.py:71 apps/mapideas/exports.py:72
-#: apps/polls/exports.py:38 apps/topicprio/exports.py:69
+#: adhocracy4/comments/models.py:53
+#: apps/budgeting/exports.py:76 apps/debate/exports.py:64
+#: apps/documents/exports.py:41 apps/ideas/exports.py:71
+#: apps/mapideas/exports.py:72 apps/polls/exports.py:38
+#: apps/topicprio/exports.py:69
 msgctxt "noun"
 msgid "Comment"
 msgstr "Пикир "
 
-#: adhocracy4/comments/models.py:54 adhocracy4/exports/mixins.py:123
+#: adhocracy4/comments/models.py:54
+#: adhocracy4/exports/mixins.py:123
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:16
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:17
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:18
@@ -122,7 +128,7 @@ msgstr "Негизги тууралоону өзгөртүү "
 #: adhocracy4/dashboard/dashboard.py:23
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:18
-#: apps/projects/templates/a4_candy_projects/project_detail.html:90
+#: apps/projects/templates/a4_candy_projects/project_detail.html:82
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:23
 msgid "Information"
 msgstr "Маалымат"
@@ -132,7 +138,7 @@ msgid "Edit project information"
 msgstr "Долбоор тууралуу маалыматты оңдоо "
 
 #: adhocracy4/dashboard/dashboard.py:33
-#: apps/projects/templates/a4_candy_projects/project_detail.html:110
+#: apps/projects/templates/a4_candy_projects/project_detail.html:102
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:41
 msgid "Result"
 msgstr "Жыйынтык"
@@ -174,16 +180,19 @@ msgstr "Чагылдыруу бөлүгүн өзгөртүү "
 msgid "Search"
 msgstr "Издөө"
 
-#: adhocracy4/dashboard/filter.py:15 apps/budgeting/views.py:26
+#: adhocracy4/dashboard/filter.py:15
+#: apps/budgeting/views.py:26
 msgid "Archived"
 msgstr "Архивге киргизилди"
 
-#: adhocracy4/dashboard/filter.py:19 adhocracy4/filters/widgets.py:32
+#: adhocracy4/dashboard/filter.py:19
+#: adhocracy4/filters/widgets.py:32
 #: apps/budgeting/views.py:30
 msgid "All"
 msgstr "Баардыгы"
 
-#: adhocracy4/dashboard/filter.py:20 apps/budgeting/views.py:31
+#: adhocracy4/dashboard/filter.py:20
+#: apps/budgeting/views.py:31
 msgid "No"
 msgstr "Жок"
 
@@ -207,7 +216,7 @@ msgid "Only invited users can participate (private)."
 msgstr "Чакырылган колдонуучулар гана катыша алат (чакырылгандар гана)."
 
 #: adhocracy4/dashboard/forms.py:86
-#: apps/projects/templates/a4_candy_projects/project_detail.html:136
+#: apps/projects/templates/a4_candy_projects/project_detail.html:128
 msgid "Contact for questions"
 msgstr "Суроолор үчүн байланыш маалыматтары. "
 
@@ -218,15 +227,16 @@ msgid ""
 "person will be shown in the information tab on the project page."
 msgstr ""
 "Сураныч, байланышуу үчүн адамдын байланыш маалыматын жазыңыз. Андан соң "
-"колдонуучу бул долбоорду ким жүзөгө ашырып жаткандыгын жана кимге суроо бере"
-" аларын билет. Байланышуу үчүн адис долбоордун баракчасында маалымат "
+"колдонуучу бул долбоорду ким жүзөгө ашырып жаткандыгын жана кимге суроо бере "
+"аларын билет. Байланышуу үчүн адис долбоордун баракчасында маалымат "
 "бөлүгүндө жазылат.  "
 
 #: adhocracy4/dashboard/forms.py:92
 msgid "More contact possibilities"
 msgstr "Байланыштын көбүрөөк мүмкүнчүлүктөрү"
 
-#: adhocracy4/dashboard/forms.py:105 adhocracy4/phases/models.py:69
+#: adhocracy4/dashboard/forms.py:105
+#: adhocracy4/phases/models.py:69
 #: apps/newsletters/models.py:30
 #: apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:7
 msgid "Name"
@@ -237,22 +247,23 @@ msgid "Address"
 msgstr "Дареги"
 
 #: adhocracy4/dashboard/forms.py:110
-#: apps/projects/templates/a4_candy_projects/project_detail.html:144
+#: apps/projects/templates/a4_candy_projects/project_detail.html:136
 msgid "Telephone"
 msgstr "Телефону"
 
 #: adhocracy4/dashboard/forms.py:112
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
-#: apps/projects/templates/a4_candy_projects/project_detail.html:148
+#: apps/projects/templates/a4_candy_projects/project_detail.html:140
 msgid "Email"
 msgstr "Электрондук почта"
 
 #: adhocracy4/dashboard/forms.py:114
-#: apps/projects/templates/a4_candy_projects/project_detail.html:153
+#: apps/projects/templates/a4_candy_projects/project_detail.html:145
 msgid "Website"
 msgstr "Вебсайт"
 
-#: adhocracy4/dashboard/forms.py:144 adhocracy4/phases/models.py:77
+#: adhocracy4/dashboard/forms.py:144
+#: adhocracy4/phases/models.py:77
 msgid "End date"
 msgstr "Аяктоо күнү"
 
@@ -260,7 +271,8 @@ msgstr "Аяктоо күнү"
 msgid "End time"
 msgstr "Аяктоо убактысы"
 
-#: adhocracy4/dashboard/forms.py:150 adhocracy4/phases/models.py:75
+#: adhocracy4/dashboard/forms.py:150
+#: adhocracy4/phases/models.py:75
 msgid "Start date"
 msgstr "Башталуу күнү"
 
@@ -268,7 +280,7 @@ msgstr "Башталуу күнү"
 msgid "Start time"
 msgstr "Башталуу убактысы"
 
-#: adhocracy4/dashboard/mixins.py:204
+#: adhocracy4/dashboard/mixins.py:207
 msgid "Project successfully duplicated."
 msgstr "Долбоордун көчүрмөсү ийгиликтүү жасалды."
 
@@ -297,7 +309,7 @@ msgstr "Жарыялоо үчүн тилкелер жок"
 #: apps/debate/templates/a4_candy_debate/includes/subject_form.html:11
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:44
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:24
-#: apps/interactiveevents/templates/a4_candy_interactive_events/livestream_dashboard_form.html:18
+#: apps/interactiveevents/templates/a4_candy_interactive_events/extrafields_dashboard_form.html:19
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:28
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:43
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:27
@@ -440,7 +452,7 @@ msgstr "жеке"
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:103
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
-#: apps/projects/templates/a4_candy_projects/project_detail.html:121
+#: apps/projects/templates/a4_candy_projects/project_detail.html:113
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:19
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:42
 msgid "Edit"
@@ -461,7 +473,8 @@ msgstr "Биз бир да долбоорду таба алган жокпуз"
 msgid "Project successfully created."
 msgstr "Долбоор ийгиликтүү түзүлдү"
 
-#: adhocracy4/dashboard/views.py:154 apps/dashboard/views.py:121
+#: adhocracy4/dashboard/views.py:154
+#: apps/dashboard/views.py:121
 msgid "Invalid action"
 msgstr "Уруксат берилбеген иш-аракет"
 
@@ -509,8 +522,9 @@ msgstr "Терс рейтингдер "
 msgid "Comment count"
 msgstr "Пикирлердин саны"
 
-#: adhocracy4/exports/mixins.py:164 adhocracy4/labels/dashboard.py:13
-#: apps/ideas/models.py:45 apps/topicprio/models.py:45
+#: adhocracy4/exports/mixins.py:164
+#: adhocracy4/labels/dashboard.py:13
+#: apps/ideas/models.py:45 apps/topicprio/models.py:48
 msgid "Labels"
 msgstr "Ярлыктар"
 
@@ -555,8 +569,8 @@ msgid ""
 msgstr ""
 "{help_prefix}Ал туурасынан эң аз {min_resolution[0]}пиксель  жана узунунан "
 "{min_resolution[1]}пиксель болушу керек. Файлдардын уруксат берилген "
-"форматтары: {fileformats_str}. Файлдын өлчөмү {max_size_mb}МБ жогору болбошу"
-" керек. "
+"форматтары: {fileformats_str}. Файлдын өлчөмү {max_size_mb}МБ жогору болбошу "
+"керек. "
 
 #: adhocracy4/images/fields.py:91
 #, python-brace-format
@@ -588,7 +602,8 @@ msgid ""
 "            "
 msgstr ""
 "\n"
-"             Сиздин сүрөт жүктөлөт / өзгөртүүлөрдү сактагандан кийин өчүрүлдү \n"
+"             Сиздин сүрөт жүктөлөт / өзгөртүүлөрдү сактагандан кийин "
+"өчүрүлдү \n"
 "             бул баракчанын аягында."
 
 #: adhocracy4/images/validators.py:20
@@ -614,8 +629,7 @@ msgstr "Сүрөт узунунан {min_height} пикселден кем бо�
 #, python-brace-format
 msgid "Image aspect ratio should be {aspect_width}:{aspect_height}"
 msgstr ""
-"Сүрөттүн каптал жактарынын катышы {aspect_width}:{aspect_height} болушу "
-"керек"
+"Сүрөттүн каптал жактарынын катышы {aspect_width}:{aspect_height} болушу керек"
 
 #: adhocracy4/images/widgets.py:25
 msgid "Select a picture from your local folder."
@@ -637,13 +651,15 @@ msgid ""
 msgstr ""
 "Бул бөлүмдө Сиз \n"
 "ярлыктарды жасасаңыз болот. Ярлыктарды жасоодо ар бир салым алардын \n"
-"бирине  же бир нечесине киргизилиши керек. Ошентип, контентти жиктөөгө болот. "
+"бирине  же бир нечесине киргизилиши керек. Ошентип, контентти жиктөөгө "
+"болот. "
 
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
 msgid "Add label"
 msgstr "Ярлыкты кошуу"
 
-#: adhocracy4/maps/admin.py:14 adhocracy4/maps/models.py:11
+#: adhocracy4/maps/admin.py:14
+#: adhocracy4/maps/models.py:11
 msgid "Polygon"
 msgstr "Көп бурчтук"
 
@@ -697,36 +713,45 @@ msgstr ""
 "тууралуу  кененирээк маалыматтарда жазылган. Кыскача мүнөздөмө  512 "
 "символдон ашпашы керек. "
 
-#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:584
+#: adhocracy4/modules/models.py:192
+#: adhocracy4/projects/models.py:586
 msgid "day"
 msgstr "күн"
 
-#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:584
+#: adhocracy4/modules/models.py:192
+#: adhocracy4/projects/models.py:586
 msgid "days"
 msgstr "күндөр"
 
-#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:585
+#: adhocracy4/modules/models.py:193
+#: adhocracy4/projects/models.py:587
 msgid "hour"
 msgstr "саат"
 
-#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:585
+#: adhocracy4/modules/models.py:193
+#: adhocracy4/projects/models.py:587
 msgid "hours"
 msgstr "сааттар"
 
-#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:586
+#: adhocracy4/modules/models.py:194
+#: adhocracy4/projects/models.py:588
 msgid "minute"
 msgstr "мүнөт"
 
-#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:586
+#: adhocracy4/modules/models.py:194
+#: adhocracy4/projects/models.py:588
 msgid "minutes"
 msgstr "мүнөттөр"
 
-#: adhocracy4/modules/models.py:187 adhocracy4/projects/models.py:587
+#: adhocracy4/modules/models.py:195
+#: adhocracy4/projects/models.py:589
 msgid "second"
 msgstr "секунда"
 
-#: adhocracy4/modules/models.py:187 adhocracy4/modules/models.py:198
-#: adhocracy4/projects/models.py:587 adhocracy4/projects/models.py:598
+#: adhocracy4/modules/models.py:195
+#: adhocracy4/modules/models.py:206
+#: adhocracy4/projects/models.py:589
+#: adhocracy4/projects/models.py:600
 msgid "seconds"
 msgstr "секундалар"
 
@@ -736,9 +761,10 @@ msgstr ""
 "Фазалар  бир убакта аткарылышы мүмкүн эмес жана биринин аркасынан бири "
 "уланышы керек. "
 
-#: adhocracy4/phases/models.py:71 apps/activities/models.py:21
-#: apps/debate/models.py:27 apps/ideas/models.py:32
-#: apps/offlineevents/models.py:34
+#: adhocracy4/phases/models.py:71
+#: apps/activities/models.py:21 apps/debate/models.py:27
+#: apps/ideas/models.py:32 apps/offlineevents/models.py:34
+#: apps/topicprio/forms.py:18 apps/topicprio/models.py:31
 msgid "Description"
 msgstr "Мүнөздөмө "
 
@@ -746,16 +772,18 @@ msgstr "Мүнөздөмө "
 msgid "End date can not be before start date."
 msgstr "Аяктоо күнү башталуу күнүнөн эртерээк болушу мүмкүн эмес. "
 
-#: adhocracy4/phases/models.py:100 adhocracy4/phases/models.py:104
+#: adhocracy4/phases/models.py:100
+#: adhocracy4/phases/models.py:104
 msgid "Either both or no date has to be set."
 msgstr "Эки датаны тең жазуу керек же дата такыр жазылбайт. "
 
-#: adhocracy4/polls/dashboard.py:14 apps/dashboard/blueprints.py:85
-#: apps/polls/dashboard.py:15
+#: adhocracy4/polls/dashboard.py:14
+#: apps/dashboard/blueprints.py:85 apps/polls/dashboard.py:15
 msgid "Poll"
 msgstr "Сурамжылоо"
 
-#: adhocracy4/polls/phases.py:15 apps/polls/phases.py:15
+#: adhocracy4/polls/phases.py:15
+#: apps/polls/phases.py:15
 msgid "Voting phase"
 msgstr "Добуш берүү фазасы"
 
@@ -763,7 +791,8 @@ msgstr "Добуш берүү фазасы"
 msgid "Cast votes and discuss the poll."
 msgstr "Добуштарды эсептеп, сурамжылоону талкуулоо керек."
 
-#: adhocracy4/polls/phases.py:17 apps/polls/phases.py:17
+#: adhocracy4/polls/phases.py:17
+#: apps/polls/phases.py:17
 msgid "polls"
 msgstr "сурамжылоолор "
 
@@ -786,27 +815,32 @@ msgstr ""
 msgid "Edit poll"
 msgstr "Сурамжылоону оңдоо"
 
-#: adhocracy4/polls/validators.py:15 apps/polls/validators.py:15
+#: adhocracy4/polls/validators.py:15
+#: apps/polls/validators.py:15
 #, python-format
 msgid "Item of type %(item)s for that module already exists"
 msgstr "Бул модуль үчүн %(item)s түрдөгү пункт мурунтан бар. "
 
-#: adhocracy4/polls/validators.py:38 apps/polls/validators.py:38
+#: adhocracy4/polls/validators.py:38
+#: apps/polls/validators.py:38
 msgid "Only one vote per question is allowed per user."
 msgstr ""
 "Ар бир колдонуучуга бир суроо үчүн бир гана добушту берүүгө  уруксат "
 "берилет. "
 
-#: adhocracy4/polls/validators.py:47 apps/polls/validators.py:47
+#: adhocracy4/polls/validators.py:47
+#: apps/polls/validators.py:47
 msgid "Choice has to belong to the question set in the url."
 msgstr "Тандоо URL-даректе жазылган суроого тиешелүү болушу керек."
 
-#: adhocracy4/projects/admin.py:8 apps/newsletters/forms.py:31
+#: adhocracy4/projects/admin.py:8
+#: apps/newsletters/forms.py:31
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Долбоор "
 
-#: adhocracy4/projects/admin.py:47 apps/projects/admin.py:39
+#: adhocracy4/projects/admin.py:47
+#: apps/projects/admin.py:39
 msgid "Information and result"
 msgstr "Маалымат жана жыйынтык"
 
@@ -817,12 +851,13 @@ msgstr "Маалымат жана жыйынтык"
 msgid "Settings"
 msgstr "Тууралоо "
 
-#: adhocracy4/projects/admin.py:54 apps/projects/admin.py:47
+#: adhocracy4/projects/admin.py:54
+#: apps/projects/admin.py:47
 msgid "Images"
 msgstr "Сүрөттөр"
 
-#: adhocracy4/projects/admin.py:59 apps/projects/admin.py:52
-#: adhocracy-plus/templates/email_base.html:114
+#: adhocracy4/projects/admin.py:59
+#: apps/projects/admin.py:52 adhocracy-plus/templates/email_base.html:114
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "Байланыш маалыматтары"
@@ -836,8 +871,8 @@ msgid ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
 msgstr ""
-"Телефон номерлер сандарды, боштукту жана төмөнкү символдорду камтый алат: -,"
-" +, (,).  Телефон номерде символдун саны   8ден тартып 20га чейин  болушу "
+"Телефон номерлер сандарды, боштукту жана төмөнкү символдорду камтый алат: -, "
+"+, (,).  Телефон номерде символдун саны   8ден тартып 20га чейин  болушу "
 "керек."
 
 #: adhocracy4/projects/models.py:49
@@ -896,8 +931,8 @@ msgstr "Долбооруңуздун мүнөздөмөсү "
 #: adhocracy4/projects/models.py:201
 msgid ""
 "This description should tell participants what the goal of the project is, "
-"how the project’s participation will look like. It will be always visible in"
-" the „Info“ tab on your project’s page."
+"how the project’s participation will look like. It will be always visible in "
+"the „Info“ tab on your project’s page."
 msgstr ""
 "Бул мүнөздөмө катышуучуларга долбоордун максаты кандай экендигин жана "
 "долбоордо катышуу кандай болорун билдириши керек. Ал долбооруңуздун "
@@ -909,8 +944,8 @@ msgstr "Долбооруңуздун жыйынтыктары "
 
 #: adhocracy4/projects/models.py:210
 msgid ""
-"Here you should explain what the expected outcome of the project will be and"
-" how you are planning to use the results. If the project is finished you "
+"Here you should explain what the expected outcome of the project will be and "
+"how you are planning to use the results. If the project is finished you "
 "should add a summary of the results."
 msgstr ""
 "Мында Сиз долбоордун күтүлүп жаткан натыйжасы кандай болорун  жана "
@@ -921,28 +956,31 @@ msgstr ""
 msgid "Access to the project"
 msgstr "Долбоорду көрүүгө уруксат "
 
-#: adhocracy4/projects/models.py:223 adhocracy4/projects/models.py:229
+#: adhocracy4/projects/models.py:223
+#: adhocracy4/projects/models.py:230
 #: apps/organisations/models.py:86
 msgid "Header image"
 msgstr "Башкы сүрөт"
 
-#: adhocracy4/projects/models.py:225 apps/organisations/models.py:88
+#: adhocracy4/projects/models.py:225
+#: apps/organisations/models.py:88
 msgid "The image will be shown as a decorative background image."
 msgstr "Сүрөт кооздук үчүн фондук сүрөт катары көрүнүп турат. "
 
-#: adhocracy4/projects/models.py:232 adhocracy4/projects/models.py:239
+#: adhocracy4/projects/models.py:233
+#: adhocracy4/projects/models.py:241
 msgid "Tile image"
 msgstr "Сүрөттү жаап салуу."
 
-#: adhocracy4/projects/models.py:234
+#: adhocracy4/projects/models.py:235
 msgid "The image will be shown in the project tile."
 msgstr "Сүрөт долбоордун төрт бурчтуу бөлүгүндө  болот."
 
-#: adhocracy4/projects/models.py:252
+#: adhocracy4/projects/models.py:254
 msgid "Project is archived"
 msgstr "Долбоор архивге киргизилди. "
 
-#: adhocracy4/projects/models.py:253
+#: adhocracy4/projects/models.py:255
 msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
@@ -950,11 +988,11 @@ msgstr ""
 "Архивдеги долбоорлор долбоорлордун серебинде көрүнбөйт. Долбоордун "
 "уюштуруучулары үчүн алар мурдагыдай эле аспаптар панелинде көрүнүп турат. "
 
-#: adhocracy4/projects/models.py:258
+#: adhocracy4/projects/models.py:260
 msgid "Project topics"
 msgstr "Долбоордун темалары"
 
-#: adhocracy4/projects/models.py:259
+#: adhocracy4/projects/models.py:261
 msgid "Add topics to your project."
 msgstr "Долбооруңузга тема кошуңуз."
 
@@ -1207,7 +1245,7 @@ msgstr "Жаңы сунушту түзүү"
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:7
 #: adhocracy-plus/templates/a4dashboard/blueprint_list.html:11
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:9
-#: adhocracy-plus/templates/a4modules/module_detail.html:95
+#: adhocracy-plus/templates/a4modules/module_detail.html:99
 msgid "breadcrumbs"
 msgstr "Каралуучу файлга жол"
 
@@ -1551,8 +1589,8 @@ msgstr "Тапшырык"
 #: apps/contrib/mixins.py:4
 msgid ""
 "I hereby confirm that the copyrights for this photo are with me or that I "
-"have received rights of use from the author. I also confirm that the privacy"
-" rights of depicted third persons are not violated. "
+"have received rights of use from the author. I also confirm that the privacy "
+"rights of depicted third persons are not violated. "
 msgstr ""
 "Муну менен бул сүрөткө болгон автордук укуктар мага таандык болгондугун  же "
 "мен автордон колдонуу үчүн укукту алгандыгымды тастыктайм. Ошондой эле мен "
@@ -1561,8 +1599,8 @@ msgstr ""
 
 #: apps/contrib/mixins.py:58
 msgid ""
-"You want to upload an image. Please check that you have the right of use for"
-" the image."
+"You want to upload an image. Please check that you have the right of use for "
+"the image."
 msgstr ""
 "Сиз сүрөттү жүктөгүңүз келди. Сүрөттү пайдалануу укугунун Сизде   "
 "болгондугун текшериңиз. "
@@ -1658,9 +1696,8 @@ msgid ""
 "In a first phase, participants can submit their own ideas and discuss the "
 "ideas of others. In a second phase, the ideas can be rated (pro/contra)."
 msgstr ""
-"Биринчи фазада катышуучулар өзүнүн идеяларын сунуштап, башкалардын идеяларын"
-" талкуулай алышат. Экинчи фазада идеялар бааланат (макулмун / макул "
-"эмесмин). "
+"Биринчи фазада катышуучулар өзүнүн идеяларын сунуштап, башкалардын идеяларын "
+"талкуулай алышат. Экинчи фазада идеялар бааланат (макулмун / макул эмесмин). "
 
 #: apps/dashboard/blueprints.py:57
 msgid "Spatial Idea Challenge"
@@ -1673,8 +1710,8 @@ msgid ""
 "rated (pro/contra)."
 msgstr ""
 "Биринчи баскычта катышуучулар өзүнүн идеяларын сунуштап, аларды картада "
-"белгилей алышат жана башкалардын идеяларын талкуулай алышат. Экинчи баскычта"
-" идеялар бааланат (макулмун / макул эмесмин). "
+"белгилей алышат жана башкалардын идеяларын талкуулай алышат. Экинчи баскычта "
+"идеялар бааланат (макулмун / макул эмесмин). "
 
 #: apps/dashboard/blueprints.py:72
 msgid "Text Review"
@@ -1689,8 +1726,8 @@ msgstr ""
 #: apps/dashboard/blueprints.py:87
 msgid "Participants can answer one or more questions with predefined choices."
 msgstr ""
-"Катышуучулар алдын ала аныкталган тандоо менен бир же бир нече суроого  жооп"
-" бере алат. "
+"Катышуучулар алдын ала аныкталган тандоо менен бир же бир нече суроого  жооп "
+"бере алат. "
 
 #: apps/dashboard/blueprints.py:98
 msgid "Participatory budgeting"
@@ -1698,12 +1735,12 @@ msgstr "Жергиликтүү бюджетти коомчулуктун кат�
 
 #: apps/dashboard/blueprints.py:100
 msgid ""
-"Participants can submit their own suggestions, mark them on a map, and add a"
-" budget. The ideas of others can be discussed and rated (pro/contra)."
+"Participants can submit their own suggestions, mark them on a map, and add a "
+"budget. The ideas of others can be discussed and rated (pro/contra)."
 msgstr ""
 "Катышуучулар өзүнүн сунуштарын киргизип, аларды картада белгилеп, бюджетке "
-"кошо алат. Башкалардын идеяларын талкуулоого жана баалоого болот "
-"(макулмун/макул эмесмин)."
+"кошо алат. Башкалардын идеяларын талкуулоого жана баалоого болот (макулмун/"
+"макул эмесмин)."
 
 #: apps/dashboard/blueprints.py:111
 msgid "Interactive Event"
@@ -1728,9 +1765,8 @@ msgid ""
 "Participants can discuss and rate (pro/contra) previously added ideas and "
 "topics. Participants cannot add ideas or topics."
 msgstr ""
-"Катышуучулар мурун кошулган идеяларды жана темаларды талкуулап баалай алышат"
-" (макулмун / макул эмесмин). Катышуучулар идеяларды же темаларды кошо "
-"албайт. "
+"Катышуучулар мурун кошулган идеяларды жана темаларды талкуулап баалай алышат "
+"(макулмун / макул эмесмин). Катышуучулар идеяларды же темаларды кошо албайт. "
 
 #: apps/dashboard/blueprints.py:140
 msgid "Debate"
@@ -1743,8 +1779,8 @@ msgid ""
 "contributions from other users."
 msgstr ""
 "Катышуучулар жарыяланган темаларды  же суроолорду талкуулай алышат. Ал үчүн "
-"катышуучулар жарыяланган темалар / суроолор, ошондой эле башкалардын салымы"
-"  боюнча пикир калтырат. "
+"катышуучулар жарыяланган темалар / суроолор, ошондой эле башкалардын салымы  "
+"боюнча пикир калтырат. "
 
 #: apps/dashboard/forms.py:15
 msgid "Organisation name"
@@ -1770,8 +1806,8 @@ msgid ""
 "Only invited users can see project tile and content and can participate "
 "(private)."
 msgstr ""
-"Чакырылган колдонуучулар гана долбоордун төрт бурчтук бөлүгүн жана контентин"
-" көрө алышат жана катыша алышат (жабык жетки). "
+"Чакырылган колдонуучулар гана долбоордун төрт бурчтук бөлүгүн жана контентин "
+"көрө алышат жана катыша алышат (жабык жетки). "
 
 #: apps/dashboard/templates/a4_candy_dashboard/includes/module_blueprint_list_tile.html:17
 msgid "Add module"
@@ -1787,8 +1823,8 @@ msgid ""
 "Please add a module from the list. You can later add more modules to the "
 "project, edit them or remove them again."
 msgstr ""
-"Сураныч, тизмедеги модулду кошуңуз. Кийинчирээк долбоорго кошумча модулдарды"
-" кошууга, оңдоого же кайрадан өчүрүүгө болот. "
+"Сураныч, тизмедеги модулду кошуңуз. Кийинчирээк долбоорго кошумча модулдарды "
+"кошууга, оңдоого же кайрадан өчүрүүгө болот. "
 
 #: apps/dashboard/views.py:51
 msgid "The module was created"
@@ -1849,8 +1885,8 @@ msgid ""
 "350 char.). This field is only shown in the participation if it is filled "
 "out."
 msgstr ""
-"Аталышка кошумча катары Сиз кошумча түшүндүрүүчү текстти жазсаңыз болот ( "
-"350 символдон ашпашы керек). Катышууда бул тилке толтурулганда гана "
+"Аталышка кошумча катары Сиз кошумча түшүндүрүүчү текстти жазсаңыз болот "
+"( 350 символдон ашпашы керек). Катышууда бул тилке толтурулганда гана "
 "чагылдырылат. "
 
 #: apps/debate/phases.py:15
@@ -1876,6 +1912,8 @@ msgid "Discuss with us!"
 msgstr "Муну биз менен талкуулаңыз!"
 
 #: apps/debate/templates/a4_candy_debate/includes/subject_list_item.html:39
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:50
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:81
 msgid "Read more"
 msgstr "Көбүрөөк окуу"
 
@@ -1991,8 +2029,8 @@ msgid ""
 "You need to login first. By clicking \"Login\" a popup will open so you can "
 "sign in safely. Do you want to login now?"
 msgstr ""
-"Сиз киришиңиз керек. \"Кирүү\" баскычына басууда кошумча терезе пайда болот,"
-" ал системага коопсуз кирүү үчүн ылайыкталган. Сиз азыр киргиңиз келеби? "
+"Сиз киришиңиз керек. \"Кирүү\" баскычына басууда кошумча терезе пайда болот, "
+"ал системага коопсуз кирүү үчүн ылайыкталган. Сиз азыр киргиңиз келеби? "
 
 #: apps/embed/templates/a4_candy_embed/includes/project_embed_code.html:4
 msgid "Embed Code"
@@ -2030,8 +2068,8 @@ msgstr "Өткөрүү "
 msgid ""
 "You can export the results of your participation project as an excel file."
 msgstr ""
-"Сиздин катышуу долбооруңуздун жыйынтыктарын excel  файлы түрүндө  өткөрсөңүз"
-" болот. "
+"Сиздин катышуу долбооруңуздун жыйынтыктарын excel  файлы түрүндө  өткөрсөңүз "
+"болот. "
 
 #: apps/exports/templates/a4_candy_exports/export_dashboard.html:19
 msgid "here you can export all ideas"
@@ -2041,7 +2079,7 @@ msgstr "бул жакта сиз бардык идеяларды өткөрө а
 msgid "here you can export all comments"
 msgstr "бул жакта сиз бардык пикирлерди өткөрө аласыз "
 
-#: apps/ideas/models.py:35 apps/topicprio/models.py:32
+#: apps/ideas/models.py:35 apps/topicprio/models.py:35
 msgid "Add image"
 msgstr "Сүрөттү кошуу "
 
@@ -2139,15 +2177,15 @@ msgstr "Идеяны өзгөртүү "
 msgid "Your Idea has been deleted"
 msgstr "Сиздин идея өчүрүлгөн "
 
-#: apps/interactiveevents/dashboard.py:15
-msgid "Live Stream"
-msgstr "Түз эфир "
+#: apps/interactiveevents/dashboard.py:16
+msgid "Media"
+msgstr ""
 
-#: apps/interactiveevents/dashboard.py:41
+#: apps/interactiveevents/dashboard.py:42
 msgid "Affiliations"
 msgstr "Таандыктыктар "
 
-#: apps/interactiveevents/dashboard.py:43
+#: apps/interactiveevents/dashboard.py:44
 msgid "Edit affiliations"
 msgstr "Таандыктыкты өзгөртүү "
 
@@ -2155,13 +2193,21 @@ msgstr "Таандыктыкты өзгөртүү "
 msgid "Affiliation"
 msgstr "Таандыктык "
 
-#: apps/interactiveevents/models.py:46 apps/questions/models.py:46
+#: apps/interactiveevents/models.py:47 apps/questions/models.py:46
 msgid "Question"
 msgstr "Суроо"
 
-#: apps/interactiveevents/models.py:54 apps/questions/models.py:54
+#: apps/interactiveevents/models.py:55 apps/questions/models.py:54
 msgid "Characteristic"
 msgstr "Мүнөздөмө "
+
+#: apps/interactiveevents/models.py:89
+msgid "Event image"
+msgstr ""
+
+#: apps/interactiveevents/models.py:91
+msgid "The image is displayed next to the event description."
+msgstr ""
 
 #: apps/interactiveevents/phases.py:16
 msgid "Add question."
@@ -2171,13 +2217,19 @@ msgstr "Суроону кошуу. "
 msgid "Speak Up"
 msgstr "Ойду билдирүү "
 
+#: apps/interactiveevents/templates/a4_candy_interactive_events/extrafields_dashboard_form.html:5
+msgid "Edit live stream"
+msgstr "Түз эфирди оңдоо "
+
 #: apps/interactiveevents/templates/a4_candy_interactive_events/includes/module_affiliations_form.html:3
 msgid ""
 "Here you can specify affiliations. Users must classify\n"
-"    questions accordingly. The questions can be filtered by affiliation and evaluated in the\n"
+"    questions accordingly. The questions can be filtered by affiliation and "
+"evaluated in the\n"
 "    statistics."
 msgstr ""
-"Бул жакта таандыктыкты белгилесеңиз болот. Колдонуучулар суроолорду тийиштүү түрдө \n"
+"Бул жакта таандыктыкты белгилесеңиз болот. Колдонуучулар суроолорду тийиштүү "
+"түрдө \n"
 "жиктеши керек. Суроолорду таандыктыгы боюнча  иргеп, \n"
 "статистика боюнча баалоого болот. "
 
@@ -2190,19 +2242,39 @@ msgid "post"
 msgstr "билдирүү "
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/livequestion_module_detail.html:22
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:22
 msgid " Live now"
 msgstr "Азыркы учурдагы түз эфир "
 
-#: apps/interactiveevents/templates/a4_candy_interactive_events/livestream_dashboard_form.html:5
-msgid "Edit live stream"
-msgstr "Түз эфирди оңдоо "
-
-#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:11
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:10
 msgid "During this event you can hand in questions with your smartphone"
 msgstr ""
 "Бул иш-чара учурунда Сиз өзүңүздүн смартфонуңуздан суроолорду бере аласыз. "
 
-#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:17
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:26
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
+#, python-format
+msgid " %(time_left)s remaining "
+msgstr "%(time_left)sкалды"
+
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:30
+msgid "finished"
+msgstr ""
+
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:33
+msgid "Interactive"
+msgstr ""
+
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:51
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:82
+msgid "Read Less"
+msgstr ""
+
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:63
+msgid "Type of event"
+msgstr ""
+
+#: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:90
 msgid "Go to event"
 msgstr "Иш-чарага өтүү "
 
@@ -2227,8 +2299,8 @@ msgid ""
 "I confirm that I have read and accepted the {}terms of use{} and the {}data "
 "protection policy{}."
 msgstr ""
-"Мен {} колдонуу шарттарын {}  жана {} маалыматтарды коргоо саясатын {}  окуп"
-" чыккандыгымды жана кабыл алганымды тастыктайм."
+"Мен {} колдонуу шарттарын {}  жана {} маалыматтарды коргоо саясатын {}  окуп "
+"чыккандыгымды жана кабыл алганымды тастыктайм."
 
 #: apps/mapideas/forms.py:22
 msgid "Please locate your proposal on the map."
@@ -2243,8 +2315,8 @@ msgid ""
 "Click inside the marked area or type in an address to set the marker. A set "
 "marker can be dragged when pressed."
 msgstr ""
-"Маркерди орнотуу үчүн белгиленген бөлүктүн ичине басыңыз же даректи жазыңыз."
-" Белгиленген маркерди басуу менен жылдырсаңыз болот. "
+"Маркерди орнотуу үчүн белгиленген бөлүктүн ичине басыңыз же даректи жазыңыз. "
+"Белгиленген маркерди басуу менен жылдырсаңыз болот. "
 
 #: apps/mapideas/models.py:23
 msgid "Label of the ideas location"
@@ -2272,8 +2344,8 @@ msgid ""
 "Create new ideas located on a map and get feedback through rates and "
 "comments."
 msgstr ""
-"Картада жаңы идеяларды түзүңүз, баалоолордун  жана пикирлердин жардамы менен"
-" ой-пикирлерди алыңыз."
+"Картада жаңы идеяларды түзүңүз, баалоолордун  жана пикирлердин жардамы менен "
+"ой-пикирлерди алыңыз."
 
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_list.html:18
 msgid "Submit Idea"
@@ -2331,8 +2403,8 @@ msgid ""
 "The editing status appears below the title of the idea in red, yellow or "
 "green. The idea provider receives a notification."
 msgstr ""
-"Оңдоонун статусу аталыштын алдында кызыл, сары же жашыл түстө көрүнүп турат."
-" Идеяны берген адам билдирүү алат.  "
+"Оңдоонун статусу аталыштын алдында кызыл, сары же жашыл түстө көрүнүп турат. "
+"Идеяны берген адам билдирүү алат.  "
 
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:15
 msgid "Moderator remark"
@@ -2348,8 +2420,7 @@ msgstr "Эскертүү долбоордун ичинде гана көрүнү
 
 #: apps/newsletters/forms.py:34
 msgid "Receivers are all users which follow the following project:"
-msgstr ""
-"Алуучулар - бул кийинки долбоорду байкап турган бардык колдонуучулар: "
+msgstr "Алуучулар - бул кийинки долбоорду байкап турган бардык колдонуучулар: "
 
 #: apps/newsletters/forms.py:38
 msgid "Organisation"
@@ -2395,8 +2466,8 @@ msgstr " Алуучулар "
 #: apps/newsletters/templates/a4_candy_newsletters/emails/newsletter_email.en.email:10
 #, python-format
 msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because"
-" you are registered on %(site_name)s. If you don't want to receive "
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are registered on %(site_name)s. If you don't want to receive "
 "newsletters anymore, you may disable them in your user account settings."
 msgstr ""
 "Бул кат %(receiver_mail)s жиберилген. Сиз %(site_name)s катталганыңыз үчүн "
@@ -2608,8 +2679,8 @@ msgstr "Долбоорду көрсөтүү "
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:13
 #, python-format
 msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because"
-" you are an intiator of %(organisation_name)s."
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are an intiator of %(organisation_name)s."
 msgstr ""
 "Бул электрондук кат %(receiver_mail)s жиберилген. Бул электрондук кат Сизге "
 "Сиз %(organisation_name)s уюштуруучусу болгонуңуз үчүн жиберилди. "
@@ -2695,8 +2766,8 @@ msgid ""
 "Checkout what happend on the project %(project_name)s on %(site_name)s by "
 "clicking the link below."
 msgstr ""
-"Төмөндөгү шилтемеге басуу менен %(site_name)sда %(project_name)s долбоорунун"
-" абалын билсеңиз болот. "
+"Төмөндөгү шилтемеге басуу менен %(site_name)sда %(project_name)s долбоорунун "
+"абалын билсеңиз болот. "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:35
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:37
@@ -2717,8 +2788,7 @@ msgstr "%(project_name)sдолбооруна %(actor_name)s  атынан иде
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:39
 #, python-format
-msgid ""
-"on the project %(project_name)s a proposal was added by %(actor_name)s."
+msgid "on the project %(project_name)s a proposal was added by %(actor_name)s."
 msgstr "%(project_name)sдолбооруна %(actor_name)sатынан сунуш киргизилген"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:41
@@ -2746,11 +2816,11 @@ msgstr "Салымды текшерүү "
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:65
 #, python-format
 msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because"
-" you are a moderator in the project."
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are a moderator in the project."
 msgstr ""
-"Бул электрондук кат %(receiver_mail)s жиберилген. Бул  электрондук кат Сизге"
-" долбоордун модератору болгонуңуз үчүн жиберилген."
+"Бул электрондук кат %(receiver_mail)s жиберилген. Бул  электрондук кат Сизге "
+"долбоордун модератору болгонуңуз үчүн жиберилген."
 
 #: apps/offlineevents/dashboard.py:13
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:9
@@ -2862,9 +2932,9 @@ msgstr "Слоган "
 
 #: apps/organisations/models.py:45
 msgid ""
-"The slogan will be shown below the title of your organisation on the landing"
-" page. The slogan can provide context or additional information to the "
-"title. max. 200 characters"
+"The slogan will be shown below the title of your organisation on the landing "
+"page. The slogan can provide context or additional information to the title. "
+"max. 200 characters"
 msgstr ""
 "Слоган негизги баракчада Сиздин уюмуңуздун аталышынын алдында болот. Слоган "
 "контекстти же аталышка кошумча маалыматты камтышы мүмкүн. 200 символдон "
@@ -2893,8 +2963,8 @@ msgstr "Логотип"
 #: apps/organisations/models.py:67
 msgid ""
 "The Logo representing your organisation. The image must be square and it "
-"should be min. 200 pixels wide and 200 pixels tall. Allowed file formats are"
-" png, jpeg, gif. The file size should be max. 5 MB."
+"should be min. 200 pixels wide and 200 pixels tall. Allowed file formats are "
+"png, jpeg, gif. The file size should be max. 5 MB."
 msgstr ""
 "Сиздин уюмуңуздун логотиби. Сүрөт төрт бурчтуу, өлчөмү туурасынан эң аз 200 "
 "пиксель, узунунан эң аз 200 пиксель болушу керек. Файлдардын уруксат "
@@ -2959,8 +3029,8 @@ msgstr "Маалыматтарды коргоо саясаты"
 
 #: apps/organisations/models.py:130
 msgid ""
-"Please provide all the legally required information of your data protection."
-" The data protection policy will be shown on a separate page."
+"Please provide all the legally required information of your data protection. "
+"The data protection policy will be shown on a separate page."
 msgstr ""
 "Сураныч, Сиздин маалыматтарды коргоо саясатыңыз тууралуу  юридикалык "
 "керектүү бардык маалыматты жазыңыз. Маалыматтарды коргоо саясаты өзүнчө "
@@ -3050,27 +3120,33 @@ msgstr ""
 msgid "Opens in new window"
 msgstr "Жаңы терезеде ачылат "
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:91
-#, python-format
+#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:88
 msgid ""
-"Currently, there are no public participation processes. Sign in <a "
-"href=\"%(account_login_url)s?next=%(organisation_url)s\">here</a> or read "
-"more in <a href=\"%(organisation_information_url)s\">About</a>."
+"Currently, there are no public participation processes. Please check again "
+"later."
 msgstr ""
-"Азыркы учурда коомчулуктун катышуу процесстери жок. <a "
-"href=\"%(account_login_url)s?next=%(organisation_url)s\">системага бул "
-"жактан </a>кириңиз же <a href=\"%(organisation_information_url)s\">де "
-"көбүрөөк маалымат алыңыз</a>. "
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:95
+#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:93
 #, python-format
 msgid ""
-"Currently, there are no public participation processes. Sign in <a "
-"href=\"%(account_login_url)s?next=%(organisation_url)s\">here</a>."
+"Currently, there are no public participation processes. Sign in <a href="
+"\"%(account_login_url)s?next=%(organisation_url)s\">here</a> or read more in "
+"<a href=\"%(organisation_information_url)s\">About</a>."
 msgstr ""
-"Азыркы учурда коомчулуктун катышуу процесстери жок. <a "
-"href=\"%(account_login_url)s?next=%(organisation_url)s\"> системага бул "
-"жактан </a>кириңиз."
+"Азыркы учурда коомчулуктун катышуу процесстери жок. <a href="
+"\"%(account_login_url)s?next=%(organisation_url)s\">системага бул жактан </"
+"a>кириңиз же <a href=\"%(organisation_information_url)s\">де көбүрөөк "
+"маалымат алыңыз</a>. "
+
+#: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:97
+#, python-format
+msgid ""
+"Currently, there are no public participation processes. Sign in <a href="
+"\"%(account_login_url)s?next=%(organisation_url)s\">here</a>."
+msgstr ""
+"Азыркы учурда коомчулуктун катышуу процесстери жок. <a href="
+"\"%(account_login_url)s?next=%(organisation_url)s\"> системага бул жактан </"
+"a>кириңиз."
 
 #: apps/organisations/views.py:32
 msgid "Participate now!"
@@ -3161,8 +3237,8 @@ msgstr "Чакырууну кабыл алуу "
 #: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:14
 #, python-format
 msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because"
-" you are invited to moderate a project."
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are invited to moderate a project."
 msgstr ""
 "Бул электрондук кат %(receiver_mail)s жиберилди.  Бул электрондук кат Сизге "
 "долбоорду модерациялоо үчүн чакырылганыңыздан улам жиберилди. "
@@ -3182,9 +3258,9 @@ msgstr "\"%(project_name)s\" жеке долбооруна чакыруу алу
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:8
 #, python-format
 msgid ""
-"you are invited to participate in the semi-public project "
-"\"%(project_name)s\" on the participation platform  %(site_name)s. To "
-"participate click on \"Accept invitation\"."
+"you are invited to participate in the semi-public project \"%(project_name)s"
+"\" on the participation platform  %(site_name)s. To participate click on "
+"\"Accept invitation\"."
 msgstr ""
 "Сиз %(site_name)s катышуу платформасында \"%(project_name)s\" аралаш "
 "долбооруна чакыруу алдыңыз. Катышуу үчүн \"Чакырууну кабыл алуу\" баскычына "
@@ -3204,11 +3280,56 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:13
 #, python-format
 msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because"
-" you are invited to participate in a private project."
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are invited to participate in a private project."
 msgstr ""
 "Бул электрондук кат %(receiver_mail)s жиберилген. Бул электрондук кат Сизге "
 "жабык долбоорго чакыруу алганыңыз үчүн жиберилди. "
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
+#, python-format
+msgid "Welcome to the semi-public project: \"%(project_name)s\""
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
+#, python-format
+msgid "Welcome to the private project: \"%(project_name)s\""
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
+#, python-format
+msgid "Link to semi-public project: \"%(project_name)s\""
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
+#, python-format
+msgid "Link to private project: \"%(project_name)s\""
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
+#, python-format
+msgid ""
+"you have accepted the invitation to the semi-public project "
+"\"%(project_name)s\". To participate click on \"Go to Project\"."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
+#, python-format
+msgid ""
+"you have accepted the invitation to the private project \"%(project_name)s"
+"\". To participate click on \"Go to Project\"."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:11
+msgid "Go to project"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:13
+#, python-format
+msgid ""
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you accepted the invitation to participate in a private project."
+msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:17
 msgid "Project is private."
@@ -3217,11 +3338,6 @@ msgstr "Долбоор жеке  долбоор болуп саналат. "
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:23
 msgid "Project is semi-public."
 msgstr "Долбоор аралаш долбоор болуп саналат. "
-
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
-#, python-format
-msgid " %(time_left)s remaining "
-msgstr "%(time_left)sкалды"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:46
 msgid "more than 1 year remaining"
@@ -3334,7 +3450,7 @@ msgstr "Кирүүгө өтүү "
 #: apps/users/templates/a4_candy_users/indicator.html:58
 #: adhocracy-plus/templates/account/signup.html:4
 #: adhocracy-plus/templates/account/signup.html:7
-#: adhocracy-plus/templates/account/signup.html:58
+#: adhocracy-plus/templates/account/signup.html:65
 #: adhocracy-plus/templates/socialaccount/signup.html:49
 msgid "Register"
 msgstr "Катталуу"
@@ -3384,75 +3500,77 @@ msgstr "Сиз %(project)s долбооруна кошулгуңуз келеб�
 #, python-format
 msgid ""
 "\n"
-"                    You were invited by the initiator of the project. If you accept you will be able to participate in the project with your username \"%(user)s\".\n"
-"                    If you want to join with a different profile please login with your other profile and follow the invitation link again. If you decline the invitation the link is not valid anymore.\n"
+"                    You were invited by the initiator of the project. If you "
+"accept you will be able to participate in the project with your username "
+"\"%(user)s\".\n"
+"                    If you want to join with a different profile please "
+"login with your other profile and follow the invitation link again. If you "
+"decline the invitation the link is not valid anymore.\n"
 "                    "
 msgstr ""
 "\n"
-"Сизди долбоордун уюштуруучусу чакырды. Эгерде Сиз макул болсоңуз, өзүңүздүн колдонуучу атыңыз \"%(user)s\"  аркылуу долбоорго катыша аласыз. \n"
-"Эгерде Сиз башка профиль аркылуу кошулгуңуз келсе, өзүңүздүн башка профилиңиз аркылуу кирип, шилтеме боюнча дагы бир жолу өтүңүз. Эгерде чакыруудан баш тартсаңыз, шилтеме жараксыз болуп калат. "
+"Сизди долбоордун уюштуруучусу чакырды. Эгерде Сиз макул болсоңуз, өзүңүздүн "
+"колдонуучу атыңыз \"%(user)s\"  аркылуу долбоорго катыша аласыз. \n"
+"Эгерде Сиз башка профиль аркылуу кошулгуңуз келсе, өзүңүздүн башка "
+"профилиңиз аркылуу кирип, шилтеме боюнча дагы бир жолу өтүңүз. Эгерде "
+"чакыруудан баш тартсаңыз, шилтеме жараксыз болуп калат. "
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:46
 msgid "This project is not yet published."
 msgstr "Бул долбоор али жарыялана элек."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:65
-#, python-format
-msgid "to project collection %(name)s"
-msgstr "%(name)sдолбоорлор коллекциясына өтүү "
-
-#: apps/projects/templates/a4_candy_projects/project_detail.html:100
+#: apps/projects/templates/a4_candy_projects/project_detail.html:92
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:32
 msgid "Participation"
 msgstr "Катышуу"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:201
-#: adhocracy-plus/templates/a4modules/module_detail.html:117
+#: apps/projects/templates/a4_candy_projects/project_detail.html:194
+#: adhocracy-plus/templates/a4modules/module_detail.html:123
 msgid "Participation is not possible at the moment."
 msgstr "Азыркы учурда катышуу мүмкүн эмес"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:204
-#: adhocracy-plus/templates/a4modules/module_detail.html:120
+#: apps/projects/templates/a4_candy_projects/project_detail.html:197
+#: adhocracy-plus/templates/a4modules/module_detail.html:126
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "Ал %(date)s тартып башталат. "
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:207
-#: adhocracy-plus/templates/a4modules/module_detail.html:123
+#: apps/projects/templates/a4_candy_projects/project_detail.html:200
+#: adhocracy-plus/templates/a4modules/module_detail.html:129
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "Ал %(date)s тартып  уланат. "
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:210
-#: adhocracy-plus/templates/a4modules/module_detail.html:126
+#: apps/projects/templates/a4_candy_projects/project_detail.html:203
+#: adhocracy-plus/templates/a4modules/module_detail.html:132
 #, python-format
 msgid "It ended on %(date)s."
 msgstr "Ал %(date)s аяктайт. "
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:225
+#: apps/projects/templates/a4_candy_projects/project_detail.html:218
 #: apps/users/models.py:49
-#: adhocracy-plus/templates/a4modules/module_detail.html:141
+#: adhocracy-plus/templates/a4modules/module_detail.html:147
 msgid "active"
 msgstr "активдүү"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:250
-#: adhocracy-plus/templates/a4modules/module_detail.html:164
+#: apps/projects/templates/a4_candy_projects/project_detail.html:244
+#: adhocracy-plus/templates/a4modules/module_detail.html:171
 msgid ""
-"This project is not publicly visible. Only invited users can see content and"
-" actively participate."
+"This project is not publicly visible. Only invited users can see content and "
+"actively participate."
 msgstr ""
 "Бул долбоор жалпыга жеткиликтүү эмес. Чакырылган колдонуучулар гана "
 "контентти көрүп, активдүү катыша алат. "
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:254
-#: adhocracy-plus/templates/a4modules/module_detail.html:170
+#: apps/projects/templates/a4_candy_projects/project_detail.html:248
+#: adhocracy-plus/templates/a4modules/module_detail.html:177
 msgid ""
 "This project is publicly visible. Invited users can actively participate."
 msgstr ""
-"Бул долбоорго ачык катышууга болот. Чакырылган колдонуучулар активдүү катыша"
-" алат. "
+"Бул долбоорго ачык катышууга болот. Чакырылган колдонуучулар активдүү катыша "
+"алат. "
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:279
+#: apps/projects/templates/a4_candy_projects/project_detail.html:273
 msgid "No results yet."
 msgstr "Азырынча жыйынтык  жок. "
 
@@ -3595,8 +3713,8 @@ msgid ""
 "If you no longer want to receive notifications about this project, "
 "unsubscribe from the {}project{}."
 msgstr ""
-"Эгерде бул долбоор тууралуу билдирүүлөрдү мындан ары алгыңыз келбесе,  "
-"{}долбоорго {} катталуудан баш тартыңыз. "
+"Эгерде бул долбоор тууралуу билдирүүлөрдү мындан ары алгыңыз келбесе,  {}"
+"долбоорго {} катталуудан баш тартыңыз. "
 
 #: apps/users/fields.py:12
 msgid "Please enter correct email addresses, separated by commas."
@@ -3615,8 +3733,8 @@ msgstr "Мен кошумча маалыматты алгым келет "
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
-"Сиз катталган долбоорлор электрондук почта аркылуу кошумча маалыматты жибере"
-" алат."
+"Сиз катталган долбоорлор электрондук почта аркылуу кошумча маалыматты жибере "
+"алат."
 
 #: apps/users/forms.py:49 apps/users/forms.py:188
 msgid "Your username will appear publicly next to your posts."
@@ -3651,9 +3769,9 @@ msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
 msgstr ""
-"Мен IG BCEнин <a href=\"/info/ig-bce-datenschutz/\" "
-"target=\"_blank\">маалыматтарды коргоо саясатын </a> окуганымды жана кабыл "
-"алганымды тастыктайм."
+"Мен IG BCEнин <a href=\"/info/ig-bce-datenschutz/\" target=\"_blank"
+"\">маалыматтарды коргоо саясатын </a> окуганымды жана кабыл алганымды "
+"тастыктайм."
 
 #: apps/users/forms.py:93 apps/users/forms.py:129
 msgid "Something is wrong with the setup - please try again later"
@@ -3686,11 +3804,10 @@ msgstr "колдонуучу аты"
 
 #: apps/users/models.py:23
 msgid ""
-"Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ "
-"only."
+"Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
 msgstr ""
-"60 же андан аз символду жазуу керек. Тамгалар, сандар, боштуктар жана "
-"@/./+/-/_  гана. "
+"60 же андан аз символду жазуу керек. Тамгалар, сандар, боштуктар жана @/./"
+"+/-/_  гана. "
 
 #: apps/users/models.py:29
 msgid "A user with that username already exists."
@@ -3730,8 +3847,8 @@ msgstr "Мага электрондук почта аркылуу билдирү
 
 #: apps/users/models.py:65
 msgid ""
-"Designates whether you want to receive notifications. Unselect if you do not"
-" want to receive notifications."
+"Designates whether you want to receive notifications. Unselect if you do not "
+"want to receive notifications."
 msgstr ""
 "Билдирүү алууну каалап каалабаганыңызды көрсөтөт. Билдирүү алгыңыз келбесе, "
 "желекчени алып салыңыз. "
@@ -3754,8 +3871,7 @@ msgstr "Facebook  тармагындагы аты "
 
 #: apps/users/models.py:96
 msgid ""
-"Your facebook name is the last part of the URL, when you access your "
-"profile."
+"Your facebook name is the last part of the URL, when you access your profile."
 msgstr ""
 "Өзүңүздүн профилиңизге киргенде Facebook  тармагындагы атыңыз URL даректин "
 "акыркы бөлүгү катары  жазылат. "
@@ -3775,8 +3891,8 @@ msgstr "Сизге ылайыктуу тил "
 
 #: apps/users/models.py:119
 msgid ""
-"Specify your preferred language for the user interface and the notifications"
-" of the platform."
+"Specify your preferred language for the user interface and the notifications "
+"of the platform."
 msgstr ""
 "Колдонуучу интерфейси жана платформа билдирүүлөрү үчүн ылайыктуу тилди "
 "тандаңыз. "
@@ -3863,132 +3979,132 @@ msgstr "Кыргызча"
 msgid "Russian"
 msgstr "Орусча"
 
-#: adhocracy-plus/config/settings/base.py:332
-#: adhocracy-plus/config/settings/base.py:347
+#: adhocracy-plus/config/settings/base.py:333
+#: adhocracy-plus/config/settings/base.py:348
 msgid "Rich text editor"
 msgstr "Форматталган текстти оңдоочу"
 
-#: adhocracy-plus/config/settings/base.py:449
+#: adhocracy-plus/config/settings/base.py:450
 msgid "suggestion"
 msgstr "Сунуш "
 
-#: adhocracy-plus/config/settings/base.py:450
+#: adhocracy-plus/config/settings/base.py:451
 msgid "note"
 msgstr "Эскертүү"
 
-#: adhocracy-plus/config/settings/base.py:451
+#: adhocracy-plus/config/settings/base.py:452
 msgid "question"
 msgstr "Суроо"
 
-#: adhocracy-plus/config/settings/base.py:491
+#: adhocracy-plus/config/settings/base.py:492
 msgid "Pin without icon"
 msgstr "Белгисиз тиркөө"
 
-#: adhocracy-plus/config/settings/base.py:492
+#: adhocracy-plus/config/settings/base.py:493
 msgid "Diamond"
 msgstr "Алмаз"
 
-#: adhocracy-plus/config/settings/base.py:493
+#: adhocracy-plus/config/settings/base.py:494
 msgid "Triangle up"
 msgstr "Үч бурчтук өйдө "
 
-#: adhocracy-plus/config/settings/base.py:494
+#: adhocracy-plus/config/settings/base.py:495
 msgid "Triangle down"
 msgstr "Үч бурчтук ылдый"
 
-#: adhocracy-plus/config/settings/base.py:495
+#: adhocracy-plus/config/settings/base.py:496
 msgid "Ellipse"
 msgstr "Эллипс"
 
-#: adhocracy-plus/config/settings/base.py:496
+#: adhocracy-plus/config/settings/base.py:497
 msgid "Semi circle"
 msgstr "Жарым  айлана"
 
-#: adhocracy-plus/config/settings/base.py:497
+#: adhocracy-plus/config/settings/base.py:498
 msgid "Hexagon"
 msgstr "Алты бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:498
+#: adhocracy-plus/config/settings/base.py:499
 msgid "Rhomboid"
 msgstr "Ромбоид"
 
-#: adhocracy-plus/config/settings/base.py:499
+#: adhocracy-plus/config/settings/base.py:500
 msgid "Star"
 msgstr "Жылдыз"
 
-#: adhocracy-plus/config/settings/base.py:500
+#: adhocracy-plus/config/settings/base.py:501
 msgid "Square"
 msgstr "Төрт бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:501
+#: adhocracy-plus/config/settings/base.py:502
 msgid "Octothorpe"
 msgstr "Торчо"
 
-#: adhocracy-plus/config/settings/base.py:502
+#: adhocracy-plus/config/settings/base.py:503
 msgid "Rectangle"
 msgstr "Тик бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:503
+#: adhocracy-plus/config/settings/base.py:504
 msgid "Circle"
 msgstr "Айлана"
 
-#: adhocracy-plus/config/settings/base.py:504
+#: adhocracy-plus/config/settings/base.py:505
 msgid "Right triangle"
 msgstr "Тик бурчтуу үч бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:505
+#: adhocracy-plus/config/settings/base.py:506
 msgid "Zigzag"
 msgstr "Ийри-буйру сызык"
 
-#: adhocracy-plus/config/settings/base.py:519
+#: adhocracy-plus/config/settings/base.py:520
 msgid "Anti-discrimination"
 msgstr "Кемсинтүүгө каршы"
 
-#: adhocracy-plus/config/settings/base.py:520
+#: adhocracy-plus/config/settings/base.py:521
 msgid "Work & economy"
 msgstr "Жумуш жана экономика"
 
-#: adhocracy-plus/config/settings/base.py:521
+#: adhocracy-plus/config/settings/base.py:522
 msgid "Building & living"
 msgstr "Курулуш жана жашоо"
 
-#: adhocracy-plus/config/settings/base.py:522
+#: adhocracy-plus/config/settings/base.py:523
 msgid "Education & research"
 msgstr "Билим берүү жана изилдөөлөр"
 
-#: adhocracy-plus/config/settings/base.py:523
+#: adhocracy-plus/config/settings/base.py:524
 msgid "Children, youth & family"
 msgstr "Балдар, жаштар жана үй-бүлө"
 
-#: adhocracy-plus/config/settings/base.py:524
+#: adhocracy-plus/config/settings/base.py:525
 msgid "Finances"
 msgstr "Каржы"
 
-#: adhocracy-plus/config/settings/base.py:525
+#: adhocracy-plus/config/settings/base.py:526
 msgid "Health & sports"
 msgstr "Ден соолук жана спорт"
 
-#: adhocracy-plus/config/settings/base.py:526
+#: adhocracy-plus/config/settings/base.py:527
 msgid "Integration"
 msgstr "Интеграция"
 
-#: adhocracy-plus/config/settings/base.py:527
+#: adhocracy-plus/config/settings/base.py:528
 msgid "Culture & leisure"
 msgstr "Маданият жана эс алуу"
 
-#: adhocracy-plus/config/settings/base.py:528
+#: adhocracy-plus/config/settings/base.py:529
 msgid "Neighborhood & participation"
 msgstr "Коңшулук жана катышуу"
 
-#: adhocracy-plus/config/settings/base.py:529
+#: adhocracy-plus/config/settings/base.py:530
 msgid "Urban development"
 msgstr "Шаардык өнүгүү"
 
-#: adhocracy-plus/config/settings/base.py:530
+#: adhocracy-plus/config/settings/base.py:531
 msgid "Environment & public green space"
 msgstr "Айлана-чөйрө жана коомдук жашылдандыруу "
 
-#: adhocracy-plus/config/settings/base.py:531
+#: adhocracy-plus/config/settings/base.py:532
 msgid "Traffic"
 msgstr "Жолдогу тыгындар"
 
@@ -4122,8 +4238,8 @@ msgstr "Пунктту өчүрүү"
 
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:31
 msgid ""
-"Your image will be uploaded/removed once you save your changes at the end of"
-" this page."
+"Your image will be uploaded/removed once you save your changes at the end of "
+"this page."
 msgstr ""
 "Сиздин сүрөт бул баракчанын аягында өзгөртүүлөрдү сактаганда  жүктөлөт / "
 "өчүрүлөт. "
@@ -4132,19 +4248,19 @@ msgstr ""
 msgid "This project is in not published yet."
 msgstr "Бул долбоор али жарыялана элек. "
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:81
+#: adhocracy-plus/templates/a4modules/module_detail.html:85
 msgid "Previous"
 msgstr "Мурунку"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:84
+#: adhocracy-plus/templates/a4modules/module_detail.html:88
 msgid "of"
 msgstr "ичинен"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:87
+#: adhocracy-plus/templates/a4modules/module_detail.html:91
 msgid "Next"
 msgstr "Кийинки"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:188
+#: adhocracy-plus/templates/a4modules/module_detail.html:195
 msgid "More questions from this online participation"
 msgstr "Бул онлайн-катышуудан көбүрөөк суроолор"
 
@@ -4268,13 +4384,12 @@ msgid ""
 "You have registered with the username \"%(username)s\" on the participation "
 "platform \"%(current_site)s\". Click \"Confirm email address\" to complete "
 "your registration. As soon as you are registered, you can participate on "
-"\"%(current_site)s\". If you haven't registered, you can ignore this "
-"message."
+"\"%(current_site)s\". If you haven't registered, you can ignore this message."
 msgstr ""
 "\"%(current_site)s\" катышуу платформасында \"%(username)s\" колдонуучу аты "
 "менен катталдыңыз. Каттоону аяктоо үчүн \"Электрондук почтанын дарегин "
-"тастыктоо\" баскычына басыңыз. Сиз катталарыңыз менен \"%(current_site)s\"га"
-" катыша аласыз. Эгерде Сиз катталбасаңыз, бул билдирүүгө жооп бербеңиз. "
+"тастыктоо\" баскычына басыңыз. Сиз катталарыңыз менен \"%(current_site)s\"га "
+"катыша аласыз. Эгерде Сиз катталбасаңыз, бул билдирүүгө жооп бербеңиз. "
 
 #: adhocracy-plus/templates/account/email/email_confirmation_signup.en.email:11
 msgid "Confirm email address"
@@ -4338,7 +4453,8 @@ msgid ""
 msgstr ""
 "Сураныч, \n"
 "<a href=\"mailto:%(email)s\">%(email)s</a>- бул \n"
-"%(user_display)sколдонуучунун электрондук почтасынын дареги экендигин тастыктаңыз. "
+"%(user_display)sколдонуучунун электрондук почтасынын дареги экендигин "
+"тастыктаңыз. "
 
 #: adhocracy-plus/templates/account/email_confirm.html:17
 msgid "Confirm"
@@ -4351,18 +4467,20 @@ msgid ""
 "            Please <a href=\"%(email_url)s\">issue a new email confirmation\n"
 "                request</a>."
 msgstr ""
-"Электрондук почта аркылуу тастыктоо үчүн бул шилтеменин жарактуулук мөөнөтү аяктады же жараксыз.  \n"
-"Сураныч, электрондук почта аркылуу <a href=\"%(email_url)s\"> жаңы тастыктоо сурамын жибериңиз \n"
+"Электрондук почта аркылуу тастыктоо үчүн бул шилтеменин жарактуулук мөөнөтү "
+"аяктады же жараксыз.  \n"
+"Сураныч, электрондук почта аркылуу <a href=\"%(email_url)s\"> жаңы тастыктоо "
+"сурамын жибериңиз \n"
 "</a>.  "
 
 #: adhocracy-plus/templates/account/login.html:9
 #, python-format
 msgid ""
-"If you have not created an account yet, then please <a "
-"href=\"%(signup_url)s\">register</a> first."
+"If you have not created an account yet, then please <a href=\"%(signup_url)s"
+"\">register</a> first."
 msgstr ""
-"Эгерде Сиз каттоо эсебин  али ача элек болсоңуз, сураныч, алгач <a "
-"href=\"%(signup_url)s\">катталыңыз</a>."
+"Эгерде Сиз каттоо эсебин  али ача элек болсоңуз, сураныч, алгач <a href="
+"\"%(signup_url)s\">катталыңыз</a>."
 
 #: adhocracy-plus/templates/account/login.html:30
 msgid "Forgot Password?"
@@ -4401,8 +4519,8 @@ msgid ""
 "Forgotten your password? Enter your email address below, and we'll send you "
 "an email allowing you to reset it."
 msgstr ""
-"Сыр сөздү унутуп калдыңызбы? Төмөндө өзүңүздүн электрондук почта дарегиңизди"
-" жазыңыз жана биз аны жокко чыгаруу  үчүн электрондук катты жиберебиз. "
+"Сыр сөздү унутуп калдыңызбы? Төмөндө өзүңүздүн электрондук почта дарегиңизди "
+"жазыңыз жана биз аны жокко чыгаруу  үчүн электрондук катты жиберебиз. "
 
 #: adhocracy-plus/templates/account/password_reset.html:18
 msgid "Reset My Password"
@@ -4410,8 +4528,7 @@ msgstr "Менин сыр сөзүмдү жокко чыгаруу"
 
 #: adhocracy-plus/templates/account/password_reset.html:20
 msgid "Please contact us if you have any trouble resetting your password."
-msgstr ""
-"Сыр сөздү жокко чыгаруу көйгөйлөрү пайда болсо, биз менен байланышыңыз"
+msgstr "Сыр сөздү жокко чыгаруу көйгөйлөрү пайда болсо, биз менен байланышыңыз"
 
 #: adhocracy-plus/templates/account/password_reset_from_key.html:4
 #: adhocracy-plus/templates/account/password_reset_from_key.html:7
@@ -4426,8 +4543,8 @@ msgstr "Маркердин катасы"
 #, python-format
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
-"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password "
-"reset</a>."
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
 msgstr ""
 "Сыр сөздү жокко чыгаруу үчүн шилтеме жараксыз, ал мурун колдонулушу мүмкүн. "
 "<a href=\"%(passwd_reset_url)s\">сыр сөздү кайрадан жокко чыгарууга </a> "
@@ -4455,19 +4572,28 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                I confirm that I have read and accepted the <a href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the <a href=\"%(data_protection_policy)s\" target=\"_blank\">data protection policy</a>.\n"
+"                I confirm that I have read and accepted the <a href="
+"\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the <a href="
+"\"%(data_protection_policy)s\" target=\"_blank\">data protection policy</"
+"a>.\n"
 "                "
 msgstr ""
 "\n"
-"Мен <a href=\"%(terms_of_use_url)s\" target=\"_blank\">колдонуу шарттарын</a> жана <a href=\"%(data_protection_policy)s\" target=\"_blank\">маалыматтарды коргоо саясатын</a> \n"
+"Мен <a href=\"%(terms_of_use_url)s\" target=\"_blank\">колдонуу шарттарын</"
+"a> жана <a href=\"%(data_protection_policy)s\" target=\"_blank"
+"\">маалыматтарды коргоо саясатын</a> \n"
 "окуганымды жана кабыл алганымды тастыктайм. "
 
-#: adhocracy-plus/templates/account/signup.html:63
+#: adhocracy-plus/templates/account/signup.html:58
 #, python-format
 msgid ""
 "\n"
-"            With your account on %(platformname)s, you can take part in every public participation project on this platform. This platform allows organisations initiatives to conduct digital participation projects.\n"
-"            If you have any questions regarding the data protection on this platform you can find <a href=\"%(data_protection_url)s\" target=\"_blank\">further information here</a>.\n"
+"            With your account on %(platformname)s, you can take part in "
+"every public participation project on this platform. This platform allows "
+"organisations initiatives to conduct digital participation projects.\n"
+"            If you have any questions regarding the data protection on this "
+"platform you can find <a href=\"%(data_protection_url)s\" target=\"_blank"
+"\">further information here</a>.\n"
 "        "
 msgstr ""
 
@@ -4510,8 +4636,8 @@ msgstr ""
 #: adhocracy-plus/templates/footer.html:10
 #, python-format
 msgid ""
-"<a href=\"/\">%(platformname)s</a> is a platform provided by <a "
-"href=\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
+"<a href=\"/\">%(platformname)s</a> is a platform provided by <a href="
+"\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
 msgstr ""
 
 #: adhocracy-plus/templates/footer.html:10
@@ -4561,10 +4687,13 @@ msgstr "Бар болгон туташтырууларды  өчүрүү"
 #: adhocracy-plus/templates/socialaccount/connections.html:11
 msgid ""
 "You can sign in to your account using any of the following third party\n"
-"        accounts. To remove them mark the one you would like to remove and click the remove button"
+"        accounts. To remove them mark the one you would like to remove and "
+"click the remove button"
 msgstr ""
-"Төмөнкү четтик каттоо эсептеринин ичинен каалаганын колдонуу менен өзүңүздүн каттоо эсебиңизге кире аласыз. \n"
-"Аларды өчүрүү үчүн Сиз өчүргүңүз келген эсепти белгилеңиз жана өчүрүү баскычын басыңыз. "
+"Төмөнкү четтик каттоо эсептеринин ичинен каалаганын колдонуу менен өзүңүздүн "
+"каттоо эсебиңизге кире аласыз. \n"
+"Аларды өчүрүү үчүн Сиз өчүргүңүз келген эсепти белгилеңиз жана өчүрүү "
+"баскычын басыңыз. "
 
 #: adhocracy-plus/templates/socialaccount/connections.html:35
 msgid ""
@@ -4588,7 +4717,8 @@ msgid ""
 "%(site_name)s. As a final step, please complete the following form:"
 msgstr ""
 "%(site_name)s \n"
-"кирүү үчүн %(provider_name)s каттоо эсебиңизди колдонгон атасыз. Акыркы кадам катары, сураныч, төмөнкү форманы толтуруңуз: "
+"кирүү үчүн %(provider_name)s каттоо эсебиңизди колдонгон атасыз. Акыркы "
+"кадам катары, сураныч, төмөнкү форманы толтуруңуз: "
 
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:6
 msgid "Login with social media account"
@@ -4604,7 +4734,8 @@ msgstr "аркылуу системага кирүү "
 #~ "adhocracy+ yourself on our demo platform. "
 #~ msgstr ""
 #~ "Жөн гана бул тууралуу окубастан, сиз өзүңүз биздин көрсөтмөлүү "
-#~ "платформабызда adhocracy +  бардык мүмкүнчүлүктөрүн байкап көрсөңүз болот. "
+#~ "платформабызда adhocracy +  бардык мүмкүнчүлүктөрүн байкап көрсөңүз "
+#~ "болот. "
 
 #~ msgid "adhocracy+"
 #~ msgstr "adhocracy+"
@@ -4617,13 +4748,21 @@ msgstr "аркылуу системага кирүү "
 
 #~ msgid ""
 #~ "\n"
-#~ "            With your account on adhocracy+, you can take part in every public participation project on this platform. This platform allows organisations initiatives to conduct digital participation projects.\n"
-#~ "            If you have any questions regarding the data protection on this platform you can find <a href=\"%(data_protection_url)s\" target=\"_blank\">further information here</a>.\n"
+#~ "            With your account on adhocracy+, you can take part in every "
+#~ "public participation project on this platform. This platform allows "
+#~ "organisations initiatives to conduct digital participation projects.\n"
+#~ "            If you have any questions regarding the data protection on "
+#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
+#~ "\"_blank\">further information here</a>.\n"
 #~ "        "
 #~ msgstr ""
 #~ "\n"
-#~ " adhocracy+ каттоо эсебиңиз болсо, бул платформада коомчулуктун катышуусу боюнча бардык долбоорлорго катыша аласыз. Бул платформа уюмдарга санариптик катышуу долбоорлорун ишке ашырууга мүмкүнчүлүк берет. \n"
-#~ "Эгерде Сизде бул платформада маалыматтарды коргоого байланыштуу кандайдыр бир суроолор пайда болсо, Сиз <a href=\"%(data_protection_url)s\" target=\"_blank\">бул жактан кошумча маалыматты </a>тапсаңыз болот."
+#~ " adhocracy+ каттоо эсебиңиз болсо, бул платформада коомчулуктун катышуусу "
+#~ "боюнча бардык долбоорлорго катыша аласыз. Бул платформа уюмдарга "
+#~ "санариптик катышуу долбоорлорун ишке ашырууга мүмкүнчүлүк берет. \n"
+#~ "Эгерде Сизде бул платформада маалыматтарды коргоого байланыштуу кандайдыр "
+#~ "бир суроолор пайда болсо, Сиз <a href=\"%(data_protection_url)s\" target="
+#~ "\"_blank\">бул жактан кошумча маалыматты </a>тапсаңыз болот."
 
 #~ msgid "adhocracy+ is funded by donations."
 #~ msgstr "adhocracy+ ыктыярдуу төгүмдөрдүн эсебинен каржыланат "
@@ -4635,9 +4774,8 @@ msgstr "аркылуу системага кирүү "
 #~ msgstr "adhocracy+ катышуу үчүн  платформа, тарабынан башкарылат "
 
 #~ msgid ""
-#~ "<a href=\"/\">adhocracy+</a> is a platform provided by <a "
-#~ "href=\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
+#~ "<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
+#~ "liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
 #~ msgstr ""
-#~ "<a href=\"/\">adhocracy+</a> - бул Берлинде <a "
-#~ "href=\"https://liqd.net/de/\">Liquid Democracy e.V.</a> тарабынан "
-#~ "сунушталган платформа "
+#~ "<a href=\"/\">adhocracy+</a> - бул Берлинде <a href=\"https://liqd.net/de/"
+#~ "\">Liquid Democracy e.V.</a> тарабынан сунушталган платформа "
