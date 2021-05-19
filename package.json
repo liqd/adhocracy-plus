@@ -78,8 +78,8 @@
     "webpack-cli": "4.7.2"
   },
   "scripts": {
-    "build:prod": "webpack --config webpack.prod.js --mode production",
-    "build": "webpack --config webpack.dev.js --mode development",
+    "build:prod": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.dev.js",
     "watch": "webpack --config webpack.dev.js --watch --mode development",
     "lint": "eslint apps adhocracy-plus/assets --ext .js,.jsx && stylelint 'adhocracy-plus/assets/scss/**/*.scss' --syntax scss",
     "lint-staged": "lint-staged",
