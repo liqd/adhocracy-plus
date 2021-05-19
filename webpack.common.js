@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
-    adhocracy4: [
+    adhocracy4: [ // array of entry points
       '@fortawesome/fontawesome-free/scss/fontawesome.scss',
       '@fortawesome/fontawesome-free/scss/brands.scss',
       '@fortawesome/fontawesome-free/scss/regular.scss',
@@ -22,6 +22,7 @@ module.exports = {
       import: [
         './apps/captcha/assets/captcheck.js'
       ],
+      // shares dependency so not loaded repeatedly
       dependOn: 'adhocracy4'
     },
     datepicker: {
@@ -107,23 +108,35 @@ module.exports = {
     }
   },
   output: {
-    libraryTarget: 'this',
-    library: '[name]',
+    // exposes exports of entry points
+    library: {
+      name: '[name]',
+      // return value of entry point will be assigned this.
+      type: 'this'
+    },
+    // creates a folder to store all assets
     path: path.resolve('./adhocracy-plus/static/'),
+    // location they can be accessed, can also be a url
     publicPath: '/static/'
   },
   externals: {
     django: 'django'
   },
+  // enables assets property for loading
+  experiments: {
+    asset: true
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.jsx?$/, // should we also check for js here?
         exclude: /node_modules\/(?!(adhocracy4)\/).*/, // exclude all dependencies but adhocracy4
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),
-          plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-transform-modules-commonjs']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),
+            plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-transform-modules-commonjs']
+          }
         }
       },
       {
@@ -152,16 +165,18 @@ module.exports = {
       },
       {
         test: /(fonts|files)\/.*\.(svg|woff2?|ttf|eot|otf)(\?.*)?$/,
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name].[ext]'
+        // defines asset should always have seperate file
+        type: 'asset/resource',
+        generator: {
+          // defines custom location of those files
+          filename: 'fonts/[name][ext]'
         }
       },
       {
         test: /\.svg$|\.png$/,
-        loader: 'file-loader',
-        options: {
-          name: 'images/[name].[ext]'
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]'
         }
       }
     ]
@@ -177,6 +192,7 @@ module.exports = {
       tether$: 'tether/dist/js/tether.min.js',
       'slick-carousel$': 'slick-carousel/slick/slick.min.js'
     },
+    // this is not valid anymore:
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.
     // Setting `resolve.root` forces webpack to resolve all dependencies
