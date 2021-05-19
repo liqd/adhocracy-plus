@@ -25,6 +25,7 @@ from adhocracy4.reports.api import ReportViewSet
 from apps.contrib import views as contrib_views
 from apps.contrib.sitemaps import static_sitemap_index
 from apps.documents.api import DocumentViewSet
+from apps.ideas.api import IdeaViewSet
 from apps.interactiveevents.api import LikesViewSet
 from apps.interactiveevents.api import LiveQuestionViewSet
 from apps.interactiveevents.routers import LikesDefaultRouter
@@ -45,6 +46,7 @@ module_router = a4routers.ModuleDefaultRouter()
 module_router.register(r'documents', DocumentViewSet, basename='chapters')
 module_router.register(r'interactiveevents/livequestions', LiveQuestionViewSet,
                        basename='interactiveevents')
+module_router.register(r'ideas', IdeaViewSet, basename='ideas')
 
 likes_router = LikesDefaultRouter()
 likes_router.register(r'likes', LikesViewSet, basename='likes')
