@@ -13,7 +13,7 @@ module.exports = {
       '@fortawesome/fontawesome-free/scss/solid.scss',
       'select2/dist/css/select2.min.css',
       'slick-carousel/slick/slick.css',
-      'typeface-libre-franklin',
+      // 'typeface-libre-franklin',
       './adhocracy-plus/assets/extra_css/_slick-theme.css',
       './adhocracy-plus/assets/scss/style.scss',
       './adhocracy-plus/assets/js/app.js'
