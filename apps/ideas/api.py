@@ -23,6 +23,9 @@ class IdeaViewSet(ModuleMixin,
 
     def get_queryset(self):
         ideas = Idea.objects\
-            .filter(module=self.module)\
+            .filter(module=self.module) \
+            .annotate_comment_count() \
+            .annotate_positive_rating_count() \
+            .annotate_negative_rating_count() \
             .order_by('created')
         return ideas
