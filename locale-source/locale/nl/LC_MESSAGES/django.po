@@ -5,18 +5,18 @@
 #
 # Translators:
 # Katharina Lindenlaub, 2020
-# Joop Laan <joop@interconnecting.systems>, 2021
-# Luca Thüer <l.thueer@liqd.net>, 2021
+# Luca Thüer, 2021
 # Katharina Schmid, 2021
+# Joop Laan <joop@interconnecting.systems>, 2021
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 14:48+0200\n"
+"POT-Creation-Date: 2021-05-25 11:23+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Katharina Schmid, 2021\n"
+"Last-Translator: Joop Laan <joop@interconnecting.systems>, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/liqd/teams/109316/nl/)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -1513,6 +1513,8 @@ msgid ""
 "Instead of just reading about it, you can test all the features of "
 "%(platformname)s yourself on our demo platform."
 msgstr ""
+"In plaats van er alleen maar over te lezen, kunt u alle functies van "
+"%(platformname)szelf testen op ons demoplatform."
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:112
 msgid "Visit the demo platform"
@@ -2179,7 +2181,7 @@ msgstr "Uw idee is verwijderd"
 
 #: apps/interactiveevents/dashboard.py:16
 msgid "Media"
-msgstr ""
+msgstr "Media"
 
 #: apps/interactiveevents/dashboard.py:42
 msgid "Affiliations"
@@ -2203,11 +2205,11 @@ msgstr "Kenmerk"
 
 #: apps/interactiveevents/models.py:89
 msgid "Event image"
-msgstr ""
+msgstr "Evenement afbeelding"
 
 #: apps/interactiveevents/models.py:91
 msgid "The image is displayed next to the event description."
-msgstr ""
+msgstr "De afbeelding wordt getoond naast de beschrijving van het evenement."
 
 #: apps/interactiveevents/phases.py:16
 msgid "Add question."
@@ -2258,20 +2260,20 @@ msgstr " Resterend %(time_left)s "
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:30
 msgid "finished"
-msgstr ""
+msgstr "beëindigd"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:33
 msgid "Interactive"
-msgstr ""
+msgstr "Interactieve"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:51
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:82
 msgid "Read Less"
-msgstr ""
+msgstr "Minder lezen"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:63
 msgid "Type of event"
-msgstr ""
+msgstr "Type evenement"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:90
 msgid "Go to event"
@@ -3134,6 +3136,8 @@ msgid ""
 "Currently, there are no public participation processes. Please check again "
 "later."
 msgstr ""
+"Momenteel zijn er geen publieksparticipatieprocessen. Probeer het later nog "
+"eens a.u.b."
 
 #: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:93
 #, python-format
@@ -3296,22 +3300,22 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
 #, python-format
 msgid "Welcome to the semi-public project: \"%(project_name)s\""
-msgstr ""
+msgstr "Welkom bij het semi-publieke project: \"%(project_name)s\""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
 #, python-format
 msgid "Welcome to the private project: \"%(project_name)s\""
-msgstr ""
+msgstr "Welkom bij het besloten project: \"%(project_name)s\""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
 #, python-format
 msgid "Link to semi-public project: \"%(project_name)s\""
-msgstr ""
+msgstr "Link naar semi-publieke project: \"%(project_name)s\""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
 #, python-format
 msgid "Link to private project: \"%(project_name)s\""
-msgstr ""
+msgstr "Link naar besloten project: \"%(project_name)s\""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
 #, python-format
@@ -3319,6 +3323,8 @@ msgid ""
 "you have accepted the invitation to the semi-public project "
 "\"%(project_name)s\". To participate click on \"Go to Project\"."
 msgstr ""
+"u heeft de uitnodiging voor het semi-publieke project \"%(project_name)s\" "
+"geaccepteerd. Om deel te nemen klikt u op \"Ga naar project\"."
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
 #, python-format
@@ -3326,10 +3332,12 @@ msgid ""
 "you have accepted the invitation to the private project \"%(project_name)s"
 "\". To participate click on \"Go to Project\"."
 msgstr ""
+"u heeft de uitnodiging voor het besloten project \"%(project_name)s\" "
+"geaccepteerd. Om deel te nemen klikt u op \"Ga naar project\"."
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:11
 msgid "Go to project"
-msgstr ""
+msgstr "Ga naar project"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:13
 #, python-format
@@ -3337,6 +3345,9 @@ msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you accepted the invitation to participate in a private project."
 msgstr ""
+"Deze e-mail is verzonden naar %(receiver_mail)s. Deze e-mail is u "
+"toegestuurd omdat u de uitnodiging om deel te nemen aan een besloten project "
+"heeft geaccepteerd."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:17
 msgid "Project is private."
@@ -3820,7 +3831,7 @@ msgstr "Een gebruiker met die gebruikersnaam bestaat al."
 
 #: apps/users/models.py:30
 msgid "This username is already used as an e-mail address."
-msgstr ""
+msgstr "Deze gebruikersnaam is al in gebruik als een e-mailadres."
 
 #: apps/users/models.py:35
 msgid "Email address"
@@ -4601,6 +4612,14 @@ msgid ""
 "\">further information here</a>.\n"
 "        "
 msgstr ""
+"\n"
+"            Met uw account op %(platformname)s, kunt u deelnemen aan elk "
+"publieksparticipatieproject op dit platform. Via dit platform kunnen "
+"organisaties initiatief nemen om digitale inspraakprojecten te organiseren.\n"
+"            Als u vragen heeft over de gegevensbescherming op dit platform, "
+"<a href=\"%(data_protection_url)s\" target=\"_blank\">kunt u hier meer "
+"informatie vinden</a>.\n"
+"        "
 
 #: adhocracy-plus/templates/base.html:57
 msgid "Skip to content "
@@ -4609,7 +4628,7 @@ msgstr "Ga naar de inhoud "
 #: adhocracy-plus/templates/base.html:96
 #, python-format
 msgid "%(platformname)s is funded by donations."
-msgstr ""
+msgstr "%(platformname)s is gefinancierd door donaties."
 
 #: adhocracy-plus/templates/base.html:98
 msgid "Donate now"
@@ -4618,7 +4637,7 @@ msgstr "Doneer nu"
 #: adhocracy-plus/templates/base.html:101
 #, python-format
 msgid "Donate now to %(platformname)s"
-msgstr ""
+msgstr "Doneer nu aan %(platformname)s"
 
 #: adhocracy-plus/templates/base_errors.html:4
 msgid "Error"
@@ -4627,7 +4646,7 @@ msgstr "Fout"
 #: adhocracy-plus/templates/base_errors.html:12
 #, python-format
 msgid "Back to %(platformname)s"
-msgstr ""
+msgstr "Terug naar %(platformname)s"
 
 #: adhocracy-plus/templates/email_base.html:66
 msgid "Responsible for the participation project:"
@@ -4636,7 +4655,7 @@ msgstr "Verantwoordelijk voor het participatieproject:"
 #: adhocracy-plus/templates/email_base.html:95
 #, python-format
 msgid "%(platformname)s is a participation platform operated by"
-msgstr ""
+msgstr "%(platformname)s is een participatieplatform dat wordt beheerd door"
 
 #: adhocracy-plus/templates/footer.html:10
 #, python-format
@@ -4644,6 +4663,8 @@ msgid ""
 "<a href=\"/\">%(platformname)s</a> is a platform provided by <a href="
 "\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
 msgstr ""
+"<a href=\"/\">%(platformname)s</a> is een platform gemaakt door <a href="
+"\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
 
 #: adhocracy-plus/templates/footer.html:10
 msgid ""
@@ -4733,38 +4754,3 @@ msgstr "Inloggen met social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Inloggen met "
-
-#~ msgid ""
-#~ "\n"
-#~ "            With your account on adhocracy+, you can take part in every "
-#~ "public participation project on this platform. This platform allows "
-#~ "organisations initiatives to conduct digital participation projects.\n"
-#~ "            If you have any questions regarding the data protection on "
-#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
-#~ "\"_blank\">further information here</a>.\n"
-#~ "        "
-#~ msgstr ""
-#~ "\n"
-#~ "            Met uw account op adhocracy+ kunt u deelnemen aan elk "
-#~ "publieksparticipatieproject op dit platform. Dit platform stelt "
-#~ "organisaties in staat om digitale participatieprojecten uit te voeren.\n"
-#~ "            Als u vragen heeft over de gegevensbescherming op dit "
-#~ "platform, kunt u <a href=\"%(data_protection_url)s\" target=\"_blank"
-#~ "\">meer informatie vinden</a>.\n"
-#~ "        "
-
-#~ msgid "adhocracy+ is funded by donations."
-#~ msgstr "adhocratie+ wordt gefinancierd door middel van donaties."
-
-#~ msgid "Donate now to adhocracy+"
-#~ msgstr "Doneer nu aan adhocracy+"
-
-#~ msgid "adhocracy+ is a participation platform operated by"
-#~ msgstr "adhocracy+ is een participatieplatform dat wordt beheerd door"
-
-#~ msgid ""
-#~ "<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
-#~ "liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
-#~ msgstr ""
-#~ "<a href=\"/\">adhocracy+</a> is een platform dat wordt aangeboden door <a "
-#~ "href=\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlijn."

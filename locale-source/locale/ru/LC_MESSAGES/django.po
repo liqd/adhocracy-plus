@@ -6,17 +6,17 @@
 # Translators:
 # Кубанычбек Айдаркулов <sleng84@mail.ru>, 2021
 # Sebastian Hess <sebastian.hess@giz.de>, 2021
-# Luca Thüer <l.thueer@liqd.net>, 2021
 # Katharina Schmid, 2021
+# Luca Thüer, 2021
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 14:48+0200\n"
+"POT-Creation-Date: 2021-05-25 11:23+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Katharina Schmid, 2021\n"
+"Last-Translator: Luca Thüer, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/liqd/teams/109316/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1514,6 +1514,8 @@ msgid ""
 "Instead of just reading about it, you can test all the features of "
 "%(platformname)s yourself on our demo platform."
 msgstr ""
+"Вместо того, чтобы просто читать об этом, вы можете сами протестировать все "
+"возможности %(platformname)s на нашей демонстрационной платформе."
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:112
 msgid "Visit the demo platform"
@@ -4587,6 +4589,13 @@ msgid ""
 "\">further information here</a>.\n"
 "        "
 msgstr ""
+"\n"
+"Имея учетную запись на %(platformname)s, вы можете принимать участие во всех "
+"проектах по участию общественности на этой платформе. Эта платформа "
+"позволяет организациям реализовывать проекты цифрового участия. \n"
+"Если у вас есть какие-либо вопросы относительно защиты данных на этой "
+"платформе, вы можете найти <a href=\"%(data_protection_url)s\" target="
+"\"_blank\"> дополнительную информацию здесь</a>."
 
 #: adhocracy-plus/templates/base.html:57
 msgid "Skip to content "
@@ -4595,7 +4604,7 @@ msgstr "Перейти к контенту"
 #: adhocracy-plus/templates/base.html:96
 #, python-format
 msgid "%(platformname)s is funded by donations."
-msgstr ""
+msgstr "%(platformname)s финансируется за счет добровольных взносов."
 
 #: adhocracy-plus/templates/base.html:98
 msgid "Donate now"
@@ -4604,7 +4613,7 @@ msgstr "Внести добровольный взнос сейчас"
 #: adhocracy-plus/templates/base.html:101
 #, python-format
 msgid "Donate now to %(platformname)s"
-msgstr ""
+msgstr "Внести добровольный взнос на счет %(platformname)s сейчас"
 
 #: adhocracy-plus/templates/base_errors.html:4
 msgid "Error"
@@ -4613,7 +4622,7 @@ msgstr "Ошибка"
 #: adhocracy-plus/templates/base_errors.html:12
 #, python-format
 msgid "Back to %(platformname)s"
-msgstr ""
+msgstr "Вернуться к %(platformname)s"
 
 #: adhocracy-plus/templates/email_base.html:66
 msgid "Responsible for the participation project:"
@@ -4622,7 +4631,7 @@ msgstr "Ответственный за участие в проекте:"
 #: adhocracy-plus/templates/email_base.html:95
 #, python-format
 msgid "%(platformname)s is a participation platform operated by"
-msgstr ""
+msgstr " %(platformname)s- это платформа для участия, управляемая"
 
 #: adhocracy-plus/templates/footer.html:10
 #, python-format
@@ -4630,6 +4639,8 @@ msgid ""
 "<a href=\"/\">%(platformname)s</a> is a platform provided by <a href="
 "\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
 msgstr ""
+"<a href=\"/\">%(platformname)s </a> - это платформа, предоставленная <a href="
+"\"https://liqd.net/de/\"> Liquid Democracy e.V. </a> в Берлине."
 
 #: adhocracy-plus/templates/footer.html:10
 msgid ""
@@ -4721,37 +4732,3 @@ msgstr "Войти в систему через учетную запись в �
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Войти в систему через"
-
-#~ msgid ""
-#~ "\n"
-#~ "            With your account on adhocracy+, you can take part in every "
-#~ "public participation project on this platform. This platform allows "
-#~ "organisations initiatives to conduct digital participation projects.\n"
-#~ "            If you have any questions regarding the data protection on "
-#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
-#~ "\"_blank\">further information here</a>.\n"
-#~ "        "
-#~ msgstr ""
-#~ "\n"
-#~ "Имея учетную запись на adhocracy +, вы можете принимать участие во всех "
-#~ "проектах по участию общественности на этой платформе. Эта платформа "
-#~ "позволяет организациям реализовывать проекты цифрового участия. \n"
-#~ "Если у вас есть какие-либо вопросы относительно защиты данных на этой "
-#~ "платформе, вы можете найти <a href=\"%(data_protection_url)s\" target="
-#~ "\"_blank\"> дополнительную информацию здесь</a>."
-
-#~ msgid "adhocracy+ is funded by donations."
-#~ msgstr "adhocracy + финансируется за счет добровольных взносов."
-
-#~ msgid "Donate now to adhocracy+"
-#~ msgstr "Внести добровольный взнос на счет adhocracy+ сейчас"
-
-#~ msgid "adhocracy+ is a participation platform operated by"
-#~ msgstr "adhocracy + - это платформа для участия, управляемая"
-
-#~ msgid ""
-#~ "<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
-#~ "liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
-#~ msgstr ""
-#~ "<a href=\"/\">adhocracy + </a> - это платформа, предоставленная <a href="
-#~ "\"https://liqd.net/de/\"> Liquid Democracy e.V.</a> в Берлине."
