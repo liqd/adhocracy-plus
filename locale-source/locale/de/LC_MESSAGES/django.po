@@ -4,18 +4,18 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
-# Luca Thüer <l.thueer@liqd.net>, 2021
 # Katharina Schmid, 2021
 # Katharina Lindenlaub, 2021
+# Luca Thüer, 2021
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 14:48+0200\n"
+"POT-Creation-Date: 2021-05-25 11:23+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Katharina Lindenlaub, 2021\n"
+"Last-Translator: Luca Thüer, 2021\n"
 "Language-Team: German (https://www.transifex.com/liqd/teams/109316/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2196,7 +2196,7 @@ msgstr "Ihre Idee wurde gelöscht"
 
 #: apps/interactiveevents/dashboard.py:16
 msgid "Media"
-msgstr ""
+msgstr "Medien"
 
 #: apps/interactiveevents/dashboard.py:42
 msgid "Affiliations"
@@ -2220,11 +2220,11 @@ msgstr "Merkmal"
 
 #: apps/interactiveevents/models.py:89
 msgid "Event image"
-msgstr ""
+msgstr "Veranstaltungsbild"
 
 #: apps/interactiveevents/models.py:91
 msgid "The image is displayed next to the event description."
-msgstr ""
+msgstr "Das Bild wird neben der Veranstaltungsbeschreibung angezeigt."
 
 #: apps/interactiveevents/phases.py:16
 msgid "Add question."
@@ -2274,20 +2274,20 @@ msgstr " noch %(time_left)s "
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:30
 msgid "finished"
-msgstr ""
+msgstr "Abgeschlossen"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:33
 msgid "Interactive"
-msgstr ""
+msgstr "Interaktiv"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:51
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:82
 msgid "Read Less"
-msgstr ""
+msgstr "Weniger anzeigen"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:63
 msgid "Type of event"
-msgstr ""
+msgstr "Art der Veranstaltung"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:90
 msgid "Go to event"
@@ -3155,6 +3155,8 @@ msgid ""
 "Currently, there are no public participation processes. Please check again "
 "later."
 msgstr ""
+"Derzeit gibt es keine öffentlichen Beteiligungsprozesse. Bitte prüfen Sie "
+"dies später noch einmal."
 
 #: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:93
 #, python-format
@@ -3318,22 +3320,22 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
 #, python-format
 msgid "Welcome to the semi-public project: \"%(project_name)s\""
-msgstr ""
+msgstr "Willkommen zum halb-öffentlichen Projekt: \"%(project_name)s\""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
 #, python-format
 msgid "Welcome to the private project: \"%(project_name)s\""
-msgstr ""
+msgstr "Willkommen zum privaten Projekt: \"%(project_name)s\""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
 #, python-format
 msgid "Link to semi-public project: \"%(project_name)s\""
-msgstr ""
+msgstr "Link zum halb-öffentlichen Projekt: \"%(project_name)s\""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
 #, python-format
 msgid "Link to private project: \"%(project_name)s\""
-msgstr ""
+msgstr "Link zum privaten Projekt: \"%(project_name)s\""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
 #, python-format
@@ -3341,6 +3343,9 @@ msgid ""
 "you have accepted the invitation to the semi-public project "
 "\"%(project_name)s\". To participate click on \"Go to Project\"."
 msgstr ""
+"Sie haben die Einladung zu dem halb-öffentlichen Projekt \"%(project_name)s"
+"\" angenommen. Um an dem Projekt teilzunehmen, klicken Sie auf \"Zum Projekt"
+"\" "
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
 #, python-format
@@ -3348,10 +3353,12 @@ msgid ""
 "you have accepted the invitation to the private project \"%(project_name)s"
 "\". To participate click on \"Go to Project\"."
 msgstr ""
+"Sie haben die Einladung zu dem privaten Projekt \"%(project_name)s\" "
+"angenommen. Um an dem Projekt teilzunehmen, klicken Sie auf \"Zum Projekt\" "
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:11
 msgid "Go to project"
-msgstr ""
+msgstr "Zum Projekt"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:13
 #, python-format
@@ -3359,6 +3366,9 @@ msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you accepted the invitation to participate in a private project."
 msgstr ""
+"Diese E-Mail wurde an %(receiver_mail)s gesendet. Diese E-Mail wurde an Sie "
+"gesendet, weil Sie die Einladung zur Teilnahme an einem privaten Projekt "
+"angenommen haben."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:17
 msgid "Project is private."
@@ -3850,7 +3860,7 @@ msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
 #: apps/users/models.py:30
 msgid "This username is already used as an e-mail address."
-msgstr ""
+msgstr "Dieser Nutzername wird bereits als E-Mail-Adresse verwendet."
 
 #: apps/users/models.py:35
 msgid "Email address"
@@ -4780,56 +4790,3 @@ msgstr "Mit Konto eines sozialen Netzwerks einloggen"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Einloggen mit "
-
-#~ msgid ""
-#~ "Instead of just reading about it, you can test all the features of "
-#~ "adhocracy+ yourself on our demo platform. "
-#~ msgstr ""
-#~ "Nicht nur anschauen sondern ausprobieren: Testen Sie die Funktionen von "
-#~ "adhocracy+ jetzt auf unserer Demo-Plattform."
-
-#~ msgid "adhocracy+"
-#~ msgstr "adhocracy+"
-
-#~ msgid "Internal server error."
-#~ msgstr "Interner Serverfehler."
-
-#~ msgid "Back to adhocracy+"
-#~ msgstr "Zurück zu adhocracy+"
-
-#~ msgid ""
-#~ "\n"
-#~ "            With your account on adhocracy+, you can take part in every "
-#~ "public participation project on this platform. This platform allows "
-#~ "organisations initiatives to conduct digital participation projects.\n"
-#~ "            If you have any questions regarding the data protection on "
-#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
-#~ "\"_blank\">further information here</a>.\n"
-#~ "        "
-#~ msgstr ""
-#~ "\n"
-#~ "            Mit Ihrem Account auf adhocracy+ können Sie sich an allen "
-#~ "öffentlichen Beteiligungsprojekten auf der Plattform beteiligen. Die "
-#~ "Plattform bietet allen Organisationen und Initiativen die Möglichkeit, "
-#~ "digitale Beteiligungsprojekte zu starten.\n"
-#~ "            Sollten Sie Fragen zum Datenschutz auf der Plattform haben "
-#~ "finden Sie <a href=\"%(data_protection_url)s\" target=\"_blank\">hier "
-#~ "weitere Informationen</a>.\n"
-#~ "        "
-
-#~ msgid "adhocracy+ is funded by donations."
-#~ msgstr "adhocracy+ finanziert sich durch Spenden."
-
-#~ msgid "Donate now to adhocracy+"
-#~ msgstr "Spende jetzt für adhocracy+"
-
-#~ msgid "adhocracy+ is a participation platform operated by"
-#~ msgstr "adhocracy+ ist eine Plattform für Beteiligung, betrieben durch"
-
-#~ msgid ""
-#~ "<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
-#~ "liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
-#~ msgstr ""
-#~ "<a href=\"/\">adhocracy+</a> ist eine Plattform, die von <a href="
-#~ "\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin "
-#~ "bereitgestellt wird."

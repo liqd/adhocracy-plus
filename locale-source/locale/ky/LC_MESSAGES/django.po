@@ -5,18 +5,18 @@
 #
 # Translators:
 # Sebastian Hess <sebastian.hess@giz.de>, 2021
-# Luca Thüer <l.thueer@liqd.net>, 2021
 # Katharina Schmid, 2021
 # Кубанычбек Айдаркулов <sleng84@mail.ru>, 2021
+# Luca Thüer, 2021
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 14:48+0200\n"
+"POT-Creation-Date: 2021-05-25 11:23+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Кубанычбек Айдаркулов <sleng84@mail.ru>, 2021\n"
+"Last-Translator: Luca Thüer, 2021\n"
 "Language-Team: Kyrgyz (https://www.transifex.com/liqd/teams/109316/ky/)\n"
 "Language: ky\n"
 "MIME-Version: 1.0\n"
@@ -1517,6 +1517,9 @@ msgid ""
 "Instead of just reading about it, you can test all the features of "
 "%(platformname)s yourself on our demo platform."
 msgstr ""
+"Жөн гана бул тууралуу окубастан, сиз өзүңүз биздин көрсөтмөлүү "
+"платформабызда %(platformname)s  бардык мүмкүнчүлүктөрүн байкап көрсөңүз "
+"болот. "
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:112
 msgid "Visit the demo platform"
@@ -2259,7 +2262,7 @@ msgstr "%(time_left)sкалды"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:30
 msgid "finished"
-msgstr ""
+msgstr "Аяктады"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:33
 msgid "Interactive"
@@ -4596,6 +4599,13 @@ msgid ""
 "\">further information here</a>.\n"
 "        "
 msgstr ""
+"\n"
+"%(platformname)sкаттоо эсебиңиз болсо, бул платформада коомчулуктун "
+"катышуусу боюнча бардык долбоорлорго катыша аласыз. Бул платформа уюмдарга "
+"санариптик катышуу долбоорлорун ишке ашырууга мүмкүнчүлүк берет. \n"
+"Эгерде Сизде бул платформада маалыматтарды коргоого байланыштуу кандайдыр "
+"бир суроолор пайда болсо, Сиз <a href=\"%(data_protection_url)s\" target="
+"\"_blank\">бул жактан кошумча маалыматты </a>тапсаңыз болот."
 
 #: adhocracy-plus/templates/base.html:57
 msgid "Skip to content "
@@ -4604,7 +4614,7 @@ msgstr "Контентке өтүү "
 #: adhocracy-plus/templates/base.html:96
 #, python-format
 msgid "%(platformname)s is funded by donations."
-msgstr ""
+msgstr "%(platformname)s ыктыярдуу төгүмдөрдүн эсебинен каржыланат."
 
 #: adhocracy-plus/templates/base.html:98
 msgid "Donate now"
@@ -4613,7 +4623,7 @@ msgstr "Ыктыярдуу төгүмдү азыр төлөө."
 #: adhocracy-plus/templates/base.html:101
 #, python-format
 msgid "Donate now to %(platformname)s"
-msgstr ""
+msgstr "Азыр %(platformname)s эсебине   ыктыярдуу  төгүмдү төлөө."
 
 #: adhocracy-plus/templates/base_errors.html:4
 msgid "Error"
@@ -4622,7 +4632,7 @@ msgstr "Ката"
 #: adhocracy-plus/templates/base_errors.html:12
 #, python-format
 msgid "Back to %(platformname)s"
-msgstr ""
+msgstr "%(platformname)s платформасына кайтуу"
 
 #: adhocracy-plus/templates/email_base.html:66
 msgid "Responsible for the participation project:"
@@ -4631,7 +4641,7 @@ msgstr "Долбоорго катышуу үчүн жоопкерчиликтү�
 #: adhocracy-plus/templates/email_base.html:95
 #, python-format
 msgid "%(platformname)s is a participation platform operated by"
-msgstr ""
+msgstr "%(platformname)s катышуу үчүн  платформа, тарабынан башкарылат "
 
 #: adhocracy-plus/templates/footer.html:10
 #, python-format
@@ -4639,6 +4649,8 @@ msgid ""
 "<a href=\"/\">%(platformname)s</a> is a platform provided by <a href="
 "\"https://liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
 msgstr ""
+"<a href=\"/\">%(platformname)s</a>- бул Берлинде <a href=\"https://liqd.net/"
+"de/\"> Liquid Democracy e.V. </a> тарабынан сунушталган платформа "
 
 #: adhocracy-plus/templates/footer.html:10
 msgid ""
@@ -4728,54 +4740,3 @@ msgstr "Социалдык тармактагы каттоо эсеби аркы
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "аркылуу системага кирүү "
-
-#~ msgid ""
-#~ "Instead of just reading about it, you can test all the features of "
-#~ "adhocracy+ yourself on our demo platform. "
-#~ msgstr ""
-#~ "Жөн гана бул тууралуу окубастан, сиз өзүңүз биздин көрсөтмөлүү "
-#~ "платформабызда adhocracy +  бардык мүмкүнчүлүктөрүн байкап көрсөңүз "
-#~ "болот. "
-
-#~ msgid "adhocracy+"
-#~ msgstr "adhocracy+"
-
-#~ msgid "Internal server error."
-#~ msgstr "Сервердин ички катасы"
-
-#~ msgid "Back to adhocracy+"
-#~ msgstr "adhocracy+ платформасына кайтуу"
-
-#~ msgid ""
-#~ "\n"
-#~ "            With your account on adhocracy+, you can take part in every "
-#~ "public participation project on this platform. This platform allows "
-#~ "organisations initiatives to conduct digital participation projects.\n"
-#~ "            If you have any questions regarding the data protection on "
-#~ "this platform you can find <a href=\"%(data_protection_url)s\" target="
-#~ "\"_blank\">further information here</a>.\n"
-#~ "        "
-#~ msgstr ""
-#~ "\n"
-#~ " adhocracy+ каттоо эсебиңиз болсо, бул платформада коомчулуктун катышуусу "
-#~ "боюнча бардык долбоорлорго катыша аласыз. Бул платформа уюмдарга "
-#~ "санариптик катышуу долбоорлорун ишке ашырууга мүмкүнчүлүк берет. \n"
-#~ "Эгерде Сизде бул платформада маалыматтарды коргоого байланыштуу кандайдыр "
-#~ "бир суроолор пайда болсо, Сиз <a href=\"%(data_protection_url)s\" target="
-#~ "\"_blank\">бул жактан кошумча маалыматты </a>тапсаңыз болот."
-
-#~ msgid "adhocracy+ is funded by donations."
-#~ msgstr "adhocracy+ ыктыярдуу төгүмдөрдүн эсебинен каржыланат "
-
-#~ msgid "Donate now to adhocracy+"
-#~ msgstr "Азыр adhocracy+ эсебине   ыктыярдуу  төгүмдү төлөө."
-
-#~ msgid "adhocracy+ is a participation platform operated by"
-#~ msgstr "adhocracy+ катышуу үчүн  платформа, тарабынан башкарылат "
-
-#~ msgid ""
-#~ "<a href=\"/\">adhocracy+</a> is a platform provided by <a href=\"https://"
-#~ "liqd.net/de/\">Liquid Democracy e.V.</a> in Berlin."
-#~ msgstr ""
-#~ "<a href=\"/\">adhocracy+</a> - бул Берлинде <a href=\"https://liqd.net/de/"
-#~ "\">Liquid Democracy e.V.</a> тарабынан сунушталган платформа "
