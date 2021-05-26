@@ -9,13 +9,15 @@ class IdeaSerializer(serializers.ModelSerializer):
     comment_count = serializers.SerializerMethodField()
     positive_rating_count = serializers.SerializerMethodField()
     negative_rating_count = serializers.SerializerMethodField()
+    labels = serializers.StringRelatedField(many=True)
+    category = serializers.StringRelatedField()
 
     class Meta:
         model = Idea
         fields = ('pk', 'name', 'description', 'creator', 'created',
                   'comment_count', 'positive_rating_count',
-                  'negative_rating_count')
-        read_only_fields = ('creator', 'created')
+                  'negative_rating_count', 'labels', 'category')
+        read_only_fields = ('pk', 'creator', 'created')
 
     def get_creator(self, idea):
         return idea.creator.username
