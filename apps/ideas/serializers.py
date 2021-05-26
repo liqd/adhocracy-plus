@@ -15,7 +15,7 @@ class IdeaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Idea
         fields = ('pk', 'name', 'description', 'creator', 'created',
-                  'comment_count', 'positive_rating_count',
+                  'image', 'comment_count', 'positive_rating_count',
                   'negative_rating_count', 'labels', 'category')
         read_only_fields = ('pk', 'creator', 'created')
 
