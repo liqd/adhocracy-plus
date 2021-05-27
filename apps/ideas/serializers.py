@@ -15,9 +15,10 @@ class IdeaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Idea
         fields = ('pk', 'name', 'description', 'creator', 'created',
-                  'image', 'comment_count', 'positive_rating_count',
-                  'negative_rating_count', 'labels', 'category')
-        read_only_fields = ('pk', 'creator', 'created')
+                  'reference_number', 'image', 'comment_count',
+                  'positive_rating_count', 'negative_rating_count',
+                  'labels', 'category')
+        read_only_fields = ('pk', 'creator', 'created', 'reference_number')
 
     def get_creator(self, idea):
         return idea.creator.username
