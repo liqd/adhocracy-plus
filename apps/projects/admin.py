@@ -22,7 +22,8 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = (
         '__str__', 'organisation', 'is_draft', 'is_archived', 'created'
     )
-    list_filter = ('is_draft', 'is_archived', 'organisation')
+    list_filter = ('is_draft', 'is_archived', 'organisation',
+                   'is_app_accessible')
     search_fields = ('name',)
     raw_id_fields = ('moderators', 'participants')
     date_hierarchy = 'created'
@@ -42,7 +43,7 @@ class ProjectAdmin(admin.ModelAdmin):
         (_('Settings'), {
             'classes': ('collapse',),
             'fields': ('access', 'is_draft', 'is_archived',
-                       'moderators', 'participants')
+                       'is_app_accessible', 'moderators', 'participants')
         }),
         (_('Images'), {
             'classes': ('collapse',),
