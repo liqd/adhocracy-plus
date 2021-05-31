@@ -1,3 +1,4 @@
+from django.utils.html import strip_tags
 from rest_framework import serializers
 
 from .models import Idea
@@ -5,6 +6,7 @@ from .models import Idea
 
 class IdeaSerializer(serializers.ModelSerializer):
 
+    description = serializers.SerializerMethodField()
     creator = serializers.SerializerMethodField()
     comment_count = serializers.SerializerMethodField()
     positive_rating_count = serializers.SerializerMethodField()
@@ -19,6 +21,9 @@ class IdeaSerializer(serializers.ModelSerializer):
                   'positive_rating_count', 'negative_rating_count',
                   'labels', 'category')
         read_only_fields = ('pk', 'creator', 'created', 'reference_number')
+
+    def get_description(self, idea):
+        return strip_tags(idea.description)
 
     def get_creator(self, idea):
         return idea.creator.username
