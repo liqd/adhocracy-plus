@@ -1,6 +1,14 @@
 from rest_framework import serializers
 
+from adhocracy4.categories.models import Category
+from adhocracy4.labels.models import Label
+
 from .models import Idea
+
+
+class LabelListingField(serializers.StringRelatedField):
+    def to_internal_value(self, label):
+        return Label.objects.get(pk=label)
 
 
 class IdeaSerializer(serializers.ModelSerializer):
@@ -9,7 +17,7 @@ class IdeaSerializer(serializers.ModelSerializer):
     comment_count = serializers.SerializerMethodField()
     positive_rating_count = serializers.SerializerMethodField()
     negative_rating_count = serializers.SerializerMethodField()
-    labels = serializers.StringRelatedField(many=True)
+    labels = LabelListingField(many=True)
     category = serializers.StringRelatedField()
 
     class Meta:
@@ -24,10 +32,29 @@ class IdeaSerializer(serializers.ModelSerializer):
         return idea.creator.username
 
     def get_comment_count(self, idea):
-        return idea.comment_count
+        if hasattr(idea, 'comment_count'):
+            return idea.comment_count
+        else:
+            return 0
 
     def get_positive_rating_count(self, idea):
-        return idea.positive_rating_count
+        if hasattr(idea, 'positive_rating_count'):
+            return idea.positive_rating_count
+        else:
+            return 0
 
     def get_negative_rating_count(self, idea):
-        return idea.negative_rating_count
+        if hasattr(idea, 'negative_rating_count'):
+            return idea.negative_rating_count
+        else:
+            return 0
+
+    def create(self, validated_data):
+        validated_data['creator'] = self.context['request'].user
+        validated_data['module'] = self.context['view'].module
+        if 'category_pk' in self.context['request'].POST:
+            category_pk = self.context['request'].POST['category_pk']
+            category = Category.objects.get(pk=category_pk)
+            validated_data['category'] = category
+
+        return super().create(validated_data)
