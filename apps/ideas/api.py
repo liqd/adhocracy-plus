@@ -9,8 +9,10 @@ from .serializers import IdeaSerializer
 
 
 class IdeaViewSet(ModuleMixin,
+                  mixins.CreateModelMixin,
                   mixins.ListModelMixin,
                   mixins.RetrieveModelMixin,
+                  mixins.UpdateModelMixin,
                   viewsets.GenericViewSet,
                   ):
 
