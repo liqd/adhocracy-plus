@@ -12,9 +12,18 @@ class LabelListingField(serializers.StringRelatedField):
         return Label.objects.get(pk=label)
 
 
+class DescriptionSerializerField(serializers.Field):
+
+    def to_representation(self, description):
+        return strip_tags(description)
+
+    def to_internal_value(self, description):
+        return description
+
+
 class IdeaSerializer(serializers.ModelSerializer):
 
-    description = serializers.SerializerMethodField()
+    description = DescriptionSerializerField()
     creator = serializers.SerializerMethodField()
     comment_count = serializers.SerializerMethodField()
     positive_rating_count = serializers.SerializerMethodField()
@@ -29,9 +38,6 @@ class IdeaSerializer(serializers.ModelSerializer):
                   'positive_rating_count', 'negative_rating_count',
                   'labels', 'category')
         read_only_fields = ('pk', 'creator', 'created', 'reference_number')
-
-    def get_description(self, idea):
-        return strip_tags(idea.description)
 
     def get_creator(self, idea):
         return idea.creator.username
