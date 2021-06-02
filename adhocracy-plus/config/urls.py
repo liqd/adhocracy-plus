@@ -13,6 +13,7 @@ from django.views.defaults import server_error
 from django.views.generic import TemplateView
 from django.views.i18n import JavaScriptCatalog
 from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
 from wagtail.contrib.sitemaps.views import sitemap as wagtail_sitemap
 from wagtail.documents import urls as wagtaildocs_urls
 
@@ -43,7 +44,6 @@ router.register(r'reports', ReportViewSet, basename='reports')
 router.register(r'polls', PollViewSet, basename='polls')
 router.register(r'app-projects', AppProjectsViewSet,
                 basename='app-projects')
-
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
@@ -87,6 +87,7 @@ urlpatterns = [
     re_path(r'^api/', include(question_router.urls)),
     re_path(r'^api/', include(likes_router.urls)),
     re_path(r'^api/', include(router.urls)),
+    re_path(r'^api/login', obtain_auth_token, name='api-login'),
 
     re_path(r'^upload/', user_is_project_admin(ck_views.upload),
             name='ckeditor_upload'),
