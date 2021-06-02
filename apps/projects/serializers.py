@@ -11,6 +11,7 @@ class AppProjectSerializer(serializers.ModelSerializer):
     # todo: remove many=True once AppProjects are restricted to single module
     published_modules = serializers.PrimaryKeyRelatedField(read_only=True,
                                                            many=True)
+    organisation = serializers.SerializerMethodField()
     access = serializers.SerializerMethodField()
 
     class Meta:
@@ -23,6 +24,9 @@ class AppProjectSerializer(serializers.ModelSerializer):
 
     def get_result(self, project):
         return strip_tags(project.result)
+
+    def get_organisation(self, project):
+        return project.organisation.name
 
     def get_access(self, project):
         return project.access.name
