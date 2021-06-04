@@ -35,6 +35,7 @@ from apps.organisations.sitemaps import organisations_sitemap_index
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
 from apps.polls.routers import QuestionDefaultRouter
+from apps.projects.api import AppModuleViewSet
 from apps.projects.api import AppProjectsViewSet
 from apps.users.decorators import user_is_project_admin
 
@@ -44,6 +45,8 @@ router.register(r'reports', ReportViewSet, basename='reports')
 router.register(r'polls', PollViewSet, basename='polls')
 router.register(r'app-projects', AppProjectsViewSet,
                 basename='app-projects')
+router.register(r'app-modules', AppModuleViewSet,
+                basename='app-modules')
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
