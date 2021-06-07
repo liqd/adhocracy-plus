@@ -99,8 +99,9 @@ class AppModuleSerializer(serializers.ModelSerializer):
     def get_ideas_collect_phase_active(self, instance):
         if instance.phases:
             for phase in instance.phases:
-                if (phase.type == 'a4_candy_ideas:collect'
-                        and phase.start_date <= timezone.now()
-                        and phase.end_date >= timezone.now()):
-                    return True
+                if phase.start_date and phase.end_date:
+                    if (phase.type == 'a4_candy_ideas:collect'
+                            and phase.start_date <= timezone.now()
+                            and phase.end_date >= timezone.now()):
+                        return True
         return False
