@@ -102,6 +102,15 @@ class CategoryFactory(factory.django.DjangoModelFactory):
     module = factory.SubFactory(factories.ModuleFactory)
 
 
+class LabelFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'a4labels.Label'
+
+    name = factory.Faker('job')
+    module = factory.SubFactory(factories.ModuleFactory)
+
+
 class CommentFactory(factory.django.DjangoModelFactory):
 
     class Meta:
