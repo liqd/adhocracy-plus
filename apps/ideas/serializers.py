@@ -1,8 +1,10 @@
+from django.contrib.contenttypes.models import ContentType
 from django.utils.html import strip_tags
 from rest_framework import serializers
 
 from adhocracy4.categories.models import Category
 from adhocracy4.labels.models import Label
+from adhocracy4.ratings.models import Rating
 
 from .models import Idea
 
@@ -21,6 +23,13 @@ class DescriptionSerializerField(serializers.Field):
         return description
 
 
+class RatingSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Rating
+        fields = ('id', 'value')
+
+
 class IdeaSerializer(serializers.ModelSerializer):
 
     description = DescriptionSerializerField()
@@ -30,13 +39,14 @@ class IdeaSerializer(serializers.ModelSerializer):
     negative_rating_count = serializers.SerializerMethodField()
     labels = LabelListingField(many=True)
     category = serializers.StringRelatedField()
+    user_rating = serializers.SerializerMethodField()
 
     class Meta:
         model = Idea
         fields = ('pk', 'name', 'description', 'creator', 'created',
                   'reference_number', 'image', 'comment_count',
                   'positive_rating_count', 'negative_rating_count',
-                  'labels', 'category')
+                  'labels', 'category', 'user_rating')
         read_only_fields = ('pk', 'creator', 'created', 'reference_number')
 
     def get_creator(self, idea):
@@ -59,6 +69,18 @@ class IdeaSerializer(serializers.ModelSerializer):
             return idea.negative_rating_count
         else:
             return 0
+
+    def get_user_rating(self, idea):
+        if 'request' in self.context:
+            user = self.context['request'].user
+            if user.is_authenticated:
+                ct = ContentType.objects.get_for_model(idea)
+                ratings = Rating.objects.filter(content_type_id=ct.id,
+                                                object_pk=idea.pk,
+                                                creator=user)
+                if ratings.exists():
+                    return RatingSerializer(ratings.first()).data
+        return None
 
     def create(self, validated_data):
         validated_data['creator'] = self.context['request'].user
