@@ -5,7 +5,17 @@ should be installed inside your project folder
 
 `source venv/bin/activate`
 
-Then start the django shell (you might need to specify the path to where your python is installed)
+If you are working on a server, which was set up as described in the [installation docs](https://github.com/liqd/adhocracy-plus/blob/master/docs/installation_prod.md), the virtualenv is started with
+
+`su aplus`
+
+`cd ~/adhocracy-plus`
+
+`workon aplus`
+
+or in other environments you might need to specify the path to where your python is installed.
+
+Then start the django shell
 
 `python manage.py shell`
 
