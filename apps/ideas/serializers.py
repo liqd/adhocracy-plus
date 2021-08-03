@@ -39,6 +39,7 @@ class IdeaSerializer(serializers.ModelSerializer):
     negative_rating_count = serializers.SerializerMethodField()
     labels = LabelListingField(many=True)
     category = serializers.StringRelatedField()
+    content_type = serializers.SerializerMethodField()
     user_rating = serializers.SerializerMethodField()
 
     class Meta:
@@ -46,7 +47,7 @@ class IdeaSerializer(serializers.ModelSerializer):
         fields = ('pk', 'name', 'description', 'creator', 'created',
                   'reference_number', 'image', 'comment_count',
                   'positive_rating_count', 'negative_rating_count',
-                  'labels', 'category', 'user_rating')
+                  'labels', 'category', 'content_type', 'user_rating')
         read_only_fields = ('pk', 'creator', 'created', 'reference_number')
 
     def get_creator(self, idea):
@@ -69,6 +70,9 @@ class IdeaSerializer(serializers.ModelSerializer):
             return idea.negative_rating_count
         else:
             return 0
+
+    def get_content_type(self, idea):
+        return ContentType.objects.get_for_model(idea).id
 
     def get_user_rating(self, idea):
         if 'request' in self.context:
