@@ -78,11 +78,12 @@ class AppModuleSerializer(serializers.ModelSerializer):
     labels = serializers.SerializerMethodField()
     categories = serializers.SerializerMethodField()
     ideas_collect_phase_active = serializers.SerializerMethodField()
+    ideas_rating_phase_active = serializers.SerializerMethodField()
 
     class Meta:
         model = Module
         fields = ('pk', 'phases', 'labels', 'categories',
-                  'ideas_collect_phase_active')
+                  'ideas_collect_phase_active', 'ideas_rating_phase_active')
 
     def get_labels(self, instance):
         labels = Label.objects.filter(module=instance)
@@ -101,6 +102,16 @@ class AppModuleSerializer(serializers.ModelSerializer):
             for phase in instance.phases:
                 if phase.start_date and phase.end_date:
                     if (phase.type == 'a4_candy_ideas:collect'
+                            and phase.start_date <= timezone.now()
+                            and phase.end_date >= timezone.now()):
+                        return True
+        return False
+
+    def get_ideas_rating_phase_active(self, instance):
+        if instance.phases:
+            for phase in instance.phases:
+                if phase.start_date and phase.end_date:
+                    if (phase.type == 'a4_candy_ideas:rating'
                             and phase.start_date <= timezone.now()
                             and phase.end_date >= timezone.now()):
                         return True
