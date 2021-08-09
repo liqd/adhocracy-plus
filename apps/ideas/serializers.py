@@ -41,13 +41,18 @@ class IdeaSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField()
     content_type = serializers.SerializerMethodField()
     user_rating = serializers.SerializerMethodField()
+    has_rating_permission = serializers.SerializerMethodField()
+    has_commenting_permission = serializers.SerializerMethodField()
+    has_changing_permission = serializers.SerializerMethodField()
 
     class Meta:
         model = Idea
         fields = ('pk', 'name', 'description', 'creator', 'created',
                   'reference_number', 'image', 'comment_count',
                   'positive_rating_count', 'negative_rating_count',
-                  'labels', 'category', 'content_type', 'user_rating')
+                  'labels', 'category', 'content_type', 'user_rating',
+                  'has_rating_permission', 'has_commenting_permission',
+                  'has_changing_permission')
         read_only_fields = ('pk', 'creator', 'created', 'reference_number')
 
     def get_creator(self, idea):
@@ -85,6 +90,27 @@ class IdeaSerializer(serializers.ModelSerializer):
                 if ratings.exists():
                     return RatingSerializer(ratings.first()).data
         return None
+
+    def get_has_rating_permission(self, idea):
+        request = self.context.get('request')
+        if request and hasattr(request, 'user'):
+            user = request.user
+            return user.has_perm('a4_candy_ideas.rate_idea', idea)
+        return False
+
+    def get_has_commenting_permission(self, idea):
+        request = self.context.get('request')
+        if request and hasattr(request, 'user'):
+            user = request.user
+            return user.has_perm('a4_candy_ideas.comment_idea', idea)
+        return False
+
+    def get_has_changing_permission(self, idea):
+        request = self.context.get('request')
+        if request and hasattr(request, 'user'):
+            user = request.user
+            return user.has_perm('a4_candy_ideas.change_idea', idea)
+        return False
 
     def create(self, validated_data):
         validated_data['creator'] = self.context['request'].user
