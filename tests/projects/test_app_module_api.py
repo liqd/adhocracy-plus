@@ -40,7 +40,7 @@ def test_app_module_api(project_factory, module_factory, apiclient):
 @pytest.mark.django_db
 def test_app_module_api_agenda_setting(
         client, apiclient, project_factory,
-        category_factory, label_factory):
+        category_factory, label_factory, user):
     project = project_factory(is_app_accessible=True)
     organisation = project.organisation
     initiator = organisation.initiators.first()
@@ -86,33 +86,48 @@ def test_app_module_api_agenda_setting(
     assert len(response.data[0]['phases']) == 2
 
     with freeze_phase(collect_phase):
+        apiclient.login(username=initiator.email, password='password')
         response = apiclient.get(url, format='json')
-        assert response.data[0]['ideas_collect_phase_active'] is True
+        assert response.data[0]['has_idea_adding_permission'] is True
         assert response.data[0]['phases'][0]['name'] == 'Collect phase'
         assert response.data[0]['phases'][0]['is_active'] is True
         assert response.data[0]['phases'][1]['name'] == 'Rating phase'
         assert response.data[0]['phases'][1]['is_active'] is False
 
-    with freeze_phase(rating_phase):
+        apiclient.login(username=user.email, password='password')
         response = apiclient.get(url, format='json')
-        assert response.data[0]['ideas_collect_phase_active'] is False
+        assert response.data[0]['has_idea_adding_permission'] is True
+
+    with freeze_phase(rating_phase):
+        apiclient.login(username=initiator.email, password='password')
+        response = apiclient.get(url, format='json')
+        assert response.data[0]['has_idea_adding_permission'] is True
         assert response.data[0]['phases'][0]['name'] == 'Collect phase'
         assert response.data[0]['phases'][0]['is_active'] is False
         assert response.data[0]['phases'][1]['name'] == 'Rating phase'
         assert response.data[0]['phases'][1]['is_active'] is True
 
-    with freeze_post_phase(rating_phase):
+        apiclient.login(username=user.email, password='password')
         response = apiclient.get(url, format='json')
-        assert response.data[0]['ideas_collect_phase_active'] is False
+        assert response.data[0]['has_idea_adding_permission'] is False
+
+    with freeze_post_phase(rating_phase):
+        apiclient.login(username=initiator.email, password='password')
+        response = apiclient.get(url, format='json')
+        assert response.data[0]['has_idea_adding_permission'] is True
         assert response.data[0]['phases'][0]['name'] == 'Collect phase'
         assert response.data[0]['phases'][0]['is_active'] is False
         assert response.data[0]['phases'][1]['name'] == 'Rating phase'
         assert response.data[0]['phases'][1]['is_active'] is False
 
+        apiclient.login(username=user.email, password='password')
+        response = apiclient.get(url, format='json')
+        assert response.data[0]['has_idea_adding_permission'] is False
+
 
 @pytest.mark.django_db
 def test_app_module_api_poll(
-        client, apiclient, project_factory):
+        client, apiclient, project_factory, user):
     project = project_factory(is_app_accessible=True)
     organisation = project.organisation
     initiator = organisation.initiators.first()
@@ -147,12 +162,26 @@ def test_app_module_api_poll(
 
     with freeze_phase(phase):
         response = apiclient.get(url, format='json')
-        assert response.data[0]['ideas_collect_phase_active'] is False
+        assert response.data[0]['has_idea_adding_permission'] is False
+        apiclient.login(username=initiator.email, password='password')
+        response = apiclient.get(url, format='json')
+        assert response.data[0]['has_idea_adding_permission'] is True
         assert response.data[0]['phases'][0]['name'] == 'Voting phase'
         assert response.data[0]['phases'][0]['is_active'] is True
 
+        apiclient.login(username=user.email, password='password')
+        response = apiclient.get(url, format='json')
+        assert response.data[0]['has_idea_adding_permission'] is False
+
     with freeze_post_phase(phase):
         response = apiclient.get(url, format='json')
-        assert response.data[0]['ideas_collect_phase_active'] is False
+        assert response.data[0]['has_idea_adding_permission'] is False
+        apiclient.login(username=initiator.email, password='password')
+        response = apiclient.get(url, format='json')
+        assert response.data[0]['has_idea_adding_permission'] is True
         assert response.data[0]['phases'][0]['name'] == 'Voting phase'
         assert response.data[0]['phases'][0]['is_active'] is False
+
+        apiclient.login(username=user.email, password='password')
+        response = apiclient.get(url, format='json')
+        assert response.data[0]['has_idea_adding_permission'] is False

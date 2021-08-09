@@ -77,13 +77,12 @@ class AppModuleSerializer(serializers.ModelSerializer):
     phases = AppPhaseSerializer(many=True, read_only=True)
     labels = serializers.SerializerMethodField()
     categories = serializers.SerializerMethodField()
-    ideas_collect_phase_active = serializers.SerializerMethodField()
-    ideas_rating_phase_active = serializers.SerializerMethodField()
+    has_idea_adding_permission = serializers.SerializerMethodField()
 
     class Meta:
         model = Module
         fields = ('pk', 'phases', 'labels', 'categories',
-                  'ideas_collect_phase_active', 'ideas_rating_phase_active')
+                  'has_idea_adding_permission')
 
     def get_labels(self, instance):
         labels = Label.objects.filter(module=instance)
@@ -97,22 +96,9 @@ class AppModuleSerializer(serializers.ModelSerializer):
             return [(category.pk, category.name) for category in categories]
         return False
 
-    def get_ideas_collect_phase_active(self, instance):
-        if instance.phases:
-            for phase in instance.phases:
-                if phase.start_date and phase.end_date:
-                    if (phase.type == 'a4_candy_ideas:collect'
-                            and phase.start_date <= timezone.now()
-                            and phase.end_date >= timezone.now()):
-                        return True
-        return False
-
-    def get_ideas_rating_phase_active(self, instance):
-        if instance.phases:
-            for phase in instance.phases:
-                if phase.start_date and phase.end_date:
-                    if (phase.type == 'a4_candy_ideas:rating'
-                            and phase.start_date <= timezone.now()
-                            and phase.end_date >= timezone.now()):
-                        return True
+    def get_has_idea_adding_permission(self, instance):
+        request = self.context.get('request')
+        if request and hasattr(request, 'user'):
+            user = request.user
+            return user.has_perm('a4_candy_ideas.add_idea', instance)
         return False
