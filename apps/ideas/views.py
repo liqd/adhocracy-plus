@@ -154,7 +154,7 @@ class AbstractIdeaDeleteView(ProjectMixin,
 class IdeaDeleteView(AbstractIdeaDeleteView):
     model = models.Idea
     success_message = _('Your Idea has been deleted')
-    permission_required = 'a4_candy_ideas.change_idea'
+    permission_required = 'a4_candy_ideas.delete_idea'
     template_name = 'a4_candy_ideas/idea_confirm_delete.html'
 
 
