@@ -10,6 +10,7 @@ from .serializers import IdeaSerializer
 
 class IdeaViewSet(ModuleMixin,
                   mixins.CreateModelMixin,
+                  mixins.DestroyModelMixin,
                   mixins.ListModelMixin,
                   mixins.RetrieveModelMixin,
                   mixins.UpdateModelMixin,
