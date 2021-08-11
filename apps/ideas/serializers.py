@@ -115,8 +115,8 @@ class IdeaSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data['creator'] = self.context['request'].user
         validated_data['module'] = self.context['view'].module
-        if 'category_pk' in self.context['request'].POST:
-            category_pk = self.context['request'].POST['category_pk']
+        if 'category' in self.context['request'].data:
+            category_pk = self.context['request'].data['category']
             category = Category.objects.get(pk=category_pk)
             validated_data['category'] = category
 
