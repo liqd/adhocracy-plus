@@ -44,6 +44,7 @@ class IdeaSerializer(serializers.ModelSerializer):
     has_rating_permission = serializers.SerializerMethodField()
     has_commenting_permission = serializers.SerializerMethodField()
     has_changing_permission = serializers.SerializerMethodField()
+    has_deleting_permission = serializers.SerializerMethodField()
 
     class Meta:
         model = Idea
@@ -52,7 +53,7 @@ class IdeaSerializer(serializers.ModelSerializer):
                   'positive_rating_count', 'negative_rating_count',
                   'labels', 'category', 'content_type', 'user_rating',
                   'has_rating_permission', 'has_commenting_permission',
-                  'has_changing_permission')
+                  'has_changing_permission', 'has_deleting_permission')
         read_only_fields = ('pk', 'creator', 'created', 'reference_number')
 
     def get_creator(self, idea):
@@ -110,6 +111,13 @@ class IdeaSerializer(serializers.ModelSerializer):
         if request and hasattr(request, 'user'):
             user = request.user
             return user.has_perm('a4_candy_ideas.change_idea', idea)
+        return False
+
+    def get_has_deleting_permission(self, idea):
+        request = self.context.get('request')
+        if request and hasattr(request, 'user'):
+            user = request.user
+            return user.has_perm('a4_candy_ideas.delete_idea', idea)
         return False
 
     def create(self, validated_data):
