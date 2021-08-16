@@ -55,6 +55,7 @@ def test_idea_serializer(idea_factory, comment_factory, apiclient):
     assert response.data[0]['has_rating_permission'] is False
     assert response.data[0]['has_commenting_permission'] is False
     assert response.data[0]['has_changing_permission'] is False
+    assert response.data[0]['has_deleting_permission'] is False
 
 
 @pytest.mark.django_db
@@ -66,6 +67,7 @@ def test_anonymous_cannot_add_idea(apiclient, idea):
     assert response.data[0]['has_rating_permission'] is False
     assert response.data[0]['has_commenting_permission'] is False
     assert response.data[0]['has_changing_permission'] is False
+    assert response.data[0]['has_deleting_permission'] is False
 
     data = {}
     response = apiclient.post(url, data, format='json')
@@ -96,6 +98,7 @@ def test_initiator_can_add_idea(
     assert response.data[0]['has_rating_permission'] is True
     assert response.data[0]['has_commenting_permission'] is True
     assert response.data[0]['has_changing_permission'] is True
+    assert response.data[0]['has_deleting_permission'] is True
 
     response = apiclient.post(url, data, format='json')
     assert response.status_code == status.HTTP_201_CREATED
@@ -126,6 +129,7 @@ def test_user_can_add_idea_during_phase(
         assert response.data[0]['has_rating_permission'] is False
         assert response.data[0]['has_commenting_permission'] is True
         assert response.data[0]['has_changing_permission'] is False
+        assert response.data[0]['has_deleting_permission'] is False
 
         response = apiclient.post(url, data, format='json')
         assert response.status_code == status.HTTP_201_CREATED
@@ -156,6 +160,7 @@ def test_user_cannot_add_idea_after_phase(
         assert response.data[0]['has_rating_permission'] is False
         assert response.data[0]['has_commenting_permission'] is False
         assert response.data[0]['has_changing_permission'] is False
+        assert response.data[0]['has_deleting_permission'] is False
 
         response = apiclient.post(url, data, format='json')
         assert response.status_code == status.HTTP_403_FORBIDDEN
@@ -177,6 +182,7 @@ def test_initiator_can_update_idea(apiclient, idea):
     assert response.data['has_rating_permission'] is True
     assert response.data['has_commenting_permission'] is True
     assert response.data['has_changing_permission'] is True
+    assert response.data['has_deleting_permission'] is True
 
     response = apiclient.patch(url, data, format='json')
     assert response.status_code == status.HTTP_200_OK
@@ -204,6 +210,7 @@ def test_user_can_update_idea_during_phase(
         assert response.data['has_rating_permission'] is False
         assert response.data['has_commenting_permission'] is True
         assert response.data['has_changing_permission'] is True
+        assert response.data['has_deleting_permission'] is True
 
         response = apiclient.patch(url, data, format='json')
         assert response.status_code == status.HTTP_200_OK
@@ -231,6 +238,7 @@ def test_user_cannot_update_idea_after_phase(
         assert response.data['has_rating_permission'] is False
         assert response.data['has_commenting_permission'] is False
         assert response.data['has_changing_permission'] is False
+        assert response.data['has_deleting_permission'] is False
 
         response = apiclient.patch(url, data, format='json')
         assert response.status_code == status.HTTP_403_FORBIDDEN
