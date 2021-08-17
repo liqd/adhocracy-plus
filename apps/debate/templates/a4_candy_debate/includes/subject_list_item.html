@@ -1,7 +1,7 @@
 {% load discovery_tags i18n module_tags static thumbnail %}
 
 <li class="list-item list-item--spaced d-flex flex-column justify-content-between">
-    <a class="list-item__link" href="{{ object.get_absolute_url }}"><span class="sr-only">{{ object.name }}</span></a>
+    <a class="list-item__link" href="{{ object.get_absolute_url }}"><span class="visually-hidden">{{ object.name }}</span></a>
     <div class="row">
         <h2 class="col list-item__hover mt-0">
         {{ object.name }}
