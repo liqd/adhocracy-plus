@@ -43,7 +43,7 @@ export default class Filter extends React.Component {
         <div className="dropdown livequestions__filter--btn">
           <button
             className={this.getButtonClass()} type="button" id="dropdownMenuButton"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
           >
             {this.props.currentCategoryName}
             <i className="fa fa-caret-down" aria-hidden="true" />

@@ -4,7 +4,7 @@
         <li class="nav-item dropdown">
           <a
               class="nav-link dropdown-toggle tab active mr-2"
-              data-toggle="dropdown"
+              data-bs-toggle="dropdown"
               href="#"
               role="button"
               aria-haspopup="true"
@@ -19,7 +19,7 @@
                   href="#tabpanel-project-{{ project.pk }}-information"
                   aria-controls="tabpanel-project-{{ project.pk }}-information"
                   aria-expanded="false"
-                  data-toggle="tab">
+                  data-bs-toggle="tab">
                   {% trans 'Information' %}
               </a>
               <a
@@ -28,7 +28,7 @@
                   href="#tabpanel-project-{{ project.pk }}-participation"
                   aria-controls="tabpanel-project-{{ project.pk }}-participation"
                   aria-expanded="true"
-                  data-toggle="tab">
+                  data-bs-toggle="tab">
                   {% trans 'Participation' %}
               </a>
               <a
@@ -37,7 +37,7 @@
                   id="tab-project-{{ project.pk }}-result"
                   aria-controls="tabpanel-project-{{ project.pk }}-result"
                   aria-expanded="false"
-                  data-toggle="tab">
+                  data-bs-toggle="tab">
                   {% trans 'Result' %}
               </a>
           </div>

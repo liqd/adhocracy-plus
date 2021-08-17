@@ -33,7 +33,7 @@ $(function () {
     })
   }
 
-  $(document).on('click', '[data-toggle="ajax-modal"]', function (e) {
+  $(document).on('click', '[data-bs-toggle="ajax-modal"]', function (e) {
     e.preventDefault()
     const target = this.href + ' ' + this.dataset.targetSelector
     const $newModal = $(modalHTML)
