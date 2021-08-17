@@ -22,7 +22,7 @@
     <div class="l-menu">
         <nav class="l-menu__menu" aria-label="{% trans 'Project Settings' %}">
             <div class="dashboard-nav">
-                <div class="dashboard-nav__dropdown" data-toggle="collapse" href="#dashboardCollapseProj" aria-expanded="true" aria-controls="#dashboardCollapseProj" data-target="#dashboardCollapseProj">
+                <div class="dashboard-nav__dropdown" data-bs-toggle="collapse" href="#dashboardCollapseProj" aria-expanded="true" aria-controls="#dashboardCollapseProj" data-bs-target="#dashboardCollapseProj">
                     {% if project_progress.project_is_complete %}
                     <i class="fas fa-check-circle text-info" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
                     {% else %}
@@ -50,7 +50,7 @@
             <div class="btn-group d-flex" role="group">
                 {% if module_menu.module.is_draft %}
                 <div class="btn btn--none px-0 dropdown dashboard-nav__module-dropdown">
-                    <button class="dropdown-toggle" id="dashboardModuleMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="dropdown-toggle" id="dashboardModuleMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dashboardModuleMenu">
@@ -67,7 +67,7 @@
                 </div>
                 {% endif %}
                 <div class="dashboard-nav">
-                    <div class="dashboard-nav__dropdown" data-toggle="collapse" href="#dashboardCollapse_{{ forloop.counter }}" aria-expanded="true" aria-controls="#dashboardCollapse_{{ forloop.counter }}" data-target="#dashboardCollapse_{{ forloop.counter }}">
+                    <div class="dashboard-nav__dropdown" data-bs-toggle="collapse" href="#dashboardCollapse_{{ forloop.counter }}" aria-expanded="true" aria-controls="#dashboardCollapse_{{ forloop.counter }}" data-bs-target="#dashboardCollapse_{{ forloop.counter }}">
                       {% if module_menu.is_complete %}
                           <i class="fas fa-check-circle text-info" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
                       {% else %}

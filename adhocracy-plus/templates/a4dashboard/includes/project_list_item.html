@@ -45,7 +45,7 @@
                         <button
                                 type="button"
                                 class="dropdown-toggle btn btn--light btn--small"
-                                data-toggle="dropdown"
+                                data-bs-toggle="dropdown"
                                 data-flip="false"
                                 aria-haspopup="true"
                                 aria-expanded="false"
@@ -65,7 +65,7 @@
                                     {% trans 'Duplicate' %}
                                 </button>
                             </form>
-                            <a href="#" class="dropdown-item font-weight-normal" data-toggle="modal" data-target="#project{{ project.pk }}DeleteModal">
+                            <a href="#" class="dropdown-item font-weight-normal" data-bs-toggle="modal" data-bs-target="#project{{ project.pk }}DeleteModal">
                                 <i class="far fa-trash-alt" aria-hidden="true"></i>
                                 {% trans 'delete' %}
                             </a>
