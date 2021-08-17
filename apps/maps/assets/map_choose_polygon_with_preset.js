@@ -68,7 +68,7 @@ function init () {
       return $.parseHTML(
         '<div class="leaflet-bar leaflet-control leaflet-control-custom">' +
           '<a href="#" id="map-export-link" title="' + exportLabel + '"><i class="fa fa-download" aria-label="' + exportLabel + '"></i></a>' +
-          '<a href="#map-import-modal" data-toggle="modal" data-target="#map-import-modal" title="' + importLabel + '"><i class="fa fa-upload" aria-label="' + importLabel + '"></i></a>' +
+          '<a href="#map-import-modal" data-bs-toggle="modal" data-bs-target="#map-import-modal" title="' + importLabel + '"><i class="fa fa-upload" aria-label="' + importLabel + '"></i></a>' +
         '</div>'
       )[0]
     },
@@ -268,7 +268,7 @@ function init () {
       $('#id_' + name).trigger('change')
     })
 
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
       map.invalidateSize().fitBounds(getBaseBounds(L, polygon, bbox))
     })
 

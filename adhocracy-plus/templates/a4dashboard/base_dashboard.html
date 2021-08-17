@@ -24,7 +24,7 @@
                             title="{% trans 'Organisations' %}"
                             type="button"
                             class="dropdown-toggle btn btn--none btn--small"
-                            data-toggle="dropdown"
+                            data-bs-toggle="dropdown"
                             data-flip="false"
                             aria-haspopup="true"
                             aria-expanded="false"
@@ -71,11 +71,11 @@
                 <li class="nav-item dropdown">
                   <a
                       class="nav-link dropdown-toggle tab active mr-2"
-                      data-toggle="dropdown"
+                      data-bs-toggle="dropdown"
                       href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
                       role="button"
                       aria-expanded="false"
-                      data-toggle="tab">
+                      data-bs-toggle="tab">
                       {% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug as project_list %}
                       {% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug as newsletter_create %}
                       {% if request.path ==  project_list %}

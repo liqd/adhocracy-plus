@@ -73,7 +73,7 @@ document.addEventListener('click', function () {
 
 // enables bootstrap tooltips
 $(function tooltip () {
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-bs-toggle="tooltip"]').tooltip()
 })
 
 // This function is overwritten with custom behavior in embed.js.
