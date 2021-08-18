@@ -91,7 +91,7 @@ class LanguageChoice extends React.Component {
             })
           }
         </ul>
-        <div className="btn--group ml-5">
+        <div className="btn--group ms-5">
           <div className="dropdown">
             <button className="dropdown-toggle btn btn--light btn--small" type="button" data-bs-toggle="dropdown">
               <i className="fa fa-plus" />

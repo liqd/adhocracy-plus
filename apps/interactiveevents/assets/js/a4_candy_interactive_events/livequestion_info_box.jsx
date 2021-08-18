@@ -31,7 +31,7 @@ export default class InfoBox extends React.Component {
       <div className="livequestion__info-box">
         {this.state.displayInfo &&
           <div className="u-border my-2">
-            <button type="button" className="close pr-2" onClick={this.toggleInformation.bind(this)}>
+            <button type="button" className="close pe-2" onClick={this.toggleInformation.bind(this)}>
               <span aria-label={ariaCloseInfo}>&times;</span>
             </button>
             {this.props.isModerator &&
@@ -56,8 +56,8 @@ export default class InfoBox extends React.Component {
                 </div>
               </div>}
           </div>}
-        <button type="button" className="btn btn--none text-muted pr-0" onClick={this.toggleInformation.bind(this)}>
-          <span aria-label={ariaOpenInfo}><i className="fas fa-info-circle mr-1" />{textInfo}</span>
+        <button type="button" className="btn btn--none text-muted pe-0" onClick={this.toggleInformation.bind(this)}>
+          <span aria-label={ariaOpenInfo}><i className="fas fa-info-circle me-1" />{textInfo}</span>
         </button>
       </div>
     )

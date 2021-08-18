@@ -215,14 +215,14 @@ export default class QuestionBox extends React.Component {
                           aria-label={ariaDisplayOnScreen}
                           title={ariaDisplayOnScreen}
                         >
-                          <span className="fa-stack fa-1x mr-1">
+                          <span className="fa-stack fa-1x me-1">
                             <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
                             <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
                           </span>
                           {textDisplayOnScreen}
                         </a>
                       </div>}
-                    <div className="livequestions__action-bar--btn pr-md-3">
+                    <div className="livequestions__action-bar--btn pe-md-3">
                       <div className="btn--light checkbox-btn">
                         <label
                           htmlFor="displayStatistics"
@@ -238,7 +238,7 @@ export default class QuestionBox extends React.Component {
                             checked={this.state.showStatistics}
                           />
                           <span className="checkbox-btn__text">
-                            <i className="fas fa-chart-bar mr-1" aria-label="hidden" />
+                            <i className="fas fa-chart-bar me-1" aria-label="hidden" />
                             {textStatistics}
                           </span>
                         </label>
@@ -276,7 +276,7 @@ export default class QuestionBox extends React.Component {
                     id="livequestion-statistics"
                     aria-hidden="false"
                   >
-                    <button type="button" className="close pr-2" onClick={this.handleToggleStatistics.bind(this)}>
+                    <button type="button" className="close pe-2" onClick={this.handleToggleStatistics.bind(this)}>
                       <span aria-label="close">&times;</span>
                     </button>
                     <StatisticsBox

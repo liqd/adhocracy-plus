@@ -37,7 +37,7 @@ export default class QuestionPresent extends React.Component {
             <div>
               <div className="float-right">
                 <span className="text-muted">{this.state.likes}</span>
-                <i className="icon-like text-muted ml-2" aria-hidden="true" />
+                <i className="icon-like text-muted ms-2" aria-hidden="true" />
                 <span className="visually-hidden">{likesTag}</span>
               </div>
             </div>
