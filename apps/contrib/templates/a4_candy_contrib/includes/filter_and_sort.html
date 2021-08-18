@@ -3,13 +3,13 @@
 <div class="filter-bar d-sm-flex mb-2" role="group" aria-label="{% trans 'Filter bar '%}">
     {% for field in filter.form %}
         {% if field.name != 'ordering' %}
-        <div class="mr-sm-1 mt-2 mt-sm-0">
+        <div class="me-sm-1 mt-2 mt-sm-0">
             {{ field }}
         </div>
         {% endif %}
     {% endfor %}
 
-    <div class="ml-auto mt-2 mt-sm-0">
+    <div class="ms-auto mt-2 mt-sm-0">
         {{ filter.form.ordering }}
     </div>
 </div>

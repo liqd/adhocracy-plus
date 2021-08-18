@@ -10,7 +10,7 @@
     <div class="row align-items-end">
         <div class="col-12 col-sm-auto">
             {% if object.last_three_creators %}
-            <div class="creator-count__circles pt-sm-2 pr-2" aria-hidden="true">
+            <div class="creator-count__circles pt-sm-2 pe-2" aria-hidden="true">
                 {% for creator in object.last_three_creators %}
                     {% if creator.avatar %}
                     <span class="creator-count__circle creator-count__circle--{{ forloop.counter }}" style="background-image: url({{ creator.avatar | thumbnail_url:'avatar'}});">

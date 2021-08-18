@@ -56,7 +56,7 @@ export default class Filter extends React.Component {
           </div>
         </div>
         {this.props.isModerator &&
-          <div className="checkbox-btn livequestions__filter--btn pr-3">
+          <div className="checkbox-btn livequestions__filter--btn pe-3">
             <label
               htmlFor="markedCheck"
               className="checkbox-btn__label--light"
@@ -102,7 +102,7 @@ export default class Filter extends React.Component {
             <div className="checkbox-btn">
               <label
                 htmlFor="displayNotHiddenOnly"
-                className="checkbox-btn__label--light pl-3"
+                className="checkbox-btn__label--light ps-3"
                 aria-label={ariaDisplayNotHidden}
                 title={ariaDisplayNotHidden}
               >
@@ -122,7 +122,7 @@ export default class Filter extends React.Component {
             <div className="checkbox-btn">
               <label
                 htmlFor="orderedByLikes"
-                className="checkbox-btn__label--light pl-3"
+                className="checkbox-btn__label--light ps-3"
                 aria-label={ariaOrderLikes}
                 title={ariaOrderLikes}
               >
