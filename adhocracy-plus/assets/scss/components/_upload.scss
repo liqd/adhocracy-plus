@@ -1,6 +1,8 @@
 .upload-wrapper {
     position: relative;
     justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
 
     // in front of text input, but invisible
     .form-control-file {
@@ -47,8 +49,4 @@
 .clear-image:checked + img {
     opacity: 0.2;
     filter: grayscale(100%);
-}
-
-.upload-wrapper__alert {
-    max-width: 100%;
 }
