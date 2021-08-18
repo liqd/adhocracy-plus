@@ -87,13 +87,14 @@ class AppModuleSerializer(serializers.ModelSerializer):
     def get_labels(self, instance):
         labels = Label.objects.filter(module=instance)
         if labels:
-            return [(label.pk, label.name) for label in labels]
+            return [{'id': label.pk, 'name': label.name} for label in labels]
         return False
 
     def get_categories(self, instance):
         categories = Category.objects.filter(module=instance)
         if categories:
-            return [(category.pk, category.name) for category in categories]
+            return [{'id': category.pk, 'name': category.name}
+                    for category in categories]
         return False
 
     def get_has_idea_adding_permission(self, instance):
