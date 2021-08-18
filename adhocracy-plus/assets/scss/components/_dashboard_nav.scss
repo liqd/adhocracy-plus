@@ -34,6 +34,10 @@
         top: $spacer;
         right: $spacer;
         transition: transform 0.3s;
+
+        &.dashboard_nav-i-spacer {
+            right: 1.5*$spacer;
+        }
     }
 
     &.collapsed i.fa-chevron-up {
@@ -99,7 +103,7 @@
     border-radius: $spacer !important;
 }
 
-.custom-control-input:checked ~ .dashboard-nav__toggle-label:before {
+.form-check-input:checked ~ .dashboard-nav__toggle-label:before {
     border-color: $brand-primary !important;
     background-color: $brand-primary !important;
 }

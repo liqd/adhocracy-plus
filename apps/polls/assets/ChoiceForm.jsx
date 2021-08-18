@@ -5,8 +5,8 @@ const ErrorList = require('../../contrib/assets/ErrorList')
 const ChoiceForm = (props) => {
   return (
     <div className="form-group form-group--narrow form-inline">
-      <div className="input-group">
-        <label htmlFor={'id_choices-' + props.id + '-name'}>
+      <div>
+        <label htmlFor={'id_choices-' + props.id + '-name'} className="input-group">
           <span className="visually-hidden">{props.label}</span>
           <input
             id={'id_choices-' + props.id + '-name'}

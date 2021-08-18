@@ -54,7 +54,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dashboardModuleMenu">
-                      <a class="dropdown-item" href="#">
+                      <a class="p-0" href="#">
                         <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug organisation_slug=project.organisation.slug %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="referrer" value="{{ request.path }}" />
@@ -74,7 +74,7 @@
                           <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Module not ready for addition' %}" aria-label="{% trans 'Module not ready for addition' %}"></i>
                       {% endif %}
                       {{ module_menu.module.name }}
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                      <i class="fa fa-chevron-up {% if module_menu.module.is_draft %}dashboard_nav-i-spacer{% endif %}" aria-hidden="true"></i>
                     </div>
 
                     <ul class="dashboard-nav__pages collapse show" id="dashboardCollapse_{{ forloop.counter }}" aria-hidden="false">
@@ -91,25 +91,34 @@
                         {% endfor %}
                         <li class="dashboard-nav__page">
                             <div class="dashboard-nav__item switch">
-                                <div class="custom-control custom-switch" role="group">
-                                  <form class="dashboard_nav__form--project" action="{% url 'a4dashboard:module-publish' module_slug=module_menu.module.slug organisation_slug=project.organisation.slug %}" method="post" data-ignore-submit="true">
+                                <div class="form-check form-switch" role="group">
+                                  <form
+                                    class="dashboard_nav__form--project"
+                                    action="{% url 'a4dashboard:module-publish' module_slug=module_menu.module.slug organisation_slug=project.organisation.slug %}"
+                                    method="post"
+                                    data-ignore-submit="true">
                                   {% csrf_token %}
                                   <input type="hidden" name="referrer" value="{{ request.path }}" />
 
                                   {% if not module_menu.module.is_draft %}
-                                      <button name="action" value="unpublish" class="">
-                                      <input type="checkbox" class="custom-control-input" id="dashboardToggle_{{ forloop.counter }}" checked {% if not project.is_draft %}disabled{% endif %}>
-                                      <label class="custom-control-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
+                                      <input
+                                      type="checkbox"
+                                      class="form-check-input"
+                                      id="dashboardToggle_{{ forloop.counter }}"
+                                      checked
+                                      {% if not project.is_draft %}disabled{% endif %}>
+                                      <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
                                           {% trans 'Hide from project' %}
                                       </label>
-                                      </button>
                                   {% else %}
-                                      <button name="action" value="publish" class="">
-                                      <input type="checkbox" class="custom-control-input" id="dashboardToggle_{{ forloop.counter }}" {% if not module_menu.is_complete %}disabled{% endif %}>
-                                      <label class="custom-control-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
+                                      <input
+                                        type="checkbox"
+                                        class="form-check-input"
+                                        id="dashboardToggle_{{ forloop.counter }}"
+                                        {% if not module_menu.is_complete %}disabled{% endif %}>
+                                      <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
                                         {% trans 'Add to project' %}
                                       </label>
-                                      </button>
                                   {% endif %}
 
                                 </form>
