@@ -168,13 +168,13 @@
         {% if project.is_private %}
         <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs mb-4">
-                <i class="fas fa-lock pr-2" aria-hidden="true"></i>{% trans 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
+                <i class="fas fa-lock pe-2" aria-hidden="true"></i>{% trans 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
             </div>
         </div>
         {% elif project.is_semipublic %}
         <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs mb-4">
-                <i class="fas fa-eye pr-2" aria-hidden="true"></i>{% trans 'This project is publicly visible. Invited users can actively participate.' %}
+                <i class="fas fa-eye pe-2" aria-hidden="true"></i>{% trans 'This project is publicly visible. Invited users can actively participate.' %}
             </div>
         </div>
         {% endif %}

@@ -58,14 +58,14 @@ export default class QuestionUser extends React.Component {
         <div>
           <p>
             {this.props.is_on_shortlist &&
-              <i className="icon-in-list pr-1 text-muted" aria-label={shortlistText} />}
+              <i className="icon-in-list pe-1 text-muted" aria-label={shortlistText} />}
             {this.props.children}
           </p>
         </div>
         <div className="row">
           <div className="col-12">
             {this.props.category &&
-              <span className="label label--big mr-1">{this.props.category}</span>}
+              <span className="label label--big me-1">{this.props.category}</span>}
 
             <div>
               {this.props.hasLikingPermission
@@ -86,7 +86,7 @@ export default class QuestionUser extends React.Component {
                   <div className="float-right">
                     <span className="text-muted">{this.state.likes}</span>
                     <span className="visually-hidden">{likesText}</span>
-                    <i className="fa fa-chevron-up text-muted ml-1" aria-hidden="true" />
+                    <i className="fa fa-chevron-up text-muted ms-1" aria-hidden="true" />
                   </div>
                   )}
             </div>

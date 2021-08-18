@@ -111,7 +111,7 @@ export default class QuestionModerator extends React.Component {
         </div>
         <div className="row justify-content-between">
           <div className="col-12 col-md-4 col-sm-5 mb-3 mb-sm-0">
-            <div className="mt-2 text-primary">{this.state.likes}<i className="fa fa-chevron-up ml-2" /></div>
+            <div className="mt-2 text-primary">{this.state.likes}<i className="fa fa-chevron-up ms-2" /></div>
           </div>
           <div className="col-12 col-md-8 col-sm-7">
             {this.props.displayIsHidden &&
