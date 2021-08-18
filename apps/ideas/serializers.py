@@ -10,8 +10,24 @@ from .models import Idea
 
 
 class LabelListingField(serializers.StringRelatedField):
+
     def to_internal_value(self, label):
         return Label.objects.get(pk=label)
+
+    def to_representation(self, label):
+        return {'id': label.pk, 'name': label.name}
+
+
+class CategoryField(serializers.Field):
+
+    def to_internal_value(self, category):
+        if category:
+            return Category.objects.get(pk=category)
+        else:
+            return None
+
+    def to_representation(self, category):
+        return {'id': category.pk, 'name': category.name}
 
 
 class DescriptionSerializerField(serializers.Field):
@@ -38,7 +54,7 @@ class IdeaSerializer(serializers.ModelSerializer):
     positive_rating_count = serializers.SerializerMethodField()
     negative_rating_count = serializers.SerializerMethodField()
     labels = LabelListingField(many=True)
-    category = serializers.StringRelatedField()
+    category = CategoryField()
     content_type = serializers.SerializerMethodField()
     user_rating = serializers.SerializerMethodField()
     has_rating_permission = serializers.SerializerMethodField()
@@ -123,9 +139,5 @@ class IdeaSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data['creator'] = self.context['request'].user
         validated_data['module'] = self.context['view'].module
-        if 'category' in self.context['request'].data:
-            category_pk = self.context['request'].data['category']
-            category = Category.objects.get(pk=category_pk)
-            validated_data['category'] = category
 
         return super().create(validated_data)
