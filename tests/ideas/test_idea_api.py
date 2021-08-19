@@ -35,7 +35,8 @@ def test_idea_list_api(idea_factory, apiclient):
 
 
 @pytest.mark.django_db
-def test_idea_serializer(idea_factory, comment_factory, apiclient):
+def test_idea_serializer(
+        idea_factory, comment_factory, apiclient, label_factory):
     idea = idea_factory(
         description='<p>description with a <strong>bold</strong> bit</p>'
     )
@@ -44,6 +45,9 @@ def test_idea_serializer(idea_factory, comment_factory, apiclient):
     comment_factory(content_object=idea)
     comment_factory(content_object=idea)
     comment_factory(content_object=comment)
+    label1 = label_factory(module=idea.module)
+    label2 = label_factory(module=idea.module)
+    idea.labels.add(label1, label2)
 
     url = reverse('ideas-list',
                   kwargs={'module_pk': idea.module.pk})
@@ -52,6 +56,10 @@ def test_idea_serializer(idea_factory, comment_factory, apiclient):
     assert response.status_code == 200
     assert response.data[0]['description'] == 'description with a bold bit'
     assert response.data[0]['comment_count'] == 4
+    assert response.data[0]['labels'] == [
+        {'id': label1.pk, 'name': label1.name},
+        {'id': label2.pk, 'name': label2.name}]
+    assert not response.data[0]['category']
     assert response.data[0]['has_rating_permission'] is False
     assert response.data[0]['has_commenting_permission'] is False
     assert response.data[0]['has_changing_permission'] is False
@@ -88,7 +96,7 @@ def test_initiator_can_add_idea(
     data = {
         "name": "an idea",
         "description": "this is the description",
-        "category_pk": category.pk,
+        "category": category.pk,
         "labels": [label.pk]
     }
     user = project.organisation.initiators.first()
@@ -120,7 +128,7 @@ def test_user_can_add_idea_during_phase(
     data = {
         "name": "an idea",
         "description": "this is the description",
-        "category_pk": category.pk,
+        "category": category.pk,
         "labels": [label.pk]
     }
     apiclient.force_authenticate(user=user)
@@ -151,7 +159,7 @@ def test_user_cannot_add_idea_after_phase(
     data = {
         "name": "an idea",
         "description": "this is the description",
-        "category_pk": category.pk,
+        "category": category.pk,
         "labels": [label.pk]
     }
     apiclient.force_authenticate(user=user)

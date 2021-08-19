@@ -79,10 +79,14 @@ def test_app_module_api_agenda_setting(
     response = apiclient.get(url, format='json')
     assert response.status_code == 200
     assert response.data[0]['pk'] == module.pk
-    assert (category_1.pk, category_1.name) in response.data[0]['categories']
-    assert (category_2.pk, category_2.name) in response.data[0]['categories']
-    assert (label_1.pk, label_1.name) in response.data[0]['labels']
-    assert (label_2.pk, label_2.name) in response.data[0]['labels']
+    assert {'id': category_1.pk, 'name': category_1.name} \
+           in response.data[0]['categories']
+    assert {'id': category_2.pk, 'name': category_2.name} \
+           in response.data[0]['categories']
+    assert {'id': label_1.pk, 'name': label_1.name} \
+           in response.data[0]['labels']
+    assert {'id': label_2.pk, 'name': label_2.name} \
+           in response.data[0]['labels']
     assert len(response.data[0]['phases']) == 2
 
     with freeze_phase(collect_phase):
