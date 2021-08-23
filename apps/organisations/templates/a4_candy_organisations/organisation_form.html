@@ -4,51 +4,47 @@
 {% block title %}{% trans "Settings" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block organisation_form %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-10">
-            <h1>{% trans "Edit your organisation information" %}</h1>
+    <div class="col-md-10">
+        <h1>{% trans "Edit your organisation information" %}</h1>
 
-            <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
-                {% csrf_token %}
-                <h2>{{ object.name }}</h2>
+        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            <h2>{{ object.name }}</h2>
 
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.title important=True %}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.logo %}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.image %}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.image_copyright %}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.url %}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.twitter_handle %}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.facebook_handle %}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.instagram_handle %}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.language %}
-                <div class="form-group">
-                    <label>{% trans "Language availability" %}</label>
-                    <div class="form-hint">{% trans "Manage here the content of your page in the desired languages. You can add or delete them." %}</div>
-                    <div class="language-choice-list"
-                         id="language-choice-list"
-                         data-euth-widget="language-choice"
-                         data-languages="{{ form.languages|join:' ' }}"
-                         data-active-languages="{{ form.prefilled_languages|join:' ' }}"
-                         data-language-dict="{{ language_dict }}"   >
-                    </div>
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.title important=True %}
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.logo %}
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.image %}
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.image_copyright %}
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.url %}
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.twitter_handle %}
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.facebook_handle %}
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.instagram_handle %}
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.language %}
+            <div class="form-group">
+                <label>{% trans "Language availability" %}</label>
+                <div class="form-hint">{% trans "Manage here the content of your page in the desired languages. You can add or delete them." %}</div>
+                <div class="language-choice-list"
+                     id="language-choice-list"
+                     data-euth-widget="language-choice"
+                     data-languages="{{ form.languages|join:' ' }}"
+                     data-active-languages="{{ form.prefilled_languages|join:' ' }}"
+                     data-language-dict="{{ language_dict }}"   >
                 </div>
-                {% for lang_code, fields in form.translated %}
-               <div class="language-choice-panel {% if lang_code == form.get_initial_active_tab %}active{% endif %}" id="{{ lang_code }}_language_panel">
-                    {% for field in fields %}
-                    <div class="form-group{% if field.errors %} has-error{% endif %}">
-                        {% include 'a4_candy_organisations/includes/form_field.html' with field=field %}
-                    </div>
-                    {% endfor %}
+            </div>
+            {% for lang_code, fields in form.translated %}
+           <div class="language-choice-panel {% if lang_code == form.get_initial_active_tab %}active{% endif %}" id="{{ lang_code }}_language_panel">
+                {% for field in fields %}
+                <div class="form-group{% if field.errors %} has-error{% endif %}">
+                    {% include 'a4_candy_organisations/includes/form_field.html' with field=field %}
                 </div>
                 {% endfor %}
+            </div>
+            {% endfor %}
 
-                <div class="d-flex justify-content-end mb-3">
-                    <button type="submit" class="btn btn--primary">{% trans 'Save changes' %}</button>
-                </div>
-            </form>
-            {{ form.media }}
-        </div>
+            <div class="d-flex justify-content-end mb-3">
+                <button type="submit" class="btn btn--primary">{% trans 'Save changes' %}</button>
+            </div>
+        </form>
+        {{ form.media }}
     </div>
-</div>
 {% endblock %}
