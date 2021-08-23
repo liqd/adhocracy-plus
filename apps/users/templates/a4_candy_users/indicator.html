@@ -22,7 +22,7 @@
             id="user-actions"
         >
             <div class="userindicator__btn-img" style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar'}}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}"></div>
-            <div class="userindicator__btn-text text-left">
+            <div class="userindicator__btn-text text-start">
                 <span class="userindicator__hello">{% trans "Hello" %}</span>
                 <br>
                 <div class="u-overflow-ellipsis">{{ request.user.username }}</div>
