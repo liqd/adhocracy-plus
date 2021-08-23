@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block dashboard_content %}
-    <div class="l-menu">
+    <div class="row">
         <nav class="l-menu__menu" aria-label="{% trans 'Project Settings' %}">
             <div class="dashboard-nav">
                 <div class="dashboard-nav__dropdown" data-bs-toggle="collapse" href="#dashboardCollapseProj" aria-expanded="true" aria-controls="#dashboardCollapseProj" data-bs-target="#dashboardCollapseProj">
@@ -53,7 +53,7 @@
                     <button class="dropdown-toggle" id="dashboardModuleMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v"></i>
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dashboardModuleMenu">
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dashboardModuleMenu">
                       <a class="p-0" href="#">
                         <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug organisation_slug=project.organisation.slug %}" method="post">
                         {% csrf_token %}
@@ -92,6 +92,7 @@
                         <li class="dashboard-nav__page">
                             <div class="dashboard-nav__item switch">
                                 <div class="form-check form-switch" role="group">
+
                                   <form
                                     class="dashboard_nav__form--project"
                                     action="{% url 'a4dashboard:module-publish' module_slug=module_menu.module.slug organisation_slug=project.organisation.slug %}"
@@ -101,6 +102,7 @@
                                   <input type="hidden" name="referrer" value="{{ request.path }}" />
 
                                   {% if not module_menu.module.is_draft %}
+                                  <button name="action" value="unpublish" class="">
                                       <input
                                       type="checkbox"
                                       class="form-check-input"
@@ -110,7 +112,9 @@
                                       <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
                                           {% trans 'Hide from project' %}
                                       </label>
+                                      </button>
                                   {% else %}
+                                  <button name="action" value="publish" class="">
                                       <input
                                         type="checkbox"
                                         class="form-check-input"
@@ -119,6 +123,7 @@
                                       <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
                                         {% trans 'Add to project' %}
                                       </label>
+                                      </button>
                                   {% endif %}
 
                                 </form>

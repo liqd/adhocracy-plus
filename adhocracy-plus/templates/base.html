@@ -63,6 +63,7 @@
         <main id="main" class="flex-fill">
             {% if messages %}
             <div class="row">
+              <div class="col">
                 <ul class="messages mb-3">
                     {% for message in messages %}
                     <li class="alert alert--{{ message.tags }}">
@@ -72,6 +73,7 @@
                     </li>
                     {% endfor %}
                 </ul>
+              </div>
             </div>
             {% endif %}
 

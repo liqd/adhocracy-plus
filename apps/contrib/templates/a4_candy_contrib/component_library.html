@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="l-menu">
+    <div class="row">
         <div class="l-menu__menu">
             <nav class="dashboard-nav">
                 <div class="dashboard-nav__dropdown">Form
@@ -1100,7 +1100,7 @@
                                             de
                                             <i class="fa fa-caret-down ps-1" aria-hidden="true"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                             <form>
                                                 <button class="dropdown-item" role="button" type="submit" aria-label="select Englisch">
                                                     English
@@ -1125,7 +1125,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item header-upper__user">
-                                    <div class="dropdown dropdown--right userindicator__dropdown">
+                                    <div class="dropdown userindicator__dropdown">
                                         <button class="d-md-none dropdown-toggle btn btn--primary-filled btn--square btn--attached-top header-upper__mobile-toggle" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
                                           id="user-actions">
                                             <span class="d-none d-sm-inline-block pe-1">Menü</span>
@@ -1140,7 +1140,7 @@
                                             </div>
                                             <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                         </button>
-                                        <div class="dropdown-menu dropdown-menu-right userindicator__dropdown-menu" aria-labelledby="user-actions">
+                                        <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu" aria-labelledby="user-actions">
                                             <a class="dropdown-item" href="/django-admin/">Admin</a>
                                             <a class="dropdown-item" href="/userdashboard/overview/">My Overview</a>
                                             <a class="dropdown-item" href="/account/">My Settings</a>
@@ -1175,7 +1175,7 @@
                                             de
                                             <i class="fa fa-caret-down ps-1" aria-hidden="true"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                             <form action="/i18n/setlang/" method="post">
                                                 <button class="dropdown-item" role="button" type="submit" aria-label="Wählen SieEnglisch">
                                                     English
@@ -1190,12 +1190,12 @@
                                     </div>
                                 </li>
                                 <li class="nav-item header-upper__user">
-                                    <div class="dropdown dropdown--right userindicator__dropdown">
+                                    <div class="dropdown dropdown-menu-end userindicator__dropdown">
                                         <button class="dropdown-toggle btn btn--primary-filled btn--square btn--attached-top header-upper__mobile-toggle" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
                                           id="user-actions">
                                             <span class="d-none d-sm-inline-block pe-1">Menü</span>
                                         </button>
-                                        <div class="dropdown-menu dropdown-menu-right userindicator__dropdown-menu" aria-labelledby="user-actions">
+                                        <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu" aria-labelledby="user-actions">
                                             <a class="dropdown-item" href="">Admin</a>
                                             <a class="dropdown-item" href="/account/">Nutzerkonto Einstellungen</a <a class="dropdown-item" href="/profile/Philli%20Admin%20Morland/">Dein Profil</a>
                                             <a class="dropdown-item" href="/teststadt/dashboard/organisations/projects/">
@@ -1289,7 +1289,7 @@
                 <div class="cl-example" style="min-height: 22em">
                     First button shown when clicked and no comment saved, second button display state after comment has been saved.
                     <div class="lr-bar__right">
-                        <div class="dropdown dropdown--right show">
+                        <div class="dropdown dropdown-menu-end show">
                             <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
                                 <i class="fa fa-comment" aria-label="Moderator remark"></i>
                                 <i class="fa fa-check-circle idea-remark__btn__notify  d-none " aria-hidden="true"></i>
@@ -1310,7 +1310,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="dropdown dropdown--right">
+                        <div class="dropdown dropdown-menu-end">
                             <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small" data-flip="false" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
                                 <i class="fa fa-comment" aria-label="Moderator remark"></i>
                                 <i class="fa fa-check-circle idea-remark__btn__notify  d-none " aria-hidden="true" style="display: inline;"></i>
@@ -1356,7 +1356,7 @@
                                     0
                                 </button>
                             </div>
-                            <div class="dropdown dropdown--right lr-bar__right">
+                            <div class="dropdown dropdown-menu-end lr-bar__right">
                                 <button class="dropdown-toggle btn btn--light btn--small">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </button>
@@ -1507,7 +1507,7 @@
                 <h2 id="cl-menu-layout">Menu Layout</h2>
 
                 <div class="cl-example">
-                    <div class="l-menu">
+                    <div class="row">
                         <nav class="l-menu__menu" aria-label="">
                             <div class="dashboard-nav">
                                 <div class="dashboard-nav__item">Left Menu - Project nav</div>

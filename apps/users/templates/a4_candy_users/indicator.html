@@ -1,7 +1,7 @@
 {% load i18n static thumbnail %}
 
 {% if request.user.is_authenticated %}
-    <div class="dropdown dropdown--right userindicator__dropdown">
+    <div class="dropdown userindicator__dropdown">
 
         <button
             class="d-md-none dropdown-toggle btn btn--secondary-filled btn--square btn--attached-top header-upper__mobile-toggle"
@@ -30,7 +30,7 @@
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
         </button>
 
-        <div class="dropdown-menu dropdown-menu-right userindicator__dropdown-menu" aria-labelledby="user-actions">
+        <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu" aria-labelledby="user-actions">
             {% if request.user.is_superuser %}
                 <a class="dropdown-item" href="{% url 'admin:index' %}">{% trans "Admin" %}</a>
             {% endif %}
