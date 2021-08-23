@@ -34,12 +34,13 @@
 
 {% block extra_messages %}
 <div class="u-bg-light py-5">
-    <div class="container px-0 px-sm-3 u-bg-light">
+    <div class="container">
         <div class="col-12 container--shadow">
             {{ block.super }}
 
             {% if project.is_draft %}
                 <div class="row">
+                  <div class="col">
                     <ul class="messages">
                         <li class="alert alert--warning" role="alert">
                             <div class="container">
@@ -47,12 +48,13 @@
                             </div>
                         </li>
                     </ul>
+                    </div>
                 </div>
             {% endif %}
         {% endblock %}
 
         {% block content %}
-            <div class="project-header{% if project.image %} project-header--image{% endif %} row" style="{% if view.project.image %}
+            <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
                            background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                            {% endif %}">
                 <div class="container">
@@ -69,7 +71,7 @@
                 {% if project.image_copyright %}
                 <div class="header__copyright copyright">© {{ project.image_copyright }}</div>
                 {% endif %}
-                <div class="tablist project-header__tabs row">
+                <div class="tablist project-header__tabs">
                     <nav class="nav d-none d-md-inline-block" role="tablist">
                         <a
                             id="tab-project-{{ project.pk }}-information"
@@ -109,7 +111,7 @@
 
             {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
             {% if user_may_change %}
-            <div class="tablist--right">
+            <div class="u-align-right">
                 <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
             </div>
             {% endif %}

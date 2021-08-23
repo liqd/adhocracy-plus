@@ -41,6 +41,7 @@
 
         {% if project.is_draft %}
             <div class="row">
+              <div class="col">
                 <ul class="messages">
                     <li class="alert alert--warning" role="alert">
                         <div class="container">
@@ -48,6 +49,7 @@
                         </div>
                     </li>
                 </ul>
+                </div>
             </div>
         {% endif %}
     </div>
@@ -57,7 +59,7 @@
 {% block content %}
 <div class="u-bg-light py-5">
     <div class="container container--shadow">
-        <div class="project-header{% if project.image %} project-header--image{% endif %} row" style="{% if view.project.image %}
+        <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
                        background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                        {% endif %}">
             <div class="container">

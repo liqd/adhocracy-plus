@@ -19,7 +19,7 @@
       {{ LANGUAGE_CODE }}
       <i class="fa fa-caret-down ps-1" aria-hidden="true"></i>
     </a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
       {% for lang_code, lang_name in languages %}
           {% get_language_info for lang_code as language %}
           {% if lang_code != LANGUAGE_CODE %}

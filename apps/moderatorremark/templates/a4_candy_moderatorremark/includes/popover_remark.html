@@ -15,7 +15,7 @@
         <i class="fa fa-comment" aria-label="{% trans 'Moderator remark' %}"></i>
         <i class="fa fa-check-circle idea-remark__btn__notify {% if not remark or not remark.content %} d-none {% endif %}" aria-hidden="true"></i>
     </button>
-    <div class="dropdown-menu dropdown-menu-right idea-remark" id="remark__dropdown-menu" aria-labelledby="id_remark_dropdown">
+    <div class="dropdown-menu dropdown-menu-end idea-remark" id="remark__dropdown-menu" aria-labelledby="id_remark_dropdown">
         <form class="general-form" id="idea-remark__form">
             <div class="form-group idea-remark__text">
                 <label for="id_remark" class="idea-remark__label">{% trans 'Remark' %}</label>

@@ -4,25 +4,21 @@
 {% block title %}{% trans "Settings" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block organisation_form %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-10">
-            <h1>{% trans "Edit your legal information" %}</h1>
+    <div class="col-md-10">
+        <h1>{% trans "Edit your legal information" %}</h1>
 
-            <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
-                {% csrf_token %}
-                <h2>{{ object.name }}</h2>
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.imprint important=True%}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.terms_of_use important=True%}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.data_protection important=True%}
-                {% include 'a4_candy_organisations/includes/form_field.html' with field=form.netiquette %}
+        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            <h2>{{ object.name }}</h2>
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.imprint important=True%}
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.terms_of_use important=True%}
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.data_protection important=True%}
+            {% include 'a4_candy_organisations/includes/form_field.html' with field=form.netiquette %}
 
-                <div class="d-flex justify-content-end mb-3">
-                    <button type="submit" class="btn btn--primary">{% trans 'Save changes' %}</button>
-                </div>
-            </form>
-            {{ form.media }}
-        </div>
+            <div class="d-flex justify-content-end mb-3">
+                <button type="submit" class="btn btn--primary">{% trans 'Save changes' %}</button>
+            </div>
+        </form>
+        {{ form.media }}
     </div>
-</div>
 {% endblock %}
