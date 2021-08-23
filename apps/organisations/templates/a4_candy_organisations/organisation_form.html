@@ -31,15 +31,17 @@
                      data-language-dict="{{ language_dict }}"   >
                 </div>
             </div>
+            <div class="tab-content">
             {% for lang_code, fields in form.translated %}
-           <div class="language-choice-panel {% if lang_code == form.get_initial_active_tab %}active{% endif %}" id="{{ lang_code }}_language_panel">
-                {% for field in fields %}
-                <div class="form-group{% if field.errors %} has-error{% endif %}">
-                    {% include 'a4_candy_organisations/includes/form_field.html' with field=field %}
+                <div class="language-choice-panel {% if lang_code == form.get_initial_active_tab %}active{% endif %}" id="{{ lang_code }}_language_panel">
+                    {% for field in fields %}
+                    <div class="form-group{% if field.errors %} has-error{% endif %}">
+                        {% include 'a4_candy_organisations/includes/form_field.html' with field=field %}
+                    </div>
+                    {% endfor %}
                 </div>
                 {% endfor %}
             </div>
-            {% endfor %}
 
             <div class="d-flex justify-content-end mb-3">
                 <button type="submit" class="btn btn--primary">{% trans 'Save changes' %}</button>

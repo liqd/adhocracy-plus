@@ -35,6 +35,7 @@ class LanguageChoice extends React.Component {
   activateTab (e) {
     const languageCode = e.target.textContent
     this.setState({ activeTab: languageCode })
+    e.preventDefault()
   }
 
   addLanguage (e) {
@@ -72,11 +73,11 @@ class LanguageChoice extends React.Component {
   render () {
     return (
       <div className="language-choice-container">
-        <ul className="checkbox-list btn--group">
+        <ul className="checkbox-list nav btn--group">
           {
             this.props.languages.map((languageCode, i) => {
               return (
-                <li key={languageCode} className={languageCode === this.state.activeTab ? 'active' : ''}>
+                <li key={languageCode} className={'nav-item ' + languageCode === this.state.activeTab ? 'active' : ''}>
                   <input
                     type="checkbox" name={languageCode} id={languageCode + '_language-choice'} value={languageCode}
                     checked={this.state.activeLanguages.indexOf(languageCode) !== -1} readOnly
