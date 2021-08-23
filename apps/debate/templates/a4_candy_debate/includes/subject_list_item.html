@@ -31,7 +31,7 @@
             </div>
             {% endspaceless %}
         </div>
-        <div class="col-12 col-sm text-right list-item__cta list-item__hover" href="{{ object.get_absolute_url }}">
+        <div class="col-12 col-sm text-end list-item__cta list-item__hover" href="{{ object.get_absolute_url }}">
             {% has_or_would_have_perm 'a4_candy_debate.comment_subject' request.user object as debate_allowed %}
             {% if debate_allowed %}
             <span class="">{% trans 'Discuss with us!' %}</span>
