@@ -7,10 +7,14 @@
     display: block;
 }
 
-.checkbox-list {
+.language-choice-container > .checkbox-list {
     padding-left: 0;
     margin-left: 0;
     list-style: none;
+
+    &.nav {
+        flex-wrap: nowrap;
+    }
 
     input {
         display: none;
@@ -36,6 +40,10 @@
 
 .language-choice {
     display: none;
+
+    &.active {
+        background-color: $bg-secondary;
+    }
 }
 
 :checked + .language-choice {
