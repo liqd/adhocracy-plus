@@ -76,9 +76,13 @@ div.cke_focus {
     margin-bottom: $spacer;
 }
 
+.form-check {
+    padding-left: 0;
+}
+
 .form-check,
 .form-group {
-    margin: 0 0 $spacer;
+    // margin: 0 0 $spacer;
 
     .django-ckeditor-widget,
     %input-base {
@@ -109,7 +113,7 @@ div.cke_focus {
     input {
         display: inline;
         width: auto;
-        margin-left: -1.25em;
+        // margin-left: -1.25em;
     }
 }
 
