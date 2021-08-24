@@ -10,7 +10,7 @@
 .accordion__title {
     display: block;
     position: relative;
-    padding: $padding/2 1em $padding/2 1.2em;
+    padding: $padding/2 $padding $padding/2 $padding;
     color: inherit;
     border-bottom: solid 1px $border-color;
 
@@ -18,10 +18,14 @@
         border-bottom: none;
     }
 
+    h2 {
+        margin-top: $spacer;
+    }
+
     i {
         font-size: 1.7rem;
         position: absolute;
-        top: 1.5rem;
+        top: 2*$padding;
         right: $padding;
         transition: transform 0.3s;
     }
