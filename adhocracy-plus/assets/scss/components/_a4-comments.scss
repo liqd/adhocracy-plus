@@ -59,7 +59,9 @@
     align-content: flex-end;
 }
 
-.a4-comments__filters__search {
+.input-group.a4-comments__filters__search {
+    @extend .col-sm-4;
+    padding-left: 0;
     margin-bottom: 0.5*$spacer;
 
     @media screen and (min-width: $breakpoint) {
@@ -73,6 +75,13 @@
     @media screen and (min-width: $breakpoint-xs) {
         font-size: $font-size-base;
     }
+}
+
+.a4-comments__filters__dropdown {
+    @extend .col-sm-3;
+
+    text-align: end;
+    padding-right: 0;
 }
 
 .a4-comments__filters__search-result {
@@ -235,6 +244,31 @@
 .a4-comments__text--highlighted {
     border-left: solid 2px $brand-primary;
     padding-left: 0.5*$padding;
+}
+
+.a4-comments__filters__text,
+.a4-comments__filters__show-btn {
+    @extend .col-sm-3;
+}
+
+.a4-comments__filters__text {
+    padding-left: 0;
+    margin-top: 0.5*$spacer;
+    color: $gray;
+}
+
+.a4-comments__filters__show-btn {
+    text-align: right !important;
+}
+
+.a4-comments__char-count {
+    color: $gray !important;
+    font-size: $font-size-sm !important;
+    font-weight: normal !important;
+}
+
+.a4-comments__loading {
+    text-align: center;
 }
 
 .modal-url-bar-button.active,
