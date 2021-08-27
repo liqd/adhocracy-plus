@@ -21,13 +21,9 @@ def single_item_per_module(module, model, pk=None):
 def single_vote_per_user(user, choice, pk=None):
     from .models import Vote  # avoid circular import
 
-    if choice.question.multiple_choice:
-        # Allow multiple votes per user for multiple choice questions.
-        return
-
     qs = Vote.objects\
-        .filter(choice__question=choice.question)\
-        .filter(creator=user)
+        .filter(choice=choice,
+                creator=user)
 
     if pk:
         qs = qs.exclude(pk=pk)
@@ -35,7 +31,7 @@ def single_vote_per_user(user, choice, pk=None):
     if qs.exists():
         raise ValidationError({
             NON_FIELD_ERRORS: [
-                _('Only one vote per question is allowed per user.'),
+                _('Only one vote per choice is allowed per user.'),
             ]
         })
 
