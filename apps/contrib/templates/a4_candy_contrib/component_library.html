@@ -840,10 +840,21 @@
                 <h2 id="cl-dashboard-nav">Dashboard Nav</h2>
 
                 <div class="cl-example">
+                  <div class="dashboard-nav">
+                    <div class="dashboard-nav__dropdown" data-bs-toggle="collapse" href="#dashboardCollapseProj" aria-expanded="true" aria-controls="#dashboardCollapseProj" data-bs-target="#dashboardCollapseProj">
+                        <i class="fas fa-check-circle text-info" title="Projekt bereit zur Veröffentlichung" aria-label="Projekt bereit zur Veröffentlichung"></i>
+                        Project of all the modules
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    </div>
+                    <ul class="dashboard-nav__pages collapse show" id="dashboardCollapseProj" aria-hidden="false">
+                        <li class="dashboard-nav__page">
+                            <a href="/" class="dashboard-nav__item dashboard-nav__item--interactive is-active">
+                                Basic
+                            </a>
+                        </li>
+                    </ul>
+                  </div>
                     <nav class="dashboard-nav">
-                        <div class="dashboard-nav__dropdown">
-                            <div class="dashboard-nav__item">Dashboard nav item (in a dashboard-nav__dropdown, which is not used as dropdown)</div>
-                        </div>
                         <ul class="dashboard-nav__pages">
                             <li class="dashboard-nav__page">
                                 <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive">
@@ -866,6 +877,22 @@
                                     <i class="fa fa-exclamation-circle text-danger" title="Missing fields for publication" aria-label="Missing fields for publication"></i>
                                 </a>
                             </li>
+                            <li class="dashboard-nav__page">
+                            <div class="dashboard-nav__item switch">
+                                <div class="form-check form-switch" role="group">
+                                  <form class="dashboard-nav__form--project" action="" method="post" data-ignore-submit="true">
+                                  <input type="hidden" name="csrfmiddlewaretoken" value="">
+                                  <input type="hidden" name="referrer" value="">
+                                  <button name="action" value="publish" class="btn--full">
+                                      <input type="checkbox" class="form-check-input me-2" id="dashboardToggle_3">
+                                      <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_3">
+                                        dem Projekt hinzufügen
+                                      </label>
+                                      </button>
+                                </form>
+                                </div>
+                            </div>
+                          </li>
                         </ul>
                     </nav>
                 </div>
@@ -995,12 +1022,10 @@
                                 View
                             </a>
                             <form class="input-group me-1" method="get">
-                                <input class="form-control" type="search" name="search" placeholder="Search" value="">
-                                <div class="input-group-append">
-                                    <button class="btn btn--light" type="submit" title="Search">
-                                        <i class="fa fa-search" aria-label="Search"></i>
-                                    </button>
-                                </div>
+                                <input class="form-control" type="search" name="search" placeholder="Search" value="" />
+                                <button class="btn btn--light" type="submit" title="Search">
+                                    <i class="fa fa-search" aria-label="Search"></i>
+                                </button>
                             </form>
                             <div class="dropdown">
                                 <button type="button" class="dropdown-toggle btn btn--light btn--select">
@@ -1245,12 +1270,10 @@
                             </a>
 
                             <form class="input-group me-1">
-                                <input class="form-control" type="search" name="search" placeholder="Search" value="">
-                                <div class="input-group-append">
-                                    <button class="btn btn--light" type="submit" title="Search">
-                                        <i class="fa fa-search" aria-label="Search"></i>
-                                    </button>
-                                </div>
+                                <input class="form-control" type="search" name="search" placeholder="Search" value="" />
+                                <button class="btn btn--light" type="submit" title="Search">
+                                    <i class="fa fa-search" aria-label="Search"></i>
+                                </button>
                             </form>
 
                             <div class="dropdown">
@@ -1837,7 +1860,7 @@
                         </ul>
 
                         <li class="card blueprint__tile mt-4">
-                            <div class="row no-gutters">
+                            <div class="row g-0">
                                 <div class="col-lg-4 d-flex">
                                     <div class="card-img-top blueprint__image" style="background-image: url(/static/images/brainstorming.svg);"></div>
                                 </div>
@@ -1920,11 +1943,9 @@
                                     <div class="upload-wrapper__fields input-group">
                                         <input name="logo" id="id_logo" class="form-control form-control-file" type="file">
                                         <input name="__noname__" class="form-control form-control-file-dummy" placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_logo" type="text">
-                                        <div class="input-group-append">
-                                            <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
-                                                <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
-                                            </label>
-                                        </div>
+                                        <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
+                                            <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
+                                        </label>
                                     </div>
                                     <div class="form-id_logo upload-wrapper__preview">
                                         <input name="logo-clear" id="logo_id" class="clear-image" data-upload-clear="id_logo" type="checkbox">

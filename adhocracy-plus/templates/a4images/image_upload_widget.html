@@ -3,7 +3,7 @@
     <div class="upload-wrapper__fields form-inline col-sm-6 d-flex align-items-start">
         {{ file_input }}
         {{ text_input }}
-        <div class="input-group-append">
+        <div>
         {% if has_image_set and not is_required %}
             <label for="{{ checkbox_id }}"
                 class="upload-wrapper__action btn btn--danger"

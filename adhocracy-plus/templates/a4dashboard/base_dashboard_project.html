@@ -74,7 +74,7 @@
                           <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Module not ready for addition' %}" aria-label="{% trans 'Module not ready for addition' %}"></i>
                       {% endif %}
                       {{ module_menu.module.name }}
-                      <i class="fa fa-chevron-up {% if module_menu.module.is_draft %}dashboard_nav-i-spacer{% endif %}" aria-hidden="true"></i>
+                      <i class="fa fa-chevron-up {% if module_menu.module.is_draft %}dashboard-nav-i-spacer{% endif %}" aria-hidden="true"></i>
                     </div>
 
                     <ul class="dashboard-nav__pages collapse show" id="dashboardCollapse_{{ forloop.counter }}" aria-hidden="false">
@@ -94,7 +94,7 @@
                                 <div class="form-check form-switch" role="group">
 
                                   <form
-                                    class="dashboard_nav__form--project"
+                                    class="dashboard-nav__form--project"
                                     action="{% url 'a4dashboard:module-publish' module_slug=module_menu.module.slug organisation_slug=project.organisation.slug %}"
                                     method="post"
                                     data-ignore-submit="true">
@@ -102,10 +102,10 @@
                                   <input type="hidden" name="referrer" value="{{ request.path }}" />
 
                                   {% if not module_menu.module.is_draft %}
-                                  <button name="action" value="unpublish" class="">
+                                  <button name="action" value="unpublish" class="btn btn--none p-0">
                                       <input
                                       type="checkbox"
-                                      class="form-check-input"
+                                      class="form-check-input ms-0"
                                       id="dashboardToggle_{{ forloop.counter }}"
                                       checked
                                       {% if not project.is_draft %}disabled{% endif %}>
@@ -114,10 +114,10 @@
                                       </label>
                                       </button>
                                   {% else %}
-                                  <button name="action" value="publish" class="">
+                                  <button name="action" value="publish" class="btn btn--none p-0">
                                       <input
                                         type="checkbox"
-                                        class="form-check-input"
+                                        class="form-check-input ms-0"
                                         id="dashboardToggle_{{ forloop.counter }}"
                                         {% if not module_menu.is_complete %}disabled{% endif %}>
                                       <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">

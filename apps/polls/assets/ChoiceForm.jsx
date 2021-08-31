@@ -17,19 +17,17 @@ const ChoiceForm = (props) => {
             onChange={(e) => { props.onLabelChange(e.target.value) }}
           />
         </label>
-        <div className="input-group-append">
-          <button
-            className="btn btn--light btn--append"
-            onClick={props.onDelete}
-            title={django.gettext('remove')}
-            type="button"
-          >
-            <i
-              className="fa fa-times"
-              aria-label={django.gettext('remove')}
-            />
-          </button>
-        </div>
+        <button
+          className="btn btn--light btn--append"
+          onClick={props.onDelete}
+          title={django.gettext('remove')}
+          type="button"
+        >
+          <i
+            className="fa fa-times"
+            aria-label={django.gettext('remove')}
+          />
+        </button>
       </div>
       <ErrorList errors={props.errors} field="label" />
     </div>
