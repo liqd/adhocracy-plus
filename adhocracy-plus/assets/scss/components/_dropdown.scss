@@ -1,47 +1,10 @@
-// .dropdown--right {
-//     text-align: right;
-// }
-
-.dropdown-toggle {
-    display: inline-block;
-    min-width: 1.4em;
-    text-align: center;
-
-    // the current dropdown-toggle should be above the dropdown-menu shadow
-    .dropdown.show & {
-        position: relative;
-        z-index: 4;
-    }
-
-    .fa-chevron-up,
-    .fa-chevron-down {
-        font-size: 1.25em;
-        line-height: 1.4;
-    }
-
-    .fa-ellipsis-h {
-        vertical-align: middle;
-    }
-
-    .dropdown-item__icon {
-        display: none;
-    }
-}
-
 //bootstrap overwrites
 .dropdown-menu {
-    min-width: 100%;
-    width: max-content;
-    max-width: none;
+    position: relative;
     padding: 0;
     margin: 0;
-    z-index: 3;
-    background-color: $body-bg;
-    color: contrast-color($body-bg);
-    border: 1px solid $text-color;
     border-radius: 2px;
-    text-align: left;
-    box-shadow: 0 0 1em $shadow;
+    border: 1px solid $text-color;
 
     a,
     button {
@@ -65,27 +28,9 @@
         }
     }
 
-    li:last-child > a,
-    li:last-child > button {
-        border-bottom: 0;
-    }
-
-    // .dropdown--right & {
-    //     left: auto;
-    //     right: 0;
-    // }
-
     // .dropdown.show & {
-    //     display: block;
+    //     inset: unset;
     // }
-
-    img {
-        display: inline-block;
-        height: 1.6em;
-        width: auto;
-        vertical-align: middle;
-        margin-right: 0.6em;
-    }
 
     @media print {
         display: none;
