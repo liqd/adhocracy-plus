@@ -84,6 +84,18 @@
     }
 }
 
+.l-top-overlap {
+    position: relative;
+    z-index: 1;
+    bottom: -1.5em;
+}
+
+.l-bottom-overlap {
+    position: relative;
+    z-index: 1;
+    top: -1em;
+}
+
 @media (min-width: $breakpoint-md) {
     .l-center-8 {
         @include grid-width(8);

@@ -1,6 +1,6 @@
 {% load i18n widget_tweaks %}
-<div class="js-form category-formset__form form-group form-row">
-    <div class="category-formset__form__category col ps-0">
+<div class="js-form category-formset__form form-group">
+    <div class="category-formset__form__category">
         {% if can_delete %}
             <input type="checkbox" name="{{ form.DELETE.html_name }}" id="{{ form.DELETE.id_for_label }}" class="category-formset__delete">
         {% endif %}
@@ -29,7 +29,7 @@
         <label for="{{ form.name.id_for_label }}" class="visually-hidden">
             {{ form.name.label }}
         </label>
-        <div class="category-formset__form__icon select-icon col">
+        <div class="category-formset__form__icon select-icon">
             {{ form.icon|add_class:'d-none category-icon-select' }}
         </div>
     {% endif %}

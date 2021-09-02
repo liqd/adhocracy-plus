@@ -177,3 +177,11 @@ div.cke_focus {
         box-shadow: none;
     }
 }
+
+.filter-bar {
+    margin-bottom: 0.5*$spacer;
+
+    @media screen and (min-width: $breakpoint) {
+        display: flex;
+    }
+}

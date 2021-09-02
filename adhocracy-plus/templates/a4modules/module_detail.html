@@ -34,12 +34,10 @@
 {% endblock %}
 
 {% block extra_messages %}
-<div class="u-bg-light py-5">
-    <div class="container container--shadow">
-
-        {{ block.super }}
-
-        {% if project.is_draft %}
+    {{ block.super }}
+    {% if project.is_draft %}
+    <div class="u-bg-light py-5">
+        <div class="container container--shadow">
             <div class="row">
               <div class="col">
                 <ul class="messages">
@@ -51,14 +49,15 @@
                 </ul>
                 </div>
             </div>
-        {% endif %}
+        </div>
     </div>
-</div>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
 <div class="u-bg-light py-5">
-    <div class="container container--shadow">
+    <div class="container">
+      <div class="col-12 container--shadow">
         <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
                        background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                        {% endif %}">
@@ -80,7 +79,7 @@
         </div>
         {% block module_nav %}
             {% if module.is_in_module_cluster  %}
-                <div class="my-5 pt-3 pt-sm-0 d-flex justify-content-center justify-content-sm-end">
+                <div class="my-5 pt-3 pt-sm-0 me-3 d-flex justify-content-center justify-content-sm-end">
                 {% if module.previous_module_in_cluster %}
                     <a class="btn btn--light text-muted" href="{{ module.previous_module_in_cluster.get_absolute_url }}">
                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -206,6 +205,7 @@
             {% endif %}
         {% endblock %}
         {% include 'footer_upper.html' with organisation=project.organisation %}
+        </div>
     </div>
 </div>
 {% endblock %}

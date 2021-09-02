@@ -13,21 +13,17 @@
 {% block project_action %}
     {% has_or_would_have_perm 'a4_candy_mapideas.add_mapidea' request.user module as propose_allowed %}
     {% if propose_allowed %}
-        <div class="row">
-            <a href="{% url 'a4_candy_mapideas:mapidea-create' organisation_slug=module.project.organisation.slug module_slug=module.slug %}" class="btn btn--full btn--huge mt-4">
-                {% trans 'Submit Idea' %}
-            </a>
-        </div>
+        <a href="{% url 'a4_candy_mapideas:mapidea-create' organisation_slug=module.project.organisation.slug module_slug=module.slug %}" class="btn btn--full btn--huge mt-4">
+            {% trans 'Submit Idea' %}
+        </a>
     {% endif %}
 {% endblock %}
 
 {% block phase_content %}
     <div class="l-top-overlap">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                    {% include "a4_candy_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
-                </div>
+        <div class="row">
+            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                {% include "a4_candy_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
             </div>
         </div>
     </div>
@@ -53,21 +49,19 @@
         </div>
     {% else %}
         <div class="bg--light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                        {% if object_list.count > 0 %}
-                            <ul class="u-list-reset">
-                                {% for object in object_list %}
-                                    {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            {% trans "Nothing to show" %}
-                        {% endif %}
+            <div class="row">
+                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                    {% if object_list.count > 0 %}
+                        <ul class="u-list-reset">
+                            {% for object in object_list %}
+                                {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        {% trans "Nothing to show" %}
+                    {% endif %}
 
-                        {% include "a4_candy_contrib/includes/pagination.html" %}
-                    </div>
+                    {% include "a4_candy_contrib/includes/pagination.html" %}
                 </div>
             </div>
         </div>

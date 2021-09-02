@@ -11,7 +11,8 @@
     }
 
     @media screen and (min-width: $breakpoint-md) {
-        margin: 0;
+        margin-left: $r-spacer;
+        margin-right: $r-spacer;
     }
 }
 
@@ -27,6 +28,7 @@
 .participation-tile__list-header {
     width: 100%;
     text-align: center;
+    padding-top: $spacer;
 }
 
 .participation-tile__list {
@@ -34,11 +36,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-
-    @media screen and (min-width: $breakpoint-md) {
-        margin-left: -1rem !important;
-        margin-right: -1rem !important;
-    }
 }
 
 .participation-tile__content {
