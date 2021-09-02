@@ -27,9 +27,9 @@
 .container--shadow {
     background-color: $body-bg;
     box-shadow: 2px 4px 27px 0 rgba(0, 0, 0, 0.02), -2px -4px 27px 0 rgba(0, 0, 0, 0.05);
-    padding: $spacer;
+    padding: 0 $spacer;
 
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: $breakpoint) {
         padding: 0;
     }
 }

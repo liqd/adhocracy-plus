@@ -79,7 +79,7 @@
         </div>
         {% block module_nav %}
             {% if module.is_in_module_cluster  %}
-                <div class="my-5 pt-3 pt-sm-0 me-3 d-flex justify-content-center justify-content-sm-end">
+                <div class="my-5 pt-3 pt-sm-0 me-md-3 d-flex justify-content-center justify-content-sm-end">
                 {% if module.previous_module_in_cluster %}
                     <a class="btn btn--light text-muted" href="{{ module.previous_module_in_cluster.get_absolute_url }}">
                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -190,7 +190,7 @@
         {% block phase_content %}{% endblock %}
         {% block other_modules %}
             {% if module.is_in_module_cluster %}
-                <div class="participation-tile__wrapper">
+                <div class="participation-tile__wrapper px-sm-3">
                     <div class="participation-tile__list-container">
                         <ul class="u-list-reset participation-tile__list">
                             <h3 class="participation-tile__list-header">{%  trans 'More questions from this online participation' %}</h3>

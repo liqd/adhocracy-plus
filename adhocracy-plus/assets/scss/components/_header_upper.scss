@@ -1,5 +1,6 @@
 .header-upper {
     min-height: 100px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.02), 0 2px 27px 0 rgba(0, 0, 0, 0.05);
 }
 
 .header-upper__brand {
@@ -15,6 +16,10 @@
 
 .header-upper__lang {
     margin-right: 2*$spacer;
+
+    .dropdown-menu.show {
+        top: 100% !important; //overwriting the general dropdown overwrite
+    }
 }
 
 .header-upper__nav {
@@ -27,12 +32,17 @@
 }
 
 .header-upper__mobile-toggle {
-    z-index: 2;
-
     font-weight: bold;
 }
 
+//so it doesn't look misallighned when menu open
+.header-upper__mobile-toggle.show {
+    z-index: 4;
+    background: transparent;
+}
+
 .header-upper__mobile-toggle:after {
+    z-index: 5;
     font-family: "Font Awesome 5 Free", sans-serif;
     font-style: normal;
     font-weight: 900;
@@ -41,12 +51,8 @@
     font-size: $font-size-md;
 }
 
-.show > .header-upper__mobile-toggle:after {
-    font-family: "Font Awesome 5 Free", sans-serif;
-    font-style: normal;
-    font-weight: 900;
+.header-upper__mobile-toggle.show:after {
     content: '\f00d';
-    background-color: inherit;
 }
 
 @media screen and (min-width: $breakpoint) {

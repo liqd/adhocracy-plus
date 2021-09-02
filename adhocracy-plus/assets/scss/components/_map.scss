@@ -67,6 +67,11 @@ $map-colour: #0076ae;
 .map-list {
     position: relative;
     z-index: 0;
+    margin: 0 (-$spacer);
+
+    @media (min-width: $breakpoint) {
+        margin: 0;
+    }
 }
 
 .map-list__controls {
