@@ -20,7 +20,7 @@
 
 {% block dashboard_content %}
     <div class="row">
-        <nav class="l-menu__menu" aria-label="{% trans 'Project Settings' %}">
+        <nav class="col-md-3" aria-label="{% trans 'Project Settings' %}">
             <div class="dashboard-nav">
                 <div class="dashboard-nav__dropdown" data-bs-toggle="collapse" href="#dashboardCollapseProj" aria-expanded="true" aria-controls="#dashboardCollapseProj" data-bs-target="#dashboardCollapseProj">
                     {% if project_progress.project_is_complete %}
@@ -141,11 +141,11 @@
             {% endif %}
         </nav>
 
-        <div class="mb-5 l-menu__content--aside">
+        <div class="mb-5 col-md-6">
             {% block dashboard_project_content %}{% endblock %}
         </div>
 
-        <div class="l-menu__aside">
+        <div class="col-md-3">
             {% include "a4_candy_dashboard/includes/progress.html" with value=project_progress.valid max=project_progress.required project=project %}
 
             {% include "a4dashboard/includes/preview.html" with project=project %}

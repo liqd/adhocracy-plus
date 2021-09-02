@@ -4,7 +4,7 @@
 
 {% block dashboard_content %}
 <div class="row">
-    <nav class="l-menu__menu" aria-label="{% trans 'Organisation settings' %}">
+    <nav class="col-md-3" aria-label="{% trans 'Organisation settings' %}">
         <div class="dashboard-nav">
             <div class="dashboard-nav__dropdown">
                 {% trans "Organisation settings" %}
@@ -34,7 +34,7 @@
     </nav>
 
 
-    <div class="l-menu__content">
+    <div class="col-md-9">
         {% block organisation_form %}{% endblock %}
     </div>
 </div>
