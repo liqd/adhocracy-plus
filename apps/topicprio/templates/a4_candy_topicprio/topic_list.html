@@ -3,14 +3,14 @@
 
 {% block phase_content %}
     <div class="l-top-overlap">
-        <div class="container">
+        <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                 {% include "a4_candy_contrib/includes/filter_and_sort.html" with filter=view.filter %}
             </div>
         </div>
     </div>
     <div class="bg--light">
-        <div class="container">
+        <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                 {% if object_list.count > 0 %}
                     <ul class="u-list-reset">
