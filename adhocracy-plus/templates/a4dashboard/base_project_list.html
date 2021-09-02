@@ -4,7 +4,7 @@
 
 {% block dashboard_content %}
 <div class="row">
-    <nav class="l-menu__menu" aria-label="{% trans 'Participation projects' %}">
+    <nav class="col-md-3" aria-label="{% trans 'Participation projects' %}">
         <div class="dashboard-nav">
             <div class="dashboard-nav__dropdown">
                 {% trans "Participation projects" %}
@@ -31,7 +31,7 @@
     </nav>
 
 
-    <div class="l-menu__content">
+    <div class="col-md-9">
         {% block project_list %}{% endblock %}
     </div>
 </div>
