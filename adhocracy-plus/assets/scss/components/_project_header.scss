@@ -4,7 +4,7 @@
     justify-content: center;
     padding: 1.3em 0;
     position: relative;
-    margin-bottom: 4em;
+    margin: 0 (-$spacer);
 
     text-align: center;
 
@@ -12,6 +12,7 @@
 
     @media (min-width: $breakpoint) {
         min-height: ($hero-height-mobile + $hero-height-secondary) / 2;
+        margin: 0;
     }
 
     @media (min-width: $breakpoint-md) {
@@ -47,6 +48,7 @@
 .project-header--image {
     background-size: cover;
     color: contrast-color(#000);
+    background-position: center center;
 
     &:before {
         content: "";
