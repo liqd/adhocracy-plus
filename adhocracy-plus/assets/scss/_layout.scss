@@ -1,81 +1,107 @@
+// should be used with ul/ol
+@mixin grid-tiles($n, $settings: ()) {
+    @include clearfix;
+
+    > * {
+        @include grid-same-width($n, $settings);
+    }
+
+    @supports (display: grid) {
+        display: grid;
+        grid-column-gap: _grid-get('gutter', $settings);
+        grid-template-columns: repeat($n, 1fr);
+
+        > * {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            width: auto !important;
+        }
+    }
+}
+
 .container {
     position: relative;
     display: flow-root;
-
-    @media (max-width: $breakpoint-down) {
-        max-width: 768px;
-    }
 }
 
 .container--shadow {
     background-color: $body-bg;
     box-shadow: 2px 4px 27px 0 rgba(0, 0, 0, 0.02), -2px -4px 27px 0 rgba(0, 0, 0, 0.05);
+}
 
-    @media (max-width: $breakpoint-down) {
-        padding: 0 $spacer;
+.l-wrapper {
+    @include clearfix;
+    position: relative;
+    width: 100%;  // required when used in a flex container
+    max-width: $wrapper-width;
+    margin: 0 auto;
+    padding: 0 $padding;
+}
+
+.l-frame {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-left: 4rem !important;
+        margin-right: 4rem !important;
     }
 }
 
 .l-tiles-2,
 .l-tiles-3,
 .l-tiles-4 {
+    margin: 0;
     padding: 0;
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-@media (min-width: $breakpoint-xs) {
-    .l-tiles-2,
-    .l-tiles-3,
-    .l-tiles-4 {
-        margin: -0.5*$r-spacer;
-    }
-
-    .l-two-col {
-        -moz-column-count: 2;
-        -moz-column-gap: 2*$r-spacer;
-        -webkit-column-count: 2;
-        -webkit-column-gap: 2*$r-spacer;
-    }
 }
 
 @media (min-width: $breakpoint) {
+    .l-center-8 {
+        @include grid-width(10);
+        margin: 0 auto;
+    }
+
+    .l-center-6 {
+        @include grid-width(8);
+        margin: 0 auto;
+    }
+
+    .l-col-9-3 {
+        @include grid-span(10, 2);
+    }
+
     .l-tiles-2 {
-        margin: -$r-spacer;
+        @include grid-tiles(2);
     }
 
-    .l-tiles-2 > div,
-    .l-tiles-2 > li {
-        width: calc(100% * (1 / 2) - 32px - 1px);
+    .l-tiles-3 {
+        @include grid-tiles(2);
     }
 
-    .l-tiles-3 > div,
-    .l-tiles-3 > li {
-        width: calc(100% * (1 / 3) - 16px - 1px);
-    }
-
-    .l-tiles-4 > div,
-    .l-tiles-4 > li {
-        width: calc(100% * (1 / 2) - 16px - 1px);
+    .l-tiles-4 {
+        @include grid-tiles(2);
     }
 }
 
 @media (min-width: $breakpoint-md) {
-    .l-tiles-4 > div,
-    .l-tiles-4 > li {
-        width: calc(100% * (1 / 4) - 16px - 1px);
+    .l-center-8 {
+        @include grid-width(8);
     }
-}
 
-.l-top-overlap {
-    position: relative;
-    z-index: 1;
-    bottom: -1.5em;
-}
+    .l-center-6 {
+        @include grid-width(6);
+    }
 
-.l-bottom-overlap {
-    position: relative;
-    z-index: 1;
-    top: -1em;
+    .l-col-9-3 {
+        @include grid-span(9, 3);
+    }
+
+    .l-tiles-3 {
+        @include grid-tiles(3);
+    }
+
+    .l-tiles-4 {
+        @include grid-tiles(4);
+    }
 }
