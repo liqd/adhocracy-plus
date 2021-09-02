@@ -186,123 +186,112 @@ export default class QuestionBox extends React.Component {
   render () {
     return (
       <div>
+        {this.props.hasAskQuestionsPermission &&
+          <QuestionForm
+            restartPolling={this.restartPolling}
+            category_dict={this.props.category_dict}
+            questions_api_url={this.props.questions_api_url}
+            privatePolicyLabel={this.props.privatePolicyLabel}
+            termsOfUseUrl={this.props.termsOfUseUrl}
+            dataProtectionPolicyUrl={this.props.dataProtectionPolicyUrl}
+          />}
         <div>
-          <div className="container">
-            {this.props.hasAskQuestionsPermission &&
-              <div className="row mb-5">
-                <div className="col-md-10 offset-md-1">
-                  <QuestionForm
-                    restartPolling={this.restartPolling}
-                    category_dict={this.props.category_dict}
-                    questions_api_url={this.props.questions_api_url}
-                    privatePolicyLabel={this.props.privatePolicyLabel}
-                    termsOfUseUrl={this.props.termsOfUseUrl}
-                    dataProtectionPolicyUrl={this.props.dataProtectionPolicyUrl}
-                  />
-                </div>
-              </div>}
-            <div className="row mb-5">
-              <div className="col-md-10 offset-md-1">
-                <div className={'row ' + (this.props.isModerator ? 'livequestions__control-bar--mod' : 'livequestions__control-bar--user')}>
-                  <div className="livequestions__action-bar">
-                    {this.props.isModerator &&
-                      <div className="livequestions__action-bar--btn">
-                        <a
-                          className="btn btn--light"
-                          rel="noopener noreferrer"
-                          href={this.props.present_url}
-                          target="_blank"
-                          aria-label={ariaDisplayOnScreen}
-                          title={ariaDisplayOnScreen}
-                        >
-                          <span className="fa-stack fa-1x me-1">
-                            <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
-                            <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
-                          </span>
-                          {textDisplayOnScreen}
-                        </a>
-                      </div>}
-                    <div className="livequestions__action-bar--btn pe-md-3">
-                      <div className="btn--light checkbox-btn">
-                        <label
-                          htmlFor="displayStatistics"
-                          className="checkbox-btn__label--light"
-                          title={ariaOpenStatistics}
-                          aria-label={ariaOpenStatistics}
-                        >
-                          <input
-                            className="checkbox-btn__input"
-                            type="checkbox"
-                            id="displayStatistics"
-                            onChange={this.handleToggleStatistics.bind(this)}
-                            checked={this.state.showStatistics}
-                          />
-                          <span className="checkbox-btn__text">
-                            <i className="fas fa-chart-bar me-1" aria-label="hidden" />
-                            {textStatistics}
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  {!this.state.showStatistics &&
-                    <Filter
-                      categories={this.props.categories}
-                      currentCategory={this.state.category}
-                      currentCategoryName={this.state.categoryName}
-                      setCategories={this.setCategory.bind(this)}
-                      orderedByLikes={this.state.orderedByLikes}
-                      toggleOrdering={this.toggleOrdering.bind(this)}
-                      displayOnShortlist={this.state.displayOnShortlist}
-                      displayNotHiddenOnly={this.state.displayNotHiddenOnly}
-                      toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
-                      toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
-                      isModerator={this.props.isModerator}
-                    />}
-                </div>
-                {!this.state.showStatistics &&
-                  <div className="row">
-                    <div className="col">
-                      <label className="livequestions__count">{this.state.questionCount} {textQuestionCount}</label>
-                      <InfoBox
-                        isModerator={this.props.isModerator}
-                      />
-                    </div>
-                  </div>}
-
-                {this.state.showStatistics &&
-                  <div
-                    className="mt-3 u-border"
-                    id="livequestion-statistics"
-                    aria-hidden="false"
+          <div className={this.props.isModerator ? 'livequestions__control-bar--mod' : 'livequestions__control-bar--user'}>
+            <div className="livequestions__action-bar">
+              {this.props.isModerator &&
+                <div className="livequestions__action-bar--btn">
+                  <a
+                    className="btn btn--light"
+                    rel="noopener noreferrer"
+                    href={this.props.present_url}
+                    target="_blank"
+                    aria-label={ariaDisplayOnScreen}
+                    title={ariaDisplayOnScreen}
                   >
-                    <button type="button" className="close pe-2" onClick={this.handleToggleStatistics.bind(this)}>
-                      <span aria-label="close">&times;</span>
-                    </button>
-                    <StatisticsBox
-                      answeredQuestions={this.state.answeredQuestions}
-                      questions_api_url={this.props.questions_api_url}
-                      categories={this.props.categories}
-                      isModerator={this.props.isModerator}
+                    <span className="fa-stack fa-1x me-1">
+                      <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
+                      <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                    </span>
+                    {textDisplayOnScreen}
+                  </a>
+                </div>}
+              <div className="livequestions__action-bar--btn pe-md-3">
+                <div className="btn--light checkbox-btn">
+                  <label
+                    htmlFor="displayStatistics"
+                    className="checkbox-btn__label--light"
+                    title={ariaOpenStatistics}
+                    aria-label={ariaOpenStatistics}
+                  >
+                    <input
+                      className="checkbox-btn__input"
+                      type="checkbox"
+                      id="displayStatistics"
+                      onChange={this.handleToggleStatistics.bind(this)}
+                      checked={this.state.showStatistics}
                     />
-                  </div>}
-                {!this.state.showStatistics &&
-                  <QuestionList
-                    questions={this.state.filteredQuestions}
-                    removeFromList={this.removeFromList.bind(this)}
-                    updateQuestion={this.updateQuestion.bind(this)}
-                    handleLike={this.handleLike.bind(this)}
-                    isModerator={this.props.isModerator}
-                    togglePollingPaused={this.togglePollingPaused.bind(this)}
-                    hasLikingPermission={this.props.hasLikingPermission}
-                  />}
+                    <span className="checkbox-btn__text">
+                      <i className="fas fa-chart-bar me-1" aria-label="hidden" />
+                      {textStatistics}
+                    </span>
+                  </label>
+                </div>
               </div>
             </div>
-            <span className="livequestions_anchor" id="question-list-end" />
+            {!this.state.showStatistics &&
+              <Filter
+                categories={this.props.categories}
+                currentCategory={this.state.category}
+                currentCategoryName={this.state.categoryName}
+                setCategories={this.setCategory.bind(this)}
+                orderedByLikes={this.state.orderedByLikes}
+                toggleOrdering={this.toggleOrdering.bind(this)}
+                displayOnShortlist={this.state.displayOnShortlist}
+                displayNotHiddenOnly={this.state.displayNotHiddenOnly}
+                toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
+                toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
+                isModerator={this.props.isModerator}
+              />}
           </div>
-        </div>
-      </div>
+          {!this.state.showStatistics &&
+            <div className="row">
+              <div className="col">
+                <label className="livequestions__count">{this.state.questionCount} {textQuestionCount}</label>
+                <InfoBox
+                  isModerator={this.props.isModerator}
+                />
+              </div>
+            </div>}
 
+          {this.state.showStatistics &&
+            <div
+              className="mt-3 u-border"
+              id="livequestion-statistics"
+              aria-hidden="false"
+            >
+              <button type="button" className="close pe-2" onClick={this.handleToggleStatistics.bind(this)}>
+                <span aria-label="close">&times;</span>
+              </button>
+              <StatisticsBox
+                answeredQuestions={this.state.answeredQuestions}
+                questions_api_url={this.props.questions_api_url}
+                categories={this.props.categories}
+                isModerator={this.props.isModerator}
+              />
+            </div>}
+          {!this.state.showStatistics &&
+            <QuestionList
+              questions={this.state.filteredQuestions}
+              removeFromList={this.removeFromList.bind(this)}
+              updateQuestion={this.updateQuestion.bind(this)}
+              handleLike={this.handleLike.bind(this)}
+              isModerator={this.props.isModerator}
+              togglePollingPaused={this.togglePollingPaused.bind(this)}
+              hasLikingPermission={this.props.hasLikingPermission}
+            />}
+        </div>
+        <span className="livequestions_anchor" id="question-list-end" />
+      </div>
     )
   }
 }

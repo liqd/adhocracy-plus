@@ -3,30 +3,26 @@
 
 {% block phase_content %}
     <div class="l-top-overlap">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                    {% include "a4_candy_contrib/includes/filter_and_sort.html" with filter=view.filter %}
-                </div>
+        <div class="row">
+            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                {% include "a4_candy_contrib/includes/filter_and_sort.html" with filter=view.filter %}
             </div>
         </div>
     </div>
     <div class="bg--light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                    {% if object_list.count > 0 %}
-                        <ul class="u-list-reset pt-3 pt-sm-5">
-                            {% for object in object_list %}
-                                {% include "a4_candy_debate/includes/subject_list_item.html" with object=object %}
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        {% trans "Nothing to show" %}
-                    {% endif %}
+        <div class="row">
+            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                {% if object_list.count > 0 %}
+                    <ul class="u-list-reset pt-3 pt-sm-4">
+                        {% for object in object_list %}
+                            {% include "a4_candy_debate/includes/subject_list_item.html" with object=object %}
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {% trans "Nothing to show" %}
+                {% endif %}
 
-                    {% include "a4_candy_contrib/includes/pagination.html" %}
-                </div>
+                {% include "a4_candy_contrib/includes/pagination.html" %}
             </div>
         </div>
     </div>
