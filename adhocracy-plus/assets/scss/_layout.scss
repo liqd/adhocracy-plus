@@ -27,6 +27,11 @@
 .container--shadow {
     background-color: $body-bg;
     box-shadow: 2px 4px 27px 0 rgba(0, 0, 0, 0.02), -2px -4px 27px 0 rgba(0, 0, 0, 0.05);
+    padding: $spacer;
+
+    @media (min-width: $breakpoint-md) {
+        padding: 0;
+    }
 }
 
 .l-wrapper {
@@ -46,6 +51,18 @@
         margin-left: 4rem !important;
         margin-right: 4rem !important;
     }
+}
+
+.l-top-overlap {
+    position: relative;
+    z-index: 1;
+    bottom: -1.5em;
+}
+
+.l-bottom-overlap {
+    position: relative;
+    z-index: 1;
+    top: -1em;
 }
 
 .l-tiles-2,
@@ -82,18 +99,6 @@
     .l-tiles-4 {
         @include grid-tiles(2);
     }
-}
-
-.l-top-overlap {
-    position: relative;
-    z-index: 1;
-    bottom: -1.5em;
-}
-
-.l-bottom-overlap {
-    position: relative;
-    z-index: 1;
-    top: -1em;
 }
 
 @media (min-width: $breakpoint-md) {
