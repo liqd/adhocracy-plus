@@ -1,3 +1,11 @@
+.dropdown-toggle {
+    // the current dropdown-toggle should be above the dropdown-menu shadow
+    .dropdown.show & {
+        position: relative;
+        z-index: 4;
+    }
+}
+
 //bootstrap overwrites
 .dropdown-menu {
     position: relative;
@@ -5,6 +13,7 @@
     margin: 0;
     border-radius: 2px;
     border: 1px solid $text-color;
+    z-index: 3;
 
     a,
     button {
@@ -28,9 +37,9 @@
         }
     }
 
-    // .dropdown.show & {
-    //     inset: unset;
-    // }
+    &.show {
+        top: -2px !important; //needed to overwrite BS translate figure
+    }
 
     @media print {
         display: none;

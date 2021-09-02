@@ -53,12 +53,18 @@
             color: $brand-primary;
         }
     }
+
+    &.show {
+        top: 5px !important;
+    }
 }
 
 @media screen and (min-width: $breakpoint) {
     .userindicator__dropdown-menu {
         position: absolute !important;
-        top: auto;
-        margin-top: -(0.5*$spacer); // reposition to allign with btn--attached-to
+
+        &.show {
+            top: 62px !important;
+        }
     }
 }
