@@ -9,7 +9,7 @@ $(function () {
       '<div class="modal-dialog modal-lg" role="document">' +
         '<div class="modal-content">' +
           '<div class="modal-header"><h2 class="modal-title mt-0"></h2>' +
-            '<button type="button" class="close" data-dismiss="modal" aria-label="' + django.gettext('Close') + '"><span aria-hidden="true">&times;</span></button>' +
+            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="' + django.gettext('Close') + '"><span aria-hidden="true">&times;</span></button>' +
           '</div>' +
           '<div class="modal-body"></div>' +
       '  </div>' +
