@@ -105,7 +105,7 @@
                                   <button name="action" value="unpublish" class="btn btn--none p-0">
                                       <input
                                       type="checkbox"
-                                      class="form-check-input ms-0"
+                                      class="form-check-input ms-0 me-1"
                                       id="dashboardToggle_{{ forloop.counter }}"
                                       checked
                                       {% if not project.is_draft %}disabled{% endif %}>
@@ -117,7 +117,7 @@
                                   <button name="action" value="publish" class="btn btn--none p-0">
                                       <input
                                         type="checkbox"
-                                        class="form-check-input ms-0"
+                                        class="form-check-input ms-0 me-1"
                                         id="dashboardToggle_{{ forloop.counter }}"
                                         {% if not module_menu.is_complete %}disabled{% endif %}>
                                       <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
