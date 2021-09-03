@@ -215,6 +215,15 @@
     }
 }
 
+.btn--close {
+    @extend .btn-close;
+    margin-bottom: auto;
+}
+
+.modal--close {
+    text-align: right;
+}
+
 .btn--select {
     @include text-truncate;
     max-width: 15em;
