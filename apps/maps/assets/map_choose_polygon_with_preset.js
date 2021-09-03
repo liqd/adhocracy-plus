@@ -81,7 +81,7 @@ function init () {
             '<div class="modal-content">' +
               '<div class="modal-header">' +
                 '<h2 class="modal-title mt-0">' + modalTitle + '</h2>' +
-                '<button class="close" aria-label="' + django.gettext('Close') + '" data-dismiss="modal"><i class="fa fa-times"></i></button>' +
+                '<button class="close" aria-label="' + django.gettext('Close') + '" data-bs-dismiss="modal"><i class="fa fa-times"></i></button>' +
               '</div>' +
               '<div class="modal-body">' +
                 '<form id="map-import-form" data-ignore-submit="true">' +
@@ -102,7 +102,7 @@ function init () {
                 '</form>' +
               '</div>' +
               '<div class="modal-footer">' +
-                '<button class="btn btn--light" data-dismiss="modal">' + django.gettext('Cancel') + '</button>' +
+                '<button class="btn btn--light" data-bs-dismiss="modal">' + django.gettext('Cancel') + '</button>' +
               '</div>' +
             '</div>' +
           '</div>' +
