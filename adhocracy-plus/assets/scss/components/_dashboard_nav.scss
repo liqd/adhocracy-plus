@@ -71,6 +71,19 @@
     top: 0.25*$spacer;
 }
 
+//to ensure the switch is always toggled on button click
+.dashboard-nav__form--project {
+    position: relative;
+
+    .btn {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
 .dashboard-nav__pages {
     margin: 0;
     padding: 0;
