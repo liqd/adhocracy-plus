@@ -102,8 +102,10 @@
                                   <input type="hidden" name="referrer" value="{{ request.path }}" />
 
                                   {% if not module_menu.module.is_draft %}
-                                  <button name="action" value="unpublish" class="btn btn--none p-0">
+                                      <button name="action" value="unpublish" class="btn btn--none p-0"></button>
                                       <input
+                                      value="unpublish"
+                                      name="action"
                                       type="checkbox"
                                       class="form-check-input ms-0 me-1"
                                       id="dashboardToggle_{{ forloop.counter }}"
@@ -112,18 +114,16 @@
                                       <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
                                           {% trans 'Hide from project' %}
                                       </label>
-                                      </button>
                                   {% else %}
-                                  <button name="action" value="publish" class="btn btn--none p-0">
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input ms-0 me-1"
-                                        id="dashboardToggle_{{ forloop.counter }}"
-                                        {% if not module_menu.is_complete %}disabled{% endif %}>
-                                      <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
-                                        {% trans 'Add to project' %}
-                                      </label>
-                                      </button>
+                                    <button name="action" value="publish" class="btn btn--none p-0"></button>
+                                    <input
+                                      type="checkbox"
+                                      class="form-check-input ms-0 me-1"
+                                      id="dashboardToggle_{{ forloop.counter }}"
+                                      {% if not module_menu.is_complete %}disabled{% endif %}>
+                                    <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
+                                      {% trans 'Add to project' %}
+                                    </label>
                                   {% endif %}
 
                                 </form>
