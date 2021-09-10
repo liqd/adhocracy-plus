@@ -2,7 +2,7 @@ import pytest
 import rules
 
 from adhocracy4.projects.enums import Access
-from tests.helpers import setup_users
+from adhocracy4.test.helpers import setup_users
 
 perm_name = 'a4_candy_offlineevents.view_offlineevent'
 

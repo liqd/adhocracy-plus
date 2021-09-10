@@ -1,12 +1,12 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import freeze_phase
+from adhocracy4.test.helpers import freeze_pre_phase
 from adhocracy4.test.helpers import redirect_target
 from apps.debate import models
 from apps.debate import phases
 from tests.helpers import assert_template_response
-from tests.helpers import freeze_phase
-from tests.helpers import freeze_pre_phase
 
 
 @pytest.mark.django_db
