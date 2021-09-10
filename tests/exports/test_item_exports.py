@@ -11,10 +11,10 @@ def test_moderator_feedback_mixin(proposal):
     assert 'moderator_feedback' in virtual
     assert 'moderator_statement' in virtual
 
-    assert mixin.get_moderator_feedback_data(proposal)\
+    assert mixin.get_moderator_feedback_data(proposal) \
         == proposal.get_moderator_feedback_display()
 
-    assert mixin.get_moderator_statement_data(proposal)\
+    assert mixin.get_moderator_statement_data(proposal) \
         == proposal.moderator_statement.statement
 
 
@@ -27,7 +27,8 @@ def test_user_generated_content_mixin(idea):
     assert 'created' in virtual
 
     assert idea.creator.username == mixin.get_creator_data(idea)
-    assert idea.created.isoformat() == mixin.get_created_data(idea)
+    assert idea.created.astimezone().isoformat() \
+        == mixin.get_created_data(idea)
 
 
 @pytest.mark.django_db
