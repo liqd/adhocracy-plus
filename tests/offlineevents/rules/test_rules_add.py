@@ -1,7 +1,7 @@
 import pytest
 import rules
 
-from tests.helpers import setup_users
+from adhocracy4.test.helpers import setup_users
 
 perm_name = 'a4_candy_offlineevents.add_offlineevent'
 

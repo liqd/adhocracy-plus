@@ -1,12 +1,12 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import freeze_phase
+from adhocracy4.test.helpers import setup_phase
+from adhocracy4.test.helpers import setup_users
 from apps.mapideas import phases
 from tests.factories import PhaseFactory
 from tests.helpers import assert_template_response
-from tests.helpers import freeze_phase
-from tests.helpers import setup_phase
-from tests.helpers import setup_users
 
 from .factories import MapIdeaFactory
 

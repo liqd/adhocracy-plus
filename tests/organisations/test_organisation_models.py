@@ -7,8 +7,8 @@ from django.urls import reverse
 from freezegun import freeze_time
 
 from adhocracy4.projects.enums import Access
+from adhocracy4.test.helpers import create_thumbnail
 from apps.organisations import models
-from tests import helpers
 
 
 @pytest.mark.django_db
@@ -57,8 +57,8 @@ def test_delete_organisation(organisation_factory, ImagePNG):
     organisation = organisation_factory(image=ImagePNG, logo=ImagePNG)
     image_path = os.path.join(settings.MEDIA_ROOT, organisation.image.path)
     logo_path = os.path.join(settings.MEDIA_ROOT, organisation.logo.path)
-    thumbnail_image_path = helpers.createThumbnail(organisation.image)
-    thumbnail_logo_path = helpers.createThumbnail(organisation.logo)
+    thumbnail_image_path = create_thumbnail(organisation.image)
+    thumbnail_logo_path = create_thumbnail(organisation.logo)
 
     assert os.path.isfile(thumbnail_image_path)
     assert os.path.isfile(thumbnail_logo_path)
@@ -81,8 +81,8 @@ def test_image_deleted_after_update(organisation_factory, ImagePNG):
     organisation = organisation_factory(image=ImagePNG, logo=ImagePNG)
     image_path = os.path.join(settings.MEDIA_ROOT, organisation.image.path)
     logo_path = os.path.join(settings.MEDIA_ROOT, organisation.logo.path)
-    thumbnail_image_path = helpers.createThumbnail(organisation.image)
-    thumbnail_logo_path = helpers.createThumbnail(organisation.logo)
+    thumbnail_image_path = create_thumbnail(organisation.image)
+    thumbnail_logo_path = create_thumbnail(organisation.logo)
 
     assert os.path.isfile(thumbnail_image_path)
     assert os.path.isfile(thumbnail_logo_path)

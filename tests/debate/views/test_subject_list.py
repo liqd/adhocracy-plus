@@ -1,9 +1,9 @@
 import pytest
 
+from adhocracy4.test.helpers import freeze_phase
+from adhocracy4.test.helpers import setup_phase
 from apps.debate import phases
 from tests.helpers import assert_template_response
-from tests.helpers import freeze_phase
-from tests.helpers import setup_phase
 
 
 @pytest.mark.django_db

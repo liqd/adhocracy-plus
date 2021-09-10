@@ -1,8 +1,8 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import freeze_phase
 from apps.debate import phases
-from tests.helpers import freeze_phase
 
 
 @pytest.mark.django_db
