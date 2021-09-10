@@ -3,10 +3,10 @@ from django.urls import reverse
 
 from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
+from adhocracy4.test.helpers import setup_phase
 from apps.topicprio.models import Topic
 from apps.topicprio.phases import PrioritizePhase
 from tests.helpers import assert_template_response
-from tests.helpers import setup_phase
 
 component = components.modules.get('topic_edit')
 

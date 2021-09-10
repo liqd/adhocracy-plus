@@ -4,10 +4,10 @@ from django.urls import reverse
 
 from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
+from adhocracy4.test.helpers import setup_phase
 from apps.ideas.phases import CollectFeedbackPhase
 from apps.offlineevents.models import OfflineEvent
 from tests.helpers import assert_template_response
-from tests.helpers import setup_phase
 
 component = components.projects.get('offlineevents')
 
