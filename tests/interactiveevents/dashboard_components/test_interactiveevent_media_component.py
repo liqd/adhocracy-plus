@@ -1,9 +1,9 @@
 import pytest
 
 from adhocracy4.dashboard import components
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import setup_phase
 from apps.interactiveevents.phases import IssuePhase
-from tests.helpers import assert_template_response
 
 component = components.modules.get('extra_fields')
 
