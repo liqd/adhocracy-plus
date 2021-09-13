@@ -1,11 +1,11 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
 from apps.interactiveevents import phases
 from apps.interactiveevents.models import Like
-from tests.helpers import assert_template_response
 
 
 @pytest.mark.django_db
