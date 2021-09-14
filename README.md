@@ -32,8 +32,19 @@ adhocracy+ is designed to make online participation easy and accessible to every
     make test
 
 ### Start a local server:
-
     make watch
+
+### Use postgresql database for testing:
+run the following command once:
+```
+make create-postgres
+```
+to start the testserver with postgresql, run:
+```
+export DATABASE=postgresql
+make start-postgres
+make watch
+```
 
 Go to http://localhost:8004/ and login with admin@liqd.net | password
 
