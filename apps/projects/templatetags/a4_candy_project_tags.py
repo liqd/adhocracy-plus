@@ -6,7 +6,7 @@ from apps.ideas.models import Idea
 from apps.interactiveevents.models import LiveQuestion
 from apps.likes.models import Like
 from apps.mapideas.models import MapIdea
-from apps.polls.models import Vote
+from apps.polls.models import APlusVote as Vote
 
 register = template.Library()
 

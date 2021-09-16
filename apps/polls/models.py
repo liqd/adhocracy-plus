@@ -26,7 +26,7 @@ class ChoiceQuerySet(models.QuerySet):
         )
 
 
-class Poll(module_models.Item):
+class APlusPoll(module_models.Item):
     comments = GenericRelation(comment_models.Comment,
                                related_query_name='poll',
                                object_id_field='object_pk')
@@ -41,13 +41,13 @@ class Poll(module_models.Item):
         )
 
 
-class Question(models.Model):
+class APlusQuestion(models.Model):
     label = models.CharField(max_length=255)
     weight = models.SmallIntegerField()
     multiple_choice = models.BooleanField(default=False)
 
     poll = models.ForeignKey(
-        'Poll',
+        'APlusPoll',
         on_delete=models.CASCADE,
         related_name='questions'
     )
@@ -72,11 +72,11 @@ class Question(models.Model):
         ordering = ['weight']
 
 
-class Choice(models.Model):
+class APlusChoice(models.Model):
     label = models.CharField(max_length=255)
 
     question = models.ForeignKey(
-        'Question',
+        'APlusQuestion',
         on_delete=models.CASCADE,
         related_name='choices',
     )
@@ -93,9 +93,9 @@ class Choice(models.Model):
         ordering = ['id']
 
 
-class Vote(UserGeneratedContentModel):
+class APlusVote(UserGeneratedContentModel):
     choice = models.ForeignKey(
-        'Choice',
+        'APlusChoice',
         on_delete=models.CASCADE,
         related_name='votes'
     )
@@ -105,7 +105,7 @@ class Vote(UserGeneratedContentModel):
         return super().save(*args, **kwargs)
 
     def validate_unique(self, exclude=None):
-        super(Vote, self).validate_unique(exclude)
+        super(APlusVote, self).validate_unique(exclude)
         single_vote_per_user(self.creator,
                              self.choice,
                              self.pk)

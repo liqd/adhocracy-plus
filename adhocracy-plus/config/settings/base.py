@@ -449,7 +449,7 @@ A4_COMMENTABLES = (
     ('a4_candy_documents', 'paragraph'),
     ('a4_candy_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
-    ('a4_candy_polls', 'poll'),
+    # ('a4_candy_polls', 'poll'),
     ('a4_candy_topicprio', 'topic'),
     ('a4_candy_debate', 'subject')
 )
@@ -479,7 +479,7 @@ A4_AUTO_FOLLOWABLES = (
     ('a4_candy_ideas', 'idea'),
     ('a4_candy_mapideas', 'mapidea'),
     ('a4_candy_budgeting', 'proposal'),
-    ('a4_candy_polls', 'vote'),
+    # ('a4_candy_polls', 'vote'),
 )
 
 A4_CATEGORIZABLE = (
