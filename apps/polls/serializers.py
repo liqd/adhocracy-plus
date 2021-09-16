@@ -13,7 +13,7 @@ class ChoiceSerializer(serializers.ModelSerializer):
     count = serializers.SerializerMethodField()
 
     class Meta:
-        model = models.Choice
+        model = models.APlusChoice
         fields = ('id', 'label', 'count')
 
     def get_count(self, choice):
@@ -33,7 +33,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     totalVoteCount = serializers.SerializerMethodField('get_total_vote_count')
 
     class Meta:
-        model = models.Question
+        model = models.APlusQuestion
         fields = ('id', 'label', 'choices', 'multiple_choice',
                   'isReadOnly', 'authenticated', 'userChoices',
                   'totalVoteCount')
@@ -73,7 +73,7 @@ class PollSerializer(serializers.ModelSerializer):
     questions = QuestionSerializer(many=True)
 
     class Meta:
-        model = models.Poll
+        model = models.APlusPoll
         fields = ('id', 'questions')
 
     def update(self, instance, data):
@@ -114,7 +114,7 @@ class PollSerializer(serializers.ModelSerializer):
         # Update (or create) this questions choices
         for choice in question['choices']:
             choice_id = choice.get('id')
-            choice_instance, _ = models.Choice.objects.update_or_create(
+            choice_instance, _ = models.APlusChoice.objects.update_or_create(
                 id=choice_id,
                 defaults={
                     'question': question_instance,

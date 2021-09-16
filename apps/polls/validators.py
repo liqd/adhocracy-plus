@@ -19,9 +19,9 @@ def single_item_per_module(module, model, pk=None):
 
 
 def single_vote_per_user(user, choice, pk=None):
-    from .models import Vote  # avoid circular import
+    from .models import APlusVote  # avoid circular import
 
-    qs = Vote.objects\
+    qs = APlusVote.objects\
         .filter(choice=choice,
                 creator=user)
 

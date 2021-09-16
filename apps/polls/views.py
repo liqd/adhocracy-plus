@@ -17,7 +17,7 @@ class PollDetailView(ProjectMixin,
                      rules_mixins.PermissionRequiredMixin,
                      generic.DetailView,
                      DisplayProjectOrModuleMixin):
-    model = models.Poll
+    model = models.APlusPoll
     permission_required = 'a4_candy_polls.view_poll'
 
     def get(self, request, *args, **kwargs):
@@ -36,7 +36,7 @@ class PollDetailView(ProjectMixin,
             )
 
     def get_object(self):
-        return get_object_or_404(models.Poll, module=self.module)
+        return get_object_or_404(models.APlusPoll, module=self.module)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -63,10 +63,10 @@ class PollDashboardView(ProjectMixin,
 
     def get_or_create_poll(self):
         try:
-            obj = models.Poll.objects.get(module=self.module)
-        except models.Poll.DoesNotExist:
-            obj = models.Poll(module=self.module,
-                              creator=self.request.user)
+            obj = models.APlusPoll.objects.get(module=self.module)
+        except models.APlusPoll.DoesNotExist:
+            obj = models.APlusPoll(module=self.module,
+                                   creator=self.request.user)
             obj.save()
         return obj
 
