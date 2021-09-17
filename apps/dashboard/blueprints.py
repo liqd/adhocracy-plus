@@ -1,13 +1,13 @@
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard.blueprints import ProjectBlueprint
+from adhocracy4.polls import phases as poll_phases
 from apps.budgeting import phases as budgeting_phases
 from apps.debate import phases as debate_phases
 from apps.documents import phases as documents_phases
 from apps.ideas import phases as ideas_phases
 from apps.interactiveevents import phases as interactiveevent_phases
 from apps.mapideas import phases as mapideas_phases
-from apps.polls import phases as poll_phases
 from apps.topicprio import phases as topicprio_phases
 
 blueprints = [

@@ -13,14 +13,14 @@ import '../../../apps/newsletters/assets/dynamic_fields.js'
 import {
   comments as ReactComments,
   commentsAsync as ReactCommentsAsync,
+  follows as ReactFollows,
+  polls as ReactPolls,
   ratings as ReactRatings,
   reports as ReactReports,
-  follows as ReactFollows,
   widget as ReactWidget
 } from 'adhocracy4'
 
 import * as ReactDocuments from '../../../apps/documents/assets/react_documents.jsx'
-import * as ReactPolls from '../../../apps/polls/assets/react_polls.jsx'
 import * as ReactInteractiveEvents from 'a4_candy_interactive_events'
 import * as ReactLanguageChoice from '../../../apps/organisations/assets/react_language_choice.jsx'
 
@@ -28,12 +28,12 @@ function init () {
   ReactWidget.initialise('a4', 'comment', ReactComments.renderComment)
   ReactWidget.initialise('a4', 'comment_async', ReactCommentsAsync.renderComment)
   ReactWidget.initialise('a4', 'follows', ReactFollows.renderFollow)
+  ReactWidget.initialise('a4', 'polls', ReactPolls.renderPolls)
+  ReactWidget.initialise('a4', 'poll-management', ReactPolls.renderPollManagement)
   ReactWidget.initialise('a4', 'ratings', ReactRatings.renderRatings)
   ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
 
   ReactWidget.initialise('mb', 'document-management', ReactDocuments.renderDocumentManagement)
-  ReactWidget.initialise('mb', 'polls', ReactPolls.renderPolls)
-  ReactWidget.initialise('mb', 'poll-management', ReactPolls.renderPollManagement)
 
   ReactWidget.initialise('aplus', 'questions', ReactInteractiveEvents.renderLiveQuestions)
   ReactWidget.initialise('aplus', 'present', ReactInteractiveEvents.renderLiveQuestionsPresent)

@@ -53,7 +53,7 @@ class AppProjectSerializer(serializers.ModelSerializer):
         if (project.published_modules.count() == 1 and
                 project.published_modules.first().phases.count() == 1 and
                 project.published_modules.first().phases.first().type
-                == 'a4_candy_polls:voting'):
+                == 'a4polls:voting'):
             return project.published_modules.first().pk
         return False
 
