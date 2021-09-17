@@ -1,15 +1,15 @@
 import pytest
 import rules
 
+from adhocracy4.polls import phases
 from adhocracy4.projects.enums import Access
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import freeze_post_phase
 from adhocracy4.test.helpers import freeze_pre_phase
 from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
-from apps.polls import phases
 
-perm_name = 'a4_candy_polls.add_vote'
+perm_name = 'a4polls.add_vote'
 
 
 def test_perm_exists():

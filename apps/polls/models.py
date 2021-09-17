@@ -5,7 +5,7 @@ from django.urls import reverse
 from adhocracy4.comments import models as comment_models
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.modules import models as module_models
-from apps.polls.validators import single_vote_per_user
+from adhocracy4.polls.validators import single_vote_per_user
 
 
 class QuestionQuerySet(models.QuerySet):
@@ -28,7 +28,7 @@ class ChoiceQuerySet(models.QuerySet):
 
 class APlusPoll(module_models.Item):
     comments = GenericRelation(comment_models.Comment,
-                               related_query_name='poll',
+                               related_query_name='+',
                                object_id_field='object_pk')
 
     def get_absolute_url(self):
