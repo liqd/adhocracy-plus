@@ -1,34 +1,53 @@
-{% load i18n a4dashboard_tags a4_candy_dashboard_tags %}
+{% load i18n a4_candy_dashboard_tags a4dashboard_tags rules static %}
 
-<div class="progress-box">
-    <svg viewBox="0 0 35 35" class="progress-box__progress progress" role="presentation">
-        <circle class="progress__background" r="15.9" cx="50%" cy="50%"></circle>
+{% if project.is_draft %}
+    {% include "a4dashboard/includes/progress_line.html" %}
+{% else %}
+    {% include "a4dashboard/includes/progress_line_done.html" %}
+{% endif %}
 
-        <circle class="progress__value" stroke-dasharray="{{ value|percentage:max }} 100" r="15.9" cx="50%" cy="50%"></circle>
-        {% if value == max %}
-            <path class="progress__check {% if project.is_draft %} progress__check-unpublished {% endif %}" d="m 25,13.996777 q 0,0.387096 -0.27097,0.65806 l -7.006451,7.006452 -1.316127,1.316132 q -0.27097,0.270965 -0.658066,0.270965 -0.387097,0 -0.658061,-0.270965 L 13.774193,21.661289 10.27097,18.158066 Q 10,17.887096 10,17.5 q 0,-0.387096 0.27097,-0.658066 l 1.316126,-1.316127 q 0.27097,-0.27097 0.658066,-0.27097 0.387097,0 0.658061,0.27097 l 2.845163,2.854838 6.348391,-6.358066 q 0.270964,-0.270965 0.65806,-0.270965 0.387097,0 0.658067,0.270965 l 1.316126,1.316132 Q 25,13.609675 25,13.996777 Z"></path>
-        {% else %}
-            <text class="progress__label" x="50%" y="50%" dy="0.3em">{{ value|percentage:max }}%</text>
-        {% endif %}
-    </svg>
 
-    <div class="progress-box__description">
-        <strong>{% blocktrans with value=value max=max %}{{ value }} from {{ max }}{% endblocktrans %}</strong><br>
-        {% blocktrans %}required fields for publication{% endblocktrans %}
-    </div>
-</div>
-
-<form action="{% url 'a4dashboard:project-publish' organisation_slug=project.organisation.slug project_slug=project.slug %}" method="post" data-ignore-submit="true">
-    {% csrf_token %}
-    <input type="hidden" name="referrer" value="{{ request.path }}" />
-
-    {% if project.is_draft %}
-        <button name="action" value="publish" {% if not project|is_publishable:project_progress %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top">
-            {% trans 'Publish' %}
-        </button>
-    {% else %}
-        <button name="action" value="unpublish" class="btn btn--light btn--full btn--attached-top">
+{% if project.is_draft %}
+    <button {% if not project|is_publishable:project_progress %}disabled{% endif %} class="btn btn--primary btn--full u-spacer-bottom" data-bs-toggle="modal" data-bs-target="#publish-modal">
+        {% trans 'Publish' %}
+    </button>
+{% else %}
+    <form action="{% url 'a4dashboard:project-publish' organisation_slug=project.organisation.slug project_slug=project.slug %}" method="post" data-ignore-submit="true">
+        {% csrf_token %}
+        <input type="hidden" name="referrer" value="{{ request.path }}" />
+        <button name="action" value="unpublish" class="btn btn--light btn--full u-spacer-bottom">
             {% trans 'Unpublish' %}
         </button>
-    {% endif %}
-</form>
+    </form>
+{% endif %}
+
+<div class="modal" tabindex="-1" role="dialog" id="publish-modal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title u-first-heading">{% trans "Are you sure you want to publish your project?" %}</h2>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% trans 'Close'%}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {% if project.unpublished_modules %}
+                <p>
+                {% blocktrans count counter=project.unpublished_modules.count %}One module has not been added to the project.{% plural %}{{ counter }} modules have not been added to the project.{% endblocktrans %}
+                </p>
+                {% endif %}
+                <div class="u-spacer-bottom">
+                    <form action="{% url 'a4dashboard:project-publish' organisation_slug=project.organisation.slug project_slug=project.slug %}" method="post" data-ignore-submit="true" class="u-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="referrer" value="{{ request.path }}" />
+                        <button name="action" value="publish" class="btn btn--primary">
+                        {% trans 'Publish' %}
+                        </button>
+                    </form>
+                    <button type="button" data-bs-dismiss="modal" class="btn btn--light">{% trans 'Cancel'%}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

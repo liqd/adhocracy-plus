@@ -12,3 +12,30 @@ def is_publishable(project, project_progress):
     """
     return (project_progress['project_is_complete']
             and project.published_modules.count() >= 1)
+
+
+@register.filter
+def project_nav_is_active(dashboard_menu_project):
+    """Check if the view is in the project dashboard nav."""
+    for item in dashboard_menu_project:
+        if item['is_active']:
+            return True
+    return False
+
+
+@register.filter
+def module_nav_is_active(dashboard_menu_modules):
+    """Check if the view is in the project dashboard nav."""
+    for module_menu in dashboard_menu_modules:
+        for item in module_menu['menu']:
+            if item['is_active']:
+                return True
+    return False
+
+
+@register.filter
+def has_publishable_module(dashboard_menu_modules):
+    for module_menu in dashboard_menu_modules:
+        if module_menu['is_complete']:
+            return True
+    return False
