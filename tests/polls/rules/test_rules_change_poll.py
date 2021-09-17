@@ -1,14 +1,14 @@
 import pytest
 import rules
 
+from adhocracy4.polls import phases
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import freeze_post_phase
 from adhocracy4.test.helpers import freeze_pre_phase
 from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
-from apps.polls import phases
 
-perm_name = 'a4_candy_polls.change_poll'
+perm_name = 'a4polls.change_poll'
 
 
 def test_perm_exists():
@@ -30,7 +30,7 @@ def test_pre_phase(phase_factory, poll_factory, user, member_factory):
         assert not rules.has_perm(perm_name, user, item)
         assert not rules.has_perm(perm_name, member.member, item)
         assert not rules.has_perm(perm_name, creator, item)
-        assert rules.has_perm(perm_name, moderator, item)
+        assert not rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
 
 
@@ -48,7 +48,7 @@ def test_phase_active(phase_factory, poll_factory, user, member_factory):
         assert not rules.has_perm(perm_name, user, item)
         assert not rules.has_perm(perm_name, member.member, item)
         assert not rules.has_perm(perm_name, creator, item)
-        assert rules.has_perm(perm_name, moderator, item)
+        assert not rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
 
 
@@ -68,7 +68,7 @@ def test_phase_active_project_draft(phase_factory, poll_factory, user,
         assert not rules.has_perm(perm_name, user, item)
         assert not rules.has_perm(perm_name, member.member, item)
         assert not rules.has_perm(perm_name, creator, item)
-        assert rules.has_perm(perm_name, moderator, item)
+        assert not rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
 
 
@@ -88,5 +88,5 @@ def test_post_phase_project_archived(phase_factory, poll_factory, user,
         assert not rules.has_perm(perm_name, user, item)
         assert not rules.has_perm(perm_name, member.member, item)
         assert not rules.has_perm(perm_name, creator, item)
-        assert rules.has_perm(perm_name, moderator, item)
+        assert not rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)

@@ -21,6 +21,9 @@ from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentModerateSet
 from adhocracy4.comments_async.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
+from adhocracy4.polls.api import PollViewSet
+from adhocracy4.polls.api import VoteViewSet
+from adhocracy4.polls.routers import QuestionDefaultRouter
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from apps.contrib import views as contrib_views
@@ -32,9 +35,6 @@ from apps.interactiveevents.api import LiveQuestionViewSet
 from apps.interactiveevents.routers import LikesDefaultRouter
 from apps.moderatorremark.api import ModeratorRemarkViewSet
 from apps.organisations.sitemaps import organisations_sitemap_index
-from apps.polls.api import PollViewSet
-from apps.polls.api import VoteViewSet
-from apps.polls.routers import QuestionDefaultRouter
 from apps.projects.api import AppModuleViewSet
 from apps.projects.api import AppProjectsViewSet
 from apps.users.decorators import user_is_project_admin

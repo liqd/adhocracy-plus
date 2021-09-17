@@ -1,6 +1,6 @@
 from pytest_factoryboy import register
 
-from . import factories
+from adhocracy4.test.factories import polls as factories
 
 register(factories.PollFactory)
 register(factories.QuestionFactory)
