@@ -1658,31 +1658,33 @@
                 <h2 id="cl-progress">Progress</h2>
 
                 <div class="cl-example">
-                    <div class="container">
-                        <div class="col-md-3">
-                            <div class="progress-box">
-                                <svg viewBox="0 0 35 35" class="progress-box__progress progress" role="presentation">
-                                    <circle class="progress__background" r="15.9" cx="50%" cy="50%"></circle>
-                                    <circle class="progress__value" stroke-dasharray="64 100" r="15.9" cx="50%" cy="50%"></circle>
-                                    <text class="progress__label" x="50%" y="50%" dy="0.3em">50%</text>
-                                </svg>
-                                <div class="progress-box__description">
-                                    <strong>7 from 11</strong>
-                                    <br>required fields for publication
-                                </div>
-                            </div>
-                            <form action="/dashboard/publish/project/choosing-map/" method="post" data-ignore-submit="true">
-                                <input name="name" value="" type="hidden">
-                                <input name="referrer" value="/dashboard/projects/choosing-map/information/" type="hidden">
-                                <button name="action" value="publish" disabled="" class="btn btn--primary btn--full btn--attached-top">Veröffentlichen</button>
-                            </form>
-                            <a href="/projects/choosing-map/" target="_self" class="btn btn--light btn--full">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                Vorschau
-                            </a>
-                        </div>
+                        <ul class="progress-line u-spacer-bottom">
+                            <li class="progress-line__entry">
+                                <span class="progress-line__line--bottom"></span>
+                                <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Project type created'%}" aria-label="{% trans 'Project type created'%}"></i>
+                                <span>{% trans 'Create a new Project' %}</span>
+                            </li>
+                            <li class="progress-line__entry">
+                                <span class="progress-line__line--top"></span>
+                                <span class="progress-line__line--bottom"></span>
+                                <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Project type ready for publication'%}" aria-label="{% trans 'Project type ready for publication'%}"></i>
+                                <span class="progress-line__entry--active">
+                                    <span>{% trans 'Fill in project details' %}</span>
+                                </span>
+                            </li>
+                            <li class="progress-line__entry">
+                                <span class="progress-line__line--top"></span>
+                                <span class="progress-line__line--bottom"></span>
+                                <i class="fas fa-circle progress-line__icon--active" title="{% trans 'No module created'%}" aria-label="{% trans 'No module created'%}"></i>
+                                <span>{% trans 'Create module(s)' %}</span>
+                            </li>
+                            <li class="progress-line__entry">
+                                <span class="progress-line__line--top"></span>
+                                <i class="far fa-circle progress-line__icon" title="{% trans 'Project type not ready for publication'%}" aria-label="{% trans 'Project type not ready for publication'%}"></i>
+                                <span>{% trans 'Publish project' %}</span>
+                            </li>
+                        </ul>
                     </div>
-                </div>
 
                 <h2 id="cl-project-header">Project Header</h2>
 
