@@ -1,0 +1,19 @@
+{% extends extends %}
+{% load react_polls react_comments_async %}
+
+
+{% block phase_content %}
+<div class="bg--light">
+    <div class="row">
+        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+            {% react_polls poll %}
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 my-4">
+        {% react_comments_async object %}
+    </div>
+</div>
+{% endblock %}
