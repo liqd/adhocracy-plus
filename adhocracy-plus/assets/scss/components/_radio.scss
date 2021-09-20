@@ -12,12 +12,14 @@ $checkbox-size: 20px;
 
     position: relative;
 
+    line-height: 1.8;
+
     &:before,
     &:after {
         content: "";
 
         position: absolute;
-        top: 0;
+        top: 6px;
         left: 0;
 
         width: $checkbox-size;
@@ -26,7 +28,7 @@ $checkbox-size: 20px;
     }
 
     &:before {
-        background-color: $bg-secondary;
+        // background-color: $bg-secondary;
         border: 1px solid $border-color;
     }
 
@@ -44,6 +46,7 @@ $checkbox-size: 20px;
     }
 }
 
+.poll-row__radio:checked + .radio__text:after,
 .radio__input:checked + .radio__text:after {
     content: '\f00c'; // check
     transform: scale(1);
@@ -53,7 +56,7 @@ $checkbox-size: 20px;
 .radio__text--checkbox {
     &:before,
     &:after {
-        border-radius: 0.3em;
+        border-radius: 0;
     }
 }
 

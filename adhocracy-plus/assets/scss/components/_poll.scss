@@ -1,53 +1,89 @@
-.poll {
-    padding: 1.5em;
-    margin-bottom: $spacer;
+$checkbox-size: 20px;
 
-    background-color: $body-bg;
+.pollquestionlist-container {
+    padding-top: $spacer;
+    border-bottom: 1px solid $gray-lightest;
+}
+
+.poll {
+    padding: 1.5*$spacer 0;
+    border-top: 1px solid $gray-lightest;
+
+    // margin-bottom: $spacer;
+
+    // background-color: $body-bg;
 
     h2 {
         margin-top: 0;
+        font-size: $font-size-lg;
+        font-weight: 600;
+        font-family: $font-family-base;
     }
 }
 
-.poll__actions {
-    display: flex;
-    justify-content: flex-end;
-}
+// .poll__actions {
+//     display: flex;
+//     justify-content: flex-end;
+// }
 
-.poll__actions > :last-child {
-    margin-top: 0.5em;
-    display: block;
-
-    @media (min-width: $breakpoint) {
-        display: inline-block;
-        margin: 0 0 0 1em;
-    }
-}
+// .poll__actions > :last-child {
+//     margin-top: 0.5em;
+//     display: block;
+//
+//     @media (min-width: $breakpoint) {
+//         display: inline-block;
+//         margin: 0 0 0 1em;
+//     }
+// }
 
 .poll__rows {
-    margin-bottom: 1em;
+    // margin-bottom: 1em;
+    // padding: 0.5*$spacer 0;
 }
 
 .poll-row {
+    display: flex;
     position: relative;
     z-index: 1;
-    padding: 0.2em 0;
-    margin-bottom: 0.5em;
+
+    margin-bottom: 0.5*$spacer;
 
     @include clearfix;
 
     .radio__text:after {
         color: $text-color-inverted;
         font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .form-control {
+        margin-left: $checkbox-size + 7px !important;
+        margin-top: 0.5*$spacer;
+        width: auto;
     }
 }
 
-.poll-row__radio,
+.poll-row.radio {
+    flex-direction: column; //other answer text
+}
+
+// .poll-row__radio,
 .poll-row__number,
 .poll-row__label {
     display: inline-block;
     margin: 0;
     margin-right: 0.2em;
+}
+
+.poll-row__radio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .poll-row__number {
@@ -76,4 +112,28 @@
 
 .poll-row__bar--highlight {
     background-color: $brand-secondary-tint;
+}
+
+.poll__btn--wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.poll__btn--link {
+    @extend .btn--link;
+
+    margin-right: $spacer;
+}
+
+.poll__help-text {
+    color: $text-color-gray;
+    margin-bottom: 0.5*$spacer;
+}
+
+.poll__char-counter {
+    display: flex;
+    align-self: flex-end;
+    justify-content: flex-end; // needed for open answer
+    color: $text-color-gray;
+    font-size: $font-size-sm;
 }
