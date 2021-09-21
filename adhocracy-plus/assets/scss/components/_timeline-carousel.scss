@@ -118,12 +118,14 @@ $timeline-carousel__top-space: 12px;
 
 //mobile slick overwrites
 @media screen and (max-width: $breakpoint-xl-down) {
-    .slick-next {
-        right: 0 !important;
-    }
+    .timeline-carousel {
+        .slick-next {
+            right: 0 !important;
+        }
 
-    .slick-prev {
-        left: 0 !important;
+        .slick-prev {
+            left: 0 !important;
+        }
     }
 }
 
