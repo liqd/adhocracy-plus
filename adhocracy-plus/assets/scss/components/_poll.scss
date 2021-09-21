@@ -1,5 +1,6 @@
 $checkbox-size: 20px;
 
+// User question view
 .pollquestionlist-container {
     padding-top: $spacer;
     border-bottom: 1px solid $gray-lightest;
@@ -9,10 +10,6 @@ $checkbox-size: 20px;
     padding: 1.5*$spacer 0;
     border-top: 1px solid $gray-lightest;
 
-    // margin-bottom: $spacer;
-
-    // background-color: $body-bg;
-
     h2 {
         margin-top: 0;
         font-size: $font-size-lg;
@@ -21,24 +18,9 @@ $checkbox-size: 20px;
     }
 }
 
-// .poll__actions {
-//     display: flex;
-//     justify-content: flex-end;
-// }
-
-// .poll__actions > :last-child {
-//     margin-top: 0.5em;
-//     display: block;
-//
-//     @media (min-width: $breakpoint) {
-//         display: inline-block;
-//         margin: 0 0 0 1em;
-//     }
-// }
-
 .poll__rows {
-    // margin-bottom: 1em;
-    // padding: 0.5*$spacer 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .poll-row {
@@ -49,6 +31,15 @@ $checkbox-size: 20px;
     margin-bottom: 0.5*$spacer;
 
     @include clearfix;
+
+    &--answered {
+        left: 2*$spacer;
+        max-width: 90%;
+
+        @media (min-width: $breakpoint) {
+            max-width: 96%;
+        }
+    }
 
     .radio__text:after {
         color: $text-color-inverted;
@@ -63,11 +54,11 @@ $checkbox-size: 20px;
     }
 }
 
+// User answer view
 .poll-row.radio {
     flex-direction: column; //other answer text
 }
 
-// .poll-row__radio,
 .poll-row__number,
 .poll-row__label {
     display: inline-block;
@@ -93,7 +84,7 @@ $checkbox-size: 20px;
 }
 
 .poll-row__bar {
-    background-color: $bg-tertiary;
+    background-color: $brand-secondary-tint;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -111,7 +102,7 @@ $checkbox-size: 20px;
 }
 
 .poll-row__bar--highlight {
-    background-color: $brand-secondary-tint;
+    background-color: $brand-tertiary-tint;
 }
 
 .poll__btn--wrapper {
@@ -136,4 +127,109 @@ $checkbox-size: 20px;
     justify-content: flex-end; // needed for open answer
     color: $text-color-gray;
     font-size: $font-size-sm;
+}
+
+.poll-row__container {
+    position: relative;
+}
+
+.poll-row__chosen {
+    position: absolute;
+    top: 0.5*$spacer;
+    color: $brand-tertiary;
+}
+
+// User answer view: Open and Other answers
+.poll-slider__item {
+    padding-top: $spacer;
+}
+
+.poll-slider__answer {
+    padding-bottom: 1.75*$spacer;
+
+    i {
+        color: $brand-tertiary;
+    }
+}
+
+.poll-slider__count {
+    font-size: $font-size-sm;
+    color: $gray-lighter;
+    position: absolute;
+    bottom: 0;
+
+    @media (min-width: $breakpoint) {
+        right: 6.5*$spacer;
+    }
+}
+
+.poll-slider {
+    position: relative;
+    background-color: $brand-secondary-tint;
+    margin-bottom: $spacer;
+    border-radius: 0.3*$spacer;
+
+    //slick overwrites - nested for specificity
+    .slick-prev {
+        left: revert !important;
+        right: 4*$spacer !important;
+    }
+
+    .slick-next {
+        right: 1.5*$spacer !important;
+    }
+
+    .slick-prev,
+    .slick-next {
+        @extend .btn--none;
+        background-color: $brand-tertiary;
+
+        position: absolute;
+        top: revert;
+        bottom: 0;
+        text-align: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 100%;
+        z-index: 1; // when tile links overlap
+
+        &:hover {
+            background-color: $brand-tertiary;
+        }
+
+        &:before {
+            color: $brand-secondary-tint;
+            opacity: 1;
+            font-family: "Font Awesome 5 Free", sans-serif;
+            font-weight: 900;
+            font-size: $font-size-base;
+            line-height: 1.4rem;
+        }
+    }
+
+    .slick-prev:before {
+        content: '\f060'; // arrow-left
+    }
+
+    .slick-next:before {
+        content: '\f061'; // arrow-right
+    }
+
+    // Ensure centermode works
+    .slick-slide {
+        height: auto;
+        position: relative;
+        margin: 0 $spacer;
+
+        @media (min-width: $breakpoint) {
+            margin: 0 3*$spacer;
+        }
+    }
+
+    .slick-track {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
+    }
 }

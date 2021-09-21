@@ -46,9 +46,10 @@ $print-link: #005cb4 !default;
 
 $brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
 $brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
+$brand-tertiary-tint: contrast-stretch($text-color, mix($brand-tertiary, $body-bg, 30%), 7) !default;
 $brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
 
-$bg-tertiary: contrast-stretch($text-color, mix($brand-tertiary, $body-bg, 30%), 7) !default;
+$bg-tertiary: $brand-tertiary-tint !default;
 $bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
 $bg-light: #f7f7f7;
 
