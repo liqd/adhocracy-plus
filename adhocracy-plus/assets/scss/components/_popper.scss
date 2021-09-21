@@ -1,0 +1,29 @@
+ul.popper-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border: 1px solid $brand-primary;
+
+    li {
+        border-bottom: 1px solid $brand-primary;
+    }
+
+    li ~ li {
+        border-bottom: none;
+    }
+}
+
+.popper-content--container[data-visible="true"] {
+    display: flex;
+}
+
+.popper-content--container[data-visible="false"] {
+    display: none;
+}
+
+.popper-menuitem__button {
+    width: 100%;
+    text-align: left;
+    border: none;
+}

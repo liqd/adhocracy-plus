@@ -116,6 +116,14 @@ $checkbox-size: 20px;
     margin-right: $spacer;
 }
 
+.poll__btn--light {
+    @extend .btn--light;
+}
+
+.poll__btn--dark {
+    @extend .btn--primary;
+}
+
 .poll__help-text {
     color: $text-color-gray;
     margin-bottom: 0.5*$spacer;
