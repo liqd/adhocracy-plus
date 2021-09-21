@@ -110,7 +110,7 @@
 }
 
 .btn--secondary {
-    @include button-color--product($brand-info);
+    @include button-color--product($brand-info); // this should be secondary
 }
 
 .btn--primary-filled {
@@ -168,6 +168,7 @@
         color: $link-hover-color;
         border-color: transparent;
         background-color: transparent;
+        box-shadow: none;
     }
 
     &.is-disabled,
