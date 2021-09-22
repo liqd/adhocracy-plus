@@ -57,7 +57,7 @@
             <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
                            background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                            {% endif %}">
-                <div class="mb-5 u-z-index--1">
+                <div class="mb-5 u-z-index--0">
                     <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                         <h1 class="project-header__title">{{ project.name }}</h1>
                         <p class="project-header__description">{{ project.description }}</p>

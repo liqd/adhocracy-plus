@@ -47,7 +47,7 @@
                                 {% with 'images/'|add:category.0|add:'-invert.svg' as category_svg %}
                                 <img class="m-auto" src="{% static category_svg %}" alt="{{ category.1 }}" width="70" />
                                 {% endwith %}
-                                <div class="text-center pb-1 u-z-index--1 cms-use-case__category">
+                                <div class="text-center pb-1 cms-use-case__category">
                                     {{ category.1 }}
                                 </div>
                                 <div class="cms-use-case__category-selected-arrow"></div>
