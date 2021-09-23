@@ -39,11 +39,15 @@ export default class Filter extends React.Component {
     const ariaDisplayNotHidden = django.gettext('Click to only display questions which are not hidden')
     const ariaOrderLikes = django.gettext('Click to order list by likes')
     return (
-      <div className={'livequestions__filter-bar ' + (this.state.showFilters && 'mb-5')}>
-        <div className="dropdown livequestions__filter--btn">
+      <div className={'livequestion__filter-bar ' + (this.state.showFilters && 'mb-3 mb-md-5')}>
+        <div className="dropdown livequestion__filter--btn">
           <button
-            className={this.getButtonClass()} type="button" id="dropdownMenuButton"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            className={this.getButtonClass()}
+            type="button"
+            id="dropdownMenuButton"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
             {this.props.currentCategoryName}
             <i className="fa fa-caret-down" aria-hidden="true" />
@@ -56,9 +60,9 @@ export default class Filter extends React.Component {
           </div>
         </div>
         {this.props.isModerator &&
-          <div className="checkbox-btn livequestions__filter--btn pe-3">
+          <div className="checkbox-btn livequestion__filter--btn">
             <label
-              htmlFor="markedCheck"
+              htmlFor="showFilters"
               className="checkbox-btn__label--light"
               aria-label={ariaOpenFilters}
               title={ariaOpenFilters}
@@ -66,8 +70,8 @@ export default class Filter extends React.Component {
               <input
                 className="checkbox-btn__input"
                 type="checkbox"
-                id="markedCheck"
-                name="markedCheck"
+                id="showFilters"
+                name="showFilter"
                 checked={this.props.showFilters}
                 onChange={this.handleToggleFilters.bind(this)} // eslint-disable-line react/jsx-handler-names
               />
@@ -78,7 +82,7 @@ export default class Filter extends React.Component {
             </label>
           </div>}
         {this.state.showFilters &&
-          <div className="livequestions__filter--open">
+          <div className="livequestion__filter--open">
             <div className="checkbox-btn">
               <label
                 htmlFor="markedCheck"
