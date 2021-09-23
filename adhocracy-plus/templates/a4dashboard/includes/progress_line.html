@@ -32,7 +32,7 @@
         {% else %}
             <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% trans 'Module created' %}" aria-label="{% trans 'Module created' %}"></i>
         {% endif %}
-        <span>{% trans 'Create module(s)' %}</span>
+        <span>{% trans 'Add participation module(s)' %}</span>
     </li>
 
     <li class="progress-line__entry">
@@ -47,7 +47,7 @@
         {% endif %}
 
         <span {% if dashboard_menu.modules|module_nav_is_active %}class="progress-line__entry--active"{% endif %}>
-            <span>{% trans 'Fill in module(s) details' %}</span>
+            <span>{% trans 'Fill in module details' %}</span>
         </span>
 
     </li>
@@ -62,7 +62,7 @@
         {% else %}
             <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% trans 'Module added to project' %}" aria-label="{% trans 'Module added to project' %}"></i>
         {% endif %}
-        <span>{% trans 'Show module(s) in project' %}</span>
+        <span>{% trans 'Add module(s) to project' %}</span>
     </li>
     {% endif %}
 
