@@ -5,10 +5,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.dashboard import mixins as dashboard_mixins
+from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
-from apps.exports.views import DashboardExportView
 
 from . import models
 
@@ -72,7 +72,7 @@ class ParagraphDetailView(ProjectMixin,
 
 
 class DocumentDashboardExportView(DashboardExportView):
-    template_name = 'a4_candy_exports/export_dashboard.html'
+    template_name = 'a4exports/export_dashboard.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
