@@ -20,7 +20,7 @@
 
 {% block dashboard_content %}
     <div class="row">
-        <nav class="col-md-3" aria-label="{% trans 'Project Settings' %}">
+        <nav class="col-md-3 js-selector-update-dashboard" aria-label="{% trans 'Project Settings' %}">
             <div class="dashboard-nav">
                 <div class="dashboard-nav__dropdown" data-bs-toggle="collapse" href="#dashboardCollapseProj" aria-expanded="true" aria-controls="#dashboardCollapseProj" data-bs-target="#dashboardCollapseProj">
                     {% if project_progress.project_is_complete %}
