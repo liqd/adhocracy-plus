@@ -6,8 +6,6 @@
 
 .header-lower__nav {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     justify-content: space-between;
 }
@@ -62,6 +60,10 @@
     top: 9*$spacer;
     justify-content: flex-end;
     display: flex;
+
+    &:last-child {
+        padding-right: $spacer;
+    }
 }
 
 .header-lower__nav-item {
