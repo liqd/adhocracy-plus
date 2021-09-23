@@ -11,7 +11,6 @@ import '../../../apps/newsletters/assets/dynamic_fields.js'
 
 // expose react components
 import {
-  comments as ReactComments,
   commentsAsync as ReactCommentsAsync,
   follows as ReactFollows,
   polls as ReactPolls,
@@ -25,7 +24,6 @@ import * as ReactInteractiveEvents from 'a4_candy_interactive_events'
 import * as ReactLanguageChoice from '../../../apps/organisations/assets/react_language_choice.jsx'
 
 function init () {
-  ReactWidget.initialise('a4', 'comment', ReactComments.renderComment)
   ReactWidget.initialise('a4', 'comment_async', ReactCommentsAsync.renderComment)
   ReactWidget.initialise('a4', 'follows', ReactFollows.renderFollow)
   ReactWidget.initialise('a4', 'polls', ReactPolls.renderPolls)
@@ -72,9 +70,9 @@ document.addEventListener('click', function () {
 })
 
 // enables bootstrap tooltips
-$(function tooltip () {
-  $('[data-bs-toggle="tooltip"]').tooltip()
-})
+// $(function tooltip () {
+//   $('[data-bs-toggle="tooltip"]').tooltip()
+// })
 
 // This function is overwritten with custom behavior in embed.js.
 export function getCurrentPath () {
