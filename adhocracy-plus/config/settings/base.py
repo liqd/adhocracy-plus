@@ -73,6 +73,7 @@ INSTALLED_APPS = (
     'adhocracy4.comments',
     'adhocracy4.comments_async',
     'adhocracy4.dashboard',
+    'adhocracy4.exports',
     'adhocracy4.filters',
     'adhocracy4.follows',
     'adhocracy4.forms',
