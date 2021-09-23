@@ -28,14 +28,14 @@ export default class InfoBox extends React.Component {
 
   render () {
     return (
-      <div className="livequestion__info-box">
+      <div className={this.state.displayInfo ? 'livequestion__info-box--open' : 'order-2'}>
         {this.state.displayInfo &&
           <div className="u-border my-2">
-            <button type="button" className="close pe-2" onClick={this.toggleInformation.bind(this)}>
+            <button type="button" className="livequestion__close" onClick={this.toggleInformation.bind(this)}>
               <span aria-label={ariaCloseInfo}>&times;</span>
             </button>
             {this.props.isModerator &&
-              <div className="row pt-4">
+              <div className="row">
                 <div className="col-lg-3 text-center">
                   <i className="icon-push-in-list" /> <div>{textAddQuestion}</div>
                 </div>
@@ -50,15 +50,16 @@ export default class InfoBox extends React.Component {
                 </div>
               </div>}
             {!this.props.isModerator &&
-              <div className="row pt-4">
+              <div className="row">
                 <div className="col-12 text-center">
                   <i className="icon-in-list" /> <div>{textMarkedModeration}</div>
                 </div>
               </div>}
           </div>}
-        <button type="button" className="btn btn--none text-muted pe-0" onClick={this.toggleInformation.bind(this)}>
-          <span aria-label={ariaOpenInfo}><i className="fas fa-info-circle me-1" />{textInfo}</span>
-        </button>
+        {!this.state.displayInfo &&
+          <button type="button" className="btn btn--none text-muted pe-0" onClick={this.toggleInformation.bind(this)}>
+            <span aria-label={ariaOpenInfo}><i className="fas fa-info-circle me-1" />{textInfo}</span>
+          </button>}
       </div>
     )
   }

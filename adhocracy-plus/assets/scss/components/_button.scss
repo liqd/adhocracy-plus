@@ -102,6 +102,34 @@
     &:disabled,
     &.is-disabled {
         border-color: $border-color;
+        box-shadow: none;
+    }
+}
+
+.btn--none {
+    @include button-color(transparent, transparent);
+    border: none;
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:disabled,
+    &.is-disabled {
+        box-shadow: none;
+    }
+}
+
+// from a4 comments
+.btn--no-border {
+    @extend .btn--transparent;
+    border: none;
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:disabled,
+    &.is-disabled {
+        background-color: $gray-lightest;
     }
 }
 
@@ -195,24 +223,6 @@
         .link--more {
             display: none;
         }
-    }
-}
-
-.btn--none {
-    @include button-color(transparent, transparent);
-    border: none;
-}
-
-.btn--no-border {
-    @extend .btn--transparent;
-    border: none;
-
-    &:focus,
-    &:hover,
-    &:active,
-    &:disabled,
-    &.is-disabled {
-        background-color: $gray-lightest;
     }
 }
 
