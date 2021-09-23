@@ -69,11 +69,6 @@ document.addEventListener('click', function () {
   $('.js-selector-collapse').collapse('hide')
 })
 
-// enables bootstrap tooltips
-// $(function tooltip () {
-//   $('[data-bs-toggle="tooltip"]').tooltip()
-// })
-
 // This function is overwritten with custom behavior in embed.js.
 export function getCurrentPath () {
   return location.pathname
