@@ -4,6 +4,10 @@
 
 .datepicker {
     @extend .input-group__input;
+
+    &::placeholder {
+        opacity: 0.5;
+    }
 }
 
 // stylelint-disable selector-max-specificity
