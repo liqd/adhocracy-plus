@@ -51,7 +51,7 @@ def test_initiator_can_export_subjects(client, phase_factory):
                 'organisation_slug': module.project.organisation.slug,
                 'module_slug': module.slug
             })
-        assert response.context['export'] == export_url
+        assert response.context['subject_export'] == export_url
         response = client.get(export_url)
         assert response.status_code == 200
         assert 'application/vnd.openxmlformats-officedocument.'\
