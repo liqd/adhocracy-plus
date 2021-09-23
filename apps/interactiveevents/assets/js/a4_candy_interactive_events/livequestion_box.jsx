@@ -196,10 +196,10 @@ export default class QuestionBox extends React.Component {
             dataProtectionPolicyUrl={this.props.dataProtectionPolicyUrl}
           />}
         <div>
-          <div className={this.props.isModerator ? 'livequestions__control-bar--mod' : 'livequestions__control-bar--user'}>
-            <div className="livequestions__action-bar">
+          <div className={this.props.isModerator ? 'livequestion__control-bar--mod' : 'livequestion__control-bar--user'}>
+            <div className="livequestion__action-bar">
               {this.props.isModerator &&
-                <div className="livequestions__action-bar--btn">
+                <div className="livequestion__action-bar--btn pe-lg-3">
                   <a
                     className="btn btn--light"
                     rel="noopener noreferrer"
@@ -215,7 +215,7 @@ export default class QuestionBox extends React.Component {
                     {textDisplayOnScreen}
                   </a>
                 </div>}
-              <div className="livequestions__action-bar--btn pe-md-3">
+              <div className="livequestion__action-bar--btn pe-xl-3">
                 <div className="btn--light checkbox-btn">
                   <label
                     htmlFor="displayStatistics"
@@ -254,13 +254,11 @@ export default class QuestionBox extends React.Component {
               />}
           </div>
           {!this.state.showStatistics &&
-            <div className="row">
-              <div className="col">
-                <label className="livequestions__count">{this.state.questionCount} {textQuestionCount}</label>
-                <InfoBox
-                  isModerator={this.props.isModerator}
-                />
-              </div>
+            <div className="livequestion__info-box-parent">
+              <InfoBox
+                isModerator={this.props.isModerator}
+              />
+              <label className="livequestion__count">{this.state.questionCount} {textQuestionCount}</label>
             </div>}
 
           {this.state.showStatistics &&
@@ -269,7 +267,7 @@ export default class QuestionBox extends React.Component {
               id="livequestion-statistics"
               aria-hidden="false"
             >
-              <button type="button" className="close pe-2" onClick={this.handleToggleStatistics.bind(this)}>
+              <button type="button" className="livequestion__close" onClick={this.handleToggleStatistics.bind(this)}>
                 <span aria-label="close">&times;</span>
               </button>
               <StatisticsBox
@@ -290,7 +288,7 @@ export default class QuestionBox extends React.Component {
               hasLikingPermission={this.props.hasLikingPermission}
             />}
         </div>
-        <span className="livequestions_anchor" id="question-list-end" />
+        <span className="livequestion_anchor" id="question-list-end" />
       </div>
     )
   }

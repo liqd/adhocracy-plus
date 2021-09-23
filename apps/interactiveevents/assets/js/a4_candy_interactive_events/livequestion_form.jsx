@@ -56,7 +56,7 @@ export default class QuestionForm extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="mb-5">
         <form id="id-livequestion-form" action="" onSubmit={this.addQuestion.bind(this)}>
           <h2>{django.gettext('Here you can ask your question')}</h2>
           <CategorySelect

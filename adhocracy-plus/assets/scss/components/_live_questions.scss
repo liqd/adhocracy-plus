@@ -11,91 +11,88 @@
 .live_questions__char-count {
     color: $gray-lighter;
     font-size: $font-size-sm;
-    margin-top: -0.75*$spacer;
     margin-bottom: $spacer;
 }
 
-.livequestions__control-bar--mod,
-.livequestions__control-bar--user {
+.livequestion__control-bar--mod,
+.livequestion__control-bar--user {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 
-    .livequestions__action-bar,
-    .livequestions__filter-bar {
+    .livequestion__action-bar,
+    .livequestion__filter-bar {
         display: flex;
         min-width: 100%;
-        position: relative;
         flex-wrap: wrap;
 
-        @media screen and (min-width: $breakpoint) {
-            margin-bottom: $spacer;
-        }
-
         @media screen and (min-width: $breakpoint-lg) {
-            display: inline-block;
+            display: block;
             min-width: inherit;
-            position: inherit;
         }
     }
 
-    .livequestions__action-bar--btn,
-    .livequestions__filter--btn {
-        padding: 0.5*$spacer $spacer;
+    .livequestion__action-bar--btn,
+    .livequestion__filter--btn {
         display: block;
         flex-basis: 100%;
+        margin-bottom: $spacer;
 
-        @media screen and (min-width: $breakpoint) {
-            padding: 0 0 0 $spacer;
+        @media screen and (min-width: $breakpoint-md) {
             display: inline-block;
             flex-basis: 50%;
         }
-
-        @media screen and (min-width: $breakpoint-lg) {
-            display: inline-block;
-        }
     }
 
-    //to ensure flex children fill space
+    // ensure flex children fill space
     .btn--light,
     .checkbox-btn__text {
         min-width: 100%;
     }
 }
 
-.livequestions__filter--open {
-    position: absolute;
-    left: $spacer;
-    top: 8*$spacer;
-
-    @media screen and (min-width: $breakpoint) {
-        top: 3.5*$spacer;
-    }
-
-    @media screen and (min-width: $breakpoint-lg) {
-        left: inherit;
-        right: $spacer;
-    }
-}
-
-.livequestions__control-bar--user {
-    .livequestions__action-bar--btn,
-    .livequestions__filter--btn {
+.livequestion__control-bar--user {
+    .livequestion__action-bar--btn,
+    .livequestion__filter--btn {
         min-width: 100%;
     }
+}
 
-    .livequestions__filter--btn {
-        padding-right: $spacer;
+@media screen and (min-width: $breakpoint-md) {
+    .livequestion__control-bar--mod {
+        .dropdown.livequestion__filter--btn {
+            padding-right: $spacer;
+        }
     }
 }
 
-.livequestion__info-box > .btn {
-    float: right;
+.livequestion__info-box-parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    i {
+        color: $brand-primary;
+    }
 }
 
-.livequestions__count {
-    position: absolute;
-    bottom: 0;
+.livequestion__info-box--open {
+    @extend .order-0;
+
+    width: 100%;
+}
+
+.livequestion__count {
+    @extend .order-1;
     color: $text-color-gray;
+    padding-top: 0.5*$spacer;
+}
+
+.livequestion__close {
+    display: block;
+    margin-left: auto;
+    padding-right: $spacer;
+    font-size: $font-size-xl;
 }
 
 .livequestion_anchor {
