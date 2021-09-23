@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
     padding: 1.3em 0;
-    position: relative;
     margin: 0 (-$spacer);
 
-    text-align: center;
+    position: relative;
 
     min-height: $hero-height-mobile;
 
@@ -16,7 +16,7 @@
     }
 
     @media (min-width: $breakpoint-md) {
-        min-height: $hero-height-secondary;
+        min-height: $hero-height;
         margin-bottom: 1em;
     }
 
@@ -30,8 +30,6 @@
     left: 0;
     right: 0;
     bottom: -(2*$spacer);
-    // padding-bottom: 0;
-    // margin-bottom: 0 !important;
     display: flex;
     z-index: 1;
     justify-content: flex-end;
