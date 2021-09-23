@@ -2,10 +2,10 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard import mixins
+from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import views as filter_views
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
-from apps.exports.views import DashboardExportView
 from apps.ideas import views as idea_views
 
 from . import filters
@@ -119,11 +119,11 @@ class SubjectDeleteView(mixins.DashboardBaseMixin,
 
 
 class SubjectDashboardExportView(DashboardExportView):
-    template_name = 'a4_candy_exports/export_dashboard.html'
+    template_name = 'a4exports/export_dashboard.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['export'] = reverse(
+        context['subject_export'] = reverse(
             'a4dashboard:subject-export',
             kwargs={
                 'organisation_slug': self.module.project.organisation.slug,
