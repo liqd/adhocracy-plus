@@ -182,7 +182,10 @@ module.exports = {
   },
   resolve: {
     // redirect module requests when normal resolving fails.
-    fallback: { path: require.resolve('path-browserify') },
+    fallback: {
+      path: require.resolve('path-browserify'),
+      assert: require.resolve('assert/')
+    },
     // attempt to resolve these extensions in this order.
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     // create aliases to import or require certain modules more easily, $ signifys exact match
