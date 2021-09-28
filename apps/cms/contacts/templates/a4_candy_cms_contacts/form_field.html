@@ -2,8 +2,9 @@
 
 {% if field|is_checkbox %}
   <div class="form-check">
-    {% render_field field class="form-check-input" %}
-    <label class="form-check-label my-4" for="id_{{ field.name }}">{{ field.help_text }} {% if field.field.required %} *{% endif %}
+    <label class="form-check__label my-4" for="id_{{ field.name }}">
+      {% render_field field %}
+      {{ field.help_text }} {% if field.field.required %} *{% endif %}
     </label>
     {% if field.errors %}
       <div class="alert alert-danger pb-0" role="alert">
