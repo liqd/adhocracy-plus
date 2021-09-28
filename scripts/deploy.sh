@@ -19,4 +19,4 @@ EOF
     chmod 600 ~/id_rsa
 fi
 
-ssh ${SSH_ID_ARG} -oIPQoS=throughput -oStrictHostKeyChecking=no build@build.liqd.net deploy adhocracy-plus master
+ssh ${SSH_ID_ARG} --oClientAliveInterval 15 -oClientAliveCountMax 2 -oStrictHostKeyChecking=no build@build.liqd.net deploy adhocracy-plus master
