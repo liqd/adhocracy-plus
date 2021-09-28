@@ -163,7 +163,7 @@ create-postgres:
 	if [ -d "pgsql" ]; then \
 		echo "postgresql has already been initialized"; \
 	else \
-		sudo install -d -m 744 -o postgres -g postgres pgsql; \
+		sudo install -d -m 774 -o postgres -g $(USER) pgsql; \
 		sudo -u postgres /usr/lib/postgresql/12/bin/initdb pgsql; \
 		sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/pg_ctl start; \
 		sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/createuser -s django; \
