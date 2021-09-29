@@ -1,5 +1,5 @@
 {% extends "a4dashboard/base_dashboard.html" %}
-{% load i18n rules static %}
+{% load i18n rules static a4_candy_dashboard_tags %}
 
 {% block dashboard_nav %}
 <div class="u-bg-secondary u-spacer-bottom-double py-3">
@@ -19,10 +19,19 @@
 {% endblock %}
 
 {% block dashboard_content %}
+    {% closed_accordeons project.id as closed_accordeons %}
     <div class="row">
         <nav class="col-md-3 js-selector-update-dashboard" aria-label="{% trans 'Project Settings' %}">
             <div class="dashboard-nav">
-                <div class="dashboard-nav__dropdown" data-bs-toggle="collapse" href="#dashboardCollapseProj" aria-expanded="true" aria-controls="#dashboardCollapseProj" data-bs-target="#dashboardCollapseProj">
+                <div
+                    class="dashboard-nav__dropdown{% if 0 in closed_accordeons %} collapsed{% endif %}"
+                    id="dashboard-nav__module--0"
+                    data-bs-toggle="collapse"
+                    href="#dashboardCollapseProj"
+                    aria-expanded="{% if 0 in closed_accordeons %}false{% else %}true{% endif %}"
+                    aria-controls="#dashboardCollapseProj"
+                    data-bs-target="#dashboardCollapseProj"
+                >
                     {% if project_progress.project_is_complete %}
                     <i class="fas fa-check-circle text-info" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
                     {% else %}
@@ -31,7 +40,7 @@
                     {{ project.name }}
                     <i class="fa fa-chevron-up" aria-hidden="true"></i>
                 </div>
-                <ul class="dashboard-nav__pages collapse show" id="dashboardCollapseProj" aria-hidden="false">
+                <ul class="dashboard-nav__pages collapse{% if not 0 in closed_accordeons %} show{% endif %}" id="dashboardCollapseProj" aria-hidden="false">
                     {% for item in dashboard_menu.project %}
                         <li class="dashboard-nav__page">
                             <a href="{{ item.url }}"
@@ -67,7 +76,15 @@
                 </div>
                 {% endif %}
                 <div class="dashboard-nav">
-                    <div class="dashboard-nav__dropdown" data-bs-toggle="collapse" href="#dashboardCollapse_{{ forloop.counter }}" aria-expanded="true" aria-controls="#dashboardCollapse_{{ forloop.counter }}" data-bs-target="#dashboardCollapse_{{ forloop.counter }}">
+                    <div
+                        class="dashboard-nav__dropdown{% if module_menu.module.pk in closed_accordeons %} collapsed{% endif %}"
+                        id="dashboard-nav__module--{{ module_menu.module.pk }}"
+                        data-bs-toggle="collapse"
+                        href="#dashboardCollapse_{{ forloop.counter }}"
+                        aria-expanded="{% if module_menu.module.pk in closed_accordeons %}false{% else %}true{% endif %}"
+                        aria-controls="#dashboardCollapse_{{ forloop.counter }}"
+                        data-bs-target="#dashboardCollapse_{{ forloop.counter }}"
+                    >
                       {% if module_menu.is_complete %}
                           <i class="fas fa-check-circle text-info" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
                       {% else %}
@@ -77,7 +94,7 @@
                       <i class="fa fa-chevron-up {% if module_menu.module.is_draft %}dashboard-nav-i-spacer{% endif %}" aria-hidden="true"></i>
                     </div>
 
-                    <ul class="dashboard-nav__pages collapse show" id="dashboardCollapse_{{ forloop.counter }}" aria-hidden="false">
+                    <ul class="dashboard-nav__pages collapse{% if not module_menu.module.pk in closed_accordeons %} show{% endif %}" id="dashboardCollapse_{{ forloop.counter }}" aria-hidden="false">
                         {% for item in module_menu.menu %}
                             <li class="dashboard-nav__page">
                               <a href="{{ item.url }}"
