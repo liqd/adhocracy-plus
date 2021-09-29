@@ -1,3 +1,6 @@
+import json
+from urllib import parse
+
 from django.apps import apps
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -72,7 +75,17 @@ class ModuleCreateView(ProjectMixin,
         self._create_phases(module, self.blueprint.content)
         messages.success(self.request, self.success_message)
 
-        return HttpResponseRedirect(self.get_next(module))
+        cookie = request.COOKIES.get('dashboard_projects_closed_accordeons',
+                                     '[]')
+        ids = json.loads(parse.unquote(cookie))
+        if self.project.id not in ids:
+            ids.append(self.project.id)
+
+        cookie = parse.quote(json.dumps(ids))
+
+        response = HttpResponseRedirect(self.get_next(module))
+        response.set_cookie('dashboard_projects_closed_accordeons', cookie)
+        return response
 
     def _create_module_settings(self, module):
         if self.blueprint.settings_model:
