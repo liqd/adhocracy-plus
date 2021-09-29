@@ -36,9 +36,13 @@
 }
 
 .footer-upper__navbar-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    text-align: center;
+
+    @media screen and (min-width: $breakpoint) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
 
     .nav-item {
         padding-right: $spacer;
@@ -47,7 +51,6 @@
 
 .footer-upper__nav-link {
     display: inline;
-    text-decoration-line: none;
     color: $gray-lighter;
 
     &:hover {
