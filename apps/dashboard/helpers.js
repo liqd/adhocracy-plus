@@ -1,25 +1,25 @@
 import Cookies from 'js-cookie'
 
 export function initDashboardAccordeon () {
-  const cookieName = 'dashboard_projects_closed_accordeons'
-
-  if (Cookies.get(cookieName) === undefined) {
-    Cookies.set(cookieName, '[]')
-  }
-
+  const COOKIE_NAME = 'dashboard_projects_closed_accordeons'
+  const HTML_ATTR = 'aria-expanded'
   const accordeonMenus = document.querySelectorAll('div.dashboard-nav__dropdown')
 
-  accordeonMenus.forEach(accordeon => {
+  const manageObservers = () => {
     const observer = new MutationObserver((mutations) => {
-      manageCookie(mutations[0].target)
+      const foundMutation = mutations.find(m => m.attributeName === HTML_ATTR)
+      manageCookie(foundMutation.target)
     })
-    const config = { attributes: true, childList: true, characterData: true }
-    observer.observe(accordeon, config)
-  })
+
+    accordeonMenus.forEach(accordeon => {
+      const config = { attributeFilter: [HTML_ATTR] }
+      observer.observe(accordeon, config)
+    })
+  }
 
   const manageCookie = (currentElement) => {
     const currentId = parseInt(currentElement.id.split('--')[1])
-    const cookie = Cookies.get(cookieName)
+    const cookie = Cookies.get(COOKIE_NAME)
     const currentExpanded = !currentElement.classList.contains('collapsed')
     let currentList = []
 
@@ -29,10 +29,16 @@ export function initDashboardAccordeon () {
 
     if (!currentExpanded && !currentList.includes(currentId)) {
       currentList.push(currentId)
-      Cookies.set(cookieName, JSON.stringify(currentList))
+      Cookies.set(COOKIE_NAME, JSON.stringify(currentList))
     } else if (currentExpanded && currentList.includes(currentId)) {
       currentList.splice(currentList.indexOf(currentId), 1)
-      Cookies.set(cookieName, JSON.stringify(currentList))
+      Cookies.set(COOKIE_NAME, JSON.stringify(currentList))
     }
   }
+
+  if (Cookies.get(COOKIE_NAME) === undefined) {
+    Cookies.set(COOKIE_NAME, '[]')
+  }
+
+  manageObservers()
 }
