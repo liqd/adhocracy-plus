@@ -68,3 +68,29 @@ document.addEventListener('a4.embed.ready', init, false)
 export function getCurrentPath () {
   return location.pathname
 }
+
+// const exampleEl = document.getElementById('example')
+// const tooltip = new Tooltip(exampleEl, options)
+
+// var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+//   return new Tooltip(tooltipTriggerEl)
+// }
+
+// window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+
+//     import { Modal } from 'bootstrap'
+//     let myModal = new Modal(document.getElementById('myModal'));
+// myModal.show();
+
+// var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+//   return new Tooltip(tooltipTriggerEl)
+// })
+
+// import 'bootstrap/js/dist/alert'
+// import 'bootstrap/js/dist/collapse'
+// import 'bootstrap/js/dist/dropdown'
+// import 'bootstrap/js/dist/modal'
+// import 'bootstrap/js/dist/popover'
+// import 'bootstrap/js/dist/tooltip' // load bootstrap components
