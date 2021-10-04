@@ -51,6 +51,11 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    init_dashboard_accordion: {
+      import: [
+        './adhocracy-plus/assets/js/init_dashboard_accordion.js'
+      ]
+    },
     // A4 dependencies - we want all of them to go through webpack
     a4maps_display_point: {
       import: [
