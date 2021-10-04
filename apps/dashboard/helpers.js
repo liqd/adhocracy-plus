@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie'
 
-export function initDashboardAccordeon () {
-  const COOKIE_NAME = 'dashboard_projects_closed_accordeons'
+export function initDashboardAccordion () {
+  const COOKIE_NAME = 'dashboard_projects_closed_accordions'
   const HTML_ATTR = 'aria-expanded'
-  const accordeonMenus = document.querySelectorAll('div.dashboard-nav__dropdown')
+  const accordionMenus = document.querySelectorAll('div.dashboard-nav__dropdown')
 
   const manageObservers = () => {
     const observer = new MutationObserver((mutations) => {
@@ -11,9 +11,9 @@ export function initDashboardAccordeon () {
       manageCookie(foundMutation.target)
     })
 
-    accordeonMenus.forEach(accordeon => {
+    accordionMenus.forEach(accordion => {
       const config = { attributeFilter: [HTML_ATTR] }
-      observer.observe(accordeon, config)
+      observer.observe(accordion, config)
     })
   }
 
