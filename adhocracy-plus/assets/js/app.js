@@ -8,7 +8,7 @@ import '../../../apps/dashboard/assets/ajax_modal.js'
 import '../../../apps/maps/assets/map-address.js'
 import '../../../apps/moderatorremark/assets/idea_remarks.js'
 import '../../../apps/newsletters/assets/dynamic_fields.js'
-import { initDashboardAccordeon } from '../../../apps/dashboard/helpers'
+import { initDashboardAccordion } from '../../../apps/dashboard/helpers'
 
 // expose react components
 import {
@@ -62,7 +62,7 @@ function init () {
   $('.ck_embed_iframe').parent('div').addClass('ck_embed_iframe__container')
 
   // Initialize observers for dashboard dropdowns
-  initDashboardAccordeon()
+  initDashboardAccordion()
 }
 
 document.addEventListener('DOMContentLoaded', init, false)
