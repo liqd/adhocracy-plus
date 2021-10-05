@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-25 11:23+0200\n"
+"POT-Creation-Date: 2021-10-05 12:45+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Joop Laan <joop@interconnecting.systems>, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/liqd/teams/109316/nl/)\n"
@@ -53,17 +53,16 @@ msgstr[0] "één reactie bekijken"
 msgstr[1] "%s reacties bekijken"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:30
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:9
 msgid "Answer"
 msgstr "Antwoorden"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:408
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:418
 msgid "Your reply here"
 msgstr "Uw reactie hier"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:283
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:292
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -75,36 +74,47 @@ msgstr ""
 "verwijderd als deze niet voldoet aan onze discussieregels (netiquette)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:260
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:269
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:255
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:264
 msgid "Latest edit on"
 msgstr "Laatste bewerking op"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:147
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:236
+#: adhocracy4/comments/static/comments/Comment.jsx:110
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:260
+msgid "Deleted by creator on"
+msgstr ""
+
+#: adhocracy4/comments/static/comments/Comment.jsx:112
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:262
+msgid "Deleted by moderator on"
+msgstr ""
+
+#: adhocracy4/comments/static/comments/Comment.jsx:151
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:241
 msgid "Do you really want to delete this comment?"
 msgstr "Wilt u deze opmerking echt verwijderen?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:148
+#: adhocracy4/comments/static/comments/Comment.jsx:152
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:238
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:243
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:14
+#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:68
+#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:73
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:152
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:157
 #: apps/documents/assets/ChapterNavItem.jsx:56
 #: apps/documents/assets/ChapterNavItem.jsx:61
 #: apps/documents/assets/ParagraphForm.jsx:133
 #: apps/documents/assets/ParagraphForm.jsx:138
-#: apps/polls/assets/QuestionForm.jsx:100
-#: apps/polls/assets/QuestionForm.jsx:105
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:149
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:239
+#: adhocracy4/comments/static/comments/Comment.jsx:153
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:244
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
@@ -204,11 +214,11 @@ msgctxt "verb"
 msgid "Comment"
 msgstr "Reageren"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:290
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:299
 msgid "Share link"
 msgstr "Link delen"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:329
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:339
 msgid "Categories: "
 msgstr "Categorieën: "
 
@@ -234,7 +244,7 @@ msgstr "Laatst besproken"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:51
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:544
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:545
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:37
 msgid "all"
 msgstr "allen"
@@ -246,48 +256,48 @@ msgstr "allen"
 msgid "Write contribution"
 msgstr "Bijdrage schrijven"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:522
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:526
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:519
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:523
 msgid "Search contributions"
 msgstr "Bijdragen zoeken"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:524
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:521
 msgid "Clear search"
 msgstr "Zoek wissen"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:536
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:537
 msgid "display: "
 msgstr "weergave: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:563
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:566
 msgid "sorted by: "
 msgstr "gesorteerd op: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:588
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:587
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "item"
 msgstr[1] "items"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:592
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:591
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "item gevonden voor "
 msgstr[1] "items gevonden voor "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:596
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
 msgid "Filters"
 msgstr "Filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:596
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
 msgid "Show filters"
 msgstr "Toon filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:599
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
 msgid "Hide Filters"
 msgstr "Verberg filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:599
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
 msgid "Hide filters"
 msgstr "Verberg filters"
 
@@ -354,121 +364,186 @@ msgstr "Volgen"
 msgid "Following"
 msgstr "Volgend"
 
-#: adhocracy4/polls/static/polls/ChoiceForm.jsx:6
-#: apps/polls/assets/ChoiceForm.jsx:24 apps/polls/assets/ChoiceForm.jsx:29
+#: adhocracy4/polls/assets/EditPollChoice.jsx:9
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:69
+msgctxt "noun"
+msgid "Answer"
+msgstr ""
+
+#: adhocracy4/polls/assets/EditPollChoice.jsx:27
+#: adhocracy4/polls/assets/EditPollChoice.jsx:33
 msgid "remove"
 msgstr "verwijderen"
 
-#: adhocracy4/polls/static/polls/PollManagement.jsx:179
-#: apps/polls/assets/PollManagement.jsx:188
-msgid "The poll has been updated."
-msgstr "De poll is bijgewerkt."
-
-#: adhocracy4/polls/static/polls/PollManagement.jsx:180
-#: apps/polls/assets/PollManagement.jsx:205
-msgid "The poll could not be updated."
-msgstr "De poll kon niet worden bijgewerkt."
-
-#: adhocracy4/polls/static/polls/PollManagement.jsx:216
-#: apps/polls/assets/PollManagement.jsx:247
-msgid "Add a new question"
-msgstr "Nieuwe vraag toevoegen"
-
-#: adhocracy4/polls/static/polls/PollManagement.jsx:217
-#: apps/documents/assets/DocumentManagement.jsx:324
-#: apps/polls/assets/PollManagement.jsx:253
-msgid "Save"
-msgstr "Bewaren"
-
-#: adhocracy4/polls/static/polls/Question.jsx:9
-#: apps/polls/assets/Question.jsx:172
-msgid "Your choice"
-msgstr "Uw keuze"
-
-#: adhocracy4/polls/static/polls/Question.jsx:10
-msgid "Multiple answers are possible for this question"
-msgstr "Meerdere antwoorden zijn mogelijk voor deze vraag"
-
-#: adhocracy4/polls/static/polls/Question.jsx:36
-#: apps/polls/assets/Question.jsx:51
-msgid "Vote counted"
-msgstr "Stemmen geteld"
-
-#: adhocracy4/polls/static/polls/Question.jsx:37
-#: apps/polls/assets/Question.jsx:61
-msgid "Vote has not been counted due to a server error."
-msgstr "De stemmen zijn niet geteld vanwege een serverfout."
-
-#: adhocracy4/polls/static/polls/Question.jsx:104
-#: apps/polls/assets/Question.jsx:109
-msgid "Vote"
-msgstr "Stemmen"
-
-#: adhocracy4/polls/static/polls/Question.jsx:105
-#: apps/polls/assets/Question.jsx:115
-msgid "Please login to vote"
-msgstr "Log in om te stemmen"
-
-#: adhocracy4/polls/static/polls/Question.jsx:140
-#: apps/polls/assets/Question.jsx:144
-msgid "Show preliminary results"
-msgstr "Toon voorlopige resultaten"
-
-#: adhocracy4/polls/static/polls/Question.jsx:142
-#: apps/polls/assets/Question.jsx:140
-msgid "Change vote"
-msgstr "Stem aanpassen"
-
-#: adhocracy4/polls/static/polls/Question.jsx:143
-#: apps/polls/assets/Question.jsx:137
-msgid "To poll"
-msgstr "Stemmen"
-
-#: adhocracy4/polls/static/polls/Question.jsx:161
-#: apps/polls/assets/Question.jsx:136
-msgid "vote"
-msgid_plural "votes"
-msgstr[0] "stem"
-msgstr[1] "stemmen"
-
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:8
+#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:16
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:19
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_form.jsx:66
-#: apps/polls/assets/QuestionForm.jsx:15
 msgid "Question"
 msgstr "Vraag"
 
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:10
-#: apps/polls/assets/QuestionForm.jsx:36
-msgid "Users can select more than one answer."
-msgstr "Gebruikers kunnen meer dan één antwoord selecteren."
+#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:36
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:119
+#: adhocracy4/polls/assets/HelptextForm.jsx:11
+msgid "Explanation"
+msgstr ""
 
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:11
-#: apps/polls/assets/QuestionForm.jsx:68
-msgid "Add a new choice"
-msgstr "Nieuwe keuze toevoegen"
-
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:12
+#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:45
+#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:50
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:129
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:134
 #: apps/documents/assets/ChapterNavItem.jsx:32
 #: apps/documents/assets/ChapterNavItem.jsx:37
 #: apps/documents/assets/ParagraphForm.jsx:110
 #: apps/documents/assets/ParagraphForm.jsx:115
-#: apps/polls/assets/QuestionForm.jsx:77 apps/polls/assets/QuestionForm.jsx:82
 msgid "Move up"
 msgstr "Omhoog plaatsten"
 
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:13
+#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:57
+#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:62
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:141
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:146
 #: apps/documents/assets/ChapterNavItem.jsx:44
 #: apps/documents/assets/ChapterNavItem.jsx:49
 #: apps/documents/assets/ParagraphForm.jsx:122
 #: apps/documents/assets/ParagraphForm.jsx:127
-#: apps/polls/assets/QuestionForm.jsx:89 apps/polls/assets/QuestionForm.jsx:94
 msgid "Move down"
 msgstr "Omlaag plaatsen"
 
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:54
-#: apps/polls/assets/QuestionForm.jsx:44
-msgid "Choice"
-msgstr "Keuze"
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:46
+msgid "Participants can vote for more than one option (multiple choice)"
+msgstr ""
+
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:61
+msgid "Participants can add their own answer"
+msgstr ""
+
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:94
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:95
+msgid "Other"
+msgstr ""
+
+#: adhocracy4/polls/assets/EditPollQuestion.jsx:112
+msgid "New answer"
+msgstr ""
+
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:163
+msgid "The poll has been updated."
+msgstr "De poll is bijgewerkt."
+
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:177
+msgid "The poll could not be updated."
+msgstr "De poll kon niet worden bijgewerkt."
+
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:196
+msgid "New question"
+msgstr ""
+
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:202
+msgid "Multiple choice question"
+msgstr ""
+
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:207
+msgid "Open question"
+msgstr ""
+
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:279
+#: apps/documents/assets/DocumentManagement.jsx:324
+msgid "Save"
+msgstr "Bewaren"
+
+#: adhocracy4/polls/assets/PollQuestion.jsx:18
+msgid "Multiple answers are possible."
+msgstr ""
+
+#: adhocracy4/polls/assets/PollQuestion.jsx:84
+#: adhocracy4/polls/assets/PollQuestion.jsx:123
+#: adhocracy4/polls/assets/PollResults.jsx:135
+msgid "other"
+msgstr ""
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:13
+msgid "Your answer has been saved."
+msgstr ""
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:18
+msgid ""
+"Your answer could not be saved due to a server error. Please try again later."
+msgstr ""
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:23
+msgid "Your answer is invalid or empty. Please try again."
+msgstr ""
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:41
+msgid "To poll"
+msgstr "Stemmen"
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:47
+#: adhocracy4/polls/assets/PollQuestions.jsx:122
+msgid "Change answer"
+msgstr ""
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:122
+msgid "Submit answer"
+msgstr ""
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:128
+msgid "Please login to answer"
+msgstr ""
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:138
+msgid "Show results"
+msgstr ""
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:144
+msgid "Show preliminary results"
+msgstr "Toon voorlopige resultaten"
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:165
+msgid "Please enter your answer in this field."
+msgstr ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:65
+msgid "Hide other answers"
+msgstr ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:67
+msgid "Show other answers"
+msgstr ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:81
+#, javascript-format
+msgid "%s participant gave 1 answer."
+msgstr ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:83
+#: adhocracy4/polls/assets/PollResults.jsx:85
+#, javascript-format
+msgid "%s participant gave %s answers."
+msgid_plural "%s participants gave %s answers."
+msgstr[0] ""
+msgstr[1] ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:87
+msgid ""
+" For multiple choice questions the percentages may add up to more than 100%."
+msgstr ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:89
+#: adhocracy4/polls/assets/PollResults.jsx:98
+#, javascript-format
+msgid "1 person has answered."
+msgid_plural "%s people have answered."
+msgstr[0] ""
+msgstr[1] ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:100
+msgid "noone has answered this question"
+msgstr ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:132
+msgid "Your choice"
+msgstr "Uw keuze"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:60
 msgid "Thank you! We are taking care of it."
@@ -824,3 +899,38 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "Meer informatie is te vinden in het privacybeleid van Vimeo onder: "
+
+#~ msgid "Add a new question"
+#~ msgstr "Nieuwe vraag toevoegen"
+
+#~ msgid "Multiple answers are possible for this question"
+#~ msgstr "Meerdere antwoorden zijn mogelijk voor deze vraag"
+
+#~ msgid "Vote counted"
+#~ msgstr "Stemmen geteld"
+
+#~ msgid "Vote has not been counted due to a server error."
+#~ msgstr "De stemmen zijn niet geteld vanwege een serverfout."
+
+#~ msgid "Vote"
+#~ msgstr "Stemmen"
+
+#~ msgid "Please login to vote"
+#~ msgstr "Log in om te stemmen"
+
+#~ msgid "Change vote"
+#~ msgstr "Stem aanpassen"
+
+#~ msgid "vote"
+#~ msgid_plural "votes"
+#~ msgstr[0] "stem"
+#~ msgstr[1] "stemmen"
+
+#~ msgid "Users can select more than one answer."
+#~ msgstr "Gebruikers kunnen meer dan één antwoord selecteren."
+
+#~ msgid "Add a new choice"
+#~ msgstr "Nieuwe keuze toevoegen"
+
+#~ msgid "Choice"
+#~ msgstr "Keuze"
