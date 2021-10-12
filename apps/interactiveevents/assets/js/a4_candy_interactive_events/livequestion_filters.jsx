@@ -39,12 +39,12 @@ export default class Filter extends React.Component {
     const ariaDisplayNotHidden = django.gettext('Click to only display questions which are not hidden')
     const ariaOrderLikes = django.gettext('Click to order list by likes')
     return (
-      <div className={'livequestion__filter-bar ' + (this.state.showFilters && 'mb-3 mb-md-5')}>
+      <div className={'livequestion__filter-bar ' + (this.state.showFilters && 'mb-3')}>
         <div className="dropdown livequestion__filter--btn">
           <button
             className={this.getButtonClass()}
             type="button"
-            id="dropdownMenuButton"
+            id="dropdownAffiliationBtn"
             data-bs-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
@@ -52,8 +52,15 @@ export default class Filter extends React.Component {
             {this.props.currentCategoryName}
             <i className="fa fa-caret-down" aria-hidden="true" />
           </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <button className="dropdown-item" data-value={-1} onClick={this.selectCategory.bind(this)} href="#">{allText}</button>
+          <div className="dropdown-menu" aria-labelledby="dropdownAffiliationBtn">
+            <button
+              className="dropdown-item"
+              data-value={-1}
+              onClick={this.selectCategory.bind(this)}
+              href="#"
+            >
+              {allText}
+            </button>
             {this.props.categories.map((category, index) => {
               return <button className="dropdown-item" key={index} data-value={category} onClick={this.selectCategory.bind(this)} href="#">{category}</button>
             })}
@@ -76,7 +83,7 @@ export default class Filter extends React.Component {
                 onChange={this.handleToggleFilters.bind(this)} // eslint-disable-line react/jsx-handler-names
               />
               <span className="checkbox-btn__text">
-                <i className="fas fa-sliders-h" aria-hidden="true" />
+                <i className="fas fa-sliders-h me-1" aria-hidden="true" />
                 {textFilters}
               </span>
             </label>
