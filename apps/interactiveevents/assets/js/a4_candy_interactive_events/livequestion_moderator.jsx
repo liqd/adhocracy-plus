@@ -116,7 +116,7 @@ export default class QuestionModerator extends React.Component {
           <div className="col-12 col-md-8 col-sm-7">
             {this.props.displayIsHidden &&
               <button
-                type="button" className="btn btn--transparent border-0 float-sm-right px-3"
+                type="button" className="btn btn--transparent border-0 float-sm-end px-3"
                 onClick={this.toggleIshidden.bind(this)}
                 aria-label={this.props.is_hidden ? ariaUndoHidden : ariaHidden}
                 title={this.props.is_hidden ? ariaUndoHidden : ariaHidden}
@@ -127,7 +127,7 @@ export default class QuestionModerator extends React.Component {
             {this.props.displayIsAnswered &&
               <button
                 type="button"
-                className="btn btn--transparent border-0 float-sm-right px-3"
+                className="btn btn--transparent border-0 float-sm-end px-3"
                 onClick={this.toggleIsAnswered.bind(this)}
                 aria-label={ariaMarkDone}
                 title={ariaMarkDone}
@@ -140,7 +140,7 @@ export default class QuestionModerator extends React.Component {
             {this.props.displayIsLive &&
               <button
                 type="button"
-                className="btn btn--transparent border-0 float-sm-right px-3"
+                className="btn btn--transparent border-0 float-sm-end px-3"
                 onClick={this.toggleIslive.bind(this)}
                 aria-label={this.state.is_live ? ariaRemoveDisplayScreen : ariaDisplayOnScreen}
                 title={this.state.is_live ? ariaRemoveDisplayScreen : ariaDisplayOnScreen}
@@ -153,7 +153,7 @@ export default class QuestionModerator extends React.Component {
             {this.props.displayIsOnShortlist &&
               <button
                 type="button"
-                className="btn btn--transparent border-0 float-sm-right px-3"
+                className="btn btn--transparent border-0 float-sm-end px-3"
                 onClick={this.toggleIsOnShortList.bind(this)}
                 aria-label={this.state.is_on_shortlist ? ariaRemoveShortlist : ariaAddShortlist}
                 title={this.state.is_on_shortlist ? ariaRemoveShortlist : ariaAddShortlist}

@@ -51,7 +51,7 @@ export default class InfoBox extends React.Component {
               </div>}
             {!this.props.isModerator &&
               <div className="row">
-                <div className="col-12 text-center">
+                <div className="col-12 text-center mb-3">
                   <i className="icon-in-list" /> <div>{textMarkedModeration}</div>
                 </div>
               </div>}
