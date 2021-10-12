@@ -74,10 +74,6 @@ div.cke_focus {
     margin-bottom: $spacer;
 }
 
-.form-check {
-    padding-left: 0;
-}
-
 .form-check,
 .form-group {
     .django-ckeditor-widget,
@@ -109,6 +105,8 @@ div.cke_focus {
     input {
         display: inline;
         width: auto;
+        margin-left: -1.5em; //em used as there is a em default that is overwritten
+        margin-right: 0.5em;
     }
 }
 
@@ -140,6 +138,10 @@ div.cke_focus {
         box-shadow: none;
         border-color: $brand-primary;
     }
+}
+
+.form-check {
+    margin-bottom: $spacer;
 }
 
 .input-group {
