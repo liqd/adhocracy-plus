@@ -16,14 +16,6 @@ export default class Filter extends React.Component {
     this.props.setCategories(category)
   }
 
-  getButtonClass () {
-    if (this.props.currentCategory === '-1') {
-      return 'dropdown-toggle btn btn--light btn--select'
-    } else {
-      return 'btn btn--secondary dropdown-toggle btn--select'
-    }
-  }
-
   handleToggleFilters () {
     const newValue = !this.state.showFilters
     this.setState({
@@ -42,7 +34,7 @@ export default class Filter extends React.Component {
       <div className={'livequestion__filter-bar ' + (this.state.showFilters && 'mb-3')}>
         <div className="dropdown livequestion__filter--btn">
           <button
-            className={this.getButtonClass()}
+            className="dropdown-toggle btn btn--select btn--light"
             type="button"
             id="dropdownAffiliationBtn"
             data-bs-toggle="dropdown"
