@@ -1,9 +1,9 @@
 {% load i18n %}
 <div class="upload-wrapper form-control-upload">
-    <div class="upload-wrapper__fields form-inline col-sm-6 d-flex align-items-start">
+    <div class="upload-wrapper__fields">
         {{ file_input }}
         {{ text_input }}
-        <div>
+        <div class="upload-wrapper__action-parent">
         {% if has_image_set and not is_required %}
             <label for="{{ checkbox_id }}"
                 class="upload-wrapper__action btn btn--danger"
