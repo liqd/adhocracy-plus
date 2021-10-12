@@ -54,25 +54,25 @@ export default class QuestionUser extends React.Component {
     const ariaUndoLike = django.gettext('undo like')
 
     return (
-      <div className="list-group-item border mb-2">
+      <div className="list-group-item border mb-2 p-4">
         <div>
-          <p>
-            {this.props.is_on_shortlist &&
-              <i className="icon-in-list pe-1 text-muted" aria-label={shortlistText} />}
-            {this.props.children}
-          </p>
-        </div>
-        <div className="row">
           <div className="col-12">
             {this.props.category &&
-              <span className="label label--big me-1">{this.props.category}</span>}
+              <span className="label mb-2">{this.props.category}</span>}
 
+            <div>
+              <p>
+                {this.props.is_on_shortlist &&
+                  <i className="icon-in-list pe-2 text-muted" aria-label={shortlistText} />}
+                {this.props.children}
+              </p>
+            </div>
             <div>
               {this.props.hasLikingPermission
                 ? (
                   <button
                     type="button"
-                    className={this.state.session_like ? 'rating-button rating-up float-right px-3' : 'rating-button rating-up is-selected float-right px-3'}
+                    className={'rating-button rating-up ' + (this.state.session_like ? 'is-selected' : '')}
                     onClick={this.handleLike.bind(this)}
                     aria-label={this.state.session_like ? ariaAddLike : ariaUndoLike}
                     title={this.state.session_like ? ariaAddLike : ariaUndoLike}

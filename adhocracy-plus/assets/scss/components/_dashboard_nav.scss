@@ -54,6 +54,12 @@
     color: $text-color;
     text-decoration: none;
 
+    //overwrite default checkbox styling
+    .form-check {
+        padding: 0;
+        margin: 0;
+    }
+
     .fa-exclamation-circle,
     .fa-check-circle {
         position: absolute;

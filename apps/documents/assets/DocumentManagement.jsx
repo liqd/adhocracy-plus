@@ -320,8 +320,9 @@ class DocumentManagement extends React.Component {
         />
 
         <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
-
-        <button type="submit" className="btn btn--primary">{django.gettext('Save')}</button>
+        <div className="d-flex justify-content-end">
+          <button type="submit" className="btn btn--primary">{django.gettext('Save')}</button>
+        </div>
       </form>
     )
   }
