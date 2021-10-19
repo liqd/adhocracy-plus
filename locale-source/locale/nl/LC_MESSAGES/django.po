@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-05 12:45+0200\n"
+"POT-Creation-Date: 2021-10-19 10:30+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Joop Laan <joop@interconnecting.systems>, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/liqd/teams/109316/nl/)\n"
@@ -333,7 +333,7 @@ msgstr "verplichte velden voor publicatie"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:12
-#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:44
+#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:46
 msgid "Publish"
 msgstr "Publiceren"
 
@@ -365,7 +365,7 @@ msgstr "Aanmaken"
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:29
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:15
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
-#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:47
+#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:40
 #: apps/debate/templates/a4_candy_debate/includes/subject_form.html:10
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:15
 #: apps/embed/templates/a4_candy_embed/embed.html:47
@@ -565,11 +565,11 @@ msgstr "hier kunt u alle ideeën exporteren"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 msgid "here you can export all subjects"
-msgstr ""
+msgstr "hier kunt u alle onderwerpen exporteren"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
 msgid "here you can export all answers"
-msgstr ""
+msgstr "hier kunt u alle antwoorden exporteren"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
 msgid "here you can export all comments"
@@ -817,23 +817,23 @@ msgstr "Of beide of geen datum moet worden ingesteld."
 
 #: adhocracy4/polls/api.py:71
 msgid "Please specify your answer."
-msgstr ""
+msgstr "Geef uw antwoord."
 
 #: adhocracy4/polls/api.py:88
 msgid "Key error for {}"
-msgstr ""
+msgstr "Key error for {}"
 
 #: adhocracy4/polls/api.py:90
 msgid "Choice not found."
-msgstr ""
+msgstr "Keuze niet gevonden."
 
 #: adhocracy4/polls/api.py:98
 msgid "Duplicate choices detected."
-msgstr ""
+msgstr "Dubbele keuzes gevonden."
 
 #: adhocracy4/polls/api.py:101
 msgid "Multiple choice disabled for question."
-msgstr ""
+msgstr "Meerkeuze uitgeschakeld voor vraag."
 
 #: adhocracy4/polls/dashboard.py:15
 #: apps/dashboard/blueprints.py:85
@@ -856,57 +856,63 @@ msgstr "ID"
 
 #: adhocracy4/polls/models.py:53
 msgid "Explanation"
-msgstr ""
+msgstr "Uitleg"
 
 #: adhocracy4/polls/models.py:82
 msgid "Questions with open answers cannot have multiple choices."
-msgstr ""
+msgstr "Vragen met open antwoorden kunnen geen meerkeuzevragen bevatten."
 
 #: adhocracy4/polls/models.py:87
 msgid ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
 msgstr ""
+"Vraag met keuzemogelijkheden kan geen open vraag worden. Verwijder keuzes of "
+"voeg nieuwe open vraag toe."
 
 #: adhocracy4/polls/models.py:152
 #: adhocracy4/polls/models.py:279
 msgid "Answer"
-msgstr ""
+msgstr "Antwoord"
 
 #: adhocracy4/polls/models.py:164
 msgid "Only open questions can have answers."
-msgstr ""
+msgstr "Alleen open vragen kunnen antwoorden hebben."
 
 #: adhocracy4/polls/models.py:201
 msgid "Open questions cannot have choices."
-msgstr ""
+msgstr "Open vragen kunnen geen keuzes hebben."
 
 #: adhocracy4/polls/models.py:206
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
+"\"Andere\" kan niet de enige keuze zijn. Gebruik een open vraag of voeg meer "
+"keuzes toe."
 
 #: adhocracy4/polls/models.py:213
 msgid "Question already has \"other\" choice."
-msgstr ""
+msgstr "Vraag heeft al \"andere\" keuze."
 
 #: adhocracy4/polls/models.py:285
 msgid "Other vote can only be created for vote on \"other\" choice."
 msgstr ""
+"Een andere stem kan alleen worden uitgebracht voor een stem op een \"andere"
+"\" keuze."
 
 #: adhocracy4/polls/models.py:306
 msgid "other"
-msgstr ""
+msgstr "andere"
 
 #: adhocracy4/polls/phases.py:16
 msgctxt "A4: voting phase name"
 msgid "Voting phase"
-msgstr ""
+msgstr "Stemming"
 
 #: adhocracy4/polls/phases.py:19
 msgctxt "A4: voting phase description"
 msgid "Answer the questions and comment on the poll."
-msgstr ""
+msgstr "Beantwoord de vragen en reageer op de poll."
 
 #: adhocracy4/polls/phases.py:21
 msgid "polls"
@@ -938,7 +944,7 @@ msgstr "Keuze moet bij de vraagstelling in de url horen."
 
 #: adhocracy4/polls/validators.py:43
 msgid "Only one vote per choice is allowed per user."
-msgstr ""
+msgstr "Per gebruiker is slechts één stem per keuze toegestaan."
 
 #: adhocracy4/projects/admin.py:8
 #: apps/newsletters/forms.py:31
@@ -997,7 +1003,7 @@ msgstr "Contactpersoon"
 
 #: adhocracy4/projects/models.py:67
 msgid "Phone"
-msgstr ""
+msgstr "Telefoon"
 
 #: adhocracy4/projects/models.py:72
 #: apps/projects/templates/a4_candy_projects/project_detail.html:146
@@ -1909,18 +1915,18 @@ msgstr "Module toevoegen"
 
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:28
 msgid "Are you sure you want to publish your project?"
-msgstr ""
+msgstr "Weet u zeker dat u uw project wilt publiceren?"
 
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:29
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:36
 #, python-format
 msgid "One module has not been added to the project."
 msgid_plural "%(counter)s modules have not been added to the project."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Eén module is niet aan het project toegevoegd."
+msgstr[1] "%(counter)s modules niet aan het project zijn toegevoegd."
 
 #: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:4
 #: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:7
@@ -4282,7 +4288,7 @@ msgstr "Creëer een nieuw project"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:6
 msgid "Project created"
-msgstr ""
+msgstr "Project aangemaakt"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:7
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:4
@@ -4292,60 +4298,60 @@ msgstr "Creëer project"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:22
 msgid "Fill in project details"
-msgstr ""
+msgstr "Vul de projectgegevens in"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:31
 msgid "No module created"
-msgstr ""
+msgstr "Geen module gemaakt"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:33
 msgid "Module created"
-msgstr ""
+msgstr "Module gemaakt"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:35
 msgid "Add participation module(s)"
-msgstr ""
+msgstr "Deelnamemodule(s) toevoegen"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:42
 msgid "Module not ready to be filled in"
-msgstr ""
+msgstr "Module niet klaar om in te vullen"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:44
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:50
 msgid "Fill in module details"
-msgstr ""
+msgstr "Vul module gegevens in"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:46
 msgid "Module ready to be added to project"
-msgstr ""
+msgstr "Module gereed om aan project te worden toegevoegd"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:59
 msgid "Module not ready to be added to project"
-msgstr ""
+msgstr "Module niet gereed om aan project te worden toegevoegd"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:61
 msgid "Show module(s) in project"
-msgstr ""
+msgstr "Toon module(s) in project"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:63
 msgid "Module added to project"
-msgstr ""
+msgstr "Module toegevoegd aan project"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:65
 msgid "Add module(s) to project"
-msgstr ""
+msgstr "Module(s) toevoegen aan project"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:76
 msgid "Publish project"
-msgstr ""
+msgstr "Project publiceren"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line_done.html:5
 msgid "Project type has been published"
-msgstr ""
+msgstr "Projecttype is gepubliceerd"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line_done.html:7
 msgid "The project has been published. You can add further modules."
-msgstr ""
+msgstr "Het project is gepubliceerd. U kunt nog meer modules toevoegen."
 
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:53
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:55
@@ -4889,24 +4895,3 @@ msgstr "Inloggen met social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Inloggen met "
-
-#~ msgid "deleted by creator"
-#~ msgstr "verwijderd door de maker"
-
-#~ msgid "deleted by moderator"
-#~ msgstr "verwijderd door de moderator"
-
-#~ msgid "Address"
-#~ msgstr "Adres"
-
-#~ msgid "Voting phase"
-#~ msgstr "Fase van de stemming"
-
-#~ msgid "Cast votes and discuss the poll."
-#~ msgstr "Breng stemmen uit en bespreek de peiling."
-
-#~ msgid "Only one vote per question is allowed per user."
-#~ msgstr "Per gebruiker is slechts één stem per vraag toegestaan."
-
-#~ msgid "Answer the questions and comment on the poll."
-#~ msgstr "Beantwoord de vragen en geef een reactie op de poll."
