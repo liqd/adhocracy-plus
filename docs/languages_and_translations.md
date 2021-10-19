@@ -86,7 +86,7 @@ translations in the locale-fork folder should be changed, so that old
 translations can be kept and the fork is profiting from new translations
 or translation fixes when it is rebased onto the main branch.
 To create the new translations, go to the
-[base settings](https://github.com/liqd/adhocracy-plus/blob/master/adhocracy-plus/config/settings/base.py)
+[base settings](https://github.com/liqd/adhocracy-plus/blob/main/adhocracy-plus/config/settings/base.py)
 and uncomment the first path
 (os.path.join(BASE_DIR, 'locale-fork/locale')) in LOCALE_PATHS.
 Now, `make po` creates message files in the locale-fork folder and
