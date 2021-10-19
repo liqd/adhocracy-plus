@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-05 12:45+0200\n"
+"POT-Creation-Date: 2021-10-19 10:30+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2021\n"
 "Language-Team: German (https://www.transifex.com/liqd/teams/109316/de/)\n"
@@ -87,12 +87,12 @@ msgstr "Letzte Änderung am"
 #: adhocracy4/comments/static/comments/Comment.jsx:110
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:260
 msgid "Deleted by creator on"
-msgstr ""
+msgstr "Vom Ersteller gelöscht am"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:112
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:262
 msgid "Deleted by moderator on"
-msgstr ""
+msgstr "Von der Moderation gelöscht am"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:151
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:241
@@ -246,7 +246,7 @@ msgstr "Zuletzt diskutiert"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:51
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:545
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:37
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:29
 msgid "all"
 msgstr "Alle"
 
@@ -369,7 +369,7 @@ msgstr "Folge ich"
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:69
 msgctxt "noun"
 msgid "Answer"
-msgstr ""
+msgstr "Antwort"
 
 #: adhocracy4/polls/assets/EditPollChoice.jsx:27
 #: adhocracy4/polls/assets/EditPollChoice.jsx:33
@@ -386,7 +386,7 @@ msgstr "Frage"
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:119
 #: adhocracy4/polls/assets/HelptextForm.jsx:11
 msgid "Explanation"
-msgstr ""
+msgstr "Erklärung"
 
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:45
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:50
@@ -413,19 +413,21 @@ msgstr "nach unten"
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:46
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr ""
+"Die Teilnehmer*innen können für mehr als eine Option stimmen "
+"(Mehrfachauswahl)"
 
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:61
 msgid "Participants can add their own answer"
-msgstr ""
+msgstr "Teilnehmer*innen können ihre eigene Antwort hinzufügen"
 
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:94
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:95
 msgid "Other"
-msgstr ""
+msgstr "Sonstige"
 
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:112
 msgid "New answer"
-msgstr ""
+msgstr "Neue Antwort"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:163
 msgid "The poll has been updated."
@@ -437,15 +439,15 @@ msgstr "Die Umfrage konnte nicht aktualisiert werden."
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:196
 msgid "New question"
-msgstr ""
+msgstr "Neue Frage"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:202
 msgid "Multiple choice question"
-msgstr ""
+msgstr "Multiple-Choice-Frage"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:207
 msgid "Open question"
-msgstr ""
+msgstr "Offene Frage"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:279
 #: apps/documents/assets/DocumentManagement.jsx:324
@@ -454,26 +456,28 @@ msgstr "Speichern"
 
 #: adhocracy4/polls/assets/PollQuestion.jsx:18
 msgid "Multiple answers are possible."
-msgstr ""
+msgstr "Mehrere Antworten sind möglich."
 
 #: adhocracy4/polls/assets/PollQuestion.jsx:84
 #: adhocracy4/polls/assets/PollQuestion.jsx:123
 #: adhocracy4/polls/assets/PollResults.jsx:135
 msgid "other"
-msgstr ""
+msgstr "Sonstige"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:13
 msgid "Your answer has been saved."
-msgstr ""
+msgstr "Ihre Antwort wurde gespeichert."
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:18
 msgid ""
 "Your answer could not be saved due to a server error. Please try again later."
 msgstr ""
+"Ihre Antwort konnte aufgrund eines Serverfehlers nicht gespeichert werden. "
+"Bitte versuchen Sie es später noch einmal."
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:23
 msgid "Your answer is invalid or empty. Please try again."
-msgstr ""
+msgstr "Ihre Antwort ist ungültig oder leer. Bitte versuchen Sie es erneut."
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:41
 msgid "To poll"
@@ -482,19 +486,19 @@ msgstr "Zur Umfrage"
 #: adhocracy4/polls/assets/PollQuestions.jsx:47
 #: adhocracy4/polls/assets/PollQuestions.jsx:122
 msgid "Change answer"
-msgstr ""
+msgstr "Antwort ändern"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:122
 msgid "Submit answer"
-msgstr ""
+msgstr "Antwort senden"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:128
 msgid "Please login to answer"
-msgstr ""
+msgstr "Bitte einloggen, um zu antworten"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:138
 msgid "Show results"
-msgstr ""
+msgstr "Ergebnisse anzeigen"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:144
 msgid "Show preliminary results"
@@ -502,45 +506,47 @@ msgstr "Vorläufiges Ergebnis zeigen"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:165
 msgid "Please enter your answer in this field."
-msgstr ""
+msgstr "Bitte geben Sie Ihre Antwort in dieses Feld ein."
 
 #: adhocracy4/polls/assets/PollResults.jsx:65
 msgid "Hide other answers"
-msgstr ""
+msgstr "Sonstige Antworten ausblenden"
 
 #: adhocracy4/polls/assets/PollResults.jsx:67
 msgid "Show other answers"
-msgstr ""
+msgstr "Sonstige Antworten anzeigen"
 
 #: adhocracy4/polls/assets/PollResults.jsx:81
 #, javascript-format
 msgid "%s participant gave 1 answer."
-msgstr ""
+msgstr "%s Teilnehmer*in gab 1 Antwort."
 
 #: adhocracy4/polls/assets/PollResults.jsx:83
 #: adhocracy4/polls/assets/PollResults.jsx:85
 #, javascript-format
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " %s Teilnehmer*in hat %s Anworten gegeben."
+msgstr[1] "%s Teilnehmer*innen haben %s Anworten gegeben."
 
 #: adhocracy4/polls/assets/PollResults.jsx:87
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr ""
+"Bei Multiple-Choice-Fragen können sich die Prozentsätze auf mehr als 100 % "
+"summieren."
 
 #: adhocracy4/polls/assets/PollResults.jsx:89
 #: adhocracy4/polls/assets/PollResults.jsx:98
 #, javascript-format
 msgid "1 person has answered."
 msgid_plural "%s people have answered."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 Person hat geantwortet."
+msgstr[1] "%s Menschen haben geantwortet."
 
 #: adhocracy4/polls/assets/PollResults.jsx:100
 msgid "noone has answered this question"
-msgstr ""
+msgstr "niemand hat diese Frage beantwortet"
 
 #: adhocracy4/polls/assets/PollResults.jsx:132
 msgid "Your choice"
@@ -676,23 +682,23 @@ msgstr ""
 "Beantwortete Fragen werden entsprechend der ausgewählten Zugehörigkeit in "
 "der Statistik dargestellt."
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:35
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:27
 msgid " Filters"
 msgstr "Filter"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:36
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:28
 msgid "Click to view filters"
 msgstr "Zum Anzeigen der Filter klicken"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:38
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:30
 msgid "Click to only display marked questions"
 msgstr "Klicken, um nur markierte Fragen anzuzeigen"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:39
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:31
 msgid "Click to only display questions which are not hidden"
 msgstr "Klicken, um Fragen anzuzeigen die nicht verborgen sind"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:40
+#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:32
 msgid "Click to order list by likes"
 msgstr "Klicken, um die Liste nach Unterstützung zu sortieren"
 
@@ -909,39 +915,3 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
-
-#~ msgid "Add a new question"
-#~ msgstr "Neue Frage"
-
-#~ msgid "Multiple answers are possible for this question"
-#~ msgstr "Für diese Frage können mehrere Antworten ausgewählt werden"
-
-#~ msgid "Vote counted"
-#~ msgstr "Ihre Stimme wurde gezählt."
-
-#~ msgid "Vote has not been counted due to a server error."
-#~ msgstr ""
-#~ "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
-
-#~ msgid "Vote"
-#~ msgstr "Stimme abgeben"
-
-#~ msgid "Please login to vote"
-#~ msgstr "Bitte melden Sie sich zum Abstimmen an."
-
-#~ msgid "Change vote"
-#~ msgstr "Stimme ändern"
-
-#~ msgid "vote"
-#~ msgid_plural "votes"
-#~ msgstr[0] "Stimme"
-#~ msgstr[1] "Stimmen"
-
-#~ msgid "Users can select more than one answer."
-#~ msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
-
-#~ msgid "Add a new choice"
-#~ msgstr "Neue Antwort"
-
-#~ msgid "Choice"
-#~ msgstr "Auswahl"
