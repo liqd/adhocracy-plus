@@ -1,15 +1,15 @@
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    url(
-        r'^chapters/(?P<pk>\d+)/$',
+    path(
+        'chapters/<int:pk>/',
         views.ChapterDetailView.as_view(),
         name='chapter-detail'
     ),
-    url(
-        r'^paragraphs/(?P<pk>\d+)/$',
+    path(
+        'paragraphs/<int:pk>/',
         views.ParagraphDetailView.as_view(),
         name='paragraph-detail'
     ),
