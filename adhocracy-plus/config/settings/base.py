@@ -4,7 +4,7 @@
 import os
 
 from django.conf import locale
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 CONFIG_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(CONFIG_DIR)

@@ -6,7 +6,7 @@ from django.templatetags.static import static
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.images.fields import ConfiguredImageField
 

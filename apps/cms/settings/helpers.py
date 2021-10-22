@@ -1,5 +1,5 @@
 from django.utils.html import mark_safe
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from wagtail.core.models import Site
 
 from apps.cms.settings.models import ImportantPages

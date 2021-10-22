@@ -1,5 +1,5 @@
 from django.contrib.auth.signals import user_logged_in
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 default_app_config = 'apps.users.apps.Config'
 
