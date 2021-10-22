@@ -549,3 +549,5 @@ CSP_REPORT_ONLY = True
 CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'data:', 'blob:', '*']
 
 SITE_ID = 1 # overwrite this in local.py if needed
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
