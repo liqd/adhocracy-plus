@@ -1,10 +1,10 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from . import views
 
 urlpatterns = [
-    url(r'^(?P<year>\d{4})-(?P<pk>\d+)/$',
-        views.SubjectDetailView.as_view(), name='subject-detail'),
-    url(r'^(?P<slug>[-\w_]+)/$',
-        views.SubjectDetailView.as_view(), name='subject-redirect'),
+    re_path(r'^(?P<year>\d{4})-(?P<pk>\d+)/$',
+            views.SubjectDetailView.as_view(), name='subject-detail'),
+    re_path(r'^(?P<slug>[-\w_]+)/$',
+            views.SubjectDetailView.as_view(), name='subject-redirect'),
 ]
