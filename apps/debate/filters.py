@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import widgets as filters_widgets

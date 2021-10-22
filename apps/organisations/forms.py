@@ -3,7 +3,7 @@ from ckeditor_uploader import widgets
 from ckeditor_uploader.fields import RichTextUploadingFormField
 from django import forms
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4 import transforms
 from apps.cms.settings import helpers

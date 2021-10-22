@@ -7,8 +7,8 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext
 from django.views import generic
 from rules.contrib.views import LoginRequiredMixin
 from rules.contrib.views import PermissionRequiredMixin
@@ -191,8 +191,8 @@ class AbstractProjectUserInviteListView(
 
         messages.success(
             self.request,
-            ungettext(self.success_message[0], self.success_message[1],
-                      len(emails)).format(len(emails))
+            ngettext(self.success_message[0], self.success_message[1],
+                     len(emails)).format(len(emails))
         )
 
         return redirect(self.get_success_url())
