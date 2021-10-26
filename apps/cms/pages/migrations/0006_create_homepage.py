@@ -50,6 +50,10 @@ def remove_homepage(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
+    run_before = [
+        ('wagtailcore', '0053_locale_model'),  # added for Wagtail 2.11 compatibility
+    ]
+
     dependencies = [
         ('a4_candy_cms_pages', '0005_auto_20191126_1719')
     ]
