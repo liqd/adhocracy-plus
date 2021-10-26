@@ -10,7 +10,7 @@ class TranslatedField(object):
 
     def hasContent(self, field):
         if isinstance(field, StreamValue):
-            value = field.stream_data
+            value = field.raw_data
             if value:
                 return True
             else:
@@ -44,7 +44,7 @@ class TranslatedFieldLegal(object):
 
     def hasContent(self, field):
         if isinstance(field, StreamValue):
-            value = field.stream_data
+            value = field.raw_data
             if value:
                 return True
             else:
