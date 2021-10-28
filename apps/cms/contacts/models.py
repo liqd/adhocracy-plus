@@ -127,7 +127,7 @@ class FormPage(WagtailCaptchaEmailForm):
 
     def render_landing_page(
             self, request, form_submission=None, *args, **kwargs):
-        if 'HTTP_REFERER' in request.META \
+        if 'Referer' in request.headers \
                 and request.headers.get('Referer'):
             messages.add_message(request, messages.SUCCESS,
                                  self.thank_you_text)
