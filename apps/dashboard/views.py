@@ -138,7 +138,7 @@ class ModulePublishView(SingleObjectMixin,
     def get_next(self):
         if 'referrer' in self.request.POST:
             return self.request.POST['referrer']
-        elif 'HTTP_REFERER' in self.request.META:
+        elif 'Referer' in self.request.headers:
             return self.request.headers['Referer']
 
         return reverse('a4dashboard:project-edit', kwargs={
@@ -231,7 +231,7 @@ class ModuleDeleteView(mixins.DashboardBaseMixin,
     def get_failure_url(self):
         if 'referrer' in self.request.POST:
             return self.request.POST['referrer']
-        elif 'HTTP_REFERER' in self.request.META:
+        elif 'Referer' in self.request.headers:
             return self.request.headers['Referer']
 
         return reverse('a4dashboard:project-edit', kwargs={
