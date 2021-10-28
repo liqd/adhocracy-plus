@@ -1,7 +1,7 @@
 .header-upper {
     min-height: 100px;
     position: relative;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.02), 0 2px 27px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 2%), 0 2px 27px 0 rgb(0 0 0 / 5%);
 }
 
 .header-upper__brand {
@@ -16,17 +16,17 @@
 }
 
 .header-upper__lang {
-    margin-right: 2*$spacer;
+    margin-right: 2 * $spacer;
 
     .dropdown-menu.show {
-        top: 100% !important; //overwriting the general dropdown overwrite
+        top: 100% !important; // overwriting the general dropdown overwrite
     }
 }
 
 .header-upper__nav {
     flex-direction: row;
 
-    //bootstrap overwrites
+    // bootstrap overwrites
     .dropdown-menu {
         position: absolute;
     }
@@ -36,7 +36,7 @@
     font-weight: bold;
 }
 
-//so it doesn't look misallighned when menu open
+// so it doesn't look misallighned when menu open
 .header-upper__mobile-toggle.show {
     z-index: 4;
     background: transparent;
@@ -47,13 +47,13 @@
     font-family: "Font Awesome 5 Free", sans-serif;
     font-style: normal;
     font-weight: 900;
-    content: '\f0c9';
+    content: "\f0c9";
     background-color: inherit;
     font-size: $font-size-md;
 }
 
 .header-upper__mobile-toggle.show:after {
-    content: '\f00d';
+    content: "\f00d";
 }
 
 @media screen and (min-width: $breakpoint) {

@@ -8,12 +8,12 @@
 .dashboard-nav__dropdown {
     background-color: $bg-secondary;
     position: relative;
-    padding: 0.7*$spacer 2.7*$spacer 0.7*$spacer 1.8*$spacer;
+    padding: 0.7 * $spacer 2.7 * $spacer 0.7 * $spacer 1.8 * $spacer;
 
     .fa-exclamation-circle,
     .fa-check-circle {
         position: absolute;
-        left: 0.5*$spacer;
+        left: 0.5 * $spacer;
         top: $spacer;
     }
 
@@ -36,7 +36,7 @@
         transition: transform 0.3s;
 
         &.dashboard-nav-i-spacer {
-            right: 1.5*$spacer;
+            right: 1.5 * $spacer;
         }
     }
 
@@ -48,13 +48,13 @@
 .dashboard-nav__item {
     position: relative;
     display: block;
-    padding: 0.7*$spacer 0.7*$spacer 0.7*$spacer 1.8*$spacer;
-    border-left: 0.2*$spacer solid transparent;
+    padding: 0.7 * $spacer 0.7 * $spacer 0.7 * $spacer 1.8 * $spacer;
+    border-left: 0.2 * $spacer solid transparent;
 
     color: $text-color;
     text-decoration: none;
 
-    //overwrite default checkbox styling
+    // overwrite default checkbox styling
     .form-check {
         padding: 0;
         margin: 0;
@@ -63,21 +63,21 @@
     .fa-exclamation-circle,
     .fa-check-circle {
         position: absolute;
-        left: 0.3*$spacer;
+        left: 0.3 * $spacer;
         top: $spacer;
     }
 }
 
 .dashboard-nav__module-dropdown {
-    min-width: 1.5*$spacer;
+    min-width: 1.5 * $spacer;
     text-align: center;
     position: absolute !important;
     z-index: 5 !important;
     right: 0;
-    top: 0.25*$spacer;
+    top: 0.25 * $spacer;
 }
 
-//to ensure the switch is always toggled on button click
+// to ensure the switch is always toggled on button click
 .dashboard-nav__form--project {
     position: relative;
 
@@ -114,8 +114,8 @@
 
 .dashboard-nav__logo {
     position: relative;
-    top: -(0.5*$spacer);
-    height: 3*$spacer;
+    top: -(0.5 * $spacer);
+    height: 3 * $spacer;
 }
 
 .dashboard-nav__toggle-label {
@@ -123,8 +123,8 @@
 }
 
 .dashboard-nav__toggle-label:before {
-    height: 1.25*$spacer !important;
-    width: 2*$spacer !important;
+    height: 1.25 * $spacer !important;
+    width: 2 * $spacer !important;
     border-radius: $spacer !important;
 }
 
