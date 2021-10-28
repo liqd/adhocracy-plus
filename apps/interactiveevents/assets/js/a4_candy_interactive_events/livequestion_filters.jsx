@@ -26,10 +26,12 @@ export default class Filter extends React.Component {
   render () {
     const textFilters = django.gettext(' Filters')
     const ariaOpenFilters = django.gettext('Click to view filters')
-    const allText = django.gettext('all')
     const ariaDisplayOnlyMarked = django.gettext('Click to only display marked questions')
     const ariaDisplayNotHidden = django.gettext('Click to only display questions which are not hidden')
     const ariaOrderLikes = django.gettext('Click to order list by likes')
+    const allTag = django.gettext('all')
+    const categories = [...this.props.categories]
+    categories.unshift(allTag)
     return (
       <div className={'livequestion__filter-bar ' + (this.state.showFilters && 'mb-3')}>
         <div className="dropdown livequestion__filter--btn">
@@ -45,16 +47,17 @@ export default class Filter extends React.Component {
             <i className="fa fa-caret-down" aria-hidden="true" />
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownAffiliationBtn">
-            <button
-              className="dropdown-item"
-              data-value={-1}
-              onClick={this.selectCategory.bind(this)}
-              href="#"
-            >
-              {allText}
-            </button>
-            {this.props.categories.map((category, index) => {
-              return <button className="dropdown-item" key={index} data-value={category} onClick={this.selectCategory.bind(this)} href="#">{category}</button>
+            {categories.map((category, index) => {
+              return (
+                <button
+                  className="dropdown-item"
+                  key={index}
+                  data-value={category === allTag ? -1 : category}
+                  onClick={this.selectCategory.bind(this)} href="#"
+                >
+                  {category}
+                </button>
+              )
             })}
           </div>
         </div>
