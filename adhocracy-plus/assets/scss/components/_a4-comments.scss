@@ -13,7 +13,7 @@
     min-height: 100px;
 }
 
-//comments and debate comments have different sized text boxes
+// comments and debate comments have different sized text boxes
 .a4-comments__textarea--big {
     min-height: 100px;
 }
@@ -24,7 +24,7 @@
 
 .a4-comments__comment {
     border-top: solid 1px $gray-lightest;
-    padding: 1.5*$spacer 0 $spacer 0;
+    padding: 1.5 * $spacer 0 $spacer 0;
 }
 
 .a4-comments__box--left {
@@ -41,7 +41,7 @@
 }
 
 .a4-comments__filters__parent {
-    margin: 1.5*$spacer 0 1.5*$spacer 0;
+    margin: 1.5 * $spacer 0 1.5 * $spacer 0;
 
     button {
         @extend .btn--light;
@@ -75,15 +75,15 @@
 }
 
 .input-group.a4-comments__filters__search {
-    margin-bottom: 0.5*$spacer;
+    margin-bottom: 0.5 * $spacer;
 
     @media screen and (min-width: $breakpoint) {
-        margin-right: 0.5*$spacer;
+        margin-right: 0.5 * $spacer;
     }
 }
 
 .a4-comments__filters__dropdown {
-    margin-bottom: 0.5*$spacer;
+    margin-bottom: 0.5 * $spacer;
 }
 
 .a4-comments__filters__search-result {
@@ -93,11 +93,11 @@
 }
 
 .a4-comments__action-bar {
-    padding: 0.5*$spacer 0;
+    padding: 0.5 * $spacer 0;
 }
 
 .a4-comments__action-bar__btn {
-    margin-left: 0.2*$spacer !important;
+    margin-left: 0.2 * $spacer !important;
 
     @extend .btn--small;
 }
@@ -108,7 +108,7 @@
 
 .a4-comments__text,
 .a4-comments__author {
-    margin: 1.2*$spacer 0 1.2*$spacer 0;
+    margin: 1.2 * $spacer 0 1.2 * $spacer 0;
     overflow-wrap: break-word;
     white-space: pre-wrap;
 }
@@ -132,7 +132,7 @@
 
 .a4-comments__author {
     display: inline-block;
-    margin: 0 (0.25*$spacer) 0 0;
+    margin: 0 (0.25 * $spacer) 0 0;
 }
 
 .a4-comments__moderator {
@@ -146,7 +146,7 @@
     margin: 0 0 $spacer (-$spacer);
 
     @media screen and (min-width: $breakpoint) {
-        margin: 0 0 2.5*$spacer 2.5*$spacer;
+        margin: 0 0 2.5 * $spacer 2.5 * $spacer;
     }
 
     form {
@@ -171,7 +171,7 @@
     }
 }
 
-//categories and category badges
+// categories and category badges
 .a4-comments__category__input {
     position: absolute;
     width: 1px;
@@ -185,14 +185,14 @@
 
 .a4-comments__category__row {
     input[type="checkbox"] + span:before {
-        font-family: 'Font Awesome\ 5 Free', sans-serif;
+        font-family: "Font Awesome\ 5 Free", sans-serif;
         font-weight: 900;
         font-size: $font-size-xs;
-        content: '\f067'; // plus
+        content: "\f067"; // plus
     }
 
     input[type="checkbox"]:checked + span:before {
-        content: '\f00c'; // tick
+        content: "\f00c"; // tick
     }
 }
 
@@ -206,8 +206,8 @@
     font-size: $font-size-sm;
     font-weight: $font-weight-normal;
     font-family: $font-family-sans-serif;
-    padding: 0.3*$spacer 0.5*$spacer;
-    margin: 0.5*$spacer 0.5*$spacer 0.5*$spacer 0;
+    padding: 0.3 * $spacer 0.5 * $spacer;
+    margin: 0.5 * $spacer 0.5 * $spacer 0.5 * $spacer 0;
 }
 
 .a4-comments__category {
@@ -246,7 +246,7 @@
 
 .a4-comments__text--highlighted {
     border-left: solid 2px $brand-primary;
-    padding-left: 0.5*$padding;
+    padding-left: 0.5 * $padding;
 }
 
 .a4-comments__filters__text,
@@ -256,7 +256,7 @@
 
 .a4-comments__filters__text {
     padding-left: 0;
-    margin-top: 0.5*$spacer;
+    margin-top: 0.5 * $spacer;
     color: $gray;
 }
 

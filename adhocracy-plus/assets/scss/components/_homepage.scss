@@ -16,7 +16,7 @@ $spacer-xl: 7.5rem;
     }
 }
 
-//single col cta styling - for headline
+// single col cta styling - for headline
 .homepage__wrapper .block-row-1 {
     background-color: $body-bg;
 
@@ -45,14 +45,14 @@ $spacer-xl: 7.5rem;
 .homepage__wrapper .block-img-col-2 {
     .rich-text,
     .block-col_cta-content {
-        padding: 2*$padding $padding 0 2*$padding;
+        padding: 2 * $padding $padding 0 2 * $padding;
 
         @media screen and (min-width: $breakpoint-md) {
             padding-right: $block-padding-md;
         }
 
         @media screen and (min-width: $breakpoint-xl) {
-            padding-left: 3*$padding;
+            padding-left: 3 * $padding;
         }
     }
 }
@@ -64,13 +64,13 @@ $spacer-xl: 7.5rem;
     margin-top: $r-spacer;
 
     @media screen and (min-width: $breakpoint-xxl) {
-        margin-top: 2*$spacer;
+        margin-top: 2 * $spacer;
         right: 3*-$spacer;
     }
 }
 
 .homepage-header {
-    margin-bottom: 2*$r-spacer;
+    margin-bottom: 2 * $r-spacer;
 
     @media screen and (min-width: $breakpoint-xs) {
         margin-bottom: $spacer-xl;

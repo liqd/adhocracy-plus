@@ -6,7 +6,7 @@
     }
 }
 
-//bootstrap overwrites
+// bootstrap overwrites
 .dropdown-menu {
     position: relative;
     padding: 0;
@@ -38,15 +38,15 @@
     }
 
     &.show {
-        top: -2px !important; //needed to overwrite BS translate figure
+        top: -2px !important; // needed to overwrite BS translate figure
     }
 
     img { // for category icons in dropdown
         display: inline-block;
-        height: 1.5*$spacer;
+        height: 1.5 * $spacer;
         width: auto;
         vertical-align: middle;
-        margin-right: 0.5*$spacer;
+        margin-right: 0.5 * $spacer;
     }
 
     @media print {

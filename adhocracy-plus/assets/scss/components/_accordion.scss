@@ -25,7 +25,7 @@
     i {
         font-size: 1.7rem;
         position: absolute;
-        top: 2*$padding;
+        top: 2 * $padding;
         right: $padding;
         transition: transform 0.3s;
     }
@@ -51,8 +51,8 @@
     }
 
     a[href^="/documents"]:before {
-        content: '\f016'; // file-o
-        font-family: 'FontAwesome', sans-serif;
+        content: "\f016"; // file-o
+        font-family: "FontAwesome", sans-serif;
         margin-right: 0.3em;
     }
 }

@@ -33,7 +33,7 @@ $checkbox-size: 20px;
     &:after {
         transition: transform 0.3s, opacity 0.3s;
         transform: scale(1.3);
-        opacity: 0;
+        opacity: 0%;
 
         font-family: "Font Awesome 5 Free", sans-serif;
         font-weight: 900;
@@ -46,9 +46,9 @@ $checkbox-size: 20px;
 
 .poll-row__radio:checked + .radio__text:after,
 .radio__input:checked + .radio__text:after {
-    content: '\f00c'; // check
+    content: "\f00c"; // check
     transform: scale(1);
-    opacity: 1;
+    opacity: 100%;
 }
 
 .radio__text--checkbox {

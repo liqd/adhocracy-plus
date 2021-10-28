@@ -1,7 +1,7 @@
-$block-padding: 3.5*$padding;
-$block-padding-md: 7.5*$padding;
+$block-padding: 3.5 * $padding;
+$block-padding-md: 7.5 * $padding;
 
-//non block specific styles
+// non block specific styles
 .block-col-6 {
     @extend .col-sm-4;
     @extend .col-md-2;
@@ -32,7 +32,7 @@ $block-padding-md: 7.5*$padding;
     }
 }
 
-//multi col cta with content styling
+// multi col cta with content styling
 .block-columns_cta {
     text-align: center;
 
@@ -46,7 +46,7 @@ $block-padding-md: 7.5*$padding;
     }
 }
 
-//image/list cta block
+// image/list cta block
 
 .block-image_cta_block {
     text-align: left;
@@ -70,12 +70,12 @@ $block-padding-md: 7.5*$padding;
         position: relative;
 
         @media screen and (min-width: $breakpoint-xxl) {
-            margin-top: 2*$spacer;
+            margin-top: 2 * $spacer;
         }
     }
 }
 
-//old block styling, still used in activity block
+// old block styling, still used in activity block
 .block--bordered {
     padding: 1em;
     border: 1px solid $border-color;
@@ -86,11 +86,11 @@ $block-padding-md: 7.5*$padding;
     }
 }
 
-//responsive padding for image, 2 col cta
+// responsive padding for image, 2 col cta
 .homepage__wrapper {
     .block-img-col-1,
     .block-row-2 {
-        padding: 2*$padding;
+        padding: 2 * $padding;
 
         @media screen and (min-width: $breakpoint-xs) {
             padding: $block-padding;
@@ -102,7 +102,7 @@ $block-padding-md: 7.5*$padding;
     }
 }
 
-//some old some current general styling
+// general styling
 .block {
     @include clearfix;
     page-break-inside: avoid;
@@ -112,14 +112,14 @@ $block-padding-md: 7.5*$padding;
         font-weight: normal;
         display: inline-block;
         position: relative;
-        margin: 1.5*$r-spacer 0;
+        margin: 1.5 * $r-spacer 0;
 
         b {
             font-family: $font-family-base;
         }
     }
 
-    //border on section headings
+    // border on section headings
     h2:after {
         content: "";
         position: absolute;
@@ -136,7 +136,7 @@ $block-padding-md: 7.5*$padding;
     }
 }
 
-//coloured background block
+// coloured background block
 .block-background_cta_block .block > :first-child {
     background-color: $brand-secondary;
 }
@@ -146,7 +146,7 @@ $block-padding-md: 7.5*$padding;
     color: $text-color-inverted;
 }
 
-//linked for specificty
+// linked for specificty
 .btn--transparent.block-bg_btn-2 {
     color: $text-color-inverted;
     border-color: $text-color-inverted;
@@ -175,8 +175,8 @@ $block-padding-md: 7.5*$padding;
     }
 
     .block {
-        border-top: 2*$r-spacer solid $body-bg;
-        border-bottom: 2*$r-spacer solid $body-bg;
+        border-top: 2 * $r-spacer solid $body-bg;
+        border-bottom: 2 * $r-spacer solid $body-bg;
 
         h2:after {
             border-bottom: none;
@@ -208,7 +208,7 @@ $block-padding-md: 7.5*$padding;
 }
 
 .block-usecase {
-    padding-bottom: 2*$padding;
+    padding-bottom: 2 * $padding;
 
     @media screen and (min-width: $breakpoint) {
         padding-bottom: $block-padding;
@@ -250,7 +250,7 @@ $block-padding-md: 7.5*$padding;
 }
 
 .block-quote {
-    padding: 3*$padding $padding;
+    padding: 3 * $padding $padding;
 }
 
 .block-quote--turquoise {
