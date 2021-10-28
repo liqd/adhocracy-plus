@@ -7,7 +7,7 @@
 .user-profile__avatar {
     border-radius: 50%;
     shape-outside: circle();
-    box-shadow: 0 0 2em rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 2em rgb(0 0 0 / 10%);
     position: relative;
 
     ~ h2 {
@@ -26,6 +26,6 @@
 
     .user-profile__side {
         display: block;
-        padding: 2*$padding;
+        padding: 2 * $padding;
     }
 }

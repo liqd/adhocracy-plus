@@ -31,14 +31,14 @@
 }
 
 .participation-tile__list {
-    max-width: calc(100% + 2rem); //this is all to fit within the frame to be inline with above items
+    max-width: calc(100% + 2rem); // this is all to fit within the frame to be inline with above items
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
 .participation-tile__content {
-    padding: 1.5*$padding;
+    padding: 1.5 * $padding;
 }
 
 .participation-tile__horizontal,
@@ -54,7 +54,7 @@
     margin: 0 $r-spacer $r-spacer $r-spacer;
 
     @media screen and (min-width: $breakpoint-md) {
-        margin: 0 $r-spacer $r-spacer 5*$r-spacer;
+        margin: 0 $r-spacer $r-spacer 5 * $r-spacer;
     }
 
     .participation-tile__body { // statusbar position
@@ -95,13 +95,13 @@
 
 .participation-tile__btn {
     position: absolute;
-    left: 3*$r-spacer;
-    right: 3*$r-spacer;
-    bottom: 4*$r-spacer;
+    left: 3 * $r-spacer;
+    right: 3 * $r-spacer;
+    bottom: 4 * $r-spacer;
 }
 
 .participation-tile__spacer {
-    height: 6.5*$r-spacer;
+    height: 6.5 * $r-spacer;
 }
 
 .participation-tile__item-count,

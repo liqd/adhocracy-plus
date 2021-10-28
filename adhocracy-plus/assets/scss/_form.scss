@@ -52,7 +52,7 @@ input[type="radio"] {
 
 .form-switch {
     .form-check-input {
-        height: 1.25*$spacer;
+        height: 1.25 * $spacer;
     }
 }
 
@@ -105,7 +105,7 @@ div.cke_focus {
     input {
         display: inline;
         width: auto;
-        margin-left: -1.5em; //em used as there is a em default that is overwritten
+        margin-left: -1.5em; // em used as there is a em default that is overwritten
         margin-right: 0.5em;
     }
 }
@@ -131,7 +131,7 @@ div.cke_focus {
 .form-control {
     height: auto !important;
     border-radius: 0 !important;
-    line-height: 1.8; //ensures input same height as grouped button
+    line-height: 1.8; // ensures input same height as grouped button
     margin-bottom: 0;
 
     &:focus {
@@ -150,10 +150,10 @@ div.cke_focus {
 }
 
 .form-group {
-    margin-bottom: 1.5*$spacer;
+    margin-bottom: 1.5 * $spacer;
 }
 
-//kept from before bootstrap for datepicker
+// kept from before bootstrap for datepicker
 .input-group__input {
     flex: 1 1 auto;
     box-shadow: none;
@@ -173,7 +173,7 @@ div.cke_focus {
 }
 
 .filter-bar {
-    margin-bottom: 0.5*$spacer;
+    margin-bottom: 0.5 * $spacer;
 
     @media screen and (min-width: $breakpoint) {
         display: flex;

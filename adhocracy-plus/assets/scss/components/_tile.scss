@@ -11,7 +11,7 @@ $svg-colour: #2a3cd4;
     margin-bottom: $spacer;
 
     &:hover {
-        box-shadow: 0 2px 26px 0 rgba(0, 0, 0, 0.12);
+        box-shadow: 0 2px 26px 0 rgb(0 0 0 / 12%);
     }
 }
 
@@ -75,7 +75,7 @@ $svg-colour: #2a3cd4;
     border-left: 30px solid transparent;
     border-right: 30px solid transparent;
 
-    border-top: 30px solid rgba($gray-light, 0.6);
+    border-top: 30px solid rgb($gray-light 0.6);
 }
 
 .tile__private-badge--left {
@@ -84,7 +84,7 @@ $svg-colour: #2a3cd4;
     border-top: 30px solid transparent;
     border-bottom: 30px solid transparent;
 
-    border-left: 30px solid rgba($gray-light, 0.6);
+    border-left: 30px solid rgb($gray-light 0.6);
 }
 
 .tile__body {
@@ -100,7 +100,7 @@ $svg-colour: #2a3cd4;
 
 .tile__body-status {
     position: relative;
-    padding-bottom: 5*$padding;
+    padding-bottom: 5 * $padding;
 }
 
 .tile__text {
@@ -162,7 +162,7 @@ $svg-colour: #2a3cd4;
 
 .blueprint__image {
     border-radius: 0;
-    min-height: 7*$spacer;
+    min-height: 7 * $spacer;
     height: 100%;
     background-color: $svg-colour;
     background-repeat: no-repeat;

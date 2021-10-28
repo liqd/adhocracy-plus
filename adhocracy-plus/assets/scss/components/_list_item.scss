@@ -17,7 +17,7 @@
     }
 
     &:hover {
-        box-shadow: 0 2px 26px 0 rgba(0, 0, 0, 0.12);
+        box-shadow: 0 2px 26px 0 rgb(0 0 0 / 12%);
     }
 
     &:hover .list-item__hover {
@@ -39,9 +39,9 @@
 }
 
 .list-item--spaced {
-    padding: 1.5*$padding;
+    padding: 1.5 * $padding;
     border: 0;
-    margin-bottom: 2*$spacer;
+    margin-bottom: 2 * $spacer;
     min-height: 10em;
 
     @media print {
@@ -55,7 +55,8 @@
     height: 100%;
     top: 0;
     left: 0;
-    //z-index has to be higher than on creator-count__circles
+
+    // z-index has to be higher than on creator-count__circles
     z-index: 4;
 }
 
