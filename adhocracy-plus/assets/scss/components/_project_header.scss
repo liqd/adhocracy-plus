@@ -44,7 +44,7 @@
 
 .project-header--image {
     background-size: cover;
-    color: contrast-color(#000);
+    color: contrast-color($black);
     background-position: center center;
 
     &:before {
@@ -55,7 +55,7 @@
         bottom: 0;
         left: 0;
 
-        background-color: rgb(#000 0.5);
+        background-color: rgba($black, 0.5);
     }
 
     @media print {

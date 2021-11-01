@@ -14,9 +14,11 @@
 
 // safari doesn't allow styling of these otherwise
 // see https://css-tricks.com/webkit-html5-search-inputs/
+// stylelint-disable property-no-vendor-prefix
 input[type="search"] {
     -webkit-appearance: none;
 }
+// stylelint-enable
 
 // used by adhocracy4
 .submit-button {
