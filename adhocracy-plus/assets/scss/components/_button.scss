@@ -32,7 +32,7 @@
     }
 }
 
-@mixin button-color--product($color) {
+@mixin button-color-product($color) {
     $shadow: mix($color, $body-bg, 30%);
     $background: mix($color, $body-bg, 15%);
 
@@ -134,11 +134,11 @@
 }
 
 .btn--primary {
-    @include button-color--product($brand-primary);
+    @include button-color-product($brand-primary);
 }
 
 .btn--secondary {
-    @include button-color--product($brand-info); // this should be secondary
+    @include button-color-product($brand-info); // this should be secondary
 }
 
 .btn--primary-filled {
@@ -306,19 +306,19 @@
 }
 
 .btn--facebook {
-    @include button-color--product($facebook);
+    @include button-color-product($facebook);
 }
 
 .btn--google {
-    @include button-color--product($google);
+    @include button-color-product($google);
 }
 
 .btn--twitter {
-    @include button-color--product($twitter);
+    @include button-color-product($twitter);
 }
 
 .btn--github {
-    @include button-color--product($github);
+    @include button-color-product($github);
 }
 
 .checkbox-btn {
