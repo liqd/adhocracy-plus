@@ -9,7 +9,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from apps.contrib.translations import TranslatedField
 
 
-@register_setting
+@register_setting(icon='warning')
 class ImportantPages(BaseSetting):
     terms_of_use = models.ForeignKey(
         'wagtailcore.Page',
@@ -91,15 +91,24 @@ class ImportantPages(BaseSetting):
 
 
 # these are settings for platform organisation
-@register_setting
+@register_setting(icon='pick')
 class OrganisationSettings(BaseSetting):
     platform_name = models.CharField(
         max_length=20,
         default="adhocracy+",
         verbose_name="Platform name",
+        help_text=("This name appears in the footer of all pages and e-mails "
+                   "as well as in the tab of the browser.")
     )
-    address = fields.RichTextField()
-    contacts = fields.RichTextField()
+    address = fields.RichTextField(
+        help_text="The address is published on the contact form."
+    )
+    contacts = fields.RichTextField(
+        help_text="The contacts are published on the contact form."
+    )
+
+    class Meta:
+        verbose_name = 'Platform settings'
 
     panels = [
         FieldPanel('platform_name'),
