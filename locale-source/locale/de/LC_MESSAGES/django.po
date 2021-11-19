@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-19 10:30+0200\n"
+"POT-Creation-Date: 2021-11-19 13:49+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Frederik Wegener <frederik.wegener@liqd.de>, 2021\n"
 "Language-Team: German (https://www.transifex.com/liqd/teams/109316/de/)\n"
@@ -23,6 +23,374 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
+#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
+msgid ""
+"In this section, you can create\n"
+"categories. If you create any, each contribution has to be assigned\n"
+"to one of them. This way, content can be classified."
+msgstr ""
+"Hier können Sie Kategorien anlegen. Dadurch können alle Beiträge einer "
+"Kategorie zugeordnet und entsprechend gefiltert werden."
+
+#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
+#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
+msgid "Add category"
+msgstr "Kategorie hinzufügen"
+
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
+#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:51
+msgid "Dashboard"
+msgstr "Organisationsverwaltung"
+
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:24
+msgid "Project Settings"
+msgstr "Projekteinstellungen"
+
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:49
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:103
+msgid "Missing fields for publication"
+msgstr "Benötigte Felder zur Veröffentlichung"
+
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
+#: apps/activities/templates/a4_candy_activities/activities_dashboard.html:17
+#: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:30
+#: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:39
+#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:11
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:44
+#: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:24
+#: apps/interactiveevents/templates/a4_candy_interactive_events/extrafields_dashboard_form.html:19
+#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:28
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:43
+#: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:27
+#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:15
+#: apps/topicprio/templates/a4_candy_topicprio/includes/topic_form.html:22
+#: adhocracy-plus/templates/a4dashboard/base_form_module.html:23
+#: adhocracy-plus/templates/a4dashboard/base_form_project.html:23
+msgid "Save"
+msgstr "Speichern"
+
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
+#: adhocracy-plus/templates/a4dashboard/blueprint_list.html:4
+#: adhocracy-plus/templates/a4dashboard/project_list.html:13
+msgid "New Project"
+msgstr "Neues Projekt"
+
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
+msgid "Phase"
+msgstr "Phase"
+
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
+#: adhocracy-plus/templates/a4dashboard/includes/blueprint_list_tile.html:15
+msgid "Select"
+msgstr "Auswählen"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
+#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
+msgid "Missing field for publication"
+msgstr "Benötigtes Feld zur Veröffentlichung"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
+#: adhocracy-plus/templates/a4dashboard/includes/preview.html:7
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:34
+msgid "Preview"
+msgstr "Vorschau"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
+#: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:8
+#: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:14
+#: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:14
+#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:15
+#: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:14
+#: adhocracy-plus/templates/a4dashboard/includes/preview.html:9
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:36
+msgid "View"
+msgstr "Ansicht"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
+#, python-format
+msgid "%(value)s from %(max)s"
+msgstr "%(value)s von %(max)s"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
+msgid "required fields for publication"
+msgstr "benötigte Felder zur Veröffentlichung"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
+#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:12
+#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:46
+msgid "Publish"
+msgstr "Veröffentlichen"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
+#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:19
+msgid "Unpublish"
+msgstr "Depublizieren"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
+msgid "Create project based on"
+msgstr "Projekt anlegen basierend auf"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
+#: adhocracy-plus/templates/a4dashboard/project_create_form.html:41
+msgid ""
+"After saving the draft project you can further customize and edit your "
+"project and eventually publish it."
+msgstr ""
+"Nachdem der Projektentwurf gespeichert wurde, können in einem weiteren "
+"Schritt Einstellungen angepasst und zusätzliche Informationen angegeben "
+"werden. Wenn alle benötigten Informationen eingegeben sind, kann das Projekt "
+"veröffentlicht werden."
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
+#: adhocracy-plus/templates/a4dashboard/project_create_form.html:46
+msgid "Create draft"
+msgstr "Projektentwurf anlegen"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
+#: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:29
+#: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:15
+#: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
+#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:40
+#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:10
+#: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:15
+#: apps/embed/templates/a4_candy_embed/embed.html:47
+#: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:16
+#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:43
+#: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:23
+#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:27
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:15
+#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:42
+#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:29
+#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:14
+#: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:15
+#: apps/topicprio/templates/a4_candy_topicprio/includes/topic_form.html:21
+#: apps/topicprio/templates/a4_candy_topicprio/topic_confirm_delete.html:15
+#: adhocracy-plus/templates/a4dashboard/project_create_form.html:45
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
+#: apps/projects/templates/a4_candy_projects/project_list.html:4
+#: adhocracy-plus/templates/a4dashboard/base_project_list.html:16
+#: adhocracy-plus/templates/a4dashboard/project_list.html:4
+#: adhocracy-plus/templates/a4dashboard/project_list.html:9
+msgid "Projects"
+msgstr "Projekte"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:17
+msgid "Finished"
+msgstr "Abgeschlossen"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
+#: adhocracy4/projects/enums.py:14
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:20
+msgid "semipublic"
+msgstr "halb-öffentlich"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
+#: adhocracy4/projects/enums.py:15
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:23
+msgid "private"
+msgstr "privat"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:103
+#: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
+#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
+#: apps/projects/templates/a4_candy_projects/project_detail.html:112
+#: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:19
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:42
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:65
+msgid "Duplicate"
+msgstr "Duplizieren"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
+#: apps/projects/templates/a4_candy_projects/project_list.html:18
+#: adhocracy-plus/templates/a4dashboard/project_list.html:27
+msgid "We could not find any projects."
+msgstr "Wir konnten keine Projekte finden."
+
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:5
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:23
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:35
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:47
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:59
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:5
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:23
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:35
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:47
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:59
+msgid "Export"
+msgstr "Export"
+
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:7
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:7
+msgid ""
+"You can export the results of your participation project as an excel file."
+msgstr ""
+"Sie können die Ergebnisse Ihres Beteiligungsprojektes als Excel-Datei "
+"exportieren."
+
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:19
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:19
+msgid "here you can export all ideas"
+msgstr "hier können Sie alle Ideen exportieren"
+
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
+msgid "here you can export all subjects"
+msgstr "hier können Sie alle Themen exportieren"
+
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
+msgid "here you can export all answers"
+msgstr "hier können Sie alle Antworten exportieren"
+
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
+msgid "here you can export all comments"
+msgstr "hier können Sie alle Kommentare exportieren"
+
+#: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
+#: adhocracy4/dashboard/filter.py:11
+#: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
+#: apps/debate/filters.py:12 apps/ideas/views.py:28 apps/topicprio/views.py:21
+#: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:4
+#: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:10
+#: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:11
+msgid "Search"
+msgstr "Suchen"
+
+#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
+#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
+#: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
+#: adhocracy-plus/templates/account/signup.html:27
+#: adhocracy-plus/templates/account/signup.html:36
+#: adhocracy-plus/templates/socialaccount/signup.html:31
+msgid "This field is required"
+msgstr "Dieses Feld muss ausgefüllt werden"
+
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:18
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:19
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:18
+#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:19
+msgid "Remove category"
+msgstr "Kategorie entfernen"
+
+#: adhocracy4/images/templates/a4images/image_upload_widget.html:8
+#: adhocracy4/images/templates/a4images/image_upload_widget.html:8
+#: adhocracy-plus/templates/a4images/image_upload_widget.html:10
+#: adhocracy-plus/templates/a4images/image_upload_widget.html:11
+msgid "Remove the picture"
+msgstr "Bild entfernen"
+
+#: adhocracy4/images/templates/a4images/image_upload_widget.html:12
+#: adhocracy4/images/templates/a4images/image_upload_widget.html:12
+#: adhocracy-plus/templates/a4images/image_upload_widget.html:16
+#: adhocracy-plus/templates/a4images/image_upload_widget.html:17
+msgid "Upload a picture"
+msgstr "Bild hochladen"
+
+#: adhocracy4/images/templates/a4images/image_upload_widget.html:19
+#: adhocracy4/images/templates/a4images/image_upload_widget.html:19
+msgid ""
+"\n"
+"            Your image will be uploaded/removed once you save your changes\n"
+"            at the end of this page.\n"
+"            "
+msgstr ""
+"\n"
+"Ihr Bild wird hochgeladen sobald Sie Ihre Änderungen am Ende der Seite "
+"speichern."
+
+#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
+#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
+msgid ""
+"In this section, you can create\n"
+"labels. If you create any, each contribution can be assigned\n"
+"to one or more of them. This way, content can be classified."
+msgstr ""
+"Hier können Sie Merkmale anlegen. Dadurch können alle Beiträge um ein oder "
+"mehrere Merkmale ergänzt werden."
+
+#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
+#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
+msgid "Add label"
+msgstr "Merkmal hinzufügen"
+
+#: adhocracy4/polls/templates/a4polls/poll_404.html:8
+#: adhocracy4/polls/templates/a4polls/poll_404.html:8
+msgid ""
+"Participation is not possible at the moment. The poll has not been set up "
+"yet."
+msgstr ""
+"Die Beteiligung ist aktuell noch nicht möglich. Die Umfrage wird gerade "
+"angelegt."
+
+#: adhocracy4/polls/templates/a4polls/poll_404.html:15
+#: adhocracy4/polls/templates/a4polls/poll_404.html:15
+msgid "Setup the poll by adding questions and answers in the dashboard."
+msgstr ""
+"Legen Sie die Umfrage an indem Sie Fragen und Antwortmöglichkeiten in der "
+"Projektverwaltung hinzufügen."
+
+#: adhocracy4/polls/templates/a4polls/poll_dashboard.html:5
+#: adhocracy4/polls/templates/a4polls/poll_dashboard.html:5
+msgid "Edit poll"
+msgstr "Umfrage bearbeiten"
 
 #: adhocracy4/categories/dashboard.py:13
 #: apps/exports/mixins.py:19
@@ -49,20 +417,7 @@ msgstr "Kategoriename"
 msgid "Category icon"
 msgstr "Kategorieicon"
 
-#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
-msgid ""
-"In this section, you can create\n"
-"categories. If you create any, each contribution has to be assigned\n"
-"to one of them. This way, content can be classified."
-msgstr ""
-"Hier können Sie Kategorien anlegen. Dadurch können alle Beiträge einer "
-"Kategorie zugeordnet und entsprechend gefiltert werden."
-
-#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
-msgid "Add category"
-msgstr "Kategorie hinzufügen"
-
-#: adhocracy4/comments/models.py:53
+#: adhocracy4/comments/models.py:54
 #: adhocracy4/polls/exports.py:41
 #: apps/budgeting/exports.py:75 apps/debate/exports.py:64
 #: apps/documents/exports.py:40 apps/ideas/exports.py:70
@@ -71,7 +426,7 @@ msgctxt "noun"
 msgid "Comment"
 msgstr "Kommentar"
 
-#: adhocracy4/comments/models.py:54
+#: adhocracy4/comments/models.py:55
 #: adhocracy4/exports/mixins/comments.py:46
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:16
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:17
@@ -84,17 +439,17 @@ msgstr "Kommentar"
 msgid "Comments"
 msgstr "Kommentare"
 
-#: adhocracy4/comments/serializers.py:52
-#: adhocracy4/comments/serializers.py:151
+#: adhocracy4/comments/serializers.py:73
+#: adhocracy4/comments/serializers.py:175
 msgid "Please choose a category"
 msgstr "Bitte wählen Sie eine Kategorie"
 
-#: adhocracy4/comments/serializers.py:61
-#: adhocracy4/comments_async/serializers.py:79
+#: adhocracy4/comments/serializers.py:82
+#: adhocracy4/comments_async/serializers.py:84
 msgid "unknown user"
 msgstr "unbekannter Nutzer"
 
-#: adhocracy4/comments_async/serializers.py:58
+#: adhocracy4/comments_async/serializers.py:63
 msgid "Please choose one or more categories."
 msgstr "Bitte wählen Sie eine oder mehrere Kategorien aus."
 
@@ -159,15 +514,6 @@ msgstr "Karte"
 #: adhocracy4/dashboard/dashboard.py:65
 msgid "Edit areasettings"
 msgstr "Kartenbereich bearbeiten"
-
-#: adhocracy4/dashboard/filter.py:11
-#: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: apps/debate/filters.py:12 apps/ideas/views.py:28 apps/topicprio/views.py:21
-#: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:4
-#: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:10
-#: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:11
-msgid "Search"
-msgstr "Suchen"
 
 #: adhocracy4/dashboard/filter.py:15
 #: apps/budgeting/views.py:26
@@ -245,193 +591,6 @@ msgstr "Anfangszeit"
 #: adhocracy4/dashboard/mixins.py:207
 msgid "Project successfully duplicated."
 msgstr "Projekt erfolgreich dupliziert."
-
-#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
-#: adhocracy-plus/templates/a4dashboard/base_dashboard.html:51
-msgid "Dashboard"
-msgstr "Organisationsverwaltung"
-
-#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:24
-msgid "Project Settings"
-msgstr "Projekteinstellungen"
-
-#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
-#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:49
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:103
-msgid "Missing fields for publication"
-msgstr "Benötigte Felder zur Veröffentlichung"
-
-#: adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
-#: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
-#: apps/activities/templates/a4_candy_activities/activities_dashboard.html:17
-#: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:30
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:39
-#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:11
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:44
-#: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:24
-#: apps/interactiveevents/templates/a4_candy_interactive_events/extrafields_dashboard_form.html:19
-#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:28
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:43
-#: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:27
-#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:15
-#: apps/topicprio/templates/a4_candy_topicprio/includes/topic_form.html:22
-#: adhocracy-plus/templates/a4dashboard/base_form_module.html:23
-#: adhocracy-plus/templates/a4dashboard/base_form_project.html:23
-msgid "Save"
-msgstr "Speichern"
-
-#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
-#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
-#: adhocracy-plus/templates/a4dashboard/blueprint_list.html:4
-#: adhocracy-plus/templates/a4dashboard/project_list.html:13
-msgid "New Project"
-msgstr "Neues Projekt"
-
-#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
-msgid "Phase"
-msgstr "Phase"
-
-#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
-#: adhocracy-plus/templates/a4dashboard/includes/blueprint_list_tile.html:15
-msgid "Select"
-msgstr "Auswählen"
-
-#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
-msgid "Missing field for publication"
-msgstr "Benötigtes Feld zur Veröffentlichung"
-
-#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
-#: adhocracy-plus/templates/a4dashboard/includes/preview.html:7
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:34
-msgid "Preview"
-msgstr "Vorschau"
-
-#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
-#: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:8
-#: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:14
-#: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:14
-#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:15
-#: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:14
-#: adhocracy-plus/templates/a4dashboard/includes/preview.html:9
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:36
-msgid "View"
-msgstr "Ansicht"
-
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
-#, python-format
-msgid "%(value)s from %(max)s"
-msgstr "%(value)s von %(max)s"
-
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
-msgid "required fields for publication"
-msgstr "benötigte Felder zur Veröffentlichung"
-
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
-#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:12
-#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:46
-msgid "Publish"
-msgstr "Veröffentlichen"
-
-#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
-#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:19
-msgid "Unpublish"
-msgstr "Depublizieren"
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
-msgid "Create project based on"
-msgstr "Projekt anlegen basierend auf"
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
-#: adhocracy-plus/templates/a4dashboard/project_create_form.html:41
-msgid ""
-"After saving the draft project you can further customize and edit your "
-"project and eventually publish it."
-msgstr ""
-"Nachdem der Projektentwurf gespeichert wurde, können in einem weiteren "
-"Schritt Einstellungen angepasst und zusätzliche Informationen angegeben "
-"werden. Wenn alle benötigten Informationen eingegeben sind, kann das Projekt "
-"veröffentlicht werden."
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
-#: adhocracy-plus/templates/a4dashboard/project_create_form.html:46
-msgid "Create draft"
-msgstr "Projektentwurf anlegen"
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
-#: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:29
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:15
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
-#: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:40
-#: apps/debate/templates/a4_candy_debate/includes/subject_form.html:10
-#: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:15
-#: apps/embed/templates/a4_candy_embed/embed.html:47
-#: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:16
-#: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:43
-#: apps/ideas/templates/a4_candy_ideas/includes/idea_form.html:23
-#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:27
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:15
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:42
-#: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:29
-#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:14
-#: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:15
-#: apps/topicprio/templates/a4_candy_topicprio/includes/topic_form.html:21
-#: apps/topicprio/templates/a4_candy_topicprio/topic_confirm_delete.html:15
-#: adhocracy-plus/templates/a4dashboard/project_create_form.html:45
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
-#: apps/projects/templates/a4_candy_projects/project_list.html:4
-#: adhocracy-plus/templates/a4dashboard/base_project_list.html:16
-#: adhocracy-plus/templates/a4dashboard/project_list.html:4
-#: adhocracy-plus/templates/a4dashboard/project_list.html:9
-msgid "Projects"
-msgstr "Projekte"
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:17
-msgid "Finished"
-msgstr "Abgeschlossen"
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
-#: adhocracy4/projects/enums.py:14
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:20
-msgid "semipublic"
-msgstr "halb-öffentlich"
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
-#: adhocracy4/projects/enums.py:15
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:23
-msgid "private"
-msgstr "privat"
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:103
-#: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
-#: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
-#: apps/projects/templates/a4_candy_projects/project_detail.html:112
-#: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:19
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:42
-msgid "Edit"
-msgstr "Bearbeiten"
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:65
-msgid "Duplicate"
-msgstr "Duplizieren"
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
-#: apps/projects/templates/a4_candy_projects/project_list.html:18
-#: adhocracy-plus/templates/a4dashboard/project_list.html:27
-msgid "We could not find any projects."
-msgstr "Wir konnten keine Projekte finden."
 
 #: adhocracy4/dashboard/views.py:69
 msgid "Project successfully created."
@@ -546,56 +705,10 @@ msgstr "Positive Bewertungen"
 msgid "Negative ratings"
 msgstr "Negative Bewertungen"
 
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:5
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:23
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:35
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:47
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:59
-msgid "Export"
-msgstr "Export"
-
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:7
-msgid ""
-"You can export the results of your participation project as an excel file."
-msgstr ""
-"Sie können die Ergebnisse Ihres Beteiligungsprojektes als Excel-Datei "
-"exportieren."
-
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:19
-msgid "here you can export all ideas"
-msgstr "hier können Sie alle Ideen exportieren"
-
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
-msgid "here you can export all subjects"
-msgstr "hier können Sie alle Themen exportieren"
-
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
-msgid "here you can export all answers"
-msgstr "hier können Sie alle Antworten exportieren"
-
-#: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
-msgid "here you can export all comments"
-msgstr "hier können Sie alle Kommentare exportieren"
-
 #: adhocracy4/forms/fields.py:18
 #, python-format
 msgid "Time of %(date_label)s"
 msgstr "Uhrzeit für %(date_label)s"
-
-#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
-#: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
-#: adhocracy-plus/templates/account/signup.html:27
-#: adhocracy-plus/templates/account/signup.html:36
-#: adhocracy-plus/templates/socialaccount/signup.html:31
-msgid "This field is required"
-msgstr "Dieses Feld muss ausgefüllt werden"
-
-#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
-#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
-#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:18
-#: adhocracy4/forms/templates/a4forms/includes/inline_form.html:19
-msgid "Remove category"
-msgstr "Kategorie entfernen"
 
 #: adhocracy4/images/fields.py:71
 #, python-brace-format
@@ -617,29 +730,6 @@ msgstr "{image_name} Urheber*in"
 #, python-brace-format
 msgid "Copyright shown in the {image_name}."
 msgstr "Urheber*in, die im {image_name} angezeigt wird."
-
-#: adhocracy4/images/templates/a4images/image_upload_widget.html:8
-#: adhocracy-plus/templates/a4images/image_upload_widget.html:10
-#: adhocracy-plus/templates/a4images/image_upload_widget.html:11
-msgid "Remove the picture"
-msgstr "Bild entfernen"
-
-#: adhocracy4/images/templates/a4images/image_upload_widget.html:12
-#: adhocracy-plus/templates/a4images/image_upload_widget.html:16
-#: adhocracy-plus/templates/a4images/image_upload_widget.html:17
-msgid "Upload a picture"
-msgstr "Bild hochladen"
-
-#: adhocracy4/images/templates/a4images/image_upload_widget.html:19
-msgid ""
-"\n"
-"            Your image will be uploaded/removed once you save your changes\n"
-"            at the end of this page.\n"
-"            "
-msgstr ""
-"\n"
-"Ihr Bild wird hochgeladen sobald Sie Ihre Änderungen am Ende der Seite "
-"speichern."
 
 #: adhocracy4/images/validators.py:21
 msgid "Unsupported file format. Supported formats are {}."
@@ -676,19 +766,6 @@ msgstr "Merkmale bearbeiten"
 #: adhocracy4/labels/forms.py:17
 msgid "Label"
 msgstr "Merkmal"
-
-#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
-msgid ""
-"In this section, you can create\n"
-"labels. If you create any, each contribution can be assigned\n"
-"to one or more of them. This way, content can be classified."
-msgstr ""
-"Hier können Sie Merkmale anlegen. Dadurch können alle Beiträge um ein oder "
-"mehrere Merkmale ergänzt werden."
-
-#: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
-msgid "Add label"
-msgstr "Merkmal hinzufügen"
 
 #: adhocracy4/maps/admin.py:14
 #: adhocracy4/maps/models.py:11
@@ -919,24 +996,6 @@ msgstr "Beantworten Sie die Fragen und kommentieren Sie die Umfrage."
 #: adhocracy4/polls/phases.py:21
 msgid "polls"
 msgstr "Umfragen"
-
-#: adhocracy4/polls/templates/a4polls/poll_404.html:8
-msgid ""
-"Participation is not possible at the moment. The poll has not been set up "
-"yet."
-msgstr ""
-"Die Beteiligung ist aktuell noch nicht möglich. Die Umfrage wird gerade "
-"angelegt."
-
-#: adhocracy4/polls/templates/a4polls/poll_404.html:15
-msgid "Setup the poll by adding questions and answers in the dashboard."
-msgstr ""
-"Legen Sie die Umfrage an indem Sie Fragen und Antwortmöglichkeiten in der "
-"Projektverwaltung hinzufügen."
-
-#: adhocracy4/polls/templates/a4polls/poll_dashboard.html:5
-msgid "Edit poll"
-msgstr "Umfrage bearbeiten"
 
 #: adhocracy4/polls/validators.py:15
 #, python-format
