@@ -5,9 +5,11 @@ import 'slick-carousel' // for project timeline
 
 import '../../../apps/actions/assets/timestamps.js'
 import '../../../apps/dashboard/assets/ajax_modal.js'
-import '../../../apps/maps/assets/map-address.js'
 import '../../../apps/moderatorremark/assets/idea_remarks.js'
 import '../../../apps/newsletters/assets/dynamic_fields.js'
+
+// map search function
+import 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_address.js'
 
 // expose react components
 import {
