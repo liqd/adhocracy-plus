@@ -58,10 +58,13 @@ $checkbox-size: 20px;
     }
 }
 
+.a4-comments__category__input:focus + .a4-comments__category__text,
+.poll-row__radio:focus + .radio__text:before,
 .radio__input:focus + .radio__text:before {
     @include fake-focus-shadow;
 }
 
+.poll-row__radio:disabled + .radio__text,
 .radio__input:disabled + .radio__text {
     &:before,
     &:after {
