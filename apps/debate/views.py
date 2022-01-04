@@ -20,8 +20,7 @@ class SubjectListView(idea_views.AbstractIdeaListView,
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.module) \
-            .annotate_comment_count()
+            .filter(module=self.module)
 
 
 class SubjectDetailView(idea_views.AbstractIdeaDetailView):
@@ -40,8 +39,7 @@ class SubjectListDashboardView(ProjectMixin,
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.module) \
-            .annotate_comment_count()
+            .filter(module=self.module)
 
     def get_permission_object(self):
         return self.project
