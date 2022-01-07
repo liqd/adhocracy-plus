@@ -84,8 +84,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Poll'),
          description=_(
-             'Participants can answer one or more questions with '
-             'predefined choices.'
+             'Participants can answer open and multiple choice questions '
+             'and comment on the poll.'
          ),
          content=[
              poll_phases.VotingPhase(),
