@@ -6,13 +6,14 @@
 {% block content %}
 <div class="u-bg-light py-5">
     <div class="container px-0 px-sm-3 u-bg-light">
-        <div class="col-12 container--shadow">
-            <div class="hero-unit row" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});">
+        <div class="container--shadow">
+            <div class="hero-unit" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});">
                 {% if organisation.image_copyright %}
                 <div class="header__copyright copyright">© {{ organisation.image_copyright }}</div>
                 {% endif %}
                 {% include 'header_lower.html' with organisation=organisation %}
             </div>
+
             <div class="row">
                 <div class="col-md-10 offset-md-1">
                     <h1>{% trans 'Information' %}</h1>
