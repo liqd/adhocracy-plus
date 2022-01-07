@@ -4,8 +4,7 @@ from adhocracy4.projects.enums import Access
 
 
 def filter_viewable(queryset, user):
-    # FIXME: has to be in sync with a4projects.view_project or here
-    #        a4projects.view_project and should
+    # FIXME: has to be in sync with a4projects.view_project  and should
     #        be implemented on the Project's QueryManager/QuerySet.
     #        Unfortunately that is not possible, as the QueryManager may not
     #        be overwritten and the Project model is not swappable.
