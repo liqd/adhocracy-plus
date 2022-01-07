@@ -6,6 +6,9 @@
 {% block dashboard_project_content %}
 <div class="container">
     <h1 class="mt-0">{% trans 'Edit offline event' %}</h1>
+    {% if form.errors %}
+        <div class="errorlist">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
+    {% endif %}
 
     {% url 'a4dashboard:offlineevent-list' organisation_slug=project.organisation.slug project_slug=project.slug as cancel %}
     {% include "a4_candy_offlineevents/includes/offlineevent_form.html" with cancel=cancel %}
