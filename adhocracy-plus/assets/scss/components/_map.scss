@@ -13,6 +13,10 @@ $map-colour: #0076ae;
     border-radius: 0;
 }
 
+.leaflet-top {
+    z-index: 999; // reduced from 1000 to not clash with bootstrap
+}
+
 .maps-popups-popup-text-content {
     display: flex;
     flex-direction: column;
