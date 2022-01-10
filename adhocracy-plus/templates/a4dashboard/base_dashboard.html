@@ -9,7 +9,7 @@
             {% if ORGANISATION.logo %}
               {% url 'organisation' organisation_slug=ORGANISATION.slug as organisation_url %}
                 <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}" rel="home">
-                    <img src="{% thumbnail ORGANISATION.logo '0x160' %}" height="80" alt="{{ ORGANISATION.name }}" class="dashboard-nav__logo" />
+                    <img src="{% thumbnail ORGANISATION.logo '0x160' %}" alt="{{ ORGANISATION.name }}" class="dashboard-nav__logo" />
                 </a>
             {% else %}
               <div class="dashboard-nav__logo-link">

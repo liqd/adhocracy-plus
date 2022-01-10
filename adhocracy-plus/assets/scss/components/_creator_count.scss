@@ -1,9 +1,7 @@
 $creator-count-circle-size: 2.5rem;
-$creator-count-circle-offset: 0.5rem;
+$creator-count-circle-offset: 1rem;
 
 .creator-count__circles {
-    position: relative;
-
     display: inline-block;
     vertical-align: middle;
 }
@@ -11,7 +9,6 @@ $creator-count-circle-offset: 0.5rem;
 .creator-count__circle {
     display: inline-block;
     vertical-align: middle;
-    position: relative;
     width: $creator-count-circle-size;
     height: $creator-count-circle-size;
     border-radius: 50%;
@@ -21,17 +18,14 @@ $creator-count-circle-offset: 0.5rem;
 }
 
 .creator-count__circle--2 {
-    z-index: 1;
     margin-left: -$creator-count-circle-offset;
 }
 
 .creator-count__circle--3 {
-    z-index: 2;
     margin-left: -$creator-count-circle-offset;
 }
 
 .creator-count__circle--count {
-    z-index: 3;
     margin-left: -$creator-count-circle-offset;
 
     background: $brand-info;
