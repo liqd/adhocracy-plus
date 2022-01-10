@@ -131,7 +131,6 @@ div.cke_focus {
 .form-control {
     height: auto !important;
     border-radius: 0 !important;
-    line-height: 1.8; // ensures input same height as grouped button
     margin-bottom: 0;
 
     &:focus {
@@ -174,8 +173,5 @@ div.cke_focus {
 
 .filter-bar {
     margin-bottom: 0.5 * $spacer;
-
-    @media screen and (min-width: $breakpoint) {
-        display: flex;
-    }
+    display: flex;
 }

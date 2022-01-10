@@ -54,7 +54,7 @@ export default class QuestionUser extends React.Component {
     const ariaUndoLike = django.gettext('undo like')
 
     return (
-      <div className="list-group-item border mb-2 p-4">
+      <div className="list-item border mb-2 p-4">
         <div>
           <div className="col-12">
             {this.props.category &&

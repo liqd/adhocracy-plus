@@ -28,17 +28,19 @@ export default class QuestionPresent extends React.Component {
   render () {
     const likesTag = django.gettext('likes')
     return (
-      <div className="list-group-item border-top-0 border-right-0 border-bottom border-left-0 mb-2">
-        <div>
-          <p>{this.props.children}</p>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <div>
-              <div className="float-right">
-                <span className="text-muted">{this.state.likes}</span>
-                <i className="icon-like text-muted ms-2" aria-hidden="true" />
-                <span className="visually-hidden">{likesTag}</span>
+      <div className="col-md-8 offset-2">
+        <div className="list-item mb-2">
+          <div>
+            <p>{this.props.children}</p>
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <div>
+                <div className="float-right">
+                  <span className="text-muted">{this.state.likes}</span>
+                  <i className="icon-like text-muted ms-2" aria-hidden="true" />
+                  <span className="visually-hidden">{likesTag}</span>
+                </div>
               </div>
             </div>
           </div>
