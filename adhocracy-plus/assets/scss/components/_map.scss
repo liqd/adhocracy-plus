@@ -71,10 +71,10 @@ $map-colour: #0076ae;
 .map-list {
     position: relative;
     z-index: 0;
-    margin: 0 (-$spacer);
+    margin: $spacer (-$spacer);
 
     @media (min-width: $breakpoint) {
-        margin: 0;
+        margin: $spacer 0;
     }
 }
 

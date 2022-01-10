@@ -1,4 +1,12 @@
+$ribbon-margin: 10px;
+
 .userindicator__dropdown {
+    position: unset; // For mobile full width menu
+
+    @media screen and (min-width: $breakpoint) {
+        position: relative;
+    }
+
     .btn {
         padding: 0.5em 1em;
     }
@@ -35,9 +43,9 @@
 }
 
 .userindicator__dropdown-menu {
-    position: fixed !important;
-    min-width: 100%;
-    top: 0.5 * $spacer;
+    position: absolute;
+    top: $ribbon-margin;
+
     margin: 0;
     background-color: $brand-secondary;
     color: contrast-color($brand-secondary);
@@ -55,16 +63,14 @@
     }
 
     &.show {
-        top: 5px !important;
+        top: -$ribbon-margin !important; // overwriting the general dropdown overwrite
+        left: 0;
+        right: 0;
     }
-}
 
-@media screen and (min-width: $breakpoint) {
-    .userindicator__dropdown-menu {
-        position: absolute !important;
-
+    @media screen and (min-width: $breakpoint) {
         &.show {
-            top: 62px !important;
+            top: calc(100% - 10px) !important; // overwriting the general dropdown overwrite
         }
     }
 }
