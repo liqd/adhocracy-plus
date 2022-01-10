@@ -5,7 +5,9 @@ import { maps } from 'adhocracy4'
 import 'leaflet-draw'
 import './i18n-leaflet-draw'
 import FileSaver from 'file-saver'
-import { shp } from 'shpjs'
+import shp from 'shpjs'
+
+window.shp = shp
 
 function getBaseBounds (L, polygon, bbox) {
   if (polygon) {
@@ -166,7 +168,7 @@ function init () {
     },
 
     _addToMap: function (map, shape) {
-      $('#map-import-modal').modal('hide')
+      $('#map-import-modal').hide()
       // work around boostrap backdrop bug
       $('.modal-backdrop').remove()
 
