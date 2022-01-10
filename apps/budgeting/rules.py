@@ -35,6 +35,5 @@ rules.add_perm(
 
 rules.add_perm(
     'a4_candy_budgeting.moderate_proposal',
-    module_predicates.is_context_moderator |
-    module_predicates.is_context_initiator
+    module_predicates.is_allowed_moderate_project
 )

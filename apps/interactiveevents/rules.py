@@ -1,8 +1,6 @@
 import rules
-from rules.predicates import is_superuser
 
-from adhocracy4.modules.predicates import is_context_initiator
-from adhocracy4.modules.predicates import is_context_moderator
+from adhocracy4.modules.predicates import is_allowed_moderate_project
 from adhocracy4.phases.predicates import phase_allows_add
 
 from .models import LiveQuestion
@@ -10,7 +8,7 @@ from .predicates import phase_allows_like
 from .predicates import phase_allows_like_model
 
 rules.add_perm('a4_candy_interactive_events.change_livequestion',
-               is_superuser | is_context_moderator | is_context_initiator)
+               is_allowed_moderate_project)
 
 
 rules.add_perm('a4_candy_interactive_events.add_livequestion',
@@ -22,7 +20,7 @@ rules.add_perm('a4_candy_interactive_events.view_livequestion',
 
 
 rules.add_perm('a4_candy_interactive_events.moderate_livequestions',
-               is_superuser | is_context_moderator | is_context_initiator)
+               is_allowed_moderate_project)
 
 
 rules.add_perm('a4_candy_interactive_events.add_like', phase_allows_like)
