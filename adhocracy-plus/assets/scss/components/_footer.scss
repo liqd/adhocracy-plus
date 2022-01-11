@@ -18,11 +18,15 @@
     font-family: $font-family-serif;
 }
 
-.footer__margin-for-banner {
-    margin-bottom: 2 * $spacer;
+.footer__no-banner > .row {
+    justify-content: center;
+}
 
-    @media screen and (min-width: $breakpoint) and (max-width: $breakpoint-lg-down) {
-        margin-bottom: 3.5 * $spacer;
+.footer__margin-for-banner {
+    margin-bottom: 3.5 * $spacer;
+
+    @media screen and (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
+        margin-bottom: 5.5 * $spacer;
     }
 }
 
