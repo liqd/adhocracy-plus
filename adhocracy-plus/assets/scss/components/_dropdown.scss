@@ -37,7 +37,8 @@
     }
 
     &.show {
-        top: -2px !important; // needed to overwrite BS translate figure
+        margin-top: -2px !important; // to ensure no gap for dropdown and up placement
+        margin-bottom: -2px !important;
     }
 
     img { // for category icons in dropdown
