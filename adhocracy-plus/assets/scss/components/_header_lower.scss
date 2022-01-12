@@ -53,6 +53,10 @@
 .header-lower__nav-list--md {
     position: relative;
     bottom: -6 * $spacer;
+
+    &:last-child {
+        padding-right: $spacer;
+    }
 }
 
 .header-lower__nav-list--sm {

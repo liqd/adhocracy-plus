@@ -126,15 +126,13 @@ $svg-colour: #2a3cd4;
     color: $text-color-gray;
 }
 
-@media (min-width: $breakpoint-xs) {
-    .tile--vertical {
-        margin: $r-spacer;
-    }
-}
-
 @media (min-width: $breakpoint) {
     .tile {
         min-height: 15em;
+    }
+
+    .tile--vertical {
+        margin: $r-spacer;
     }
 
     .tile--horizontal {
