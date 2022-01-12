@@ -71,6 +71,7 @@ $ribbon-margin: 10px;
     @media screen and (min-width: $breakpoint) {
         &.show {
             top: calc(100% - 10px) !important; // overwriting the general dropdown overwrite
+            left: auto;
         }
     }
 }
