@@ -10,6 +10,11 @@
     display: inline-block;
     margin: 0;
     margin-right: $padding;
+    flex: 1 1 auto;
+}
+
+.lr-bar__left--flex {
+    flex: 1 1 auto;
 }
 
 .lr-bar__right {
@@ -19,6 +24,11 @@
     > * {
         display: inline-block;
     }
+}
+
+.lr-bar__right--flex {
+    flex: 1 0 auto;
+    text-align: end;
 }
 
 .lr-bar--with-margin {
