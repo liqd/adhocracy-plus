@@ -8,51 +8,64 @@
 {% block dashboard_content %}
 <h1 class="mt-0">{% trans 'Email Addresses' %}</h1>
 
-<form class="multiform" action="{% url 'account_email' %}?next={{ request.path|urlencode }}" method="post">
-    {% csrf_token %}
+<section>
+    <h2>{% trans 'Main Email' %}</h2>
+    <span>{{ user.email }}</span>
+    <span class="label">{% trans "Primary" %}</span>
+    <span class="label">{% trans "Verified" %}</span>
+</section>
+
+{% if user.emailaddress_set.all.count > 1 %}
+<section>
+    <h2 class="bg--top-border">{% trans 'Other Emails' %}</h2>
     {% for emailaddress in user.emailaddress_set.all %}
-    <div class="form-check">
-        <label class="form-check__label">
-            <input type="radio" name="email"
-                   {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked" {% endif %}
-                   value="{{emailaddress.email}}">
-            {{ emailaddress.email }}
-            {% if emailaddress.primary %}
-            <span class="label">{% trans "Primary" %}</span>
-            {% endif %}
-            {% if emailaddress.verified %}
-            <span class="label">{% trans "Verified" %}</span>
-            {% else %}
-            <span class="label">{% trans "Unverified" %}</span>
-            {% endif %}
-        </label>
-    </div>
+        {% if not emailaddress.primary %}
+            <form class="multiform" action="{% url 'account_email' %}?next={{ request.path|urlencode }}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="email"
+                       value="{{emailaddress.email}}" >
+                {{ emailaddress.email }}
+                {% if emailaddress.verified %}
+                <span class="label mb-3">{% trans "Verified" %}</span>
+                {% else %}
+                <span class="label mb-3">{% trans "Unverified" %}</span>
+                {% endif %}
+                <ul class="u-list-reset">
+                {% if not emailaddress.primary and emailaddress.verified %}
+                    <li class="d-inline"><button class="btn btn--primary" type="submit" name="action_primary">{% trans 'Make Primary' %}</button></li>
+                {% endif %}
+                {% if not emailaddress.verified %}
+                    <li class="d-inline"><button class="btn btn--secondary" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button></li>
+                {% endif %}
+                {% if not emailaddress.primary %}
+                    <li class="d-inline"><button class="btn btn--secondary" type="submit" name="action_remove" >{% trans 'Remove' %}</button></li>
+                {% endif %}
+                </ul>
+            </form>
+        {% endif %}
     {% endfor %}
+</section>
+{% endif %}
 
-    <div class="mb-3">
-        <button class="btn btn--primary" type="submit" name="action_primary">{% trans 'Make Primary' %}</button>
-        <button class="btn btn--secondary" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button>
-        <button class="btn btn--secondary" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
-    </div>
-</form>
+<section>
+    <form class="multiform bg--top-border" method="post" action="{% url 'account_email' %}">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <div class="form-errors">
+            {% for error in form.non_field_errors %}
+            <p class="alert alert--danger">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
 
-<form class="multiform" method="post" action="{% url 'account_email' %}">
-    {% csrf_token %}
-    {% if form.non_field_errors %}
-    <div class="form-errors">
-        {% for error in form.non_field_errors %}
-        <p class="alert alert--danger">{{ error }}</p>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <div class="form-group">
-        <label class="control-label" for="{{ form.email.id_for_label }}">{% trans "Add another Email" %}</label>
-        {{ form.email.errors }}
-        {{ form.email|add_class:"form-control" }}
-    </div>
-    <div class="d-flex justify-content-end mb-3">
-        <input class="btn btn--primary" name="action_add" type="submit" value="{% trans 'Add Email' %}"/>
-    </div>
-</form>
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">{% trans "Add another Email" %}</label>
+            {{ form.email.errors }}
+            {{ form.email|add_class:"form-control" }}
+        </div>
+        <div class="d-flex justify-content-end mb-3">
+            <input class="btn btn--primary" name="action_add" type="submit" value="{% trans 'Add Email' %}"/>
+        </div>
+    </form>
+</section>
 {% endblock %}
