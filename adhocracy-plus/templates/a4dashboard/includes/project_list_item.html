@@ -10,8 +10,9 @@
             {% endif %}
         </div>
         <div class="lr-bar list-item--has-image__body">
-            <div class="lr-bar__left">
-                <h3>
+          <div class="d-flex">
+            <div class="lr-bar__left lr-bar__left--flex">
+                <h3 class="u-first-heading">
                     {{ project.name }}
                     {% if project.has_finished %}
                         <span class="label label--secondary">{% trans "Finished" %}</span>
@@ -24,8 +25,8 @@
                     {% endif %}
                 </h3>
             </div>
-            <div class="lr-bar__right">
-                <div class="btn--group d-flex">
+            <div class="lr-bar__right lr-bar__right--flex">
+                <div class="btn--group">
                 {% spaceless %}
                     <a href="{{ project|project_url }}"
                        class="btn btn--light btn--small">
@@ -41,7 +42,7 @@
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         {% trans 'Edit'%}
                     </a>
-                    <div class="dropdown d-flex">
+                    <div class="dropdown">
                         <button
                                 type="button"
                                 class="dropdown-toggle btn btn--light btn--small"
@@ -73,6 +74,7 @@
                     </div>
                 {% endspaceless %}
                 </div>
+            </div>
             </div>
         </div>
     </div>
