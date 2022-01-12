@@ -317,7 +317,6 @@ REST_FRAMEWORK = {
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_RESTRICT_BY_USER = 'username'
 CKEDITOR_ALLOW_NONIMAGE_FILES = True
-CKEDITOR_EMBED_PROVIDER = ''
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -353,7 +352,6 @@ CKEDITOR_CONFIGS = {
         ],
         'removePlugins': 'stylesheetparser',
         'extraAllowedContent': 'iframe[*]; div[*]',
-        'embed_provider': CKEDITOR_EMBED_PROVIDER,
     },
     'video-editor': {
         'width': '100%',
@@ -364,7 +362,6 @@ CKEDITOR_CONFIGS = {
         ],
         'removePlugins': 'stylesheetparser',
         'extraAllowedContent': 'iframe[*]; div[*]',
-        'embed_provider': CKEDITOR_EMBED_PROVIDER,
     }
 }
 
