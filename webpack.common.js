@@ -126,10 +126,6 @@ module.exports = {
   externals: {
     django: 'django'
   },
-  // enables assets property for loading
-  experiments: {
-    asset: true
-  },
   module: {
     rules: [
       {
