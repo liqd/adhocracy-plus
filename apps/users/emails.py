@@ -18,17 +18,6 @@ PROJECT_LINK_TEXT = _('If you no longer want to receive notifications about '
 
 class EmailAplus(Email):
 
-    def get_organisation(self):
-        return
-
-    def get_site(self):
-        organisation = self.get_organisation()
-        if organisation is not None:
-            site = organisation.site
-            if site is not None:
-                return site
-        return super().get_site()
-
     def get_languages(self, receiver):
         languages = super().get_languages(receiver)
         organisation = self.get_organisation()
