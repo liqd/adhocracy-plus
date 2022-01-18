@@ -10,6 +10,7 @@ from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
+from apps.contrib.widgets import AplusOrderingWidget
 from apps.ideas import views as idea_views
 
 from . import forms
@@ -30,7 +31,8 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
             ('name', _('Alphabetical')),
             ('-positive_rating_count', _('Most popular')),
             ('-comment_count', _('Most commented'))
-        )
+        ),
+        widget=AplusOrderingWidget
     )
     search = FreeTextFilter(
         widget=FreeTextFilterWidget,
@@ -70,7 +72,8 @@ class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
     ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=(
             ('name', _('Alphabetical')),
-        )
+        ),
+        widget=AplusOrderingWidget
     )
 
     class Meta:

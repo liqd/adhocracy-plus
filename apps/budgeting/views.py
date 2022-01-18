@@ -7,6 +7,7 @@ from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
+from apps.contrib.widgets import AplusOrderingWidget
 from apps.ideas import views as idea_views
 
 from . import forms
@@ -40,7 +41,8 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
     }
     category = category_filters.CategoryFilter()
     ordering = a4_filters.DynamicChoicesOrderingFilter(
-        choices=get_ordering_choices
+        choices=get_ordering_choices,
+        widget=AplusOrderingWidget
     )
     is_archived = django_filters.BooleanFilter(
         widget=ArchivedWidget
