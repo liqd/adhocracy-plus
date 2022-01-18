@@ -1,5 +1,8 @@
 from django import forms
 from django.template.loader import render_to_string
+from django.utils.translation import gettext_lazy as _
+
+from adhocracy4.filters.widgets import OrderingWidget
 
 
 class Select2Mixin:
@@ -48,3 +51,9 @@ class TextWithDatalistWidget(forms.TextInput):
         if options:
             return options
         return {}
+
+
+class AplusOrderingWidget(OrderingWidget):
+    # FIXME: only because https://github.com/liqd/adhocracy-plus/issues/1659
+    # test and remove from time to time
+    label = _('Ordering')
