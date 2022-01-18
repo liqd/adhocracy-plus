@@ -15,6 +15,7 @@ from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import forms as contrib_forms
 from apps.contrib.views import CanonicalURLDetailView
+from apps.contrib.widgets import AplusOrderingWidget
 from apps.moderatorfeedback.forms import ModeratorStatementForm
 from apps.moderatorfeedback.models import ModeratorStatement
 from apps.notifications.emails import NotifyCreatorOnModeratorFeedback
@@ -41,7 +42,8 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
     }
     category = category_filters.CategoryFilter()
     ordering = a4_filters.DynamicChoicesOrderingFilter(
-        choices=get_ordering_choices
+        choices=get_ordering_choices,
+        widget=AplusOrderingWidget
     )
     search = FreeTextFilter(
         widget=FreeTextFilterWidget,
