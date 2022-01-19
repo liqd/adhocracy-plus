@@ -1,8 +1,17 @@
+// icon in categories dropdown
+.dropdown-item__icon {
+    max-width: 2 * $spacer;
+}
+
 .dropdown-toggle {
     // the current dropdown-toggle should be above the dropdown-menu shadow
     .dropdown.show & {
         position: relative;
         z-index: 4;
+    }
+
+    .dropdown-item__icon {
+        display: none;
     }
 }
 
@@ -52,9 +61,4 @@
     @media print {
         display: none;
     }
-}
-
-// icon in categories dropdown
-.dropdown-item__icon {
-    max-width: 2 * $spacer;
 }
