@@ -6,16 +6,17 @@
 # Translators:
 # Кубанычбек Айдаркулов <sleng84@mail.ru>, 2021
 # Sebastian Hess <sebastian.hess@giz.de>, 2021
-# Luca Thüer, 2021
+# Azamat Abdurakhmanov, 2022
+# Luca Thüer, 2022
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-14 11:46+0100\n"
+"POT-Creation-Date: 2022-02-02 15:33+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Luca Thüer, 2021\n"
+"Last-Translator: Luca Thüer, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/liqd/teams/109316/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -111,14 +112,14 @@ msgstr "Последнее изменение на"
 #: adhocracy4/comments/static/comments/Comment.jsx:110
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:260
 msgid "Deleted by creator on"
-msgstr ""
+msgstr "Удален создателем "
 
 #: adhocracy4/comments/static/comments/Comment.jsx:112
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:262
 #: adhocracy4/comments/static/comments/Comment.jsx:112
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:262
 msgid "Deleted by moderator on"
-msgstr ""
+msgstr "Удален модератором"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:151
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:241
@@ -286,7 +287,7 @@ msgstr "Комментировать"
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:264
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:264
 msgid "Blocked by moderator on"
-msgstr ""
+msgstr "Заблокирован модератором"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:301
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:301
@@ -576,7 +577,7 @@ msgstr ""
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:69
 msgctxt "noun"
 msgid "Answer"
-msgstr ""
+msgstr "Ответ"
 
 #: adhocracy4/polls/assets/EditPollChoice.jsx:27
 #: adhocracy4/polls/assets/EditPollChoice.jsx:33
@@ -593,7 +594,7 @@ msgstr "Вопрос"
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:119
 #: adhocracy4/polls/assets/HelptextForm.jsx:11
 msgid "Explanation"
-msgstr ""
+msgstr "Объяснение"
 
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:45
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:50
@@ -620,19 +621,21 @@ msgstr "Перейти вниз"
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:46
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr ""
+"Участники могут голосовать для более чем одного варианта (многовариантный "
+"выбор)"
 
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:61
 msgid "Participants can add their own answer"
-msgstr ""
+msgstr "Участники могут добавить их собственный ответ"
 
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:94
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:95
 msgid "Other"
-msgstr ""
+msgstr "Другое"
 
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:112
 msgid "New answer"
-msgstr ""
+msgstr "Новый ответ"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:163
 msgid "The poll has been updated."
@@ -644,15 +647,15 @@ msgstr "Опрос не может быть обновлен."
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:196
 msgid "New question"
-msgstr ""
+msgstr "Новый вопрос"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:202
 msgid "Multiple choice question"
-msgstr ""
+msgstr "Вопрос с многовариантным ответом"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:207
 msgid "Open question"
-msgstr ""
+msgstr "Открытый вопрос"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:279
 #: apps/documents/assets/DocumentManagement.jsx:324
@@ -661,26 +664,28 @@ msgstr "Сохранить"
 
 #: adhocracy4/polls/assets/PollQuestion.jsx:18
 msgid "Multiple answers are possible."
-msgstr ""
+msgstr "Многовариантный ответ возможен"
 
 #: adhocracy4/polls/assets/PollQuestion.jsx:84
 #: adhocracy4/polls/assets/PollQuestion.jsx:123
 #: adhocracy4/polls/assets/PollResults.jsx:113
 msgid "other"
-msgstr ""
+msgstr "другое"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:13
 msgid "Your answer has been saved."
-msgstr ""
+msgstr "Ваш ответ был сохранен."
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:18
 msgid ""
 "Your answer could not be saved due to a server error. Please try again later."
 msgstr ""
+"Ваш ответ не может сохранен из-за ошибки сервера. Пожалуйста, попробуйте "
+"позже. "
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:23
 msgid "Your answer is invalid or empty. Please try again."
-msgstr ""
+msgstr "Ваш ответ недействителен или пустой. Пожалуйста, попробуйте еще раз."
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:42
 msgid "To poll"
@@ -689,19 +694,19 @@ msgstr "Для опроса"
 #: adhocracy4/polls/assets/PollQuestions.jsx:48
 #: adhocracy4/polls/assets/PollQuestions.jsx:125
 msgid "Change answer"
-msgstr ""
+msgstr "Изменить ответ"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:125
 msgid "Submit answer"
-msgstr ""
+msgstr "Отправить ответ"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:131
 msgid "Please login to answer"
-msgstr ""
+msgstr "Пожалуйста, войдите как пользователь чтобы ответить"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:141
 msgid "Show results"
-msgstr ""
+msgstr "Показать результаты"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:147
 msgid "Show preliminary results"
@@ -709,49 +714,50 @@ msgstr "Показать предварительные результаты"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:168
 msgid "Please enter your answer in this field."
-msgstr ""
+msgstr "Пожалуйста, введите ваш ответ в это поле."
 
 #: adhocracy4/polls/assets/PollResults.jsx:45
 msgid "Hide other answers"
-msgstr ""
+msgstr "Скрыть другие ответы"
 
 #: adhocracy4/polls/assets/PollResults.jsx:47
 msgid "Show other answers"
-msgstr ""
+msgstr "Показать другие ответы"
 
 #: adhocracy4/polls/assets/PollResults.jsx:61
 #, javascript-format
 msgid "%s participant gave 1 answer."
-msgstr ""
+msgstr "%sучастник дал 1 ответ. "
 
 #: adhocracy4/polls/assets/PollResults.jsx:63
 #: adhocracy4/polls/assets/PollResults.jsx:65
 #, javascript-format
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%s участник дали %s ответов."
+msgstr[1] "%s участников дали %s ответов."
+msgstr[2] " %s участников дали %s ответов."
+msgstr[3] "%s участников дали %s ответов."
 
 #: adhocracy4/polls/assets/PollResults.jsx:67
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr ""
+"Для многовариантных ответов процент ответов может быть добавлен выше 100%."
 
 #: adhocracy4/polls/assets/PollResults.jsx:69
 #: adhocracy4/polls/assets/PollResults.jsx:78
 #, javascript-format
 msgid "1 person has answered."
 msgid_plural "%s people have answered."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "1 участник ответили."
+msgstr[1] " %s участников ответили."
+msgstr[2] "%s участников ответили."
+msgstr[3] "%s участников ответили."
 
 #: adhocracy4/polls/assets/PollResults.jsx:80
 msgid "noone has answered this question"
-msgstr ""
+msgstr "никто не ответил на этот вопрос"
 
 #: adhocracy4/polls/assets/PollResults.jsx:110
 msgid "Your choice"
@@ -862,7 +868,7 @@ msgstr "Записи"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:12
 msgid "Click to view statistics of answered questions"
-msgstr ""
+msgstr "Нажмите чтобы увидеть статистику отвеченных вопросв"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:13
 msgid "display on screen"
@@ -870,7 +876,7 @@ msgstr "Отобразить на экране"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:14
 msgid "Click to view list of marked questions screen"
-msgstr ""
+msgstr "Нажмите чтобы увидеть список отмеченных вопросов на экране"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:27
 msgid "select affiliation"
@@ -894,19 +900,19 @@ msgstr "Фильтры"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:28
 msgid "Click to view filters"
-msgstr ""
+msgstr "Нажмите чтобы увидеть фильтры"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:29
 msgid "Click to only display marked questions"
-msgstr ""
+msgstr "Нажмите чтобы увидеть только отмеченные вопросы"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:30
 msgid "Click to only display questions which are not hidden"
-msgstr ""
+msgstr "Нажмите чтобы увидеть только нескрытые вопросы"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:31
 msgid "Click to order list by likes"
-msgstr ""
+msgstr "Нажмите чтобы упорядочить список по отметке нравится"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_form.jsx:61
 msgid "Here you can ask your question"
@@ -963,7 +969,7 @@ msgstr "отметить как выполненное"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:100
 msgid "add to live list"
-msgstr ""
+msgstr "добавить в живой список"
 
 #: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:101
 msgid "remove from live list"

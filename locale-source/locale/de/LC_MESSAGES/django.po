@@ -6,17 +6,17 @@
 # Translators:
 # Katharina Schmid, 2021
 # Katharina Lindenlaub, 2021
-# Luca Thüer, 2021
 # Frederik Wegener <frederik.wegener@liqd.de>, 2021
+# Luca Thüer, 2022
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-14 11:45+0100\n"
+"POT-Creation-Date: 2022-02-02 15:33+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Frederik Wegener <frederik.wegener@liqd.de>, 2021\n"
+"Last-Translator: Luca Thüer, 2022\n"
 "Language-Team: German (https://www.transifex.com/liqd/teams/109316/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -303,7 +303,7 @@ msgstr "hier können Sie alle Kommentare exportieren"
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: apps/debate/filters.py:11 apps/ideas/views.py:27 apps/topicprio/views.py:20
+#: apps/debate/filters.py:12 apps/ideas/views.py:28 apps/topicprio/views.py:21
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:4
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:10
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:11
@@ -445,11 +445,11 @@ msgid "Please choose a category"
 msgstr "Bitte wählen Sie eine Kategorie"
 
 #: adhocracy4/comments/serializers.py:82
-#: adhocracy4/comments_async/serializers.py:84
+#: adhocracy4/comments_async/serializers.py:88
 msgid "unknown user"
 msgstr "unbekannter Nutzer"
 
-#: adhocracy4/comments_async/serializers.py:63
+#: adhocracy4/comments_async/serializers.py:67
 msgid "Please choose one or more categories."
 msgstr "Bitte wählen Sie eine oder mehrere Kategorien aus."
 
@@ -509,31 +509,31 @@ msgstr "Phaseneinstellungen bearbeiten"
 
 #: adhocracy4/dashboard/dashboard.py:64
 msgid "Area settings"
-msgstr ""
+msgstr "Karte"
 
 #: adhocracy4/dashboard/dashboard.py:65
 msgid "Edit area settings"
-msgstr ""
+msgstr "Kartenbereich bearbeiten"
 
 #: adhocracy4/dashboard/filter.py:15
-#: apps/budgeting/views.py:25
+#: apps/budgeting/views.py:26
 msgid "Archived"
 msgstr "Archiviert"
 
 #: adhocracy4/dashboard/filter.py:19
 #: adhocracy4/filters/widgets.py:32
-#: apps/budgeting/views.py:29
+#: apps/budgeting/views.py:30
 msgid "All"
 msgstr "Alle"
 
 #: adhocracy4/dashboard/filter.py:20
-#: apps/budgeting/views.py:30
+#: apps/budgeting/views.py:31
 msgid "No"
 msgstr "Nein"
 
 #: adhocracy4/dashboard/filter.py:21
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:14
-#: apps/budgeting/views.py:31
+#: apps/budgeting/views.py:32
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:12
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:14
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:14
@@ -706,6 +706,7 @@ msgid "Negative ratings"
 msgstr "Negative Bewertungen"
 
 #: adhocracy4/filters/widgets.py:66
+#: apps/contrib/widgets.py:59
 msgid "Ordering"
 msgstr "Sortierung"
 
@@ -1014,31 +1015,31 @@ msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 msgid "Only one vote per choice is allowed per user."
 msgstr "Pro Nutzer ist nur eine Stimme pro Auswahl zulässig."
 
-#: adhocracy4/projects/admin.py:8
+#: adhocracy4/projects/admin.py:10
 #: apps/newsletters/forms.py:31
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Projekt"
 
-#: adhocracy4/projects/admin.py:47
-#: apps/projects/admin.py:40
+#: adhocracy4/projects/admin.py:65
+#: apps/projects/admin.py:58
 msgid "Information and result"
 msgstr "Informationen und Ergebnis"
 
-#: adhocracy4/projects/admin.py:50
+#: adhocracy4/projects/admin.py:68
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:43
+#: apps/projects/admin.py:61
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: adhocracy4/projects/admin.py:54
-#: apps/projects/admin.py:48
+#: adhocracy4/projects/admin.py:72
+#: apps/projects/admin.py:66
 msgid "Images"
 msgstr "Bilder"
 
-#: adhocracy4/projects/admin.py:59
-#: apps/projects/admin.py:53 adhocracy-plus/templates/email_base.html:114
+#: adhocracy4/projects/admin.py:77
+#: apps/projects/admin.py:71 adhocracy-plus/templates/email_base.html:114
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "Kontakt"
@@ -1519,21 +1520,21 @@ msgstr "%(title)s bearbeiten"
 msgid "Edit proposal"
 msgstr "Vorschlag bearbeiten"
 
-#: apps/budgeting/views.py:17 apps/ideas/views.py:31 apps/mapideas/views.py:15
+#: apps/budgeting/views.py:18 apps/ideas/views.py:32 apps/mapideas/views.py:16
 msgid "Most recent"
 msgstr "am aktuellsten"
 
-#: apps/budgeting/views.py:19 apps/ideas/views.py:33 apps/mapideas/views.py:17
-#: apps/topicprio/views.py:31
+#: apps/budgeting/views.py:20 apps/ideas/views.py:34 apps/mapideas/views.py:18
+#: apps/topicprio/views.py:32
 msgid "Most popular"
 msgstr "am beliebtesten"
 
-#: apps/budgeting/views.py:20 apps/debate/filters.py:22 apps/ideas/views.py:34
-#: apps/mapideas/views.py:18 apps/topicprio/views.py:32
+#: apps/budgeting/views.py:21 apps/debate/filters.py:23 apps/ideas/views.py:35
+#: apps/mapideas/views.py:19 apps/topicprio/views.py:33
 msgid "Most commented"
 msgstr "meist kommentiert"
 
-#: apps/budgeting/views.py:93
+#: apps/budgeting/views.py:95
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
 
@@ -1917,6 +1918,8 @@ msgid ""
 "Participants can answer open and multiple choice questions and comment on "
 "the poll."
 msgstr ""
+"Die Teilnehmer*innen können auf offene und Multiple-Choice-Fragen antworten "
+"und die Umfrage kommentieren."
 
 #: apps/dashboard/blueprints.py:98
 msgid "Participatory budgeting"
@@ -2080,8 +2083,8 @@ msgstr "Das Projekt wurde angelegt."
 msgid "Subjects"
 msgstr "Themen"
 
-#: apps/debate/filters.py:21 apps/debate/filters.py:43
-#: apps/topicprio/views.py:30 apps/topicprio/views.py:72
+#: apps/debate/filters.py:22 apps/debate/filters.py:45
+#: apps/topicprio/views.py:31 apps/topicprio/views.py:74
 msgid "Alphabetical"
 msgstr "Alphabetisch"
 
@@ -2344,7 +2347,7 @@ msgstr "Rückmeldung zu dieser Idee"
 msgid "Edit idea"
 msgstr "Idee bearbeiten"
 
-#: apps/ideas/views.py:152 apps/mapideas/views.py:75
+#: apps/ideas/views.py:154 apps/mapideas/views.py:77
 msgid "Your Idea has been deleted"
 msgstr "Ihre Idee wurde gelöscht"
 
@@ -2545,7 +2548,7 @@ msgstr "wird geprüft"
 
 #: apps/moderatorfeedback/models.py:12
 msgid "Rejected"
-msgstr "nicht umgesetzt"
+msgstr "wird nicht umgesetzt"
 
 #: apps/moderatorfeedback/models.py:13
 msgid "Accepted"
@@ -3353,11 +3356,11 @@ msgstr "Organisationsinformationen erfolgreich aktualisiert."
 msgid "Legal information successfully updated."
 msgstr "Rechtliche Informationen erfolgreich aktualisiert."
 
-#: apps/projects/admin.py:11
+#: apps/projects/admin.py:13
 msgid "archive"
 msgstr "archivieren"
 
-#: apps/projects/admin.py:18
+#: apps/projects/admin.py:20
 msgid "dearchive"
 msgstr "unarchivieren"
 
@@ -3877,7 +3880,7 @@ msgstr "Thema hinzufügen"
 msgid "Edit topic"
 msgstr "Thema bearbeiten"
 
-#: apps/topicprio/views.py:149
+#: apps/topicprio/views.py:152
 msgid "The topic has been deleted"
 msgstr "Das Thema wurde gelöscht."
 

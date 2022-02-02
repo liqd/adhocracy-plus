@@ -7,16 +7,17 @@
 # Кубанычбек Айдаркулов <sleng84@mail.ru>, 2021
 # Sebastian Hess <sebastian.hess@giz.de>, 2021
 # Katharina Schmid, 2021
-# Luca Thüer, 2021
+# Azamat Abdurakhmanov, 2022
+# Luca Thüer, 2022
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-14 11:45+0100\n"
+"POT-Creation-Date: 2022-02-02 15:33+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Luca Thüer, 2021\n"
+"Last-Translator: Luca Thüer, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/liqd/teams/109316/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -290,12 +291,12 @@ msgstr "здесь вы можете экспортировать все иде�
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 msgid "here you can export all subjects"
-msgstr ""
+msgstr "Здесь вы можете экспортировать все темы"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
 msgid "here you can export all answers"
-msgstr ""
+msgstr "Здесь вы можете экспортировать все ответы"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
@@ -305,7 +306,7 @@ msgstr "здесь вы можете экспортировать все ком�
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: apps/debate/filters.py:11 apps/ideas/views.py:27 apps/topicprio/views.py:20
+#: apps/debate/filters.py:12 apps/ideas/views.py:28 apps/topicprio/views.py:21
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:4
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:10
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:11
@@ -446,11 +447,11 @@ msgid "Please choose a category"
 msgstr "Пожалуйста, выберите категорию"
 
 #: adhocracy4/comments/serializers.py:82
-#: adhocracy4/comments_async/serializers.py:84
+#: adhocracy4/comments_async/serializers.py:88
 msgid "unknown user"
 msgstr "Неизвестный пользователь"
 
-#: adhocracy4/comments_async/serializers.py:63
+#: adhocracy4/comments_async/serializers.py:67
 msgid "Please choose one or more categories."
 msgstr "Выберите одну или несколько категорий"
 
@@ -510,31 +511,31 @@ msgstr "Редактировать информацию о фазах"
 
 #: adhocracy4/dashboard/dashboard.py:64
 msgid "Area settings"
-msgstr ""
+msgstr "Области настройки"
 
 #: adhocracy4/dashboard/dashboard.py:65
 msgid "Edit area settings"
-msgstr ""
+msgstr "Редактировать области настроек"
 
 #: adhocracy4/dashboard/filter.py:15
-#: apps/budgeting/views.py:25
+#: apps/budgeting/views.py:26
 msgid "Archived"
 msgstr "Заархивировано"
 
 #: adhocracy4/dashboard/filter.py:19
 #: adhocracy4/filters/widgets.py:32
-#: apps/budgeting/views.py:29
+#: apps/budgeting/views.py:30
 msgid "All"
 msgstr "Все"
 
 #: adhocracy4/dashboard/filter.py:20
-#: apps/budgeting/views.py:30
+#: apps/budgeting/views.py:31
 msgid "No"
 msgstr "Нет"
 
 #: adhocracy4/dashboard/filter.py:21
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:14
-#: apps/budgeting/views.py:31
+#: apps/budgeting/views.py:32
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:12
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:14
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:14
@@ -705,6 +706,7 @@ msgid "Negative ratings"
 msgstr "Отрицательные рейтинги"
 
 #: adhocracy4/filters/widgets.py:66
+#: apps/contrib/widgets.py:59
 msgid "Ordering"
 msgstr "Заказ"
 
@@ -898,23 +900,23 @@ msgstr "Необходимо установить либо обе даты, ли
 
 #: adhocracy4/polls/api.py:71
 msgid "Please specify your answer."
-msgstr ""
+msgstr "Пожалуйста, конкретизируйте ваш ответ"
 
 #: adhocracy4/polls/api.py:88
 msgid "Key error for {}"
-msgstr ""
+msgstr "Ошибка ключа для {}"
 
 #: adhocracy4/polls/api.py:90
 msgid "Choice not found."
-msgstr ""
+msgstr "Выбор не был найден"
 
 #: adhocracy4/polls/api.py:98
 msgid "Duplicate choices detected."
-msgstr ""
+msgstr "Повторяющиеся выборы найдены"
 
 #: adhocracy4/polls/api.py:101
 msgid "Multiple choice disabled for question."
-msgstr ""
+msgstr "Множественный выбор отключен для вопроса"
 
 #: adhocracy4/polls/dashboard.py:15
 #: apps/dashboard/blueprints.py:85
@@ -937,57 +939,63 @@ msgstr "Удостоверение личности"
 
 #: adhocracy4/polls/models.py:53
 msgid "Explanation"
-msgstr ""
+msgstr "Объяснение"
 
 #: adhocracy4/polls/models.py:82
 msgid "Questions with open answers cannot have multiple choices."
-msgstr ""
+msgstr "Вопросы с открытыми ответами не могут иметь несколько ответов"
 
 #: adhocracy4/polls/models.py:87
 msgid ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
 msgstr ""
+"Вопросы с нескольким ответами не могут быть открытым вопросом. Удалите "
+"варианты ответов или добавьте новый вопрос"
 
 #: adhocracy4/polls/models.py:152
 #: adhocracy4/polls/models.py:279
 msgid "Answer"
-msgstr ""
+msgstr "Ответ"
 
 #: adhocracy4/polls/models.py:164
 msgid "Only open questions can have answers."
-msgstr ""
+msgstr "Только открытые вопросы могут иметь ответы"
 
 #: adhocracy4/polls/models.py:201
 msgid "Open questions cannot have choices."
-msgstr ""
+msgstr "Открытые вопросы не могу иметь несколько вариантов ответа"
 
 #: adhocracy4/polls/models.py:206
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
+"\"Другое\" не может только одним вариантом ответа. Используйте открытый "
+"вопрос или добавьте больше вариантов ответа"
 
 #: adhocracy4/polls/models.py:213
 msgid "Question already has \"other\" choice."
-msgstr ""
+msgstr "Вопрос уже имеет ответ \"другое\""
 
 #: adhocracy4/polls/models.py:285
 msgid "Other vote can only be created for vote on \"other\" choice."
 msgstr ""
+"Другое выбор/голосование может быть создано только для выбора/голосования на "
+"ответ \"другое\""
 
 #: adhocracy4/polls/models.py:306
 msgid "other"
-msgstr ""
+msgstr "другое"
 
 #: adhocracy4/polls/phases.py:16
 msgctxt "A4: voting phase name"
 msgid "Voting phase"
-msgstr ""
+msgstr "Фазы голосования/выбора"
 
 #: adhocracy4/polls/phases.py:19
 msgctxt "A4: voting phase description"
 msgid "Answer the questions and comment on the poll."
-msgstr ""
+msgstr "Отвечайте на вопросы и комментируйте опрос."
 
 #: adhocracy4/polls/phases.py:21
 msgid "polls"
@@ -1004,33 +1012,33 @@ msgstr "Выбор должен относиться к вопросу, указ
 
 #: adhocracy4/polls/validators.py:43
 msgid "Only one vote per choice is allowed per user."
-msgstr ""
+msgstr "Одному голосующему можно проголосовать только один раз"
 
-#: adhocracy4/projects/admin.py:8
+#: adhocracy4/projects/admin.py:10
 #: apps/newsletters/forms.py:31
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Проект"
 
-#: adhocracy4/projects/admin.py:47
-#: apps/projects/admin.py:40
+#: adhocracy4/projects/admin.py:65
+#: apps/projects/admin.py:58
 msgid "Information and result"
 msgstr "Информация и результат"
 
-#: adhocracy4/projects/admin.py:50
+#: adhocracy4/projects/admin.py:68
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:43
+#: apps/projects/admin.py:61
 msgid "Settings"
 msgstr "Настройки"
 
-#: adhocracy4/projects/admin.py:54
-#: apps/projects/admin.py:48
+#: adhocracy4/projects/admin.py:72
+#: apps/projects/admin.py:66
 msgid "Images"
 msgstr "Изображения"
 
-#: adhocracy4/projects/admin.py:59
-#: apps/projects/admin.py:53 adhocracy-plus/templates/email_base.html:114
+#: adhocracy4/projects/admin.py:77
+#: apps/projects/admin.py:71 adhocracy-plus/templates/email_base.html:114
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "Контактные данные"
@@ -1063,7 +1071,7 @@ msgstr "Контактное лицо"
 
 #: adhocracy4/projects/models.py:67
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
 #: adhocracy4/projects/models.py:72
 #: apps/projects/templates/a4_candy_projects/project_detail.html:146
@@ -1507,21 +1515,21 @@ msgstr "Редактировать %(title)s"
 msgid "Edit proposal"
 msgstr "Редактировать предложение"
 
-#: apps/budgeting/views.py:17 apps/ideas/views.py:31 apps/mapideas/views.py:15
+#: apps/budgeting/views.py:18 apps/ideas/views.py:32 apps/mapideas/views.py:16
 msgid "Most recent"
 msgstr "Самые последние"
 
-#: apps/budgeting/views.py:19 apps/ideas/views.py:33 apps/mapideas/views.py:17
-#: apps/topicprio/views.py:31
+#: apps/budgeting/views.py:20 apps/ideas/views.py:34 apps/mapideas/views.py:18
+#: apps/topicprio/views.py:32
 msgid "Most popular"
 msgstr "Самые популярные"
 
-#: apps/budgeting/views.py:20 apps/debate/filters.py:22 apps/ideas/views.py:34
-#: apps/mapideas/views.py:18 apps/topicprio/views.py:32
+#: apps/budgeting/views.py:21 apps/debate/filters.py:23 apps/ideas/views.py:35
+#: apps/mapideas/views.py:19 apps/topicprio/views.py:33
 msgid "Most commented"
 msgstr "Самые комментируемые"
 
-#: apps/budgeting/views.py:93
+#: apps/budgeting/views.py:95
 msgid "Your budget request has been deleted"
 msgstr "Ваш запрос бюджета был удален"
 
@@ -1898,6 +1906,8 @@ msgid ""
 "Participants can answer open and multiple choice questions and comment on "
 "the poll."
 msgstr ""
+"Участники могут ответить открыто и на вопросы с несколькими ответами, а "
+"также комментировать опрос"
 
 #: apps/dashboard/blueprints.py:98
 msgid "Participatory budgeting"
@@ -1985,20 +1995,20 @@ msgstr "Добавить модуль"
 
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:28
 msgid "Are you sure you want to publish your project?"
-msgstr ""
+msgstr "Вы уверены, что хотите опубликовать ваш проект?"
 
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:29
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:36
 #, python-format
 msgid "One module has not been added to the project."
 msgid_plural "%(counter)s modules have not been added to the project."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Один модуль не был добавлен в проект."
+msgstr[1] "%(counter)s модулей не были добавлены в проект."
+msgstr[2] "%(counter)s модулей не были добавлены в проект."
+msgstr[3] "%(counter)s модулей не были добавлены в проект."
 
 #: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:4
 #: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:7
@@ -2057,8 +2067,8 @@ msgstr "Проект был создан."
 msgid "Subjects"
 msgstr "Темы"
 
-#: apps/debate/filters.py:21 apps/debate/filters.py:43
-#: apps/topicprio/views.py:30 apps/topicprio/views.py:72
+#: apps/debate/filters.py:22 apps/debate/filters.py:45
+#: apps/topicprio/views.py:31 apps/topicprio/views.py:74
 msgid "Alphabetical"
 msgstr "По алфавиту"
 
@@ -2320,13 +2330,13 @@ msgstr "Отзыв об этой идее"
 msgid "Edit idea"
 msgstr "Изменить идею"
 
-#: apps/ideas/views.py:152 apps/mapideas/views.py:75
+#: apps/ideas/views.py:154 apps/mapideas/views.py:77
 msgid "Your Idea has been deleted"
 msgstr "Ваша идея была удалена"
 
 #: apps/interactiveevents/dashboard.py:16
 msgid "Media"
-msgstr ""
+msgstr "Средства массовой информации"
 
 #: apps/interactiveevents/dashboard.py:42
 msgid "Affiliations"
@@ -2350,11 +2360,11 @@ msgstr "Характеристика"
 
 #: apps/interactiveevents/models.py:89
 msgid "Event image"
-msgstr ""
+msgstr "Фото мероприятия"
 
 #: apps/interactiveevents/models.py:91
 msgid "The image is displayed next to the event description."
-msgstr ""
+msgstr "Фото размещено вслед за описанием мероприятия"
 
 #: apps/interactiveevents/phases.py:16
 msgid "Add question."
@@ -2406,20 +2416,20 @@ msgstr "Осталось %(time_left)s"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:29
 msgid "finished"
-msgstr ""
+msgstr "завершено"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:32
 msgid "Interactive"
-msgstr ""
+msgstr "Интерактивный"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:50
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:81
 msgid "Read Less"
-msgstr ""
+msgstr "Читать меньше"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:62
 msgid "Type of event"
-msgstr ""
+msgstr "Тип мероприятия"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:89
 msgid "Go to event"
@@ -3269,7 +3279,7 @@ msgstr "Открывается в новом окне"
 msgid ""
 "Currently, there are no public participation processes. Please check again "
 "later."
-msgstr ""
+msgstr "В данное время нет процессов участия. Пожалуйста, проверьте позднее."
 
 #: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:93
 #, python-format
@@ -3312,11 +3322,11 @@ msgstr "Информация об организации успешно обно
 msgid "Legal information successfully updated."
 msgstr "Юридическая информация успешно обновлена."
 
-#: apps/projects/admin.py:11
+#: apps/projects/admin.py:13
 msgid "archive"
 msgstr "архив"
 
-#: apps/projects/admin.py:18
+#: apps/projects/admin.py:20
 msgid "dearchive"
 msgstr "разархивировать"
 
@@ -3428,22 +3438,22 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
 #, python-format
 msgid "Welcome to the semi-public project: \"%(project_name)s\""
-msgstr ""
+msgstr "\"%(project_name)s\" добро пожаловать в полу-общественный проект"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
 #, python-format
 msgid "Welcome to the private project: \"%(project_name)s\""
-msgstr ""
+msgstr "\"%(project_name)s\" добро пожаловать в частный проект"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
 #, python-format
 msgid "Link to semi-public project: \"%(project_name)s\""
-msgstr ""
+msgstr "ссылка на полу-общественный проект \"%(project_name)s\""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
 #, python-format
 msgid "Link to private project: \"%(project_name)s\""
-msgstr ""
+msgstr "ссылка на частный проект \"%(project_name)s \""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
 #, python-format
@@ -3451,6 +3461,8 @@ msgid ""
 "you have accepted the invitation to the semi-public project "
 "\"%(project_name)s\". To participate click on \"Go to Project\"."
 msgstr ""
+"Вы приняли приглашение на полу-общественный проект \" %(project_name)s\". "
+"Чтобы участвовать нажмите \"Идти в проект\""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
 #, python-format
@@ -3458,10 +3470,12 @@ msgid ""
 "you have accepted the invitation to the private project \"%(project_name)s"
 "\". To participate click on \"Go to Project\"."
 msgstr ""
+"Вы приняли приглашение на частный проект \" %(project_name)s\". Чтобы "
+"участвовать нажмите \"идти в проект\""
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:11
 msgid "Go to project"
-msgstr ""
+msgstr "Идти в проект"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:13
 #, python-format
@@ -3469,6 +3483,8 @@ msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you accepted the invitation to participate in a private project."
 msgstr ""
+"Это сообщение отправлено %(receiver_mail)s. Это сообщение было отправлено "
+"вам, т.к. вы приняли приглашение участвовать в частном проекте."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:17
 msgid "Project is private."
@@ -3825,7 +3841,7 @@ msgstr "Добавить тему"
 msgid "Edit topic"
 msgstr "Редактировать тему"
 
-#: apps/topicprio/views.py:149
+#: apps/topicprio/views.py:152
 msgid "The topic has been deleted"
 msgstr "Данная тема удалена"
 
@@ -3960,7 +3976,7 @@ msgstr "Пользователь с таким именем уже сущест�
 
 #: apps/users/models.py:30
 msgid "This username is already used as an e-mail address."
-msgstr ""
+msgstr "Имя пользователя уже используется как адрес электронной почты."
 
 #: apps/users/models.py:35
 msgid "Email address"
@@ -4334,7 +4350,7 @@ msgstr "Создать новый проект"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:6
 msgid "Project created"
-msgstr ""
+msgstr "Проект создан"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:7
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:4
@@ -4344,60 +4360,60 @@ msgstr "Создать проект"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:22
 msgid "Fill in project details"
-msgstr ""
+msgstr "Заполните детали проекта"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:31
 msgid "No module created"
-msgstr ""
+msgstr "Модуль не создан"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:33
 msgid "Module created"
-msgstr ""
+msgstr "Модуль создан"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:35
 msgid "Add participation module(s)"
-msgstr ""
+msgstr "Добавьте модул(и) участия"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:42
 msgid "Module not ready to be filled in"
-msgstr ""
+msgstr "Модуль не готов для заполнения"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:44
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:50
 msgid "Fill in module details"
-msgstr ""
+msgstr "Заполните детали модуля"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:46
 msgid "Module ready to be added to project"
-msgstr ""
+msgstr "Модуль готов для дополнения в проект"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:59
 msgid "Module not ready to be added to project"
-msgstr ""
+msgstr "Модуль не готов для дополнения в проект"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:61
 msgid "Show module(s) in project"
-msgstr ""
+msgstr "Показ модул(ей) в проекте"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:63
 msgid "Module added to project"
-msgstr ""
+msgstr "Модуль добавлен в проект"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:65
 msgid "Add module(s) to project"
-msgstr ""
+msgstr "Добавить модул(и) в проект"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:76
 msgid "Publish project"
-msgstr ""
+msgstr "Опубликовать проект"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line_done.html:5
 msgid "Project type has been published"
-msgstr ""
+msgstr "Проект опубликован"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line_done.html:7
 msgid "The project has been published. You can add further modules."
-msgstr ""
+msgstr "Проект опубликован. Вы можете добавить следующие модули."
 
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:54
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:56
