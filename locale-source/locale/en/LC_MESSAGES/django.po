@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-14 11:45+0100\n"
+"POT-Creation-Date: 2022-02-02 15:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -248,8 +248,8 @@ msgid "here you can export all comments"
 msgstr "here you can export all comments"
 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: adhocracy4/dashboard/filter.py:11 apps/debate/filters.py:11
-#: apps/ideas/views.py:27 apps/topicprio/views.py:20
+#: adhocracy4/dashboard/filter.py:11 apps/debate/filters.py:12
+#: apps/ideas/views.py:28 apps/topicprio/views.py:21
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:4
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:10
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:11
@@ -371,11 +371,11 @@ msgid "Please choose a category"
 msgstr "Please choose a category"
 
 #: adhocracy4/comments/serializers.py:82
-#: adhocracy4/comments_async/serializers.py:84
+#: adhocracy4/comments_async/serializers.py:88
 msgid "unknown user"
 msgstr "unknown user"
 
-#: adhocracy4/comments_async/serializers.py:63
+#: adhocracy4/comments_async/serializers.py:67
 msgid "Please choose one or more categories."
 msgstr "Please choose one or more categories."
 
@@ -441,22 +441,22 @@ msgstr "Area settings"
 msgid "Edit area settings"
 msgstr "Edit area settings"
 
-#: adhocracy4/dashboard/filter.py:15 apps/budgeting/views.py:25
+#: adhocracy4/dashboard/filter.py:15 apps/budgeting/views.py:26
 msgid "Archived"
 msgstr "Archived"
 
 #: adhocracy4/dashboard/filter.py:19 adhocracy4/filters/widgets.py:32
-#: apps/budgeting/views.py:29
+#: apps/budgeting/views.py:30
 msgid "All"
 msgstr "All"
 
-#: adhocracy4/dashboard/filter.py:20 apps/budgeting/views.py:30
+#: adhocracy4/dashboard/filter.py:20 apps/budgeting/views.py:31
 msgid "No"
 msgstr "No"
 
 #: adhocracy4/dashboard/filter.py:21
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:14
-#: apps/budgeting/views.py:31
+#: apps/budgeting/views.py:32
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:12
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:14
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:14
@@ -620,7 +620,7 @@ msgstr "Positive ratings"
 msgid "Negative ratings"
 msgstr "Negative ratings"
 
-#: adhocracy4/filters/widgets.py:66
+#: adhocracy4/filters/widgets.py:66 apps/contrib/widgets.py:59
 msgid "Ordering"
 msgstr "Ordering"
 
@@ -908,27 +908,27 @@ msgstr "Choice has to belong to the question set in the url."
 msgid "Only one vote per choice is allowed per user."
 msgstr "Only one vote per choice is allowed per user."
 
-#: adhocracy4/projects/admin.py:8 apps/newsletters/forms.py:31
+#: adhocracy4/projects/admin.py:10 apps/newsletters/forms.py:31
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Project"
 
-#: adhocracy4/projects/admin.py:47 apps/projects/admin.py:40
+#: adhocracy4/projects/admin.py:65 apps/projects/admin.py:58
 msgid "Information and result"
 msgstr "Information and result"
 
-#: adhocracy4/projects/admin.py:50
+#: adhocracy4/projects/admin.py:68
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:43
+#: apps/projects/admin.py:61
 msgid "Settings"
 msgstr "Settings"
 
-#: adhocracy4/projects/admin.py:54 apps/projects/admin.py:48
+#: adhocracy4/projects/admin.py:72 apps/projects/admin.py:66
 msgid "Images"
 msgstr "Images"
 
-#: adhocracy4/projects/admin.py:59 apps/projects/admin.py:53
+#: adhocracy4/projects/admin.py:77 apps/projects/admin.py:71
 #: adhocracy-plus/templates/email_base.html:114
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
@@ -1401,21 +1401,21 @@ msgstr "Edit %(title)s"
 msgid "Edit proposal"
 msgstr "Edit proposal"
 
-#: apps/budgeting/views.py:17 apps/ideas/views.py:31 apps/mapideas/views.py:15
+#: apps/budgeting/views.py:18 apps/ideas/views.py:32 apps/mapideas/views.py:16
 msgid "Most recent"
 msgstr "Most recent"
 
-#: apps/budgeting/views.py:19 apps/ideas/views.py:33 apps/mapideas/views.py:17
-#: apps/topicprio/views.py:31
+#: apps/budgeting/views.py:20 apps/ideas/views.py:34 apps/mapideas/views.py:18
+#: apps/topicprio/views.py:32
 msgid "Most popular"
 msgstr "Most popular"
 
-#: apps/budgeting/views.py:20 apps/debate/filters.py:22 apps/ideas/views.py:34
-#: apps/mapideas/views.py:18 apps/topicprio/views.py:32
+#: apps/budgeting/views.py:21 apps/debate/filters.py:23 apps/ideas/views.py:35
+#: apps/mapideas/views.py:19 apps/topicprio/views.py:33
 msgid "Most commented"
 msgstr "Most commented"
 
-#: apps/budgeting/views.py:93
+#: apps/budgeting/views.py:95
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
 
@@ -1949,8 +1949,8 @@ msgstr "Project was created."
 msgid "Subjects"
 msgstr "Subjects"
 
-#: apps/debate/filters.py:21 apps/debate/filters.py:43
-#: apps/topicprio/views.py:30 apps/topicprio/views.py:72
+#: apps/debate/filters.py:22 apps/debate/filters.py:45
+#: apps/topicprio/views.py:31 apps/topicprio/views.py:74
 msgid "Alphabetical"
 msgstr "Alphabetical"
 
@@ -2208,7 +2208,7 @@ msgstr "Feedback on this idea"
 msgid "Edit idea"
 msgstr "Edit idea"
 
-#: apps/ideas/views.py:152 apps/mapideas/views.py:75
+#: apps/ideas/views.py:154 apps/mapideas/views.py:77
 msgid "Your Idea has been deleted"
 msgstr "Your Idea has been deleted"
 
@@ -3197,11 +3197,11 @@ msgstr "Organisation information successfully updated."
 msgid "Legal information successfully updated."
 msgstr "Legal information successfully updated."
 
-#: apps/projects/admin.py:11
+#: apps/projects/admin.py:13
 msgid "archive"
 msgstr "archive"
 
-#: apps/projects/admin.py:18
+#: apps/projects/admin.py:20
 msgid "dearchive"
 msgstr "dearchive"
 
@@ -3715,7 +3715,7 @@ msgstr "Add Topic"
 msgid "Edit topic"
 msgstr "Edit topic"
 
-#: apps/topicprio/views.py:149
+#: apps/topicprio/views.py:152
 msgid "The topic has been deleted"
 msgstr "The topic has been deleted"
 
