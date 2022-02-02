@@ -244,7 +244,7 @@ MEDIA_URL = '/media/'
 
 IMAGE_ALIASES = {
     '*': {
-        'max_size': 5*10**6,
+        'max_size': 5 * 10**6,
         'fileformats': ('image/png', 'image/jpeg', 'image/gif')
     },
     'heroimage': {'min_resolution': (1500, 500)},
@@ -336,7 +336,8 @@ CKEDITOR_CONFIGS = {
             ['Image'],
             ['NumberedList', 'BulletedList'],
             ['Link', 'Unlink']
-        ]
+        ],
+        'removeDialogTabs': 'image:Link'
     },
     'collapsible-image-editor': {
         'width': '100%',
@@ -352,6 +353,7 @@ CKEDITOR_CONFIGS = {
         ],
         'removePlugins': 'stylesheetparser',
         'extraAllowedContent': 'iframe[*]; div[*]',
+        'removeDialogTabs': 'image:Link'
     },
     'video-editor': {
         'width': '100%',
@@ -366,14 +368,14 @@ CKEDITOR_CONFIGS = {
 }
 
 BLEACH_LIST = {
-    'default' : {
-        'tags': ['p','strong','em','u','ol','li','ul','a'],
+    'default': {
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a'],
         'attributes': {
             'a': ['href', 'rel', 'target'],
         },
     },
     'image-editor': {
-        'tags': ['p','strong','em','u','ol','li','ul','a','img'],
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img'],
         'attributes': {
             'a': ['href', 'rel', 'target'],
             'img': ['src', 'alt', 'style']
@@ -546,8 +548,9 @@ A4_ACTIONS_PHASE_ENDS_HOURS = 48
 
 # Disable CSP by default
 CSP_REPORT_ONLY = True
-CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'data:', 'blob:', '*']
+CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'",
+                   "'unsafe-eval'", 'data:', 'blob:', '*']
 
-SITE_ID = 1 # overwrite this in local.py if needed
+SITE_ID = 1  # overwrite this in local.py if needed
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
