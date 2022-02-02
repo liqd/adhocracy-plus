@@ -8,15 +8,16 @@
 # Katharina Schmid, 2021
 # Кубанычбек Айдаркулов <sleng84@mail.ru>, 2021
 # Luca Thüer, 2021
+# Azamat Abdurakhmanov, 2022
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-14 11:45+0100\n"
+"POT-Creation-Date: 2022-02-02 15:33+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Luca Thüer, 2021\n"
+"Last-Translator: Azamat Abdurakhmanov, 2022\n"
 "Language-Team: Kyrgyz (https://www.transifex.com/liqd/teams/109316/ky/)\n"
 "Language: ky\n"
 "MIME-Version: 1.0\n"
@@ -287,12 +288,12 @@ msgstr "бул жакта сиз бардык идеяларды өткөрө а
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 msgid "here you can export all subjects"
-msgstr ""
+msgstr "Ушул жерге сиз бардык темаларды экспорт кыла аласыз"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
 msgid "here you can export all answers"
-msgstr ""
+msgstr "Ушул жерге сиз бардык жоопторду экспорт кыла аласыз"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
@@ -302,7 +303,7 @@ msgstr "бул жакта сиз бардык пикирлерди өткөрө 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: apps/debate/filters.py:11 apps/ideas/views.py:27 apps/topicprio/views.py:20
+#: apps/debate/filters.py:12 apps/ideas/views.py:28 apps/topicprio/views.py:21
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:4
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:10
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:11
@@ -445,11 +446,11 @@ msgid "Please choose a category"
 msgstr "Сураныч, категорияны тандаңыз"
 
 #: adhocracy4/comments/serializers.py:82
-#: adhocracy4/comments_async/serializers.py:84
+#: adhocracy4/comments_async/serializers.py:88
 msgid "unknown user"
 msgstr "белгисиз колдонуучу "
 
-#: adhocracy4/comments_async/serializers.py:63
+#: adhocracy4/comments_async/serializers.py:67
 msgid "Please choose one or more categories."
 msgstr "Сураныч, бир же бир нече категорияны тандаңыз"
 
@@ -509,31 +510,31 @@ msgstr "Баскычтар тууралуу маалыматты оңдоо"
 
 #: adhocracy4/dashboard/dashboard.py:64
 msgid "Area settings"
-msgstr ""
+msgstr "Аймактарды жайгаштыруу"
 
 #: adhocracy4/dashboard/dashboard.py:65
 msgid "Edit area settings"
-msgstr ""
+msgstr "Аймактарды жайгаштырууну редакциялоо"
 
 #: adhocracy4/dashboard/filter.py:15
-#: apps/budgeting/views.py:25
+#: apps/budgeting/views.py:26
 msgid "Archived"
 msgstr "Архивге киргизилди"
 
 #: adhocracy4/dashboard/filter.py:19
 #: adhocracy4/filters/widgets.py:32
-#: apps/budgeting/views.py:29
+#: apps/budgeting/views.py:30
 msgid "All"
 msgstr "Баардыгы"
 
 #: adhocracy4/dashboard/filter.py:20
-#: apps/budgeting/views.py:30
+#: apps/budgeting/views.py:31
 msgid "No"
 msgstr "Жок"
 
 #: adhocracy4/dashboard/filter.py:21
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:14
-#: apps/budgeting/views.py:31
+#: apps/budgeting/views.py:32
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:12
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:14
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:14
@@ -705,6 +706,7 @@ msgid "Negative ratings"
 msgstr "Терс рейтингдер "
 
 #: adhocracy4/filters/widgets.py:66
+#: apps/contrib/widgets.py:59
 msgid "Ordering"
 msgstr "Тапшырык"
 
@@ -899,23 +901,23 @@ msgstr "Эки датаны тең жазуу керек же дата такы�
 
 #: adhocracy4/polls/api.py:71
 msgid "Please specify your answer."
-msgstr ""
+msgstr "Сураныч, жообуңузду тактап берсениз"
 
 #: adhocracy4/polls/api.py:88
 msgid "Key error for {}"
-msgstr ""
+msgstr "{} катанын ачкычы "
 
 #: adhocracy4/polls/api.py:90
 msgid "Choice not found."
-msgstr ""
+msgstr "Тандоо табылган жок"
 
 #: adhocracy4/polls/api.py:98
 msgid "Duplicate choices detected."
-msgstr ""
+msgstr "Тандоо кайталанганы аныкталды"
 
 #: adhocracy4/polls/api.py:101
 msgid "Multiple choice disabled for question."
-msgstr ""
+msgstr "Суроо үчүн бир нече тандоо өчүрүлгөн"
 
 #: adhocracy4/polls/dashboard.py:15
 #: apps/dashboard/blueprints.py:85
@@ -938,57 +940,63 @@ msgstr "Инсандыкты ырастоочу күбөлүк"
 
 #: adhocracy4/polls/models.py:53
 msgid "Explanation"
-msgstr ""
+msgstr "Түшүндүрүү"
 
 #: adhocracy4/polls/models.py:82
 msgid "Questions with open answers cannot have multiple choices."
-msgstr ""
+msgstr "Ачык жообу бар суроолордо бир нече тандоосу жок"
 
 #: adhocracy4/polls/models.py:87
 msgid ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
 msgstr ""
+"Бир нече жообу бар суроолор ачык суроо боло албайт. Тандоолорду жок кылыңыз "
+"же жаңы суроо жазыңыз"
 
 #: adhocracy4/polls/models.py:152
 #: adhocracy4/polls/models.py:279
 msgid "Answer"
-msgstr ""
+msgstr "Жооп"
 
 #: adhocracy4/polls/models.py:164
 msgid "Only open questions can have answers."
-msgstr ""
+msgstr "Жалан гана ачык суроолор жоопторго ээ"
 
 #: adhocracy4/polls/models.py:201
 msgid "Open questions cannot have choices."
-msgstr ""
+msgstr "Ачык суроолордо тандоо мүмкүнчүлүгү жок"
 
 #: adhocracy4/polls/models.py:206
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
+"\"Башка\" жалгыз гана тандоо боло албайт. Ачык суроолорду колдоңуз же "
+"кошумча тандоолорду жазыңыз"
 
 #: adhocracy4/polls/models.py:213
 msgid "Question already has \"other\" choice."
-msgstr ""
+msgstr "Суроо \"башка\" деген тандоого ээ"
 
 #: adhocracy4/polls/models.py:285
 msgid "Other vote can only be created for vote on \"other\" choice."
 msgstr ""
+"Башка добуш беруу жалаң гана \"башка\" деген тандоого добуш берүү үчүн "
+"жасала алат"
 
 #: adhocracy4/polls/models.py:306
 msgid "other"
-msgstr ""
+msgstr "башка"
 
 #: adhocracy4/polls/phases.py:16
 msgctxt "A4: voting phase name"
 msgid "Voting phase"
-msgstr ""
+msgstr "Добуш берүү фазасы"
 
 #: adhocracy4/polls/phases.py:19
 msgctxt "A4: voting phase description"
 msgid "Answer the questions and comment on the poll."
-msgstr ""
+msgstr "Суроолорго жооп бериңиз жана добуш берүүдө комментарий бериңиз"
 
 #: adhocracy4/polls/phases.py:21
 msgid "polls"
@@ -1005,33 +1013,33 @@ msgstr "Тандоо URL-даректе жазылган суроого тиеш
 
 #: adhocracy4/polls/validators.py:43
 msgid "Only one vote per choice is allowed per user."
-msgstr ""
+msgstr "Бир катышуучуга бир гана добуш берүүгө болот"
 
-#: adhocracy4/projects/admin.py:8
+#: adhocracy4/projects/admin.py:10
 #: apps/newsletters/forms.py:31
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Долбоор "
 
-#: adhocracy4/projects/admin.py:47
-#: apps/projects/admin.py:40
+#: adhocracy4/projects/admin.py:65
+#: apps/projects/admin.py:58
 msgid "Information and result"
 msgstr "Маалымат жана жыйынтык"
 
-#: adhocracy4/projects/admin.py:50
+#: adhocracy4/projects/admin.py:68
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:43
+#: apps/projects/admin.py:61
 msgid "Settings"
 msgstr "Тууралоо "
 
-#: adhocracy4/projects/admin.py:54
-#: apps/projects/admin.py:48
+#: adhocracy4/projects/admin.py:72
+#: apps/projects/admin.py:66
 msgid "Images"
 msgstr "Сүрөттөр"
 
-#: adhocracy4/projects/admin.py:59
-#: apps/projects/admin.py:53 adhocracy-plus/templates/email_base.html:114
+#: adhocracy4/projects/admin.py:77
+#: apps/projects/admin.py:71 adhocracy-plus/templates/email_base.html:114
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "Байланыш маалыматтары"
@@ -1065,7 +1073,7 @@ msgstr "Байланышуу үчүн адис "
 
 #: adhocracy4/projects/models.py:67
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
 #: adhocracy4/projects/models.py:72
 #: apps/projects/templates/a4_candy_projects/project_detail.html:146
@@ -1508,21 +1516,21 @@ msgstr "Оңдоо %(title)s"
 msgid "Edit proposal"
 msgstr "Сунушту оңдоо"
 
-#: apps/budgeting/views.py:17 apps/ideas/views.py:31 apps/mapideas/views.py:15
+#: apps/budgeting/views.py:18 apps/ideas/views.py:32 apps/mapideas/views.py:16
 msgid "Most recent"
 msgstr "Эң акыркылар"
 
-#: apps/budgeting/views.py:19 apps/ideas/views.py:33 apps/mapideas/views.py:17
-#: apps/topicprio/views.py:31
+#: apps/budgeting/views.py:20 apps/ideas/views.py:34 apps/mapideas/views.py:18
+#: apps/topicprio/views.py:32
 msgid "Most popular"
 msgstr "Эң белгилүүлөрү"
 
-#: apps/budgeting/views.py:20 apps/debate/filters.py:22 apps/ideas/views.py:34
-#: apps/mapideas/views.py:18 apps/topicprio/views.py:32
+#: apps/budgeting/views.py:21 apps/debate/filters.py:23 apps/ideas/views.py:35
+#: apps/mapideas/views.py:19 apps/topicprio/views.py:33
 msgid "Most commented"
 msgstr "Эң көп пикир калтырылгандар "
 
-#: apps/budgeting/views.py:93
+#: apps/budgeting/views.py:95
 msgid "Your budget request has been deleted"
 msgstr "Сиздин бюджет сурамыңыз өчүрүлдү"
 
@@ -1904,6 +1912,8 @@ msgid ""
 "Participants can answer open and multiple choice questions and comment on "
 "the poll."
 msgstr ""
+"Катышуучулар ачык суроорлорга жана бир нече жообу бар суроолорго жооп бере "
+"алышат, жана добуш берүүдө комментарий берсе болот"
 
 #: apps/dashboard/blueprints.py:98
 msgid "Participatory budgeting"
@@ -1991,17 +2001,17 @@ msgstr "Модулду кошуу "
 
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:28
 msgid "Are you sure you want to publish your project?"
-msgstr ""
+msgstr "Сиз өз долбооруңузду жарыялоого ишенип турасызбы?"
 
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:29
 msgid "Close"
-msgstr ""
+msgstr "Жабуу"
 
 #: apps/dashboard/templates/a4_candy_dashboard/includes/progress.html:36
 #, python-format
 msgid "One module has not been added to the project."
 msgid_plural "%(counter)s modules have not been added to the project."
-msgstr[0] ""
+msgstr[0] "%(counter)s модулдар долбоорго кошулган жок"
 
 #: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:4
 #: apps/dashboard/templates/a4_candy_dashboard/module_blueprint_list.html:7
@@ -2060,8 +2070,8 @@ msgstr "Долбоор түзүлгөн"
 msgid "Subjects"
 msgstr "Темалар"
 
-#: apps/debate/filters.py:21 apps/debate/filters.py:43
-#: apps/topicprio/views.py:30 apps/topicprio/views.py:72
+#: apps/debate/filters.py:22 apps/debate/filters.py:45
+#: apps/topicprio/views.py:31 apps/topicprio/views.py:74
 msgid "Alphabetical"
 msgstr "Алфавит боюнча "
 
@@ -2320,13 +2330,13 @@ msgstr "Бул идея тууралуу ой-пикир"
 msgid "Edit idea"
 msgstr "Идеяны өзгөртүү "
 
-#: apps/ideas/views.py:152 apps/mapideas/views.py:75
+#: apps/ideas/views.py:154 apps/mapideas/views.py:77
 msgid "Your Idea has been deleted"
 msgstr "Сиздин идея өчүрүлгөн "
 
 #: apps/interactiveevents/dashboard.py:16
 msgid "Media"
-msgstr ""
+msgstr "Массалык маалымат каражаттары"
 
 #: apps/interactiveevents/dashboard.py:42
 msgid "Affiliations"
@@ -2350,11 +2360,11 @@ msgstr "Мүнөздөмө "
 
 #: apps/interactiveevents/models.py:89
 msgid "Event image"
-msgstr ""
+msgstr "Иш-чаранын сүрөтү"
 
 #: apps/interactiveevents/models.py:91
 msgid "The image is displayed next to the event description."
-msgstr ""
+msgstr "Иш-чаранын сүрөтү иш-чаранын аныктамасынын жанында жайгаштырылган"
 
 #: apps/interactiveevents/phases.py:16
 msgid "Add question."
@@ -2410,16 +2420,16 @@ msgstr "Аяктады"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:32
 msgid "Interactive"
-msgstr ""
+msgstr "Интерактивдүү"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:50
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:81
 msgid "Read Less"
-msgstr ""
+msgstr "Азырак окуу"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:62
 msgid "Type of event"
-msgstr ""
+msgstr "Иш-чаранын атын жазыңыз"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:89
 msgid "Go to event"
@@ -3272,6 +3282,8 @@ msgid ""
 "Currently, there are no public participation processes. Please check again "
 "later."
 msgstr ""
+"Азырынча коомдук катышуу процесстери орун алган жок. Сураныч, кийинчерээк "
+"текшериңиз"
 
 #: apps/organisations/templates/a4_candy_organisations/organisation_landing_page.html:93
 #, python-format
@@ -3315,11 +3327,11 @@ msgstr "Уюм тууралуу маалымат ийгиликтүү жаңыл
 msgid "Legal information successfully updated."
 msgstr "Юридикалык маалымат ийгиликтүү жаңыланды"
 
-#: apps/projects/admin.py:11
+#: apps/projects/admin.py:13
 msgid "archive"
 msgstr "архив"
 
-#: apps/projects/admin.py:18
+#: apps/projects/admin.py:20
 msgid "dearchive"
 msgstr "архивден чыгаруу"
 
@@ -3432,22 +3444,22 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
 #, python-format
 msgid "Welcome to the semi-public project: \"%(project_name)s\""
-msgstr ""
+msgstr "\"%(project_name)s\"жарым же аралашкоомдук долбоорго кош келиңиз"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
 #, python-format
 msgid "Welcome to the private project: \"%(project_name)s\""
-msgstr ""
+msgstr "\"%(project_name)s\" жеке долбооруна кош келиңиз"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
 #, python-format
 msgid "Link to semi-public project: \"%(project_name)s\""
-msgstr ""
+msgstr "\" %(project_name)s\" жарым же аралаш коомдук долбоорго шилтеме"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:6
 #, python-format
 msgid "Link to private project: \"%(project_name)s\""
-msgstr ""
+msgstr "\"%(project_name)s\" жеке долбооруна шилтеме"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
 #, python-format
@@ -3455,6 +3467,8 @@ msgid ""
 "you have accepted the invitation to the semi-public project "
 "\"%(project_name)s\". To participate click on \"Go to Project\"."
 msgstr ""
+"Сиз\"%(project_name)s\"жарым же аралаш коомдук долбооруна чакырууну кабыл "
+"алдыңыз. Катышуу үчүн \"Долбоорго кирүү\" баскычын басыңыз"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:8
 #, python-format
@@ -3462,10 +3476,12 @@ msgid ""
 "you have accepted the invitation to the private project \"%(project_name)s"
 "\". To participate click on \"Go to Project\"."
 msgstr ""
+"Сиз \"%(project_name)s\" жеке долбооруна чакырууну кабыл алдыңыз. Катышуу "
+"үчүн \"Долбоорго кирүү\" баскычын басыңыз"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:11
 msgid "Go to project"
-msgstr ""
+msgstr "Долбоорго кирүү"
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:13
 #, python-format
@@ -3473,6 +3489,8 @@ msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you accepted the invitation to participate in a private project."
 msgstr ""
+"Бул электрондук кат %(receiver_mail)sжөнөтүлдү. Бул электрондук кат сиз "
+"жөнөтүлдү, себеби сиз жеке долбоорго чакырууну кабыл алдыңыз. "
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:17
 msgid "Project is private."
@@ -3826,7 +3844,7 @@ msgstr "Теманы кошуу"
 msgid "Edit topic"
 msgstr "Теманы оңдоо "
 
-#: apps/topicprio/views.py:149
+#: apps/topicprio/views.py:152
 msgid "The topic has been deleted"
 msgstr "Бул тема өчүрүлгөн"
 
@@ -3962,7 +3980,7 @@ msgstr "Мындай атка ээ колдонуучу бар. "
 
 #: apps/users/models.py:30
 msgid "This username is already used as an e-mail address."
-msgstr ""
+msgstr "Колдонуучунун аты электрондук дарек катары буга чейин колдонулган"
 
 #: apps/users/models.py:35
 msgid "Email address"
@@ -4336,7 +4354,7 @@ msgstr "Жаңы долбоорду түзүү"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:6
 msgid "Project created"
-msgstr ""
+msgstr "Долбоор түзүлдү"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:7
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:4
@@ -4346,60 +4364,60 @@ msgstr "Долбоорду түзүү"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:22
 msgid "Fill in project details"
-msgstr ""
+msgstr "Долбоордун формасын толтуруңуз"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:31
 msgid "No module created"
-msgstr ""
+msgstr "Эч кандай модуль түзүлгөн жок"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:33
 msgid "Module created"
-msgstr ""
+msgstr "Модуль түзүлдү"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:35
 msgid "Add participation module(s)"
-msgstr ""
+msgstr "Катышуу модул(дарын) кошунуз"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:42
 msgid "Module not ready to be filled in"
-msgstr ""
+msgstr "Модуль азырынча толтура элек"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:44
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:50
 msgid "Fill in module details"
-msgstr ""
+msgstr "Модулдун формасын толтуруңуз"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:46
 msgid "Module ready to be added to project"
-msgstr ""
+msgstr "Модуль долбоорго кошууга даяр"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:59
 msgid "Module not ready to be added to project"
-msgstr ""
+msgstr "Модуль долбоорго кошууга даяр эмес"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:61
 msgid "Show module(s) in project"
-msgstr ""
+msgstr "Долбоордогу модуль(дарды) көрсөтүү"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:63
 msgid "Module added to project"
-msgstr ""
+msgstr "Модуль долбоорго кошулду"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:65
 msgid "Add module(s) to project"
-msgstr ""
+msgstr "Модуль(дарды) долбоорго кошуу"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:76
 msgid "Publish project"
-msgstr ""
+msgstr "Долбоорду жарыялоо"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line_done.html:5
 msgid "Project type has been published"
-msgstr ""
+msgstr "Долбоор жарыяланды"
 
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line_done.html:7
 msgid "The project has been published. You can add further modules."
-msgstr ""
+msgstr "Долбоор жарыяланды. Сиз кошумча модулдарды кошо аласыз"
 
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:54
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:56
