@@ -29,6 +29,13 @@ try:
 except NameError:
     pass
 
+try:
+    CKEDITOR_CONFIGS['collapsible-image-editor']['embed_provider'] = CKEDITOR_URL
+    CKEDITOR_CONFIGS['video-editor']['embed_provider'] = CKEDITOR_URL
+except NameError:
+    pass
+
+
 BASE_URL = 'http://localhost:8004'
 CAPTCHA_URL = 'https://captcheck.netsyms.com/api.php'
 SITE_ID = 1
