@@ -12,6 +12,13 @@
     -webkit-print-color-adjust: exact;
 }
 
+// CKEditor remove url box from image upload dialog box
+.cke_dialog_image_url {
+    .cke_dialog_ui_hbox_first {
+        display: none;
+    }
+}
+
 // safari doesn't allow styling of these otherwise
 // see https://css-tricks.com/webkit-html5-search-inputs/
 // stylelint-disable property-no-vendor-prefix
