@@ -63,7 +63,7 @@
 }
 
 .a4-comments__dropdown {
-    align-content: flex-end;
+    text-align: right;
 }
 
 .a4-comments__filters {
@@ -89,6 +89,13 @@
     position: absolute;
     right: 60px;
     top: 7px;
+}
+
+.a4-comments__action-bar-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .a4-comments__action-bar {
