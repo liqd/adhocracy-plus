@@ -50,3 +50,13 @@ input[type="search"] {
 .map-list [data-map] {
     min-height: 500px;
 }
+
+// stops padding being added by modal when opened
+body:not(.modal) {
+    padding-right: 0 !important;
+}
+
+.modal.fade.show,
+.modal.fade {
+    padding-right: 0 !important;
+}
