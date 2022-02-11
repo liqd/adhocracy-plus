@@ -1,5 +1,7 @@
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from rest_framework import mixins
 from rest_framework import viewsets
+from rest_framework.response import Response
 
 from adhocracy4.api.mixins import ModuleMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
@@ -32,3 +34,24 @@ class IdeaViewSet(ModuleMixin,
             .annotate_negative_rating_count() \
             .order_by('created')
         return ideas
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        data = request.data.copy()
+        # if {image: null} is sent, delete image
+        if 'image' in data and not isinstance(data['image'],
+                                              InMemoryUploadedFile):
+            if instance.image:
+                instance.image.delete()
+            del data['image']
+        serializer = self.get_serializer(instance, data=data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
