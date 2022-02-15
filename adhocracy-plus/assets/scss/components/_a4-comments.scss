@@ -62,6 +62,14 @@
     }
 }
 
+.a4-comments__dropdown-container {
+    margin-right: $spacer;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        margin-right: 0.6 * $spacer; // ensure inline with btns below
+    }
+}
+
 .a4-comments__dropdown {
     text-align: right;
 }
