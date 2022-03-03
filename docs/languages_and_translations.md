@@ -5,6 +5,8 @@ We take care to make all strings in the code (like texts on buttons, headlines t
 The translations for the main branch are done in transifex. If you want to translate A+ into your language, please get in touch: info [at] liqd [dot] net
 
 ## Transifex
+### Install the transifex client if you haven't already
+- see https://github.com/transifex/cli for instructions
 ### No translations have been added locally:
 #### Push new source strings to transifex
 Make branch and create message files with the new strings added during development
