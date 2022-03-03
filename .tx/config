@@ -1,17 +1,17 @@
 [main]
 host = https://www.transifex.com
 
-[adhocracy-plus.django-po]
-file_filter = locale-source/locale/<lang>/LC_MESSAGES/django.po
+[o:liqd:p:adhocracy-plus:r:django-po]
+file_filter  = locale-source/locale/<lang>/LC_MESSAGES/django.po
+source_file  = locale-source/locale/en/LC_MESSAGES/django.po
+source_lang  = en
+type         = PO
 minimum_perc = 0
-source_file = locale-source/locale/en/LC_MESSAGES/django.po
-source_lang = en
-type = PO
 
-[adhocracy-plus.djangojs-po]
-file_filter = locale-source/locale/<lang>/LC_MESSAGES/djangojs.po
+[o:liqd:p:adhocracy-plus:r:djangojs-po]
+file_filter  = locale-source/locale/<lang>/LC_MESSAGES/djangojs.po
+source_file  = locale-source/locale/en/LC_MESSAGES/djangojs.po
+source_lang  = en
+type         = PO
 minimum_perc = 0
-source_file = locale-source/locale/en/LC_MESSAGES/djangojs.po
-source_lang = en
-type = PO
 
