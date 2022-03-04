@@ -528,22 +528,6 @@ A4_DASHBOARD = {
     'BLUEPRINTS': 'apps.dashboard.blueprints.blueprints'
 }
 
-A4_PROJECT_TOPICS = (
-    ('ANT', _('Anti-discrimination')),
-    ('WOR', _('Work & economy')),
-    ('BUI', _('Building & living')),
-    ('EDU', _('Education & research')),
-    ('CHI', _('Children, youth & family')),
-    ('FIN', _('Finances')),
-    ('HEA', _('Health & sports')),
-    ('INT', _('Integration')),
-    ('CUL', _('Culture & leisure')),
-    ('NEI', _('Neighborhood & participation')),
-    ('URB', _('Urban development')),
-    ('ENV', _('Environment & public green space')),
-    ('TRA', _('Traffic'))
-)
-
 A4_ACTIONS_PHASE_ENDS_HOURS = 48
 
 # Disable CSP by default
