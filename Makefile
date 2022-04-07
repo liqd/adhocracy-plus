@@ -20,25 +20,29 @@ help:
 	@echo
 	@echo usage:
 	@echo
-	@echo "  make install         -- install dev setup"
-	@echo "  make clean           -- delete node modules and venv"
-	@echo "  make fixtures        -- load example data"
-	@echo "  make server          -- start a dev server"
-	@echo "  make watch           -- start a dev server and rebuild js and css files on changes"
-	@echo "  make background      -- start background processes"
-	@echo "  make test            -- run all test cases with pytest"
-	@echo "  make test-lastfailed -- run test that failed last"
-	@echo "  make test-clean      -- test on new database"
-	@echo "  make coverage        -- write coverage report to dir htmlcov"
-	@echo "  make lint            -- lint all project files"
-	@echo "  make lint-quick      -- lint all files staged in git"
-	@echo "  make lint-fix      	-- fix linting for all js files staged in git"
-	@echo "  make po              -- create new po files from the source"
-	@echo "  make mo              -- create new mo files from the translated po files"
-	@echo "  make release         -- build everything required for a release"
-	@echo "  make start-postgres  -- start the local postgres cluster"
-	@echo "  make stop-postgres   -- stops the local postgres cluster"
-	@echo "  make create-postgres   -- create the local postgres cluster (only works on ubuntu 20.04)"
+	@echo "  make install         				-- install dev setup"
+	@echo "  make clean           				-- delete node modules and venv"
+	@echo "  make fixtures        				-- load example data"
+	@echo "  make server          				-- start a dev server"
+	@echo "  make watch           				-- start a dev server and rebuild js and css files on changes"
+	@echo "  make background      				-- start background processes"
+	@echo "  make test            				-- run all test cases with pytest"
+	@echo "  make test-lastfailed 				-- run test that failed last"
+	@echo "  make test-clean      				-- test on new database"
+	@echo "  make coverage        				-- write coverage report to dir htmlcov"
+	@echo "  make jest            				-- run js tests with coverage"
+	@echo "  make jest-nocov      				-- run js tests without coverage"
+	@echo "  make jest-debug      				-- run changed tests only, no coverage"
+	@echo "  make jest-updateSnapshots    -- update jest snapshots"
+	@echo "  make lint            				-- lint all project files"
+	@echo "  make lint-quick      				-- lint all files staged in git"
+	@echo "  make lint-fix      					-- fix linting for all js files staged in git"
+	@echo "  make po              				-- create new po files from the source"
+	@echo "  make mo              				-- create new mo files from the translated po files"
+	@echo "  make release         				-- build everything required for a release"
+	@echo "  make start-postgres  				-- start the local postgres cluster"
+	@echo "  make stop-postgres   				-- stops the local postgres cluster"
+	@echo "  make create-postgres   			-- create the local postgres cluster (only works on ubuntu 20.04)"
 	@echo
 
 .PHONY: install
@@ -91,6 +95,22 @@ test-clean:
 .PHONY: coverage
 coverage:
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db --cov --cov-report=html
+
+.PHONY: jest
+jest:
+	npm run test
+
+.PHONY: jest-nocov
+jest-nocov:
+	npm run testNoCov
+
+.PHONY: jest-debug
+jest-debug:
+	npm run testDebug
+
+.PHONY: jest-updateSnapshots
+jest-updateSnapshots:
+	npm run updateSnapshots 
 
 .PHONY: lint
 lint:
