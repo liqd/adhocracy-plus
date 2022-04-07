@@ -76,12 +76,20 @@ jobs:
           isort --diff -c adhocracy-plus tests
           python manage.py makemigrations --dry-run --check --noinput
           flake8 adhocracy-plus tests --exclude migrations,settings
-          npm run lint
       - name: Coveralls
         env:
           GITHUB_TOKEN: ${{ secrets.COV }}
         run: |
           coveralls
+      - name: Run Frontend Tests
+        run: |
+          npm test
+          npm run lint
+      - name: Frontend Coverage
+        uses: artiomtr/jest-coverage-report-action@v2.0-rc.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        if: github.event_name == 'pull_request'
       - name: Deploy
         if: github.ref == 'refs/heads/main'
         env:
