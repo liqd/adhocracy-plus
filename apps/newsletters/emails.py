@@ -22,7 +22,7 @@ class NewsletterEmail(ReportToAdminEmailMixin, Email):
         return super().dispatch(object, *args, **kwargs)
 
     def get_reply_to(self):
-        return ['{} <{}>'.format(self.object.sender_name, self.object.sender)]
+        return [self.object.sender]
 
     def get_organisation(self):
         return self.kwargs['organisation']
