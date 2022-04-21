@@ -1,5 +1,5 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name i18n %}
+{% load i18n %}
 
 {% block headline %}{{ newsletter.subject }}{% endblock %}
 
