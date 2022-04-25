@@ -1,3 +1,4 @@
+import { alert as Alert } from 'adhocracy4'
 const api = require('adhocracy4').api
 const React = require('react')
 const django = require('django')
@@ -5,7 +6,6 @@ const dashboard = require('adhocracy4/adhocracy4/dashboard/assets/dashboard')
 const update = require('immutability-helper')
 const ChapterNav = require('./ChapterNav')
 const ChapterForm = require('./ChapterForm')
-const Alert = require('../../contrib/assets/Alert')
 
 class DocumentManagement extends React.Component {
   constructor (props) {
