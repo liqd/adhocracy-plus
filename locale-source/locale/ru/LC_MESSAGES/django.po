@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-02 15:33+0100\n"
+"POT-Creation-Date: 2022-04-25 13:08+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/liqd/teams/109316/ru/)\n"
@@ -447,11 +447,11 @@ msgid "Please choose a category"
 msgstr "Пожалуйста, выберите категорию"
 
 #: adhocracy4/comments/serializers.py:82
-#: adhocracy4/comments_async/serializers.py:88
+#: adhocracy4/comments_async/serializers.py:97
 msgid "unknown user"
 msgstr "Неизвестный пользователь"
 
-#: adhocracy4/comments_async/serializers.py:67
+#: adhocracy4/comments_async/serializers.py:17
 msgid "Please choose one or more categories."
 msgstr "Выберите одну или несколько категорий"
 
@@ -1021,24 +1021,24 @@ msgid "Project"
 msgstr "Проект"
 
 #: adhocracy4/projects/admin.py:65
-#: apps/projects/admin.py:58
+#: apps/projects/admin.py:42
 msgid "Information and result"
 msgstr "Информация и результат"
 
 #: adhocracy4/projects/admin.py:68
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:61
+#: apps/projects/admin.py:45
 msgid "Settings"
 msgstr "Настройки"
 
 #: adhocracy4/projects/admin.py:72
-#: apps/projects/admin.py:66
+#: apps/projects/admin.py:50
 msgid "Images"
 msgstr "Изображения"
 
 #: adhocracy4/projects/admin.py:77
-#: apps/projects/admin.py:71 adhocracy-plus/templates/email_base.html:114
+#: apps/projects/admin.py:55 adhocracy-plus/templates/email_base.html:114
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "Контактные данные"
@@ -2235,10 +2235,6 @@ msgstr ""
 "Вы должны войти. При нажатии «Войти» откроется всплывающее окно, чтобы вы "
 "могли безопасно войти в систему. Вы хотите войти сейчас?"
 
-#: apps/embed/templates/a4_candy_embed/includes/project_embed_code.html:4
-msgid "Embed Code"
-msgstr "Код для вставки"
-
 #: apps/ideas/models.py:35 apps/topicprio/models.py:35
 msgid "Add image"
 msgstr "Добавить изображение"
@@ -3322,11 +3318,11 @@ msgstr "Информация об организации успешно обно
 msgid "Legal information successfully updated."
 msgstr "Юридическая информация успешно обновлена."
 
-#: apps/projects/admin.py:13
+#: apps/projects/admin.py:12
 msgid "archive"
 msgstr "архив"
 
-#: apps/projects/admin.py:20
+#: apps/projects/admin.py:19
 msgid "dearchive"
 msgstr "разархивировать"
 
@@ -3606,6 +3602,7 @@ msgstr "Перейти ко входу"
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:15
 #: apps/users/templates/a4_candy_users/indicator.html:58
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:21
 #: adhocracy-plus/templates/account/signup.html:4
 #: adhocracy-plus/templates/account/signup.html:7
 #: adhocracy-plus/templates/account/signup.html:65
@@ -4140,134 +4137,82 @@ msgstr "Кыргызский"
 msgid "Russian"
 msgstr "Русский"
 
-#: adhocracy-plus/config/settings/base.py:343
-#: adhocracy-plus/config/settings/base.py:358
+#: adhocracy-plus/config/settings/base.py:345
+#: adhocracy-plus/config/settings/base.py:361
 msgid "Rich text editor"
 msgstr "Редактор форматированного текста"
 
-#: adhocracy-plus/config/settings/base.py:460
+#: adhocracy-plus/config/settings/base.py:463
 msgid "suggestion"
 msgstr "Предложение"
 
-#: adhocracy-plus/config/settings/base.py:461
+#: adhocracy-plus/config/settings/base.py:464
 msgid "note"
 msgstr "Примечание"
 
-#: adhocracy-plus/config/settings/base.py:462
+#: adhocracy-plus/config/settings/base.py:465
 msgid "question"
 msgstr "Вопрос"
 
-#: adhocracy-plus/config/settings/base.py:502
+#: adhocracy-plus/config/settings/base.py:505
 msgid "Pin without icon"
 msgstr "Закрепить без значка"
 
-#: adhocracy-plus/config/settings/base.py:503
+#: adhocracy-plus/config/settings/base.py:506
 msgid "Diamond"
 msgstr "Алмаз"
 
-#: adhocracy-plus/config/settings/base.py:504
+#: adhocracy-plus/config/settings/base.py:507
 msgid "Triangle up"
 msgstr "Треугольник вверх"
 
-#: adhocracy-plus/config/settings/base.py:505
+#: adhocracy-plus/config/settings/base.py:508
 msgid "Triangle down"
 msgstr "Треугольник вниз"
 
-#: adhocracy-plus/config/settings/base.py:506
+#: adhocracy-plus/config/settings/base.py:509
 msgid "Ellipse"
 msgstr "Эллипс"
 
-#: adhocracy-plus/config/settings/base.py:507
+#: adhocracy-plus/config/settings/base.py:510
 msgid "Semi circle"
 msgstr "Полукруг"
 
-#: adhocracy-plus/config/settings/base.py:508
+#: adhocracy-plus/config/settings/base.py:511
 msgid "Hexagon"
 msgstr "Шестиугольник"
 
-#: adhocracy-plus/config/settings/base.py:509
+#: adhocracy-plus/config/settings/base.py:512
 msgid "Rhomboid"
 msgstr "Ромбоид"
 
-#: adhocracy-plus/config/settings/base.py:510
+#: adhocracy-plus/config/settings/base.py:513
 msgid "Star"
 msgstr "Звезда"
 
-#: adhocracy-plus/config/settings/base.py:511
+#: adhocracy-plus/config/settings/base.py:514
 msgid "Square"
 msgstr "Квадрат"
 
-#: adhocracy-plus/config/settings/base.py:512
+#: adhocracy-plus/config/settings/base.py:515
 msgid "Octothorpe"
 msgstr "Решетка"
 
-#: adhocracy-plus/config/settings/base.py:513
+#: adhocracy-plus/config/settings/base.py:516
 msgid "Rectangle"
 msgstr "Прямоугольник"
 
-#: adhocracy-plus/config/settings/base.py:514
+#: adhocracy-plus/config/settings/base.py:517
 msgid "Circle"
 msgstr "Круг"
 
-#: adhocracy-plus/config/settings/base.py:515
+#: adhocracy-plus/config/settings/base.py:518
 msgid "Right triangle"
 msgstr "Прямоугольный треугольник"
 
-#: adhocracy-plus/config/settings/base.py:516
+#: adhocracy-plus/config/settings/base.py:519
 msgid "Zigzag"
 msgstr "Зигзаг"
-
-#: adhocracy-plus/config/settings/base.py:530
-msgid "Anti-discrimination"
-msgstr "Антидискриминация"
-
-#: adhocracy-plus/config/settings/base.py:531
-msgid "Work & economy"
-msgstr "Работа и экономика"
-
-#: adhocracy-plus/config/settings/base.py:532
-msgid "Building & living"
-msgstr "Строительство и проживание"
-
-#: adhocracy-plus/config/settings/base.py:533
-msgid "Education & research"
-msgstr "Образование и исследования"
-
-#: adhocracy-plus/config/settings/base.py:534
-msgid "Children, youth & family"
-msgstr "Дети, молодежь и семья"
-
-#: adhocracy-plus/config/settings/base.py:535
-msgid "Finances"
-msgstr "Финансы"
-
-#: adhocracy-plus/config/settings/base.py:536
-msgid "Health & sports"
-msgstr "Здоровье и спорт"
-
-#: adhocracy-plus/config/settings/base.py:537
-msgid "Integration"
-msgstr "Интеграция"
-
-#: adhocracy-plus/config/settings/base.py:538
-msgid "Culture & leisure"
-msgstr "Культура и отдых"
-
-#: adhocracy-plus/config/settings/base.py:539
-msgid "Neighborhood & participation"
-msgstr "Соседство и участие"
-
-#: adhocracy-plus/config/settings/base.py:540
-msgid "Urban development"
-msgstr "Городское развитие"
-
-#: adhocracy-plus/config/settings/base.py:541
-msgid "Environment & public green space"
-msgstr "Окружающая среда и общественные зеленые насаждения"
-
-#: adhocracy-plus/config/settings/base.py:542
-msgid "Traffic"
-msgstr "Загруженность дорог"
 
 #: adhocracy-plus/templates/403.html:7
 msgid "You are not allowed to access this page."
@@ -4624,6 +4569,7 @@ msgstr ""
 "вопросы, свяжитесь с нами через%(contact_email)s"
 
 #: adhocracy-plus/templates/account/email/password_reset_key.en.email:4
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:4
 #, python-format
 msgid "Reset password request for %(current_site)s"
 msgstr "Запрос сброса пароля для%(current_site)s"
@@ -4645,6 +4591,7 @@ msgstr ""
 "игнорировать это письмо, и ваш %(current_site)sпароль останется неизменным."
 
 #: adhocracy-plus/templates/account/email/password_reset_key.en.email:11
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:6
 msgid "Reset password"
 msgstr "Сброс пароля"
 
@@ -4656,6 +4603,36 @@ msgid ""
 msgstr ""
 "Это электронное письмо было отправлено на%(useremail)s. Вы получили это "
 "электронное письмо, потому что ваш пароль на%(current_site)s был изменен."
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:9
+#, python-format
+msgid ""
+"You are receiving this e-mail because you or someone else has requested a\n"
+"password for your user account. However, we do not have any record of a "
+"user\n"
+"with email %(email)s in our database."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:13
+msgid ""
+"This mail can be safely ignored if you did not request a password reset."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:15
+msgid "If it was you, you can sign up for an account using the link below."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:17
+#, python-format
+msgid "If you need assistance, please contact %(contact_email)s."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:23
+#, python-format
+msgid ""
+"This email was sent to %(email)s. You have received the e-mail because the "
+"reset of your password has been requested on %(current_site)s."
+msgstr ""
 
 #: adhocracy-plus/templates/account/email_confirm.html:4
 #: adhocracy-plus/templates/account/email_confirm.html:7
@@ -4954,6 +4931,48 @@ msgstr "Войти в систему через учетную запись в �
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Войти в систему через"
+
+#~ msgid "Embed Code"
+#~ msgstr "Код для вставки"
+
+#~ msgid "Anti-discrimination"
+#~ msgstr "Антидискриминация"
+
+#~ msgid "Work & economy"
+#~ msgstr "Работа и экономика"
+
+#~ msgid "Building & living"
+#~ msgstr "Строительство и проживание"
+
+#~ msgid "Education & research"
+#~ msgstr "Образование и исследования"
+
+#~ msgid "Children, youth & family"
+#~ msgstr "Дети, молодежь и семья"
+
+#~ msgid "Finances"
+#~ msgstr "Финансы"
+
+#~ msgid "Health & sports"
+#~ msgstr "Здоровье и спорт"
+
+#~ msgid "Integration"
+#~ msgstr "Интеграция"
+
+#~ msgid "Culture & leisure"
+#~ msgstr "Культура и отдых"
+
+#~ msgid "Neighborhood & participation"
+#~ msgstr "Соседство и участие"
+
+#~ msgid "Urban development"
+#~ msgstr "Городское развитие"
+
+#~ msgid "Environment & public green space"
+#~ msgstr "Окружающая среда и общественные зеленые насаждения"
+
+#~ msgid "Traffic"
+#~ msgstr "Загруженность дорог"
 
 #~ msgid "Areasettings"
 #~ msgstr "Область отображения"
