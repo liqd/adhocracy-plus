@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-02 15:33+0100\n"
+"POT-Creation-Date: 2022-04-25 13:08+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Katharina Lindenlaub, 2020\n"
 "Language-Team: Turkish (https://www.transifex.com/liqd/teams/109316/tr/)\n"
@@ -425,11 +425,11 @@ msgid "Please choose a category"
 msgstr ""
 
 #: adhocracy4/comments/serializers.py:82
-#: adhocracy4/comments_async/serializers.py:88
+#: adhocracy4/comments_async/serializers.py:97
 msgid "unknown user"
 msgstr ""
 
-#: adhocracy4/comments_async/serializers.py:67
+#: adhocracy4/comments_async/serializers.py:17
 msgid "Please choose one or more categories."
 msgstr ""
 
@@ -977,24 +977,24 @@ msgid "Project"
 msgstr ""
 
 #: adhocracy4/projects/admin.py:65
-#: apps/projects/admin.py:58
+#: apps/projects/admin.py:42
 msgid "Information and result"
 msgstr ""
 
 #: adhocracy4/projects/admin.py:68
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:61
+#: apps/projects/admin.py:45
 msgid "Settings"
 msgstr ""
 
 #: adhocracy4/projects/admin.py:72
-#: apps/projects/admin.py:66
+#: apps/projects/admin.py:50
 msgid "Images"
 msgstr ""
 
 #: adhocracy4/projects/admin.py:77
-#: apps/projects/admin.py:71 adhocracy-plus/templates/email_base.html:114
+#: apps/projects/admin.py:55 adhocracy-plus/templates/email_base.html:114
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr ""
@@ -2107,10 +2107,6 @@ msgid ""
 "sign in safely. Do you want to login now?"
 msgstr ""
 
-#: apps/embed/templates/a4_candy_embed/includes/project_embed_code.html:4
-msgid "Embed Code"
-msgstr ""
-
 #: apps/ideas/models.py:35 apps/topicprio/models.py:35
 msgid "Add image"
 msgstr ""
@@ -3106,11 +3102,11 @@ msgstr ""
 msgid "Legal information successfully updated."
 msgstr ""
 
-#: apps/projects/admin.py:13
+#: apps/projects/admin.py:12
 msgid "archive"
 msgstr ""
 
-#: apps/projects/admin.py:20
+#: apps/projects/admin.py:19
 msgid "dearchive"
 msgstr ""
 
@@ -3368,6 +3364,7 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:15
 #: apps/users/templates/a4_candy_users/indicator.html:58
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:21
 #: adhocracy-plus/templates/account/signup.html:4
 #: adhocracy-plus/templates/account/signup.html:7
 #: adhocracy-plus/templates/account/signup.html:65
@@ -3855,133 +3852,81 @@ msgstr ""
 msgid "Russian"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:343
-#: adhocracy-plus/config/settings/base.py:358
+#: adhocracy-plus/config/settings/base.py:345
+#: adhocracy-plus/config/settings/base.py:361
 msgid "Rich text editor"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:460
+#: adhocracy-plus/config/settings/base.py:463
 msgid "suggestion"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:461
+#: adhocracy-plus/config/settings/base.py:464
 msgid "note"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:462
+#: adhocracy-plus/config/settings/base.py:465
 msgid "question"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:502
+#: adhocracy-plus/config/settings/base.py:505
 msgid "Pin without icon"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:503
+#: adhocracy-plus/config/settings/base.py:506
 msgid "Diamond"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:504
+#: adhocracy-plus/config/settings/base.py:507
 msgid "Triangle up"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:505
+#: adhocracy-plus/config/settings/base.py:508
 msgid "Triangle down"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:506
+#: adhocracy-plus/config/settings/base.py:509
 msgid "Ellipse"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:507
+#: adhocracy-plus/config/settings/base.py:510
 msgid "Semi circle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:508
+#: adhocracy-plus/config/settings/base.py:511
 msgid "Hexagon"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:509
+#: adhocracy-plus/config/settings/base.py:512
 msgid "Rhomboid"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:510
+#: adhocracy-plus/config/settings/base.py:513
 msgid "Star"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:511
+#: adhocracy-plus/config/settings/base.py:514
 msgid "Square"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:512
+#: adhocracy-plus/config/settings/base.py:515
 msgid "Octothorpe"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:513
+#: adhocracy-plus/config/settings/base.py:516
 msgid "Rectangle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:514
+#: adhocracy-plus/config/settings/base.py:517
 msgid "Circle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:515
+#: adhocracy-plus/config/settings/base.py:518
 msgid "Right triangle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:516
+#: adhocracy-plus/config/settings/base.py:519
 msgid "Zigzag"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:530
-msgid "Anti-discrimination"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:531
-msgid "Work & economy"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:532
-msgid "Building & living"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:533
-msgid "Education & research"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:534
-msgid "Children, youth & family"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:535
-msgid "Finances"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:536
-msgid "Health & sports"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:537
-msgid "Integration"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:538
-msgid "Culture & leisure"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:539
-msgid "Neighborhood & participation"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:540
-msgid "Urban development"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:541
-msgid "Environment & public green space"
-msgstr ""
-
-#: adhocracy-plus/config/settings/base.py:542
-msgid "Traffic"
 msgstr ""
 
 #: adhocracy-plus/templates/403.html:7
@@ -4318,6 +4263,7 @@ msgid ""
 msgstr ""
 
 #: adhocracy-plus/templates/account/email/password_reset_key.en.email:4
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:4
 #, python-format
 msgid "Reset password request for %(current_site)s"
 msgstr ""
@@ -4336,6 +4282,7 @@ msgid ""
 msgstr ""
 
 #: adhocracy-plus/templates/account/email/password_reset_key.en.email:11
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:6
 msgid "Reset password"
 msgstr ""
 
@@ -4344,6 +4291,36 @@ msgstr ""
 msgid ""
 "This email was sent to %(useremail)s. You receive this email because your "
 "password on %(current_site)s has been reset."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:9
+#, python-format
+msgid ""
+"You are receiving this e-mail because you or someone else has requested a\n"
+"password for your user account. However, we do not have any record of a "
+"user\n"
+"with email %(email)s in our database."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:13
+msgid ""
+"This mail can be safely ignored if you did not request a password reset."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:15
+msgid "If it was you, you can sign up for an account using the link below."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:17
+#, python-format
+msgid "If you need assistance, please contact %(contact_email)s."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:23
+#, python-format
+msgid ""
+"This email was sent to %(email)s. You have received the e-mail because the "
+"reset of your password has been requested on %(current_site)s."
 msgstr ""
 
 #: adhocracy-plus/templates/account/email_confirm.html:4

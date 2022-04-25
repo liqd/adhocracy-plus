@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-02 15:33+0100\n"
+"POT-Creation-Date: 2022-04-25 13:08+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Azamat Abdurakhmanov, 2022\n"
 "Language-Team: Kyrgyz (https://www.transifex.com/liqd/teams/109316/ky/)\n"
@@ -446,11 +446,11 @@ msgid "Please choose a category"
 msgstr "Сураныч, категорияны тандаңыз"
 
 #: adhocracy4/comments/serializers.py:82
-#: adhocracy4/comments_async/serializers.py:88
+#: adhocracy4/comments_async/serializers.py:97
 msgid "unknown user"
 msgstr "белгисиз колдонуучу "
 
-#: adhocracy4/comments_async/serializers.py:67
+#: adhocracy4/comments_async/serializers.py:17
 msgid "Please choose one or more categories."
 msgstr "Сураныч, бир же бир нече категорияны тандаңыз"
 
@@ -1022,24 +1022,24 @@ msgid "Project"
 msgstr "Долбоор "
 
 #: adhocracy4/projects/admin.py:65
-#: apps/projects/admin.py:58
+#: apps/projects/admin.py:42
 msgid "Information and result"
 msgstr "Маалымат жана жыйынтык"
 
 #: adhocracy4/projects/admin.py:68
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:61
+#: apps/projects/admin.py:45
 msgid "Settings"
 msgstr "Тууралоо "
 
 #: adhocracy4/projects/admin.py:72
-#: apps/projects/admin.py:66
+#: apps/projects/admin.py:50
 msgid "Images"
 msgstr "Сүрөттөр"
 
 #: adhocracy4/projects/admin.py:77
-#: apps/projects/admin.py:71 adhocracy-plus/templates/email_base.html:114
+#: apps/projects/admin.py:55 adhocracy-plus/templates/email_base.html:114
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "Байланыш маалыматтары"
@@ -2232,10 +2232,6 @@ msgstr ""
 "Сиз киришиңиз керек. \"Кирүү\" баскычына басууда кошумча терезе пайда болот, "
 "ал системага коопсуз кирүү үчүн ылайыкталган. Сиз азыр киргиңиз келеби? "
 
-#: apps/embed/templates/a4_candy_embed/includes/project_embed_code.html:4
-msgid "Embed Code"
-msgstr "Тиркөө үчүн код"
-
 #: apps/ideas/models.py:35 apps/topicprio/models.py:35
 msgid "Add image"
 msgstr "Сүрөттү кошуу "
@@ -3327,11 +3323,11 @@ msgstr "Уюм тууралуу маалымат ийгиликтүү жаңыл
 msgid "Legal information successfully updated."
 msgstr "Юридикалык маалымат ийгиликтүү жаңыланды"
 
-#: apps/projects/admin.py:13
+#: apps/projects/admin.py:12
 msgid "archive"
 msgstr "архив"
 
-#: apps/projects/admin.py:20
+#: apps/projects/admin.py:19
 msgid "dearchive"
 msgstr "архивден чыгаруу"
 
@@ -3609,6 +3605,7 @@ msgstr "Кирүүгө өтүү "
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:15
 #: apps/users/templates/a4_candy_users/indicator.html:58
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:21
 #: adhocracy-plus/templates/account/signup.html:4
 #: adhocracy-plus/templates/account/signup.html:7
 #: adhocracy-plus/templates/account/signup.html:65
@@ -4144,134 +4141,82 @@ msgstr "Кыргызча"
 msgid "Russian"
 msgstr "Орусча"
 
-#: adhocracy-plus/config/settings/base.py:343
-#: adhocracy-plus/config/settings/base.py:358
+#: adhocracy-plus/config/settings/base.py:345
+#: adhocracy-plus/config/settings/base.py:361
 msgid "Rich text editor"
 msgstr "Форматталган текстти оңдоочу"
 
-#: adhocracy-plus/config/settings/base.py:460
+#: adhocracy-plus/config/settings/base.py:463
 msgid "suggestion"
 msgstr "Сунуш "
 
-#: adhocracy-plus/config/settings/base.py:461
+#: adhocracy-plus/config/settings/base.py:464
 msgid "note"
 msgstr "Эскертүү"
 
-#: adhocracy-plus/config/settings/base.py:462
+#: adhocracy-plus/config/settings/base.py:465
 msgid "question"
 msgstr "Суроо"
 
-#: adhocracy-plus/config/settings/base.py:502
+#: adhocracy-plus/config/settings/base.py:505
 msgid "Pin without icon"
 msgstr "Белгисиз тиркөө"
 
-#: adhocracy-plus/config/settings/base.py:503
+#: adhocracy-plus/config/settings/base.py:506
 msgid "Diamond"
 msgstr "Алмаз"
 
-#: adhocracy-plus/config/settings/base.py:504
+#: adhocracy-plus/config/settings/base.py:507
 msgid "Triangle up"
 msgstr "Үч бурчтук өйдө "
 
-#: adhocracy-plus/config/settings/base.py:505
+#: adhocracy-plus/config/settings/base.py:508
 msgid "Triangle down"
 msgstr "Үч бурчтук ылдый"
 
-#: adhocracy-plus/config/settings/base.py:506
+#: adhocracy-plus/config/settings/base.py:509
 msgid "Ellipse"
 msgstr "Эллипс"
 
-#: adhocracy-plus/config/settings/base.py:507
+#: adhocracy-plus/config/settings/base.py:510
 msgid "Semi circle"
 msgstr "Жарым  айлана"
 
-#: adhocracy-plus/config/settings/base.py:508
+#: adhocracy-plus/config/settings/base.py:511
 msgid "Hexagon"
 msgstr "Алты бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:509
+#: adhocracy-plus/config/settings/base.py:512
 msgid "Rhomboid"
 msgstr "Ромбоид"
 
-#: adhocracy-plus/config/settings/base.py:510
+#: adhocracy-plus/config/settings/base.py:513
 msgid "Star"
 msgstr "Жылдыз"
 
-#: adhocracy-plus/config/settings/base.py:511
+#: adhocracy-plus/config/settings/base.py:514
 msgid "Square"
 msgstr "Төрт бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:512
+#: adhocracy-plus/config/settings/base.py:515
 msgid "Octothorpe"
 msgstr "Торчо"
 
-#: adhocracy-plus/config/settings/base.py:513
+#: adhocracy-plus/config/settings/base.py:516
 msgid "Rectangle"
 msgstr "Тик бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:514
+#: adhocracy-plus/config/settings/base.py:517
 msgid "Circle"
 msgstr "Айлана"
 
-#: adhocracy-plus/config/settings/base.py:515
+#: adhocracy-plus/config/settings/base.py:518
 msgid "Right triangle"
 msgstr "Тик бурчтуу үч бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:516
+#: adhocracy-plus/config/settings/base.py:519
 msgid "Zigzag"
 msgstr "Ийри-буйру сызык"
-
-#: adhocracy-plus/config/settings/base.py:530
-msgid "Anti-discrimination"
-msgstr "Кемсинтүүгө каршы"
-
-#: adhocracy-plus/config/settings/base.py:531
-msgid "Work & economy"
-msgstr "Жумуш жана экономика"
-
-#: adhocracy-plus/config/settings/base.py:532
-msgid "Building & living"
-msgstr "Курулуш жана жашоо"
-
-#: adhocracy-plus/config/settings/base.py:533
-msgid "Education & research"
-msgstr "Билим берүү жана изилдөөлөр"
-
-#: adhocracy-plus/config/settings/base.py:534
-msgid "Children, youth & family"
-msgstr "Балдар, жаштар жана үй-бүлө"
-
-#: adhocracy-plus/config/settings/base.py:535
-msgid "Finances"
-msgstr "Каржы"
-
-#: adhocracy-plus/config/settings/base.py:536
-msgid "Health & sports"
-msgstr "Ден соолук жана спорт"
-
-#: adhocracy-plus/config/settings/base.py:537
-msgid "Integration"
-msgstr "Интеграция"
-
-#: adhocracy-plus/config/settings/base.py:538
-msgid "Culture & leisure"
-msgstr "Маданият жана эс алуу"
-
-#: adhocracy-plus/config/settings/base.py:539
-msgid "Neighborhood & participation"
-msgstr "Коңшулук жана катышуу"
-
-#: adhocracy-plus/config/settings/base.py:540
-msgid "Urban development"
-msgstr "Шаардык өнүгүү"
-
-#: adhocracy-plus/config/settings/base.py:541
-msgid "Environment & public green space"
-msgstr "Айлана-чөйрө жана коомдук жашылдандыруу "
-
-#: adhocracy-plus/config/settings/base.py:542
-msgid "Traffic"
-msgstr "Жолдогу тыгындар"
 
 #: adhocracy-plus/templates/403.html:7
 msgid "You are not allowed to access this page."
@@ -4627,6 +4572,7 @@ msgstr ""
 "биз менен %(contact_email)sаркылуу байланышыңыз. "
 
 #: adhocracy-plus/templates/account/email/password_reset_key.en.email:4
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:4
 #, python-format
 msgid "Reset password request for %(current_site)s"
 msgstr "%(current_site)s үчүн сыр сөздү жокко чыгаруу сурамы"
@@ -4649,6 +4595,7 @@ msgstr ""
 "Сиздин %(current_site)s сыр сөзүңүз  өзгөрбөйт. "
 
 #: adhocracy-plus/templates/account/email/password_reset_key.en.email:11
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:6
 msgid "Reset password"
 msgstr "Сыр сөздү жокко чыгаруу"
 
@@ -4660,6 +4607,36 @@ msgid ""
 msgstr ""
 "Бул электрондук кат %(useremail)s жиберилген. Сиз бул катты  "
 "%(current_site)sда сыр сөзүңүз өзгөргөнү үчүн алдыңыз. "
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:9
+#, python-format
+msgid ""
+"You are receiving this e-mail because you or someone else has requested a\n"
+"password for your user account. However, we do not have any record of a "
+"user\n"
+"with email %(email)s in our database."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:13
+msgid ""
+"This mail can be safely ignored if you did not request a password reset."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:15
+msgid "If it was you, you can sign up for an account using the link below."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:17
+#, python-format
+msgid "If you need assistance, please contact %(contact_email)s."
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:23
+#, python-format
+msgid ""
+"This email was sent to %(email)s. You have received the e-mail because the "
+"reset of your password has been requested on %(current_site)s."
+msgstr ""
 
 #: adhocracy-plus/templates/account/email_confirm.html:4
 #: adhocracy-plus/templates/account/email_confirm.html:7
@@ -4959,6 +4936,48 @@ msgstr "Социалдык тармактагы каттоо эсеби аркы
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "аркылуу системага кирүү "
+
+#~ msgid "Embed Code"
+#~ msgstr "Тиркөө үчүн код"
+
+#~ msgid "Anti-discrimination"
+#~ msgstr "Кемсинтүүгө каршы"
+
+#~ msgid "Work & economy"
+#~ msgstr "Жумуш жана экономика"
+
+#~ msgid "Building & living"
+#~ msgstr "Курулуш жана жашоо"
+
+#~ msgid "Education & research"
+#~ msgstr "Билим берүү жана изилдөөлөр"
+
+#~ msgid "Children, youth & family"
+#~ msgstr "Балдар, жаштар жана үй-бүлө"
+
+#~ msgid "Finances"
+#~ msgstr "Каржы"
+
+#~ msgid "Health & sports"
+#~ msgstr "Ден соолук жана спорт"
+
+#~ msgid "Integration"
+#~ msgstr "Интеграция"
+
+#~ msgid "Culture & leisure"
+#~ msgstr "Маданият жана эс алуу"
+
+#~ msgid "Neighborhood & participation"
+#~ msgstr "Коңшулук жана катышуу"
+
+#~ msgid "Urban development"
+#~ msgstr "Шаардык өнүгүү"
+
+#~ msgid "Environment & public green space"
+#~ msgstr "Айлана-чөйрө жана коомдук жашылдандыруу "
+
+#~ msgid "Traffic"
+#~ msgstr "Жолдогу тыгындар"
 
 #~ msgid "Areasettings"
 #~ msgstr "Чагылдыруу бөлүгү"
