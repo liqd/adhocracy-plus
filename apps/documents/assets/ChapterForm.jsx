@@ -1,7 +1,7 @@
+import { errorList as ErrorList } from 'adhocracy4'
 const React = require('react')
 const FlipMove = require('react-flip-move').default
 const django = require('django')
-const ErrorList = require('../../contrib/assets/ErrorList')
 const ParagraphForm = require('./ParagraphForm')
 
 const ChapterForm = (props) => {

@@ -1,6 +1,6 @@
+import { errorList as ErrorList } from 'adhocracy4'
 const React = require('react')
 const django = require('django')
-const ErrorList = require('../../contrib/assets/ErrorList')
 
 const ckGet = function (id) {
   return window.CKEDITOR.instances[id]
