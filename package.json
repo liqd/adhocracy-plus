@@ -83,7 +83,7 @@
     "lint-staged": "lint-staged",
     "lint-fix": "eslint --fix --ext .js,.jsx .",
     "postinstall": "husky install",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "testDebug": "jest -o --coverage=false",
     "testNoCov": "jest --coverage=false",
     "updateSnapshots": "jest -u --coverage=false"
