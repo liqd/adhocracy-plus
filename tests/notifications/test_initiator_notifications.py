@@ -45,7 +45,7 @@ def test_notify_on_project_deleted(client, project):
 
 @pytest.mark.django_db
 def test_notify_on_project_deleted_no_orga(client, project):
-    """Check if initiator gets email on project delete."""
+    """Check no email or error when project is deleted with organisation."""
     organisation = project.organisation
     organisation.delete()
 

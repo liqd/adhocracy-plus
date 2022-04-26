@@ -29,7 +29,7 @@ def test_notify_creator(idea, comment_factory):
 
 @pytest.mark.django_db
 def test_notify_creator_exclude_moderator(idea, comment_factory, user):
-    """Check if moderators are excluded."""
+    """Check if moderators are excluded from creator notifications."""
     creator_moderator = idea.creator
     idea.project.moderators.add(creator_moderator)
     comment_factory(content_object=idea)
@@ -45,7 +45,7 @@ def test_notify_creator_exclude_moderator(idea, comment_factory, user):
 
 @pytest.mark.django_db
 def test_notify_creator_exclude_own_comment(idea, comment_factory):
-    """Check if creators get emails on comment create."""
+    """Check if creators does not get email on own comment create."""
     creator = idea.creator
     comment_factory(content_object=idea, creator=creator)
 
