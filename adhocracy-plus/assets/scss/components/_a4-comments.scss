@@ -44,7 +44,7 @@
     margin: 1.5 * $spacer 0 1.5 * $spacer 0;
 
     button {
-        @extend .btn--light;
+        @extend .btn--no-border;
     }
 }
 
@@ -66,12 +66,21 @@
     margin-right: $spacer;
 
     @media screen and (min-width: $breakpoint-xs) {
-        margin-right: 0.6 * $spacer; // ensure inline with btns below
+        margin-right: 0; // ensure inline with btns below
     }
 }
 
 .a4-comments__dropdown {
     text-align: right;
+
+    button {
+        @extend .btn--no-border;
+    }
+
+    i {
+        transform: rotate(90deg);
+        padding: 0.5 * $spacer;
+    }
 }
 
 .a4-comments__filters {
@@ -275,12 +284,8 @@
     color: $gray;
 }
 
-.a4-comments__filters__show-btn {
-    border: none;
-
-    i {
-        padding-right: 0.5 * $spacer;
-    }
+.a4-comments__filters__show-btn > i {
+    padding-right: 0.5 * $spacer;
 }
 
 .a4-comments__char-count {

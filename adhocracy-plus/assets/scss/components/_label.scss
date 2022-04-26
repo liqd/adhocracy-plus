@@ -44,20 +44,23 @@
     text-transform: uppercase;
 }
 
-.label--consideration {
+// stylelint-disable selector-class-pattern
+// class names are coming from django
+.label--CONSIDERATION {
     background-color: $feedback-color-consideration;
     color: contrast-color($feedback-color-consideration);
 }
 
-.label--rejected {
+.label--REJECTED {
     background-color: $feedback-color-rejected;
     color: contrast-color($feedback-color-rejected);
 }
 
-.label--accepted {
+.label--ACCEPTED {
     background-color: $feedback-color-accepted;
     color: contrast-color($feedback-color-accepted);
 }
+// stylelint-enable
 
 @media screen and (max-width: $breakpoint-xs-down) {
     .label--big {
