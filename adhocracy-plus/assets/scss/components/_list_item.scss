@@ -1,5 +1,5 @@
 .list-item {
-    padding: 0.7em $padding;
+    padding: 1.5 * $padding;
     display: block;
     position: relative;
     border: 1px solid $gray-lightest;
@@ -14,10 +14,6 @@
 
     &.selected:focus {
         outline: none;
-    }
-
-    &:hover {
-        box-shadow: 0 2px 26px 0 rgba(0, 0, 0, 0.12);
     }
 
     &:hover .list-item__hover {
