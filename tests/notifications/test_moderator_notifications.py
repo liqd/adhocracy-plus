@@ -3,8 +3,8 @@ from django.core import mail
 
 
 @pytest.mark.django_db
-def test_notify_idea_creator(idea, comment_factory):
-    """Check if moderator gets email on comment create."""
+def test_notify_moderator_on_create(idea, comment_factory):
+    """Check if moderator gets email on idea and comment create."""
     moderator = idea.project.moderators.first()
     comment_factory(content_object=idea)
 
