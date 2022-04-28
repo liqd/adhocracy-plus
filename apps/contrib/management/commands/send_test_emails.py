@@ -15,7 +15,6 @@ from apps.cms.contacts.models import FormPage
 from apps.ideas.models import Idea
 from apps.notifications import emails as notification_emails
 from apps.offlineevents.models import OfflineEvent
-from apps.projects import emails as project_emails
 from apps.projects import models as project_models
 from apps.users.emails import EmailAplus as Email
 
@@ -73,6 +72,7 @@ class Command(BaseCommand):
 
         self._send_invitation_private_project()
         self._send_invitation_moderator()
+        self._send_create_project()
         self._send_delete_project()
 
         self._send_form_mail()
@@ -238,6 +238,21 @@ class Command(BaseCommand):
             template_name='a4_candy_projects/emails/invite_moderator'
         )
 
+    def _send_create_project(self):
+        project = Project.objects.first()
+        if not project:
+            self.stderr.write('At least one project is required')
+            return
+        TestEmail.send(
+            project,
+            project=project,
+            creator=User.objects.first(),
+            receiver=[self.user],
+            template_name=(notification_emails.
+                           NotifyInitiatorsOnProjectCreatedEmail.
+                           template_name)
+        )
+
     def _send_delete_project(self):
         project = Project.objects.first()
         if not project:
@@ -246,9 +261,10 @@ class Command(BaseCommand):
         TestEmail.send(
             project,
             name=project.name,
-            organisation=project.organisation,
             receiver=[self.user],
-            template_name=project_emails.DeleteProjectEmail.template_name
+            template_name=(notification_emails.
+                           NotifyInitiatorsOnProjectDeletedEmail.
+                           template_name)
         )
 
     def _send_form_mail(self):
