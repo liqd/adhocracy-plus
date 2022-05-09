@@ -1,4 +1,24 @@
-// icon in categories dropdown
+.dropdown {
+    position: relative;
+    text-align: left;
+
+    i.fa-chevron-up {
+        position: absolute;
+        top: 0;
+        right: 1.5 * $spacer;
+        transition: transform 0.3s;
+    }
+
+    &.collapsed i.fa-chevron-up {
+        transform: rotate(-180deg);
+    }
+}
+
+.dropdown-item {
+    font-family: $font-family-base;
+}
+
+// icon in categories dropdown a4
 .dropdown-item__icon {
     max-width: 2 * $spacer;
 }
@@ -20,8 +40,11 @@
     position: relative;
     padding: 0;
     margin: 0;
-    border-radius: 2px;
+    border-radius: 0;
     border: 1px solid $text-color;
+    min-width: reset; // ensure filter widths align with buttons
+    width: 100%;
+    max-width: 12rem;
 
     a,
     button {
