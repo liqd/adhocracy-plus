@@ -72,3 +72,11 @@ class MemberAdmin(admin.ModelAdmin):
         'id', '__str__', 'organisation', 'member'
     )
     raw_id_fields = ('member',)
+
+
+@admin.register(models.OrganisationTermsOfUse)
+class OrganisationTermsOfUseAdmin(admin.ModelAdmin):
+    list_display = (
+        'id', 'organisation', 'user', 'has_agreed'
+    )
+    raw_id_fields = ('user',)
