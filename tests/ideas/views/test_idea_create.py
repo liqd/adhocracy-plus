@@ -29,6 +29,7 @@ def test_create_view(client, phase_factory, idea_factory, user,
             'name': 'Idea',
             'description': 'description',
             'category': category.pk,
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, idea)
         assert redirect_target(response) == 'idea-detail'
@@ -78,6 +79,7 @@ def test_user_can_create_idea_during_active_phase(client, phase_factory, user,
             'name': 'Idea',
             'description': 'description',
             'category': category.pk,
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, idea)
         assert response.status_code == 302
@@ -128,6 +130,7 @@ def test_admin_can_create_idea_in_wrong_phase(client, phase_factory,
             'name': 'Idea',
             'description': 'description',
             'category': category.pk,
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, idea)
         assert response.status_code == 302

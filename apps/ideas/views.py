@@ -109,6 +109,11 @@ class IdeaCreateView(AbstractIdeaCreateView):
     permission_required = 'a4_candy_ideas.add_idea'
     template_name = 'a4_candy_ideas/idea_create_form.html'
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
 
 class AbstractIdeaUpdateView(ProjectMixin,
                              rules_mixins.PermissionRequiredMixin,
@@ -130,6 +135,11 @@ class IdeaUpdateView(AbstractIdeaUpdateView):
     form_class = forms.IdeaForm
     permission_required = 'a4_candy_ideas.change_idea'
     template_name = 'a4_candy_ideas/idea_update_form.html'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
 
 class AbstractIdeaDeleteView(ProjectMixin,
