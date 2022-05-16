@@ -247,3 +247,23 @@ class Member(models.Model):
 
     def __str__(self):
         return '{}_{}'.format(self.organisation, self.member)
+
+
+class OrganisationTermsOfUse(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    organisation = models.ForeignKey(
+        settings.A4_ORGANISATIONS_MODEL,
+        on_delete=models.CASCADE,
+    )
+    has_agreed = models.BooleanField(
+        default=False,
+    )
+
+    class Meta:
+        unique_together = [('user', 'organisation')]
+
+    def __str__(self):
+        return '{}_{}'.format(self.organisation, self.user)
