@@ -9,6 +9,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.images.fields import ConfiguredImageField
+from apps.organisations.models import OrganisationTermsOfUse
 
 from . import USERNAME_INVALID_MESSAGE
 from . import USERNAME_REGEX
@@ -148,3 +149,10 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     def get_absolute_url(self):
         return reverse('profile', args=[str(self.username)])
+
+    def has_agreed_on_org_terms(self, organisation):
+        return OrganisationTermsOfUse.objects.filter(
+            user=self,
+            organisation=organisation,
+            has_agreed=True
+        ).exists()

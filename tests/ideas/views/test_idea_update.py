@@ -30,6 +30,7 @@ def test_creator_can_update_during_active_phase(client,
             'name': 'Another Idea',
             'description': 'changed description',
             'category': category.pk,
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, data)
         assert redirect_target(response) == 'idea-detail'
@@ -61,6 +62,7 @@ def test_creator_cannot_update_in_wrong_phase(client,
             'name': 'Another Idea',
             'description': 'changed description',
             'category': category.pk,
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, data)
         assert response.status_code == 403
@@ -90,6 +92,7 @@ def test_moderator_can_update_during_wrong_phase(client,
             'name': 'Another Idea',
             'description': 'changed description',
             'category': category.pk,
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, data)
         assert redirect_target(response) == 'idea-detail'
@@ -113,7 +116,8 @@ def test_creator_cannot_update(client, idea_factory):
     client.login(username=user.email, password='password')
     data = {
         'name': 'Another Idea',
-        'description': 'changed description'
+        'description': 'changed description',
+        'organisation_terms_of_use': True,
     }
     response = client.post(url, data)
     assert response.status_code == 403
@@ -134,7 +138,8 @@ def test_moderators_can_always_update(client, idea_factory):
     client.login(username=moderator.email, password='password')
     data = {
         'name': 'Another Idea',
-        'description': 'changed description'
+        'description': 'changed description',
+        'organisation_terms_of_use': True,
     }
     response = client.post(url, data)
     assert redirect_target(response) == 'idea-detail'
