@@ -1,15 +1,15 @@
 {% load i18n %}
 
-<div class="filter-bar" role="group" aria-label="{% trans 'Filter bar '%}">
+<div class="filter-bar__spaced" role="group" aria-label="{% trans 'Filter bar '%}">
     {% for field in filter.form %}
         {% if field.name != 'ordering' %}
-        <div class="me-sm-1 mt-2 mt-sm-0">
+        <div class="me-sm-1 mt-2">
             {{ field }}
         </div>
         {% endif %}
     {% endfor %}
 
-    <div class="ms-auto mt-2 mt-sm-0">
+    <div class="ms-sm-auto mt-2">
         {{ filter.form.ordering }}
     </div>
 </div>

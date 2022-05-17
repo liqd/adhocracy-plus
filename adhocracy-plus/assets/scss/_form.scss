@@ -163,7 +163,25 @@ div.cke_focus {
     margin-left: -2px !important;
 }
 
-.filter-bar {
+.filter-bar__spaced {
     margin-bottom: 0.5 * $spacer;
     display: flex;
+    flex-wrap: wrap;
+
+    div,
+    .dropdown > button {
+        min-width: 100%;
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .filter-bar__spaced {
+        margin-bottom: 0.5 * $spacer;
+        display: flex;
+
+        div,
+        .dropdown > button {
+            min-width: revert;
+        }
+    }
 }
