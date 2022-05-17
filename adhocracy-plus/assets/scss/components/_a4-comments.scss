@@ -42,10 +42,6 @@
 
 .a4-comments__filters__parent {
     margin: 1.5 * $spacer 0 1.5 * $spacer 0;
-
-    button {
-        @extend .btn--no-border;
-    }
 }
 
 .a4-comments__filters__parent--closed {
@@ -55,6 +51,8 @@
 }
 
 .a4-comments__filters__btn {
+    @extend .btn--transparent;
+
     min-width: 100%;
 
     .fa-check {
@@ -284,8 +282,12 @@
     color: $gray;
 }
 
-.a4-comments__filters__show-btn > i {
-    padding-right: 0.5 * $spacer;
+.a4-comments__filters__show-btn {
+    @extend .btn--transparent;
+
+    & > i {
+        padding-right: 0.5 * $spacer;
+    }
 }
 
 .a4-comments__char-count {
