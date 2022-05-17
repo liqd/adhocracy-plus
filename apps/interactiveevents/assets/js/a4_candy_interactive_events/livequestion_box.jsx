@@ -58,7 +58,7 @@ export default class QuestionBox extends React.Component {
     this.setState({
       filterChanged: true,
       categoryName: newName,
-      category: category
+      category
     })
   }
 
@@ -66,7 +66,7 @@ export default class QuestionBox extends React.Component {
     const displayNotHiddenOnly = !this.state.displayNotHiddenOnly
     this.setState({
       filterChanged: true,
-      displayNotHiddenOnly: displayNotHiddenOnly
+      displayNotHiddenOnly
     })
   }
 
@@ -74,7 +74,7 @@ export default class QuestionBox extends React.Component {
     const displayOnShortlist = !this.state.displayOnShortlist
     this.setState({
       filterChanged: true,
-      displayOnShortlist: displayOnShortlist
+      displayOnShortlist
     })
   }
 
@@ -82,7 +82,7 @@ export default class QuestionBox extends React.Component {
     const orderedByLikes = !this.state.orderedByLikes
     this.setState({
       orderingChanged: true,
-      orderedByLikes: orderedByLikes
+      orderedByLikes
     })
   }
 
@@ -122,7 +122,7 @@ export default class QuestionBox extends React.Component {
     const filteredQuestions = this.filterQuestions(this.state.questions)
     this.setState({
       filterChanged: false,
-      filteredQuestions: filteredQuestions
+      filteredQuestions
     })
   }
 
@@ -166,14 +166,14 @@ export default class QuestionBox extends React.Component {
 
   handleLike (id, value) {
     const url = this.props.likes_api_url.replace('LIVEQUESTIONID', id)
-    const data = { value: value }
+    const data = { value }
     return updateItem(data, url, 'POST')
   }
 
   togglePollingPaused () {
     const pollingPaused = !this.state.pollingPaused
     this.setState({
-      pollingPaused: pollingPaused
+      pollingPaused
     })
   }
 
