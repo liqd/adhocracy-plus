@@ -5,6 +5,7 @@ from allauth.account.forms import LoginForm
 from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from captcha.fields import CaptchaField
+from captcha.fields import CaptchaTextInput
 from django import forms
 from django.conf import settings
 from django.contrib.auth import forms as auth_forms
@@ -17,6 +18,9 @@ from apps.organisations.models import Organisation
 from apps.users.models import User
 
 logger = logging.getLogger(__name__)
+
+class CustomCaptchaTextInput(CaptchaTextInput):
+    template_name = 'custom_field.html'
 
 
 class DefaultLoginForm(LoginForm):
@@ -41,7 +45,7 @@ class DefaultSignupForm(SignupForm):
                     'additional information via email.'),
         required=False
     )
-    captcha = CaptchaField()
+    captcha = CaptchaField(widget=CustomCaptchaTextInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
