@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'capture_tag',
     'background_task',
     'parler',
+    'captcha',
 
     # Wagtail cms components
     'wagtail.contrib.forms',
@@ -539,3 +540,6 @@ CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'",
 SITE_ID = 1  # overwrite this in local.py if needed
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+CAPTCHA_FLITE_PATH = 'flite'
+CAPTCHA_NOISE_FUNCTIONS = (['captcha.helpers.noise_null'])

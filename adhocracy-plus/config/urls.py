@@ -123,6 +123,7 @@ urlpatterns = [
              include(('apps.debate.urls', 'a4_candy_debate'),
                      namespace='a4_candy_debate')),
     ])),
+    path('captcha/', include('captcha.urls')),
     path('sitemap.xml', static_sitemap_index, name='static-sitemap-index'),
     path('sitemap-wagtail.xml', wagtail_sitemap, name='wagtail-sitemap'),
     path('sitemap-organisations.xml', organisations_sitemap_index,

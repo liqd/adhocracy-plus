@@ -4,6 +4,7 @@ import xmltodict
 from allauth.account.forms import LoginForm
 from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
+from captcha.fields import CaptchaField
 from django import forms
 from django.conf import settings
 from django.contrib.auth import forms as auth_forms
@@ -11,7 +12,6 @@ from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from zeep import Client
 
-from apps.captcha.fields import CaptcheckCaptchaField
 from apps.organisations.models import Member
 from apps.organisations.models import Organisation
 from apps.users.models import User
@@ -41,7 +41,7 @@ class DefaultSignupForm(SignupForm):
                     'additional information via email.'),
         required=False
     )
-    captcha = CaptcheckCaptchaField(label=_('I am not a robot'))
+    captcha = CaptchaField()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
