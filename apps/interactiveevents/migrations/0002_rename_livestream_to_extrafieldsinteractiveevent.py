@@ -10,7 +10,6 @@ class Migration(migrations.Migration):
         ('a4modules', '0005_module_is_draft'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('a4_candy_interactive_events', '0001_initial'),
-        ('a4_candy_questions', '0003_move_data'),
     ]
 
     operations = [
