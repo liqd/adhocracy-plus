@@ -1,0 +1,185 @@
+// stylelint-disable
+// This file is from a legacy version of sass-planifolia repository
+// sass-planifolio: v0.6
+////
+/// @group grid
+///
+/// There are already so many grid systems out there. So why write yet another
+/// one? Why not?
+///
+/// The math behind grids is extremely simple, so you should be able to come up
+/// with some custom mixins for your project in less than 5 minutes. The
+/// complexity in many frameworks comes from a flexibility that you will
+/// probably not need.
+///
+/// This module collects all the best practices I found around the topic of
+/// grids. Most importantly, it offers `calc()` based gutters with arbitrary
+/// units.  Please, do not feel pressured to use this, but maybe it is
+/// interesting to read.
+///
+/// Many grid systems offer classes that you can apply directly to your HTML.
+/// This is inflexible and violates against separation of content and
+/// presentation. So they are out.
+///
+/// There are basically 4 options how to do grids:
+///
+/// - Inline has the issue that whitespace is significant, so it violates the
+///   separation of content and presentation.
+/// - CSS Grid and Flexbox are expressive enough to be used without the overhead
+///   of a grid system.
+/// - Floats were the implementation of choice for quite some time, but they are
+///   not very robust and prone to rounding errors.
+/// - Isolation is an extension of floats that is much more robust by specifying
+///   the position of each cell independently of the others. This is the method
+///   that is used here.
+///
+/// Then, there is the topic of gutters. With inline and float, the gutters
+/// influence the position of subsequent cells, so it is quite complex to get
+/// them right. With isolation, this is much simpler and more flexible.
+///
+/// With this module, you can use gutters of any unit (e.g. em or rem).
+/// However, you also need to define a fallback for browsers that do not
+/// provide `calc()`.
+///
+/// You can use the `grid-span($width, $position)` mixin or use the atomic
+/// mixins directly. Note that you have to clear the container yourself.
+///
+/// More high-level functionality (e.g. responsive layouts) can easily be added
+/// on top of this. This module already contains a `grid-same-with()` mixin that
+/// covers some usecases.
+////
+
+/// Default configuration.
+///
+/// Most mixins and functions accept a map that can overwrite these values
+/// locally.
+///
+/// @prop {number} columns [12] - Total number of columns.
+/// @prop {width} gutter [1rem] - Gutter width.
+/// @prop {width} gutter-fallback [2%] - Gutter width if `calc()` is
+///   not available. Must be a percentage.
+$grid: (
+    "columns": 12,
+    "gutter": 1rem,
+    "gutter-fallback": 2%,
+);
+
+@function _grid-get($key, $settings: ()) {
+    @if map-has-key($settings, $key) {
+        @return map-get($settings, $key);
+    }
+
+    @else {
+        @return map-get($grid, $key);
+    }
+}
+
+/// Set default value in $grid.
+///
+/// @param {string} $key
+/// @param {any} $value
+@mixin grid-set($key, $value) {
+    @if map-has-key($grid, $key) {
+        $grid: map-merge($grid, ($key: $value)) !global;
+    }
+
+    @else {
+        @error "grid setting does not exist: #{$key}";
+    }
+}
+
+@function _grid-width($w, $gutter, $settings) {
+    @return (100% + $gutter) * $w - $gutter;
+}
+
+@function _grid-width-mixed($w, $gutter, $settings) {
+    @return calc((100% + #{$gutter}) * #{$w} - #{$gutter});
+}
+
+@function _grid-position($p, $gutter, $settings) {
+    @return (100% + $gutter) * $p;
+}
+
+@function _grid-position-mixed($p, $gutter, $settings) {
+    @return calc((100% + #{$gutter}) * #{$p});
+}
+
+/// Atomic width mixin.
+///
+/// @param {number} $width - Number of columns.
+/// @param {map} $settings [()]
+@mixin grid-width($width, $settings: ()) {
+    $columns: _grid-get("columns", $settings);
+    $gutter: _grid-get("gutter", $settings);
+    $gutter-fallback: _grid-get("gutter-fallback", $settings);
+    $w: $width / $columns;
+
+    @if unit($gutter) == "%" {
+        width: _grid-width($w, $gutter, $settings);
+    }
+
+    @else {
+        width: _grid-width($w, $gutter-fallback, $settings);
+        width: _grid-width-mixed($w, $gutter, $settings);
+    }
+}
+
+/// Atomic position mixin.
+///
+/// @param {number} $position - Number of columns (starting from 0).
+/// @param {map} $settings [()]
+@mixin grid-position($position, $settings: ()) {
+    $columns: _grid-get("columns", $settings);
+    $gutter: _grid-get("gutter", $settings);
+    $gutter-fallback: _grid-get("gutter-fallback", $settings);
+    $p: $position / $columns;
+
+    @if unit($gutter) == "%" {
+        margin-left: _grid-position($p, $gutter, $settings);
+    }
+
+    @else {
+        margin-left: _grid-position($p, $gutter-fallback, $settings);
+        margin-left: _grid-position-mixed($p, $gutter, $settings);
+    }
+}
+
+/// Basic cell styling.
+///
+/// @param {map} $settings [()]
+@mixin grid-cell($settings: ()) {
+    float: left;
+    margin-right: -100%;
+}
+
+/// Shortcut for a cell.
+///
+/// Note that you need to clear the container yourself.
+///
+/// @param {number} $width - Number of columns.
+/// @param {number} $position - Number of columns (starting from 0).
+/// @param {map} $settings [()]
+@mixin grid-span($width, $position, $settings: ()) {
+    @include grid-cell($settings);
+    @include grid-width($width, $settings);
+    @include grid-position($position, $settings);
+}
+
+/// Layout $n cells per row with equal width.
+///
+/// @param {number} $n - Number of cells per row.
+/// @param {map} $settings [()]
+@mixin grid-same-width($n, $settings: ()) {
+    $columns: _grid-get("columns", $settings);
+    $width: $columns / $n;
+
+    @include grid-cell($settings);
+    @include grid-width($width, $settings);
+
+    @for $i from 1 through $n {
+        &:nth-child(#{$n}n+#{$i}) {
+            @include grid-position($width * ($i - 1), $settings);
+            clear: if($i == 1, both, none);
+        }
+    }
+}

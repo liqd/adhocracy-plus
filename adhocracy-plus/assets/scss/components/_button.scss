@@ -1,6 +1,6 @@
 @mixin button-color($color, $color-active) {
     $color-focus: mix($color, $color-active, 50%);
-    $color-contrast: contrast-color($color);
+    $color-contrast: color($color);
 
     border-color: $color;
     background-color: $color;
@@ -10,13 +10,13 @@
     &:focus {
         border-color: $color-focus;
         background-color: $color-focus;
-        color: contrast-color($color-focus);
+        color: color($color-focus);
     }
 
     &:active {
         border-color: $color-active;
         background-color: $color-active;
-        color: contrast-color($color-active);
+        color: color($color-active);
     }
 
     &.is-disabled,
@@ -297,7 +297,7 @@
 
 @media print {
     .btn {
-        background-color: contrast-color($print-black);
+        background-color: color($print-black);
         color: $print-black;
         border-color: $border-color;
     }
