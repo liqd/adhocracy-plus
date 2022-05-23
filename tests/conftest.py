@@ -27,6 +27,7 @@ register(factories.UserFactory, 'user2')
 register(factories.AdminFactory, 'admin')
 register(factories.OrganisationFactory)
 register(factories.MemberFactory)
+register(factories.OrganisationTermsOfUseFactory)
 
 register(a4_factories.PhaseFactory)
 register(a4_factories.PhaseContentFactory)
