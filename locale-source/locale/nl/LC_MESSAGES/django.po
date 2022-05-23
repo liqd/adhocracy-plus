@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-25 13:08+0200\n"
+"POT-Creation-Date: 2022-05-23 08:06+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Joop Laan <joop@interconnecting.systems>, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/liqd/teams/109316/nl/)\n"
@@ -2347,11 +2347,11 @@ msgstr "Groepering bewerken"
 msgid "Affiliation"
 msgstr "Groepering"
 
-#: apps/interactiveevents/models.py:47 apps/questions/models.py:46
+#: apps/interactiveevents/models.py:47
 msgid "Question"
 msgstr "Vraag"
 
-#: apps/interactiveevents/models.py:55 apps/questions/models.py:54
+#: apps/interactiveevents/models.py:55
 msgid "Characteristic"
 msgstr "Kenmerk"
 
@@ -2401,8 +2401,8 @@ msgid " Live now"
 msgstr "Nu live"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:9
-msgid "During this event you can hand in questions with your smartphone"
-msgstr "Tijdens dit evenement kunt u vragen sturen met uw smartphone"
+msgid "During this event you can ask questions live"
+msgstr ""
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:25
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
@@ -2577,6 +2577,10 @@ msgstr "Ontvangers zijn alle gebruikers die het volgende project volgen:"
 #: apps/newsletters/forms.py:38
 msgid "Organisation"
 msgstr "Organisatie"
+
+#: apps/newsletters/forms.py:46
+msgid "Select a Project"
+msgstr ""
 
 #: apps/newsletters/models.py:19
 msgid "Users following a specific project"
@@ -4127,100 +4131,100 @@ msgstr "Deze gebruiker is nog in geen enkel project actief."
 msgid "No activity yet. "
 msgstr "Nog geen activiteit. "
 
-#: adhocracy-plus/config/settings/base.py:205
+#: adhocracy-plus/config/settings/base.py:203
 msgid "English"
 msgstr "Engels"
 
-#: adhocracy-plus/config/settings/base.py:206
+#: adhocracy-plus/config/settings/base.py:204
 msgid "German"
 msgstr "Duits"
 
-#: adhocracy-plus/config/settings/base.py:207
+#: adhocracy-plus/config/settings/base.py:205
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: adhocracy-plus/config/settings/base.py:208
+#: adhocracy-plus/config/settings/base.py:206
 msgid "Kyrgyz"
 msgstr "Kirgizisch"
 
-#: adhocracy-plus/config/settings/base.py:209
+#: adhocracy-plus/config/settings/base.py:207
 msgid "Russian"
 msgstr "Russisch"
 
-#: adhocracy-plus/config/settings/base.py:345
-#: adhocracy-plus/config/settings/base.py:361
+#: adhocracy-plus/config/settings/base.py:343
+#: adhocracy-plus/config/settings/base.py:359
 msgid "Rich text editor"
 msgstr "Tekstverwerker met opmaak"
 
-#: adhocracy-plus/config/settings/base.py:463
+#: adhocracy-plus/config/settings/base.py:461
 msgid "suggestion"
 msgstr "suggestie"
 
-#: adhocracy-plus/config/settings/base.py:464
+#: adhocracy-plus/config/settings/base.py:462
 msgid "note"
 msgstr "notitie"
 
-#: adhocracy-plus/config/settings/base.py:465
+#: adhocracy-plus/config/settings/base.py:463
 msgid "question"
 msgstr "vraag"
 
-#: adhocracy-plus/config/settings/base.py:505
+#: adhocracy-plus/config/settings/base.py:503
 msgid "Pin without icon"
 msgstr "Markeer zonder icoon"
 
-#: adhocracy-plus/config/settings/base.py:506
+#: adhocracy-plus/config/settings/base.py:504
 msgid "Diamond"
 msgstr "Diamant"
 
-#: adhocracy-plus/config/settings/base.py:507
+#: adhocracy-plus/config/settings/base.py:505
 msgid "Triangle up"
 msgstr "Driehoek naar boven"
 
-#: adhocracy-plus/config/settings/base.py:508
+#: adhocracy-plus/config/settings/base.py:506
 msgid "Triangle down"
 msgstr "Driehoek naar beneden"
 
-#: adhocracy-plus/config/settings/base.py:509
+#: adhocracy-plus/config/settings/base.py:507
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: adhocracy-plus/config/settings/base.py:510
+#: adhocracy-plus/config/settings/base.py:508
 msgid "Semi circle"
 msgstr "Halve cirkel"
 
-#: adhocracy-plus/config/settings/base.py:511
+#: adhocracy-plus/config/settings/base.py:509
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: adhocracy-plus/config/settings/base.py:512
+#: adhocracy-plus/config/settings/base.py:510
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: adhocracy-plus/config/settings/base.py:513
+#: adhocracy-plus/config/settings/base.py:511
 msgid "Star"
 msgstr "Ster"
 
-#: adhocracy-plus/config/settings/base.py:514
+#: adhocracy-plus/config/settings/base.py:512
 msgid "Square"
 msgstr "Vierkant"
 
-#: adhocracy-plus/config/settings/base.py:515
+#: adhocracy-plus/config/settings/base.py:513
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: adhocracy-plus/config/settings/base.py:516
+#: adhocracy-plus/config/settings/base.py:514
 msgid "Rectangle"
 msgstr "Rechthoek"
 
-#: adhocracy-plus/config/settings/base.py:517
+#: adhocracy-plus/config/settings/base.py:515
 msgid "Circle"
 msgstr "Cirkel"
 
-#: adhocracy-plus/config/settings/base.py:518
+#: adhocracy-plus/config/settings/base.py:516
 msgid "Right triangle"
 msgstr "Rechter driehoek"
 
-#: adhocracy-plus/config/settings/base.py:519
+#: adhocracy-plus/config/settings/base.py:517
 msgid "Zigzag"
 msgstr "Zigzag"
 
@@ -4945,53 +4949,8 @@ msgstr "Inloggen met social media account"
 msgid "Login with "
 msgstr "Inloggen met "
 
-#~ msgid "Embed Code"
-#~ msgstr "Embed-code"
-
-#~ msgid "Anti-discrimination"
-#~ msgstr "Anti-discriminatie"
-
-#~ msgid "Work & economy"
-#~ msgstr "Werk & economie"
-
-#~ msgid "Building & living"
-#~ msgstr "Bouwen & wonen"
-
-#~ msgid "Education & research"
-#~ msgstr "Onderwijs & onderzoek"
-
-#~ msgid "Children, youth & family"
-#~ msgstr "Kinderen, jeugd & gezin"
-
-#~ msgid "Finances"
-#~ msgstr "Financiën"
-
-#~ msgid "Health & sports"
-#~ msgstr "Gezondheid & sport"
-
-#~ msgid "Integration"
-#~ msgstr "Integration"
-
-#~ msgid "Culture & leisure"
-#~ msgstr "Cultuur & vrije tijd"
-
-#~ msgid "Neighborhood & participation"
-#~ msgstr "Buurt & participatie"
-
-#~ msgid "Urban development"
-#~ msgstr "Stedelijke ontwikkeling"
-
-#~ msgid "Environment & public green space"
-#~ msgstr "Milieu & openbaar groen"
-
-#~ msgid "Traffic"
-#~ msgstr "Verkeer"
-
-#~ msgid "Areasettings"
-#~ msgstr "Gebiedsinstellingen"
-
-#~ msgid "Edit areasettings"
-#~ msgstr "Gebiedsinstellingen bewerken"
+#~ msgid "During this event you can hand in questions with your smartphone"
+#~ msgstr "Tijdens dit evenement kunt u vragen sturen met uw smartphone"
 
 #~ msgid ""
 #~ "Participants can answer one or more questions with predefined choices."
