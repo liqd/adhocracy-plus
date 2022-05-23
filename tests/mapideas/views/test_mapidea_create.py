@@ -31,7 +31,8 @@ def test_create_view(client, phase_factory, map_idea_factory, user,
             'description': 'description',
             'category': category.pk,
             'point': (0, 0),
-            'point_label': 'somewhere'
+            'point_label': 'somewhere',
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, data)
         assert redirect_target(response) == 'mapidea-detail'
@@ -84,7 +85,8 @@ def test_user_can_create_mapidea_during_active_phase(client, phase_factory,
             'description': 'description',
             'category': category.pk,
             'point': (0, 0),
-            'point_label': 'somewhere'
+            'point_label': 'somewhere',
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, mapidea)
         assert response.status_code == 302
@@ -139,7 +141,8 @@ def test_admin_can_create_mapidea_in_wrong_phase(client, phase_factory,
             'description': 'description',
             'category': category.pk,
             'point': (0, 0),
-            'point_label': 'somewhere'
+            'point_label': 'somewhere',
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, mapidea)
         assert response.status_code == 302

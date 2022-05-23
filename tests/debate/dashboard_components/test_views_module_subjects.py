@@ -35,7 +35,8 @@ def test_subject_create_view(client, phase_factory, category_factory):
             'module_slug': module.slug
         })
     data = {
-        'name': 'test'
+        'name': 'test',
+        'organisation_terms_of_use': True,
     }
     client.login(username=initiator.email, password='password')
     response = client.post(url, data)
@@ -57,7 +58,8 @@ def test_subject_update_view(
             'pk': item.pk, 'year': item.created.year
         })
     data = {
-        'name': 'test'
+        'name': 'test',
+        'organisation_terms_of_use': True,
     }
     client.login(username=initiator.email, password='password')
     response = client.post(url, data)

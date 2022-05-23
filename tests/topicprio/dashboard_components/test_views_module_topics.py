@@ -38,7 +38,8 @@ def test_topic_create_view(client, phase_factory, category_factory):
     data = {
         'name': 'test',
         'description': 'test',
-        'category': category.pk
+        'category': category.pk,
+        'organisation_terms_of_use': True,
     }
     client.login(username=initiator.email, password='password')
     response = client.post(url, data)
@@ -64,7 +65,8 @@ def test_topic_update_view(
     data = {
         'name': 'test',
         'description': 'test',
-        'category': category.pk
+        'category': category.pk,
+        'organisation_terms_of_use': True,
     }
     client.login(username=initiator.email, password='password')
     response = client.post(url, data)

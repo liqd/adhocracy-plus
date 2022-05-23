@@ -5,13 +5,15 @@ from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from adhocracy4.maps import widgets as maps_widgets
 from apps.contrib.mixins import ImageRightOfUseMixin
+from apps.organisations.mixins import OrganisationTermsOfUseMixin
 
 from . import models
 
 
 class MapIdeaForm(CategorizableFieldMixin,
                   LabelsAddableFieldMixin,
-                  ImageRightOfUseMixin):
+                  ImageRightOfUseMixin,
+                  OrganisationTermsOfUseMixin):
 
     def __init__(self, *args, **kwargs):
         self.settings = kwargs.pop('settings_instance')
