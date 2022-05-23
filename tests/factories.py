@@ -58,6 +58,14 @@ class MemberFactory(factory.django.DjangoModelFactory):
     organisation = factory.SubFactory(OrganisationFactory)
 
 
+class OrganisationTermsOfUseFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = 'a4_candy_organisations.OrganisationTermsOfUse'
+
+    user = factory.SubFactory(UserFactory)
+    organisation = factory.SubFactory(OrganisationFactory)
+
+
 class CategoryFactory(factory.django.DjangoModelFactory):
 
     class Meta:
