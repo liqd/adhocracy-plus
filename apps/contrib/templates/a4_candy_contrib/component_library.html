@@ -1658,19 +1658,28 @@
                 <h2 id="cl-multiform">Multiform</h2>
 
                 <div class="cl-example">
-                    <form class="multiform" method="post" action="#">
-                        <div class="form-errors">
-                            <p class="alert alert--danger">Error</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="{{ form.email.id_for_label }}">
-                                Add another Email
-                            </label>
-                        </div>
-                        <div class="mb-3">
-                            <input class="btn btn--primary" name="action_add" type="submit" value="Add Email" />
-                        </div>
-                    </form>
+                  <section>
+                      <form class="multiform" action="" method="">
+                          <input type="hidden" name="email" value="test@liqd.net">
+                          test@liqd.net
+                          <span class="label mb-3">Unverified</span>
+                          <ul class="u-list-reset">
+                              <li class="d-inline"><button class="btn btn--secondary" type="submit" name="action_send">Re-send Verification</button></li>
+                              <li class="d-inline"><button class="btn btn--secondary" type="submit" name="action_remove">Remove</button></li>
+                          </ul>
+                      </form>
+                  </section>
+                  <section>
+                      <form class="multiform bg--top-border" method="post" action="">
+                          <div class="form-group">
+                              <label for="id_email">Add another Email</label>
+                              <input type="email" name="email" placeholder="E-mail address" class="form-control" required="" id="id_email">
+                          </div>
+                          <div class="d-flex justify-content-end mb-3">
+                              <input class="btn btn--primary" name="action_add" type="submit" value="Add Email">
+                          </div>
+                      </form>
+                  </section>
                 </div>
 
                 <h2 id="cl-pagination">Pagination</h2>
