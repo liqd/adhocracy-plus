@@ -63,7 +63,8 @@ def test_admin_can_create_topic(client, phase_factory,
             response, 'a4_candy_debate/subject_create_form.html')
         assert response.status_code == 200
         subject = {
-            'name': 'Subject'
+            'name': 'Subject',
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, subject)
         assert response.status_code == 302
@@ -92,7 +93,8 @@ def test_moderator_can_create_topic_before_phase(client, phase_factory,
             response, 'a4_candy_debate/subject_create_form.html')
         assert response.status_code == 200
         subject = {
-            'name': 'Subject'
+            'name': 'Subject',
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, subject)
         assert response.status_code == 302
@@ -121,7 +123,8 @@ def test_initiator_can_create_topic_before_phase(client, phase_factory,
             response, 'a4_candy_debate/subject_create_form.html')
         assert response.status_code == 200
         subject = {
-            'name': 'subject'
+            'name': 'subject',
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, subject)
         assert response.status_code == 302

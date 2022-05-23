@@ -67,6 +67,7 @@ def test_admin_can_create_topic(client, phase_factory,
             'name': 'Topic',
             'description': 'description',
             'category': category.pk,
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, topic)
         assert response.status_code == 302
@@ -99,6 +100,7 @@ def test_moderator_can_create_topic_before_phase(client, phase_factory,
             'name': 'Topic',
             'description': 'description',
             'category': category.pk,
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, topic)
         assert response.status_code == 302
@@ -131,6 +133,7 @@ def test_initiator_can_create_topic_before_phase(client, phase_factory,
             'name': 'Topic',
             'description': 'description',
             'category': category.pk,
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, topic)
         assert response.status_code == 302

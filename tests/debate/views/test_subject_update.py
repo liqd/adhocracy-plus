@@ -18,7 +18,8 @@ def test_user_cannot_update(client, subject_factory):
         })
     client.login(username=user.email, password='password')
     data = {
-        'name': 'Another Subject'
+        'name': 'Another Subject',
+        'organisation_terms_of_use': True,
     }
     response = client.post(url, data)
     assert response.status_code == 403
@@ -38,7 +39,8 @@ def test_moderators_can_always_update(client, subject_factory):
         })
     client.login(username=moderator.email, password='password')
     data = {
-        'name': 'Another subject'
+        'name': 'Another subject',
+        'organisation_terms_of_use': True,
     }
     response = client.post(url, data)
     assert redirect_target(response) == 'subject-list'
