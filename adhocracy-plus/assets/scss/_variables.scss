@@ -26,9 +26,7 @@ $text-color-inverted: $body-bg !default;
 $text-color-gray: #666 !default;
 $overlay: rgba(#000, 0.5) !default;
 
-$gray-dark: #464a4c !default;
 $gray: #464a4c !default;
-$gray-light: #4d4d4d;
 $gray-lighter: $text-color-gray;
 $gray-lightest: #d8d8d8;
 
@@ -59,7 +57,7 @@ $headings-font-weight: $demi-bold !default;
 $link-color: $text-color !default;
 $link-hover-color: darken($link-color, 15%) !default;
 
-$border-color: #666 !default;
+$border-color: $gray-lighter !default;
 $input-border-color: $border-color !default;
 
 $feedback-color-accepted: #0a820a !default;
