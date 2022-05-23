@@ -33,7 +33,8 @@ def test_creator_can_update_during_active_phase(client,
             'description': 'changed description',
             'category': category.pk,
             'point': (0, 0),
-            'point_label': 'somewhere'
+            'point_label': 'somewhere',
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, data)
         assert redirect_target(response) == 'mapidea-detail'
@@ -65,6 +66,7 @@ def test_creator_cannot_update_in_wrong_phase(client,
             'name': 'Another MapIdea',
             'description': 'changed description',
             'category': category.pk,
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, data)
         assert response.status_code == 403
@@ -97,7 +99,8 @@ def test_moderator_can_update_during_wrong_phase(client,
             'description': 'changed description',
             'category': category.pk,
             'point': (0, 0),
-            'point_label': 'somewhere else'
+            'point_label': 'somewhere else',
+            'organisation_terms_of_use': True,
         }
         response = client.post(url, data)
         assert redirect_target(response) == 'mapidea-detail'
@@ -121,7 +124,8 @@ def test_creator_cannot_update(client, map_idea_factory):
     client.login(username=user.email, password='password')
     data = {
         'name': 'Another MapIdea',
-        'description': 'changed description'
+        'description': 'changed description',
+        'organisation_terms_of_use': True,
     }
     response = client.post(url, data)
     assert response.status_code == 403
@@ -152,7 +156,8 @@ def test_moderators_can_always_update(client, phase_factory,
         'description': 'changed description',
         'category': category.pk,
         'point': (0, 0),
-        'point_label': 'somewhere'
+        'point_label': 'somewhere',
+        'organisation_terms_of_use': True,
     }
     response = client.post(url, data)
     assert redirect_target(response) == 'mapidea-detail'

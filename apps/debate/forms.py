@@ -1,9 +1,11 @@
 from django import forms
 
+from apps.organisations.mixins import OrganisationTermsOfUseMixin
+
 from . import models
 
 
-class SubjectForm(forms.ModelForm):
+class SubjectForm(OrganisationTermsOfUseMixin):
 
     def __init__(self, *args, **kwargs):
         self.module = kwargs.pop('module')
