@@ -41,7 +41,11 @@ class DefaultSignupForm(SignupForm):
                     'additional information via email.'),
         required=False
     )
-    captcha = CaptcheckCaptchaField(label=_('I am not a robot'))
+    captcha = CaptcheckCaptchaField(
+        label=_('I am not a robot'),
+        help_text=_(
+            'If you are having difficulty please find our contact details '
+            'below.'))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

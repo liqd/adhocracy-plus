@@ -1,5 +1,5 @@
 {% extends "account/base.html" %}
-{% load i18n %}
+{% load i18n wagtailcore_tags %}
 
 {% block head_title %}{% trans "Register" %}{% endblock %}
 
@@ -53,6 +53,7 @@
         {% endif %}
 
         {% include 'a4_candy_contrib/includes/form_field.html' with field=form.captcha %}
+        {{ settings.a4_candy_cms_settings.OrganisationSettings.contacts | richtext }}
 
         <p>
         {% blocktrans with data_protection_url=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}
