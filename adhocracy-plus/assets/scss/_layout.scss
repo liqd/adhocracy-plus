@@ -34,6 +34,7 @@
     }
 }
 
+// FIXME only appears to be used in old templates
 .l-wrapper {
     @include clearfix;
     position: relative;
@@ -41,16 +42,6 @@
     max-width: $wrapper-width;
     margin: 0 auto;
     padding: 0 $padding;
-}
-
-.l-frame {
-    margin-left: 1rem !important;
-    margin-right: 1rem !important;
-
-    @media screen and (min-width: $breakpoint-md) {
-        margin-left: 4rem !important;
-        margin-right: 4rem !important;
-    }
 }
 
 .l-top-overlap {
@@ -95,14 +86,6 @@
 @media (min-width: $breakpoint-md) {
     .l-center-8 {
         // @include grid-width(8);
-    }
-
-    .l-center-6 {
-        // @include grid-width(6);
-    }
-
-    .l-col-9-3 {
-        // @include grid-span(9, 3);
     }
 
     .l-tiles-3 {
