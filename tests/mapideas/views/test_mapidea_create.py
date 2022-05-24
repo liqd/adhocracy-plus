@@ -116,6 +116,50 @@ def test_user_cannot_create_mapidea_in_wrong_phase(client, phase_factory,
 
 
 @pytest.mark.django_db
+def test_user_can_create_mapidea_only_with_terms_agreement(
+        client, phase_factory, user, category_factory,
+        organisation_terms_of_use_factory, area_settings_factory):
+    phase = phase_factory(phase_content=phases.IssuePhase())
+    module = phase.module
+    area_settings_factory(module=module)
+    category = category_factory(module=module)
+    url = reverse(
+        'a4_candy_mapideas:mapidea-create',
+        kwargs={
+            'organisation_slug': module.project.organisation.slug,
+            'module_slug': module.slug
+        }
+    )
+    with freeze_phase(phase):
+        count = models.MapIdea.objects.all().count()
+        assert count == 0
+        client.login(username=user.email, password='password')
+        response = client.get(url)
+        assert_template_response(
+            response, 'a4_candy_mapideas/mapidea_create_form.html')
+        assert response.status_code == 200
+        mapidea = {
+            'name': 'MapIdea',
+            'description': 'description',
+            'category': category.pk,
+            'point': (0, 0),
+            'point_label': 'somewhere',
+        }
+        response = client.post(url, mapidea)
+        assert response.status_code == 200
+        organisation_terms_of_use_factory(
+            user=user,
+            organisation=module.project.organisation,
+            has_agreed=True,
+        )
+        response = client.post(url, mapidea)
+        assert response.status_code == 302
+        assert redirect_target(response) == 'mapidea-detail'
+        count = models.MapIdea.objects.all().count()
+        assert count == 1
+
+
+@pytest.mark.django_db
 def test_admin_can_create_mapidea_in_wrong_phase(client, phase_factory,
                                                  admin, category_factory,
                                                  area_settings_factory):
