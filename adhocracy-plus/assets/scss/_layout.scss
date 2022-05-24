@@ -1,23 +1,23 @@
 // should be used with ul/ol
-@mixin grid-tiles($n, $settings: ()) {
-    @include clearfix;
-
-    > * {
-        @include grid-same-width($n, $settings);
-    }
-
-    @supports (display: grid) {
-        display: grid;
-        grid-column-gap: _grid-get("gutter", $settings);
-        grid-template-columns: repeat($n, 1fr);
-
-        > * {
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            width: auto !important;
-        }
-    }
-}
+// @mixin grid-tiles($n, $settings: ()) {
+//     @include clearfix;
+//
+//     > * {
+//         @include grid-same-width($n, $settings);
+//     }
+//
+//     @supports (display: grid) {
+//         display: grid;
+//         grid-column-gap: _grid-get("gutter", $settings);
+//         grid-template-columns: repeat($n, 1fr);
+//
+//         > * {
+//             margin-left: 0 !important;
+//             margin-right: 0 !important;
+//             width: auto !important;
+//         }
+//     }
+// }
 
 .container {
     position: relative;
@@ -75,41 +75,41 @@
 
 @media (min-width: $breakpoint) {
     .l-center-8 {
-        @include grid-width(10);
+        // @include grid-width(10);
         margin: 0 auto;
     }
 
     .l-tiles-2 {
-        @include grid-tiles(2);
+        // @include grid-tiles(2);
     }
 
     .l-tiles-3 {
-        @include grid-tiles(2);
+        // @include grid-tiles(2);
     }
 
     .l-tiles-4 {
-        @include grid-tiles(2);
+        // @include grid-tiles(2);
     }
 }
 
 @media (min-width: $breakpoint-md) {
     .l-center-8 {
-        @include grid-width(8);
+        // @include grid-width(8);
     }
 
     .l-center-6 {
-        @include grid-width(6);
+        // @include grid-width(6);
     }
 
     .l-col-9-3 {
-        @include grid-span(9, 3);
+        // @include grid-span(9, 3);
     }
 
     .l-tiles-3 {
-        @include grid-tiles(3);
+        // @include grid-tiles(3);
     }
 
     .l-tiles-4 {
-        @include grid-tiles(4);
+        // @include grid-tiles(4);
     }
 }
