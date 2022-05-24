@@ -42,13 +42,13 @@ $green-light: #e0fbe2;
 $print-black: #000 !default;
 $print-link: #005cb4 !default;
 
-$brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
-$brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
-$brand-tertiary-tint: contrast-stretch($text-color, mix($brand-tertiary, $body-bg, 30%), 7) !default;
-$brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
+// $brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
+// $brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
+// $brand-tertiary-tint: contrast-stretch($text-color, mix($brand-tertiary, $body-bg, 30%), 7) !default;
+// $brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
 
-$bg-tertiary: $brand-tertiary-tint !default;
-$bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
+// $bg-tertiary: $brand-tertiary-tint !default;
+// $bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
 $bg-light: #f7f7f7;
 
 $demi-bold: 600;
@@ -116,9 +116,9 @@ $hero-height: 25.5rem !default;
 $hero-height-secondary: 20rem !default;
 $hero-height-mobile: 12rem !default;
 
-@include grid-set('gutter', $padding);
-$planifolia-contrast-dark-default: $text-color;
-$planifolia-contrast-light-default: $text-color-inverted;
+// @include grid-set('gutter', $padding);
+// $planifolia-contrast-dark-default: $text-color;
+// $planifolia-contrast-light-default: $text-color-inverted;
 
 $enable-caret: false;
 
