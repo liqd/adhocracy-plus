@@ -1,6 +1,6 @@
 .complete {
     border: 1px solid $border-color;
-    padding: $padding / 2;
+    padding: calc($padding / 2);
 
     &:empty {
         display: none;
@@ -24,7 +24,7 @@
 .complete__item {
     display: block;
     width: 100%;
-    padding: $padding / 2 0;
+    padding: calc($padding / 2) 0;
 
     &:hover,
     &:focus {
