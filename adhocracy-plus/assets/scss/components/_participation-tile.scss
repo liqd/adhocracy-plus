@@ -39,6 +39,12 @@
 
 .participation-tile__content {
     padding: 1.5 * $padding;
+    overflow-wrap: normal;
+    hyphens: auto;
+
+    @media (min-width: $breakpoint-lg) {
+        hyphens: none;
+    }
 }
 
 .participation-tile__horizontal,
@@ -91,6 +97,14 @@
 
 .participation-tile__title {
     margin-top: 0;
+
+    @media screen and (min-width: $breakpoint-md) {
+        font-size: $font-size-md;
+    }
+
+    @media screen and (min-width: $breakpoint-lg) {
+        font-size: $font-size-lg;
+    }
 }
 
 .participation-tile__btn {
