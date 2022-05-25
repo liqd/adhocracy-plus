@@ -16,10 +16,12 @@ from wagtail.contrib.forms.models import AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField
 from wagtail.contrib.forms.models import AbstractFormSubmission
 from wagtail.core.fields import RichTextField
+from wagtail.core.models import Site
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.captcha.fields import CaptcheckCaptchaField
 from apps.cms.emails import AnswerToContactFormEmail
+from apps.cms.settings.models import OrganisationSettings
 from apps.contrib.translations import TranslatedField
 
 
@@ -32,14 +34,21 @@ class FormField(AbstractFormField):
 class WagtailCaptchaFormBuilder(FormBuilder):
     @property
     def formfields(self):
+        contacts = self.get_contacts_for_default_site()
         # Add captcha to formfields property
         fields = super().formfields
         fields['captcha'] = CaptcheckCaptchaField(
             label=_('I am not a robot'),
             help_text=_('If you are having difficulty please contact us, '
-                        'details can be found adjacent.'))
+                        'details can be found adjacent.') + contacts)
 
         return fields
+
+    def get_contacts_for_default_site(self):
+        site = Site.objects.filter(
+            is_default_site=True
+        ).first()
+        return OrganisationSettings.for_site(site).contacts
 
 
 class WagtailCaptchaEmailForm(AbstractEmailForm):
