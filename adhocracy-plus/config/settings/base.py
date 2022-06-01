@@ -529,6 +529,8 @@ A4_DASHBOARD = {
 
 A4_ACTIONS_PHASE_ENDS_HOURS = 48
 
+A4_USE_ORGANISATION_TERMS_OF_USE = True
+
 # Disable CSP by default
 CSP_REPORT_ONLY = True
 CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'",
@@ -537,3 +539,4 @@ CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'",
 SITE_ID = 1  # overwrite this in local.py if needed
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
