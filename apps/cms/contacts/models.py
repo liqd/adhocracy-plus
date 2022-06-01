@@ -36,8 +36,8 @@ class WagtailCaptchaFormBuilder(FormBuilder):
         fields = super().formfields
         fields['captcha'] = CaptcheckCaptchaField(
             label=_('I am not a robot'),
-            help_text=_('If you are having difficulty please contact us, '
-                        'details can be found adjacent.'))
+            help_text=_('If you are having difficulty please contact'
+                        'us, details adjacent'))
 
         return fields
 

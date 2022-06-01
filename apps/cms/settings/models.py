@@ -3,6 +3,7 @@ from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.admin.edit_handlers import PageChooserPanel
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.models import register_setting
+from wagtail.core import blocks
 from wagtail.core import fields
 from wagtail.images.edit_handlers import ImageChooserPanel
 
@@ -45,7 +46,6 @@ class ImportantPages(BaseSetting):
     manual_link = models.URLField(blank=True)
     github_repo_link = models.URLField(blank=True)
     open_content_link = models.URLField(blank=True)
-
 
     panels = [
         PageChooserPanel('terms_of_use',
@@ -106,6 +106,10 @@ class OrganisationSettings(BaseSetting):
     contacts = fields.RichTextField(
         help_text="The contacts are published on the contact form."
     )
+    support_contact = fields.StreamField([('email', blocks.EmailBlock(
+        help_text=("The email is published in captcha helptext and other "
+                   "areas where assistance maybe required"),
+    ))], blank=True)
 
     class Meta:
         verbose_name = 'Platform settings'
@@ -113,7 +117,8 @@ class OrganisationSettings(BaseSetting):
     panels = [
         FieldPanel('platform_name'),
         FieldPanel('address'),
-        FieldPanel('contacts')
+        FieldPanel('contacts'),
+        FieldPanel('support_contact')
     ]
 
 
