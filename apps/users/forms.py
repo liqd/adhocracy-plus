@@ -12,11 +12,15 @@ from django.utils.translation import gettext_lazy as _
 from zeep import Client
 
 from apps.captcha.fields import CaptcheckCaptchaField
+from apps.cms.settings import helpers
 from apps.organisations.models import Member
 from apps.organisations.models import Organisation
 from apps.users.models import User
 
 logger = logging.getLogger(__name__)
+
+CAPTCHA_HELP = _('If you are having difficulty please contact us'
+                 ' by {}email{}.')
 
 
 class DefaultLoginForm(LoginForm):
@@ -41,7 +45,8 @@ class DefaultSignupForm(SignupForm):
                     'additional information via email.'),
         required=False
     )
-    captcha = CaptcheckCaptchaField(label=_('I am not a robot'))
+    captcha = CaptcheckCaptchaField(
+        label=_('I am not a robot'))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -55,6 +60,9 @@ class DefaultSignupForm(SignupForm):
         self.fields['email'].widget.attrs['autocomplete'] = 'username'
         self.fields['password1'].widget.attrs['autocomplete'] = 'new-password'
         self.fields['password2'].widget.attrs['autocomplete'] = 'new-password'
+        self.fields['captcha'].help_text = helpers.add_email_link_to_helptext(
+            self.fields['captcha'].help_text,
+            CAPTCHA_HELP)
 
     def save(self, request):
         user = super().save(request)
