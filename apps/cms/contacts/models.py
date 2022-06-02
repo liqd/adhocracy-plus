@@ -35,7 +35,9 @@ class WagtailCaptchaFormBuilder(FormBuilder):
         # Add captcha to formfields property
         fields = super().formfields
         fields['captcha'] = CaptcheckCaptchaField(
-            label=_('I am not a robot'))
+            label=_('I am not a robot'),
+            help_text=_('If you are having difficulty please contact'
+                        'us, details adjacent'))
 
         return fields
 

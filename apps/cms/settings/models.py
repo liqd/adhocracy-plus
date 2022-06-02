@@ -46,7 +46,6 @@ class ImportantPages(BaseSetting):
     github_repo_link = models.URLField(blank=True)
     open_content_link = models.URLField(blank=True)
 
-
     panels = [
         PageChooserPanel('terms_of_use',
                          ['a4_candy_cms_pages.SimplePage',
