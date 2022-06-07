@@ -52,7 +52,7 @@
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
 
-        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.captcha %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.captcha tabindex=0 %}
 
         <p>
         {% blocktrans with data_protection_url=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}

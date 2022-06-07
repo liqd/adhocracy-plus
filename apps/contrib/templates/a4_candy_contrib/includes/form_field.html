@@ -1,7 +1,7 @@
 {% load i18n widget_tweaks %}
 
 <div class="form-group">
-    <label for="{{ field.id_for_label }}">
+    <label for="{{ field.id_for_label }}" {% if tabindex is not None %}tabindex="{{ tabindex }}"{% endif %}>
         {{ field.label }}{% if field.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
         {% block after_label %}
         {% endblock %}
