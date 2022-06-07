@@ -3,6 +3,6 @@
     {% include 'a4_candy_cms_contacts/form_field.html' with field=field %}
   {% else %}
     {{ form.media }}
-    {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=field tabindex=0 %}
   {% endif %}
 {% endfor %}

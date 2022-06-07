@@ -24,7 +24,7 @@
   </div>
   {% else %}
   <div class="form-group">
-    <label class="mb-1">{{ field.help_text }} {% if field.field.required %} *{% endif %}</label>
+    <label class="mb-1" for="id_{{ field.name }}">{{ field.help_text }} {% if field.field.required %} *{% endif %}</label>
     {% render_field field class="form-control" %}
   </div>
     {% if field.errors %}
