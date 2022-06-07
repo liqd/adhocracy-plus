@@ -43,6 +43,13 @@
                             {% trans 'Account Connections' %}
                         </a>
                     </li>
+                    <li class="dashboard-nav__page">
+                        <a href="{% url 'user_agreements' %}"
+                           class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "user_agreements" %}is-active{% endif %}">
+                            <i class="far fa-check-square" aria-hidden="true"></i>
+                            {% trans 'User Agreements' %}
+                        </a>
+                    </li>
                 </ul>
             {% endwith %}
             </div>

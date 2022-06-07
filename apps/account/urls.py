@@ -9,4 +9,7 @@ urlpatterns = [
     path('profile/',
          views.ProfileUpdateView.as_view(),
          name='account_profile'),
+    path('agreements/',
+         views.OrganisationTermsOfUseUpdateView.as_view(),
+         name='user_agreements'),
 ]
