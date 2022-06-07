@@ -1,0 +1,38 @@
+{% extends "a4_candy_account/account_dashboard.html" %}
+
+{% load i18n static thumbnail %}
+
+{% block title %}{% trans 'User Agreements' %} &mdash; {{ block.super }}{% endblock %}
+{% block dashboard_content %}
+    <h1 class="mt-0">{% trans 'User Agreements' %}</h1>
+    <p>{% trans 'Here you can edit all your agreements' %}</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ formset.management_form }}
+        {% for agreement_form in formset.forms %}
+        <div class="d-flex u-bottom-divider py-4">
+            <img src="{% if agreement_form.instance.organisation.logo %}{% thumbnail agreement_form.instance.organisation.logo '0x160' %}{% endif %}" alt="" class="account__org-image{% if not agreement_form.instance.organisation.logo %} account__org-image--bg{% endif %}" />
+            <div role="group" aria-labelledby="org_name_{{ forloop.counter }}" class="flex-col">
+                <h2 id="org_name_{{ forloop.counter }}" class="mt-0">
+                {{ agreement_form.instance.organisation.name }}
+                </h2>
+
+                {% for field in agreement_form.visible_fields %}
+                    {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=field %}
+                {% endfor %}
+
+                {% for hidden in agreement_form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="d-flex justify-content-end mb-3 mt-5">
+            <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
+        </div>
+    </form>
+    {{ form.media }}
+{% endblock %}
