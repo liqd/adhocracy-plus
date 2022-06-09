@@ -54,7 +54,7 @@ class OrganisationTermsOfUseMixin(forms.ModelForm):
             'Yes, I have read and agree to the {}terms of use{}.'
         )
         url = reverse(
-            'organisation-netiquette', kwargs={
+            'organisation-terms-of-use', kwargs={
                 'organisation_slug': self.module.project.organisation.slug
             }
         )
