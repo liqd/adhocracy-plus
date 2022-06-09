@@ -1,6 +1,6 @@
-const React = require('react')
-const ReactDOM = require('react-dom')
-const DocumentManagement = require('./DocumentManagement')
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import DocumentManagement from './DocumentManagement'
 
 module.exports.renderDocumentManagement = function (element) {
   const chapters = JSON.parse(element.getAttribute('data-chapters'))
@@ -9,5 +9,6 @@ module.exports.renderDocumentManagement = function (element) {
 
   const reloadOnSuccess = JSON.parse(element.getAttribute('data-reloadOnSuccess'))
 
-  ReactDOM.render(<DocumentManagement key={module} module={module} chapters={chapters} config={config} reloadOnSuccess={reloadOnSuccess} />, element)
+  const root = createRoot(element)
+  root.render(<DocumentManagement key={module} module={module} chapters={chapters} config={config} reloadOnSuccess={reloadOnSuccess} />)
 }
