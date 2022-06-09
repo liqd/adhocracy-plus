@@ -1,5 +1,5 @@
 {% load i18n static wagtailsettings_tags %}
-{% get_settings %}
+{% get_settings use_default_site=True %}
 
 <footer class="footer pt-3 pt-sm-4{% if not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer__margin-for-banner{% endif %}{% endif %}">
     {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
