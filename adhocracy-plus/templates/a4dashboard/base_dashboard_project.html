@@ -119,7 +119,7 @@
                                   <input type="hidden" name="referrer" value="{{ request.path }}" />
 
                                   {% if not module_menu.module.is_draft %}
-                                      <button name="action" value="unpublish" class="btn btn--none p-0"></button>
+                                      <button name="action" value="unpublish" class="btn btn--none p-0 btn--none-reset"></button>
                                       <input
                                       value="unpublish"
                                       name="action"
@@ -132,7 +132,7 @@
                                           {% trans 'Hide from project' %}
                                       </label>
                                   {% else %}
-                                    <button name="action" value="publish" class="btn btn--none p-0"></button>
+                                    <button name="action" value="publish" class="btn btn--none p-0 btn--none-reset"></button>
                                     <input
                                       type="checkbox"
                                       class="form-check-input ms-0 me-1"
