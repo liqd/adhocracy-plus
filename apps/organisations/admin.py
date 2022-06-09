@@ -79,4 +79,7 @@ class OrganisationTermsOfUseAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'organisation', 'user', 'has_agreed'
     )
-    raw_id_fields = ('user',)
+    list_filter = ('organisation',)
+
+    def has_add_permission(self, request, obj=None):
+        return False
