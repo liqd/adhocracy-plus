@@ -1,3 +1,4 @@
+import bootstrap from 'bootstrap'
 const $ = require('jquery')
 const a4api = require('adhocracy4').api
 
@@ -20,6 +21,7 @@ $(function () {
     e.preventDefault()
     const $input = $('#id_remark')
     const newVal = $input.val()
+    const buttonSelector = 'button#idea-remark__dropdown.dropdown-toggle.show'
 
     if (remarkVal !== newVal) {
       const data = {
@@ -37,18 +39,24 @@ $(function () {
         response = a4api.moderatorremark.add(data)
       }
 
+
       response.done(remark => {
         remarkId = remark.id
         remarkVal = remark.remark
-        $('.dropdown.show .dropdown-toggle').dropdown('toggle')
+        const tickSymbol = document.querySelector('.idea-remark__btn__notify')
         if (remarkVal) {
-          dropdown.find('.idea-remark__btn__notify').show()
+          tickSymbol.classList.remove('d-none')
         } else {
-          dropdown.find('.idea-remark__btn__notify').hide()
+          tickSymbol.classList.add('d-none')
         }
+        const remarkButton = document.querySelector(buttonSelector)
+        const remarkDropdown = new bootstrap.Dropdown(remarkButton)
+        remarkDropdown.hide()
       })
     } else {
-      $('.dropdown.show .dropdown-toggle').dropdown('toggle')
+      const remarkButton = document.querySelector(buttonSelector)
+      const remarkDropdown = new bootstrap.Dropdown(remarkButton)
+      remarkDropdown.hide()
     }
   })
 })
