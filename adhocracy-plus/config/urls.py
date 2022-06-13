@@ -21,8 +21,6 @@ from adhocracy4.comments.api import CommentModerateSet
 from adhocracy4.comments_async.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.polls.api import PollViewSet
-from adhocracy4.polls.api import VoteViewSet
-from adhocracy4.polls.routers import QuestionDefaultRouter
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from apps.contrib import views as contrib_views
@@ -67,9 +65,6 @@ ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
 ct_router.register(r'comment-moderate', CommentModerateSet,
                    basename='comment-moderate')
 
-question_router = QuestionDefaultRouter()
-question_router.register(r'vote', VoteViewSet, basename='vote')
-
 urlpatterns = [
     # General platform urls
     re_path(r'^django-admin/', admin.site.urls),
@@ -86,7 +81,6 @@ urlpatterns = [
     re_path(r'^api/', include(ct_router.urls)),
     re_path(r'^api/', include(module_router.urls)),
     re_path(r'^api/', include(orga_router.urls)),
-    re_path(r'^api/', include(question_router.urls)),
     re_path(r'^api/', include(likes_router.urls)),
     re_path(r'^api/', include(router.urls)),
     re_path(r'^api/login', obtain_auth_token, name='api-login'),
