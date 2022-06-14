@@ -3,7 +3,7 @@
 from django.db import migrations, models
 import django.db.models.deletion
 import modelcluster.fields
-import wagtail.core.fields
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -25,8 +25,8 @@ class Migration(migrations.Migration):
                 ('subject', models.CharField(blank=True, max_length=255, verbose_name='subject')),
                 ('header_de', models.CharField(blank=True, max_length=500, verbose_name='Header')),
                 ('header_en', models.CharField(blank=True, max_length=500, verbose_name='Header')),
-                ('intro_en', wagtail.core.fields.RichTextField(blank=True)),
-                ('intro_de', wagtail.core.fields.RichTextField(blank=True)),
+                ('intro_en', wagtail.fields.RichTextField(blank=True)),
+                ('intro_de', wagtail.fields.RichTextField(blank=True)),
                 ('thank_you_text_en', models.TextField(blank=True)),
                 ('thank_you_text_de', models.TextField(blank=True)),
                 ('contact_person_name', models.CharField(blank=True, max_length=100)),

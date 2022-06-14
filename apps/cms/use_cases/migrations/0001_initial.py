@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -24,8 +24,8 @@ class Migration(migrations.Migration):
                 ('category', models.CharField(choices=[('MP', 'Municipalities'), ('CA', 'Citizen Assemblies'), ('CO', 'Co-Operatives'), ('NG', 'NGOs'), ('CP', 'Companies'), ('PO', 'Politicians')], max_length=2)),
                 ('title_de', models.CharField(blank=True, max_length=250, verbose_name='German Title')),
                 ('title_en', models.CharField(blank=True, max_length=250, verbose_name='English Title')),
-                ('body_streamfield_de', wagtail.core.fields.StreamField([('paragraph', wagtail.core.blocks.RichTextBlock()), ('html', wagtail.core.blocks.RawHTMLBlock()), ('examples', wagtail.core.blocks.StructBlock([('examples', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('body', wagtail.core.blocks.RichTextBlock(required=False)), ('link', wagtail.core.blocks.CharBlock(required=False)), ('link_text', wagtail.core.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='CTA Column')))]))], blank=True)),
-                ('body_streamfield_en', wagtail.core.fields.StreamField([('paragraph', wagtail.core.blocks.RichTextBlock()), ('html', wagtail.core.blocks.RawHTMLBlock()), ('examples', wagtail.core.blocks.StructBlock([('examples', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('body', wagtail.core.blocks.RichTextBlock(required=False)), ('link', wagtail.core.blocks.CharBlock(required=False)), ('link_text', wagtail.core.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='CTA Column')))]))], blank=True)),
+                ('body_streamfield_de', wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock()), ('examples', wagtail.blocks.StructBlock([('examples', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('body', wagtail.blocks.RichTextBlock(required=False)), ('link', wagtail.blocks.CharBlock(required=False)), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='CTA Column')))]))], blank=True)),
+                ('body_streamfield_en', wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock()), ('examples', wagtail.blocks.StructBlock([('examples', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('body', wagtail.blocks.RichTextBlock(required=False)), ('link', wagtail.blocks.CharBlock(required=False)), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='CTA Column')))]))], blank=True)),
                 ('image', models.ForeignKey(blank=True, help_text='The Image that is shown on the use case item page and the use case index page', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='a4_candy_cms_images.CustomImage', verbose_name='Use Case Header Image')),
             ],
             options={
