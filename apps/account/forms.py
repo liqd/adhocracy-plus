@@ -61,7 +61,8 @@ class OrganisationsTermsOfUseInlineFormSet(forms.BaseInlineFormSet):
 
     def _get_terms_of_use_label(self, organisation):
         label_text = _(
-            'Yes, I have read and agree to the {}terms of use{}.'
+            'Yes, I have read and agree to this organisation\'s '
+            '{}terms of use{}.'
         )
         url = reverse(
             'organisation-terms-of-use', kwargs={
