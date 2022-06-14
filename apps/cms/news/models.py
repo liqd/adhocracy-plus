@@ -2,14 +2,12 @@ from django.core.paginator import InvalidPage
 from django.core.paginator import Paginator
 from django.db import models
 from django.http import Http404
-from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.admin.edit_handlers import ObjectList
-from wagtail.admin.edit_handlers import StreamFieldPanel
-from wagtail.admin.edit_handlers import TabbedInterface
-from wagtail.core import blocks
-from wagtail.core import fields
-from wagtail.core.models import Page
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail import blocks
+from wagtail import fields
+from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import ObjectList
+from wagtail.admin.panels import TabbedInterface
+from wagtail.models import Page
 
 from apps.contrib.translations import TranslatedField
 
@@ -97,12 +95,12 @@ class NewsPage(Page):
     body_streamfield_de = fields.StreamField([
         ('paragraph', blocks.RichTextBlock()),
         ('html', blocks.RawHTMLBlock())
-    ], blank=True)
+    ], use_json_field=True, blank=True)
 
     body_streamfield_en = fields.StreamField([
         ('paragraph', blocks.RichTextBlock()),
         ('html', blocks.RawHTMLBlock())
-    ], blank=True)
+    ], use_json_field=True, blank=True)
 
     subtitle = TranslatedField(
         'title_de',
@@ -122,18 +120,18 @@ class NewsPage(Page):
     en_content_panels = [
         FieldPanel('title_en'),
         FieldPanel('teaser_en'),
-        StreamFieldPanel('body_streamfield_en')
+        FieldPanel('body_streamfield_en')
     ]
 
     de_content_panels = [
         FieldPanel('title_de'),
         FieldPanel('teaser_de'),
-        StreamFieldPanel('body_streamfield_de')
+        FieldPanel('body_streamfield_de')
     ]
 
     common_panels = [
         FieldPanel('title'),
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('author'),
         FieldPanel('slug')
     ]

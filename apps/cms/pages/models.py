@@ -1,17 +1,15 @@
 import random
 
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.admin.edit_handlers import MultiFieldPanel
-from wagtail.admin.edit_handlers import ObjectList
-from wagtail.admin.edit_handlers import PageChooserPanel
-from wagtail.admin.edit_handlers import StreamFieldPanel
-from wagtail.admin.edit_handlers import TabbedInterface
-from wagtail.core import blocks
-from wagtail.core import fields
-from wagtail.core.models import Page
+from wagtail import blocks
+from wagtail import fields
+from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import MultiFieldPanel
+from wagtail.admin.panels import ObjectList
+from wagtail.admin.panels import PageChooserPanel
+from wagtail.admin.panels import TabbedInterface
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.models import Page
 
 from apps.cms import blocks as cms_blocks
 from apps.cms.news.blocks import NewsBlock
@@ -101,7 +99,7 @@ class HomePage(Page):
         ('paragraph', blocks.RichTextBlock()),
         ('news', NewsBlock()),
         ('use_cases', UseCaseBlock())
-    ], blank=True)
+    ], use_json_field=True, blank=True)
 
     body_streamfield_en = fields.StreamField([
         ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
@@ -111,7 +109,7 @@ class HomePage(Page):
         ('paragraph', blocks.RichTextBlock()),
         ('news', NewsBlock()),
         ('use_cases', UseCaseBlock())
-    ], blank=True)
+    ], use_json_field=True, blank=True)
 
     hero_title = TranslatedField(
         'hero_title_de',
@@ -149,14 +147,14 @@ class HomePage(Page):
         FieldPanel('hero_title_en'),
         FieldPanel('hero_subtitle_en'),
         FieldPanel('body_en'),
-        StreamFieldPanel('body_streamfield_en')
+        FieldPanel('body_streamfield_en')
     ]
 
     de_content_panels = [
         FieldPanel('hero_title_de'),
         FieldPanel('hero_subtitle_de'),
         FieldPanel('body_de'),
-        StreamFieldPanel('body_streamfield_de')
+        FieldPanel('body_streamfield_de')
     ]
 
     common_panels = [
@@ -165,11 +163,11 @@ class HomePage(Page):
         PageChooserPanel('form_page', 'a4_candy_cms_contacts.FormPage'),
         MultiFieldPanel(
             [
-                ImageChooserPanel('image_1'),
-                ImageChooserPanel('image_2'),
-                ImageChooserPanel('image_3'),
-                ImageChooserPanel('image_4'),
-                ImageChooserPanel('image_5'),
+                FieldPanel('image_1'),
+                FieldPanel('image_2'),
+                FieldPanel('image_3'),
+                FieldPanel('image_4'),
+                FieldPanel('image_5'),
             ],
             heading="Images",
             classname="collapsible"
@@ -203,7 +201,7 @@ class SimplePage(Page):
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
-    ])
+    ], use_json_field=True)
     body_streamfield_en = fields.StreamField([
         ('html', blocks.RawHTMLBlock()),
         ('richtext', blocks.RichTextBlock()),
@@ -214,7 +212,7 @@ class SimplePage(Page):
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
-    ], blank=True)
+    ], use_json_field=True, blank=True)
 
     body_streamfield_nl = fields.StreamField([
         ('html', blocks.RawHTMLBlock()),
@@ -226,7 +224,7 @@ class SimplePage(Page):
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
-    ], blank=True)
+    ], use_json_field=True, blank=True)
 
     body_streamfield_ky = fields.StreamField([
         ('html', blocks.RawHTMLBlock()),
@@ -238,7 +236,7 @@ class SimplePage(Page):
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
-    ], blank=True)
+    ], use_json_field=True, blank=True)
 
     body_streamfield_ru = fields.StreamField([
         ('html', blocks.RawHTMLBlock()),
@@ -250,7 +248,7 @@ class SimplePage(Page):
         ('columns_cta', cms_blocks.ColumnsCTABlock()),
         ('downloads', cms_blocks.DownloadListBlock()),
         ('quote', cms_blocks.QuoteBlock())
-    ], blank=True)
+    ], use_json_field=True, blank=True)
 
     body_streamfield = TranslatedFieldLegal(
         'body_streamfield_de',
@@ -261,23 +259,23 @@ class SimplePage(Page):
     )
 
     en_content_panels = [
-        StreamFieldPanel('body_streamfield_en')
+        FieldPanel('body_streamfield_en')
     ]
 
     de_content_panels = [
-        StreamFieldPanel('body_streamfield_de')
+        FieldPanel('body_streamfield_de')
     ]
 
     nl_content_panels = [
-        StreamFieldPanel('body_streamfield_nl')
+        FieldPanel('body_streamfield_nl')
     ]
 
     ky_content_panels = [
-        StreamFieldPanel('body_streamfield_ky')
+        FieldPanel('body_streamfield_ky')
     ]
 
     ru_content_panels = [
-        StreamFieldPanel('body_streamfield_ru')
+        FieldPanel('body_streamfield_ru')
     ]
 
     common_panels = [
