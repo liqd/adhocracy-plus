@@ -256,29 +256,3 @@ def test_profile(client, user):
     response = client.get(url)
     assert response.status_code == 200
     assert response.context['user'] == user
-
-
-@pytest.mark.django_db
-def test_profile_edit(client, user):
-    client.login(email=user.email, password='password')
-    url = reverse('account_profile')
-
-    response = client.post(url, {
-        'username': user.username,
-        'get_notifications': 'on',
-        'get_newsletters': 'on',
-        'bio': 'This is me!',
-        'twitter_handle': 'Birdybird',
-        'facebook_handle': 'Birdybird',
-        'homepage': 'http://example.com/',
-        'language': 'en',
-    })
-
-    assert response.status_code == 302
-
-    profile_url = reverse('profile', kwargs={'slug': user.username})
-    profile_response = client.get(profile_url)
-
-    assert profile_response.status_code == 200
-    assert profile_response.context['user'] == user
-    assert profile_response.context['user'].twitter_handle == 'Birdybird'
