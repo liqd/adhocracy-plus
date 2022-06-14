@@ -28,15 +28,14 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
                 USERNAME_REGEX, USERNAME_INVALID_MESSAGE, 'invalid')],
         error_messages={
             'unique': _('A user with that username already exists.'),
-            'used_as_email': _('This username is already used as an '
-                               'e-mail address.')}
+            'used_as_email': _('This username is invalid.')}
     )
 
     email = models.EmailField(
         _('Email address'),
         unique=True,
         error_messages={
-            'unique': _('A user with that email address already exists.')}
+            'unique': _('Email is invalid or already taken.')}
     )
 
     is_staff = models.BooleanField(
