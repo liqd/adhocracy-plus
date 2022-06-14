@@ -427,12 +427,6 @@ BLEACH_LIST = {
 WAGTAIL_SITE_NAME = 'adhocracy+'
 WAGTAILIMAGES_IMAGE_MODEL = 'a4_candy_cms_images.CustomImage'
 
-WAGTAILADMIN_RICH_TEXT_EDITORS = {
-    'default': {
-        'WIDGET': 'wagtail.admin.rich_text.HalloRichTextArea'
-    }
-}
-
 # adhocracy4
 
 A4_ORGANISATIONS_MODEL = 'a4_candy_organisations.Organisation'
