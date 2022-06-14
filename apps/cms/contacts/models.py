@@ -6,17 +6,16 @@ from django.db import models
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.admin.edit_handlers import FieldRowPanel
-from wagtail.admin.edit_handlers import MultiFieldPanel
-from wagtail.admin.edit_handlers import ObjectList
-from wagtail.admin.edit_handlers import TabbedInterface
+from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldRowPanel
+from wagtail.admin.panels import MultiFieldPanel
+from wagtail.admin.panels import ObjectList
+from wagtail.admin.panels import TabbedInterface
 from wagtail.contrib.forms.forms import FormBuilder
 from wagtail.contrib.forms.models import AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField
 from wagtail.contrib.forms.models import AbstractFormSubmission
-from wagtail.core.fields import RichTextField
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.fields import RichTextField
 
 from apps.captcha.fields import CaptcheckCaptchaField
 from apps.cms.emails import AnswerToContactFormEmail
@@ -200,7 +199,7 @@ class FormPage(WagtailCaptchaEmailForm):
         MultiFieldPanel([
             FieldRowPanel([
                 FieldPanel('contact_person_name', classname="col6"),
-                ImageChooserPanel('contact_person_image', classname="col6"),
+                FieldPanel('contact_person_image', classname="col6"),
             ]),
         ], "Contact Person"),
 

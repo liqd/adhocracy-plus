@@ -154,5 +154,5 @@ if settings.DEBUG:
 # generic patterns at the very end
 urlpatterns += [
     re_path(r'', include('apps.organisations.urls')),
-    re_path(r'', include('wagtail.core.urls')),
+    re_path(r'', include('wagtail.urls')),
 ]

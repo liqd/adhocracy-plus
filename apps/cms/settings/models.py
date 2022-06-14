@@ -1,10 +1,9 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.admin.edit_handlers import PageChooserPanel
+from wagtail import fields
+from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import PageChooserPanel
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.models import register_setting
-from wagtail.core import fields
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 from apps.contrib.translations import TranslatedField
 
@@ -144,7 +143,7 @@ class SocialMedia(BaseSetting):
         FieldPanel('facebook'),
         FieldPanel('twitter'),
         FieldPanel('github'),
-        ImageChooserPanel('fallback_image'),
+        FieldPanel('fallback_image'),
         FieldPanel('fallback_description_de'),
         FieldPanel('fallback_description_en')
     ]

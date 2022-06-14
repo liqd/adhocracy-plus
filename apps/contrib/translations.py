@@ -1,5 +1,5 @@
 from django.utils import translation
-from wagtail.core.blocks.stream_block import StreamValue
+from wagtail.blocks.stream_block import StreamValue
 
 
 class TranslatedField(object):

@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.fields
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -31,8 +31,8 @@ class Migration(migrations.Migration):
             name='OrganisationSettings',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('address', wagtail.core.fields.RichTextField()),
-                ('contacts', wagtail.core.fields.RichTextField()),
+                ('address', wagtail.fields.RichTextField()),
+                ('contacts', wagtail.fields.RichTextField()),
                 ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.Site')),
             ],
             options={

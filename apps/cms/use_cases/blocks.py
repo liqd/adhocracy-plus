@@ -1,4 +1,4 @@
-from wagtail.core import blocks
+from wagtail import blocks
 
 from apps.cms.blocks import CallToActionBlock
 

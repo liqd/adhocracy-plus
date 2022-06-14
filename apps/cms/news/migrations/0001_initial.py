@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -39,8 +39,8 @@ class Migration(migrations.Migration):
                 ('author', models.CharField(blank=True, max_length=255, verbose_name='Author Name')),
                 ('create_date', models.DateTimeField(auto_now_add=True)),
                 ('update_date', models.DateTimeField(auto_now=True)),
-                ('body_streamfield_de', wagtail.core.fields.StreamField([('paragraph', wagtail.core.blocks.RichTextBlock()), ('html', wagtail.core.blocks.RawHTMLBlock())], blank=True)),
-                ('body_streamfield_en', wagtail.core.fields.StreamField([('paragraph', wagtail.core.blocks.RichTextBlock()), ('html', wagtail.core.blocks.RawHTMLBlock())], blank=True)),
+                ('body_streamfield_de', wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock())], blank=True)),
+                ('body_streamfield_en', wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock())], blank=True)),
                 ('image', models.ForeignKey(blank=True, help_text='The Image that is shown on the news item page and the news index page', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='a4_candy_cms_images.CustomImage', verbose_name='News Header Image')),
             ],
             options={
