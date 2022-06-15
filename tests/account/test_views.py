@@ -52,7 +52,7 @@ def test_organisation_terms_edit(
 
     response = client.get(url)
     assert response.status_code == 200
-    assert len(response.context['formset'])
+    assert len(response.context['formset']) == 2
 
     data = {
         'organisationtermsofuse_set-TOTAL_FORMS': '2',
