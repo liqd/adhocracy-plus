@@ -33,9 +33,17 @@ def test_image_validation_image_too_small(organisation_factory, smallImage):
 
 
 @pytest.mark.django_db
-def test_image_big_enough(organisation_factory, bigImage):
-    organisation = organisation_factory(image=bigImage, logo=bigImage)
+def test_image_big_enough(organisation_factory, bigImage, smallImage):
+    organisation = organisation_factory(image=bigImage, logo=smallImage)
     assert organisation.full_clean() is None
+
+
+@pytest.mark.django_db
+def test_image_validation_logo_too_big(organisation_factory, bigImage):
+    organisation = organisation_factory(logo=bigImage)
+    with pytest.raises(Exception) as e:
+        organisation.full_clean()
+    assert 'Image must be at most 800 pixels high' in str(e.value)
 
 
 @pytest.mark.django_db
@@ -48,7 +56,7 @@ def test_image_validation_type_not_allowed(organisation_factory, ImageBMP):
 
 @pytest.mark.django_db
 def test_image_validation_image_type_allowed(organisation_factory, ImagePNG):
-    organisation = organisation_factory(image=ImagePNG, logo=ImagePNG)
+    organisation = organisation_factory(image=ImagePNG)
     assert organisation.full_clean() is None
 
 

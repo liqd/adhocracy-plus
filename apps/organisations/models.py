@@ -67,7 +67,8 @@ class Organisation(TranslatableModel):
         help_text=_('The Logo representing your organisation.'
                     ' The image must be square and it '
                     'should be min. 200 pixels wide and 200 '
-                    'pixels tall. Allowed file formats are '
+                    'pixels tall and max. 800 pixels wide and '
+                    '800 pixels tall. Allowed file formats are '
                     'png, jpeg, gif. The file size '
                     'should be max. 5 MB.'),
         upload_to='organisations/logos',
