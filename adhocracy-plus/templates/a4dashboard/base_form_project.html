@@ -7,7 +7,7 @@
     <h1 class="mt-0">{{ view.title }}</h1>
 
      {% if form.errors %}
-        <div class="errorlist">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
+        <div class="errorlist" role="alert">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
     {% endif %}
 
     {% for error in form.non_field_errors %}

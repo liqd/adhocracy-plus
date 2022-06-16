@@ -8,15 +8,23 @@
     </label>
     {% block help_text %}
     {% if field.help_text %}
-    <div class="form-hint">
+    <p class="form-hint" id="hint_{{ field.id_for_label }}" {% if tabindex is not None %}tabindex="{{ tabindex }}"{% endif %}>
         {{ field.help_text }}
-    </div>
+    </p>
     {% endif %}
     {% endblock %}
     {% block field %}
         <div class="widget widget--{{ field|widget_type }}">
-            {{ field }}
+          {% with describedby="hint_"|add:field.id_for_label %}
+          {% if field.errors %}
+                {% render_field field aria-invalid="true" aria-describedby=describedby %}
+          {% else %}
+            {% render_field field aria-describedby=describedby %}
+          {% endif %}
+          {% endwith %}
         </div>
     {% endblock %}
-    {{ field.errors }}
+    {% if field.errors %}
+        <div role="alert">{{ field.errors }}</div>
+    {% endif %}
 </div>

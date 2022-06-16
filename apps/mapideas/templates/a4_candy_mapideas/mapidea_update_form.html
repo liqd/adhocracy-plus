@@ -30,7 +30,7 @@
 
                 <h1>{% trans 'Edit idea' %}</h1>
                 {% if form.errors %}
-                    <div class="errorlist">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
+                    <div class="errorlist" role="alert">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
                 {% endif %}
 
                 {% include "a4_candy_mapideas/includes/mapidea_form.html" with cancel=object.get_absolute_url %}

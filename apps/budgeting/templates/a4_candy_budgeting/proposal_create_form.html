@@ -24,7 +24,7 @@
 
                 <h1>{% trans 'Submit a new proposal for this project'%}</h1>
                 {% if form.errors %}
-                        <div class="errorlist">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
+                        <div class="errorlist" role="alert">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
                 {% endif %}
 
                 {% include "a4_candy_budgeting/includes/proposal_form.html" with proposal=proposal cancel=module.get_detail_url %}
