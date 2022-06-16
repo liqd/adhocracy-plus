@@ -6,7 +6,7 @@
 <div class="container">
     <h1 class="mt-0">{% trans 'Add a new offline event'%}</h1>
     {% if form.errors %}
-        <div class="errorlist">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
+        <div class="errorlist" role="alert">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
     {% endif %}
 
     {% url 'a4dashboard:offlineevent-list' organisation_slug=project.organisation.slug project_slug=project.slug as cancel %}
