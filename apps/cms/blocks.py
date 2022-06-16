@@ -15,6 +15,7 @@ class CallToActionBlock(blocks.StructBlock):
         icon = 'plus-inverse'
 
 
+# 1-col, img, richtext, CTA btn
 class ImageCTABlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
     body = blocks.RichTextBlock(required=False)
@@ -28,23 +29,7 @@ class ImageCTABlock(blocks.StructBlock):
         icon = 'view'
 
 
-# 2-col, headline, text, CTA btn, background colors, text colors
-class ColumnsImageCTABlock(blocks.StructBlock):
-    columns_count = blocks.ChoiceBlock(choices=[
-        (1, 'One column'),
-        (2, 'Two columns')
-
-    ], default=2)
-
-    columns = blocks.ListBlock(
-        ImageCTABlock(label='List and Image')
-    )
-
-    class Meta:
-        template = 'a4_candy_cms_pages/blocks/col_img_cta_block.html'
-        icon = 'list-ul'
-
-
+# 2-col, richtext, CTA btn, background colour
 class ColBackgroundCTABlock(blocks.StructBlock):
     columns_count = blocks.ChoiceBlock(choices=[
         (1, 'One column'),
@@ -61,8 +46,7 @@ class ColBackgroundCTABlock(blocks.StructBlock):
         icon = 'tick-inverse'
 
 
-# 3 column block with an optional button/link for each col,
-# Call-to-action block can have up to 3 big CTA btn
+# 1-3 col, optional richtext, link cta
 class ColumnsCTABlock(blocks.StructBlock):
     columns_count = blocks.ChoiceBlock(choices=[
         (1, 'One column'),
