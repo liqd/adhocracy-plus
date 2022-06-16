@@ -52,29 +52,6 @@ $block-padding-md: 7.5 * $padding;
     text-align: left;
 }
 
-.block-img-col-1 {
-    @extend .col-md-7;
-
-    img {
-        display: inline-block;
-        float: left;
-        padding-right: $padding;
-    }
-}
-
-.block-img-col-2 {
-    @extend .col-md-5;
-
-    .block-img-col__image {
-        width: 100%;
-        position: relative;
-
-        @media screen and (min-width: $breakpoint-xxl) {
-            margin-top: 2 * $spacer;
-        }
-    }
-}
-
 // old block styling, still used in activity block
 .block--bordered {
     padding: 1em;
@@ -88,7 +65,6 @@ $block-padding-md: 7.5 * $padding;
 
 // responsive padding for image, 2 col cta
 .homepage__wrapper {
-    .block-img-col-1,
     .block-row-2 {
         padding: 2 * $padding;
 
@@ -128,26 +104,20 @@ $block-padding-md: 7.5 * $padding;
         width: 80px;
         border-bottom: solid 8px $brand-secondary;
     }
-
-    .block-img-col-1 {
-        h2:after {
-            left: 0;
-        }
-    }
 }
 
 // coloured background block
-.block-background_cta_block .block > :first-child {
+.block-background_cta_block .block-light {
     background-color: $brand-secondary;
 }
 
-.block-background_cta_block .block > :last-child {
+.block-background_cta_block .block-dark {
     background-color: $brand-primary;
     color: $text-color-inverted;
 }
 
 // linked for specificty
-.btn--transparent.block-bg_btn-2 {
+.block-dark .btn--transparent {
     color: $text-color-inverted;
     border-color: $text-color-inverted;
 

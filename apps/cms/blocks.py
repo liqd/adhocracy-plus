@@ -31,15 +31,8 @@ class ImageCTABlock(blocks.StructBlock):
 
 # 2-col, richtext, CTA btn, background colour
 class ColBackgroundCTABlock(blocks.StructBlock):
-    columns_count = blocks.ChoiceBlock(choices=[
-        (1, 'One column'),
-        (2, 'Two columns')
-
-    ], default=2)
-
-    columns = blocks.ListBlock(
-        CallToActionBlock(label='CTA with Background')
-    )
+    column1_bg = CallToActionBlock(label='CTA column light blue')
+    column2_bg = CallToActionBlock(label='CTA column dark blue')
 
     class Meta:
         template = 'a4_candy_cms_pages/blocks/col_background_cta_block.html'
