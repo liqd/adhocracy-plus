@@ -2,11 +2,19 @@ from django import forms
 from django.urls import reverse
 from django.utils.html import mark_safe
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import FormView
 
 from apps.organisations.models import OrganisationTermsOfUse
 
 
 class OrganisationTermsOfUseMixin(forms.ModelForm):
+    """
+    Add org terms checkbox to form when user has not yet agreed.
+
+    Make sure, that the user is added to the form_kwargs in the
+    respective view. You can use the UserFormViewMixin to do that.
+    """
+
     organisation_terms_of_use = forms.BooleanField(
         required=False,
         help_text=_(
@@ -64,3 +72,12 @@ class OrganisationTermsOfUseMixin(forms.ModelForm):
             '</a>'
         )
         return mark_safe(label)
+
+
+class UserFormViewMixin(FormView):
+    """Adds the user from the request to the form_kwargs."""
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs

@@ -1,16 +1,16 @@
 from ckeditor_uploader import fields
+from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
-from apps.organisations.mixins import OrganisationTermsOfUseMixin
 
 from . import models
 
 
 class TopicForm(CategorizableFieldMixin,
                 LabelsAddableFieldMixin,
-                OrganisationTermsOfUseMixin):
+                forms.ModelForm):
 
     description = fields.RichTextUploadingFormField(
         config_name='image-editor',

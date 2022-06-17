@@ -20,7 +20,6 @@ def test_user_cannot_update(client, subject_factory):
     client.login(username=user.email, password='password')
     data = {
         'name': 'Another Subject',
-        'organisation_terms_of_use': True,
     }
     response = client.post(url, data)
     assert response.status_code == 403
@@ -41,38 +40,7 @@ def test_moderators_can_always_update(client, subject_factory):
     client.login(username=moderator.email, password='password')
     data = {
         'name': 'Another subject',
-        'organisation_terms_of_use': True,
     }
-    response = client.post(url, data)
-    assert redirect_target(response) == 'subject-list'
-    assert response.status_code == 302
-    updated_subject = models.Subject.objects.get(id=subject.pk)
-    assert updated_subject.name == 'Another subject'
-
-
-@pytest.mark.django_db
-def test_moderators_can_update_only_with_terms_agreement(
-        client, subject_factory, organisation_terms_of_use_factory):
-    subject = subject_factory()
-    moderator = subject.module.project.moderators.first()
-    assert moderator is not subject.creator
-    url = reverse(
-        'a4dashboard:subject-update',
-        kwargs={
-            'organisation_slug': subject.module.project.organisation.slug,
-            'pk': subject.pk,
-            'year': subject.created.year
-        })
-    client.login(username=moderator.email, password='password')
-    data = {
-        'name': 'Another subject',
-    }
-    organisation_terms_of_use_factory(
-        user=moderator,
-        organisation=subject.module.project.organisation,
-        has_agreed=True,
-    )
-
     response = client.post(url, data)
     assert redirect_target(response) == 'subject-list'
     assert response.status_code == 302

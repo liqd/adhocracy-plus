@@ -9,6 +9,7 @@ from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from apps.contrib.widgets import AplusOrderingWidget
 from apps.ideas import views as idea_views
+from apps.organisations.mixins import UserFormViewMixin
 
 from . import forms
 from . import models
@@ -76,14 +77,16 @@ class ProposalDetailView(idea_views.AbstractIdeaDetailView):
     permission_required = 'a4_candy_budgeting.view_proposal'
 
 
-class ProposalCreateView(idea_views.AbstractIdeaCreateView):
+class ProposalCreateView(idea_views.AbstractIdeaCreateView,
+                         UserFormViewMixin):
     model = models.Proposal
     form_class = forms.ProposalForm
     permission_required = 'a4_candy_budgeting.add_proposal'
     template_name = 'a4_candy_budgeting/proposal_create_form.html'
 
 
-class ProposalUpdateView(idea_views.AbstractIdeaUpdateView):
+class ProposalUpdateView(idea_views.AbstractIdeaUpdateView,
+                         UserFormViewMixin):
     model = models.Proposal
     form_class = forms.ProposalForm
     permission_required = 'a4_candy_budgeting.change_proposal'

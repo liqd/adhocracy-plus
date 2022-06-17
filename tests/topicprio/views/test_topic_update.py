@@ -21,7 +21,6 @@ def test_user_cannot_update(client, topic_factory):
     data = {
         'name': 'Another Topic',
         'description': 'changed description',
-        'organisation_terms_of_use': True,
     }
     response = client.post(url, data)
     assert response.status_code == 403
@@ -43,38 +42,7 @@ def test_moderators_can_always_update(client, topic_factory):
     data = {
         'name': 'Another Topic',
         'description': 'changed description',
-        'organisation_terms_of_use': True,
     }
-    response = client.post(url, data)
-    assert redirect_target(response) == 'topic-list'
-    assert response.status_code == 302
-    updated_topic = models.Topic.objects.get(id=topic.pk)
-    assert updated_topic.description == 'changed description'
-
-
-@pytest.mark.django_db
-def test_moderators_can_update_only_with_terms_agreement(
-        client, topic_factory, organisation_terms_of_use_factory):
-    topic = topic_factory()
-    moderator = topic.module.project.moderators.first()
-    assert moderator is not topic.creator
-    url = reverse(
-        'a4dashboard:topic-update',
-        kwargs={
-            'organisation_slug': topic.module.project.organisation.slug,
-            'pk': topic.pk,
-            'year': topic.created.year
-        })
-    client.login(username=moderator.email, password='password')
-    data = {
-        'name': 'Another Topic',
-        'description': 'changed description',
-    }
-    organisation_terms_of_use_factory(
-        user=moderator,
-        organisation=topic.module.project.organisation,
-        has_agreed=True,
-    )
     response = client.post(url, data)
     assert redirect_target(response) == 'topic-list'
     assert response.status_code == 302

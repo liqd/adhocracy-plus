@@ -7,6 +7,7 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from apps.contrib.widgets import AplusOrderingWidget
 from apps.ideas import views as idea_views
+from apps.organisations.mixins import UserFormViewMixin
 
 from . import forms
 from . import models
@@ -58,14 +59,16 @@ class MapIdeaDetailView(idea_views.AbstractIdeaDetailView):
     permission_required = 'a4_candy_mapideas.view_mapidea'
 
 
-class MapIdeaCreateView(idea_views.AbstractIdeaCreateView):
+class MapIdeaCreateView(idea_views.AbstractIdeaCreateView,
+                        UserFormViewMixin):
     model = models.MapIdea
     form_class = forms.MapIdeaForm
     permission_required = 'a4_candy_mapideas.add_mapidea'
     template_name = 'a4_candy_mapideas/mapidea_create_form.html'
 
 
-class MapIdeaUpdateView(idea_views.AbstractIdeaUpdateView):
+class MapIdeaUpdateView(idea_views.AbstractIdeaUpdateView,
+                        UserFormViewMixin):
     model = models.MapIdea
     form_class = forms.MapIdeaForm
     permission_required = 'a4_candy_mapideas.change_mapidea'
