@@ -36,7 +36,6 @@ def test_subject_create_view(client, phase_factory, category_factory):
         })
     data = {
         'name': 'test',
-        'organisation_terms_of_use': True,
     }
     client.login(username=initiator.email, password='password')
     response = client.post(url, data)
@@ -59,7 +58,6 @@ def test_subject_update_view(
         })
     data = {
         'name': 'test',
-        'organisation_terms_of_use': True,
     }
     client.login(username=initiator.email, password='password')
     response = client.post(url, data)
