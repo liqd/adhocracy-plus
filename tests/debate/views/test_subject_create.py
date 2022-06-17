@@ -64,7 +64,6 @@ def test_admin_can_create_subject(
         assert response.status_code == 200
         subject = {
             'name': 'Subject',
-            'organisation_terms_of_use': True,
         }
         response = client.post(url, subject)
         assert response.status_code == 302
@@ -94,7 +93,6 @@ def test_moderator_can_create_subject_before_phase(
         assert response.status_code == 200
         subject = {
             'name': 'Subject',
-            'organisation_terms_of_use': True,
         }
         response = client.post(url, subject)
         assert response.status_code == 302
@@ -124,46 +122,7 @@ def test_initiator_can_create_subject_before_phase(
         assert response.status_code == 200
         subject = {
             'name': 'subject',
-            'organisation_terms_of_use': True,
         }
-        response = client.post(url, subject)
-        assert response.status_code == 302
-        assert redirect_target(response) == 'subject-list'
-        count = models.Subject.objects.all().count()
-        assert count == 1
-
-
-@pytest.mark.django_db
-def test_initiator_can_create_subject_only_with_terms_agreement(
-        client, phase_factory, admin,
-        organisation_terms_of_use_factory):
-    phase = phase_factory(phase_content=phases.DebatePhase())
-    module = phase.module
-    project = module.project
-    initiator = project.organisation.initiators.first()
-    url = reverse(
-        'a4dashboard:subject-create',
-        kwargs={
-            'organisation_slug': module.project.organisation.slug,
-            'module_slug': module.slug
-        })
-    with freeze_pre_phase(phase):
-        client.login(username=initiator.email, password='password')
-        response = client.get(url)
-        assert_template_response(
-            response, 'a4_candy_debate/subject_create_form.html')
-        assert response.status_code == 200
-        subject = {
-            'name': 'Subject',
-        }
-        response = client.post(url, subject)
-        assert response.status_code == 200
-        organisation_terms_of_use_factory(
-            user=initiator,
-            organisation=module.project.organisation,
-            has_agreed=True,
-        )
-
         response = client.post(url, subject)
         assert response.status_code == 302
         assert redirect_target(response) == 'subject-list'
