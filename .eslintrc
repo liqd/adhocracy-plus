@@ -5,7 +5,7 @@
     "requireConfigFile": false,
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true
-    },
+    }
   },
   "env": {
     "browser": true,
@@ -17,11 +17,13 @@
   "extends": [
     "standard",
     "standard-jsx",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:react/recommended"
   ],
   "rules": {
     "jsx-quotes": [2, "prefer-double"],
     "jsx-a11y/no-onchange": "off",
+    "react/prop-types": "off"
   },
   "plugins": [
     "jsx-a11y",
