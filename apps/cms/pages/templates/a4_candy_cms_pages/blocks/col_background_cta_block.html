@@ -1,14 +1,20 @@
 {% load wagtailcore_tags %}
 
 <div class="block row">
-    {% for column in value.columns %}
-        <div class="block-col-{{ value.columns_count }}">
-            {{ column.body }}
-            {% if column.link %}
-            <div class="block-col_cta-content">
-                <a href="{{ column.link }}" class="btn btn--full btn--transparent block-bg_btn-{{ forloop.counter }} mt-3">{{ column.link_text }}</a>
-            </div>
-        {% endif %}
+    <div class="block-col-2 block-light">
+        {{ value.column1.body }}
+        {% if value.column1.link %}
+        <div class="block-col_cta-content">
+            <a href="{{ column1.link }}" class="btn btn--full btn--transparent mt-3">{{ column1.link_text }}</a>
         </div>
-    {% endfor %}
+        {% endif %}
+    </div>
+    <div class="block-col-2 block-dark">
+        {{ column2.body }}
+        {% if value.column2.link %}
+        <div class="block-col_cta-content">
+            <a href="{{ column2.link }}" class="btn btn--full btn--transparent mt-3">{{ column2.link_text }}</a>
+        </div>
+        {% endif %}
+    </div>
 </div>
