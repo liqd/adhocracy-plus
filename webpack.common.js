@@ -112,12 +112,6 @@ module.exports = {
     }
   },
   output: {
-    // exposes exports of entry points
-    library: {
-      name: '[name]',
-      // return value of entry point will be assigned this.
-      type: 'this'
-    },
     // creates a folder to store all assets
     path: path.resolve('./adhocracy-plus/static/'),
     // location they can be accessed, can also be a url
