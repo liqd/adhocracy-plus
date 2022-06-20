@@ -1,6 +1,4 @@
 .a4-termsofuse__checkbox-container {
-    @extend .poll-row;
-    display: flex;
     margin-top: 1.5 * $spacer;
 }
 
@@ -11,6 +9,15 @@
 .a4-termsofuse__checkbox-label {
     @extend .radio__text;
     @extend .radio__text--checkbox;
+}
+
+.a4-termsofuse__checkbox-helptext {
+    // amount of padding given to poll-text hence no $spacer
+    padding-left: 27px;
+}
+
+.a4-termsofuse__checkbox-label,
+.a4-termsofuse__checkbox-helptext {
     color: $text-color-gray;
     padding-right: 2 * $spacer;
 }
