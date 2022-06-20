@@ -1,5 +1,5 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
+import ReactDOM from 'react-dom'
 import DocumentManagement from './DocumentManagement'
 
 module.exports.renderDocumentManagement = function (element) {
@@ -9,6 +9,5 @@ module.exports.renderDocumentManagement = function (element) {
 
   const reloadOnSuccess = JSON.parse(element.getAttribute('data-reloadOnSuccess'))
 
-  const root = createRoot(element)
-  root.render(<DocumentManagement key={module} module={module} chapters={chapters} config={config} reloadOnSuccess={reloadOnSuccess} />)
+  ReactDOM.render(<DocumentManagement key={module} module={module} chapters={chapters} config={config} reloadOnSuccess={reloadOnSuccess} />, element)
 }

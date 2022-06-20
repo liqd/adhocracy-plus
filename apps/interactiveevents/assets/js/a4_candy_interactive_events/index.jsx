@@ -1,5 +1,5 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
+import ReactDOM from 'react-dom'
 
 import QuestionBox from './livequestion_box'
 import PresentBox from './livequestion_present_box'
@@ -7,18 +7,15 @@ import StatisticsBox from './livequestion_statistics_box'
 
 export function renderLiveQuestions (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
-  const root = createRoot(el)
-  root.render(<QuestionBox {...props} />)
+  ReactDOM.render(<QuestionBox {...props} />, el)
 }
 
 export function renderLiveQuestionsPresent (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
-  const root = createRoot(el)
-  root.render(<PresentBox {...props} />)
+  ReactDOM.render(<PresentBox {...props} />, el)
 }
 
 export function renderLiveQuestionsStatistics (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
-  const root = createRoot(el)
-  root.render(<StatisticsBox {...props} />)
+  ReactDOM.render(<StatisticsBox {...props} />, el)
 }
