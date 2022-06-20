@@ -122,7 +122,12 @@ window.onload = function () {
           const questionDiv = document.createElement('div')
           questionDiv.setAttribute('class', 'captcheck_label_message')
           questionDiv.setAttribute('id', 'captcheck_' + idp + '_label_message')
-          questionDiv.innerHTML = "<span class='captcheck_question_image' tabindex='0' id='captcheck_" + idp + "_question_image'>" + data.question_i + "</span><span class='captcheck_question_access' tabindex='0' id='captcheck_" + idp + "_question_access'>" + data.question_a + "</span><a href='' class='captcheck_alt_question_button' data-prefix='" + idp + "' id='captcheck_" + idp + "_alt_question_button' aria-role='button' aria-label='" + textLabel + "' tabindex='0'>" + textTextMode + '</a>'
+          questionDiv.innerHTML =
+          /* eslint-disable */
+            "<a href='' class='captcheck_alt_question_button' data-prefix='" + idp + "' id='captcheck_" + idp + "_alt_question_button' aria-role='button' aria-label='" + textLabel + "' tabindex='0'>" + textTextMode + '</a>' +
+            "<span class='captcheck_question_image' tabindex='0' id='captcheck_" + idp + "_question_image'>" + data.question_i + "</span>" +
+            "<span class='captcheck_question_access' tabindex='0' id='captcheck_" + idp + "_question_access'>" + data.question_a + "</span>"
+            /* eslint-enable */
 
           /* Add question and answers */
           captcha.appendChild(questionDiv)
@@ -171,6 +176,22 @@ window.onload = function () {
     styles.setAttribute('nonce', nonce)
   }
   /* Remove newlines/comments from captcheck.css and put it here */
-  styles.innerHTML = '.captcheck_box{font-family:Ubuntu,Arial,sans-serif;color:black;border:1px solid #e0e0e0;border-radius:3px;display:inline-block;padding:3px;margin:5px 2px 5px 1px;background-color:#f5f5f5;text-decoration:none}.captcheck_label_message,.captcheck_label_message b{color:black;font-family:Ubuntu,Roboto,Arial,sans-serif}.captcheck_answer_label{border:0}.captcheck_answer_label>input{visibility:hidden;position:absolute}.captcheck_answer_label>input+img{cursor:pointer;border:2px solid transparent;border-radius:3px;min-width:32px;width:18%;max-width:64px}.captcheck_answer_label>input:checked+img{cursor:pointer;border:2px solid #424242;border-radius:3px}.captcheck_error_message{color:red}.captcheck_question_image{display:initial}.captcheck_question_access{display:none}.captcheck_alt_question_button{float:right;font-size:80%;cursor:pointer;color:inherit;text-decoration:inherit;border:0}.captcheck_alt_question_button:focus{outline:0}.captcheck_alt_question_button:focus-visible{outline: auto}.captcheck_answer_images>a:focus{outline:0}.captcheck_answer_images>a:focus-visible{outline: auto}.captcheck_answer_images{display:initial}.captcheck_answer_access{display:none}'
+  styles.innerHTML =
+    '.captcheck_box{ font-family:Ubuntu,Arial,sans-serif; color:black; border:1px solid #e0e0e0; border-radius:3px; display:inline-block; padding:3px; margin:5px 2px 5px 1px; background-color:#f5f5f5; text-decoration:none }' +
+    '.captcheck_label_message,.captcheck_label_message b{ color:black; font-family:Ubuntu,Roboto,Arial,sans-serif }' +
+    '.captcheck_answer_label{ border:0 }' +
+    '.captcheck_answer_label>input{ visibility:hidden; position:absolute }' +
+    '.captcheck_answer_label>input+img{ cursor:pointer; border:2px solid transparent; border-radius:3px; min-width:32px; width:18%; max-width:64px }' +
+    '.captcheck_answer_label>input:checked+img{ cursor:pointer; border:2px solid #424242; border-radius:3px }' +
+    '.captcheck_error_message{ color:red }' +
+    '.captcheck_question_image{ display:initial }' +
+    '.captcheck_question_access{ display:none }' +
+    '.captcheck_alt_question_button{ display:block; font-size:80%; cursor:pointer; color:inherit; text-decoration:inherit; border:0 }' +
+    '.captcheck_alt_question_button:focus{ outline:0 }' +
+    '.captcheck_alt_question_button:focus-visible{ outline: auto }' +
+    '.captcheck_answer_images>a:focus{ outline:0 }' +
+    '.captcheck_answer_images>a:focus-visible{ outline: auto }' +
+    '.captcheck_answer_images{ display:initial }' +
+    '.captcheck_answer_access{ display:none }' +
   document.body.appendChild(styles)
 }
