@@ -1,4 +1,4 @@
-import bootstrap from 'bootstrap'
+import * as bootstrap from 'bootstrap'
 const $ = require('jquery')
 const a4api = require('adhocracy4').api
 

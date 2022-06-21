@@ -20,7 +20,7 @@ import {
 } from 'adhocracy4'
 
 import * as ReactDocuments from '../../../apps/documents/assets/react_documents.jsx'
-import * as ReactInteractiveEvents from 'a4_candy_interactive_events'
+import * as ReactInteractiveEvents from 'a4_candy_interactive_events' // eslint-disable-line
 import * as ReactLanguageChoice from '../../../apps/organisations/assets/react_language_choice.jsx'
 
 function init () {
