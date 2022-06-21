@@ -19,9 +19,9 @@ import {
   widget as ReactWidget
 } from 'adhocracy4'
 
-import * as ReactDocuments from '../../../apps/documents/assets/react_documents.jsx'
-import * as ReactInteractiveEvents from 'a4_candy_interactive_events' // eslint-disable-line
-import * as ReactLanguageChoice from '../../../apps/organisations/assets/react_language_choice.jsx'
+import { renderDocumentManagement } from '../../../apps/documents/assets/react_documents.jsx'
+import { renderLiveQuestions, renderLiveQuestionsPresent } from '../../../apps/interactiveevents/assets/js/a4_candy_interactive_events/index.jsx'
+import { renderLanguageChoice } from '../../../apps/organisations/assets/react_language_choice.jsx'
 
 function init () {
   ReactWidget.initialise('a4', 'comment_async', ReactCommentsAsync.renderComment)
@@ -31,12 +31,12 @@ function init () {
   ReactWidget.initialise('a4', 'ratings', ReactRatings.renderRatings)
   ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
 
-  ReactWidget.initialise('mb', 'document-management', ReactDocuments.renderDocumentManagement)
+  ReactWidget.initialise('mb', 'document-management', renderDocumentManagement)
 
-  ReactWidget.initialise('aplus', 'questions', ReactInteractiveEvents.renderLiveQuestions)
-  ReactWidget.initialise('aplus', 'present', ReactInteractiveEvents.renderLiveQuestionsPresent)
+  ReactWidget.initialise('aplus', 'questions', renderLiveQuestions)
+  ReactWidget.initialise('aplus', 'present', renderLiveQuestionsPresent)
 
-  ReactWidget.initialise('euth', 'language-choice', ReactLanguageChoice.renderLanguageChoice)
+  ReactWidget.initialise('euth', 'language-choice', renderLanguageChoice)
 
   $('.timeline-carousel__item').slick({
     initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),
