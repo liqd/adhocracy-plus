@@ -1,5 +1,4 @@
 from django.utils import timezone
-from django.utils.html import strip_tags
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
@@ -34,10 +33,10 @@ class AppProjectSerializer(serializers.ModelSerializer):
                   'module_running_progress')
 
     def get_information(self, project):
-        return strip_tags(project.information)
+        return project.information.strip()
 
     def get_result(self, project):
-        return strip_tags(project.result)
+        return project.result.strip()
 
     def get_organisation(self, project):
         return project.organisation.name
