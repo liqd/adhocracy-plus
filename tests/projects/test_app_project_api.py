@@ -89,10 +89,12 @@ def test_app_project_api_single_poll_module(
 @pytest.mark.django_db
 def test_app_project_serializer(project_factory, module_factory, phase_factory,
                                 apiclient):
+    html_whitespace = '    <p>text with a <strong>bold</strong> bit</p>    '
+    html_no_whitespace = '<p>text with a <strong>bold</strong> bit</p>'
     project = project_factory(
         is_app_accessible=True,
-        information='<p>information with a <strong>bold</strong> bit</p>',
-        result='result without any tags'
+        information=html_whitespace,
+        result=html_whitespace
     )
     module = module_factory(project=project)
     module_factory(project=project, is_draft=True)
@@ -103,8 +105,8 @@ def test_app_project_serializer(project_factory, module_factory, phase_factory,
         response = apiclient.get(url, format='json')
 
     assert response.status_code == 200
-    assert response.data[0]['information'] == 'information with a bold bit'
-    assert response.data[0]['result'] == 'result without any tags'
+    assert response.data[0]['information'] == html_no_whitespace
+    assert response.data[0]['result'] == html_no_whitespace
     assert response.data[0]['published_modules'] == [module.pk]
     assert response.data[0]['organisation'] == project.organisation.name
     assert response.data[0]['access'] == 'PUBLIC'
