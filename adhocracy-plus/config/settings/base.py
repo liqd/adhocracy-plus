@@ -248,8 +248,8 @@ IMAGE_ALIASES = {
     'heroimage': {'min_resolution': (1500, 500)},
     'tileimage': {'min_resolution': (500, 300)},
     'logo': {
-        'min_resolution': (200, 200), 
-        'max_resolution': (800, 800), 
+        'min_resolution': (200, 200),
+        'max_resolution': (800, 800),
         'aspect_ratio': (1, 1)
     },
     'avatar': {'min_resolution': (200, 200)},
@@ -515,6 +515,18 @@ A4_CATEGORY_ICONS = (
     ('zickzack', _('Zigzag'))
 )
 
+A4_BLUEPRINT_TYPES = [
+    ('BS', 'brainstorming'),
+    ('MBS', 'map brainstorming'),
+    ('IC', 'idea collection'),
+    ('MIC', 'map idea collection'),
+    ('TR', 'text review'),
+    ('PO', 'poll'),
+    ('PB', 'participatory budgeting'),
+    ('IE', 'interactive event'),
+    ('TP', 'topic prioritization'),
+    ('DB', 'debate'),
+]
 
 A4_MAP_BASEURL = 'https://{s}.tile.openstreetmap.org/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
