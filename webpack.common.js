@@ -6,17 +6,24 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
-    adhocracy4: [ // array of entry points
-      '@fortawesome/fontawesome-free/scss/fontawesome.scss',
-      '@fortawesome/fontawesome-free/scss/brands.scss',
-      '@fortawesome/fontawesome-free/scss/regular.scss',
-      '@fortawesome/fontawesome-free/scss/solid.scss',
-      'select2/dist/css/select2.min.css',
-      'slick-carousel/slick/slick.css',
-      './adhocracy-plus/assets/extra_css/_slick-theme.css',
-      './adhocracy-plus/assets/scss/style.scss',
-      './adhocracy-plus/assets/js/app.js'
-    ],
+    adhocracy4: {
+      import: [ // array of entry points
+        '@fortawesome/fontawesome-free/scss/fontawesome.scss',
+        '@fortawesome/fontawesome-free/scss/brands.scss',
+        '@fortawesome/fontawesome-free/scss/regular.scss',
+        '@fortawesome/fontawesome-free/scss/solid.scss',
+        'select2/dist/css/select2.min.css',
+        'slick-carousel/slick/slick.css',
+        './adhocracy-plus/assets/extra_css/_slick-theme.css',
+        './adhocracy-plus/assets/scss/style.scss',
+        './adhocracy-plus/assets/js/app.js'
+      ],
+      // exposes a4 in this / window
+      library: {
+        name: '[name]',
+        type: 'this'
+      }
+    },
     captcheck: {
       import: [
         './apps/captcha/assets/captcheck.js'
@@ -112,12 +119,6 @@ module.exports = {
     }
   },
   output: {
-    // exposes exports of entry points
-    library: {
-      name: '[name]',
-      // return value of entry point will be assigned this.
-      type: 'this'
-    },
     // creates a folder to store all assets
     path: path.resolve('./adhocracy-plus/static/'),
     // location they can be accessed, can also be a url
