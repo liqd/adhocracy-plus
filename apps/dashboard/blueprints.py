@@ -23,6 +23,7 @@ blueprints = [
          ],
          image='images/brainstorming.svg',
          settings_model=None,
+         type='BS',
      )),
     ('map-brainstorming',
      ProjectBlueprint(
@@ -36,8 +37,9 @@ blueprints = [
          ],
          image='images/map-brainstorming.svg',
          settings_model=('a4maps', 'AreaSettings'),
+         type='MBS',
      )),
-    ('agenda-setting',
+    ('idea-collection',
      ProjectBlueprint(
          title=_('Idea Challenge'),
          description=_(
@@ -51,6 +53,7 @@ blueprints = [
          ],
          image='images/agenda-setting.svg',
          settings_model=None,
+         type='IC',
      )),
     ('map-idea-collection',
      ProjectBlueprint(
@@ -66,6 +69,7 @@ blueprints = [
          ],
          image='images/map-idea-collection.svg',
          settings_model=('a4maps', 'AreaSettings'),
+         type='MIC',
      )),
     ('text-review',
      ProjectBlueprint(
@@ -79,6 +83,7 @@ blueprints = [
          ],
          image='images/text-review.svg',
          settings_model=None,
+         type='TR',
      )),
     ('poll',
      ProjectBlueprint(
@@ -92,6 +97,7 @@ blueprints = [
          ],
          image='images/poll.svg',
          settings_model=None,
+         type='PO',
      )),
     ('participatory-budgeting',
      ProjectBlueprint(
@@ -105,6 +111,7 @@ blueprints = [
              budgeting_phases.RequestPhase()],
          image='images/participatory-budgeting.svg',
          settings_model=('a4maps', 'AreaSettings'),
+         type='PB',
      )),
     ('interactive-event',
      ProjectBlueprint(
@@ -120,6 +127,7 @@ blueprints = [
          ],
          image='images/live-discussion.svg',
          settings_model=None,
+         type='IE',
      )),
     ('topic-prioritization',
      ProjectBlueprint(
@@ -134,6 +142,7 @@ blueprints = [
          ],
          image='images/priorization.svg',
          settings_model=None,
+         type='TP',
      )),
     ('debate',
      ProjectBlueprint(
@@ -150,5 +159,6 @@ blueprints = [
          ],
          image='images/debate.svg',
          settings_model=None,
+         type='DB',
      )),
 ]

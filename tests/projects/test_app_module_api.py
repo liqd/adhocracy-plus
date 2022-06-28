@@ -38,7 +38,7 @@ def test_app_module_api(project_factory, module_factory, apiclient):
 
 
 @pytest.mark.django_db
-def test_app_module_api_agenda_setting(
+def test_app_module_api_idea_collection(
         client, apiclient, project_factory,
         category_factory, label_factory, user):
     project = project_factory(is_app_accessible=True)
@@ -47,7 +47,7 @@ def test_app_module_api_agenda_setting(
     url = reverse('a4dashboard:module-create',
                   kwargs={'organisation_slug': organisation.slug,
                           'project_slug': project.slug,
-                          'blueprint_slug': 'agenda-setting'
+                          'blueprint_slug': 'idea-collection'
                           })
     client.login(username=initiator.email, password='password')
     response = client.post(url)

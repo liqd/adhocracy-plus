@@ -62,7 +62,7 @@ def test_module_blueprint_list(client, project):
 
     blueprint_names = [b[0] for b in response.context_data['view'].blueprints]
 
-    assert 'agenda-setting' in blueprint_names
+    assert 'idea-collection' in blueprint_names
     assert 'text-review' in blueprint_names
     assert 'poll' in blueprint_names
     assert 'debate' in blueprint_names
