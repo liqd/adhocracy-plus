@@ -20,6 +20,8 @@ function initDashboardAccordion () {
     })
   }
 
+  const setCookie = (value) => Cookies.set(COOKIE_NAME, value, { sameSite: 'lax' })
+
   const manageCookie = (currentElement) => {
     const currentId = parseInt(currentElement.id.split('--')[1])
     const cookie = Cookies.get(COOKIE_NAME)
@@ -32,15 +34,15 @@ function initDashboardAccordion () {
 
     if (!currentExpanded && !currentList.includes(currentId)) {
       currentList.push(currentId)
-      Cookies.set(COOKIE_NAME, JSON.stringify(currentList))
+      setCookie(JSON.stringify(currentList))
     } else if (currentExpanded && currentList.includes(currentId)) {
       currentList.splice(currentList.indexOf(currentId), 1)
-      Cookies.set(COOKIE_NAME, JSON.stringify(currentList))
+      setCookie(JSON.stringify(currentList))
     }
   }
 
   if (Cookies.get(COOKIE_NAME) === undefined) {
-    Cookies.set(COOKIE_NAME, '[]')
+    setCookie('[]')
   }
 
   manageObservers()
