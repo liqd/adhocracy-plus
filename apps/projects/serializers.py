@@ -1,7 +1,9 @@
 from django.utils import timezone
 from django.utils.html import strip_tags
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
+from adhocracy4.api.dates import get_date_display
 from adhocracy4.categories.models import Category
 from adhocracy4.labels.models import Label
 from adhocracy4.modules.models import Module
@@ -20,12 +22,14 @@ class AppProjectSerializer(serializers.ModelSerializer):
     access = serializers.SerializerMethodField()
     single_agenda_setting_module = serializers.SerializerMethodField()
     single_poll_module = serializers.SerializerMethodField()
+    participation_time_display = serializers.SerializerMethodField()
 
     class Meta:
         model = Project
         fields = ('pk', 'name', 'description', 'information', 'result',
                   'organisation', 'published_modules', 'access', 'image',
-                  'single_agenda_setting_module', 'single_poll_module')
+                  'single_agenda_setting_module', 'single_poll_module',
+                  'participation_time_display', 'module_running_progress')
 
     def get_information(self, project):
         return strip_tags(project.information)
@@ -56,6 +60,22 @@ class AppProjectSerializer(serializers.ModelSerializer):
                 == 'a4polls:voting'):
             return project.published_modules.first().pk
         return False
+
+    def get_participation_time_display(self, project):
+        if project.running_modules:
+            if project.module_running_days_left < 365:
+                return _('%(time_left)s remaining') % \
+                    {'time_left': project.module_running_time_left}
+            else:
+                return _('more than 1 year remaining')
+        elif project.future_modules:
+            return _('Participation: from %(project_start)s') % \
+                {'project_start':
+                    get_date_display(
+                        project.future_modules.first().module_start)}
+        elif project.past_modules:
+            return _('Participation ended. Read result.')
+        return ''
 
 
 class AppPhaseSerializer(serializers.ModelSerializer):
