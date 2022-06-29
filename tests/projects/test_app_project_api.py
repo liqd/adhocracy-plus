@@ -1,6 +1,9 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.api.dates import get_date_display
+from adhocracy4.test import helpers
+
 
 @pytest.mark.django_db
 def test_app_project_api(project_factory, apiclient):
@@ -84,7 +87,8 @@ def test_app_project_api_single_poll_module(
 
 
 @pytest.mark.django_db
-def test_app_project_serializer(project_factory, module_factory, apiclient):
+def test_app_project_serializer(project_factory, module_factory, phase_factory,
+                                apiclient):
     project = project_factory(
         is_app_accessible=True,
         information='<p>information with a <strong>bold</strong> bit</p>',
@@ -92,9 +96,11 @@ def test_app_project_serializer(project_factory, module_factory, apiclient):
     )
     module = module_factory(project=project)
     module_factory(project=project, is_draft=True)
+    phase = phase_factory(module=module)
 
     url = reverse('app-projects-list')
-    response = apiclient.get(url, format='json')
+    with helpers.freeze_phase(phase):
+        response = apiclient.get(url, format='json')
 
     assert response.status_code == 200
     assert response.data[0]['information'] == 'information with a bold bit'
@@ -104,3 +110,17 @@ def test_app_project_serializer(project_factory, module_factory, apiclient):
     assert response.data[0]['access'] == 'PUBLIC'
     assert response.data[0]['single_agenda_setting_module'] is False
     assert response.data[0]['single_poll_module'] is False
+    assert response.data[0]['participation_time_display'].endswith('remaining')
+    assert response.data[0]['module_running_progress'] == 0
+
+    with helpers.freeze_pre_phase(phase):
+        response = apiclient.get(url, format='json')
+    assert response.data[0]['participation_time_display'] == \
+           'Participation: from ' + get_date_display(phase.start_date)
+    assert not response.data[0]['module_running_progress']
+
+    with helpers.freeze_post_phase(phase):
+        response = apiclient.get(url, format='json')
+    assert response.data[0]['participation_time_display'] == \
+           'Participation ended. Read result.'
+    assert not response.data[0]['module_running_progress']
