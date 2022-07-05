@@ -13,6 +13,7 @@ class Command(BaseCommand):
     help = 'Create offlineevent system actions.'
 
     def __init__(self):
+        super().__init__()
         if hasattr(settings, 'ACTIONS_OFFLINE_EVENT_STARTING_HOURS'):
             self.event_starting_hours = \
                 settings.ACTIONS_OFFLINE_EVENT_STARTING_HOURS
