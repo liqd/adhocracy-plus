@@ -19,6 +19,7 @@ class AppProjectSerializer(serializers.ModelSerializer):
     published_modules = serializers.PrimaryKeyRelatedField(read_only=True,
                                                            many=True)
     organisation = serializers.SerializerMethodField()
+    organisation_logo = serializers.SerializerMethodField()
     access = serializers.SerializerMethodField()
     single_agenda_setting_module = serializers.SerializerMethodField()
     single_poll_module = serializers.SerializerMethodField()
@@ -27,9 +28,10 @@ class AppProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ('pk', 'name', 'description', 'information', 'result',
-                  'organisation', 'published_modules', 'access', 'image',
-                  'single_agenda_setting_module', 'single_poll_module',
-                  'participation_time_display', 'module_running_progress')
+                  'organisation', 'organisation_logo', 'published_modules',
+                  'access', 'image', 'single_agenda_setting_module',
+                  'single_poll_module', 'participation_time_display',
+                  'module_running_progress')
 
     def get_information(self, project):
         return strip_tags(project.information)
@@ -39,6 +41,11 @@ class AppProjectSerializer(serializers.ModelSerializer):
 
     def get_organisation(self, project):
         return project.organisation.name
+
+    def get_organisation_logo(self, project):
+        if project.organisation.logo:
+            return project.organisation.logo.url
+        return None
 
     def get_access(self, project):
         return project.access.name
