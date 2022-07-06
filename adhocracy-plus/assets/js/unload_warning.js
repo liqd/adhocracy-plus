@@ -5,10 +5,14 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   let submitted = false
-  const changeHandler = function () {
-    const target = event.target.id
-    if (target.includes('dashboardToggle')) {
-      submitted = true
+  const changeHandler = event => {
+    if (event.target === undefined) {
+      return
+    } else {
+      const target = event.target.id
+      if (target.includes('dashboardToggle')) {
+        submitted = true
+      }
     }
     window.addEventListener('beforeunload', (e) => {
       if (!submitted) {
