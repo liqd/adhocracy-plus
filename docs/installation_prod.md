@@ -56,7 +56,7 @@ See the [django-documentation](https://docs.djangoproject.com/en/2.2/ref/setting
 
 ```
 # replace 'your.domain' with your desired domain
-BASE_URL = 'https://your.domain'
+WAGTAILADMIN_BASE_URL = 'https://your.domain'
 ALLOWED_HOSTS = [u'your.domain', u'localhost']
 
 # database config - we recommend postgresql for production purposes
