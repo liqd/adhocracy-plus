@@ -120,6 +120,7 @@ def test_detail_view_semipublic_participation_only_participant(
                       })
     comment_data = {
         'comment': 'no comment',
+        'agreed_terms_of_use': True
     }
 
     with freeze_phase(phase):
