@@ -40,7 +40,8 @@
     &.is-read-only,
     &:disabled {
         color: $text-color;
-        cursor: not-allowed;
+        cursor: auto;
+        background-color: $body-bg;
     }
 }
 
