@@ -61,7 +61,7 @@ class Paragraph extends React.Component {
   render () {
     const ckEditorToolbarsHeight = 60 // measured on example editor
     return (
-      <section>
+      <section data-testid="paragraph-nav">
         <div className="commenting">
           <div className="commenting__content commenting__content--border">
             <div className="form-group">
