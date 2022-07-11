@@ -103,7 +103,7 @@ export default class QuestionModerator extends React.Component {
     const ariaRemoveShortlist = django.gettext('remove from shortlist')
 
     return (
-      <div className="list-item mb-2">
+      <div className="list-item mb-2" data-testid="question-moderator">
         {this.props.category &&
           <span className="label mb-2">{this.props.category}</span>}
         <div>
