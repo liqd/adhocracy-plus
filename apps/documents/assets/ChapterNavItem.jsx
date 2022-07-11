@@ -1,6 +1,6 @@
-import * as classNames from 'classnames'
 const React = require('react')
 const django = require('django')
+const classNames = require('classnames')
 
 function getErrorCount (props) {
   if (props.errors && Object.keys(props.errors).length > 0) {
