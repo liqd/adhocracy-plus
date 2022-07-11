@@ -29,7 +29,11 @@ const config = {
   ],
   transform: {
     '^.+\\.[t|j]sx?$': 'babel-jest'
-  }
+  },
+  transformIgnorePatterns: [
+  // transpile all node_modules, not great?
+    '/node_modules/(?!(.*)/)'
+  ]
 }
 
 module.exports = config
