@@ -59,7 +59,7 @@ def test_logout_with_next(user, client, logout_url):
 @pytest.mark.django_db
 def test_register(client, signup_url):
     assert EmailAddress.objects.count() == 0
-    email = 'testuser@liqd.de'
+    email = 'testuser@liqd.net'
     response = client.post(
         signup_url, {
             'username': 'testuser2',
@@ -97,7 +97,7 @@ def test_register(client, signup_url):
 @pytest.mark.django_db
 def test_register_with_next(client, signup_url):
     assert EmailAddress.objects.count() == 0
-    email = 'testuser2@liqd.de'
+    email = 'testuser2@liqd.net'
     response = client.post(
         signup_url, {
             'username': 'testuser2',
@@ -136,7 +136,7 @@ def test_reregister_same_username(client, signup_url):
     assert EmailAddress.objects.count() == 0
     data = {
         'username': 'testuser2',
-        'email': 'testuser@liqd.de',
+        'email': 'testuser@liqd.net',
         'password1': 'password',
         'password2': 'password',
         'terms_of_use': 'on',
@@ -145,7 +145,7 @@ def test_reregister_same_username(client, signup_url):
     response = client.post(signup_url, data)
     assert response.status_code == 302
     assert EmailAddress.objects.count() == 1
-    data['email'] = 'anotheremail@liqd.de'
+    data['email'] = 'anotheremail@liqd.net'
     response = client.post(signup_url, data)
     assert response.status_code == 302
     assert EmailAddress.objects.count() == 1
@@ -157,7 +157,7 @@ def test_register_invalid_no_matching_passwords(client, signup_url):
     response = client.post(
         signup_url + '?next=/', {
             'username': username,
-            'email': 'testuser@liqd.de',
+            'email': 'testuser@liqd.net',
             'password1': 'password',
             'password2': 'wrong_password',
             'terms_of_use': 'on',
@@ -174,7 +174,7 @@ def test_register_invalid_no_captcha(client, signup_url):
     response = client.post(
         signup_url + '?next=/', {
             'username': username,
-            'email': 'testuser@liqd.de',
+            'email': 'testuser@liqd.net',
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
@@ -191,7 +191,7 @@ def test_register_invalid_wrong_captcha(client, signup_url):
     response = client.post(
         signup_url + '?next=/', {
             'username': username,
-            'email': 'testuser@liqd.de',
+            'email': 'testuser@liqd.net',
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
