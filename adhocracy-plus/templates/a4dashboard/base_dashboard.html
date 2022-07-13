@@ -50,17 +50,17 @@
 
             <nav class="d-none d-sm-inline-block" aria-label="{% trans 'Dashboard' %}">
                 <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
-                   class="tab {% ifequal view.menu_item 'project' %}active{% endifequal %}">
+                   class="tab {% if view.menu_item == 'project' %}active{% endif %}">
                     {% trans 'Participation projects' %}
                 </a>
                 <a href="{% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug %}"
-                   class="tab {% ifequal view.menu_item 'newsletter' %}active{% endifequal %}">
+                   class="tab {% if view.menu_item == 'newsletter' %}active{% endif %}">
                     {% trans 'Newsletter' %}
                 </a>
                 {% has_perm 'a4_candy_organisations.change_organisation' request.user view.organisation as user_may_change_organisation %}
                 {% if user_may_change_organisation %}
                 <a href="{% url 'a4dashboard:organisation-settings' organisation_slug=view.organisation.slug %}"
-                   class="tab {% ifequal view.menu_item 'organisation' %}active{% endifequal %}">
+                   class="tab {% if view.menu_item == 'organisation' %}active{% endif %}">
                     {% trans 'Organisation settings' %}
                 </a>
                 {% endif %}
