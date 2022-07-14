@@ -6,17 +6,17 @@
 # Translators:
 # Katharina Schmid, 2021
 # Frederik Wegener <frederik.wegener@liqd.de>, 2021
-# Luca Thüer, 2022
 # Katharina Lindenlaub, 2022
+# Luca Thüer, 2022
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-07 11:39+0200\n"
+"POT-Creation-Date: 2022-07-14 10:52+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Katharina Lindenlaub, 2022\n"
+"Last-Translator: Luca Thüer, 2022\n"
 "Language-Team: German (https://www.transifex.com/liqd/teams/109316/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -453,7 +453,7 @@ msgstr "unbekannter Nutzer"
 #: adhocracy4/comments_async/api.py:135
 #: adhocracy4/polls/api.py:118
 msgid "Please agree to the organisation's terms of use."
-msgstr ""
+msgstr "Bitte stimmen Sie den Nutzungsbedingungen der Organisation zu."
 
 #: adhocracy4/comments_async/serializers.py:16
 msgid "Please choose one or more categories."
@@ -764,12 +764,12 @@ msgstr "Das Bild muss mindestens {min_height} Pixel hoch sein."
 #: adhocracy4/images/validators.py:50
 #, python-brace-format
 msgid "Image must be at most {max_width} pixels wide"
-msgstr ""
+msgstr "Das Bild darf höchstens {max_width} Pixel breit sein."
 
 #: adhocracy4/images/validators.py:53
 #, python-brace-format
 msgid "Image must be at most {max_height} pixels high"
-msgstr ""
+msgstr "Das Bild darf höchstens {max_height} Pixel hoch sein."
 
 #: adhocracy4/images/validators.py:63
 #, python-brace-format
@@ -1025,7 +1025,7 @@ msgstr "Beitrag des Typs %(item)s für dieses Modul existiert bereits."
 
 #: adhocracy4/polls/validators.py:25
 msgid "Question has to belong to the poll set in the url."
-msgstr ""
+msgstr "Die Frage muss zu der in der Url angegebenen Umfrage gehören."
 
 #: adhocracy4/polls/validators.py:34
 msgid "Choice has to belong to the question set in the url."
@@ -1242,6 +1242,8 @@ msgstr "Melden"
 #: apps/account/forms.py:64 apps/organisations/mixins.py:62
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr ""
+"Ja, ich habe die {}Nutzungsbedingungen{} dieser Organisation gelesen und "
+"stimme ihnen zu."
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:4
 msgid "User Dashboard"
@@ -1273,7 +1275,7 @@ msgstr "Nutzerkonto Verbindungen"
 #: apps/account/templates/a4_candy_account/user_agreements.html:5
 #: apps/account/templates/a4_candy_account/user_agreements.html:7
 msgid "User Agreements"
-msgstr ""
+msgstr "Nutzungsvereinbarungen"
 
 #: apps/account/templates/a4_candy_account/profile.html:5
 msgid "Your user profile"
@@ -1292,7 +1294,7 @@ msgstr "Änderungen speichern"
 
 #: apps/account/templates/a4_candy_account/user_agreements.html:8
 msgid "Here you can edit all your agreements"
-msgstr ""
+msgstr "Hier können Sie alle Ihre Nutzungsvereinbarungen bearbeiten"
 
 #: apps/account/views.py:29
 msgid "Your profile was successfully updated."
@@ -1300,7 +1302,7 @@ msgstr "Ihr Profil wurde erfolgreich aktualisiert."
 
 #: apps/account/views.py:52
 msgid "Your agreements were successfully updated."
-msgstr ""
+msgstr "Ihre Nutzungsvereinbarungen wurden erfolgreich aktualisiert."
 
 #: apps/actions/blocks.py:8
 msgid "Heading"
@@ -1592,6 +1594,8 @@ msgstr "Ich bin kein Roboter"
 #: apps/cms/contacts/models.py:38
 msgid "If you are having difficulty please contactus, details adjacent"
 msgstr ""
+"Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte, Details "
+"nebenstehend"
 
 #: apps/cms/contacts/models.py:145
 msgid "I want to receive a copy of my message"
@@ -3137,12 +3141,16 @@ msgstr "Hier finden Sie ein Beispiel für eine {}Netiquette{}."
 #: apps/organisations/mixins.py:21
 msgid "You can still manage all your preferences on User Agreements."
 msgstr ""
+"Sie können weiterhin alle Ihre Einstellungen unter Nutzungsvereinbarungen "
+"verwalten."
 
 #: apps/organisations/mixins.py:43
 msgid ""
 "Please agree on the organisation's terms of use to be allowed to create "
 "content."
 msgstr ""
+"Bitte stimmen Sie den Nutzungsbedingungen der Organisation zu, um Inhalte "
+"erstellen zu können."
 
 #: apps/organisations/models.py:29
 msgid "Title of your organisation"
@@ -3207,6 +3215,10 @@ msgid ""
 "and 800 pixels tall. Allowed file formats are png, jpeg, gif. The file size "
 "should be max. 5 MB."
 msgstr ""
+"Das Logo, das Ihre Organisation repräsentiert. Das Bild muss quadratisch "
+"sein und sollte mindestens 200 Pixel breit und 200 Pixel hoch und höchstens "
+"800 Pixel breit und 800 Pixel hoch sein. Erlaubte Dateiformate sind png, "
+"jpeg, gif. Die Dateigröße sollte max. 5 MB betragen."
 
 #: apps/organisations/models.py:80
 msgid "Please enter a full url which starts with https:// or http://"
@@ -3443,22 +3455,22 @@ msgstr "Laden Sie eine CSV-Datei hoch, die E-Mail Adressen beinhaltet."
 msgid "Please enter email addresses or upload a file"
 msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 
-#: apps/projects/serializers.py:74
+#: apps/projects/serializers.py:73
 #, python-format
 msgid "%(time_left)s remaining"
-msgstr ""
+msgstr "%(time_left)s verbleibend"
 
-#: apps/projects/serializers.py:77
+#: apps/projects/serializers.py:76
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:46
 msgid "more than 1 year remaining"
 msgstr "noch länger als 1 Jahr"
 
-#: apps/projects/serializers.py:79
+#: apps/projects/serializers.py:78
 #, python-format
 msgid "Participation: from %(project_start)s"
-msgstr ""
+msgstr "Teilnahme: ab %(project_start)s"
 
-#: apps/projects/serializers.py:84
+#: apps/projects/serializers.py:83
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:63
 msgid "Participation ended. Read result."
 msgstr "Beteiligung beendet. Ergebnis lesen."
@@ -3988,6 +4000,7 @@ msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 #: apps/users/forms.py:22
 msgid "If you are having difficulty please contact us by {}email{}."
 msgstr ""
+"Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte per {}email{}."
 
 #: apps/users/forms.py:30
 msgid "Username/e-mail"
@@ -4085,7 +4098,7 @@ msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
 #: apps/users/models.py:31
 msgid "This username is invalid."
-msgstr ""
+msgstr "Dieser Nutzername ist ungültig."
 
 #: apps/users/models.py:35
 msgid "Email address"
@@ -4093,7 +4106,7 @@ msgstr "E-Mail Adresse"
 
 #: apps/users/models.py:38
 msgid "Email is invalid or already taken."
-msgstr ""
+msgstr "E-Mail ist ungültig oder bereits vergeben."
 
 #: apps/users/models.py:42
 msgid "staff status"
@@ -4338,6 +4351,9 @@ msgid ""
 "The verification of your input has failed. Please reload the page and make "
 "sure that your browser settings allow setting session cookies."
 msgstr ""
+"Die Überprüfung Ihrer Eingabe ist fehlgeschlagen. Bitte laden Sie die Seite "
+"neu und vergewissern Sie sich, dass Ihre Browsereinstellungen das Setzen von "
+"Session-Cookies zulassen."
 
 #: adhocracy-plus/templates/404.html:7
 msgid "This page could not be found."
@@ -4592,7 +4608,7 @@ msgstr "E-Mail Adressen"
 
 #: adhocracy-plus/templates/account/email.html:12
 msgid "Main Email"
-msgstr ""
+msgstr "Primäre E-Mail"
 
 #: adhocracy-plus/templates/account/email.html:14
 msgid "Primary"
@@ -4605,7 +4621,7 @@ msgstr "Verifiziert"
 
 #: adhocracy-plus/templates/account/email.html:20
 msgid "Other Emails"
-msgstr ""
+msgstr "Andere E-Mails"
 
 #: adhocracy-plus/templates/account/email.html:31
 msgid "Unverified"

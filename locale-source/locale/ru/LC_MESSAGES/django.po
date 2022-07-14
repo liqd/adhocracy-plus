@@ -7,17 +7,17 @@
 # Кубанычбек Айдаркулов <sleng84@mail.ru>, 2021
 # Sebastian Hess <sebastian.hess@giz.de>, 2021
 # Katharina Schmid, 2021
-# Azamat Abdurakhmanov, 2022
 # Luca Thüer, 2022
+# Azamat Abdurakhmanov, 2022
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-07 11:39+0200\n"
+"POT-Creation-Date: 2022-07-14 10:52+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Luca Thüer, 2022\n"
+"Last-Translator: Azamat Abdurakhmanov, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/liqd/teams/109316/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -455,7 +455,7 @@ msgstr "Неизвестный пользователь"
 #: adhocracy4/comments_async/api.py:135
 #: adhocracy4/polls/api.py:118
 msgid "Please agree to the organisation's terms of use."
-msgstr ""
+msgstr "пожалуйста, согласитесь с условиями использования организации"
 
 #: adhocracy4/comments_async/serializers.py:16
 msgid "Please choose one or more categories."
@@ -764,12 +764,12 @@ msgstr "Изображение должно быть не менее {min_height
 #: adhocracy4/images/validators.py:50
 #, python-brace-format
 msgid "Image must be at most {max_width} pixels wide"
-msgstr ""
+msgstr "Изображение должно быть не более {max_width} пикселей в ширину"
 
 #: adhocracy4/images/validators.py:53
 #, python-brace-format
 msgid "Image must be at most {max_height} pixels high"
-msgstr ""
+msgstr "Изображение должно быть не более {max_height} пикселей в высоту"
 
 #: adhocracy4/images/validators.py:63
 #, python-brace-format
@@ -1024,7 +1024,7 @@ msgstr "Пункт типа%(item)s для этого модуля уже сущ
 
 #: adhocracy4/polls/validators.py:25
 msgid "Question has to belong to the poll set in the url."
-msgstr ""
+msgstr "Вопрос должен принадлежать опросу, указанному в URL-адресе."
 
 #: adhocracy4/polls/validators.py:34
 msgid "Choice has to belong to the question set in the url."
@@ -1239,7 +1239,7 @@ msgstr "Отчет"
 
 #: apps/account/forms.py:64 apps/organisations/mixins.py:62
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
-msgstr ""
+msgstr "Да, я прочитал и согласен с {}условиями{} этой организации."
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:4
 msgid "User Dashboard"
@@ -1271,7 +1271,7 @@ msgstr "Подключения к аккаунту"
 #: apps/account/templates/a4_candy_account/user_agreements.html:5
 #: apps/account/templates/a4_candy_account/user_agreements.html:7
 msgid "User Agreements"
-msgstr ""
+msgstr "Соглашения пользователя "
 
 #: apps/account/templates/a4_candy_account/profile.html:5
 msgid "Your user profile"
@@ -1290,7 +1290,7 @@ msgstr "Сохранить изменения"
 
 #: apps/account/templates/a4_candy_account/user_agreements.html:8
 msgid "Here you can edit all your agreements"
-msgstr ""
+msgstr "Здесь вы можете редактировать все свои соглашения"
 
 #: apps/account/views.py:29
 msgid "Your profile was successfully updated."
@@ -1298,7 +1298,7 @@ msgstr "Ваш профиль был успешно обновлен."
 
 #: apps/account/views.py:52
 msgid "Your agreements were successfully updated."
-msgstr ""
+msgstr "Ваши соглашения были успешно обновлены."
 
 #: apps/actions/blocks.py:8
 msgid "Heading"
@@ -1587,6 +1587,7 @@ msgstr "Я не робот"
 #: apps/cms/contacts/models.py:38
 msgid "If you are having difficulty please contactus, details adjacent"
 msgstr ""
+"Если у вас есть трудности, пожалуйста, свяжитесь с нами, сведения прилагаются"
 
 #: apps/cms/contacts/models.py:145
 msgid "I want to receive a copy of my message"
@@ -2445,6 +2446,7 @@ msgstr "Прямая трансляция в реальном времени"
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:9
 msgid "During this event you can ask questions live"
 msgstr ""
+"Во время этого мероприятия вы можете спросить свои вопросы в онлайн режиме"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:25
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
@@ -2621,7 +2623,7 @@ msgstr "Организация"
 
 #: apps/newsletters/forms.py:46
 msgid "Select a Project"
-msgstr ""
+msgstr "Выбрать проект"
 
 #: apps/newsletters/models.py:19
 msgid "Users following a specific project"
@@ -3106,12 +3108,15 @@ msgstr "Здесь вы можете найти пример {} сетевого
 #: apps/organisations/mixins.py:21
 msgid "You can still manage all your preferences on User Agreements."
 msgstr ""
+"Вы все еще можете управлять своими предпочтениями в соглашениях пользователя."
 
 #: apps/organisations/mixins.py:43
 msgid ""
 "Please agree on the organisation's terms of use to be allowed to create "
 "content."
 msgstr ""
+"Пожалуйста, с условиями использования организации для того, чтобы дать вам "
+"разрешение на создание контента."
 
 #: apps/organisations/models.py:29
 msgid "Title of your organisation"
@@ -3175,6 +3180,10 @@ msgid ""
 "and 800 pixels tall. Allowed file formats are png, jpeg, gif. The file size "
 "should be max. 5 MB."
 msgstr ""
+"Лого, представляющее вашу организацию. Изображение должно быть квадратным и "
+"должно быть не менее 200 пикселей в ширину и 200 пикселей в высоту и не "
+"более 800 пикселей в ширину и 800 пикселей в высоту. Разрешенные форматы "
+"файлов: png, jpeg, gif. Размер файла должен быть не более 5 МБт."
 
 #: apps/organisations/models.py:80
 msgid "Please enter a full url which starts with https:// or http://"
@@ -3407,22 +3416,22 @@ msgstr "Загрузите файл csv, содержащий адреса эл�
 msgid "Please enter email addresses or upload a file"
 msgstr "Пожалуйста, введите адреса электронной почты или загрузите файл"
 
-#: apps/projects/serializers.py:74
+#: apps/projects/serializers.py:73
 #, python-format
 msgid "%(time_left)s remaining"
-msgstr ""
+msgstr "%(time_left)s оставшийся"
 
-#: apps/projects/serializers.py:77
+#: apps/projects/serializers.py:76
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:46
 msgid "more than 1 year remaining"
 msgstr "осталось более 1 года"
 
-#: apps/projects/serializers.py:79
+#: apps/projects/serializers.py:78
 #, python-format
 msgid "Participation: from %(project_start)s"
-msgstr ""
+msgstr "Участие: от %(project_start)s"
 
-#: apps/projects/serializers.py:84
+#: apps/projects/serializers.py:83
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:63
 msgid "Participation ended. Read result."
 msgstr "Участие закончилось. Прочитать результат."
@@ -3948,6 +3957,8 @@ msgstr ""
 #: apps/users/forms.py:22
 msgid "If you are having difficulty please contact us by {}email{}."
 msgstr ""
+"Если у вас есть трудности, пожалуйста, свяжитесь с нами по  {}электронной "
+"почте{}."
 
 #: apps/users/forms.py:30
 msgid "Username/e-mail"
@@ -4042,7 +4053,7 @@ msgstr "Пользователь с таким именем уже сущест�
 
 #: apps/users/models.py:31
 msgid "This username is invalid."
-msgstr ""
+msgstr "Имя пользователя недействительно."
 
 #: apps/users/models.py:35
 msgid "Email address"
@@ -4050,7 +4061,7 @@ msgstr "Адрес электронной почты"
 
 #: apps/users/models.py:38
 msgid "Email is invalid or already taken."
-msgstr ""
+msgstr "Электронная почта недействительна или уже используется."
 
 #: apps/users/models.py:42
 msgid "staff status"
@@ -4292,6 +4303,9 @@ msgid ""
 "The verification of your input has failed. Please reload the page and make "
 "sure that your browser settings allow setting session cookies."
 msgstr ""
+"Проверка ваших вводных не удалась. Пожалуйста, перезагрузите страницу и "
+"убедитесь, что настройки вашего браузера позволяют устанавливать сеансовые "
+"файлы cookie."
 
 #: adhocracy-plus/templates/404.html:7
 msgid "This page could not be found."
@@ -4544,7 +4558,7 @@ msgstr "Адреса электронной почты"
 
 #: adhocracy-plus/templates/account/email.html:12
 msgid "Main Email"
-msgstr ""
+msgstr "Основная электронная почта"
 
 #: adhocracy-plus/templates/account/email.html:14
 msgid "Primary"
@@ -4557,7 +4571,7 @@ msgstr "Проверено"
 
 #: adhocracy-plus/templates/account/email.html:20
 msgid "Other Emails"
-msgstr ""
+msgstr "Другие электронные почты"
 
 #: adhocracy-plus/templates/account/email.html:31
 msgid "Unverified"
@@ -4696,20 +4710,27 @@ msgid ""
 "user\n"
 "with email %(email)s in our database."
 msgstr ""
+"Вы получаете это сообщение, потому что вы или кто-то другой запросили\n"
+"\n"
+"пароль для вашей учетной записи. Однако мы не имеем никакой записи о "
+"пользователе \n"
+"с электронной почтой %(email)s в нашей базе данных."
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:13
 msgid ""
 "This mail can be safely ignored if you did not request a password reset."
 msgstr ""
+"Вы можете игнорировать это сообщение, если вы не запрашивали сброс пароля."
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:15
 msgid "If it was you, you can sign up for an account using the link below."
 msgstr ""
+"Если это были вы, вы можете зайти в учетную запись, используя ссылку ниже. "
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:17
 #, python-format
 msgid "If you need assistance, please contact %(contact_email)s."
-msgstr ""
+msgstr "Если вам нужна помощь, пожалуйста свяжитесь с %(contact_email)s. "
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:23
 #, python-format
@@ -4717,6 +4738,8 @@ msgid ""
 "This email was sent to %(email)s. You have received the e-mail because the "
 "reset of your password has been requested on %(current_site)s."
 msgstr ""
+"Это сообщение было отправлено %(email)s. Вы получили это сообщение, потому "
+"что сброс вашего пароля был запрошен %(current_site)s."
 
 #: adhocracy-plus/templates/account/email_confirm.html:4
 #: adhocracy-plus/templates/account/email_confirm.html:7
