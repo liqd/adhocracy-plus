@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-07 11:39+0200\n"
+"POT-Creation-Date: 2022-07-14 10:52+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Joop Laan <joop@interconnecting.systems>, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/liqd/teams/109316/nl/)\n"
@@ -452,7 +452,7 @@ msgstr "onbekende gebruiker"
 #: adhocracy4/comments_async/api.py:135
 #: adhocracy4/polls/api.py:118
 msgid "Please agree to the organisation's terms of use."
-msgstr ""
+msgstr "U dient akkoord te gaan met de gebruiksvoorwaarden van de organisatie."
 
 #: adhocracy4/comments_async/serializers.py:16
 msgid "Please choose one or more categories."
@@ -762,12 +762,12 @@ msgstr "Beeld moet minstens {min_height} pixels hoog zijn"
 #: adhocracy4/images/validators.py:50
 #, python-brace-format
 msgid "Image must be at most {max_width} pixels wide"
-msgstr ""
+msgstr "Afbeelding kan maximaal {max_width} pixels breed zijn"
 
 #: adhocracy4/images/validators.py:53
 #, python-brace-format
 msgid "Image must be at most {max_height} pixels high"
-msgstr ""
+msgstr "Afbeelding kan maximaal {max_height} pixels hoog zijn"
 
 #: adhocracy4/images/validators.py:63
 #, python-brace-format
@@ -1020,7 +1020,7 @@ msgstr "Item van het type %(item)s voor die module bestaat reeds"
 
 #: adhocracy4/polls/validators.py:25
 msgid "Question has to belong to the poll set in the url."
-msgstr ""
+msgstr "De vraag moet horen bij de poll die in de URL staat."
 
 #: adhocracy4/polls/validators.py:34
 msgid "Choice has to belong to the question set in the url."
@@ -1235,6 +1235,8 @@ msgstr "Rapporteer"
 #: apps/account/forms.py:64 apps/organisations/mixins.py:62
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr ""
+"Ja, ik heb de {}terms of use{} van deze organisatie gelezen en ga ermee "
+"akkoord."
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:4
 msgid "User Dashboard"
@@ -1266,7 +1268,7 @@ msgstr "Accountverbindingen"
 #: apps/account/templates/a4_candy_account/user_agreements.html:5
 #: apps/account/templates/a4_candy_account/user_agreements.html:7
 msgid "User Agreements"
-msgstr ""
+msgstr "Gebruikersovereenkomsten"
 
 #: apps/account/templates/a4_candy_account/profile.html:5
 msgid "Your user profile"
@@ -1285,7 +1287,7 @@ msgstr "Wijzigingen bewaren"
 
 #: apps/account/templates/a4_candy_account/user_agreements.html:8
 msgid "Here you can edit all your agreements"
-msgstr ""
+msgstr "Hier kunt u uw overeenkomsten bewerken"
 
 #: apps/account/views.py:29
 msgid "Your profile was successfully updated."
@@ -1293,7 +1295,7 @@ msgstr "Uw profiel is met succes bijgewerkt."
 
 #: apps/account/views.py:52
 msgid "Your agreements were successfully updated."
-msgstr ""
+msgstr "Uw overeenkomsten zijn bijgewerkt."
 
 #: apps/actions/blocks.py:8
 msgid "Heading"
@@ -1585,6 +1587,7 @@ msgstr "Ik ben geen robot"
 #: apps/cms/contacts/models.py:38
 msgid "If you are having difficulty please contactus, details adjacent"
 msgstr ""
+"Als u problemen ondervindt, wilt u contact met ons opnemen, details hiernaast"
 
 #: apps/cms/contacts/models.py:145
 msgid "I want to receive a copy of my message"
@@ -2445,7 +2448,7 @@ msgstr "Nu live"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:9
 msgid "During this event you can ask questions live"
-msgstr ""
+msgstr "Tijdens dit evenement kunt u live vragen stellen"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:25
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
@@ -2623,7 +2626,7 @@ msgstr "Organisatie"
 
 #: apps/newsletters/forms.py:46
 msgid "Select a Project"
-msgstr ""
+msgstr "Selecteer een project"
 
 #: apps/newsletters/models.py:19
 msgid "Users following a specific project"
@@ -3121,12 +3124,15 @@ msgstr "Hier vindt u een voorbeeld van een {}netiquette{}."
 #: apps/organisations/mixins.py:21
 msgid "You can still manage all your preferences on User Agreements."
 msgstr ""
+"U kunt nog steeds al uw voorkeuren beheren op Gebruikersovereenkomsten."
 
 #: apps/organisations/mixins.py:43
 msgid ""
 "Please agree on the organisation's terms of use to be allowed to create "
 "content."
 msgstr ""
+"Ga akkoord met de gebruiksvoorwaarden van de organisatie om content te mogen "
+"creëren."
 
 #: apps/organisations/models.py:29
 msgid "Title of your organisation"
@@ -3191,6 +3197,10 @@ msgid ""
 "and 800 pixels tall. Allowed file formats are png, jpeg, gif. The file size "
 "should be max. 5 MB."
 msgstr ""
+"Het logo van uw organisatie. De afbeelding moet vierkant zijn en moet min. "
+"200 pixels breed en 200 pixels hoog zijn en max. 800 pixels breed en 800 "
+"pixels hoog zijn. Toegestane bestandsformaten zijn PNG, JPG, en GIF. De "
+"bestandsgrootte mag max. 5 MB zijn."
 
 #: apps/organisations/models.py:80
 msgid "Please enter a full url which starts with https:// or http://"
@@ -3421,22 +3431,22 @@ msgstr "Upload een csv-bestand met e-mailadressen."
 msgid "Please enter email addresses or upload a file"
 msgstr "Voer e-mailadressen in of upload een bestand"
 
-#: apps/projects/serializers.py:74
+#: apps/projects/serializers.py:73
 #, python-format
 msgid "%(time_left)s remaining"
-msgstr ""
+msgstr "%(time_left)sresterend"
 
-#: apps/projects/serializers.py:77
+#: apps/projects/serializers.py:76
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:46
 msgid "more than 1 year remaining"
 msgstr "meer dan 1 jaar resterend"
 
-#: apps/projects/serializers.py:79
+#: apps/projects/serializers.py:78
 #, python-format
 msgid "Participation: from %(project_start)s"
-msgstr ""
+msgstr " Deelname: vanaf %(project_start)s"
 
-#: apps/projects/serializers.py:84
+#: apps/projects/serializers.py:83
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:63
 msgid "Participation ended. Read result."
 msgstr "De participatie is beëindigd. Lees resultaat."
@@ -3962,6 +3972,7 @@ msgstr "Voer correcte e-mailadressen in, gescheiden door komma’s."
 #: apps/users/forms.py:22
 msgid "If you are having difficulty please contact us by {}email{}."
 msgstr ""
+"Als u problemen ondervindt, wilt u contact met ons opnemen via  {}email{}."
 
 #: apps/users/forms.py:30
 msgid "Username/e-mail"
@@ -4054,7 +4065,7 @@ msgstr "Een gebruiker met die gebruikersnaam bestaat al."
 
 #: apps/users/models.py:31
 msgid "This username is invalid."
-msgstr ""
+msgstr "Deze gebruikersnaam is ongeldig."
 
 #: apps/users/models.py:35
 msgid "Email address"
@@ -4062,7 +4073,7 @@ msgstr "E-mailadres"
 
 #: apps/users/models.py:38
 msgid "Email is invalid or already taken."
-msgstr ""
+msgstr "E-mail is ongeldig of al bezet."
 
 #: apps/users/models.py:42
 msgid "staff status"
@@ -4303,6 +4314,8 @@ msgid ""
 "The verification of your input has failed. Please reload the page and make "
 "sure that your browser settings allow setting session cookies."
 msgstr ""
+"De verificatie van uw invoer is mislukt. Herlaad de pagina en controleer of "
+"uw browserinstellingen het plaatsen van sessiecookies toestaan."
 
 #: adhocracy-plus/templates/404.html:7
 msgid "This page could not be found."
@@ -4556,7 +4569,7 @@ msgstr "E-mailadressen"
 
 #: adhocracy-plus/templates/account/email.html:12
 msgid "Main Email"
-msgstr ""
+msgstr "Hoofd e-mail"
 
 #: adhocracy-plus/templates/account/email.html:14
 msgid "Primary"
@@ -4569,7 +4582,7 @@ msgstr "Geverifieerd"
 
 #: adhocracy-plus/templates/account/email.html:20
 msgid "Other Emails"
-msgstr ""
+msgstr "Andere e-mails"
 
 #: adhocracy-plus/templates/account/email.html:31
 msgid "Unverified"
@@ -4709,20 +4722,26 @@ msgid ""
 "user\n"
 "with email %(email)s in our database."
 msgstr ""
+"U ontvangt deze e-mail omdat u of iemand anders een wachtwoord voor uw "
+"gebruikersaccount heeft aangevraagd. We hebben echter geen gegevens van een "
+"gebruiker met %(email)s in onze database."
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:13
 msgid ""
 "This mail can be safely ignored if you did not request a password reset."
 msgstr ""
+"Deze mail kunt u negeren als u niet om een nieuw wachtwoord heeft gevraagd."
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:15
 msgid "If it was you, you can sign up for an account using the link below."
 msgstr ""
+"Als u het was, kunt u zich aanmelden voor een account via de onderstaande "
+"link."
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:17
 #, python-format
 msgid "If you need assistance, please contact %(contact_email)s."
-msgstr ""
+msgstr "Als u hulp nodig heeft, neem dan contact op met %(contact_email)s."
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:23
 #, python-format
@@ -4730,6 +4749,8 @@ msgid ""
 "This email was sent to %(email)s. You have received the e-mail because the "
 "reset of your password has been requested on %(current_site)s."
 msgstr ""
+"Deze e-mail is verzonden naar %(email)s. U heeft de e-mail ontvangen omdat "
+"een nieuw wachtwoord is aangevraagd op %(current_site)s."
 
 #: adhocracy-plus/templates/account/email_confirm.html:4
 #: adhocracy-plus/templates/account/email_confirm.html:7

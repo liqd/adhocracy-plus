@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-07 11:39+0200\n"
+"POT-Creation-Date: 2022-07-14 10:52+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Azamat Abdurakhmanov, 2022\n"
 "Language-Team: Kyrgyz (https://www.transifex.com/liqd/teams/109316/ky/)\n"
@@ -455,6 +455,7 @@ msgstr "белгисиз колдонуучу "
 #: adhocracy4/polls/api.py:118
 msgid "Please agree to the organisation's terms of use."
 msgstr ""
+"Сураныч, уюмдун кызматтарын колдонуу шарттарына макулдугуңузду бериңиз."
 
 #: adhocracy4/comments_async/serializers.py:16
 msgid "Please choose one or more categories."
@@ -765,12 +766,12 @@ msgstr "Сүрөт узунунан {min_height} пикселден кем бо�
 #: adhocracy4/images/validators.py:50
 #, python-brace-format
 msgid "Image must be at most {max_width} pixels wide"
-msgstr ""
+msgstr "Сүрөт туурасына {max_width} пикселден ашпоосу керек"
 
 #: adhocracy4/images/validators.py:53
 #, python-brace-format
 msgid "Image must be at most {max_height} pixels high"
-msgstr ""
+msgstr "Сүрөт узунуна {max_height} пикселден ашпоосу керек"
 
 #: adhocracy4/images/validators.py:63
 #, python-brace-format
@@ -1025,7 +1026,7 @@ msgstr "Бул модуль үчүн %(item)s түрдөгү пункт муру
 
 #: adhocracy4/polls/validators.py:25
 msgid "Question has to belong to the poll set in the url."
-msgstr ""
+msgstr "Суроо url да уюштурулган сурамжылоого таандык."
 
 #: adhocracy4/polls/validators.py:34
 msgid "Choice has to belong to the question set in the url."
@@ -1239,6 +1240,7 @@ msgstr "Отчет "
 #: apps/account/forms.py:64 apps/organisations/mixins.py:62
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr ""
+"Ооба, мен окудум жана уюмдун кызматтарын колдонуу {}шарттарына{} макулмун."
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:4
 msgid "User Dashboard"
@@ -1270,7 +1272,7 @@ msgstr "Аккаунтка кошулуу "
 #: apps/account/templates/a4_candy_account/user_agreements.html:5
 #: apps/account/templates/a4_candy_account/user_agreements.html:7
 msgid "User Agreements"
-msgstr ""
+msgstr "Колдонуучулар келишимдери"
 
 #: apps/account/templates/a4_candy_account/profile.html:5
 msgid "Your user profile"
@@ -1289,7 +1291,7 @@ msgstr "Өзгөртүүлөрдү сактоо "
 
 #: apps/account/templates/a4_candy_account/user_agreements.html:8
 msgid "Here you can edit all your agreements"
-msgstr ""
+msgstr "Бул жерде сиз бардык келишимдериңизди өзгөртө аласыз"
 
 #: apps/account/views.py:29
 msgid "Your profile was successfully updated."
@@ -1297,7 +1299,7 @@ msgstr "Сиздин профиль ийгиликтүү жаңыланды "
 
 #: apps/account/views.py:52
 msgid "Your agreements were successfully updated."
-msgstr ""
+msgstr "Сиздин келишимдериңиз ийгиликтуу жаңыланды."
 
 #: apps/actions/blocks.py:8
 msgid "Heading"
@@ -1588,6 +1590,7 @@ msgstr "Мен робот эмесмин"
 #: apps/cms/contacts/models.py:38
 msgid "If you are having difficulty please contactus, details adjacent"
 msgstr ""
+"Эгерде сизде кыйнчылыктар болсо, биз менен байланышыңыз, маалымат тиркелген"
 
 #: apps/cms/contacts/models.py:145
 msgid "I want to receive a copy of my message"
@@ -2444,7 +2447,7 @@ msgstr "Азыркы учурдагы түз эфир "
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:9
 msgid "During this event you can ask questions live"
-msgstr ""
+msgstr "Бул иш-чара учурунда сиз суроолорду онлайн түрүндө бере аласыз"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:25
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
@@ -2623,7 +2626,7 @@ msgstr "Уюм"
 
 #: apps/newsletters/forms.py:46
 msgid "Select a Project"
-msgstr ""
+msgstr "Долбоорду тандаңыз"
 
 #: apps/newsletters/models.py:19
 msgid "Users following a specific project"
@@ -3107,12 +3110,15 @@ msgstr "Мында Сиз {} тармактык этикеттин {} мисал
 #: apps/organisations/mixins.py:21
 msgid "You can still manage all your preferences on User Agreements."
 msgstr ""
+"Сиз дагы эле колдоонучулар келишиминдеги өз каалооңузду киргизе аласыз. "
 
 #: apps/organisations/mixins.py:43
 msgid ""
 "Please agree on the organisation's terms of use to be allowed to create "
 "content."
 msgstr ""
+"Сураныч, контен куруу үчүн уюмдун кызматтарын колдонуу шарттарына макулдук "
+"бериңиз."
 
 #: apps/organisations/models.py:29
 msgid "Title of your organisation"
@@ -3176,6 +3182,11 @@ msgid ""
 "and 800 pixels tall. Allowed file formats are png, jpeg, gif. The file size "
 "should be max. 5 MB."
 msgstr ""
+"Сиздин уюмдун логосу. Сүрөт төрт бурчтук болуусу абзел жана туурасына "
+"кеминде 200 пикселден кем болбошу керек, ал эми узунуна 200 пикселден кем "
+"болбошу керек, ошол эл учурда туурасы 800 пикселден ашпоосу керек, ал эми "
+"узуну дагы 800 пикселден ашпоосу керек. Колдонууга болгон форматтар  are "
+"png, jpeg, gif. Файлдын көлөмү  5 MBтан ашпоосу керек."
 
 #: apps/organisations/models.py:80
 msgid "Please enter a full url which starts with https:// or http://"
@@ -3413,22 +3424,22 @@ msgstr "Электрондук почтанын даректерин камты�
 msgid "Please enter email addresses or upload a file"
 msgstr "Сураныч, электрондук почтанын даректерин жазыңыз же файлды жүктөңүз"
 
-#: apps/projects/serializers.py:74
+#: apps/projects/serializers.py:73
 #, python-format
 msgid "%(time_left)s remaining"
-msgstr ""
+msgstr "%(time_left)s калды"
 
-#: apps/projects/serializers.py:77
+#: apps/projects/serializers.py:76
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:46
 msgid "more than 1 year remaining"
 msgstr "1 жылдан ашык убакыт калды "
 
-#: apps/projects/serializers.py:79
+#: apps/projects/serializers.py:78
 #, python-format
 msgid "Participation: from %(project_start)s"
-msgstr ""
+msgstr "Катышуу: %(project_start)s ден "
 
-#: apps/projects/serializers.py:84
+#: apps/projects/serializers.py:83
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:63
 msgid "Participation ended. Read result."
 msgstr "Катышуу аяктады. Жыйынтыкты көрүү. "
@@ -3952,6 +3963,8 @@ msgstr ""
 #: apps/users/forms.py:22
 msgid "If you are having difficulty please contact us by {}email{}."
 msgstr ""
+"Эгерде сизде кыйнчылыктар болсо, биз менен  {}электрондук дарек{}  аркылуу "
+"байланышса болот. "
 
 #: apps/users/forms.py:30
 msgid "Username/e-mail"
@@ -4047,7 +4060,7 @@ msgstr "Мындай атка ээ колдонуучу бар. "
 
 #: apps/users/models.py:31
 msgid "This username is invalid."
-msgstr ""
+msgstr "Бул колдонуучун аты жараксыз."
 
 #: apps/users/models.py:35
 msgid "Email address"
@@ -4055,7 +4068,7 @@ msgstr "Электрондук почтанын дареги "
 
 #: apps/users/models.py:38
 msgid "Email is invalid or already taken."
-msgstr ""
+msgstr "Бул электрондук дарек жараксыз же колдонулуп жатат."
 
 #: apps/users/models.py:42
 msgid "staff status"
@@ -4297,6 +4310,9 @@ msgid ""
 "The verification of your input has failed. Please reload the page and make "
 "sure that your browser settings allow setting session cookies."
 msgstr ""
+"Сиздин маалымат киргизгениңиз ийгиликсиз болду. Сураныч баракчаны кайра "
+"жанылаңыз жана сиздин браузер cookies сессия колдонууга уруксат берерин "
+"кепилдеңиз. "
 
 #: adhocracy-plus/templates/404.html:7
 msgid "This page could not be found."
@@ -4549,7 +4565,7 @@ msgstr "Электрондук  почтанын дареги"
 
 #: adhocracy-plus/templates/account/email.html:12
 msgid "Main Email"
-msgstr ""
+msgstr "Негизги электрондук дарек"
 
 #: adhocracy-plus/templates/account/email.html:14
 msgid "Primary"
@@ -4562,7 +4578,7 @@ msgstr "Текшерилди"
 
 #: adhocracy-plus/templates/account/email.html:20
 msgid "Other Emails"
-msgstr ""
+msgstr "Башка электрондук даректер"
 
 #: adhocracy-plus/templates/account/email.html:31
 msgid "Unverified"
@@ -4701,20 +4717,30 @@ msgid ""
 "user\n"
 "with email %(email)s in our database."
 msgstr ""
+"Сиз бул электрондук катты алганыңыздын себеби сиз же башка бироо \n"
+"\n"
+"сиздин колдонуучу баракчаңызга жашыруун сөздү сурады. Бирок биздин маалымат "
+"базасында бул %(email)sэлектрондук дарек же колдонуучу  \n"
+"жөнүндө эч кандай маалымат жок."
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:13
 msgid ""
 "This mail can be safely ignored if you did not request a password reset."
 msgstr ""
+"Сиз бул катты окубай койсоңуз болот, эгер сиз жашыруун сөздү жаңылоону "
+"сураган эмес болсоңуз. "
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:15
 msgid "If it was you, you can sign up for an account using the link below."
 msgstr ""
+"Эгер ал сиз болсоңуз, анда колдонуучу баракчаңызга ылдыйдагы шилтеме аркылуу "
+"кирсеңиз болот."
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:17
 #, python-format
 msgid "If you need assistance, please contact %(contact_email)s."
 msgstr ""
+"Эгерге сизге жардам керек болсо, анда %(contact_email)s менен байланышыңыз."
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:23
 #, python-format
@@ -4722,6 +4748,8 @@ msgid ""
 "This email was sent to %(email)s. You have received the e-mail because the "
 "reset of your password has been requested on %(current_site)s."
 msgstr ""
+"Бул электрондук кат %(email)s жөнөтүлдү. Сиз бул катты алганыңыздын себеби, "
+"сиздин жашыруун сөздү жаңылоо талабы %(current_site)s келген."
 
 #: adhocracy-plus/templates/account/email_confirm.html:4
 #: adhocracy-plus/templates/account/email_confirm.html:7
