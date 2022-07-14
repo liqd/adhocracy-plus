@@ -94,6 +94,7 @@ def test_app_project_serializer(project_factory, module_factory, phase_factory,
     project = project_factory(
         is_app_accessible=True,
         information=html_whitespace,
+        contact_name='Name Name',
         result=html_whitespace
     )
     module = module_factory(project=project)
@@ -114,6 +115,9 @@ def test_app_project_serializer(project_factory, module_factory, phase_factory,
     assert response.data[0]['single_poll_module'] is False
     assert response.data[0]['participation_time_display'].endswith('remaining')
     assert response.data[0]['module_running_progress'] == 0
+    assert response.data[0]['has_contact_info'] is True
+    assert response.data[0]['contact_name'] == 'Name Name'
+    assert response.data[0]['contact_phone'] == ''
 
     with helpers.freeze_pre_phase(phase):
         response = apiclient.get(url, format='json')
