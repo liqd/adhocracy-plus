@@ -23,6 +23,7 @@ class AppProjectSerializer(serializers.ModelSerializer):
     single_agenda_setting_module = serializers.SerializerMethodField()
     single_poll_module = serializers.SerializerMethodField()
     participation_time_display = serializers.SerializerMethodField()
+    has_contact_info = serializers.SerializerMethodField()
 
     class Meta:
         model = Project
@@ -30,7 +31,9 @@ class AppProjectSerializer(serializers.ModelSerializer):
                   'organisation', 'organisation_logo', 'published_modules',
                   'access', 'image', 'single_agenda_setting_module',
                   'single_poll_module', 'participation_time_display',
-                  'module_running_progress')
+                  'module_running_progress', 'has_contact_info',
+                  'contact_name', 'contact_address_text', 'contact_phone',
+                  'contact_email', 'contact_url')
 
     def get_information(self, project):
         return project.information.strip()
@@ -82,6 +85,13 @@ class AppProjectSerializer(serializers.ModelSerializer):
         elif project.past_modules:
             return _('Participation ended. Read result.')
         return ''
+
+    def get_has_contact_info(self, project):
+        if (project.contact_name or project.contact_address_text or
+                project.contact_phone or project.contact_email or
+                project.contact_url):
+            return True
+        return False
 
 
 class AppPhaseSerializer(serializers.ModelSerializer):
