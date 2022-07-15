@@ -52,21 +52,15 @@ class AppProjectSerializer(serializers.ModelSerializer):
     def get_access(self, project):
         return project.access.name
 
-    # todo: module logic has to be replaced once we introduced module types
-    # currently only works because agenda setting is only module using phase
-    # of type 'a4_candy_ideas:rating'
     def get_single_agenda_setting_module(self, project):
-        if (project.published_modules.count() == 1 and
-                any([True for phase in project.modules.first().phases
-                    if phase.type == 'a4_candy_ideas:rating'])):
+        if project.published_modules.count() == 1 and \
+                project.published_modules.first().blueprint_type == 'IC':
             return project.published_modules.first().pk
         return False
 
     def get_single_poll_module(self, project):
-        if (project.published_modules.count() == 1 and
-                project.published_modules.first().phases.count() == 1 and
-                project.published_modules.first().phases.first().type
-                == 'a4polls:voting'):
+        if project.published_modules.count() == 1 and \
+                project.published_modules.first().blueprint_type == 'PO':
             return project.published_modules.first().pk
         return False
 
@@ -104,8 +98,7 @@ class AppPhaseSerializer(serializers.ModelSerializer):
 
     def get_is_active(self, instance):
         if instance.start_date and instance.end_date:
-            return (instance.start_date <= timezone.now()
-                    and instance.end_date >= timezone.now())
+            return instance.start_date <= timezone.now() <= instance.end_date
         return False
 
 
