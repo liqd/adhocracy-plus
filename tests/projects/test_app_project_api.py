@@ -54,7 +54,7 @@ def test_app_project_api_single_idea_collection_module(
     response = apiclient.get(url, format='json')
 
     assert response.status_code == 200
-    assert response.data[0]['single_agenda_setting_module'] \
+    assert response.data[0]['single_idea_collection_module'] \
         == module.pk
     assert response.data[0]['single_poll_module'] is False
 
@@ -81,7 +81,7 @@ def test_app_project_api_single_poll_module(
     response = apiclient.get(url, format='json')
 
     assert response.status_code == 200
-    assert response.data[0]['single_agenda_setting_module'] is False
+    assert response.data[0]['single_idea_collection_module'] is False
     assert response.data[0]['single_poll_module'] \
         == module.pk
 
@@ -111,7 +111,7 @@ def test_app_project_serializer(project_factory, module_factory, phase_factory,
     assert response.data[0]['published_modules'] == [module.pk]
     assert response.data[0]['organisation'] == project.organisation.name
     assert response.data[0]['access'] == 'PUBLIC'
-    assert response.data[0]['single_agenda_setting_module'] is False
+    assert response.data[0]['single_idea_collection_module'] is False
     assert response.data[0]['single_poll_module'] is False
     assert response.data[0]['participation_time_display'].endswith('remaining')
     assert response.data[0]['module_running_progress'] == 0

@@ -20,7 +20,7 @@ class AppProjectSerializer(serializers.ModelSerializer):
     organisation = serializers.SerializerMethodField()
     organisation_logo = serializers.SerializerMethodField()
     access = serializers.SerializerMethodField()
-    single_agenda_setting_module = serializers.SerializerMethodField()
+    single_idea_collection_module = serializers.SerializerMethodField()
     single_poll_module = serializers.SerializerMethodField()
     participation_time_display = serializers.SerializerMethodField()
     has_contact_info = serializers.SerializerMethodField()
@@ -29,7 +29,7 @@ class AppProjectSerializer(serializers.ModelSerializer):
         model = Project
         fields = ('pk', 'name', 'description', 'information', 'result',
                   'organisation', 'organisation_logo', 'published_modules',
-                  'access', 'image', 'single_agenda_setting_module',
+                  'access', 'image', 'single_idea_collection_module',
                   'single_poll_module', 'participation_time_display',
                   'module_running_progress', 'has_contact_info',
                   'contact_name', 'contact_address_text', 'contact_phone',
@@ -52,7 +52,7 @@ class AppProjectSerializer(serializers.ModelSerializer):
     def get_access(self, project):
         return project.access.name
 
-    def get_single_agenda_setting_module(self, project):
+    def get_single_idea_collection_module(self, project):
         if project.published_modules.count() == 1 and \
                 project.published_modules.first().blueprint_type == 'IC':
             return project.published_modules.first().pk
