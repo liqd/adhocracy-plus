@@ -1,4 +1,5 @@
 import pytest
+from django.conf import settings
 from django.contrib.messages import get_messages
 from django.urls import reverse
 
@@ -61,11 +62,16 @@ def test_module_blueprint_list(client, project):
     assert brainstorming_url in response.content.decode()
 
     blueprint_names = [b[0] for b in response.context_data['view'].blueprints]
-
     assert 'idea-collection' in blueprint_names
     assert 'text-review' in blueprint_names
     assert 'poll' in blueprint_names
     assert 'debate' in blueprint_names
+
+    blueprint_types = \
+        [b[1][5] for b in response.context_data['view'].blueprints]
+    settings_blueprint_types = [b[0] for b in settings.A4_BLUEPRINT_TYPES]
+    for blueprint_type in blueprint_types:
+        assert blueprint_type in settings_blueprint_types
 
 
 @pytest.mark.django_db
@@ -104,6 +110,7 @@ def test_module_create(client, project):
     module = Module.objects.first()
     assert module.name == data['name']
     assert module.description == data['description']
+    assert module.blueprint_type == 'IE'
 
 
 @pytest.mark.django_db
