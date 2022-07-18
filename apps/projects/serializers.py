@@ -42,7 +42,10 @@ class AppProjectSerializer(serializers.ModelSerializer):
         return project.result.strip()
 
     def get_organisation(self, project):
-        return project.organisation.name
+        if project.organisation.title:
+            return project.organisation.title
+        else:
+            return project.organisation.name
 
     def get_organisation_logo(self, project):
         if project.organisation.logo:
