@@ -1,8 +1,8 @@
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from adhocracy4.api.dates import get_date_display
+from adhocracy4.api.dates import get_datetime_display
 from adhocracy4.categories.models import Category
 from adhocracy4.labels.models import Label
 from adhocracy4.modules.models import Module
@@ -92,29 +92,57 @@ class AppProjectSerializer(serializers.ModelSerializer):
 
 
 class AppPhaseSerializer(serializers.ModelSerializer):
-    is_active = serializers.SerializerMethodField()
+    start_date = serializers.SerializerMethodField()
+    end_date = serializers.SerializerMethodField()
 
     class Meta:
         model = Phase
         fields = ('name', 'description', 'type', 'start_date',
-                  'end_date', 'is_active')
+                  'end_date')
 
-    def get_is_active(self, instance):
-        if instance.start_date and instance.end_date:
-            return instance.start_date <= timezone.now() <= instance.end_date
-        return False
+    def get_start_date(self, phase):
+        return get_datetime_display(phase.start_date)
+
+    def get_end_date(self, phase):
+        return get_datetime_display(phase.end_date)
 
 
 class AppModuleSerializer(serializers.ModelSerializer):
-    phases = AppPhaseSerializer(many=True, read_only=True)
+    active_phase = serializers.SerializerMethodField()
+    future_phases = serializers.SerializerMethodField()
+    past_phases = serializers.SerializerMethodField()
     labels = serializers.SerializerMethodField()
     categories = serializers.SerializerMethodField()
     has_idea_adding_permission = serializers.SerializerMethodField()
 
     class Meta:
         model = Module
-        fields = ('pk', 'phases', 'labels', 'categories',
-                  'has_idea_adding_permission')
+        fields = ('pk', 'active_phase', 'future_phases', 'past_phases',
+                  'labels', 'categories', 'has_idea_adding_permission')
+
+    def get_active_phase(self, module):
+        if module.active_phase:
+            serializer = AppPhaseSerializer(instance=module.active_phase)
+            return serializer.data
+        return None
+
+    def get_future_phases(self, module):
+        if module.future_phases:
+            serializer = AppPhaseSerializer(
+                instance=module.future_phases,
+                many=True
+            )
+            return serializer.data
+        return None
+
+    def get_past_phases(self, module):
+        if module.past_phases:
+            serializer = AppPhaseSerializer(
+                instance=module.past_phases,
+                many=True
+            )
+            return serializer.data
+        return None
 
     def get_labels(self, instance):
         labels = Label.objects.filter(module=instance)
