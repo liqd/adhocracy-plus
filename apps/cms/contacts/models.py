@@ -1,7 +1,4 @@
-import json
-
 from django.contrib import messages
-from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
@@ -116,7 +113,7 @@ class FormPage(WagtailCaptchaEmailForm):
         form.cleaned_data.pop('captcha', None)
         data = form.cleaned_data
         submission = self.get_submission_class().objects.create(
-            form_data=json.dumps(form.cleaned_data, cls=DjangoJSONEncoder),
+            form_data=form.cleaned_data,
             page=self, email=data['email'], message=data['message'],
             telephone_number=data['telephone_number'], name=data['name']
         )
