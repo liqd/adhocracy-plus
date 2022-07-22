@@ -6,7 +6,7 @@ from adhocracy4.test import helpers
 
 
 @pytest.mark.django_db
-def test_app_project_api(project_factory, apiclient):
+def test_app_project_api(user, project_factory, apiclient):
     project_1 = project_factory(is_app_accessible=True)
     project_2 = project_factory(is_app_accessible=True)
     project_3 = project_factory(is_app_accessible=True)
@@ -16,8 +16,12 @@ def test_app_project_api(project_factory, apiclient):
 
     url = reverse('app-projects-list')
     response = apiclient.get(url, format='json')
+    assert response.status_code == 401
 
+    apiclient.login(username=user.email, password='password')
+    response = apiclient.get(url, format='json')
     assert response.status_code == 200
+
     assert any([True for dict in response.data
                if ('pk' in dict and dict['pk'] == project_1.pk)])
     assert any([True for dict in response.data
@@ -34,7 +38,7 @@ def test_app_project_api(project_factory, apiclient):
 
 @pytest.mark.django_db
 def test_app_project_api_single_idea_collection_module(
-        client, apiclient, project_factory):
+        user, client, apiclient, project_factory):
     project = project_factory(is_app_accessible=True)
     organisation = project.organisation
     initiator = organisation.initiators.first()
@@ -51,6 +55,7 @@ def test_app_project_api_single_idea_collection_module(
     module.save()
 
     url = reverse('app-projects-list')
+    apiclient.login(username=user.email, password='password')
     response = apiclient.get(url, format='json')
 
     assert response.status_code == 200
@@ -61,7 +66,7 @@ def test_app_project_api_single_idea_collection_module(
 
 @pytest.mark.django_db
 def test_app_project_api_single_poll_module(
-        client, apiclient, project_factory):
+        user, client, apiclient, project_factory):
     project = project_factory(is_app_accessible=True)
     organisation = project.organisation
     initiator = organisation.initiators.first()
@@ -78,6 +83,7 @@ def test_app_project_api_single_poll_module(
     module.save()
 
     url = reverse('app-projects-list')
+    apiclient.login(username=user.email, password='password')
     response = apiclient.get(url, format='json')
 
     assert response.status_code == 200
@@ -87,8 +93,8 @@ def test_app_project_api_single_poll_module(
 
 
 @pytest.mark.django_db
-def test_app_project_serializer(project_factory, module_factory, phase_factory,
-                                apiclient):
+def test_app_project_serializer(user, project_factory, module_factory,
+                                phase_factory, apiclient):
     html_whitespace = '    <p>text with a <strong>bold</strong> bit</p>    '
     html_no_whitespace = '<p>text with a <strong>bold</strong> bit</p>'
     project = project_factory(
@@ -102,6 +108,7 @@ def test_app_project_serializer(project_factory, module_factory, phase_factory,
     phase = phase_factory(module=module)
 
     url = reverse('app-projects-list')
+    apiclient.login(username=user.email, password='password')
     with helpers.freeze_phase(phase):
         response = apiclient.get(url, format='json')
 
