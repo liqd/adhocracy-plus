@@ -7,7 +7,7 @@ from adhocracy4.test.helpers import freeze_post_phase
 
 
 @pytest.mark.django_db
-def test_app_module_api(project_factory, module_factory, apiclient):
+def test_app_module_api(user, project_factory, module_factory, apiclient):
     project_1 = project_factory(is_app_accessible=True)
     project_2 = project_factory(is_app_accessible=True)
     project_3 = project_factory(is_app_accessible=True)
@@ -21,8 +21,12 @@ def test_app_module_api(project_factory, module_factory, apiclient):
 
     url = reverse('app-modules-list')
     response = apiclient.get(url, format='json')
+    assert response.status_code == 401
 
+    apiclient.force_authenticate(user=user)
+    response = apiclient.get(url, format='json')
     assert response.status_code == 200
+
     assert any([True for dict in response.data
                if ('pk' in dict and dict['pk'] == module_1.pk)])
     assert any([True for dict in response.data
@@ -61,6 +65,8 @@ def test_app_module_api_idea_collection(
     label_2 = label_factory(module=module)
 
     url = reverse('app-modules-list')
+    apiclient.login(username=user.email, password='password')
+
     response = apiclient.get(url, format='json')
     assert len(project.modules[0].phases) == 2
     assert not response.data[0]['active_phase']
@@ -148,6 +154,7 @@ def test_app_module_api_poll(
     module.save()
 
     url = reverse('app-modules-list')
+    apiclient.login(username=user.email, password='password')
     response = apiclient.get(url, format='json')
     assert not response.data[0]['active_phase']
 
@@ -166,9 +173,11 @@ def test_app_module_api_poll(
     assert not response.data[0]['future_phases']
     assert len(response.data[0]['past_phases']) == 1
 
+    apiclient.logout()
+
     with freeze_phase(phase):
         response = apiclient.get(url, format='json')
-        assert response.data[0]['has_idea_adding_permission'] is False
+        assert response.status_code == 401
         apiclient.login(username=initiator.email, password='password')
         response = apiclient.get(url, format='json')
         assert response.data[0]['has_idea_adding_permission'] is True
@@ -179,8 +188,6 @@ def test_app_module_api_poll(
         assert response.data[0]['has_idea_adding_permission'] is False
 
     with freeze_post_phase(phase):
-        response = apiclient.get(url, format='json')
-        assert response.data[0]['has_idea_adding_permission'] is False
         apiclient.login(username=initiator.email, password='password')
         response = apiclient.get(url, format='json')
         assert response.data[0]['has_idea_adding_permission'] is True
