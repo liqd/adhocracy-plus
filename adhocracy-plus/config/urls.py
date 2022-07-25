@@ -23,6 +23,7 @@ from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.polls.api import PollViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
+from apps.account.api import AccountViewSet
 from apps.contrib import views as contrib_views
 from apps.contrib.sitemaps import static_sitemap_index
 from apps.documents.api import DocumentViewSet
@@ -44,6 +45,7 @@ router.register(r'app-projects', AppProjectsViewSet,
                 basename='app-projects')
 router.register(r'app-modules', AppModuleViewSet,
                 basename='app-modules')
+
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
@@ -84,7 +86,7 @@ urlpatterns = [
     re_path(r'^api/', include(likes_router.urls)),
     re_path(r'^api/', include(router.urls)),
     re_path(r'^api/login', obtain_auth_token, name='api-login'),
-
+    re_path(r'^api/account/', AccountViewSet.as_view(), name='account'),
     re_path(r'^upload/', user_is_project_admin(ck_views.upload),
             name='ckeditor_upload'),
     re_path(r'^browse/', never_cache(user_is_project_admin(ck_views.browse)),
