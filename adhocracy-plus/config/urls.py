@@ -89,7 +89,7 @@ urlpatterns = [
     re_path(r'^api/', include(likes_router.urls)),
     re_path(r'^api/', include(router.urls)),
     re_path(r'^api/login', obtain_auth_token, name='api-login'),
-    re_path(r'^api/account/', AccountViewSet.as_view(), name='account'),
+    re_path(r'^api/account/', AccountViewSet.as_view()),
     re_path(r'^upload/', user_is_project_admin(ck_views.upload),
             name='ckeditor_upload'),
     re_path(r'^browse/', never_cache(user_is_project_admin(ck_views.browse)),
