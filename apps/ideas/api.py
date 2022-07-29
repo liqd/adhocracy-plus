@@ -1,4 +1,3 @@
-from django.core.files.uploadedfile import InMemoryUploadedFile
 from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -38,14 +37,12 @@ class IdeaViewSet(ModuleMixin,
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
-        data = request.data.copy()
-        # if {image: null} is sent, delete image
-        if 'image' in data and not isinstance(data['image'],
-                                              InMemoryUploadedFile):
+        if 'image_deleted' in request.data and request.data['image_deleted']:
             if instance.image:
                 instance.image.delete()
-            del data['image']
-        serializer = self.get_serializer(instance, data=data, partial=partial)
+
+        serializer = self.get_serializer(
+            instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
 
