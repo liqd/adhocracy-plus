@@ -1,5 +1,8 @@
+import tempfile
+
 import pytest
 from django.urls import reverse
+from PIL import Image
 from rest_framework import status
 
 from adhocracy4.test.helpers import freeze_phase
@@ -250,3 +253,39 @@ def test_user_cannot_update_idea_after_phase(
 
         response = apiclient.patch(url, data, format='json')
         assert response.status_code == status.HTTP_403_FORBIDDEN
+
+
+@pytest.mark.django_db
+def test_user_can_add_and_delete_idea_image_during_phase(
+        apiclient, bigImage, phase_factory, idea_factory):
+    phase, _, project, idea = setup_phase(phase_factory, idea_factory,
+                                          phases.CollectPhase)
+    url = reverse('ideas-detail',
+                  kwargs={'module_pk': idea.module.pk,
+                          'pk': idea.pk})
+    user = idea.creator
+    apiclient.force_authenticate(user=user)
+    with freeze_phase(phase):
+        response = apiclient.get(url, format='json')
+        assert response.status_code == 200
+
+        # add image
+        image = Image.new('RGBA', size=(600, 600), color=(155, 0, 0))
+        file = tempfile.NamedTemporaryFile(suffix='.png')
+        image.save(file)
+        with open(file.name, 'rb') as image_data:
+            data = {'image': image_data}
+            response = apiclient.patch(url, data, format='multipart')
+            assert response.status_code == 200
+            img_name = file.name.split('/')[-1]
+            assert response.data['image'].endswith(img_name)
+            idea.refresh_from_db()
+            assert idea.image
+            assert idea.image.name.endswith(img_name)
+
+        # delete image
+        data = {'image_deleted': True}
+        response = apiclient.patch(url, data, format='json')
+        assert response.status_code == 200
+        idea.refresh_from_db()
+        assert not idea.image
