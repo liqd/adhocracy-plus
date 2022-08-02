@@ -139,6 +139,11 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         number = self.pk % 5
         return static('images/avatar-{0:02d}.svg'.format(number))
 
+    @cached_property
+    def avatar_fallback_png(self):
+        number = self.pk % 5
+        return static('images/avatar-{0:02d}.png'.format(number))
+
     def get_short_name(self):
         return self.username
 
