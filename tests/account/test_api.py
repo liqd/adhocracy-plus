@@ -71,13 +71,13 @@ def test_user_can_change_account_settings(apiclient, user):
     with open(file.name, 'rb') as image_data:
         data = {
             'username': 'changed name',
-            '_avatar': image_data
+            'user_image': image_data
         }
         response = apiclient.put(url, data, format='multipart')
         assert response.status_code == 200
         img_name = file.name.split('/')[-1]
-        assert '_avatar' in response.data
-        assert response.data['_avatar'].endswith(img_name)
+        assert 'user_image' in response.data
+        assert response.data['user_image'].endswith(img_name)
         user.refresh_from_db()
         assert user._avatar
         assert user._avatar.name.endswith(img_name)
