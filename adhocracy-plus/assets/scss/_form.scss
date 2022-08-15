@@ -77,7 +77,7 @@ div.cke_focus {
 .form-check,
 .form-group {
     .django-ckeditor-widget,
-    %input-base:not([type="radio"]):not([type="checkbox"]) {
+    %input-base:not([type="radio"], [type="checkbox"]) {
         width: 100%;
 
         // FIXME: Generally, we would prefer to use .form-group everywhere and
