@@ -14,7 +14,7 @@
             {% else %}
               <div class="dashboard-nav__logo-link">
                 <a class="font-weight-bold" href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
-                  <i class="fas fa-home pt-2" aria-label="{{ ORGANISATION.name }} {% trans 'Home' %}"></i>
+                  <i class="fas fa-home pt-2" aria-label="{{ ORGANISATION.name }} {% trans 'Home' %}" role="img"></i>
                 </a>
               </div>
             {% endif %}
