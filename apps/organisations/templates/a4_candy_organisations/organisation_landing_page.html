@@ -38,7 +38,7 @@
                         <h1 class="marked-box">{{ organisation.title }}</h1>
                         {% if organisation.url %}
                         <a class="ms-3 text-muted" href="{{ organisation.url }}" target="_blank" title="{{ organisation.url }}">
-                            <i class="fas fa-external-link-alt" aria-label="{{ organisation.title }} {% trans 'Opens in new window' %}"></i>
+                            <i class="fas fa-external-link-alt" role="img" aria-label="{{ organisation.title }} {% trans 'Opens in new window' %}"></i>
                         </a>
                         {% endif %}
                         <div class="row">
