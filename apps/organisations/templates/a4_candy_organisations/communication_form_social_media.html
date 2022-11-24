@@ -1,0 +1,37 @@
+{% extends "a4dashboard/communication_form_base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Settings" %} &mdash; {{ block.super }}{% endblock %}
+
+{% block communication_form %}
+    <div class="col-md-10">
+        <h1>{% translate "Create Content" %}</h1>
+
+        <form enctype="multipart/form-data" action="{% url 'a4dashboard:communication-content' organisation_slug=organisation.slug %}" method="post">
+            {% csrf_token %}
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=project_form.format %}
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=project_form.project %}
+            <div class="d-flex justify-content-end mb-3">
+                <button type="submit" class="btn btn--primary">{% translate 'Select' %}</button>
+            </div>
+        </form>
+        {{ project_form.media }}
+
+
+        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            {% if content_form %}
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.title %}
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.description %}
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.image %}
+            <div class="d-flex justify-content-end mb-3">
+                <button type="submit" class="btn btn--primary">{% translate 'Generate' %}</button>
+            </div>
+            {% endif %}
+            {% if image_preview %}
+                there is an image in the context
+            {% endif %}
+        </form>
+        {{ form.media }}
+    </div>
+{% endblock %}

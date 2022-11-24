@@ -6,8 +6,10 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4 import transforms
+from adhocracy4.images.widgets import ImageInputWidget
 from apps.cms.settings import helpers
 from apps.organisations.models import OrganisationTranslation
+from apps.projects.models import Project
 
 from .models import Organisation
 
@@ -22,6 +24,33 @@ _external_plugin_resources = [(
     '/static/ckeditor_collapsible/',
     'plugin.js',
 )]
+
+
+SOCIAL_MEDIA_CHOICES = [
+    (1, _('Instagram Post 1080x1080')),
+    (2, _('Story 1080x1920')),
+    (3, _('Linkedin 1104x736')),
+    (4, _('Twitter 1200x675'))
+]
+
+SOCIAL_MEDIA_SIZES = {
+    1: {'title_max_length': 128,
+        'description_max_length': 256,
+        'img_width': 1080,
+        'img_height': 1080},
+    2: {'title_max_length': 128,
+        'description_max_length': 256,
+        'img_width': 1080,
+        'img_height': 1920},
+    3: {'title_max_length': 128,
+        'description_max_length': 256,
+        'img_width': 1104,
+        'img_height': 736},
+    4: {'title_max_length': 128,
+        'description_max_length': 256,
+        'img_width': 1200,
+        'img_height': 675},
+}
 
 
 class OrganisationForm(forms.ModelForm):
@@ -161,3 +190,73 @@ class OrganisationLegalInformationForm(forms.ModelForm):
         self.fields['netiquette'].help_text = helpers.add_link_to_helptext(
             self.fields['netiquette'].help_text, "netiquette",
             NETIQUETTE_HELP)
+
+
+class CommunicationProjectChoiceForm(forms.Form):
+
+    def __init__(self, organisation=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        project_qs = Project.objects
+        if organisation:
+            project_qs = Project.objects.filter(organisation=organisation.id)
+
+        self.fields['format'] = forms.ChoiceField(
+            label=_('Social Media'),
+            choices=SOCIAL_MEDIA_CHOICES,
+            required=True,
+            help_text=_('Here you can create sharepics for social media that '
+                        'will help you get publicity for your project. You '
+                        'can choose between different formats.')
+        )
+
+        self.fields['project'] = forms.ModelChoiceField(
+            label=_('Select Project'),
+            queryset=project_qs,
+            required=True,
+            empty_label=None,
+            help_text=_('Please select a project of your organisation and '
+                        'click generate.')
+        )
+
+
+class CommunicationContentCreationForm(forms.Form):
+
+    def __init__(self, project=None, format=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        sizes = SOCIAL_MEDIA_SIZES[format]
+
+        self.fields['title'] = forms.CharField(
+            max_length=sizes['title_max_length'],
+            label=_('Title'),
+            required=True,
+            help_text=_('This title will be displayed as a header. '
+                        'It should be max. {} characters long.'.
+                        format(sizes['title_max_length']))
+
+        )
+        self.fields['description'] = forms.CharField(
+            max_length=sizes['description_max_length'],
+            label=_('Description'),
+            required=True,
+            help_text=_('This description will be displayed below '
+                        'the title. It should briefly state the goal '
+                        'of the project in max. {} chars.'
+                        .format(sizes['description_max_length']))
+        )
+        self.fields['image'] = forms.ImageField(
+            label=_('Picture Upload'),
+            required=True,
+            widget=ImageInputWidget,
+            help_text=_('The picture will be displayed in the sharepic. It '
+                        'must be min. {} pixel wide and {} pixel tall. '
+                        'Allowed file formats are png, jpeg, gif. The file '
+                        'size should be max. 5 MB.'.
+                        format(sizes['img_width'], sizes['img_height']))
+
+        )
+
+        if project:
+            self.fields['title'].initial = project.name
+            self.fields['description'].initial = project.description

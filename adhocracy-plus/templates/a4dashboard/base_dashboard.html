@@ -14,14 +14,14 @@
             {% else %}
               <div class="dashboard-nav__logo-link">
                 <a class="font-weight-bold" href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
-                  <i class="fas fa-home pt-2" aria-label="{{ ORGANISATION.name }} {% trans 'Home' %}" role="img"></i>
+                  <i class="fas fa-home pt-2" aria-label="{{ ORGANISATION.name }} {% translate 'Home' %}" role="img"></i>
                 </a>
               </div>
             {% endif %}
             <div class="dropdown">
                 {% if view.other_organisations_of_user %}
                     <button
-                            title="{% trans 'Organisations' %}"
+                            title="{% translate 'Organisations' %}"
                             type="button"
                             class="dropdown-toggle btn btn--none btn--small"
                             data-bs-toggle="dropdown"
@@ -48,20 +48,24 @@
             </div>
           </div>
 
-            <nav class="d-none d-sm-inline-block" aria-label="{% trans 'Dashboard' %}">
-                <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
+            {% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug as project_list %}
+            {% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug as newsletter_create %}
+            {% url 'a4dashboard:organisation-settings' organisation_slug=view.organisation.slug as organisation_settings %}
+
+            <nav class="d-none d-sm-inline-block" aria-label="{% translate 'Dashboard' %}">
+                <a href="{{ project_list }}"
                    class="tab {% if view.menu_item == 'project' %}active{% endif %}">
-                    {% trans 'Participation projects' %}
+                    {% translate 'Participation projects' %}
                 </a>
-                <a href="{% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug %}"
-                   class="tab {% if view.menu_item == 'newsletter' %}active{% endif %}">
-                    {% trans 'Newsletter' %}
+                <a href="{{ newsletter_create }}"
+                   class="tab {% if view.menu_item == 'communication' %}active{% endif %}">
+                    {% translate 'Communication' %}
                 </a>
                 {% has_perm 'a4_candy_organisations.change_organisation' request.user view.organisation as user_may_change_organisation %}
                 {% if user_may_change_organisation %}
-                <a href="{% url 'a4dashboard:organisation-settings' organisation_slug=view.organisation.slug %}"
+                <a href="{{ organisation_settings }}"
                    class="tab {% if view.menu_item == 'organisation' %}active{% endif %}">
-                    {% trans 'Organisation settings' %}
+                    {% translate 'Organisation settings' %}
                 </a>
                 {% endif %}
             </nav>
@@ -76,14 +80,12 @@
                       role="button"
                       aria-expanded="false"
                       data-bs-toggle="tab">
-                      {% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug as project_list %}
-                      {% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug as newsletter_create %}
                       {% if request.path ==  project_list %}
-                        {% trans 'Participation projects' %}
+                        {% translate 'Participation projects' %}
                       {% elif request.path == newsletter_create %}
-                        {% trans 'Newsletter' %}
+                        {% translate 'Communication' %}
                       {% else %}
-                        {% trans 'Organisation settings' %}
+                        {% translate 'Organisation settings' %}
                       {% endif %}
                       <i class="fa fa-caret-down" aria-hidden="true"></i>
                   </a>
@@ -91,19 +93,19 @@
                       <a
                           class="dropdown-item"
                           href="{{ project_list }}">
-                          {% trans 'Participation projects' %}
+                          {% translate 'Participation projects' %}
                       </a>
                       <a
                           class="dropdown-item"
                           href="{{ newsletter_create }}">
-                          {% trans 'Newsletter' %}
+                          {% translate 'Communication' %}
                       </a>
                       {% has_perm 'a4_candy_organisations.change_organisation' request.user view.organisation as user_may_change_organisation %}
                       {% if user_may_change_organisation %}
                       <a
                           class="dropdown-item"
-                          href="{% url 'a4dashboard:organisation-settings' organisation_slug=view.organisation.slug %}">
-                          {% trans 'Organisation settings' %}
+                          href="{{ organisation_settings }}">
+                          {% translate 'Organisation settings' %}
                       </a>
                       {% endif %}
                   </div>

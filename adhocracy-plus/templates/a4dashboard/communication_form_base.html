@@ -1,0 +1,35 @@
+{% extends "a4dashboard/base_dashboard.html" %}
+{% load i18n rules wagtailsettings_tags %}
+{% get_settings %}
+
+{% block dashboard_content %}
+<div class="row">
+    <nav class="col-md-3" aria-label="{% translate '' %}">
+        <div class="dashboard-nav">
+            <div class="dashboard-nav__dropdown">
+                {% translate "Communication" %}
+            </div>
+            <ul class="dashboard-nav__pages">
+                <li class="dashboard-nav__page">
+                    <a href="{% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug %}"
+                        class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'newsletter-create' %}is-active{% endif %}">
+                        {% translate "Newsletter" %}
+
+                    </a>
+                </li>
+                <li class="dashboard-nav__page">
+                    <a href="{% url 'a4dashboard:communication-content' organisation_slug=view.organisation.slug %}"
+                        class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name|slice:':21' == 'communication-content' %}is-active{% endif %}">
+                        {% translate "Social Media" %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="col-md-9">
+        {% block communication_form %}{% endblock %}
+    </div>
+</div>
+{% endblock %}
