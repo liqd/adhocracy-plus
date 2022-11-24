@@ -10,8 +10,7 @@
             {% endif %}
         </div>
         <div class="lr-bar list-item--has-image__body">
-          <div class="d-flex">
-            <div class="lr-bar__left lr-bar__left--flex">
+            <div class="lr-bar__left">
                 <h3 class="u-first-heading">
                     {{ project.name }}
                     {% if project.has_finished %}
@@ -25,7 +24,7 @@
                     {% endif %}
                 </h3>
             </div>
-            <div class="lr-bar__right lr-bar__right--flex">
+            <div class="lr-bar__right">
                 <div class="btn--group">
                 {% spaceless %}
                     <a href="{{ project|project_url }}"
@@ -74,7 +73,6 @@
                     </div>
                 {% endspaceless %}
                 </div>
-            </div>
             </div>
         </div>
     </div>

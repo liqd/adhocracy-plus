@@ -1,10 +1,5 @@
 // used for poll and text commenting
 
-.commenting {
-    display: block;
-    margin-bottom: $spacer;
-}
-
 .commenting__content--border {
     margin-bottom: calc($spacer / 2);
     padding: $padding;
@@ -29,12 +24,15 @@
 
 .commenting {
     @include clearfix;
+    @extend .row;
+
+    margin-bottom: $spacer;
 }
 
 .commenting__content {
-    margin-bottom: $spacer;
-
     @extend .col-lg-9;    
+
+    margin-bottom: $spacer;
 }
 
 .commenting__actions {
