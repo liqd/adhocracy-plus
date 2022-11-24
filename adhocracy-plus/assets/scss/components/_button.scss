@@ -1,19 +1,21 @@
 %button-base {
-    // border: 1px solid $input-border-color;
     padding: 0.4em 0.6em;
-    line-height: 1.6;
+    line-height: 1.7;
     font-family: inherit;
     font-size: inherit;
+    margin-bottom: 0;
 }
 
 .btn {
     @extend %button-base;
+
     text-decoration: none;
 }
 
 .btn--light {
     @extend .btn-outline-light;
 
+    border: 1px solid $border-color;
     background-color: $body-bg;
     color: contrast-color($body-bg);
 
@@ -81,6 +83,8 @@
 
 .btn--primary {
     @extend .btn-primary;
+
+    border: 1px solid $input-border-color;
 }
 
 .btn--secondary {

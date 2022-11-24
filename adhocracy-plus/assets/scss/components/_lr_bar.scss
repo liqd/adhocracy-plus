@@ -3,6 +3,8 @@
 
 .lr-bar {
     @include clearfix;
+
+    display: flex;
 }
 
 .lr-bar__left {
@@ -13,22 +15,14 @@
     flex: 1 1 auto;
 }
 
-.lr-bar__left--flex {
-    flex: 1 1 auto;
-}
-
 .lr-bar__right {
-    float: right;
+    flex: 1 1 auto;
+    text-align: end;
     margin: 0 0 0 5px;
 
     > * {
         display: inline-block;
     }
-}
-
-.lr-bar__right--flex {
-    flex: 1 0 auto;
-    text-align: end;
 }
 
 .lr-bar--with-margin {
