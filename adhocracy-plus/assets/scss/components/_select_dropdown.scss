@@ -1,14 +1,15 @@
 .select-dropdown__btn {
-    @extend .btn--primary;
+    @extend .btn--light;
+
+    text-align: left;
+    font-weight: normal;
+    width: 100%;
 
     i {
         position: absolute;
         top: 0.8em;
         right: 0.6em;
     }
-
-    text-align: left;
-    font-weight: normal;
 }
 
 .select-dropdown__btn__label__icon,
@@ -23,6 +24,6 @@
         padding-top: 0.8em;
         padding-bottom: 0.8em;
         color: $text-color-gray;
-        // background-color: $bg-secondary;
+        background-color: $bg-tertiary;
     }
 }
