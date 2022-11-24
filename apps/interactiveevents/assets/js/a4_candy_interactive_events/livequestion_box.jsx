@@ -216,7 +216,7 @@ export default class QuestionBox extends React.Component {
                   </a>
                 </div>}
               <div className="livequestion__action-bar--btn pe-xl-3">
-                <div className="btn--light checkbox-btn">
+                <div className="btn--light">
                   <label
                     htmlFor="displayStatistics"
                     className="checkbox-btn__label--light"

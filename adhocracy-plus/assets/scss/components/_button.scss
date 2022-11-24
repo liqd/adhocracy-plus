@@ -1,98 +1,41 @@
-@mixin button-color($color, $color-active) {
-    // $color-focus: mix($color, $color-active, 50%);
-    // $color-contrast: contrast-color($color);
-
-    border-color: $color;
-    background-color: $color;
-    // color: $color-contrast;
-
-    &:hover,
-    &:focus {
-        // border-color: $color-focus;
-        // background-color: $color-focus;
-        // color: contrast-color($color-focus);
-    }
-
-    &:active {
-        border-color: $color-active;
-        background-color: $color-active;
-        // color: contrast-color($color-active);
-    }
-
-    &.is-disabled,
-    &:disabled {
-        // $is-light: luma($color) > luma($color-contrast);
-        // $weight-bg: if($is-light, 95%, 50%);
-        // $weight-fg: if($is-light, 60%, 10%);
-
-        // border-color: mix($color, $color-contrast, $weight-bg);
-        // background-color: mix($color, $color-contrast, $weight-bg);
-        // color: mix($color, $color-contrast, $weight-fg);
-        cursor: not-allowed;
-    }
-}
-
-@mixin button-color-product($color) {
-    // $shadow: mix($color, $body-bg, 30%);
-    // $background: mix($color, $body-bg, 15%);
-
-    // @include button-color($body-bg, $background);
-
-    &,
-    &:focus,
-    &:hover,
-    &:active,
-    &:disabled,
-    &.is-disabled {
-        border-color: $color;
-    }
-
-    &:active {
-        position: relative;
-        top: 1px;
-        left: 1px;
-    }
-
-    &:disabled,
-    &.is-disabled {
-        box-shadow: none;
-    }
-}
-
 %button-base {
-    @extend %input-base;
-    border-radius: 0;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    font-weight: normal;
-    padding-left: 1em;
-    padding-right: 1em;
-    margin: 0;
-    vertical-align: middle;
+    // border: 1px solid $input-border-color;
+    padding: 0.4em 0.6em;
+    line-height: 1.6;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 .btn {
     @extend %button-base;
-    @include button-color($link-color, $link-hover-color);
+    text-decoration: none;
 }
 
 .btn--light {
-    // @include button-color($body-bg, $bg-secondary);
+    @extend .btn-outline-light;
 
-    &,
+    background-color: $body-bg;
+    color: contrast-color($body-bg);
+
     &:focus,
     &:hover,
     &:active,
-    &:disabled,
-    &.is-disabled {
-        border-color: $border-color;
-        box-shadow: none;
+    &:focus-within,
+    &:focus-visible {
+        background-color: $bg-tertiary !important;
     }
+
+    &:focus-visible {
+        @include fake-focus-shadow;
+    }
+
 }
 
 .btn--transparent {
-    @include button-color(transparent, transparent);
+    @extend .btn--light;
+
+    background-color: transparent;
+    border-color: $border-color;
 
     &,
     &:focus,
@@ -105,7 +48,7 @@
 }
 
 .btn--none {
-    @include button-color(transparent, transparent);
+    background-color: transparent;
     border: none;
 
     &:focus,
@@ -137,27 +80,25 @@
 }
 
 .btn--primary {
-    @include button-color-product($brand-primary);
+    @extend .btn-primary;
 }
 
 .btn--secondary {
-    @include button-color-product($brand-info); // this should be secondary
-}
-
-.btn--primary-filled {
-    @include button-color($brand-primary, $body-bg);
+    @extend .btn-outline-primary;
 }
 
 .btn--secondary-filled {
-    @include button-color($brand-secondary, $body-bg);
+    @extend .btn-secondary;
 }
 
 .btn--bg-tertiary {
-    // @include button-color($bg-tertiary, $body-bg);
+    @extend .btn-secondary;
+
+    background-color: lighten($brand-tertiary, 50%);
 }
 
 .btn--text-color-inverted {
-    @include button-color(transparent, transparent);
+    @extend .btn--transparent;
 
     &,
     &:focus,
@@ -170,42 +111,20 @@
     }
 }
 
-.btn--square {
-    border: none;
-    border-radius: 0;
-}
-
 .btn--align-left {
     text-align: left;
 }
 
 .btn--danger {
-    @include button-color($brand-danger, darken($brand-danger, 15%));
+    @extend .btn-danger;
 }
 
 .btn--link {
+    @extend .btn-link;
+
     // horizontal paddings would make the button look off on mobile
     padding-left: 0;
     padding-right: 0;
-    border-color: transparent;
-    background-color: transparent;
-
-    color: $link-color;
-    text-decoration: underline;
-    font-weight: normal;
-
-    &:hover,
-    &:focus {
-        color: $link-hover-color;
-        border-color: transparent;
-        background-color: transparent;
-    }
-
-    &.is-disabled,
-    &:disabled {
-        color: $text-color;
-        cursor: not-allowed;
-    }
 
     &.collapsible {
         .link--less {
@@ -230,12 +149,24 @@
 
 .btn--close {
     @extend .btn-close;
+
     margin-bottom: auto;
 }
 
 .modal--close {
     text-align: right;
 }
+
+// .btn.btn--small,
+// .btn.btn--round,
+// .btn.btn--full,
+// .btn.btn--huge,
+// .btn.btn--select,
+// .btn.btn--square {
+//     background-color: $text-color;
+//     color: contrast-color($text-color);
+//     border-color: $text-color;
+// }
 
 .btn--select {
     @include text-truncate;
@@ -254,7 +185,6 @@
 
 .btn--small {
     padding: 0.3em 0.6em;
-    font-weight: inherit;
 }
 
 .btn--huge {
@@ -308,24 +238,24 @@
 }
 
 .btn--facebook {
-    @include button-color-product($facebook);
+    color: $facebook;
 }
 
 .btn--google {
-    @include button-color-product($google);
+    color: $google;
 }
 
 .btn--twitter {
-    @include button-color-product($twitter);
+    color: $twitter;
 }
 
 .btn--github {
-    @include button-color-product($github);
+    color: $github;
 }
 
-.checkbox-btn {
-    display: inline-block;
-}
+// .checkbox-btn {
+//     display: inline-block;
+// }
 
 .checkbox-btn__input {
     position: absolute;

@@ -93,7 +93,7 @@
         {% if not ORGANISATION.is_supporting %}
         {% if settings.a4_candy_cms_settings.ImportantPages.donate_link %}
         <div class="donation-banner">
-            <a href="{{ settings.a4_candy_cms_settings.ImportantPages.donate_link }}"  class="btn {% if ORGANISATION %} btn--bg-tertiary {% else %} btn--secondary-filled {% endif %}">
+            <a href="{{ settings.a4_candy_cms_settings.ImportantPages.donate_link }}"  class="btn {% if ORGANISATION %} btn--bg-tertiary {% else %} btn--secondary {% endif %}">
                 <span class="d-none d-md-block">
                     {% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}{{ platformname }} is funded by donations.{% endblocktrans %}
                     <br>
