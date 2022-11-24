@@ -6,7 +6,7 @@ const ParagraphForm = require('./ParagraphForm')
 
 const ChapterForm = (props) => {
   return (
-    <section>
+    <section className='row'>
       <div className="commenting">
         <div className="form-group commenting__content">
           <label htmlFor={'id_chapters-' + props.id + '-name'}>

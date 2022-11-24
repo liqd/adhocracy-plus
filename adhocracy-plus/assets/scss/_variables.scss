@@ -42,13 +42,10 @@ $green-light: #e0fbe2;
 $print-black: #000 !default;
 $print-link: #005cb4 !default;
 
-// $brand-primary-tint: contrast-stretch($text-color, mix($brand-primary, $body-bg, 30%), 7) !default;
-// $brand-secondary-tint: contrast-stretch($text-color, mix($brand-secondary, $body-bg, 30%), 7) !default;
-// $brand-tertiary-tint: contrast-stretch($text-color, mix($brand-tertiary, $body-bg, 30%), 7) !default;
-// $brand-danger-tint: contrast-stretch($text-color, mix($brand-danger, $body-bg, 30%), 7) !default;
+$brand-primary-tint: lighten($brand-primary, 60%) !default;
+$brand-tertiary-tint: lighten($brand-tertiary, 57%) !default;
 
-// $bg-tertiary: $brand-tertiary-tint !default;
-// $bg-secondary: mix($bg-tertiary, $body-bg, 50%) !default;
+$bg-tertiary: $brand-tertiary-tint !default;
 $bg-light: #f7f7f7;
 
 $demi-bold: 600;
@@ -57,6 +54,7 @@ $headings-font-weight: $demi-bold !default;
 $link-color: $text-color !default;
 $link-hover-color: darken($link-color, 15%) !default;
 
+$border-radius: 0 !default;
 $border-color: $gray-lighter !default;
 $input-border-color: $border-color !default;
 

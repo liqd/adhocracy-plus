@@ -27,17 +27,18 @@
     text-align: right;
 }
 
-@media (min-width: $breakpoint) {
-    .commenting {
-        @include clearfix;
-    }
+.commenting {
+    @include clearfix;
+}
 
-    .commenting__content {
-        // @include grid-span(9, 0);
-    }
+.commenting__content {
+    margin-bottom: $spacer;
 
-    .commenting__actions {
-        // @include grid-span(3, 9);
-        text-align: left;
-    }
+    @extend .col-lg-9;    
+}
+
+.commenting__actions {
+    @extend .col-lg-3;
+
+    text-align: left;
 }

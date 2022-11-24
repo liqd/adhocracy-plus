@@ -25,15 +25,15 @@
     i {
         font-size: 1.7rem;
         position: absolute;
-        top: 1.25 * $padding;
+        top: 1.75 * $padding;
         right: $padding;
         transition: transform 0.3s;
     }
 
-    &[aria-expanded="true"] .fa-plus:before {
+    &[aria-expanded="true"] i {
         font-family: "Font Awesome 5 Free", sans-serif;
         font-weight: 900;
-        content: "\f068"; // plus
+        transform: rotate(180deg);
     }
 }
 
@@ -47,6 +47,7 @@
     a[href^="/documents"]:before {
         content: "\f016"; // file-o
         font-family: "FontAwesome", sans-serif;
+        font-weight: 900;
         margin-right: 0.3em;
     }
 }
