@@ -63,7 +63,7 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
 
 class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
                                     NewsletterCreateView):
-    menu_item = 'newsletter'
+    menu_item = 'communication'
     form_class = RestrictedNewsletterForm
     permission_required = 'a4projects.add_project'
     template_name = ('a4_candy_newsletters/'

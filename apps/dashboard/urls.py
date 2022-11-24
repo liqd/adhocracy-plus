@@ -25,7 +25,7 @@ urlpatterns = [
     re_path(r'^delete/module/(?P<slug>[-\w_]+)/$',
             views.ModuleDeleteView.as_view(),
             name='module-delete'),
-    path('newsletters/create/',
+    path('communication/newsletters/create/',
          newsletter_views.DashboardNewsletterCreateView.as_view(),
          name='newsletter-create'),
     path('settings/',
@@ -34,6 +34,14 @@ urlpatterns = [
     path('settings/legal-information',
          organisation_views.DashboardLegalInformationUpdateView.as_view(),
          name='organisation-legal-information'),
+    path('communication/content/create/',
+         organisation_views.DashboardCommunicationProjectChoiceView.as_view(),
+         name='communication-content'),
+    path('communication/content/create/<slug:project_slug>/'
+         'format/<int:format>/',
+         organisation_views.DashboardCommunicationContentCreateView.as_view(),
+         name='communication-content-create'),
+
 ]
 
 # a4 dashboard urls without organisation slug
