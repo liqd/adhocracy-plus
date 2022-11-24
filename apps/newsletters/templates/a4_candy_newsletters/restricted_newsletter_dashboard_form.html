@@ -1,11 +1,11 @@
-{% extends "a4dashboard/base_dashboard.html" %}
+{% extends "a4dashboard/communication_form_base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Newsletter" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "Newsletter" %} &mdash; {{ block.super }}{% endblock%}
 
-{% block dashboard_content %}
-<div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-    <h1>{% trans "Create Newsletter" %}</h1>
+{% block communication_form %}
+<div class="col-md-9">
+    <h1>{% translate "Create Newsletter" %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
@@ -26,8 +26,8 @@
         <input type="hidden" id="{{ form.organisation.id_for_label}}" name="{{form.organisation.html_name}}" value="{{view.organisation.id}}" />
 
         <div class="d-flex justify-content-end mb-3">
-            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--secondary me-2">{% trans 'Cancel'%}</a>
-            <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send'%}" />
+            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--secondary me-2">{% translate 'Cancel'%}</a>
+            <input type="submit" class="btn btn--primary" name="send" value="{% translate 'Send'%}" />
         </div>
     </form>
     {{ form.media }}
