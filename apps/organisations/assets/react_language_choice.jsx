@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import PropTypes from 'prop-types'
 
 class LanguageChoice extends React.Component {
@@ -159,8 +159,10 @@ module.exports.renderLanguageChoice = function (el) {
   const languages = el.getAttribute('data-languages').split(' ')
   const activeLanguages = el.getAttribute('data-active-languages').split(' ')
   const languageDict = JSON.parse(el.getAttribute('data-language-dict'))
-  ReactDOM.render(
-    <LanguageChoice languages={languages} activeLanguages={activeLanguages} languageDict={languageDict} />,
-    el
+  const root = createRoot(el)
+  root.render(
+    <React.StrictMode>
+      <LanguageChoice languages={languages} activeLanguages={activeLanguages} languageDict={languageDict} />
+    </React.StrictMode>
   )
 }

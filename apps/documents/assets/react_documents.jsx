@@ -1,13 +1,18 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import DocumentManagement from './DocumentManagement'
 
-module.exports.renderDocumentManagement = function (element) {
-  const chapters = JSON.parse(element.getAttribute('data-chapters'))
-  const module = element.getAttribute('data-module')
-  const config = JSON.parse(element.getAttribute('data-config'))
+module.exports.renderDocumentManagement = function (el) {
+  const chapters = JSON.parse(el.getAttribute('data-chapters'))
+  const module = el.getAttribute('data-module')
+  const config = JSON.parse(el.getAttribute('data-config'))
 
-  const reloadOnSuccess = JSON.parse(element.getAttribute('data-reloadOnSuccess'))
+  const reloadOnSuccess = JSON.parse(el.getAttribute('data-reloadOnSuccess'))
+  const root = createRoot(el)
 
-  ReactDOM.render(<DocumentManagement key={module} module={module} chapters={chapters} config={config} reloadOnSuccess={reloadOnSuccess} />, element)
+  root.render(
+    <React.StrictMode>
+      <DocumentManagement key={module} module={module} chapters={chapters} config={config} reloadOnSuccess={reloadOnSuccess} />
+    </React.StrictMode>
+  )
 }
