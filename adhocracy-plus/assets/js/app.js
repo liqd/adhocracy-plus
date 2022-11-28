@@ -20,7 +20,7 @@ import {
 } from 'adhocracy4'
 
 import { renderDocumentManagement } from '../../../apps/documents/assets/react_documents.jsx'
-import { renderLiveQuestions, renderLiveQuestionsPresent } from '../../../apps/interactiveevents/assets/js/a4_candy_interactive_events/index.jsx'
+import { renderLiveQuestions, renderLiveQuestionsPresent } from '../../../apps/interactiveevents/assets/react_interactiveevents_init.jsx'
 import { renderLanguageChoice } from '../../../apps/organisations/assets/react_language_choice.jsx'
 
 function init () {

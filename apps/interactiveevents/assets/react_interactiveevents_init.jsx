@@ -1,9 +1,9 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 
-import QuestionBox from './livequestion_box'
-import PresentBox from './livequestion_present_box'
-import StatisticsBox from './livequestion_statistics_box'
+import QuestionBox from './QuestionBox'
+import PresentBox from './PresentBox'
+import StatisticsBox from './StatisticsBox'
 
 export function renderLiveQuestions (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))

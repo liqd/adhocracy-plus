@@ -1,11 +1,11 @@
 import django from 'django'
 import React from 'react'
 import { updateItem } from './helpers.js'
-import QuestionForm from './livequestion_form'
-import QuestionList from './livequestion_list'
-import InfoBox from './livequestion_info_box'
-import Filter from './livequestion_filters'
-import StatisticsBox from './livequestion_statistics_box'
+import QuestionForm from './QuestionForm'
+import QuestionList from './QuestionList'
+import InfoBox from './InfoBox'
+import Filter from './Filters'
+import StatisticsBox from './StatisticsBox'
 
 const textStatistics = django.gettext('Statistics')
 const textQuestionCount = django.gettext('Entries')

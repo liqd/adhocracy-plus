@@ -33,28 +33,28 @@ class LanguageChoice extends React.Component {
   }
 
   activateTab (e) {
-    const languageCode = e.target.textContent
-    this.setState({ activeTab: languageCode })
+    const languagecode = e.target.textContent
+    this.setState({ activeTab: languagecode })
     e.preventDefault()
   }
 
   addLanguage (e) {
-    const languageCode = e.target.getAttribute('languageCode')
-    const index = this.state.activeLanguages.indexOf(languageCode)
+    const languagecode = e.target.getAttribute('languagecode')
+    const index = this.state.activeLanguages.indexOf(languagecode)
     const newActiveLanguages = this.state.activeLanguages.concat([])
     if (index === -1) {
       // adding language
-      newActiveLanguages.push(languageCode)
+      newActiveLanguages.push(languagecode)
     }
     this.setState({
       activeLanguages: newActiveLanguages,
-      activeTab: languageCode
+      activeTab: languagecode
     })
   }
 
   removeLanguage (e) {
-    const languageCode = e.target.getAttribute('languageCode')
-    const index = this.state.activeLanguages.indexOf(languageCode)
+    const languagecode = e.target.getAttribute('languagecode')
+    const index = this.state.activeLanguages.indexOf(languagecode)
     const newActiveLanguages = this.state.activeLanguages.concat([])
     if (index !== -1) {
       // removing language
@@ -63,9 +63,9 @@ class LanguageChoice extends React.Component {
     this.setState({
       activeLanguages: newActiveLanguages
     })
-    if (this.state.activeTab === languageCode) {
+    if (this.state.activeTab === languagecode) {
       this.setState({
-        activeTab: this.getNewActiveTab(languageCode)
+        activeTab: this.getNewActiveTab(languagecode)
       })
     }
   }
@@ -75,17 +75,17 @@ class LanguageChoice extends React.Component {
       <div className="language-choice-container">
         <ul className="checkbox-list nav btn--group">
           {
-            this.props.languages.map((languageCode, i) => {
+            this.props.languages.map((languagecode, i) => {
               return (
-                <li key={languageCode} className={'nav-item ' + languageCode === this.state.activeTab ? 'active' : ''}>
+                <li key={languagecode} className={'nav-item ' + languagecode === this.state.activeTab ? 'active' : ''}>
                   <input
-                    type="checkbox" name={languageCode} id={languageCode + '_language-choice'} value={languageCode}
-                    checked={this.state.activeLanguages.indexOf(languageCode) !== -1} readOnly
+                    type="checkbox" name={languagecode} id={languagecode + '_language-choice'} value={languagecode}
+                    checked={this.state.activeLanguages.indexOf(languagecode) !== -1} readOnly
                   />
                   <button
-                    href={'#' + languageCode + '_language_panel'} className={'btn btn--light btn--small language-choice ' + (languageCode === this.state.activeTab ? 'active' : '')}
+                    href={'#' + languagecode + '_language_panel'} className={'btn btn--light btn--small language-choice ' + (languagecode === this.state.activeTab ? 'active' : '')}
                     data-bs-toggle="tab" onClick={this.activateTab.bind(this)}
-                  >{languageCode}
+                  >{languagecode}
                   </button>
                 </li>
               )
@@ -99,17 +99,17 @@ class LanguageChoice extends React.Component {
             </button>
             <div className="dropdown-menu">
               {
-                Object.entries(this.props.languageDict).map(([languageCode, languageString]) => {
+                Object.entries(this.props.languageDict).map(([languagecode, languageString]) => {
                   return (
-                    <span key={languageCode}>
-                      {this.state.activeLanguages.indexOf(languageCode) === -1 &&
+                    <span key={languagecode}>
+                      {this.state.activeLanguages.indexOf(languagecode) === -1 &&
                         <button
-                          href={'#' + languageCode + '_language_panel'}
+                          href={'#' + languagecode + '_language_panel'}
                           className="dropdown-item"
                           data-bs-toggle="tab"
-                          languageCode={languageCode}
+                          languagecode={languagecode}
                           onClick={this.addLanguage.bind(this)}
-                          key={languageCode}
+                          key={languagecode}
                         >{languageString}
                         </button>}
                     </span>
@@ -126,17 +126,17 @@ class LanguageChoice extends React.Component {
               </button>
               <div className="dropdown-menu">
                 {
-                  Object.entries(this.props.languageDict).map(([languageCode, languageString]) => {
+                  Object.entries(this.props.languageDict).map(([languagecode, languageString]) => {
                     return (
-                      <span key={languageCode}>
-                        {this.state.activeLanguages.indexOf(languageCode) !== -1 &&
+                      <span key={languagecode}>
+                        {this.state.activeLanguages.indexOf(languagecode) !== -1 &&
                           <button
-                            href={languageCode === this.state.activeTab ? '#' + this.getNewActiveTab(languageCode) + '_language_panel' : ''}
+                            href={languagecode === this.state.activeTab ? '#' + this.getNewActiveTab(languagecode) + '_language_panel' : ''}
                             className="dropdown-item"
                             data-bs-toggle="tab"
-                            languageCode={languageCode}
+                            languagecode={languagecode}
                             onClick={this.removeLanguage.bind(this)}
-                            key={languageCode}
+                            key={languagecode}
                           >{languageString}
                           </button>}
                       </span>
