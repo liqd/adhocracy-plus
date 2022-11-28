@@ -1,7 +1,7 @@
 /* global fetch */
 import $ from 'jquery'
 import React from 'react'
-import QuestionPresent from './livequestion_present'
+import QuestionPresent from './QuestionPresent'
 
 export default class PresentBox extends React.Component {
   constructor (props) {

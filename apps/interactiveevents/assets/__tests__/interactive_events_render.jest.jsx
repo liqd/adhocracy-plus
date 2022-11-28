@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 // component to be tested
-import QuestionModerator from '../a4_candy_interactive_events/livequestion_moderator.jsx'
+import QuestionModerator from '../QuestionModerator.jsx'
 
 test('Question Moderator component is showing', () => {
   render(<QuestionModerator likes="1" />)
