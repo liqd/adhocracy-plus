@@ -20,11 +20,12 @@
     letter-spacing: 0.5px;
 }
 
-@function contrast-color($color) {
-    @if (lightness($color) > 40) {
-      @return #000;
+@mixin contrast-color($color) {
+    // stylelint-disable
+    @if lightness($color) > 40 {
+        $color: #000;
+    } @else {
+        color: #fff;
     }
-    @else {
-      @return #FFF;
-    }
+    // stylelint-enable
 }
