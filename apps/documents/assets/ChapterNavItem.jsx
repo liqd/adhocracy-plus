@@ -14,7 +14,7 @@ function getErrorCount (props) {
 
 const ChapterNavItem = (props) => {
   return (
-    <div className="commenting" data-testid="chapter-nav-item">
+    <div className="row" data-testid="chapter-nav-item">
       <button
         type="button"
         className={classNames('commenting__content', 'commenting--toc__button', 'btn btn--light', 'btn--small', { active: props.active })}

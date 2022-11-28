@@ -10,7 +10,6 @@
     // FIXME: This class should either not add styling or not be combined with .btn
     // see: https://github.com/liqd/a4-meinberlin/pull/555#discussion_r122957403
     display: block;
-    width: 100%;
     text-align: left;
 
     &.active {
@@ -18,25 +17,29 @@
     }
 }
 
-.commenting__actions {
-    text-align: right;
-}
-
 .commenting {
-    @include clearfix;
-    @extend .row;
-
+    display: block;
     margin-bottom: $spacer;
+
+    @extend .row;
 }
 
 .commenting__content {
-    @extend .col-lg-9;    
+    @extend .col-lg-9;
 
     margin-bottom: $spacer;
 }
 
 .commenting__actions {
-    @extend .col-lg-3;
+    margin-bottom: $spacer;
+    text-align: right;
+    display: inline;
 
-    text-align: left;
+    @extend .col-lg-3;
+}
+
+@media (min-width: $breakpoint) {
+    .commenting__actions {
+        text-align: left;
+    }
 }
