@@ -12,7 +12,7 @@ export const CategorySelect = (props) => {
 
   return (
     <div>
-      {Object.keys(this.props.category_dict).length > 0 &&
+      {Object.keys(props.category_dict).length > 0 &&
         <div>
           <label className="mb-0" htmlFor="categorySelect">{affiliationStr}*</label>
           <div className="form-hint">
@@ -28,8 +28,8 @@ export const CategorySelect = (props) => {
                 data-minimum-results-for-search="Infinity"
               >
                 <option value="">---------</option>
-                {Object.keys(this.props.category_dict).map((categoryPk, index) => {
-                  return <option key={index} value={categoryPk}>{this.props.category_dict[categoryPk]}</option>
+                {Object.keys(props.category_dict).map((categoryPk, index) => {
+                  return <option key={index} value={categoryPk}>{props.category_dict[categoryPk]}</option>
                 })}
               </select>
             </div>

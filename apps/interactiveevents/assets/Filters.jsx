@@ -46,20 +46,21 @@ export default class Filter extends React.Component {
             {this.props.currentCategoryName}
             <i className="fa fa-caret-down" aria-hidden="true" />
           </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownAffiliationBtn">
-            {categories.map((category, index) => {
-              return (
-                <button
-                  className="dropdown-item"
-                  key={index}
-                  data-value={category === allTag ? -1 : category}
-                  onClick={this.selectCategory.bind(this)} href="#"
-                >
-                  {category}
-                </button>
-              )
-            })}
-          </div>
+          {this.props.categories.length > 0 &&
+            <div className="dropdown-menu" aria-labelledby="dropdownAffiliationBtn">
+              {categories.map((category, index) => {
+                return (
+                  <button
+                    className="dropdown-item"
+                    key={index}
+                    data-value={category === allTag ? -1 : category}
+                    onClick={this.selectCategory.bind(this)} href="#"
+                  >
+                    {category}
+                  </button>
+                )
+              })}
+            </div>}
         </div>
         {this.props.isModerator &&
           <div className="checkbox-btn livequestion__filter--btn">
