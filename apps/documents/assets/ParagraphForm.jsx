@@ -61,7 +61,7 @@ class ParagraphForm extends React.Component {
   render () {
     const ckEditorToolbarsHeight = 60 // measured on example editor
     return (
-      <section className="row">
+      <section className="row"> 
         <div className="col-lg-9">
           <div className="commenting__content--border">
             <div className="form-group">
