@@ -1,7 +1,7 @@
 import django from 'django'
 import React from 'react'
 import { updateItem } from './helpers.js'
-import { SelectCategory } from './SelectCategory'
+import { CategorySelect } from './CategorySelect'
 
 export default class QuestionForm extends React.Component {
   constructor (props) {
@@ -59,10 +59,11 @@ export default class QuestionForm extends React.Component {
       <div className="mb-5">
         <form id="id-livequestion-form" action="" onSubmit={this.addQuestion.bind(this)}>
           <h2>{django.gettext('Here you can ask your question')}</h2>
-          <SelectCategory
-            onSelect={this.selectCategory.bind(this)}
-            category_dict={this.props.category_dict}
-          />
+          {Object.keys(this.props.category_dict).length > 0 &&
+            <CategorySelect
+              onSelect={this.selectCategory.bind(this)}
+              category_dict={this.props.category_dict}
+            />}
           <label htmlFor="questionTextField">{django.gettext('Question')}*</label>
           <textarea
             placeholder={django.gettext('Add Question')}
