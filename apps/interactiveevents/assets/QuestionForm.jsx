@@ -1,7 +1,7 @@
 import django from 'django'
 import React from 'react'
 import { updateItem } from './helpers.js'
-import CategorySelect from './livequestion_category_select'
+import CategorySelect from './SelectCategory'
 
 export default class QuestionForm extends React.Component {
   constructor (props) {

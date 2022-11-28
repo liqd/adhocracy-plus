@@ -1,6 +1,6 @@
 import React from 'react'
-import QuestionModerator from './livequestion_moderator'
-import QuestionUser from './livequestion_user'
+import QuestionModerator from './QuestionModerator'
+import QuestionUser from './QuestionUser'
 
 const QuestionList = (props) => {
   if (props.isModerator) {

@@ -1,8 +1,8 @@
 import django from 'django'
 import React from 'react'
 import { updateItem } from './helpers.js'
-import QuestionUser from './livequestion_user'
-import QuestionModerator from './livequestion_moderator'
+import QuestionUser from './QuestionUser'
+import QuestionModerator from './QuestionModerator'
 
 export default class StatisticsBox extends React.Component {
   constructor (props) {
