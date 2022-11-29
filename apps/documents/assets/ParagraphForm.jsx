@@ -1,6 +1,6 @@
-import { errorList as ErrorList } from 'adhocracy4'
 const React = require('react')
 const django = require('django')
+const FormFieldError = require('adhocracy4/adhocracy4/static/FormFieldError')
 
 const ckGet = function (id) {
   return window.CKEDITOR.instances[id]
@@ -78,7 +78,7 @@ class ParagraphForm extends React.Component {
                   onChange={this.handleNameChange.bind(this)}
                 />
               </label>
-              <ErrorList errors={this.props.errors} field="name" />
+              <FormFieldError id={'id_error-' + this.props.id} error={this.props.errors} field="name" />
             </div>
 
             <div className="form-group">
@@ -98,7 +98,7 @@ class ParagraphForm extends React.Component {
                   />
                 </div>
               </label>
-              <ErrorList errors={this.props.errors} field="text" />
+              <FormFieldError id={'id_error-' + this.props.id} error={this.props.errors} field="text" />
             </div>
           </div>
         </div>
