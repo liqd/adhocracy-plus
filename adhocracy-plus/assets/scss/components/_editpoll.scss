@@ -1,35 +1,23 @@
+// EditPollQuestions/EditPollOpenQuestions
+// NOTE: structure of edit poll styling to be found in _commenting.scss
+
 .editpoll__btn--question,
 .editpoll__btn--delete {
     @extend .btn--light;
 }
 
-.editpoll__btn--question {
-    margin-bottom: 0.5 * $spacer;
+.editpoll__btn--dark {
+    @extend .btn--bg-tertiary;
 }
 
-// EditPollQuestions/EditPollOpenQuestions
-
-.editpoll__question {
-    margin-bottom: calc($spacer / 2);
-    padding: $padding;
-    border: 1px solid $border-color;
+.editpoll__btn--question,
+.editpoll__btn--dark {
+    margin-top: 0.5 * $spacer;
+    margin-right: 0.5 * $spacer;
 }
 
 .editpoll__help-text { // Question ID
     color: $gray-lighter;
-}
-
-.editpoll__actions-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.editpoll__menu-container {
-    margin: 0.25 * $spacer 0;
-
-    & > * {
-        width: 100%;
-    }
 }
 
 .editpoll__btns--question {
@@ -37,44 +25,13 @@
     flex-flow: column wrap;
 }
 
-.editpoll__question-container {
-    display: block;
-    margin-bottom: $spacer;
-}
-
 @media (min-width: $breakpoint-md) {
-    .editpoll__question-container {
-        @include clearfix;
-    }
-
-    .editpoll__question-actions {
-        // @include grid-span(3, 9);
-
-        .btn {
-            padding-left: revert;
-            padding-right: revert;
-        }
-    }
-
-    .editpoll__actions-container {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .editpoll__menu-container > * {
-        width: inherit;
-    }
-
-    .editpoll__menu-container--override {
-        margin: 0;
-    }
-
     .editpoll__btns--question {
         flex-direction: row;
     }
 
-    .editpoll__btn--question {
-        margin: 0;
-        margin-right: 0.5 * $spacer;
-    }
+    // .editpoll__btn--question {
+    //     margin: 0;
+    //     margin-right: 0.5 * $spacer;
+    // }
 }
