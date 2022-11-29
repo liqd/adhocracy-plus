@@ -126,6 +126,22 @@ $svg-colour: #2a3cd4;
     color: $text-color-gray;
 }
 
+.tile__list-header {
+    width: 100%;
+    text-align: center;
+    padding-top: $spacer;
+}
+
+.tile__item-count {
+    color: $text-color;
+    font-size: $font-size-xs;
+
+    i {
+        padding-right: $padding;
+        color: $brand-secondary;
+    }
+}
+
 @media (min-width: $breakpoint) {
     .tile {
         min-height: 15em;
