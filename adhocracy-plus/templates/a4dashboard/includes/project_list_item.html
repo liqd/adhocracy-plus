@@ -83,7 +83,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title" id="project{{ project.pk }}DeleteModal">{% blocktrans with project_name=project.name %} Are you sure you want to delete the project '{{ project_name }}'? {% endblocktrans %}</h2>
-                <button type="button" class="btn--close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn btn--close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-footer">
                 <form action="{% url "project-delete" pk=project.pk organisation_slug=project.organisation.slug %}" method="post">

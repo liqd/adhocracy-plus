@@ -660,7 +660,6 @@
 
                 <div class="cl-example">
                     <p>
-                        <button class="btn btn--light" type="button">Button</button>
                         <input class="btn btn--light" type="button" value="Input Button" />
                         <a class="btn btn--light" href="#">Link as Button</a>
                     </p>
@@ -677,22 +676,23 @@
                     </p>
                     <p>
                         <button class="btn btn--danger" type="button">Danger Button</button>
-                        <button class="btn--text-color-inverted" type="button">Color Inverted</button>
-                        <button class="btn btn--square " type="button">Square Button</button>
+                        <button class="btn btn--text-color-inverted" type="button">Color Inverted</button>
                     </p>
                     <p>
                         <button class="btn btn--link" type="button">Button as Link</button>
                         <button class="btn btn--none" type="button">Button none</button>
                     </p>
+                    <p>Buttons classes that affect structure, must be combined with a style class above, these are all btn--light</p>
                     <p>
-                        <button class="btn btn--select" type="button">Select Button <i class="fa fa-caret-down" aria-hidden="true"></i></button>
-                        <button class="btn btn--small" type="button">Small Button</button>
-                        <button class="btn btn--huge" type="button">Huge Button</button>
-                        <button class="btn btn--round" type="button">Round Button</button>
-                        <button class="btn btn--attached-top" type="button">Top Button</button>
+                        <button class="btn btn--light " type="button">Square Button</button>
+                        <button class="btn btn--light btn--select" type="button">Select Button <i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                        <button class="btn btn--light btn--small" type="button">Small Button</button>
+                        <button class="btn btn--light btn--huge" type="button">Huge Button</button>
+                        <button class="btn btn--light btn--round" type="button">Round Button</button>
+                        <button class="btn btn--light btn--attached-top" type="button">Top Button</button>
                     </p>
                     <p>
-                        <button class="btn btn--full" type="button">Full Button</button>
+                        <button class="btn btn--light btn--full" type="button">Full Button</button>
                     </p>
                     <div class="btn--group" role="group">
                         <button class="btn btn--light" type="button">But</button><button class="btn btn--light" type="button">ton</button><button class="btn btn--light" type="button">group</button>
@@ -1353,11 +1353,11 @@
                                 </li>
                                 <li class="nav-item header-upper__user">
                                     <div class="dropdown userindicator__dropdown">
-                                        <button class="d-md-none dropdown-toggle btn btn--primary-filled btn--square btn--attached-top header-upper__mobile-toggle" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
+                                        <button class="d-md-none dropdown-toggle btn btn--primary-filled  btn--attached-top header-upper__mobile-toggle" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
                                           id="user-actions">
                                             <span class="d-none d-sm-inline-block pe-1">Menü</span>
                                         </button>
-                                        <button class="d-none d-md-inline-block dropdown-toggle btn btn--primary-filled btn--attached-top btn--square btn--align-left header-upper__toggle" data-bs-toggle="dropdown" data-flip="false"
+                                        <button class="d-none d-md-inline-block dropdown-toggle btn btn--primary-filled btn--attached-top  btn--align-left header-upper__toggle" data-bs-toggle="dropdown" data-flip="false"
                                           aria-haspopup="true" aria-expanded="false" id="user-actions">
                                             <div class="userindicator__btn-img" style="background-image:   url(/static/images/avatar-01.svg) "></div>
                                             <div class="userindicator__btn-text text-start">
@@ -1418,7 +1418,7 @@
                                 </li>
                                 <li class="nav-item header-upper__user">
                                     <div class="dropdown dropdown-menu-end userindicator__dropdown">
-                                        <button class="dropdown-toggle btn btn--primary-filled btn--square btn--attached-top header-upper__mobile-toggle" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
+                                        <button class="dropdown-toggle btn btn--primary-filled  btn--attached-top header-upper__mobile-toggle" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
                                           id="user-actions">
                                             <span class="d-none d-sm-inline-block pe-1">Menü</span>
                                         </button>
@@ -1452,7 +1452,7 @@
                                         <h3>Die besten Lösungen entstehen, wenn man sie gemeinsam entwickelt. Mit adhocracy+ wollen wir digitale Demokratie einfach machen: <b>für alle und überall.</b></h3>
                                     </div>
                                 </div>
-                                <div class="btn btn--text-color-inverted btn--square homepage-hero__btn--info" data-bs-toggle="tooltip" data-placement="top" aria-label="Header image: Freigegeben durch unsplash.com Helloquence @helloquence" title=""
+                                <div class="btn btn--text-color-inverted  homepage-hero__btn--info" data-bs-toggle="tooltip" data-placement="top" aria-label="Header image: Freigegeben durch unsplash.com Helloquence @helloquence" title=""
                                   tabindex="0" data-original-title="Freigegeben durch unsplash.com Helloquence @helloquence">
                                     <i class="fas fa-info" aria-hidden="true"></i>
                                 </div>
@@ -2008,7 +2008,7 @@
                                     </div>
                                     <div class="participation-tile__spacer"></div>
                                     <div class="participation-tile__btn">
-                                        <a class="btn btn--full btn--small" href="/liqd-orga/projects/module/idea-challenge/">join</a>
+                                        <a class="btn btn--light btn--full btn--small" href="/liqd-orga/projects/module/idea-challenge/">join</a>
                                     </div>
                                 </div>
                             </div>
@@ -2050,7 +2050,7 @@
                                         <p>Die Teilnehmer*innen können eigene Ideen einreichen und die Ideen Anderer diskutieren.</p>
                                         <p></p>
 
-                                        <input type="submit" class="list-item__cta ms-auto" value="Modul hinzufügen">
+                                        <input type="submit" class="btn btn--light ms-auto" value="Modul hinzufügen">
                                     </form>
                                 </div>
                             </div>

@@ -13,7 +13,7 @@
 {% block project_action %}
     {% has_or_would_have_perm 'a4_candy_mapideas.add_mapidea' request.user module as propose_allowed %}
     {% if propose_allowed %}
-        <a href="{% url 'a4_candy_mapideas:mapidea-create' organisation_slug=module.project.organisation.slug module_slug=module.slug %}" class="btn btn--full btn--huge mt-4">
+        <a href="{% url 'a4_candy_mapideas:mapidea-create' organisation_slug=module.project.organisation.slug module_slug=module.slug %}" class="btn btn--light btn--full btn--huge mt-4">
             {% trans 'Submit Idea' %}
         </a>
     {% endif %}
