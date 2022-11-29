@@ -43,7 +43,7 @@
                 <ul class="messages">
                     <li class="alert alert--warning" role="alert">
                         <div class="container">
-                            {% trans 'This project is in not published yet.' %}
+                            {% translate 'This project is in not published yet.' %}
                         </div>
                     </li>
                 </ul>
@@ -83,13 +83,13 @@
                 {% if module.previous_module_in_cluster %}
                     <a class="btn btn--light text-muted" href="{{ module.previous_module_in_cluster.get_absolute_url }}">
                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                        <span>{% trans 'Previous' %}</span>
+                        <span>{% translate 'Previous' %}</span>
                     </a>
                 {% endif %}
-                    <span class="my-2 mx-3">{{ module.readable_index_in_cluster }} {% trans 'of' %} {{ module.module_cluster|length }}</span>
+                    <span class="my-2 mx-3">{{ module.readable_index_in_cluster }} {% translate 'of' %} {{ module.module_cluster|length }}</span>
                 {% if module.next_module_in_cluster %}
                     <a class="btn btn--light text-muted" href="{{ module.next_module_in_cluster.get_absolute_url }}">
-                        <span>{% trans 'Next' %}</span>
+                        <span>{% translate 'Next' %}</span>
                         <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                 {% endif %}
                 </div>
@@ -97,7 +97,7 @@
         {% endblock %}
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
+                <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% translate 'breadcrumbs' %}">
                     <ul>
                         <li>
                             <a href="{{ project.get_absolute_url }}">
@@ -121,16 +121,16 @@
                 <div class="row">
                     <div class="col-md-8 offset-md-2 mb-3">
                         <strong>
-                            {% trans 'Participation is not possible at the moment.' %}
+                            {% translate 'Participation is not possible at the moment.' %}
                             {% if not module.past_phases %}
                                 {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                                {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                                {% blocktranslate with date=start_date %}It starts on {{ date }}.{% endblocktranslate%}
                             {% elif module.future_phases %}
                                 {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                                {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                                {% blocktranslate with date=start_date %}It continues on {{ date }}.{% endblocktranslate%}
                             {% else %}
                                 {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
-                                {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                                {% blocktranslate with date=end_date %}It ended on {{ date }}.{% endblocktranslate%}
                             {% endif %}
                         </strong>
                     </div>
@@ -145,7 +145,7 @@
                                 <div class="font-weight-bold{% if phase == module.active_phase %} lr-bar{% endif %}">
                                     {% if phase == module.active_phase %}
                                         <span class="lr-bar__left">{{ phase.name }}</span>
-                                        <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
+                                        <span class="lr-bar__right phase-info__highlight">{% translate 'active' %}</span>
                                     {% else %}
                                         {{ phase.name }}
                                     {% endif %}
@@ -169,13 +169,13 @@
         {% if project.is_private %}
         <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs mb-4">
-                <i class="fas fa-lock pe-2" aria-hidden="true"></i>{% trans 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
+                <i class="fas fa-lock pe-2" aria-hidden="true"></i>{% translate 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
             </div>
         </div>
         {% elif project.is_semipublic %}
         <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs mb-4">
-                <i class="fas fa-eye pe-2" aria-hidden="true"></i>{% trans 'This project is publicly visible. Invited users can actively participate.' %}
+                <i class="fas fa-eye pe-2" aria-hidden="true"></i>{% translate 'This project is publicly visible. Invited users can actively participate.' %}
             </div>
         </div>
         {% endif %}
@@ -190,13 +190,13 @@
         {% block phase_content %}{% endblock %}
         {% block other_modules %}
             {% if module.is_in_module_cluster %}
-                <div class="participation-tile__wrapper px-sm-3">
-                    <div class="participation-tile__list-container">
-                        <ul class="u-list-reset participation-tile__list">
-                            <h3 class="participation-tile__list-header">{%  trans 'More questions from this online participation' %}</h3>
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <h3 class="participation-tile__list-header">{%  translate 'More questions from this online participation' %}</h3>
+                        <ul class="l-tiles-3">
                             {% for other_module in module.module_cluster %}
                                 {% if not other_module == module %}
-                                    {% include "a4_candy_projects/includes/project_module_tile.html" with project=project module=other_module %}
+                                    {% include "a4_candy_projects/includes/project_module_tile.html" with module=other_module %}
                                 {% endif %}
                             {% endfor %}
                         </ul>
