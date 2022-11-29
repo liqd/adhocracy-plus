@@ -10,7 +10,7 @@
 // mimic native browser focus with box-shadow, which respects border-radius
 @mixin fake-focus-shadow {
     // stylelint-disable scale-unlimited/declaration-strict-value
-    box-shadow: 0 0 1px 3px Highlight;
+    box-shadow: 0 0 1px 3px $primary;
     // stylelint-enable
 }
 
@@ -18,14 +18,4 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-}
-
-@mixin contrast-color($color) {
-    // stylelint-disable
-    @if lightness($color) > 40 {
-        $color: #000;
-    } @else {
-        color: #fff;
-    }
-    // stylelint-enable
 }
