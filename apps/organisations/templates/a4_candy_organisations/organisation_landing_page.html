@@ -38,7 +38,7 @@
                         <h1 class="marked-box">{{ organisation.title }}</h1>
                         {% if organisation.url %}
                         <a class="ms-3 text-muted" href="{{ organisation.url }}" target="_blank" title="{{ organisation.url }}">
-                            <i class="fas fa-external-link-alt" role="img" aria-label="{{ organisation.title }} {% trans 'Opens in new window' %}"></i>
+                            <i class="fas fa-external-link-alt" role="img" aria-label="{{ organisation.title }} {% translate 'Opens in new window' %}"></i>
                         </a>
                         {% endif %}
                         <div class="row">
@@ -78,23 +78,23 @@
 
                             {% if past_projects %}
                             {% for project in past_projects %}
-                                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' status='past' %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
                             {% endfor %}
                             {% endif %}
                         </ul>
                     {% endif %}
                 {% else %}
                     {% if request.user.is_authenticated %}
-                        <p>{% blocktrans %}Currently, there are no public participation processes. Please check again later.{% endblocktrans %}</p>
+                        <p>{% blocktranslate %}Currently, there are no public participation processes. Please check again later.{% endblocktranslate %}</p>
                     {% elif organisation.information %}
                         {% url 'account_login' as account_login_url %}
                         {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
                         {% url 'organisation-information' organisation_slug=organisation.slug as organisation_information_url %}
-                        <p>{% blocktrans %}Currently, there are no public participation processes. Sign in <a href="{{ account_login_url }}?next={{ organisation_url }}">here</a> or read more in <a href="{{ organisation_information_url }}">About</a>.{% endblocktrans %}</p>
+                        <p>{% blocktranslate %}Currently, there are no public participation processes. Sign in <a href="{{ account_login_url }}?next={{ organisation_url }}">here</a> or read more in <a href="{{ organisation_information_url }}">About</a>.{% endblocktranslate %}</p>
                     {% else %}
                         {% url 'account_login' as account_login_url %}
                         {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
-                        <p>{% blocktrans %}Currently, there are no public participation processes. Sign in <a href="{{ account_login_url }}?next={{ organisation_url }}">here</a>.{% endblocktrans %}</p>
+                        <p>{% blocktranslate %}Currently, there are no public participation processes. Sign in <a href="{{ account_login_url }}?next={{ organisation_url }}">here</a>.{% endblocktranslate %}</p>
                     {% endif %}
                 {% endif %}
                 </div>

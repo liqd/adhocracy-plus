@@ -176,11 +176,11 @@
                     </div>
 
                     {% elif view.is_project_view %}
-                    <div class="participation-tile__wrapper px-sm-3">
-                        <div class="participation-tile__list-container">
-                            <ul class="u-list-reset participation-tile__list">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <ul class="l-tiles-3">
                             {% for module in modules %}
-                                {% include "a4_candy_projects/includes/project_module_tile.html" with project=project module=module %}
+                                {% include "a4_candy_projects/includes/project_module_tile.html" with module=module %}
                             {% endfor %}
                             </ul>
                         </div>
