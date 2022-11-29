@@ -4,27 +4,25 @@
     font-family: inherit;
     font-size: inherit;
     margin-bottom: 0;
+    text-decoration: none;
 }
 
 .btn {
     @extend %button-base;
-
-    text-decoration: none;
 }
 
-.btn--light {
-    @extend .btn-outline-light;
+.btn.btn--primary {
+    @extend .btn-outline-primary;
 
-    border: 1px solid $border-color;
-    background-color: $body-bg;
-    color: contrast-color($body-bg);
+    color: $text-color;
 
     &:focus,
     &:hover,
     &:active,
     &:focus-within,
     &:focus-visible {
-        background-color: $bg-tertiary !important;
+        background-color: $brand-primary-tint;
+        color: $text-color;
     }
 
     &:focus-visible {
@@ -32,23 +30,92 @@
     }
 }
 
-.btn--transparent {
+.btn.btn--secondary {
+    @extend .btn-outline-secondary;
+
+    color: $text-color;
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:focus-within,
+    &:focus-visible {
+        background-color: $brand-secondary-tint !important;
+        color: $text-color;
+    }
+
+    &:focus-visible {
+        @include fake-focus-shadow;
+    }
+}
+
+.btn.btn--primary-filled {
+    @extend .btn-primary;
+}
+
+.btn.btn--secondary-filled {
+    @extend .btn-secondary;
+}
+
+.btn.btn--bg-tertiary {
+    @extend .btn-secondary;
+
+    background-color: $bg-tertiary;
+    border-color: $brand-tertiary;
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:focus-within,
+    &:focus-visible {
+        background-color: $brand-tertiary !important;
+        color: invert($print-black) !important;
+    }
+
+    &:focus-visible {
+        @include fake-focus-shadow;
+    }
+}
+
+.btn.btn--light {
+    @extend .btn-outline-light;
+
+    border: 1px solid $border-color;
+    background-color: $body-bg;
+    color: invert($body-bg);
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:focus-within,
+    &:focus-visible {
+        background-color: $bg-tertiary;
+    }
+
+    &:focus-visible {
+        @include fake-focus-shadow;
+    }
+}
+
+.btn.btn--transparent {
     @extend .btn--light;
 
     background-color: transparent;
     border-color: $border-color;
 
-    &,
     &:focus,
     &:hover,
-    &:active,
-    &:disabled,
-    &.is-disabled {
-        border-color: $border-color;
+    &:active {
+        background-color: transparent !important;
+        text-decoration: underline;
+    }
+
+    &:focus-visible {
+        @include fake-focus-shadow;
     }
 }
 
-.btn--none {
+.btn.btn--none {
     background-color: transparent;
     border: none;
 
@@ -66,41 +133,7 @@
     }
 }
 
-// from a4 comments
-.btn--no-border {
-    @extend .btn--transparent;
-    border: none;
-
-    &:focus,
-    &:hover,
-    &:active,
-    &:disabled,
-    &.is-disabled {
-        background-color: $gray-lightest;
-    }
-}
-
-.btn--primary {
-    @extend .btn-primary;
-
-    border: 1px solid $input-border-color;
-}
-
-.btn--secondary {
-    @extend .btn-outline-primary;
-}
-
-.btn--secondary-filled {
-    @extend .btn-secondary;
-}
-
-.btn--bg-tertiary {
-    @extend .btn-secondary;
-
-    background-color: $bg-tertiary;
-}
-
-.btn--text-color-inverted {
+.btn.btn--text-color-inverted {
     @extend .btn--transparent;
 
     &,
@@ -109,8 +142,8 @@
     &:active,
     &:disabled,
     &.is-disabled {
-        color: $text-color-inverted;
-        border-color: $text-color-inverted;
+        color: $text-color-inverted !important;
+        border-color: $text-color-inverted !important;
     }
 }
 
@@ -159,17 +192,6 @@
 .modal--close {
     text-align: right;
 }
-
-// .btn.btn--small,
-// .btn.btn--round,
-// .btn.btn--full,
-// .btn.btn--huge,
-// .btn.btn--select,
-// .btn.btn--square {
-//     background-color: $text-color;
-//     color: contrast-color($text-color);
-//     border-color: $text-color;
-// }
 
 .btn--select {
     @include text-truncate;
@@ -234,31 +256,31 @@
 
 @media print {
     .btn {
-        background-color: contrast-color($print-black);
+        background-color: invert($print-black);
         color: $print-black;
         border-color: $border-color;
     }
 }
 
 .btn--facebook {
-    color: $facebook;
+    color: $facebook !important;
 }
 
 .btn--google {
-    color: $google;
+    color: $google !important;
 }
 
 .btn--twitter {
-    color: $twitter;
+    color: $twitter !important;
 }
 
 .btn--github {
-    color: $github;
+    color: $github !important;
 }
 
-// .checkbox-btn {
-//     display: inline-block;
-// }
+.checkbox-btn {
+    display: inline-block;
+}
 
 .checkbox-btn__input {
     position: absolute;
@@ -279,11 +301,5 @@
 
     input[type="checkbox"]:checked + .checkbox-btn__text {
         @extend .btn--secondary;
-    }
-}
-
-@media screen and (max-width: $breakpoint-xs-down) {
-    .btn {
-        font-size: $font-size-sm;
     }
 }

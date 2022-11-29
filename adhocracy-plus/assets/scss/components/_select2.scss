@@ -13,12 +13,12 @@
 
     .select2-results__option[aria-selected="true"] {
         background-color: $body-bg;
-        color: contrast-color($body-bg);
+        color: invert($body-bg);
     }
 
     .select2-results__option--highlighted[aria-selected] {
         background-color: $bg-tertiary;
-        color: contrast-color($bg-tertiary);
+        color: invert($print-black);
     }
 
     .select2-selection--single .select2-selection__arrow {

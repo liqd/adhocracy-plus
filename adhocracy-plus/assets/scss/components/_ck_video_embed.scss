@@ -6,7 +6,7 @@
     border: none;
     min-height: 25rem;
     background-color: $gray;
-    color: contrast-color($text-color);
+    color: invert($print-black);
 
     @media (min-width: $breakpoint-md) {
         padding: 3 * $spacer;

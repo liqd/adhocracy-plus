@@ -18,7 +18,7 @@
         {% endif %}
         <div class="col-md-6 pb-3">
             <a title="{% trans 'Login with ' %} {{ provider.name }}"
-               class="btn btn--{{ provider.id }} btn--small {{ provider.id }}"
+               class="btn btn--light btn--{{ provider.id }} btn--small {{ provider.id }}"
                href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
                {% trans 'Login with ' %} {{ provider.name|capfirst }} <i class="fab fa-{{ provider.id }}" aria-hidden="true"></i>
            </a>

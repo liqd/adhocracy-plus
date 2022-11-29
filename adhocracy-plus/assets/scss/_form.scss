@@ -20,13 +20,13 @@ input {
     display: block;
     max-width: 100%;
     background-color: $body-bg;
-    color: contrast-color($body-bg);
+    color: invert($body-bg);
     box-shadow: 0 0 1px $brand-primary-tint inset;
     border-radius: 0;
     border-width: 1px;
 
     &:invalid {
-        color: contrast-color($body-bg);
+        color: invert($body-bg);
     }
 
     &:disabled {

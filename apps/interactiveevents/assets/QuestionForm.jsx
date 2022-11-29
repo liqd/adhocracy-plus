@@ -85,7 +85,7 @@ export default class QuestionForm extends React.Component {
             </label>
           </div>
           <div className="d-flex justify-content-end">
-            <input type="submit" value={django.gettext('Add Question')} className="btn" />
+            <input type="submit" value={django.gettext('Add Question')} className="btn btn--light" />
           </div>
         </form>
       </div>

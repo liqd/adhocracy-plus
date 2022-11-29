@@ -1,7 +1,7 @@
 .label {
     display: inline-block;
     background-color: $text-color;
-    color: contrast-color($text-color);
+    color: invert($print-black);
     font-size: $font-size-xs;
     font-weight: normal;
     border-radius: 0.4em;
@@ -22,12 +22,12 @@
 
 .label--secondary {
     background-color: $brand-secondary-dark;
-    color: contrast-color($brand-secondary-dark);
+    color: invert($print-black);
 }
 
 .label--danger {
     background-color: $brand-danger;
-    color: contrast-color($brand-danger);
+    color: invert($print-black);
 }
 
 .label--live {
@@ -48,17 +48,17 @@
 // class names are coming from django
 .label--CONSIDERATION {
     background-color: $feedback-color-consideration;
-    color: contrast-color($feedback-color-consideration);
+    color: invert($print-black);
 }
 
 .label--REJECTED {
     background-color: $feedback-color-rejected;
-    color: contrast-color($feedback-color-rejected);
+    color: invert($print-black);
 }
 
 .label--ACCEPTED {
     background-color: $feedback-color-accepted;
-    color: contrast-color($feedback-color-accepted);
+    color: invert($print-black);
 }
 // stylelint-enable
 
