@@ -1,7 +1,7 @@
-import { errorList as ErrorList } from 'adhocracy4'
 const React = require('react')
 const FlipMove = require('react-flip-move').default
 const django = require('django')
+const FormFieldError = require('adhocracy4/adhocracy4/static/FormFieldError')
 const ParagraphForm = require('./ParagraphForm')
 
 const ChapterForm = (props) => {
@@ -19,7 +19,7 @@ const ChapterForm = (props) => {
               onChange={(e) => { props.onChapterNameChange(e.target.value) }}
             />
           </label>
-          <ErrorList errors={props.errors} field="name" />
+          <FormFieldError id={'id_error-' + props.id} error={props.errors} field="name" />
         </div>
       </div>
 
