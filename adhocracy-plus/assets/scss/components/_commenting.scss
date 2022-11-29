@@ -1,4 +1,17 @@
-// used for poll and text commenting
+// used for text commenting
+.editpoll__question-container,
+.editpoll__actions-container,
+.commenting {
+    margin-bottom: $spacer;
+
+    @extend .row;
+}
+
+.commenting__content {
+    margin-bottom: $spacer;
+
+    @extend .col-lg-9;
+}
 
 .commenting__content--border {
     margin-bottom: calc($spacer / 2);
@@ -7,27 +20,13 @@
 }
 
 .commenting--toc__button {
-    // FIXME: This class should either not add styling or not be combined with .btn
-    // see: https://github.com/liqd/a4-meinberlin/pull/555#discussion_r122957403
     display: block;
     text-align: left;
+    width: 100%;
 
     &.active {
         color: $brand-primary;
     }
-}
-
-.commenting {
-    display: block;
-    margin-bottom: $spacer;
-
-    @extend .row;
-}
-
-.commenting__content {
-    @extend .col-lg-9;
-
-    margin-bottom: $spacer;
 }
 
 .commenting__actions {
