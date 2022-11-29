@@ -1,45 +1,47 @@
 {% load i18n project_tags a4_candy_project_tags contrib_tags thumbnail static rules %}
-{% project_tile_image project as project_image %}
-{% project_tile_image_copyright project as project_image_copyright %}
-<li class="participation-tile__vertical">
-    <a href="{{ module.get_absolute_url }}">
-        <div class="participation-tile__type">
-            <div class="participation-tile__content">
-                <h3 class="participation-tile__title">{{ module.name|truncatechars:100 }}</h3>
-                <span class="participation-tile__item-count">
-                    <i class="fas fa-comments" aria-hidden="true"></i>
-                    {% get_num_entries module as num_entries %}
-                    {% blocktrans count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktrans %}
-                </span>
-                {% if module.module_running_time_left %}
-                <div class="status-item status__active">
-                    <div class="status-bar__active">
-                        <span class="status-bar__active-fill" style="width: {{ module.module_running_progress }}%"></span>
-                    </div>
-                    <span class="participation-tile__status">
-                        <i class="fas fa-clock" aria-hidden="true"></i>
-                    {% blocktrans with time_left=module.module_running_time_left %}remaining {{ time_left }}{% endblocktrans %}
-                    </span>
-                </div>
-                {% elif not module.module_has_started %}
-                <div class="status-item status__future">
-                    <span class="participation-tile__status"><i class="fas fa-clock"  aria-hidden="true"></i>{% html_date module.module_start 'd.m.Y' as start_date %}
-                    {% blocktrans with date=start_date %}Participation: starts on {{ date }}{% endblocktrans %}
-                    </span>
-                </div>
-                {% elif module.module_has_finished %}
-                <div class="status-item status-bar__past">
-                    <span class="participation-tile__status">{% blocktrans %}Participation ended. Read result{% endblocktrans %}</span>
-                </div>
+
+<li class="tile organisation__tile tile--vertical">
+    <div class="tile__body tile__body-status">
+        <h3 class="tile__title" id="module-title-{{ module.pk }}">
+            <a href="{{ module.get_absolute_url }}">{{ module.name|truncatechars:100 }}</a>
+        </h3>
+        <span class="participation-tile__item-count">
+            <i class="fas fa-comments" aria-hidden="true"></i>
+            {% get_num_entries module as num_entries %}
+            {% blocktrans count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktrans %}
+        </span>
+
+        {% if module.module_running_time_left %}
+        <div class="status-item status__active">
+            <div class="status-bar__active">
+                <span class="status-bar__active-fill" style="width:{{ module.module_running_progress }}%"></span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>
+                {% if module.module_running_days_left < 365 %}
+                {% blocktranslate with time_left=module.module_running_time_left %} {{ time_left }} remaining {% endblocktranslate %}
+                {% else %}
+                <span>{% translate 'more than 1 year remaining' %}</span>
                 {% endif %}
-                <div class="participation-tile__spacer"></div>
-                <div class="participation-tile__btn">
-                    {% has_perm 'a4projects.participate_in_project' request.user project as user_may_participate_in_project %}
-                    <a class="btn btn--light btn--full btn--small" href="{{ module.get_absolute_url }}">
-                        {% if user_may_participate_in_project %} {% trans 'Join now' %} {% else %} {% trans 'Read now' %} {% endif %}
-                    </a>
-                </div>
+                </span>
+                {% has_perm 'a4projects.participate_in_project' request.user module.project as user_may_participate_in_project %}
+                {% if user_may_participate_in_project %}
+                    <a class="list-item__cta list-item__hover" href="{{ module.get_absolute_url }}">{% translate 'JOIN IN' %}</a>
+                {% else %}
+                    <a class="list-item__cta list-item__hover" href="{{ module.get_absolute_url }}">{% translate 'READ' %}</a>
+                {% endif %}
             </div>
         </div>
+        {% elif not module.module_has_started %}
+        <div class="status-item status__future">
+        <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>{% blocktranslate with date=module.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktranslate %}</span>
+        </div>
+        {% elif module.module_has_finished %}
+        <div class="status-item status-bar__past">
+        {% blocktranslate %}Participation ended. Read result.{% endblocktranslate %}
+        </div>
+        {% endif %}
+    </div>
+    <a class="tile__link" aria-labelledby="module-title-{{ module.pk }}" href="{{ module.get_absolute_url }}">
     </a>
 </li>

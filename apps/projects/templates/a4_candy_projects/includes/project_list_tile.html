@@ -14,13 +14,13 @@
           {% if project.is_private %}
             <div class="tile__private-badge">
                 <div class="tile__private-badge--top"></div>
-                    <i class="fas fa-lock" title="{% trans 'Project is private.' %}" aria-label="{% trans 'Project is private.' %}"></i>
+                    <i class="fas fa-lock" title="{% translate 'Project is private.' %}" aria-label="{% translate 'Project is private.' %}"></i>
                 <div class="tile__private-badge--left"></div>
             </div>
           {% elif project.is_semipublic %}
             <div class="tile__private-badge">
                 <div class="tile__private-badge--top"></div>
-                    <i class="fas fa-eye" title="{% trans 'Project is semi-public.' %}" aria-label="{% trans 'Project is semi-public.' %}"></i>
+                    <i class="fas fa-eye" title="{% translate 'Project is semi-public.' %}" aria-label="{% translate 'Project is semi-public.' %}"></i>
                 <div class="tile__private-badge--left"></div>
             </div>
 
@@ -41,26 +41,26 @@
             <div class="d-flex justify-content-between">
                 <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>
                 {% if project.module_running_days_left < 365 %}
-                {% blocktrans with time_left=project.module_running_time_left %} {{ time_left }} remaining {% endblocktrans %}
+                {% blocktranslate with time_left=project.module_running_time_left %} {{ time_left }} remaining {% endblocktranslate %}
                 {% else %}
-                <span>{% trans 'more than 1 year remaining' %}</span>
+                <span>{% translate 'more than 1 year remaining' %}</span>
                 {% endif %}
                 </span>
                 {% has_perm 'a4projects.participate_in_project' request.user project as user_may_participate_in_project %}
                 {% if user_may_participate_in_project %}
-                    <a class="list-item__cta list-item__hover" href="{{ project|project_url }}">{% trans 'JOIN IN' %}</a>
+                    <a class="list-item__cta list-item__hover" href="{{ project|project_url }}">{% translate 'JOIN IN' %}</a>
                 {% else %}
-                    <a class="list-item__cta list-item__hover" href="{{ project|project_url }}">{% trans 'READ' %}</a>
+                    <a class="list-item__cta list-item__hover" href="{{ project|project_url }}">{% translate 'READ' %}</a>
                 {% endif %}
             </div>
         </div>
         {% elif project.future_modules %}
         <div class="status-item status__future">
-        <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>{% blocktrans with date=project.future_modules.first.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktrans %}</span>
+        <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>{% blocktranslate with date=project.future_modules.first.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktranslate %}</span>
         </div>
         {% elif project.past_modules %}
         <div class="status-item status-bar__past">
-        {% blocktrans %}Participation ended. Read result.{% endblocktrans %}
+        {% blocktranslate %}Participation ended. Read result.{% endblocktranslate %}
         </div>
         {% endif %}
     </div>
