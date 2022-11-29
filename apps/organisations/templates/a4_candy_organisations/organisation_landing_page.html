@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load humanize i18n rules thumbnail %}
+{% load humanize i18n rules thumbnail a4_candy_project_tags %}
 
 {% block title %}{{organisation.name}}{% endblock %}
 
@@ -60,25 +60,25 @@
                     {% if object.projects.count == 1 %}
                         {% has_perm 'a4projects.view_project' request.user object.projects.0 as can_view_project %}
                         {% if can_view_project  %}
-                            {% include 'a4_candy_projects/includes/project_list_tile.html' with project=object.projects.0 orientation='horizontal' %}
+                            {% include 'a4_candy_projects/includes/project_list_tile.html' with object=object.projects.0 project=project orientation='horizontal' type='project' url=project|project_url %}
                         {% endif %}
                     {% else %}
                         <ul class="l-tiles-2">
                             {% if active_projects %}
                             {% for project in active_projects %}
-                                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project  project=project orientation='vertical' type='project' url=project|project_url %}
                             {% endfor %}
                             {% endif %}
 
                             {% if future_projects %}
                             {% for project in future_projects %}
-                                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project|project_url %}
                             {% endfor %}
                             {% endif %}
 
                             {% if past_projects %}
                             {% for project in past_projects %}
-                                {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project|project_url %}
                             {% endfor %}
                             {% endif %}
                         </ul>

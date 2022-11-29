@@ -180,7 +180,7 @@
                         <div class="col-md-10 offset-md-1">
                             <ul class="l-tiles-3">
                             {% for module in modules %}
-                                {% include "a4_candy_projects/includes/project_module_tile.html" with module=module %}
+                                {% include "a4_candy_projects/includes/project_list_tile.html" with object=module  project=module.project orientation='vertical' type='module' url=module.get_absolute_url %}
                             {% endfor %}
                             </ul>
                         </div>

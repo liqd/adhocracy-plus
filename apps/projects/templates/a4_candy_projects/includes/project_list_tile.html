@@ -1,8 +1,9 @@
 {% load i18n project_tags a4_candy_project_tags contrib_tags thumbnail rules %}
-{% project_tile_image project as project_image %}
-{% project_tile_image_copyright project as project_image_copyright %}
 
 <li class="tile organisation__tile tile--{{ orientation }}">
+    {% if type == 'project' %}
+    {% project_tile_image object as project_image %}
+    {% project_tile_image_copyright object as project_image_copyright %}
     <div class="tile__head">
         <div class="tile__image"
           {% if project_image %}
@@ -11,59 +12,67 @@
           {% if project_image_copyright %}
               <div class="tile__image__copyright copyright">© {{ project_image_copyright }}</div>
           {% endif %}
-          {% if project.is_private %}
+          {% if object.is_private %}
             <div class="tile__private-badge">
                 <div class="tile__private-badge--top"></div>
                     <i class="fas fa-lock" title="{% translate 'Project is private.' %}" aria-label="{% translate 'Project is private.' %}"></i>
                 <div class="tile__private-badge--left"></div>
             </div>
-          {% elif project.is_semipublic %}
+          {% elif object.is_semipublic %}
             <div class="tile__private-badge">
                 <div class="tile__private-badge--top"></div>
                     <i class="fas fa-eye" title="{% translate 'Project is semi-public.' %}" aria-label="{% translate 'Project is semi-public.' %}"></i>
                 <div class="tile__private-badge--left"></div>
             </div>
-
           {% endif %}
         </div>
     </div>
+    {% endif %}
     <div class="tile__body tile__body-status">
-        <h3 class="tile__title" id="project-title-{{ project.pk }}">
-            <a href="{{ project|project_url }}">{{ project.name }}</a>
+        <h3 class="tile__title" id="tile-title-{{ object.pk }}">
+            <a href="{{ url }}">{{ object.name }}</a>
         </h3>
-        <p class="tile__text">{{ project.description }}</p>
+        {% if type == 'project' %}
+        <p class="tile__text">{{ object.description }}</p>
+        {% elif type == 'module' %}
+        <span class="tile__item-count">
+            <i class="fas fa-comments" aria-hidden="true"></i>
+            {% get_num_entries object as num_entries %}
+            {% blocktrans count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktrans %}
+        </span>
+        {% endif %}
 
-        {% if project.running_modules %}
+        {% if object.module_running_time_left %}
         <div class="status-item status__active">
             <div class="status-bar__active">
-                <span class="status-bar__active-fill" style="width:{{ project.module_running_progress }}%"></span>
+                <span class="status-bar__active-fill" style="width:{{ object.module_running_progress }}%"></span>
             </div>
             <div class="d-flex justify-content-between">
                 <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>
-                {% if project.module_running_days_left < 365 %}
-                {% blocktranslate with time_left=project.module_running_time_left %} {{ time_left }} remaining {% endblocktranslate %}
+                {% if object.module_running_days_left < 365 %}
+                {% blocktranslate with time_left=object.module_running_time_left %} {{ time_left }} remaining {% endblocktranslate %}
                 {% else %}
                 <span>{% translate 'more than 1 year remaining' %}</span>
                 {% endif %}
                 </span>
                 {% has_perm 'a4projects.participate_in_project' request.user project as user_may_participate_in_project %}
                 {% if user_may_participate_in_project %}
-                    <a class="list-item__cta list-item__hover" href="{{ project|project_url }}">{% translate 'JOIN IN' %}</a>
+                    <a class="list-item__cta list-item__hover" href="{{ url }}">{% translate 'JOIN IN' %}</a>
                 {% else %}
-                    <a class="list-item__cta list-item__hover" href="{{ project|project_url }}">{% translate 'READ' %}</a>
+                    <a class="list-item__cta list-item__hover" href="{{ url }}">{% translate 'READ' %}</a>
                 {% endif %}
             </div>
         </div>
-        {% elif project.future_modules %}
+        {% elif object.future_modules or object.module_in_future %}
         <div class="status-item status__future">
-        <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>{% blocktranslate with date=project.future_modules.first.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktranslate %}</span>
+        <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>{% if type == 'project' %}{% blocktranslate with date=object.future_modules.first.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktranslate %}{% else %}{% blocktranslate with date=object.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktranslate %}{% endif %}</span>
         </div>
-        {% elif project.past_modules %}
+        {% else %}
         <div class="status-item status-bar__past">
         {% blocktranslate %}Participation ended. Read result.{% endblocktranslate %}
         </div>
         {% endif %}
     </div>
-    <a class="tile__link" aria-labelledby="project-title-{{ project.pk }}" href="{{ project|project_url }}">
+    <a class="tile__link" aria-labelledby="tile-title-{{ object.pk }}" href="{{ url }}">
     </a>
 </li>
