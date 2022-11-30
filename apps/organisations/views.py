@@ -10,6 +10,8 @@ from django.utils.translation import gettext_lazy as _
 from django.views import generic
 from django.views.generic import DetailView
 from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from apps.projects.models import Project
@@ -217,8 +219,41 @@ class DashboardCommunicationContentCreateView(
         return self.render_to_response(context)
 
     def generate_image(self, data):
-        image = Image.new('RGB', (60, 30), color='red')
+        # Dummy images
+        image = Image.new('RGB', (304, 192), color='red')
         image.save(settings.MEDIA_ROOT + '/images/tmp_image.png')
+        logo1 = Image.new('RGB', (100, 10), color='blue')
+        logo2 = Image.new('RGB', (100, 10), color='green')
+
+        # Adding padding
+        right = 0
+        left = 0
+        top = 64
+        bottom = 48
+        width, height = image.size
+        new_width = width + right + left
+        new_height = height + top + bottom
+        result = Image.new(
+            image.mode, (new_width, new_height), (255, 255, 255))
+        result.paste(image, (left, top))
+
+        # Adding writting
+        # Image is converted into editable form using Draw function and
+        # assigned to d1
+        d1 = ImageDraw.Draw(result)
+        # Text location, color and font
+        font = ImageFont.truetype(
+            "adhocracy-plus/assets/fonts/SourceSansPro-Semibold.otf", 20)
+        fontsm = ImageFont.truetype(
+            "adhocracy-plus/assets/fonts/SourceSansPro-Regular.otf", 12)
+        d1.text((16, 12), data['title'], fill=(0, 0, 0), font=font)
+        d1.text((16, 37), data['description'], fill=(0, 0, 0), font=fontsm)
+
+        # Adding logos
+        result.paste(logo1, (46, 277))
+        result.paste(logo2, (157, 277))
+
+        result.show()
         return image
 
     @property
