@@ -19,3 +19,12 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
+
+@function contrast-color($color) {
+    @if (lightness($color) > 40) {
+      @return #000;
+    }
+    @else {
+      @return #FFF;
+    }
+}
