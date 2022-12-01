@@ -35,6 +35,7 @@
         {% if type == 'project' %}
         <p class="tile__text">{{ object.description }}</p>
         {% elif type == 'module' %}
+        <span>{{ object.get_blueprint_type_display }}</span>
         <span class="tile__item-count">
             <i class="fas fa-comments" aria-hidden="true"></i>
             {% get_num_entries object as num_entries %}
@@ -43,16 +44,24 @@
         {% endif %}
 
         {% if object.module_running_time_left %}
-        <div class="status-item status__active">
+        <div class="status-item">
             <div class="status-bar__active">
                 <span class="status-bar__active-fill" style="width:{{ object.module_running_progress }}%"></span>
             </div>
             <div class="d-flex justify-content-between">
                 <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>
-                {% if object.module_running_days_left < 365 %}
-                {% blocktranslate with time_left=object.module_running_time_left %} {{ time_left }} remaining {% endblocktranslate %}
+                {% if type == 'project' %}
+                    {% if object.module_running_days_left < 365 %}
+                    {% blocktranslate with time_left=object.module_running_time_left %} {{ time_left }} remaining {% endblocktranslate %}
+                    {% else %}
+                    <span>{% translate 'more than 1 year remaining' %}</span>
+                    {% endif %}
                 {% else %}
-                <span>{% translate 'more than 1 year remaining' %}</span>
+                    {% if object.module_running_days_left < 365 %}
+                    {{ object.module_running_time_left_abbreviated.0 }} <abbr title="{{ object.module_running_time_left_abbreviated.2 }}">{{ object.module_running_time_left_abbreviated.1 }}</abbr>
+                    {% else %}
+                    <abbr title="{% translate 'more than 1 year' %}">{% translate '> 1 Y' context 'abbreviation "more than 1 year"' %}</abbr>
+                    {% endif %}
                 {% endif %}
                 </span>
                 {% has_perm 'a4projects.participate_in_project' request.user project as user_may_participate_in_project %}
