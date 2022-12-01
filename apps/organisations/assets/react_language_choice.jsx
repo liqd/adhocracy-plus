@@ -1,27 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import PropTypes from 'prop-types'
 
-class LanguageChoice extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      activeLanguages: this.props.activeLanguages,
-      activeTab: this.getInitialActiveTab()
-    }
-  }
+const LanguageChoice = (props) => {
+  const [activeLanguages, setActiveLanguages] = useState(props.activeLanguages)
+  const [activeTab, setActiveTab] = useState(getInitialActiveTab())
 
-  getInitialActiveTab () {
-    if (this.props.activeLanguages.length > 0) {
-      return this.props.activeLanguages[0]
+  function getInitialActiveTab () {
+    if (props.activeLanguages.length > 0) {
+      return props.activeLanguages[0]
     } else {
       return 'de'
     }
   }
 
-  getNewActiveTab (removedLanguage) {
-    const index = this.state.activeLanguages.indexOf(removedLanguage)
-    const newActiveLanguages = this.state.activeLanguages.concat([])
+  function getNewActiveTab (removedLanguage) {
+    const index = activeLanguages.indexOf(removedLanguage)
+    const newActiveLanguages = activeLanguages.concat([])
     if (index !== -1) {
       newActiveLanguages.splice(index, 1)
     }
@@ -32,127 +26,144 @@ class LanguageChoice extends React.Component {
     }
   }
 
-  activateTab (e) {
+  const activateTab = (e) => {
     const languagecode = e.target.textContent
-    this.setState({ activeTab: languagecode })
+    setActiveTab(languagecode)
     e.preventDefault()
   }
 
-  addLanguage (e) {
-    const languagecode = e.target.getAttribute('languagecode')
-    const index = this.state.activeLanguages.indexOf(languagecode)
-    const newActiveLanguages = this.state.activeLanguages.concat([])
+  const addLanguage = (e) => {
+    const languagecode = e.target.getAttribute('data-languagecode')
+    const index = activeLanguages.indexOf(languagecode)
+    const newActiveLanguages = activeLanguages.concat([])
     if (index === -1) {
       // adding language
       newActiveLanguages.push(languagecode)
     }
-    this.setState({
-      activeLanguages: newActiveLanguages,
-      activeTab: languagecode
-    })
+    setActiveLanguages(newActiveLanguages)
+    setActiveTab(languagecode)
   }
 
-  removeLanguage (e) {
-    const languagecode = e.target.getAttribute('languagecode')
-    const index = this.state.activeLanguages.indexOf(languagecode)
-    const newActiveLanguages = this.state.activeLanguages.concat([])
+  const removeLanguage = (e) => {
+    const languagecode = e.target.getAttribute('data-languagecode')
+    const index = activeLanguages.indexOf(languagecode)
+    const newActiveLanguages = activeLanguages.concat([])
     if (index !== -1) {
       // removing language
       newActiveLanguages.splice(index, 1)
     }
-    this.setState({
-      activeLanguages: newActiveLanguages
-    })
-    if (this.state.activeTab === languagecode) {
-      this.setState({
-        activeTab: this.getNewActiveTab(languagecode)
-      })
+    setActiveLanguages(newActiveLanguages)
+    if (activeTab === languagecode) {
+      setActiveTab(getNewActiveTab(languagecode))
     }
   }
 
-  render () {
-    return (
-      <div className="language-choice-container">
-        <ul className="checkbox-list nav btn--group">
-          {
-            this.props.languages.map((languagecode, i) => {
-              return (
-                <li key={languagecode} className={'nav-item ' + languagecode === this.state.activeTab ? 'active' : ''}>
-                  <input
-                    type="checkbox" name={languagecode} id={languagecode + '_language-choice'} value={languagecode}
-                    checked={this.state.activeLanguages.indexOf(languagecode) !== -1} readOnly
-                  />
-                  <button
-                    href={'#' + languagecode + '_language_panel'} className={'btn btn--light btn--small language-choice ' + (languagecode === this.state.activeTab ? 'active' : '')}
-                    data-bs-toggle="tab" onClick={this.activateTab.bind(this)}
-                  >{languagecode}
-                  </button>
-                </li>
-              )
-            })
-          }
-        </ul>
-        <div className="btn--group ms-5">
+  return (
+    <div className="language-choice-container">
+      <ul className="checkbox-list nav btn--group">
+        {
+          props.languages.map((languagecode, i) => {
+            const isActive = languagecode === activeTab ? ' active' : ''
+            return (
+              <li
+                key={languagecode}
+                className={
+                  'nav-item ' + languagecode === activeTab
+                    ? 'active'
+                    : ''
+                }
+              >
+                <input
+                  type="checkbox"
+                  name={languagecode}
+                  id={languagecode + '_language-choice'}
+                  value={languagecode}
+                  checked={activeLanguages.indexOf(languagecode) !== -1}
+                  readOnly
+                />
+                <button
+                  href={'#' + languagecode + '_language_panel'}
+                  className={'btn btn--light btn--small language-choice' + isActive}
+                  data-bs-toggle="tab"
+                  onClick={activateTab}
+                >
+                  {languagecode}
+                </button>
+              </li>
+            )
+          })
+        }
+      </ul>
+      <div className="btn--group ms-5">
+        <div className="dropdown">
+          <button
+            className="dropdown-toggle btn btn--light btn--small"
+            type="button"
+            data-bs-toggle="dropdown"
+          >
+            <i className="fa fa-plus" />
+          </button>
+          <div className="dropdown-menu">
+            {
+              Object.entries(props.languageDict).map(([languagecode, languageString]) => {
+                return (
+                  <span key={languagecode}>
+                    {activeLanguages.indexOf(languagecode) === -1 &&
+                      <button
+                        href={'#' + languagecode + '_language_panel'}
+                        className="dropdown-item"
+                        data-languagecode={languagecode}
+                        data-bs-toggle="tab"
+                        onClick={addLanguage}
+                        key={languagecode}
+                      >
+                        {languageString}
+                      </button>}
+                  </span>
+                )
+              })
+            }
+          </div>
+        </div>
+
+        {activeLanguages.length > 1 &&
           <div className="dropdown">
-            <button className="dropdown-toggle btn btn--light btn--small" type="button" data-bs-toggle="dropdown">
-              <i className="fa fa-plus" />
+            <button
+              className="dropdown-toggle btn btn--light btn--small"
+              type="button"
+              data-bs-toggle="dropdown"
+            >
+              <i className="fa fa-minus" />
             </button>
             <div className="dropdown-menu">
               {
-                Object.entries(this.props.languageDict).map(([languagecode, languageString]) => {
+                Object.entries(props.languageDict).map(([languagecode, languageString]) => {
                   return (
                     <span key={languagecode}>
-                      {this.state.activeLanguages.indexOf(languagecode) === -1 &&
+                      {activeLanguages.indexOf(languagecode) !== -1 &&
                         <button
-                          href={'#' + languagecode + '_language_panel'}
+                          href={
+                            languagecode === activeTab
+                              ? '#' + getNewActiveTab(languagecode) + '_language_panel'
+                              : ''
+                          }
                           className="dropdown-item"
+                          data-languagecode={languagecode}
                           data-bs-toggle="tab"
-                          languagecode={languagecode}
-                          onClick={this.addLanguage.bind(this)}
+                          onClick={removeLanguage}
                           key={languagecode}
-                        >{languageString}
+                        >
+                          {languageString}
                         </button>}
                     </span>
                   )
                 })
               }
             </div>
-          </div>
-
-          {this.state.activeLanguages.length > 1 &&
-            <div className="dropdown">
-              <button className="dropdown-toggle btn btn--light btn--small" type="button" data-bs-toggle="dropdown">
-                <i className="fa fa-minus" />
-              </button>
-              <div className="dropdown-menu">
-                {
-                  Object.entries(this.props.languageDict).map(([languagecode, languageString]) => {
-                    return (
-                      <span key={languagecode}>
-                        {this.state.activeLanguages.indexOf(languagecode) !== -1 &&
-                          <button
-                            href={languagecode === this.state.activeTab ? '#' + this.getNewActiveTab(languagecode) + '_language_panel' : ''}
-                            className="dropdown-item"
-                            data-bs-toggle="tab"
-                            languagecode={languagecode}
-                            onClick={this.removeLanguage.bind(this)}
-                            key={languagecode}
-                          >{languageString}
-                          </button>}
-                      </span>
-                    )
-                  })
-                }
-              </div>
-            </div>}
-        </div>
+          </div>}
       </div>
-    )
-  }
-}
-
-LanguageChoice.propTypes = {
-  activeLanguages: PropTypes.arrayOf(PropTypes.string)
+    </div>
+  )
 }
 
 module.exports.renderLanguageChoice = function (el) {
