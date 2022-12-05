@@ -41,7 +41,7 @@ const LanguageChoice = (props) => {
       newActiveLanguages.push(languagecode)
     }
     setActiveLanguages(newActiveLanguages)
-    setActiveTab(languagecode)
+    document.querySelector('#' + languagecode).click()
   }
 
   const removeLanguage = (e) => {
@@ -54,7 +54,7 @@ const LanguageChoice = (props) => {
     }
     setActiveLanguages(newActiveLanguages)
     if (activeTab === languagecode) {
-      setActiveTab(getNewActiveTab(languagecode))
+      document.querySelector('#' + activeLanguages[0]).click()
     }
   }
 
@@ -84,6 +84,7 @@ const LanguageChoice = (props) => {
                 <button
                   href={'#' + languagecode + '_language_panel'}
                   className={'btn btn--light btn--small language-choice' + isActive}
+                  id={languagecode}
                   data-bs-toggle="tab"
                   onClick={activateTab}
                 >
