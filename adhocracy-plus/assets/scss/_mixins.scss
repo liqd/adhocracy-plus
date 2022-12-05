@@ -20,11 +20,14 @@
     letter-spacing: 0.5px;
 }
 
+// stylelint-disable
 @function contrast-color($color) {
-    @if (lightness($color) > 40) {
-      @return #000;
+    @if  lightness($color) > 40 {
+        @return #000;
     }
+
     @else {
-      @return #FFF;
+        @return #FFF;
     }
 }
+// stylelint-enable

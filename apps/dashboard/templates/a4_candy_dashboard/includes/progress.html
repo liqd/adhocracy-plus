@@ -37,7 +37,7 @@
                 </p>
                 {% endif %}
                 <div class="u-spacer-bottom d-flex justify-content-end">
-                  <button type="button" data-bs-dismiss="modal" class="btn btn--light me-3">{% trans 'Cancel'%}
+                  <button type="button" data-bs-dismiss="modal" class="btn btn--secondary me-3">{% trans 'Cancel'%}
                   </button>
                     <form action="{% url 'a4dashboard:project-publish' organisation_slug=project.organisation.slug project_slug=project.slug %}" method="post" data-ignore-submit="true" class="u-inline">
                         {% csrf_token %}
