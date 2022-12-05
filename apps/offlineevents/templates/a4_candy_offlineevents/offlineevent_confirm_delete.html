@@ -9,11 +9,11 @@
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
-        <input type="submit" class="btn btn--primary" value="{% trans 'Yes'%}" />
-
-        <a href="{% url 'a4dashboard:offlineevent-list' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light">
+        <a href="{% url 'a4dashboard:offlineevent-list' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--secondary">
             {% trans 'Cancel'%}
         </a>
+        
+        <input type="submit" class="btn btn--primary" value="{% trans 'Yes'%}" />
     </form>
 </div>
 {% endblock %}
