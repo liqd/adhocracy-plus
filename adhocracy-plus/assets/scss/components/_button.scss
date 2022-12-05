@@ -4,12 +4,15 @@
     border-color: $border;
     color: $color;
     &:hover {
-      background:darken($bg,8%);
+      background-color:lighten($bg,12%);
+      border-color: lighten($border,12%);
+      color: $color;
       transition: all 0.3s ease;
     }
     &:active {
-      background:darken($bg,25%);
-    } 
+      background-color:darken($bg,25%);
+      color: $color;
+    }
   }
 
 
@@ -23,6 +26,21 @@
 
 .btn {
     @extend %button-base;
+
+    &:disabled,
+    &[disabled=disabled] {
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    &:focus-visible {
+        @include fake-focus-shadow;
+    }
+}
+
+// button used for adding things, ideas, files ect.
+.btn.btn--default {
+    @include button($print-black, $print-black, $body-bg)
 }
 
 .btn.btn--primary {
@@ -64,27 +82,11 @@
 }
 
 .btn.btn--secondary-filled {
-    @extend .btn-secondary;
+    @include button($brand-secondary, $brand-secondary, $print-black)
 }
 
 .btn.btn--bg-tertiary {
-    @extend .btn-secondary;
-
-    background-color: $bg-tertiary;
-    border-color: $brand-tertiary;
-
-    &:focus,
-    &:hover,
-    &:active,
-    &:focus-within,
-    &:focus-visible {
-        background-color: $brand-tertiary !important;
-        color: invert($print-black) !important;
-    }
-
-    &:focus-visible {
-        @include fake-focus-shadow;
-    }
+    @include button($brand-tertiary-bg, $brand-tertiary-bg, $print-black)
 }
 
 .btn.btn--light {

@@ -42,7 +42,7 @@
                     <form action="{% url 'a4dashboard:project-publish' organisation_slug=project.organisation.slug project_slug=project.slug %}" method="post" data-ignore-submit="true" class="u-inline">
                         {% csrf_token %}
                         <input type="hidden" name="referrer" value="{{ request.path }}" />
-                        <button name="action" value="publish" class="btn btn--primary">
+                        <button name="action" value="publish" class="btn btn--default">
                         {% trans 'Publish' %}
                         </button>
                     </form>
