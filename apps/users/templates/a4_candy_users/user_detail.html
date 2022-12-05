@@ -110,7 +110,7 @@
                       aria-expanded="true">
                       <ul class="l-tiles-2">
                       {% for project in view.projects %}
-                              {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project orientation='vertical' %}
+                              {% include 'a4_candy_projects/includes/project_list_tile.html' with project=project type='project' object=project orientation='vertical' %}
                       {% empty %}
                           {% trans 'This user is not active in any projects yet.' %}
                       {% endfor %}
