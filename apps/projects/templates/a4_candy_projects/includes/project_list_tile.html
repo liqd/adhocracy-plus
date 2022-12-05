@@ -1,4 +1,4 @@
-{% load i18n project_tags a4_candy_project_tags contrib_tags thumbnail rules %}
+{% load i18n project_tags a4_candy_project_tags contrib_tags thumbnail rules static %}
 
 <li class="tile organisation__tile tile--{{ orientation }}">
     {% if type == 'project' %}
@@ -35,8 +35,11 @@
         {% if type == 'project' %}
         <p class="tile__text">{{ object.description }}</p>
         {% elif type == 'module' %}
-        <span>{{ object.get_blueprint_type_display }}</span>
-        <span class="tile__item-count">
+        <span class="tile__extra-info">
+            <i class="tile__module-icon" aria-hidden="true" style="background-image: url({% static 'images/icon-'|add:object.blueprint_type|lower|add:'.svg' %})"></i>
+            {{ object.get_blueprint_type_display }}
+        </span>
+        <span class="tile__extra-info">
             <i class="fas fa-comments" aria-hidden="true"></i>
             {% get_num_entries object as num_entries %}
             {% blocktrans count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktrans %}
