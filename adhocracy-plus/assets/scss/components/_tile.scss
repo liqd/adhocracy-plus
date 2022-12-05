@@ -27,10 +27,6 @@ $svg-colour: #2a3cd4;
     }
 }
 
-.tile__icon {
-    color: $brand-primary;
-}
-
 .tile__link {
     position: absolute;
     top: 0;
@@ -132,14 +128,20 @@ $svg-colour: #2a3cd4;
     padding-top: $spacer;
 }
 
-.tile__item-count {
+.tile__extra-info {
     color: $text-color;
     font-size: $font-size-xs;
 
     i {
         padding-right: $padding;
-        color: $brand-secondary;
     }
+}
+
+.tile__module-icon {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 1rem;
 }
 
 @media (min-width: $breakpoint) {
