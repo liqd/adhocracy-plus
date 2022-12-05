@@ -26,7 +26,7 @@
         <input type="hidden" id="{{ form.organisation.id_for_label}}" name="{{form.organisation.html_name}}" value="{{view.organisation.id}}" />
 
         <div class="d-flex justify-content-end mb-3">
-            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--light me-2">{% trans 'Cancel'%}</a>
+            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--secondary me-2">{% trans 'Cancel'%}</a>
             <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send'%}" />
         </div>
     </form>

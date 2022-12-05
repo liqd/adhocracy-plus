@@ -137,12 +137,12 @@
                                 <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
                                 {% endif %}
                                 {% if project.contact_email %}
-                                <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
+                                <a class="btn btn--primary" href="mailto:{{ project.contact_email }}">
                                     {% trans 'Email' %}
                                 </a>
                                 {% endif %}
                                 {% if project.contact_url %}
-                                <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
+                                <a class="btn btn--primary" target="_blank" href="{{ project.contact_url }}">
                                     {% trans 'Website' %}
                                 </a>
                                 {% endif %}

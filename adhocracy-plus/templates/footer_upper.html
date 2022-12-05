@@ -10,24 +10,24 @@
         <ul class="navbar-nav footer-upper__navbar-nav">
             <li class="nav-item">
                 {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
-                <a href="{{ organisation_url }}" class="footer-upper__nav-link">{{ organisation.name }}</a>
+                <a href="{{ organisation_url }}" class="navi-link">{{ organisation.name }}</a>
             </li>
             <li class="nav-item">
                 {% url 'organisation-imprint' organisation_slug=organisation.slug as organisation_imprint_url %}
-                <a href="{{ organisation_imprint_url }}" class="footer-upper__nav-link">{% trans 'Imprint' %}</a>
+                <a href="{{ organisation_imprint_url }}" class="navi-link">{% trans 'Imprint' %}</a>
             </li>
             <li class="nav-item">
                 {% url 'organisation-data-protection' organisation_slug=organisation.slug as organisation_data_protection_url %}
-                <a href="{{ organisation_data_protection_url }}" class="footer-upper__nav-link">{% trans 'Data protection policy' %}</a>
+                <a href="{{ organisation_data_protection_url }}" class="navi-link">{% trans 'Data protection policy' %}</a>
             </li>
             <li class="nav-item">
                 {% url 'organisation-terms-of-use' organisation_slug=organisation.slug as organisation_terms_of_use_url %}
-                <a href="{{ organisation_terms_of_use_url }}" class="footer-upper__nav-link">{% trans 'Terms of use' %}</a>
+                <a href="{{ organisation_terms_of_use_url }}" class="navi-link">{% trans 'Terms of use' %}</a>
             </li>
             {% if organisation.netiquette %}
             <li class="nav-item">
                 {% url 'organisation-netiquette' organisation_slug=organisation.slug as organisation_netiquette_url %}
-                <a href="{{ organisation_netiquette_url }}" class="footer-upper__nav-link">{% trans 'Netiquette' %}</a>
+                <a href="{{ organisation_netiquette_url }}" class="navi-link">{% trans 'Netiquette' %}</a>
             </li>
             {% endif %}
         </ul>

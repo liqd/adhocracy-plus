@@ -3,18 +3,38 @@
     background-color: $bg;
     border-color: $border;
     color: $color;
-    &:hover {
-      background-color:lighten($bg,12%);
-      border-color: lighten($border,12%);
-      color: $color;
-      transition: all 0.3s ease;
-    }
-    &:active {
-      background-color:darken($bg,25%);
-      color: $color;
-    }
-  }
 
+    &:hover {
+        background-color: lighten($bg, 12%);
+        border-color: lighten($border, 12%);
+        color: $color;
+        transition: all 0.3s ease;
+    }
+
+    &:active {
+        background-color: darken($bg, 25%);
+        color: $color;
+    }
+}
+
+// light buttons with active tinted background
+@mixin button($bg, $border, $color, $percentage) {
+    background-color: $body-bg;
+    border-color: $border;
+    color: $color;
+
+    &:hover {
+        background-color: lighten($bg, $percentage);
+        border-color: $border;
+        color: $color;
+        transition: all 0.3s ease;
+    }
+
+    &:active {
+        background-color: lighten($bg, $percentage);
+        color: $color;
+    }
+}
 
 %button-base {
     padding: 0.4em 0.6em;
@@ -28,7 +48,7 @@
     @extend %button-base;
 
     &:disabled,
-    &[disabled=disabled] {
+    &[disabled="disabled"] {
         cursor: not-allowed;
         pointer-events: none;
     }
@@ -40,73 +60,25 @@
 
 // button used for adding things, ideas, files ect.
 .btn.btn--default {
-    @include button($print-black, $print-black, $body-bg)
+    @include button-bg($print-black, $print-black, $body-bg);
 }
 
+.btn.btn--light,
 .btn.btn--primary {
-    @extend .btn-outline-primary;
-
-    color: $text-color;
-
-    &:focus,
-    &:hover,
-    &:active,
-    &:focus-within,
-    &:focus-visible {
-        background-color: $brand-primary-tint;
-        color: $text-color;
-    }
-
-    &:focus-visible {
-        @include fake-focus-shadow;
-    }
+    // same as $brand-primary-tint
+    @include button($brand-primary, $text-color, $text-color, 47%);
 }
 
 .btn.btn--secondary {
-    @extend .btn-outline-secondary;
-
-    color: $text-color;
-
-    &:focus,
-    &:hover,
-    &:active,
-    &:focus-within,
-    &:focus-visible {
-        background-color: $brand-secondary-tint !important;
-        color: $text-color;
-    }
-
-    &:focus-visible {
-        @include fake-focus-shadow;
-    }
+    @include button($text-color-gray, $text-color, $text-color, 55%);
 }
 
 .btn.btn--secondary-filled {
-    @include button($brand-secondary, $brand-secondary, $print-black)
+    @include button-bg($brand-secondary, $brand-secondary, $print-black);
 }
 
 .btn.btn--bg-tertiary {
-    @include button($brand-tertiary-bg, $brand-tertiary-bg, $print-black)
-}
-
-.btn.btn--light {
-    @extend .btn-outline-light;
-
-    border: 1px solid $border-color;
-    background-color: $body-bg;
-    color: invert($body-bg);
-
-    &:focus,
-    &:hover,
-    &:active,
-    &:focus-within,
-    &:focus-visible {
-        background-color: $bg-tertiary;
-    }
-
-    &:focus-visible {
-        @include fake-focus-shadow;
-    }
+    @include button-bg($brand-tertiary-bg, $brand-tertiary-bg, $print-black);
 }
 
 .btn.btn--transparent {
@@ -121,10 +93,6 @@
         background-color: transparent !important;
         text-decoration: underline;
     }
-
-    &:focus-visible {
-        @include fake-focus-shadow;
-    }
 }
 
 .btn.btn--none {
@@ -137,9 +105,10 @@
     &:disabled,
     &.is-disabled {
         box-shadow: none;
-        background-color: $gray-lightest;
+        background-color: lighten($text-color, 55%);
     }
 
+    // needed for toggle switch
     &.btn--none-reset:hover {
         background-color: transparent;
     }
@@ -274,20 +243,20 @@
     }
 }
 
-.btn--facebook {
-    color: $facebook !important;
+.btn.btn--facebook {
+    @include button($facebook, $facebook, $print-black, 55%);
 }
 
-.btn--google {
-    color: $google !important;
+.btn.btn--google {
+    @include button($google, $google, $print-black, 40%);
 }
 
-.btn--twitter {
-    color: $twitter !important;
+.btn.btn--twitter {
+    @include button($twitter, $twitter, $print-black, 40%);
 }
 
-.btn--github {
-    color: $github !important;
+.btn.btn--github {
+    @include button($github, $github, $print-black, 70%);
 }
 
 .checkbox-btn {
@@ -312,6 +281,6 @@
     }
 
     input[type="checkbox"]:checked + .checkbox-btn__text {
-        @extend .btn--secondary;
+        @extend .btn--primary;
     }
 }

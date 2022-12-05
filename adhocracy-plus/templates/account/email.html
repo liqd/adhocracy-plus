@@ -35,10 +35,10 @@
                     <li class="d-inline"><button class="btn btn--primary" type="submit" name="action_primary">{% trans 'Make Primary' %}</button></li>
                 {% endif %}
                 {% if not emailaddress.verified %}
-                    <li class="d-inline"><button class="btn btn--secondary" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button></li>
+                    <li class="d-inline"><button class="btn btn--light" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button></li>
                 {% endif %}
                 {% if not emailaddress.primary %}
-                    <li class="d-inline"><button class="btn btn--secondary" type="submit" name="action_remove" >{% trans 'Remove' %}</button></li>
+                    <li class="d-inline"><button class="btn btn--light" type="submit" name="action_remove" >{% trans 'Remove' %}</button></li>
                 {% endif %}
                 </ul>
             </form>
