@@ -88,8 +88,8 @@
             <div class="modal-footer">
                 <form action="{% url "project-delete" pk=project.pk organisation_slug=project.organisation.slug %}" method="post">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn--primary">{% trans 'delete' %}</button>
-                    <button type="button" class="btn btn--secondary" data-bs-dismiss="modal">{% trans 'cancel' %}</button>
+                    <button type="submit" class="btn btn--default">{% trans 'delete' %}</button>
+                    <button type="button" class="btn btn--light" data-bs-dismiss="modal">{% trans 'cancel' %}</button>
                 </form>
             </div>
         </div>
