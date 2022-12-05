@@ -113,7 +113,6 @@ const LanguageChoice = (props) => {
                         href={'#' + languagecode + '_language_panel'}
                         className="dropdown-item"
                         data-languagecode={languagecode}
-                        data-bs-toggle="tab"
                         onClick={addLanguage}
                         key={languagecode}
                       >
@@ -149,7 +148,6 @@ const LanguageChoice = (props) => {
                           }
                           className="dropdown-item"
                           data-languagecode={languagecode}
-                          data-bs-toggle="tab"
                           onClick={removeLanguage}
                           key={languagecode}
                         >
