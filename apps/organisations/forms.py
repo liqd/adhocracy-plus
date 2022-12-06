@@ -7,8 +7,8 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4 import transforms
-from adhocracy4.images.widgets import ImageInputWidget
 from apps.cms.settings import helpers
+from apps.contrib.widgets import ImageInputWidgetSimple
 from apps.organisations.models import OrganisationTranslation
 from apps.projects.models import Project
 
@@ -252,7 +252,7 @@ class CommunicationContentCreationForm(forms.Form):
         self.fields['image'] = forms.ImageField(
             label=_('Picture Upload'),
             required=True,
-            widget=ImageInputWidget,
+            widget=ImageInputWidgetSimple,
             help_text=_('The picture will be displayed in the sharepic. It '
                         'must be min. {} pixel wide and {} pixel tall. '
                         'Allowed file formats are png, jpeg, gif. The file '

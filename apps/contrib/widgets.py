@@ -3,6 +3,7 @@ from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.filters.widgets import OrderingWidget
+from adhocracy4.images.widgets import ImageInputWidget
 
 
 class Select2Mixin:
@@ -57,3 +58,13 @@ class AplusOrderingWidget(OrderingWidget):
     # FIXME: only because https://github.com/liqd/adhocracy-plus/issues/1659
     # test and remove from time to time
     label = _('Ordering')
+
+
+class ImageInputWidgetSimple(ImageInputWidget):
+    """Almost same as ImageInputWidget.
+
+    Only difference is that it is not showing info box about image
+    only being uploaded after clicking save.
+    """
+
+    widget_template_name = 'a4images/image_upload_widget_simple.html'
