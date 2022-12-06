@@ -1,0 +1,30 @@
+{% load i18n %}
+<div class="upload-wrapper form-control-upload">
+    <div class="upload-wrapper__fields">
+        {{ file_input }}
+        {{ text_input }}
+        <div class="upload-wrapper__action-parent">
+        {% if has_image_set and not is_required %}
+            <label for="{{ checkbox_id }}"
+                class="upload-wrapper__action btn btn--danger"
+                title="{% trans 'Remove the picture' %}">
+                <i class="far fa-trash-alt" aria-label="{% trans 'Remove the picture' %}"></i>
+            </label>
+        {% else %}
+            <label for="{{ id }}"
+                class="upload-wrapper__action btn btn--primary-filled"
+                title="{% trans 'Upload a picture' %}">
+                <i class="fas fa-cloud-upload-alt" aria-label="{% trans 'Upload a picture' %}"></i>
+            </label>
+        {% endif %}
+        </div>
+    </div>
+    <div class="form-{{ id }} upload-wrapper__preview col-sm-3">
+        {{ checkbox_input }}
+        <img id="{{ file_id }}"
+             src="{% if has_image_set %}{{ file_url }}{% else %}data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs={% endif %}"
+             data-upload-preview="{{ id }}"
+             alt=""
+        >
+    </div>
+</div>
