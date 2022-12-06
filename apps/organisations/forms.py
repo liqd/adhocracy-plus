@@ -3,6 +3,7 @@ from ckeditor_uploader import widgets
 from ckeditor_uploader.fields import RichTextUploadingFormField
 from django import forms
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4 import transforms
@@ -36,20 +37,20 @@ SOCIAL_MEDIA_CHOICES = [
 SOCIAL_MEDIA_SIZES = {
     1: {'title_max_length': 128,
         'description_max_length': 256,
-        'img_width': 1080,
-        'img_height': 1080},
+        'img_min_width': 1080,
+        'img_min_height': 1080},
     2: {'title_max_length': 128,
         'description_max_length': 256,
-        'img_width': 1080,
-        'img_height': 1920},
+        'img_min_width': 1080,
+        'img_min_height': 1920},
     3: {'title_max_length': 128,
         'description_max_length': 256,
-        'img_width': 1104,
-        'img_height': 736},
+        'img_min_width': 1104,
+        'img_min_height': 736},
     4: {'title_max_length': 128,
         'description_max_length': 256,
-        'img_width': 1200,
-        'img_height': 675},
+        'img_min_width': 1200,
+        'img_min_height': 675},
 }
 
 
@@ -222,29 +223,32 @@ class CommunicationProjectChoiceForm(forms.Form):
 
 class CommunicationContentCreationForm(forms.Form):
 
+    sizes = None
+
     def __init__(self, project=None, format=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        sizes = SOCIAL_MEDIA_SIZES[format]
+        self.sizes = SOCIAL_MEDIA_SIZES[format]
 
         self.fields['title'] = forms.CharField(
-            max_length=sizes['title_max_length'],
+            max_length=self.sizes['title_max_length'],
             label=_('Title'),
             required=True,
             help_text=_('This title will be displayed as a header. '
                         'It should be max. {} characters long.'.
-                        format(sizes['title_max_length']))
+                        format(self.sizes['title_max_length']))
 
         )
         self.fields['description'] = forms.CharField(
-            max_length=sizes['description_max_length'],
+            max_length=self.sizes['description_max_length'],
             label=_('Description'),
             required=True,
             help_text=_('This description will be displayed below '
                         'the title. It should briefly state the goal '
                         'of the project in max. {} chars.'
-                        .format(sizes['description_max_length']))
+                        .format(self.sizes['description_max_length']))
         )
+
         self.fields['image'] = forms.ImageField(
             label=_('Picture Upload'),
             required=True,
@@ -253,10 +257,42 @@ class CommunicationContentCreationForm(forms.Form):
                         'must be min. {} pixel wide and {} pixel tall. '
                         'Allowed file formats are png, jpeg, gif. The file '
                         'size should be max. 5 MB.'.
-                        format(sizes['img_width'], sizes['img_height']))
-
+                        format(self.sizes['img_min_width'],
+                               self.sizes['img_min_height'])),
         )
 
         if project:
             self.fields['title'].initial = project.name
             self.fields['description'].initial = project.description
+
+    def clean_image(self):
+        image = self.cleaned_data['image']
+        errors = []
+        image_max_mb = 5
+        image_max_size = image_max_mb * 10**6
+
+        if image.size > image_max_size:
+            msg = _('Image should be at most {max_size} MB')
+            errors.append(ValidationError(msg.format(max_size=image_max_mb)))
+
+        if hasattr(image, 'width'):
+            image_width = image.width
+        else:
+            image_width = image.image.width
+        if image_width < self.sizes['img_min_width']:
+            msg = _('Image must be at least {min_width} pixels wide')
+            errors.append(ValidationError(
+                msg.format(min_width=self.sizes['img_min_width'])))
+
+        if hasattr(image, 'height'):
+            image_height = image.height
+        else:
+            image_height = image.image.height
+        if image_height < self.sizes['img_min_height']:
+            msg = _('Image must be at least {min_height} pixels high')
+            errors.append(ValidationError(
+                msg.format(min_height=self.sizes['img_min_height'])))
+
+        if errors:
+            raise ValidationError(errors)
+        return image
