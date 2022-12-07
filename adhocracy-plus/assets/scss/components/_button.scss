@@ -260,27 +260,46 @@
 
 .checkbox-btn {
     display: inline-block;
+    position: relative;
 }
 
 .checkbox-btn__input {
     position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
     width: 1px;
     height: 1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+    clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap;
     border: 0;
 }
 
 .checkbox-btn__label--light {
-    .checkbox-btn__text {
+    .checkbox-btn__text--icon,
+    .checkbox-btn__text--colour {
         @extend .btn;
         @extend .btn--light;
     }
 
-    input[type="checkbox"]:checked + .checkbox-btn__text {
-        @extend .btn--primary;
+    input[type="checkbox"]:checked + .checkbox-btn__text--icon:before {
+        font-family: "Font Awesome\ 5 Free", sans-serif;
+        font-weight: 900;
+        content: "\f00c"; // tick
+        padding-right: 0.5 * $spacer;
+    }
+
+    input[type="checkbox"]:checked + .checkbox-btn__text--colour {
+        background-color: $brand-primary-tint;
+    }
+
+    input[type="checkbox"]:disabled + .checkbox-btn__text--colour,
+    input[type="checkbox"]:disabled + .checkbox-btn__text--icon {
+        opacity: 17%;
+        cursor: not-allowed;
+        pointer-events: none;
     }
 }
 

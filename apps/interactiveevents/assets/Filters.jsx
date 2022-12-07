@@ -78,7 +78,7 @@ export default class Filter extends React.Component {
                 checked={this.props.showFilters}
                 onChange={this.handleToggleFilters.bind(this)} // eslint-disable-line react/jsx-handler-names
               />
-              <span className="checkbox-btn__text">
+              <span className="checkbox-btn__text--colour">
                 <i className="fas fa-sliders-h me-1" aria-hidden="true" />
                 {textFilters}
               </span>
@@ -101,7 +101,7 @@ export default class Filter extends React.Component {
                   checked={this.props.displayOnShortlist}
                   onChange={this.props.toggleDisplayOnShortlist} // eslint-disable-line react/jsx-handler-names
                 />
-                <span className="checkbox-btn__text">
+                <span className="checkbox-btn__text--colour">
                   <i className="icon-in-list" aria-hidden="true" />
                 </span>
               </label>
@@ -121,7 +121,7 @@ export default class Filter extends React.Component {
                   checked={this.props.displayNotHiddenOnly}
                   onChange={this.props.toggledisplayNotHiddenOnly} // eslint-disable-line react/jsx-handler-names
                 />
-                <span className="checkbox-btn__text">
+                <span className="checkbox-btn__text--colour">
                   <i className="far fa-eye" aria-hidden="true" />
                 </span>
               </label>
@@ -141,7 +141,7 @@ export default class Filter extends React.Component {
                   checked={this.props.orderedByLikes}
                   onChange={this.props.toggleOrdering} // eslint-disable-line react/jsx-handler-names
                 />
-                <span className="checkbox-btn__text">
+                <span className="checkbox-btn__text--colour">
                   <i className="fa fa-chevron-up" aria-hidden="true" /> likes
                 </span>
               </label>

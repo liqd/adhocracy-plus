@@ -43,8 +43,52 @@
                         </div>
                     {% endif %}
                 </div>
+                <div class="form-group">
+                    <div class="checkbox-btn">
+                        <label class="checkbox-btn__label--light" for="logo_1">
+                            <input class="checkbox-btn__input" type="checkbox" id="logo_1" value="add a+ logo" checked>
+                            <span class="checkbox-btn__text--icon">{% translate 'Add a+ logo' %}</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-btn">
+                        <label class="checkbox-btn__label--light" for="logo_2">
+                            <input
+                                class="checkbox-btn__input"
+                                type="checkbox"
+                                id="logo_2"
+                                value="add own logo"
+                                {% if organisation.logo %}
+                                checked
+                                {% else %}
+                                disabled
+                                {% endif %}
+                                >
+                            <span class="checkbox-btn__text checkbox-btn__text--icon">{% translate 'Add logo' %}</span>
+                        </label>
+                    </div>
+                </div>
 
-                <div class="d-flex justify-content-end mb-5">
+                <div class="form-group">
+                    <label>Preview</label>
+                    <p class="form-hint" id="hint_image_preview">
+                        {% if image_preview %}
+                            To view content changes, click refresh
+                        {% else %}
+                            To view the sharepic, click generate
+                        {% endif %}
+                    </p>
+                    {% if image_preview %}
+                        <div class="col-sm-6">
+                            <img id="image_preview"
+                              src="data:image/png;base64,{{image_preview}}"
+                              data-image-preview=""
+                              alt="sharepic preview"
+                             >
+                        </div>
+                    {% endif %}
+                </div>
+        
+                <div class="d-flex justify-content-end mb-3">
                     <button type="submit" class="btn btn--primary btn--icon">
                         {% if image_preview %}
                             <i class="fas fa-sync-alt"></i>{% translate 'Refresh' %}
@@ -52,9 +96,9 @@
                             {% translate 'Generate' %}
                         {% endif %}
                     </button>
-                {% if image_preview %}
-                    <a class="btn btn--primary ms-3" href="data:image/png;base64,{{image_preview}}" download="sharepic">Download</a>
-                {% endif %}
+                    {% if image_preview %}
+                        <a class="btn btn--primary ms-3" href="data:image/png;base64,{{image_preview}}" download="sharepic">Download</a>
+                    {% endif %}
                 </div>
             {% endif %}
         </form>
