@@ -35,22 +35,38 @@ SOCIAL_MEDIA_CHOICES = [
 ]
 
 SOCIAL_MEDIA_SIZES = {
-    1: {'title_max_length': 128,
-        'description_max_length': 256,
+    1: {'title_max_length': 30,
+        'title_size': 72,
+        'description_max_length': 45,
+        'description_size': 48,
         'img_min_width': 1080,
-        'img_min_height': 1080},
-    2: {'title_max_length': 128,
-        'description_max_length': 256,
+        'img_min_height': 760,
+        'aplus_logo_width': 228,
+        'aplus_logo_height': 56
+        },
+    2: {'title_max_length': 30,
+        'description_max_length': 45,
         'img_min_width': 1080,
-        'img_min_height': 1920},
-    3: {'title_max_length': 128,
-        'description_max_length': 256,
-        'img_min_width': 1104,
-        'img_min_height': 736},
-    4: {'title_max_length': 128,
-        'description_max_length': 256,
+        'img_min_height': 760,
+        },
+    3: {'title_max_length': 30,
+        'title_size': 48,
+        'description_max_length': 45,
+        'description_size': 40,
+        'img_min_width': 1080,
+        'img_min_height': 760,
+        'aplus_logo_width': 196,
+        'aplus_logo_height': 48
+        },
+    4: {'title_max_length': 30,
+        'title_size': 56,
+        'description_max_length': 45,
+        'description_size': 40,
         'img_min_width': 1200,
-        'img_min_height': 675},
+        'img_min_height': 448,
+        'aplus_logo_width': 196,
+        'aplus_logo_height': 48
+        }
 }
 
 

@@ -1,5 +1,6 @@
 import base64
 import json
+import os
 from io import BytesIO
 
 from django.conf import settings
@@ -19,6 +20,7 @@ from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from apps.projects.models import Project
 
 from . import forms
+from .forms import SOCIAL_MEDIA_SIZES
 from .models import Organisation
 
 
@@ -221,16 +223,32 @@ class DashboardCommunicationContentCreateView(
         return self.render_to_response(context)
 
     def generate_image(self, data):
-        # Dummy images
-        image = Image.new('RGB', (304, 192), color='red')
-        logo1 = Image.new('RGB', (100, 10), color='blue')
-        logo2 = Image.new('RGB', (100, 10), color='green')
+        # Get required image size and image
+        sharepic_format = SOCIAL_MEDIA_SIZES[self.format]
+        image_get = Image.open(data['image'].file)
+        image_size = (sharepic_format['img_min_width'],
+                      sharepic_format['img_min_height'])
+        image = image_get.resize(image_size)
 
-        # Adding padding
+        # Get organisations logo
+        logo_org_get = Image.open(self.organisation.logo)
+        logo_org_size = (144, 144)
+        logo_org = logo_org_get.resize(logo_org_size)
+
+        # Get aplus logo
+        logo_aplus_get = Image.open(
+            os.path.join(
+                settings.STATIC_ROOT,
+                'images/logo.png'))
+        logo_aplus_size = (sharepic_format['aplus_logo_width'],
+                           sharepic_format['aplus_logo_height'])
+        logo_aplus = logo_aplus_get.resize(logo_aplus_size)
+
+        # Get required total size and add appropriate padding
         right = 0
         left = 0
-        top = 64
-        bottom = 48
+        top = 0
+        bottom = 300
         width, height = image.size
         new_width = width + right + left
         new_height = height + top + bottom
@@ -238,21 +256,36 @@ class DashboardCommunicationContentCreateView(
             image.mode, (new_width, new_height), (255, 255, 255))
         result.paste(image, (left, top))
 
-        # Adding writting
-        # Image is converted into editable form using Draw function and
-        # assigned to d1
-        d1 = ImageDraw.Draw(result)
-        # Text location, color and font
-        font = ImageFont.truetype(
-            "adhocracy-plus/assets/fonts/SourceSansPro-Semibold.otf", 20)
-        fontsm = ImageFont.truetype(
-            "adhocracy-plus/assets/fonts/SourceSansPro-Regular.otf", 12)
-        d1.text((16, 12), data['title'], fill=(0, 0, 0), font=font)
-        d1.text((16, 37), data['description'], fill=(0, 0, 0), font=fontsm)
+        # image is converted into editable form using Draw function
+        image = ImageDraw.Draw(result)
 
-        # Adding logos
-        result.paste(logo1, (46, 277))
-        result.paste(logo2, (157, 277))
+        # text dimension, color and font
+        font = ImageFont.truetype(
+            "adhocracy-plus/assets/fonts/SourceSansPro-Semibold.otf",
+            sharepic_format['title_size'])
+        fontsm = ImageFont.truetype(
+            "adhocracy-plus/assets/fonts/SourceSansPro-Regular.otf",
+            sharepic_format['description_size'])
+        title = data['title']
+        description = data['description']
+        title_width, title_height = image.textsize(title, font=font)
+        description_width, description_height = image.textsize(
+            description, font=fontsm)
+
+        # add text using width to center
+        image.text(((new_width - title_width) / 2,
+                    (sharepic_format['img_min_height'] + 20)),
+                   data['title'], fill=(0, 0, 0), font=font)
+        image.text(((new_width - description_width) / 2,
+                    (sharepic_format['img_min_height'] + 120)),
+                   data['description'], fill=(0, 0, 0), font=fontsm)
+
+        # position org logo
+        result.paste(logo_org, (160, 160))
+
+        # position a+ logo (positioning using logo width)
+        logo2_offset = (1080 - 228) // 2
+        result.paste(logo_aplus, (logo2_offset, 960), mask=logo_aplus)
 
         buffered_image = BytesIO()
         result.save(buffered_image, format='PNG')
