@@ -23,26 +23,6 @@
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.title %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.description %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.image %}
-
-                <div class="form-group">
-                    <label>Preview</label>
-                    <p class="form-hint" id="hint_image_preview">
-                        {% if image_preview %}
-                            To view content changes, click refresh
-                        {% else %}
-                            To view the sharepic, click generate
-                        {% endif %}
-                    </p>
-                    {% if image_preview %}
-                        <div class="form-{{ id }} upload-wrapper__preview col-sm-6">
-                            <img id="image_preview"
-                              src="data:image/png;base64,{{image_preview}}"
-                              data-image-preview=""
-                              alt="sharepic preview"
-                             >
-                        </div>
-                    {% endif %}
-                </div>
                 <div class="form-group">
                     <div class="checkbox-btn">
                         <label class="checkbox-btn__label--light" for="logo_1">
