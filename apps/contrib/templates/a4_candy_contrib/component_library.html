@@ -2023,13 +2023,21 @@
                     <li class="tile organisation__tile tile--horizontal">
                         <div class="tile__head">
                             <div class="tile__image">
+                                <div class="tile__image__copyright copyright">© project image copyright</div>
+                                <div class="tile__private-badge">
+                                    <div class="tile__private-badge--top"></div>
+                                        <i class="fas fa-lock" title="Project is private." aria-label="Project is private."></i>
+                                    <div class="tile__private-badge--left"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="tile__body tile__body-status">
-                            <h3 class="tile__title" id="project-title-13">
-                                <a href="/philli-org/projects/lonely-project-of-lonelyness/">Lonely project of lonelyness</a>
-                            </h3>
-                            <p class="tile__text">Etenim semper illud extra est, quod arte comprehenditur. At certe gravius. Omnia contraria, quos etiam insanos esse vultis. Quid ait Aristoteles reliquique Platonis alumni?</p>
+                        <div class="tile__body">
+                            <div>
+                                <h3 class="tile__title" id="project-title-13">
+                                    <a href="#">Lonely and private project of lonelyness</a>
+                                </h3>
+                                <p class="tile__text">When there is only one project in the list, this horizontal tile is used. {% lorem 20 w random %}</p>
+                            </div>
                             <div class="status-item status-bar__past">
                                 Beteiligung beendet. Ergebnis lesen.
                             </div>
@@ -2040,13 +2048,20 @@
                         <li class="tile organisation__tile tile--vertical">
                             <div class="tile__head">
                                 <div class="tile__image">
+                                    <div class="tile__private-badge">
+                                        <div class="tile__private-badge--top"></div>
+                                            <i class="fas fa-eye" title="Project is semi-public." aria-label="Project is semi-public."></i>
+                                        <div class="tile__private-badge--left"></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="tile__body tile__body-status">
-                                <h3 class="tile__title" id="project-title-26">
-                                    this is a questions (speakup) project
-                                </h3>
-                                <p class="tile__text">Honesta oratio, Socratica, Platonis etiam. Quae duo sunt, unum facit. Ratio quidem vestra sic cogit. An eiusdem modi? Id mihi magnum videtur.</p>
+                            <div class="tile__body">
+                                <div>
+                                    <h3 class="tile__title" id="project-title-26">
+                                        Semi-private project on a vertical tile
+                                    </h3>
+                                    <p class="tile__text">When there is more than one project, the vertical tile is used {% lorem 20 w random %}</p>
+                                </div>
                                 <div class="status-item">
                                     <div class="status-bar__active">
                                         <span class="status-bar__active-fill" style="width:46%"></span>
@@ -2057,26 +2072,81 @@
                                     </div>
                                 </div>
                             </div>
+                            <a class="tile__link" aria-labelledby="project-title-26" href="#">
+                            </a>
                         </li>
-                    </ul>
-
-                    <ul class="u-list-reset participation-tile__list">
-                        <li class="participation-tile__vertical">
-                            <div class="participation-tile__type">
-                                <div class="participation-tile__content">
-                                    <h3 class="participation-tile__title">Idea Challenge</h3>
-                                    <span class="participation-tile__item-count"><i class="fas fa-comments" aria-hidden="true"></i>9 Beiträge</span>
-                                    <div class="status-item status-bar__past">
-                                        <span class="participation-tile__status">Beteiligung beendet.</span>
-                                    </div>
-                                    <div class="participation-tile__spacer"></div>
-                                    <div class="participation-tile__btn">
-                                        <a class="btn btn--light btn--full btn--small" href="/liqd-orga/projects/module/idea-challenge/">join</a>
-                                    </div>
+                        <li class="tile organisation__tile tile--vertical">
+                            <div class="tile__head">
+                                <div class="tile__image">
+                                </div>
+                            </div>
+                            <div class="tile__body">
+                                <div>
+                                    <h3 class="tile__title" id="project-title-26">
+                                        Another project starting in the future
+                                    </h3>
+                                    <p class="tile__text">{% lorem 20 w random %}</p>
+                                </div>
+                                <div class="status-item status__future">
+                                <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>Beteiligung: ab 12.12.2022</span>
                                 </div>
                             </div>
                         </li>
                     </ul>
+
+                    <ul class="l-tiles-3">
+                        <li class="tile organisation__tile tile--vertical">
+                            <div class="tile__body">
+                                <div>
+                                    <h3 class="tile__title" id="tile-title-8">
+                                        <a href="#">Module tile</a>
+                                    </h3>
+                                    <p class="tile__extra-info">
+                                        <img class="tile__module-icon" aria-hidden="true" src="/static/images/icon-bs.svg">
+                                        brainstorming
+                                    </p>
+                                </div>
+                                <div class="tile__extra-info">
+                                    <i class="far fa-comment" aria-hidden="true"></i>27 Beiträge
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-bar__active">
+                                    <span class="status-bar__active-fill" style="width:6%"></span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>
+                                        <abbr title="more than 1 year">&gt; 1 Y</abbr>
+                                    </span>
+                                    <a class="list-item__cta list-item__hover" href="#">MITMACHEN</a>
+                                </div>
+                            </div>
+                            <a class="tile__link" aria-labelledby="tile-title-8" href="#">
+                            </a>
+                        </li>
+                        <li class="tile organisation__tile tile--vertical">
+                            <div class="tile__body">
+                                <div>
+                                    <h3 class="tile__title" id="tile-title-9">
+                                        <a href="#">Another parallel module</a>
+                                    </h3>
+                                    <p class="tile__extra-info">
+                                        <img class="tile__module-icon" aria-hidden="true" src="/static/images/icon-ic.svg">
+                                        idea collection
+                                    </p>
+                                </div>
+                                <div class="tile__extra-info">
+                                    <i class="far fa-comment" aria-hidden="true"></i>1 Beitrag
+                                </div>
+                            </div>
+                            <div class="status-item status-bar__past">
+                            Beteiligung beendet. Ergebnis lesen.
+                            </div>
+                            <a class="tile__link" aria-labelledby="tile-title-9" href="#">
+                            </a>
+                        </li>
+                    </ul>
+
                     <ul>
                         <li class="card blueprint__tile mt-4">
                             <div class="row g-0">
@@ -2085,10 +2155,10 @@
                                 </div>
                                 <div class="col-lg-8">
                                     <form class="card-body">
-                                        <h5 class="card-title m-0">Brainstorming</h5>
+                                        <h5 class="card-title m-0">Blueprint tile</h5>
                                         <p class="card-text">
                                         </p>
-                                        <p>Die Teilnehmer*innen können eigene Ideen einreichen und die Ideen Anderer diskutieren.</p>
+                                        <p>Text describing the blueprint and what can be done during the participation.</p>
                                         <p></p>
 
                                         <input type="submit" class="btn btn--light ms-auto" value="Modul hinzufügen">
