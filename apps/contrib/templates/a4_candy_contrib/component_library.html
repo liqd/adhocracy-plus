@@ -115,10 +115,10 @@
                         <a href="#cl-menu-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Menu Layout</a>
                     </li>
                     <li class="dashboard-nav__page">
-                        <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
+                        <a href="#cl-moderator-statement" class="dashboard-nav__item dashboard-nav__item--interactive">Moderator Statement</a>
                     </li>
                     <li class="dashboard-nav__page">
-                        <a href="#cl-moderator-statement" class="dashboard-nav__item dashboard-nav__item--interactive">Moderato Statement</a>
+                        <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
                     </li>
                     <li class="dashboard-nav__page">
                         <a href="#cl-multiform" class="dashboard-nav__item dashboard-nav__item--interactive">Multiform</a>
@@ -400,14 +400,14 @@
 
                 <div class="cl-example">
                     <div class="accordion">
-                        <a id="accordion-{{ index }}-title" href="#accordion-{{ index }}-body" class="accordion__title collapsed" aria-haspopup="true" aria-expanded="false" data-bs-toggle="collapse">
+                        <a id="accordion-complib-title" href="#accordion-complib-body" class="accordion__title collapsed" aria-haspopup="true" aria-expanded="false" data-bs-toggle="collapse">
                             <h2>
                                 Docs Block Title
                                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
                             </h2>
                         </a>
 
-                        <div class="accordion__body collapse" id="accordion-{{ index }}-body" aria-labelledby="accordion-{{ index }}-title">
+                        <div class="accordion__body collapse" id="accordion-complib-body" aria-labelledby="accordion-complib-title">
                             This is the body of the docs block,
                             This block is used in wagtail pages.
                             <ul>
@@ -629,10 +629,10 @@
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-12 col-sm-6 col-lg-5">
-                                <a class="btn btn--full btn--transparent" href="{{ value.demo_platform.url }}">Visit Demosite</a>
+                                <a class="btn btn--full btn--transparent" href="#">Visit Demosite</a>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-5">
-                                <a class="btn btn--full btn--transparent" href="{{ value.use_case_page.url }}">View more examples</a>
+                                <a class="btn btn--full btn--transparent" href="#">View more examples</a>
                             </div>
                         </div>
                     </div>
@@ -1742,7 +1742,7 @@
                     </div>
                 </div>
 
-                <h2 id="cl-module">Moderato Statement</h2>
+                <h2 id="cl-moderator-statement">Moderator Statement</h2>
 
                 <div class="cl-example">
                     <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
@@ -1804,9 +1804,17 @@
 
                 <div class="cl-example">
                     <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li class="pagination-item{% if page_number == page_obj.number %} active{% endif %}">
-                                <a href="#">Page number link</a>
+                        <ul class="pagination d-flex flex-row justify-content-between">
+                            <li class="pagination-item">
+                                <a class="d-none d-sm-block" href="#">Previous page</a>
+                                <a aria-label="Previous page" class="d-block d-sm-none" href="#"><i class="fas fa-angle-left" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="pagination-item">
+                                <div class="pagination-text">3 of 6</div>
+                            </li>
+                            <li class="pagination-item">
+                                <a class="d-none d-sm-block" href="#">Next page</a>
+                                <a aria-label="Next page" class="d-block d-sm-none" href="#"><i class="fas fa-angle-right" aria-hidden="true"></i></a>
                             </li>
                         </ul>
                     </nav>
