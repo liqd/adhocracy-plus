@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-14 10:52+0200\n"
+"POT-Creation-Date: 2022-12-09 12:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgstr "Your reply here"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:19
-#: adhocracy4/reports/static/reports/react_reports.jsx:21
+#: adhocracy4/reports/static/reports/react_reports.jsx:22
 msgid ""
 "You want to report this content? Your message will be sent to the "
 "moderation. The moderation will look at the reported content. The content "
@@ -70,47 +70,47 @@ msgstr ""
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:287
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:282
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:110
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:276
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 msgid "Deleted by creator on"
 msgstr "Deleted by creator on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:112
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:278
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 msgid "Deleted by moderator on"
 msgstr "Deleted by moderator on"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:151
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:257
+#: adhocracy4/comments/static/comments/Comment.jsx:153
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:152
+#: adhocracy4/comments/static/comments/Comment.jsx:154
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:259
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:68
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:73
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:152
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:157
-#: apps/documents/assets/ChapterNavItem.jsx:56
-#: apps/documents/assets/ChapterNavItem.jsx:61
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:70
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:75
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
+#: apps/documents/assets/ChapterNavItem.jsx:57
+#: apps/documents/assets/ChapterNavItem.jsx:62
 #: apps/documents/assets/ParagraphForm.jsx:133
 #: apps/documents/assets/ParagraphForm.jsx:138
 msgid "Delete"
 msgstr "Delete"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:153
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:260
+#: adhocracy4/comments/static/comments/Comment.jsx:155
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
 msgid "Abort"
@@ -139,22 +139,22 @@ msgstr "save changes"
 msgid "cancel"
 msgstr "cancel"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:37
+#: adhocracy4/comments/static/comments/CommentForm.jsx:40
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:14
 msgid "post"
 msgstr "post"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:38
+#: adhocracy4/comments/static/comments/CommentForm.jsx:41
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:16
 msgid "Please login to comment"
 msgstr "Please login to comment"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:39
+#: adhocracy4/comments/static/comments/CommentForm.jsx:42
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:18
 msgid "The currently active phase doesn't allow to comment."
 msgstr "The currently active phase doesn't allow to comment."
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:40
+#: adhocracy4/comments/static/comments/CommentForm.jsx:43
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:17
 msgid "Only invited users can actively participate."
 msgstr "Only invited users can actively participate."
@@ -209,92 +209,92 @@ msgid "Hide moderator's feedback"
 msgstr "Hide moderator's feedback"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:35
+msgid "Blocked by moderator on"
+msgstr "Blocked by moderator on"
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:38
 msgid "hide replies"
 msgstr "hide replies"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:38
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:39
+msgctxt "verb"
+msgid "Reply"
+msgstr "Reply"
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:48
 #, javascript-format
 msgid "1 reply"
 msgid_plural "%s replies"
 msgstr[0] "1 reply"
 msgstr[1] "%s replies"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:41
-msgctxt "verb"
-msgid "Reply"
-msgstr "Reply"
-
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:280
-msgid "Blocked by moderator on"
-msgstr "Blocked by moderator on"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:16
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 msgid "Newest"
 msgstr "Newest"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:17
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:16
 msgid "Most up votes"
 msgstr "Most up votes"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:18
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:17
 msgid "Most down votes"
 msgstr "Most down votes"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:19
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:18
 msgid "Most answers"
 msgstr "Most answers"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:20
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:19
 msgid "Last discussed"
 msgstr "Last discussed"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:24
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:23
 msgid "Show filters"
 msgstr "Show filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:25
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:24
 msgid "Filters"
 msgstr "Filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:26
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:25
 msgid "Hide filters"
 msgstr "Hide filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:27
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:26
 msgid "Search contributions"
 msgstr "Search contributions"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:28
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:27
 msgid "Clear search"
 msgstr "Clear search"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:29
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:28
 msgid "display: "
 msgstr "display: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:30
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:67
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:346
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:57
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:32
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:29
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:48
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:276
+#: apps/interactiveevents/assets/Filters.jsx:32
+#: apps/interactiveevents/assets/QuestionBox.jsx:57
 msgid "all"
 msgstr "all"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:31
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:30
 msgid "sorted by: "
 msgstr "sorted by: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:83
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:71
 msgid "Highlighted"
 msgstr "Highlighted"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:97
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:100
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "entry"
 msgstr[1] "entries"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:508
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:406
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "entry found for "
@@ -313,7 +313,7 @@ msgid "Your reply"
 msgstr "Your reply"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:13
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_form.jsx:78
+#: apps/interactiveevents/assets/QuestionForm.jsx:79
 msgid " characters"
 msgstr " characters"
 
@@ -412,220 +412,228 @@ msgstr "Attention importing a file will delete the existing polygons."
 msgid "Upload"
 msgstr "Upload"
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:109
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
 #: apps/maps/assets/map_choose_polygon_with_preset.js:107
 msgid "Cancel"
 msgstr "Cancel"
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:143
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:148
 #: apps/maps/assets/map_choose_polygon_with_preset.js:142
 #: apps/maps/assets/map_choose_polygon_with_preset.js:144
 msgid "The uploaded file is not a valid shapefile."
 msgstr "The uploaded file is not a valid shapefile."
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:147
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:150
 #: apps/maps/assets/map_choose_polygon_with_preset.js:146
 msgid "The uploaded file could not be imported."
 msgstr "The uploaded file could not be imported."
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:161
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:164
 #: apps/maps/assets/map_choose_polygon_with_preset.js:161
 msgid "The uploaded file is not a valid geojson file."
 msgstr "The uploaded file is not a valid geojson file."
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:166
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:169
 #: apps/maps/assets/map_choose_polygon_with_preset.js:166
 msgid "Invalid file format."
 msgstr "Invalid file format."
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:283
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:286
 #: apps/maps/assets/map_choose_polygon_with_preset.js:285
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
-#: adhocracy4/polls/assets/EditPollChoice.jsx:9
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:69
+#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:71
 msgctxt "noun"
 msgid "Answer"
 msgstr "Answer"
 
-#: adhocracy4/polls/assets/EditPollChoice.jsx:27
-#: adhocracy4/polls/assets/EditPollChoice.jsx:33
+#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:29
+#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:35
 msgid "remove"
 msgstr "remove"
 
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:16
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:19
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_form.jsx:66
+#: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:5
+msgid " New Question"
+msgstr " New Question"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:6
+msgid "Multiple Choice question"
+msgstr "Multiple Choice question"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:7
+msgid "Open question"
+msgstr "Open question"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:178
+msgid "The poll has been updated."
+msgstr "The poll has been updated."
+
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:194
+msgid "The poll could not be updated. Please check the data you entered again."
+msgstr ""
+"The poll could not be updated. Please check the data you entered again."
+
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:261
+#: apps/documents/assets/DocumentManagement.jsx:324
+msgid "Save"
+msgstr "Save"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:16
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:19
+#: apps/interactiveevents/assets/QuestionForm.jsx:67
 msgid "Question"
 msgstr "Question"
 
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:36
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:119
-#: adhocracy4/polls/assets/HelptextForm.jsx:11
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:38
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:121
+#: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
 msgid "Explanation"
 msgstr "Explanation"
 
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:45
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:50
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:129
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:134
-#: apps/documents/assets/ChapterNavItem.jsx:32
-#: apps/documents/assets/ChapterNavItem.jsx:37
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:47
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:52
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: apps/documents/assets/ChapterNavItem.jsx:33
+#: apps/documents/assets/ChapterNavItem.jsx:38
 #: apps/documents/assets/ParagraphForm.jsx:110
 #: apps/documents/assets/ParagraphForm.jsx:115
 msgid "Move up"
 msgstr "Move up"
 
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:57
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:62
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:141
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:146
-#: apps/documents/assets/ChapterNavItem.jsx:44
-#: apps/documents/assets/ChapterNavItem.jsx:49
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:59
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:64
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: apps/documents/assets/ChapterNavItem.jsx:45
+#: apps/documents/assets/ChapterNavItem.jsx:50
 #: apps/documents/assets/ParagraphForm.jsx:122
 #: apps/documents/assets/ParagraphForm.jsx:127
 msgid "Move down"
 msgstr "Move down"
 
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:46
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:48
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr "Participants can vote for more than one option (multiple choice)"
 
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:61
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:63
 msgid "Participants can add their own answer"
 msgstr "Participants can add their own answer"
 
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:94
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:95
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:96
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:97
 msgid "Other"
 msgstr "Other"
 
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:112
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:114
 msgid "New answer"
 msgstr "New answer"
 
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:163
-msgid "The poll has been updated."
-msgstr "The poll has been updated."
-
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:177
-msgid "The poll could not be updated."
-msgstr "The poll could not be updated."
-
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:196
-msgid "New question"
-msgstr "New question"
-
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:202
-msgid "Multiple choice question"
-msgstr "Multiple choice question"
-
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:207
-msgid "Open question"
-msgstr "Open question"
-
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:279
-#: apps/documents/assets/DocumentManagement.jsx:324
-msgid "Save"
-msgstr "Save"
-
-#: adhocracy4/polls/assets/PollQuestion.jsx:18
+#: adhocracy4/polls/static/PollDetail/PollQuestion.jsx:7
 msgid "Multiple answers are possible."
 msgstr "Multiple answers are possible."
 
-#: adhocracy4/polls/assets/PollQuestion.jsx:84
-#: adhocracy4/polls/assets/PollQuestion.jsx:123
-#: adhocracy4/polls/assets/PollResults.jsx:113
+#: adhocracy4/polls/static/PollDetail/PollQuestion.jsx:8
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:113
 msgid "other"
 msgstr "other"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:14
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:16
 msgid "Your answer has been saved."
 msgstr "Your answer has been saved."
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:19
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:22
 msgid ""
 "Your answer could not be saved. Please check the data you entered again."
 msgstr ""
 "Your answer could not be saved. Please check the data you entered again."
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:24
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:28
 msgid "Your answer is invalid or empty. Please try again."
 msgstr "Your answer is invalid or empty. Please try again."
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:45
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
 msgid "To poll"
 msgstr "To poll"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:51
-#: adhocracy4/polls/assets/PollQuestions.jsx:132
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:55
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
 msgid "Change answer"
 msgstr "Change answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:132
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
 msgid "Submit answer"
 msgstr "Submit answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:138
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:142
 msgid "Please login to answer"
 msgstr "Please login to answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:148
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:152
 msgid "Show results"
 msgstr "Show results"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:154
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:158
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:175
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:179
 msgid "Please enter your answer in this field."
 msgstr "Please enter your answer in this field."
 
-#: adhocracy4/polls/assets/PollResults.jsx:45
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:45
 msgid "Hide other answers"
 msgstr "Hide other answers"
 
-#: adhocracy4/polls/assets/PollResults.jsx:47
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:47
 msgid "Show other answers"
 msgstr "Show other answers"
 
-#: adhocracy4/polls/assets/PollResults.jsx:61
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:61
 #, javascript-format
 msgid "%s participant gave 1 answer."
 msgstr "%s participant gave 1 answer."
 
-#: adhocracy4/polls/assets/PollResults.jsx:63
-#: adhocracy4/polls/assets/PollResults.jsx:65
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:63
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:65
 #, javascript-format
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
 msgstr[0] "%s participant gave %s answers."
 msgstr[1] "%s participants gave %s answers."
 
-#: adhocracy4/polls/assets/PollResults.jsx:67
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:67
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr ""
 " For multiple choice questions the percentages may add up to more than 100%."
 
-#: adhocracy4/polls/assets/PollResults.jsx:69
-#: adhocracy4/polls/assets/PollResults.jsx:78
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:69
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:78
 #, javascript-format
 msgid "1 person has answered."
 msgid_plural "%s people have answered."
 msgstr[0] "1 person has answered."
 msgstr[1] "%s people have answered."
 
-#: adhocracy4/polls/assets/PollResults.jsx:80
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:80
 msgid "noone has answered this question"
 msgstr "noone has answered this question"
 
-#: adhocracy4/polls/assets/PollResults.jsx:110
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:110
 msgid "Your choice"
 msgstr "Your choice"
+
+#: adhocracy4/ratings/static/ratings/react_ratings.jsx:10
+msgid "Click to vote up"
+msgstr "Click to vote up"
+
+#: adhocracy4/ratings/static/ratings/react_ratings.jsx:11
+msgid "Click to vote down"
+msgstr "Click to vote down"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:55
 msgid "Thank you! We are taking care of it."
@@ -731,35 +739,11 @@ msgstr ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:10
-msgid "Statistics"
-msgstr "Statistics"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:11
-msgid "Entries"
-msgstr "Entries"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:12
-msgid "Click to view statistics of answered questions"
-msgstr "Click to view statistics of answered questions"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:13
-msgid "display on screen"
-msgstr "display on screen"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:14
-msgid "Click to view list of marked questions screen"
-msgstr "Click to view list of marked questions screen"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_box.jsx:27
-msgid "select affiliation"
-msgstr "select affiliation"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_category_select.jsx:15
+#: apps/interactiveevents/assets/CategorySelect.jsx:10
 msgid "Affiliation"
 msgstr "Affiliation"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_category_select.jsx:17
+#: apps/interactiveevents/assets/CategorySelect.jsx:11
 msgid ""
 "Answered questions will be displayed in the statistics according to the "
 "chosen affiliation."
@@ -767,115 +751,139 @@ msgstr ""
 "Answered questions will be displayed in the statistics according to the "
 "chosen affiliation."
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:27
+#: apps/interactiveevents/assets/Filters.jsx:27
 msgid " Filters"
 msgstr " Filters"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:28
+#: apps/interactiveevents/assets/Filters.jsx:28
 msgid "Click to view filters"
 msgstr "Click to view filters"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:29
+#: apps/interactiveevents/assets/Filters.jsx:29
 msgid "Click to only display marked questions"
 msgstr "Click to only display marked questions"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:30
+#: apps/interactiveevents/assets/Filters.jsx:30
 msgid "Click to only display questions which are not hidden"
 msgstr "Click to only display questions which are not hidden"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_filters.jsx:31
+#: apps/interactiveevents/assets/Filters.jsx:31
 msgid "Click to order list by likes"
 msgstr "Click to order list by likes"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_form.jsx:61
-msgid "Here you can ask your question"
-msgstr "Here you can ask your question"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_form.jsx:68
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_form.jsx:87
-msgid "Add Question"
-msgstr "Add Question"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:4
+#: apps/interactiveevents/assets/InfoBox.jsx:4
 msgid "Info"
 msgstr "Info"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:5
+#: apps/interactiveevents/assets/InfoBox.jsx:5
 msgid "display question on screen"
 msgstr "display question on screen"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:6
+#: apps/interactiveevents/assets/InfoBox.jsx:6
 msgid "add question to shortlist"
 msgstr "add question to shortlist"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:7
+#: apps/interactiveevents/assets/InfoBox.jsx:7
 msgid "hide question from audience"
 msgstr "hide question from audience"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:8
+#: apps/interactiveevents/assets/InfoBox.jsx:8
 msgid "mark question as answered"
 msgstr "mark question as answered"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:9
+#: apps/interactiveevents/assets/InfoBox.jsx:9
 msgid "is shown in front of a question? It has been marked by the moderation."
 msgstr "is shown in front of a question? It has been marked by the moderation."
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:10
+#: apps/interactiveevents/assets/InfoBox.jsx:10
 msgid "Close information"
 msgstr "Close information"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_info_box.jsx:11
+#: apps/interactiveevents/assets/InfoBox.jsx:11
 msgid "Open information"
 msgstr "Open information"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:97
+#: apps/interactiveevents/assets/QuestionBox.jsx:10
+msgid "Statistics"
+msgstr "Statistics"
+
+#: apps/interactiveevents/assets/QuestionBox.jsx:11
+msgid "Entries"
+msgstr "Entries"
+
+#: apps/interactiveevents/assets/QuestionBox.jsx:12
+msgid "Click to view statistics of answered questions"
+msgstr "Click to view statistics of answered questions"
+
+#: apps/interactiveevents/assets/QuestionBox.jsx:13
+msgid "display on screen"
+msgstr "display on screen"
+
+#: apps/interactiveevents/assets/QuestionBox.jsx:14
+msgid "Click to view list of marked questions screen"
+msgstr "Click to view list of marked questions screen"
+
+#: apps/interactiveevents/assets/QuestionBox.jsx:27
+msgid "select affiliation"
+msgstr "select affiliation"
+
+#: apps/interactiveevents/assets/QuestionForm.jsx:61
+msgid "Here you can ask your question"
+msgstr "Here you can ask your question"
+
+#: apps/interactiveevents/assets/QuestionForm.jsx:69
+#: apps/interactiveevents/assets/QuestionForm.jsx:88
+msgid "Add Question"
+msgstr "Add Question"
+
+#: apps/interactiveevents/assets/QuestionModerator.jsx:97
 msgid "mark as hidden"
 msgstr "mark as hidden"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:98
+#: apps/interactiveevents/assets/QuestionModerator.jsx:98
 msgid "undo mark as hidden"
 msgstr "undo mark as hidden"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:99
+#: apps/interactiveevents/assets/QuestionModerator.jsx:99
 msgid "mark as done"
 msgstr "mark as done"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:100
+#: apps/interactiveevents/assets/QuestionModerator.jsx:100
 msgid "add to live list"
 msgstr "add to live list"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:101
+#: apps/interactiveevents/assets/QuestionModerator.jsx:101
 msgid "remove from live list"
 msgstr "remove from live list"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:102
+#: apps/interactiveevents/assets/QuestionModerator.jsx:102
 msgid "add to shortlist"
 msgstr "add to shortlist"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_moderator.jsx:103
+#: apps/interactiveevents/assets/QuestionModerator.jsx:103
 msgid "remove from shortlist"
 msgstr "remove from shortlist"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_present.jsx:29
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_user.jsx:52
+#: apps/interactiveevents/assets/QuestionPresent.jsx:29
+#: apps/interactiveevents/assets/QuestionUser.jsx:52
 msgid "likes"
 msgstr "likes"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_statistics_box.jsx:46
-msgid "Questions Answered"
-msgstr "Questions Answered"
-
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_user.jsx:51
+#: apps/interactiveevents/assets/QuestionUser.jsx:51
 msgid "on shortlist"
 msgstr "on shortlist"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_user.jsx:53
+#: apps/interactiveevents/assets/QuestionUser.jsx:53
 msgid "add like"
 msgstr "add like"
 
-#: apps/interactiveevents/assets/js/a4_candy_interactive_events/livequestion_user.jsx:54
+#: apps/interactiveevents/assets/QuestionUser.jsx:54
 msgid "undo like"
 msgstr "undo like"
+
+#: apps/interactiveevents/assets/StatisticsBox.jsx:46
+msgid "Questions Answered"
+msgstr "Questions Answered"
 
 #: adhocracy-plus/assets/js/unload_warning.js:20
 msgid "If you leave this page changes you made will not be saved."
@@ -923,3 +931,12 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
+
+#~ msgid "The poll could not be updated."
+#~ msgstr "The poll could not be updated."
+
+#~ msgid "New question"
+#~ msgstr "New question"
+
+#~ msgid "Multiple choice question"
+#~ msgstr "Multiple choice question"
