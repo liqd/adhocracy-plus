@@ -4,7 +4,7 @@
 {% block title %}{% translate "Settings" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block communication_form %}
-    <div class="col-md-10">
+    <div class="col-md-9">
         <h1>{% translate "Create Content" %}</h1>
 
         <form enctype="multipart/form-data" action="{% url 'a4dashboard:communication-content' organisation_slug=organisation.slug %}" method="post">
@@ -12,24 +12,50 @@
             {% include 'a4_candy_contrib/includes/form_field.html' with field=project_form.format %}
             {% include 'a4_candy_contrib/includes/form_field.html' with field=project_form.project %}
             <div class="d-flex justify-content-end mb-3">
-                <button type="submit" class="btn btn--primary">{% translate 'Select' %}</button>
+                <button type="submit" class="btn btn--default">{% translate 'Select' %}</button>
             </div>
         </form>
         {{ project_form.media }}
 
-
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
             {% if content_form %}
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.title %}
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.description %}
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.image %}
-            <div class="d-flex justify-content-end mb-3">
-                <button type="submit" class="btn btn--primary">{% translate 'Generate' %}</button>
-            </div>
-            {% endif %}
-            {% if image_preview %}
-                there is an image in the context
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.title %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.description %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=content_form.image %}
+
+                <div class="form-group">
+                    <label>Preview</label>
+                    <p class="form-hint" id="hint_image_preview">
+                        {% if image_preview %}
+                            To view content changes, click refresh
+                        {% else %}
+                            To view the sharepic, click generate
+                        {% endif %}
+                    </p>
+                    {% if image_preview %}
+                        <div class="form-{{ id }} upload-wrapper__preview col-sm-6">
+                            <img id="image_preview"
+                              src="data:image/png;base64,{{image_preview}}"
+                              data-image-preview=""
+                              alt="sharepic preview"
+                             >
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex justify-content-end mb-5">
+                    <button type="submit" class="btn btn--primary btn--icon">
+                        {% if image_preview %}
+                            <i class="fas fa-sync-alt"></i>{% translate 'Refresh' %}
+                        {% else %}
+                            {% translate 'Generate' %}
+                        {% endif %}
+                    </button>
+                {% if image_preview %}
+                    <a class="btn btn--primary ms-3" href="data:image/png;base64,{{image_preview}}" download="sharepic">Download</a>
+                {% endif %}
+                </div>
             {% endif %}
         </form>
         {{ form.media }}
