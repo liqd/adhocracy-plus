@@ -1,4 +1,6 @@
+import base64
 import json
+from io import BytesIO
 
 from django.conf import settings
 from django.contrib.messages.views import SuccessMessageMixin
@@ -221,7 +223,6 @@ class DashboardCommunicationContentCreateView(
     def generate_image(self, data):
         # Dummy images
         image = Image.new('RGB', (304, 192), color='red')
-        image.save(settings.MEDIA_ROOT + '/images/tmp_image.png')
         logo1 = Image.new('RGB', (100, 10), color='blue')
         logo2 = Image.new('RGB', (100, 10), color='green')
 
@@ -253,8 +254,10 @@ class DashboardCommunicationContentCreateView(
         result.paste(logo1, (46, 277))
         result.paste(logo2, (157, 277))
 
-        result.show()
-        return image
+        buffered_image = BytesIO()
+        result.save(buffered_image, format='PNG')
+
+        return base64.b64encode(buffered_image.getvalue()).decode('utf-8')
 
     @property
     def project(self):
