@@ -26,6 +26,7 @@
 .upload-wrapper__fields {
     display: flex;
     flex-wrap: nowrap;
+    align-items: flex-start;
 }
 
 // This is actually a label that looks like a button.  It is used to trigger
@@ -48,14 +49,4 @@
 
 .upload-wrapper__alert {
     clear: left;
-}
-
-@media (min-width: $breakpoint) {
-    .upload-wrapper__fields {
-        // @include grid-span(5, 0, ("columns": 9));
-    }
-
-    .upload-wrapper__preview {
-        // @include grid-span(4, 5, ("columns": 9));
-    }
 }
