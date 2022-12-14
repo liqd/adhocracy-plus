@@ -196,7 +196,7 @@
                         <ul class="l-tiles-3">
                             {% for other_module in module.module_cluster %}
                                 {% if not other_module == module %}
-                                    {% include "a4_candy_projects/includes/project_list_tile.html" with object=other_module project=other_module.project orientation='vertical' type='module' url=module.get_absolute_url %}
+                                    {% include "a4_candy_projects/includes/project_list_tile.html" with object=other_module project=other_module.project orientation='vertical' type='module' url=other_module.get_absolute_url %}
                                 {% endif %}
                             {% endfor %}
                         </ul>
