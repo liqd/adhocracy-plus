@@ -10,10 +10,11 @@
             <div class="block-col_cta-content">
                 <a href="{{ column.link }}" class="btn btn--full btn--transparent">{{ column.link_text }}</a>
             </div>
-            {% else %}
+            {% elif column.link %}
             <div class="block-col_cta-btn">
                 <a href="{{ column.link }}" class="btn btn--full btn--transparent">{{ column.link_text }}</a>
             </div>
+            {% else %}
             {% endif %}
         </div>
     {% endfor %}
