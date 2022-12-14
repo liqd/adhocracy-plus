@@ -11,7 +11,7 @@
         {% if filtered_projects|length > 0 %}
             <ul class="l-tiles-4">
                 {% for project in filtered_projects %}
-                    {% include "a4_candy_projects/includes/project_list_tile.html" with project=project %}
+                    {% include "a4_candy_projects/includes/project_list_tile.html" with object=project project=project orientation='vertical' type='project' url=project.get_absolute_url %}
                 {% endfor %}
             </ul>
         {% else %}
