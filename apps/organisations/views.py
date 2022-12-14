@@ -21,6 +21,7 @@ from apps.projects.models import Project
 
 from . import forms
 from .forms import SOCIAL_MEDIA_SIZES
+from .forms import CommunicationContentCreationForm
 from .models import Organisation
 
 
@@ -217,9 +218,14 @@ class DashboardCommunicationContentCreateView(
 
     def form_valid(self, form):
         data = form.cleaned_data
-        img = self.generate_image(data)
         context = self.get_context_data()
+        img = self.generate_image(data)
+        # get the content form with unchanged cleaned data, as image generation
+        # changes the image data (why?)
+        content_form = CommunicationContentCreationForm(
+            initial=data, project=self.project, format=self.format)
         context['image_preview'] = img
+        context['content_form'] = content_form
         return self.render_to_response(context)
 
     def generate_image(self, data):
