@@ -251,19 +251,8 @@ $block-padding-md: 7.5 * $padding;
     background-color: $brand-primary;
     color: $text-color-inverted;
 
-    .btn {
-        color: $text-color-inverted;
-        border-color: $text-color-inverted;
-
-        &,
-        &:focus,
-        &:hover,
-        &:active,
-        &:disabled,
-        &.is-disabled {
-            color: $text-color-inverted;
-            border-color: $text-color-inverted;
-        }
+    .btn.block-bg_btn {
+        @extend .btn--text-color-inverted;
     }
 }
 
