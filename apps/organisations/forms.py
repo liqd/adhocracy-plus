@@ -257,7 +257,7 @@ class CommunicationProjectChoiceForm(forms.Form):
             required=True,
             empty_label=None,
             help_text=_('Please select a project of your organisation and '
-                        'click generate.')
+                        'click select.')
         )
 
 
