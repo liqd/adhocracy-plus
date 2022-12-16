@@ -1,6 +1,7 @@
 import random
 
 from django.db import models
+from django.http import HttpResponse
 from wagtail import blocks
 from wagtail import fields
 from wagtail.admin.panels import FieldPanel
@@ -188,6 +189,9 @@ class EmptyPage(Page):
                      'a4_candy_cms_contacts.FormPage',
                      'a4_candy_cms_news.NewsIndexPage',
                      'a4_candy_cms_use_cases.UseCaseIndexPage']
+
+    def serve_preview(self, request, mode_name):
+        return HttpResponse(status=204)
 
 
 class SimplePage(Page):
