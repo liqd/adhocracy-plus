@@ -58,10 +58,12 @@
                 {% if active_projects or future_projects or past_projects %}
                     <h2>{{ project_headline }}</h2>
                     {% if object.projects.count == 1 %}
-                        {% has_perm 'a4projects.view_project' request.user object.projects.0 as can_view_project %}
+                        {% with object.projects.0 as project %}
+                        {% has_perm 'a4projects.view_project' request.user project as can_view_project %}
                         {% if can_view_project  %}
-                            {% include 'a4_candy_projects/includes/project_list_tile.html' with object=object.projects.0 project=project orientation='horizontal' type='project' url=project|project_url %}
+                            {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='horizontal' type='project' url=project|project_url %}
                         {% endif %}
+                        {% endwith %}
                     {% else %}
                         <ul class="l-tiles-2">
                             {% if active_projects %}
