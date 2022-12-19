@@ -37,35 +37,59 @@ SOCIAL_MEDIA_CHOICES = [
 SOCIAL_MEDIA_SIZES = {
     1: {'title_max_length': 30,
         'title_size': 72,
+        'title_y': 845,
         'description_max_length': 45,
         'description_size': 48,
+        'description_y': 922,
         'img_min_width': 1080,
         'img_min_height': 760,
         'aplus_logo_width': 228,
-        'aplus_logo_height': 56
+        'aplus_logo_height': 56,
+        'aplus_logo_y': 996,
+        'org_logo_y': 160,
+        'overall_height': 1080
         },
     2: {'title_max_length': 30,
+        'title_size': 72,
+        'title_y': 1498,
         'description_max_length': 45,
+        'description_size': 48,
+        'description_y': 1576,
         'img_min_width': 1080,
-        'img_min_height': 760,
+        'img_min_height': 1278,
+        'aplus_logo_width': 360,
+        'aplus_logo_height': 88,
+        'aplus_logo_y': 1698,
+        'org_logo_y': 974,
+        'overall_height': 1920
         },
     3: {'title_max_length': 30,
         'title_size': 48,
+        'title_y': 546,
         'description_max_length': 45,
         'description_size': 40,
-        'img_min_width': 1080,
-        'img_min_height': 760,
+        'description_y': 604,
+        'img_min_width': 1140,
+        'img_min_height': 482,
         'aplus_logo_width': 196,
-        'aplus_logo_height': 48
+        'aplus_logo_height': 48,
+        'aplus_logo_y': 656,
+        'org_logo_y': 160,
+        'overall_height': 736
         },
     4: {'title_max_length': 30,
         'title_size': 56,
+        'title_y': 504,
         'description_max_length': 45,
         'description_size': 40,
+        'description_y': 565,
         'img_min_width': 1200,
         'img_min_height': 448,
         'aplus_logo_width': 196,
-        'aplus_logo_height': 48
+        'aplus_logo_height': 48,
+        'aplus_logo_y': 616,
+        'org_logo_y': 160,
+        'overall_height': 675
         }
 }
 
@@ -275,6 +299,16 @@ class CommunicationContentCreationForm(forms.Form):
                         'size should be max. 5 MB.'.
                         format(self.sizes['img_min_width'],
                                self.sizes['img_min_height'])),
+        )
+
+        self.fields['add_aplus_logo'] = forms.BooleanField(
+            required=False,
+            initial=True
+        )
+
+        self.fields['add_orga_logo'] = forms.BooleanField(
+            required=False,
+            initial=True
         )
 
         if project:
