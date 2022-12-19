@@ -292,7 +292,7 @@ class DashboardCommunicationContentCreateView(
             fill=(0, 0, 0),
             font=fontsm)
 
-        if data['add_orga_logo']:
+        if data['add_orga_logo'] and self.organisation.logo:
             # get organisations logo
             logo_org_get = Image.open(self.organisation.logo)
             logo_org_size = (144, 144)
