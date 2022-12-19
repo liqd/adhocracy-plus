@@ -1,7 +1,11 @@
+from io import BytesIO
+
 import factory
 import pytest
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
 from django.urls.base import get_resolver
+from PIL import Image
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
@@ -81,3 +85,13 @@ def logout_url():
 @pytest.fixture
 def signup_url():
     return reverse('account_signup')
+
+
+@pytest.fixture()
+def image_factory():
+    def _get_image_data(width=1500, height=1500):
+        image = BytesIO()
+        Image.new('RGB', (width, height)).save(image, 'JPEG')
+        return SimpleUploadedFile('image.JPG', image.getvalue())
+
+    return _get_image_data
