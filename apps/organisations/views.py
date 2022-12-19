@@ -200,6 +200,7 @@ class DashboardCommunicationContentCreateView(
         return kwargs
 
     def get_context_data(self, **kwargs):
+        kwargs = super().get_context_data(**kwargs)
         if 'form' in kwargs:
             kwargs.pop('form')
         if 'content_form' not in kwargs:
@@ -214,7 +215,7 @@ class DashboardCommunicationContentCreateView(
         if 'organisation' not in kwargs:
             kwargs['organisation'] = self.organisation
 
-        return super().get_context_data(**kwargs)
+        return kwargs
 
     def form_valid(self, form):
         data = form.cleaned_data
