@@ -26,7 +26,13 @@
                 <div class="form-group">
                     <div class="checkbox-btn">
                         <label class="checkbox-btn__label--light" for="logo_1">
-                            <input class="checkbox-btn__input" type="checkbox" id="logo_1" value="add a+ logo" checked>
+                            <input class="checkbox-btn__input"
+                                   type="checkbox"
+                                   id="logo_1"
+                                   name="add_aplus_logo"
+                                   value="add a+ logo"
+                                   {% if content_form.add_aplus_logo.value %} checked{% endif %}
+                            >
                             <span class="checkbox-btn__text--icon">{% translate 'Add a+ logo' %}</span>
                         </label>
                     </div>
@@ -36,13 +42,14 @@
                                 class="checkbox-btn__input"
                                 type="checkbox"
                                 id="logo_2"
+                                name="add_orga_logo"
                                 value="add own logo"
                                 {% if organisation.logo %}
-                                checked
+                                    {% if content_form.add_orga_logo.value %}checked{% endif %}
                                 {% else %}
-                                disabled
+                                    disabled
                                 {% endif %}
-                                >
+                            >
                             <span class="checkbox-btn__text checkbox-btn__text--icon">{% translate 'Add logo' %}</span>
                         </label>
                     </div>
@@ -67,7 +74,7 @@
                         </div>
                     {% endif %}
                 </div>
-        
+
                 <div class="d-flex justify-content-end mb-3">
                     <button type="submit" class="btn btn--primary btn--icon">
                         {% if image_preview %}
