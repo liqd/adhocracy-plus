@@ -226,45 +226,38 @@ class DashboardCommunicationContentCreateView(
         # Get required image size and image
         sharepic_format = SOCIAL_MEDIA_SIZES[self.format]
         image_get = Image.open(data['image'].file)
-        image_size = (sharepic_format['img_min_width'],
-                      sharepic_format['img_min_height'])
-        image = image_get.resize(image_size)
+        # get original dimensions
+        width, height = image_get.size
+        # crop from center to required dimensions
+        left = (width - sharepic_format['img_min_width']) / 2
+        top = (height - sharepic_format['img_min_height']) / 2
+        right = (width + sharepic_format['img_min_width']) / 2
+        bottom = (height + sharepic_format['img_min_height']) / 2
+        image = image_get.crop((left, top, right, bottom))
 
-        # Get organisations logo
-        logo_org_get = Image.open(self.organisation.logo)
-        logo_org_size = (144, 144)
-        logo_org = logo_org_get.resize(logo_org_size)
-
-        # Get aplus logo
-        logo_aplus_get = Image.open(
-            os.path.join(
-                settings.STATIC_ROOT,
-                'images/logo.png'))
-        logo_aplus_size = (sharepic_format['aplus_logo_width'],
-                           sharepic_format['aplus_logo_height'])
-        logo_aplus = logo_aplus_get.resize(logo_aplus_size)
-
-        # Get required total size and add appropriate padding
-        right = 0
-        left = 0
-        top = 0
-        bottom = 300
-        width, height = image.size
-        new_width = width + right + left
-        new_height = height + top + bottom
+        # get required total size and add appropriate padding
         result = Image.new(
-            image.mode, (new_width, new_height), (255, 255, 255))
-        result.paste(image, (left, top))
+            image.mode,
+            (sharepic_format['img_min_width'],
+             sharepic_format['overall_height']),
+            (255,
+             255,
+             255))
+        result.paste(image, (0, 0))
 
         # image is converted into editable form using Draw function
         image = ImageDraw.Draw(result)
 
         # text dimension, color and font
         font = ImageFont.truetype(
-            "adhocracy-plus/assets/fonts/SourceSansPro-Semibold.otf",
+            os.path.join(
+                settings.BASE_DIR,
+                'adhocracy-plus/assets/fonts/SourceSansPro-Semibold.otf'),
             sharepic_format['title_size'])
         fontsm = ImageFont.truetype(
-            "adhocracy-plus/assets/fonts/SourceSansPro-Regular.otf",
+            os.path.join(
+                settings.BASE_DIR,
+                'adhocracy-plus/assets/fonts/SourceSansPro-Regular.otf'),
             sharepic_format['description_size'])
         title = data['title']
         description = data['description']
@@ -273,19 +266,46 @@ class DashboardCommunicationContentCreateView(
             description, font=fontsm)
 
         # add text using width to center
-        image.text(((new_width - title_width) / 2,
-                    (sharepic_format['img_min_height'] + 20)),
+        image.text(((sharepic_format['img_min_width'] - title_width) / 2,
+                    sharepic_format['title_y']),
                    data['title'], fill=(0, 0, 0), font=font)
-        image.text(((new_width - description_width) / 2,
-                    (sharepic_format['img_min_height'] + 120)),
-                   data['description'], fill=(0, 0, 0), font=fontsm)
+        image.text(
+            ((sharepic_format['img_min_width'] - description_width) / 2,
+             sharepic_format['description_y']),
+            data['description'],
+            fill=(0, 0, 0),
+            font=fontsm)
 
-        # position org logo
-        result.paste(logo_org, (160, 160))
+        if data['add_orga_logo']:
+            # get organisations logo
+            logo_org_get = Image.open(self.organisation.logo)
+            logo_org_size = (144, 144)
+            logo_org = logo_org_get.resize(logo_org_size)
+            border = 8
+            logo_org_result = Image.new(
+                image.mode, (
+                    (border + 144 + border),
+                    (border + 144 + border)), (255, 255, 255))
+            logo_org_result.paste(logo_org, (border, border))
+            result.paste(logo_org_result, (160, sharepic_format['org_logo_y']))
 
-        # position a+ logo (positioning using logo width)
-        logo2_offset = (1080 - 228) // 2
-        result.paste(logo_aplus, (logo2_offset, 960), mask=logo_aplus)
+        if data['add_aplus_logo']:
+            # get aplus logo
+            logo_aplus_get = Image.open(
+                os.path.join(
+                    settings.BASE_DIR,
+                    'adhocracy-plus/assets/images/logo.png'))
+            logo_aplus_size = (sharepic_format['aplus_logo_width'],
+                               sharepic_format['aplus_logo_height'])
+            logo_aplus = logo_aplus_get.resize(logo_aplus_size)
+            # position a+ logo
+            logo2_offset_y = sharepic_format['aplus_logo_y']
+            logo2_offset_x = (
+                sharepic_format['img_min_width'] -
+                sharepic_format['aplus_logo_width']) // 2
+            result.paste(logo_aplus, (
+                logo2_offset_x, logo2_offset_y),
+                mask=logo_aplus)
 
         buffered_image = BytesIO()
         result.save(buffered_image, format='PNG')
