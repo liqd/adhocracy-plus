@@ -26,6 +26,15 @@ class UserAccountEmail(SyncEmailMixin, Email):
         context['contact_email'] = settings.CONTACT_EMAIL
         return context
 
+    def get_receiver_language(self, receiver):
+        """Send verification email in user language."""
+        if not User.objects.filter(email=receiver).exists():
+            if 'user' in self.kwargs:
+                user = self.kwargs['user']
+                if user.emailaddress_set.filter(email=receiver).exists():
+                    return user.language
+        return super().get_receiver_language(receiver)
+
 
 class AccountAdapter(DefaultAccountAdapter):
     username_regex = re.compile(USERNAME_REGEX)
