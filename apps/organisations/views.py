@@ -231,15 +231,24 @@ class DashboardCommunicationContentCreateView(
     def generate_image(self, data):
         # Get required image size and image
         sharepic_format = SOCIAL_MEDIA_SIZES[self.format]
+        req_width = sharepic_format['img_min_width']
+        req_height = sharepic_format['img_min_height']
         image_get = Image.open(data['image'].file)
         # get original dimensions
         width, height = image_get.size
-        # crop from center to required dimensions
-        left = (width - sharepic_format['img_min_width']) / 2
-        top = (height - sharepic_format['img_min_height']) / 2
-        right = (width + sharepic_format['img_min_width']) / 2
-        bottom = (height + sharepic_format['img_min_height']) / 2
-        image = image_get.crop((left, top, right, bottom))
+        # crop to required aspect_ratio and resize
+        aspect_ratio = width / float(height)
+        required_ratio = req_width / float(req_height)
+        if aspect_ratio > required_ratio:
+            new_width = int(required_ratio * height)
+            offset = (width - new_width) / 2
+            resize = (offset, 0, width - offset, height)
+        else:
+            new_height = int(width / required_ratio)
+            offset = (height - new_height) / 2
+            resize = (0, offset, width, height - offset)
+        image = image_get.crop(resize).resize((req_width, req_height),
+                                              Image.LANCZOS)
 
         # get required total size and add appropriate padding
         result = Image.new(
