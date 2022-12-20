@@ -69,7 +69,7 @@ SOCIAL_MEDIA_SIZES = {
         'description_max_length': 45,
         'description_size': 40,
         'description_y': 604,
-        'img_min_width': 1140,
+        'img_min_width': 1104,
         'img_min_height': 482,
         'aplus_logo_width': 196,
         'aplus_logo_height': 48,
@@ -312,8 +312,10 @@ class CommunicationContentCreationForm(forms.Form):
         )
 
         if project:
-            self.fields['title'].initial = project.name
-            self.fields['description'].initial = project.description
+            self.fields['title'].initial = \
+                project.name[:self.sizes['title_max_length']]
+            self.fields['description'].initial = \
+                project.description[:self.sizes['description_max_length']]
 
     def clean_image(self):
         image = self.cleaned_data['image']
