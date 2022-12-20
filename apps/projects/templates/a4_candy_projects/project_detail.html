@@ -161,6 +161,8 @@
                 <div class="timeline-carousel__wrapper">
                 {% if project.display_timeline %}
                     {% include "a4_candy_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
+                {% else %}
+                    <h2 class="visually-hidden">{% translate 'Online participation' %}</h2>
                 {% endif %}
                 </div>
                 <div class="container">

@@ -1,6 +1,7 @@
 {% load i18n project_tags a4_candy_project_tags contrib_tags thumbnail rules static %}
 
 <li class="tile organisation__tile tile--{{ orientation }}">
+    
     {% if type == 'project' %}
     {% project_tile_image object as project_image %}
     {% project_tile_image_copyright object as project_image_copyright %}
@@ -31,7 +32,7 @@
     <div class="tile__body">
         <div>
             <h3 class="tile__title" id="tile-title-{{ object.pk }}">
-                <a href="{{ url }}">{{ object.name }}</a>
+                <a class="tile__link" aria-labelledby="tile-title-{{ object.pk }}" href="{{ url }}">{{ object.name }}</a>
             </h3>
         {% if type == 'project' %}
             <p class="tile__text">{{ object.description }}</p>
@@ -39,7 +40,8 @@
         {% elif type == 'module' %}
             <p class="tile__extra-info">
                 <img class="tile__module-icon" aria-hidden="true" src="{% static 'images/icon-'|add:object.blueprint_type|lower|add:'.svg' %}" />
-                {{ object.get_blueprint_type_display }}
+                <span class="visually-hidden">{% translate 'Type of participation: ' %}</span>
+                <span class="u-capitalise">{{ object.get_blueprint_type_display }}</span>
             </p>
         </div>
 
@@ -57,38 +59,43 @@
             <span class="status-bar__active-fill" style="width:{{ object.module_running_progress }}%"></span>
         </div>
         <div class="d-flex justify-content-between">
-            <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="status-bar__status"><i class="far fa-clock" aria-hidden="true"></i>
             {% if type == 'project' %}
                 {% if object.module_running_days_left < 365 %}
-                {% blocktranslate with time_left=object.module_running_time_left %} {{ time_left }} remaining {% endblocktranslate %}
+                    {% blocktranslate with time_left=object.module_running_time_left %} {{ time_left }} remaining {% endblocktranslate %}
                 {% else %}
-                <span>{% translate 'more than 1 year remaining' %}</span>
+                    <span>{% translate 'more than 1 year remaining' %}</span>
                 {% endif %}
             {% else %}
                 {% if object.module_running_days_left < 365 %}
-                {{ object.module_running_time_left_abbreviated.0 }} <abbr title="{{ object.module_running_time_left_abbreviated.2 }}">{{ object.module_running_time_left_abbreviated.1 }}</abbr>
+                    {{ object.module_running_time_left_abbreviated.0 }} <abbr title="{{ object.module_running_time_left_abbreviated.2 }}">{{ object.module_running_time_left_abbreviated.1 }}</abbr>
                 {% else %}
-                <abbr title="{% translate 'more than 1 year' %}">{% translate '> 1 Y' context 'abbreviation "more than 1 year"' %}</abbr>
+                    <abbr title="{% translate 'more than 1 year' %}">{% translate '> 1 Y' context 'abbreviation "more than 1 year"' %}</abbr>
                 {% endif %}
             {% endif %}
             </span>
             {% has_perm 'a4projects.participate_in_project' request.user project as user_may_participate_in_project %}
             {% if user_may_participate_in_project %}
-                <a class="list-item__cta list-item__hover" href="{{ url }}">{% translate 'JOIN IN' %}</a>
+                <span class="list-item__cta list-item__hover">{% translate 'JOIN IN' %}</span>
             {% else %}
-                <a class="list-item__cta list-item__hover" href="{{ url }}">{% translate 'READ' %}</a>
+                <span class="list-item__cta list-item__hover">{% translate 'READ' %}</span>
             {% endif %}
         </div>
     </div>
     {% elif object.future_modules or object.module_in_future %}
     <div class="status-item status__future">
-    <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>{% if type == 'project' %}{% blocktranslate with date=object.future_modules.first.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktranslate %}{% else %}{% blocktranslate with date=object.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktranslate %}{% endif %}</span>
+    <span class="status-bar__status">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        {% if type == 'project' %}
+            {% blocktranslate with date=object.future_modules.first.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktranslate %}
+        {% else %}
+            {% blocktranslate with date=object.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktranslate %}
+        {% endif %}
+    </span>
     </div>
     {% else %}
     <div class="status-item status-bar__past">
     {% blocktranslate %}Participation ended. Read result.{% endblocktranslate %}
     </div>
     {% endif %}
-    <a class="tile__link" aria-labelledby="tile-title-{{ object.pk }}" href="{{ url }}">
-    </a>
 </li>
