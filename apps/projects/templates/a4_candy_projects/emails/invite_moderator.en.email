@@ -1,14 +1,14 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktrans with project_name=moderatorinvite.project.name %}Invitation to moderate the project: "{{ project_name }}"{% endblocktrans %}{% endblock %}
+{% block subject %}{% blocktranslate with project_name=moderatorinvite.project.name %}Invitation to moderate the project: "{{ project_name }}"{% endblocktranslate %}{% endblock %}
 
-{% block headline %}{% blocktrans with project_name=moderatorinvite.project.name %}Invitation to moderate project: "{{ project_name }}"{% endblocktrans %}{% endblock  %}
+{% block headline %}{% blocktranslate with project_name=moderatorinvite.project.name %}Invitation to moderate project: "{{ project_name }}"{% endblocktranslate %}{% endblock  %}
 
-{% block content %}{% blocktrans with project_name=moderatorinvite.project.name site_name=moderatorinvite.site %}you are invited to moderate the project "{{ project_name }}" on the participation platform {{ site_name }}. To be able to moderate and change the project click on "Accept invitation".{% endblocktrans %}
+{% block content %}{% blocktranslate with project_name=moderatorinvite.project.name site_name=moderatorinvite.site %}you are invited to moderate the project "{{ project_name }}" on the participation platform {{ site_name }}. To be able to moderate and change the project click on "Accept invitation".{% endblocktranslate %}
 {% endblock %}
 
 {% block cta_url %}https://{{ moderatorinvite.site }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
-{% block cta_label %}{% blocktrans %}Accept invitation{% endblocktrans %}{% endblock %}
+{% block cta_label %}{% blocktranslate %}Accept invitation{% endblocktranslate %}{% endblock %}
 
-{% block reason %}{% blocktrans with receiver_mail=moderatorinvite.email %}This email was sent to {{ receiver_mail }}. This email was sent to you because you are invited to moderate a project.{% endblocktrans %}{% endblock %}
+{% block reason %}{% blocktranslate with receiver_mail=moderatorinvite.email %}This email was sent to {{ receiver_mail }}. This email was sent to you because you are invited to moderate a project.{% endblocktranslate %}{% endblock %}

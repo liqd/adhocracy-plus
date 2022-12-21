@@ -44,7 +44,7 @@
                     <ul class="messages">
                         <li class="alert alert--warning" role="alert">
                             <div class="container">
-                                {% trans 'This project is not yet published.' %}
+                                {% translate 'This project is not yet published.' %}
                             </div>
                         </li>
                     </ul>
@@ -79,7 +79,7 @@
                               role="tab"
                               aria-controls="tabpanel-project-{{ project.pk }}-information"
                               aria-expanded="false">
-                              {% trans 'Information' %}
+                              {% translate 'Information' %}
                           </a>
                           <a
                               id="tab-project-{{ project.pk }}-participation"
@@ -89,7 +89,7 @@
                               role="tab"
                               aria-controls="tabpanel-project-{{ project.pk }}-participation"
                               aria-expanded="true">
-                              {% trans 'Participation' %}
+                              {% translate 'Participation' %}
                           </a>
                           <a
                               id="tab-project-{{ project.pk }}-result"
@@ -99,7 +99,7 @@
                               role="tab"
                               aria-controls="tabpanel-project-{{ project.pk }}-result"
                               aria-expanded="false">
-                              {% trans 'Result' %}
+                              {% translate 'Result' %}
                           </a>
                       </nav>
                       {% include 'includes/project_header_mobile_toggle.html' %}
@@ -109,7 +109,7 @@
             {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
             {% if user_may_change %}
             <div class="u-align-right">
-                <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small me-3" data-embed-target="external">{% trans 'Edit' %}</a>
+                <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small me-3" data-embed-target="external">{% translate 'Edit' %}</a>
             </div>
             {% else %}
             <div class="u-spacer-bottom-4"></div>
@@ -126,7 +126,7 @@
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                             {{ project.information | transform_collapsibles | richtext }}
                             {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
-                                <h3 class="u-top-divider">{% trans 'Contact for questions' %}</h3>
+                                <h3 class="u-top-divider">{% translate 'Contact for questions' %}</h3>
                                 {% if project.contact_name %}
                                 <p>{{ project.contact_name }}</p>
                                 {% endif %}
@@ -134,16 +134,16 @@
                                 <p>{{ project.contact_address_text|linebreaks }}</p>
                                 {% endif %}
                                 {% if project.contact_phone %}
-                                <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
+                                <p><strong>{% translate 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
                                 {% endif %}
                                 {% if project.contact_email %}
                                 <a class="btn btn--primary" href="mailto:{{ project.contact_email }}">
-                                    {% trans 'Email' %}
+                                    {% translate 'Email' %}
                                 </a>
                                 {% endif %}
                                 {% if project.contact_url %}
                                 <a class="btn btn--primary" target="_blank" href="{{ project.contact_url }}">
-                                    {% trans 'Website' %}
+                                    {% translate 'Website' %}
                                 </a>
                                 {% endif %}
                             {% endif %}
@@ -194,16 +194,16 @@
                         <div class="row">
                             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 mb-3">
                                 <strong>
-                                    {% trans 'Participation is not possible at the moment.' %}
+                                    {% translate 'Participation is not possible at the moment.' %}
                                     {% if not module.past_phases %}
                                         {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                                        {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                                        {% blocktranslate with date=start_date %}It starts on {{ date }}.{% endblocktranslate%}
                                     {% elif module.future_phases %}
                                         {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                                        {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                                        {% blocktranslate with date=start_date %}It continues on {{ date }}.{% endblocktranslate%}
                                     {% else %}
                                         {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
-                                        {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                                        {% blocktranslate with date=end_date %}It ended on {{ date }}.{% endblocktranslate%}
                                     {% endif %}
                                 </strong>
                             </div>
@@ -218,7 +218,7 @@
                                         <div class="font-weight-bold{% if phase == module.active_phase %} lr-bar{% endif %}">
                                             {% if phase == module.active_phase %}
                                                 <span class="lr-bar__left">{{ phase.name }}</span>
-                                                <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
+                                                <span class="lr-bar__right phase-info__highlight">{% translate 'active' %}</span>
                                             {% else %}
                                                 {{ phase.name }}
                                             {% endif %}
@@ -244,11 +244,11 @@
                     <div class="row">
                     {% if project.is_private %}
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs my-4">
-                            <i class="fas fa-lock pe-2" aria-hidden="true"></i>{% trans 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
+                            <i class="fas fa-lock pe-2" aria-hidden="true"></i>{% translate 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
                         </div>
                     {% elif project.is_semipublic %}
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs my-4">
-                            <i class="fas fa-eye pe-2" aria-hidden="true"></i>{% trans 'This project is publicly visible. Invited users can actively participate.' %}
+                            <i class="fas fa-eye pe-2" aria-hidden="true"></i>{% translate 'This project is publicly visible. Invited users can actively participate.' %}
                         </div>
                     {% endif %}
                     </div>
@@ -273,7 +273,7 @@
                             {% if project.result %}
                                 {{ project.result | transform_collapsibles | richtext }}
                             {% else %}
-                                {% trans 'No results yet.' %}
+                                {% translate 'No results yet.' %}
                             {% endif %}
                         </div>
                     </div>

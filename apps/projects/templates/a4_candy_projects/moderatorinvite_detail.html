@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktrans with project=moderatorinvite.project.name %}Invitation to {{ project }}{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktranslate with project=moderatorinvite.project.name %}Invitation to {{ project }}{% endblocktranslate %}{% endblock %}
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-                <h1>{% blocktrans with project=moderatorinvite.project.name %}Moderation invitation for {{ project }}{% endblocktrans %}</h1>
+                <h1>{% blocktranslate with project=moderatorinvite.project.name %}Moderation invitation for {{ project }}{% endblocktranslate %}</h1>
                 {{ form.non_field_errors }}
                 <p>
-                    {% trans "Please login to procceed. If you do not have an account, register and revisit the invitation link." %}
+                    {% translate "Please login to procceed. If you do not have an account, register and revisit the invitation link." %}
                 </p>
-                <a class="btn btn--primary" href="{% url 'account_login' %}?next={% url 'project-moderator-invite-detail' organisation_slug=moderatorinvite.project.organisation.slug invite_token=moderatorinvite.token %}">{% trans "Proceed to login" %}</a>
-                <a class="btn btn--light" href="{% url 'account_signup' %}?next={% url 'project-moderator-invite-detail' organisation_slug=moderatorinvite.project.organisation.slug invite_token=moderatorinvite.token %}">{% trans "Register" %}</a>
+                <a class="btn btn--primary" href="{% url 'account_login' %}?next={% url 'project-moderator-invite-detail' organisation_slug=moderatorinvite.project.organisation.slug invite_token=moderatorinvite.token %}">{% translate "Proceed to login" %}</a>
+                <a class="btn btn--light" href="{% url 'account_signup' %}?next={% url 'project-moderator-invite-detail' organisation_slug=moderatorinvite.project.organisation.slug invite_token=moderatorinvite.token %}">{% translate "Register" %}</a>
             </div>
         </div>
     </div>
