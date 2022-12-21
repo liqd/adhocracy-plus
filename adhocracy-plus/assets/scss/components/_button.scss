@@ -1,12 +1,12 @@
 // filled buttons with active lighter colour
-@mixin button-bg($bg, $border, $color) {
+@mixin button-bg($bg, $border, $color, $hover) {
     background-color: $bg;
     border-color: $border;
     color: $color;
 
     &:hover {
-        background-color: lighten($bg, 12%);
-        border-color: lighten($border, 12%);
+        background-color: lighten($bg, $hover);
+        border-color: lighten($bg, $hover);
         color: $color;
         transition: all 0.3s ease;
     }
@@ -59,13 +59,15 @@
 
 // button used for adding things, ideas, files ect.
 .btn.btn--default {
-    @include button-bg($print-black, $print-black, $body-bg);
+    @include button-bg($print-black, $print-black, $body-bg, 15%);
 }
 
-.btn.btn--light,
+.btn.btn--light {
+    @include button($brand-tertiary, $text-color, $text-color, 57%);
+}
+
 .btn.btn--primary {
-    // same as $brand-primary-tint
-    @include button($brand-primary, $text-color, $text-color, 47%);
+    @include button($brand-primary, $brand-primary, $text-color, 47%);
 }
 
 .btn.btn--secondary {
@@ -73,11 +75,11 @@
 }
 
 .btn.btn--secondary-filled {
-    @include button-bg($brand-secondary, $brand-secondary, $print-black);
+    @include button-bg($brand-secondary, $brand-secondary, $print-black, 10%);
 }
 
 .btn.btn--bg-tertiary {
-    @include button-bg($brand-tertiary-bg, $brand-tertiary-bg, $print-black);
+    @include button-bg($brand-tertiary-tint, $brand-tertiary-tint, $print-black, 2%);
 }
 
 .btn.btn--transparent {
@@ -104,7 +106,7 @@
     &:disabled,
     &.is-disabled {
         box-shadow: none;
-        background-color: lighten($text-color, 55%);
+        background-color: $bg-light;
     }
 
     // needed for toggle switch
