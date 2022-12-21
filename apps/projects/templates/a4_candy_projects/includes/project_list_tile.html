@@ -68,6 +68,7 @@
                 {% endif %}
             {% else %}
                 {% if object.module_running_days_left < 365 %}
+                    {% comment %}module_running_time_left_abbreviated is defined in a4 and given as a list in the order [number, abbreviation, title]{% endcomment %}
                     {{ object.module_running_time_left_abbreviated.0 }} <abbr title="{{ object.module_running_time_left_abbreviated.2 }}">{{ object.module_running_time_left_abbreviated.1 }}</abbr>
                 {% else %}
                     <abbr title="{% translate 'more than 1 year' %}">{% translate '> 1 Y' context 'abbreviation "more than 1 year"' %}</abbr>
