@@ -15,10 +15,10 @@
                             <span id="timeline_entry_{{ forloop.counter }}">
                                 {% if  date.type == 'module' %}
                                     <h2 class="timeline-carousel__title">{{ date.title }}</h2>
-                                    <date>{% translate 'from' %} {{ date.date | date }}</date>
+                                    <date>{% blocktranslate with date=date.date|date %} from {{ date }}{% endblocktranslate %}</date>
                                 {% else %}
                                     <h2 class="timeline-carousel__title">{{ date.event_type }}</h2>
-                                    <date>{% translate 'on' %} {{ date.date | date }}</date>
+                                    <date>{% blocktranslate with date=date.date|date %} on {{ date }}{% endblocktranslate %}</date>
                                 {% endif %}
                             </span>
                         </div>
