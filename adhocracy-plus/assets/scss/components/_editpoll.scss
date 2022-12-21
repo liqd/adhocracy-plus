@@ -7,7 +7,7 @@
 }
 
 .editpoll__btn--dark {
-    @extend .btn--bg-tertiary;
+    @extend .btn--light;
 }
 
 .editpoll__btn--question,
@@ -17,7 +17,7 @@
 }
 
 .editpoll__help-text { // Question ID
-    color: $gray-lighter;
+    color: $text-color-gray;
 }
 
 .editpoll__btns--question {
@@ -29,9 +29,4 @@
     .editpoll__btns--question {
         flex-direction: row;
     }
-
-    // .editpoll__btn--question {
-    //     margin: 0;
-    //     margin-right: 0.5 * $spacer;
-    // }
 }

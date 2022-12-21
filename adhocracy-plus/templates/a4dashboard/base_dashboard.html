@@ -18,8 +18,8 @@
                 </a>
               </div>
             {% endif %}
-            <div class="dropdown">
-                {% if view.other_organisations_of_user %}
+            {% if view.other_organisations_of_user %}
+                <div class="dropdown">
                     <button
                             title="{% translate 'Organisations' %}"
                             type="button"
@@ -42,10 +42,10 @@
                             </a>
                         {% endfor %}
                     </div>
-                {% else %}
-                    <span class="btn btn--none btn--small">{{ view.organisation.name }}</span>
-                {% endif %}
-            </div>
+                </div>
+            {% else %}
+                <span class="py-1 px-3">{{ view.organisation.name }}</span>
+            {% endif %}
           </div>
 
             {% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug as project_list %}

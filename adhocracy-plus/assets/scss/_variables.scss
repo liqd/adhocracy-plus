@@ -2,7 +2,6 @@
 $brand-primary: #2d40cc; // ultramarine
 
 $brand-secondary: #90efe4 !default; // terquoise
-$brand-secondary-dark: #46caad !default; // darker terquoise
 
 $brand-tertiary: #008dc5 !default; // prussian blue
 
@@ -27,7 +26,6 @@ $text-color-gray: #666 !default;
 $overlay: rgba(#000, 0.5) !default;
 
 $gray: #434343 !default;
-$gray-lighter: $text-color-gray;
 $gray-lightest: #d8d8d8;
 
 $light:         $gray-lightest !default;
@@ -45,10 +43,9 @@ $print-link: #005cb4 !default;
 $brand-primary-tint: lighten($brand-primary, 47%) !default;
 $brand-secondary-tint: lighten($brand-secondary, 20%) !default;
 $brand-tertiary-tint: lighten($brand-tertiary, 57%) !default;
-$brand-tertiary-bg: lighten($brand-tertiary, 45%) !default;
 
 $bg-light: #f7f7f7;
-$bg-tertiary: $brand-primary-tint !default;
+$bg-tertiary: $brand-tertiary-tint !default;
 
 $demi-bold: 600;
 $headings-font-weight: $demi-bold !default;
@@ -57,7 +54,7 @@ $link-color: $text-color !default;
 $link-hover-color: darken($link-color, 15%) !default;
 
 $border-radius: 0 !default;
-$border-color: $gray-lighter !default;
+$border-color: $text-color-gray !default;
 $input-border-color: $border-color !default;
 
 $feedback-color-accepted: #0a820a !default;
