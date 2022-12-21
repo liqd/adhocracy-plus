@@ -84,7 +84,7 @@ $checkbox-size: 20px;
 }
 
 .poll-row__bar {
-    // background-color: $brand-secondary-tint;
+    background-color: $brand-tertiary-tint;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -143,7 +143,7 @@ $checkbox-size: 20px;
 
 .poll-row__chosen {
     position: absolute;
-    top: 0.5 * $spacer;
+    top: 0.25 * $spacer;
     color: $brand-tertiary;
 }
 
@@ -153,7 +153,7 @@ $checkbox-size: 20px;
 }
 
 .poll-slider__answer {
-    padding-bottom: 1.75 * $spacer;
+    padding-bottom: 1.5 * $spacer;
     overflow-wrap: break-word;
 
     i {
@@ -164,7 +164,7 @@ $checkbox-size: 20px;
 
 .poll-slider__count {
     font-size: $font-size-sm;
-    color: $gray-lighter;
+    color: $text-color-gray;
     position: absolute;
     bottom: 0;
 
@@ -180,7 +180,7 @@ $checkbox-size: 20px;
 .poll-slider {
     position: relative;
 
-    // background-color: $brand-secondary-tint;
+    background-color: $brand-tertiary-tint;
     margin-bottom: $spacer;
     border-radius: 0.3 * $spacer;
 
@@ -213,7 +213,7 @@ $checkbox-size: 20px;
         }
 
         &:before {
-            // color: $brand-secondary-tint;
+            color: $brand-tertiary-tint;
             opacity: 100%;
             font-family: "Font Awesome 5 Free", sans-serif;
             font-weight: 900;
@@ -228,6 +228,12 @@ $checkbox-size: 20px;
 
     .slick-next:before {
         content: "\f061"; // arrow-right
+    }
+
+    .slick-disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
     }
 
     // Ensure centermode works
