@@ -38,11 +38,13 @@
             <p class="tile__text">{{ object.description }}</p>
         </div>
         {% elif type == 'module' %}
+            {% if object.blueprint_type %}
             <p class="tile__extra-info">
                 <img class="tile__module-icon" aria-hidden="true" src="{% static 'images/icon-'|add:object.blueprint_type|lower|add:'.svg' %}" />
                 <span class="visually-hidden">{% translate 'Type of participation: ' %}</span>
                 <span class="u-capitalise">{{ object.get_blueprint_type_display }}</span>
             </p>
+            {% endif %}
         </div>
 
         <div class="tile__extra-info">
