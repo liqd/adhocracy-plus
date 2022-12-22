@@ -1,23 +1,23 @@
 {% load contrib_tags i18n %}
 
 {% if page_obj.has_previous or page_obj.has_next %}
-<nav aria-label="{% trans 'Page navigation' %}">
+<nav aria-label="{% translate 'Page navigation' %}">
     <ul class="pagination d-flex flex-row justify-content-between">
         <li class="pagination-item">
             {% if page_obj.has_previous %}
             {% combined_url_parameter request.GET page=page_obj.previous_page_number as url_par %}
-            <a class="d-none d-sm-block" href="{{ url_par }}">{% trans 'Previous page' %}</a>
-            <a aria-label="{% trans 'Previous page' %}" class="d-block d-sm-none" href="{{ url_par }}"><i class="fas fa-angle-left" aria-hidden="true"></i></a>
+            <a class="d-none d-sm-block" href="{{ url_par }}">{% translate 'Previous page' %}</a>
+            <a aria-label="{% translate 'Previous page' %}" class="d-block d-sm-none" href="{{ url_par }}"><i class="fas fa-angle-left" aria-hidden="true"></i></a>
             {% endif %}
         </li>
         <li class="pagination-item">
-            <div class="pagination-text">{{ page_obj.number }}{% trans ' of ' %}{{ page_obj.paginator.num_pages }}</div>
+            <div class="pagination-text">{{ page_obj.number }}{% translate ' of ' %}{{ page_obj.paginator.num_pages }}</div>
         </li>
         <li class="pagination-item">
         {% if page_obj.has_next %}
             {% combined_url_parameter request.GET page=page_obj.next_page_number as url_par %}
-            <a class="d-none d-sm-block" href="{{ url_par }}">{% trans 'Next page' %}</a>
-            <a aria-label="{% trans 'Next page' %}" class="d-block d-sm-none" href="{{ url_par }}"><i class="fas fa-angle-right" aria-hidden="true"></i></a>
+            <a class="d-none d-sm-block" href="{{ url_par }}">{% translate 'Next page' %}</a>
+            <a aria-label="{% translate 'Next page' %}" class="d-block d-sm-none" href="{{ url_par }}"><i class="fas fa-angle-right" aria-hidden="true"></i></a>
         {% endif %}
         </li>
     </ul>

@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Moderate' %} {{ object.name }} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Moderate' %} {{ object.name }} &mdash; {{ block.super }}{% endblock %}
 {% block content %}
 <div class="u-bg-light py-5">
     <div class="container container--shadow">
         <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 pt-5">
-                <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+                <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
                     <ul>
                         <li>
                             <a href="{{ module.get_detail_url }}">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                {% trans 'go back' %}</a>
+                                {% translate 'go back' %}</a>
                         </li>
                         <li>
                             <a href="{{ object.get_absolute_url }}">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                {% trans 'back to proposal' %}</a>
+                                {% translate 'back to proposal' %}</a>
                         </li>
                     </ul>
                 </nav>
 
-                <h1>{% trans 'Moderate proposal' %}</h1>
+                <h1>{% translate 'Moderate proposal' %}</h1>
 
                 <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
                     {% csrf_token %}
@@ -35,8 +35,8 @@
                     {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=forms.moderateable.is_archived %}
 
                     <div class="d-flex justify-content-end mb-3">
-                        <a href="{{ object.get_absolute_url }}" class="btn btn--secondary me-2">{% trans 'Cancel' %}</a>
-                        <input type="submit" class="btn btn--primary" value="{% trans 'Save' %}" />
+                        <a href="{{ object.get_absolute_url }}" class="btn btn--secondary me-2">{% translate 'Cancel' %}</a>
+                        <input type="submit" class="btn btn--primary" value="{% translate 'Save' %}" />
                     </div>
                 </form>
 

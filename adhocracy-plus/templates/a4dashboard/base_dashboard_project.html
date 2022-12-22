@@ -4,12 +4,12 @@
 {% block dashboard_nav %}
 <div class="u-bg-secondary u-spacer-bottom-double py-3">
     <div class="container">
-            <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+            <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
                 <ul>
                     <li>
                         <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                            {% trans 'All projects' %}
+                            {% translate 'All projects' %}
                         </a>
                     </li>
                 </ul>
@@ -21,7 +21,7 @@
 {% block dashboard_content %}
     {% closed_accordions project.id as closed_accordions %}
     <div class="row">
-        <nav class="col-md-3 js-selector-update-dashboard" aria-label="{% trans 'Project Settings' %}">
+        <nav class="col-md-3 js-selector-update-dashboard" aria-label="{% translate 'Project Settings' %}">
             <div class="dashboard-nav">
                 <div
                     class="dashboard-nav__dropdown{% if project.id in closed_accordions.0 %} collapsed{% endif %}"
@@ -33,9 +33,9 @@
                     data-bs-target="#dashboardCollapseProj"
                 >
                     {% if project_progress.project_is_complete %}
-                    <i class="fas fa-check-circle text-info" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+                    <i class="fas fa-check-circle text-info" title="{% translate 'Project ready for publication' %}" aria-label="{% translate 'Project ready for publication' %}"></i>
                     {% else %}
-                    <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+                    <i class="fas fa-exclamation-circle text-danger" title="{% translate 'Project not ready for publication' %}" aria-label="{% translate 'Project not ready for publication' %}"></i>
                     {% endif %}
                     {{ project.name }}
                     <i class="fa fa-chevron-up" aria-hidden="true"></i>
@@ -46,7 +46,7 @@
                             <a href="{{ item.url }}"
                                class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
                                  {% if not item.is_complete %}
-                                     <i class="fa fa-exclamation-circle text-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
+                                     <i class="fa fa-exclamation-circle text-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
                                  {% endif %}
                                 {{ item.label }}
                             </a>
@@ -67,8 +67,8 @@
                         <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug organisation_slug=project.organisation.slug %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="referrer" value="{{ request.path }}" />
-                        <button type="submit" class="btn btn--none" value="{% trans 'Delete' %}">
-                            {% trans 'Delete' %}
+                        <button type="submit" class="btn btn--none" value="{% translate 'Delete' %}">
+                            {% translate 'Delete' %}
                         </button>
                         </form>
                       </a>
@@ -86,9 +86,9 @@
                         data-bs-target="#dashboardCollapse_{{ forloop.counter }}"
                     >
                       {% if module_menu.is_complete %}
-                          <i class="fas fa-check-circle text-info" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
+                          <i class="fas fa-check-circle text-info" title="{% translate 'Module ready for addition' %}" aria-label="{% translate 'Module ready for addition' %}"></i>
                       {% else %}
-                          <i class="fas fa-exclamation-circle text-danger" title="{% trans 'Module not ready for addition' %}" aria-label="{% trans 'Module not ready for addition' %}"></i>
+                          <i class="fas fa-exclamation-circle text-danger" title="{% translate 'Module not ready for addition' %}" aria-label="{% translate 'Module not ready for addition' %}"></i>
                       {% endif %}
                       {{ module_menu.module.name }}
                       <i class="fa fa-chevron-up {% if module_menu.module.is_draft %}dashboard-nav-i-spacer{% endif %}" aria-hidden="true"></i>
@@ -100,7 +100,7 @@
                               <a href="{{ item.url }}"
                                  class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
                                     {% if not item.is_complete %}
-                                        <i class="fa fa-exclamation-circle text-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
+                                        <i class="fa fa-exclamation-circle text-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
                                     {% endif %}
                                     {{ item.label }}
                                 </a>
@@ -129,7 +129,7 @@
                                       checked
                                       {% if not project.is_draft %}disabled{% endif %}>
                                       <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
-                                          {% trans 'Hide from project' %}
+                                          {% translate 'Hide from project' %}
                                       </label>
                                   {% else %}
                                     <button name="action" value="publish" class="btn btn--none p-0 btn--none-reset"></button>
@@ -139,7 +139,7 @@
                                       id="dashboardToggle_{{ forloop.counter }}"
                                       {% if not module_menu.is_complete %}disabled{% endif %}>
                                     <label class="form-check-label dashboard-nav__toggle-label" for="dashboardToggle_{{ forloop.counter }}">
-                                      {% trans 'Add to project' %}
+                                      {% translate 'Add to project' %}
                                     </label>
                                   {% endif %}
 
@@ -154,7 +154,7 @@
 
             {% has_perm 'a4projects.change_project' request.user view.project as user_may_add %}
             {% if user_may_add %}
-                <a class="btn btn--secondary btn--full" href="{% url 'a4dashboard:module-blueprint-list' organisation_slug=project.organisation.slug project_slug=project.slug %}">{% trans 'Add Module' %}</a>
+                <a class="btn btn--secondary btn--full" href="{% url 'a4dashboard:module-blueprint-list' organisation_slug=project.organisation.slug project_slug=project.slug %}">{% translate 'Add Module' %}</a>
             {% endif %}
         </nav>
 

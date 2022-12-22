@@ -103,12 +103,12 @@
         <div class="row justify-content-center">
             {% if page.get_parent.specific.demo_link %}
             <div class="col-12 col-sm-6 col-lg-5">
-                <a class="btn btn--full btn--transparent" href="{{ page.get_parent.specific.demo_link }}">{% trans 'Visit Demosite' %}</a>
+                <a class="btn btn--full btn--transparent" href="{{ page.get_parent.specific.demo_link }}">{% translate 'Visit Demosite' %}</a>
             </div>
             {% endif %}
 
             <div class="col-12 col-sm-6 col-lg-5">
-                <a class="btn btn--full btn--transparent" href="{{ page.get_parent.url }}{% if other_use_cases %}?category={{ page.category }}{% endif %}">{% trans 'View more examples' %}</a>
+                <a class="btn btn--full btn--transparent" href="{{ page.get_parent.url }}{% if other_use_cases %}?category={{ page.category }}{% endif %}">{% translate 'View more examples' %}</a>
             </div>
         </div>
     </div>

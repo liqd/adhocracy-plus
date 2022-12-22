@@ -5,7 +5,7 @@
     {% has_or_would_have_perm 'a4_candy_ideas.add_idea' request.user module as propose_allowed %}
     {% if propose_allowed %}
         <a href="{% url 'a4_candy_ideas:idea-create' organisation_slug=module.project.organisation.slug module_slug=module.slug %}" class="btn btn--default btn--full btn--huge mt-4">
-            {% trans 'Submit idea' %}
+            {% translate 'Submit idea' %}
         </a>
     {% endif %}
 {% endblock %}
@@ -28,7 +28,7 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    {% trans "Nothing to show" %}
+                    {% translate "Nothing to show" %}
                 {% endif %}
 
                 {% include "a4_candy_contrib/includes/pagination.html" %}

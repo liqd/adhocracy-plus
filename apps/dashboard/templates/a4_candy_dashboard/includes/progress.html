@@ -9,14 +9,14 @@
 
 {% if project.is_draft %}
     <button {% if not project|is_publishable:project_progress %}disabled{% endif %} class="btn btn--primary btn--full u-spacer-bottom" data-bs-toggle="modal" data-bs-target="#publish-modal">
-        {% trans 'Publish' %}
+        {% translate 'Publish' %}
     </button>
 {% else %}
     <form action="{% url 'a4dashboard:project-publish' organisation_slug=project.organisation.slug project_slug=project.slug %}" method="post" data-ignore-submit="true">
         {% csrf_token %}
         <input type="hidden" name="referrer" value="{{ request.path }}" />
         <button name="action" value="unpublish" class="btn btn--light btn--full u-spacer-bottom">
-            {% trans 'Unpublish' %}
+            {% translate 'Unpublish' %}
         </button>
     </form>
 {% endif %}
@@ -25,8 +25,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title m-0">{% trans "Are you sure you want to publish your project?" %}</h3>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% trans 'Close'%}">
+                <h3 class="modal-title m-0">{% translate "Are you sure you want to publish your project?" %}</h3>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close'%}">
                     <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
@@ -37,13 +37,13 @@
                 </p>
                 {% endif %}
                 <div class="u-spacer-bottom d-flex justify-content-end">
-                  <button type="button" data-bs-dismiss="modal" class="btn btn--secondary me-3">{% trans 'Cancel'%}
+                  <button type="button" data-bs-dismiss="modal" class="btn btn--secondary me-3">{% translate 'Cancel'%}
                   </button>
                     <form action="{% url 'a4dashboard:project-publish' organisation_slug=project.organisation.slug project_slug=project.slug %}" method="post" data-ignore-submit="true" class="u-inline">
                         {% csrf_token %}
                         <input type="hidden" name="referrer" value="{{ request.path }}" />
                         <button name="action" value="publish" class="btn btn--default">
-                        {% trans 'Publish' %}
+                        {% translate 'Publish' %}
                         </button>
                     </form>
 

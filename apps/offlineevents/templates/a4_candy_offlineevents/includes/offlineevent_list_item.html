@@ -12,17 +12,17 @@
                     <a href="{% url 'a4_candy_offlineevents:offlineevent-detail' organisation_slug=project.organisation.slug slug=object.slug %}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-eye" aria-hidden="true"></i>
-                        {% trans 'View' %}
+                        {% translate 'View' %}
                     </a>
                     <a href="{% url 'a4dashboard:offlineevent-update' organisation_slug=project.organisation.slug slug=object.slug %}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
-                        {% trans 'Edit'%}
+                        {% translate 'Edit'%}
                     </a>
                     <a href="{% url 'a4dashboard:offlineevent-delete' organisation_slug=project.organisation.slug slug=object.slug %}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-times" aria-hidden="true"></i>
-                        {% trans 'Delete'%}
+                        {% translate 'Delete'%}
                     </a>
                 {% endspaceless %}
             </div>

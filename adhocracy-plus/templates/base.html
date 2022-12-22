@@ -54,7 +54,7 @@
 </head>
 <body>
     {% wagtailuserbar %}
-        <a href="#main" class="visually-hidden-focusable">{% trans "Skip to content "%}</a>
+        <a href="#main" class="visually-hidden-focusable">{% translate "Skip to content "%}</a>
 
         {% block header %}
         {% include 'header.html' %}
@@ -97,7 +97,7 @@
                 <span class="d-none d-md-block">
                     {% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}{{ platformname }} is funded by donations.{% endblocktrans %}
                     <br>
-                    <b>{% trans 'Donate now' %}</b>
+                    <b>{% translate 'Donate now' %}</b>
                 </span>
                 <span class="d-md-none">
                     <b>{% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Donate now to {{ platformname }}{% endblocktrans %}</b>

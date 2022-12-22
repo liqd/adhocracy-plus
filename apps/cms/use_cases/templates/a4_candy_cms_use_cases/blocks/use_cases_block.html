@@ -27,13 +27,13 @@
     <div class="row justify-content-center">
         {% if value.demo_platform %}
         <div class="col-12 col-sm-6 col-lg-5">
-            <a class="btn btn--full btn--transparent" href="{{ value.demo_platform }}">{% trans 'Visit Demosite' %}</a>
+            <a class="btn btn--full btn--transparent" href="{{ value.demo_platform }}">{% translate 'Visit Demosite' %}</a>
         </div>
         {% endif %}
 
         {% if value.use_case_page %}
         <div class="col-12 col-sm-6 col-lg-5">
-            <a class="btn btn--full btn--transparent" href="{{ value.use_case_page.url }}">{% trans 'View more examples' %}</a>
+            <a class="btn btn--full btn--transparent" href="{{ value.use_case_page.url }}">{% translate 'View more examples' %}</a>
         </div>
         {% endif %}
     </div>

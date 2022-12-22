@@ -1,11 +1,11 @@
 {% extends "a4dashboard/organisation_form_base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Settings" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "Settings" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block organisation_form %}
     <div class="col-md-10">
-        <h1 class="u-first-heading">{% trans "Edit your legal information" %}</h1>
+        <h1 class="u-first-heading">{% translate "Edit your legal information" %}</h1>
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
@@ -16,7 +16,7 @@
             {% include 'a4_candy_organisations/includes/form_field.html' with field=form.netiquette %}
 
             <div class="d-flex justify-content-end mb-3">
-                <button type="submit" class="btn btn--primary">{% trans 'Save changes' %}</button>
+                <button type="submit" class="btn btn--primary">{% translate 'Save changes' %}</button>
             </div>
         </form>
         {{ form.media }}

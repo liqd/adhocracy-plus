@@ -3,23 +3,23 @@
 <ul class="progress-line u-spacer-bottom">
     <li class="progress-line__entry">
         <span class="progress-line__line--bottom"></span>
-        <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% trans 'Project created' %}" aria-label="{% trans 'Project created' %}"></i>
-        <span>{% trans 'Create project' %}</span>
+        <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% translate 'Project created' %}" aria-label="{% translate 'Project created' %}"></i>
+        <span>{% translate 'Create project' %}</span>
     </li>
 
     <li class="progress-line__entry">
         <span class="progress-line__line--top"></span>
         <span class="progress-line__line--bottom"></span>
         {% if project_progress.project_is_complete %}
-            <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+            <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% translate 'Project ready for publication' %}" aria-label="{% translate 'Project ready for publication' %}"></i>
         {% else %}
-            <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+            <i class="fas fa-circle progress-line__icon--active" title="{% translate 'Project not ready for publication' %}" aria-label="{% translate 'Project not ready for publication' %}"></i>
         {% endif %}
 
 
         <span {% if dashboard_menu.project|project_nav_is_active %}class="progress-line__entry--active"{% endif %}>
 
-            <span>{% trans 'Fill in project details' %}</span></span>
+            <span>{% translate 'Fill in project details' %}</span></span>
     </li>
 
 
@@ -28,26 +28,26 @@
         <span class="progress-line__line--top"></span>
         <span class="progress-line__line--bottom"></span>
         {% if dashboard_menu.modules|length == 0 %}
-            <i class="fas fa-circle progress-line__icon--active" title="{% trans 'No module created' %}" aria-label="{% trans 'No module created' %}"></i>
+            <i class="fas fa-circle progress-line__icon--active" title="{% translate 'No module created' %}" aria-label="{% translate 'No module created' %}"></i>
         {% else %}
-            <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% trans 'Module created' %}" aria-label="{% trans 'Module created' %}"></i>
+            <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% translate 'Module created' %}" aria-label="{% translate 'Module created' %}"></i>
         {% endif %}
-        <span>{% trans 'Add participation module(s)' %}</span>
+        <span>{% translate 'Add participation module(s)' %}</span>
     </li>
 
     <li class="progress-line__entry">
         <span class="progress-line__line--top"></span>
         <span class="progress-line__line--bottom"></span>
         {% if dashboard_menu.modules|length == 0 %}
-            <i class="far fa-circle progress-line__icon" title="{% trans 'Module not ready to be filled in' %}" aria-label="{% trans 'Module not ready to be filled in' %}"></i>
+            <i class="far fa-circle progress-line__icon" title="{% translate 'Module not ready to be filled in' %}" aria-label="{% translate 'Module not ready to be filled in' %}"></i>
         {% elif not dashboard_menu.modules|has_publishable_module %}
-            <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Fill in module details' %}" aria-label="{% trans 'Fill in module details' %}"></i>
+            <i class="fas fa-circle progress-line__icon--active" title="{% translate 'Fill in module details' %}" aria-label="{% translate 'Fill in module details' %}"></i>
         {% else %}
-            <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% trans 'Module ready to be added to project' %}" aria-label="{% trans 'Module ready to be added to project' %}"></i>
+            <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% translate 'Module ready to be added to project' %}" aria-label="{% translate 'Module ready to be added to project' %}"></i>
         {% endif %}
 
         <span {% if dashboard_menu.modules|module_nav_is_active %}class="progress-line__entry--active"{% endif %}>
-            <span>{% trans 'Fill in module details' %}</span>
+            <span>{% translate 'Fill in module details' %}</span>
         </span>
 
     </li>
@@ -56,24 +56,24 @@
         <span class="progress-line__line--top"></span>
         <span class="progress-line__line--bottom"></span>
         {% if dashboard_menu.modules|length == 0 or not dashboard_menu.modules|has_publishable_module %}
-            <i class="far fa-circle progress-line__icon" title="{% trans 'Module not ready to be added to project' %}" aria-label="{% trans 'Module not ready to be added to project' %}"></i>
+            <i class="far fa-circle progress-line__icon" title="{% translate 'Module not ready to be added to project' %}" aria-label="{% translate 'Module not ready to be added to project' %}"></i>
         {% elif dashboard_menu.modules|has_publishable_module and project.published_modules.count == 0 %}
-            <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Show module(s) in project' %}" aria-label="{% trans 'Show module(s) in project' %}"></i>
+            <i class="fas fa-circle progress-line__icon--active" title="{% translate 'Show module(s) in project' %}" aria-label="{% translate 'Show module(s) in project' %}"></i>
         {% else %}
-            <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% trans 'Module added to project' %}" aria-label="{% trans 'Module added to project' %}"></i>
+            <i class="fas fa-check-circle progress-line__icon progress-line__icon--success" title="{% translate 'Module added to project' %}" aria-label="{% translate 'Module added to project' %}"></i>
         {% endif %}
-        <span>{% trans 'Add module(s) to project' %}</span>
+        <span>{% translate 'Add module(s) to project' %}</span>
     </li>
     {% endif %}
 
     <li class="progress-line__entry">
         <span class="progress-line__line--top"></span>
         {% if not project|is_publishable:project_progress %}
-        <i class="far fa-circle progress-line__icon" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+        <i class="far fa-circle progress-line__icon" title="{% translate 'Project not ready for publication' %}" aria-label="{% translate 'Project not ready for publication' %}"></i>
         {% elif project.is_draft %}
-        <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+        <i class="fas fa-circle progress-line__icon--active" title="{% translate 'Project ready for publication' %}" aria-label="{% translate 'Project ready for publication' %}"></i>
         {% endif %}
-        <span>{% trans 'Publish project' %}</span>
+        <span>{% translate 'Publish project' %}</span>
     </li>
 
 </ul>

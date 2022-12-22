@@ -2,10 +2,10 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block head_title %}{% translate "Signup" %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Sign Up" %}</h1>
+    <h1>{% translate "Sign Up" %}</h1>
 
 <p>{% blocktrans with provider_name=account.get_provider.name site_name=current_site %}You are about to use your {{provider_name}} account to login to
 {{site_name}}. As a final step, please complete the following form:{% endblocktrans %}</p>
@@ -28,7 +28,7 @@
                 {% blocktrans with terms_of_use_url=settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url data_protection_policy=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url %}
                 I confirm that I have read and accepted the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{data_protection_policy}}" target="_blank">data protection policy</a>.
                 {% endblocktrans %}
-                {% if form.terms_of_use.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
+                {% if form.terms_of_use.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
             </label>
             {{ form.terms_of_use.errors }}
         </div>
@@ -46,7 +46,7 @@
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
         <div class="u-spacer-bottom-double">
-            <button class="btn btn--primary" type="submit">{% trans "Register" %}</button>
+            <button class="btn btn--primary" type="submit">{% translate "Register" %}</button>
         </div>
     </form>
 

@@ -4,16 +4,16 @@
 
 {% block dashboard_content %}
 <div class="row">
-    <nav class="col-md-3" aria-label="{% trans 'Participation projects' %}">
+    <nav class="col-md-3" aria-label="{% translate 'Participation projects' %}">
         <div class="dashboard-nav">
             <div class="dashboard-nav__dropdown">
-                {% trans "Participation projects" %}
+                {% translate "Participation projects" %}
             </div>
             <ul class="dashboard-nav__pages">
                 <li class="dashboard-nav__page">
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
                         class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'project-list' %}is-active{% endif %}">
-                        {% trans "Projects" %}
+                        {% translate "Projects" %}
                     </a>
                 </li>
             </ul>
@@ -24,7 +24,7 @@
             {% if settings.a4_candy_cms_settings.ImportantPages.manual_link %}
                 <a href="{{ settings.a4_candy_cms_settings.ImportantPages.manual_link }}"
                    class="btn btn--light btn--full">
-                    {% trans 'Manual' %}
+                    {% translate 'Manual' %}
                 </a>
             {% endif %}
         {% endif %}

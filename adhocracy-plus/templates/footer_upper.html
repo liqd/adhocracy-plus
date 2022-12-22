@@ -3,7 +3,7 @@
 
 <div class="footer__upper col-md-10 offset-md-1 py-5">
     <div class="d-flex justify-content-center footer-upper__text">
-        <span>{% trans 'Responsible for the content of this page:' %}</span>
+        <span>{% translate 'Responsible for the content of this page:' %}</span>
     </div>
 
     <nav class="navbar navbar-expand-lg justify-content-center">
@@ -14,20 +14,20 @@
             </li>
             <li class="nav-item">
                 {% url 'organisation-imprint' organisation_slug=organisation.slug as organisation_imprint_url %}
-                <a href="{{ organisation_imprint_url }}" class="navi-link">{% trans 'Imprint' %}</a>
+                <a href="{{ organisation_imprint_url }}" class="navi-link">{% translate 'Imprint' %}</a>
             </li>
             <li class="nav-item">
                 {% url 'organisation-data-protection' organisation_slug=organisation.slug as organisation_data_protection_url %}
-                <a href="{{ organisation_data_protection_url }}" class="navi-link">{% trans 'Data protection policy' %}</a>
+                <a href="{{ organisation_data_protection_url }}" class="navi-link">{% translate 'Data protection policy' %}</a>
             </li>
             <li class="nav-item">
                 {% url 'organisation-terms-of-use' organisation_slug=organisation.slug as organisation_terms_of_use_url %}
-                <a href="{{ organisation_terms_of_use_url }}" class="navi-link">{% trans 'Terms of use' %}</a>
+                <a href="{{ organisation_terms_of_use_url }}" class="navi-link">{% translate 'Terms of use' %}</a>
             </li>
             {% if organisation.netiquette %}
             <li class="nav-item">
                 {% url 'organisation-netiquette' organisation_slug=organisation.slug as organisation_netiquette_url %}
-                <a href="{{ organisation_netiquette_url }}" class="navi-link">{% trans 'Netiquette' %}</a>
+                <a href="{{ organisation_netiquette_url }}" class="navi-link">{% translate 'Netiquette' %}</a>
             </li>
             {% endif %}
         </ul>
