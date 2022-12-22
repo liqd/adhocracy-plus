@@ -5,7 +5,7 @@
 
 {% block organisation_form %}
     <div class="col-md-10">
-        <h1>{% trans "Edit your organisation information" %}</h1>
+        <h1 class="u-first-heading">{% trans "Edit your organisation information" %}</h1>
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
