@@ -5,7 +5,7 @@
 
 {% block communication_form %}
     <div class="col-md-9">
-        <h1>{% translate "Create Content" %}</h1>
+        <h1 class="u-first-heading">{% translate "Create Content" %}</h1>
 
         <form enctype="multipart/form-data" action="{% url 'a4dashboard:communication-content' organisation_slug=organisation.slug %}" method="post">
             {% csrf_token %}
