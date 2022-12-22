@@ -76,7 +76,7 @@
                         {% if current_category %}
                           {{ get_current_category_display }}
                         {% else %}
-                          <span class="text-muted">{% trans 'Choose Category' %}</span>
+                          <span class="text-muted">{% translate 'Choose Category' %}</span>
                         {% endif %}
                           <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </a>
@@ -107,9 +107,9 @@
             {% if page.demo_link %}
             <div class="col-12 col-sm-6 col-lg-4 cms-use-case__tile cms-use-case__tile--demo text-center">
                 <a class="cms__tile-link cms__tile-link--inverted h-100 d-flex flex-column justify-content-around p-4" target="_blank" href="{{ page.demo_link }}">
-                    <h5 class="cms__title--bold">{% trans 'Try it out!' %}</h5>
+                    <h5 class="cms__title--bold">{% translate 'Try it out!' %}</h5>
                     <p class="cms__text">{% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Instead of just reading about it, you can test all the features of {{ platformname }} yourself on our demo platform.{% endblocktrans %}</p>
-                    <div class="btn btn--text-color-inverted cms__text">{% trans 'Visit the demo platform' %}</div>
+                    <div class="btn btn--text-color-inverted cms__text">{% translate 'Visit the demo platform' %}</div>
                 </a>
             </div>
             {% endif %}

@@ -1,9 +1,9 @@
 {% load i18n rules discovery_tags absolute_url %}
 
 <div class="d-flex justify-content-center mb-3">
-        <a href='https://twitter.com/intent/tweet?source={{ request.build_absolute_uri }}&amp;text={{ idea.idea_title }}{{ request.build_absolute_uri }}' target='_blank' title='{% trans 'Share on Twitter' %}' aria-label='{% trans 'Share on Facebook' %}'><i class='fab fa-twitter fa-socialshare p-2' aria-hidden="true"></i></a>
+        <a href='https://twitter.com/intent/tweet?source={{ request.build_absolute_uri }}&amp;text={{ idea.idea_title }}{{ request.build_absolute_uri }}' target='_blank' title='{% translate 'Share on Twitter' %}' aria-label='{% translate 'Share on Facebook' %}'><i class='fab fa-twitter fa-socialshare p-2' aria-hidden="true"></i></a>
 
-        <a href='https://www.facebook.com/sharer/sharer.php?uri={{ request.build_absolute_uri }}' target='_blank' title='{% trans 'Share on Facebook' %}' aria-label='{% trans 'Share on Facebook' %}'><i class='fab fa-facebook-f fa-socialshare p-2' aria-hidden="true"></i></a>
+        <a href='https://www.facebook.com/sharer/sharer.php?uri={{ request.build_absolute_uri }}' target='_blank' title='{% translate 'Share on Facebook' %}' aria-label='{% translate 'Share on Facebook' %}'><i class='fab fa-facebook-f fa-socialshare p-2' aria-hidden="true"></i></a>
 
-        <a href='https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ idea.idea_title }}&source={{ request.build_absolute_uri }}' target='_blank' title='{% trans 'Share on Linkedin' %}' aria-label='{% trans 'Share on Linkedin' %}'><i class='fab fa-linkedin fa-socialshare p-2' aria-hidden="true"></i></a>
+        <a href='https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ idea.idea_title }}&source={{ request.build_absolute_uri }}' target='_blank' title='{% translate 'Share on Linkedin' %}' aria-label='{% translate 'Share on Linkedin' %}'><i class='fab fa-linkedin fa-socialshare p-2' aria-hidden="true"></i></a>
 </div>

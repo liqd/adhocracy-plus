@@ -2,7 +2,7 @@
 {% block headline %}{% endblock %}
 {% block sub-headline %}{% endblock %}
 
-{% block greeting %}{% trans 'Hello' %},{% endblock %}
+{% block greeting %}{% translate 'Hello' %},{% endblock %}
 {% block content %}{% endblock %}
 
 {% block cta %}{% block cta_label %}{% endblock %}: {% block cta_url %}{% endblock %}{% endblock %}
@@ -15,5 +15,5 @@ Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
 
 {% get_settings use_default_site=True %}
 {% if settings.a4_candy_cms_settings.ImportantPages.terms_of_use %}
-{% trans 'Terms of use' %}: {{ email.get_host }}{{ settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url }}
+{% translate 'Terms of use' %}: {{ email.get_host }}{{ settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url }}
 {% endif %}

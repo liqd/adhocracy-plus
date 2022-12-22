@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n wagtailcore_tags %}
 
-{% block title %}{% trans 'Data protection' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Data protection' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="u-bg-light py-5">
@@ -13,7 +13,7 @@
                         {% include 'header_lower.html' with organisation=organisation %}
                     </div>
                 </div>
-                <h1>{% trans 'Data protection' %}</h1>
+                <h1>{% translate 'Data protection' %}</h1>
                 {{ organisation.data_protection|richtext }}
             </div>
         </div>

@@ -14,7 +14,7 @@
     {% has_or_would_have_perm 'a4_candy_mapideas.add_mapidea' request.user module as propose_allowed %}
     {% if propose_allowed %}
         <a href="{% url 'a4_candy_mapideas:mapidea-create' organisation_slug=module.project.organisation.slug module_slug=module.slug %}" class="btn btn--default btn--full btn--huge mt-4">
-            {% trans 'Submit Idea' %}
+            {% translate 'Submit Idea' %}
         </a>
     {% endif %}
 {% endblock %}
@@ -32,8 +32,8 @@
             <div class="map-list__controls">
                 <div class="container">
                     <div class="leaflet-control-zoom leaflet-bar leaflet-control mt-4 mt-md-0">
-                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% trans 'Zoom in' %}">+</a>
-                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% trans 'Zoom out' %}">-</a>
+                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% translate 'Zoom in' %}">+</a>
+                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% translate 'Zoom out' %}">-</a>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                             {% endfor %}
                         </ul>
                     {% else %}
-                        {% trans "Nothing to show" %}
+                        {% translate "Nothing to show" %}
                     {% endif %}
 
                     {% include "a4_candy_contrib/includes/pagination.html" %}

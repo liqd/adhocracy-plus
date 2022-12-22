@@ -16,7 +16,7 @@
                         role="tab"
                         aria-controls="tabpanel-user-{{ user.pk }}-info"
                         aria-expanded="true">
-                        {% trans 'Info' %}
+                        {% translate 'Info' %}
                     </a>
                     <a
                         id="tab-user-{{ user.pk }}-participation"
@@ -26,7 +26,7 @@
                         role="tab"
                         aria-controls="tabpanel-user-{{ user.pk }}-participation"
                         aria-expanded="true">
-                        {% trans 'Participations' %}
+                        {% translate 'Participations' %}
                     </a>
                     <a
                         id="tab-user-{{ user.pk }}-activities"
@@ -36,7 +36,7 @@
                         role="tab"
                         aria-controls="tabpanel-user-{{ user.pk }}-activities"
                         aria-expanded="false">
-                        {% trans 'Activities' %}
+                        {% translate 'Activities' %}
                     </a>
                 </nav>
             </div>
@@ -61,26 +61,26 @@
                           <ul class="u-list-reset">
                               {% if object.homepage %}
                                   <li>
-                                      <i class="fas fa-link" aria-label="{% trans 'Homepage' %}" title="{% trans 'Homepage' %}"></i>
+                                      <i class="fas fa-link" aria-label="{% translate 'Homepage' %}" title="{% translate 'Homepage' %}"></i>
                                       <a href="{{ object.homepage }}">{{ object.homepage }}</a>
                                   </li>
                               {% endif %}
                               {% if object.facebook_handle %}
                                   <li>
-                                      <i class="fab fa-facebook-square" aria-label="{% trans 'Facebook' %}" title="{% trans 'Facebook' %}"></i>
+                                      <i class="fab fa-facebook-square" aria-label="{% translate 'Facebook' %}" title="{% translate 'Facebook' %}"></i>
                                       <a href="https://www.facebook.com/{{ object.facebook_handle }}">{{ object.facebook_handle }}</a>
                                   </li>
                               {% endif %}
                               {% if object.twitter_handle %}
                                   <li>
-                                      <i class="fab fa-twitter" aria-label="{% trans 'Twitter' %}" title="{% trans 'Twitter' %}"></i>
+                                      <i class="fab fa-twitter" aria-label="{% translate 'Twitter' %}" title="{% translate 'Twitter' %}"></i>
                                       <a href="https://twitter.com/{{ object.twitter_handle }}">{{ object.twitter_handle }}</a>
                                   </li>
                               {% endif %}
                           </ul>
 
                           {% comment 'This code can be used as soon as we several partners on the plattform' %}
-                          <h2 class="u-heading--sm text-uppercase">{% trans 'Active in these platforms' %}</h2>
+                          <h2 class="u-heading--sm text-uppercase">{% translate 'Active in these platforms' %}</h2>
                           {% if view.organisations %}
                               <ul class="u-list-reset">
                                   {% for organisation in view.organisations %}
@@ -93,9 +93,9 @@
                                   {% endfor %}
                               </ul>
                           {% else %}
-                              {% trans 'This user is not active in any platform yet.' %}
+                              {% translate 'This user is not active in any platform yet.' %}
                               {% if object == request.user %}
-                                  <a href="/">{% trans 'Check some platforms out.' %}</a>
+                                  <a href="/">{% translate 'Check some platforms out.' %}</a>
                               {% endif %}
                           {% endif %}
                           {% endcomment %}
@@ -112,7 +112,7 @@
                       {% for project in view.projects %}
                               {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project.get_absolute_url %}
                       {% empty %}
-                          {% trans 'This user is not active in any projects yet.' %}
+                          {% translate 'This user is not active in any projects yet.' %}
                       {% endfor %}
                       </ul>
                   </div>
@@ -125,7 +125,7 @@
                       {% for action in view.actions %}
                               {% include 'a4_candy_actions/includes/action.html' with action=action %}
                       {% empty %}
-                          {% trans 'No activity yet. '%}
+                          {% translate 'No activity yet. '%}
                       {% endfor %}
                   </div>
         </div>

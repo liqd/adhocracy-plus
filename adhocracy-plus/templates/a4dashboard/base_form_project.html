@@ -7,7 +7,7 @@
     <h1 class="mt-0">{{ view.title }}</h1>
 
      {% if form.errors %}
-        <div class="errorlist" role="alert">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
+        <div class="errorlist" role="alert">{% translate 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
     {% endif %}
 
     {% for error in form.non_field_errors %}
@@ -20,7 +20,7 @@
         {% include view.form_template_name %}
 
         <div class="d-flex justify-content-end">
-            <input type="submit" class="btn btn--primary" name="save" value="{% trans 'Save' %}"/>
+            <input type="submit" class="btn btn--primary" name="save" value="{% translate 'Save' %}"/>
         </div>
     </form>
 {% endblock %}

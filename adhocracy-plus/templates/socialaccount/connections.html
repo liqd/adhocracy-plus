@@ -2,11 +2,11 @@
 
 {% load i18n widget_tweaks %}
 
-{% block title %}{% trans "Social Connections" %}{% endblock %}
+{% block title %}{% translate "Social Connections" %}{% endblock %}
 
 {% block dashboard_content %}
-    <h1 class="mt-0">{% trans "Social Connections" %}</h1>
-    <h4>{% trans 'Remove existing connections' %}</h4>
+    <h1 class="mt-0">{% translate "Social Connections" %}</h1>
+    <h4>{% translate 'Remove existing connections' %}</h4>
     {% if form.accounts %}
     <p>{% blocktrans %}You can sign in to your account using any of the following third party
         accounts. To remove them mark the one you would like to remove and click the remove button{% endblocktrans %}</p>
@@ -28,11 +28,11 @@
             {% endwith %}
         {% endfor %}
         <div class="mb-3">
-            <button class="btn btn--small btn--danger" type="submit">{% trans 'Remove' %}</button>
+            <button class="btn btn--small btn--danger" type="submit">{% translate 'Remove' %}</button>
         </div>
     </form>
     {% else %}
-    <p>{% trans 'You currently have no social network accounts connected to this account.' %}</p>
+    <p>{% translate 'You currently have no social network accounts connected to this account.' %}</p>
     {% endif %}
     <div class="col-md-8 ps-0">
         {% include "socialaccount/snippets/provider_list.html" with process="connect" %}

@@ -1,11 +1,11 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Add a new subject' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Add a new subject' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_project_content %}
 <div class="container">
-    <h1 class="mt-0">{% trans 'Add a new subject'%}</h1>
+    <h1 class="mt-0">{% translate 'Add a new subject'%}</h1>
 
     {% url 'a4dashboard:subject-list' organisation_slug=project.organisation.slug module_slug=module.slug as cancel %}
     {% include "a4_candy_debate/includes/subject_form.html" with cancel=cancel %}

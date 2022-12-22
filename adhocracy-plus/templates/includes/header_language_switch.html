@@ -6,13 +6,13 @@
       href="#"
       id="navbarDropdown"
       role="button"
-      aria-label="{% trans 'Language selector, ' %}
+      aria-label="{% translate 'Language selector, ' %}
       {% for lang_code, lang_name in languages %}
         {% if lang_code == LANGUAGE_CODE %}
           {{ lang_name }}
         {% endif %}
       {% endfor %}
-      {% trans ' selected' %}"
+      {% translate ' selected' %}"
       data-bs-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false">
@@ -27,7 +27,7 @@
                 {% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}" />
                 <input name="language" type="hidden" value="{{ lang_code }}">
-                <button class="dropdown-item" role="button" type="submit" aria-label="{% trans 'select ' %}{{ lang_name }}">
+                <button class="dropdown-item" role="button" type="submit" aria-label="{% translate 'select ' %}{{ lang_name }}">
                     {{ language.name_local }}
                 </button>
             </form>

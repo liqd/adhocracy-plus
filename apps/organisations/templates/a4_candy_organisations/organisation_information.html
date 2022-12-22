@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load ckeditor_tags i18n thumbnail wagtailcore_tags %}
 
-{% block title %}{% trans 'Information' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Information' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="u-bg-light py-5">
@@ -16,7 +16,7 @@
 
             <div class="row">
                 <div class="col-md-10 offset-md-1">
-                    <h1>{% trans 'Information' %}</h1>
+                    <h1>{% translate 'Information' %}</h1>
                     {{ organisation.information | transform_collapsibles | richtext }}
                 </div>
             </div>
@@ -24,8 +24,8 @@
             {% if organisation.has_social_share %}
             <div class="col-12 bg-light">
                 <div class="py-3 text-center my-4">
-                    <h2>{% trans 'More about ' %}{{ organisation.name }}</h2>
-                    <p>{% trans 'Find us on social media and share your insights of this participation.' %}</p>
+                    <h2>{% translate 'More about ' %}{{ organisation.name }}</h2>
+                    <p>{% translate 'Find us on social media and share your insights of this participation.' %}</p>
                       {% if organisation.facebook_handle  %}
                       <div class="d-flex flex-row justify-content-center">
                       <a href="https://www.facebook.com/{{ organisation.facebook_handle }}" target="_blank"><div class="organisation__social-link m-2"><i class="fab fa-facebook-f"></i></div></a>

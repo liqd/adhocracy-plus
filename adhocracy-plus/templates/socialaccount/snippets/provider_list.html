@@ -3,7 +3,7 @@
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
-    <h4>{% trans "Login with social media account" %}</h4>
+    <h4>{% translate "Login with social media account" %}</h4>
     <div class="row pb-5">
     {% for provider in socialaccount_providers %}
         {% if provider.id == "openid" %}
@@ -17,10 +17,10 @@
         {% endfor %}
         {% endif %}
         <div class="col-md-6 pb-3">
-            <a title="{% trans 'Login with ' %} {{ provider.name }}"
+            <a title="{% translate 'Login with ' %} {{ provider.name }}"
                class="btn btn--light btn--{{ provider.id }} btn--small {{ provider.id }}"
                href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
-               {% trans 'Login with ' %} {{ provider.name|capfirst }} <i class="fab fa-{{ provider.id }}" aria-hidden="true"></i>
+               {% translate 'Login with ' %} {{ provider.name|capfirst }} <i class="fab fa-{{ provider.id }}" aria-hidden="true"></i>
            </a>
         </div>
     {% endfor %}

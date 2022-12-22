@@ -2,7 +2,7 @@
 {% load i18n static %}
 
 {% block dashboard_project_content %}
-    <h1 class="u-first-heading">{% trans 'Edit live stream' %}</h1>
+    <h1 class="u-first-heading">{% translate 'Edit live stream' %}</h1>
 
     {% for error in form.non_field_errors %}
         <span>{{ error }}</span>
@@ -16,7 +16,7 @@
 
         {% include 'a4_candy_contrib/includes/form_field.html' with field=form.event_image %}
         <div class="d-flex justify-content-end">
-            <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />
+            <input type="submit" class="btn btn--primary" value="{% translate 'Save'%}" />
         </div>
     </form>
 {% endblock %}
