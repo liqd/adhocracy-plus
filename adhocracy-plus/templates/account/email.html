@@ -3,21 +3,21 @@
 {% load i18n %}
 {% load widget_tweaks %}
 
-{% block title %}{% trans 'Email Addresses' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Email Addresses' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
-<h1 class="mt-0">{% trans 'Email Addresses' %}</h1>
+<h1 class="mt-0">{% translate 'Email Addresses' %}</h1>
 
 <section>
-    <h2>{% trans 'Main Email' %}</h2>
+    <h2>{% translate 'Main Email' %}</h2>
     <span>{{ user.email }}</span>
-    <span class="label">{% trans "Primary" %}</span>
-    <span class="label">{% trans "Verified" %}</span>
+    <span class="label">{% translate "Primary" %}</span>
+    <span class="label">{% translate "Verified" %}</span>
 </section>
 
 {% if user.emailaddress_set.all.count > 1 %}
 <section>
-    <h2 class="bg--top-border">{% trans 'Other Emails' %}</h2>
+    <h2 class="bg--top-border">{% translate 'Other Emails' %}</h2>
     {% for emailaddress in user.emailaddress_set.all %}
         {% if not emailaddress.primary %}
             <form class="multiform" action="{% url 'account_email' %}?next={{ request.path|urlencode }}" method="post">
@@ -26,19 +26,19 @@
                        value="{{emailaddress.email}}" >
                 {{ emailaddress.email }}
                 {% if emailaddress.verified %}
-                <span class="label mb-3">{% trans "Verified" %}</span>
+                <span class="label mb-3">{% translate "Verified" %}</span>
                 {% else %}
-                <span class="label mb-3">{% trans "Unverified" %}</span>
+                <span class="label mb-3">{% translate "Unverified" %}</span>
                 {% endif %}
                 <ul class="u-list-reset">
                 {% if not emailaddress.primary and emailaddress.verified %}
-                    <li class="d-inline"><button class="btn btn--primary" type="submit" name="action_primary">{% trans 'Make Primary' %}</button></li>
+                    <li class="d-inline"><button class="btn btn--primary" type="submit" name="action_primary">{% translate 'Make Primary' %}</button></li>
                 {% endif %}
                 {% if not emailaddress.verified %}
-                    <li class="d-inline"><button class="btn btn--light" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button></li>
+                    <li class="d-inline"><button class="btn btn--light" type="submit" name="action_send">{% translate 'Re-send Verification' %}</button></li>
                 {% endif %}
                 {% if not emailaddress.primary %}
-                    <li class="d-inline"><button class="btn btn--light" type="submit" name="action_remove" >{% trans 'Remove' %}</button></li>
+                    <li class="d-inline"><button class="btn btn--light" type="submit" name="action_remove" >{% translate 'Remove' %}</button></li>
                 {% endif %}
                 </ul>
             </form>
@@ -59,12 +59,12 @@
         {% endif %}
 
         <div class="form-group">
-            <label for="{{ form.email.id_for_label }}">{% trans "Add another Email" %}</label>
+            <label for="{{ form.email.id_for_label }}">{% translate "Add another Email" %}</label>
             {{ form.email.errors }}
             {{ form.email|add_class:"form-control" }}
         </div>
         <div class="d-flex justify-content-end mb-3">
-            <input class="btn btn--primary" name="action_add" type="submit" value="{% trans 'Add Email' %}"/>
+            <input class="btn btn--primary" name="action_add" type="submit" value="{% translate 'Add Email' %}"/>
         </div>
     </form>
 </section>

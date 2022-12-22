@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n wagtailcore_tags %}
 
-{% block title %}{% trans 'Terms of use' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Terms of use' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="u-bg-light py-5">
@@ -13,7 +13,7 @@
                         {% include 'header_lower.html' with organisation=organisation %}
                     </div>
                 </div>
-                <h1>{% trans 'Terms of use' %}</h1>
+                <h1>{% translate 'Terms of use' %}</h1>
                 {{ organisation.terms_of_use|richtext }}
             </div>
         </div>

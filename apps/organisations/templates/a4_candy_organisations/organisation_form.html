@@ -1,11 +1,11 @@
 {% extends "a4dashboard/organisation_form_base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Settings" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "Settings" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block organisation_form %}
     <div class="col-md-10">
-        <h1 class="u-first-heading">{% trans "Edit your organisation information" %}</h1>
+        <h1 class="u-first-heading">{% translate "Edit your organisation information" %}</h1>
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
@@ -21,8 +21,8 @@
             {% include 'a4_candy_organisations/includes/form_field.html' with field=form.instagram_handle %}
             {% include 'a4_candy_organisations/includes/form_field.html' with field=form.language %}
             <div class="form-group">
-                <label>{% trans "Language availability" %}</label>
-                <div class="form-hint">{% trans "Manage here the content of your page in the desired languages. You can add or delete them." %}</div>
+                <label>{% translate "Language availability" %}</label>
+                <div class="form-hint">{% translate "Manage here the content of your page in the desired languages. You can add or delete them." %}</div>
                 <div class="language-choice-list"
                      id="language-choice-list"
                      data-euth-widget="language-choice"
@@ -44,7 +44,7 @@
             </div>
 
             <div class="d-flex justify-content-end mb-3">
-                <button type="submit" class="btn btn--primary">{% trans 'Save changes' %}</button>
+                <button type="submit" class="btn btn--primary">{% translate 'Save changes' %}</button>
             </div>
         </form>
         {{ form.media }}

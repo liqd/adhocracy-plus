@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{{ object.name }} &mdash; {% trans 'Give feedback' %}{% endblock %}
+{% block title %}{{ object.name }} &mdash; {% translate 'Give feedback' %}{% endblock %}
 
 {% block content %}
 <div class="u-bg-light py-5">
@@ -13,22 +13,22 @@
                         {% include 'header_lower.html' with organisation=module.project.organisation %}
                     </div>
                 </div>
-                <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+                <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
                     <ul>
                         <li>
                             <a href="{{ module.get_detail_url }}">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                {% trans 'go back' %}</a>
+                                {% translate 'go back' %}</a>
                         </li>
                         <li>
                             <a href="{{ object.get_absolute_url }}">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                {% trans 'back to idea' %}</a>
+                                {% translate 'back to idea' %}</a>
                         </li>
                     </ul>
                 </nav>
 
-                <h1>{% trans 'Feedback on this idea' %}</h1>
+                <h1>{% translate 'Feedback on this idea' %}</h1>
                 <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
                     {% csrf_token %}
                     {% for form in forms.values %}
@@ -40,8 +40,8 @@
 
 
                     <div class="d-flex justify-content-end mb-3">
-                        <a href="{{ object.get_absolute_url }}" class="btn btn--secondary me-2">{% trans 'Cancel' %}</a>
-                        <input type="submit" class="btn btn--primary" value="{% trans 'Save' %}" />
+                        <a href="{{ object.get_absolute_url }}" class="btn btn--secondary me-2">{% translate 'Cancel' %}</a>
+                        <input type="submit" class="btn btn--primary" value="{% translate 'Save' %}" />
                     </div>
                 </form>
             </div>

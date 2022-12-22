@@ -2,10 +2,10 @@
 
 {% load i18n static thumbnail %}
 
-{% block title %}{% trans 'User Agreements' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'User Agreements' %} &mdash; {{ block.super }}{% endblock %}
 {% block dashboard_content %}
-    <h1 class="mt-0">{% trans 'User Agreements' %}</h1>
-    <p>{% trans 'Here you can edit all your agreements' %}</p>
+    <h1 class="mt-0">{% translate 'User Agreements' %}</h1>
+    <p>{% translate 'Here you can edit all your agreements' %}</p>
 
     <form method="post">
         {% csrf_token %}
@@ -31,7 +31,7 @@
         {% endfor %}
 
         <div class="d-flex justify-content-end mb-3 mt-5">
-            <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
+            <button type="submit" class="btn btn--primary">{% translate 'Save changes'%}</button>
         </div>
     </form>
     {{ form.media }}

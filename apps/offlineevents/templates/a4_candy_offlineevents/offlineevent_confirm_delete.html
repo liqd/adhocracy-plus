@@ -1,19 +1,19 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Confirm Offline Event Deletion' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Confirm Offline Event Deletion' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_project_content %}
 <div class="container">
-    <h1 class="mt-0">{% trans 'Are you sure you want to delete the offline event?' %}</h1>
+    <h1 class="mt-0">{% translate 'Are you sure you want to delete the offline event?' %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
         <a href="{% url 'a4dashboard:offlineevent-list' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--secondary">
-            {% trans 'Cancel'%}
+            {% translate 'Cancel'%}
         </a>
         
-        <input type="submit" class="btn btn--primary" value="{% trans 'Yes'%}" />
+        <input type="submit" class="btn btn--primary" value="{% translate 'Yes'%}" />
     </form>
 </div>
 {% endblock %}

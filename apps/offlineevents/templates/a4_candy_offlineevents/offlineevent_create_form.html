@@ -1,12 +1,12 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Create a new topic' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Create a new topic' %} &mdash; {{ block.super }}{% endblock %}
 {% block dashboard_project_content %}
 <div class="container">
-    <h1 class="mt-0">{% trans 'Add a new offline event'%}</h1>
+    <h1 class="mt-0">{% translate 'Add a new offline event'%}</h1>
     {% if form.errors %}
-        <div class="errorlist" role="alert">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
+        <div class="errorlist" role="alert">{% translate 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
     {% endif %}
 
     {% url 'a4dashboard:offlineevent-list' organisation_slug=project.organisation.slug project_slug=project.slug as cancel %}

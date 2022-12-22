@@ -5,7 +5,7 @@
 
 {% block dashboard_project_content %}
 <div class="container">
-    <h1 class="u-first-heading">{% trans 'Edit subject' %}</h1>
+    <h1 class="u-first-heading">{% translate 'Edit subject' %}</h1>
 
     {% url 'a4dashboard:subject-list' organisation_slug=project.organisation.slug module_slug=module.slug as cancel %}
     {% include "a4_candy_debate/includes/subject_form.html" with cancel=cancel %}

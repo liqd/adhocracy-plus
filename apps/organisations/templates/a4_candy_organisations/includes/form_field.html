@@ -3,7 +3,7 @@
 
 {% block after_label %}
     {% if important and not field.value %}
-        <i class="fa fa-exclamation-circle text-danger" title="{% trans 'Missing important field' %}" aria-label="{% trans 'Missing important field' %}"></i>
+        <i class="fa fa-exclamation-circle text-danger" title="{% translate 'Missing important field' %}" aria-label="{% translate 'Missing important field' %}"></i>
     {% endif %}
 {% endblock %}
 

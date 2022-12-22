@@ -37,7 +37,7 @@
           <td style="text-align: center; position: relative; top: -1.5em;" align="center">
             <p>
               {% block greeting %}
-              {% trans 'Hello' %},
+              {% translate 'Hello' %},
               {% endblock %}
             </p>
             {% block content_html %}
@@ -63,7 +63,7 @@
         {% if organisation %}
       <tr>
           <td style="padding-top: 60px; font-size: small; color: DarkSlateGray; font-weight: bold" align="center">
-              {% trans 'Responsible for the participation project:' %}
+              {% translate 'Responsible for the participation project:' %}
           </td>
       </tr>
       <tr>
@@ -74,11 +74,11 @@
                 <span style="color: DarkSlateGray; font-weight: bold;">{{ organisation.name }}</span>
               {% endif %}
               {% url 'organisation-imprint' organisation.slug as organisation_imprint_url %}
-              <a href="{{ email.get_host }}{{ organisation_imprint_url }}" style="color:black; text-decoration-line: none; padding-left: 10px;">{% trans 'Imprint' %}</a>
+              <a href="{{ email.get_host }}{{ organisation_imprint_url }}" style="color:black; text-decoration-line: none; padding-left: 10px;">{% translate 'Imprint' %}</a>
               {% url 'organisation-data-protection' organisation.slug as organisation_data_protection_url %}
-              <a href="{{ email.get_host }}{{ organisation_data_protection_url }}" style="color:black; text-decoration-line: none; padding-left: 10px;">{% trans 'Data protection' %}</a>
+              <a href="{{ email.get_host }}{{ organisation_data_protection_url }}" style="color:black; text-decoration-line: none; padding-left: 10px;">{% translate 'Data protection' %}</a>
               {% url 'organisation-terms-of-use' organisation.slug as organisation_terms_of_use_url %}
-              <a href="{{ email.get_host }}{{ organisation_terms_of_use_url }}" style="color:black; text-decoration-line: none; padding-left: 10px;">{% trans 'Terms of use' %}</a>
+              <a href="{{ email.get_host }}{{ organisation_terms_of_use_url }}" style="color:black; text-decoration-line: none; padding-left: 10px;">{% translate 'Terms of use' %}</a>
           </td>
       </tr>
         {% endif %}
@@ -102,16 +102,16 @@
               <p>
                   {% get_settings use_default_site=True %}
                   {% if settings.a4_candy_cms_settings.ImportantPages.imprint %}
-                  <a href="{{ email.get_host }}{{ settings.a4_candy_cms_settings.ImportantPages.imprint.url }}">{% trans 'Imprint' %}</a>
+                  <a href="{{ email.get_host }}{{ settings.a4_candy_cms_settings.ImportantPages.imprint.url }}">{% translate 'Imprint' %}</a>
                   {% endif %}
                   {% if settings.a4_candy_cms_settings.ImportantPages.data_protection_policy %}
-                  <a href="{{ email.get_host }}{{ settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url }}">{% trans 'Data protection policy' %}</a>
+                  <a href="{{ email.get_host }}{{ settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url }}">{% translate 'Data protection policy' %}</a>
                   {% endif %}
                   {% if settings.a4_candy_cms_settings.ImportantPages.terms_of_use %}
-                  <a href="{{ email.get_host }}{{ settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url }}">{% trans 'Terms of use' %}</a>
+                  <a href="{{ email.get_host }}{{ settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url }}">{% translate 'Terms of use' %}</a>
                   {% endif %}
                   {% if settings.a4_candy_cms_settings.ImportantPages.contact %}
-                  <a href="{{ email.get_host }}{{ settings.a4_candy_cms_settings.ImportantPages.contact.url }}">{% trans 'Contact' %}</a>
+                  <a href="{{ email.get_host }}{{ settings.a4_candy_cms_settings.ImportantPages.contact.url }}">{% translate 'Contact' %}</a>
                   {% endif %}
               </p>
           </td>

@@ -34,9 +34,9 @@
         <div class="col-12 col-sm text-end list-item__cta list-item__hover" href="{{ object.get_absolute_url }}">
             {% has_or_would_have_perm 'a4_candy_debate.comment_subject' request.user object as debate_allowed %}
             {% if debate_allowed %}
-            <span class="">{% trans 'Discuss with us!' %}</span>
+            <span class="">{% translate 'Discuss with us!' %}</span>
             {% else %}
-            <span class="">{% trans 'Read more' %}</span>
+            <span class="">{% translate 'Read more' %}</span>
             {% endif %}
         </div>
     </div>

@@ -1,12 +1,12 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n static %}
 
-{% block title %}{% trans "New Module" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "New Module" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_project_content %}
-<h1 class="mt-0">{% trans "New Module" %}</h1>
+<h1 class="mt-0">{% translate "New Module" %}</h1>
 <div class="form-hint">
-    {% trans 'Please add a module from the list. You can later add more modules to the project, edit them or remove them again.' %}
+    {% translate 'Please add a module from the list. You can later add more modules to the project, edit them or remove them again.' %}
 </div>
 
     {% for blueprint_slug, blueprint in view.blueprints %}

@@ -1,19 +1,19 @@
 {% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n static %}
 
-{% block title %}{% trans "New Project" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "New Project" %} &mdash; {{ block.super }}{% endblock%}
 
 <!-- Not used right now? -->
 
 {% block dashboard_nav %}
 <div class="u-bg-secondary u-spacer-bottom-double py-3">
     <div class="container">
-        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'All projects' %}
+                        {% translate 'All projects' %}
                     </a>
                 </li>
             </ul>
@@ -24,7 +24,7 @@
 
 {% block dashboard_content %}
 <div class="col-lg-10 offset-lg-1">
-    <h1>{% trans "Create a new Project" %}</h1>
+    <h1>{% translate "Create a new Project" %}</h1>
 
     <ul class="l-tiles-3">
         {% for blueprint_slug, blueprint in view.blueprints %}

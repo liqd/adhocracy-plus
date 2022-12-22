@@ -4,12 +4,12 @@
 {% block content %}
 <div class="row">
     <div class="col-md-10 offset-md-1">
-        <nav class="breadcrumbs mt-5 mb-4" aria-label="{% trans 'breadcrumbs' %}">
+        <nav class="breadcrumbs mt-5 mb-4" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
                     <a href="{{ module.get_detail_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'go back' %}</a>
+                        {% translate 'go back' %}</a>
                 </li>
             </ul>
         </nav>
@@ -19,7 +19,7 @@
           {% if phase == module.active_phase and extra_fields.live_stream %}
               {{ extra_fields.live_stream | transform_collapsibles | richtext }}
               <div>
-                <span class="label label--live">•{% trans ' Live now' %}</span>
+                <span class="label label--live">•{% translate ' Live now' %}</span>
               </div>
           {% endif %}
         {% endfor %}

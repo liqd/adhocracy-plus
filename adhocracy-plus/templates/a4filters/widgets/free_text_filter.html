@@ -1,13 +1,13 @@
 {% load i18n %}
 
 <form class="input-group" method="get">
-    <input class="form-control" type="search" name="{{ name }}" placeholder="{% trans 'Search' %}" value="{{ value }}" />
+    <input class="form-control" type="search" name="{{ name }}" placeholder="{% translate 'Search' %}" value="{{ value }}" />
     {% for par_name, value in url_par.items %}
         {% if par_name != name %}
             <input type="hidden" name="{{ par_name }}" value="{{ value }}" />
         {% endif %}
     {% endfor %}
-    <button class="btn btn--light" type="submit" title="{% trans 'Search' %}">
-        <i class="fa fa-search" aria-label="{% trans 'Search' %}"></i>
+    <button class="btn btn--light" type="submit" title="{% translate 'Search' %}">
+        <i class="fa fa-search" aria-label="{% translate 'Search' %}"></i>
     </button>
 </form>

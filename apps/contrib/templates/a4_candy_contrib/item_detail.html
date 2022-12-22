@@ -14,12 +14,12 @@
                         {% include 'header_lower.html' with organisation=module.project.organisation %}
                     </div>
                 </div>
-                <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+                <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
                     <ul>
                         <li>
                             <a href="{{ module.get_detail_url }}">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                {% trans 'go back' %}
+                                {% translate 'go back' %}
                             </a>
                         </li>
                     </ul>
@@ -60,7 +60,7 @@
                             {% html_date object.created %}
                         </div>
                         <div class="lr-bar__right">
-                            <strong>{% trans 'Reference No.' %}:</strong>
+                            <strong>{% translate 'Reference No.' %}:</strong>
                             {{ object.reference_number }}
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                         {% if request.user.is_authenticated %}
                             <div class="dropdown">
                                 <button
-                                        title="{% trans 'Actions' %}"
+                                        title="{% translate 'Actions' %}"
                                         type="button"
                                         class="dropdown-toggle btn btn--light btn--small"
                                         data-bs-toggle="dropdown"
@@ -95,23 +95,23 @@
                                         aria-expanded="false"
                                         id="idea-{{ object.pk }}-actions"
                                 >
-                                    <i class="fa fa-ellipsis-v px-1" aria-label="{% trans 'Actions' %}"></i>
+                                    <i class="fa fa-ellipsis-v px-1" aria-label="{% translate 'Actions' %}"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="idea-{{ object.pk }}-actions">
                                     {% if user_may_change %}
                                             {% get_item_update_url object as change_url %}
-                                            <a class="dropdown-item" href="{{ change_url }}">{% trans 'Edit' %}</a>
+                                            <a class="dropdown-item" href="{{ change_url }}">{% translate 'Edit' %}</a>
                                             {% get_item_delete_url object as delete_url %}
-                                            <a class="dropdown-item" href="{{ delete_url }}">{% trans 'Delete' %}</a>
+                                            <a class="dropdown-item" href="{{ delete_url }}">{% translate 'Delete' %}</a>
                                     {% endif %}
                                     {% get_item_url object 'moderate' False as moderate_url %}
                                     {% if is_moderator and moderate_url %}
-                                            <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'Give feedback' %}</a>
+                                            <a class="dropdown-item" href="{{ moderate_url }}">{% translate 'Give feedback' %}</a>
                                     {% endif %}
 
                                     {% block dropdown_items %}{% endblock %}
                                     <li>
-                                        {% trans 'Report' as report_text %}
+                                        {% translate 'Report' as report_text %}
                                         {% react_reports object text=report_text class='dropdown-item' %}
                                     </li>
                                 </div>
@@ -128,7 +128,7 @@
             <div class="row">
                 <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                     <div class="moderator-statement">
-                        <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
+                        <h2 class="moderator-statement__title">{% translate 'Official Statement' %}</h2>
                         <div class="moderator-statement__subtitle">
                             <strong class="moderator-statement__organisation">
                                 {{ object.module.project.organisation.name }}

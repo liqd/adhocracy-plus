@@ -3,7 +3,7 @@
 <div class="form-check">
     <label class="form-check__label">
         {{ field }}
-        {{ field.label }}{% if field.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
+        {{ field.label }}{% if field.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
     </label>
     {% if field.help_text %}
     <div class="form-hint">

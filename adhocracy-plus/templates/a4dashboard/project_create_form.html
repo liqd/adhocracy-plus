@@ -1,17 +1,17 @@
 {% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Create project" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "Create project" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_nav %}
 <div class="u-bg-secondary u-spacer-bottom-double py-3">
     <div class="container">
-        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'All projects' %}
+                        {% translate 'All projects' %}
                     </a>
                 </li>
             </ul>
@@ -23,7 +23,7 @@
 {% block dashboard_content %}
     <div class="row mb-5">
         <div class="col-md-6 offset-md-3">
-            <h1 class="mt-0">{% trans "Create project" %}</h1>
+            <h1 class="mt-0">{% translate "Create project" %}</h1>
 
             {% for error in form.non_field_errors %}
                 <span>{{ error }}</span>
@@ -38,12 +38,12 @@
 
                 {% include 'a4dashboard/includes/form_field.html' with field=form.access %}
 
-                <p>{% trans 'After saving the draft project you can further customize and edit your project and eventually publish it.' %}</p>
+                <p>{% translate 'After saving the draft project you can further customize and edit your project and eventually publish it.' %}</p>
 
                 <div class="d-flex justify-content-end">
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
-                       class="btn btn--secondary me-2">{% trans 'Cancel' %}</a>
-                    <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Create draft' %}"/>
+                       class="btn btn--secondary me-2">{% translate 'Cancel' %}</a>
+                    <input type="submit" class="btn btn--primary" name="send" value="{% translate 'Create draft' %}"/>
                 </div>
             </form>
         </div>

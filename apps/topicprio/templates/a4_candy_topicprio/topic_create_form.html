@@ -1,13 +1,13 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Add a new topic' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Add a new topic' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_project_content %}
 <div class="container">
-    <h1 class="mt-0">{% trans 'Add a new topic'%}</h1>
+    <h1 class="mt-0">{% translate 'Add a new topic'%}</h1>
     {% if form.errors %}
-        <div class="errorlist" role="alert">{% trans 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
+        <div class="errorlist" role="alert">{% translate 'An error occured while evaluating your data. Please check the data you entered again.' %}</div>
     {% endif %}
 
     {% url 'a4dashboard:topic-list' organisation_slug=organisation.slug module_slug=module.slug as cancel %}

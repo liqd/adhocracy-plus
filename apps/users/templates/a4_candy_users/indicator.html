@@ -10,7 +10,7 @@
             aria-haspopup="true"
             aria-expanded="false"
             id="user-actions">
-            <span class="d-none d-sm-inline-block pe-1">{% trans 'Menu' %}</span>
+            <span class="d-none d-sm-inline-block pe-1">{% translate 'Menu' %}</span>
         </button>
 
         <button
@@ -23,7 +23,7 @@
         >
             <div class="userindicator__btn-img" style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar'}}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}"></div>
             <div class="userindicator__btn-text text-start">
-                <span class="userindicator__hello">{% trans "Hello" %}</span>
+                <span class="userindicator__hello">{% translate "Hello" %}</span>
                 <br>
                 <div class="u-overflow-ellipsis">{{ request.user.username }}</div>
             </div>
@@ -32,11 +32,11 @@
 
         <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu" aria-labelledby="user-actions">
             {% if request.user.is_superuser %}
-                <a class="dropdown-item" href="{% url 'admin:index' %}">{% trans "Admin" %}</a>
+                <a class="dropdown-item" href="{% url 'admin:index' %}">{% translate "Admin" %}</a>
             {% endif %}
-            <a class="dropdown-item" href="{% url 'account' %}">{% trans "Account Settings" %}</a>
+            <a class="dropdown-item" href="{% url 'account' %}">{% translate "Account Settings" %}</a>
 
-            <a class="dropdown-item" href="{% url 'profile' request.user.username %}">{% trans 'View your profile' %}</a>
+            <a class="dropdown-item" href="{% url 'profile' request.user.username %}">{% translate 'View your profile' %}</a>
 
             {% for organisation in request.user.organisations %}
             <a class="dropdown-item" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
@@ -44,18 +44,18 @@
                 </a>
             {% endfor %}
 
-            <form class="form--inline" action="{% url 'account_logout' %}" method="post" aria-label="{% trans 'Logout' %}">
+            <form class="form--inline" action="{% url 'account_logout' %}" method="post" aria-label="{% translate 'Logout' %}">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ redirect_field_value }}">
-                    <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
+                    <button type="submit" class="dropdown-item">{% translate "Logout" %}</button>
             </form>
         </div>
 
     {% else %}
         <div class="btn btn--secondary-filled btn--huge btn--attached-top">
-            <span class="navi__item"><a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a></span>
+            <span class="navi__item"><a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% translate "Login" %}</a></span>
                 <span class="d-none d-md-inline">/</span>
-            <span class="navi__item"><a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a></span>
+            <span class="navi__item"><a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% translate "Register" %}</a></span>
         </div>
     </div>
 {% endif %}
