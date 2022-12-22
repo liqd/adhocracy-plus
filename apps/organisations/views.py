@@ -303,7 +303,7 @@ class DashboardCommunicationContentCreateView(
                     (border + 144 + border),
                     (border + 144 + border)), (255, 255, 255))
             logo_org_result.paste(logo_org, (border, border))
-            result.paste(logo_org_result, (160, sharepic_format['org_logo_y']))
+            result.paste(logo_org_result, (80, sharepic_format['org_logo_y']))
 
         if data['add_aplus_logo']:
             # get aplus logo
