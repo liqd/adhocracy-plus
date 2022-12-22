@@ -27,7 +27,7 @@
 
         <div class="d-flex justify-content-end mb-3">
             <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--secondary me-2">{% translate 'Cancel'%}</a>
-            <input type="submit" class="btn btn--primary" name="send" value="{% translate 'Send'%}" />
+            <button type="submit" class="btn btn--primary" name="send">{% translate 'Send'%}</button>
         </div>
     </form>
     {{ form.media }}
