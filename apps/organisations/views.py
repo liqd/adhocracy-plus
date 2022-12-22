@@ -277,10 +277,8 @@ class DashboardCommunicationContentCreateView(
             sharepic_format['description_size'])
         title = data['title']
         description = data['description']
-        title_width, title_height = image.textsize(title, font=font)
-        description_width, description_height = image.textsize(
-            description, font=fontsm)
-
+        title_width = image.textlength(title, font=font)
+        description_width = image.textlength(description, font=fontsm)
         # add text using width to center
         image.text(((sharepic_format['img_min_width'] - title_width) / 2,
                     sharepic_format['title_y']),
