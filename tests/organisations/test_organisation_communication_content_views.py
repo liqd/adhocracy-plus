@@ -8,6 +8,7 @@ from PIL import Image
 from adhocracy4.test.helpers import redirect_target
 from apps.organisations.forms import SOCIAL_MEDIA_CHOICES
 from apps.organisations.forms import SOCIAL_MEDIA_SIZES
+from apps.organisations.views import DashboardCommunicationContentCreateView
 
 
 @pytest.mark.django_db
@@ -146,3 +147,46 @@ def test_invalid_data_no_sharepic_created(client, organisation,
     assert 'Refresh' not in response.content.decode()
     assert 'Download' not in response.content.decode()
     assert 'title' in response.context_data['content_form'].errors
+
+
+def test_sharepic_aspect_ratio():
+    width = 1920
+    height = 1080
+    # 1080x760
+    sharepic_format = SOCIAL_MEDIA_SIZES[1]
+    req_width = sharepic_format['img_min_width']
+    req_height = sharepic_format['img_min_height']
+    required_ratio = req_width / float(req_height)
+    resize = DashboardCommunicationContentCreateView.\
+        calc_aspect_ratio(width, height, req_width, req_height)
+    new_ratio = (resize[2] - resize[0]) / float(resize[3] - resize[1])
+    assert int(required_ratio) == int(new_ratio)
+    # 1080x1278
+    sharepic_format = SOCIAL_MEDIA_SIZES[2]
+    req_width = sharepic_format['img_min_width']
+    req_height = sharepic_format['img_min_height']
+    required_ratio = req_width / float(req_height)
+    resize = DashboardCommunicationContentCreateView.\
+        calc_aspect_ratio(width, height, req_width, req_height)
+    new_ratio = (resize[2] - resize[0]) / float(resize[3] - resize[1])
+    assert int(required_ratio) == int(new_ratio)
+    # 1104x482
+    sharepic_format = SOCIAL_MEDIA_SIZES[3]
+    req_width = sharepic_format['img_min_width']
+    req_height = sharepic_format['img_min_height']
+    required_ratio = req_width / float(req_height)
+    resize = DashboardCommunicationContentCreateView.\
+        calc_aspect_ratio(width, height, req_width, req_height)
+    new_ratio = (resize[2] - resize[0]) / float(resize[3] - resize[1])
+    assert int(required_ratio) == int(new_ratio)
+    # different image size
+    width = 1600
+    height = 2560
+    sharepic_format = SOCIAL_MEDIA_SIZES[1]
+    req_width = sharepic_format['img_min_width']
+    req_height = sharepic_format['img_min_height']
+    required_ratio = req_width / float(req_height)
+    resize = DashboardCommunicationContentCreateView.\
+        calc_aspect_ratio(width, height, req_width, req_height)
+    new_ratio = (resize[2] - resize[0]) / float(resize[3] - resize[1])
+    assert int(required_ratio) == int(new_ratio)
