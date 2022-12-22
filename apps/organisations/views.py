@@ -229,15 +229,9 @@ class DashboardCommunicationContentCreateView(
         context['content_form'] = content_form
         return self.render_to_response(context)
 
-    def generate_image(self, data):
-        # Get required image size and image
-        sharepic_format = SOCIAL_MEDIA_SIZES[self.format]
-        req_width = sharepic_format['img_min_width']
-        req_height = sharepic_format['img_min_height']
-        image_get = Image.open(data['image'].file)
-        # get original dimensions
-        width, height = image_get.size
-        # crop to required aspect_ratio and resize
+    @staticmethod
+    def calc_aspect_ratio(width, height, req_width, req_height):
+        # calculate aspect_ratio
         aspect_ratio = width / float(height)
         required_ratio = req_width / float(req_height)
         if aspect_ratio > required_ratio:
@@ -248,8 +242,20 @@ class DashboardCommunicationContentCreateView(
             new_height = int(width / required_ratio)
             offset = (height - new_height) / 2
             resize = (0, offset, width, height - offset)
+        return resize
+
+    def generate_image(self, data):
+        # Get required image size and image
+        sharepic_format = SOCIAL_MEDIA_SIZES[self.format]
+        req_width = sharepic_format['img_min_width']
+        req_height = sharepic_format['img_min_height']
+
+        image_get = Image.open(data['image'].file)
+        width, height = image_get.size
+        resize = self.calc_aspect_ratio(width, height, req_width, req_height)
+        # Use LANCZOS for resampling to keep better quality
         image = image_get.crop(resize).resize((req_width, req_height),
-                                              Image.LANCZOS)
+                                              Image.Resampling.LANCZOS)
 
         # get required total size and add appropriate padding
         result = Image.new(
@@ -280,13 +286,16 @@ class DashboardCommunicationContentCreateView(
         title_width = image.textlength(title, font=font)
         description_width = image.textlength(description, font=fontsm)
         # add text using width to center
-        image.text(((sharepic_format['img_min_width'] - title_width) / 2,
-                    sharepic_format['title_y']),
-                   data['title'], fill=(0, 0, 0), font=font)
+        image.text(
+            ((sharepic_format['img_min_width'] - title_width) / 2,
+                sharepic_format['title_y']),
+            title,
+            fill=(0, 0, 0),
+            font=font)
         image.text(
             ((sharepic_format['img_min_width'] - description_width) / 2,
              sharepic_format['description_y']),
-            data['description'],
+            description,
             fill=(0, 0, 0),
             font=fontsm)
 
