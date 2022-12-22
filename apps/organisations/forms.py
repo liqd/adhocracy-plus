@@ -29,7 +29,7 @@ _external_plugin_resources = [(
 
 SOCIAL_MEDIA_CHOICES = [
     (1, _('Instagram Post 1080x1080')),
-    (2, _('Story 1080x1920')),
+    (2, _('Instagram Story 1080x1920')),
     (3, _('Linkedin 1104x736')),
     (4, _('Twitter 1200x675'))
 ]
