@@ -60,7 +60,7 @@ SOCIAL_MEDIA_SIZES = {
         'aplus_logo_width': 360,
         'aplus_logo_height': 88,
         'aplus_logo_y': 1654,
-        'org_logo_y': 974,
+        'org_logo_y': 1054,
         'overall_height': 1920
         },
     3: {'title_max_length': 30,
