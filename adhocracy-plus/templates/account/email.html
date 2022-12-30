@@ -15,7 +15,7 @@
     <span class="label">{% translate "Verified" %}</span>
 </section>
 
-{% if user.emailaddress_set.all.count > 1 %}
+{% if user.emailaddress_set.all|length > 1 %}
 <section>
     <h2 class="bg--top-border">{% translate 'Other Emails' %}</h2>
     {% for emailaddress in user.emailaddress_set.all %}
