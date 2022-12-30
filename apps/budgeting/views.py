@@ -65,10 +65,6 @@ class ProposalListView(idea_views.AbstractIdeaListView,
             self.paginate_by = 0
         return super().dispatch(request, **kwargs)
 
-    def get_queryset(self):
-        return super().get_queryset()\
-            .filter(module=self.module)
-
 
 class ProposalDetailView(idea_views.AbstractIdeaDetailView):
     model = models.Proposal

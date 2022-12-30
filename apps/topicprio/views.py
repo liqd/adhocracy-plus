@@ -49,10 +49,6 @@ class TopicListView(idea_views.AbstractIdeaListView,
     model = models.Topic
     filter_set = TopicFilterSet
 
-    def get_queryset(self):
-        return super().get_queryset()\
-            .filter(module=self.module)
-
 
 class TopicDetailView(idea_views.AbstractIdeaDetailView):
     model = models.Topic

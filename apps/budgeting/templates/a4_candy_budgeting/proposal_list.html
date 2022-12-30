@@ -51,15 +51,13 @@
         <div class="bg--light">
             <div class="row">
                 <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                    {% if object_list.count > 0 %}
-                        <ul class="u-list-reset">
-                            {% for object in object_list %}
-                                {% include "a4_candy_budgeting/includes/proposal_list_item.html" with object=object %}
-                            {% endfor %}
+                    <ul class="u-list-reset">
+                        {% for object in object_list %}
+                            {% include "a4_candy_budgeting/includes/proposal_list_item.html" with object=object %}
+                        {% empty %}
+                            {% translate "Nothing to show" %}
+                        {% endfor %}
                         </ul>
-                    {% else %}
-                        {% translate "Nothing to show" %}
-                    {% endif %}
 
                     {% include "a4_candy_contrib/includes/pagination.html" %}
                 </div>

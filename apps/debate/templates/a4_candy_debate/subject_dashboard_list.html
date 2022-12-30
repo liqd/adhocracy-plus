@@ -16,15 +16,13 @@
     </div>
     {% include "a4_candy_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
-    {% if object_list.count > 0 %}
-        <ul class="u-list-reset">
-            {% for object in object_list %}
-                {% include "a4_candy_debate/includes/subject_dashboard_list_item.html" with object=object %}
-            {% endfor %}
-        </ul>
-    {% else %}
-        {% translate "Nothing to show" %}
-    {% endif %}
+    <ul class="u-list-reset">
+        {% for object in object_list %}
+            {% include "a4_candy_debate/includes/subject_dashboard_list_item.html" with object=object %}
+        {% empty %}
+            {% translate "Nothing to show" %}
+        {% endfor %}
+    </ul>
 
     {% include "a4_candy_contrib/includes/pagination.html" %}
 {% endblock %}
