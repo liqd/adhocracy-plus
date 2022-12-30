@@ -18,10 +18,6 @@ class SubjectListView(idea_views.AbstractIdeaListView,
     model = models.Subject
     filter_set = filters.SubjectFilterSet
 
-    def get_queryset(self):
-        return super().get_queryset()\
-            .filter(module=self.module)
-
 
 class SubjectDetailView(idea_views.AbstractIdeaDetailView):
     model = models.Subject
