@@ -88,6 +88,12 @@
         left: 0;
         right: 0;
     }
+
+    // Firefox fix to make switch button work
+    .btn:not([type="radio"], [type="checkbox"]) {
+        width: 100%;
+        margin-bottom: 0;
+    }
 }
 
 .dashboard-nav__pages {
