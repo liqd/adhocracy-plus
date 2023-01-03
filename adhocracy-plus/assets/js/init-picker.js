@@ -1,15 +1,14 @@
-const $ = require('jquery')
-const datePickerController = require('datepicker')
-const django = require('django')
+import django from 'django'
+import flatpickr from 'flatpickr'
 
-$(function () {
-  const $inputs = $('.datepicker')
+function initDatePicker () {
+  const datepickers = document.querySelectorAll('.datepicker')
+  const format = django.get_format('DATE_INPUT_FORMATS')[0].replaceAll('%', '')
 
-  $inputs.addClass('form-control')
-
-  $inputs.each(function (i, e) {
-    const initObject = { formElements: {} }
-    initObject.formElements[e.id] = django.get_format('DATE_INPUT_FORMATS')[0]
-    datePickerController.createDatePicker(initObject)
+  datepickers.forEach((e) => {
+    e.classList.add('form-control')
+    flatpickr(e, { dateFormat: format })
   })
-})
+}
+
+document.addEventListener('DOMContentLoaded', initDatePicker, false)
