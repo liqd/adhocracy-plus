@@ -1,29 +1,50 @@
-.select-dropdown__btn {
+/* The container must be positioned relative: */
+.custom-select {
+    position: relative;
+}
+
+.custom-select select {
+    display: none; /* hide original SELECT element: */
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-weight: 900;
+    content: "\f107"; // angle down
+    transition: transform 0.3s;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+    transform: rotate(-180deg);
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,
+.select-selected {
+    @extend .btn;
     @extend .btn--light;
-
-    text-align: left;
-    font-weight: normal;
-    width: 100%;
-
-    i {
-        position: absolute;
-        top: 0.8em;
-        right: 0.6em;
-    }
 }
 
-.select-dropdown__btn__label__icon,
-.select-dropdown__item__icon {
-    height: 1.6em;
-    vertical-align: middle;
-    margin-right: 0.6em;
+/* Style items (options): */
+.select-items {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
 }
 
-.select-icon {
-    .select-dropdown__item:first-child {
-        padding-top: 0.8em;
-        padding-bottom: 0.8em;
-        color: $text-color-gray;
-        background-color: $bg-tertiary;
-    }
+/* Hide the items when the select box is closed: */
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+    background-color: $bg-tertiary;
 }

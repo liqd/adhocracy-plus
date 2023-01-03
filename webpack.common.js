@@ -110,12 +110,6 @@ module.exports = {
         'adhocracy4/adhocracy4/images/assets/image_uploader.js'
       ],
       dependOn: 'adhocracy4'
-    },
-    select_dropdown_init: {
-      import: [
-        'adhocracy4/adhocracy4/categories/assets/select_dropdown_init.js'
-      ],
-      dependOn: 'adhocracy4'
     }
   },
   output: {

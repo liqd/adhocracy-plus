@@ -23,9 +23,6 @@ class MapIdeaForm(CategorizableFieldMixin,
         self.fields['point'].error_messages['required'] = _(
             'Please locate your proposal on the map.')
 
-    class Media:
-        js = ('select_dropdown_init.js',)
-
     class Meta:
         model = models.MapIdea
         fields = ['name', 'description', 'image', 'category',
