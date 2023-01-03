@@ -61,21 +61,23 @@ class Command(BaseCommand):
 
         self._send_notifications_create_idea()
         self._send_notifications_comment_idea()
+        self._send_notifications_on_moderator_feedback()
         self._send_notification_event_upcoming()
         self._send_notification_phase()
-        self._send_notification_project_created()
-
-        self._send_report_mails()
-
-        self._send_allauth_email_confirmation()
-        self._send_allauth_password_reset()
 
         self._send_invitation_private_project()
         self._send_invitation_moderator()
+        self._send_welcome_private_project()
         self._send_create_project()
         self._send_delete_project()
 
+        self._send_report_mails()
+
         self._send_form_mail()
+
+        self._send_allauth_email_confirmation()
+        self._send_allauth_password_reset()
+        self._send_allauth_unknown_account()
 
     def _send_notifications_create_idea(self):
         # Send notification for a newly created item
@@ -115,6 +117,22 @@ class Command(BaseCommand):
             template_name=notification_emails.
             NotifyModeratorsEmail.template_name)
 
+    def _send_notifications_on_moderator_feedback(self):
+        moderated_idea = Idea.objects.filter(
+            moderator_statement__isnull=False
+        ).first()
+        if not moderated_idea:
+            self.stderr.write(
+                'At least one idea with moderator feedback is required'
+            )
+            return
+
+        TestEmail.send(
+            moderated_idea,
+            receiver=[self.user],
+            template_name=notification_emails.
+            NotifyCreatorOnModeratorFeedback.template_name)
+
     def _send_notification_event_upcoming(self):
         offlineevent = OfflineEvent.objects.first()
         if not offlineevent:
@@ -124,7 +142,8 @@ class Command(BaseCommand):
             obj_content_type=ContentType.objects.get_for_model(OfflineEvent),
             obj=offlineevent,
             project=offlineevent.project,
-            verb=Verbs.SCHEDULE)
+            verb=Verbs.SCHEDULE
+        )
 
         TestEmail.send(
             action,
@@ -156,15 +175,70 @@ class Command(BaseCommand):
             NotifyFollowersOnPhaseStartedEmail.template_name
         )
 
-    def _send_notification_project_created(self):
+    def _send_invitation_private_project(self):
+        invite = project_models.ParticipantInvite.objects.first()
+        if not invite:
+            self.stderr.write('At least one participant request is required')
+            return
+
+        TestEmail.send(
+            invite,
+            receiver=[self.user],
+            template_name='a4_candy_projects/emails/invite_participant'
+        )
+
+    def _send_invitation_moderator(self):
+        invite = project_models.ModeratorInvite.objects.first()
+        if not invite:
+            self.stderr.write('At least one moderator request is required')
+            return
+
+        TestEmail.send(
+            invite,
+            receiver=[self.user],
+            template_name='a4_candy_projects/emails/invite_moderator'
+        )
+
+    def _send_welcome_private_project(self):
         project = Project.objects.first()
+        if not project:
+            self.stderr.write('At least one project is required')
+            return
+
         TestEmail.send(
             project,
             project=project,
-            creator=self.user,
             receiver=[self.user],
-            template_name=notification_emails.
-            NotifyInitiatorsOnProjectCreatedEmail.template_name
+            template_name='a4_candy_projects/emails/welcome_participant'
+        )
+
+    def _send_create_project(self):
+        project = Project.objects.first()
+        if not project:
+            self.stderr.write('At least one project is required')
+            return
+        TestEmail.send(
+            project,
+            project=project,
+            creator=User.objects.first(),
+            receiver=[self.user],
+            template_name=(notification_emails.
+                           NotifyInitiatorsOnProjectCreatedEmail.
+                           template_name)
+        )
+
+    def _send_delete_project(self):
+        project = Project.objects.first()
+        if not project:
+            self.stderr.write('At least one project is required')
+            return
+        TestEmail.send(
+            project,
+            name=project.name,
+            receiver=[self.user],
+            template_name=(notification_emails.
+                           NotifyInitiatorsOnProjectDeletedEmail.
+                           template_name)
         )
 
     def _send_report_mails(self):
@@ -178,6 +252,31 @@ class Command(BaseCommand):
             receiver=[self.user],
             template_name=reports_emails.ReportModeratorEmail.template_name
         )
+
+    def _send_form_mail(self):
+        formpage = FormPage.objects.first()
+        if not formpage:
+            self.stderr.write('At least one emailformpage obj is required')
+            return
+
+        form_data = {
+            'receive_copy': True,
+        }
+        submission = CustomFormSubmission.objects.create(
+            page=formpage,
+            form_data=form_data,
+            email='me@you.net',
+            message='This is an example message.',
+            telephone_number='12345',
+            name='your name'
+        )
+
+        TestEmail.send(
+            submission,
+            receiver=[self.user],
+            template_name='a4_candy_cms_contacts/emails/answer_to_contact_form'
+        )
+        submission.delete()
 
     def _send_allauth_password_reset(self):
         context = {"current_site": 'http://example.com/...',
@@ -214,76 +313,17 @@ class Command(BaseCommand):
             **context
         )
 
-    def _send_invitation_private_project(self):
-        invite = project_models.ParticipantInvite.objects.first()
-        if not invite:
-            self.stderr.write('At least one participant request is required')
-            return
+    def _send_allauth_unknown_account(self):
+        context = {
+            "user": self.user,
+            "email": 'user@example.com',
+            "signup_url": 'http://example.com/...',
+            "current_site": 'http://example.com/...',
+        }
 
         TestEmail.send(
-            invite,
+            self.user,
             receiver=[self.user],
-            template_name='a4_candy_projects/emails/invite_participant'
+            template_name='account/email/unknown_account',
+            **context
         )
-
-    def _send_invitation_moderator(self):
-        invite = project_models.ModeratorInvite.objects.first()
-        if not invite:
-            self.stderr.write('At least one moderator request is required')
-            return
-
-        TestEmail.send(
-            invite,
-            receiver=[self.user],
-            template_name='a4_candy_projects/emails/invite_moderator'
-        )
-
-    def _send_create_project(self):
-        project = Project.objects.first()
-        if not project:
-            self.stderr.write('At least one project is required')
-            return
-        TestEmail.send(
-            project,
-            project=project,
-            creator=User.objects.first(),
-            receiver=[self.user],
-            template_name=(notification_emails.
-                           NotifyInitiatorsOnProjectCreatedEmail.
-                           template_name)
-        )
-
-    def _send_delete_project(self):
-        project = Project.objects.first()
-        if not project:
-            self.stderr.write('At least one project is required')
-            return
-        TestEmail.send(
-            project,
-            name=project.name,
-            receiver=[self.user],
-            template_name=(notification_emails.
-                           NotifyInitiatorsOnProjectDeletedEmail.
-                           template_name)
-        )
-
-    def _send_form_mail(self):
-        formpage = FormPage.objects.first()
-        if not formpage:
-            self.stderr.write('At least one emailformpage obj is required')
-            return
-
-        submission = CustomFormSubmission.objects.create(
-            page=formpage,
-            email='me@you.net',
-            message='This is an example message.',
-            telephone_number='12345',
-            name='your name'
-        )
-
-        TestEmail.send(
-            submission,
-            receiver=[self.user],
-            template_name='a4_candy_cms_contacts/emails/answer_to_contact_form'
-        )
-        submission.delete()
