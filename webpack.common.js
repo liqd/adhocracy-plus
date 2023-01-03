@@ -34,7 +34,7 @@ module.exports = {
     datepicker: {
       import: [
         './adhocracy-plus/assets/js/init-picker.js',
-        'datepicker/css/datepicker.min.css'
+        './node_modules/flatpickr/dist/themes/material_blue.css'
       ],
       dependOn: 'adhocracy4'
     },
