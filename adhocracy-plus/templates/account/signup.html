@@ -6,8 +6,8 @@
 {% block content %}
     <h1>{% translate "Register" %}</h1>
 
-    <p>{% blocktrans %}Already have an account? Then please
-        <a href="{{ login_url }}">login</a>.{% endblocktrans %}</p>
+    <p>{% blocktranslate %}Already have an account? Then please
+        <a href="{{ login_url }}">login</a>.{% endblocktranslate %}</p>
 
     <form id="signup_form" method="post" action="{% url 'account_signup' %}">
         {{ form.non_field_errors }}
@@ -21,9 +21,9 @@
         <div class="form-check">
             <label class="form-check__label">
                 {{ form.terms_of_use }}
-                {% blocktrans with terms_of_use_url=settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url data_protection_policy=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url %}
+                {% blocktranslate with terms_of_use_url=settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url data_protection_policy=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url %}
                 I confirm that I have read and accepted the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{data_protection_policy}}" target="_blank">data protection policy</a>.
-                {% endblocktrans %}
+                {% endblocktranslate %}
                 {% if form.terms_of_use.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
             </label>
             {{ form.terms_of_use.errors }}
@@ -55,10 +55,10 @@
         {% include 'a4_candy_contrib/includes/form_field.html' with field=form.captcha tabindex=0 %}
 
         <p>
-        {% blocktrans with data_protection_url=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}
+        {% blocktranslate with data_protection_url=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}
             With your account on {{ platformname }}, you can take part in every public participation project on this platform. This platform allows organisations initiatives to conduct digital participation projects.
             If you have any questions regarding the data protection on this platform you can find <a href="{{ data_protection_url }}" target="_blank">further information here</a>.
-        {% endblocktrans %}
+        {% endblocktranslate %}
         </p>
 
         <div class="u-spacer-bottom-double">

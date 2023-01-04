@@ -1,16 +1,16 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktrans with project_name=action.project.name %}Reaction to your contribution in project {{ project_name }}{% endblocktrans %}{% endblock %}
+{% block subject %}{% blocktranslate with project_name=action.project.name %}Reaction to your contribution in project {{ project_name }}{% endblocktranslate %}{% endblock %}
 
-{% block headline %}{% blocktrans %}Reaction to your contribution{% endblocktrans %}{% endblock %}
+{% block headline %}{% blocktranslate %}Reaction to your contribution{% endblocktranslate %}{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock  %}
 
-{% block greeting %}{% blocktrans with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktrans %}{% endblock %}
+{% block greeting %}{% blocktranslate with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktranslate %}{% endblock %}
 
 {% block content %}
 <p>
-{% blocktrans with actor_name=action.actor.username %}{{ actor_name }} commented on your post:{% endblocktrans %}
+{% blocktranslate with actor_name=action.actor.username %}{{ actor_name }} commented on your post:{% endblocktranslate %}
 </p>
 {% if action.obj.comment %}
 <p>
@@ -18,11 +18,11 @@
 </p>
 {% endif %}
 <p>
-{% blocktrans %}Would you like to answer?{% endblocktrans %}
+{% blocktranslate %}Would you like to answer?{% endblocktranslate %}
 </p>
 {% endblock %}
 
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
-{% block cta_label %}{% if action.obj.get_absolute_url %}{% blocktrans %}View Post{% endblocktrans %}{% else %}{% blocktrans %}Visit the project{% endblocktrans %}{% endif %}{% endblock %}
+{% block cta_label %}{% if action.obj.get_absolute_url %}{% blocktranslate %}View Post{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}{% endblock %}
 
-{% block reason %}{% blocktrans with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. You have received the e-mail because you added a contribution to the above project.{% endblocktrans %} {{ account_link | safe }}{% endblock %}
+{% block reason %}{% blocktranslate with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. You have received the e-mail because you added a contribution to the above project.{% endblocktranslate %} {{ account_link | safe }}{% endblock %}

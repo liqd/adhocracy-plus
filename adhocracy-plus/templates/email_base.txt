@@ -10,7 +10,7 @@
 {% block reason %}{% endblock %}
 
 ---
-{% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}{{ platformname }} is a participation platform operated by{% endblocktrans %}<br />
+{% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}{{ platformname }} is a participation platform operated by{% endblocktranslate %}<br />
 Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
 
 {% get_settings use_default_site=True %}

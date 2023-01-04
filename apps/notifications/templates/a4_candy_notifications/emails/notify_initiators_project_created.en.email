@@ -1,17 +1,17 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktrans with project_name=project.name site_name=site.name %}New project {{ project_name }} on {{ site_name }}{% endblocktrans %}{% endblock %}
+{% block subject %}{% blocktranslate with project_name=project.name site_name=site.name %}New project {{ project_name }} on {{ site_name }}{% endblocktranslate %}{% endblock %}
 
-{% block headline %}{% blocktrans with project_name=project.name organisation_name=project.organisation.name %}The new project {{ project_name }} was created for {{ organisation_name }}{% endblocktrans %}{% endblock  %}
+{% block headline %}{% blocktranslate with project_name=project.name organisation_name=project.organisation.name %}The new project {{ project_name }} was created for {{ organisation_name }}{% endblocktranslate %}{% endblock  %}
 
 {% block content %}
 <p>
-{% blocktrans with creator_name=creator.username project_name=project.name organisation_name=project.organisation.name %}{{ creator_name }} has created the project {{ project_name }} for {{ organisation_name }}.{% endblocktrans %}
+{% blocktranslate with creator_name=creator.username project_name=project.name organisation_name=project.organisation.name %}{{ creator_name }} has created the project {{ project_name }} for {{ organisation_name }}.{% endblocktranslate %}
 </p>
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
-{% block cta_label %}{% blocktrans %}Show project{% endblocktrans %}{% endblock %}
+{% block cta_label %}{% blocktranslate %}Show project{% endblocktranslate %}{% endblock %}
 
-{% block reason %}{% blocktrans with receiver_mail=receiver.email organisation_name=project.organisation.name %}This email was sent to {{ receiver_mail }}. This email was sent to you because you are an intiator of {{ organisation_name }}.{% endblocktrans %} {{ account_link | safe }}{% endblock %}
+{% block reason %}{% blocktranslate with receiver_mail=receiver.email organisation_name=project.organisation.name %}This email was sent to {{ receiver_mail }}. This email was sent to you because you are an intiator of {{ organisation_name }}.{% endblocktranslate %} {{ account_link | safe }}{% endblock %}

@@ -97,7 +97,7 @@
                     <img src="{{ image.url }}" alt="{{ image.alt }}" />
                     {% endif %}
                     <div class="cms__text pt-4">
-                        {% blocktrans with category=use_case.get_category_display %}For {{ category }}{% endblocktrans %}
+                        {% blocktranslate with category=use_case.get_category_display %}For {{ category }}{% endblocktranslate %}
                     </div>
                     <h2 class="cms__title--bold cms__title--h3-size">{{ use_case.subtitle }}
                     </h2>
@@ -108,7 +108,7 @@
             <div class="col-12 col-sm-6 col-lg-4 cms-use-case__tile cms-use-case__tile--demo text-center">
                 <a class="cms__tile-link cms__tile-link--inverted h-100 d-flex flex-column justify-content-around p-4" target="_blank" href="{{ page.demo_link }}">
                     <h5 class="cms__title--bold">{% translate 'Try it out!' %}</h5>
-                    <p class="cms__text">{% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Instead of just reading about it, you can test all the features of {{ platformname }} yourself on our demo platform.{% endblocktrans %}</p>
+                    <p class="cms__text">{% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Instead of just reading about it, you can test all the features of {{ platformname }} yourself on our demo platform.{% endblocktranslate %}</p>
                     <div class="btn btn--text-color-inverted cms__text">{% translate 'Visit the demo platform' %}</div>
                 </a>
             </div>

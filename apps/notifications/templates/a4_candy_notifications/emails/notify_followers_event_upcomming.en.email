@@ -1,26 +1,26 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktrans with project_name=action.project.name %}Invitation to an event in project {{ project_name }}{% endblocktrans %}{% endblock %}
+{% block subject %}{% blocktranslate with project_name=action.project.name %}Invitation to an event in project {{ project_name }}{% endblocktranslate %}{% endblock %}
 
-{% block headline %}{% blocktrans %}Event{% endblocktrans %}{% endblock %}
+{% block headline %}{% blocktranslate %}Event{% endblocktranslate %}{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}
 
-{% block greeting %}{% blocktrans with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktrans %}{% endblock %}
+{% block greeting %}{% blocktranslate with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktranslate %}{% endblock %}
 
 {% block content %}
 <p>
-{% blocktrans with date=action.obj.date %}The following event takes place on {{ date }}:{% endblocktrans %}
+{% blocktranslate with date=action.obj.date %}The following event takes place on {{ date }}:{% endblocktranslate %}
 </p>
 <p>
 <b>{{ action.obj.name }}</b>
 </p>
 <p>
-{% blocktrans %}Further information about the event can be found in the project.{% endblocktrans %}
+{% blocktranslate %}Further information about the event can be found in the project.{% endblocktranslate %}
 </p>
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% endblock %}
-{% block cta_label %}{% blocktrans %}Show Event{% endblocktrans %}{% endblock %}
+{% block cta_label %}{% blocktranslate %}Show Event{% endblocktranslate %}{% endblock %}
 
-{% block reason %}{% blocktrans with receiver_mail=receiver.email host=email.get_host project_url=action.project.get_absolute_url%}This email was sent to {{ receiver_mail }}. You have received the e-mail because you are following the above project.{% endblocktrans %} {{ project_link | safe }} {{ account_link | safe }}{% endblock %}
+{% block reason %}{% blocktranslate with receiver_mail=receiver.email host=email.get_host project_url=action.project.get_absolute_url%}This email was sent to {{ receiver_mail }}. You have received the e-mail because you are following the above project.{% endblocktranslate %} {{ project_link | safe }} {{ account_link | safe }}{% endblock %}
