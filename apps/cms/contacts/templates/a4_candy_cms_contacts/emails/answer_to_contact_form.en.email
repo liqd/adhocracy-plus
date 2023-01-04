@@ -5,15 +5,26 @@
 
 {% block headline %}{% blocktrans %}We received your message{% endblocktrans %}{% endblock  %}
 
-{% block content %}{% blocktrans with sender_mail=customformsubmission.email message=customformsubmission.message %}This is the data we received from you:
-
-Your email address: {{ sender_mail }}
-
-Your message: {{ message }}{% endblocktrans %}
-
-{% if customformsubmission.telephone_number %}{% blocktrans with sender_phone=customformsubmission.telephone_number %}Your telephone number: {{ sender_phone }}{% endblocktrans %}{% endif %}
-
-{% if customformsubmission.name %}{% blocktrans with sender_name=customformsubmission.name %}Your Name: {{ sender_name }}{% endblocktrans %}{% endif %}
+{% block content %}
+<p>
+{% blocktrans %}This is the data we received from you:{% endblocktrans %}
+</p>
+<p>
+{% blocktrans with sender_mail=customformsubmission.email %}Your email address: {{ sender_mail }}{% endblocktrans %}
+</p>
+<p>
+{% blocktrans with message=customformsubmission.message %}Your message: {{ message }}{% endblocktrans %}
+</p>
+{% if customformsubmission.telephone_number %}
+<p>
+{% blocktrans with sender_phone=customformsubmission.telephone_number %}Your telephone number: {{ sender_phone }}{% endblocktrans %}
+</p>
+{% endif %}
+{% if customformsubmission.name %}
+<p>
+{% blocktrans with sender_name=customformsubmission.name %}Your Name: {{ sender_name }}{% endblocktrans %}
+</p>
+{% endif %}
 {% endblock %}
 
 {% block reason %} {% blocktrans %}This message was sent to {{ receiver }}. It was sent because you wrote us a message via our contact form and asked us to send you a copy.{% endblocktrans %}{% endblock %}

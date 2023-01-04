@@ -8,9 +8,17 @@
 
 {% block greeting %}{% blocktrans with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktrans %}{% endblock %}
 
-{% block content %}{% blocktrans with date=action.obj.date event_name=action.obj.name %}The following event takes place on {{ date }}:
-<b>{{ event_name }}</b>
-Further information about the event can be found in the project.{% endblocktrans %}{% endblock %}
+{% block content %}
+<p>
+{% blocktrans with date=action.obj.date %}The following event takes place on {{ date }}:{% endblocktrans %}
+</p>
+<p>
+<b>{{ action.obj.name }}</b>
+</p>
+<p>
+{% blocktrans %}Further information about the event can be found in the project.{% endblocktrans %}
+</p>
+{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% endblock %}
 {% block cta_label %}{% blocktrans %}Show Event{% endblocktrans %}{% endblock %}

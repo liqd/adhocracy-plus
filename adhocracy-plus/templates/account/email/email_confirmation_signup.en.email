@@ -5,7 +5,11 @@
 
 {% block headline %}{% blocktrans %}Your registration on {{ current_site }}{% endblocktrans %}{% endblock %}
 
-{% block content %}{% blocktrans with username=user.username %}You have registered with the username "{{ username }}" on the participation platform "{{ current_site }}". Click "Confirm email address" to complete your registration. As soon as you are registered, you can participate on "{{ current_site }}". If you haven't registered, you can ignore this message.{% endblocktrans %}{% endblock %}
+{% block content %}
+<p>
+{% blocktrans with username=user.username %}You have registered with the username "{{ username }}" on the participation platform "{{ current_site }}". Click "Confirm email address" to complete your registration. As soon as you are registered, you can participate on "{{ current_site }}". If you haven't registered, you can ignore this message.{% endblocktrans %}
+</p>
+{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}{% blocktrans %}Confirm email address{% endblocktrans %}{% endblock %}

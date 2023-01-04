@@ -5,7 +5,11 @@
 
 {% block headline %}{% blocktrans %}Your email address on {{ current_site }}{% endblocktrans %}{% endblock %}
 
-{% block content %}{% blocktrans with username=user.username %}this email address has been added to the user account "{{ username }}" on "{{ current_site }}". Please confirm this address. If you did not add this email address, you can ignore this email. We will not send you any further emails.{% endblocktrans %}{% endblock %}
+{% block content %}
+<p>
+{% blocktrans with username=user.username %}this email address has been added to the user account "{{ username }}" on "{{ current_site }}". Please confirm this address. If you did not add this email address, you can ignore this email. We will not send you any further emails.{% endblocktrans %}
+</p>
+{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}{% blocktrans %}Confirm your email address{% endblocktrans %}{% endblock %}

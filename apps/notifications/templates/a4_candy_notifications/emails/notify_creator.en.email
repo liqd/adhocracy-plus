@@ -8,11 +8,19 @@
 
 {% block greeting %}{% blocktrans with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktrans %}{% endblock %}
 
-{% block content %}{% blocktrans with actor_name=action.actor.username %}{{ actor_name }} commented on your post:{% endblocktrans %}
+{% block content %}
+<p>
+{% blocktrans with actor_name=action.actor.username %}{{ actor_name }} commented on your post:{% endblocktrans %}
+</p>
 {% if action.obj.comment %}
+<p>
 <i>"{{ action.obj.comment|truncatewords:75 }}"</i>
+</p>
 {% endif %}
-{% blocktrans %}Would you like to answer?{% endblocktrans %}{% endblock %}
+<p>
+{% blocktrans %}Would you like to answer?{% endblocktrans %}
+</p>
+{% endblock %}
 
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if action.obj.get_absolute_url %}{% blocktrans %}View Post{% endblocktrans %}{% else %}{% blocktrans %}Visit the project{% endblocktrans %}{% endif %}{% endblock %}

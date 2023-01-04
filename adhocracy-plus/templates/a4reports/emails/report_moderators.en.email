@@ -5,9 +5,13 @@
 
 {% block headline %}{% blocktrans with project_name=report.project %}Moderation request in the project {{ project_name }}{% endblocktrans %}{% endblock %}
 
-{% block content %}{% blocktrans with user_name=report.creator.username project_name=report.project %}User {{ user_name }} reported a post in your project "{{ project_name }}". It is possible, the message could also be spam. As a moderator, you can review the post and delete it if necessary. The following reasons were given:{% endblocktrans %}
-
+{% block content %}
+<p>
+{% blocktrans with user_name=report.creator.username project_name=report.project %}User {{ user_name }} reported a post in your project "{{ project_name }}". It is possible, the message could also be spam. As a moderator, you can review the post and delete it if necessary. The following reasons were given:{% endblocktrans %}
+</p>
+<p>
 {{ report.description }}
+</p>
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}

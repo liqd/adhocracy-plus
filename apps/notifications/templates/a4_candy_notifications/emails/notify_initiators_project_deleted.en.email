@@ -5,6 +5,10 @@
 
 {% block headline %}{% blocktrans %}The project {{ name }} was deleted.{% endblocktrans %}{% endblock  %}
 
-{% block content %}{% blocktrans with site_name=site.name %}The project "{{ name }}" on the participation platform {{ site_name }} was deleted.{% endblocktrans %}{% endblock  %}
+{% block content %}
+<p>
+{% blocktrans with site_name=site.name %}The project "{{ name }}" on the participation platform {{ site_name }} was deleted.{% endblocktrans %}
+</p>
+{% endblock  %}
 
 {% block reason %}{% blocktrans with organisation_name=organisation.name %}This email was sent to {{ receiver }}. This email was sent to you because you are an initiator of the organisation '{{ organisation_name }}', in which a project was deleted.{% endblocktrans %}{% endblock %}
