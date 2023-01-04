@@ -1,33 +1,33 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktrans with site_name=site.name %}Feedback for your contribution on {{ site_name }}{% endblocktrans %}{% endblock %}
+{% block subject %}{% blocktranslate with site_name=site.name %}Feedback for your contribution on {{ site_name }}{% endblocktranslate %}{% endblock %}
 
-{% block headline %}{% blocktrans %}Feedback for your contribution{% endblocktrans %}{% endblock  %}
+{% block headline %}{% blocktranslate %}Feedback for your contribution{% endblocktranslate %}{% endblock  %}
 {% block sub-headline %}{{ object.project.name }}{% endblock  %}
 
-{% block greeting %}{% blocktrans with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktrans %}{% endblock %}
+{% block greeting %}{% blocktranslate with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktranslate %}{% endblock %}
 
 {% block content %}
 <p>
-{% blocktrans with organisation_name=object.module.project.organisation.name %}{{ organisation_name }} reacted on your contribution.{% endblocktrans %}
+{% blocktranslate with organisation_name=object.module.project.organisation.name %}{{ organisation_name }} reacted on your contribution.{% endblocktranslate %}
 </p>
 {% if object.moderator_feedback %}
 <p>
-{% blocktrans with feedback=object.get_moderator_feedback_display %}Your contribution is {{ feedback }}.{% endblocktrans %}
+{% blocktranslate with feedback=object.get_moderator_feedback_display %}Your contribution is {{ feedback }}.{% endblocktranslate %}
 </p>
 {% endif %}
 {% if object.moderator_statement.statement %}
 <p>
-{% blocktrans with statement=object.moderator_statement.statement|safe %}Official feedback: {{ statement }}{% endblocktrans %}
+{% blocktranslate with statement=object.moderator_statement.statement|safe %}Official feedback: {{ statement }}{% endblocktranslate %}
 </p>
 {% endif %}
 <p>
-{% blocktrans %}Do you want to answer?{% endblocktrans %}
+{% blocktranslate %}Do you want to answer?{% endblocktranslate %}
 </p>
 {% endblock %}
 
 {% block cta_url %}{% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}
-{% block cta_label %}{% if object.get_absolute_url %}{% blocktrans %}Check your contribution{% endblocktrans %}{% else %}{% blocktrans %}Visit the project{% endblocktrans %}{% endif %}{% endblock %}
+{% block cta_label %}{% if object.get_absolute_url %}{% blocktranslate %}Check your contribution{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}{% endblock %}
 
-{% block reason %}{% blocktrans with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. You have received the e-mail because you added a contribution to the above project.{% endblocktrans %} {{ account_link | safe }}{% endblock %}
+{% block reason %}{% blocktranslate with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. You have received the e-mail because you added a contribution to the above project.{% endblocktranslate %} {{ account_link | safe }}{% endblock %}

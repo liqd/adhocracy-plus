@@ -1,17 +1,17 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktrans %}Please confirm your registration on {{ current_site }}{% endblocktrans %}{% endblock %}
+{% block subject %}{% blocktranslate %}Please confirm your registration on {{ current_site }}{% endblocktranslate %}{% endblock %}
 
-{% block headline %}{% blocktrans %}Your registration on {{ current_site }}{% endblocktrans %}{% endblock %}
+{% block headline %}{% blocktranslate %}Your registration on {{ current_site }}{% endblocktranslate %}{% endblock %}
 
 {% block content %}
 <p>
-{% blocktrans with username=user.username %}You have registered with the username "{{ username }}" on the participation platform "{{ current_site }}". Click "Confirm email address" to complete your registration. As soon as you are registered, you can participate on "{{ current_site }}". If you haven't registered, you can ignore this message.{% endblocktrans %}
+{% blocktranslate with username=user.username %}You have registered with the username "{{ username }}" on the participation platform "{{ current_site }}". Click "Confirm email address" to complete your registration. As soon as you are registered, you can participate on "{{ current_site }}". If you haven't registered, you can ignore this message.{% endblocktranslate %}
 </p>
 {% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
-{% block cta_label %}{% blocktrans %}Confirm email address{% endblocktrans %}{% endblock %}
+{% block cta_label %}{% blocktranslate %}Confirm email address{% endblocktranslate %}{% endblock %}
 
-{% block reason %}{% blocktrans with useremail=user.email %}This email was sent to {{ useremail }}. If you have any further questions, please contact us via {{ contact_email }}{% endblocktrans %}{% endblock %}
+{% block reason %}{% blocktranslate with useremail=user.email %}This email was sent to {{ useremail }}. If you have any further questions, please contact us via {{ contact_email }}{% endblocktranslate %}{% endblock %}

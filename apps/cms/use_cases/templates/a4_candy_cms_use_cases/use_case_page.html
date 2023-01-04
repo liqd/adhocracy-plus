@@ -47,7 +47,7 @@
         <div class="row justify-content-md-center">
             <div class="col-12 col-md-10">
                 <div class="cms__text">
-                    {% blocktrans with category=page.get_category_display %}For {{ category }}{% endblocktrans %}
+                    {% blocktranslate with category=page.get_category_display %}For {{ category }}{% endblocktranslate %}
                 </div>
                 <h1 class="cms__title--bold cms-page__header-margin">{{ page.subtitle }}</h1>
             </div>
@@ -77,7 +77,7 @@
         <div class="row justify-content-md-center">
             <div class="col-12 col-md-10">
                 <h2 class="cms__title--serif cms__title--underlined text-center">
-                {% blocktrans with category=page.get_category_display %}More examples for {{ category }}{% endblocktrans %}
+                {% blocktranslate with category=page.get_category_display %}More examples for {{ category }}{% endblocktranslate %}
                 </h2>
             </div>
         </div>
@@ -91,7 +91,7 @@
                     <img src="{{ image.url }}" alt="{{ image.alt }}" />
                     {% endif %}
                     <div class="cms__text pt-4 text-muted cms__text--serif">
-                    {% blocktrans with category=use_case.get_category_display %}For {{ category }}{% endblocktrans %}
+                    {% blocktranslate with category=use_case.get_category_display %}For {{ category }}{% endblocktranslate %}
                     </div>
                     <h3 class="cms__title--bold">{{ use_case.subtitle }}</h3>
                 </a>

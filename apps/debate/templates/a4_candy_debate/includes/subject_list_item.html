@@ -27,7 +27,7 @@
             {% endif %}
             {% spaceless %}
             <div class="creator-count__comment-count">
-                {% blocktrans count count=object.comment_count %} {{ count }} Contribution {% plural %} {{ count }} Contributions {% endblocktrans %}
+                {% blocktranslate count count=object.comment_count %} {{ count }} Contribution {% plural %} {{ count }} Contributions {% endblocktranslate %}
             </div>
             {% endspaceless %}
         </div>

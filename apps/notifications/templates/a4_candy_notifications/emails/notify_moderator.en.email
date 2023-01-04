@@ -4,13 +4,13 @@
 {% block subject %}
 {% with type=action.obj|class_name project_name=action.project.name %}
 {% if type == 'Comment' %}
-{% blocktrans %}A comment was added to the project {{ project_name }}{% endblocktrans %}
+{% blocktranslate %}A comment was added to the project {{ project_name }}{% endblocktranslate %}
 {% elif type == 'Idea' or type == 'MapIdea' %}
-{% blocktrans %}An idea was added to the project {{ project_name }}{% endblocktrans %}
+{% blocktranslate %}An idea was added to the project {{ project_name }}{% endblocktranslate %}
 {% elif type == 'Proposal'%}
-{% blocktrans %}A proposal was added to the project {{ project_name }}{% endblocktrans %}
+{% blocktranslate %}A proposal was added to the project {{ project_name }}{% endblocktranslate %}
 {% else %}
-{% blocktrans %}A contribution was added to the project {{ project_name }}{% endblocktrans %}
+{% blocktranslate %}A contribution was added to the project {{ project_name }}{% endblocktranslate %}
 {% endif %}
 {% endwith %}
 {% endblock %}
@@ -18,13 +18,13 @@
 {% block headline %}
 {% with actor_name=action.actor.username type=action.obj|class_name project_name=action.project.name %}
 {% if type == 'Comment' %}
-{% blocktrans %}{{ actor_name }} created a comment on the project {{ project_name }}{% endblocktrans %}
+{% blocktranslate %}{{ actor_name }} created a comment on the project {{ project_name }}{% endblocktranslate %}
 {% elif type == 'Idea' or type == 'MapIdea' %}
-{% blocktrans %}{{ actor_name }} created an idea on the project {{ project_name }}{% endblocktrans %}
+{% blocktranslate %}{{ actor_name }} created an idea on the project {{ project_name }}{% endblocktranslate %}
 {% elif type == 'Proposal'%}
-{% blocktrans %}{{ actor_name }} created a proposal on the project {{ project_name }}{% endblocktrans %}
+{% blocktranslate %}{{ actor_name }} created a proposal on the project {{ project_name }}{% endblocktranslate %}
 {% else %}
-{% blocktrans %}{{ actor_name }} created a contribution on the project {{ project_name }}{% endblocktrans %}
+{% blocktranslate %}{{ actor_name }} created a contribution on the project {{ project_name }}{% endblocktranslate %}
 {% endif %}
 {% endwith %}
 {% endblock  %}
@@ -33,13 +33,13 @@
 <p>
 {% with actor_name=action.actor.username type=action.obj|class_name project_name=action.project.name site_name=site.name %}
 {% if type == 'Comment' %}
-{% blocktrans %}on the project {{ project_name }} a comment was added by {{ actor_name }}.{% endblocktrans %} {% if part_type == 'txt' %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktrans %}{% else %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktrans %}{% endif %}
+{% blocktranslate %}on the project {{ project_name }} a comment was added by {{ actor_name }}.{% endblocktranslate %} {% if part_type == 'txt' %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktranslate %}{% else %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktranslate %}{% endif %}
 {% elif type == 'Idea' or type == 'MapIdea' %}
-{% blocktrans %}on the project {{ project_name }} an idea was added by {{ actor_name }}.{% endblocktrans %} {% if part_type == 'txt' %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktrans %}{% else %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktrans %}{% endif %}
+{% blocktranslate %}on the project {{ project_name }} an idea was added by {{ actor_name }}.{% endblocktranslate %} {% if part_type == 'txt' %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktranslate %}{% else %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktranslate %}{% endif %}
 {% elif type == 'Proposal'%}
-{% blocktrans %}on the project {{ project_name }} a proposal was added by {{ actor_name }}.{% endblocktrans %} {% if part_type == 'txt' %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktrans %}{% else %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktrans %}{% endif %}
+{% blocktranslate %}on the project {{ project_name }} a proposal was added by {{ actor_name }}.{% endblocktranslate %} {% if part_type == 'txt' %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktranslate %}{% else %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktranslate %}{% endif %}
 {% else %}
-{% blocktrans %}on the project {{ project_name }} a contribution was added by {{ actor_name }}.{% endblocktrans %} {% if part_type == 'txt' %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktrans %}{% else %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktrans %}{% endif %}
+{% blocktranslate %}on the project {{ project_name }} a contribution was added by {{ actor_name }}.{% endblocktranslate %} {% if part_type == 'txt' %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktranslate %}{% else %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktranslate %}{% endif %}
 {% endif %}
 {% endwith %}
 </p>
@@ -52,17 +52,17 @@
 {% block cta_label %}
 {% with type=action.obj|class_name %}
 {% if type == 'Comment' %}
-{% if action.obj.get_absolute_url %}{% blocktrans %}Check the comment{% endblocktrans %}{% else %}{% blocktrans %}Visit the project{% endblocktrans %}{% endif %}
+{% if action.obj.get_absolute_url %}{% blocktranslate %}Check the comment{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}
 {% elif type == 'Idea' or type == 'MapIdea' %}
-{% if action.obj.get_absolute_url %}{% blocktrans %}Check the idea{% endblocktrans %}{% else %}{% blocktrans %}Visit the project{% endblocktrans %}{% endif %}
+{% if action.obj.get_absolute_url %}{% blocktranslate %}Check the idea{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}
 {% elif type == 'Proposal'%}
-{% if action.obj.get_absolute_url %}{% blocktrans %}Check the proposal{% endblocktrans %}{% else %}{% blocktrans %}Visit the project{% endblocktrans %}{% endif %}
+{% if action.obj.get_absolute_url %}{% blocktranslate %}Check the proposal{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}
 {% else %}
-{% if action.obj.get_absolute_url %}{% blocktrans %}Check the contribution{% endblocktrans %}{% else %}{% blocktrans %}Visit the project{% endblocktrans %}{% endif %}
+{% if action.obj.get_absolute_url %}{% blocktranslate %}Check the contribution{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}
 {% endif %}
 {% endwith %}
 {% endblock %}
 
 {% block reason %}
-{% blocktrans with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. This email was sent to you because you are a moderator in the project.{% endblocktrans %} {{ account_link | safe }}
+{% blocktranslate with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. This email was sent to you because you are a moderator in the project.{% endblocktranslate %} {{ account_link | safe }}
 {% endblock %}
