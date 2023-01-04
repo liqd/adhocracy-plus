@@ -9,7 +9,7 @@
         <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
             <h1>{% block error_status %}{% endblock %}</h1>
             <p class="u-font-size-lg">{% block error_description %}{% endblock %}</p>
-            <a href="/">{% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Back to {{ platformname }}{% endblocktrans %}</a>
+            <a href="/">{% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Back to {{ platformname }}{% endblocktranslate %}</a>
         </div>
     </div>
 </div>

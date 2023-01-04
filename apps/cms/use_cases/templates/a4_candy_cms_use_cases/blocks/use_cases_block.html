@@ -16,7 +16,7 @@
                 <img src="{{ image.url }}" alt="{{ image.alt }}" />
                 {% endif %}
                 <div class="cms__text pt-4 text-muted cms__text--serif">
-                {% blocktrans with category=use_case.get_category_display %}For {{ category }}{% endblocktrans %}
+                {% blocktranslate with category=use_case.get_category_display %}For {{ category }}{% endblocktranslate %}
                 </div>
                 <h3 class="cms__title--bold">{{ use_case.subtitle }}</h3>
             </a>

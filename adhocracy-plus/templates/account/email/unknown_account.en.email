@@ -1,26 +1,26 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktrans %}Reset password request for {{ current_site }}{% endblocktrans %}{% endblock %}
+{% block subject %}{% blocktranslate %}Reset password request for {{ current_site }}{% endblocktranslate %}{% endblock %}
 
-{% block headline %}{% blocktrans %}Reset password{% endblocktrans %}{% endblock %}
+{% block headline %}{% blocktranslate %}Reset password{% endblocktranslate %}{% endblock %}
 
 {% block content %}
 <p>
-{% blocktrans %}You are receiving this e-mail because you or someone else has requested a password for your user account. However, we do not have any record of a user with email {{ email }} in our database.{% endblocktrans %}
+{% blocktranslate %}You are receiving this e-mail because you or someone else has requested a password for your user account. However, we do not have any record of a user with email {{ email }} in our database.{% endblocktranslate %}
 </p>
 <p>
-{% blocktrans %}This mail can be safely ignored if you did not request a password reset.{% endblocktrans %}
+{% blocktranslate %}This mail can be safely ignored if you did not request a password reset.{% endblocktranslate %}
 </p>
 <p>
-{% blocktrans %}If it was you, you can sign up for an account using the link below.{% endblocktrans %}
+{% blocktranslate %}If it was you, you can sign up for an account using the link below.{% endblocktranslate %}
 </p>
 <p>
-{% blocktrans %}If you need assistance, please contact {{ contact_email }}.{% endblocktrans %}
+{% blocktranslate %}If you need assistance, please contact {{ contact_email }}.{% endblocktranslate %}
 </p>
 {% endblock %}
 
 {% block cta_url %}{{ signup_url }}{% endblock %}
-{% block cta_label %}{% blocktrans %}Register{% endblocktrans %}{% endblock %}
+{% block cta_label %}{% blocktranslate %}Register{% endblocktranslate %}{% endblock %}
 
-{% block reason %}{% blocktrans %}This email was sent to {{ email }}. You have received the e-mail because the reset of your password has been requested on {{ current_site }}.{% endblocktrans %}{% endblock %}
+{% block reason %}{% blocktranslate %}This email was sent to {{ email }}. You have received the e-mail because the reset of your password has been requested on {{ current_site }}.{% endblocktranslate %}{% endblock %}

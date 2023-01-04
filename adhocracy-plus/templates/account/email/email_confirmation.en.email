@@ -1,17 +1,17 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktrans %}Please confirm your email address on {{ current_site }}{% endblocktrans %}{% endblock %}
+{% block subject %}{% blocktranslate %}Please confirm your email address on {{ current_site }}{% endblocktranslate %}{% endblock %}
 
-{% block headline %}{% blocktrans %}Your email address on {{ current_site }}{% endblocktrans %}{% endblock %}
+{% block headline %}{% blocktranslate %}Your email address on {{ current_site }}{% endblocktranslate %}{% endblock %}
 
 {% block content %}
 <p>
-{% blocktrans with username=user.username %}this email address has been added to the user account "{{ username }}" on "{{ current_site }}". Please confirm this address. If you did not add this email address, you can ignore this email. We will not send you any further emails.{% endblocktrans %}
+{% blocktranslate with username=user.username %}this email address has been added to the user account "{{ username }}" on "{{ current_site }}". Please confirm this address. If you did not add this email address, you can ignore this email. We will not send you any further emails.{% endblocktranslate %}
 </p>
 {% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
-{% block cta_label %}{% blocktrans %}Confirm your email address{% endblocktrans %}{% endblock %}
+{% block cta_label %}{% blocktranslate %}Confirm your email address{% endblocktranslate %}{% endblock %}
 
-{% block reason %}{% blocktrans %}This email was sent to {{ receiver }}. If you have any further questions, please contact us via {{ contact_email }}{% endblocktrans %}{% endblock %}
+{% block reason %}{% blocktranslate %}This email was sent to {{ receiver }}. If you have any further questions, please contact us via {{ contact_email }}{% endblocktranslate %}{% endblock %}

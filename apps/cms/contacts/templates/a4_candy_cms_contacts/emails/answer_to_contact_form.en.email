@@ -1,30 +1,30 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktrans with site_name=site.name %}We received your message on {{ site_name }}{% endblocktrans %}{% endblock %}
+{% block subject %}{% blocktranslate with site_name=site.name %}We received your message on {{ site_name }}{% endblocktranslate %}{% endblock %}
 
-{% block headline %}{% blocktrans %}We received your message{% endblocktrans %}{% endblock  %}
+{% block headline %}{% blocktranslate %}We received your message{% endblocktranslate %}{% endblock  %}
 
 {% block content %}
 <p>
-{% blocktrans %}This is the data we received from you:{% endblocktrans %}
+{% blocktranslate %}This is the data we received from you:{% endblocktranslate %}
 </p>
 <p>
-{% blocktrans with sender_mail=customformsubmission.email %}Your email address: {{ sender_mail }}{% endblocktrans %}
+{% blocktranslate with sender_mail=customformsubmission.email %}Your email address: {{ sender_mail }}{% endblocktranslate %}
 </p>
 <p>
-{% blocktrans with message=customformsubmission.message %}Your message: {{ message }}{% endblocktrans %}
+{% blocktranslate with message=customformsubmission.message %}Your message: {{ message }}{% endblocktranslate %}
 </p>
 {% if customformsubmission.telephone_number %}
 <p>
-{% blocktrans with sender_phone=customformsubmission.telephone_number %}Your telephone number: {{ sender_phone }}{% endblocktrans %}
+{% blocktranslate with sender_phone=customformsubmission.telephone_number %}Your telephone number: {{ sender_phone }}{% endblocktranslate %}
 </p>
 {% endif %}
 {% if customformsubmission.name %}
 <p>
-{% blocktrans with sender_name=customformsubmission.name %}Your Name: {{ sender_name }}{% endblocktrans %}
+{% blocktranslate with sender_name=customformsubmission.name %}Your Name: {{ sender_name }}{% endblocktranslate %}
 </p>
 {% endif %}
 {% endblock %}
 
-{% block reason %} {% blocktrans %}This message was sent to {{ receiver }}. It was sent because you wrote us a message via our contact form and asked us to send you a copy.{% endblocktrans %}{% endblock %}
+{% block reason %} {% blocktranslate %}This message was sent to {{ receiver }}. It was sent because you wrote us a message via our contact form and asked us to send you a copy.{% endblocktranslate %}{% endblock %}

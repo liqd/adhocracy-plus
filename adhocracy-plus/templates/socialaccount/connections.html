@@ -8,8 +8,8 @@
     <h1 class="mt-0">{% translate "Social Connections" %}</h1>
     <h4>{% translate 'Remove existing connections' %}</h4>
     {% if form.accounts %}
-    <p>{% blocktrans %}You can sign in to your account using any of the following third party
-        accounts. To remove them mark the one you would like to remove and click the remove button{% endblocktrans %}</p>
+    <p>{% blocktranslate %}You can sign in to your account using any of the following third party
+        accounts. To remove them mark the one you would like to remove and click the remove button{% endblocktranslate %}</p>
     <form method="post" action="{% url 'socialaccount_connections' %}">
         {% csrf_token %}
         {% if form.non_field_errors %}

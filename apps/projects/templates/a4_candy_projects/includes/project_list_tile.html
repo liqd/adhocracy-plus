@@ -50,7 +50,7 @@
         <div class="tile__extra-info">
             <i class="far fa-comment" aria-hidden="true"></i>
             {% get_num_entries object as num_entries %}
-            {% blocktrans count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktrans %}
+            {% blocktranslate count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktranslate %}
         </div>
         {% endif %}
     </div>
