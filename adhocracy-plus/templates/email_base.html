@@ -41,9 +41,7 @@
               {% endblock %}
             </p>
             {% block content_html %}
-                {% load capture_tags %}
-                {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
-                {{ content|linebreaks }}
+                {% block content %}{% endblock %}
             {% endblock %}
           </td>
       </tr>
