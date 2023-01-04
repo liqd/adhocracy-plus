@@ -30,6 +30,7 @@
 {% endblock  %}
 
 {% block content %}
+<p>
 {% with actor_name=action.actor.username type=action.obj|class_name project_name=action.project.name site_name=site.name %}
 {% if type == 'Comment' %}
 {% blocktrans %}on the project {{ project_name }} a comment was added by {{ actor_name }}.{% endblocktrans %} {% if part_type == 'txt' %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktrans %}{% else %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktrans %}{% endif %}
@@ -41,6 +42,7 @@
 {% blocktrans %}on the project {{ project_name }} a contribution was added by {{ actor_name }}.{% endblocktrans %} {% if part_type == 'txt' %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktrans %}{% else %}{% blocktrans %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktrans %}{% endif %}
 {% endif %}
 {% endwith %}
+</p>
 {% endblock %}
 
 {% block cta_url %}

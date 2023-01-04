@@ -5,7 +5,11 @@
 
 {% block headline %}{% blocktrans with project_name=project.name organisation_name=project.organisation.name %}The new project {{ project_name }} was created for {{ organisation_name }}{% endblocktrans %}{% endblock  %}
 
-{% block content %}{% blocktrans with creator_name=creator.username project_name=project.name organisation_name=project.organisation.name %}{{ creator_name }} has created the project {{ project_name }} for {{ organisation_name }}.{% endblocktrans %}{% endblock %}
+{% block content %}
+<p>
+{% blocktrans with creator_name=creator.username project_name=project.name organisation_name=project.organisation.name %}{{ creator_name }} has created the project {{ project_name }} for {{ organisation_name }}.{% endblocktrans %}
+</p>
+{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
 {% block cta_label %}{% blocktrans %}Show project{% endblocktrans %}{% endblock %}

@@ -5,7 +5,11 @@
 
 {% block headline %}{% if project.is_semipublic %}{% blocktranslate with project_name=project.name %}Link to semi-public project: "{{ project_name }}"{% endblocktranslate %}{% else %}{% blocktranslate with project_name=project.name %}Link to private project: "{{ project_name }}"{% endblocktranslate %}{% endif %}{% endblock  %}
 
-{% block content %}{% if project.is_semipublic %}{% blocktranslate with project_name=project.name %}you have accepted the invitation to the semi-public project "{{ project_name }}". To participate click on "Go to Project".{% endblocktranslate %}{% else %}{% blocktranslate with project_name=project.name %}you have accepted the invitation to the private project "{{ project_name }}". To participate click on "Go to Project".{% endblocktranslate %}{% endif %}{% endblock %}
+{% block content %}
+<p>
+{% if project.is_semipublic %}{% blocktranslate with project_name=project.name %}you have accepted the invitation to the semi-public project "{{ project_name }}". To participate click on "Go to Project".{% endblocktranslate %}{% else %}{% blocktranslate with project_name=project.name %}you have accepted the invitation to the private project "{{ project_name }}". To participate click on "Go to Project".{% endblocktranslate %}{% endif %}
+</p>
+{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
 {% block cta_label %}{% blocktranslate %}Go to project{% endblocktranslate %}{% endblock %}

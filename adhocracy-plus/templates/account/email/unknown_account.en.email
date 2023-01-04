@@ -6,15 +6,18 @@
 {% block headline %}{% blocktrans %}Reset password{% endblocktrans %}{% endblock %}
 
 {% block content %}
-{% blocktrans %}You are receiving this e-mail because you or someone else has requested a
-password for your user account. However, we do not have any record of a user
-with email {{ email }} in our database.{% endblocktrans %}
-
+<p>
+{% blocktrans %}You are receiving this e-mail because you or someone else has requested a password for your user account. However, we do not have any record of a user with email {{ email }} in our database.{% endblocktrans %}
+</p>
+<p>
 {% blocktrans %}This mail can be safely ignored if you did not request a password reset.{% endblocktrans %}
-
+</p>
+<p>
 {% blocktrans %}If it was you, you can sign up for an account using the link below.{% endblocktrans %}
-
+</p>
+<p>
 {% blocktrans %}If you need assistance, please contact {{ contact_email }}.{% endblocktrans %}
+</p>
 {% endblock %}
 
 {% block cta_url %}{{ signup_url }}{% endblock %}

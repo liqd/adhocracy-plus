@@ -8,9 +8,14 @@
 
 {% block greeting %}{% blocktrans with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktrans %}{% endblock %}
 
-{% block content %}{% blocktrans with end_date=action.obj.end_date %}the online participation in the above mentioned project will end soon.
-
-<b>You can still participate until {{ end_date }}.</b>{% endblocktrans %}{% endblock %}
+{% block content %}
+<p>
+{% blocktrans %}the online participation in the above mentioned project will end soon.{% endblocktrans %}
+</p>
+<p>
+<b>{% blocktrans with end_date=action.obj.end_date %}You can still participate until {{ end_date }}.{% endblocktrans %}</b>
+</p>
+{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_detail_url }}{% endblock %}
 {% block cta_label %}{% blocktrans %}Join now{% endblocktrans %}{% endblock %}
