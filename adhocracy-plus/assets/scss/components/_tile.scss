@@ -110,6 +110,8 @@ $svg-colour: #2a3cd4;
 .tile__title {
     font-size: $font-size-md;
     overflow-wrap: anywhere;
+    overflow: hidden;
+    max-height: 8ch;
     margin-top: 0;
     line-height: 1.3;
 
