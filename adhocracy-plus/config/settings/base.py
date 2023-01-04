@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'ckeditor',
     'ckeditor_uploader',
-    'capture_tag',
     'background_task',
     'parler',
 
