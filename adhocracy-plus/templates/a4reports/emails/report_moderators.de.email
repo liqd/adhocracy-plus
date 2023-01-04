@@ -6,9 +6,13 @@
 
 {% block headline %}Moderationsanfrage im Projekt {{ report.project }}{% endblock %}
 
-{% block content %}Benutzer*in {{ report.creator.username }} hat einen Beitrag in Ihrem Projekt "{{ report.project }}" gemeldet. Gegebenenfalls könnte die Nachricht auch Spam sein. Als Moderator können Sie den Beitrag prüfen und ggf. löschen. Es wurde folgende Begründung angegeben:
-
+{% block content %}
+<p>
+Benutzer*in {{ report.creator.username }} hat einen Beitrag in Ihrem Projekt "{{ report.project }}" gemeldet. Gegebenenfalls könnte die Nachricht auch Spam sein. Als Moderator können Sie den Beitrag prüfen und ggf. löschen. Es wurde folgende Begründung angegeben:
+</p>
+<p>
 {{ report.description }}
+</p>
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}
