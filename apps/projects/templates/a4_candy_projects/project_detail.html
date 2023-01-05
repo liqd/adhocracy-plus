@@ -109,7 +109,7 @@
             {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
             {% if user_may_change %}
             <div class="u-align-right">
-                <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small me-3" data-embed-target="external">{% translate 'Edit' %}</a>
+                <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small me-3">{% translate 'Edit' %}</a>
             </div>
             {% else %}
             <div class="u-spacer-bottom-4"></div>

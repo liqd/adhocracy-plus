@@ -98,7 +98,6 @@ INSTALLED_APPS = (
     # General apps containing views
     "apps.account",
     "apps.dashboard",
-    "apps.embed",
     "apps.exports",
     "apps.offlineevents",
     "apps.projects",
@@ -125,7 +124,6 @@ MIDDLEWARE = (
     "django.middleware.common.CommonMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "apps.embed.middleware.AjaxPathMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 )
 
