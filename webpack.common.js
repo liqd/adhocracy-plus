@@ -38,13 +38,6 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
-    embed: {
-      import: [
-        'bootstrap/js/dist/modal.js',
-        './apps/embed/assets/embed.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
     dsgvo_video_embed: {
       import: [
         'dsgvo-video-embed/dist/dsgvo-video-embed.min.css',

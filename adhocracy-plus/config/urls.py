@@ -77,7 +77,6 @@ urlpatterns = [
     re_path(r"^documents/", include(wagtaildocs_urls)),
     re_path(r"^accounts/", include("allauth.urls")),
     re_path(r"^account/", include("apps.account.urls")),
-    re_path(r"^embed/", include("apps.embed.urls")),
     re_path(r"^profile/", include("apps.users.urls")),
     re_path(r"^i18n/", include(i18n)),
     # API urls
