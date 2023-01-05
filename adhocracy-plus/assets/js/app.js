@@ -62,9 +62,7 @@ function init () {
 }
 
 document.addEventListener('DOMContentLoaded', init, false)
-document.addEventListener('a4.embed.ready', init, false)
 
-// This function is overwritten with custom behavior in embed.js.
 export function getCurrentPath () {
   return location.pathname
 }

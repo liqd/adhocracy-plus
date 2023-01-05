@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // This clashes with the embed plugin and so is commented out for now until we have time to fix
   if (window.CKEDITOR) {
     // eslint-disable-next-line no-undef
     CKEDITOR.on('instanceReady', function (e) {
