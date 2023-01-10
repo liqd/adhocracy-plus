@@ -3,7 +3,7 @@ import rules
 
 from adhocracy4.test.helpers import setup_users
 
-perm_name = 'a4_candy_offlineevents.list_offlineevent'
+perm_name = "a4_candy_offlineevents.list_offlineevent"
 
 
 def test_perm_exists():

@@ -6,7 +6,6 @@ from . import models
 
 
 class SubjectAdmin(module_admin.ItemAdmin):
-
     def save_model(self, request, obj, form, change):
         user = request.user
         obj.creator = user

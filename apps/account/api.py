@@ -8,7 +8,7 @@ class AccountViewSet(RetrieveUpdateAPIView):
 
     serializer_class = AccountSerializer
     permission_classes = (IsAuthenticated,)
-    http_method_names = ['get', 'put']
+    http_method_names = ["get", "put"]
 
     def get_object(self):
         return self.request.user

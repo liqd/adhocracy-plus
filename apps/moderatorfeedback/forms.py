@@ -6,4 +6,4 @@ from . import models
 class ModeratorStatementForm(forms.ModelForm):
     class Meta:
         model = models.ModeratorStatement
-        fields = ['statement']
+        fields = ["statement"]

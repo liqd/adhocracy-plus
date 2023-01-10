@@ -8,7 +8,7 @@ from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from apps.interactiveevents import phases
 
-perm_name = 'a4_candy_interactive_events.add_like_model'
+perm_name = "a4_candy_interactive_events.add_like_model"
 
 
 def test_perm_exists():
@@ -17,9 +17,9 @@ def test_perm_exists():
 
 @pytest.mark.django_db
 def test_pre_phase(phase_factory, live_question_factory, user):
-    phase, module, project, item = setup_phase(phase_factory,
-                                               live_question_factory,
-                                               phases.IssuePhase)
+    phase, module, project, item = setup_phase(
+        phase_factory, live_question_factory, phases.IssuePhase
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_public
@@ -32,9 +32,9 @@ def test_pre_phase(phase_factory, live_question_factory, user):
 
 @pytest.mark.django_db
 def test_phase_active(phase_factory, live_question_factory, user):
-    phase, module, project, item = setup_phase(phase_factory,
-                                               live_question_factory,
-                                               phases.IssuePhase)
+    phase, module, project, item = setup_phase(
+        phase_factory, live_question_factory, phases.IssuePhase
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_public
@@ -47,9 +47,9 @@ def test_phase_active(phase_factory, live_question_factory, user):
 
 @pytest.mark.django_db
 def test_post_phase(phase_factory, live_question_factory, user):
-    phase, module, project, item = setup_phase(phase_factory,
-                                               live_question_factory,
-                                               phases.IssuePhase)
+    phase, module, project, item = setup_phase(
+        phase_factory, live_question_factory, phases.IssuePhase
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_public
@@ -61,12 +61,13 @@ def test_post_phase(phase_factory, live_question_factory, user):
 
 
 @pytest.mark.django_db
-def test_phase_active_project_draft(phase_factory,
-                                    live_question_factory,
-                                    user):
+def test_phase_active_project_draft(phase_factory, live_question_factory, user):
     phase, module, project, item = setup_phase(
-        phase_factory, live_question_factory, phases.IssuePhase,
-        module__project__is_draft=True)
+        phase_factory,
+        live_question_factory,
+        phases.IssuePhase,
+        module__project__is_draft=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_draft
@@ -78,12 +79,13 @@ def test_phase_active_project_draft(phase_factory,
 
 
 @pytest.mark.django_db
-def test_post_phase_project_archived(phase_factory,
-                                     live_question_factory,
-                                     user):
+def test_post_phase_project_archived(phase_factory, live_question_factory, user):
     phase, module, project, item = setup_phase(
-        phase_factory, live_question_factory, phases.IssuePhase,
-        module__project__is_archived=True)
+        phase_factory,
+        live_question_factory,
+        phases.IssuePhase,
+        module__project__is_archived=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_archived

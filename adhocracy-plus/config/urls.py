@@ -39,96 +39,136 @@ from apps.users.api import UserViewSet
 from apps.users.decorators import user_is_project_admin
 
 router = routers.DefaultRouter()
-router.register(r'follows', FollowViewSet, basename='follows')
-router.register(r'reports', ReportViewSet, basename='reports')
-router.register(r'polls', PollViewSet, basename='polls')
-router.register(r'app-projects', AppProjectsViewSet,
-                basename='app-projects')
-router.register(r'app-modules', AppModuleViewSet,
-                basename='app-modules')
-router.register(r'users', UserViewSet,
-                basename='users')
+router.register(r"follows", FollowViewSet, basename="follows")
+router.register(r"reports", ReportViewSet, basename="reports")
+router.register(r"polls", PollViewSet, basename="polls")
+router.register(r"app-projects", AppProjectsViewSet, basename="app-projects")
+router.register(r"app-modules", AppModuleViewSet, basename="app-modules")
+router.register(r"users", UserViewSet, basename="users")
 
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
-module_router.register(r'documents', DocumentViewSet, basename='chapters')
-module_router.register(r'interactiveevents/livequestions', LiveQuestionViewSet,
-                       basename='interactiveevents')
-module_router.register(r'ideas', IdeaViewSet, basename='ideas')
+module_router.register(r"documents", DocumentViewSet, basename="chapters")
+module_router.register(
+    r"interactiveevents/livequestions",
+    LiveQuestionViewSet,
+    basename="interactiveevents",
+)
+module_router.register(r"ideas", IdeaViewSet, basename="ideas")
 
 likes_router = LikesDefaultRouter()
-likes_router.register(r'likes', LikesViewSet, basename='likes')
+likes_router.register(r"likes", LikesViewSet, basename="likes")
 
 orga_router = a4routers.OrganisationDefaultRouter()
 
 ct_router = a4routers.ContentTypeDefaultRouter()
-ct_router.register(r'comments', CommentViewSet, basename='comments')
-ct_router.register(r'ratings', RatingViewSet, basename='ratings')
-ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
-                   basename='moderatorremarks')
-ct_router.register(r'comment-moderate', CommentModerateSet,
-                   basename='comment-moderate')
+ct_router.register(r"comments", CommentViewSet, basename="comments")
+ct_router.register(r"ratings", RatingViewSet, basename="ratings")
+ct_router.register(
+    r"moderatorremarks", ModeratorRemarkViewSet, basename="moderatorremarks"
+)
+ct_router.register(r"comment-moderate", CommentModerateSet, basename="comment-moderate")
 
 urlpatterns = [
     # General platform urls
-    re_path(r'^django-admin/', admin.site.urls),
-    re_path(r'^admin/', include('wagtail.admin.urls')),
-    re_path(r'^documents/', include(wagtaildocs_urls)),
-
-    re_path(r'^accounts/', include('allauth.urls')),
-    re_path(r'^account/', include('apps.account.urls')),
-    re_path(r'^embed/', include('apps.embed.urls')),
-    re_path(r'^profile/', include('apps.users.urls')),
-    re_path(r'^i18n/', include(i18n)),
-
+    re_path(r"^django-admin/", admin.site.urls),
+    re_path(r"^admin/", include("wagtail.admin.urls")),
+    re_path(r"^documents/", include(wagtaildocs_urls)),
+    re_path(r"^accounts/", include("allauth.urls")),
+    re_path(r"^account/", include("apps.account.urls")),
+    re_path(r"^embed/", include("apps.embed.urls")),
+    re_path(r"^profile/", include("apps.users.urls")),
+    re_path(r"^i18n/", include(i18n)),
     # API urls
-    re_path(r'^api/', include(ct_router.urls)),
-    re_path(r'^api/', include(module_router.urls)),
-    re_path(r'^api/', include(orga_router.urls)),
-    re_path(r'^api/', include(likes_router.urls)),
-    re_path(r'^api/', include(router.urls)),
-    re_path(r'^api/login', obtain_auth_token, name='api-login'),
-    re_path(r'^api/account/', AccountViewSet.as_view(), name='api-account'),
-    re_path(r'^upload/', user_is_project_admin(ck_views.upload),
-            name='ckeditor_upload'),
-    re_path(r'^browse/', never_cache(user_is_project_admin(ck_views.browse)),
-            name='ckeditor_browse'),
-
-    re_path(r'^components/$', contrib_views.ComponentLibraryView.as_view()),
-    re_path(r'^jsi18n/$', JavaScriptCatalog.as_view(),
-            name='javascript-catalog'),
-
-    re_path(r'^(?P<organisation_slug>[-\w_]+)/', include([
-        path('budgeting/',
-             include(('apps.budgeting.urls', 'a4_candy_budgeting'),
-                     namespace='a4_candy_budgeting')),
-        path('dashboard/', include('apps.dashboard.urls')),
-        path('ideas/', include(('apps.ideas.urls', 'a4_candy_ideas'),
-                               namespace='a4_candy_ideas')),
-        path('mapideas/', include(('apps.mapideas.urls', 'a4_candy_mapideas'),
-                                  namespace='a4_candy_mapideas')),
-        path('offlineevents/',
-             include(('apps.offlineevents.urls', 'a4_candy_offlineevents'),
-                     namespace='a4_candy_offlineevents')),
-        path('projects/', include('apps.projects.urls')),
-        path('interactiveevents/', include('apps.interactiveevents.urls')),
-        path('text/', include(('apps.documents.urls', 'a4_candy_documents'),
-                              namespace='a4_candy_documents')),
-        path('topicprio/',
-             include(('apps.topicprio.urls', 'a4_candy_topicprio'),
-                     namespace='a4_candy_topicprio')),
-        path('subjects/',
-             include(('apps.debate.urls', 'a4_candy_debate'),
-                     namespace='a4_candy_debate')),
-    ])),
-    path('sitemap.xml', static_sitemap_index, name='static-sitemap-index'),
-    path('sitemap-wagtail.xml', wagtail_sitemap, name='wagtail-sitemap'),
-    path('sitemap-organisations.xml', organisations_sitemap_index,
-         name='organisations-sitemap-index'),
-    path('robots.txt',
-         TemplateView.as_view(template_name='robots.txt',
-                              content_type="text/plain"), name="robots_file"),
+    re_path(r"^api/", include(ct_router.urls)),
+    re_path(r"^api/", include(module_router.urls)),
+    re_path(r"^api/", include(orga_router.urls)),
+    re_path(r"^api/", include(likes_router.urls)),
+    re_path(r"^api/", include(router.urls)),
+    re_path(r"^api/login", obtain_auth_token, name="api-login"),
+    re_path(r"^api/account/", AccountViewSet.as_view(), name="api-account"),
+    re_path(
+        r"^upload/", user_is_project_admin(ck_views.upload), name="ckeditor_upload"
+    ),
+    re_path(
+        r"^browse/",
+        never_cache(user_is_project_admin(ck_views.browse)),
+        name="ckeditor_browse",
+    ),
+    re_path(r"^components/$", contrib_views.ComponentLibraryView.as_view()),
+    re_path(r"^jsi18n/$", JavaScriptCatalog.as_view(), name="javascript-catalog"),
+    re_path(
+        r"^(?P<organisation_slug>[-\w_]+)/",
+        include(
+            [
+                path(
+                    "budgeting/",
+                    include(
+                        ("apps.budgeting.urls", "a4_candy_budgeting"),
+                        namespace="a4_candy_budgeting",
+                    ),
+                ),
+                path("dashboard/", include("apps.dashboard.urls")),
+                path(
+                    "ideas/",
+                    include(
+                        ("apps.ideas.urls", "a4_candy_ideas"),
+                        namespace="a4_candy_ideas",
+                    ),
+                ),
+                path(
+                    "mapideas/",
+                    include(
+                        ("apps.mapideas.urls", "a4_candy_mapideas"),
+                        namespace="a4_candy_mapideas",
+                    ),
+                ),
+                path(
+                    "offlineevents/",
+                    include(
+                        ("apps.offlineevents.urls", "a4_candy_offlineevents"),
+                        namespace="a4_candy_offlineevents",
+                    ),
+                ),
+                path("projects/", include("apps.projects.urls")),
+                path("interactiveevents/", include("apps.interactiveevents.urls")),
+                path(
+                    "text/",
+                    include(
+                        ("apps.documents.urls", "a4_candy_documents"),
+                        namespace="a4_candy_documents",
+                    ),
+                ),
+                path(
+                    "topicprio/",
+                    include(
+                        ("apps.topicprio.urls", "a4_candy_topicprio"),
+                        namespace="a4_candy_topicprio",
+                    ),
+                ),
+                path(
+                    "subjects/",
+                    include(
+                        ("apps.debate.urls", "a4_candy_debate"),
+                        namespace="a4_candy_debate",
+                    ),
+                ),
+            ]
+        ),
+    ),
+    path("sitemap.xml", static_sitemap_index, name="static-sitemap-index"),
+    path("sitemap-wagtail.xml", wagtail_sitemap, name="wagtail-sitemap"),
+    path(
+        "sitemap-organisations.xml",
+        organisations_sitemap_index,
+        name="organisations-sitemap-index",
+    ),
+    path(
+        "robots.txt",
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+        name="robots_file",
+    ),
 ]
 
 
@@ -137,27 +177,26 @@ if settings.DEBUG:
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
     urlpatterns += [
-        path('403/', TemplateView.as_view(template_name='403.html')),
-        path('404/', TemplateView.as_view(template_name='404.html')),
-        path('500/', server_error),
+        path("403/", TemplateView.as_view(template_name="403.html")),
+        path("404/", TemplateView.as_view(template_name="404.html")),
+        path("500/", server_error),
     ]
 
     # Serve static and media locally
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     try:
         import debug_toolbar
     except ImportError:
         pass
     else:
         urlpatterns = [
-            path('__debug__/', include(debug_toolbar.urls)),
+            path("__debug__/", include(debug_toolbar.urls)),
         ] + urlpatterns
 
 
 # generic patterns at the very end
 urlpatterns += [
-    re_path(r'', include('apps.organisations.urls')),
-    re_path(r'', include('wagtail.urls')),
+    re_path(r"", include("apps.organisations.urls")),
+    re_path(r"", include("wagtail.urls")),
 ]

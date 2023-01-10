@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_cms_settings', '0001_initial'),
+        ("a4_candy_cms_settings", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='importantpages',
-            name='github_repo_link',
+            model_name="importantpages",
+            name="github_repo_link",
             field=models.URLField(blank=True),
         ),
         migrations.AddField(
-            model_name='importantpages',
-            name='open_content_link',
+            model_name="importantpages",
+            name="open_content_link",
             field=models.URLField(blank=True),
         ),
     ]

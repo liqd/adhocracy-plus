@@ -8,7 +8,7 @@ from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from apps.debate import phases
 
-perm_name = 'a4_candy_debate.change_subject'
+perm_name = "a4_candy_debate.change_subject"
 
 
 def test_perm_exists():
@@ -17,8 +17,9 @@ def test_perm_exists():
 
 @pytest.mark.django_db
 def test_pre_phase(phase_factory, subject_factory, user, member_factory):
-    phase, _, project, item = setup_phase(phase_factory, subject_factory,
-                                          phases.DebatePhase)
+    phase, _, project, item = setup_phase(
+        phase_factory, subject_factory, phases.DebatePhase
+    )
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
     member = member_factory(organisation=project.organisation)
@@ -35,8 +36,9 @@ def test_pre_phase(phase_factory, subject_factory, user, member_factory):
 
 @pytest.mark.django_db
 def test_phase_active(phase_factory, subject_factory, user, member_factory):
-    phase, _, project, item = setup_phase(phase_factory, subject_factory,
-                                          phases.DebatePhase)
+    phase, _, project, item = setup_phase(
+        phase_factory, subject_factory, phases.DebatePhase
+    )
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
     member = member_factory(organisation=project.organisation)
@@ -52,11 +54,15 @@ def test_phase_active(phase_factory, subject_factory, user, member_factory):
 
 
 @pytest.mark.django_db
-def test_phase_active_project_draft(phase_factory, subject_factory, user,
-                                    member_factory):
-    phase, _, project, item = setup_phase(phase_factory, subject_factory,
-                                          phases.DebatePhase,
-                                          module__project__is_draft=True)
+def test_phase_active_project_draft(
+    phase_factory, subject_factory, user, member_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        subject_factory,
+        phases.DebatePhase,
+        module__project__is_draft=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
     member = member_factory(organisation=project.organisation)
@@ -72,11 +78,15 @@ def test_phase_active_project_draft(phase_factory, subject_factory, user,
 
 
 @pytest.mark.django_db
-def test_post_phase_project_archived(phase_factory, subject_factory, user,
-                                     member_factory):
-    phase, _, project, item = setup_phase(phase_factory, subject_factory,
-                                          phases.DebatePhase,
-                                          module__project__is_archived=True)
+def test_post_phase_project_archived(
+    phase_factory, subject_factory, user, member_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        subject_factory,
+        phases.DebatePhase,
+        module__project__is_archived=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
     member = member_factory(organisation=project.organisation)

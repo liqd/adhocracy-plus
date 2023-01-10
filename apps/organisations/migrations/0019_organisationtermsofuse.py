@@ -9,20 +9,40 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('a4_candy_organisations', '0018_add_kyrgyz_and_russian_language_choices'),
+        ("a4_candy_organisations", "0018_add_kyrgyz_and_russian_language_choices"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='OrganisationTermsOfUse',
+            name="OrganisationTermsOfUse",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('has_agreed', models.BooleanField(default=False)),
-                ('organisation', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.A4_ORGANISATIONS_MODEL)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("has_agreed", models.BooleanField(default=False)),
+                (
+                    "organisation",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.A4_ORGANISATIONS_MODEL,
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('user', 'organisation')},
+                "unique_together": {("user", "organisation")},
             },
         ),
     ]

@@ -9,15 +9,15 @@ from . import views
 
 class CommentPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'comment'
+    phase = "comment"
     view = views.DocumentDetailView
 
-    name = _('Comment phase')
-    module_name = _('commenting text')
-    description = _('Post comments on the paragraphs of the text')
+    name = _("Comment phase")
+    module_name = _("commenting text")
+    description = _("Post comments on the paragraphs of the text")
 
     features = {
-        'comment': (models.Paragraph, models.Chapter),
+        "comment": (models.Paragraph, models.Chapter),
     }
 
 

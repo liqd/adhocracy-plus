@@ -9,20 +9,19 @@ from . import views
 
 class RequestPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'submit'
+    phase = "submit"
     view = views.ProposalListView
 
-    name = _('Request phase')
+    name = _("Request phase")
     description = _(
-        'Post ideas with budget proposals, comment on them and'
-        ' rate them.'
+        "Post ideas with budget proposals, comment on them and" " rate them."
     )
-    module_name = _('participatory budgeting')
+    module_name = _("participatory budgeting")
 
     features = {
-        'crud': (models.Proposal,),
-        'comment': (models.Proposal,),
-        'rate': (models.Proposal,),
+        "crud": (models.Proposal,),
+        "comment": (models.Proposal,),
+        "rate": (models.Proposal,),
     }
 
 

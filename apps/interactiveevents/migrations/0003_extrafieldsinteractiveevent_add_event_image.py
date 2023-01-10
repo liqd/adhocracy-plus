@@ -7,13 +7,22 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_interactive_events', '0002_rename_livestream_to_extrafieldsinteractiveevent'),
+        (
+            "a4_candy_interactive_events",
+            "0002_rename_livestream_to_extrafieldsinteractiveevent",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='extrafieldsinteractiveevent',
-            name='event_image',
-            field=adhocracy4.images.fields.ConfiguredImageField('eventimage', blank=True, help_prefix='The image is displayed next to the event description.', upload_to='interactiveevents/images', verbose_name='Event image'),
+            model_name="extrafieldsinteractiveevent",
+            name="event_image",
+            field=adhocracy4.images.fields.ConfiguredImageField(
+                "eventimage",
+                blank=True,
+                help_prefix="The image is displayed next to the event description.",
+                upload_to="interactiveevents/images",
+                verbose_name="Event image",
+            ),
         ),
     ]

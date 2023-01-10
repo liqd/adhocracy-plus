@@ -11,22 +11,49 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('a4modules', '0004_description_maxlength_512'),
+        ("a4modules", "0004_description_maxlength_512"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Activity',
+            name="Activity",
             fields=[
-                ('item_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='a4modules.Item')),
-                ('slug', autoslug.fields.AutoSlugField(editable=False, populate_from='name', unique=True)),
-                ('name', models.CharField(max_length=120, verbose_name='Title')),
-                ('highlight', models.CharField(help_text='Highlight important information like the time or location of your face-to-face event', max_length=120, verbose_name='Highlighted Info')),
-                ('description', adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(verbose_name='Description')),
+                (
+                    "item_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="a4modules.Item",
+                    ),
+                ),
+                (
+                    "slug",
+                    autoslug.fields.AutoSlugField(
+                        editable=False, populate_from="name", unique=True
+                    ),
+                ),
+                ("name", models.CharField(max_length=120, verbose_name="Title")),
+                (
+                    "highlight",
+                    models.CharField(
+                        help_text="Highlight important information like the time or location of your face-to-face event",
+                        max_length=120,
+                        verbose_name="Highlighted Info",
+                    ),
+                ),
+                (
+                    "description",
+                    adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(
+                        verbose_name="Description"
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('a4modules.item',),
+            bases=("a4modules.item",),
         ),
     ]

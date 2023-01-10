@@ -9,7 +9,7 @@ class LiveQuestionFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.LiveQuestion
 
-    text = factory.Faker('text', max_nb_chars=50)
+    text = factory.Faker("text", max_nb_chars=50)
     category = factory.SubFactory(CategoryFactory)
     module = factory.SubFactory(a4_factories.ModuleFactory)
 

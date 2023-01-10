@@ -9,8 +9,7 @@ from apps.interactiveevents.models import LiveQuestion
 
 
 @pytest.mark.django_db
-def test_phase_allows_like_active(user, admin, phase_factory,
-                                  live_question_factory):
+def test_phase_allows_like_active(user, admin, phase_factory, live_question_factory):
     phase, _, _, livequestion = setup_phase(
         phase_factory, live_question_factory, phases.IssuePhase
     )
@@ -22,8 +21,7 @@ def test_phase_allows_like_active(user, admin, phase_factory,
 
 
 @pytest.mark.django_db
-def test_phase_allows_like_post(user, admin, phase_factory,
-                                live_question_factory):
+def test_phase_allows_like_post(user, admin, phase_factory, live_question_factory):
     phase, _, _, livequestion = setup_phase(
         phase_factory, live_question_factory, phases.IssuePhase
     )
@@ -35,32 +33,28 @@ def test_phase_allows_like_post(user, admin, phase_factory,
 
 
 @pytest.mark.django_db
-def test_phase_allows_like_model_active(user, admin, phase_factory,
-                                        live_question_factory):
+def test_phase_allows_like_model_active(
+    user, admin, phase_factory, live_question_factory
+):
     phase, module, _, livequestion = setup_phase(
         phase_factory, live_question_factory, phases.IssuePhase
     )
 
     with freeze_phase(phase):
-        assert not predicates.phase_allows_like_model(LiveQuestion)(user,
-                                                                    False)
-        assert predicates.phase_allows_like_model(LiveQuestion)(user,
-                                                                module)
-        assert predicates.phase_allows_like_model(LiveQuestion)(admin,
-                                                                module)
+        assert not predicates.phase_allows_like_model(LiveQuestion)(user, False)
+        assert predicates.phase_allows_like_model(LiveQuestion)(user, module)
+        assert predicates.phase_allows_like_model(LiveQuestion)(admin, module)
 
 
 @pytest.mark.django_db
-def test_phase_allows_like_model_post(user, admin, phase_factory,
-                                      live_question_factory):
+def test_phase_allows_like_model_post(
+    user, admin, phase_factory, live_question_factory
+):
     phase, module, _, _ = setup_phase(
         phase_factory, live_question_factory, phases.IssuePhase
     )
 
     with freeze_post_phase(phase):
-        assert not predicates.phase_allows_like_model(LiveQuestion)(user,
-                                                                    False)
-        assert not predicates.phase_allows_like_model(LiveQuestion)(user,
-                                                                    module)
-        assert not predicates.phase_allows_like_model(LiveQuestion)(admin,
-                                                                    module)
+        assert not predicates.phase_allows_like_model(LiveQuestion)(user, False)
+        assert not predicates.phase_allows_like_model(LiveQuestion)(user, module)
+        assert not predicates.phase_allows_like_model(LiveQuestion)(admin, module)

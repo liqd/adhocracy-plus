@@ -9,7 +9,7 @@ from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from apps.budgeting import phases
 
-perm_name = 'a4_candy_budgeting.view_proposal'
+perm_name = "a4_candy_budgeting.view_proposal"
 
 
 def test_perm_exists():
@@ -18,8 +18,9 @@ def test_perm_exists():
 
 @pytest.mark.django_db
 def test_pre_phase(phase_factory, proposal_factory, user, member_factory):
-    phase, _, project, item = setup_phase(phase_factory, proposal_factory,
-                                          phases.RequestPhase)
+    phase, _, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase
+    )
     anonymous, moderator, initiator = setup_users(project)
     member = member_factory(organisation=project.organisation)
 
@@ -34,8 +35,9 @@ def test_pre_phase(phase_factory, proposal_factory, user, member_factory):
 
 @pytest.mark.django_db
 def test_phase_active(phase_factory, proposal_factory, user, member_factory):
-    phase, _, project, item = setup_phase(phase_factory, proposal_factory,
-                                          phases.RequestPhase)
+    phase, _, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase
+    )
     anonymous, moderator, initiator = setup_users(project)
     member = member_factory(organisation=project.organisation)
 
@@ -49,12 +51,15 @@ def test_phase_active(phase_factory, proposal_factory, user, member_factory):
 
 
 @pytest.mark.django_db
-def test_phase_active_project_private(phase_factory, proposal_factory,
-                                      user, user2, member_factory):
-    phase, _, project, item = setup_phase(phase_factory, proposal_factory,
-                                          phases.RequestPhase,
-                                          module__project__access=Access.
-                                          PRIVATE)
+def test_phase_active_project_private(
+    phase_factory, proposal_factory, user, user2, member_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        proposal_factory,
+        phases.RequestPhase,
+        module__project__access=Access.PRIVATE,
+    )
     anonymous, moderator, initiator = setup_users(project)
     participant = user2
     project.participants.add(participant)
@@ -71,11 +76,15 @@ def test_phase_active_project_private(phase_factory, proposal_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_draft(phase_factory, proposal_factory, user,
-                                    member_factory):
-    phase, _, project, item = setup_phase(phase_factory, proposal_factory,
-                                          phases.RequestPhase,
-                                          module__project__is_draft=True)
+def test_phase_active_project_draft(
+    phase_factory, proposal_factory, user, member_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        proposal_factory,
+        phases.RequestPhase,
+        module__project__is_draft=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
     member = member_factory(organisation=project.organisation)
 
@@ -89,11 +98,15 @@ def test_phase_active_project_draft(phase_factory, proposal_factory, user,
 
 
 @pytest.mark.django_db
-def test_post_phase_project_archived(phase_factory, proposal_factory, user,
-                                     member_factory):
-    phase, _, project, item = setup_phase(phase_factory, proposal_factory,
-                                          phases.RequestPhase,
-                                          module__project__is_archived=True)
+def test_post_phase_project_archived(
+    phase_factory, proposal_factory, user, member_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        proposal_factory,
+        phases.RequestPhase,
+        module__project__is_archived=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
     member = member_factory(organisation=project.organisation)
 

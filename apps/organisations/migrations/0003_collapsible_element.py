@@ -7,13 +7,17 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_organisations', '0002_organisation_image_copyright'),
+        ("a4_candy_organisations", "0002_organisation_image_copyright"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='organisation',
-            name='information',
-            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(blank=True, help_text='You can provide general information about your participation platform to your visitors. It’s also helpful to name a general person of contact for inquiries. The information will be shown on a separate page that can be reached via the main menu.', verbose_name='Information about your organisation'),
+            model_name="organisation",
+            name="information",
+            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(
+                blank=True,
+                help_text="You can provide general information about your participation platform to your visitors. It’s also helpful to name a general person of contact for inquiries. The information will be shown on a separate page that can be reached via the main menu.",
+                verbose_name="Information about your organisation",
+            ),
         ),
     ]

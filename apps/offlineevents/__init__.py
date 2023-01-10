@@ -1,1 +1,1 @@
-default_app_config = 'apps.offlineevents.apps.Config'
+default_app_config = "apps.offlineevents.apps.Config"

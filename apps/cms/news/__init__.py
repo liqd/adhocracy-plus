@@ -1,1 +1,1 @@
-default_app_config = 'apps.cms.news.apps.Config'
+default_app_config = "apps.cms.news.apps.Config"

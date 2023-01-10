@@ -10,14 +10,14 @@ User = auth.get_user_model()
 
 
 class NewsletterEmail(ReportToAdminEmailMixin, Email):
-    template_name = 'a4_candy_newsletters/emails/newsletter_email'
+    template_name = "a4_candy_newsletters/emails/newsletter_email"
 
     def dispatch(self, object, *args, **kwargs):
-        organisation_pk = kwargs.pop('organisation_pk', None)
+        organisation_pk = kwargs.pop("organisation_pk", None)
         organisation = None
         if organisation_pk:
             organisation = Organisation.objects.get(pk=organisation_pk)
-        kwargs['organisation'] = organisation
+        kwargs["organisation"] = organisation
 
         return super().dispatch(object, *args, **kwargs)
 
@@ -25,19 +25,17 @@ class NewsletterEmail(ReportToAdminEmailMixin, Email):
         return [self.object.sender]
 
     def get_organisation(self):
-        return self.kwargs['organisation']
+        return self.kwargs["organisation"]
 
     def get_receivers(self):
-        return User.objects\
-            .filter(id__in=self.kwargs['participant_ids'])\
-            .filter(get_newsletters=True)\
-            .filter(is_active=True)\
+        return (
+            User.objects.filter(id__in=self.kwargs["participant_ids"])
+            .filter(get_newsletters=True)
+            .filter(is_active=True)
             .distinct()
+        )
 
 
 class NewsletterEmailAll(NewsletterEmail):
-
     def get_receivers(self):
-        return User.objects\
-            .filter(is_active=True)\
-            .distinct()
+        return User.objects.filter(is_active=True).distinct()

@@ -12,50 +12,112 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('a4categories', '0002_category_icon'),
-        ('a4modules', '0005_module_is_draft'),
+        ("a4categories", "0002_category_icon"),
+        ("a4modules", "0005_module_is_draft"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='LiveStream2',
+            name="LiveStream2",
             fields=[
-                ('item_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='a4modules.Item')),
-                ('live_stream', adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(blank=True, verbose_name='Live Stream')),
+                (
+                    "item_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="a4modules.Item",
+                    ),
+                ),
+                (
+                    "live_stream",
+                    adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(
+                        blank=True, verbose_name="Live Stream"
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('a4modules.item',),
+            bases=("a4modules.item",),
         ),
         migrations.CreateModel(
-            name='LiveQuestion',
+            name="LiveQuestion",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
-                ('modified', models.DateTimeField(blank=True, editable=False, null=True)),
-                ('text', models.TextField(max_length=1000, verbose_name='Question')),
-                ('is_answered', models.BooleanField(default=False)),
-                ('is_on_shortlist', models.BooleanField(default=False)),
-                ('is_hidden', models.BooleanField(default=False)),
-                ('is_live', models.BooleanField(default=False)),
-                ('category', adhocracy4.categories.fields.CategoryField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='a4categories.Category', verbose_name='Characteristic')),
-                ('module', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='a4modules.Module')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now, editable=False
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(blank=True, editable=False, null=True),
+                ),
+                ("text", models.TextField(max_length=1000, verbose_name="Question")),
+                ("is_answered", models.BooleanField(default=False)),
+                ("is_on_shortlist", models.BooleanField(default=False)),
+                ("is_hidden", models.BooleanField(default=False)),
+                ("is_live", models.BooleanField(default=False)),
+                (
+                    "category",
+                    adhocracy4.categories.fields.CategoryField(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="a4categories.Category",
+                        verbose_name="Characteristic",
+                    ),
+                ),
+                (
+                    "module",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="a4modules.Module",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Like',
+            name="Like",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('session', models.CharField(max_length=255)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('livequestion', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='livequestion_likes', to='a4_candy_interactive_events.LiveQuestion')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("session", models.CharField(max_length=255)),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                (
+                    "livequestion",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="livequestion_likes",
+                        to="a4_candy_interactive_events.LiveQuestion",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('session', 'livequestion')},
+                "unique_together": {("session", "livequestion")},
             },
         ),
     ]

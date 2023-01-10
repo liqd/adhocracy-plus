@@ -4,13 +4,11 @@ from . import views
 
 urlpatterns = [
     path(
-        'chapters/<int:pk>/',
-        views.ChapterDetailView.as_view(),
-        name='chapter-detail'
+        "chapters/<int:pk>/", views.ChapterDetailView.as_view(), name="chapter-detail"
     ),
     path(
-        'paragraphs/<int:pk>/',
+        "paragraphs/<int:pk>/",
         views.ParagraphDetailView.as_view(),
-        name='paragraph-detail'
+        name="paragraph-detail",
     ),
 ]

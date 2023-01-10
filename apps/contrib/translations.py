@@ -3,7 +3,6 @@ from wagtail.blocks.stream_block import StreamValue
 
 
 class TranslatedField(object):
-
     def __init__(self, de_field, en_field):
         self.de_field = de_field
         self.en_field = en_field
@@ -27,14 +26,13 @@ class TranslatedField(object):
         de = getattr(instance, self.de_field)
         en = getattr(instance, self.en_field)
 
-        if translation.get_language() == 'en' and self.hasContent(en):
+        if translation.get_language() == "en" and self.hasContent(en):
             return en
         else:
             return de
 
 
 class TranslatedFieldLegal(object):
-
     def __init__(self, de_field, en_field, nl_field, ky_field, ru_field):
         self.de_field = de_field
         self.en_field = en_field
@@ -64,13 +62,13 @@ class TranslatedFieldLegal(object):
         ky = getattr(instance, self.ky_field)
         ru = getattr(instance, self.ru_field)
 
-        if translation.get_language() == 'en' and self.hasContent(en):
+        if translation.get_language() == "en" and self.hasContent(en):
             return en
-        elif translation.get_language() == 'nl' and self.hasContent(nl):
+        elif translation.get_language() == "nl" and self.hasContent(nl):
             return nl
-        elif translation.get_language() == 'ky' and self.hasContent(ky):
+        elif translation.get_language() == "ky" and self.hasContent(ky):
             return ky
-        elif translation.get_language() == 'ru' and self.hasContent(ru):
+        elif translation.get_language() == "ru" and self.hasContent(ru):
             return ru
         else:
             return de

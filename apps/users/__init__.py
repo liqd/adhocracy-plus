@@ -1,17 +1,20 @@
 from django.contrib.auth.signals import user_logged_in
 from django.utils.translation import gettext_lazy as _
 
-default_app_config = 'apps.users.apps.Config'
+default_app_config = "apps.users.apps.Config"
 
-USERNAME_REGEX = r'^[\w]+[ \w.@+-]*$'
-USERNAME_INVALID_MESSAGE = _('Enter a valid username. This value may contain '
-                             'only letters, digits, spaces and @/./+/-/_ '
-                             'characters. It must start with a digit or a '
-                             'letter.')
+USERNAME_REGEX = r"^[\w]+[ \w.@+-]*$"
+USERNAME_INVALID_MESSAGE = _(
+    "Enter a valid username. This value may contain "
+    "only letters, digits, spaces and @/./+/-/_ "
+    "characters. It must start with a digit or a "
+    "letter."
+)
 
 
 def set_language(sender, user, request, **kwargs):
     from .utils import set_session_language
+
     set_session_language(user, None, request)
 
 

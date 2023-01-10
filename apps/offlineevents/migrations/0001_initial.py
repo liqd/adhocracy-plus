@@ -14,26 +14,71 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('a4projects', '0024_group_on_delete_set_null'),
+        ("a4projects", "0024_group_on_delete_set_null"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='OfflineEvent',
+            name="OfflineEvent",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
-                ('modified', models.DateTimeField(blank=True, editable=False, null=True)),
-                ('slug', autoslug.fields.AutoSlugField(editable=False, populate_from='name', unique=True)),
-                ('name', models.CharField(max_length=120, verbose_name='Title')),
-                ('event_type', models.CharField(help_text='The content of this field is shown in the timeline. It should have no more than 30 characters e.g. Information event or 3rd public workshop.', max_length=30, verbose_name='Event type')),
-                ('date', models.DateTimeField(verbose_name='Date')),
-                ('description', ckeditor_uploader.fields.RichTextUploadingField(verbose_name='Description')),
-                ('creator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='a4projects.Project')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now, editable=False
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(blank=True, editable=False, null=True),
+                ),
+                (
+                    "slug",
+                    autoslug.fields.AutoSlugField(
+                        editable=False, populate_from="name", unique=True
+                    ),
+                ),
+                ("name", models.CharField(max_length=120, verbose_name="Title")),
+                (
+                    "event_type",
+                    models.CharField(
+                        help_text="The content of this field is shown in the timeline. It should have no more than 30 characters e.g. Information event or 3rd public workshop.",
+                        max_length=30,
+                        verbose_name="Event type",
+                    ),
+                ),
+                ("date", models.DateTimeField(verbose_name="Date")),
+                (
+                    "description",
+                    ckeditor_uploader.fields.RichTextUploadingField(
+                        verbose_name="Description"
+                    ),
+                ),
+                (
+                    "creator",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "project",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="a4projects.Project",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-date'],
+                "ordering": ["-date"],
             },
         ),
     ]

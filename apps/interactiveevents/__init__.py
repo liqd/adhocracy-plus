@@ -1,1 +1,1 @@
-default_app_config = 'apps.interactiveevents.apps.Config'
+default_app_config = "apps.interactiveevents.apps.Config"

@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_organisations', '0012_orga_helptexts_terms_of_use_data_protection_netiquette'),
+        (
+            "a4_candy_organisations",
+            "0012_orga_helptexts_terms_of_use_data_protection_netiquette",
+        ),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='organisation',
-            name='title',
-            field=models.CharField(blank=True, help_text='The title of your organisation will be shown on the landing page. max. 100 characters', max_length=100, verbose_name='Title of your organisation'),
+            model_name="organisation",
+            name="title",
+            field=models.CharField(
+                blank=True,
+                help_text="The title of your organisation will be shown on the landing page. max. 100 characters",
+                max_length=100,
+                verbose_name="Title of your organisation",
+            ),
         ),
     ]

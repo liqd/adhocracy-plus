@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_cms_images', '0001_initial'),
+        ("a4_candy_cms_images", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customimage',
-            name='file_hash',
-            field=models.CharField(blank=True, db_index=True, editable=False, max_length=40),
+            model_name="customimage",
+            name="file_hash",
+            field=models.CharField(
+                blank=True, db_index=True, editable=False, max_length=40
+            ),
         ),
     ]

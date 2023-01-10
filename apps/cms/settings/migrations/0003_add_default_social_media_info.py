@@ -7,24 +7,36 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_cms_images', '0001_initial'),
-        ('a4_candy_cms_settings', '0002_add_license_urls'),
+        ("a4_candy_cms_images", "0001_initial"),
+        ("a4_candy_cms_settings", "0002_add_license_urls"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='socialmedia',
-            name='fallback_description_de',
-            field=models.TextField(default='Mit adhocracy+ wird digitale Demokratie einfach – für alle und überall.'),
+            model_name="socialmedia",
+            name="fallback_description_de",
+            field=models.TextField(
+                default="Mit adhocracy+ wird digitale Demokratie einfach – für alle und überall."
+            ),
         ),
         migrations.AddField(
-            model_name='socialmedia',
-            name='fallback_description_en',
-            field=models.TextField(default='adhocracy+ makes digital democracy easy - for everyone no matter where.'),
+            model_name="socialmedia",
+            name="fallback_description_en",
+            field=models.TextField(
+                default="adhocracy+ makes digital democracy easy - for everyone no matter where."
+            ),
         ),
         migrations.AddField(
-            model_name='socialmedia',
-            name='fallback_image',
-            field=models.ForeignKey(blank=True, help_text='Fallback Image for social meta tags if no other image is there', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='a4_candy_cms_images.CustomImage', verbose_name='Fallback Image'),
+            model_name="socialmedia",
+            name="fallback_image",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Fallback Image for social meta tags if no other image is there",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="a4_candy_cms_images.CustomImage",
+                verbose_name="Fallback Image",
+            ),
         ),
     ]

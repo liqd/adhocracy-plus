@@ -12,16 +12,20 @@ from apps.ideas import models as idea_models
 
 @pytest.mark.django_db
 def test_absolute_url(idea):
-    url = reverse('a4_candy_ideas:idea-detail',
-                  kwargs={'organisation_slug': idea.project.organisation.slug,
-                          'pk': '{:05d}'.format(idea.pk),
-                          'year': idea.created.year})
+    url = reverse(
+        "a4_candy_ideas:idea-detail",
+        kwargs={
+            "organisation_slug": idea.project.organisation.slug,
+            "pk": "{:05d}".format(idea.pk),
+            "year": idea.created.year,
+        },
+    )
     assert idea.get_absolute_url() == url
 
 
 @pytest.mark.django_db
 def test_save(idea):
-    assert '<script>' not in idea.description
+    assert "<script>" not in idea.description
 
 
 @pytest.mark.django_db

@@ -10,46 +10,44 @@ from . import forms
 from . import models
 
 
-class InteractiveEventModuleDetail(ProjectMixin,
-                                   generic.TemplateView,
-                                   DisplayProjectOrModuleMixin):
-    template_name = \
-        'a4_candy_interactive_events/module_detail.html'
+class InteractiveEventModuleDetail(
+    ProjectMixin, generic.TemplateView, DisplayProjectOrModuleMixin
+):
+    template_name = "a4_candy_interactive_events/module_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['extra_fields'] = \
-            models.ExtraFieldsInteractiveEvent.objects.filter(
-                module=self.module).first()
+        context["extra_fields"] = models.ExtraFieldsInteractiveEvent.objects.filter(
+            module=self.module
+        ).first()
         return context
 
 
-class LiveQuestionModuleDetail(ProjectMixin,
-                               generic.TemplateView,
-                               DisplayProjectOrModuleMixin):
-    template_name = \
-        'a4_candy_interactive_events/livequestion_module_detail.html'
+class LiveQuestionModuleDetail(
+    ProjectMixin, generic.TemplateView, DisplayProjectOrModuleMixin
+):
+    template_name = "a4_candy_interactive_events/livequestion_module_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['extra_fields'] = \
-            models.ExtraFieldsInteractiveEvent.objects.filter(
-                module=self.module).first()
+        context["extra_fields"] = models.ExtraFieldsInteractiveEvent.objects.filter(
+            module=self.module
+        ).first()
         return context
 
 
-class LiveQuestionPresentationListView(ProjectMixin,
-                                       PermissionRequiredMixin,
-                                       generic.ListView):
+class LiveQuestionPresentationListView(
+    ProjectMixin, PermissionRequiredMixin, generic.ListView
+):
 
     model = models.LiveQuestion
-    permission_required = 'a4_candy_interactive_events.change_livequestion'
+    permission_required = "a4_candy_interactive_events.change_livequestion"
 
     def get_permission_object(self):
         return self.module
 
     def get_template_names(self):
-        return ['a4_candy_interactive_events/present_list.html']
+        return ["a4_candy_interactive_events/present_list.html"]
 
     def get_queryset(self):
         return super().get_queryset().filter(module=self.module)
@@ -61,14 +59,12 @@ class LiveQuestionPresentationListView(ProjectMixin,
         return full_url
 
 
-class ExtraFieldsDashboardView(ProjectMixin,
-                               DashboardBaseMixin,
-                               DashboardComponentMixin,
-                               generic.UpdateView):
+class ExtraFieldsDashboardView(
+    ProjectMixin, DashboardBaseMixin, DashboardComponentMixin, generic.UpdateView
+):
     model = models.ExtraFieldsInteractiveEvent
-    template_name = \
-        'a4_candy_interactive_events/extrafields_dashboard_form.html'
-    permission_required = 'a4projects.change_project'
+    template_name = "a4_candy_interactive_events/extrafields_dashboard_form.html"
+    permission_required = "a4projects.change_project"
     form_class = forms.ExtraFieldsForm
 
     def get_permission_object(self):
@@ -80,5 +76,6 @@ class ExtraFieldsDashboardView(ProjectMixin,
         return super().form_valid(form)
 
     def get_object(self, queryset=None):
-        return models.ExtraFieldsInteractiveEvent.objects.\
-            filter(module=self.module).first()
+        return models.ExtraFieldsInteractiveEvent.objects.filter(
+            module=self.module
+        ).first()

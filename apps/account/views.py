@@ -14,19 +14,17 @@ from . import forms
 
 class AccountView(RedirectView):
     permanent = False
-    pattern_name = 'account_profile'
+    pattern_name = "account_profile"
     # Placeholder View to be replaced if we want to use a custom account
     # dashboard function overview.
 
 
-class ProfileUpdateView(LoginRequiredMixin,
-                        SuccessMessageMixin,
-                        generic.UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
 
     model = User
-    template_name = 'a4_candy_account/profile.html'
+    template_name = "a4_candy_account/profile.html"
     form_class = forms.ProfileForm
-    success_message = _('Your profile was successfully updated.')
+    success_message = _("Your profile was successfully updated.")
 
     def get_object(self):
         return get_object_or_404(User, pk=self.request.user.id)
@@ -35,21 +33,20 @@ class ProfileUpdateView(LoginRequiredMixin,
         return self.request.path
 
     def form_valid(self, form):
-        set_session_language(self.request.user.email,
-                             form.cleaned_data['language'],
-                             self.request)
+        set_session_language(
+            self.request.user.email, form.cleaned_data["language"], self.request
+        )
         return super(ProfileUpdateView, self).form_valid(form)
 
 
 class OrganisationTermsOfUseUpdateView(
-        LoginRequiredMixin,
-        SuccessMessageMixin,
-        generic.UpdateView):
+    LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
+):
 
     model = User
-    template_name = 'a4_candy_account/user_agreements.html'
+    template_name = "a4_candy_account/user_agreements.html"
     form_class = forms.OrganisationTermsOfUseForm
-    success_message = _('Your agreements were successfully updated.')
+    success_message = _("Your agreements were successfully updated.")
 
     def get_object(self):
         return get_object_or_404(User, pk=self.request.user.id)
@@ -60,18 +57,18 @@ class OrganisationTermsOfUseUpdateView(
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context['formset'] = forms.OrganisationTermsOfUseFormSet(
+            context["formset"] = forms.OrganisationTermsOfUseFormSet(
                 self.request.POST, instance=self.get_object()
             )
         else:
-            context['formset'] = forms.OrganisationTermsOfUseFormSet(
+            context["formset"] = forms.OrganisationTermsOfUseFormSet(
                 instance=self.get_object()
             )
         return context
 
     def form_valid(self, form):
         context = self.get_context_data()
-        formset = context['formset']
+        formset = context["formset"]
         with transaction.atomic():
             if formset.is_valid():
                 formset.instance = self.get_object()

@@ -13,18 +13,19 @@ from apps.topicprio import models as idea_models
 @pytest.mark.django_db
 def test_absolute_url(topic):
     url = reverse(
-        'a4_candy_topicprio:topic-detail',
+        "a4_candy_topicprio:topic-detail",
         kwargs={
-            'organisation_slug': topic.module.project.organisation.slug,
-            'pk': '{:05d}'.format(topic.pk),
-            'year': topic.created.year
-        })
+            "organisation_slug": topic.module.project.organisation.slug,
+            "pk": "{:05d}".format(topic.pk),
+            "year": topic.created.year,
+        },
+    )
     assert topic.get_absolute_url() == url
 
 
 @pytest.mark.django_db
 def test_save(topic):
-    assert '<script>' not in topic.description
+    assert "<script>" not in topic.description
 
 
 @pytest.mark.django_db
@@ -40,7 +41,7 @@ def test_project(topic):
 
 @pytest.mark.django_db
 def test_reference_number(topic):
-    reference_number = '{:d}-{:05d}'.format(topic.created.year, topic.pk)
+    reference_number = "{:d}-{:05d}".format(topic.created.year, topic.pk)
     assert topic.reference_number == reference_number
 
 

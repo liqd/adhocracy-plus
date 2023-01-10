@@ -1,1 +1,1 @@
-default_app_config = 'apps.maps.apps.Config'
+default_app_config = "apps.maps.apps.Config"

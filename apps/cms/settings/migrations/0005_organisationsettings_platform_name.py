@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_cms_settings', '0004_importantpages_netiquette'),
+        ("a4_candy_cms_settings", "0004_importantpages_netiquette"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='organisationsettings',
-            name='platform_name',
-            field=models.CharField(default='adhocracy+', max_length=20, verbose_name='Platform name'),
+            model_name="organisationsettings",
+            name="platform_name",
+            field=models.CharField(
+                default="adhocracy+", max_length=20, verbose_name="Platform name"
+            ),
         ),
     ]
