@@ -15,23 +15,21 @@ class CommentExportWithCategoriesMixin(VirtualFieldMixin):
     """
 
     def get_virtual_fields(self, virtual):
-        if 'categories' not in virtual:
-            virtual['categories'] = _('Categories')
+        if "categories" not in virtual:
+            virtual["categories"] = _("Categories")
         return super().get_virtual_fields(virtual)
 
     def get_categories_data(self, item):
-        category_choices = getattr(settings,
-                                   'A4_COMMENT_CATEGORIES', '')
+        category_choices = getattr(settings, "A4_COMMENT_CATEGORIES", "")
         if category_choices:
-            category_choices = dict((x, str(y)) for x, y
-                                    in category_choices)
-        if hasattr(item, 'comment_categories') and item.comment_categories:
+            category_choices = dict((x, str(y)) for x, y in category_choices)
+        if hasattr(item, "comment_categories") and item.comment_categories:
             categories = []
-            category_list = item.comment_categories.strip('[]').split(',')
+            category_list = item.comment_categories.strip("[]").split(",")
             for category in category_list:
                 if category in category_choices:
                     categories.append(category_choices[category])
                 else:
                     categories.append(category)
             return ", ".join(categories)
-        return ''
+        return ""

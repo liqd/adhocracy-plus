@@ -23,42 +23,41 @@ class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
 
 
 class AbstractIdea(module_models.Item, Moderateable):
-    item_ptr = models.OneToOneField(to=module_models.Item,
-                                    parent_link=True,
-                                    related_name='%(app_label)s_%(class)s',
-                                    on_delete=models.CASCADE)
-    slug = AutoSlugField(populate_from='name', unique=True)
-    name = models.CharField(max_length=120, verbose_name=_('Title'))
-    description = RichTextField(verbose_name=_('Description'))
+    item_ptr = models.OneToOneField(
+        to=module_models.Item,
+        parent_link=True,
+        related_name="%(app_label)s_%(class)s",
+        on_delete=models.CASCADE,
+    )
+    slug = AutoSlugField(populate_from="name", unique=True)
+    name = models.CharField(max_length=120, verbose_name=_("Title"))
+    description = RichTextField(verbose_name=_("Description"))
     image = ConfiguredImageField(
-        'idea_image',
-        verbose_name=_('Add image'),
-        upload_to='ideas/images',
+        "idea_image",
+        verbose_name=_("Add image"),
+        upload_to="ideas/images",
         blank=True,
-        help_prefix=_(
-            'Visualize your idea.'
-        ),
+        help_prefix=_("Visualize your idea."),
     )
     category = CategoryField()
 
-    labels = models.ManyToManyField(labels_models.Label,
-                                    verbose_name=_('Labels'),
-                                    related_name=('%(app_label)s_'
-                                                  '%(class)s_label')
-                                    )
+    labels = models.ManyToManyField(
+        labels_models.Label,
+        verbose_name=_("Labels"),
+        related_name=("%(app_label)s_" "%(class)s_label"),
+    )
 
     objects = IdeaQuerySet.as_manager()
 
     @property
     def reference_number(self):
-        return '{:d}-{:05d}'.format(self.created.year, self.pk)
+        return "{:d}-{:05d}".format(self.created.year, self.pk)
 
     @property
     def remark(self):
         content_type = ContentType.objects.get_for_model(self)
         return remark_models.ModeratorRemark.objects.filter(
-            item_content_type=content_type,
-            item_object_id=self.id
+            item_content_type=content_type, item_object_id=self.id
         ).first()
 
     class Meta:
@@ -68,28 +67,27 @@ class AbstractIdea(module_models.Item, Moderateable):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.description = transforms.clean_html_field(
-            self.description)
+        self.description = transforms.clean_html_field(self.description)
         super().save(*args, **kwargs)
 
 
 class Idea(AbstractIdea):
-    ratings = GenericRelation(rating_models.Rating,
-                              related_query_name='idea',
-                              object_id_field='object_pk')
-    comments = GenericRelation(comment_models.Comment,
-                               related_query_name='idea',
-                               object_id_field='object_pk')
+    ratings = GenericRelation(
+        rating_models.Rating, related_query_name="idea", object_id_field="object_pk"
+    )
+    comments = GenericRelation(
+        comment_models.Comment, related_query_name="idea", object_id_field="object_pk"
+    )
 
     def get_absolute_url(self):
         return reverse(
-            'a4_candy_ideas:idea-detail',
+            "a4_candy_ideas:idea-detail",
             kwargs=dict(
                 organisation_slug=self.project.organisation.slug,
-                pk='{:05d}'.format(self.pk),
-                year=self.created.year
-            )
+                pk="{:05d}".format(self.pk),
+                year=self.created.year,
+            ),
         )
 
     class Meta:
-        ordering = ['-created']
+        ordering = ["-created"]

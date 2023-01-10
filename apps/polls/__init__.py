@@ -1,1 +1,1 @@
-default_app_config = 'apps.polls.apps.Config'
+default_app_config = "apps.polls.apps.Config"

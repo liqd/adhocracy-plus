@@ -6,14 +6,13 @@ from apps.newsletters import models
 
 
 class NewsletterFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = models.Newsletter
 
-    sender = factory.Faker('email')
-    sender_name = factory.Faker('name')
-    subject = factory.Faker('sentence', nb_words=4)
-    body = factory.Faker('text')
+    sender = factory.Faker("email")
+    sender_name = factory.Faker("name")
+    subject = factory.Faker("sentence", nb_words=4)
+    body = factory.Faker("text")
 
     receivers = models.PROJECT
 
@@ -22,6 +21,5 @@ class NewsletterFactory(factory.django.DjangoModelFactory):
 
 
 class EmailAddressFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = EmailAddress

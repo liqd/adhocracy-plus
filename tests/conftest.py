@@ -18,8 +18,8 @@ from . import factories
 
 def pytest_configure(config):
     # Patch email background_task decorators for all tests
-    patch_background_task_decorator('adhocracy4.emails.tasks')
-    patch_background_task_decorator('apps.projects.tasks')
+    patch_background_task_decorator("adhocracy4.emails.tasks")
+    patch_background_task_decorator("apps.projects.tasks")
 
     # Populate reverse dict with organisation patterns
     resolver = get_resolver()
@@ -27,8 +27,8 @@ def pytest_configure(config):
 
 
 register(factories.UserFactory)
-register(factories.UserFactory, 'user2')
-register(factories.AdminFactory, 'admin')
+register(factories.UserFactory, "user2")
+register(factories.AdminFactory, "admin")
 register(factories.OrganisationFactory)
 register(factories.MemberFactory)
 register(factories.OrganisationTermsOfUseFactory)
@@ -54,12 +54,12 @@ def apiclient():
 
 @pytest.fixture
 def ImagePNG():
-    return factory.django.ImageField(width=1500, height=1400, format='PNG')
+    return factory.django.ImageField(width=1500, height=1400, format="PNG")
 
 
 @pytest.fixture
 def ImageBMP():
-    return factory.django.ImageField(width=1500, height=1400, format='BMP')
+    return factory.django.ImageField(width=1500, height=1400, format="BMP")
 
 
 @pytest.fixture
@@ -74,24 +74,24 @@ def bigImage():
 
 @pytest.fixture
 def login_url():
-    return reverse('account_login')
+    return reverse("account_login")
 
 
 @pytest.fixture
 def logout_url():
-    return reverse('account_logout')
+    return reverse("account_logout")
 
 
 @pytest.fixture
 def signup_url():
-    return reverse('account_signup')
+    return reverse("account_signup")
 
 
 @pytest.fixture()
 def image_factory():
     def _get_image_data(width=1500, height=1500):
         image = BytesIO()
-        Image.new('RGB', (width, height)).save(image, 'JPEG')
-        return SimpleUploadedFile('image.JPG', image.getvalue())
+        Image.new("RGB", (width, height)).save(image, "JPEG")
+        return SimpleUploadedFile("image.JPG", image.getvalue())
 
     return _get_image_data

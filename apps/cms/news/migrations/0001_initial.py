@@ -11,41 +11,123 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('a4_candy_cms_images', '0001_initial'),
-        ('wagtailcore', '0041_group_collection_permissions_verbose_name_plural'),
+        ("a4_candy_cms_images", "0001_initial"),
+        ("wagtailcore", "0041_group_collection_permissions_verbose_name_plural"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='NewsIndexPage',
+            name="NewsIndexPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('subtitle_de', models.CharField(blank=True, max_length=250, verbose_name='Title')),
-                ('subtitle_en', models.CharField(blank=True, max_length=250, verbose_name='Title')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "subtitle_de",
+                    models.CharField(blank=True, max_length=250, verbose_name="Title"),
+                ),
+                (
+                    "subtitle_en",
+                    models.CharField(blank=True, max_length=250, verbose_name="Title"),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='NewsPage',
+            name="NewsPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('title_de', models.CharField(blank=True, max_length=250, verbose_name='Title')),
-                ('title_en', models.CharField(blank=True, max_length=250, verbose_name='Title')),
-                ('teaser_de', models.TextField(blank=True, max_length=400, null=True, verbose_name='Teaser Text')),
-                ('teaser_en', models.TextField(blank=True, max_length=400, null=True, verbose_name='Teaser Text')),
-                ('author', models.CharField(blank=True, max_length=255, verbose_name='Author Name')),
-                ('create_date', models.DateTimeField(auto_now_add=True)),
-                ('update_date', models.DateTimeField(auto_now=True)),
-                ('body_streamfield_de', wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock())], blank=True)),
-                ('body_streamfield_en', wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock())], blank=True)),
-                ('image', models.ForeignKey(blank=True, help_text='The Image that is shown on the news item page and the news index page', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='a4_candy_cms_images.CustomImage', verbose_name='News Header Image')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "title_de",
+                    models.CharField(blank=True, max_length=250, verbose_name="Title"),
+                ),
+                (
+                    "title_en",
+                    models.CharField(blank=True, max_length=250, verbose_name="Title"),
+                ),
+                (
+                    "teaser_de",
+                    models.TextField(
+                        blank=True,
+                        max_length=400,
+                        null=True,
+                        verbose_name="Teaser Text",
+                    ),
+                ),
+                (
+                    "teaser_en",
+                    models.TextField(
+                        blank=True,
+                        max_length=400,
+                        null=True,
+                        verbose_name="Teaser Text",
+                    ),
+                ),
+                (
+                    "author",
+                    models.CharField(
+                        blank=True, max_length=255, verbose_name="Author Name"
+                    ),
+                ),
+                ("create_date", models.DateTimeField(auto_now_add=True)),
+                ("update_date", models.DateTimeField(auto_now=True)),
+                (
+                    "body_streamfield_de",
+                    wagtail.fields.StreamField(
+                        [
+                            ("paragraph", wagtail.blocks.RichTextBlock()),
+                            ("html", wagtail.blocks.RawHTMLBlock()),
+                        ],
+                        blank=True,
+                    ),
+                ),
+                (
+                    "body_streamfield_en",
+                    wagtail.fields.StreamField(
+                        [
+                            ("paragraph", wagtail.blocks.RichTextBlock()),
+                            ("html", wagtail.blocks.RawHTMLBlock()),
+                        ],
+                        blank=True,
+                    ),
+                ),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="The Image that is shown on the news item page and the news index page",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="a4_candy_cms_images.CustomImage",
+                        verbose_name="News Header Image",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

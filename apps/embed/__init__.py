@@ -1,1 +1,1 @@
-default_app_config = 'apps.embed.apps.Config'
+default_app_config = "apps.embed.apps.Config"

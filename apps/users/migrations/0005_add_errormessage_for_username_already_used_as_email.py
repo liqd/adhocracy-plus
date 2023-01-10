@@ -7,13 +7,29 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_users', '0004_add_kyrgyz_and_russian_language_choices'),
+        ("a4_candy_users", "0004_add_kyrgyz_and_russian_language_choices"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='username',
-            field=models.CharField(error_messages={'unique': 'A user with that username already exists.', 'used_as_email': 'This username is already used as an e-mail address.'}, help_text='Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only.', max_length=60, unique=True, validators=[django.core.validators.RegexValidator('^[\\w]+[ \\w.@+-]*$', 'Enter a valid username. This value may contain only letters, digits, spaces and @/./+/-/_ characters. It must start with a digit or a letter.', 'invalid')], verbose_name='username'),
+            model_name="user",
+            name="username",
+            field=models.CharField(
+                error_messages={
+                    "unique": "A user with that username already exists.",
+                    "used_as_email": "This username is already used as an e-mail address.",
+                },
+                help_text="Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only.",
+                max_length=60,
+                unique=True,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        "^[\\w]+[ \\w.@+-]*$",
+                        "Enter a valid username. This value may contain only letters, digits, spaces and @/./+/-/_ characters. It must start with a digit or a letter.",
+                        "invalid",
+                    )
+                ],
+                verbose_name="username",
+            ),
         ),
     ]

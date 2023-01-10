@@ -9,35 +9,47 @@ from . import views
 
 
 class ExportBudgetingComponent(DashboardComponent):
-    identifier = 'budgeting_export'
+    identifier = "budgeting_export"
     weight = 50
-    label = _('Export Excel')
+    label = _("Export Excel")
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
-        return (module_app == 'a4_candy_budgeting' and
-                not module.project.is_draft and not module.is_draft)
+        return (
+            module_app == "a4_candy_budgeting"
+            and not module.project.is_draft
+            and not module.is_draft
+        )
 
     def get_progress(self, module):
         return 0, 0
 
     def get_base_url(self, module):
-        return reverse('a4dashboard:budgeting-export-module', kwargs={
-            'organisation_slug': module.project.organisation.slug,
-            'module_slug': module.slug,
-        })
+        return reverse(
+            "a4dashboard:budgeting-export-module",
+            kwargs={
+                "organisation_slug": module.project.organisation.slug,
+                "module_slug": module.slug,
+            },
+        )
 
     def get_urls(self):
         return [
-            (r'^modules/(?P<module_slug>[-\w_]+)/export/budgeting/$',
-             views.ProposalDashboardExportView.as_view(),
-             'budgeting-export-module'),
-            (r'^modules/(?P<module_slug>[-\w_]+)/export/budgeting/ideas/$',
-             exports.ProposalExportView.as_view(),
-             'budgeting-export'),
-            (r'^modules/(?P<module_slug>[-\w_]+)/export/budgeting/comments/$',
-             exports.ProposalCommentExportView.as_view(),
-             'budgeting-comment-export'),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/export/budgeting/$",
+                views.ProposalDashboardExportView.as_view(),
+                "budgeting-export-module",
+            ),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/export/budgeting/ideas/$",
+                exports.ProposalExportView.as_view(),
+                "budgeting-export",
+            ),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/export/budgeting/comments/$",
+                exports.ProposalCommentExportView.as_view(),
+                "budgeting-comment-export",
+            ),
         ]
 
 

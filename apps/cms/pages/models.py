@@ -22,115 +22,115 @@ from apps.contrib.translations import TranslatedFieldLegal
 class HomePage(Page):
 
     image_1 = models.ForeignKey(
-        'a4_candy_cms_images.CustomImage',
+        "a4_candy_cms_images.CustomImage",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
+        related_name="+",
         verbose_name="Header Image 1",
-        help_text="The Image that is shown on top of the page"
+        help_text="The Image that is shown on top of the page",
     )
 
     image_2 = models.ForeignKey(
-        'a4_candy_cms_images.CustomImage',
+        "a4_candy_cms_images.CustomImage",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
+        related_name="+",
         verbose_name="Header Image 2",
-        help_text="The Image that is shown on top of the page"
+        help_text="The Image that is shown on top of the page",
     )
 
     image_3 = models.ForeignKey(
-        'a4_candy_cms_images.CustomImage',
+        "a4_candy_cms_images.CustomImage",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
+        related_name="+",
         verbose_name="Header Image 3",
-        help_text="The Image that is shown on top of the page"
+        help_text="The Image that is shown on top of the page",
     )
 
     image_4 = models.ForeignKey(
-        'a4_candy_cms_images.CustomImage',
+        "a4_candy_cms_images.CustomImage",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
+        related_name="+",
         verbose_name="Header Image 4",
-        help_text="The Image that is shown on top of the page"
+        help_text="The Image that is shown on top of the page",
     )
 
     image_5 = models.ForeignKey(
-        'a4_candy_cms_images.CustomImage',
+        "a4_candy_cms_images.CustomImage",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
+        related_name="+",
         verbose_name="Header Image 5",
-        help_text="The Image that is shown on top of the page"
+        help_text="The Image that is shown on top of the page",
     )
 
     form_page = models.ForeignKey(
-        'a4_candy_cms_contacts.FormPage',
+        "a4_candy_cms_contacts.FormPage",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
+        related_name="+",
     )
 
     hero_title_de = models.CharField(
-        max_length=80, blank=True, verbose_name="Hero title")
+        max_length=80, blank=True, verbose_name="Hero title"
+    )
     hero_title_en = models.CharField(
-        max_length=80, blank=True, verbose_name="Hero title")
+        max_length=80, blank=True, verbose_name="Hero title"
+    )
 
     hero_subtitle_de = fields.RichTextField(
-        max_length=150, blank=True, features=['h3', 'bold', 'italic', 'link'])
+        max_length=150, blank=True, features=["h3", "bold", "italic", "link"]
+    )
     hero_subtitle_en = fields.RichTextField(
-        max_length=150, blank=True, features=['h3', 'bold', 'italic', 'link'])
+        max_length=150, blank=True, features=["h3", "bold", "italic", "link"]
+    )
 
     body_de = fields.RichTextField(blank=True)
     body_en = fields.RichTextField(blank=True)
 
-    body_streamfield_de = fields.StreamField([
-        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
-        ('background_cta_block', cms_blocks.ColBackgroundCTABlock()),
-        ('columns_cta', cms_blocks.ColumnsCTABlock()),
-        ('html', blocks.RawHTMLBlock()),
-        ('paragraph', blocks.RichTextBlock()),
-        ('news', NewsBlock()),
-        ('use_cases', UseCaseBlock())
-    ], use_json_field=True, blank=True)
-
-    body_streamfield_en = fields.StreamField([
-        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
-        ('background_cta_block', cms_blocks.ColBackgroundCTABlock()),
-        ('columns_cta', cms_blocks.ColumnsCTABlock()),
-        ('html', blocks.RawHTMLBlock()),
-        ('paragraph', blocks.RichTextBlock()),
-        ('news', NewsBlock()),
-        ('use_cases', UseCaseBlock())
-    ], use_json_field=True, blank=True)
-
-    hero_title = TranslatedField(
-        'hero_title_de',
-        'hero_title_en'
+    body_streamfield_de = fields.StreamField(
+        [
+            ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
+            ("background_cta_block", cms_blocks.ColBackgroundCTABlock()),
+            ("columns_cta", cms_blocks.ColumnsCTABlock()),
+            ("html", blocks.RawHTMLBlock()),
+            ("paragraph", blocks.RichTextBlock()),
+            ("news", NewsBlock()),
+            ("use_cases", UseCaseBlock()),
+        ],
+        use_json_field=True,
+        blank=True,
     )
 
-    hero_subtitle = TranslatedField(
-        'hero_subtitle_de',
-        'hero_subtitle_en'
+    body_streamfield_en = fields.StreamField(
+        [
+            ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
+            ("background_cta_block", cms_blocks.ColBackgroundCTABlock()),
+            ("columns_cta", cms_blocks.ColumnsCTABlock()),
+            ("html", blocks.RawHTMLBlock()),
+            ("paragraph", blocks.RichTextBlock()),
+            ("news", NewsBlock()),
+            ("use_cases", UseCaseBlock()),
+        ],
+        use_json_field=True,
+        blank=True,
     )
 
-    body_streamfield = TranslatedField(
-        'body_streamfield_de',
-        'body_streamfield_en'
-    )
+    hero_title = TranslatedField("hero_title_de", "hero_title_en")
 
-    body = TranslatedField(
-        'body_de',
-        'body_en'
-    )
+    hero_subtitle = TranslatedField("hero_subtitle_de", "hero_subtitle_en")
+
+    body_streamfield = TranslatedField("body_streamfield_de", "body_streamfield_en")
+
+    body = TranslatedField("body_de", "body_en")
 
     @property
     def form(self):
@@ -138,162 +138,172 @@ class HomePage(Page):
 
     @property
     def random_image(self):
-        image_numbers = [i for i in range(1, 6)
-                         if getattr(self, 'image_{}'.format(i))]
+        image_numbers = [i for i in range(1, 6) if getattr(self, "image_{}".format(i))]
         if image_numbers:
-            return getattr(self,
-                           'image_{}'.format(random.choice(image_numbers)))
+            return getattr(self, "image_{}".format(random.choice(image_numbers)))
 
     en_content_panels = [
-        FieldPanel('hero_title_en'),
-        FieldPanel('hero_subtitle_en'),
-        FieldPanel('body_en'),
-        FieldPanel('body_streamfield_en')
+        FieldPanel("hero_title_en"),
+        FieldPanel("hero_subtitle_en"),
+        FieldPanel("body_en"),
+        FieldPanel("body_streamfield_en"),
     ]
 
     de_content_panels = [
-        FieldPanel('hero_title_de'),
-        FieldPanel('hero_subtitle_de'),
-        FieldPanel('body_de'),
-        FieldPanel('body_streamfield_de')
+        FieldPanel("hero_title_de"),
+        FieldPanel("hero_subtitle_de"),
+        FieldPanel("body_de"),
+        FieldPanel("body_streamfield_de"),
     ]
 
     common_panels = [
-        FieldPanel('title'),
-        FieldPanel('slug'),
-        PageChooserPanel('form_page', 'a4_candy_cms_contacts.FormPage'),
+        FieldPanel("title"),
+        FieldPanel("slug"),
+        PageChooserPanel("form_page", "a4_candy_cms_contacts.FormPage"),
         MultiFieldPanel(
             [
-                FieldPanel('image_1'),
-                FieldPanel('image_2'),
-                FieldPanel('image_3'),
-                FieldPanel('image_4'),
-                FieldPanel('image_5'),
+                FieldPanel("image_1"),
+                FieldPanel("image_2"),
+                FieldPanel("image_3"),
+                FieldPanel("image_4"),
+                FieldPanel("image_5"),
             ],
             heading="Images",
-            classname="collapsible"
-        )
+            classname="collapsible",
+        ),
     ]
 
-    edit_handler = TabbedInterface([
-        ObjectList(common_panels, heading='Common'),
-        ObjectList(en_content_panels, heading='English'),
-        ObjectList(de_content_panels, heading='German')
-    ])
+    edit_handler = TabbedInterface(
+        [
+            ObjectList(common_panels, heading="Common"),
+            ObjectList(en_content_panels, heading="English"),
+            ObjectList(de_content_panels, heading="German"),
+        ]
+    )
 
-    subpage_types = ['a4_candy_cms_pages.EmptyPage']
+    subpage_types = ["a4_candy_cms_pages.EmptyPage"]
 
 
 class EmptyPage(Page):
-    subpage_types = ['a4_candy_cms_pages.SimplePage',
-                     'a4_candy_cms_contacts.FormPage',
-                     'a4_candy_cms_news.NewsIndexPage',
-                     'a4_candy_cms_use_cases.UseCaseIndexPage']
+    subpage_types = [
+        "a4_candy_cms_pages.SimplePage",
+        "a4_candy_cms_contacts.FormPage",
+        "a4_candy_cms_news.NewsIndexPage",
+        "a4_candy_cms_use_cases.UseCaseIndexPage",
+    ]
 
     def serve_preview(self, request, mode_name):
         return HttpResponse(status=204)
 
 
 class SimplePage(Page):
-    body_streamfield_de = fields.StreamField([
-        ('html', blocks.RawHTMLBlock()),
-        ('richtext', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('faq', cms_blocks.AccordeonListBlock()),
-        ('image_cta', cms_blocks.ImageCTABlock()),
-        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
-        ('columns_cta', cms_blocks.ColumnsCTABlock()),
-        ('downloads', cms_blocks.DownloadListBlock()),
-        ('quote', cms_blocks.QuoteBlock())
-    ], use_json_field=True)
-    body_streamfield_en = fields.StreamField([
-        ('html', blocks.RawHTMLBlock()),
-        ('richtext', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('faq', cms_blocks.AccordeonListBlock()),
-        ('image_cta', cms_blocks.ImageCTABlock()),
-        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
-        ('columns_cta', cms_blocks.ColumnsCTABlock()),
-        ('downloads', cms_blocks.DownloadListBlock()),
-        ('quote', cms_blocks.QuoteBlock())
-    ], use_json_field=True, blank=True)
-
-    body_streamfield_nl = fields.StreamField([
-        ('html', blocks.RawHTMLBlock()),
-        ('richtext', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('faq', cms_blocks.AccordeonListBlock()),
-        ('image_cta', cms_blocks.ImageCTABlock()),
-        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
-        ('columns_cta', cms_blocks.ColumnsCTABlock()),
-        ('downloads', cms_blocks.DownloadListBlock()),
-        ('quote', cms_blocks.QuoteBlock())
-    ], use_json_field=True, blank=True)
-
-    body_streamfield_ky = fields.StreamField([
-        ('html', blocks.RawHTMLBlock()),
-        ('richtext', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('faq', cms_blocks.AccordeonListBlock()),
-        ('image_cta', cms_blocks.ImageCTABlock()),
-        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
-        ('columns_cta', cms_blocks.ColumnsCTABlock()),
-        ('downloads', cms_blocks.DownloadListBlock()),
-        ('quote', cms_blocks.QuoteBlock())
-    ], use_json_field=True, blank=True)
-
-    body_streamfield_ru = fields.StreamField([
-        ('html', blocks.RawHTMLBlock()),
-        ('richtext', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('faq', cms_blocks.AccordeonListBlock()),
-        ('image_cta', cms_blocks.ImageCTABlock()),
-        ('col_list_image_cta_block', cms_blocks.ColumnsImageCTABlock()),
-        ('columns_cta', cms_blocks.ColumnsCTABlock()),
-        ('downloads', cms_blocks.DownloadListBlock()),
-        ('quote', cms_blocks.QuoteBlock())
-    ], use_json_field=True, blank=True)
-
-    body_streamfield = TranslatedFieldLegal(
-        'body_streamfield_de',
-        'body_streamfield_en',
-        'body_streamfield_nl',
-        'body_streamfield_ky',
-        'body_streamfield_ru'
+    body_streamfield_de = fields.StreamField(
+        [
+            ("html", blocks.RawHTMLBlock()),
+            ("richtext", blocks.RichTextBlock()),
+            ("image", ImageChooserBlock()),
+            ("faq", cms_blocks.AccordeonListBlock()),
+            ("image_cta", cms_blocks.ImageCTABlock()),
+            ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
+            ("columns_cta", cms_blocks.ColumnsCTABlock()),
+            ("downloads", cms_blocks.DownloadListBlock()),
+            ("quote", cms_blocks.QuoteBlock()),
+        ],
+        use_json_field=True,
+    )
+    body_streamfield_en = fields.StreamField(
+        [
+            ("html", blocks.RawHTMLBlock()),
+            ("richtext", blocks.RichTextBlock()),
+            ("image", ImageChooserBlock()),
+            ("faq", cms_blocks.AccordeonListBlock()),
+            ("image_cta", cms_blocks.ImageCTABlock()),
+            ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
+            ("columns_cta", cms_blocks.ColumnsCTABlock()),
+            ("downloads", cms_blocks.DownloadListBlock()),
+            ("quote", cms_blocks.QuoteBlock()),
+        ],
+        use_json_field=True,
+        blank=True,
     )
 
-    en_content_panels = [
-        FieldPanel('body_streamfield_en')
-    ]
+    body_streamfield_nl = fields.StreamField(
+        [
+            ("html", blocks.RawHTMLBlock()),
+            ("richtext", blocks.RichTextBlock()),
+            ("image", ImageChooserBlock()),
+            ("faq", cms_blocks.AccordeonListBlock()),
+            ("image_cta", cms_blocks.ImageCTABlock()),
+            ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
+            ("columns_cta", cms_blocks.ColumnsCTABlock()),
+            ("downloads", cms_blocks.DownloadListBlock()),
+            ("quote", cms_blocks.QuoteBlock()),
+        ],
+        use_json_field=True,
+        blank=True,
+    )
 
-    de_content_panels = [
-        FieldPanel('body_streamfield_de')
-    ]
+    body_streamfield_ky = fields.StreamField(
+        [
+            ("html", blocks.RawHTMLBlock()),
+            ("richtext", blocks.RichTextBlock()),
+            ("image", ImageChooserBlock()),
+            ("faq", cms_blocks.AccordeonListBlock()),
+            ("image_cta", cms_blocks.ImageCTABlock()),
+            ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
+            ("columns_cta", cms_blocks.ColumnsCTABlock()),
+            ("downloads", cms_blocks.DownloadListBlock()),
+            ("quote", cms_blocks.QuoteBlock()),
+        ],
+        use_json_field=True,
+        blank=True,
+    )
 
-    nl_content_panels = [
-        FieldPanel('body_streamfield_nl')
-    ]
+    body_streamfield_ru = fields.StreamField(
+        [
+            ("html", blocks.RawHTMLBlock()),
+            ("richtext", blocks.RichTextBlock()),
+            ("image", ImageChooserBlock()),
+            ("faq", cms_blocks.AccordeonListBlock()),
+            ("image_cta", cms_blocks.ImageCTABlock()),
+            ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
+            ("columns_cta", cms_blocks.ColumnsCTABlock()),
+            ("downloads", cms_blocks.DownloadListBlock()),
+            ("quote", cms_blocks.QuoteBlock()),
+        ],
+        use_json_field=True,
+        blank=True,
+    )
 
-    ky_content_panels = [
-        FieldPanel('body_streamfield_ky')
-    ]
+    body_streamfield = TranslatedFieldLegal(
+        "body_streamfield_de",
+        "body_streamfield_en",
+        "body_streamfield_nl",
+        "body_streamfield_ky",
+        "body_streamfield_ru",
+    )
 
-    ru_content_panels = [
-        FieldPanel('body_streamfield_ru')
-    ]
+    en_content_panels = [FieldPanel("body_streamfield_en")]
 
-    common_panels = [
-        FieldPanel('title'),
-        FieldPanel('slug')
-    ]
+    de_content_panels = [FieldPanel("body_streamfield_de")]
 
-    edit_handler = TabbedInterface([
-        ObjectList(common_panels, heading='Common'),
-        ObjectList(en_content_panels, heading='English'),
-        ObjectList(de_content_panels, heading='German'),
-        ObjectList(nl_content_panels, heading='Dutch'),
-        ObjectList(ky_content_panels, heading='Kyrgyz'),
-        ObjectList(ru_content_panels, heading='Russian')
-    ])
+    nl_content_panels = [FieldPanel("body_streamfield_nl")]
 
-    subpage_types = ['a4_candy_cms_pages.SimplePage']
+    ky_content_panels = [FieldPanel("body_streamfield_ky")]
+
+    ru_content_panels = [FieldPanel("body_streamfield_ru")]
+
+    common_panels = [FieldPanel("title"), FieldPanel("slug")]
+
+    edit_handler = TabbedInterface(
+        [
+            ObjectList(common_panels, heading="Common"),
+            ObjectList(en_content_panels, heading="English"),
+            ObjectList(de_content_panels, heading="German"),
+            ObjectList(nl_content_panels, heading="Dutch"),
+            ObjectList(ky_content_panels, heading="Kyrgyz"),
+            ObjectList(ru_content_panels, heading="Russian"),
+        ]
+    )
+
+    subpage_types = ["a4_candy_cms_pages.SimplePage"]

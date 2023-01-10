@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_users', '0001_initial'),
+        ("a4_candy_users", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='get_newsletters',
-            field=models.BooleanField(default=False, help_text='Projects you are following can send you additional information via email.', verbose_name='I would like to receive further information'),
+            model_name="user",
+            name="get_newsletters",
+            field=models.BooleanField(
+                default=False,
+                help_text="Projects you are following can send you additional information via email.",
+                verbose_name="I would like to receive further information",
+            ),
         ),
     ]

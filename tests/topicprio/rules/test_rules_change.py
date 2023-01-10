@@ -8,7 +8,7 @@ from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from apps.topicprio import phases
 
-perm_name = 'a4_candy_topicprio.change_topic'
+perm_name = "a4_candy_topicprio.change_topic"
 
 
 def test_perm_exists():
@@ -17,8 +17,9 @@ def test_perm_exists():
 
 @pytest.mark.django_db
 def test_pre_phase(phase_factory, topic_factory, user, member_factory):
-    phase, _, project, item = setup_phase(phase_factory, topic_factory,
-                                          phases.PrioritizePhase)
+    phase, _, project, item = setup_phase(
+        phase_factory, topic_factory, phases.PrioritizePhase
+    )
     anonymous, moderator, initiator = setup_users(project)
     member = member_factory(organisation=project.organisation)
     creator = item.creator
@@ -35,8 +36,9 @@ def test_pre_phase(phase_factory, topic_factory, user, member_factory):
 
 @pytest.mark.django_db
 def test_phase_active(phase_factory, topic_factory, user, member_factory):
-    phase, _, project, item = setup_phase(phase_factory, topic_factory,
-                                          phases.PrioritizePhase)
+    phase, _, project, item = setup_phase(
+        phase_factory, topic_factory, phases.PrioritizePhase
+    )
     anonymous, moderator, initiator = setup_users(project)
     member = member_factory(organisation=project.organisation)
     creator = item.creator
@@ -52,11 +54,13 @@ def test_phase_active(phase_factory, topic_factory, user, member_factory):
 
 
 @pytest.mark.django_db
-def test_phase_active_project_draft(phase_factory, topic_factory, user,
-                                    member_factory):
-    phase, _, project, item = setup_phase(phase_factory, topic_factory,
-                                          phases.PrioritizePhase,
-                                          module__project__is_draft=True)
+def test_phase_active_project_draft(phase_factory, topic_factory, user, member_factory):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        topic_factory,
+        phases.PrioritizePhase,
+        module__project__is_draft=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
     member = member_factory(organisation=project.organisation)
     creator = item.creator
@@ -72,11 +76,15 @@ def test_phase_active_project_draft(phase_factory, topic_factory, user,
 
 
 @pytest.mark.django_db
-def test_post_phase_project_archived(phase_factory, topic_factory, user,
-                                     member_factory):
-    phase, _, project, item = setup_phase(phase_factory, topic_factory,
-                                          phases.PrioritizePhase,
-                                          module__project__is_archived=True)
+def test_post_phase_project_archived(
+    phase_factory, topic_factory, user, member_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        topic_factory,
+        phases.PrioritizePhase,
+        module__project__is_archived=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
     member = member_factory(organisation=project.organisation)
     creator = item.creator

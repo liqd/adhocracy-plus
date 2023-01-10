@@ -11,40 +11,46 @@ from . import views
 
 
 class MediaComponent(DashboardComponent):
-    identifier = 'extra_fields'
+    identifier = "extra_fields"
     weight = 20
-    label = _('Media')
+    label = _("Media")
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
-        return module_app == 'a4_candy_interactive_events'
+        return module_app == "a4_candy_interactive_events"
 
     def get_progress(self, module):
         return 0, 0
 
     def get_base_url(self, module):
-        return reverse('a4dashboard:interactiveevents-media', kwargs={
-            'organisation_slug': module.project.organisation.slug,
-            'module_slug': module.slug,
-        })
+        return reverse(
+            "a4dashboard:interactiveevents-media",
+            kwargs={
+                "organisation_slug": module.project.organisation.slug,
+                "module_slug": module.slug,
+            },
+        )
 
     def get_urls(self):
-        return [(
-            r'^modules/(?P<module_slug>[-\w_]+)/media/$',
-            views.ExtraFieldsDashboardView.as_view(component=self),
-            'interactiveevents-media'
-        )]
+        return [
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/media/$",
+                views.ExtraFieldsDashboardView.as_view(component=self),
+                "interactiveevents-media",
+            )
+        ]
 
 
 class ModuleAffiliationsComponent(ModuleFormSetComponent):
-    identifier = 'affiliations'
+    identifier = "affiliations"
     weight = 13
-    label = _('Affiliations')
+    label = _("Affiliations")
 
-    form_title = _('Edit affiliations')
+    form_title = _("Edit affiliations")
     form_class = forms.AffiliationFormSet
-    form_template_name = \
-        'a4_candy_interactive_events/includes/module_affiliations_form.html'
+    form_template_name = (
+        "a4_candy_interactive_events/includes/module_affiliations_form.html"
+    )
 
     def get_progress(self, module):
         if category_models.Category.objects.filter(module=module).exists():
@@ -53,7 +59,7 @@ class ModuleAffiliationsComponent(ModuleFormSetComponent):
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
-        return module_app == 'a4_candy_interactive_events'
+        return module_app == "a4_candy_interactive_events"
 
 
 components.register_module(MediaComponent())

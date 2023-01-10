@@ -30,15 +30,15 @@ User = get_user_model()
 
 class ParticipantInviteDetailView(generic.DetailView):
     model = models.ParticipantInvite
-    slug_field = 'token'
-    slug_url_kwarg = 'invite_token'
+    slug_field = "token"
+    slug_url_kwarg = "invite_token"
 
     def dispatch(self, request, invite_token, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect(
-                'project-participant-invite-update',
+                "project-participant-invite-update",
                 organisation_slug=self.get_object().project.organisation.slug,
-                invite_token=invite_token
+                invite_token=invite_token,
             )
         else:
             return super().dispatch(request, *args, **kwargs)
@@ -47,8 +47,8 @@ class ParticipantInviteDetailView(generic.DetailView):
 class ParticipantInviteUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = models.ParticipantInvite
     form_class = forms.ParticipantInviteForm
-    slug_field = 'token'
-    slug_url_kwarg = 'invite_token'
+    slug_field = "token"
+    slug_url_kwarg = "invite_token"
 
     def form_valid(self, form):
         if form.is_accepted():
@@ -56,20 +56,20 @@ class ParticipantInviteUpdateView(LoginRequiredMixin, generic.UpdateView):
             return redirect(form.instance.project.get_absolute_url())
         else:
             form.instance.reject()
-            return redirect('/')
+            return redirect("/")
 
 
 class ModeratorInviteDetailView(generic.DetailView):
     model = models.ModeratorInvite
-    slug_field = 'token'
-    slug_url_kwarg = 'invite_token'
+    slug_field = "token"
+    slug_url_kwarg = "invite_token"
 
     def dispatch(self, request, invite_token, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect(
-                'project-moderator-invite-update',
+                "project-moderator-invite-update",
                 organisation_slug=self.get_object().project.organisation.slug,
-                invite_token=invite_token
+                invite_token=invite_token,
             )
         else:
             return super().dispatch(request, *args, **kwargs)
@@ -78,8 +78,8 @@ class ModeratorInviteDetailView(generic.DetailView):
 class ModeratorInviteUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = models.ModeratorInvite
     form_class = forms.ModeratorInviteForm
-    slug_field = 'token'
-    slug_url_kwarg = 'invite_token'
+    slug_field = "token"
+    slug_url_kwarg = "invite_token"
 
     def form_valid(self, form):
         if form.is_accepted():
@@ -87,17 +87,18 @@ class ModeratorInviteUpdateView(LoginRequiredMixin, generic.UpdateView):
             return redirect(form.instance.project.get_absolute_url())
         else:
             form.instance.reject()
-            return redirect('/')
+            return redirect("/")
 
 
 class AbstractProjectUserInviteListView(
-        ProjectMixin,
-        a4dashboard_mixins.DashboardBaseMixin,
-        a4dashboard_mixins.DashboardComponentMixin,
-        generic.base.TemplateResponseMixin,
-        generic.edit.FormMixin,
-        generic.detail.SingleObjectMixin,
-        generic.edit.ProcessFormView):
+    ProjectMixin,
+    a4dashboard_mixins.DashboardBaseMixin,
+    a4dashboard_mixins.DashboardComponentMixin,
+    generic.base.TemplateResponseMixin,
+    generic.edit.FormMixin,
+    generic.detail.SingleObjectMixin,
+    generic.edit.ProcessFormView,
+):
 
     form_class = forms.InviteUsersFromEmailForm
     invite_model = None
@@ -108,26 +109,22 @@ class AbstractProjectUserInviteListView(
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        if 'submit_action' in request.POST:
-            if request.POST['submit_action'] == 'remove_user':
-                pk = int(request.POST['user_pk'])
+        if "submit_action" in request.POST:
+            if request.POST["submit_action"] == "remove_user":
+                pk = int(request.POST["user_pk"])
                 user = get_object_or_404(User, pk=pk)
                 related_users = getattr(self.object, self.related_users_field)
                 related_users.remove(user)
                 messages.success(request, self.success_message_removal)
-            elif request.POST['submit_action'] == 'remove_invite':
-                pk = int(request.POST['invite_pk'])
+            elif request.POST["submit_action"] == "remove_invite":
+                pk = int(request.POST["invite_pk"])
                 if self.invite_model.objects.filter(pk=pk).exists():
                     invite = self.invite_model.objects.get(pk=pk)
                     invite.delete()
-                    messages.success(
-                        request,
-                        _('Invitation succesfully removed.')
-                    )
+                    messages.success(request, _("Invitation succesfully removed."))
                 else:
                     messages.info(
-                        request,
-                        _('Invitation was already accepted or removed.')
+                        request, _("Invitation was already accepted or removed.")
                     )
 
             response = redirect(self.get_success_url())
@@ -153,32 +150,37 @@ class AbstractProjectUserInviteListView(
         pending = []
         filtered_emails = []
         for email in emails:
-            if self.invite_model.objects.filter(email=email,
-                                                project=self.project).exists():
+            if self.invite_model.objects.filter(
+                email=email, project=self.project
+            ).exists():
                 pending.append(email)
             else:
                 filtered_emails.append(email)
         return filtered_emails, pending
 
     def form_valid(self, form):
-        emails = list(set(
-            itertools.chain(form.cleaned_data['add_users'],
-                            form.cleaned_data['add_users_upload'])))
+        emails = list(
+            set(
+                itertools.chain(
+                    form.cleaned_data["add_users"],
+                    form.cleaned_data["add_users_upload"],
+                )
+            )
+        )
 
         emails, existing = self.filter_existing(emails)
         if existing:
             messages.error(
                 self.request,
-                _('Following users already accepted an invitation: ') +
-                ', '.join(existing)
+                _("Following users already accepted an invitation: ")
+                + ", ".join(existing),
             )
 
         emails, pending = self.filter_pending(emails)
         if pending:
             messages.error(
                 self.request,
-                _('Following users are already invited: ') +
-                ', '.join(pending)
+                _("Following users are already invited: ") + ", ".join(pending),
             )
 
         for email in emails:
@@ -186,21 +188,21 @@ class AbstractProjectUserInviteListView(
                 creator=self.request.user,
                 project=self.project,
                 email=email,
-                site=get_current_site(self.request)
+                site=get_current_site(self.request),
             )
 
         messages.success(
             self.request,
-            ngettext(self.success_message[0], self.success_message[1],
-                     len(emails)).format(len(emails))
+            ngettext(
+                self.success_message[0], self.success_message[1], len(emails)
+            ).format(len(emails)),
         )
 
         return redirect(self.get_success_url())
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['labels'] = (self.add_user_field_label,
-                            self.add_user_upload_field_label)
+        kwargs["labels"] = (self.add_user_field_label, self.add_user_upload_field_label)
         return kwargs
 
     def _send_component_updated_signal(self):
@@ -208,23 +210,23 @@ class AbstractProjectUserInviteListView(
             sender=self.component.__class__,
             project=self.project,
             component=self.component,
-            user=self.request.user
+            user=self.request.user,
         )
 
 
 class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
 
     model = project_models.Project
-    slug_url_kwarg = 'project_slug'
-    template_name = 'a4_candy_projects/project_moderators.html'
-    permission_required = 'a4projects.change_project'
-    menu_item = 'project'
+    slug_url_kwarg = "project_slug"
+    template_name = "a4_candy_projects/project_moderators.html"
+    permission_required = "a4projects.change_project"
+    menu_item = "project"
 
-    related_users_field = 'moderators'
-    add_user_field_label = _('Invite moderators via email')
-    add_user_upload_field_label = _('Invite moderators via file upload')
-    success_message = (_('{} moderator invited.'), _('{} moderators invited.'))
-    success_message_removal = _('Moderator successfully removed.')
+    related_users_field = "moderators"
+    add_user_field_label = _("Invite moderators via email")
+    add_user_upload_field_label = _("Invite moderators via file upload")
+    success_message = (_("{} moderator invited."), _("{} moderators invited."))
+    success_message_removal = _("Moderator successfully removed.")
 
     invite_model = models.ModeratorInvite
 
@@ -235,18 +237,16 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
 class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 
     model = project_models.Project
-    slug_url_kwarg = 'project_slug'
-    template_name = 'a4_candy_projects/project_participants.html'
-    permission_required = 'a4projects.change_project'
-    menu_item = 'project'
+    slug_url_kwarg = "project_slug"
+    template_name = "a4_candy_projects/project_participants.html"
+    permission_required = "a4projects.change_project"
+    menu_item = "project"
 
-    related_users_field = 'participants'
-    add_user_field_label = _('Invite users via email')
-    add_user_upload_field_label = _('Invite users via file upload')
-    success_message = (
-        _('{} participant invited.'),
-        _('{} participants invited.'))
-    success_message_removal = _('Participant successfully removed.')
+    related_users_field = "participants"
+    add_user_field_label = _("Invite users via email")
+    add_user_upload_field_label = _("Invite users via file upload")
+    success_message = (_("{} participant invited."), _("{} participants invited."))
+    success_message_removal = _("Participant successfully removed.")
 
     invite_model = models.ParticipantInvite
 
@@ -254,19 +254,17 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
         return self.project
 
 
-class ProjectDeleteView(PermissionRequiredMixin,
-                        generic.DeleteView):
+class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
     model = project_models.Project
-    permission_required = 'a4projects.delete_project'
-    http_method_names = ['post']
+    permission_required = "a4projects.delete_project"
+    http_method_names = ["post"]
     success_message = _("Project '%(name)s' was deleted successfully.")
 
     def get_success_url(self):
-        return reverse_lazy('a4dashboard:project-list',
-                            kwargs={
-                                'organisation_slug':
-                                    self.get_object().organisation.slug}
-                            )
+        return reverse_lazy(
+            "a4dashboard:project-list",
+            kwargs={"organisation_slug": self.get_object().organisation.slug},
+        )
 
     def delete(self, request, *args, **kwargs):
         obj = self.get_object()
@@ -274,14 +272,13 @@ class ProjectDeleteView(PermissionRequiredMixin,
         return super().delete(request, *args, **kwargs)
 
 
-class ProjectDetailView(PermissionRequiredMixin,
-                        ProjectModuleDispatchMixin,
-                        DisplayProjectOrModuleMixin
-                        ):
+class ProjectDetailView(
+    PermissionRequiredMixin, ProjectModuleDispatchMixin, DisplayProjectOrModuleMixin
+):
 
     model = models.Project
-    permission_required = 'a4projects.view_project'
-    template_name = 'a4_candy_projects/project_detail.html'
+    permission_required = "a4projects.view_project"
+    template_name = "a4_candy_projects/project_detail.html"
 
     def get_permission_object(self):
         return self.project
@@ -295,12 +292,11 @@ class ProjectDetailView(PermissionRequiredMixin,
         return self.request.user.is_authenticated
 
 
-class ModuleDetailView(PermissionRequiredMixin,
-                       PhaseDispatchMixin):
+class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
 
     model = module_models.Module
-    permission_required = 'a4projects.view_project'
-    slug_url_kwarg = 'module_slug'
+    permission_required = "a4projects.view_project"
+    slug_url_kwarg = "module_slug"
 
     @cached_property
     def project(self):
@@ -315,8 +311,8 @@ class ModuleDetailView(PermissionRequiredMixin,
 
     def get_context_data(self, **kwargs):
         """Append project and module to the template context."""
-        if 'project' not in kwargs:
-            kwargs['project'] = self.project
-        if 'module' not in kwargs:
-            kwargs['module'] = self.module
+        if "project" not in kwargs:
+            kwargs["project"] = self.project
+        if "module" not in kwargs:
+            kwargs["module"] = self.module
         return super().get_context_data(**kwargs)

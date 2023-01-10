@@ -12,8 +12,7 @@ def get_current_organisation(context):
     try:
         request = context.request
         resolver = resolve(request.path_info)
-        if resolver.kwargs and 'organisation_slug' in resolver.kwargs:
-            return Organisation.objects.get(
-                slug=resolver.kwargs['organisation_slug'])
+        if resolver.kwargs and "organisation_slug" in resolver.kwargs:
+            return Organisation.objects.get(slug=resolver.kwargs["organisation_slug"])
     except (Resolver404, Organisation.DoesNotExist, AttributeError):
         pass

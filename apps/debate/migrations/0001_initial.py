@@ -10,20 +10,35 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('a4modules', '0004_description_maxlength_512'),
+        ("a4modules", "0004_description_maxlength_512"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Subject',
+            name="Subject",
             fields=[
-                ('item_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='a4modules.Item')),
-                ('slug', autoslug.fields.AutoSlugField(editable=False, populate_from='name', unique=True)),
-                ('name', models.CharField(max_length=120, verbose_name='Title')),
+                (
+                    "item_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="a4modules.Item",
+                    ),
+                ),
+                (
+                    "slug",
+                    autoslug.fields.AutoSlugField(
+                        editable=False, populate_from="name", unique=True
+                    ),
+                ),
+                ("name", models.CharField(max_length=120, verbose_name="Title")),
             ],
             options={
-                'ordering': ['-created'],
+                "ordering": ["-created"],
             },
-            bases=('a4modules.item',),
+            bases=("a4modules.item",),
         ),
     ]

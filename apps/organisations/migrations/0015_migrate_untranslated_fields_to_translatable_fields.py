@@ -6,8 +6,10 @@ from django.db import migrations
 
 
 def forwards_func(apps, schema_editor):
-    Organisation = apps.get_model('a4_candy_organisations', 'Organisation')
-    OrganisationTranslation = apps.get_model('a4_candy_organisations', 'OrganisationTranslation')
+    Organisation = apps.get_model("a4_candy_organisations", "Organisation")
+    OrganisationTranslation = apps.get_model(
+        "a4_candy_organisations", "OrganisationTranslation"
+    )
 
     for organisation in Organisation.objects.all():
         OrganisationTranslation.objects.create(
@@ -20,15 +22,17 @@ def forwards_func(apps, schema_editor):
 
 
 def backwards_func(apps, schema_editor):
-    Organisation = apps.get_model('a4_candy_organisations', 'Organisation')
-    OrganisationTranslation = apps.get_model('a4_candy_organisations', 'OrganisationTranslation')
+    Organisation = apps.get_model("a4_candy_organisations", "Organisation")
+    OrganisationTranslation = apps.get_model(
+        "a4_candy_organisations", "OrganisationTranslation"
+    )
 
     for object in Organisation.objects.all():
         translation = _get_translation(object, OrganisationTranslation)
         object.description_untranslated = translation.description
         object.slogan_untranslated = translation.slogan
         object.information_untranslated = translation.information
-        object.save()   # Note this only calls Model.save()
+        object.save()  # Note this only calls Model.save()
 
 
 def _get_translation(organisation, OrganisationTranslation):
@@ -47,7 +51,10 @@ def _get_translation(organisation, OrganisationTranslation):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_organisations', '0014_add_translatable_fields_and_rename_odl_fields'),
+        (
+            "a4_candy_organisations",
+            "0014_add_translatable_fields_and_rename_odl_fields",
+        ),
     ]
 
     operations = [

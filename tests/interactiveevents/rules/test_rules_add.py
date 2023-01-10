@@ -9,7 +9,7 @@ from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from apps.interactiveevents import phases
 
-perm_name = 'a4_candy_interactive_events.add_livequestion'
+perm_name = "a4_candy_interactive_events.add_livequestion"
 
 
 def test_perm_exists():
@@ -18,8 +18,7 @@ def test_perm_exists():
 
 @pytest.mark.django_db
 def test_pre_phase(phase_factory, user):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.IssuePhase)
+    phase, module, project, _ = setup_phase(phase_factory, None, phases.IssuePhase)
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_public
@@ -32,8 +31,7 @@ def test_pre_phase(phase_factory, user):
 
 @pytest.mark.django_db
 def test_phase_active(phase_factory, user):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.IssuePhase)
+    phase, module, project, _ = setup_phase(phase_factory, None, phases.IssuePhase)
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_public
@@ -46,10 +44,9 @@ def test_phase_active(phase_factory, user):
 
 @pytest.mark.django_db
 def test_phase_active_project_private(phase_factory, user, user2):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.IssuePhase,
-                                            module__project__access=Access.
-                                            PRIVATE)
+    phase, module, project, _ = setup_phase(
+        phase_factory, None, phases.IssuePhase, module__project__access=Access.PRIVATE
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     participant = user2
@@ -66,9 +63,9 @@ def test_phase_active_project_private(phase_factory, user, user2):
 
 @pytest.mark.django_db
 def test_post_phase_project_archived(phase_factory, user):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.IssuePhase,
-                                            module__project__is_archived=True)
+    phase, module, project, _ = setup_phase(
+        phase_factory, None, phases.IssuePhase, module__project__is_archived=True
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_archived

@@ -8,12 +8,13 @@ from apps.debate.models import Subject
 @pytest.mark.django_db
 def test_absolute_url(subject):
     url = reverse(
-        'a4_candy_debate:subject-detail',
+        "a4_candy_debate:subject-detail",
         kwargs={
-            'organisation_slug': subject.module.project.organisation.slug,
-            'pk': '{:05d}'.format(subject.pk),
-            'year': subject.created.year
-        })
+            "organisation_slug": subject.module.project.organisation.slug,
+            "pk": "{:05d}".format(subject.pk),
+            "year": subject.created.year,
+        },
+    )
     assert subject.get_absolute_url() == url
 
 
@@ -30,7 +31,7 @@ def test_project(subject):
 
 @pytest.mark.django_db
 def test_reference_number(subject):
-    reference_number = '{:d}-{:05d}'.format(subject.created.year, subject.pk)
+    reference_number = "{:d}-{:05d}".format(subject.created.year, subject.pk)
     assert subject.reference_number == reference_number
 
 
@@ -55,8 +56,7 @@ def test_delete_subject(subject_factory, comment_factory, rating_factory):
 
 
 @pytest.mark.django_db
-def test_comment_creator_count(subject_factory, comment_factory,
-                               user_factory):
+def test_comment_creator_count(subject_factory, comment_factory, user_factory):
     subject1 = subject_factory()
     subject2 = subject_factory()
     subject3 = subject_factory()
@@ -87,8 +87,9 @@ def test_comment_creator_count(subject_factory, comment_factory,
 
 
 @pytest.mark.django_db
-def test_comment_creator_count_minus_three(subject_factory, comment_factory,
-                                           user_factory):
+def test_comment_creator_count_minus_three(
+    subject_factory, comment_factory, user_factory
+):
     subject1 = subject_factory()
     subject2 = subject_factory()
     subject3 = subject_factory()
@@ -119,8 +120,7 @@ def test_comment_creator_count_minus_three(subject_factory, comment_factory,
 
 
 @pytest.mark.django_db
-def test_last_three_creators(subject_factory, comment_factory,
-                             user_factory):
+def test_last_three_creators(subject_factory, comment_factory, user_factory):
     subject1 = subject_factory()
     subject2 = subject_factory()
     subject3 = subject_factory()

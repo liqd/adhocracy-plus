@@ -1,1 +1,1 @@
-default_app_config = 'apps.newsletters.apps.Config'
+default_app_config = "apps.newsletters.apps.Config"

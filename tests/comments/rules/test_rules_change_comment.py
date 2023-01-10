@@ -8,7 +8,7 @@ from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from apps.ideas import phases
 
-perm_name = 'a4comments.change_comment'
+perm_name = "a4comments.change_comment"
 
 
 def test_perm_exists():
@@ -16,10 +16,12 @@ def test_perm_exists():
 
 
 @pytest.mark.django_db
-def test_pre_phase(phase_factory, idea_factory, user, member_factory,
-                   admin, comment_factory):
-    phase, _, project, item = setup_phase(phase_factory, idea_factory,
-                                          phases.CollectPhase)
+def test_pre_phase(
+    phase_factory, idea_factory, user, member_factory, admin, comment_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory, idea_factory, phases.CollectPhase
+    )
     anonymous, moderator, initiator = setup_users(project)
     comment = comment_factory(content_object=item)
     creator = comment.creator
@@ -37,10 +39,12 @@ def test_pre_phase(phase_factory, idea_factory, user, member_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active(phase_factory, idea_factory, user,
-                      member_factory, admin, comment_factory):
-    phase, _, project, item = setup_phase(phase_factory, idea_factory,
-                                          phases.CollectPhase)
+def test_phase_active(
+    phase_factory, idea_factory, user, member_factory, admin, comment_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory, idea_factory, phases.CollectPhase
+    )
     anonymous, moderator, initiator = setup_users(project)
     comment = comment_factory(content_object=item)
     creator = comment.creator
@@ -58,11 +62,12 @@ def test_phase_active(phase_factory, idea_factory, user,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_draft(phase_factory, idea_factory, user,
-                                    member_factory, admin, comment_factory):
-    phase, _, project, item = setup_phase(phase_factory, idea_factory,
-                                          phases.RatingPhase,
-                                          module__project__is_draft=True)
+def test_phase_active_project_draft(
+    phase_factory, idea_factory, user, member_factory, admin, comment_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory, idea_factory, phases.RatingPhase, module__project__is_draft=True
+    )
     anonymous, moderator, initiator = setup_users(project)
     comment = comment_factory(content_object=item)
     creator = comment.creator
@@ -80,11 +85,15 @@ def test_phase_active_project_draft(phase_factory, idea_factory, user,
 
 
 @pytest.mark.django_db
-def test_post_phase_project_archived(phase_factory, idea_factory, user,
-                                     member_factory, admin, comment_factory):
-    phase, _, project, item = setup_phase(phase_factory, idea_factory,
-                                          phases.CollectPhase,
-                                          module__project__is_archived=True)
+def test_post_phase_project_archived(
+    phase_factory, idea_factory, user, member_factory, admin, comment_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        idea_factory,
+        phases.CollectPhase,
+        module__project__is_archived=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
     comment = comment_factory(content_object=item)
     creator = comment.creator

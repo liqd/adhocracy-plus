@@ -6,37 +6,34 @@ from adhocracy4.test import factories
 
 
 class UserFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = settings.AUTH_USER_MODEL
 
-    username = factory.Sequence(lambda n: 'user%d' % n)
-    email = factory.Sequence(lambda n: 'user%d@liqd.net' % n)
-    password = make_password('password')
-    language = 'en'
+    username = factory.Sequence(lambda n: "user%d" % n)
+    email = factory.Sequence(lambda n: "user%d@liqd.net" % n)
+    password = make_password("password")
+    language = "en"
 
 
 class AdminFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = settings.AUTH_USER_MODEL
 
-    username = factory.Sequence(lambda n: 'admin%d' % n)
-    email = factory.Sequence(lambda n: 'admin%d@liqd.net' % n)
-    password = make_password('password')
+    username = factory.Sequence(lambda n: "admin%d" % n)
+    email = factory.Sequence(lambda n: "admin%d@liqd.net" % n)
+    password = make_password("password")
     is_superuser = True
-    language = 'en'
+    language = "en"
 
 
 class OrganisationFactory(factory.django.DjangoModelFactory):
-
     class Meta:
-        model = 'a4_candy_organisations.Organisation'
-        django_get_or_create = ('name',)
+        model = "a4_candy_organisations.Organisation"
+        django_get_or_create = ("name",)
 
-    name = factory.Faker('company')
-    description = factory.Faker('text')
-    imprint = factory.Faker('text')
+    name = factory.Faker("company")
+    description = factory.Faker("text")
+    imprint = factory.Faker("text")
 
     @factory.post_generation
     def initiators(self, create, extracted, **kwargs):
@@ -52,7 +49,7 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
 
 class MemberFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = 'a4_candy_organisations.Member'
+        model = "a4_candy_organisations.Member"
 
     member = factory.SubFactory(UserFactory)
     organisation = factory.SubFactory(OrganisationFactory)
@@ -60,51 +57,47 @@ class MemberFactory(factory.django.DjangoModelFactory):
 
 class OrganisationTermsOfUseFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = 'a4_candy_organisations.OrganisationTermsOfUse'
+        model = "a4_candy_organisations.OrganisationTermsOfUse"
 
     user = factory.SubFactory(UserFactory)
     organisation = factory.SubFactory(OrganisationFactory)
 
 
 class CategoryFactory(factory.django.DjangoModelFactory):
-
     class Meta:
-        model = 'a4categories.Category'
+        model = "a4categories.Category"
 
-    name = factory.Faker('job')
+    name = factory.Faker("job")
     module = factory.SubFactory(factories.ModuleFactory)
 
 
 class LabelFactory(factory.django.DjangoModelFactory):
-
     class Meta:
-        model = 'a4labels.Label'
+        model = "a4labels.Label"
 
-    name = factory.Faker('job')
+    name = factory.Faker("job")
     module = factory.SubFactory(factories.ModuleFactory)
 
 
 class CommentFactory(factory.django.DjangoModelFactory):
-
     class Meta:
-        model = 'a4comments.Comment'
+        model = "a4comments.Comment"
 
-    comment = factory.Faker('text')
+    comment = factory.Faker("text")
     creator = factory.SubFactory(UserFactory)
 
 
 class RatingFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = 'a4ratings.Rating'
+        model = "a4ratings.Rating"
 
     value = 1
     creator = factory.SubFactory(UserFactory)
 
 
 class ModeratorStatementFactory(factory.django.DjangoModelFactory):
-
     class Meta:
-        model = 'a4_candy_moderatorfeedback.ModeratorStatement'
+        model = "a4_candy_moderatorfeedback.ModeratorStatement"
 
-    statement = factory.Faker('text')
+    statement = factory.Faker("text")
     creator = factory.SubFactory(UserFactory)

@@ -6,18 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_debate', '0002_subject_description'),
+        ("a4_candy_debate", "0002_subject_description"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='subject',
-            name='description',
-            field=models.CharField(blank=True, help_text='In addition to the title, you can insert an optional explanatory text (max. 350 char.). This field is only shown in the participation if it is filled out.', max_length=350, verbose_name='Description'),
+            model_name="subject",
+            name="description",
+            field=models.CharField(
+                blank=True,
+                help_text="In addition to the title, you can insert an optional explanatory text (max. 350 char.). This field is only shown in the participation if it is filled out.",
+                max_length=350,
+                verbose_name="Description",
+            ),
         ),
         migrations.AlterField(
-            model_name='subject',
-            name='name',
-            field=models.CharField(help_text='max 120 characters', max_length=120, verbose_name='Title'),
+            model_name="subject",
+            name="name",
+            field=models.CharField(
+                help_text="max 120 characters", max_length=120, verbose_name="Title"
+            ),
         ),
     ]

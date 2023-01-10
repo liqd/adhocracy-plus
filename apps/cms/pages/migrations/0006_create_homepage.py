@@ -2,62 +2,63 @@
 
 from django.db import migrations
 
+
 def create_homepage(apps, schema_editor):
     # Get models
-    ContentType = apps.get_model('contenttypes.ContentType')
-    Page = apps.get_model('wagtailcore.Page')
-    Site = apps.get_model('wagtailcore.Site')
-    HomePage = apps.get_model('a4_candy_cms_pages.HomePage')
+    ContentType = apps.get_model("contenttypes.ContentType")
+    Page = apps.get_model("wagtailcore.Page")
+    Site = apps.get_model("wagtailcore.Site")
+    HomePage = apps.get_model("a4_candy_cms_pages.HomePage")
 
     # Only create default homepage when there isn't any added
-    if Page.objects.filter(id=2).exists() \
-            and Page.objects.get(id=2).numchild == 0:
+    if Page.objects.filter(id=2).exists() and Page.objects.get(id=2).numchild == 0:
         # Delete the default homepage
         # If migration is run multiple times, it may have already been deleted
         Page.objects.filter(id=2).delete()
 
         # Create content type for homepage model
         homepage_content_type, __ = ContentType.objects.get_or_create(
-            model='homepage', app_label='a4_candy_cms_pages')
+            model="homepage", app_label="a4_candy_cms_pages"
+        )
 
         # Create a new homepage
         homepage = HomePage.objects.create(
             title="Homepage",
-            slug='home',
+            slug="home",
             content_type=homepage_content_type,
-            path='00010001',
+            path="00010001",
             depth=2,
             numchild=0,
-            url_path='/home/',
+            url_path="/home/",
         )
 
         # Create a site with the new homepage set as the root
         Site.objects.create(
-            hostname='localhost', root_page=homepage, is_default_site=True)
+            hostname="localhost", root_page=homepage, is_default_site=True
+        )
 
 
 def remove_homepage(apps, schema_editor):
     # Get models
-    ContentType = apps.get_model('contenttypes.ContentType')
-    HomePage = apps.get_model('a4_candy_cms_pages.HomePage')
+    ContentType = apps.get_model("contenttypes.ContentType")
+    HomePage = apps.get_model("a4_candy_cms_pages.HomePage")
 
     # Delete the default homepage
     # Page and Site objects CASCADE
-    HomePage.objects.filter(slug='home', depth=2).delete()
+    HomePage.objects.filter(slug="home", depth=2).delete()
 
     # Delete content type for homepage model
-    ContentType.objects.filter(model='homepage', app_label='a4_candy_cms_pages').delete()
+    ContentType.objects.filter(
+        model="homepage", app_label="a4_candy_cms_pages"
+    ).delete()
+
 
 class Migration(migrations.Migration):
 
     run_before = [
-        ('wagtailcore', '0053_locale_model'),  # added for Wagtail 2.11 compatibility
+        ("wagtailcore", "0053_locale_model"),  # added for Wagtail 2.11 compatibility
     ]
 
-    dependencies = [
-        ('a4_candy_cms_pages', '0005_auto_20191126_1719')
-    ]
+    dependencies = [("a4_candy_cms_pages", "0005_auto_20191126_1719")]
 
-    operations = [
-        migrations.RunPython(create_homepage, remove_homepage)
-    ]
+    operations = [migrations.RunPython(create_homepage, remove_homepage)]

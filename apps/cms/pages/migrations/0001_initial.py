@@ -12,52 +12,506 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('wagtailcore', '0041_group_collection_permissions_verbose_name_plural'),
-        ('a4_candy_cms_images', '0001_initial'),
-        ('a4_candy_cms_contacts', '0001_initial'),
+        ("wagtailcore", "0041_group_collection_permissions_verbose_name_plural"),
+        ("a4_candy_cms_images", "0001_initial"),
+        ("a4_candy_cms_contacts", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='EmptyPage',
+            name="EmptyPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='SimplePage',
+            name="SimplePage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('body_de', wagtail.fields.RichTextField()),
-                ('body_en', wagtail.fields.RichTextField(blank=True)),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                ("body_de", wagtail.fields.RichTextField()),
+                ("body_en", wagtail.fields.RichTextField(blank=True)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='HomePage',
+            name="HomePage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('subtitle_de', models.CharField(blank=True, max_length=500, verbose_name='Subtitle')),
-                ('subtitle_en', models.CharField(blank=True, max_length=500, verbose_name='Subtitle')),
-                ('teaser_de', wagtail.fields.RichTextField(blank=True)),
-                ('teaser_en', wagtail.fields.RichTextField(blank=True)),
-                ('body_de', wagtail.fields.RichTextField(blank=True)),
-                ('body_en', wagtail.fields.RichTextField(blank=True)),
-                ('body_streamfield_de', wagtail.fields.StreamField([('image_cta_block', wagtail.blocks.StructBlock([('columns_count', wagtail.blocks.ChoiceBlock(choices=[(1, 'One column'), (2, 'Two columns')])), ('columns', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=False)), ('body', wagtail.blocks.RichTextBlock(required=False)), ('link', wagtail.blocks.CharBlock(required=False)), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='List and Image')))])), ('background_cta_block', wagtail.blocks.StructBlock([('columns_count', wagtail.blocks.ChoiceBlock(choices=[(1, 'One column'), (2, 'Two columns')])), ('columns', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('body', wagtail.blocks.RichTextBlock(required=False)), ('link', wagtail.blocks.CharBlock(required=False)), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='CTA with Background')))])), ('columns_cta', wagtail.blocks.StructBlock([('columns_count', wagtail.blocks.ChoiceBlock(choices=[(1, 'One column'), (2, 'Two columns'), (3, 'Three columns')])), ('columns', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('body', wagtail.blocks.RichTextBlock(required=False)), ('link', wagtail.blocks.CharBlock(required=False)), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='CTA Column')))])), ('html', wagtail.blocks.RawHTMLBlock()), ('paragraph', wagtail.blocks.RichTextBlock()), ('news', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock()), ('news_page', wagtail.blocks.PageChooserBlock(page_type=['a4_candy_cms_news.NewsIndexPage']))])), ('use_cases', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock()), ('use_cases', wagtail.blocks.ListBlock(wagtail.blocks.PageChooserBlock(page_type=['a4_candy_cms_use_cases.UseCasePage']))), ('demo_platform', wagtail.blocks.URLBlock()), ('use_case_page', wagtail.blocks.PageChooserBlock(page_type=['a4_candy_cms_use_cases.UseCaseIndexPage']))]))], blank=True)),
-                ('body_streamfield_en', wagtail.fields.StreamField([('image_cta_block', wagtail.blocks.StructBlock([('columns_count', wagtail.blocks.ChoiceBlock(choices=[(1, 'One column'), (2, 'Two columns')])), ('columns', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=False)), ('body', wagtail.blocks.RichTextBlock(required=False)), ('link', wagtail.blocks.CharBlock(required=False)), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='List and Image')))])), ('background_cta_block', wagtail.blocks.StructBlock([('columns_count', wagtail.blocks.ChoiceBlock(choices=[(1, 'One column'), (2, 'Two columns')])), ('columns', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('body', wagtail.blocks.RichTextBlock(required=False)), ('link', wagtail.blocks.CharBlock(required=False)), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='CTA with Background')))])), ('columns_cta', wagtail.blocks.StructBlock([('columns_count', wagtail.blocks.ChoiceBlock(choices=[(1, 'One column'), (2, 'Two columns'), (3, 'Three columns')])), ('columns', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('body', wagtail.blocks.RichTextBlock(required=False)), ('link', wagtail.blocks.CharBlock(required=False)), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='CTA Column')))])), ('html', wagtail.blocks.RawHTMLBlock()), ('paragraph', wagtail.blocks.RichTextBlock()), ('news', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock()), ('news_page', wagtail.blocks.PageChooserBlock(page_type=['a4_candy_cms_news.NewsIndexPage']))])), ('use_cases', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock()), ('use_cases', wagtail.blocks.ListBlock(wagtail.blocks.PageChooserBlock(page_type=['a4_candy_cms_use_cases.UseCasePage']))), ('demo_platform', wagtail.blocks.URLBlock()), ('use_case_page', wagtail.blocks.PageChooserBlock(page_type=['a4_candy_cms_use_cases.UseCaseIndexPage']))]))], blank=True)),
-                ('form_page', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='a4_candy_cms_contacts.FormPage')),
-                ('image', models.ForeignKey(blank=True, help_text='The Image that is shown on top of the page', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='a4_candy_cms_images.CustomImage', verbose_name='Header Image')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "subtitle_de",
+                    models.CharField(
+                        blank=True, max_length=500, verbose_name="Subtitle"
+                    ),
+                ),
+                (
+                    "subtitle_en",
+                    models.CharField(
+                        blank=True, max_length=500, verbose_name="Subtitle"
+                    ),
+                ),
+                ("teaser_de", wagtail.fields.RichTextField(blank=True)),
+                ("teaser_en", wagtail.fields.RichTextField(blank=True)),
+                ("body_de", wagtail.fields.RichTextField(blank=True)),
+                ("body_en", wagtail.fields.RichTextField(blank=True)),
+                (
+                    "body_streamfield_de",
+                    wagtail.fields.StreamField(
+                        [
+                            (
+                                "image_cta_block",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "columns_count",
+                                            wagtail.blocks.ChoiceBlock(
+                                                choices=[
+                                                    (1, "One column"),
+                                                    (2, "Two columns"),
+                                                ]
+                                            ),
+                                        ),
+                                        (
+                                            "columns",
+                                            wagtail.blocks.ListBlock(
+                                                wagtail.blocks.StructBlock(
+                                                    [
+                                                        (
+                                                            "image",
+                                                            wagtail.images.blocks.ImageChooserBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "body",
+                                                            wagtail.blocks.RichTextBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link",
+                                                            wagtail.blocks.CharBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link_text",
+                                                            wagtail.blocks.CharBlock(
+                                                                label="Link Text",
+                                                                max_length=50,
+                                                                required=False,
+                                                            ),
+                                                        ),
+                                                    ],
+                                                    label="List and Image",
+                                                )
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            (
+                                "background_cta_block",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "columns_count",
+                                            wagtail.blocks.ChoiceBlock(
+                                                choices=[
+                                                    (1, "One column"),
+                                                    (2, "Two columns"),
+                                                ]
+                                            ),
+                                        ),
+                                        (
+                                            "columns",
+                                            wagtail.blocks.ListBlock(
+                                                wagtail.blocks.StructBlock(
+                                                    [
+                                                        (
+                                                            "body",
+                                                            wagtail.blocks.RichTextBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link",
+                                                            wagtail.blocks.CharBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link_text",
+                                                            wagtail.blocks.CharBlock(
+                                                                label="Link Text",
+                                                                max_length=50,
+                                                                required=False,
+                                                            ),
+                                                        ),
+                                                    ],
+                                                    label="CTA with Background",
+                                                )
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            (
+                                "columns_cta",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "columns_count",
+                                            wagtail.blocks.ChoiceBlock(
+                                                choices=[
+                                                    (1, "One column"),
+                                                    (2, "Two columns"),
+                                                    (3, "Three columns"),
+                                                ]
+                                            ),
+                                        ),
+                                        (
+                                            "columns",
+                                            wagtail.blocks.ListBlock(
+                                                wagtail.blocks.StructBlock(
+                                                    [
+                                                        (
+                                                            "body",
+                                                            wagtail.blocks.RichTextBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link",
+                                                            wagtail.blocks.CharBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link_text",
+                                                            wagtail.blocks.CharBlock(
+                                                                label="Link Text",
+                                                                max_length=50,
+                                                                required=False,
+                                                            ),
+                                                        ),
+                                                    ],
+                                                    label="CTA Column",
+                                                )
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            ("html", wagtail.blocks.RawHTMLBlock()),
+                            ("paragraph", wagtail.blocks.RichTextBlock()),
+                            (
+                                "news",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        ("title", wagtail.blocks.CharBlock()),
+                                        (
+                                            "news_page",
+                                            wagtail.blocks.PageChooserBlock(
+                                                page_type=[
+                                                    "a4_candy_cms_news.NewsIndexPage"
+                                                ]
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            (
+                                "use_cases",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        ("title", wagtail.blocks.CharBlock()),
+                                        (
+                                            "use_cases",
+                                            wagtail.blocks.ListBlock(
+                                                wagtail.blocks.PageChooserBlock(
+                                                    page_type=[
+                                                        "a4_candy_cms_use_cases.UseCasePage"
+                                                    ]
+                                                )
+                                            ),
+                                        ),
+                                        ("demo_platform", wagtail.blocks.URLBlock()),
+                                        (
+                                            "use_case_page",
+                                            wagtail.blocks.PageChooserBlock(
+                                                page_type=[
+                                                    "a4_candy_cms_use_cases.UseCaseIndexPage"
+                                                ]
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                        ],
+                        blank=True,
+                    ),
+                ),
+                (
+                    "body_streamfield_en",
+                    wagtail.fields.StreamField(
+                        [
+                            (
+                                "image_cta_block",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "columns_count",
+                                            wagtail.blocks.ChoiceBlock(
+                                                choices=[
+                                                    (1, "One column"),
+                                                    (2, "Two columns"),
+                                                ]
+                                            ),
+                                        ),
+                                        (
+                                            "columns",
+                                            wagtail.blocks.ListBlock(
+                                                wagtail.blocks.StructBlock(
+                                                    [
+                                                        (
+                                                            "image",
+                                                            wagtail.images.blocks.ImageChooserBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "body",
+                                                            wagtail.blocks.RichTextBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link",
+                                                            wagtail.blocks.CharBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link_text",
+                                                            wagtail.blocks.CharBlock(
+                                                                label="Link Text",
+                                                                max_length=50,
+                                                                required=False,
+                                                            ),
+                                                        ),
+                                                    ],
+                                                    label="List and Image",
+                                                )
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            (
+                                "background_cta_block",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "columns_count",
+                                            wagtail.blocks.ChoiceBlock(
+                                                choices=[
+                                                    (1, "One column"),
+                                                    (2, "Two columns"),
+                                                ]
+                                            ),
+                                        ),
+                                        (
+                                            "columns",
+                                            wagtail.blocks.ListBlock(
+                                                wagtail.blocks.StructBlock(
+                                                    [
+                                                        (
+                                                            "body",
+                                                            wagtail.blocks.RichTextBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link",
+                                                            wagtail.blocks.CharBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link_text",
+                                                            wagtail.blocks.CharBlock(
+                                                                label="Link Text",
+                                                                max_length=50,
+                                                                required=False,
+                                                            ),
+                                                        ),
+                                                    ],
+                                                    label="CTA with Background",
+                                                )
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            (
+                                "columns_cta",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "columns_count",
+                                            wagtail.blocks.ChoiceBlock(
+                                                choices=[
+                                                    (1, "One column"),
+                                                    (2, "Two columns"),
+                                                    (3, "Three columns"),
+                                                ]
+                                            ),
+                                        ),
+                                        (
+                                            "columns",
+                                            wagtail.blocks.ListBlock(
+                                                wagtail.blocks.StructBlock(
+                                                    [
+                                                        (
+                                                            "body",
+                                                            wagtail.blocks.RichTextBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link",
+                                                            wagtail.blocks.CharBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link_text",
+                                                            wagtail.blocks.CharBlock(
+                                                                label="Link Text",
+                                                                max_length=50,
+                                                                required=False,
+                                                            ),
+                                                        ),
+                                                    ],
+                                                    label="CTA Column",
+                                                )
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            ("html", wagtail.blocks.RawHTMLBlock()),
+                            ("paragraph", wagtail.blocks.RichTextBlock()),
+                            (
+                                "news",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        ("title", wagtail.blocks.CharBlock()),
+                                        (
+                                            "news_page",
+                                            wagtail.blocks.PageChooserBlock(
+                                                page_type=[
+                                                    "a4_candy_cms_news.NewsIndexPage"
+                                                ]
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            (
+                                "use_cases",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        ("title", wagtail.blocks.CharBlock()),
+                                        (
+                                            "use_cases",
+                                            wagtail.blocks.ListBlock(
+                                                wagtail.blocks.PageChooserBlock(
+                                                    page_type=[
+                                                        "a4_candy_cms_use_cases.UseCasePage"
+                                                    ]
+                                                )
+                                            ),
+                                        ),
+                                        ("demo_platform", wagtail.blocks.URLBlock()),
+                                        (
+                                            "use_case_page",
+                                            wagtail.blocks.PageChooserBlock(
+                                                page_type=[
+                                                    "a4_candy_cms_use_cases.UseCaseIndexPage"
+                                                ]
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                        ],
+                        blank=True,
+                    ),
+                ),
+                (
+                    "form_page",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="a4_candy_cms_contacts.FormPage",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="The Image that is shown on top of the page",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="a4_candy_cms_images.CustomImage",
+                        verbose_name="Header Image",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]
