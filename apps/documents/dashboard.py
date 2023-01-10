@@ -10,13 +10,13 @@ from . import views
 
 
 class DocumentComponent(DashboardComponent):
-    identifier = 'document_settings'
+    identifier = "document_settings"
     weight = 20
-    label = _('Document')
+    label = _("Document")
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
-        return module_app == 'a4_candy_documents'
+        return module_app == "a4_candy_documents"
 
     def get_progress(self, module):
         if Chapter.objects.filter(module=module).exists():
@@ -24,49 +24,64 @@ class DocumentComponent(DashboardComponent):
         return 0, 1
 
     def get_base_url(self, module):
-        return reverse('a4dashboard:dashboard-document-settings', kwargs={
-            'organisation_slug': module.project.organisation.slug,
-            'module_slug': module.slug
-        })
+        return reverse(
+            "a4dashboard:dashboard-document-settings",
+            kwargs={
+                "organisation_slug": module.project.organisation.slug,
+                "module_slug": module.slug,
+            },
+        )
 
     def get_urls(self):
-        return [(
-            r'^modules/(?P<module_slug>[-\w_]+)/document/$',
-            views.DocumentDashboardView.as_view(component=self),
-            'dashboard-document-settings'
-        )]
+        return [
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/document/$",
+                views.DocumentDashboardView.as_view(component=self),
+                "dashboard-document-settings",
+            )
+        ]
 
 
 components.register_module(DocumentComponent())
 
 
 class ExportDocumentComponent(DashboardComponent):
-    identifier = 'document_export'
+    identifier = "document_export"
     weight = 50
-    label = _('Export Excel')
+    label = _("Export Excel")
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
-        return (module_app == 'a4_candy_documents' and
-                not module.project.is_draft and not module.is_draft)
+        return (
+            module_app == "a4_candy_documents"
+            and not module.project.is_draft
+            and not module.is_draft
+        )
 
     def get_progress(self, module):
         return 0, 0
 
     def get_base_url(self, module):
-        return reverse('a4dashboard:document-export-module', kwargs={
-            'organisation_slug': module.project.organisation.slug,
-            'module_slug': module.slug,
-        })
+        return reverse(
+            "a4dashboard:document-export-module",
+            kwargs={
+                "organisation_slug": module.project.organisation.slug,
+                "module_slug": module.slug,
+            },
+        )
 
     def get_urls(self):
         return [
-            (r'^modules/(?P<module_slug>[-\w_]+)/export/document/$',
-             views.DocumentDashboardExportView.as_view(),
-             'document-export-module'),
-            (r'^modules/(?P<module_slug>[-\w_]+)/export/document/comments/$',
-             exports.DocumentExportView.as_view(),
-             'document-comment-export'),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/export/document/$",
+                views.DocumentDashboardExportView.as_view(),
+                "document-export-module",
+            ),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/export/document/comments/$",
+                exports.DocumentExportView.as_view(),
+                "document-comment-export",
+            ),
         ]
 
 

@@ -11,35 +11,68 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('a4modules', '0004_description_maxlength_512'),
+        ("a4modules", "0004_description_maxlength_512"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Chapter',
+            name="Chapter",
             fields=[
-                ('item_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='a4modules.Item')),
-                ('name', models.CharField(max_length=120)),
-                ('weight', models.PositiveIntegerField(default=0)),
+                (
+                    "item_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="a4modules.Item",
+                    ),
+                ),
+                ("name", models.CharField(max_length=120)),
+                ("weight", models.PositiveIntegerField(default=0)),
             ],
             options={
-                'ordering': ('weight',),
+                "ordering": ("weight",),
             },
-            bases=('a4modules.item',),
+            bases=("a4modules.item",),
         ),
         migrations.CreateModel(
-            name='Paragraph',
+            name="Paragraph",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
-                ('modified', models.DateTimeField(blank=True, editable=False, null=True)),
-                ('name', models.CharField(blank=True, max_length=120)),
-                ('text', ckeditor_uploader.fields.RichTextUploadingField()),
-                ('weight', models.PositiveIntegerField()),
-                ('chapter', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='paragraphs', to='a4_candy_documents.Chapter')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now, editable=False
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(blank=True, editable=False, null=True),
+                ),
+                ("name", models.CharField(blank=True, max_length=120)),
+                ("text", ckeditor_uploader.fields.RichTextUploadingField()),
+                ("weight", models.PositiveIntegerField()),
+                (
+                    "chapter",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="paragraphs",
+                        to="a4_candy_documents.Chapter",
+                    ),
+                ),
             ],
             options={
-                'ordering': ('weight',),
+                "ordering": ("weight",),
             },
         ),
     ]

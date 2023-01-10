@@ -6,10 +6,9 @@ from tests.ideas.factories import IdeaFactory
 
 
 class ModeratorRemarkFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = ModeratorRemark
 
-    remark = factory.Faker('text')
+    remark = factory.Faker("text")
     item = factory.SubFactory(IdeaFactory)
     creator = factory.SubFactory(a4_factories.USER_FACTORY)

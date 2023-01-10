@@ -13,42 +13,87 @@ import adhocracy4.ckeditor.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_organisations', '0013_orga_remove_default_from_title'),
+        ("a4_candy_organisations", "0013_orga_remove_default_from_title"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='organisation',
-            old_name='description',
-            new_name='description_untranslated',
+            model_name="organisation",
+            old_name="description",
+            new_name="description_untranslated",
         ),
         migrations.RenameField(
-            model_name='organisation',
-            old_name='information',
-            new_name='information_untranslated',
+            model_name="organisation",
+            old_name="information",
+            new_name="information_untranslated",
         ),
         migrations.RenameField(
-            model_name='organisation',
-            old_name='slogan',
-            new_name='slogan_untranslated',
+            model_name="organisation",
+            old_name="slogan",
+            new_name="slogan_untranslated",
         ),
         migrations.CreateModel(
-            name='OrganisationTranslation',
+            name="OrganisationTranslation",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('language_code', models.CharField(db_index=True, max_length=15, verbose_name='Language')),
-                ('description', models.CharField(blank=True, help_text='The description will be displayed on the landing page. max. 800 characters', max_length=800, verbose_name='Short description of your organisation')),
-                ('slogan', models.CharField(blank=True, help_text='The slogan will be shown below the title of your organisation on the landing page. The slogan can provide context or additional information to the title. max. 200 characters', max_length=200, verbose_name='Slogan')),
-                ('information', adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(blank=True, help_text='You can provide general information about your participation platform to your visitors. It’s also helpful to name a general person of contact for inquiries. The information will be shown on a separate "About" page that can be reached via the main menu.', verbose_name='Information about your organisation')),
-                ('master', parler.fields.TranslationsForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='translations', to=settings.A4_ORGANISATIONS_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "language_code",
+                    models.CharField(
+                        db_index=True, max_length=15, verbose_name="Language"
+                    ),
+                ),
+                (
+                    "description",
+                    models.CharField(
+                        blank=True,
+                        help_text="The description will be displayed on the landing page. max. 800 characters",
+                        max_length=800,
+                        verbose_name="Short description of your organisation",
+                    ),
+                ),
+                (
+                    "slogan",
+                    models.CharField(
+                        blank=True,
+                        help_text="The slogan will be shown below the title of your organisation on the landing page. The slogan can provide context or additional information to the title. max. 200 characters",
+                        max_length=200,
+                        verbose_name="Slogan",
+                    ),
+                ),
+                (
+                    "information",
+                    adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(
+                        blank=True,
+                        help_text='You can provide general information about your participation platform to your visitors. It’s also helpful to name a general person of contact for inquiries. The information will be shown on a separate "About" page that can be reached via the main menu.',
+                        verbose_name="Information about your organisation",
+                    ),
+                ),
+                (
+                    "master",
+                    parler.fields.TranslationsForeignKey(
+                        editable=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="translations",
+                        to=settings.A4_ORGANISATIONS_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'organisation Translation',
-                'db_table': 'a4_candy_organisations_organisation_translation',
-                'db_tablespace': '',
-                'managed': True,
-                'default_permissions': (),
-                'unique_together': {('language_code', 'master')},
+                "verbose_name": "organisation Translation",
+                "db_table": "a4_candy_organisations_organisation_translation",
+                "db_tablespace": "",
+                "managed": True,
+                "default_permissions": (),
+                "unique_together": {("language_code", "master")},
             },
             bases=(parler.models.TranslatedFieldsModelMixin, models.Model),
         ),

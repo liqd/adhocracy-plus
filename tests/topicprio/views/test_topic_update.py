@@ -11,16 +11,17 @@ def test_user_cannot_update(client, topic_factory):
     user = topic.creator
     assert user not in topic.module.project.moderators.all()
     url = reverse(
-        'a4dashboard:topic-update',
+        "a4dashboard:topic-update",
         kwargs={
-            'organisation_slug': topic.module.project.organisation.slug,
-            'pk': topic.pk,
-            'year': topic.created.year
-        })
-    client.login(username=user.email, password='password')
+            "organisation_slug": topic.module.project.organisation.slug,
+            "pk": topic.pk,
+            "year": topic.created.year,
+        },
+    )
+    client.login(username=user.email, password="password")
     data = {
-        'name': 'Another Topic',
-        'description': 'changed description',
+        "name": "Another Topic",
+        "description": "changed description",
     }
     response = client.post(url, data)
     assert response.status_code == 403
@@ -32,19 +33,20 @@ def test_moderators_can_always_update(client, topic_factory):
     moderator = topic.module.project.moderators.first()
     assert moderator is not topic.creator
     url = reverse(
-        'a4dashboard:topic-update',
+        "a4dashboard:topic-update",
         kwargs={
-            'organisation_slug': topic.module.project.organisation.slug,
-            'pk': topic.pk,
-            'year': topic.created.year
-        })
-    client.login(username=moderator.email, password='password')
+            "organisation_slug": topic.module.project.organisation.slug,
+            "pk": topic.pk,
+            "year": topic.created.year,
+        },
+    )
+    client.login(username=moderator.email, password="password")
     data = {
-        'name': 'Another Topic',
-        'description': 'changed description',
+        "name": "Another Topic",
+        "description": "changed description",
     }
     response = client.post(url, data)
-    assert redirect_target(response) == 'topic-list'
+    assert redirect_target(response) == "topic-list"
     assert response.status_code == 302
     updated_topic = models.Topic.objects.get(id=topic.pk)
-    assert updated_topic.description == 'changed description'
+    assert updated_topic.description == "changed description"

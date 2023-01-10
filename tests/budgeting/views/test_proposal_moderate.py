@@ -9,32 +9,34 @@ from apps.budgeting import phases
 
 
 @pytest.mark.django_db
-def test_moderate_view(client, phase_factory, proposal_factory, user,
-                       area_settings_factory):
+def test_moderate_view(
+    client, phase_factory, proposal_factory, user, area_settings_factory
+):
     phase, module, project, item = setup_phase(
-        phase_factory, proposal_factory, phases.RequestPhase)
+        phase_factory, proposal_factory, phases.RequestPhase
+    )
     area_settings_factory(module=module)
     url = reverse(
-        'a4_candy_budgeting:proposal-moderate',
+        "a4_candy_budgeting:proposal-moderate",
         kwargs={
-            'organisation_slug': project.organisation.slug,
-            'pk': item.pk,
-            'year': item.created.year
-        }
+            "organisation_slug": project.organisation.slug,
+            "pk": item.pk,
+            "year": item.created.year,
+        },
     )
     project.moderators.set([user])
     with freeze_phase(phase):
-        client.login(username=user.email, password='password')
+        client.login(username=user.email, password="password")
 
         response = client.get(url)
         assert_template_response(
-            response,
-            'a4_candy_budgeting/proposal_moderate_form.html')
+            response, "a4_candy_budgeting/proposal_moderate_form.html"
+        )
 
         data = {
-            'moderator_feedback': 'test',
-            'is_archived': False,
-            'statement': 'its a statement'
+            "moderator_feedback": "test",
+            "is_archived": False,
+            "statement": "its a statement",
         }
         response = client.post(url, data)
-        assert redirect_target(response) == 'proposal-detail'
+        assert redirect_target(response) == "proposal-detail"

@@ -8,17 +8,18 @@ from apps.organisations.mixins import OrganisationTermsOfUseMixin
 from . import models
 
 
-class IdeaForm(CategorizableFieldMixin,
-               LabelsAddableFieldMixin,
-               ImageRightOfUseMixin,
-               OrganisationTermsOfUseMixin):
-
+class IdeaForm(
+    CategorizableFieldMixin,
+    LabelsAddableFieldMixin,
+    ImageRightOfUseMixin,
+    OrganisationTermsOfUseMixin,
+):
     class Meta:
         model = models.Idea
-        fields = ['name', 'description', 'image', 'category', 'labels']
+        fields = ["name", "description", "image", "category", "labels"]
 
 
 class IdeaModerateForm(forms.ModelForm):
     class Meta:
         model = models.Idea
-        fields = ['moderator_feedback']
+        fields = ["moderator_feedback"]

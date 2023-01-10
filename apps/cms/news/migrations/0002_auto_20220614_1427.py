@@ -8,18 +8,32 @@ import wagtail.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_cms_news', '0001_initial'),
+        ("a4_candy_cms_news", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='newspage',
-            name='body_streamfield_de',
-            field=wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock())], blank=True, use_json_field=True),
+            model_name="newspage",
+            name="body_streamfield_de",
+            field=wagtail.fields.StreamField(
+                [
+                    ("paragraph", wagtail.blocks.RichTextBlock()),
+                    ("html", wagtail.blocks.RawHTMLBlock()),
+                ],
+                blank=True,
+                use_json_field=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='newspage',
-            name='body_streamfield_en',
-            field=wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock())], blank=True, use_json_field=True),
+            model_name="newspage",
+            name="body_streamfield_en",
+            field=wagtail.fields.StreamField(
+                [
+                    ("paragraph", wagtail.blocks.RichTextBlock()),
+                    ("html", wagtail.blocks.RawHTMLBlock()),
+                ],
+                blank=True,
+                use_json_field=True,
+            ),
         ),
     ]

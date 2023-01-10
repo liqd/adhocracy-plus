@@ -8,37 +8,38 @@ from adhocracy4.exports import views as a4_export_views
 
 
 class DocumentExportView(
-        PermissionRequiredMixin,
-        mixins.ItemExportWithLinkMixin,
-        mixins.ExportModelFieldsMixin,
-        mixins.UserGeneratedContentExportMixin,
-        mixins.ItemExportWithRatesMixin,
-        mixins.CommentExportWithRepliesToMixin,
-        a4_export_views.BaseItemExportView
+    PermissionRequiredMixin,
+    mixins.ItemExportWithLinkMixin,
+    mixins.ExportModelFieldsMixin,
+    mixins.UserGeneratedContentExportMixin,
+    mixins.ItemExportWithRatesMixin,
+    mixins.CommentExportWithRepliesToMixin,
+    a4_export_views.BaseItemExportView,
 ):
 
     model = Comment
-    permission_required = 'a4_candy_documents.change_chapter'
+    permission_required = "a4_candy_documents.change_chapter"
 
-    fields = ['id', 'comment', 'created']
+    fields = ["id", "comment", "created"]
 
     def get_permission_object(self):
         return self.module
 
     def get_queryset(self):
         comments = (
-            Comment.objects.filter(paragraph__chapter__module=self.module) |
-            Comment.objects.filter(chapter__module=self.module) |
-            Comment.objects.filter(
-                parent_comment__paragraph__chapter__module=self.module) |
-            Comment.objects.filter(parent_comment__chapter__module=self.module)
+            Comment.objects.filter(paragraph__chapter__module=self.module)
+            | Comment.objects.filter(chapter__module=self.module)
+            | Comment.objects.filter(
+                parent_comment__paragraph__chapter__module=self.module
+            )
+            | Comment.objects.filter(parent_comment__chapter__module=self.module)
         )
         return comments
 
     def get_virtual_fields(self, virtual):
-        virtual.setdefault('id', _('ID'))
-        virtual.setdefault('comment', pgettext('noun', 'Comment'))
-        virtual.setdefault('created', _('Created'))
+        virtual.setdefault("id", _("ID"))
+        virtual.setdefault("comment", pgettext("noun", "Comment"))
+        virtual.setdefault("created", _("Created"))
         return super().get_virtual_fields(virtual)
 
     @property

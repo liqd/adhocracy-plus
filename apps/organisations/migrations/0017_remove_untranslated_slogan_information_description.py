@@ -6,20 +6,20 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_organisations', '0016_organisation_language'),
+        ("a4_candy_organisations", "0016_organisation_language"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='organisation',
-            name='description_untranslated',
+            model_name="organisation",
+            name="description_untranslated",
         ),
         migrations.RemoveField(
-            model_name='organisation',
-            name='information_untranslated',
+            model_name="organisation",
+            name="information_untranslated",
         ),
         migrations.RemoveField(
-            model_name='organisation',
-            name='slogan_untranslated',
+            model_name="organisation",
+            name="slogan_untranslated",
         ),
     ]

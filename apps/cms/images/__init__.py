@@ -1,1 +1,1 @@
-default_app_config = 'apps.cms.images.apps.Config'
+default_app_config = "apps.cms.images.apps.Config"

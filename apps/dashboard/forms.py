@@ -7,34 +7,42 @@ from apps.organisations.models import Organisation
 
 
 class OrganisationForm(forms.ModelForm):
-
     class Meta:
         model = Organisation
-        fields = ['name', 'logo']
-        labels = {
-            'name': _('Organisation name')
-        }
+        fields = ["name", "logo"]
+        labels = {"name": _("Organisation name")}
 
 
 class DashboardProjectCreateForm(ProjectCreateForm):
-
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'access']
+        fields = ["name", "description", "access"]
         widgets = {
-            'access': forms.RadioSelect(
+            "access": forms.RadioSelect(
                 # FIXME: these choices are currently ignored by djangos widget
                 # machinery - we work around that in apps/projects/overwrites
                 choices=[
-                    (project_models.Access.PUBLIC.value,
-                     _('All users can see project tile and content and can '
-                       'participate (public).')),
-                    (project_models.Access.SEMIPUBLIC.value,
-                     _('All users can see project tile and content, only '
-                       'invited users can participate (semi-public).')),
-                    (project_models.Access.PRIVATE.value,
-                     _('Only invited users can see project tile and content '
-                       'and can participate (private).'))
+                    (
+                        project_models.Access.PUBLIC.value,
+                        _(
+                            "All users can see project tile and content and can "
+                            "participate (public)."
+                        ),
+                    ),
+                    (
+                        project_models.Access.SEMIPUBLIC.value,
+                        _(
+                            "All users can see project tile and content, only "
+                            "invited users can participate (semi-public)."
+                        ),
+                    ),
+                    (
+                        project_models.Access.PRIVATE.value,
+                        _(
+                            "Only invited users can see project tile and content "
+                            "and can participate (private)."
+                        ),
+                    ),
                 ]
             ),
         }

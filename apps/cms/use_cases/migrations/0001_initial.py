@@ -11,40 +11,201 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('wagtailcore', '0041_group_collection_permissions_verbose_name_plural'),
-        ('a4_candy_cms_images', '0001_initial'),
-        ('a4_candy_cms_contacts', '0001_initial'),
+        ("wagtailcore", "0041_group_collection_permissions_verbose_name_plural"),
+        ("a4_candy_cms_images", "0001_initial"),
+        ("a4_candy_cms_contacts", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UseCasePage',
+            name="UseCasePage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('category', models.CharField(choices=[('MP', 'Municipalities'), ('CA', 'Citizen Assemblies'), ('CO', 'Co-Operatives'), ('NG', 'NGOs'), ('CP', 'Companies'), ('PO', 'Politicians')], max_length=2)),
-                ('title_de', models.CharField(blank=True, max_length=250, verbose_name='German Title')),
-                ('title_en', models.CharField(blank=True, max_length=250, verbose_name='English Title')),
-                ('body_streamfield_de', wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock()), ('examples', wagtail.blocks.StructBlock([('examples', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('body', wagtail.blocks.RichTextBlock(required=False)), ('link', wagtail.blocks.CharBlock(required=False)), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='CTA Column')))]))], blank=True)),
-                ('body_streamfield_en', wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock()), ('examples', wagtail.blocks.StructBlock([('examples', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('body', wagtail.blocks.RichTextBlock(required=False)), ('link', wagtail.blocks.CharBlock(required=False)), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=50, required=False))], label='CTA Column')))]))], blank=True)),
-                ('image', models.ForeignKey(blank=True, help_text='The Image that is shown on the use case item page and the use case index page', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='a4_candy_cms_images.CustomImage', verbose_name='Use Case Header Image')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "category",
+                    models.CharField(
+                        choices=[
+                            ("MP", "Municipalities"),
+                            ("CA", "Citizen Assemblies"),
+                            ("CO", "Co-Operatives"),
+                            ("NG", "NGOs"),
+                            ("CP", "Companies"),
+                            ("PO", "Politicians"),
+                        ],
+                        max_length=2,
+                    ),
+                ),
+                (
+                    "title_de",
+                    models.CharField(
+                        blank=True, max_length=250, verbose_name="German Title"
+                    ),
+                ),
+                (
+                    "title_en",
+                    models.CharField(
+                        blank=True, max_length=250, verbose_name="English Title"
+                    ),
+                ),
+                (
+                    "body_streamfield_de",
+                    wagtail.fields.StreamField(
+                        [
+                            ("paragraph", wagtail.blocks.RichTextBlock()),
+                            ("html", wagtail.blocks.RawHTMLBlock()),
+                            (
+                                "examples",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "examples",
+                                            wagtail.blocks.ListBlock(
+                                                wagtail.blocks.StructBlock(
+                                                    [
+                                                        (
+                                                            "body",
+                                                            wagtail.blocks.RichTextBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link",
+                                                            wagtail.blocks.CharBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link_text",
+                                                            wagtail.blocks.CharBlock(
+                                                                label="Link Text",
+                                                                max_length=50,
+                                                                required=False,
+                                                            ),
+                                                        ),
+                                                    ],
+                                                    label="CTA Column",
+                                                )
+                                            ),
+                                        )
+                                    ]
+                                ),
+                            ),
+                        ],
+                        blank=True,
+                    ),
+                ),
+                (
+                    "body_streamfield_en",
+                    wagtail.fields.StreamField(
+                        [
+                            ("paragraph", wagtail.blocks.RichTextBlock()),
+                            ("html", wagtail.blocks.RawHTMLBlock()),
+                            (
+                                "examples",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "examples",
+                                            wagtail.blocks.ListBlock(
+                                                wagtail.blocks.StructBlock(
+                                                    [
+                                                        (
+                                                            "body",
+                                                            wagtail.blocks.RichTextBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link",
+                                                            wagtail.blocks.CharBlock(
+                                                                required=False
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "link_text",
+                                                            wagtail.blocks.CharBlock(
+                                                                label="Link Text",
+                                                                max_length=50,
+                                                                required=False,
+                                                            ),
+                                                        ),
+                                                    ],
+                                                    label="CTA Column",
+                                                )
+                                            ),
+                                        )
+                                    ]
+                                ),
+                            ),
+                        ],
+                        blank=True,
+                    ),
+                ),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="The Image that is shown on the use case item page and the use case index page",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="a4_candy_cms_images.CustomImage",
+                        verbose_name="Use Case Header Image",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='UseCaseIndexPage',
+            name="UseCaseIndexPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('subtitle_de', models.CharField(blank=True, max_length=250, verbose_name='Title')),
-                ('subtitle_en', models.CharField(blank=True, max_length=250, verbose_name='Title')),
-                ('demo_link', models.URLField(blank=True, verbose_name='Demo site')),
-                ('form_page', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='a4_candy_cms_contacts.FormPage')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "subtitle_de",
+                    models.CharField(blank=True, max_length=250, verbose_name="Title"),
+                ),
+                (
+                    "subtitle_en",
+                    models.CharField(blank=True, max_length=250, verbose_name="Title"),
+                ),
+                ("demo_link", models.URLField(blank=True, verbose_name="Demo site")),
+                (
+                    "form_page",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="a4_candy_cms_contacts.FormPage",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

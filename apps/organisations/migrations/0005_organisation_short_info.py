@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_organisations', '0004_organisation_url'),
+        ("a4_candy_organisations", "0004_organisation_url"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='organisation',
-            name='description',
-            field=models.CharField(help_text='The description will be displayed on the landing page. max. 800 characters', max_length=800, verbose_name='Short description of your organisation'),
+            model_name="organisation",
+            name="description",
+            field=models.CharField(
+                help_text="The description will be displayed on the landing page. max. 800 characters",
+                max_length=800,
+                verbose_name="Short description of your organisation",
+            ),
         ),
     ]

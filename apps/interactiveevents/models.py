@@ -31,29 +31,20 @@ class AnonymousItem(TimeStampedModel):
 
 
 class LikeQuerySet(models.QuerySet):
-
     def annotate_like_count(self):
         return self.annotate(
-            like_count=models.Count(
-                'livequestion_likes',
-                distinct=True
-            )
+            like_count=models.Count("livequestion_likes", distinct=True)
         )
 
 
 class LiveQuestion(AnonymousItem):
-    text = models.TextField(
-        max_length=1000,
-        verbose_name=_('Question')
-    )
+    text = models.TextField(max_length=1000, verbose_name=_("Question"))
     is_answered = models.BooleanField(default=False)
     is_on_shortlist = models.BooleanField(default=False)
     is_hidden = models.BooleanField(default=False)
     is_live = models.BooleanField(default=False)
 
-    category = CategoryField(
-        verbose_name=_('Characteristic')
-    )
+    category = CategoryField(verbose_name=_("Characteristic"))
 
     objects = LikeQuerySet.as_manager()
 
@@ -61,39 +52,36 @@ class LiveQuestion(AnonymousItem):
         return str(self.text)
 
     def get_absolute_url(self):
-        return reverse('module-detail',
-                       args=[str(self.module.project.organisation.slug),
-                             str(self.module.slug)])
+        return reverse(
+            "module-detail",
+            args=[str(self.module.project.organisation.slug), str(self.module.slug)],
+        )
 
 
 class Like(models.Model):
     session = models.CharField(max_length=255)
-    livequestion = models.ForeignKey(LiveQuestion,
-                                     related_name='livequestion_likes',
-                                     on_delete=models.CASCADE)
+    livequestion = models.ForeignKey(
+        LiveQuestion, related_name="livequestion_likes", on_delete=models.CASCADE
+    )
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('session', 'livequestion')
+        unique_together = ("session", "livequestion")
 
 
 class ExtraFieldsInteractiveEvent(module_models.Item):
     live_stream = RichTextCollapsibleUploadingField(
-        verbose_name='Live Stream',
-        blank=True,
-        config_name='video-editor'
+        verbose_name="Live Stream", blank=True, config_name="video-editor"
     )
 
     event_image = ConfiguredImageField(
-        'eventimage',
-        verbose_name=_('Event image'),
-        help_prefix=_(
-            'The image is displayed next to the event description.'
-        ),
-        upload_to='interactiveevents/images',
-        blank=True)
+        "eventimage",
+        verbose_name=_("Event image"),
+        help_prefix=_("The image is displayed next to the event description."),
+        upload_to="interactiveevents/images",
+        blank=True,
+    )
 
     def save(self, *args, **kwargs):
-        self.live_stream = transforms.clean_html_field(
-            self.live_stream, 'video-editor')
+        self.live_stream = transforms.clean_html_field(self.live_stream, "video-editor")
         super().save(*args, **kwargs)

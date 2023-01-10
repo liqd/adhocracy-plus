@@ -6,13 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_cms_use_cases', '0001_initial'),
+        ("a4_candy_cms_use_cases", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='usecasepage',
-            name='category',
-            field=models.CharField(choices=[('MP', 'Municipalities'), ('CA', 'Citizen Assemblies'), ('NG', 'Associations & NGOs'), ('CP', 'Companies & Co-Operatives'), ('PO', 'Politicians')], max_length=2),
+            model_name="usecasepage",
+            name="category",
+            field=models.CharField(
+                choices=[
+                    ("MP", "Municipalities"),
+                    ("CA", "Citizen Assemblies"),
+                    ("NG", "Associations & NGOs"),
+                    ("CP", "Companies & Co-Operatives"),
+                    ("PO", "Politicians"),
+                ],
+                max_length=2,
+            ),
         ),
     ]

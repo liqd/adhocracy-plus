@@ -6,7 +6,7 @@ User = get_user_model()
 
 
 class InviteParticipantEmail(Email):
-    template_name = 'a4_candy_projects/emails/invite_participant'
+    template_name = "a4_candy_projects/emails/invite_participant"
 
     def get_organisation(self):
         return self.object.project.organisation
@@ -16,7 +16,7 @@ class InviteParticipantEmail(Email):
 
 
 class InviteModeratorEmail(Email):
-    template_name = 'a4_candy_projects/emails/invite_moderator'
+    template_name = "a4_candy_projects/emails/invite_moderator"
 
     def get_organisation(self):
         return self.object.project.organisation
@@ -26,12 +26,12 @@ class InviteModeratorEmail(Email):
 
 
 class WelcomeToPrivateProjectEmail(Email):
-    template_name = 'a4_candy_projects/emails/welcome_participant'
+    template_name = "a4_candy_projects/emails/welcome_participant"
 
     def get_organisation(self):
         return self.object.organisation
 
     def get_receivers(self):
-        participant_pks = self.kwargs['participant_pks']
+        participant_pks = self.kwargs["participant_pks"]
         receivers = User.objects.filter(pk__in=participant_pks)
         return receivers

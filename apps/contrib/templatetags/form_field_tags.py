@@ -5,13 +5,11 @@ from django.forms import RadioSelect
 register = template.Library()
 
 
-@register.filter(name='is_checkbox')
+@register.filter(name="is_checkbox")
 def is_checkbox(field):
-    return (field.field.widget.__class__.__name__
-            == CheckboxInput().__class__.__name__)
+    return field.field.widget.__class__.__name__ == CheckboxInput().__class__.__name__
 
 
-@register.filter(name='is_radiobutton')
+@register.filter(name="is_radiobutton")
 def is_radiobutton(field):
-    return (field.field.widget.__class__.__name__
-            == RadioSelect().__class__.__name__)
+    return field.field.widget.__class__.__name__ == RadioSelect().__class__.__name__

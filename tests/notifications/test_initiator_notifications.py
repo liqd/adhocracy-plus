@@ -10,24 +10,22 @@ def test_notify_on_project_created(client, organisation, user):
     """Check if initiator gets email on project create via dashboard."""
     initiator = organisation.initiators.first()
     organisation.initiators.add(user)
-    url = reverse('a4dashboard:project-create', kwargs={
-        'organisation_slug': organisation.slug,
-    })
+    url = reverse(
+        "a4dashboard:project-create",
+        kwargs={
+            "organisation_slug": organisation.slug,
+        },
+    )
 
-    data = {
-        'name': 'project name',
-        'description': 'project description',
-        'access': 1
-    }
+    data = {"name": "project name", "description": "project description", "access": 1}
 
-    client.login(username=initiator, password='password')
+    client.login(username=initiator, password="password")
     response = client.post(url, data)
-    assert redirect_target(response) == 'project-edit'
+    assert redirect_target(response) == "project-edit"
 
     assert len(mail.outbox) == 1
     assert mail.outbox[0].to[0] == user.email
-    assert mail.outbox[0].subject.startswith(
-        'New project project name')
+    assert mail.outbox[0].subject.startswith("New project project name")
 
 
 @pytest.mark.django_db
@@ -39,8 +37,7 @@ def test_notify_on_project_deleted(client, project):
 
     assert len(mail.outbox) == 1
     assert mail.outbox[0].to[0] == initiator.email
-    assert mail.outbox[0].subject.startswith(
-        'Deletion of project')
+    assert mail.outbox[0].subject.startswith("Deletion of project")
 
 
 @pytest.mark.django_db

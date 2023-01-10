@@ -7,28 +7,32 @@ import wagtail.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_cms_pages', '0008_update_hero_field_names'),
+        ("a4_candy_cms_pages", "0008_update_hero_field_names"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='homepage',
-            name='hero_subtitle_de',
+            model_name="homepage",
+            name="hero_subtitle_de",
             field=wagtail.fields.RichTextField(blank=True, max_length=150),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='hero_subtitle_en',
+            model_name="homepage",
+            name="hero_subtitle_en",
             field=wagtail.fields.RichTextField(blank=True, max_length=150),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='hero_title_de',
-            field=models.CharField(blank=True, max_length=80, verbose_name='Hero title'),
+            model_name="homepage",
+            name="hero_title_de",
+            field=models.CharField(
+                blank=True, max_length=80, verbose_name="Hero title"
+            ),
         ),
         migrations.AlterField(
-            model_name='homepage',
-            name='hero_title_en',
-            field=models.CharField(blank=True, max_length=80, verbose_name='Hero title'),
+            model_name="homepage",
+            name="hero_title_en",
+            field=models.CharField(
+                blank=True, max_length=80, verbose_name="Hero title"
+            ),
         ),
     ]

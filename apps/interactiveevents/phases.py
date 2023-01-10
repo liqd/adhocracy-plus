@@ -9,18 +9,15 @@ from . import views
 
 class IssuePhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'issue'
+    phase = "issue"
     view = views.InteractiveEventModuleDetail
 
-    name = _('Issue phase')
-    description = _('Add question.')
-    module_name = _('Speak Up')
-    icon = 'lightbulb-o'
+    name = _("Issue phase")
+    description = _("Add question.")
+    module_name = _("Speak Up")
+    icon = "lightbulb-o"
 
-    features = {
-        'crud': (models.LiveQuestion,),
-        'like': (models.LiveQuestion,)
-    }
+    features = {"crud": (models.LiveQuestion,), "like": (models.LiveQuestion,)}
 
 
 phases.content.register(IssuePhase())

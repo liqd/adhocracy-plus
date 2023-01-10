@@ -9,42 +9,29 @@ from . import models
 
 
 class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
-    label = _('Search')
+    label = _("Search")
 
 
 class SubjectFilterSet(a4_filters.DefaultsFilterSet):
-    defaults = {
-        'ordering': 'name'
-    }
+    defaults = {"ordering": "name"}
 
     ordering = a4_filters.DynamicChoicesOrderingFilter(
-        choices=(
-            ('name', _('Alphabetical')),
-            ('-comment_count', _('Most commented'))
-        ),
-        widget=AplusOrderingWidget
+        choices=(("name", _("Alphabetical")), ("-comment_count", _("Most commented"))),
+        widget=AplusOrderingWidget,
     )
-    search = FreeTextFilter(
-        widget=FreeTextFilterWidget,
-        fields=['name']
-    )
+    search = FreeTextFilter(widget=FreeTextFilterWidget, fields=["name"])
 
     class Meta:
         model = models.Subject
-        fields = ['search']
+        fields = ["search"]
 
 
 class SubjectCreateFilterSet(a4_filters.DefaultsFilterSet):
 
-    defaults = {
-        'ordering': 'name'
-    }
+    defaults = {"ordering": "name"}
 
     ordering = a4_filters.DynamicChoicesOrderingFilter(
-        choices=(
-            ('name', _('Alphabetical')),
-        ),
-        widget=AplusOrderingWidget
+        choices=(("name", _("Alphabetical")),), widget=AplusOrderingWidget
     )
 
     class Meta:

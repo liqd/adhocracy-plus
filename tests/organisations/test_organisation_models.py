@@ -13,9 +13,7 @@ from apps.organisations import models
 
 @pytest.mark.django_db
 def test_absolute_url(organisation):
-    url = reverse('organisation', kwargs={
-        'organisation_slug': organisation.slug
-    })
+    url = reverse("organisation", kwargs={"organisation_slug": organisation.slug})
     assert organisation.get_absolute_url() == url
 
 
@@ -29,7 +27,7 @@ def test_image_validation_image_too_small(organisation_factory, smallImage):
     organisation = organisation_factory(image=smallImage, logo=smallImage)
     with pytest.raises(Exception) as e:
         organisation.full_clean()
-    assert 'Image must be at least 500 pixels high' in str(e.value)
+    assert "Image must be at least 500 pixels high" in str(e.value)
 
 
 @pytest.mark.django_db
@@ -43,7 +41,7 @@ def test_image_validation_logo_too_big(organisation_factory, bigImage):
     organisation = organisation_factory(logo=bigImage)
     with pytest.raises(Exception) as e:
         organisation.full_clean()
-    assert 'Image must be at most 800 pixels high' in str(e.value)
+    assert "Image must be at most 800 pixels high" in str(e.value)
 
 
 @pytest.mark.django_db
@@ -51,7 +49,7 @@ def test_image_validation_type_not_allowed(organisation_factory, ImageBMP):
     organisation = organisation_factory(image=ImageBMP, logo=ImageBMP)
     with pytest.raises(Exception) as e:
         organisation.full_clean()
-    assert 'Unsupported file format.' in str(e.value)
+    assert "Unsupported file format." in str(e.value)
 
 
 @pytest.mark.django_db
@@ -98,8 +96,7 @@ def test_image_deleted_after_update(organisation_factory, ImagePNG):
     assert os.path.isfile(logo_path)
 
     new_image_path = os.path.join(
-        settings.MEDIA_ROOT,
-        os.path.dirname(organisation.image.path) + '/new.png'
+        settings.MEDIA_ROOT, os.path.dirname(organisation.image.path) + "/new.png"
     )
     os.rename(organisation.image.path, new_image_path)
     organisation.image = new_image_path
@@ -116,11 +113,9 @@ def test_image_deleted_after_update(organisation_factory, ImagePNG):
 @pytest.mark.django_db
 def test_social_share(organisation_factory):
     organisation_none = organisation_factory()
-    organisation_facebook = organisation_factory(facebook_handle='my_facebook')
-    organisation_twitter = organisation_factory(twitter_handle='my_twitter')
-    organisation_instagram = organisation_factory(
-        instagram_handle='my_instagram'
-    )
+    organisation_facebook = organisation_factory(facebook_handle="my_facebook")
+    organisation_twitter = organisation_factory(twitter_handle="my_twitter")
+    organisation_instagram = organisation_factory(instagram_handle="my_instagram")
 
     assert not organisation_none.has_social_share()
     assert organisation_facebook.has_social_share()
@@ -148,8 +143,9 @@ def test_has_org_member(member, user_factory):
 
 
 @pytest.mark.django_db
-def test_get_projects_list(module_factory, organisation, phase_factory,
-                           project_factory, admin, user):
+def test_get_projects_list(
+    module_factory, organisation, phase_factory, project_factory, admin, user
+):
     pro1 = project_factory(organisation=organisation)
     pro2 = project_factory(organisation=organisation)
     pro3 = project_factory(access=Access.PRIVATE, organisation=organisation)
@@ -165,41 +161,41 @@ def test_get_projects_list(module_factory, organisation, phase_factory,
 
     phase_factory(
         module=module1,
-        start_date=parse('2013-01-01 17:10:00 UTC'),
-        end_date=parse('2013-01-01 19:05:00 UTC'),
+        start_date=parse("2013-01-01 17:10:00 UTC"),
+        end_date=parse("2013-01-01 19:05:00 UTC"),
     )
 
     phase_factory(
         module=module2,
-        start_date=parse('2013-01-01 19:05:00 UTC'),
-        end_date=parse('2013-01-01 20:00:00 UTC')
+        start_date=parse("2013-01-01 19:05:00 UTC"),
+        end_date=parse("2013-01-01 20:00:00 UTC"),
     )
 
     phase_factory(
         module=module3,
-        start_date=parse('2013-01-01 17:50:00 UTC'),
-        end_date=parse('2013-01-01 20:00:00 UTC')
+        start_date=parse("2013-01-01 17:50:00 UTC"),
+        end_date=parse("2013-01-01 20:00:00 UTC"),
     )
 
     phase_factory(
         module=module4,
-        start_date=parse('2013-01-01 14:50:00 UTC'),
-        end_date=parse('2013-01-01 17:00:00 UTC')
+        start_date=parse("2013-01-01 14:50:00 UTC"),
+        end_date=parse("2013-01-01 17:00:00 UTC"),
     )
 
     phase_factory(
         module=module5,
-        start_date=parse('2013-01-01 17:10:00 UTC'),
-        end_date=parse('2013-01-01 17:30:00 UTC'),
+        start_date=parse("2013-01-01 17:10:00 UTC"),
+        end_date=parse("2013-01-01 17:30:00 UTC"),
     )
 
     phase_factory(
         module=module6,
-        start_date=parse('2013-01-01 18:10:00 UTC'),
-        end_date=parse('2013-01-01 19:05:00 UTC'),
+        start_date=parse("2013-01-01 18:10:00 UTC"),
+        end_date=parse("2013-01-01 19:05:00 UTC"),
     )
 
-    with freeze_time(parse('2013-01-01 18:00:00 UTC')):
+    with freeze_time(parse("2013-01-01 18:00:00 UTC")):
         projects_list = organisation.get_projects_list(user)
         active_projects = projects_list[0]
         future_projects = projects_list[1]

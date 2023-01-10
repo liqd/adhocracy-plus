@@ -1,1 +1,1 @@
-default_app_config = 'apps.mapideas.apps.Config'
+default_app_config = "apps.mapideas.apps.Config"

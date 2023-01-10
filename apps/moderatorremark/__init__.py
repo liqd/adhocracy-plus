@@ -1,1 +1,1 @@
-default_app_config = 'apps.moderatorremark.apps.Config'
+default_app_config = "apps.moderatorremark.apps.Config"

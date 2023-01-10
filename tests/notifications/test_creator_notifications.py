@@ -14,8 +14,7 @@ def test_notify_creator(idea, comment_factory):
     # 3 emails because of moderator notifications for idea and comment
     assert len(mail.outbox) == 3
     assert mail.outbox[1].to[0] == creator.email
-    assert mail.outbox[1].subject.startswith(
-        'Reaction to your contribution')
+    assert mail.outbox[1].subject.startswith("Reaction to your contribution")
 
     comment_creator = comment.creator
     comment_factory(content_object=comment)
@@ -23,8 +22,7 @@ def test_notify_creator(idea, comment_factory):
     # 2 more emails because of moderator notification
     assert len(mail.outbox) == 5
     assert mail.outbox[3].to[0] == comment_creator.email
-    assert mail.outbox[3].subject.startswith(
-        'Reaction to your contribution')
+    assert mail.outbox[3].subject.startswith("Reaction to your contribution")
 
 
 @pytest.mark.django_db
@@ -37,10 +35,8 @@ def test_notify_creator_exclude_moderator(idea, comment_factory, user):
     assert len(mail.outbox) == 3
     # moderator notification instead of creator notification
     assert mail.outbox[1].to[0] == creator_moderator.email
-    assert not mail.outbox[1].subject.startswith(
-        'Reaction to your contribution')
-    assert mail.outbox[1].subject.startswith(
-        'A comment was added to the project')
+    assert not mail.outbox[1].subject.startswith("Reaction to your contribution")
+    assert mail.outbox[1].subject.startswith("A comment was added to the project")
 
 
 @pytest.mark.django_db
@@ -65,25 +61,24 @@ def test_notify_creator_on_moderator_feedback(proposal_factory, client):
     moderator = project.moderators.first()
 
     url = reverse(
-        'a4_candy_budgeting:proposal-moderate',
+        "a4_candy_budgeting:proposal-moderate",
         kwargs={
-            'organisation_slug': project.organisation.slug,
-            'pk': proposal.pk,
-            'year': proposal.created.year
-        }
+            "organisation_slug": project.organisation.slug,
+            "pk": proposal.pk,
+            "year": proposal.created.year,
+        },
     )
-    client.login(username=moderator.email, password='password')
+    client.login(username=moderator.email, password="password")
 
     data = {
-        'moderator_feedback': 'test',
-        'is_archived': False,
-        'statement': 'its a statement'
+        "moderator_feedback": "test",
+        "is_archived": False,
+        "statement": "its a statement",
     }
     response = client.post(url, data)
-    assert redirect_target(response) == 'proposal-detail'
+    assert redirect_target(response) == "proposal-detail"
 
     # 2nd email about moderator feedback
     assert len(mail.outbox) == 2
     assert mail.outbox[1].to[0] == creator.email
-    assert mail.outbox[1].subject.startswith(
-        'Feedback for your contribution')
+    assert mail.outbox[1].subject.startswith("Feedback for your contribution")

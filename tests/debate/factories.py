@@ -5,7 +5,6 @@ from apps.debate import models
 
 
 class SubjectFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = models.Subject
 

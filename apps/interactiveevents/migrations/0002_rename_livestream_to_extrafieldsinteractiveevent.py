@@ -7,14 +7,14 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4modules', '0005_module_is_draft'),
+        ("a4modules", "0005_module_is_draft"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('a4_candy_interactive_events', '0001_initial'),
+        ("a4_candy_interactive_events", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='LiveStream2',
-            new_name='ExtraFieldsInteractiveEvent',
+            old_name="LiveStream2",
+            new_name="ExtraFieldsInteractiveEvent",
         ),
     ]

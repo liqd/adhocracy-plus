@@ -38,7 +38,7 @@ def test_absolute_url(client, user):
     url = user.get_absolute_url()
     response = client.get(url)
     assert response.status_code == 200
-    assert response.context['user'] == user
+    assert response.context["user"] == user
 
 
 @pytest.mark.django_db
@@ -48,5 +48,4 @@ def test_short_name(user):
 
 @pytest.mark.django_db
 def test_full_name(user):
-    assert user.get_full_name() == \
-        ('%s <%s>' % (user.username, user.email)).strip()
+    assert user.get_full_name() == ("%s <%s>" % (user.username, user.email)).strip()

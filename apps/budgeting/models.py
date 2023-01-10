@@ -9,31 +9,36 @@ from apps.mapideas import models as mapidea_models
 
 
 class Proposal(mapidea_models.AbstractMapIdea):
-    ratings = GenericRelation(rating_models.Rating,
-                              related_query_name='budget_proposal',
-                              object_id_field='object_pk')
-    comments = GenericRelation(comment_models.Comment,
-                               related_query_name='budget_proposal',
-                               object_id_field='object_pk')
-    budget = models.PositiveIntegerField(
-        default=0,
-        help_text=_('Required Budget')
+    ratings = GenericRelation(
+        rating_models.Rating,
+        related_query_name="budget_proposal",
+        object_id_field="object_pk",
     )
+    comments = GenericRelation(
+        comment_models.Comment,
+        related_query_name="budget_proposal",
+        object_id_field="object_pk",
+    )
+    budget = models.PositiveIntegerField(default=0, help_text=_("Required Budget"))
 
     is_archived = models.BooleanField(
         default=False,
-        verbose_name=_('Proposal is archived'),
-        help_text=_('Exclude this proposal from all listings by default. '
-                    'You can still access this proposal by using filters.'),
+        verbose_name=_("Proposal is archived"),
+        help_text=_(
+            "Exclude this proposal from all listings by default. "
+            "You can still access this proposal by using filters."
+        ),
     )
 
     def get_absolute_url(self):
         return reverse(
-            'a4_candy_budgeting:proposal-detail',
+            "a4_candy_budgeting:proposal-detail",
             kwargs=dict(
                 organisation_slug=self.project.organisation.slug,
-                pk='{:05d}'.format(self.pk),
-                year=self.created.year))
+                pk="{:05d}".format(self.pk),
+                year=self.created.year,
+            ),
+        )
 
     class Meta:
-        ordering = ['-created']
+        ordering = ["-created"]

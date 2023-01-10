@@ -21,8 +21,7 @@ Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 User = auth.get_user_model()
 
 
-class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
-                           generic.CreateView):
+class NewsletterCreateView(rules_mixins.PermissionRequiredMixin, generic.CreateView):
     model = models.Newsletter
 
     def _check_permission(self, organisation, user):
@@ -30,7 +29,7 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
 
     def form_valid(self, form):
         # Check if the current user is allowed to send to the selected org
-        organisation = form.cleaned_data['organisation']
+        organisation = form.cleaned_data["organisation"]
         if not self._check_permission(organisation, self.request.user):
             raise PermissionDenied
 
@@ -40,50 +39,51 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
         instance.save()
         form.save_m2m()
 
-        receivers = int(form.cleaned_data['receivers'])
+        receivers = int(form.cleaned_data["receivers"])
 
         if receivers == models.PROJECT:
             participant_ids = Follow.objects.filter(
-                project=form.cleaned_data['project'].pk,
-                enabled=True
-            ).values_list('creator', flat=True)
+                project=form.cleaned_data["project"].pk, enabled=True
+            ).values_list("creator", flat=True)
 
         else:
             participant_ids = []
 
-        emails.NewsletterEmail.send(instance,
-                                    participant_ids=list(participant_ids),
-                                    **self.get_email_kwargs())
-        messages.success(self.request,
-                         _('Newsletter has been saved and '
-                           'will be sent to the recipients.'))
+        emails.NewsletterEmail.send(
+            instance, participant_ids=list(participant_ids), **self.get_email_kwargs()
+        )
+        messages.success(
+            self.request,
+            _("Newsletter has been saved and " "will be sent to the recipients."),
+        )
 
         return HttpResponseRedirect(self.get_success_url())
 
 
-class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
-                                    NewsletterCreateView):
-    menu_item = 'communication'
+class DashboardNewsletterCreateView(
+    a4dashboard_mixins.DashboardBaseMixin, NewsletterCreateView
+):
+    menu_item = "communication"
     form_class = RestrictedNewsletterForm
-    permission_required = 'a4projects.add_project'
-    template_name = ('a4_candy_newsletters/'
-                     'restricted_newsletter_dashboard_form.html')
+    permission_required = "a4projects.add_project"
+    template_name = "a4_candy_newsletters/" "restricted_newsletter_dashboard_form.html"
 
     def get_email_kwargs(self):
         kwargs = {}
-        kwargs.update({'organisation_pk': self.organisation.pk})
+        kwargs.update({"organisation_pk": self.organisation.pk})
         return kwargs
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['organisation'] = self.organisation
-        kwargs['initial']['receivers'] = models.PROJECT
+        kwargs["organisation"] = self.organisation
+        kwargs["initial"]["receivers"] = models.PROJECT
         return kwargs
 
     def get_success_url(self):
         return reverse(
-            'a4dashboard:newsletter-create',
-            kwargs={'organisation_slug': self.organisation.slug})
+            "a4dashboard:newsletter-create",
+            kwargs={"organisation_slug": self.organisation.slug},
+        )
 
     def _group_permission(self, organisation, user):
         org_groups = organisation.groups.all()

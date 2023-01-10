@@ -5,7 +5,6 @@ from apps.topicprio import models
 
 
 class TopicFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = models.Topic
 

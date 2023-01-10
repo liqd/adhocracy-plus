@@ -7,18 +7,39 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4_candy_users', '0005_add_errormessage_for_username_already_used_as_email'),
+        ("a4_candy_users", "0005_add_errormessage_for_username_already_used_as_email"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='email',
-            field=models.EmailField(error_messages={'unique': 'Email is invalid or already taken.'}, max_length=254, unique=True, verbose_name='Email address'),
+            model_name="user",
+            name="email",
+            field=models.EmailField(
+                error_messages={"unique": "Email is invalid or already taken."},
+                max_length=254,
+                unique=True,
+                verbose_name="Email address",
+            ),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='username',
-            field=models.CharField(error_messages={'unique': 'A user with that username already exists.', 'used_as_email': 'This username is invalid.'}, help_text='Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only.', max_length=60, unique=True, validators=[django.core.validators.RegexValidator('^[\\w]+[ \\w.@+-]*$', 'Enter a valid username. This value may contain only letters, digits, spaces and @/./+/-/_ characters. It must start with a digit or a letter.', 'invalid')], verbose_name='username'),
+            model_name="user",
+            name="username",
+            field=models.CharField(
+                error_messages={
+                    "unique": "A user with that username already exists.",
+                    "used_as_email": "This username is invalid.",
+                },
+                help_text="Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only.",
+                max_length=60,
+                unique=True,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        "^[\\w]+[ \\w.@+-]*$",
+                        "Enter a valid username. This value may contain only letters, digits, spaces and @/./+/-/_ characters. It must start with a digit or a letter.",
+                        "invalid",
+                    )
+                ],
+                verbose_name="username",
+            ),
         ),
     ]
