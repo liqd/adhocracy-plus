@@ -7,16 +7,16 @@
 # Katharina Schmid, 2021
 # Frederik Wegener <frederik.wegener@liqd.de>, 2021
 # Katharina Lindenlaub, 2022
-# Luca Thüer, 2022
+# Luca Thüer, 2023
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-06 10:28+0100\n"
+"POT-Creation-Date: 2023-01-11 13:59+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Luca Thüer, 2022\n"
+"Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: German (https://www.transifex.com/liqd/teams/109316/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -895,22 +895,22 @@ msgstr "Sekunden"
 #: adhocracy4/modules/models.py:225
 msgctxt "abbreviation for day(s)"
 msgid "D"
-msgstr ""
+msgstr "T"
 
 #: adhocracy4/modules/models.py:227
 msgctxt "abbreviation for hour(s)"
 msgid "H"
-msgstr ""
+msgstr "S"
 
 #: adhocracy4/modules/models.py:229
 msgctxt "abbreviation for minute(s)"
 msgid "M"
-msgstr ""
+msgstr "M"
 
 #: adhocracy4/modules/models.py:231
 msgctxt "abbreviation for second(s)"
 msgid "S"
-msgstr ""
+msgstr "S"
 
 #: adhocracy4/phases/forms.py:22
 msgid "Phases cannot run at the same time and must follow after each other."
@@ -1660,17 +1660,17 @@ msgstr "Wir haben Ihre Nachricht erhalten"
 
 #: apps/cms/contacts/templates/a4_candy_cms_contacts/emails/answer_to_contact_form.en.email:10
 msgid "This is the data we received from you:"
-msgstr ""
+msgstr "Dies sind die Daten, die wir von Ihnen erhalten haben:"
 
 #: apps/cms/contacts/templates/a4_candy_cms_contacts/emails/answer_to_contact_form.en.email:13
 #, python-format
 msgid "Your email address: %(sender_mail)s"
-msgstr ""
+msgstr "Ihre E-Mail Adresse: %(sender_mail)s"
 
 #: apps/cms/contacts/templates/a4_candy_cms_contacts/emails/answer_to_contact_form.en.email:16
 #, python-format
 msgid "Your message: %(message)s"
-msgstr ""
+msgstr "Ihre Nachricht: %(message)s"
 
 #: apps/cms/contacts/templates/a4_candy_cms_contacts/emails/answer_to_contact_form.en.email:20
 #, python-format
@@ -1720,7 +1720,7 @@ msgstr "Zurück zur Übersicht"
 #: apps/cms/pages/templates/a4_candy_cms_pages/blocks/download_block.html:3
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:87
 msgid "Download"
-msgstr "herunter laden"
+msgstr "Herunterladen"
 
 #: apps/cms/pages/templates/a4_candy_cms_pages/includes/homepage_hero.html:16
 msgid "Header image: "
@@ -2841,11 +2841,12 @@ msgstr "Veranstaltung"
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:13
 #, python-format
 msgid "The following event takes place on %(date)s:"
-msgstr ""
+msgstr "Die folgende Veranstaltung findet statt am %(date)s:"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:19
 msgid "Further information about the event can be found in the project."
 msgstr ""
+"Weitere Informationen über die Veranstaltung finden Sie in dem Projekt."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:24
 msgid "Show Event"
@@ -2873,12 +2874,12 @@ msgstr "Beteiligung endet bald!"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:13
 msgid "the online participation in the above mentioned project will end soon."
-msgstr ""
+msgstr "die Online-Beteiligung an dem oben genannten Projekt endet in Kürze."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:16
 #, python-format
 msgid "You can still participate until %(end_date)s."
-msgstr ""
+msgstr "Sie können noch teilnehmen bis %(end_date)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:21
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:21
@@ -2896,12 +2897,12 @@ msgstr "Los geht’s!"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:13
 msgid "Online participation for the above project has started."
-msgstr ""
+msgstr "Die Online-Beteiligung für das oben genannte Projekt hat begonnen."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:16
 #, python-format
 msgid "You can participate until %(end_date)s."
-msgstr ""
+msgstr "Sie können teilnehmen bis %(end_date)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:4
 #, python-format
@@ -3172,7 +3173,7 @@ msgstr "Instagram Post 1080x1080"
 
 #: apps/organisations/forms.py:32
 msgid "Instagram Story 1080x1920"
-msgstr ""
+msgstr "Instagram Story 1080x1920"
 
 #: apps/organisations/forms.py:33
 msgid "Linkedin 1104x736"
@@ -3203,6 +3204,8 @@ msgstr "Projekt auswählen"
 #: apps/organisations/forms.py:259
 msgid "Please select a project of your organisation and click select."
 msgstr ""
+"Bitte wählen Sie ein Projekt Ihrer Organisation aus und klicken Sie auf "
+"Auswählen."
 
 #: apps/organisations/forms.py:277
 msgid ""
@@ -3429,19 +3432,19 @@ msgstr "Medieninhalte erstellen"
 
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:36
 msgid "Add a+ logo"
-msgstr ""
+msgstr "a+ Logo hinzufügen"
 
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:53
 msgid "Add logo"
-msgstr ""
+msgstr "Logo hinzufügen"
 
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:62
 msgid "To view content changes, click refresh"
-msgstr ""
+msgstr "Um Änderungen am Inhalt anzuzeigen, klicken Sie auf \"Neu laden\""
 
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:64
 msgid "To view the sharepic, click generate"
-msgstr ""
+msgstr "Um das Bild zu sehen, klicken Sie auf \"Generieren\""
 
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:81
 msgid "Refresh"
@@ -3740,7 +3743,7 @@ msgstr "Das Projekt ist halb-öffentlich."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
 msgid "Type of participation: "
-msgstr ""
+msgstr "Art der Beteiligung: "
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:53
 #, python-format
@@ -3779,12 +3782,12 @@ msgstr "Zeitleistenkachel"
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:18
 #, python-format
 msgid " from %(date)s"
-msgstr ""
+msgstr " von %(date)s"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline-carousel.html:21
 #, python-format
 msgid " on %(date)s"
-msgstr ""
+msgstr "am %(date)s"
 
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:9
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:21
@@ -3924,7 +3927,7 @@ msgstr "Telefon"
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:165
 msgid "Online participation"
-msgstr ""
+msgstr "Online-Beteiligung"
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:197
 #: adhocracy-plus/templates/a4modules/module_detail.html:124
@@ -4898,6 +4901,9 @@ msgid ""
 "password for your user account. However, we do not have any record of a user "
 "with email %(email)s in our database."
 msgstr ""
+"Sie erhalten diese E-Mail, weil Sie oder jemand anderes ein Passwort für Ihr "
+"Benutzerkonto angefordert hat. Wir haben jedoch keine Aufzeichnungen über "
+"einen Benutzer mit der E-Mail %(email)s in unserer Datenbank."
 
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:13
 msgid ""
