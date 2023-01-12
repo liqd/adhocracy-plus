@@ -514,16 +514,16 @@ A4_CATEGORY_ICONS = (
 )
 
 A4_BLUEPRINT_TYPES = [
-    ("BS", "brainstorming"),
-    ("MBS", "map brainstorming"),
-    ("IC", "idea collection"),
-    ("MIC", "map idea collection"),
-    ("TR", "text review"),
-    ("PO", "poll"),
-    ("PB", "participatory budgeting"),
-    ("IE", "interactive event"),
-    ("TP", "topic prioritization"),
-    ("DB", "debate"),
+    ("BS", _("brainstorming")),
+    ("MBS", _("map brainstorming")),
+    ("IC", _("idea collection")),
+    ("MIC", _("map idea collection")),
+    ("TR", _("text review")),
+    ("PO", _("poll")),
+    ("PB", _("participatory budgeting")),
+    ("IE", _("interactive event")),
+    ("TP", _("topic prioritization")),
+    ("DB", _("debate")),
 ]
 
 A4_MAP_BASEURL = "https://{s}.tile.openstreetmap.org/"
