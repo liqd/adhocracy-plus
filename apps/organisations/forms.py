@@ -294,7 +294,7 @@ class CommunicationProjectChoiceForm(forms.Form):
             required=True,
             empty_label=None,
             help_text=_(
-                "Please select a project of your organisation and " "click select."
+                "Please select a project of your organisation and click select."
             ),
         )
 
@@ -312,23 +312,21 @@ class CommunicationContentCreationForm(forms.Form):
             max_length=self.sizes["title_max_length"],
             label=_("Title"),
             required=True,
-            help_text=_(
-                "This title will be displayed as a header. "
-                "It should be max. {} characters long.".format(
-                    self.sizes["title_max_length"]
-                )
+            help_text=(
+                _("This title will be displayed as a header. Max. chars: ")
+                + str(self.sizes["title_max_length"])
             ),
         )
         self.fields["description"] = forms.CharField(
             max_length=self.sizes["description_max_length"],
             label=_("Description"),
             required=True,
-            help_text=_(
-                "This description will be displayed below "
-                "the title. It should briefly state the goal "
-                "of the project in max. {} chars.".format(
-                    self.sizes["description_max_length"]
+            help_text=(
+                _(
+                    "This description will be displayed below the title. It should briefly state the goal "
+                    "of the project. Max. chars.: "
                 )
+                + str(self.sizes["description_max_length"])
             ),
         )
 
@@ -336,13 +334,14 @@ class CommunicationContentCreationForm(forms.Form):
             label=_("Picture Upload"),
             required=True,
             widget=ImageInputWidgetSimple,
-            help_text=_(
-                "The picture will be displayed in the sharepic. It "
-                "must be min. {} pixel wide and {} pixel tall. "
-                "Allowed file formats are png, jpeg, gif. The file "
-                "size should be max. 5 MB.".format(
-                    self.sizes["img_min_width"], self.sizes["img_min_height"]
+            help_text=(
+                _(
+                    "The picture will be displayed in the sharepic. Allowed file formats are png, jpeg, gif. "
+                    "The file size should be max. 5 MB. Min. pixels width * height: "
                 )
+                + str(self.sizes["img_min_width"])
+                + " * "
+                + str(self.sizes["img_min_height"])
             ),
         )
 
