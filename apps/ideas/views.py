@@ -16,8 +16,8 @@ from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import forms as contrib_forms
 from apps.contrib.views import CanonicalURLDetailView
 from apps.contrib.widgets import AplusOrderingWidget
-from apps.moderatorfeedback.forms import ModeratorStatementForm
-from apps.moderatorfeedback.models import ModeratorStatement
+from apps.moderatorfeedback.forms import ModeratorFeedbackForm
+from apps.moderatorfeedback.models import ModeratorFeedback
 from apps.notifications.emails import NotifyCreatorOnModeratorFeedback
 from apps.organisations.mixins import UserFormViewMixin
 
@@ -177,8 +177,8 @@ class AbstractIdeaModerateView(
                 "form_class": self.moderateable_form_class,
             },
             "statement": {
-                "model": ModeratorStatement,
-                "form_class": ModeratorStatementForm,
+                "model": ModeratorFeedback,
+                "form_class": ModeratorFeedbackForm,
             },
         }
 
