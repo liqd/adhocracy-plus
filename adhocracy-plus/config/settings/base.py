@@ -515,14 +515,14 @@ A4_CATEGORY_ICONS = (
 
 A4_BLUEPRINT_TYPES = [
     ("BS", _("brainstorming")),
-    ("MBS", _("map brainstorming")),
-    ("IC", _("idea collection")),
-    ("MIC", _("map idea collection")),
+    ("MBS", _("spatial brainstorming")),
+    ("IC", _("idea challenge")),
+    ("MIC", _("spatial idea challenge")),
     ("TR", _("text review")),
     ("PO", _("poll")),
     ("PB", _("participatory budgeting")),
     ("IE", _("interactive event")),
-    ("TP", _("topic prioritization")),
+    ("TP", _("prioritization")),
     ("DB", _("debate")),
 ]
 
