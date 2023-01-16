@@ -176,7 +176,7 @@ class AbstractIdeaModerateView(
                 "model": self.model,
                 "form_class": self.moderateable_form_class,
             },
-            "statement": {
+            "feedback_text": {
                 "model": ModeratorFeedback,
                 "form_class": ModeratorFeedbackForm,
             },
@@ -192,14 +192,14 @@ class AbstractIdeaModerateView(
     def forms_save(self, forms, commit=True):
         objects = super().forms_save(forms, commit=False)
         moderateable = objects["moderateable"]
-        statement = objects["statement"]
+        feedback_text = objects["feedback_text"]
 
-        if not statement.pk:
-            statement.creator = self.request.user
+        if not feedback_text.pk:
+            feedback_text.creator = self.request.user
 
         with transaction.atomic():
-            statement.save()
-            moderateable.moderator_statement = statement
+            feedback_text.save()
+            moderateable.moderator_feedback_text = feedback_text
             moderateable.save()
             NotifyCreatorOnModeratorFeedback.send(self.object)
         return objects
@@ -207,8 +207,8 @@ class AbstractIdeaModerateView(
     def get_instance(self, name):
         if name == "moderateable":
             return self.object
-        elif name == "statement":
-            return self.object.moderator_statement
+        elif name == "feedback_text":
+            return self.object.moderator_feedback_text
 
 
 class IdeaModerateView(AbstractIdeaModerateView):

@@ -71,9 +71,9 @@ def test_notify_creator_on_moderator_feedback(proposal_factory, client):
     client.login(username=moderator.email, password="password")
 
     data = {
-        "moderator_feedback": "test",
+        "moderator_status": "test",
         "is_archived": False,
-        "statement": "its a statement",
+        "feedback_text": "its a feedback text",
     }
     response = client.post(url, data)
     assert redirect_target(response) == "proposal-detail"

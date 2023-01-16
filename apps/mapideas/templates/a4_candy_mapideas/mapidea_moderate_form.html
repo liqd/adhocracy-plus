@@ -34,8 +34,8 @@
                         {{ form.media }}
                     {% endfor %}
 
-                    {% include 'a4_candy_contrib/includes/form_field.html' with field=forms.moderateable.moderator_feedback %}
-                    {% include 'a4_candy_contrib/includes/form_field.html' with field=forms.statement.statement %}
+                    {% include 'a4_candy_contrib/includes/form_field.html' with field=forms.moderateable.moderator_status %}
+                    {% include 'a4_candy_contrib/includes/form_field.html' with field=forms.feedback_text.feedback_text %}
 
 
                     <div class="d-flex justify-content-end mb-3">
