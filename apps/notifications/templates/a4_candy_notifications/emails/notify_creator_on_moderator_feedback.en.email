@@ -12,14 +12,14 @@
 <p>
 {% blocktranslate with organisation_name=object.module.project.organisation.name %}{{ organisation_name }} reacted on your contribution.{% endblocktranslate %}
 </p>
-{% if object.moderator_feedback %}
+{% if object.moderator_status %}
 <p>
-{% blocktranslate with feedback=object.get_moderator_feedback_display %}Your contribution is {{ feedback }}.{% endblocktranslate %}
+{% blocktranslate with status=object.get_moderator_status_display %}Your contribution is {{ status }}.{% endblocktranslate %}
 </p>
 {% endif %}
-{% if object.moderator_statement.statement %}
+{% if object.moderator_feedback_text.feedback_text %}
 <p>
-{% blocktranslate with statement=object.moderator_statement.statement|safe %}Official feedback: {{ statement }}{% endblocktranslate %}
+{% blocktranslate with feedback=object.moderator_feedback_text.feedback_text|safe %}Official feedback: {{ feedback }}{% endblocktranslate %}
 </p>
 {% endif %}
 <p>

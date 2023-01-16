@@ -34,9 +34,9 @@ def test_moderate_view(
         )
 
         data = {
-            "moderator_feedback": "test",
+            "moderator_status": "test",
             "is_archived": False,
-            "statement": "its a statement",
+            "moderator_feedback_text": "its a feedback text",
         }
         response = client.post(url, data)
         assert redirect_target(response) == "proposal-detail"

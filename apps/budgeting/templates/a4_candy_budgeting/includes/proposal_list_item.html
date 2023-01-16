@@ -34,9 +34,9 @@
         {% if object.budget > 0 %}
             <span class="label label--big">{{ object.budget|intcomma }}€</span>
         {% endif %}
-        {% if object.moderator_feedback %}
-            <span class="label label--big label--{{object.moderator_feedback|classify }} list-item__label--moderator-feedback">
-                {{ object.get_moderator_feedback_display }}
+        {% if object.moderator_status %}
+            <span class="label label--big label--{{object.moderator_status|classify }} list-item__label--moderator-feedback">
+                {{ object.get_moderator_status_display }}
             </span>
         {% endif %}
     </div>

@@ -39,7 +39,7 @@ register(factories.CategoryFactory)
 register(factories.LabelFactory)
 register(factories.CommentFactory)
 register(factories.RatingFactory)
-register(factories.ModeratorStatementFactory)
+register(factories.ModeratorFeedbackFactory)
 
 register(a4_factories.GroupFactory)
 register(a4_factories.ProjectFactory)

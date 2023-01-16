@@ -128,7 +128,9 @@ class Command(BaseCommand):
         )
 
     def _send_notifications_on_moderator_feedback(self):
-        moderated_idea = Idea.objects.filter(moderator_statement__isnull=False).first()
+        moderated_idea = Idea.objects.filter(
+            moderator_feedback_text__isnull=False
+        ).first()
         if not moderated_idea:
             self.stderr.write("At least one idea with moderator feedback is required")
             return
