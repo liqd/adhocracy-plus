@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-11 13:59+0100\n"
+"POT-Creation-Date: 2023-01-16 09:09+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: German (https://www.transifex.com/liqd/teams/109316/de/)\n"
@@ -426,9 +426,9 @@ msgstr "Kategorieicon"
 
 #: adhocracy4/comments/models.py:54
 #: adhocracy4/polls/exports.py:41
-#: apps/budgeting/exports.py:75 apps/debate/exports.py:64
-#: apps/documents/exports.py:40 apps/ideas/exports.py:70
-#: apps/mapideas/exports.py:71 apps/topicprio/exports.py:68
+#: apps/budgeting/exports.py:78 apps/debate/exports.py:68
+#: apps/documents/exports.py:41 apps/ideas/exports.py:77
+#: apps/mapideas/exports.py:78 apps/topicprio/exports.py:75
 msgctxt "noun"
 msgid "Comment"
 msgstr "Kommentar"
@@ -609,7 +609,7 @@ msgid "Project successfully created."
 msgstr "Projekt erfolgreich erstellt."
 
 #: adhocracy4/dashboard/views.py:164
-#: apps/dashboard/views.py:135
+#: apps/dashboard/views.py:133
 msgid "Invalid action"
 msgstr "Ungültige Aktion"
 
@@ -660,9 +660,9 @@ msgstr "Urheber"
 
 #: adhocracy4/exports/mixins/general.py:16
 #: adhocracy4/polls/exports.py:42
-#: apps/budgeting/exports.py:76 apps/debate/exports.py:65
-#: apps/documents/exports.py:41 apps/ideas/exports.py:71
-#: apps/mapideas/exports.py:72 apps/topicprio/exports.py:69
+#: apps/budgeting/exports.py:79 apps/debate/exports.py:69
+#: apps/documents/exports.py:42 apps/ideas/exports.py:78
+#: apps/mapideas/exports.py:79 apps/topicprio/exports.py:76
 msgid "Created"
 msgstr "Erstellt"
 
@@ -684,7 +684,7 @@ msgstr "Ortsbezeichnung"
 
 #: adhocracy4/exports/mixins/items.py:29
 #: adhocracy4/labels/dashboard.py:13
-#: apps/ideas/models.py:45 apps/topicprio/models.py:48
+#: apps/ideas/models.py:46 apps/topicprio/models.py:50
 msgid "Labels"
 msgstr "Merkmale"
 
@@ -703,7 +703,7 @@ msgid "Official Statement"
 msgstr "Offizielle Rückmeldung"
 
 #: adhocracy4/exports/mixins/items.py:89
-#: apps/moderatorremark/models.py:18
+#: apps/moderatorremark/models.py:14
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:5
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:21
 msgid "Remark"
@@ -718,7 +718,7 @@ msgid "Negative ratings"
 msgstr "Negative Bewertungen"
 
 #: adhocracy4/filters/widgets.py:66
-#: apps/contrib/widgets.py:60
+#: apps/contrib/widgets.py:59
 msgid "Ordering"
 msgstr "Sortierung"
 
@@ -753,19 +753,19 @@ msgid "Unsupported file format. Supported formats are {}."
 msgstr "Dieses Dateiformat ist nicht unterstützt. Unterstützt werden: {}."
 
 #: adhocracy4/images/validators.py:28
-#: apps/organisations/forms.py:327
+#: apps/organisations/forms.py:362
 #, python-brace-format
 msgid "Image should be at most {max_size} MB"
 msgstr "Das Bild darf höchstens {max_size} MB groß sein."
 
 #: adhocracy4/images/validators.py:36
-#: apps/organisations/forms.py:335
+#: apps/organisations/forms.py:370
 #, python-brace-format
 msgid "Image must be at least {min_width} pixels wide"
 msgstr "Das Bild muss mindestens {min_width} Pixel breit sein."
 
 #: adhocracy4/images/validators.py:44
-#: apps/organisations/forms.py:344
+#: apps/organisations/forms.py:380
 #, python-brace-format
 msgid "Image must be at least {min_height} pixels high"
 msgstr "Das Bild muss mindestens {min_height} Pixel hoch sein."
@@ -923,16 +923,16 @@ msgstr ""
 "sein."
 
 #: adhocracy4/phases/models.py:65
-#: apps/newsletters/models.py:30
+#: apps/newsletters/models.py:28
 #: apps/projects/templates/a4_candy_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Name"
 
 #: adhocracy4/phases/models.py:67
-#: apps/activities/models.py:21 apps/debate/models.py:27
-#: apps/ideas/models.py:32 apps/offlineevents/models.py:34
-#: apps/organisations/forms.py:284 apps/topicprio/forms.py:18
-#: apps/topicprio/models.py:31
+#: apps/activities/models.py:22 apps/debate/models.py:25
+#: apps/ideas/models.py:34 apps/offlineevents/models.py:36
+#: apps/organisations/forms.py:322 apps/topicprio/forms.py:14
+#: apps/topicprio/models.py:32
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -967,21 +967,21 @@ msgid "Multiple choice disabled for question."
 msgstr "Mehrfachauswahl ist für die Frage deaktiviert."
 
 #: adhocracy4/polls/dashboard.py:15
-#: apps/dashboard/blueprints.py:90
+#: apps/dashboard/blueprints.py:98
 msgid "Poll"
 msgstr "Umfrage"
 
 #: adhocracy4/polls/dashboard.py:42
-#: apps/budgeting/dashboard.py:14 apps/debate/dashboard.py:55
-#: apps/documents/dashboard.py:46 apps/ideas/dashboard.py:14
-#: apps/mapideas/dashboard.py:14 apps/topicprio/dashboard.py:55
+#: apps/budgeting/dashboard.py:14 apps/debate/dashboard.py:66
+#: apps/documents/dashboard.py:51 apps/ideas/dashboard.py:14
+#: apps/mapideas/dashboard.py:14 apps/topicprio/dashboard.py:66
 msgid "Export Excel"
 msgstr "Excel exportieren"
 
 #: adhocracy4/polls/exports.py:40
-#: apps/budgeting/exports.py:74 apps/debate/exports.py:63
-#: apps/documents/exports.py:39 apps/ideas/exports.py:69
-#: apps/mapideas/exports.py:70 apps/topicprio/exports.py:67
+#: apps/budgeting/exports.py:77 apps/debate/exports.py:67
+#: apps/documents/exports.py:40 apps/ideas/exports.py:76
+#: apps/mapideas/exports.py:77 apps/topicprio/exports.py:74
 msgid "ID"
 msgstr "ID"
 
@@ -1067,13 +1067,13 @@ msgid "Only one vote per choice is allowed per user."
 msgstr "Pro Nutzer ist nur eine Stimme pro Auswahl zulässig."
 
 #: adhocracy4/projects/admin.py:10
-#: apps/newsletters/forms.py:31
+#: apps/newsletters/forms.py:38
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Projekt"
 
 #: adhocracy4/projects/admin.py:65
-#: apps/projects/admin.py:42
+#: apps/projects/admin.py:38
 msgid "Information and result"
 msgstr "Informationen und Ergebnis"
 
@@ -1081,17 +1081,17 @@ msgstr "Informationen und Ergebnis"
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:45
+#: apps/projects/admin.py:44
 msgid "Settings"
 msgstr "Einstellungen"
 
 #: adhocracy4/projects/admin.py:72
-#: apps/projects/admin.py:50
+#: apps/projects/admin.py:58
 msgid "Images"
 msgstr "Bilder"
 
 #: adhocracy4/projects/admin.py:77
-#: apps/projects/admin.py:55 adhocracy-plus/templates/email_base.html:112
+#: apps/projects/admin.py:70 adhocracy-plus/templates/email_base.html:112
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "Kontakt"
@@ -1207,12 +1207,12 @@ msgstr "Zugang zum Projekt"
 
 #: adhocracy4/projects/models.py:224
 #: adhocracy4/projects/models.py:232
-#: apps/organisations/models.py:87
+#: apps/organisations/models.py:97
 msgid "Header image"
 msgstr "Headerbild"
 
 #: adhocracy4/projects/models.py:226
-#: apps/organisations/models.py:89
+#: apps/organisations/models.py:98
 msgid "The image will be shown as a decorative background image."
 msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
@@ -1271,7 +1271,7 @@ msgstr "Online-Beteiligung"
 msgid "Report"
 msgstr "Melden"
 
-#: apps/account/forms.py:64 apps/organisations/mixins.py:62
+#: apps/account/forms.py:63 apps/organisations/mixins.py:58
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr ""
 "Ja, ich habe die {}Nutzungsbedingungen{} dieser Organisation gelesen und "
@@ -1328,11 +1328,11 @@ msgstr "Änderungen speichern"
 msgid "Here you can edit all your agreements"
 msgstr "Hier können Sie alle Ihre Nutzungsvereinbarungen bearbeiten"
 
-#: apps/account/views.py:29
+#: apps/account/views.py:27
 msgid "Your profile was successfully updated."
 msgstr "Ihr Profil wurde erfolgreich aktualisiert."
 
-#: apps/account/views.py:52
+#: apps/account/views.py:49
 msgid "Your agreements were successfully updated."
 msgstr "Ihre Nutzungsvereinbarungen wurden erfolgreich aktualisiert."
 
@@ -1383,9 +1383,9 @@ msgstr "in <a href=\"%(url)s\">%(name)s</a>"
 msgid "Face-to-Face Information"
 msgstr "Informationen Vor-Ort-Beteiligung"
 
-#: apps/activities/models.py:12 apps/debate/models.py:21
-#: apps/ideas/models.py:31 apps/offlineevents/models.py:26
-#: apps/organisations/forms.py:275 apps/topicprio/models.py:28
+#: apps/activities/models.py:12 apps/debate/models.py:20
+#: apps/ideas/models.py:33 apps/offlineevents/models.py:24
+#: apps/organisations/forms.py:313 apps/topicprio/models.py:30
 msgid "Title"
 msgstr "Titel"
 
@@ -1393,7 +1393,7 @@ msgstr "Titel"
 msgid "Highlighted Info"
 msgstr "Hervorgehobene Information"
 
-#: apps/activities/models.py:16
+#: apps/activities/models.py:17
 msgid ""
 "Highlight important information like the time or location of your face-to-"
 "face event"
@@ -1417,15 +1417,15 @@ msgstr "Vor-Ort"
 msgid "Edit face to face participation information"
 msgstr "Informationen zur Vor-Ort-Beteiligung bearbeiten"
 
-#: apps/budgeting/models.py:20
+#: apps/budgeting/models.py:22
 msgid "Required Budget"
 msgstr "Notwendiges Budget"
 
-#: apps/budgeting/models.py:25
+#: apps/budgeting/models.py:26
 msgid "Proposal is archived"
 msgstr "Vorschlag ist archiviert"
 
-#: apps/budgeting/models.py:26
+#: apps/budgeting/models.py:28
 msgid ""
 "Exclude this proposal from all listings by default. You can still access "
 "this proposal by using filters."
@@ -1441,7 +1441,7 @@ msgstr "Vorschlagsphase"
 msgid "Post ideas with budget proposals, comment on them and rate them."
 msgstr "Ideen mit Budgetangabe einreichen, kommentieren und bewerten."
 
-#: apps/budgeting/phases.py:20
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:523
 msgid "participatory budgeting"
 msgstr "Bürgerhaushalt"
 
@@ -1598,54 +1598,54 @@ msgid "Most recent"
 msgstr "am aktuellsten"
 
 #: apps/budgeting/views.py:21 apps/ideas/views.py:35 apps/mapideas/views.py:19
-#: apps/topicprio/views.py:32
+#: apps/topicprio/views.py:30
 msgid "Most popular"
 msgstr "am beliebtesten"
 
-#: apps/budgeting/views.py:22 apps/debate/filters.py:23 apps/ideas/views.py:36
-#: apps/mapideas/views.py:20 apps/topicprio/views.py:33
+#: apps/budgeting/views.py:22 apps/debate/filters.py:19 apps/ideas/views.py:36
+#: apps/mapideas/views.py:20 apps/topicprio/views.py:31
 msgid "Most commented"
 msgstr "meist kommentiert"
 
-#: apps/budgeting/views.py:94
+#: apps/budgeting/views.py:86
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
 
-#: apps/captcha/fields.py:37 apps/captcha/fields.py:45
+#: apps/captcha/fields.py:33 apps/captcha/fields.py:40
 msgid "Something about the answer to the captcha was wrong."
 msgstr "Irgendetwas an der Antwort auf das Captcha war falsch."
 
-#: apps/captcha/fields.py:50
+#: apps/captcha/fields.py:44
 msgid "Your answer to the captcha was wrong."
 msgstr "Ihre Antwort für das Captcha war falsch"
 
-#: apps/cms/contacts/models.py:34 apps/users/forms.py:49
+#: apps/cms/contacts/models.py:32 apps/users/forms.py:45
 msgid "I am not a robot"
 msgstr "Ich bin kein Roboter"
 
-#: apps/cms/contacts/models.py:35
+#: apps/cms/contacts/models.py:34
 msgid "If you are having difficulty please contactus, details adjacent"
 msgstr ""
 "Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte, Details "
 "nebenstehend"
 
-#: apps/cms/contacts/models.py:142
+#: apps/cms/contacts/models.py:133
 msgid "I want to receive a copy of my message"
 msgstr "Eine Kopie der Nachricht an mich senden"
 
-#: apps/cms/contacts/models.py:148
+#: apps/cms/contacts/models.py:143
 msgid "Your message"
 msgstr "Ihre Nachricht"
 
-#: apps/cms/contacts/models.py:155
+#: apps/cms/contacts/models.py:154
 msgid "Your email address"
 msgstr "Ihre E-Mail-Adresse"
 
-#: apps/cms/contacts/models.py:162
+#: apps/cms/contacts/models.py:165
 msgid "Your telephone number"
 msgstr "Ihre Telefonnumer"
 
-#: apps/cms/contacts/models.py:169
+#: apps/cms/contacts/models.py:176
 msgid "Your name"
 msgstr "Ihr Name"
 
@@ -1829,7 +1829,7 @@ msgstr "Sie haben die Adresse %(email)s bestätigt."
 msgid "You cannot remove your primary e-mail address (%(email)s)."
 msgstr "Sie können Ihre primäre E-Mail-Adresse (%(email)s) nicht löschen."
 
-#: apps/contrib/django_standard_messages.py:11
+#: apps/contrib/django_standard_messages.py:12
 msgid ""
 "We have sent you an e-mail. Please contact us if you do not receive it "
 "within a few minutes."
@@ -1837,7 +1837,7 @@ msgstr ""
 "Wir haben Ihnen eine E-Mail geschickt. Bitte kontaktieren Sie uns, wenn Sie "
 "diese nicht in ein paar Minuten erhalten haben."
 
-#: apps/contrib/django_standard_messages.py:13
+#: apps/contrib/django_standard_messages.py:16
 msgid ""
 "We have sent an e-mail to you for verification. Follow the link provided to "
 "finalize the signup process. Please contact us if you do not receive it "
@@ -1848,22 +1848,22 @@ msgstr ""
 "Bitte kontaktieren Sie uns, falls die E-Mail nicht in ein paar Minuten "
 "angekommen ist."
 
-#: apps/contrib/django_standard_messages.py:16
+#: apps/contrib/django_standard_messages.py:20
 #, python-format
 msgid "You must select a minimum of  %(limit_value)d choices."
 msgstr "Bitte wählen Sie mindestens %(limit_value)d Felder aus."
 
-#: apps/contrib/django_standard_messages.py:17
+#: apps/contrib/django_standard_messages.py:21
 #, python-format
 msgid "You must select a maximum of  %(limit_value)d choices."
 msgstr "Sie können max. %(limit_value)d Felder auswählen."
 
-#: apps/contrib/django_standard_messages.py:18
+#: apps/contrib/django_standard_messages.py:22
 msgid "Ensure this field has no more than 4000 characters."
 msgstr ""
 "Stellen Sie sicher, dass dieses Feld nicht mehr als 4000 Zeichen lang ist."
 
-#: apps/contrib/mixins.py:4
+#: apps/contrib/mixins.py:5
 msgid ""
 "I hereby confirm that the copyrights for this photo are with me or that I "
 "have received rights of use from the author. I also confirm that the privacy "
@@ -1874,7 +1874,7 @@ msgstr ""
 "habe. Ich bestätige außerdem, dass die Persönlichkeitsrechte abgebildeter "
 "dritter Personen nicht verletzt werden."
 
-#: apps/contrib/mixins.py:25
+#: apps/contrib/mixins.py:29
 msgid ""
 "You want to upload an image. Please check that you have the right of use for "
 "the image."
@@ -1936,22 +1936,22 @@ msgstr "Löschen"
 msgid "Give feedback"
 msgstr "Zurück melden"
 
-#: apps/dashboard/blueprints.py:16
+#: apps/dashboard/blueprints.py:17
 msgid "Brainstorming"
 msgstr "Brainstorming"
 
-#: apps/dashboard/blueprints.py:18
+#: apps/dashboard/blueprints.py:19
 msgid ""
 "Participants can submit their own ideas and discuss the ideas of others."
 msgstr ""
 "Die Teilnehmer*innen können eigene Ideen einreichen und die Ideen Anderer "
 "diskutieren."
 
-#: apps/dashboard/blueprints.py:30
+#: apps/dashboard/blueprints.py:33
 msgid "Spatial Brainstorming"
 msgstr "Brainstorming mit Karte"
 
-#: apps/dashboard/blueprints.py:32
+#: apps/dashboard/blueprints.py:35
 msgid ""
 "Participants can submit their own ideas and locate them on a map. They can "
 "also discuss the ideas of others."
@@ -1959,11 +1959,11 @@ msgstr ""
 "Die Teilnehmer*innen können eigene Ideen auf einer Karte eintragen und die "
 "Ideen Anderer diskutieren."
 
-#: apps/dashboard/blueprints.py:44
+#: apps/dashboard/blueprints.py:49
 msgid "Idea Challenge"
 msgstr "Ideenwettbewerb"
 
-#: apps/dashboard/blueprints.py:46
+#: apps/dashboard/blueprints.py:51
 msgid ""
 "In a first phase, participants can submit their own ideas and discuss the "
 "ideas of others. In a second phase, the ideas can be rated (pro/contra)."
@@ -1972,11 +1972,11 @@ msgstr ""
 "und die Ideen Anderer diskutieren. In einer zweiten Phase werden die Ideen "
 "bewertet (dafür/dagegen)."
 
-#: apps/dashboard/blueprints.py:60
+#: apps/dashboard/blueprints.py:67
 msgid "Spatial Idea Challenge"
 msgstr "Ideenwettbewerb mit Karte"
 
-#: apps/dashboard/blueprints.py:62
+#: apps/dashboard/blueprints.py:69
 msgid ""
 "In a first phase, participants can submit their own ideas, mark them on a "
 "map, and discuss the ideas of others. In a second phase, the ideas can be "
@@ -1986,18 +1986,18 @@ msgstr ""
 "Karte eintragen und die Ideen Anderer diskutieren. In einer zweiten Phase "
 "werden die Ideen bewertet (dafür/dagegen)."
 
-#: apps/dashboard/blueprints.py:76
+#: apps/dashboard/blueprints.py:82
 msgid "Text Review"
 msgstr "Text diskutieren"
 
-#: apps/dashboard/blueprints.py:78
+#: apps/dashboard/blueprints.py:84
 msgid ""
 "Participants can discuss the paragraphs of a text that you added beforehand."
 msgstr ""
 "Die Teilnehmer*innen können einen eingestellten Text absatzweise "
 "diskutieren, den Sie zuvor hinzugefügt haben."
 
-#: apps/dashboard/blueprints.py:92
+#: apps/dashboard/blueprints.py:100
 msgid ""
 "Participants can answer open and multiple choice questions and comment on "
 "the poll."
@@ -2005,11 +2005,11 @@ msgstr ""
 "Die Teilnehmer*innen können auf offene und Multiple-Choice-Fragen antworten "
 "und die Umfrage kommentieren."
 
-#: apps/dashboard/blueprints.py:104
+#: apps/dashboard/blueprints.py:114
 msgid "Participatory budgeting"
 msgstr "Bürgerhaushalt"
 
-#: apps/dashboard/blueprints.py:106
+#: apps/dashboard/blueprints.py:116
 msgid ""
 "Participants can submit their own suggestions, mark them on a map, and add a "
 "budget. The ideas of others can be discussed and rated (pro/contra)."
@@ -2018,11 +2018,11 @@ msgstr ""
 "mit einem Budget versehen. Die Ideen Anderer können diskutiert und bewertet "
 "(dafür/dagegen) werden."
 
-#: apps/dashboard/blueprints.py:118
+#: apps/dashboard/blueprints.py:129
 msgid "Interactive Event"
 msgstr "Interaktive Veranstaltung"
 
-#: apps/dashboard/blueprints.py:120
+#: apps/dashboard/blueprints.py:131
 msgid ""
 "The participants of an event can ask their questions online. Other "
 "participants can support the question. You as the moderator can sort the "
@@ -2033,11 +2033,11 @@ msgstr ""
 "Moderation können die Fragen anhand von Unterstützung und Zugehörigkeiten "
 "sortieren."
 
-#: apps/dashboard/blueprints.py:134
+#: apps/dashboard/blueprints.py:147
 msgid "Prioritization"
 msgstr "Priorisierung"
 
-#: apps/dashboard/blueprints.py:136
+#: apps/dashboard/blueprints.py:149
 msgid ""
 "Participants can discuss and rate (pro/contra) previously added ideas and "
 "topics. Participants cannot add ideas or topics."
@@ -2046,11 +2046,11 @@ msgstr ""
 "diskutieren und bewerten (dafür/dagegen). Teilnehmer*innen können keine "
 "Ideen und Themen hinzufügen."
 
-#: apps/dashboard/blueprints.py:149
+#: apps/dashboard/blueprints.py:164
 msgid "Debate"
 msgstr "Debatte"
 
-#: apps/dashboard/blueprints.py:151
+#: apps/dashboard/blueprints.py:166
 msgid ""
 "Participants can discuss posted topics or questions. To do this, the "
 "participants comment on posted topics / questions as well as on "
@@ -2061,18 +2061,18 @@ msgstr ""
 "Antworten in Kategorien eingeordnet und können durchsucht, sortiert und "
 "gefiltert werden."
 
-#: apps/dashboard/forms.py:15
+#: apps/dashboard/forms.py:13
 msgid "Organisation name"
 msgstr "Organisationsname"
 
-#: apps/dashboard/forms.py:30 apps/projects/overwrites.py:10
+#: apps/dashboard/forms.py:28 apps/projects/overwrites.py:13
 msgid ""
 "All users can see project tile and content and can participate (public)."
 msgstr ""
 "Alle Nutzer*innen können Projektkachel und -inhalte sehen und sich "
 "beteiligen (öffentlich)."
 
-#: apps/dashboard/forms.py:33 apps/projects/overwrites.py:12
+#: apps/dashboard/forms.py:35 apps/projects/overwrites.py:17
 msgid ""
 "All users can see project tile and content, only invited users can "
 "participate (semi-public)."
@@ -2080,7 +2080,7 @@ msgstr ""
 "Alle Nutzer*innen können Projektkachel und -inhalte sehen, nur eingeladene "
 "Nutzer*innen können sich beteiligen (halb-öffentlich)."
 
-#: apps/dashboard/forms.py:36 apps/projects/overwrites.py:8
+#: apps/dashboard/forms.py:42 apps/projects/overwrites.py:9
 msgid ""
 "Only invited users can see project tile and content and can participate "
 "(private)."
@@ -2120,32 +2120,32 @@ msgstr ""
 "Bitte fügen Sie ein Modul aus der Auswahl hinzu. Sie können später weitere "
 "Module zum Projekt hinzufügen, diese bearbeiten oder wieder entfernen."
 
-#: apps/dashboard/views.py:54
+#: apps/dashboard/views.py:56
 msgid "The module was created"
 msgstr "Das Modul wurde angelegt"
 
-#: apps/dashboard/views.py:153
+#: apps/dashboard/views.py:154
 msgid "Module is already added"
 msgstr "Modul ist bereits hinzugefügt"
 
-#: apps/dashboard/views.py:162
+#: apps/dashboard/views.py:164
 msgid "Module cannot be added. Required fields are missing."
 msgstr "Das Modul kann nicht hinzugefügt werden. Es fehlen benötigte Felder."
 
-#: apps/dashboard/views.py:174
+#: apps/dashboard/views.py:175
 msgid "The module is displayed in the project."
 msgstr "Das Modul wird im Projekt angezeigt."
 
-#: apps/dashboard/views.py:179
+#: apps/dashboard/views.py:180
 msgid "Module is already removed"
 msgstr "Modul ist bereits entfernt"
 
-#: apps/dashboard/views.py:183
+#: apps/dashboard/views.py:184
 msgid "Module cannot be removed from a published project."
 msgstr ""
 "Module können nicht aus einem veröffentlichten Projekt entfernt werden."
 
-#: apps/dashboard/views.py:195
+#: apps/dashboard/views.py:196
 msgid "The module is no longer displayed in the project."
 msgstr "Das Modul wird nicht mehr im Projekt angezeigt."
 
@@ -2153,13 +2153,13 @@ msgstr "Das Modul wird nicht mehr im Projekt angezeigt."
 msgid "The module has been deleted"
 msgstr "Das Modul wurde gelöscht"
 
-#: apps/dashboard/views.py:208
+#: apps/dashboard/views.py:210
 msgid "Module cannot be deleted. It has to be removed from the project first."
 msgstr ""
 "Das Modul kann nicht gelöscht werden. Es muss erst vom Projekt entfernt "
 "werden."
 
-#: apps/dashboard/views.py:253
+#: apps/dashboard/views.py:266
 msgid "Project was created."
 msgstr "Das Projekt wurde angelegt."
 
@@ -2167,16 +2167,16 @@ msgstr "Das Projekt wurde angelegt."
 msgid "Subjects"
 msgstr "Themen"
 
-#: apps/debate/filters.py:22 apps/debate/filters.py:45
-#: apps/topicprio/views.py:31 apps/topicprio/views.py:70
+#: apps/debate/filters.py:19 apps/debate/filters.py:34
+#: apps/topicprio/views.py:29 apps/topicprio/views.py:62
 msgid "Alphabetical"
 msgstr "Alphabetisch"
 
-#: apps/debate/models.py:22
+#: apps/debate/models.py:20
 msgid "max 120 characters"
 msgstr "max 120 Zeichen"
 
-#: apps/debate/models.py:28
+#: apps/debate/models.py:27
 msgid ""
 "In addition to the title, you can insert an optional explanatory text (max. "
 "350 char.). This field is only shown in the participation if it is filled "
@@ -2230,7 +2230,7 @@ msgstr "Ein neues Thema hinzufügen"
 
 #: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:4
 #: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:9
-#: apps/newsletters/models.py:34
+#: apps/newsletters/models.py:30
 msgid "Subject"
 msgstr "Betreff"
 
@@ -2242,7 +2242,7 @@ msgstr "Thema hinzufügen"
 msgid "Edit subject"
 msgstr "Thema bearbeiten"
 
-#: apps/debate/views.py:95
+#: apps/debate/views.py:103
 msgid "The subject has been deleted"
 msgstr "das Thema wurde gelöscht"
 
@@ -2292,7 +2292,7 @@ msgstr "Nächstes Kapitel"
 msgid "back to chapter"
 msgstr "Zurück zum Kapitel"
 
-#: apps/documents/views.py:63
+#: apps/documents/views.py:65
 msgid "Document has no chapters defined."
 msgstr "Für dieses Dokument wurden noch keine Kapitel angelegt"
 
@@ -2332,11 +2332,11 @@ msgstr ""
 "ein Popup öffnen in welchem Sie sich sicher anmelden können. Möchten Sie "
 "dies jetzt tun?"
 
-#: apps/ideas/models.py:35 apps/topicprio/models.py:35
+#: apps/ideas/models.py:37 apps/topicprio/models.py:36
 msgid "Add image"
 msgstr "Bild hinzufügen"
 
-#: apps/ideas/models.py:39
+#: apps/ideas/models.py:40
 msgid "Visualize your idea."
 msgstr "Visualisieren Sie Ihre Idee."
 
@@ -2350,13 +2350,13 @@ msgid "Create new ideas."
 msgstr "Anlegen von neuen Ideen."
 
 #: apps/ideas/phases.py:17 apps/ideas/phases.py:31 apps/ideas/phases.py:46
-#: apps/ideas/phases.py:61 apps/mapideas/phases.py:18
-#: apps/mapideas/phases.py:32 apps/mapideas/phases.py:48
-#: apps/mapideas/phases.py:63 apps/mapideas/phases.py:79
+#: apps/ideas/phases.py:58 apps/mapideas/phases.py:17
+#: apps/mapideas/phases.py:31 apps/mapideas/phases.py:48
+#: apps/mapideas/phases.py:60 apps/mapideas/phases.py:75
 msgid "ideas collection"
 msgstr "Ideensammlung"
 
-#: apps/ideas/phases.py:29 apps/mapideas/phases.py:30
+#: apps/ideas/phases.py:29 apps/mapideas/phases.py:29
 msgid "Collect phase"
 msgstr "Phase zur Einreichung von Ideen"
 
@@ -2364,7 +2364,7 @@ msgstr "Phase zur Einreichung von Ideen"
 msgid "Create and comment on new ideas."
 msgstr "Neue Ideen anlegen und kommentieren."
 
-#: apps/ideas/phases.py:44 apps/mapideas/phases.py:45
+#: apps/ideas/phases.py:44 apps/mapideas/phases.py:44
 msgid "Rating phase"
 msgstr "Bewertungsphase"
 
@@ -2372,21 +2372,21 @@ msgstr "Bewertungsphase"
 msgid "Rate the previously collected ideas."
 msgstr "Die zuvor angelegten Ideen bewerten."
 
-#: apps/ideas/phases.py:58 apps/mapideas/phases.py:60
+#: apps/ideas/phases.py:56 apps/mapideas/phases.py:58
 msgid "Feedback phase"
 msgstr "Rückmeldungsphase"
 
-#: apps/ideas/phases.py:59 apps/mapideas/phases.py:61
+#: apps/ideas/phases.py:57 apps/mapideas/phases.py:59
 msgid "Get feedback for collected ideas through rates and comments."
 msgstr ""
 "Erhalten Sie Rückmeldung für gesammelte Ideen in Form von Bewertungen und "
 "Kommentaren"
 
-#: apps/ideas/phases.py:74 apps/mapideas/phases.py:76
+#: apps/ideas/phases.py:68 apps/mapideas/phases.py:70
 msgid "Collect ideas and get feedback"
 msgstr "Lassen Sie Ideen bewerten und kommentieren."
 
-#: apps/ideas/phases.py:75
+#: apps/ideas/phases.py:69
 msgid "Create new ideas and get feedback through rates and comments."
 msgstr ""
 "Sammeln Sie Ideen zu einem bestimmten Thema und lassen Sie diese "
@@ -2427,7 +2427,7 @@ msgstr "Rückmeldung zu dieser Idee"
 msgid "Edit idea"
 msgstr "Idee bearbeiten"
 
-#: apps/ideas/views.py:164 apps/mapideas/views.py:76
+#: apps/ideas/views.py:158 apps/mapideas/views.py:71
 msgid "Your Idea has been deleted"
 msgstr "Ihre Idee wurde gelöscht"
 
@@ -2435,11 +2435,11 @@ msgstr "Ihre Idee wurde gelöscht"
 msgid "Media"
 msgstr "Medien"
 
-#: apps/interactiveevents/dashboard.py:42
+#: apps/interactiveevents/dashboard.py:47
 msgid "Affiliations"
 msgstr "Zugehörigkeiten"
 
-#: apps/interactiveevents/dashboard.py:44
+#: apps/interactiveevents/dashboard.py:49
 msgid "Edit affiliations"
 msgstr "Zugehörigkeiten bearbeiten"
 
@@ -2447,19 +2447,19 @@ msgstr "Zugehörigkeiten bearbeiten"
 msgid "Affiliation"
 msgstr "Zugehörigkeit"
 
-#: apps/interactiveevents/models.py:47
+#: apps/interactiveevents/models.py:41
 msgid "Question"
 msgstr "Frage"
 
-#: apps/interactiveevents/models.py:55
+#: apps/interactiveevents/models.py:47
 msgid "Characteristic"
 msgstr "Merkmal"
 
-#: apps/interactiveevents/models.py:89
+#: apps/interactiveevents/models.py:79
 msgid "Event image"
 msgstr "Veranstaltungsbild"
 
-#: apps/interactiveevents/models.py:91
+#: apps/interactiveevents/models.py:80
 msgid "The image is displayed next to the event description."
 msgstr "Das Bild wird neben der Veranstaltungsbeschreibung angezeigt."
 
@@ -2554,7 +2554,7 @@ msgstr ""
 "Hiermit bestätige ich, dass ich die {}Nutzungsbedingungen{} und die {}"
 "Datenschutzerklärung{} gelesen habe und akzeptiere."
 
-#: apps/mapideas/forms.py:24
+#: apps/mapideas/forms.py:26
 msgid "Please locate your proposal on the map."
 msgstr "Bitte verorten Sie Ihren Vorschlag auf der Karte."
 
@@ -2562,7 +2562,7 @@ msgstr "Bitte verorten Sie Ihren Vorschlag auf der Karte."
 msgid "Where can your idea be located on a map?"
 msgstr "Wo kann ihre Idee auf der Karte verortet werden?"
 
-#: apps/mapideas/models.py:15
+#: apps/mapideas/models.py:16
 msgid ""
 "Click inside the marked area or type in an address to set the marker. A set "
 "marker can be dragged when pressed."
@@ -2571,11 +2571,11 @@ msgstr ""
 "geben Sie eine Adresse ein. Ein gesetzter Pin kann verschoben werden, wenn "
 "Sie ihn gedrückt halten."
 
-#: apps/mapideas/models.py:23
+#: apps/mapideas/models.py:26
 msgid "Label of the ideas location"
 msgstr "Bezeichnung des markierten Ortes"
 
-#: apps/mapideas/models.py:24
+#: apps/mapideas/models.py:27
 msgid "This could be an address or the name of a landmark."
 msgstr "Dies kann sowohl eine Adresse als auch eine Ortsbezeichnung sein."
 
@@ -2583,7 +2583,7 @@ msgstr "Dies kann sowohl eine Adresse als auch eine Ortsbezeichnung sein."
 msgid "Create new ideas, locate them on a map and comment on them."
 msgstr "Neue Ideen anlegen, auf der Karte platzieren und kommentieren."
 
-#: apps/mapideas/phases.py:31
+#: apps/mapideas/phases.py:30
 msgid "Create new ideas located on a map and comment them."
 msgstr ""
 "Anlegen neuer Ideen, verortet auf einer Karte, diese können kommentiert "
@@ -2593,7 +2593,7 @@ msgstr ""
 msgid "Rate the previously collected ideas to get quantitative feedback."
 msgstr "Die zuvor angelegten Ideen bewerten."
 
-#: apps/mapideas/phases.py:77
+#: apps/mapideas/phases.py:72
 msgid ""
 "Create new ideas located on a map and get feedback through rates and "
 "comments."
@@ -2670,15 +2670,15 @@ msgstr "Schreiben Sie Ihre Notiz!"
 msgid "Note only visible internally within project."
 msgstr "Notiz nur innerhalb des Projektes sichtbar."
 
-#: apps/newsletters/forms.py:34
+#: apps/newsletters/forms.py:41
 msgid "Receivers are all users which follow the following project:"
 msgstr "Empfänger*innen sind alle, die diesem Projekt folgen:"
 
-#: apps/newsletters/forms.py:38
+#: apps/newsletters/forms.py:45
 msgid "Organisation"
 msgstr "Organisation"
 
-#: apps/newsletters/forms.py:46
+#: apps/newsletters/forms.py:56
 msgid "Select a Project"
 msgstr "Wählen Sie ein Projekt"
 
@@ -2698,26 +2698,26 @@ msgstr "Initiator*innen Ihrer Organisation"
 msgid "Every user of the platform"
 msgstr "Alle Nutzer*innen der Plattform"
 
-#: apps/newsletters/models.py:32
+#: apps/newsletters/models.py:29
 msgid "Sender"
 msgstr "Absender"
 
-#: apps/newsletters/models.py:37
+#: apps/newsletters/models.py:34
 msgid "Email body"
 msgstr "Inhalt der E-Mail"
 
-#: apps/newsletters/models.py:39
+#: apps/newsletters/models.py:36
 msgid ""
 "When adding images, please ensure to set the width no larger than 600px."
 msgstr ""
 "Falls Sie dem Newsletter ein Foto hinzufügen, geben Sie in den Einstellungen "
 "eine Breite von max. 600 Pixel an."
 
-#: apps/newsletters/models.py:43
+#: apps/newsletters/models.py:40
 msgid "Sent"
 msgstr "Senden"
 
-#: apps/newsletters/models.py:46
+#: apps/newsletters/models.py:43
 msgid "Receivers"
 msgstr "Empfänger*innen"
 
@@ -2742,7 +2742,7 @@ msgstr "Newsletter"
 msgid "Create Newsletter"
 msgstr "Newsletter erstellen"
 
-#: apps/newsletters/views.py:58
+#: apps/newsletters/views.py:57
 msgid "Newsletter has been saved and will be sent to the recipients."
 msgstr ""
 "Der Newsletter wurde gespeichert und wird an die Empfänger*innen gesendet."
@@ -3089,7 +3089,7 @@ msgstr ""
 msgid "Offline Events"
 msgstr "Veranstaltungen"
 
-#: apps/offlineevents/forms.py:15 apps/offlineevents/models.py:32
+#: apps/offlineevents/forms.py:15 apps/offlineevents/models.py:34
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:8
 msgid "Date"
 msgstr "Datum"
@@ -3098,7 +3098,7 @@ msgstr "Datum"
 msgid "Time"
 msgstr "Zeit"
 
-#: apps/offlineevents/models.py:28
+#: apps/offlineevents/models.py:27
 msgid "Event type"
 msgstr "Art der Veranstaltung"
 
@@ -3147,7 +3147,7 @@ msgstr ""
 msgid "Edit offline event"
 msgstr "Veranstaltung bearbeiten"
 
-#: apps/offlineevents/views.py:94
+#: apps/offlineevents/views.py:108
 msgid "The offline event has been deleted"
 msgstr "Die Veranstaltung wurde gelöscht."
 
@@ -3159,36 +3159,36 @@ msgstr "Hier finden Sie ein Beispiel für ein {}Impressum{}."
 msgid "Here you can find an example of {}terms of use{}."
 msgstr "Hier finden Sie ein Beispiel für {}Nutzungsbedingungen{}."
 
-#: apps/organisations/forms.py:19
+#: apps/organisations/forms.py:20
 msgid "Here you can find an example of a {}data protection policy{}."
 msgstr "Hier finden Sie ein Beispiel für eine {}Datenschutzerklärung{}."
 
-#: apps/organisations/forms.py:21
+#: apps/organisations/forms.py:22
 msgid "Here you can find an example of a {}netiquette{}."
 msgstr "Hier finden Sie ein Beispiel für eine {}Netiquette{}."
 
-#: apps/organisations/forms.py:31
+#: apps/organisations/forms.py:34
 msgid "Instagram Post 1080x1080"
 msgstr "Instagram Post 1080x1080"
 
-#: apps/organisations/forms.py:32
+#: apps/organisations/forms.py:35
 msgid "Instagram Story 1080x1920"
 msgstr "Instagram Story 1080x1920"
 
-#: apps/organisations/forms.py:33
+#: apps/organisations/forms.py:36
 msgid "Linkedin 1104x736"
 msgstr "Linkedin 1104x736"
 
-#: apps/organisations/forms.py:34
+#: apps/organisations/forms.py:37
 msgid "Twitter 1200x675"
 msgstr "Twitter 1200x675"
 
-#: apps/organisations/forms.py:246
+#: apps/organisations/forms.py:281
 #: adhocracy-plus/templates/a4dashboard/communication_form_base.html:23
 msgid "Social Media"
 msgstr "Soziale Medien"
 
-#: apps/organisations/forms.py:249
+#: apps/organisations/forms.py:285
 msgid ""
 "Here you can create sharepics for social media that will help you get "
 "publicity for your project. You can choose between different formats."
@@ -3197,17 +3197,17 @@ msgstr ""
 "werden, Werbung für Ihr Projekt zu machen. Sie können zwischen verschiedenen "
 "Formaten wählen."
 
-#: apps/organisations/forms.py:255
+#: apps/organisations/forms.py:292
 msgid "Select Project"
 msgstr "Projekt auswählen"
 
-#: apps/organisations/forms.py:259
+#: apps/organisations/forms.py:297
 msgid "Please select a project of your organisation and click select."
 msgstr ""
 "Bitte wählen Sie ein Projekt Ihrer Organisation aus und klicken Sie auf "
 "Auswählen."
 
-#: apps/organisations/forms.py:277
+#: apps/organisations/forms.py:316
 msgid ""
 "This title will be displayed as a header. It should be max. {} characters "
 "long."
@@ -3215,7 +3215,7 @@ msgstr ""
 "Dieser Titel wird als Überschrift angezeigt. Er sollte max. {} Zeichen lang "
 "sein."
 
-#: apps/organisations/forms.py:286
+#: apps/organisations/forms.py:325
 msgid ""
 "This description will be displayed below the title. It should briefly state "
 "the goal of the project in max. {} chars."
@@ -3223,11 +3223,11 @@ msgstr ""
 "Diese Beschreibung wird unterhalb des Titels angezeigt. Sie sollte kurz das "
 "Ziel des Projekts in max. {} Zeichen beschreiben."
 
-#: apps/organisations/forms.py:293
+#: apps/organisations/forms.py:332
 msgid "Picture Upload"
 msgstr "Bild-Upload"
 
-#: apps/organisations/forms.py:296
+#: apps/organisations/forms.py:336
 msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
@@ -3237,13 +3237,13 @@ msgstr ""
 "{} Pixel hoch sein. Erlaubte Dateiformate sind png, jpeg, gif. Die maximale "
 "Dateigröße beträgt 5 MB."
 
-#: apps/organisations/mixins.py:21
+#: apps/organisations/mixins.py:20
 msgid "You can still manage all your preferences on User Agreements."
 msgstr ""
 "Sie können weiterhin alle Ihre Einstellungen unter Nutzungsvereinbarungen "
 "verwalten."
 
-#: apps/organisations/mixins.py:43
+#: apps/organisations/mixins.py:40
 msgid ""
 "Please agree on the organisation's terms of use to be allowed to create "
 "content."
@@ -3251,11 +3251,11 @@ msgstr ""
 "Bitte stimmen Sie den Nutzungsbedingungen der Organisation zu, um Inhalte "
 "erstellen zu können."
 
-#: apps/organisations/models.py:29
+#: apps/organisations/models.py:26
 msgid "Title of your organisation"
 msgstr "Titel Ihrer Plattform"
 
-#: apps/organisations/models.py:31
+#: apps/organisations/models.py:29
 msgid ""
 "The title of your organisation will be shown on the landing page. max. 100 "
 "characters"
@@ -3273,11 +3273,11 @@ msgid ""
 "The description will be displayed on the landing page. max. 800 characters"
 msgstr "Die Beschreibung wird auf der Startseite angezeigt. Max. 800 Zeichen."
 
-#: apps/organisations/models.py:44
+#: apps/organisations/models.py:47
 msgid "Slogan"
 msgstr "Slogan"
 
-#: apps/organisations/models.py:45
+#: apps/organisations/models.py:49
 msgid ""
 "The slogan will be shown below the title of your organisation on the landing "
 "page. The slogan can provide context or additional information to the title. "
@@ -3286,11 +3286,11 @@ msgstr ""
 "Der Slogan wird unter dem Titel ihrer Plattform auf der Startseite angezeigt "
 "und kann den Titel ergänzen oder erläutern. Max. 200 Zeichen"
 
-#: apps/organisations/models.py:54
+#: apps/organisations/models.py:60
 msgid "Information about your organisation"
 msgstr "Beschreibung von Hintergrundinformationen"
 
-#: apps/organisations/models.py:55
+#: apps/organisations/models.py:62
 msgid ""
 "You can provide general information about your participation platform to "
 "your visitors. It’s also helpful to name a general person of contact for "
@@ -3303,11 +3303,11 @@ msgstr ""
 "der separaten Seite \"Hintergrund\" angezeigt, die man über das Hauptmenü "
 "erreicht."
 
-#: apps/organisations/models.py:66
+#: apps/organisations/models.py:75
 msgid "Logo"
 msgstr "Logo"
 
-#: apps/organisations/models.py:67
+#: apps/organisations/models.py:77
 msgid ""
 "The Logo representing your organisation. The image must be square and it "
 "should be min. 200 pixels wide and 200 pixels tall and max. 800 pixels wide "
@@ -3319,21 +3319,21 @@ msgstr ""
 "800 Pixel breit und 800 Pixel hoch sein. Erlaubte Dateiformate sind png, "
 "jpeg, gif. Die Dateigröße sollte max. 5 MB betragen."
 
-#: apps/organisations/models.py:80
+#: apps/organisations/models.py:92
 msgid "Please enter a full url which starts with https:// or http://"
 msgstr ""
 "Geben Sie bitte eine komplette URL ein, die mit https:// oder http:// "
 "anfängt."
 
-#: apps/organisations/models.py:96
+#: apps/organisations/models.py:104
 msgid "Header image copyright"
 msgstr "Urheberrecht des Headerbildes"
 
-#: apps/organisations/models.py:98
+#: apps/organisations/models.py:106
 msgid "Author, which is displayed in the header image."
 msgstr "Autor*in, der auf dem Headerbild dargestellt wird."
 
-#: apps/organisations/models.py:116
+#: apps/organisations/models.py:124
 #: apps/organisations/templates/a4_candy_organisations/organisation_imprint.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_imprint.html:16
 #: adhocracy-plus/templates/email_base.html:75
@@ -3343,7 +3343,7 @@ msgstr "Autor*in, der auf dem Headerbild dargestellt wird."
 msgid "Imprint"
 msgstr "Impressum"
 
-#: apps/organisations/models.py:117
+#: apps/organisations/models.py:126
 msgid ""
 "Please provide all the legally required information of your imprint. The "
 "imprint will be shown on a separate page."
@@ -3351,10 +3351,10 @@ msgstr ""
 "Bitte geben Sie alle rechtlich nötigen Informationen zum Impressum an. Das "
 "Impressum wird auf einer separaten Seite angezeigt."
 
-#: apps/organisations/models.py:123
+#: apps/organisations/models.py:133
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:40 apps/users/forms.py:181
+#: apps/users/forms.py:36 apps/users/forms.py:188
 #: adhocracy-plus/templates/email_base.html:79
 #: adhocracy-plus/templates/email_base.html:109
 #: adhocracy-plus/templates/footer.html:43
@@ -3362,7 +3362,7 @@ msgstr ""
 msgid "Terms of use"
 msgstr "Nutzungsbedingungen"
 
-#: apps/organisations/models.py:124
+#: apps/organisations/models.py:135
 msgid ""
 "Please provide all the legally required information of your terms of use. "
 "The terms of use will be shown on a separate page."
@@ -3371,14 +3371,14 @@ msgstr ""
 "Nutzungsbedingungen an. Die Nutzungsbedingungen werden auf einer separaten "
 "Seite angezeigt."
 
-#: apps/organisations/models.py:130
+#: apps/organisations/models.py:142
 #: adhocracy-plus/templates/email_base.html:106
 #: adhocracy-plus/templates/footer.html:48
 #: adhocracy-plus/templates/footer_upper.html:21
 msgid "Data protection policy"
 msgstr "Datenschutz"
 
-#: apps/organisations/models.py:131
+#: apps/organisations/models.py:144
 msgid ""
 "Please provide all the legally required information of your data protection. "
 "The data protection policy will be shown on a separate page."
@@ -3386,7 +3386,7 @@ msgstr ""
 "Bitte geben Sie alle rechtlich nötigen Informationen zum Datenschutz an. Die "
 "Datenschutzerklärung wird auf einer separaten Seite angezeigt."
 
-#: apps/organisations/models.py:138
+#: apps/organisations/models.py:152
 #: apps/organisations/templates/a4_candy_organisations/organisation_netiquette.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_netiquette.html:16
 #: adhocracy-plus/templates/footer.html:53
@@ -3394,7 +3394,7 @@ msgstr ""
 msgid "Netiquette"
 msgstr "Netiquette"
 
-#: apps/organisations/models.py:139
+#: apps/organisations/models.py:154
 msgid ""
 "Please provide a netiquette for the participants. The netiquette helps "
 "improving the climate of online discussions and supports the moderation."
@@ -3403,11 +3403,11 @@ msgstr ""
 "Atmosphäre bei den Diskussionen zu verbessern und ist eine gute Grundlage "
 "für die Moderation auf der Plattform."
 
-#: apps/organisations/models.py:146
+#: apps/organisations/models.py:162
 msgid "is a supporting organisation"
 msgstr "ist eine unterstützende Organisation"
 
-#: apps/organisations/models.py:147
+#: apps/organisations/models.py:164
 msgid ""
 "For supporting organisations, the banner asking for donations is not "
 "displayed on their pages."
@@ -3415,11 +3415,11 @@ msgstr ""
 "Der Banner, in dem um Spenden gebeten wird, wird auf den Seiten "
 "unterstützender Organisationen nicht angezeigt."
 
-#: apps/organisations/models.py:151
+#: apps/organisations/models.py:169
 msgid "Default language for e-mails"
 msgstr "Standardsprache für E-mails"
 
-#: apps/organisations/models.py:156
+#: apps/organisations/models.py:174
 msgid ""
 "All e-mails to unregistered users (invites) will be sent in this language."
 msgstr ""
@@ -3526,23 +3526,23 @@ msgstr ""
 "Derzeit sind keine öffentlichen Beteiligungsprozesse sichtbar. Melden Sie "
 "sich <a href=\"%(account_login_url)s?next=%(organisation_url)s\">hier</a> an."
 
-#: apps/organisations/views.py:44
+#: apps/organisations/views.py:43
 msgid "Participate now!"
 msgstr "Jetzt beteiligen!"
 
-#: apps/organisations/views.py:46
+#: apps/organisations/views.py:45
 msgid "Upcoming participation"
 msgstr "Anstehende Beteiligung"
 
-#: apps/organisations/views.py:48
+#: apps/organisations/views.py:47
 msgid "Ended participation"
 msgstr "Abgeschlossene Beteiligung"
 
-#: apps/organisations/views.py:91
+#: apps/organisations/views.py:90
 msgid "Organisation information successfully updated."
 msgstr "Organisationsinformationen erfolgreich aktualisiert."
 
-#: apps/organisations/views.py:123
+#: apps/organisations/views.py:121
 msgid "Legal information successfully updated."
 msgstr "Rechtliche Informationen erfolgreich aktualisiert."
 
@@ -3560,44 +3560,44 @@ msgstr "unarchivieren"
 msgid "Participants"
 msgstr "Teilnehmer*innen"
 
-#: apps/projects/dashboard.py:35
+#: apps/projects/dashboard.py:40
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:4
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:12
 msgid "Moderators"
 msgstr "Moderator*innen"
 
-#: apps/projects/forms.py:46 apps/projects/views.py:244
+#: apps/projects/forms.py:43 apps/projects/views.py:246
 msgid "Invite users via email"
 msgstr "Nutzer*innen via E-Mail einladen"
 
-#: apps/projects/forms.py:51 apps/projects/views.py:245
+#: apps/projects/forms.py:48 apps/projects/views.py:247
 msgid "Invite users via file upload"
 msgstr "Nutzer*innen aus Datei einladen"
 
-#: apps/projects/forms.py:52
+#: apps/projects/forms.py:49
 msgid "Upload a csv file containing email addresses."
 msgstr "Laden Sie eine CSV-Datei hoch, die E-Mail Adressen beinhaltet."
 
-#: apps/projects/forms.py:69
+#: apps/projects/forms.py:65
 msgid "Please enter email addresses or upload a file"
 msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 
-#: apps/projects/serializers.py:73
+#: apps/projects/serializers.py:91
 #, python-format
 msgid "%(time_left)s remaining"
 msgstr "%(time_left)s verbleibend"
 
-#: apps/projects/serializers.py:76
+#: apps/projects/serializers.py:95
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:69
 msgid "more than 1 year remaining"
 msgstr "noch länger als 1 Jahr"
 
-#: apps/projects/serializers.py:78
+#: apps/projects/serializers.py:97
 #, python-format
 msgid "Participation: from %(project_start)s"
 msgstr "Teilnahme: ab %(project_start)s"
 
-#: apps/projects/serializers.py:83
+#: apps/projects/serializers.py:103
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:102
 msgid "Participation ended. Read result."
 msgstr "Beteiligung beendet. Ergebnis lesen."
@@ -3953,7 +3953,7 @@ msgid "It ended on %(date)s."
 msgstr "Sie hat am %(date)s geendet."
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:221
-#: apps/users/models.py:49
+#: apps/users/models.py:51
 #: adhocracy-plus/templates/a4modules/module_detail.html:148
 msgid "active"
 msgstr "aktiv"
@@ -3992,44 +3992,44 @@ msgstr "Ausstehende Einladungen"
 msgid "Edit Participants"
 msgstr "Teilnehmer*innen bearbeiten"
 
-#: apps/projects/views.py:125
+#: apps/projects/views.py:124
 msgid "Invitation succesfully removed."
 msgstr "Einladung erfolgreich entfernt."
 
-#: apps/projects/views.py:130
+#: apps/projects/views.py:127
 msgid "Invitation was already accepted or removed."
 msgstr "Einladung wurde schon akzeptiert oder entfernt."
 
-#: apps/projects/views.py:172
+#: apps/projects/views.py:175
 msgid "Following users already accepted an invitation: "
 msgstr ""
 "Die folgenden Nutzerinnen und Nutzer haben bereits eine Einladung angenommen:"
 
-#: apps/projects/views.py:180
+#: apps/projects/views.py:183
 msgid "Following users are already invited: "
 msgstr "Die folgenden Nutzerinnen und Nutzer wurden bereits eingeladen:"
 
-#: apps/projects/views.py:224
+#: apps/projects/views.py:226
 msgid "Invite moderators via email"
 msgstr "Moderator*innen via E-Mail einladen"
 
-#: apps/projects/views.py:225
+#: apps/projects/views.py:227
 msgid "Invite moderators via file upload"
 msgstr "Moderator*innen aus Datei einladen"
 
-#: apps/projects/views.py:226
+#: apps/projects/views.py:228
 msgid "{} moderator invited."
 msgstr "{} Moderator*in eingeladen."
 
-#: apps/projects/views.py:226
+#: apps/projects/views.py:228
 msgid "{} moderators invited."
 msgstr "{} Moderator*innen eingeladen."
 
-#: apps/projects/views.py:227
+#: apps/projects/views.py:229
 msgid "Moderator successfully removed."
 msgstr "Moderator*in erfolgreich entfernt."
 
-#: apps/projects/views.py:247
+#: apps/projects/views.py:248
 msgid "{} participant invited."
 msgstr "{} Teilnehmer*in eingeladen"
 
@@ -4041,7 +4041,7 @@ msgstr "{} Teilnehmer*innen eingeladen"
 msgid "Participant successfully removed."
 msgstr "Teilnehmer*in erfolgreich entfernt."
 
-#: apps/projects/views.py:262
+#: apps/projects/views.py:261
 #, python-format
 msgid "Project '%(name)s' was deleted successfully."
 msgstr "Das Projekt '%(name)s' wurde erfolgreich gelöscht."
@@ -4060,7 +4060,7 @@ msgstr "Phasen priorisieren"
 msgid "Prioritize and comment topics."
 msgstr "Themen priorisieren und kommentieren"
 
-#: apps/topicprio/phases.py:17
+#: apps/topicprio/phases.py:17 adhocracy-plus/config/settings/base.py:525
 msgid "topic prioritization"
 msgstr "Themenpriorisierung"
 
@@ -4085,11 +4085,11 @@ msgstr "Thema hinzufügen"
 msgid "Edit topic"
 msgstr "Thema bearbeiten"
 
-#: apps/topicprio/views.py:148
+#: apps/topicprio/views.py:147
 msgid "The topic has been deleted"
 msgstr "Das Thema wurde gelöscht."
 
-#: apps/users/__init__.py:7
+#: apps/users/__init__.py:8
 msgid ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
 "and @/./+/-/_ characters. It must start with a digit or a letter."
@@ -4106,7 +4106,7 @@ msgstr "Rechte"
 msgid "Important dates"
 msgstr "Wichtige Daten"
 
-#: apps/users/emails.py:13
+#: apps/users/emails.py:14
 msgid ""
 "If you no longer want to receive any notifications, change the settings for "
 "your {}account{}."
@@ -4114,7 +4114,7 @@ msgstr ""
 "Wenn Sie allgemein keine Benachrichtigungen mehr erhalten möchten, ändern "
 "Sie die Einstellungen zu Ihrem {}Account{}."
 
-#: apps/users/emails.py:15
+#: apps/users/emails.py:18
 msgid ""
 "If you no longer want to receive notifications about this project, "
 "unsubscribe from the {}project{}."
@@ -4131,30 +4131,30 @@ msgid "If you are having difficulty please contact us by {}email{}."
 msgstr ""
 "Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte per {}email{}."
 
-#: apps/users/forms.py:30
+#: apps/users/forms.py:28
 msgid "Username/e-mail"
 msgstr "Benutzername/E-Mail"
 
-#: apps/users/forms.py:43 apps/users/forms.py:184 apps/users/models.py:70
+#: apps/users/forms.py:38 apps/users/forms.py:190 apps/users/models.py:71
 msgid "I would like to receive further information"
 msgstr "Ich möchte weitere Informationen erhalten."
 
-#: apps/users/forms.py:44 apps/users/forms.py:185 apps/users/models.py:73
+#: apps/users/forms.py:40 apps/users/forms.py:192 apps/users/models.py:74
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
 "Projekte, denen Sie folgen, können Ihnen E-Mails mit weiteren Informationen "
 "schicken."
 
-#: apps/users/forms.py:54 apps/users/forms.py:196
+#: apps/users/forms.py:50 apps/users/forms.py:202
 msgid "Your username will appear publicly next to your posts."
 msgstr "Ihr Benutzername erscheint öffentlich neben Ihren Beiträgen."
 
-#: apps/users/forms.py:77
+#: apps/users/forms.py:74
 msgid "Membership number of IG BCE"
 msgstr "Mitgliedsnummer der IG BCE"
 
-#: apps/users/forms.py:78
+#: apps/users/forms.py:76
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
@@ -4162,7 +4162,7 @@ msgstr ""
 "Die Mitgliedsnummer besteht aus einer siebenstelligen Zahlenfolge und ist "
 "auf dem Mitgliedsausweis zu finden."
 
-#: apps/users/forms.py:84
+#: apps/users/forms.py:83
 msgid "Date of birth"
 msgstr "Geburtsdatum"
 
@@ -4174,7 +4174,7 @@ msgstr ""
 "Bitte geben Sie zur Authentifizierung außerdem Ihr Geburtsdatum im Format TT."
 "MM.JJJJ an. Nur Mitglieder der IG BCE können teilnehmen."
 
-#: apps/users/forms.py:90
+#: apps/users/forms.py:92
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
@@ -4183,13 +4183,13 @@ msgstr ""
 "target=\"_blank\">Datenschutzerklärung</a> der IG BCE gelesen habe und sie "
 "akzeptiere."
 
-#: apps/users/forms.py:101 apps/users/forms.py:137
+#: apps/users/forms.py:105 apps/users/forms.py:145
 msgid "Something is wrong with the setup - please try again later"
 msgstr ""
 "Mit der Konfiguration stimmt etwas nicht - bitte versuchen Sie es zu einem "
 "späteren Zeitpunkt erneut"
 
-#: apps/users/forms.py:106
+#: apps/users/forms.py:111
 msgid ""
 "There is already a participant with this membership number. Please check "
 "your entry. If this is your membership number, please send an email to "
@@ -4199,7 +4199,7 @@ msgstr ""
 "überprüfen Sie Ihre Eingabe. Sollte dies Ihre Mitgliedsnummer sein, "
 "schreiben Sie umgehend eine Mail an \"zukunftsgewerkschaft@igbce.de\"."
 
-#: apps/users/forms.py:142
+#: apps/users/forms.py:151
 msgid ""
 "Unfortunately, the member number and / or date of birth could not be linked "
 "to an active member account. Please check your input and try again. If you "
@@ -4221,33 +4221,33 @@ msgstr ""
 "Erforderlich. Max. 60 Zeichen. Buchstaben, Zahlen, Leerzeichen und nur @/./"
 "+/-/_ "
 
-#: apps/users/models.py:30
+#: apps/users/models.py:33
 msgid "A user with that username already exists."
 msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
-#: apps/users/models.py:31
+#: apps/users/models.py:34
 msgid "This username is invalid."
 msgstr "Dieser Nutzername ist ungültig."
 
-#: apps/users/models.py:35
+#: apps/users/models.py:39
 msgid "Email address"
 msgstr "E-Mail Adresse"
 
-#: apps/users/models.py:38
+#: apps/users/models.py:41
 msgid "Email is invalid or already taken."
 msgstr "E-Mail ist ungültig oder bereits vergeben."
 
-#: apps/users/models.py:42
+#: apps/users/models.py:45
 msgid "staff status"
 msgstr "Mitarbeiterstatus"
 
-#: apps/users/models.py:45
+#: apps/users/models.py:47
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 "Bitte bestätigen Sie, dass der Nutzer auf dieser Seite als Admin agieren "
 "kann."
 
-#: apps/users/models.py:52
+#: apps/users/models.py:54
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -4268,43 +4268,43 @@ msgstr ""
 "erhalten möchten. Nehmen Sie den Haken raus, falls Sie keine "
 "Benachrichtigungen per E-Mail erhalten möchten."
 
-#: apps/users/models.py:80
+#: apps/users/models.py:82
 msgid "Biography"
 msgstr "Biografie"
 
-#: apps/users/models.py:82
+#: apps/users/models.py:83
 msgid "Tell us about yourself in 255 characters!"
 msgstr "Erzählen Sie von sich - in 255 Zeichen!"
 
-#: apps/users/models.py:88
+#: apps/users/models.py:89
 msgid "Twitter handle"
 msgstr "Twitter handle"
 
-#: apps/users/models.py:94
+#: apps/users/models.py:95
 msgid "Facebook name"
 msgstr "Facebook Name"
 
-#: apps/users/models.py:96
+#: apps/users/models.py:97
 msgid ""
 "Your facebook name is the last part of the URL, when you access your profile."
 msgstr ""
 "Ihr Facebook-Name ist der letzte Teil der URL, wenn Sie ihr Facebook-Profil "
 "aufrufen"
 
-#: apps/users/models.py:103
+#: apps/users/models.py:105
 #: apps/users/templates/a4_candy_users/user_detail.html:64
 msgid "Homepage"
 msgstr "Homepage"
 
-#: apps/users/models.py:110
+#: apps/users/models.py:112
 msgid "Avatar picture"
 msgstr "Avatar Bild"
 
-#: apps/users/models.py:114
+#: apps/users/models.py:116
 msgid "Your preferred language"
 msgstr "Ihre bevorzugte Sprache"
 
-#: apps/users/models.py:119
+#: apps/users/models.py:121
 msgid ""
 "Specify your preferred language for the user interface and the notifications "
 "of the platform."
@@ -4374,28 +4374,28 @@ msgstr "Diese Nutzer*in ist bislang noch in keinem Projekt aktiv."
 msgid "No activity yet. "
 msgstr "Noch keine Aktivität."
 
-#: adhocracy-plus/config/settings/base.py:201
+#: adhocracy-plus/config/settings/base.py:192
 msgid "English"
 msgstr "Englisch"
 
-#: adhocracy-plus/config/settings/base.py:202
+#: adhocracy-plus/config/settings/base.py:193
 msgid "German"
 msgstr "Deutsch"
 
-#: adhocracy-plus/config/settings/base.py:203
+#: adhocracy-plus/config/settings/base.py:194
 msgid "Dutch"
 msgstr "Niederländisch"
 
-#: adhocracy-plus/config/settings/base.py:204
+#: adhocracy-plus/config/settings/base.py:195
 msgid "Kyrgyz"
 msgstr "Kirgisisch"
 
-#: adhocracy-plus/config/settings/base.py:205
+#: adhocracy-plus/config/settings/base.py:196
 msgid "Russian"
 msgstr "Russisch"
 
-#: adhocracy-plus/config/settings/base.py:345
-#: adhocracy-plus/config/settings/base.py:361
+#: adhocracy-plus/config/settings/base.py:339
+#: adhocracy-plus/config/settings/base.py:355
 msgid "Rich text editor"
 msgstr "Rich text Editor"
 
@@ -4470,6 +4470,38 @@ msgstr "Dreieck Spitze rechts"
 #: adhocracy-plus/config/settings/base.py:513
 msgid "Zigzag"
 msgstr "ZickZack"
+
+#: adhocracy-plus/config/settings/base.py:517
+msgid "brainstorming"
+msgstr ""
+
+#: adhocracy-plus/config/settings/base.py:518
+msgid "map brainstorming"
+msgstr ""
+
+#: adhocracy-plus/config/settings/base.py:519
+msgid "idea collection"
+msgstr ""
+
+#: adhocracy-plus/config/settings/base.py:520
+msgid "map idea collection"
+msgstr ""
+
+#: adhocracy-plus/config/settings/base.py:521
+msgid "text review"
+msgstr ""
+
+#: adhocracy-plus/config/settings/base.py:522
+msgid "poll"
+msgstr ""
+
+#: adhocracy-plus/config/settings/base.py:524
+msgid "interactive event"
+msgstr ""
+
+#: adhocracy-plus/config/settings/base.py:526
+msgid "debate"
+msgstr ""
 
 #: adhocracy-plus/templates/403.html:7
 msgid "You are not allowed to access this page."
