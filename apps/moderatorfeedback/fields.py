@@ -19,8 +19,8 @@ class ModeratorFeedbackField(models.CharField):
         from which it may receive the feedback choices.
         """
         # Get the feedback choices as defined in the model
-        if hasattr(cls, "moderator_feedback_choices"):
-            self.choices = cls.moderator_feedback_choices
+        if hasattr(cls, "moderator_status_choices"):
+            self.choices = cls.moderator_status_choices
 
         # Call the super method at last so that choices are already initialized
         super(ModeratorFeedbackField, self).contribute_to_class(cls, name, **kwargs)
