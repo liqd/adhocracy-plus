@@ -74,8 +74,8 @@ export default class QuestionUser extends React.Component {
                     type="button"
                     className={'rating-button rating-up ' + (this.state.session_like ? 'is-selected' : '')}
                     onClick={this.handleLike.bind(this)}
-                    aria-label={this.state.session_like ? ariaAddLike : ariaUndoLike}
-                    title={this.state.session_like ? ariaAddLike : ariaUndoLike}
+                    aria-label={this.state.session_like ? ariaUndoLike : ariaAddLike}
+                    title={this.state.session_like ? ariaUndoLike : ariaAddLike}
                   >
                     <span>{this.state.likes} </span>
                     <span className="visually-hidden">{likesText}</span>
