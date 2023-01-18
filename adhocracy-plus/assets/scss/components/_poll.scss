@@ -84,7 +84,7 @@ $checkbox-size: 20px;
 }
 
 .poll-row__bar {
-    background-color: $brand-tertiary-tint;
+    background-color: $brand-primary-tint;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -101,7 +101,7 @@ $checkbox-size: 20px;
     }
 }
 
-.poll-row__bar--highlight {
+.poll__highlight {
     background-color: $brand-tertiary-tint;
 }
 
@@ -167,10 +167,6 @@ $checkbox-size: 20px;
     color: $text-color-gray;
     position: absolute;
     bottom: 0;
-
-    @media (min-width: $breakpoint) {
-        right: 6.5 * $spacer;
-    }
 }
 
 .spinner-border {
