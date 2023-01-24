@@ -79,17 +79,18 @@ function init () {
       const modalTitle = django.gettext('Import polygon via file upload')
       return $.parseHTML(
         '<div class="modal" id="map-import-modal" tabindex="-1" role="dialog" aria-label="' + modalTitle + '" aria-hidden="true">' +
-          '<div class="modal-dialog modal-lg" role="document">' +
+          '<div class="modal-dialog modal-dialog-centered modal-lg" role="document">' +
             '<div class="modal-content">' +
               '<div class="modal-header">' +
-                '<h2 class="modal-title mt-0">' + modalTitle + '</h2>' +
-                '<button class="close" aria-label="' + django.gettext('Close') + '" data-bs-dismiss="modal"><i class="fa fa-times"></i></button>' +
+                // Not using Bootstrap, but utility classes on purpose to align with component in A4
+                '<h2 class="u-no-margin-bottom u-spacer-top-one-half">' + modalTitle + '</h2>' +
+                '<button class="close" aria-label="' + django.gettext('Close') + '" data-bs-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>' +
               '</div>' +
               '<div class="modal-body">' +
                 '<form id="map-import-form" data-ignore-submit="true">' +
                   '<div class="form-group">' +
                     '<label for="map-import-file-input">' + django.gettext('Import polygon via file upload') + '</label>' +
-                    '<div class="form-hint">' +
+                    '<div class="form-hint u-spacer-bottom">' +
                       django.gettext('Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip).') + '<br>' +
                       django.gettext('Note that uploading Shapefiles is not supported with Internet Explorer 10') + '<br>' +
                       '<strong>' + django.gettext('Attention importing a file will delete the existing polygons.') + '</strong>' +
@@ -97,7 +98,7 @@ function init () {
                     '<div class="widget widget--fileinput">' +
                       '<div class="input-group">' +
                         '<input type="file" class="input-group__input" id="map-import-file-input" required>' +
-                        '<input type="submit" class="btn btn--primary input-group__after" value="' + django.gettext('Upload') + '">' +
+                        '<button type="submit" class="btn btn--default input-group-append">' + django.gettext('Upload') + '</button>' +
                       '</div>' +
                     '</div>' +
                   '</div>' +

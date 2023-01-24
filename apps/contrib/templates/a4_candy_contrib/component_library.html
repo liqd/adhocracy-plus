@@ -115,6 +115,9 @@
                         <a href="#cl-moderator-statement" class="dashboard-nav__item dashboard-nav__item--interactive">Moderator Statement</a>
                     </li>
                     <li class="dashboard-nav__page">
+                        <a href="#cl-modal" class="dashboard-nav__item dashboard-nav__item--interactive">Modal</a>
+                    </li>
+                    <li class="dashboard-nav__page">
                         <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
                     </li>
                     <li class="dashboard-nav__page">
@@ -781,100 +784,52 @@
                         </div>
 
 
-                <h2 id="cl-commenting">Comments</h2>
+                <h2 id="cl-comments">Comments</h2>
 
                 <div class="cl-example">
-                  <div class="a4-comments__box">
-                    <div class="a4-comment__list">
-                  <a class="a4-comments__anchor" id="comment_25" href="./?comment=25">Comment 25</a>
-                  <div class="modal fade" id="report_comment_25" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-lg" role="document">
-                          <div class="modal-content">
-                              <div class="modal-header"><button class="close" aria-label="Abort" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
-                              <div class="modal-body undefined">
-                                  <h3 class="modal-title u-first-heading">You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet
-                                      our discussion rules (netiquette).</h3>
-                                  <div class="form-group"><textarea rows="5" class="form-control report-message" placeholder="Your message"></textarea></div>
-                              </div>
-                              <div class="modal-footer">
-                                  <div class="row"><button class="submit-button" data-bs-dismiss="false">Send Report</button></div>
-                                  <div class="row"><button class="cancel-button" data-bs-dismiss="modal">Abort</button></div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="modal fade" id="share_comment_25" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-lg" role="document">
-                          <div class="modal-content">
-                              <div class="modal-header"><button class="close" aria-label="Abort" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
-                              <div class="modal-body undefined">
-                                  <h3 class="modal-title u-first-heading"></h3>
-                                  <div class="input-group"><input id="share-url-25" type="text" class="form-control" readonly="" value="http://localhost:8004/liqd-orga/ideas/2021-00016/?comment=25"><button
-                                        class="btn btn--transparent input-group-append modal-url-bar-button" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Copy</button></div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="modal fade" id="comment_delete_25" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-lg" role="document">
-                          <div class="modal-content">
-                              <div class="modal-header"><button class="close" aria-label="Abort" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
-                              <div class="modal-body undefined">
-                                  <h3 class="modal-title u-first-heading">Do you really want to delete this comment?</h3>
-                              </div>
-                              <div class="modal-footer">
-                                  <div class="row"><button class="submit-button" data-bs-dismiss="modal">Delete</button></div>
-                                  <div class="row"><button class="cancel-button" data-bs-dismiss="modal">Abort</button></div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="a4-comments__box">
-                      <div class="a4-comments__box--user">
-                          <div class="row">
-                              <div class="col-2 col-lg-1 a4-comments__user-img">
-                                  <div class="user-avatar user-avatar--small user-avatar--shadow mb-1 userindicator__btn-img" style="background-image: url(&quot;/static/images/avatar-01.svg&quot;);"></div>
-                              </div>
-                              <div class="col-7 col-md-8 a4-comments__author-container">
-                                  <div class="a4-comments__author"><a href="">Gilly Admin Bewland</a></div><span class="a4-comments__moderator">Moderator</span><time class="a4-comments__submission-date">Latest edit on
-                                      Feb. 9, 2022, 5:54 p.m.</time>
-                              </div>
-                              <div class="col-1 col-md-1 ms-auto a4-comments__dropdown-container">
-                                  <div class="dropdown a4-comments__dropdown"><button type="button" class="dropdown-toggle btn btn--link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-h"
-                                            aria-hidden="true"></i></button>
-                                      <div class="dropdown-menu dropdown-menu-end"><button class="dropdown-item" type="button">Edit</button>
-                                          <div class="divider"></div><a class="dropdown-item" href="#comment_delete_25" data-bs-toggle="modal">Delete</a>
-                                          <div class="divider"></div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="a4-comments__box--comment">
-                              <div class="col-12"><span class="sr-only">Categories: </span></div>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-12">
-                              <div class="a4-comments__text"><p>this is a test of the modalare</p></div>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-6 a4-comments__read-btn-container"></div>
-                      </div>
-                      <div class="row">
-                          <div class="col-12 a4-comments__action-bar-container">
-                              <div class="rating"><button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button><button class="rating-button rating-down"><i class="fa fa-chevron-down"
-                                        aria-hidden="true"></i>0</button></div>
-                              <div class="a4-comments__action-bar"><button class="btn btn--no-border a4-comments__action-bar__btn" type="button"><a href="#child-comment-form"><i class="far fa-comment" aria-hidden="true"></i> Reply</a></button><a
-                                    class="btn btn--no-border a4-comments__action-bar__btn" href="?comment_25" data-bs-toggle="modal" data-bs-target="#share_comment_25"><i class="fas fa-share"></i> Share</a></div>
-                          </div>
-                      </div>
-                  </div>
-
-                </div>
-                </div>
+                    <div class="a4-comments__box">
+                        <div class="a4-comments__box--user">
+                            <div class="row">
+                                <div class="col-2 col-lg-1 a4-comments__user-img">
+                                    <div class="user-avatar user-avatar--small user-avatar--shadow mb-1 userindicator__btn-img" style="background-image: url(&quot;/static/images/avatar-01.svg&quot;);"></div>
+                                </div>
+                                <div class="col-7 col-md-8 a4-comments__author-container">
+                                    <div class="a4-comments__author"><a href="">Gilly Admin Bewland</a></div><span class="a4-comments__moderator">Moderator</span><time class="a4-comments__submission-date">Latest edit on
+                                        Feb. 9, 2022, 5:54 p.m.</time>
+                                </div>
+                                <div class="col-1 col-md-1 ms-auto a4-comments__dropdown-container">
+                                    <div class="dropdown a4-comments__dropdown"><button type="button" class="dropdown-toggle btn btn--link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-h"
+                                              aria-hidden="true"></i></button>
+                                        <div class="dropdown-menu dropdown-menu-end"><button class="dropdown-item" type="button">Edit</button>
+                                            <div class="divider"></div><a class="dropdown-item" href="#comment_delete_25" data-bs-toggle="modal" data-bs-target="#delete_modal">Delete</a>
+                                            <div class="divider"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="a4-comments__box--comment">
+                                <div class="col-12"><span class="sr-only">Categories: </span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="a4-comments__text"><p>this is a test of the modalare</p></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 a4-comments__read-btn-container"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 a4-comments__action-bar-container">
+                                <div class="rating"><button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button><button class="rating-button rating-down"><i class="fa fa-chevron-down"
+                                          aria-hidden="true"></i>0</button></div>
+                                <div class="a4-comments__action-bar"><button class="btn btn--no-border a4-comments__action-bar__btn" type="button"><a href="#child-comment-form"><i class="far fa-comment" aria-hidden="true"></i> Reply</a></button><a
+                                      class="btn btn--no-border a4-comments__action-bar__btn" href="?comment_25" data-bs-toggle="modal" data-bs-target="#url_modal"><i class="fas fa-share"></i> Share</a></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="cl-complete">Complete</h2>
@@ -1698,6 +1653,76 @@
                         </div>
                     </div>
                 </div>
+
+                <h2 id="cl-modal">Modal</h2>
+
+                <button class="btn btn--default" data-bs-toggle="modal" data-bs-target="#report_modal">Open Report Modal</button>
+                <div class="modal fade" id="report_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 className="u-no-margin-bottom u-spacer-top-one-half">
+                                    Send Report
+                                </h2>
+                                <button class="close" aria-label="Abort" data-bs-dismiss="modal">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="u-spacer-bottom">
+                                    You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet
+                                    our discussion rules (netiquette).
+                                </div>
+                                <div class="form-group"><textarea rows="5" class="form-control report-message" placeholder="Your message"></textarea></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="submit-button" data-bs-dismiss="false">Send Report</button>
+                                <button class="cancel-button" data-bs-dismiss="modal">Abort</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn--default" data-bs-toggle="modal" data-bs-target="#url_modal">Open Url Modal</button>
+                <div class="modal fade" id="url_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 className="u-no-margin-bottom u-spacer-top-one-half">
+                                    Share Link
+                                </h2>
+                                <button class="close" aria-label="Abort" data-bs-dismiss="modal">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group">
+                                    <input id="share-url-25" type="text" class="form-control" readonly="" value="http://localhost:8004/liqd-orga/ideas/2021-00016/?comment=25">
+                                    <button class="btn btn--default input-group-append" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Copy</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn--default" data-bs-toggle="modal" data-bs-target="#delete_modal">Open Delete Modal</button>
+                <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 className="u-no-margin-bottom u-spacer-top-one-half">
+                                    Delete
+                                </h2>
+                                <button class="close" aria-label="Abort" data-bs-dismiss="modal"><i class="fa fa-times"></i></button>
+                            </div>
+                            <div class="modal-body">
+                                Do you really want to delete this comment?
+                            </div>
+                            <div class="modal-footer">
+                                <button class="submit-button" data-bs-dismiss="modal">Delete</button>
+                                <button class="cancel-button" data-bs-dismiss="modal">Abort</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <h2 id="cl-module">Module</h2>
 

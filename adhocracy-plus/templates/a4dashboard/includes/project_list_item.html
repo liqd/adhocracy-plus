@@ -79,17 +79,30 @@
 </li>
 
 <div class="modal fade" id="project{{ project.pk }}DeleteModal" tabindex="-1" role="dialog" aria-labelledby="projectDeleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div
+        class="modal-dialog modal-dialog-centered"
+        role="document"
+    >
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="project{{ project.pk }}DeleteModal">{% blocktranslate with project_name=project.name %} Are you sure you want to delete the project '{{ project_name }}'? {% endblocktranslate %}</h2>
-                <button type="button" class="btn btn--close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- Not using Bootstrap, but utility classes on purpose to align with component in A4 -->
+                <h2 className="u-no-margin-bottom u-spacer-top-one-half">
+                    {% translate 'delete' %}
+                </h2>
+                <button class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="u-spacer-bottom">
+                    {% blocktranslate with project_name=project.name %} Are you sure you want to delete the project '{{ project_name }}'? {% endblocktranslate %}
+                </div>
             </div>
             <div class="modal-footer">
                 <form action="{% url "project-delete" pk=project.pk organisation_slug=project.organisation.slug %}" method="post">
                     {% csrf_token %}
-                    <button type="button" class="btn btn--light" data-bs-dismiss="modal">{% translate 'cancel' %}</button>
-                    <button type="submit" class="btn btn--default">{% translate 'delete' %}</button>
+                    <button type="button" class="cancel-button" data-bs-dismiss="modal">{% translate 'cancel' %}</button>
+                    <button type="submit" class="submit-button">{% translate 'delete' %}</button>
                 </form>
             </div>
         </div>
