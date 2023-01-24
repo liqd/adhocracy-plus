@@ -1,0 +1,48 @@
+// overwriting bootstrap 'modal' classes
+.modal-header {
+    h2 {
+        font-family: $font-family-base;
+        font-size: $font-size-lg;
+    }
+}
+
+.modal-footer {
+    button {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    button.submit-button {
+        @extend .btn;
+        @include button-bg($print-black, $print-black, $body-bg, 15%);
+        margin-right: 0;
+        order: 2;
+    }
+
+    form.submit-form {
+        order: 2;
+
+        .submit-button {
+            @extend .btn;
+            @include button-bg($print-black, $print-black, $body-bg, 15%);
+            margin-right: 0;
+        }
+    }
+
+    button.cancel-button {
+        @extend .btn;
+        @include button($brand-tertiary, $text-color, $text-color, 57%);
+        margin-left: 0;
+        order: 1;
+    }
+}
+
+.modal-body {
+    .form-group {
+        margin-bottom: 0;
+    }
+
+    .input-group button {
+        @include button-bg($print-black, $print-black, $body-bg, 15%);
+    }
+}
