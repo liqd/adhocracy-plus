@@ -1,0 +1,24 @@
+// overwriting bootstrap 'modal' classes
+.modal-header h2 {
+    font-family: $font-family-base;
+    font-size: $font-size-lg;
+}
+
+.modal-footer {
+    .submit-button {
+        order: 2;
+    }
+
+    .cancel-button {
+        order: 1;
+    }
+
+    .submit-form {
+        order: 2;
+        margin-bottom: 0;
+    }
+}
+
+.modal-body > .input-group button {
+    @extend .btn--default;
+}

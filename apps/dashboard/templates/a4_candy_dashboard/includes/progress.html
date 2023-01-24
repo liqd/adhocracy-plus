@@ -22,32 +22,41 @@
 {% endif %}
 
 <div class="modal" tabindex="-1" role="dialog" id="publish-modal">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title m-0">{% translate "Are you sure you want to publish your project?" %}</h3>
+                <!-- Not using Bootstrap, but utility classes on purpose to align with component in A4 -->
+                {% if project.is_draft %}
+                    <h2 className="u-no-margin-bottom u-spacer-top-one-half">
+                        {% translate 'Publish' %}
+                    </h2>
+                {% else %}
+                    <h2 className="u-no-margin-bottom u-spacer-top-one-half">
+                        {% translate 'Unpublish' %}
+                    </h2>
+                {% endif %}
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close'%}">
                     <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
             <div class="modal-body">
+                {% translate "Are you sure you want to publish your project?" %}
                 {% if project.unpublished_modules %}
                 <p>
                 {% blocktranslate count counter=project.unpublished_modules.count %}One module has not been added to the project.{% plural %}{{ counter }} modules have not been added to the project.{% endblocktranslate %}
                 </p>
                 {% endif %}
-                <div class="u-spacer-bottom d-flex justify-content-end">
-                  <button type="button" data-bs-dismiss="modal" class="btn btn--secondary me-3">{% translate 'Cancel'%}
-                  </button>
-                    <form action="{% url 'a4dashboard:project-publish' organisation_slug=project.organisation.slug project_slug=project.slug %}" method="post" data-ignore-submit="true" class="u-inline">
-                        {% csrf_token %}
-                        <input type="hidden" name="referrer" value="{{ request.path }}" />
-                        <button name="action" value="publish" class="btn btn--default">
-                        {% translate 'Publish' %}
-                        </button>
-                    </form>
-
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-bs-dismiss="modal" class="cancel-button">{% translate 'Cancel'%}
+                </button>
+                <form class="submit-form" action="{% url 'a4dashboard:project-publish' organisation_slug=project.organisation.slug project_slug=project.slug %}" method="post" data-ignore-submit="true">
+                    {% csrf_token %}
+                    <input type="hidden" name="referrer" value="{{ request.path }}" />
+                    <button name="action" value="publish" class="submit-button">
+                    {% translate 'Publish' %}
+                    </button>
+                </form>
             </div>
         </div>
     </div>
