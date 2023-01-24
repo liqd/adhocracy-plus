@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
         <nav class="breadcrumbs mt-5 mb-4" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
@@ -29,7 +29,7 @@
             <p>{{ module.description }}</p>
         </div>
     </div>
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
         {% react_interactiveevents view.module %}
         {% block other_modules %}{% endblock %}
     </div>
