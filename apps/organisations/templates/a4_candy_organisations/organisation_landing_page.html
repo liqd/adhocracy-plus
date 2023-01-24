@@ -34,7 +34,7 @@
 
             <div class="organisation-page__header">
                 <div class="row">
-                    <div class="col-md-10 offset-md-1">
+                    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                         <h1 class="marked-box">{{ organisation.title }}</h1>
                         {% if organisation.url %}
                         <a class="ms-3 text-muted" href="{{ organisation.url }}" target="_blank" title="{{ organisation.url }}">
@@ -54,7 +54,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-10 offset-md-1">
+                <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                 {% if active_projects or future_projects or past_projects %}
                     <h2>{{ project_headline }}</h2>
                     {% if object.projects.count == 1 %}
