@@ -22,7 +22,7 @@
 
 // stylelint-disable
 @function contrast-color($color) {
-    @if  lightness($color) > 40 {
+    @if  lightness($color) > 50 {
         @return #000;
     }
 

@@ -1,7 +1,4 @@
 .status-item {
-    padding-bottom: $padding;
-    padding-right: 1.5 * $padding;
-    padding-left: 1.5 * $padding;
     text-align: left;
 }
 
@@ -25,10 +22,11 @@
 }
 
 .status-bar__past {
-    padding: 0.5 * $padding;
+    padding: 0.65 * $padding; // same height as status bar
     background-color: $bg-tertiary;
     color: $text-color;
     text-align: center;
+    position: absolute;
     bottom: 0;
     right: 0;
     left: 0;
