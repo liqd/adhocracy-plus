@@ -724,58 +724,65 @@
                     </div>
                 </div>
 
-                <h2 id="cl-commenting">Commenting</h2>
+                <h2 id="cl-commenting">Text Commenting Dashboard</h2>
 
                 <div class="cl-example">
-                    <div class="commenting">
-                        <div class="commenting__content">
-                            {% lorem random %}
+                    <form>
+                        <h2>Contents</h2>
+                        <nav aria-label="Chapter navigation">
+                            <ol class="u-list-reset" style="position: relative;">
+                                <li>
+                                    <div class="commenting" data-testid="chapter-nav-item">
+                                        <div class="commenting__content"><button type="button"
+                                                class="active commenting--toc__button btn btn--light btn--small">1. first chapter</button>
+                                        </div>
+                                        <div class="commenting__actions btn--group" role="group"><button class="btn btn--light btn--small"
+                                                disabled="" title="Move up" type="button"><i class="fa fa-chevron-up"
+                                                    aria-label="Move up"></i></button><button class="btn btn--light btn--small" disabled=""
+                                                title="Move down" type="button"><i class="fa fa-chevron-down"
+                                                    aria-label="Move down"></i></button><button class="btn btn--light btn--small"
+                                                disabled="" title="Delete" type="button"><i class="far fa-trash-alt"
+                                                    aria-label="Delete"></i></button></div>
+                                    </div>
+                                </li>
+                            </ol>
+                            <p><button class="btn btn--light btn--small" type="button"><i class="fa fa-plus"></i> Add a new chapter</button>
+                            </p>
+                        </nav>
+                        <h2>Edit chapter</h2>
+                        <section>
+                            <div class="commenting">
+                                <div class="form-group commenting__content"><label for="id_chapters-local_1-name">Chapter title<input
+                                    id="id_chapters-local_1-name" name="chapters-local_1-name" type="text"
+                                    value="first chapter"></label></div>
+                            </div>
+                            <div style="position: relative;">
+                                <section class="commenting" style="">
+                                    <div class="commenting__content">
+                                        <div class="commenting__content--border">
+                                            <div class="form-group"><label for="id_paragraphs-local_2-name">Headline<input
+                                                class="form-control" id="id_paragraphs-local_2-name" name="paragraphs-local_2-name"
+                                                type="text" value="Headline"></label></div>
+                                            <div class="form-group">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="commenting__actions btn-group" role="group"><button class="btn btn--light btn--small"
+                                        disabled="" title="Move up" type="button"><i class="fa fa-chevron-up"
+                                        aria-label="Move up"></i></button><button class="btn btn--light btn--small" disabled=""
+                                        title="Move down" type="button"><i class="fa fa-chevron-down"
+                                        aria-label="Move down"></i></button><button class="btn btn--light btn--small" title="Delete"
+                                        type="button"><i class="far fa-trash-alt" aria-label="Delete"></i></button></div>
+                                </section>
+                            </div>
+                            <button class="btn btn--light btn--small" type="button"><i class="fa fa-plus"></i> Add a new
+                            paragraph</button>
+                        </section>
+                        <div aria-live="assertive" aria-atomic="true" id="alert"></div>
+                        <div class="d-flex justify-content-end"><button type="submit" class="btn btn--primary">Save</button></div>
+                        </form>
                         </div>
-                        {% spaceless %}
-                        <div class="commenting__actions btn--group" role="group">
-                            <button class="btn btn--light btn--small" title="Move up" type="button">
-                                <i class="fa fa-chevron-up" aria-label="Move up"></i>
-                            </button>
-                            <button class="btn btn--light btn--small" title="Move down" type="button">
-                                <i class="fa fa-chevron-down" aria-label="Move down"></i>
-                            </button>
-                            <button class="btn btn--light btn--small" title="Delete" type="button">
-                                <i class="far fa-trash-alt" aria-label="Delete"></i>
-                            </button>
-                        </div>
-                        {% endspaceless %}
-                    </div>
-                    <div class="commenting">
-                        <div class="commenting__content commenting__content--border">
-                            {% lorem random %}
-                        </div>
-                        <div class="commenting__actions">
-                            <button class="btn btn--light btn--small" title="Delete" type="button">
-                                <i class="far fa-trash-alt" aria-label="Delete"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="commenting commenting--toc">
-                        <button type="button" class="commenting__content commenting--toc__button btn btn--light btn--small">
-                            1. Title
-                        </button>
-                        <div class="commenting__actions">
-                            <button class="btn btn--light btn--small" title="Delete" type="button">
-                                <i class="far fa-trash-alt" aria-label="Delete"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="commenting commenting--toc">
-                        <button type="button" class="commenting__content commenting--toc__button btn btn--light btn--small active">
-                            2. Title (active)
-                        </button>
-                        <div class="commenting__actions">
-                            <button class="btn btn--light btn--small" title="Delete" type="button">
-                                <i class="far fa-trash-alt" aria-label="Delete"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+
 
                 <h2 id="cl-commenting">Comments</h2>
 
@@ -1762,7 +1769,7 @@
                               <input type="email" name="email" placeholder="E-mail address" class="form-control" required="" id="id_email">
                           </div>
                           <div class="d-flex justify-content-end mb-3">
-                            <button class="btn btn--primary" name="action_add" type="submit">{% trans 'Add Email' %}</button>
+                            <button class="btn btn--primary" name="action_add" type="submit">Add Email</button>
                           </div>
                       </form>
                   </section>
@@ -1991,6 +1998,31 @@
                     <li class="tile organisation__tile tile--horizontal">
                         <div class="tile__head">
                             <div class="tile__image">
+                            </div>
+                        </div>
+                        <div class="tile__body">
+                            <div>
+                                <h3 class="tile__title" id="tile-title-1">
+                                    <a class="tile__link" aria-labelledby="tile-title-1" href="/liqd-orga/projects/all-modules/">All modules</a>
+                                </h3>
+                                <p class="tile__text">test</p>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-bar__active">
+                                    <span class="status-bar__active-fill" style="width:79%"></span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="status-bar__status"><i class="far fa-clock" aria-hidden="true"></i>
+                                             6 days remaining
+                                    </span>
+                                        <span class="list-item__cta list-item__hover">JOIN IN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="tile organisation__tile tile--horizontal">
+                        <div class="tile__head">
+                            <div class="tile__image">
                                 <div class="tile__image__copyright copyright">© project image copyright</div>
                                 <div class="tile__private-badge">
                                     <div class="tile__private-badge--top"></div>
@@ -2016,32 +2048,46 @@
                         <li class="tile organisation__tile tile--vertical">
                             <div class="tile__head">
                                 <div class="tile__image">
-                                    <div class="tile__private-badge">
-                                        <div class="tile__private-badge--top"></div>
-                                            <i class="fas fa-eye" title="Project is semi-public." aria-label="Project is semi-public."></i>
-                                        <div class="tile__private-badge--left"></div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="tile__body">
                                 <div>
-                                    <h3 class="tile__title" id="project-title-26">
-                                        Semi-private project on a vertical tile
+                                    <h3 class="tile__title" id="tile-title-1">
+                                        <a class="tile__link" aria-labelledby="tile-title-1" href="/">All
+                                            modules</a>
                                     </h3>
-                                    <p class="tile__text">When there is more than one project, the vertical tile is used {% lorem 20 w random %}</p>
+                                    <p class="tile__text">test</p>
                                 </div>
                                 <div class="status-item">
                                     <div class="status-bar__active">
-                                        <span class="status-bar__active-fill" style="width:46%"></span>
+                                        <span class="status-bar__active-fill" style="width:79%"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>noch 16 Tage</span>
-                                        <a class="list-item__cta list-item__hover">MITMACHEN</a>
+                                        <span class="status-bar__status"><i class="far fa-clock" aria-hidden="true"></i>
+                                            6 days remaining
+                                        </span>
+                                        <span class="list-item__cta list-item__hover">JOIN IN</span>
                                     </div>
                                 </div>
                             </div>
-                            <a class="tile__link" aria-labelledby="project-title-26" href="#">
-                            </a>
+                        </li>
+                        <li class="tile organisation__tile tile--vertical">
+                            <div class="tile__head">
+                                <div class="tile__image">
+                                </div>
+                            </div>
+                            <div class="tile__body">
+                                <div>
+                                    <h3 class="tile__title" id="tile-title-2">
+                                        <a class="tile__link" aria-labelledby="tile-title-2" href="/">A
+                                            second project</a>
+                                    </h3>
+                                    <p class="tile__text">This is a second project</p>
+                                </div>
+                                <div class="status-item status-bar__past">
+                                    Participation ended. Read result.
+                                </div>
+                            </div>
                         </li>
                         <li class="tile organisation__tile tile--vertical">
                             <div class="tile__head">
@@ -2066,55 +2112,78 @@
                         <li class="tile organisation__tile tile--vertical">
                             <div class="tile__body">
                                 <div>
-                                    <h3 class="tile__title" id="tile-title-8">
-                                        <a href="#">Module tile</a>
+                                    <h3 class="tile__title" id="tile-title-1">
+                                        <a class="tile__link" aria-labelledby="tile-title-1" href="/">01 Poll</a>
                                     </h3>
                                     <p class="tile__extra-info">
-                                        <img class="tile__module-icon" aria-hidden="true" src="/static/images/icon-bs.svg">
-                                        brainstorming
+                                        <img class="tile__module-icon" aria-hidden="true" src="/static/images/icon-po.svg">
+                                        <span class="visually-hidden">Type of participation: </span>
+                                        <span class="u-capitalise">poll</span>
                                     </p>
+                                    <div class="tile__extra-info">
+                                        <i class="far fa-comment" aria-hidden="true"></i>
+                                        6 Contributions
+                                    </div>
                                 </div>
-                                <div class="tile__extra-info">
-                                    <i class="far fa-comment" aria-hidden="true"></i>27 Beiträge
-                                </div>
-                            </div>
-                            <div class="status-item">
-                                <div class="status-bar__active">
-                                    <span class="status-bar__active-fill" style="width:6%"></span>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <span class="status-bar__status"><i class="fas fa-clock" aria-hidden="true"></i>
-                                        <abbr title="more than 1 year">&gt; 1 Y</abbr>
-                                    </span>
-                                    <a class="list-item__cta list-item__hover" href="#">MITMACHEN</a>
+                                <div class="status-item status-bar__past">
+                                    Participation ended. Read result.
                                 </div>
                             </div>
-                            <a class="tile__link" aria-labelledby="tile-title-8" href="#">
-                            </a>
                         </li>
                         <li class="tile organisation__tile tile--vertical">
                             <div class="tile__body">
                                 <div>
-                                    <h3 class="tile__title" id="tile-title-9">
-                                        <a href="#">Another parallel module</a>
+                                    <h3 class="tile__title" id="tile-title-1">
+                                        <a class="tile__link" aria-labelledby="tile-title-1" href="/">01 Poll</a>
                                     </h3>
                                     <p class="tile__extra-info">
-                                        <img class="tile__module-icon" aria-hidden="true" src="/static/images/icon-ic.svg">
-                                        idea collection
+                                        <img class="tile__module-icon" aria-hidden="true" src="/static/images/icon-po.svg">
+                                        <span class="visually-hidden">Type of participation: </span>
+                                        <span class="u-capitalise">poll</span>
                                     </p>
+                                    <div class="tile__extra-info">
+                                        <i class="far fa-comment" aria-hidden="true"></i>
+                                        6 Contributions
+                                    </div>
                                 </div>
-                                <div class="tile__extra-info">
-                                    <i class="far fa-comment" aria-hidden="true"></i>1 Beitrag
+                                <div class="status-item status__future">
+                                    <span class="status-bar__status">
+                                        <i class="far fa-clock" aria-hidden="true"></i>
+                                             Participation: from 27.01.2023
+                                    </span>
                                 </div>
                             </div>
-                            <div class="status-item status-bar__past">
-                            Beteiligung beendet. Ergebnis lesen.
+                        </li>
+                        <li class="tile organisation__tile tile--vertical">
+                            <div class="tile__body">
+                                <div>
+                                    <h3 class="tile__title" id="tile-title-3">
+                                        <a class="tile__link" aria-labelledby="tile-title-3" href="/">Spatial Brainstorming</a>
+                                    </h3>
+                                    <p class="tile__extra-info">
+                                        <img class="tile__module-icon" aria-hidden="true" src="/static/images/icon-mbs.svg">
+                                        <span class="visually-hidden">Type of participation: </span>
+                                        <span class="u-capitalise">spatial brainstorming</span>
+                                    </p>
+                                    <div class="tile__extra-info">
+                                        <i class="far fa-comment" aria-hidden="true"></i>
+                                        0 Contributions
+                                    </div>
+                                </div>
+                                <div class="status-item">
+                                    <div class="status-bar__active">
+                                        <span class="status-bar__active-fill" style="width:79%"></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="status-bar__status"><i class="far fa-clock" aria-hidden="true"></i>
+                                                6 <abbr title="days">D</abbr>
+                                        </span>
+                                            <span class="list-item__cta list-item__hover">JOIN IN</span>
+                                    </div>
+                                </div>
                             </div>
-                            <a class="tile__link" aria-labelledby="tile-title-9" href="#">
-                            </a>
                         </li>
                     </ul>
-
                     <ul>
                         <li class="card blueprint__tile mt-4">
                             <div class="row g-0">
@@ -2191,25 +2260,36 @@
 
                     <div class="cl-example">
                         <div class="form-group">
-                            <label for="id_logo">Logo</label>
+                            <label for="id_image">
+                                Header image
+                            </label>
                             <div class="form-hint">
-                                The image will be shown in the newsletter in the banner. It must be min. 200 pixel wide and 50 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
+                                The image will be shown as a decorative background image. It must be min. 1500 pixel wide and 500 pixel
+                                tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
                             </div>
                             <div class="widget widget--imageinputwidget">
-                                <div class="upload-wrapper form-control-upload">
-                                    <div class="upload-wrapper__fields input-group">
-                                        <input name="logo" id="id_logo" class="form-control form-control-file" type="file">
-                                        <input name="__noname__" class="form-control form-control-file-dummy" placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_logo" type="text">
-                                        <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
-                                            <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
-                                        </label>
+                                <div class="upload-wrapper form-control-upload row">
+                                    <div class="upload-wrapper__fields col">
+                                        <input type="file" name="image" accept="image/*" id="id_image"
+                                            class="form-control form-control-file">
+                                        <input type="text" name="__noname__" class="form-control form-control-file-dummy"
+                                            placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_image">
+                                        <div class="upload-wrapper__action-parent">
+                                            <label for="id_image" class="upload-wrapper__action btn btn--default" title="Upload a picture">
+                                                <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="form-id_logo upload-wrapper__preview">
-                                        <input name="logo-clear" id="logo_id" class="clear-image" data-upload-clear="id_logo" type="checkbox">
-                                        <img id="id_logo-file" src="" data-upload-preview="id_logo" alt="">
+                                    <div class="form-id_image upload-wrapper__preview col-md-4">
+                                        <input type="checkbox" name="image-clear" id="image_id" class="clear-image"
+                                            data-upload-clear="id_image">
+                                        <img id="id_image-file" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                                            data-upload-preview="id_image" alt="">
                                     </div>
-                                    <div class="alert alert--info upload-wrapper__alert" role="alert">
-                                        Your image will be uploaded/removed once you save your changes at the end of this page.
+                                    <div class="col-12">
+                                        <div class="alert alert--info upload-wrapper__alert" aria-live="assertive" aria-atomic="polite">
+                                            Your image will be uploaded/removed once you save your changes at the end of this page.
+                                        </div>
                                     </div>
                                 </div>
                             </div>

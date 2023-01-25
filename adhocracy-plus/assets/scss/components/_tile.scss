@@ -92,6 +92,7 @@ $svg-colour: #2a3cd4;
 }
 
 .tile__body {
+    position: relative; // needed for the past phase styling
     flex: 1 1 50%;
     display: flex;
     flex-direction: column;
