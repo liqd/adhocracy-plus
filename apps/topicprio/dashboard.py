@@ -15,8 +15,7 @@ class TopicEditComponent(DashboardComponent):
     label = _("Topics")
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
-        return module_app == "a4_candy_topicprio"
+        return module.blueprint_type == "TP"
 
     def get_progress(self, module):
         if models.Topic.objects.filter(module=module).exists():
