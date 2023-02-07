@@ -14,9 +14,8 @@ class ExportIdeaComponent(DashboardComponent):
     label = _("Export Excel")
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
         return (
-            module_app == "a4_candy_ideas"
+            module.blueprint_type in ["IC", "BS"]
             and not module.project.is_draft
             and not module.is_draft
         )
