@@ -11,6 +11,8 @@ component = components.modules.get("extra_fields")
 @pytest.mark.django_db
 def test_extrafields_dashboard_view(client, phase_factory):
     phase, module, project, item = setup_phase(phase_factory, None, IssuePhase)
+    module.blueprint_type = "IE"
+    module.save()
     initiator = module.project.organisation.initiators.first()
     url = component.get_base_url(module)
     client.login(username=initiator.email, password="password")

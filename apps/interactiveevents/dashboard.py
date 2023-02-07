@@ -16,8 +16,7 @@ class MediaComponent(DashboardComponent):
     label = _("Media")
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
-        return module_app == "a4_candy_interactive_events"
+        return module.blueprint_type == "IE"
 
     def get_progress(self, module):
         return 0, 0
@@ -58,8 +57,7 @@ class ModuleAffiliationsComponent(ModuleFormSetComponent):
         return 0, 1
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
-        return module_app == "a4_candy_interactive_events"
+        return module.blueprint_type == "IE"
 
 
 components.register_module(MediaComponent())
