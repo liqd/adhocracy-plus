@@ -10,7 +10,7 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ("pk", "username", "user_image", "user_image_fallback")
+        fields = ("pk", "username", "user_image", "user_image_fallback", "language")
 
     def get_user_image_fallback(self, user):
         """Serve fallback as png as used in app."""
