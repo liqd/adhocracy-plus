@@ -2,6 +2,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.html import strip_tags
 from rest_framework import serializers
 
+from adhocracy4.api.dates import get_date_display
 from adhocracy4.categories.models import Category
 from adhocracy4.labels.models import Label
 from adhocracy4.ratings.models import Rating
@@ -43,8 +44,8 @@ class RatingSerializer(serializers.ModelSerializer):
 
 
 class IdeaSerializer(serializers.ModelSerializer):
-
     description = DescriptionSerializerField()
+    created = serializers.SerializerMethodField()
     creator = serializers.SerializerMethodField()
     comment_count = serializers.SerializerMethodField()
     positive_rating_count = serializers.SerializerMethodField()
@@ -84,6 +85,9 @@ class IdeaSerializer(serializers.ModelSerializer):
 
     def get_creator(self, idea):
         return idea.creator.username
+
+    def get_created(self, idea):
+        return get_date_display(idea.created)
 
     def get_comment_count(self, idea):
         if hasattr(idea, "comment_count"):
