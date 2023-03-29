@@ -1,4 +1,8 @@
+from functools import lru_cache
+
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
 
 from adhocracy4.api.dates import get_date_display
@@ -8,10 +12,10 @@ from adhocracy4.labels.models import Label
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
+from apps.projects import helpers
 
 
 class AppProjectSerializer(serializers.ModelSerializer):
-
     information = serializers.SerializerMethodField()
     result = serializers.SerializerMethodField()
     # todo: remove many=True once AppProjects are restricted to single module
@@ -188,3 +192,147 @@ class AppModuleSerializer(serializers.ModelSerializer):
             user = request.user
             return user.has_perm("a4_candy_ideas.add_idea", instance)
         return False
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    title = serializers.SerializerMethodField()
+    organisation = serializers.SerializerMethodField()
+    tile_image = serializers.SerializerMethodField()
+    tile_image_copyright = serializers.SerializerMethodField()
+    status = serializers.SerializerMethodField()
+    participation_active = serializers.SerializerMethodField()
+    participation_string = serializers.SerializerMethodField()
+    future_phase = serializers.SerializerMethodField()
+    active_phase = serializers.SerializerMethodField()
+    past_phase = serializers.SerializerMethodField()
+    num_unread_comments = serializers.SerializerMethodField()
+    comment_count = serializers.SerializerMethodField()
+    moderation_detail_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Project
+        fields = [
+            "title",
+            "organisation",
+            "tile_image",
+            "tile_image_copyright",
+            "status",
+            "access",
+            "participation_active",
+            "participation_string",
+            "future_phase",
+            "active_phase",
+            "past_phase",
+            "num_unread_comments",
+            "comment_count",
+            "moderation_detail_url",
+        ]
+
+    @lru_cache(maxsize=1)
+    def _get_participation_status_project(self, instance):
+        project_phases = instance.phases
+
+        if project_phases.active_phases():
+            # Translators: kosmo
+            return _("running"), True
+
+        if project_phases.future_phases():
+            try:
+                # Translators: kosmo
+                return (
+                    _("starts on {}").format(
+                        project_phases.future_phases()
+                        .first()
+                        .start_date.strftime("%d.%m.%y")
+                    ),
+                    True,
+                )
+            except AttributeError:
+                # Translators: kosmo
+                return (_("starts in the future"), True)
+        else:
+            # Translators: kosmo
+            return _("completed"), False
+
+    def get_type(self, instance):
+        return "project"
+
+    def get_title(self, instance):
+        return instance.name
+
+    def get_organisation(self, instance):
+        return instance.organisation.name
+
+    def get_tile_image(self, instance):
+        image_url = ""
+        if instance.tile_image:
+            image = get_thumbnailer(instance.tile_image)["project_thumbnail"]
+            image_url = image.url
+        elif instance.image:
+            image = get_thumbnailer(instance.image)["project_thumbnail"]
+            image_url = image.url
+        return image_url
+
+    def get_tile_image_copyright(self, instance):
+        if instance.tile_image:
+            return instance.tile_image_copyright
+        elif instance.image:
+            return instance.image_copyright
+        else:
+            return None
+
+    def get_status(self, instance):
+        project_phases = instance.phases
+        if project_phases.active_phases() or project_phases.future_phases():
+            return 0
+        return 1
+
+    def get_participation_active(self, instance):
+        (
+            participation_string,
+            participation_active,
+        ) = self._get_participation_status_project(instance)
+        return participation_active
+
+    def get_participation_string(self, instance):
+        (
+            participation_string,
+            participation_active,
+        ) = self._get_participation_status_project(instance)
+        return str(participation_string)
+
+    def get_future_phase(self, instance):
+        if instance.future_modules and instance.future_modules.first().module_start:
+            return str(instance.future_modules.first().module_start)
+        return False
+
+    def get_active_phase(self, instance):
+        if instance.active_phase_ends_next:
+            progress = instance.module_running_progress
+            time_left = instance.module_running_time_left
+            end_date = str(instance.running_module_ends_next.module_end)
+            return [progress, time_left, end_date]
+        return False
+
+    def get_past_phase(self, instance):
+        if instance.past_modules and instance.past_modules.first().module_end:
+            return str(instance.past_modules.first().module_end)
+        return False
+
+    # FIXME: return number of unread comments once read/unread is modelled
+    def get_num_unread_comments(self, instance):
+        """
+        comment_queryset = annotate_has_pending_notifications(
+            helpers.get_all_comments_project(instance)
+        )
+        return comment_queryset.filter(has_pending_notifications=True).count()
+        """
+        return helpers.get_num_comments_project(instance)
+
+    def get_comment_count(self, instance):
+        return helpers.get_num_comments_project(instance)
+
+    def get_moderation_detail_url(self, instance):
+        return reverse(
+            "userdashboard-moderation-detail", kwargs={"slug": instance.slug}
+        )
