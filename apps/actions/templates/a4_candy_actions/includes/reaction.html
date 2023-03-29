@@ -1,0 +1,51 @@
+{% load i18n contrib_tags %}
+<div class="action action--withdate">
+    {% if action.type == 'comment' %}
+        {% if not action.obj.content_object.parent_comment %}
+        <i class="far fa-lightbulb action__icon" aria-hidden="true"></i>
+        {% else %}
+        <i class="{{ action.icon }} action__icon" aria-hidden="true"></i>
+        {% endif %}
+    {% else %}
+        <div class="fa-stack fa-1x action__icon">
+            <i class="fa-stack-2x far fa-comment" aria-hidden="true"></i>
+            <i class="fa-stack-1x fas fa-exclamation" aria-hidden="true"></i>
+        </div>
+    {% endif %}
+    <div class="action__main">
+      <div class="action__line">
+          {% if action.type == 'comment' %}
+            {% if not action.obj.content_object.parent_comment %}
+                {# Translators: kosmo #}
+                {% blocktrans with name=action.actor.username comment_url=action.obj.get_absolute_url item_name=action.target item_url=action.target.get_absolute_url actor_profile=action.actor.get_absolute_url %}
+                <a href="{{ actor_profile }}">{{ name }}</a> left a <a href="{{ comment_url }}">comment</a> on your <a href="{{ item_url }}">contribution</a>
+                {% endblocktrans %}
+            {% else %}
+              {# Translators: kosmo #}
+              {% blocktrans with name=action.actor.username comment_url=action.obj.get_absolute_url actor_profile=action.actor.get_absolute_url parent_comment_url=action.target.get_absolute_url %}
+              <a href="{{ actor_profile }}">{{ name }}</a> left a <a href="{{ comment_url }}">reply</a> to your <a href="{{ parent_comment_url }}">comment</a>
+              {% endblocktrans %}
+            {% endif %}
+          {% else %}
+            {% if action.verb == 'add' %}
+                {# Translators: kosmo #}
+                {% blocktrans with feedback_url=action.obj.comment.get_absolute_url comment_url=action.obj.comment.get_absolute_url %}
+                Your <a href="{{ comment_url }}">comment</a> received <a href="{{ feedback_url }}">feedback</a> from moderation
+                {% endblocktrans %}
+            {% elif action.verb == 'update' %}
+                {# Translators: kosmo #}
+                {% blocktrans with feedback_url=action.obj.comment.get_absolute_url comment_url=action.obj.comment.get_absolute_url %}
+                Moderation updated <a href="{{ feedback_url }}">feedback</a> on your <a href="{{ comment_url }}">comment</a>
+                {% endblocktrans %}
+            {% endif %}
+          {% endif %}
+          {# Translators: kosmo #}
+          {% blocktrans with url=action.project.get_absolute_url name=action.project.name %}
+            on <a href="{{ url }}">{{ name }}</a>
+          {% endblocktrans %}
+      </div>
+      <div class="action__line action__date">
+          {% html_date action.timestamp 'd.m.Y' class='relative' title=action.timestamp|date:'DATETIME_FORMAT' %}
+      </div>
+    </div>
+</div>

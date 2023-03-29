@@ -1,0 +1,38 @@
+{% extends "a4_candy_userdashboard/base_userdashboard.html" %}
+{% load i18n thumbnail %}
+
+{% block dashboard_content %}
+
+{# Translators: kosmo #}
+<h2 class="mt-sm-0 d-inline-block">{% trans 'Following' %}</h2>
+{% if view.projects.count > 2 %}
+  {# Translators: kosmo #}
+  <a class="btn btn--none float-end px-0" href="{% url 'userdashboard-following' %}">{% trans 'View more' %}</a>
+{% endif %}
+
+{% if view.projects_carousel %}
+  <div class="project-tile-carousel">
+      {% for project in view.projects_carousel %}
+          {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project.get_absolute_url %}
+      {% endfor %}
+  </div>
+  {% else %}
+  <div class="mb-5">
+      {# Translators: kosmo #}
+      {% trans 'You are not active in any projects yet.' %}
+  </div>
+{% endif %}
+
+{# Translators: kosmo #}
+<h2>{% trans 'My Feed' %}</h2>
+{% for action in view.actions|slice:":5" %}
+        {% include 'a4_candy_actions/includes/reaction.html' with action=action %}
+{% empty %}
+    {# Translators: kosmo #}
+    {% trans 'No activity yet. '%}
+{% endfor %}
+{% if view.actions|length > 5 %}
+  {# Translators: kosmo #}
+  <a class="btn btn--light mt-4" href="{% url 'userdashboard-activities' %}">{% trans 'View more' %}</a>
+{% endif %}
+{% endblock %}

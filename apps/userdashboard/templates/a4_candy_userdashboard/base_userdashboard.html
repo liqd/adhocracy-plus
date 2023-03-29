@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load rules i18n thumbnail wagtailcore_tags %}
+
+{% block content %}
+    {% block dashboard_nav %}
+    <h1 class="sr-only">
+      {# Translators: kosmo #}
+      {% trans 'Your User Overview' %}
+    </h1>
+    <div class="tablist tablist--left mt-3">
+        <div class="container">
+            <nav class="d-none d-sm-inline-block" aria-label="{% trans 'Dashboard' %}">
+                <a href="{% url 'userdashboard-overview' %}"
+                   class="tab {% ifequal view.menu_item 'overview' %}active{% endifequal %}">
+                    {# Translators: kosmo #}
+                    {% trans 'Overview' %}
+                </a>
+                {% has_perm 'a4_candy_userdashboard.view_moderation_dashboard' user as user_is_moderator %}
+                {% if user_is_moderator %}
+                <a href="{% url 'userdashboard-moderation' %}"
+                   class="tab {% if view.menu_item == 'moderation' or  '/detail' in request.get_full_path %}active{% endif %}">
+                    {# Translators: kosmo #}
+                    {% trans 'Moderation' %}
+                </a>
+                {% endif %}
+            </nav>
+            {% include 'includes/userdashboard_mobile_toggle.html' %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row py-md-4 mb-5">
+
+          <!-- hide user side menu on load more pages on mobile -->
+            <div class="col-sm-4 col-lg-3 {% if '/following' in request.get_full_path or '/activities' in request.get_full_path %} d-none d-sm-block {% endif %}">
+                <div class="tabpanel userdashboard-profile userdashboard-profile__side">
+
+                    <div class="userdashboard-profile__user mb-3">
+                        <div class="dropdown text-end">
+                            <button
+                                title="{% trans 'Settings' %}"
+                                type="button"
+                                class="dropdown-toggle btn btn--none btn--small"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                id="account-settings"
+                            >
+                                <i class="fa fa-ellipsis-v" aria-label="{% trans 'Settings' %}"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="account-settings">
+                                {# Translators: kosmo #}
+                                <a class="dropdown-item" href="{% url 'account' %}">{% trans 'Account Settings' %}</a>
+                            </div>
+                        </div>
+
+                        <a href="{% url 'profile' user.username %}">
+                            {% if user.avatar %}
+                                <img class="userdashboard-profile__avatar mb-2" src="{% thumbnail user.avatar '170x170' crop %}" alt="" />
+                            {% else %}
+                                <img class="userdashboard-profile__avatar mb-2" src="{{ user.avatar_fallback }}" width="170" height="170" alt="" />
+                            {% endif %}
+                            <h2 class="userdashboard-profile__name">
+                            {{ user.username }}
+                            </h2>
+                        </a>
+                        <div>
+                            {# Translators: kosmo #}
+                            {% trans 'Since' %} {{ request.user.date_joined|date:"d M Y" }}
+                        </div>
+                    </div>
+
+                    {% with pages=settings.a4_candy_cms_settings.ImportantPages %}
+                    {% if pages.platform_information %}
+                        {# Translators: kosmo #}
+                        <a class="btn btn--light btn--full" href="{% pageurl pages.platform_information %}">{% trans 'Getting Started' %}</a>
+                    {% endif %}
+                    {% endwith %}
+
+                    <!-- desktop -->
+                    {% if request.user.organisations %}
+                    <div class="d-none d-sm-block mb-5">
+                      {# Translators: kosmo #}
+                      <h2 class="fs-6">{% trans 'Initiator Organisations' %}</h2>
+                      {% for organisation in request.user.organisations %}
+                      <div>
+                          <a class="btn btn--link text-decoration-none text-muted d-flex align-items-center" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
+                            {% if organisation.logo %}
+                              <img src="{% thumbnail organisation.logo '0x40' %}" alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}" />
+                            {% else %}
+                              <i class="fas fa-home font--lg action__icon" aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"></i>
+                            {% endif %}
+                            <div class="ms-3 text-start">{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}</div>
+                          </a>
+                      </div>
+                      {% endfor %}
+                    </div>
+
+                    <!-- mobile -->
+                    <div class="d-sm-none mb-4">
+                        <div class="userdashboard__dropdown dropdown mb-3"
+                        data-bs-toggle="collapse"
+                        href="#userDashboardCollapseOrgInt"
+                        aria-expanded="true"
+                        aria-controls="#userDashboardCollapseOrgInt"
+                        data-bs-target="#userDashboardCollapseOrgInt">
+                          {# Translators: kosmo #}
+                          <h2 class="fs-6">{% trans 'Initiator Organisations' %}</h2>
+                            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                        </div>
+                        <ul class="u-list-reset collapse show" id="userDashboardCollapseOrgInt" aria-hidden="false">
+                          {% for organisation in request.user.organisations %}
+                                <li>
+                                   <a href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}"
+                                      class="text-decoration-none text-muted d-flex align-items-center mb-2" >
+                                     {% if organisation.logo %}
+                                       <img src="{% thumbnail organisation.logo '0x40' %}" alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}" />
+                                     {% else %}
+                                       <i class="fas fa-home font--lg action__icon" aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"></i>
+                                     {% endif %}
+                                     <div class="ms-3 text-start">{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}</div>
+                                   </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    <!-- mobile end -->
+
+
+                    <!-- desktop -->
+                    <div class="d-none d-sm-block mb-5">
+                        {# Translators: kosmo #}
+                        <h2 class="fs-6">{% trans 'Organisations' %}</h2>
+                        {% if view.organisations %}
+                        {% for organisation in view.organisations %}
+                        <a class="btn btn--link text-decoration-none text-muted d-flex align-items-center" href="{% url 'organisation' organisation_slug=organisation.slug %}">
+                          {% if organisation.logo %}
+                            <img src="{% thumbnail organisation.logo '0x40' %}" alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}" />
+                          {% else %}
+                            <i class="fas fa-home font--lg action__icon" aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"></i>
+                          {% endif %}
+                            <div class="ms-3 text-start">{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}</div>
+                        </a>
+                        {% endfor %}
+                        {% else %}
+                        <div class="mb-3">
+                            {# Translators: kosmo #}
+                            {% trans 'You are not yet following any projects.' %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <!-- mobile -->
+                    <div class="d-sm-none mb-4">
+                      {% if view.organisations %}
+                        <div  class="userdashboard__dropdown dropdown mb-3"
+                              data-bs-toggle="collapse"
+                              href="#userDashboardCollapseOrg"
+                              aria-expanded="true"
+                              aria-controls="#userDashboardCollapseOrg"
+                              data-bs-target="#userDashboardCollapseOrg">
+                            {# Translators: kosmo #}
+                            <h2 class="fs-6">{% trans 'Organisations' %}</h2>
+                            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                        </div>
+                        <ul class="u-list-reset collapse show" id="userDashboardCollapseOrg" aria-hidden="false">
+                          {% for organisation in view.organisations %}
+                                <li>
+                                   <a href="{% url 'organisation' organisation_slug=organisation.slug %}"
+                                   class="text-decoration-none text-muted d-flex align-items-center mb-2" >
+                                     {% if organisation.logo %}
+                                       <img src="{% thumbnail organisation.logo '0x40' %}" alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}" />
+                                     {% else %}
+                                       <i class="fas font--lg fa-home action__icon" aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"></i>
+                                     {% endif %}
+                                     <div class="ms-3 text-start">{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}</div>
+                                   </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        {# Translators: kosmo #}
+                        <h3>{% trans 'Organisations' %}</h3>
+                        <div class="mb-3">
+                            {# Translators: kosmo #}
+                            {% trans 'You are not yet following any projects.' %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <!-- mobile end -->
+                </div>
+            </div>
+            {% endblock %}
+
+            <div class="col-sm-8 col-lg-9">
+                {% block dashboard_content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -101,6 +101,7 @@ INSTALLED_APPS = (
     "apps.exports",
     "apps.offlineevents",
     "apps.projects",
+    "apps.userdashboard",
     # Apps defining phases
     "apps.activities",
     "apps.budgeting",
@@ -469,6 +470,7 @@ A4_ACTIONABLES = (
     ("a4_candy_ideas", "idea"),
     ("a4_candy_budgeting", "proposal"),
     ("a4_candy_mapideas", "mapidea"),
+    ("a4_candy_moderatorfeedback", "moderatorcommentfeedback"),
 )
 
 A4_AUTO_FOLLOWABLES = (
