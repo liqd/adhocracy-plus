@@ -1,0 +1,13 @@
+{% extends "a4_candy_userdashboard/base_userdashboard.html" %}
+{% load i18n static %}
+
+{% block extra_js %}
+  {{ block.super }}
+    <script type="text/javascript" src="{% static 'moderation_projects.js' %}"></script>
+{% endblock %}
+
+{% block dashboard_content %}
+<div data-aplus-widget="moderation_projects"
+     data-project-api-url="{{ project_api_url }}" >
+</div>
+{% endblock %}
