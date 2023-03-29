@@ -36,6 +36,9 @@ from apps.moderatorremark.api import ModeratorRemarkViewSet
 from apps.organisations.sitemaps import organisations_sitemap_index
 from apps.projects.api import AppModuleViewSet
 from apps.projects.api import AppProjectsViewSet
+from apps.projects.api import ModerationProjectsViewSet
+from apps.userdashboard.api import ModerationCommentViewSet
+from apps.userdashboard.routers import ModerationDetailDefaultRouter
 from apps.users.api import UserViewSet
 from apps.users.decorators import user_is_project_admin
 
@@ -46,6 +49,9 @@ router.register(r"polls", PollViewSet, basename="polls")
 router.register(r"app-projects", AppProjectsViewSet, basename="app-projects")
 router.register(r"app-modules", AppModuleViewSet, basename="app-modules")
 router.register(r"users", UserViewSet, basename="users")
+router.register(
+    r"moderationprojects", ModerationProjectsViewSet, basename="moderationprojects"
+)
 
 
 module_router = a4routers.ModuleDefaultRouter()
@@ -60,6 +66,11 @@ module_router.register(r"ideas", IdeaViewSet, basename="ideas")
 
 likes_router = LikesDefaultRouter()
 likes_router.register(r"likes", LikesViewSet, basename="likes")
+
+moderation_router = ModerationDetailDefaultRouter()
+moderation_router.register(
+    r"comments", ModerationCommentViewSet, basename="moderationcomments"
+)
 
 orga_router = a4routers.OrganisationDefaultRouter()
 
@@ -84,6 +95,7 @@ urlpatterns = [
     re_path(r"^accounts/", include("allauth.urls")),
     re_path(r"^account/", include("apps.account.urls")),
     re_path(r"^profile/", include("apps.users.urls")),
+    re_path(r"^userdashboard/", include("apps.userdashboard.urls")),
     re_path(r"^i18n/", include(i18n)),
     # API urls
     re_path(r"^api/", include(ct_router.urls)),
@@ -91,6 +103,7 @@ urlpatterns = [
     re_path(r"^api/", include(orga_router.urls)),
     re_path(r"^api/", include(likes_router.urls)),
     re_path(r"^api/", include(comment_router.urls)),
+    re_path(r"^api/", include(moderation_router.urls)),
     re_path(r"^api/", include(router.urls)),
     re_path(r"^api/login", obtain_auth_token, name="api-login"),
     re_path(r"^api/account/", AccountViewSet.as_view(), name="api-account"),
