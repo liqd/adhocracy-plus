@@ -1,0 +1,45 @@
+{% load i18n rules %}
+    {% has_perm 'a4_candy_userdashboard.view_moderation_dashboard' user as user_is_moderator %}
+    {% if user_is_moderator %}
+    <ul class="nav d-inline-block d-sm-none userdashboard__mobile-nav-toggle" role="tablist">
+        <li class="nav-item dropdown">
+          <a
+              class="nav-link dropdown-toggle tab active userdashboard__mobile-nav-link"
+              data-bs-toggle="dropdown"
+              href="#"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false">
+              {% if view.menu_item == 'moderation' %}
+                {# Translators: kosmo #}
+                {% trans 'Moderation' %}
+              {% else %}
+                {# Translators: kosmo #}
+                {% trans 'Overview' %}
+              {% endif %}
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end">
+              <a class="dropdown-item"
+                 href="{% url 'userdashboard-overview' %}">
+                  {# Translators: kosmo #}
+                  {% trans 'Overview' %}
+              </a>
+
+              <a class="dropdown-item"
+                 href="{% url 'userdashboard-moderation' %}">
+                  {# Translators: kosmo #}
+                  {% trans 'Moderation' %}
+              </a>
+          </div>
+        </li>
+    </ul>
+    {% else %}
+    <nav class="d-inline-block d-sm-none" aria-label="{% trans 'Dashboard' %}">
+        <a href="{% url 'userdashboard-overview' %}"
+           class="tab {% ifequal view.menu_item 'overview' %}active{% endifequal %}">
+            {# Translators: kosmo #}
+            {% trans 'Overview' %}
+        </a>
+    </nav>
+    {% endif %}

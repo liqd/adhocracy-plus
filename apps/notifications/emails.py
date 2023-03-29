@@ -1,5 +1,8 @@
 from django.contrib import auth
+from django.urls import reverse
+from wagtail.core.models import Site
 
+from apps.cms.settings.models import ImportantPages
 from apps.organisations.models import Organisation
 from apps.projects import tasks
 from apps.users.emails import EmailAplus as Email
@@ -67,6 +70,51 @@ class NotifyCreatorOnModeratorFeedback(Email):
     def get_context(self):
         context = super().get_context()
         context["object"] = self.object
+        return context
+
+
+class NotifyCreatorOnModeratorBlocked(Email):
+    template_name = "a4_candy_notifications/emails/notify_creator_on_moderator_blocked"
+
+    def get_organisation(self):
+        return self.object.project.organisation
+
+    def get_receivers(self):
+        receivers = [self.object.creator]
+        receivers = _exclude_notifications_disabled(receivers)
+        return receivers
+
+    def get_netiquette_url(self):
+        organisation = self.get_organisation()
+        site = Site.objects.filter(is_default_site=True).first()
+        important_pages = ImportantPages.for_site(site)
+        if organisation.netiquette:
+            return reverse(
+                "organisation-netiquette",
+                kwargs={"organisation_slug": organisation.slug},
+            )
+        elif (
+            getattr(important_pages, "netiquette")
+            and getattr(important_pages, "netiquette").live
+        ):
+            return getattr(important_pages, "netiquette").url
+        else:
+            return ""
+
+    def get_discussion_url(self):
+        if self.object.parent_comment.exists():
+            return self.object.parent_comment.first().content_object.get_absolute_url()
+        elif self.object.content_object.get_absolute_url():
+            return self.object.content_object.get_absolute_url()
+        else:
+            return self.object.module.get_detail_url
+
+    def get_context(self):
+        context = super().get_context()
+        context["module"] = self.object.module
+        context["project"] = self.object.project
+        context["netiquette_url"] = self.get_netiquette_url()
+        context["discussion_url"] = self.get_discussion_url()
         return context
 
 

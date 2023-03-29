@@ -1,0 +1,21 @@
+{% extends "a4_candy_userdashboard/base_userdashboard.html" %}
+{% load i18n static %}
+
+{% block extra_js %}
+  {{ block.super }}
+    <script type="text/javascript" src="{% static 'moderation_notification_list.js' %}"></script>
+{% endblock %}
+
+{% block dashboard_content %}
+<a class="btn btn--none px-0" href="{% url 'userdashboard-moderation' %}">
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    {# Translators: kosmo #}
+    <span>{% trans 'Back' %}</span>
+</a>
+<div data-aplus-widget="moderation_notification_list"
+     data-moderation-comments-api-url={{ moderation_comments_api_url }}
+     data-project-title ="{{ view.project.name }}"
+     data-organisation ="{{ view.project.organisation }}"
+     data-project-url ="{{ view.project_url }}" >
+</div>
+{% endblock %}
