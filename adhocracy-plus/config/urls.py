@@ -18,7 +18,6 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentModerateSet
-from adhocracy4.comments_async.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.polls.api import PollViewSet
 from adhocracy4.ratings.api import RatingViewSet
@@ -31,6 +30,8 @@ from apps.ideas.api import IdeaViewSet
 from apps.interactiveevents.api import LikesViewSet
 from apps.interactiveevents.api import LiveQuestionViewSet
 from apps.interactiveevents.routers import LikesDefaultRouter
+from apps.moderatorfeedback.api import CommentWithFeedbackViewSet
+from apps.moderatorfeedback.api import ModeratorCommentFeedbackViewSet
 from apps.moderatorremark.api import ModeratorRemarkViewSet
 from apps.organisations.sitemaps import organisations_sitemap_index
 from apps.projects.api import AppModuleViewSet
@@ -63,12 +64,17 @@ likes_router.register(r"likes", LikesViewSet, basename="likes")
 orga_router = a4routers.OrganisationDefaultRouter()
 
 ct_router = a4routers.ContentTypeDefaultRouter()
-ct_router.register(r"comments", CommentViewSet, basename="comments")
+ct_router.register(r"comments", CommentWithFeedbackViewSet, basename="comments")
 ct_router.register(r"ratings", RatingViewSet, basename="ratings")
 ct_router.register(
     r"moderatorremarks", ModeratorRemarkViewSet, basename="moderatorremarks"
 )
 ct_router.register(r"comment-moderate", CommentModerateSet, basename="comment-moderate")
+
+comment_router = a4routers.CommentDefaultRouter()
+comment_router.register(
+    r"moderatorfeedback", ModeratorCommentFeedbackViewSet, basename="moderatorfeedback"
+)
 
 urlpatterns = [
     # General platform urls
@@ -84,6 +90,7 @@ urlpatterns = [
     re_path(r"^api/", include(module_router.urls)),
     re_path(r"^api/", include(orga_router.urls)),
     re_path(r"^api/", include(likes_router.urls)),
+    re_path(r"^api/", include(comment_router.urls)),
     re_path(r"^api/", include(router.urls)),
     re_path(r"^api/login", obtain_auth_token, name="api-login"),
     re_path(r"^api/account/", AccountViewSet.as_view(), name="api-account"),
