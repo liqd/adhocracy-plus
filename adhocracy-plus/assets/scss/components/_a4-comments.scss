@@ -304,3 +304,32 @@
 .modal-url-bar-button.active:hover {
     background-color: $brand-success;
 }
+
+.a4-comments__moderator-feedback__icon {
+    flex: 0;
+    transform: rotateX(180deg);
+}
+
+.a4-comments__moderator-feedback__content {
+    margin-left: 0.5 * $spacer;
+}
+
+.a4-comments__moderator-feedback__moderator {
+    font-weight: 600;
+}
+
+.a4-comments__moderator-feedback__text {
+    color: $gray;
+    margin: 0.25 * $spacer 0;
+}
+
+.a4-comments__moderator-feedback__date {
+    color: $gray;
+    margin: 0 0 0.5 * $spacer;
+}
+
+.a4-comments__moderator-feedback__container {
+    display: flex;
+    align-items: flex-start;
+    margin: $spacer 0;
+}
