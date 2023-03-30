@@ -1,135 +1,96 @@
 {% extends "base.html" %}
-{% load rules i18n thumbnail %}
+{% load rules i18n thumbnail contrib_tags %}
 
-{% block title %}{{ object.username }} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{{ user.username }} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
     <div class="container mb-4">
-        <div class="row">
-            <div class="col-12 tabs tablist mt-4 mb-0">
-                <nav class="nav" role="tablist">
-                    <a
-                        id="tab-user-{{ user.pk }}-info"
-                        class="tab d-md-none"
-                        data-bs-toggle="tab"
-                        href="#tabpanel-user-{{ user.pk }}-info"
-                        role="tab"
-                        aria-controls="tabpanel-user-{{ user.pk }}-info"
-                        aria-expanded="true">
-                        {% translate 'Info' %}
+        <div class="row pt-4">
+            <div class="col-md-3">
+                <div class="userdashboard-profile__user">
+                    {% if request.user.id == user.id %}
+                    <div class="dropdown text-end">
+                        <button
+                            title="{% trans 'Settings' %}"
+                            type="button"
+                            class="dropdown-toggle btn btn--none btn--small"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            id="account-settings"
+                        >
+                            <i class="fa fa-ellipsis-v" aria-label="{% trans 'Settings' %}"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="account-settings">
+                            <a class="dropdown-item" href="{% url 'account' %}">{% trans 'Account Settings' %}</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="mt-5">
+                    </div>
+                    {% endif %}
+                    <a href="{% url 'profile' user.username %}">
+                        {% if user.avatar %}
+                            <img class="userdashboard-profile__avatar mb-2" src="{% thumbnail user.avatar '170x170' crop %}" alt="" />
+                        {% else %}
+                            <img class="userdashboard-profile__avatar mb-2" src="{{ user.avatar_fallback }}" width="170" height="170" alt="" />
+                        {% endif %}
+                        <h4 class="mt-0 u-break-word">
+                        {{ user.username }}
+                        </h4>
                     </a>
-                    <a
-                        id="tab-user-{{ user.pk }}-participation"
-                        class="tab active"
-                        data-bs-toggle="tab"
-                        href="#tabpanel-user-{{ user.pk }}-participation"
-                        role="tab"
-                        aria-controls="tabpanel-user-{{ user.pk }}-participation"
-                        aria-expanded="true">
-                        {% translate 'Participations' %}
-                    </a>
-                    <a
-                        id="tab-user-{{ user.pk }}-activities"
-                        class="tab"
-                        data-bs-toggle="tab"
-                        href="#tabpanel-user-{{ user.pk }}-activities"
-                        role="tab"
-                        aria-controls="tabpanel-user-{{ user.pk }}-activities"
-                        aria-expanded="false">
-                        {% translate 'Activities' %}
-                    </a>
-                </nav>
+                    <div>
+                        {% trans 'Since' %} {% html_date user.date_joined 'd M Y' %}
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                {% if user.bio %}<p>{{ user.bio }}</p>{% endif %}
+                </div>
+                <ul class="u-list-reset">
+                    {% if user.homepage %}
+                        <li>
+                            <i class="fas fa-link" aria-label="{% trans 'Homepage' %}" title="{% trans 'Homepage' %}"></i>
+                            <a href="{{ user.homepage }}">{{ user.homepage }}</a>
+                        </li>
+                    {% endif %}
+                    {% if user.facebook_handle %}
+                        <li>
+                            <i class="fab fa-facebook-square" aria-label="{% trans 'Facebook' %}" title="{% trans 'Facebook' %}"></i>
+                            <a href="https://www.facebook.com/{{ user.facebook_handle }}">{{ user.facebook_handle }}</a>
+                        </li>
+                    {% endif %}
+                    {% if user.twitter_handle %}
+                        <li>
+                            <i class="fab fa-twitter" aria-label="{% trans 'Twitter' %}" title="{% trans 'Twitter' %}"></i>
+                            <a href="https://twitter.com/{{ user.twitter_handle }}">{{ user.twitter_handle }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <h2 class="mt-0 pb-2">{% trans 'Following' %}</h2>
+                {% if view.projects_carousel %}
+                <div class="project-tile-carousel">
+                    {% for project in view.projects_carousel %}
+                        {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project.get_absolute_url %}
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="mb-5">
+                    {% trans 'This user is not active in any projects yet.' %}
+                </div>
+                {% endif %}
+
+                <h2 class="mt-0">{% trans 'Activities' %}</h2>
+                <div>
+                    {% for action in view.actions|slice:":10" %}
+                        {% include 'a4_candy_actions/includes/action.html' with action=action %}
+                    {% empty %}
+                        {% trans 'No activity yet. '%}
+                    {% endfor %}
+                </div>
             </div>
         </div>
-
-          <div class="row pt-4 bg-white">
-                <div class="col-md-3">
-                    <div
-                        class="tabpanel user-profile user-profile__side"
-                        id="tabpanel-user-{{ user.pk }}-info"
-                        role="tabpanel"
-                        aria-labelledby="tab-user-{{ user.pk }}-info"
-                        aria-expanded="false">
-                          {% if object.avatar %}<img class="user-profile__avatar mb-2" src="{% thumbnail object.avatar '170x170' crop %}" alt="" />{% endif %}
-
-                          <h1 class="mt-0 u-word-break-all">
-                          {{ object.username }}
-                          </h1>
-
-                          {% if object.bio %}<p>{{ object.bio }}</p>{% endif %}
-
-                          <ul class="u-list-reset">
-                              {% if object.homepage %}
-                                  <li>
-                                      <i class="fas fa-link" aria-label="{% translate 'Homepage' %}" title="{% translate 'Homepage' %}"></i>
-                                      <a href="{{ object.homepage }}">{{ object.homepage }}</a>
-                                  </li>
-                              {% endif %}
-                              {% if object.facebook_handle %}
-                                  <li>
-                                      <i class="fab fa-facebook-square" aria-label="{% translate 'Facebook' %}" title="{% translate 'Facebook' %}"></i>
-                                      <a href="https://www.facebook.com/{{ object.facebook_handle }}">{{ object.facebook_handle }}</a>
-                                  </li>
-                              {% endif %}
-                              {% if object.twitter_handle %}
-                                  <li>
-                                      <i class="fab fa-twitter" aria-label="{% translate 'Twitter' %}" title="{% translate 'Twitter' %}"></i>
-                                      <a href="https://twitter.com/{{ object.twitter_handle }}">{{ object.twitter_handle }}</a>
-                                  </li>
-                              {% endif %}
-                          </ul>
-
-                          {% comment 'This code can be used as soon as we several partners on the plattform' %}
-                          <h2 class="u-heading--sm text-uppercase">{% translate 'Active in these platforms' %}</h2>
-                          {% if view.organisations %}
-                              <ul class="u-list-reset">
-                                  {% for organisation in view.organisations %}
-                                      <li>
-                                          <a class="list-item-tiny" href="{% url 'organisation' organisation_slug=organisation.slug %}">
-                                              <img class="list-item-tiny__image" src="{% thumbnail organisation.logo '50x50' crop %}" alt="" />
-                                              <span class="list-item-tiny__body">{{ organisation.name }}</span>
-                                          </a>
-                                      </li>
-                                  {% endfor %}
-                              </ul>
-                          {% else %}
-                              {% translate 'This user is not active in any platform yet.' %}
-                              {% if object == request.user %}
-                                  <a href="/">{% translate 'Check some platforms out.' %}</a>
-                              {% endif %}
-                          {% endif %}
-                          {% endcomment %}
-                      </div>
-                  </div>
-
-                  <div
-                      class="user-profile__main col-md-9 tabpanel active"
-                      id="tabpanel-user-{{ user.pk }}-participation"
-                      role="tabpanel"
-                      aria-labelledby="tab-user-{{ user.pk }}-participation"
-                      aria-expanded="true">
-                      <ul class="l-tiles-2">
-                      {% for project in view.projects %}
-                              {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project.get_absolute_url %}
-                      {% empty %}
-                          {% translate 'This user is not active in any projects yet.' %}
-                      {% endfor %}
-                      </ul>
-                  </div>
-                  <div
-                      class="user-profile__main col-md-9 tabpanel"
-                      id="tabpanel-user-{{ user.pk }}-activities"
-                      role="tabpanel"
-                      aria-labelledby="tab-user-{{ user.pk }}-activities"
-                      aria-expanded="false">
-                      {% for action in view.actions %}
-                              {% include 'a4_candy_actions/includes/action.html' with action=action %}
-                      {% empty %}
-                          {% translate 'No activity yet. '%}
-                      {% endfor %}
-                  </div>
-        </div>
-
-            </div>
-        </div>
+    </div>
 {% endblock %}
