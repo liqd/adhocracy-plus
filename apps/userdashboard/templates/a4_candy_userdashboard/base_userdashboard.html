@@ -71,9 +71,8 @@
                     </div>
 
                     {% with pages=settings.a4_candy_cms_settings.ImportantPages %}
-                    {% if pages.platform_information %}
-                        {# Translators: kosmo #}
-                        <a class="btn btn--light btn--full" href="{% pageurl pages.platform_information %}">{% trans 'Getting Started' %}</a>
+                    {% if pages.manual_link %}
+                        <a class="btn btn--light btn--full" href="{{ pages.manual_link }}">{% trans 'Manual' %}</a>
                     {% endif %}
                     {% endwith %}
 
