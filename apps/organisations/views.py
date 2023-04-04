@@ -260,8 +260,7 @@ class DashboardCommunicationContentCreateView(
 
         # get required total size and add appropriate padding
         result = Image.new(
-            image.mode,
-            (sharepic_format["img_min_width"], sharepic_format["overall_height"]),
+            "RGBA"(sharepic_format["img_min_width"], sharepic_format["overall_height"]),
             (255, 255, 255),
         )
         result.paste(image, (0, 0))
@@ -315,7 +314,7 @@ class DashboardCommunicationContentCreateView(
             logo_org = logo_org_get.resize(logo_org_size)
             border = 8
             logo_org_result = Image.new(
-                image.mode,
+                "RGBA",
                 ((border + 144 + border), (border + 144 + border)),
                 (255, 255, 255),
             )
