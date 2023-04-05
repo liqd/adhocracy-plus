@@ -4,23 +4,21 @@ import django from 'django'
 import { ModerationNotification } from './ModerationNotification'
 import { Filter } from './Filter'
 
-const pendingFilterItems = [
-  { label: django.pgettext('kosmo', 'Pending'), value: 'true' },
-  { label: django.pgettext('kosmo', 'Archived'), value: 'false' },
-  { label: django.pgettext('kosmo', 'View all'), value: '' }
+const isReadFilterItems = [
+  { label: django.pgettext('kosmo', 'Read'), value: 'True' },
+  { label: django.pgettext('kosmo', 'Unread'), value: 'False' },
+  { label: django.pgettext('kosmo', 'View all'), value: 'All' }
 ]
 
-const classificationFilterItems = [
-  { label: django.pgettext('kosmo', 'Offensive'), value: 'OFFENSIVE' },
-  { label: django.pgettext('kosmo', 'Engaging'), value: 'ENGAGING' },
-  { label: django.pgettext('kosmo', 'Fact claiming'), value: 'FACTCLAIMING' },
-  { label: django.pgettext('kosmo', 'All categories'), value: '' }
+const reportsFilterItems = [
+  { label: django.pgettext('kosmo', 'Reported'), value: 'True' },
+  { label: django.pgettext('kosmo', 'All comments'), value: 'All' }
 ]
 
 const orderingFilterItems = [
-  { label: django.pgettext('kosmo', 'Most recent reported'), value: 'new' },
-  { label: django.pgettext('kosmo', 'Oldest reported'), value: 'old' },
-  { label: django.pgettext('kosmo', 'Most reported'), value: 'most' }
+  { label: django.pgettext('kosmo', 'Most reported'), value: '-num_reports' },
+  { label: django.pgettext('kosmo', 'Oldest'), value: 'created' },
+  { label: django.pgettext('kosmo', 'Most recent'), value: '-created' }
 ]
 
 export default class ModerationNotificationList extends Component {
@@ -29,7 +27,7 @@ export default class ModerationNotificationList extends Component {
 
     this.state = {
       moderationComments: [],
-      selectedFilters: { pending: 'true', classification: '', ordering: 'new' },
+      selectedFilters: { isRead: 'False', hasReports: 'All', ordering: '-num_reports' },
       isLoaded: false
     }
   }
@@ -42,11 +40,11 @@ export default class ModerationNotificationList extends Component {
     )
   }
 
-  pendingFilterChangeHandle (value) {
+  isReadFilterChangeHandle (value) {
     this.setState({
       selectedFilters: {
         ...this.state.selectedFilters,
-        pending: value
+        isRead: value
       },
       isLoaded: false
     },
@@ -54,11 +52,11 @@ export default class ModerationNotificationList extends Component {
     )
   }
 
-  classificationFilterChangeHandle (value) {
+  reportsFilterChangeHandle (value) {
     this.setState({
       selectedFilters: {
         ...this.state.selectedFilters,
-        classification: value
+        hasReports: value
       },
       isLoaded: false
     },
@@ -79,9 +77,7 @@ export default class ModerationNotificationList extends Component {
   }
 
   getUrlParams () {
-    // return '?has_pending_notifications=' + this.state.selectedFilters.pending + '&classification=' + this.state.selectedFilters.classification + '&ordering=' + this.state.selectedFilters.ordering
-    // FIXME: add correct filters here after they are added in backend
-    return ''
+    return '?is_read=' + this.state.selectedFilters.isRead + '&has_reports=' + this.state.selectedFilters.hasReports + '&ordering=' + this.state.selectedFilters.ordering
   }
 
   async loadData () {
@@ -153,16 +149,16 @@ export default class ModerationNotificationList extends Component {
           >
             <Filter
               filterClass="mt-3 mt-lg-5 me-lg-3 dropdown dropdown-menu-end"
-              filterItems={classificationFilterItems}
-              onFilterChange={(value) => this.classificationFilterChangeHandle(value)}
-              selectedFilter={this.state.selectedFilters.classification}
+              filterItems={reportsFilterItems}
+              onFilterChange={(value) => this.reportsFilterChangeHandle(value)}
+              selectedFilter={this.state.selectedFilters.hasReports}
               filterText={django.pgettext('kosmo', 'Filter')}
             />
             <Filter
               filterClass="mt-3 mt-lg-5 mx-lg-3 dropdown dropdown-menu-end"
-              filterItems={pendingFilterItems}
-              onFilterChange={(value) => this.pendingFilterChangeHandle(value)}
-              selectedFilter={this.state.selectedFilters.pending}
+              filterItems={isReadFilterItems}
+              onFilterChange={(value) => this.isReadFilterChangeHandle(value)}
+              selectedFilter={this.state.selectedFilters.isRead}
               filterText={django.pgettext('kosmo', 'Filter')}
             />
             <Filter
