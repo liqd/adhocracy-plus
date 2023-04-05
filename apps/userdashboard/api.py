@@ -1,33 +1,18 @@
-# from django.db.models import Case
 from django.db.models import Count
-
-# from django.db.models import Exists
-# from django.db.models import ExpressionWrapper
-# from django.db.models import Max
-# from django.db.models import OuterRef
-# from django.db.models import Q
-# from django.db.models import Value
-# from django.db.models import When
-# from django.db.models.fields import BooleanField
-# from django.db.models.functions import Coalesce
-# from django.db.models.functions import Greatest
+from django.db.models import ExpressionWrapper
+from django.db.models import Q
+from django.db.models.fields import BooleanField
 from django.shortcuts import get_object_or_404
-
-# from django_filters.rest_framework import BooleanFilter
+from django_filters.rest_framework import BooleanFilter
 from django_filters.rest_framework import DjangoFilterBackend
-
-# from django_filters.rest_framework import FilterSet
 from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework.decorators import action
-from rest_framework.filters import BaseFilterBackend
-
-# from rest_framework.filters import OrderingFilter
 from rest_framework.response import Response
 
 from adhocracy4.api.permissions import ViewSetRulesPermission
-
-# from adhocracy4.comments.models import Comment
+from adhocracy4.filters.rest_filters import DefaultsRestFilterSet
+from adhocracy4.filters.rest_filters import DistinctOrderingFilter
 from adhocracy4.projects.models import Project
 from apps.notifications.emails import NotifyCreatorOnModeratorBlocked
 from apps.projects import helpers
@@ -35,93 +20,16 @@ from apps.projects import helpers
 from . import serializers
 
 
-class ClassificationFilterBackend(BaseFilterBackend):
-    """Filter the comments for the classification categories.
+class ModerationCommentFilterSet(DefaultsRestFilterSet):
+    # FIXME: add this once read model is there
+    # is_read = BooleanFilter()
+    has_reports = BooleanFilter()
 
-    When a comment has both pending and archived notifications, only
-    consider pending ones when filtering for categories.
-    """
-
-    def filter_queryset(self, request, queryset, view):
-        """
-        if ('classification' in request.GET
-                and request.GET['classification'] != ''):
-            classifi = request.GET['classification']
-            return queryset.filter(
-                Q(ai_classifications__is_pending=Case(
-                    When(has_pending_notifications=True, then=Value(True)),
-                    When(has_pending_notifications=False, then=Value(False))
-                ),
-                    ai_classifications__classification=classifi) |
-                Q(user_classifications__is_pending=Case(
-                    When(has_pending_notifications=True, then=Value(True)),
-                    When(has_pending_notifications=False, then=Value(False))
-                ),
-                    user_classifications__classification=classifi)
-            )
-        """
-        return queryset
-
-
-'''
-class ClassificationOrderingFilter(OrderingFilter):
-    """Sort the comments by notification time and count.
-
-    When a comment has both pending and archived notifications, only
-    consider pending ones for the sorting.
-    """
-
-    def filter_queryset(self, request, queryset, view):
-        ordering = self.get_ordering(request, queryset, view)
-        if ordering:
-            queryset = queryset.annotate(
-                time_of_last_notification=Coalesce(
-                    Greatest(
-                        Max('ai_classifications__created'),
-                        Max('user_classifications__created')
-                    ),
-                    Max('ai_classifications__created'),
-                    Max('user_classifications__created')
-                ))
-            if 'new' in ordering:
-                return queryset.order_by('-time_of_last_notification')
-            elif 'old' in ordering:
-                return queryset.order_by('time_of_last_notification')
-            elif 'most' in ordering:
-                queryset = queryset.annotate(
-                    number_of_notifications=(Case(
-                        When(has_pending_notifications=True, then=(
-                            Count(
-                                'ai_classifications',
-                                filter=Q(ai_classifications__is_pending=True),
-                                distinct=True
-                            ) +
-                            Count(
-                                'user_classifications',
-                                filter=Q(
-                                    user_classifications__is_pending=True
-                                ),
-                                distinct=True
-                            )
-                        )),
-                        When(has_pending_notifications=False, then=(
-                            Count('ai_classifications', distinct=True)
-                            + Count('user_classifications', distinct=True)
-                        ))
-                    )))
-                return queryset.order_by('-number_of_notifications',
-                                         '-time_of_last_notification')
-        return queryset
-
-
-class PendingNotificationsFilter(FilterSet):
-    has_pending_notifications = BooleanFilter(
-        field_name='has_pending_notifications')
-
-    class Meta:
-        model = Comment
-        fields = ['has_pending_notifications']
-'''
+    defaults = {
+        # FIXME: add this once read model is there
+        #    "is_read": "false",
+        "has_reports": "all"
+    }
 
 
 class ModerationCommentViewSet(
@@ -132,14 +40,12 @@ class ModerationCommentViewSet(
 ):
     serializer_class = serializers.ModerationCommentSerializer
     permission_classes = (ViewSetRulesPermission,)
-    filter_backends = (
-        DjangoFilterBackend,
-        ClassificationFilterBackend,
-    )
-    # ClassificationOrderingFilter)
-    # filterset_class = PendingNotificationsFilter
-    # ordering_fields = ['new', 'old', 'most']
-    # ordering = ['new']
+    filter_backends = (DjangoFilterBackend, DistinctOrderingFilter)
+    filterset_class = ModerationCommentFilterSet
+    ordering_fields = ["created", "num_reports"]
+    ordering = ["-num_reports"]
+    # sets the attr for the distinct ordering in DistinctOrderingFilter
+    distinct_ordering = "-created"
     lookup_field = "pk"
 
     def dispatch(self, request, *args, **kwargs):
@@ -155,8 +61,11 @@ class ModerationCommentViewSet(
 
     def get_queryset(self):
         all_comments_project = helpers.get_all_comments_project(self.project)
-        return all_comments_project.annotate(
-            num_reports=Count("reports", distinct=True)
+        num_reports = Count("reports", distinct=True)
+        return all_comments_project.annotate(num_reports=num_reports).annotate(
+            has_reports=ExpressionWrapper(
+                Q(num_reports__gt=0), output_field=BooleanField()
+            )
         )
 
     def update(self, request, *args, **kwargs):
