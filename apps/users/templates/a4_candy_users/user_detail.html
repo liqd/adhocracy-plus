@@ -11,7 +11,7 @@
                     {% if request.user.id == user.id %}
                     <div class="dropdown text-end">
                         <button
-                            title="{% trans 'Settings' %}"
+                            title="{% trans 'My user settings' %}"
                             type="button"
                             class="dropdown-toggle btn btn--none btn--small"
                             data-bs-toggle="dropdown"
@@ -19,7 +19,7 @@
                             aria-expanded="false"
                             id="account-settings"
                         >
-                            <i class="fa fa-ellipsis-v" aria-label="{% trans 'Settings' %}"></i>
+                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="account-settings">
                             <a class="dropdown-item" href="{% url 'account' %}">{% trans 'Account Settings' %}</a>

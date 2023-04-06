@@ -4,7 +4,6 @@
 {% block content %}
     {% block dashboard_nav %}
     <h1 class="sr-only">
-      {# Translators: kosmo #}
       {% trans 'Your User Overview' %}
     </h1>
     <div class="tablist tablist--left mt-3">
@@ -12,14 +11,13 @@
             <nav class="d-none d-sm-inline-block" aria-label="{% trans 'Dashboard' %}">
                 <a href="{% url 'userdashboard-overview' %}"
                    class="tab {% ifequal view.menu_item 'overview' %}active{% endifequal %}">
-                    {# Translators: kosmo #}
+
                     {% trans 'Overview' %}
                 </a>
                 {% has_perm 'a4_candy_userdashboard.view_moderation_dashboard' user as user_is_moderator %}
                 {% if user_is_moderator %}
                 <a href="{% url 'userdashboard-moderation' %}"
                    class="tab {% if view.menu_item == 'moderation' or  '/detail' in request.get_full_path %}active{% endif %}">
-                    {# Translators: kosmo #}
                     {% trans 'Moderation' %}
                 </a>
                 {% endif %}
@@ -30,7 +28,6 @@
 
     <div class="container">
         <div class="row py-md-4 mb-5">
-
           <!-- hide user side menu on load more pages on mobile -->
             <div class="col-sm-4 col-lg-3 {% if '/following' in request.get_full_path or '/activities' in request.get_full_path %} d-none d-sm-block {% endif %}">
                 <div class="tabpanel userdashboard-profile userdashboard-profile__side">
@@ -38,7 +35,7 @@
                     <div class="userdashboard-profile__user mb-3">
                         <div class="dropdown text-end">
                             <button
-                                title="{% trans 'Settings' %}"
+                                title="{% trans 'My user Settings' %}"
                                 type="button"
                                 class="dropdown-toggle btn btn--none btn--small"
                                 data-bs-toggle="dropdown"
@@ -46,10 +43,10 @@
                                 aria-expanded="false"
                                 id="account-settings"
                             >
-                                <i class="fa fa-ellipsis-v" aria-label="{% trans 'Settings' %}"></i>
+                                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="account-settings">
-                                {# Translators: kosmo #}
+
                                 <a class="dropdown-item" href="{% url 'account' %}">{% trans 'Account Settings' %}</a>
                             </div>
                         </div>
@@ -65,7 +62,6 @@
                             </h2>
                         </a>
                         <div>
-                            {# Translators: kosmo #}
                             {% trans 'Since' %} {{ request.user.date_joined|date:"d M Y" }}
                         </div>
                     </div>
@@ -79,7 +75,6 @@
                     <!-- desktop -->
                     {% if request.user.organisations %}
                     <div class="d-none d-sm-block mb-5">
-                      {# Translators: kosmo #}
                       <h2 class="fs-6">{% trans 'Initiator Organisations' %}</h2>
                       {% for organisation in request.user.organisations %}
                       <div>
@@ -103,7 +98,6 @@
                         aria-expanded="true"
                         aria-controls="#userDashboardCollapseOrgInt"
                         data-bs-target="#userDashboardCollapseOrgInt">
-                          {# Translators: kosmo #}
                           <h2 class="fs-6">{% trans 'Initiator Organisations' %}</h2>
                             <i class="fa fa-chevron-up" aria-hidden="true"></i>
                         </div>
@@ -129,7 +123,6 @@
 
                     <!-- desktop -->
                     <div class="d-none d-sm-block mb-5">
-                        {# Translators: kosmo #}
                         <h2 class="fs-6">{% trans 'Organisations' %}</h2>
                         {% if view.organisations %}
                         {% for organisation in view.organisations %}
@@ -144,7 +137,7 @@
                         {% endfor %}
                         {% else %}
                         <div class="mb-3">
-                            {# Translators: kosmo #}
+
                             {% trans 'You are not yet following any projects.' %}
                         </div>
                         {% endif %}
@@ -158,7 +151,7 @@
                               aria-expanded="true"
                               aria-controls="#userDashboardCollapseOrg"
                               data-bs-target="#userDashboardCollapseOrg">
-                            {# Translators: kosmo #}
+
                             <h2 class="fs-6">{% trans 'Organisations' %}</h2>
                             <i class="fa fa-chevron-up" aria-hidden="true"></i>
                         </div>
@@ -178,10 +171,10 @@
                             {% endfor %}
                         </ul>
                         {% else %}
-                        {# Translators: kosmo #}
+
                         <h3>{% trans 'Organisations' %}</h3>
                         <div class="mb-3">
-                            {# Translators: kosmo #}
+
                             {% trans 'You are not yet following any projects.' %}
                         </div>
                         {% endif %}
