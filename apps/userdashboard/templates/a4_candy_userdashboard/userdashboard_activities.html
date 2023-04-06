@@ -4,10 +4,10 @@
 {% block dashboard_content %}
     <a class="btn btn--none px-0" href="{% url 'userdashboard-overview' %}">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        {# Translators: kosmo #}
+
         <span>{% trans 'Back to overview' %}</span>
     </a>
-    {# Translators: kosmo #}
+
     <h2 class="mt-2">{% trans 'My Feed' %}</h2>
 
     {% for action in view.actions %}
