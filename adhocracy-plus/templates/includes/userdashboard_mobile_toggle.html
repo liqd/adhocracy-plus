@@ -11,10 +11,8 @@
               aria-haspopup="true"
               aria-expanded="false">
               {% if view.menu_item == 'moderation' %}
-                {# Translators: kosmo #}
                 {% trans 'Moderation' %}
               {% else %}
-                {# Translators: kosmo #}
                 {% trans 'Overview' %}
               {% endif %}
               <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -22,13 +20,11 @@
           <div class="dropdown-menu dropdown-menu-end">
               <a class="dropdown-item"
                  href="{% url 'userdashboard-overview' %}">
-                  {# Translators: kosmo #}
                   {% trans 'Overview' %}
               </a>
-
               <a class="dropdown-item"
                  href="{% url 'userdashboard-moderation' %}">
-                  {# Translators: kosmo #}
+
                   {% trans 'Moderation' %}
               </a>
           </div>
@@ -38,7 +34,7 @@
     <nav class="d-inline-block d-sm-none" aria-label="{% trans 'Dashboard' %}">
         <a href="{% url 'userdashboard-overview' %}"
            class="tab {% ifequal view.menu_item 'overview' %}active{% endifequal %}">
-            {# Translators: kosmo #}
+
             {% trans 'Overview' %}
         </a>
     </nav>

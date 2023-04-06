@@ -4,6 +4,7 @@
     <div class="dropdown userindicator__dropdown">
 
         <button
+            title="{% trans 'Menu' %}"
             class="d-md-none dropdown-toggle btn btn--secondary-filled  btn--attached-top header-upper__mobile-toggle"
             data-bs-toggle="dropdown"
             data-flip="false"
@@ -14,6 +15,7 @@
         </button>
 
         <button
+            title="{% trans 'Menu' %}"
             class="d-none d-md-inline-block dropdown-toggle btn btn--secondary-filled btn--attached-top  btn--align-left header-upper__toggle"
             data-bs-toggle="dropdown"
             data-flip="false"
@@ -34,9 +36,9 @@
             {% if request.user.is_superuser %}
                 <a class="dropdown-item" href="{% url 'admin:index' %}">{% translate "Admin" %}</a>
             {% endif %}
-            <a class="dropdown-item" href="{% url 'account' %}">{% translate "Account Settings" %}</a>
+            <a class="dropdown-item" href="{% url 'userdashboard-overview' %}">{% translate 'My Overview' %}</a>
 
-            <a class="dropdown-item" href="{% url 'profile' request.user.username %}">{% translate 'View your profile' %}</a>
+            <a class="dropdown-item" href="{% url 'account' %}">{% translate "Account Settings" %}</a>
 
             {% for organisation in request.user.organisations %}
             <a class="dropdown-item" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
