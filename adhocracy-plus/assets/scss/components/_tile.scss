@@ -1,5 +1,3 @@
-$svg-colour: #2a3cd4;
-
 .tile {
     display: flex;
     flex-direction: column;
@@ -49,6 +47,12 @@ $svg-colour: #2a3cd4;
     background-position: 50%;
     background-repeat: no-repeat;
     background-color: $brand-info;
+}
+
+.tile__image--sm {
+    min-height: 5rem;
+    background-size: contain;
+    background-position: center;
 }
 
 .tile__image__copyright {
@@ -157,7 +161,7 @@ $svg-colour: #2a3cd4;
 
 @media (min-width: $breakpoint) {
     .tile {
-        min-height: 15em;
+        min-height: 15rem;
     }
 
     .tile--vertical {
@@ -165,6 +169,7 @@ $svg-colour: #2a3cd4;
     }
 
     .tile--horizontal {
+        min-height: 10rem;
         flex-direction: row;
 
         .tile__head {
@@ -181,22 +186,6 @@ $svg-colour: #2a3cd4;
     }
 
     .tile__image--sm {
-        min-height: 13rem;
+        min-height: 5rem;
     }
-}
-
-.blueprint__tile {
-    position: relative;
-    border-radius: 0;
-    margin-bottom: $spacer;
-}
-
-.blueprint__image {
-    border-radius: 0;
-    min-height: 7 * $spacer;
-    height: 100%;
-    background-color: $svg-colour;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
 }
