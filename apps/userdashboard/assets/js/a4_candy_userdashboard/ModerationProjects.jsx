@@ -84,16 +84,16 @@ export default class ModerationProjects extends Component {
           <h2 className="mt-sm-0">Projects</h2>
           <ul className="ps-0">
             {items.map(item => (
-              <li key={item.title} className="tile--sm tile--horizontal">
-                <div className="tile__head">
+              <li key={item.title} className="tile tile--horizontal">
+                <div className="tile__head tile__head--wide">
                   <div className="tile__image tile__image--sm" style={{ backgroundImage: 'url(' + item.tile_image + ')' }}>
                     <div>{item.tile_image_copyright}</div>
                   </div>
                 </div>
                 <div className="tile__body">
-                  <span className="text-muted">{byText}{item.organisation}</span>
-                  <h3 className="tile__title mb-2">{item.num_unread_comments > 0 && <span className="text-info">• </span>}{item.title}</h3>
                   <div>
+                    <span className="text-muted">{byText}{item.organisation}</span>
+                    <h3 className="tile__title mb-2">{item.num_unread_comments > 0 && <span className="text-info">• </span>}{item.title}</h3>
                     {item.access === 1 && <span className="label label--dark">{publicText}</span>}
                     {item.access === 2 && <span className="label label--dark">{semiPrivateText}</span>}
                     {item.access === 3 && <span className="label label--dark">{privateText}</span>}
@@ -105,8 +105,8 @@ export default class ModerationProjects extends Component {
                     {item.active_phase && <div className="col-4"><i className="far fa-clock" aria-hidden="true" /> <span className="d-inline-block d-lg-none">{this.getMobileTimespan(item)}</span> <span className="d-none d-lg-inline-block">{this.getTimespan(item)}</span></div>}
                     {item.past_phase && !item.active_phase && !item.future_phase && <div className="col-4"> {item.participation_string}</div>}
                   </div>
-                  <a href={item.moderation_detail_url} className="tile__link"><span className="sr-only">{srLinkText}{item.title}</span></a>
                 </div>
+                <a href={item.moderation_detail_url} className="tile__link"><span className="sr-only">{srLinkText}{item.title}</span></a>
               </li>
             ))}
           </ul>
