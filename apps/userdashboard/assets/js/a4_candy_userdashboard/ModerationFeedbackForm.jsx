@@ -6,10 +6,10 @@ export const ModerationFeedbackForm = (props) => {
     useState((props.editing && props.initialFeedback.feedback_text) || '')
 
   const translated = {
-    placeholder: django.pgettext('kosmo', 'Write feedback'),
-    charCount: django.pgettext('kosmo', ' characters'),
-    submitLabel: django.pgettext('kosmo', 'submit feedback'),
-    submitEditLabel: django.pgettext('kosmo', 'update feedback')
+    placeholder: django.gettext('Write feedback'),
+    charCount: django.gettext(' characters'),
+    submitLabel: django.gettext('submit feedback'),
+    submitEditLabel: django.gettext('update feedback')
   }
 
   const handleSubmit = (e) => {
