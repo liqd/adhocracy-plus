@@ -123,19 +123,19 @@
             </div>
         </div>
 
-        {% block moderator_statement %}
+        {% block moderator_feedback %}
             {% if object.moderator_feedback_text.feedback_text %}
             <div class="row">
                 <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                    <div class="moderator-statement">
-                        <h2 class="moderator-statement__title">{% translate 'Official Statement' %}</h2>
-                        <div class="moderator-statement__subtitle">
-                            <strong class="moderator-statement__organisation">
+                    <div class="moderator-feedback">
+                        <h2 class="moderator-feedback__title">{% translate 'Official Feedback' %}</h2>
+                        <div class="moderator-feedback__subtitle">
+                            <strong class="moderator-feedback__organisation">
                                 {{ object.module.project.organisation.name }}
                             </strong>
                             {% html_date object.moderator_feedback_text.created %}
                         </div>
-                        <div class="moderator-statement__body">
+                        <div class="moderator-feedback__body">
                             {{ object.moderator_feedback_text.feedback_text | safe }}
                         </div>
                     </div>

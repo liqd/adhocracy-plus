@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import django from 'django'
 import api from './api'
-import { ModerationStatementForm } from './ModerationStatementForm'
-import { ModerationStatement } from './ModerationStatement'
+import { ModerationFeedbackForm } from './ModerationFeedbackForm'
+import { ModerationFeedback } from './ModerationFeedback'
 import { ModerationNotificationActionsBar } from './ModerationNotificationActionsBar'
 import { alert as Alert } from 'adhocracy4'
 
 const alertTime = 6000
 
 const translated = {
-  statementAdded: django.pgettext('kosmo', 'Your feedback was successfully delivered.'),
-  statementEdited: django.pgettext('kosmo', 'Your feedback was successfully updated.'),
-  statementDeleted: django.pgettext('kosmo', 'Your feedback was successfully deleted.'),
-  anotherStatement: django.pgettext('kosmo', 'The comment has already been moderated. Your feedback could not be saved.'),
+  feedbackAdded: django.pgettext('kosmo', 'Your feedback was successfully delivered.'),
+  feedbackEdited: django.pgettext('kosmo', 'Your feedback was successfully updated.'),
+  feedbackDeleted: django.pgettext('kosmo', 'Your feedback was successfully deleted.'),
+  anotherFeedback: django.pgettext('kosmo', 'The comment has already been moderated. Your feedback could not be saved.'),
   goToDiscussion: django.pgettext('kosmo', 'Go to discussion'),
   commentBlocked: django.pgettext('kosmo', 'Comment blocked successfully.'),
   commentUnblocked: django.pgettext('kosmo', 'Comment unblocked successfully.'),
@@ -25,7 +25,7 @@ const translated = {
 
 export const ModerationNotification = (props) => {
   const { notification } = props
-  const [showStatementForm, setShowStatementForm] = useState(false)
+  const [showFeedbackForm, setShowFeedbackForm] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [alert, setAlert] = useState()
 
@@ -42,27 +42,27 @@ export const ModerationNotification = (props) => {
 
   // Return a react component to render the anchor, we should probably rather
   // extent the Alert component to handle
-  function getStatementAdded (commentUrl) {
+  function getFeedbackAdded (commentUrl) {
     return (
       <>
-        {translated.statementAdded} <a href={commentUrl}>{translated.goToDiscussion}</a>
+        {translated.feedbackAdded} <a href={commentUrl}>{translated.goToDiscussion}</a>
       </>
     )
   }
 
-  // **** Start statement methods ****
+  // **** Start feedback methods ****
 
-  const handleStatementSubmit = async (payload) => {
+  const handleFeedbackSubmit = async (payload) => {
     const [getResponse] = await api.fetch({
       url: notification.feedback_api_url,
       method: 'GET'
     })
 
     if (getResponse.length > 0) {
-      setShowStatementForm(false)
+      setShowFeedbackForm(false)
       setAlert({
         type: 'error',
-        message: translated.anotherStatement,
+        message: translated.anotherFeedback,
         timeInMs: alertTime
       })
     } else {
@@ -80,17 +80,17 @@ export const ModerationNotification = (props) => {
         })
       } else {
         props.loadData()
-        setShowStatementForm(false)
+        setShowFeedbackForm(false)
         setAlert({
           type: 'success',
-          message: getStatementAdded(),
+          message: getFeedbackAdded(),
           timeInMs: alertTime
         })
       }
     }
   }
 
-  const handleStatementEdit = async (payload) => {
+  const handleFeedbackEdit = async (payload) => {
     // eslint-disable-next-line no-unused-vars
     const [response, error] = await api.fetch({
       url: notification.feedback_api_url + notification.moderator_feedback.pk + '/',
@@ -101,17 +101,17 @@ export const ModerationNotification = (props) => {
       props.onChangeStatus(error)
     } else {
       props.loadData()
-      setShowStatementForm(false)
+      setShowFeedbackForm(false)
       setIsEditing(false)
       setAlert({
         type: 'success',
-        message: translated.statementEdited,
+        message: translated.feedbackEdited,
         timeInMs: alertTime
       })
     }
   }
 
-  const handleStatementDelete = async () => {
+  const handleFeedbackDelete = async () => {
     await api.fetch({
       url: notification.feedback_api_url + notification.moderator_feedback.pk + '/',
       method: 'DELETE'
@@ -119,17 +119,17 @@ export const ModerationNotification = (props) => {
     props.loadData()
     setAlert({
       type: 'success',
-      message: translated.statementDeleted,
+      message: translated.feedbackDeleted,
       timeInMs: alertTime
     })
   }
 
-  function toggleModerationStatementForm (isEditing) {
+  function toggleModerationFeedbackForm (isEditing) {
     isEditing && setIsEditing(true)
-    setShowStatementForm(!showStatementForm)
+    setShowFeedbackForm(!showFeedbackForm)
   }
 
-  // **** End statement methods ****
+  // **** End feedback methods ****
 
   // **** Start notification methods ****
 
@@ -298,25 +298,25 @@ export const ModerationNotification = (props) => {
           isEditing={notification.moderator_feedback}
           isBlocked={notification.is_blocked}
           isHighlighted={notification.is_moderator_marked}
-          onToggleForm={(isEditing) => toggleModerationStatementForm(isEditing)}
+          onToggleForm={(isEditing) => toggleModerationFeedbackForm(isEditing)}
           onToggleBlock={() => toggleIsBlocked()}
           onToggleHighlight={() => toggleIsHighlighted()}
           onTogglePending={() => toggleIsPending()}
         />
-        {showStatementForm &&
-          <ModerationStatementForm
-            onSubmit={(payload) => handleStatementSubmit(payload)}
-            onEditSubmit={(payload) => handleStatementEdit(payload)}
-            initialStatement={notification.moderator_feedback}
+        {showFeedbackForm &&
+          <ModerationFeedbackForm
+            onSubmit={(payload) => handleFeedbackSubmit(payload)}
+            onEditSubmit={(payload) => handleFeedbackEdit(payload)}
+            initialFeedback={notification.moderator_feedback}
             editing={isEditing}
           />}
-        {notification.moderator_feedback && !showStatementForm &&
-          <ModerationStatement
+        {notification.moderator_feedback && !showFeedbackForm &&
+          <ModerationFeedback
             notificationIsPending={notification.is_unread}
-            statement={notification.moderator_feedback}
-            onDelete={handleStatementDelete}
+            feedback={notification.moderator_feedback}
+            onDelete={handleFeedbackDelete}
             onEdit={() => {
-              setShowStatementForm(true)
+              setShowFeedbackForm(true)
               setIsEditing(true)
             }}
           />}
