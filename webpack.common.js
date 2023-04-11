@@ -56,6 +56,16 @@ module.exports = {
         './adhocracy-plus/assets/js/init_dashboard_accordion.js'
       ]
     },
+    moderation_projects: {
+      import: [
+        './apps/userdashboard/assets/js/a4_candy_userdashboard/react_moderation_projects.jsx'
+      ]
+    },
+    moderation_notification_list: {
+      import: [
+        './apps/userdashboard/assets/js/a4_candy_userdashboard/react_moderation_notification_list.jsx'
+      ]
+    },
     // A4 dependencies - we want all of them to go through webpack
     a4maps_display_point: {
       import: [
@@ -109,16 +119,6 @@ module.exports = {
         'adhocracy4/adhocracy4/categories/assets/select_dropdown_init.js'
       ],
       dependOn: 'adhocracy4'
-    },
-    moderation_projects: {
-      import: [
-        './apps/userdashboard/assets/js/a4_candy_userdashboard/react_moderation_projects.jsx'
-      ]
-    },
-    moderation_notification_list: {
-      import: [
-        './apps/userdashboard/assets/js/a4_candy_userdashboard/react_moderation_notification_list.jsx'
-      ]
     }
   },
   output: {

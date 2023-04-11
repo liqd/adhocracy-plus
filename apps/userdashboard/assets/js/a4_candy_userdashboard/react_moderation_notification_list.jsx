@@ -1,22 +1,20 @@
 import ModerationNotificationList from './ModerationNotificationList'
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
+import { widget as ReactWidget } from 'adhocracy4'
 
 function init () {
-  $('[data-aplus-widget="moderation_notification_list"]').each(function (i, element) {
-    const moderationCommentsApiUrl = element.getAttribute('data-moderation-comments-api-url')
-    const projectTitle = element.getAttribute('data-project-title')
-    const organisation = element.getAttribute('data-organisation')
-    const projectUrl = element.getAttribute('data-project-url')
-    ReactDOM.render(
-      <ModerationNotificationList
-        moderationCommentsApiUrl={moderationCommentsApiUrl}
-        projectTitle={projectTitle}
-        organisation={organisation}
-        projectUrl={projectUrl}
-      />,
-      element)
-  })
+  ReactWidget.initialise('aplus', 'moderation_notification_list',
+    function (el) {
+      const props = el.dataset
+      const root = createRoot(el)
+      root.render(
+        <React.StrictMode>
+          <ModerationNotificationList {...props} />
+        </React.StrictMode>
+      )
+    }
+  )
 }
 
 document.addEventListener('DOMContentLoaded', init, false)
