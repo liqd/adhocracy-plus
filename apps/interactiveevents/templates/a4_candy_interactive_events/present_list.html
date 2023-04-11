@@ -48,3 +48,8 @@
 
 {% block footer %}
 {% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'interactiveevents_presents.js' %}"></script>
+    {{ block.super }}
+{% endblock %}

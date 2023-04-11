@@ -39,7 +39,9 @@ module.exports = {
       dependOn: 'adhocracy4'
     },
     documents: {
-      import: './apps/documents/assets/react_documents_init.js'
+      import: [
+        './apps/documents/assets/react_documents_init.jsx'
+      ]
     },
     dsgvo_video_embed: {
       import: [
@@ -48,11 +50,15 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
-    live_questions: {
-      import: './apps/interactoveevents/assets/react_questions_init.jsx'
+    interactiveevents: {
+      import: [
+        './apps/interactiveevents/assets/react_interactiveevents_init.jsx'
+      ]
     },
-    live_questions_presents: {
-      import: './apps/interactoveevents/assets/react_questions_present_init.jsx'
+    interactiveevents_presents: {
+      import: [
+        './apps/interactiveevents/assets/react_interactiveevents_present_init.jsx'
+      ]
     },
     init_dashboard_accordion: {
       import: [

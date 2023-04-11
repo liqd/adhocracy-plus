@@ -36,3 +36,8 @@
 </div>
 {% include 'footer_upper.html' with organisation=module.project.organisation %}
 {% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'interactiveevents.js' %}"></script>
+    {{ block.super }}
+{% endblock %}
