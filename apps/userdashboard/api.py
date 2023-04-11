@@ -8,6 +8,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 from adhocracy4.api.permissions import ViewSetRulesPermission
@@ -32,6 +33,11 @@ class ModerationCommentFilterSet(DefaultsRestFilterSet):
     }
 
 
+class ModerationCommentPagination(PageNumberPagination):
+    page_size_query_param = "num_of_comments"
+    max_page_size = 1000
+
+
 class ModerationCommentViewSet(
     mixins.ListModelMixin,
     mixins.UpdateModelMixin,
@@ -39,6 +45,7 @@ class ModerationCommentViewSet(
     viewsets.GenericViewSet,
 ):
     serializer_class = serializers.ModerationCommentSerializer
+    pagination_class = ModerationCommentPagination
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (DjangoFilterBackend, DistinctOrderingFilter)
     filterset_class = ModerationCommentFilterSet

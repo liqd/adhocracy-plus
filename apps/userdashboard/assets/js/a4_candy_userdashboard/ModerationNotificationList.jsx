@@ -4,6 +4,8 @@ import django from 'django'
 import { ModerationNotification } from './ModerationNotification'
 import { Filter } from './Filter'
 
+const PACKET_COMMENT_SIZE = 15
+
 const isReadFilterItems = [
   { label: django.gettext('Read'), value: 'True' },
   { label: django.gettext('Unread'), value: 'False' },
@@ -28,6 +30,9 @@ export default class ModerationNotificationList extends Component {
     this.state = {
       moderationComments: [],
       selectedFilters: { isRead: 'False', hasReports: 'All', ordering: '-num_reports' },
+      numOfComments: PACKET_COMMENT_SIZE,
+      hasMore: null,
+      packetFactor: 1,
       isLoaded: false
     }
   }
@@ -77,17 +82,21 @@ export default class ModerationNotificationList extends Component {
   }
 
   getUrlParams () {
-    return '?is_read=' + this.state.selectedFilters.isRead + '&has_reports=' + this.state.selectedFilters.hasReports + '&ordering=' + this.state.selectedFilters.ordering
+    return '?is_read=' + this.state.selectedFilters.isRead +
+      '&has_reports=' + this.state.selectedFilters.hasReports +
+      '&ordering=' + this.state.selectedFilters.ordering +
+      '&num_of_comments=' + this.state.numOfComments
   }
 
   async loadData () {
     this.timer = true
     const url = this.props.moderationCommentsApiUrl + this.getUrlParams()
     const data = await fetch(url)
-    const moderationComments = await data.json()
+    const jsonData = await data.json()
     this.timer = false
     this.setState({
-      moderationComments,
+      moderationComments: jsonData.results,
+      hasMore: jsonData.next,
       isLoaded: true
     })
   }
@@ -103,6 +112,22 @@ export default class ModerationNotificationList extends Component {
         onClick: () => this.hideAlert()
       }
     })
+  }
+
+  handleLoadMore = () => {
+    this.setState(prevState => {
+      const newPacketFactor = prevState.packetFactor + 1
+      return {
+        ...prevState,
+        numOfComments: newPacketFactor * PACKET_COMMENT_SIZE,
+        packetFactor: newPacketFactor
+      }
+    }, this.loadData)
+  }
+
+  handleToTop = () => {
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
   }
 
   getSuccessAlert = (message) => {
@@ -132,6 +157,8 @@ export default class ModerationNotificationList extends Component {
     const { isLoaded } = this.state
     const { projectTitle, organisation, projectUrl } = this.props
     const byText = django.gettext('By ')
+    const loadmoreText = django.gettext('Load more')
+    const gotoTopText = django.gettext('Go to top')
 
     return (
       <div className="row mb-2">
@@ -177,17 +204,34 @@ export default class ModerationNotificationList extends Component {
               </div>
               )
             : (
-              <ul className="ps-0 mt-4">
-                {this.state.moderationComments.map((item, i) => (
-                  <ModerationNotification
-                    key={i}
-                    notification={item}
-                    apiUrl={this.props.moderationCommentsApiUrl + item.pk + '/'}
-                    loadData={() => this.loadData()}
-                  />
-                ))}
-              </ul>
-              )}
+              <div>
+                <ul className="ps-0 mt-4">
+                  {this.state.moderationComments.map((item, i) => (
+                    <ModerationNotification
+                      key={i}
+                      notification={item}
+                      apiUrl={this.props.moderationCommentsApiUrl + item.pk + '/'}
+                      loadData={() => this.loadData()}
+                    />
+                  ))}
+                </ul>
+                <div className="d-flex justify-content-between">
+                  {this.state.hasMore &&
+                    <button
+                      className="btn btn--light ms-auto"
+                      onClick={this.handleLoadMore}
+                    >
+                      {loadmoreText}
+                    </button>}
+                  <button
+                    className="btn btn--light ms-auto"
+                    onClick={this.handleToTop}
+                  >
+                    <i className="fa fa-arrow-up" aria-hidden="true" />
+                    <span className="visually-hidden">{gotoTopText}</span>
+                  </button>
+                </div>
+              </div>)}
         </div>
       </div>
     )
