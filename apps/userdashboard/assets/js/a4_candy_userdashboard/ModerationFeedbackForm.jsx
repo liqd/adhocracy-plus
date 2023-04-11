@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
 import django from 'django'
 
-export const ModerationStatementForm = (props) => {
-  const [statement, setStatement] =
-    useState((props.editing && props.initialStatement.statement) || '')
+export const ModerationFeedbackForm = (props) => {
+  const [feedback, setFeedback] =
+    useState((props.editing && props.initialFeedback.feedback_text) || '')
 
   const translated = {
-    placeholder: django.pgettext('kosmo', 'Write statement'),
+    placeholder: django.pgettext('kosmo', 'Write feedback'),
     charCount: django.pgettext('kosmo', ' characters'),
-    submitLabel: django.pgettext('kosmo', 'submit statement'),
-    submitEditLabel: django.pgettext('kosmo', 'update statement')
+    submitLabel: django.pgettext('kosmo', 'submit feedback'),
+    submitEditLabel: django.pgettext('kosmo', 'update feedback')
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (props.editing) {
-      props.onEditSubmit(statement)
+      props.onEditSubmit(feedback)
     } else {
-      props.onSubmit(statement)
+      props.onSubmit(feedback)
     }
   }
 
@@ -26,12 +26,12 @@ export const ModerationStatementForm = (props) => {
       <textarea
         className="a4-comments__textarea--small form-group"
         placeholder={translated.placeholder}
-        onChange={(e) => setStatement(e.target.value)}
-        value={statement}
+        onChange={(e) => setFeedback(e.target.value)}
+        value={feedback}
       />
       <div className="row">
         <label htmlFor="id-comment-form" className="col-6 a4-comments__char-count">
-          {statement.length}/500{translated.charCount}
+          {feedback.length}/500{translated.charCount}
         </label>
         <div className="a4-comments__submit d-flex col-6">
           <button

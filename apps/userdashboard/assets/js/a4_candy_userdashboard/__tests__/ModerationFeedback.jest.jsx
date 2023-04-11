@@ -1,30 +1,30 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { ModerationStatement } from '../ModerationStatement'
+import { ModerationFeedback } from '../ModerationFeedback'
 
-test('ModerationStatement with optimal values', () => {
+test('ModerationFeedback with optimal values', () => {
   const mockProps = {
-    feedback_text: 'test statement',
+    feedback_text: 'test feedback',
     last_edit: '20. April 2022, 3 PM',
     pk: 1
   }
   render(
-    <ModerationStatement statement={mockProps} />
+    <ModerationFeedback feedback={mockProps} />
   )
-  const statement = screen.getByText('test statement')
-  expect(statement).toBeTruthy()
+  const feedback = screen.getByText('test feedback')
+  expect(feedback).toBeTruthy()
 })
 
-test('ModerationStatement onDelete', () => {
+test('ModerationFeedback onDelete', () => {
   const mockProps = {
-    feedback_text: 'test statement',
+    feedback_text: 'test feedback',
     last_edit: '20. April 2022, 3 PM',
     pk: 1
   }
   const mockOnDelete = jest.fn()
   const tree = render(
-    <ModerationStatement
-      statement={mockProps}
+    <ModerationFeedback
+      feedback={mockProps}
       onDelete={mockOnDelete}
       notificationIsPending
     />)
@@ -33,16 +33,16 @@ test('ModerationStatement onDelete', () => {
   expect(mockOnDelete).toHaveBeenCalled()
 })
 
-test('ModerationStatement onEdit', () => {
+test('ModerationFeedback onEdit', () => {
   const mockProps = {
-    feedback_text: 'test statement',
+    feedback_text: 'test feedback',
     last_edit: '20. April 2022, 3 PM',
     pk: 1
   }
   const mockOnEdit = jest.fn()
   const tree = render(
-    <ModerationStatement
-      statement={mockProps}
+    <ModerationFeedback
+      feedback={mockProps}
       onEdit={mockOnEdit}
       notificationIsPending
     />)
