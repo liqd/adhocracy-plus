@@ -38,6 +38,9 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    documents: {
+      import: './apps/documents/assets/react_documents_init.js'
+    },
     dsgvo_video_embed: {
       import: [
         'dsgvo-video-embed/dist/dsgvo-video-embed.min.css',
@@ -45,11 +48,11 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
-    unload_warning: {
-      import: [
-        './adhocracy-plus/assets/js/unload_warning.js'
-      ],
-      dependOn: 'adhocracy4'
+    live_questions: {
+      import: './apps/interactoveevents/assets/react_questions_init.jsx'
+    },
+    live_questions_presents: {
+      import: './apps/interactoveevents/assets/react_questions_present_init.jsx'
     },
     init_dashboard_accordion: {
       import: [
@@ -65,6 +68,12 @@ module.exports = {
       import: [
         './apps/userdashboard/assets/js/a4_candy_userdashboard/react_moderation_notification_list.jsx'
       ]
+    },
+    unload_warning: {
+      import: [
+        './adhocracy-plus/assets/js/unload_warning.js'
+      ],
+      dependOn: 'adhocracy4'
     },
     // A4 dependencies - we want all of them to go through webpack
     a4maps_display_point: {
