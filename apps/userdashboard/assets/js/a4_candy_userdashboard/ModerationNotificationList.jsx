@@ -82,7 +82,7 @@ export default class ModerationNotificationList extends Component {
   }
 
   getUrlParams () {
-    return '?is_read=' + this.state.selectedFilters.isRead +
+    return '?is_reviewed=' + this.state.selectedFilters.isRead +
       '&has_reports=' + this.state.selectedFilters.hasReports +
       '&ordering=' + this.state.selectedFilters.ordering +
       '&num_of_comments=' + this.state.numOfComments
