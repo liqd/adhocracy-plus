@@ -4,17 +4,17 @@ import { HoverButton } from '../../../../../apps/contrib/assets/HoverButton'
 
 export const ModerationNotificationActionsBar = (props) => {
   const translated = {
-    blockText: django.pgettext('kosmo', 'Block'),
-    unblockText: django.pgettext('kosmo', 'Unblock'),
-    isBlockedText: django.pgettext('kosmo', 'Blocked'),
-    replyText: django.pgettext('kosmo', 'Add feedback'),
-    blockedText: django.pgettext('kosmo', 'This comment was blocked'),
-    highlightText: django.pgettext('kosmo', 'Highlight'),
-    unhighlightText: django.pgettext('kosmo', 'Unhighlight'),
-    isHighlightedText: django.pgettext('kosmo', 'Highlighted'),
-    unarchiveText: django.pgettext('kosmo', 'Unarchive'),
-    archivedText: django.pgettext('kosmo', 'Archived'),
-    editText: django.pgettext('kosmo', 'Edit feedback')
+    blockText: django.gettext('Block'),
+    unblockText: django.gettext('Unblock'),
+    isBlockedText: django.gettext('Blocked'),
+    replyText: django.gettext('Add feedback'),
+    blockedText: django.gettext('This comment was blocked'),
+    highlightText: django.gettext('Highlight'),
+    unhighlightText: django.gettext('Unhighlight'),
+    isHighlightedText: django.gettext('Highlighted'),
+    unreadText: django.gettext('Unread'),
+    readText: django.gettext('Read'),
+    editText: django.gettext('Edit feedback')
   }
 
   const {
@@ -78,8 +78,8 @@ export const ModerationNotificationActionsBar = (props) => {
           className="btn userdashboard-mod-notification__btn"
           onClick={onTogglePending}
           icon={<i className="fas fa-archive me-1" aria-hidden="true" />}
-          textMouseOn={translated.unarchiveText}
-          textMouseOff={translated.archivedText}
+          textMouseOn={translated.unreadText}
+          textMouseOff={translated.readText}
         />
       </div>
       )
