@@ -19,7 +19,6 @@ import {
   widget as ReactWidget
 } from 'adhocracy4'
 
-import { renderLiveQuestions, renderLiveQuestionsPresent } from '../../../apps/interactiveevents/assets/react_interactiveevents_init.jsx'
 import { renderLanguageChoice } from '../../../apps/organisations/assets/react_language_choice.jsx'
 
 function init () {
@@ -29,9 +28,6 @@ function init () {
   ReactWidget.initialise('a4', 'poll-management', ReactPolls.renderPollManagement)
   ReactWidget.initialise('a4', 'ratings', ReactRatings.renderRatings)
   ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
-
-  ReactWidget.initialise('aplus', 'questions', renderLiveQuestions)
-  ReactWidget.initialise('aplus', 'present', renderLiveQuestionsPresent)
 
   ReactWidget.initialise('euth', 'language-choice', renderLanguageChoice)
 

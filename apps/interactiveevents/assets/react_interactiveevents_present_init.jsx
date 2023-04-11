@@ -2,16 +2,16 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { widget as ReactWidget } from 'adhocracy4'
 
-import QuestionBox from './QuestionBox'
+import PresentBox from './PresentBox'
 
 function init () {
-  ReactWidget.initialise('aplus', 'questions',
+  ReactWidget.initialise('aplus', 'present',
     function (el) {
       const props = JSON.parse(el.dataset.attributes)
       const root = createRoot(el)
       root.render(
         <React.StrictMode>
-          <QuestionBox {...props} />
+          <PresentBox {...props} />
         </React.StrictMode>
       )
     }
