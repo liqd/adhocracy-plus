@@ -9,18 +9,18 @@ import { alert as Alert } from 'adhocracy4'
 const alertTime = 6000
 
 const translated = {
-  feedbackAdded: django.pgettext('kosmo', 'Your feedback was successfully delivered.'),
-  feedbackEdited: django.pgettext('kosmo', 'Your feedback was successfully updated.'),
-  feedbackDeleted: django.pgettext('kosmo', 'Your feedback was successfully deleted.'),
-  anotherFeedback: django.pgettext('kosmo', 'The comment has already been moderated. Your feedback could not be saved.'),
-  goToDiscussion: django.pgettext('kosmo', 'Go to discussion'),
-  commentBlocked: django.pgettext('kosmo', 'Comment blocked successfully.'),
-  commentUnblocked: django.pgettext('kosmo', 'Comment unblocked successfully.'),
-  commentHighlighted: django.pgettext('kosmo', 'Comment highlighted successfully.'),
-  commentUnhighlighted: django.pgettext('kosmo', 'Comment unhighlighted successfully.'),
-  notificationRead: django.pgettext('kosmo', 'Notification successfully marked as read.'),
-  notificationUnread: django.pgettext('kosmo', 'Notification successfully marked as unread.'),
-  aiClassified: django.pgettext('kosmo', 'AI')
+  feedbackAdded: django.gettext('Your feedback was successfully delivered.'),
+  feedbackEdited: django.gettext('Your feedback was successfully updated.'),
+  feedbackDeleted: django.gettext('Your feedback was successfully deleted.'),
+  anotherFeedback: django.gettext('The comment has already been moderated. Your feedback could not be saved.'),
+  goToDiscussion: django.gettext('Go to discussion'),
+  commentBlocked: django.gettext('Comment blocked successfully.'),
+  commentUnblocked: django.gettext('Comment unblocked successfully.'),
+  commentHighlighted: django.gettext('Comment highlighted successfully.'),
+  commentUnhighlighted: django.gettext('Comment unhighlighted successfully.'),
+  notificationRead: django.gettext('Notification successfully marked as read.'),
+  notificationUnread: django.gettext('Notification successfully marked as unread.'),
+  aiClassified: django.gettext('AI')
 }
 
 export const ModerationNotification = (props) => {
@@ -216,8 +216,7 @@ export const ModerationNotification = (props) => {
   // **** End notification methods ****
 
   function translatedReportText (reportsFound) {
-    const tmp = django.npgettext(
-      'kosmo',
+    const tmp = django.ngettext(
       '\'s {}comment{} has been reported 1 time since it\'s creation',
       '\'s {}comment{} has been reported %s times since it\'s creation',
       reportsFound
@@ -237,7 +236,7 @@ export const ModerationNotification = (props) => {
     user_profile_url: userProfileUrl,
     num_reports: numReports
   } = notification
-  const markReadText = django.pgettext('kosmo, verb', 'Mark as read')
+  const markReadText = django.gettext('Mark as read')
 
   let userImageDiv
   if (userImage) {
@@ -249,9 +248,9 @@ export const ModerationNotification = (props) => {
 
   let commentChangeLog
   if (isModified) {
-    commentChangeLog = django.pgettext('kosmo', 'Last edited on ' + created)
+    commentChangeLog = django.gettext('Last edited on ' + created)
   } else {
-    commentChangeLog = django.pgettext('kosmo', 'Created on ' + created)
+    commentChangeLog = django.gettext('Created on ' + created)
   }
 
   return (

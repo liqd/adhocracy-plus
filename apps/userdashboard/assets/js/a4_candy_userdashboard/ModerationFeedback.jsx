@@ -5,10 +5,10 @@ export const ModerationFeedback = (props) => {
   // eslint-disable-next-line no-unused-vars
   const { feedback_text: feedbackText, last_edit: lastEdit, pk } = props.feedback
   const translated = {
-    delete: django.pgettext('kosmo', 'delete'),
-    edit: django.pgettext('kosmo', 'edit'),
-    feedbackTitle: django.pgettext('kosmo', 'Moderator\'s feedback'),
-    editWasOn: django.pgettext('kosmo', 'Last edit was on ')
+    delete: django.gettext('delete'),
+    edit: django.gettext('edit'),
+    feedbackTitle: django.gettext('Moderator\'s feedback'),
+    editWasOn: django.gettext('Last edit was on ')
   }
 
   return (
