@@ -161,42 +161,52 @@ export default class ModerationNotificationList extends Component {
     const gotoTopText = django.gettext('Go to top')
 
     return (
-      <div className="row mb-2">
-        <div className="col-12">
-          <h1>
-            <a href={projectUrl}>{projectTitle}</a>
-          </h1>
-          <span className="text-muted">
-            {byText}
-            {organisation}
-          </span>
-          <div
-            className="filter-bar__filled"
-            aria-label={django.gettext('Filter')}
-          >
+      <>
+        <div className="row mb-2">
+          <div className="col-12">
+            <h1>
+              <a href={projectUrl}>{projectTitle}</a>
+            </h1>
+            <span className="text-muted">
+              {byText}
+              {organisation}
+            </span>
+          </div>
+        </div>
+
+        <div
+          className="row"
+          aria-label={django.pgettext('kosmo', 'Filter')}
+        >
+          <div className="col-md">
             <Filter
-              filterClass="mt-3 mt-lg-5 me-lg-3 dropdown dropdown-menu-end"
+              filterClass="filter--full dropdown dropdown-menu-end"
               filterItems={reportsFilterItems}
               onFilterChange={(value) => this.reportsFilterChangeHandle(value)}
               selectedFilter={this.state.selectedFilters.hasReports}
               filterText={django.gettext('Filter')}
             />
+          </div>
+          <div className="col-md">
             <Filter
-              filterClass="mt-3 mt-lg-5 mx-lg-3 dropdown dropdown-menu-end"
+              filterClass="filter--full dropdown dropdown-menu-end"
               filterItems={isReadFilterItems}
               onFilterChange={(value) => this.isReadFilterChangeHandle(value)}
               selectedFilter={this.state.selectedFilters.isRead}
               filterText={django.gettext('Filter')}
             />
+          </div>
+          <div className="col-md">
             <Filter
-              filterClass="mt-3 mt-lg-5 ms-lg-3 dropdown dropdown-menu-end"
+              filterClass="filter--full dropdown dropdown-menu-end"
               filterItems={orderingFilterItems}
               onFilterChange={(value) => this.orderingFilterChangeHandle(value)}
               selectedFilter={this.state.selectedFilters.ordering}
               filterText={django.gettext('Sorting')}
             />
           </div>
-
+        </div>
+        <div className="row">
           {!isLoaded
             ? (
               <div className="d-flex justify-content-center">
@@ -234,7 +244,7 @@ export default class ModerationNotificationList extends Component {
                 </div>
               </div>)}
         </div>
-      </div>
+      </>
     )
   }
 }
