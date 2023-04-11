@@ -1,23 +1,19 @@
 {% load i18n static %}
 
-<li class="card blueprint__tile">
-  <div class="row g-0">
-    <div class="col-lg-4 d-flex">
-      <div class="card-img-top blueprint__image" style="background-image: url({% static blueprint.image %});"></div>
-    </div>
-    <div class="col-lg-8">
-        <form class="card-body" action="{% url 'a4dashboard:module-create' organisation_slug=project.organisation.slug project_slug=project.slug blueprint_slug=blueprint_slug %}" method="POST">
-            {% csrf_token %}
-
-            <h5 class="card-title m-0">{{ blueprint.title }}</h5>
-            <p class="card-text">
-                {{ blueprint.description | linebreaks }}
-            </p>
-
-            <div class="text-end">
-                <input type="submit" class="btn btn--light list-item__cta" value="{% translate 'Add module' %}" />
-            </div>
-        </form>
-    </div>
+<li class="tile tile--horizontal">
+  <div class="tile__head">
+      <div class="tile__image tile__image--sm" style="background-image: url('{% static blueprint.image %}')"></div>
   </div>
+  <form class="tile__body" action="{% url 'a4dashboard:module-create' organisation_slug=project.organisation.slug project_slug=project.slug blueprint_slug=blueprint_slug %}" method="POST">
+    {% csrf_token %}
+
+      <h3 class="tile__title m-0">{{ blueprint.title }}</h3>
+      <div class="tile__text">
+          {{ blueprint.description | linebreaks }}
+      </div>
+
+      <div class="text-end">
+        <input type="submit" class="btn btn--light list-item__cta" value="{% translate 'Add module' %}" />
+    </div>
+  </form>
 </li>

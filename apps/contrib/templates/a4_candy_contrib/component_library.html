@@ -2178,24 +2178,23 @@
                         </li>
                     </ul>
                     <ul>
-                        <li class="card blueprint__tile mt-4">
-                            <div class="row g-0">
-                                <div class="col-lg-4 d-flex">
-                                    <div class="card-img-top blueprint__image" style="background-image: url(/static/images/brainstorming.svg);"></div>
-                                </div>
-                                <div class="col-lg-8">
-                                    <form class="card-body">
-                                        <h5 class="card-title m-0">Blueprint tile</h5>
-                                        <p class="card-text">
-                                        </p>
-                                        <p>Text describing the blueprint and what can be done during the participation.</p>
-                                        <p></p>
-
-                                        <input type="submit" class="btn btn--light ms-auto" value="Modul hinzufügen">
-                                    </form>
-                                </div>
+                        <li class="tile tile--horizontal">
+                            <div class="tile__head">
+                                <div class="tile__image tile__image--sm" style="background-image: url('/static/images/brainstorming.svg')"></div>
                             </div>
-                        </li>
+                            <form class="tile__body" action="/liqd-orga/dashboard/projects/polls/blueprints/brainstorming/" method="POST">
+                              <input type="hidden" name="csrfmiddlewaretoken" value="wuWmZYTvjFVInIaacFkOQ7KjvUy3SouoDN3oWhhSA1z7r57SPwBqMRREdHucSFwS">
+
+                                <h3 class="tile__title m-0">Brainstorming</h3>
+                                <div class="tile__text">
+                                    <p>Participants can submit their own ideas and discuss the ideas of others.</p>
+                                </div>
+
+                                <div class="text-end">
+                                  <input type="submit" class="btn btn--light list-item__cta" value="Add module">
+                              </div>
+                            </form>
+                          </li>
                     </ul>
                 </div>
 
