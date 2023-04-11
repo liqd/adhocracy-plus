@@ -5,20 +5,20 @@ import { ModerationNotification } from './ModerationNotification'
 import { Filter } from './Filter'
 
 const isReadFilterItems = [
-  { label: django.pgettext('kosmo', 'Read'), value: 'True' },
-  { label: django.pgettext('kosmo', 'Unread'), value: 'False' },
-  { label: django.pgettext('kosmo', 'View all'), value: 'All' }
+  { label: django.gettext('Read'), value: 'True' },
+  { label: django.gettext('Unread'), value: 'False' },
+  { label: django.gettext('View all'), value: 'All' }
 ]
 
 const reportsFilterItems = [
-  { label: django.pgettext('kosmo', 'Reported'), value: 'True' },
-  { label: django.pgettext('kosmo', 'All comments'), value: 'All' }
+  { label: django.gettext('Reported'), value: 'True' },
+  { label: django.gettext('All comments'), value: 'All' }
 ]
 
 const orderingFilterItems = [
-  { label: django.pgettext('kosmo', 'Most reported'), value: '-num_reports' },
-  { label: django.pgettext('kosmo', 'Oldest'), value: 'created' },
-  { label: django.pgettext('kosmo', 'Most recent'), value: '-created' }
+  { label: django.gettext('Most reported'), value: '-num_reports' },
+  { label: django.gettext('Oldest'), value: 'created' },
+  { label: django.gettext('Most recent'), value: '-created' }
 ]
 
 export default class ModerationNotificationList extends Component {
@@ -131,7 +131,7 @@ export default class ModerationNotificationList extends Component {
   render () {
     const { isLoaded } = this.state
     const { projectTitle, organisation, projectUrl } = this.props
-    const byText = django.pgettext('kosmo', 'By ')
+    const byText = django.gettext('By ')
 
     return (
       <div className="row mb-2">
@@ -145,28 +145,28 @@ export default class ModerationNotificationList extends Component {
           </span>
           <div
             className="filter-bar__filled"
-            aria-label={django.pgettext('kosmo', 'Filter')}
+            aria-label={django.gettext('Filter')}
           >
             <Filter
               filterClass="mt-3 mt-lg-5 me-lg-3 dropdown dropdown-menu-end"
               filterItems={reportsFilterItems}
               onFilterChange={(value) => this.reportsFilterChangeHandle(value)}
               selectedFilter={this.state.selectedFilters.hasReports}
-              filterText={django.pgettext('kosmo', 'Filter')}
+              filterText={django.gettext('Filter')}
             />
             <Filter
               filterClass="mt-3 mt-lg-5 mx-lg-3 dropdown dropdown-menu-end"
               filterItems={isReadFilterItems}
               onFilterChange={(value) => this.isReadFilterChangeHandle(value)}
               selectedFilter={this.state.selectedFilters.isRead}
-              filterText={django.pgettext('kosmo', 'Filter')}
+              filterText={django.gettext('Filter')}
             />
             <Filter
               filterClass="mt-3 mt-lg-5 ms-lg-3 dropdown dropdown-menu-end"
               filterItems={orderingFilterItems}
               onFilterChange={(value) => this.orderingFilterChangeHandle(value)}
               selectedFilter={this.state.selectedFilters.ordering}
-              filterText={django.pgettext('kosmo', 'Sorting')}
+              filterText={django.gettext('Sorting')}
             />
           </div>
 
