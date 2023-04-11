@@ -102,7 +102,7 @@ test('Unread clicks: reply --> highlight --> block', () => {
   expect(mockToggleFn).toHaveBeenCalledTimes(3)
 })
 
-test('Archived has one button', () => {
+test('Read has one button', () => {
   const mockUnread = false
   const tree = render(
     <ModerationNotificationActionsBar
@@ -113,7 +113,7 @@ test('Archived has one button', () => {
   expect(buttons.length).toBe(1)
 })
 
-test('Archived blocked shows blocked text', () => {
+test('Read blocked shows blocked text', () => {
   const mockUnread = false
   const mockBlocked = true
   const tree = render(
