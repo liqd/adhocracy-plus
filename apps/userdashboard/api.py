@@ -22,15 +22,10 @@ from . import serializers
 
 
 class ModerationCommentFilterSet(DefaultsRestFilterSet):
-    # FIXME: add this once read model is there
-    # is_read = BooleanFilter()
+    is_reviewed = BooleanFilter()
     has_reports = BooleanFilter()
 
-    defaults = {
-        # FIXME: add this once read model is there
-        #    "is_read": "false",
-        "has_reports": "all"
-    }
+    defaults = {"is_reviewed": "false", "has_reports": "all"}
 
 
 class ModerationCommentPagination(PageNumberPagination):
@@ -83,7 +78,8 @@ class ModerationCommentViewSet(
     @action(detail=True)
     def mark_read(self, request, **kwargs):
         comment = self.get_object()
-        # FIXME: mark comment as read here
+        comment.is_reviewed = True
+        comment.save()
         serializer = self.get_serializer(comment)
 
         return Response(data=serializer.data, status=200)
@@ -91,7 +87,8 @@ class ModerationCommentViewSet(
     @action(detail=True)
     def mark_unread(self, request, **kwargs):
         comment = self.get_object()
-        # FIXME: mark comment as unread here
+        comment.is_reviewed = False
+        comment.save()
         serializer = self.get_serializer(comment)
 
         return Response(data=serializer.data, status=200)
