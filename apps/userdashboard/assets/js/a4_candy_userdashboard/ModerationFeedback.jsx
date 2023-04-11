@@ -1,21 +1,21 @@
 import React from 'react'
 import django from 'django'
 
-export const ModerationStatement = (props) => {
+export const ModerationFeedback = (props) => {
   // eslint-disable-next-line no-unused-vars
-  const { feedback_text: feedbackText, last_edit: lastEdit, pk } = props.statement
+  const { feedback_text: feedbackText, last_edit: lastEdit, pk } = props.feedback
   const translated = {
     delete: django.pgettext('kosmo', 'delete'),
     edit: django.pgettext('kosmo', 'edit'),
-    statementTitle: django.pgettext('kosmo', 'Moderator\'s feedback'),
+    feedbackTitle: django.pgettext('kosmo', 'Moderator\'s feedback'),
     editWasOn: django.pgettext('kosmo', 'Last edit was on ')
   }
 
   return (
-    <div className="userdashboard-mod-statement">
+    <div className="userdashboard-mod-feedback">
       <div className="row">
-        <div className="col-7 col-md-8 userdashboard-mod-statement__header">
-          <div>{translated.statementTitle}</div>
+        <div className="col-7 col-md-8 userdashboard-mod-feedback__header">
+          <div>{translated.feedbackTitle}</div>
         </div>
         {props.notificationIsPending &&
           <div className="col">
