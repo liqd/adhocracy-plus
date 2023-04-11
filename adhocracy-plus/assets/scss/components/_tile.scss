@@ -11,10 +11,6 @@ $svg-colour: #2a3cd4;
     margin-bottom: $spacer;
 }
 
-.organisation__tile {
-    width: 100%;
-}
-
 .tile__head {
     position: relative;
 
@@ -97,6 +93,10 @@ $svg-colour: #2a3cd4;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: (1 * $padding) (1.5 * $padding) (1 * $padding) (1.5 * $padding);
+}
+
+.tile__body--status {
     padding: (1.5 * $padding) (1.5 * $padding) (0.5 * $padding) (1.5 * $padding);
 
     > :last-child {
@@ -170,13 +170,17 @@ $svg-colour: #2a3cd4;
         .tile__head {
             flex: 0 1 30%;
         }
+
+        .tile__head--wide {
+            flex: 0 1 20%;
+        }
     }
 
     .tile__image {
         min-height: 20rem;
     }
 
-    .tile__image--contained {
+    .tile__image--sm {
         min-height: 13rem;
     }
 }
