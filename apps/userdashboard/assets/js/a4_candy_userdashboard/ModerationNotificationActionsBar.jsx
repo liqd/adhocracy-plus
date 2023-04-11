@@ -18,7 +18,7 @@ export const ModerationNotificationActionsBar = (props) => {
   }
 
   const {
-    isPending,
+    isUnread,
     isEditing,
     isBlocked,
     isHighlighted,
@@ -28,7 +28,7 @@ export const ModerationNotificationActionsBar = (props) => {
     onTogglePending
   } = props
 
-  return isPending
+  return isUnread
     ? (
       <div className="my-3 d-flex flex-wrap justify-content-between">
         <button

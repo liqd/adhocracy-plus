@@ -294,7 +294,7 @@ export const ModerationNotification = (props) => {
         </div>
         <p>{commentText}</p>
         <ModerationNotificationActionsBar
-          isPending={notification.is_unread}
+          isUnread={notification.is_unread}
           isEditing={notification.moderator_feedback}
           isBlocked={notification.is_blocked}
           isHighlighted={notification.is_moderator_marked}
