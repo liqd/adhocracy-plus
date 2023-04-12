@@ -133,10 +133,10 @@ export const ModerationNotification = (props) => {
 
   // **** Start notification methods ****
 
-  async function toggleIsPending () {
+  async function toggleIsUnread () {
     const url = notification.is_unread
-      ? props.apiUrl + 'mark_read/'
-      : props.apiUrl + 'mark_unread/'
+      ? props.apiUrl + 'mark_read/' + props.getUrlParams()
+      : props.apiUrl + 'mark_unread/' + props.getUrlParams()
     const [response, error] =
       await api.fetch({
         url,
@@ -237,6 +237,7 @@ export const ModerationNotification = (props) => {
     num_reports: numReports
   } = notification
   const markReadText = django.gettext('Mark as read')
+  const markUnreadText = django.gettext('Mark as unread')
 
   let userImageDiv
   if (userImage) {
@@ -258,31 +259,30 @@ export const ModerationNotification = (props) => {
       <li className="list-item">
         <div className="d-flex flex-wrap">
           {userImageDiv}
-          {notification.is_unread &&
-            <div className="ms-auto order-lg-last">
-              <div className="dropdown">
-                <button
-                  type="button"
-                  className="dropdown-toggle btn btn--none"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  data-bs-toggle="dropdown"
-                >
-                  <i className="fas fa-ellipsis-v" aria-hidden="true" />
-                </button>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <li key="1">
-                    <button
-                      className="dropdown-item"
-                      type="button"
-                      onClick={() => toggleIsPending()}
-                    >
-                      {markReadText}
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>}
+          <div className="ms-auto order-lg-last">
+            <div className="dropdown">
+              <button
+                type="button"
+                className="dropdown-toggle btn btn--none"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-toggle="dropdown"
+              >
+                <i className="fas fa-ellipsis-v" aria-hidden="true" />
+              </button>
+              <ul className="dropdown-menu dropdown-menu-end">
+                <li key="1">
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => toggleIsUnread()}
+                  >
+                    {notification.is_unread ? markReadText : markUnreadText}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div className="pt-1">{commentChangeLog}</div>
         </div>
 
@@ -293,14 +293,12 @@ export const ModerationNotification = (props) => {
         </div>
         <p>{commentText}</p>
         <ModerationNotificationActionsBar
-          isUnread={notification.is_unread}
           isEditing={notification.moderator_feedback}
           isBlocked={notification.is_blocked}
           isHighlighted={notification.is_moderator_marked}
           onToggleForm={(isEditing) => toggleModerationFeedbackForm(isEditing)}
           onToggleBlock={() => toggleIsBlocked()}
           onToggleHighlight={() => toggleIsHighlighted()}
-          onTogglePending={() => toggleIsPending()}
         />
         {showFeedbackForm &&
           <ModerationFeedbackForm
@@ -311,7 +309,6 @@ export const ModerationNotification = (props) => {
           />}
         {notification.moderator_feedback && !showFeedbackForm &&
           <ModerationFeedback
-            notificationIsPending={notification.is_unread}
             feedback={notification.moderator_feedback}
             onDelete={handleFeedbackDelete}
             onEdit={() => {

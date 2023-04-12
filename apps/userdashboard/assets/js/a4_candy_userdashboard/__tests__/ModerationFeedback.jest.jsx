@@ -26,7 +26,6 @@ test('ModerationFeedback onDelete', () => {
     <ModerationFeedback
       feedback={mockProps}
       onDelete={mockOnDelete}
-      notificationIsPending
     />)
   const deleteButton = tree.container.querySelector('#delete-input')
   fireEvent.click(deleteButton)
@@ -44,7 +43,6 @@ test('ModerationFeedback onEdit', () => {
     <ModerationFeedback
       feedback={mockProps}
       onEdit={mockOnEdit}
-      notificationIsPending
     />)
   const editButton = tree.container.querySelector('#edit-input')
   fireEvent.click(editButton)
