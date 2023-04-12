@@ -211,6 +211,7 @@ export default class ModerationNotificationList extends Component {
                       key={i}
                       notification={item}
                       apiUrl={this.props.moderationCommentsApiUrl + item.pk + '/'}
+                      getUrlParams={() => this.getUrlParams()}
                       loadData={() => this.loadData()}
                     />
                   ))}
