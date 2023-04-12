@@ -7,6 +7,7 @@ from adhocracy4.actions.verbs import Verbs
 from adhocracy4.dashboard import signals as dashboard_signals
 from adhocracy4.follows.models import Follow
 from adhocracy4.projects.models import Project
+from apps.moderatorfeedback.models import ModeratorCommentFeedback
 
 from . import emails
 
@@ -44,6 +45,11 @@ def send_project_created_notifications(**kwargs):
 @receiver(signals.post_delete, sender=Project)
 def send_project_deleted_notifications(sender, instance, **kwargs):
     emails.NotifyInitiatorsOnProjectDeletedEmail.send_no_object(instance)
+
+
+@receiver(signals.post_save, sender=ModeratorCommentFeedback)
+def send_moderator_comment_feedback_notification(instance, **kwargs):
+    emails.NotifyCreatorOnModeratorCommentFeedback.send(instance)
 
 
 @receiver(signals.m2m_changed, sender=Project.moderators.through)

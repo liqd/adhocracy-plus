@@ -1,0 +1,45 @@
+{% extends 'email_base.'|add:part_type %}
+{% load class_name i18n %}
+
+{% block subject %}
+{% blocktranslate %}Your contribution was deleted{% endblocktranslate %}
+{% endblock %}
+
+{% block headline %}
+{% blocktranslate %}Your contribution was deleted{% endblocktranslate %}
+{% endblock  %}
+
+{% block sub-headline %}
+<div style="text-transform: uppercase; margin-bottom: 2em">{{ project.name }}</div>
+{% endblock  %}
+
+
+{% block greeting %}
+{% blocktranslate with receiver_name=receiver.username %}Hello <strong>{{ receiver_name }}</strong>,{% endblocktranslate %}
+{% endblock %}
+
+{% block content %}
+{% blocktranslate with project_name=project.name %}Your contribution in the project <strong>"{{ project_name }}"</strong> was deleted by the moderator.{% endblocktranslate %} {{ netiquette_link | safe }} {% blocktranslate %}Please pay attention to the basic rules when writing contributions. In this way we create a pleasant atmosphere for an open exchange and achieve good results.{% endblocktranslate %}
+
+{% blocktranslate %}Thank you very much!{% endblocktranslate %}
+
+<strong>
+    {% blocktranslate %}Your contribution:{% endblocktranslate %}
+</strong>
+
+<p style="margin-bottom: 1em">
+    {{ comment.comment }}
+</p>
+{% endblock %}
+
+{% block cta_url %}
+{{ email.get_host }}{{ discussion_url }}
+{% endblock %}
+
+{% block cta_label %}
+{% blocktranslate %}Show discussion{% endblocktranslate %}
+{% endblock %}
+
+{% block reason %}
+{% blocktranslate with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. This email was sent to you because of your participation in the project.{% endblocktranslate %} {{ account_link | safe }}
+{% endblock %}
