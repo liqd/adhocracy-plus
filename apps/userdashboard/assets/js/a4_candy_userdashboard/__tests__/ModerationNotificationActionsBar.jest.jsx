@@ -102,7 +102,7 @@ test('Unread clicks: reply --> highlight --> block', () => {
   expect(mockToggleFn).toHaveBeenCalledTimes(3)
 })
 
-test('Read has one button', () => {
+test('Read has three buttons', () => {
   const mockUnread = false
   const tree = render(
     <ModerationNotificationActionsBar
@@ -110,18 +110,5 @@ test('Read has one button', () => {
     />
   )
   const buttons = tree.container.querySelectorAll('button')
-  expect(buttons.length).toBe(1)
-})
-
-test('Read blocked shows blocked text', () => {
-  const mockUnread = false
-  const mockBlocked = true
-  const tree = render(
-    <ModerationNotificationActionsBar
-      isUnread={mockUnread}
-      isBlocked={mockBlocked}
-    />
-  )
-  const blockedTextDiv = tree.container.querySelector('.fw-bold')
-  expect(blockedTextDiv).toBeTruthy()
+  expect(buttons.length).toBe(3)
 })

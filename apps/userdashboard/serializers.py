@@ -96,8 +96,7 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
             return ""
 
     def get_is_unread(self, comment):
-        # FIXME: return actual value here
-        return True
+        return not comment.is_reviewed
 
     def update(self, instance, validated_data):
         """Update comment instance without changing comment.modified.
