@@ -20,7 +20,9 @@ const translated = {
   commentUnhighlighted: django.gettext('Comment unhighlighted successfully.'),
   notificationRead: django.gettext('Notification successfully marked as read.'),
   notificationUnread: django.gettext('Notification successfully marked as unread.'),
-  aiClassified: django.gettext('AI')
+  aiClassified: django.gettext('AI'),
+  postedComment: django.gettext('posted a'),
+  comment: django.gettext('comment')
 }
 
 export const ModerationNotification = (props) => {
@@ -255,8 +257,8 @@ export const ModerationNotification = (props) => {
   }
 
   return (
-    <>
-      <li className="list-item">
+    <li>
+      <div className="u-border p-4">
         <div className="d-flex flex-wrap">
           {userImageDiv}
           <div className="ms-auto order-lg-last">
@@ -283,14 +285,19 @@ export const ModerationNotification = (props) => {
               </ul>
             </div>
           </div>
-          <div className="pt-1">{commentChangeLog}</div>
+          <div>
+            <p className="m-0">{userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {translated.postedComment} <a href={commentUrl}>{translated.comment}</a></p>
+            <p className="m-0">{commentChangeLog}</p>
+          </div>
         </div>
 
-        <div>
-          <i className="fas fa-exclamation-circle me-1" aria-hidden="true" />
-          <strong>{userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName}</strong>
-          {getLink(translatedReportText(numReports), commentUrl)}
-        </div>
+        {numReports > 0 &&
+          <div>
+            <i className="fas fa-exclamation-circle me-1" aria-hidden="true" />
+            <strong>{userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName}</strong>
+            {getLink(translatedReportText(numReports), commentUrl)}
+          </div>}
+
         <p>{commentText}</p>
         <ModerationNotificationActionsBar
           isEditing={notification.moderator_feedback}
@@ -300,13 +307,6 @@ export const ModerationNotification = (props) => {
           onToggleBlock={() => toggleIsBlocked()}
           onToggleHighlight={() => toggleIsHighlighted()}
         />
-        {showFeedbackForm &&
-          <ModerationFeedbackForm
-            onSubmit={(payload) => handleFeedbackSubmit(payload)}
-            onEditSubmit={(payload) => handleFeedbackEdit(payload)}
-            initialFeedback={notification.moderator_feedback}
-            editing={isEditing}
-          />}
         {notification.moderator_feedback && !showFeedbackForm &&
           <ModerationFeedback
             feedback={notification.moderator_feedback}
@@ -316,10 +316,17 @@ export const ModerationNotification = (props) => {
               setIsEditing(true)
             }}
           />}
-      </li>
+      </div>
+      {showFeedbackForm &&
+        <ModerationFeedbackForm
+          onSubmit={(payload) => handleFeedbackSubmit(payload)}
+          onEditSubmit={(payload) => handleFeedbackEdit(payload)}
+          initialFeedback={notification.moderator_feedback}
+          editing={isEditing}
+        />}
       <div className="mb-3">
         <Alert {...alert} onClick={() => setAlert(null)} />
       </div>
-    </>
+    </li>
   )
 }
