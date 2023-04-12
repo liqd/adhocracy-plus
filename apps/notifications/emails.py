@@ -118,6 +118,28 @@ class NotifyCreatorOnModeratorBlocked(Email):
         return context
 
 
+class NotifyCreatorOnModeratorCommentFeedback(Email):
+    template_name = (
+        "a4_candy_notifications/emails" "/notify_creator_on_moderator_comment_feedback"
+    )
+
+    def get_organisation(self):
+        return self.object.project.organisation
+
+    def get_receivers(self):
+        receivers = [self.object.comment.creator]
+        receivers = _exclude_notifications_disabled(receivers)
+        return receivers
+
+    def get_context(self):
+        context = super().get_context()
+        context["project"] = self.object.project
+        context["moderator_name"] = self.object.creator.username
+        context["moderator_feedback"] = self.object.feedback_text
+        context["comment_url"] = self.object.comment.get_absolute_url()
+        return context
+
+
 class NotifyModeratorsEmail(Email):
     template_name = "a4_candy_notifications/emails/notify_moderator"
 
