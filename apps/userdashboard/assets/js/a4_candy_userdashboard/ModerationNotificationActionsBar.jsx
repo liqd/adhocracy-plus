@@ -27,7 +27,7 @@ export const ModerationNotificationActionsBar = (props) => {
   } = props
 
   return (
-    <div className="my-3 d-flex flex-wrap justify-content-between">
+    <div className="d-flex flex-wrap justify-content-between">
       <button
         id="moderation-notification-actions-bar-button-reply"
         className="btn px-0 userdashboard-mod-notification__btn"
@@ -47,7 +47,7 @@ export const ModerationNotificationActionsBar = (props) => {
           className="btn userdashboard-mod-notification__btn"
           onClick={onToggleHighlight}
           disabled={isBlocked}
-          icon={<i className="icon-fo-highlight" aria-hidden="true" />}
+          icon={<i className="fas fa-highlighter" aria-hidden="true" />}
           textMouseOff={isHighlighted ? translated.isHighlightedText : translated.highlightText}
           textMouseOn={isHighlighted ? translated.unhighlightText : translated.highlightText}
         />

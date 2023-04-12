@@ -215,7 +215,7 @@ export default class ModerationNotificationList extends Component {
               )
             : (
               <div>
-                <ul className="ps-0 mt-4">
+                <ul className="u-list-reset">
                   {this.state.moderationComments.map((item, i) => (
                     <ModerationNotification
                       key={i}
