@@ -9,9 +9,11 @@ function init () {
       const chapters = JSON.parse(el.dataset.chapters)
       const module = el.dataset.module
       const config = JSON.parse(el.dataset.config)
-      const reloadOnSuccess = JSON.parse(el.dataset.reloadOnSuccess)
-      const root = createRoot(el)
 
+      // used getAttribute as returns string that can be parsed as json
+      const reloadOnSuccess = JSON.parse(el.getAttribute('data-reloadOnSuccess'))
+
+      const root = createRoot(el)
       root.render(
         <React.StrictMode>
           <DocumentManagement
