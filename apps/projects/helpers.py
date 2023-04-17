@@ -1,6 +1,7 @@
 from datetime import timedelta
 
 from django.contrib.contenttypes.models import ContentType
+from django.db.models import Count
 from django.db.models import Q
 from django.utils import timezone
 
@@ -48,3 +49,12 @@ def get_num_latest_comments(project, until={"days": 7}):
     return all_comments_project.filter(
         created__gte=timezone.now() - timedelta(**until)
     ).count()
+
+
+def get_num_reported_unread_comments(project):
+    unread_comments = get_all_comments_project(project).filter(is_reviewed=False)
+    return (
+        unread_comments.annotate(num_reports=Count("reports", distinct=True))
+        .filter(num_reports__gt=0)
+        .count()
+    )
