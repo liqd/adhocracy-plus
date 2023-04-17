@@ -7,11 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
   entry: {
     adhocracy4: {
-      import: [ // array of entry points
-        '@fortawesome/fontawesome-free/scss/fontawesome.scss',
-        '@fortawesome/fontawesome-free/scss/brands.scss',
-        '@fortawesome/fontawesome-free/scss/regular.scss',
-        '@fortawesome/fontawesome-free/scss/solid.scss',
+      import: [ // array of elements in entry point
         'select2/dist/css/select2.min.css',
         'slick-carousel/slick/slick.css',
         './adhocracy-plus/assets/extra_css/_slick-theme.css',
@@ -23,6 +19,15 @@ module.exports = {
         name: '[name]',
         type: 'this'
       }
+    },
+    fonts: {
+      import: [
+        '@fortawesome/fontawesome-free/scss/fontawesome.scss',
+        '@fortawesome/fontawesome-free/scss/brands.scss',
+        '@fortawesome/fontawesome-free/scss/regular.scss',
+        '@fortawesome/fontawesome-free/scss/solid.scss',
+        './adhocracy-plus/assets/scss/_fonts.scss'
+      ]
     },
     captcheck: {
       import: [

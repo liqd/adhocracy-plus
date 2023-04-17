@@ -1,41 +1,59 @@
 @font-face {
     font-family: "SourceSerifPro";
-    src: url("../fonts/SourceSerifPro-Regular.otf");
     font-style: normal;
     font-weight: normal;
+    src: local(""),
+        url("../fonts/SourceSerifPro-Regular.woff2") format("woff2"),
+        url("../fonts/SourceSerifPro-Regular.woff") format("woff");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "SourceSerifPro";
-    src: url("../fonts/SourceSerifPro-It.otf");
     font-style: italic;
     font-weight: normal;
+    src: local(""),
+        url("../fonts/SourceSerifPro-It.woff2") format("woff2"),
+        url("../fonts/SourceSerifPro-It.woff") format("woff");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "SourceSansPro";
-    src: url("../fonts/SourceSansPro-Regular.otf");
     font-style: normal;
     font-weight: normal;
+    src: local(""),
+        url("../fonts/SourceSansPro-Regular.woff2") format("woff2"),
+        url("../fonts/SourceSansPro-Regular.woff") format("woff");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "SourceSansPro";
-    src: url("../fonts/SourceSansPro-It.otf");
     font-style: italic;
     font-weight: normal;
+    src: local(""),
+        url("../fonts/SourceSansPro-It.woff2") format("woff2"),
+        url("../fonts/SourceSansPro-It.woff") format("woff");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "SourceSansPro";
-    src: url("../fonts/SourceSansPro-Semibold.otf");
     font-style: normal;
     font-weight: 600;
+    src: local(""),
+        url("../fonts/SourceSansPro-Semibold.woff2") format("woff2"),
+        url("../fonts/SourceSansPro-Semibold.woff") format("woff");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "SourceSansPro";
-    src: url("../fonts/SourceSansPro-Bold.otf");
     font-style: bold;
     font-weight: 900;
+    src: local(""),
+        url("../fonts/SourceSansPro-Bold.woff2") format("woff2"),
+        url("../fonts/SourceSansPro-Bold.woff") format("woff");
+    font-display: swap;
 }
