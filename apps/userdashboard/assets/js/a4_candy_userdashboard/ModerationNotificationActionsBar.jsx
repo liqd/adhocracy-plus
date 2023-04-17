@@ -21,6 +21,7 @@ export const ModerationNotificationActionsBar = (props) => {
     isEditing,
     isBlocked,
     isHighlighted,
+    itemPk,
     onToggleForm,
     onToggleBlock,
     onToggleHighlight
@@ -29,7 +30,7 @@ export const ModerationNotificationActionsBar = (props) => {
   return (
     <div className="d-flex flex-wrap justify-content-between">
       <button
-        id="moderation-notification-actions-bar-button-reply"
+        id={'moderation-notification-actions-bar-button-reply-' + itemPk}
         className="btn px-0 userdashboard-mod-notification__btn"
         type="button"
         onClick={() => onToggleForm(!!isEditing)}
@@ -43,7 +44,7 @@ export const ModerationNotificationActionsBar = (props) => {
       </button>
       <div>
         <HoverButton
-          id="moderation-notification-actions-bar-button-highlight"
+          id={'moderation-notification-actions-bar-button-highlight-' + itemPk}
           className="btn userdashboard-mod-notification__btn"
           onClick={onToggleHighlight}
           disabled={isBlocked}
@@ -52,7 +53,7 @@ export const ModerationNotificationActionsBar = (props) => {
           textMouseOn={isHighlighted ? translated.unhighlightText : translated.highlightText}
         />
         <HoverButton
-          id="moderation-notification-actions-bar-button-block"
+          id={'moderation-notification-actions-bar-button-block-' + itemPk}
           className="btn userdashboard-mod-notification__btn"
           onClick={onToggleBlock}
           disabled={isHighlighted}

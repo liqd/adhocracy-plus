@@ -3,12 +3,9 @@
 
 {% block content %}
     {% block dashboard_nav %}
-    <h1 class="sr-only">
-      {% trans 'Your User Overview' %}
-    </h1>
     <div class="tablist tablist--left mt-3">
         <div class="container">
-            <nav class="d-none d-sm-inline-block" aria-label="{% trans 'Dashboard' %}">
+            <nav class="d-none d-sm-inline-block" aria-label="{% trans 'My dashboard' %}">
                 <a href="{% url 'userdashboard-overview' %}"
                    class="tab {% ifequal view.menu_item 'overview' %}active{% endifequal %}">
 
@@ -28,8 +25,9 @@
 
     <div class="container">
         <div class="row py-md-4 mb-5">
+
           <!-- hide user side menu on load more pages on mobile -->
-            <div class="col-sm-4 col-lg-3 {% if '/following' in request.get_full_path or '/activities' in request.get_full_path %} d-none d-sm-block {% endif %}">
+            <nav aria-label="{% trans 'My profile' %}" class="col-sm-4 col-lg-3 {% if '/following' in request.get_full_path or '/activities' in request.get_full_path %} d-none d-sm-block {% endif %}">
                 <div class="tabpanel userdashboard-profile userdashboard-profile__side">
 
                     <div class="userdashboard-profile__user mb-3">
@@ -51,7 +49,7 @@
                             </div>
                         </div>
 
-                        <a href="{% url 'profile' user.username %}">
+                        <a href="{% url 'profile' user.username %}" aria-label="{% trans 'Link to profile:' %}{{ user.username }}">
                             {% if user.avatar %}
                                 <img class="userdashboard-profile__avatar mb-2" src="{% thumbnail user.avatar '170x170' crop %}" alt="" />
                             {% else %}
@@ -80,9 +78,16 @@
                       <div>
                           <a class="btn btn--link text-decoration-none text-muted d-flex align-items-center" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
                             {% if organisation.logo %}
-                              <img src="{% thumbnail organisation.logo '0x40' %}" alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}" />
+                              <img
+                                src="{% thumbnail organisation.logo '0x40' %}"
+                                alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}"
+                              />
                             {% else %}
-                              <i class="fas fa-home font--lg action__icon" aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"></i>
+                              <i
+                                class="fas fa-home font--lg action__icon"
+                                role="img"
+                                aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
+                              ></i>
                             {% endif %}
                             <div class="ms-3 text-start">{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}</div>
                           </a>
@@ -92,24 +97,33 @@
 
                     <!-- mobile -->
                     <div class="d-sm-none mb-4">
-                        <div class="userdashboard__dropdown dropdown mb-3"
-                        data-bs-toggle="collapse"
-                        href="#userDashboardCollapseOrgInt"
-                        aria-expanded="true"
-                        aria-controls="#userDashboardCollapseOrgInt"
-                        data-bs-target="#userDashboardCollapseOrgInt">
-                          <h2 class="fs-6">{% trans 'Initiator Organisations' %}</h2>
-                            <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                        </div>
-                        <ul class="u-list-reset collapse show" id="userDashboardCollapseOrgInt" aria-hidden="false">
+                        <h2 class="fs-6">
+                            <button class="userdashboard__collapsible"
+                                aria-expanded="true"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#userDashboardCollapseOrgInt"
+                                aria-controls="userDashboardCollapseOrgInt"
+                            >
+                              {% trans 'Initiator Organisations' %}
+                              <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                            </button>
+                        </h2>
+                        <ul class="u-list-reset collapse show" id="userDashboardCollapseOrgInt">
                           {% for organisation in request.user.organisations %}
                                 <li>
                                    <a href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}"
                                       class="text-decoration-none text-muted d-flex align-items-center mb-2" >
                                      {% if organisation.logo %}
-                                       <img src="{% thumbnail organisation.logo '0x40' %}" alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}" />
+                                       <img
+                                        src="{% thumbnail organisation.logo '0x40' %}"
+                                        alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}"
+                                      />
                                      {% else %}
-                                       <i class="fas fa-home font--lg action__icon" aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"></i>
+                                       <i
+                                        class="fas fa-home font--lg action__icon"
+                                        role="img"
+                                        aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
+                                      ></i>
                                      {% endif %}
                                      <div class="ms-3 text-start">{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}</div>
                                    </a>
@@ -128,9 +142,16 @@
                         {% for organisation in view.organisations %}
                         <a class="btn btn--link text-decoration-none text-muted d-flex align-items-center" href="{% url 'organisation' organisation_slug=organisation.slug %}">
                           {% if organisation.logo %}
-                            <img src="{% thumbnail organisation.logo '0x40' %}" alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}" />
+                            <img
+                              src="{% thumbnail organisation.logo '0x40' %}"
+                              alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}"
+                            />
                           {% else %}
-                            <i class="fas fa-home font--lg action__icon" aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"></i>
+                            <i
+                              class="fas fa-home font--lg action__icon"
+                              role="img"
+                              aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
+                            ></i>
                           {% endif %}
                             <div class="ms-3 text-start">{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}</div>
                         </a>
@@ -142,20 +163,23 @@
                         </div>
                         {% endif %}
                     </div>
+
                     <!-- mobile -->
                     <div class="d-sm-none mb-4">
                       {% if view.organisations %}
-                        <div  class="userdashboard__dropdown dropdown mb-3"
-                              data-bs-toggle="collapse"
-                              href="#userDashboardCollapseOrg"
-                              aria-expanded="true"
-                              aria-controls="#userDashboardCollapseOrg"
-                              data-bs-target="#userDashboardCollapseOrg">
-
-                            <h2 class="fs-6">{% trans 'Organisations' %}</h2>
+                    <h2 class="fs-6">
+                        <button
+                            class="userdashboard__collapsible"
+                            aria-expanded="true"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#userDashboardCollapseOrg"
+                            aria-controls="userDashboardCollapseOrg"
+                        >
+                            {% trans 'Organisations' %}
                             <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                        </div>
-                        <ul class="u-list-reset collapse show" id="userDashboardCollapseOrg" aria-hidden="false">
+                        </button>
+                    </h2>
+                        <ul class="u-list-reset collapse show" id="userDashboardCollapseOrg">
                           {% for organisation in view.organisations %}
                                 <li>
                                    <a href="{% url 'organisation' organisation_slug=organisation.slug %}"
@@ -163,7 +187,11 @@
                                      {% if organisation.logo %}
                                        <img src="{% thumbnail organisation.logo '0x40' %}" alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}" />
                                      {% else %}
-                                       <i class="fas font--lg fa-home action__icon" aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"></i>
+                                       <i
+                                        class="fas font--lg fa-home action__icon"
+                                        role="img"
+                                        aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
+                                      ></i>
                                      {% endif %}
                                      <div class="ms-3 text-start">{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}</div>
                                    </a>
@@ -180,8 +208,9 @@
                         {% endif %}
                     </div>
                     <!-- mobile end -->
+
                 </div>
-            </div>
+            </nav>
             {% endblock %}
 
             <div class="col-sm-8 col-lg-9">
