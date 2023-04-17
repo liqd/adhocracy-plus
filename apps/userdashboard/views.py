@@ -64,30 +64,40 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
         initiators.
         """
         user = self.request.user
-        comment_actions = Action.objects.filter(
-            obj_content_type=ContentType.objects.get_for_model(Comment), verb="add"
-        ).exclude(
-            target_content_type__in=[
-                ContentType.objects.get_for_model(Poll),
-                ContentType.objects.get_for_model(Chapter),
-            ]
+        comment_actions = (
+            Action.objects.filter(
+                obj_content_type=ContentType.objects.get_for_model(Comment),
+                verb="add",
+            )
+            .exclude(
+                target_content_type__in=[
+                    ContentType.objects.get_for_model(Poll),
+                    ContentType.objects.get_for_model(Chapter),
+                ]
+            )
+            .exclude(
+                actor=user,
+            )
+            .select_related("actor", "project")
+            .prefetch_related("obj", "target__creator")
         )
         filtered_comment_actions = [
             action
             for action in comment_actions
-            if not action.obj.is_blocked
-            and action.target.creator == user
-            and action.actor != user
+            if not action.obj.is_blocked and action.target.creator == user
         ]
-        feedback_actions = Action.objects.filter(
-            obj_content_type=ContentType.objects.get_for_model(
-                ModeratorCommentFeedback
-            ),
+        feedback_actions = (
+            Action.objects.filter(
+                obj_content_type=ContentType.objects.get_for_model(
+                    ModeratorCommentFeedback
+                ),
+            )
+            .exclude(actor=user)
+            .select_related("project", "project__organisation")
+            .prefetch_related("obj__comment__creator", "obj__comment__content_object")
         )
         filtered_feedback_actions = [
-            action
-            for action in feedback_actions
-            if action.obj.comment.creator == user and action.actor != user
+            action for action in feedback_actions if action.obj.comment.creator == user
         ]
         return sorted(
             filtered_comment_actions + filtered_feedback_actions,
@@ -107,8 +117,6 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
             + list(sorted_future_projects)
             + list(sorted_past_projects)
         )[:8]
-        for project in projects:
-            project.latest_comments_num = helpers.get_num_latest_comments(project)
 
         return projects
 
@@ -125,30 +133,40 @@ class UserDashboardActivitiesView(UserDashboardBaseMixin):
         initiators.
         """
         user = self.request.user
-        comment_actions = Action.objects.filter(
-            obj_content_type=ContentType.objects.get_for_model(Comment), verb="add"
-        ).exclude(
-            target_content_type__in=[
-                ContentType.objects.get_for_model(Poll),
-                ContentType.objects.get_for_model(Chapter),
-            ]
+        comment_actions = (
+            Action.objects.filter(
+                obj_content_type=ContentType.objects.get_for_model(Comment), verb="add"
+            )
+            .exclude(
+                target_content_type__in=[
+                    ContentType.objects.get_for_model(Poll),
+                    ContentType.objects.get_for_model(Chapter),
+                ]
+            )
+            .exclude(
+                actor=user,
+            )
+            .select_related("actor", "project")
+            .prefetch_related("obj", "target__creator")
         )
+
         filtered_comment_actions = [
             action
             for action in comment_actions
-            if not action.obj.is_blocked
-            and action.target.creator == user
-            and action.actor != user
+            if not action.obj.is_blocked and action.target.creator == user
         ]
-        feedback_actions = Action.objects.filter(
-            obj_content_type=ContentType.objects.get_for_model(
-                ModeratorCommentFeedback
-            ),
+        feedback_actions = (
+            Action.objects.filter(
+                obj_content_type=ContentType.objects.get_for_model(
+                    ModeratorCommentFeedback
+                ),
+            )
+            .exclude(actor=user)
+            .select_related("project")
+            .prefetch_related("obj__comment__creator")
         )
         filtered_feedback_actions = [
-            action
-            for action in feedback_actions
-            if action.obj.comment.creator == user and action.actor != user
+            action for action in feedback_actions if action.obj.comment.creator == user
         ]
         return sorted(
             filtered_comment_actions + filtered_feedback_actions,

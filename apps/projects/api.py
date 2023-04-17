@@ -4,10 +4,9 @@ from rest_framework import viewsets
 from adhocracy4.modules.models import Module
 from adhocracy4.projects.models import Project
 
-from . import helpers
 from .serializers import AppModuleSerializer
 from .serializers import AppProjectSerializer
-from .serializers import ProjectSerializer
+from .serializers import ModerationProjectSerializer
 
 
 class AppProjectsViewSet(viewsets.ReadOnlyModelViewSet):
@@ -30,12 +29,8 @@ class AppModuleViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class ModerationProjectsViewSet(viewsets.ReadOnlyModelViewSet):
-    serializer_class = ProjectSerializer
+    serializer_class = ModerationProjectSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
-        project_report_count = {
-            project: helpers.get_num_reports(project)
-            for project in list(self.request.user.project_moderator.all())
-        }
-        return sorted(project_report_count, key=project_report_count.get, reverse=True)
+        return self.request.user.project_moderator.all().select_related("organisation")
