@@ -30,6 +30,23 @@
     width: 100%;
 }
 
+.userdashboard__collapsible {
+    position: relative;
+    width: 100%;
+    font-size: inherit;
+    font-family: inherit;
+
+    i.fa-chevron-up {
+        position: absolute;
+        right: 0;
+        transition: transform 0.3s;
+    }
+
+    &.collapsed i.fa-chevron-up {
+        transform: rotate(-180deg);
+    }
+}
+
 .userdashboard__mobile-nav-link {
     width: 100%;
     display: flex;

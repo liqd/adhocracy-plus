@@ -159,14 +159,18 @@ export default class ModerationNotificationList extends Component {
     const byText = django.gettext('By ')
     const loadmoreText = django.gettext('Load more')
     const gotoTopText = django.gettext('Go to top')
+    const listText = django.gettext('Notifications of comments from project')
+    const filterText = django.gettext('Notification filters and sorting')
+    const headerText = django.gettext('Moderation project')
 
     return (
       <>
         <div className="row mb-2">
           <div className="col-12">
-            <h1>
+            <h1 className="visually-hidden">{headerText}</h1>
+            <h2 className="mt-2">
               <a href={projectUrl}>{projectTitle}</a>
-            </h1>
+            </h2>
             <span className="text-muted">
               {byText}
               {organisation}
@@ -174,9 +178,9 @@ export default class ModerationNotificationList extends Component {
           </div>
         </div>
 
-        <div
+        <nav
           className="row"
-          aria-label={django.pgettext('kosmo', 'Filter')}
+          aria-label={filterText}
         >
           <div className="col-md">
             <Filter
@@ -205,8 +209,8 @@ export default class ModerationNotificationList extends Component {
               filterText={django.gettext('Sorting')}
             />
           </div>
-        </div>
-        <div className="row">
+        </nav>
+        <section aria-labelledby="list-header" className="row">
           {!isLoaded
             ? (
               <div className="d-flex justify-content-center">
@@ -215,6 +219,7 @@ export default class ModerationNotificationList extends Component {
               )
             : (
               <div>
+                <h3 id="list-header" className="visually-hidden">{listText}</h3>
                 <ul className="u-list-reset">
                   {this.state.moderationComments.map((item, i) => (
                     <ModerationNotification
@@ -243,7 +248,7 @@ export default class ModerationNotificationList extends Component {
                   </button>
                 </div>
               </div>)}
-        </div>
+        </section>
       </>
     )
   }

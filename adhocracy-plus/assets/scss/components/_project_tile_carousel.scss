@@ -56,6 +56,10 @@
             background-color: $body-bg;
         }
 
+        &:focus-visible {
+            @include fake-focus;
+        }
+
         &:before {
             color: $gray;
             opacity: 1;

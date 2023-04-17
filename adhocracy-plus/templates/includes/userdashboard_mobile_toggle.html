@@ -1,35 +1,31 @@
 {% load i18n rules %}
     {% has_perm 'a4_candy_userdashboard.view_moderation_dashboard' user as user_is_moderator %}
     {% if user_is_moderator %}
-    <ul class="nav d-inline-block d-sm-none userdashboard__mobile-nav-toggle" role="tablist">
-        <li class="nav-item dropdown">
-          <a
-              class="nav-link dropdown-toggle tab active userdashboard__mobile-nav-link"
-              data-bs-toggle="dropdown"
-              href="#"
-              role="button"
-              aria-haspopup="true"
-              aria-expanded="false">
+    <nav class="nav d-inline-block d-sm-none userdashboard__mobile-nav-toggle">
+        <ul class="u-list-reset">
+            <li class="nav-item dropdown">
+              <a
+                  class="nav-link dropdown-toggle tab active userdashboard__mobile-nav-link"
+                  class="navbar-toggler"
+                  type="button"
+                  aria-label="Toggle navigation"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
               {% if view.menu_item == 'moderation' %}
                 {% trans 'Moderation' %}
               {% else %}
                 {% trans 'Overview' %}
               {% endif %}
               <i class="fa fa-caret-down" aria-hidden="true"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end">
-              <a class="dropdown-item"
-                 href="{% url 'userdashboard-overview' %}">
-                  {% trans 'Overview' %}
               </a>
-              <a class="dropdown-item"
-                 href="{% url 'userdashboard-moderation' %}">
-
-                  {% trans 'Moderation' %}
-              </a>
-          </div>
-        </li>
-    </ul>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'userdashboard-overview' %}">{% trans 'Overview' %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'userdashboard-moderation' %}">{% trans 'Moderation' %}</a></li>
+              </ul>
+            </li>
+        </ul>
+    </nav>
     {% else %}
     <nav class="d-inline-block d-sm-none" aria-label="{% trans 'Dashboard' %}">
         <a href="{% url 'userdashboard-overview' %}"

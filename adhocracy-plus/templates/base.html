@@ -35,6 +35,7 @@
 
     {% block social_meta_description %}
     {% if settings.a4_candy_cms_settings.SocialMedia.fallback_description %}
+    <meta name="description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
     <meta name="twitter:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
     <meta name="linkedin:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
     <meta property="og:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
