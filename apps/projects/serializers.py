@@ -194,7 +194,7 @@ class AppModuleSerializer(serializers.ModelSerializer):
         return False
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+class ModerationProjectSerializer(serializers.ModelSerializer):
     title = serializers.SerializerMethodField()
     organisation = serializers.SerializerMethodField()
     tile_image = serializers.SerializerMethodField()
@@ -205,7 +205,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     future_phase = serializers.SerializerMethodField()
     active_phase = serializers.SerializerMethodField()
     past_phase = serializers.SerializerMethodField()
-    num_unread_comments = serializers.SerializerMethodField()
+    num_reported_unread_comments = serializers.SerializerMethodField()
     comment_count = serializers.SerializerMethodField()
     moderation_detail_url = serializers.SerializerMethodField()
 
@@ -223,7 +223,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             "future_phase",
             "active_phase",
             "past_phase",
-            "num_unread_comments",
+            "num_reported_unread_comments",
             "comment_count",
             "moderation_detail_url",
         ]
@@ -315,15 +315,8 @@ class ProjectSerializer(serializers.ModelSerializer):
             return str(instance.past_modules.first().module_end)
         return False
 
-    # FIXME: return number of unread comments once read/unread is modelled
-    def get_num_unread_comments(self, instance):
-        """
-        comment_queryset = annotate_has_pending_notifications(
-            helpers.get_all_comments_project(instance)
-        )
-        return comment_queryset.filter(has_pending_notifications=True).count()
-        """
-        return helpers.get_num_comments_project(instance)
+    def get_num_reported_unread_comments(self, instance):
+        return helpers.get_num_reported_unread_comments(instance)
 
     def get_comment_count(self, instance):
         return helpers.get_num_comments_project(instance)

@@ -133,7 +133,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     def get_projects_follow_list(self, exclude_private_projects=False):
         projects = Project.objects.filter(
             follow__creator=self, follow__enabled=True, is_draft=False
-        )
+        ).select_related("organisation")
         if exclude_private_projects:
             projects = projects.exclude(models.Q(access=Access.PRIVATE))
 
