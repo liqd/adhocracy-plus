@@ -2,37 +2,55 @@
 {% load i18n thumbnail %}
 
 {% block dashboard_content %}
+    <h1 class="visually-hidden">
+      {% trans 'Your User Overview' %}
+    </h1>
 
+    <section aria-labelledby="sr-following-header">
+        <h2 class="mt-sm-0 d-inline-block">
+          <span id="sr-following-header" class="visually-hidden">{% trans 'Selection of projects I am following' %}</span>
+          {% trans 'Following' %}
+        </h2>
 
-<h2 class="mt-sm-0 d-inline-block">{% trans 'Following' %}</h2>
-{% if view.projects.count > 2 %}
+        {% if view.projects.count > 2 %}
+        <a
+          class="btn btn--none float-end px-0"
+          href="{% url 'userdashboard-following' %}"
+          aria-label="{% trans 'Projects I am following page' %}"
+        >
+            {% trans 'View more' %}
+        </a>
+        {% endif %}
 
-  <a class="btn btn--none float-end px-0" href="{% url 'userdashboard-following' %}">{% trans 'View more' %}</a>
-{% endif %}
-
-{% if view.projects_carousel %}
-  <div class="project-tile-carousel">
-      {% for project in view.projects_carousel %}
+        {% if view.projects_carousel %}
+        <div class="project-tile-carousel">
+          {% for project in view.projects_carousel %}
           {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project.get_absolute_url %}
-      {% endfor %}
-  </div>
-  {% else %}
-  <div class="mb-5">
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="mb-5">
+          {% trans 'You are not active in any projects yet.' %}
+        </div>
+        {% endif %}
+    </section>
 
-      {% trans 'You are not active in any projects yet.' %}
-  </div>
-{% endif %}
-
-
-<h2>{% trans 'My Feed' %}</h2>
-{% for action in view.actions|slice:":5" %}
+    <section aria-labelledby="sr-activity-header">
+        <h2>
+          <span id="sr-activity-header" class="visually-hidden">{% trans 'Last few activities on my account' %}</span>
+          {% trans 'My Feed' %}
+        </h2>
+        {% for action in view.actions|slice:":5" %}
         {% include 'a4_candy_actions/includes/reaction.html' with action=action %}
-{% empty %}
+        {% empty %}
 
-    {% trans 'No activity yet. '%}
-{% endfor %}
-{% if view.actions|length > 5 %}
+        {% trans 'No activity yet. '%}
+        {% endfor %}
+        {% if view.actions|length > 5 %}
 
-  <a class="btn btn--light mt-4" href="{% url 'userdashboard-activities' %}">{% trans 'View more' %}</a>
-{% endif %}
+        <a class="btn btn--light mt-4" href="{% url 'userdashboard-activities' %}"
+          aria-label="{% trans 'Account activity page' %}">{% trans 'View more' %}</a>
+        {% endif %}
+    </section>
+
 {% endblock %}

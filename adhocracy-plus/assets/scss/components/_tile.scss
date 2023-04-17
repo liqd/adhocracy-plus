@@ -36,6 +36,10 @@
     &:hover:before {
         opacity: 1;
     }
+
+    &:focus-visible {
+        text-decoration: underline;
+    }
 }
 
 .tile__image {
@@ -181,9 +185,9 @@
         }
     }
 
-    .tile__image {
-        min-height: 20rem;
-    }
+    // .tile__image {
+    //     min-height: 20rem;
+    // }
 
     .tile__image--sm {
         min-height: 5rem;

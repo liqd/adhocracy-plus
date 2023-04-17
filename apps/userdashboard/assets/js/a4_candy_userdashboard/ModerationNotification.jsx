@@ -264,6 +264,7 @@ export const ModerationNotification = (props) => {
           <div className="ms-auto order-lg-last">
             <div className="dropdown">
               <button
+                title="{% trans 'Notification menu' %}"
                 type="button"
                 className="dropdown-toggle btn btn--none"
                 aria-haspopup="true"
@@ -300,6 +301,7 @@ export const ModerationNotification = (props) => {
 
         <p>{commentText}</p>
         <ModerationNotificationActionsBar
+          itemPk={notification.pk}
           isEditing={notification.moderator_feedback}
           isBlocked={notification.is_blocked}
           isHighlighted={notification.is_moderator_marked}

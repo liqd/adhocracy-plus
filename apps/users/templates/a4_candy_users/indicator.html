@@ -10,7 +10,7 @@
             data-flip="false"
             aria-haspopup="true"
             aria-expanded="false"
-            id="user-actions">
+            id="user-actions-mobile">
             <span class="d-none d-sm-inline-block pe-1">{% translate 'Menu' %}</span>
         </button>
 
@@ -32,7 +32,7 @@
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
         </button>
 
-        <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu" aria-labelledby="user-actions">
+        <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu" aria-labelledby="user-actions user-actions-mobile">
             {% if request.user.is_superuser %}
                 <a class="dropdown-item" href="{% url 'admin:index' %}">{% translate "Admin" %}</a>
             {% endif %}

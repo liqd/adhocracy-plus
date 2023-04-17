@@ -8,12 +8,17 @@
         <span>{% trans 'Back to overview' %}</span>
     </a>
 
-    <h3 class="mt-2">{% trans 'Following' %}</h3>
-    <ul class="l-tiles-3">
-    {% for project in view.projects %}
-            {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project.get_absolute_url %}
-    {% endfor %}
-    </ul>
+    <h1 class="visually-hidden">
+        {% trans 'Your User Overview' %}
+    </h1>
 
+    <section aria-labelledby="sr-following-header">
+        <h2 class="mt-2"><span id="sr-following-header" class="visually-hidden">{% trans 'Projects I am following' %}</span>{% trans 'Following' %}</h2>
+        <ul class="l-tiles-3">
+        {% for project in view.projects %}
+                {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project.get_absolute_url %}
+        {% endfor %}
+        </ul>
+    </section>
 
 {% endblock %}

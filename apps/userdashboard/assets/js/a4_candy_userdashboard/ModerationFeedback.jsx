@@ -21,8 +21,12 @@ export const ModerationFeedback = (props) => {
           <div className="text-end">
             <div className="dropdown">
               <button
-                type="button" className="dropdown-toggle btn btn--none" aria-haspopup="true"
-                aria-expanded="false" data-bs-toggle="dropdown"
+                title="{% trans 'Feedback menu' %}"
+                type="button"
+                className="dropdown-toggle btn btn--none"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-toggle="dropdown"
               >
                 <i className="fas fa-ellipsis-v" aria-hidden="true" />
               </button>

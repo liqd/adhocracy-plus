@@ -8,10 +8,17 @@
         <span>{% trans 'Back to overview' %}</span>
     </a>
 
-    <h2 class="mt-2">{% trans 'My Feed' %}</h2>
+    <h1 class="visually-hidden">
+        {% trans 'Your User Overview' %}
+    </h1>
 
-    {% for action in view.actions %}
-        {% include 'a4_candy_actions/includes/reaction.html' with action=action %}
-    {% endfor %}
+    <section aria-labelledby="sr-activity-header">
+        <h2 class="mt-2"><span id="sr-activity-header" class="visually-hidden">{% trans 'My activity feed' %}</span>{% trans 'My Feed' %}</h2>
+
+        {% for action in view.actions %}
+            {% include 'a4_candy_actions/includes/reaction.html' with action=action %}
+        {% endfor %}
+
+    </section>
 
 {% endblock %}
