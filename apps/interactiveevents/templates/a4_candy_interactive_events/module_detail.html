@@ -18,14 +18,14 @@
         {% endif %}
         <div class="col-md-5 my-2">
             {% if module.active_phase %}
-                <span class="label label--live">•{% translate ' Live now' %}</span>
+                <span class="badge label--live">•{% translate ' Live now' %}</span>
                 &nbsp;
             {% elif module.future_phases %}
-                <span class="label label--info">
+                <span class="badge label--info">
                     {% blocktranslate with time_left=module.module_starting_time_left %} {{ time_left }} remaining {% endblocktranslate %}
                 </span>
             {% else %}
-                <span class="label label--info">
+                <span class="badge label--info">
                     {% translate 'finished' %}
                 </span>
             {% endif %}
