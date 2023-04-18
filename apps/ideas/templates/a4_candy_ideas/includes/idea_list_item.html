@@ -28,10 +28,10 @@
     </h3>
     <div class="list-item__labels">
         {% if object.category %}
-            <span class="label label--big">{{ object.category }}</span>
+            <span class="badge label--big">{{ object.category }}</span>
         {% endif %}
         {% if object.moderator_status %}
-            <span class="label label--big label--{{ object.moderator_status|classify }} list-item__label--moderator-feedback">
+            <span class="badge label--big label--{{ object.moderator_status|classify }} list-item__label--moderator-feedback">
                 {{ object.get_moderator_status_display }}
             </span>
         {% endif %}

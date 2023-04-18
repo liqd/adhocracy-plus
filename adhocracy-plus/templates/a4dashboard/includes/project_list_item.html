@@ -14,13 +14,13 @@
                 <h3 class="u-first-heading">
                     {{ project.name }}
                     {% if project.has_finished %}
-                        <span class="label label--secondary">{% translate "Finished" %}</span>
+                        <span class="badge label--secondary">{% translate "Finished" %}</span>
                     {% endif %}
                     {% if project.is_semipublic %}
-                        <span class="label label--dark">{% translate 'semipublic' %}</span>
+                        <span class="badge badge--dark">{% translate 'semipublic' %}</span>
                     {% endif %}
                     {% if project.is_private %}
-                        <span class="label label--dark">{% translate 'private' %}</span>
+                        <span class="badge badge--dark">{% translate 'private' %}</span>
                     {% endif %}
                 </h3>
             </div>

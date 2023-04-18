@@ -1,4 +1,4 @@
-.label {
+.badge {
     display: inline-block;
     background-color: $text-color;
     color: contrast-color($text-color);
@@ -8,36 +8,36 @@
     padding: 0.2em 0.7em;
 }
 
-.label--big {
+.badge--big {
     padding: 0.4em 0.6em;
     font-size: $font-size-sm;
     border-radius: 0.3em;
 }
 
-.label--active {
+.badge--active {
     background-color: $body-bg;
     border: 2px solid $brand-primary;
     color: $text-color;
 }
 
-.label--secondary {
+.badge--secondary {
     background-color: $brand-secondary;
     color: contrast-color($brand-secondary);
 }
 
-.label--danger {
+.badge--danger {
     background-color: $brand-danger;
     color: contrast-color($brand-danger);
 }
 
-.label--live {
+.badge--live {
     background-color: $body-bg;
     border: 1px solid $brand-danger;
     color: $brand-danger;
     text-transform: uppercase;
 }
 
-.label--info {
+.badge--info {
     background-color: $body-bg;
     border: 1px solid $text-color;
     color: $text-color;
@@ -46,24 +46,24 @@
 
 // stylelint-disable selector-class-pattern
 // class names are coming from django
-.label--CONSIDERATION {
+.badge--CONSIDERATION {
     background-color: $feedback-color-consideration;
     color: contrast-color($feedback-color-consideration);
 }
 
-.label--REJECTED {
+.badge--REJECTED {
     background-color: $feedback-color-rejected;
     color: contrast-color($feedback-color-rejected);
 }
 
-.label--ACCEPTED {
+.badge--ACCEPTED {
     background-color: $feedback-color-accepted;
     color: contrast-color($feedback-color-accepted);
 }
 // stylelint-enable
 
 @media screen and (max-width: $breakpoint-xs-down) {
-    .label--big {
+    .badge--big {
         padding: 0.2em 0.7em;
         font-size: $font-size-xs;
     }

@@ -19,7 +19,7 @@
           {% if phase == module.active_phase and extra_fields.live_stream %}
               {{ extra_fields.live_stream | transform_collapsibles | richtext }}
               <div>
-                <span class="label label--live">•{% translate ' Live now' %}</span>
+                <span class="badge label--live">•{% translate ' Live now' %}</span>
               </div>
           {% endif %}
         {% endfor %}

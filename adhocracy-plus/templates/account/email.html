@@ -26,9 +26,9 @@
                        value="{{emailaddress.email}}" >
                 {{ emailaddress.email }}
                 {% if emailaddress.verified %}
-                <span class="label mb-3">{% translate "Verified" %}</span>
+                <span class="badge mb-3">{% translate "Verified" %}</span>
                 {% else %}
-                <span class="label mb-3">{% translate "Unverified" %}</span>
+                <span class="badge mb-3">{% translate "Unverified" %}</span>
                 {% endif %}
                 <ul class="u-list-reset">
                 {% if not emailaddress.primary and emailaddress.verified %}
