@@ -40,11 +40,11 @@ export default class ModerationProjects extends Component {
     const daysRemaining = parseInt(timeRemaining[0])
     if (daysRemaining > 365) {
       return (
-        <span>{django.pgettext('kosmo', 'Over 1 year left')}</span>
+        <span>{django.gettext('Over 1 year left')}</span>
       )
     } else {
       return (
-        <span>{django.pgettext('kosmo', 'left')} {item.active_phase[1]}</span>
+        <span>{item.active_phase[1]} {django.gettext('left')}</span>
       )
     }
   }
@@ -54,7 +54,7 @@ export default class ModerationProjects extends Component {
     const daysRemaining = parseInt(timeRemaining[0])
     if (daysRemaining > 365) {
       return (
-        <span>{django.pgettext('kosmo', '1 year')}</span>
+        <span>{django.gettext('1 year')}</span>
       )
     } else {
       return (
