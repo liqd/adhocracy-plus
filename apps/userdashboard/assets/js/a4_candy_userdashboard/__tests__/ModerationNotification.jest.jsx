@@ -62,7 +62,7 @@ test('showing blocked alert', async () => {
     />
   )
   const blockButton = tree.container.querySelector(
-    '#moderation-notification-actions-bar-button-block'
+    '#moderation-notification-actions-bar-button-block-2'
   )
   fireEvent.click(blockButton)
   await waitFor(() => {
@@ -80,7 +80,7 @@ test('showing highlighted alert', async () => {
     />
   )
   const highlightButton = tree.container.querySelector(
-    '#moderation-notification-actions-bar-button-highlight'
+    '#moderation-notification-actions-bar-button-highlight-2'
   )
   fireEvent.click(highlightButton)
   await waitFor(() => {
