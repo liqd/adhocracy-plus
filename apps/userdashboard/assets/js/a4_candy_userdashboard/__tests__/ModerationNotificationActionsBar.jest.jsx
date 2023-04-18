@@ -36,10 +36,11 @@ test('Unread with highlight button disabled', () => {
       isUnread={mockUnread}
       isBlocked={mockBlocked}
       isHighlighted={mockHighlighted}
+      itemPk={7}
     />
   )
   const button =
-    tree.container.querySelector('#moderation-notification-actions-bar-button-highlight')
+    tree.container.querySelector('#moderation-notification-actions-bar-button-highlight-7')
   expect(button).toBeDisabled()
 })
 
@@ -52,10 +53,11 @@ test('Unread with blocked button disabled', () => {
       isUnread={mockUnread}
       isBlocked={mockBlocked}
       isHighlighted={mockHighlighted}
+      itemPk={7}
     />
   )
   const button =
-    tree.container.querySelector('#moderation-notification-actions-bar-button-block')
+    tree.container.querySelector('#moderation-notification-actions-bar-button-block-7')
   expect(button).toBeDisabled()
 })
 
@@ -87,14 +89,15 @@ test('Unread clicks: reply --> highlight --> block', () => {
       onToggleForm={mockToggleFn}
       onToggleBlock={mockToggleFn}
       onToggleHighlight={mockToggleFn}
+      itemPk={7}
     />
   )
   const replyButton =
-    tree.container.querySelector('#moderation-notification-actions-bar-button-reply')
+    tree.container.querySelector('#moderation-notification-actions-bar-button-reply-7')
   const highlightButton =
-    tree.container.querySelector('#moderation-notification-actions-bar-button-highlight')
+    tree.container.querySelector('#moderation-notification-actions-bar-button-highlight-7')
   const blockButton =
-    tree.container.querySelector('#moderation-notification-actions-bar-button-block')
+    tree.container.querySelector('#moderation-notification-actions-bar-button-block-7')
 
   fireEvent.click(replyButton)
   fireEvent.click(highlightButton)
