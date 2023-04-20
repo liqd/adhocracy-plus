@@ -16,13 +16,13 @@
           {% if object.is_private %}
             <div class="tile__private-badge">
                 <div class="tile__private-badge--top"></div>
-                    <i class="fas fa-lock" title="{% translate 'Project is private.' %}" aria-label="{% translate 'Project is private.' %}"></i>
+                    <i class="fa-solid fa-lock" title="{% translate 'Project is private.' %}" aria-label="{% translate 'Project is private.' %}"></i>
                 <div class="tile__private-badge--left"></div>
             </div>
           {% elif object.is_semipublic %}
             <div class="tile__private-badge">
                 <div class="tile__private-badge--top"></div>
-                    <i class="fas fa-eye" title="{% translate 'Project is semi-public.' %}" aria-label="{% translate 'Project is semi-public.' %}"></i>
+                    <i class="fa-solid fa-eye" title="{% translate 'Project is semi-public.' %}" aria-label="{% translate 'Project is semi-public.' %}"></i>
                 <div class="tile__private-badge--left"></div>
             </div>
           {% endif %}
@@ -47,7 +47,7 @@
             </p>
             {% endif %}
             <div class="tile__extra-info">
-                <i class="far fa-comment" aria-hidden="true"></i>
+                <i class="fa-regular fa-comment" aria-hidden="true"></i>
                 {% get_num_entries object as num_entries %}
                 {% blocktranslate count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktranslate %}
             </div>
@@ -61,7 +61,7 @@
                 <span class="status-bar__active-fill" style="width:{{ object.module_running_progress }}%"></span>
             </div>
             <div class="d-flex justify-content-between">
-                <span class="status-bar__status"><i class="far fa-clock" aria-hidden="true"></i>
+                <span class="status-bar__status"><i class="fa-regular fa-clock" aria-hidden="true"></i>
                 {% if type == 'project' %}
                     {% if object.module_running_days_left < 365 %}
                         {% blocktranslate with time_left=object.module_running_time_left %} {{ time_left }} remaining {% endblocktranslate %}
@@ -88,7 +88,7 @@
         {% elif object.future_modules or object.module_in_future %}
         <div class="status-item status__future">
             <span class="status-bar__status">
-                <i class="far fa-clock" aria-hidden="true"></i>
+                <i class="fa-regular fa-clock" aria-hidden="true"></i>
                 {% if type == 'project' %}
                     {% blocktranslate with date=object.future_modules.first.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktranslate %}
                 {% else %}

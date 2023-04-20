@@ -23,7 +23,7 @@ export const Filter = (props) => {
         aria-expanded="false"
       >
         {props.filterText}: {currFilterItem.label}
-        <i className="fa fa-caret-down" aria-hidden="true" />
+        <i className="fa-solid fa-caret-down" aria-hidden="true" />
       </button>
       <ul className="dropdown-menu">
         {props.filterItems.map((filterItem, i) => (

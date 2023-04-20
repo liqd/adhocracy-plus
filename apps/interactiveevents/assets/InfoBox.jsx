@@ -40,13 +40,13 @@ export default class InfoBox extends React.Component {
                   <i className="icon-push-in-list" /> <div>{textAddQuestion}</div>
                 </div>
                 <div className="col-lg-3 text-center">
-                  <span className="fa-stack fa-1x"><i className="fas fa-tv fa-stack-2x" /><i className="fas fa-arrow-up fa-stack-1x" /></span> <div>{textDisplayQuestion}</div>
+                  <span className="fa-stack fa-1x"><i className="fa-solid fa-tv fa-stack-2x" /><i className="fa-solid fa-arrow-up fa-stack-1x" /></span> <div>{textDisplayQuestion}</div>
                 </div>
                 <div className="col-lg-3 text-center">
                   <i className="icon-answered" /> <div>{textMarkAnswered}</div>
                 </div>
                 <div className="col-lg-3 text-center pb-3">
-                  <i className="far fa-eye" /> <div>{textHideQuestion}</div>
+                  <i className="fa-regular fa-eye" /> <div>{textHideQuestion}</div>
                 </div>
               </div>}
             {!this.props.isModerator &&
@@ -58,7 +58,7 @@ export default class InfoBox extends React.Component {
           </div>}
         {!this.state.displayInfo &&
           <button type="button" className="btn btn--none text-muted pe-0" onClick={this.toggleInformation.bind(this)}>
-            <span aria-label={ariaOpenInfo}><i className="fas fa-info-circle me-1" />{textInfo}</span>
+            <span aria-label={ariaOpenInfo}><i className="fa-solid fa-circle-info me-1" />{textInfo}</span>
           </button>}
       </div>
     )

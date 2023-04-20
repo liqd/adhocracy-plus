@@ -17,7 +17,7 @@
                             {% csrf_token %}
                             <input type="hidden" name="user_pk" value="{{ user.pk }}">
                             <button type="submit" name="submit_action" value="remove_user" title="{% translate 'Remove' %}">
-                                <i class="fa fa-times" aria-label="{% translate 'Remove' %}"></i>
+                                <i class="fa-solid fa-xmark" aria-label="{% translate 'Remove' %}"></i>
                             </button>
                         </form>
                     </td>

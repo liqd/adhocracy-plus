@@ -7,7 +7,7 @@
             {% if page_obj.has_previous %}
             {% combined_url_parameter request.GET page=page_obj.previous_page_number as url_par %}
             <a class="d-none d-sm-block" href="{{ url_par }}">{% translate 'Previous page' %}</a>
-            <a aria-label="{% translate 'Previous page' %}" class="d-block d-sm-none" href="{{ url_par }}"><i class="fas fa-angle-left" aria-hidden="true"></i></a>
+            <a aria-label="{% translate 'Previous page' %}" class="d-block d-sm-none" href="{{ url_par }}"><i class="fa-solid fa-angle-left" aria-hidden="true"></i></a>
             {% endif %}
         </li>
         <li class="pagination-item">
@@ -17,7 +17,7 @@
         {% if page_obj.has_next %}
             {% combined_url_parameter request.GET page=page_obj.next_page_number as url_par %}
             <a class="d-none d-sm-block" href="{{ url_par }}">{% translate 'Next page' %}</a>
-            <a aria-label="{% translate 'Next page' %}" class="d-block d-sm-none" href="{{ url_par }}"><i class="fas fa-angle-right" aria-hidden="true"></i></a>
+            <a aria-label="{% translate 'Next page' %}" class="d-block d-sm-none" href="{{ url_par }}"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></a>
         {% endif %}
         </li>
     </ul>

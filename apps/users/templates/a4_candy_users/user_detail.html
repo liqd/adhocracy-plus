@@ -22,7 +22,7 @@
                             aria-expanded="false"
                             id="account-settings"
                         >
-                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                            <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="account-settings">
                             <a class="dropdown-item" href="{% url 'account' %}">{% trans 'Account Settings' %}</a>
@@ -52,7 +52,7 @@
                 <ul class="u-list-reset">
                     {% if user.homepage %}
                         <li>
-                            <i class="fas fa-link" aria-label="{% trans 'Homepage' %}" title="{% trans 'Homepage' %}"></i>
+                            <i class="fa-solid fa-link" aria-label="{% trans 'Homepage' %}" title="{% trans 'Homepage' %}"></i>
                             <a href="{{ user.homepage }}">{{ user.homepage }}</a>
                         </li>
                     {% endif %}

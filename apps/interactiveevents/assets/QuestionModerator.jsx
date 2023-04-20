@@ -111,7 +111,7 @@ export default class QuestionModerator extends React.Component {
         </div>
         <div className="row justify-content-between">
           <div className="col-12 col-md-4 col-sm-5 mb-3 mb-sm-0">
-            <div className="mt-2 text-primary">{this.state.likes}<i className="fa fa-chevron-up ms-2" /></div>
+            <div className="mt-2 text-primary">{this.state.likes}<i className="fa-solid fa-chevron-up ms-2" /></div>
           </div>
           <div className="col-12 col-md-8 col-sm-7">
             {this.props.displayIsHidden &&
@@ -121,7 +121,7 @@ export default class QuestionModerator extends React.Component {
                 aria-label={this.props.is_hidden ? ariaUndoHidden : ariaHidden}
                 title={this.props.is_hidden ? ariaUndoHidden : ariaHidden}
               >
-                <i className={this.props.is_hidden ? 'far fa-eye-slash text-primary' : 'far fa-eye text-muted'} aria-hidden="true" />
+                <i className={this.props.is_hidden ? 'fa-regular fa-eye-slash text-primary' : 'fa-regular fa-eye text-muted'} aria-hidden="true" />
               </button>}
 
             {this.props.displayIsAnswered &&
@@ -146,8 +146,8 @@ export default class QuestionModerator extends React.Component {
                 title={this.state.is_live ? ariaRemoveDisplayScreen : ariaDisplayOnScreen}
               >
                 <span className="fa-stack fa-1x">
-                  <i className={this.state.is_live ? 'fas fa-tv fa-stack-2x text-primary' : 'fas fa-tv fa-stack-2x  text-muted'} aria-hidden="true" />
-                  <i className={this.state.is_live ? 'fas fa-arrow-up fa-stack-1x fa-inverse text-primary' : 'fas fa-arrow-up fa-stack-1x text-muted'} aria-hidden="true" />
+                  <i className={this.state.is_live ? 'fa-solid fa-tv fa-stack-2x text-primary' : 'fa-solid fa-tv fa-stack-2x  text-muted'} aria-hidden="true" />
+                  <i className={this.state.is_live ? 'fa-solid fa-arrow-up fa-stack-1x fa-inverse text-primary' : 'fa-solid fa-arrow-up fa-stack-1x text-muted'} aria-hidden="true" />
                 </span>
               </button>}
             {this.props.displayIsOnShortlist &&

@@ -36,8 +36,8 @@ export const ModerationNotificationActionsBar = (props) => {
         onClick={() => onToggleForm(!!isEditing)}
       >
         {isEditing
-          ? <i className="fas fa-pen" aria-hidden="true" />
-          : <i className="fas fa-reply" aria-hidden="true" />}
+          ? <i className="fa-solid fa-pen" aria-hidden="true" />
+          : <i className="fa-solid fa-reply" aria-hidden="true" />}
         {isEditing
           ? <span className="ms-2">{translated.editText}</span>
           : <span className="ms-2">{translated.replyText}</span>}
@@ -48,7 +48,7 @@ export const ModerationNotificationActionsBar = (props) => {
           className="btn userdashboard-mod-notification__btn"
           onClick={onToggleHighlight}
           disabled={isBlocked}
-          icon={<i className="fas fa-highlighter" aria-hidden="true" />}
+          icon={<i className="fa-solid fa-highlighter" aria-hidden="true" />}
           textMouseOff={isHighlighted ? translated.isHighlightedText : translated.highlightText}
           textMouseOn={isHighlighted ? translated.unhighlightText : translated.highlightText}
         />
@@ -57,7 +57,7 @@ export const ModerationNotificationActionsBar = (props) => {
           className="btn userdashboard-mod-notification__btn"
           onClick={onToggleBlock}
           disabled={isHighlighted}
-          icon={<i className="fas fa-ban" aria-hidden="true" />}
+          icon={<i className="fa-solid fa-ban" aria-hidden="true" />}
           textMouseOff={isBlocked ? translated.isBlockedText : translated.blockText}
           textMouseOn={isBlocked ? translated.unblockText : translated.blockText}
         />

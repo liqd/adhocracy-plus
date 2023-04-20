@@ -69,8 +69,8 @@ function init () {
       const importLabel = django.gettext('Import polygon via file upload')
       return $.parseHTML(
         '<div class="leaflet-bar leaflet-control leaflet-control-custom">' +
-          '<a href="#" id="map-export-link" title="' + exportLabel + '"><i class="fa fa-download" aria-label="' + exportLabel + '"></i></a>' +
-          '<a href="#map-import-modal" data-bs-toggle="modal" data-bs-target="#map-import-modal" title="' + importLabel + '"><i class="fa fa-upload" aria-label="' + importLabel + '"></i></a>' +
+          '<a href="#" id="map-export-link" title="' + exportLabel + '"><i class="fa-solid fa-download" aria-label="' + exportLabel + '"></i></a>' +
+          '<a href="#map-import-modal" data-bs-toggle="modal" data-bs-target="#map-import-modal" title="' + importLabel + '"><i class="fa-solid fa-upload" aria-label="' + importLabel + '"></i></a>' +
         '</div>'
       )[0]
     },
@@ -84,7 +84,7 @@ function init () {
               '<div class="modal-header">' +
                 // Not using Bootstrap, but utility classes on purpose to align with component in A4
                 '<h2 class="u-no-margin-bottom u-spacer-top-one-half">' + modalTitle + '</h2>' +
-                '<button class="close" aria-label="' + django.gettext('Close') + '" data-bs-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>' +
+                '<button class="close" aria-label="' + django.gettext('Close') + '" data-bs-dismiss="modal"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>' +
               '</div>' +
               '<div class="modal-body">' +
                 '<form id="map-import-form" data-ignore-submit="true">' +

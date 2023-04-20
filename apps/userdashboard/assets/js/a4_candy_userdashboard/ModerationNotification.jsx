@@ -271,7 +271,7 @@ export const ModerationNotification = (props) => {
                 aria-expanded="false"
                 data-bs-toggle="dropdown"
               >
-                <i className="fas fa-ellipsis-v" aria-hidden="true" />
+                <i className="fa-solid fa-ellipsis-vertical" aria-hidden="true" />
               </button>
               <ul className="dropdown-menu dropdown-menu-end">
                 <li key="1">
@@ -294,7 +294,7 @@ export const ModerationNotification = (props) => {
 
         {numReports > 0 &&
           <div>
-            <i className="fas fa-exclamation-circle me-1" aria-hidden="true" />
+            <i className="fa-solid fa-circle-exclamation me-1" aria-hidden="true" />
             <strong>{userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName}</strong>
             {getLink(translatedReportText(numReports), commentUrl)}
           </div>}

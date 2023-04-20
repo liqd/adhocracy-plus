@@ -28,7 +28,7 @@ export const ModerationFeedback = (props) => {
                 aria-expanded="false"
                 data-bs-toggle="dropdown"
               >
-                <i className="fas fa-ellipsis-v" aria-hidden="true" />
+                <i className="fa-solid fa-ellipsis-vertical" aria-hidden="true" />
               </button>
               <ul className="dropdown-menu dropdown-menu-end">
                 <li key="1">

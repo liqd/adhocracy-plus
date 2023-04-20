@@ -82,7 +82,7 @@
                 <div class="my-5 pt-3 pt-sm-0 me-md-3 d-flex justify-content-center justify-content-sm-end">
                 {% if module.previous_module_in_cluster %}
                     <a class="btn btn--light text-muted" href="{{ module.previous_module_in_cluster.get_absolute_url }}">
-                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                         <span>{% translate 'Previous' %}</span>
                     </a>
                 {% endif %}
@@ -90,7 +90,7 @@
                 {% if module.next_module_in_cluster %}
                     <a class="btn btn--light text-muted" href="{{ module.next_module_in_cluster.get_absolute_url }}">
                         <span>{% translate 'Next' %}</span>
-                        <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
                 {% endif %}
                 </div>
             {% endif %}
@@ -101,7 +101,7 @@
                     <ul>
                         <li>
                             <a href="{{ project.get_absolute_url }}">
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
                                 {{ project.name }}
                             </a>
                         </li>
@@ -169,13 +169,13 @@
         {% if project.is_private %}
         <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs mb-4">
-                <i class="fas fa-lock pe-2" aria-hidden="true"></i>{% translate 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
+                <i class="fa-solid fa-lock pe-2" aria-hidden="true"></i>{% translate 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
             </div>
         </div>
         {% elif project.is_semipublic %}
         <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs mb-4">
-                <i class="fas fa-eye pe-2" aria-hidden="true"></i>{% translate 'This project is publicly visible. Invited users can actively participate.' %}
+                <i class="fa-solid fa-eye pe-2" aria-hidden="true"></i>{% translate 'This project is publicly visible. Invited users can actively participate.' %}
             </div>
         </div>
         {% endif %}

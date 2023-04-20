@@ -111,7 +111,7 @@ class ParagraphForm extends React.Component {
             type="button"
           >
             <i
-              className="fa fa-chevron-up"
+              className="fa-solid fa-chevron-up"
               aria-label={django.gettext('Move up')}
             />
           </button>
@@ -123,7 +123,7 @@ class ParagraphForm extends React.Component {
             type="button"
           >
             <i
-              className="fa fa-chevron-down"
+              className="fa-solid fa-chevron-down"
               aria-label={django.gettext('Move down')}
             />
           </button>
@@ -134,7 +134,7 @@ class ParagraphForm extends React.Component {
             type="button"
           >
             <i
-              className="far fa-trash-alt"
+              className="fa-regular fa-trash-can"
               aria-label={django.gettext('Delete')}
             />
           </button>

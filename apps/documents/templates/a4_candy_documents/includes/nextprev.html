@@ -6,12 +6,12 @@
             <div class="form-inline">
                 {% if object.prev %}
                     <a href="{{ object.prev.get_absolute_url }}" class="btn btn--light">
-                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                         {% translate "Previous Chapter" %}
                     </a>
                 {% else %}
                     <span class="btn btn--light is-disabled">
-                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                         {% translate "Previous Chapter" %}
                     </span>
                 {% endif %}
@@ -19,12 +19,12 @@
                 {% if object.next %}
                     <a href="{{ object.next.get_absolute_url }}" class="btn btn--light ms-auto">
                         {% translate "Next Chapter" %}
-                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                     </a>
                 {% else %}
                     <span class="btn btn--light is-disabled ms-auto">
                         {% translate "Next Chapter" %}
-                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                     </span>
                 {% endif %}
             </div>
