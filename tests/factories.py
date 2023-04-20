@@ -101,3 +101,12 @@ class ModeratorFeedbackFactory(factory.django.DjangoModelFactory):
 
     feedback_text = factory.Faker("text")
     creator = factory.SubFactory(UserFactory)
+
+
+class ReportFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = "a4reports.Report"
+
+    description = factory.Faker("text")
+    creator = factory.SubFactory(UserFactory)
+    content_object = factory.SubFactory(CommentFactory)

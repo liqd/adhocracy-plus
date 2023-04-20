@@ -40,6 +40,7 @@ register(factories.LabelFactory)
 register(factories.CommentFactory)
 register(factories.RatingFactory)
 register(factories.ModeratorFeedbackFactory)
+register(factories.ReportFactory)
 
 register(a4_factories.GroupFactory)
 register(a4_factories.ProjectFactory)
