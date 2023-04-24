@@ -31,13 +31,11 @@
     {% endif %}
 
     <div class="tile__body tile__body--status">
-        <div>
-            <h3 class="tile__title" id="tile-title-{{ object.pk }}">
-                <a class="tile__link" aria-labelledby="tile-title-{{ object.pk }}" href="{{ url }}">{{ object.name }}</a>
-            </h3>
+        <h3 class="tile__title" id="tile-title-{{ object.pk }}">
+            <a class="tile__link" aria-labelledby="tile-title-{{ object.pk }}" href="{{ url }}">{{ object.name }}</a>
+        </h3>
         {% if type == 'project' %}
             <p class="tile__text">{{ object.description }}</p>
-        </div>
         {% elif type == 'module' %}
             {% if object.blueprint_type %}
             <p class="tile__extra-info">
@@ -51,8 +49,6 @@
                 {% get_num_entries object as num_entries %}
                 {% blocktranslate count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktranslate %}
             </div>
-        </div>
-
         {% endif %}
 
         {% if object.module_running_time_left %}
