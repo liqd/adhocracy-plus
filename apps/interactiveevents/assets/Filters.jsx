@@ -44,7 +44,7 @@ export default class Filter extends React.Component {
             aria-expanded="false"
           >
             {this.props.currentCategoryName}
-            <i className="fa fa-caret-down" aria-hidden="true" />
+            <i className="fa-solid fa-caret-down" aria-hidden="true" />
           </button>
           {this.props.categories.length > 0 &&
             <div className="dropdown-menu" aria-labelledby="dropdownAffiliationBtn">
@@ -79,7 +79,7 @@ export default class Filter extends React.Component {
                 onChange={this.handleToggleFilters.bind(this)} // eslint-disable-line react/jsx-handler-names
               />
               <span className="checkbox-btn__text--colour">
-                <i className="fas fa-sliders-h me-1" aria-hidden="true" />
+                <i className="fa-solid fa-sliders me-1" aria-hidden="true" />
                 {textFilters}
               </span>
             </label>
@@ -122,7 +122,7 @@ export default class Filter extends React.Component {
                   onChange={this.props.toggledisplayNotHiddenOnly} // eslint-disable-line react/jsx-handler-names
                 />
                 <span className="checkbox-btn__text--colour">
-                  <i className="far fa-eye" aria-hidden="true" />
+                  <i className="fa-regular fa-eye" aria-hidden="true" />
                 </span>
               </label>
             </div>
@@ -142,7 +142,7 @@ export default class Filter extends React.Component {
                   onChange={this.props.toggleOrdering} // eslint-disable-line react/jsx-handler-names
                 />
                 <span className="checkbox-btn__text--colour">
-                  <i className="fa fa-chevron-up" aria-hidden="true" /> likes
+                  <i className="fa-solid fa-chevron-up" aria-hidden="true" /> likes
                 </span>
               </label>
             </div>

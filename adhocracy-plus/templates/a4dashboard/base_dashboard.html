@@ -14,7 +14,7 @@
             {% else %}
               <div class="dashboard-nav__logo-link">
                 <a class="font-weight-bold" href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}">
-                  <i class="fas fa-home pt-2" aria-label="{{ ORGANISATION.name }} {% translate 'Home' %}" role="img"></i>
+                  <i class="fa-solid fa-house pt-2" aria-label="{{ ORGANISATION.name }} {% translate 'Home' %}" role="img"></i>
                 </a>
               </div>
             {% endif %}
@@ -31,7 +31,7 @@
                             id="organisation-selection"
                     >
                         {{ view.organisation.name }}
-                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="organisation-selection">
                         {% for organisation in view.other_organisations_of_user %}
@@ -87,7 +87,7 @@
                       {% else %}
                         {% translate 'Organisation settings' %}
                       {% endif %}
-                      <i class="fa fa-caret-down" aria-hidden="true"></i>
+                      <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-end">
                       <a

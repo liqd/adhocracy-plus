@@ -81,7 +81,7 @@ def classify(value):
 @register.filter
 def fa_class(icon):
     if hasattr(icon, "startswith") and not icon.startswith("fa"):
-        return "fas fa-{icon}".format(icon=icon)
+        return "fa-solid fa-{icon}".format(icon=icon)
     return icon
 
 

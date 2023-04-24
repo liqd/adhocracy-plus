@@ -102,7 +102,7 @@ const LanguageChoice = (props) => {
             type="button"
             data-bs-toggle="dropdown"
           >
-            <i className="fa fa-plus" />
+            <i className="fa-solid fa-plus" />
           </button>
           <div className="dropdown-menu">
             {
@@ -133,7 +133,7 @@ const LanguageChoice = (props) => {
               type="button"
               data-bs-toggle="dropdown"
             >
-              <i className="fa fa-minus" />
+              <i className="fa-solid fa-minus" />
             </button>
             <div className="dropdown-menu">
               {

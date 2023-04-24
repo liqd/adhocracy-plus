@@ -8,7 +8,7 @@
                 <ul>
                     <li>
                         <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
                             {% translate 'All projects' %}
                         </a>
                     </li>
@@ -33,12 +33,12 @@
                     data-bs-target="#dashboardCollapseProj"
                 >
                     {% if project_progress.project_is_complete %}
-                    <i class="fas fa-check-circle text-info" title="{% translate 'Project ready for publication' %}" aria-label="{% translate 'Project ready for publication' %}"></i>
+                    <i class="fa-solid fa-circle-check text-info" title="{% translate 'Project ready for publication' %}" aria-label="{% translate 'Project ready for publication' %}"></i>
                     {% else %}
-                    <i class="fas fa-exclamation-circle text-danger" title="{% translate 'Project not ready for publication' %}" aria-label="{% translate 'Project not ready for publication' %}"></i>
+                    <i class="fa-solid fa-circle-exclamation text-danger" title="{% translate 'Project not ready for publication' %}" aria-label="{% translate 'Project not ready for publication' %}"></i>
                     {% endif %}
                     {{ project.name }}
-                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
                 </div>
                 <ul class="dashboard-nav__pages collapse{% if not project.id in closed_accordions.0 %} show{% endif %}" id="dashboardCollapseProj" aria-hidden="false">
                     {% for item in dashboard_menu.project %}
@@ -46,7 +46,7 @@
                             <a href="{{ item.url }}"
                                class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
                                  {% if not item.is_complete %}
-                                     <i class="fa fa-exclamation-circle text-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
+                                     <i class="fa-solid fa-circle-exclamation text-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
                                  {% endif %}
                                 {{ item.label }}
                             </a>
@@ -60,7 +60,7 @@
                 {% if module_menu.module.is_draft %}
                 <div class="btn btn--none px-0 dropdown dashboard-nav__module-dropdown">
                     <button class="dropdown-toggle" id="dashboardModuleMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dashboardModuleMenu">
                       <a class="p-0" href="#">
@@ -86,12 +86,12 @@
                         data-bs-target="#dashboardCollapse_{{ forloop.counter }}"
                     >
                       {% if module_menu.is_complete %}
-                          <i class="fas fa-check-circle text-info" title="{% translate 'Module ready for addition' %}" aria-label="{% translate 'Module ready for addition' %}"></i>
+                          <i class="fa-solid fa-circle-check text-info" title="{% translate 'Module ready for addition' %}" aria-label="{% translate 'Module ready for addition' %}"></i>
                       {% else %}
-                          <i class="fas fa-exclamation-circle text-danger" title="{% translate 'Module not ready for addition' %}" aria-label="{% translate 'Module not ready for addition' %}"></i>
+                          <i class="fa-solid fa-circle-exclamation text-danger" title="{% translate 'Module not ready for addition' %}" aria-label="{% translate 'Module not ready for addition' %}"></i>
                       {% endif %}
                       {{ module_menu.module.name }}
-                      <i class="fa fa-chevron-up {% if module_menu.module.is_draft %}dashboard-nav-i-spacer{% endif %}" aria-hidden="true"></i>
+                      <i class="fa-solid fa-chevron-up {% if module_menu.module.is_draft %}dashboard-nav-i-spacer{% endif %}" aria-hidden="true"></i>
                     </div>
 
                     <ul class="dashboard-nav__pages collapse{% if not module_menu.module.pk in closed_accordions.1 %} show{% endif %}" id="dashboardCollapse_{{ forloop.counter }}" aria-hidden="false">
@@ -100,7 +100,7 @@
                               <a href="{{ item.url }}"
                                  class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
                                     {% if not item.is_complete %}
-                                        <i class="fa fa-exclamation-circle text-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
+                                        <i class="fa-solid fa-circle-exclamation text-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
                                     {% endif %}
                                     {{ item.label }}
                                 </a>

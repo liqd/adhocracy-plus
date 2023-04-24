@@ -52,7 +52,7 @@ const ChapterForm = (props) => {
         onClick={props.onParagraphAppend}
         type="button"
       >
-        <i className="fa fa-plus" /> {django.gettext('Add a new paragraph')}
+        <i className="fa-solid fa-plus" /> {django.gettext('Add a new paragraph')}
       </button>
     </section>
   )

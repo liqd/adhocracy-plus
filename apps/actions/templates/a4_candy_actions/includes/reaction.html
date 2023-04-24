@@ -2,14 +2,14 @@
 <div class="action action--withdate">
     {% if action.type == 'comment' %}
         {% if not action.obj.content_object.parent_comment %}
-        <i class="far fa-lightbulb action__icon" aria-hidden="true"></i>
+        <i class="fa-regular fa-lightbulb action__icon" aria-hidden="true"></i>
         {% else %}
         <i class="{{ action.icon }} action__icon" aria-hidden="true"></i>
         {% endif %}
     {% else %}
         <div class="fa-stack fa-1x action__icon">
-            <i class="fa-stack-2x far fa-comment" aria-hidden="true"></i>
-            <i class="fa-stack-1x fas fa-exclamation" aria-hidden="true"></i>
+            <i class="fa-stack-2x fa-regular fa-comment" aria-hidden="true"></i>
+            <i class="fa-stack-1x fa-solid fa-exclamation" aria-hidden="true"></i>
         </div>
     {% endif %}
     <div class="action__main">

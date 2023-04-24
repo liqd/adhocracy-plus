@@ -209,8 +209,8 @@ export default class QuestionBox extends React.Component {
                     title={ariaDisplayOnScreen}
                   >
                     <span className="fa-stack fa-1x me-1">
-                      <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
-                      <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                      <i className="fa-solid fa-tv fa-stack-2x" aria-label="hidden"> </i>
+                      <i className="fa-solid fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
                     </span>
                     {textDisplayOnScreen}
                   </a>
@@ -231,7 +231,7 @@ export default class QuestionBox extends React.Component {
                       checked={this.state.showStatistics}
                     />
                     <span className="checkbox-btn__text--colour">
-                      <i className="fas fa-chart-bar me-1" aria-label="hidden" />
+                      <i className="fa-solid fa-chart-bar me-1" aria-label="hidden" />
                       {textStatistics}
                     </span>
                   </label>

@@ -11,17 +11,17 @@
                 {% spaceless %}
                     <a href="{% url 'a4_candy_offlineevents:offlineevent-detail' organisation_slug=project.organisation.slug slug=object.slug %}"
                        class="btn btn--small btn--light">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
                         {% translate 'View' %}
                     </a>
                     <a href="{% url 'a4dashboard:offlineevent-update' organisation_slug=project.organisation.slug slug=object.slug %}"
                        class="btn btn--small btn--light">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                         {% translate 'Edit'%}
                     </a>
                     <a href="{% url 'a4dashboard:offlineevent-delete' organisation_slug=project.organisation.slug slug=object.slug %}"
                        class="btn btn--small btn--light">
-                        <i class="fa fa-times" aria-hidden="true"></i>
+                        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                         {% translate 'Delete'%}
                     </a>
                 {% endspaceless %}

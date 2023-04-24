@@ -41,7 +41,7 @@
                                 aria-expanded="false"
                                 id="account-settings"
                             >
-                                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="account-settings">
 
@@ -84,7 +84,7 @@
                               />
                             {% else %}
                               <i
-                                class="fas fa-home font--lg action__icon"
+                                class="fa-solid fa-house font--lg action__icon"
                                 role="img"
                                 aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
                               ></i>
@@ -105,7 +105,7 @@
                                 aria-controls="userDashboardCollapseOrgInt"
                             >
                               {% trans 'Initiator Organisations' %}
-                              <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                              <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
                             </button>
                         </h2>
                         <ul class="u-list-reset collapse show" id="userDashboardCollapseOrgInt">
@@ -120,7 +120,7 @@
                                       />
                                      {% else %}
                                        <i
-                                        class="fas fa-home font--lg action__icon"
+                                        class="fa-solid fa-house font--lg action__icon"
                                         role="img"
                                         aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
                                       ></i>
@@ -148,7 +148,7 @@
                             />
                           {% else %}
                             <i
-                              class="fas fa-home font--lg action__icon"
+                              class="fa-solid fa-house font--lg action__icon"
                               role="img"
                               aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
                             ></i>
@@ -176,7 +176,7 @@
                             aria-controls="userDashboardCollapseOrg"
                         >
                             {% trans 'Organisations' %}
-                            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                            <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
                         </button>
                     </h2>
                         <ul class="u-list-reset collapse show" id="userDashboardCollapseOrg">
@@ -188,7 +188,7 @@
                                        <img src="{% thumbnail organisation.logo '0x40' %}" alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}" />
                                      {% else %}
                                        <i
-                                        class="fas font--lg fa-home action__icon"
+                                        class="fas font--lg fa-house action__icon"
                                         role="img"
                                         aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
                                       ></i>

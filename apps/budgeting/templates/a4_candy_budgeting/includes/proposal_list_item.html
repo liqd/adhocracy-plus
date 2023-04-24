@@ -5,16 +5,16 @@
         {% spaceless %}
         <span class="rating">
             <span class="rating-button rating-up is-read-only" title="{% translate 'Positive Ratings' %}">
-                <i class="fa fa-chevron-up" aria-label="{% translate 'Positive Ratings' %}"></i>
+                <i class="fa-solid fa-chevron-up" aria-label="{% translate 'Positive Ratings' %}"></i>
                 {{ object.positive_rating_count }}
             </span>
             <span class="rating-button rating-down is-read-only" title="{% translate 'Negative Ratings' %}">
-                <i class="fa fa-chevron-down" aria-label="{% translate 'Negative Ratings' %}"></i>
+                <i class="fa-solid fa-chevron-down" aria-label="{% translate 'Negative Ratings' %}"></i>
                 {{ object.negative_rating_count }}
             </span>
         </span>
         <span title="{% translate 'Comments' %}" class="list-item__comments">
-            <i class="far fa-comment" aria-label="{% translate 'Comments' %}"></i>
+            <i class="fa-regular fa-comment" aria-label="{% translate 'Comments' %}"></i>
             {{ object.comment_count }}
         </span>
         {% endspaceless %}
@@ -29,7 +29,7 @@
             <span class="badge label--big">{{ object.category }}</span>
         {% endif %}
         {% if object.point_label %}
-            <span class="badge label--big"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> {{ object.point_label }}</span>
+            <span class="badge label--big"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{ object.point_label }}</span>
         {% endif %}
         {% if object.budget > 0 %}
             <span class="badge label--big">{{ object.budget|intcomma }}€</span>

@@ -15,7 +15,7 @@
                         class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'organisation-settings' %}is-active{% endif %}">
                         {% translate "General information" %}
                         {% if not object.title %}
-                            <i class="fa fa-exclamation-circle text-danger" title="{% translate 'Missing important fields' %}" aria-label="{% translate 'Missing important fields' %}"></i>
+                            <i class="fa-solid fa-circle-exclamation text-danger" title="{% translate 'Missing important fields' %}" aria-label="{% translate 'Missing important fields' %}"></i>
                         {% endif %}
 
                     </a>
@@ -25,7 +25,7 @@
                         class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'organisation-legal-information' %}is-active{% endif %}">
                         {% translate "Legal information" %}
                         {% if not object.imprint or not object.terms_of_use or not object.data_protection %}
-                            <i class="fa fa-exclamation-circle text-danger" title="{% translate 'Missing important fields' %}" aria-label="{% translate 'Missing important fields' %}"></i>
+                            <i class="fa-solid fa-circle-exclamation text-danger" title="{% translate 'Missing important fields' %}" aria-label="{% translate 'Missing important fields' %}"></i>
                         {% endif %}
                     </a>
                 </li>

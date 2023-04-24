@@ -214,7 +214,7 @@ export default class ModerationNotificationList extends Component {
           {!isLoaded
             ? (
               <div className="d-flex justify-content-center">
-                <i className="fa fa-spinner fa-pulse" aria-hidden="true" />
+                <i className="fa-solid fa-spinner fa-pulse" aria-hidden="true" />
               </div>
               )
             : (
@@ -243,7 +243,7 @@ export default class ModerationNotificationList extends Component {
                     className="btn btn--light ms-auto"
                     onClick={this.handleToTop}
                   >
-                    <i className="fa fa-arrow-up" aria-hidden="true" />
+                    <i className="fa-solid fa-arrow-up" aria-hidden="true" />
                     <span className="visually-hidden">{gotoTopText}</span>
                   </button>
                 </div>

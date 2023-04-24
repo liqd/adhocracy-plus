@@ -18,35 +18,35 @@
                     <li class="dashboard-nav__page">
                         <a href="{% url 'account_profile' %}"
                            class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_profile" %}is-active{% endif %}">
-                            <i class="far fa-user" aria-hidden="true"></i>
+                            <i class="fa-regular fa-user" aria-hidden="true"></i>
                             {% translate 'Profile' %}
                         </a>
                     </li>
                     <li class="dashboard-nav__page">
                         <a href="{% url 'account_change_password' %}"
                            class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_change_password" %}is-active{% endif %}">
-                            <i class="fas fa-lock" aria-hidden="true"></i>
+                            <i class="fa-solid fa-lock" aria-hidden="true"></i>
                             {% translate 'Change password' %}
                         </a>
                     </li>
                     <li class="dashboard-nav__page">
                         <a href="{% url 'account_email' %}"
                            class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_email" %}is-active{% endif %}">
-                            <i class="far fa-envelope" aria-hidden="true"></i>
+                            <i class="fa-regular fa-envelope" aria-hidden="true"></i>
                             {% translate 'Email addresses' %}
                         </a>
                     </li>
                     <li class="dashboard-nav__page">
                         <a href="{% url 'socialaccount_connections' %}"
                            class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "socialaccount_connections" %}is-active{% endif %}">
-                            <i class="fas fa-users" aria-hidden="true"></i>
+                            <i class="fa-solid fa-users" aria-hidden="true"></i>
                             {% translate 'Account Connections' %}
                         </a>
                     </li>
                     <li class="dashboard-nav__page">
                         <a href="{% url 'user_agreements' %}"
                            class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "user_agreements" %}is-active{% endif %}">
-                            <i class="far fa-check-square" aria-hidden="true"></i>
+                            <i class="fa-regular fa-square-check" aria-hidden="true"></i>
                             {% translate 'User Agreements' %}
                         </a>
                     </li>

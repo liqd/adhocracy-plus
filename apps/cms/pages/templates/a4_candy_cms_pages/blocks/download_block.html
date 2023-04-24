@@ -2,5 +2,5 @@
 <div class="block-download mb-3 pb-1">
     <a href="{{ value.document.url }}"><span class="visually-hidden">{% translate 'Download' %} </span>{% if value.title %}{{ value.title }}{% else %}{{ value.document.title }}{% endif %}</a>
     <div class="block-download__info">{% if value.document_type %}{{ value.document_type }}{% else %}{{ value.document.file_extension }}{% endif %} | {{ value.document.file_size | devide:1048576 }} MB</div>
-    <a class="block-download__icon" href="{{ value.document.url }}" aria-hidden="true"><i class="fas fa-arrow-down"></i></a>
+    <a class="block-download__icon" href="{{ value.document.url }}" aria-hidden="true"><i class="fa-solid fa-arrow-down"></i></a>
 </div>

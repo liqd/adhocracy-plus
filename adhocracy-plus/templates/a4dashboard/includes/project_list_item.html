@@ -29,7 +29,7 @@
                 {% spaceless %}
                     <a href="{{ project|project_url }}"
                        class="btn btn--light btn--small">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
                         {% if project.is_draft %}
                         {% translate 'Preview' %}
                         {% else %}
@@ -38,7 +38,7 @@
                     </a>
                     <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}"
                        class="btn btn--light btn--small">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                         {% translate 'Edit'%}
                     </a>
                     <div class="dropdown">
@@ -52,7 +52,7 @@
                                 id="project-actions"
                                 title="{% translate 'more' %}"
                         >
-                            <i class="fa fa-caret-down" aria-label="{% translate 'more' %}"></i>
+                            <i class="fa-solid fa-caret-down" aria-label="{% translate 'more' %}"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end
                         " aria-labelledby="project-actions">
@@ -61,12 +61,12 @@
                                 <input type="hidden" name="project_pk" value="{{ project.pk }}">
                                 <button type="submit" name="duplicate" value="{{ project }}"
                                         class="dropdown-item">
-                                    <i class="far fa-copy" aria-hidden="true"></i>
+                                    <i class="fa-regular fa-copy" aria-hidden="true"></i>
                                     {% translate 'Duplicate' %}
                                 </button>
                             </form>
                             <a href="#" class="dropdown-item font-weight-normal" data-bs-toggle="modal" data-bs-target="#project{{ project.pk }}DeleteModal">
-                                <i class="far fa-trash-alt" aria-hidden="true"></i>
+                                <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
                                 {% translate 'delete' %}
                             </a>
                         </div>
@@ -90,7 +90,7 @@
                     {% translate 'delete' %}
                 </h2>
                 <button class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <i class="fa fa-times"></i>
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
             <div class="modal-body">

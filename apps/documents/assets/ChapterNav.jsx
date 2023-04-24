@@ -35,7 +35,7 @@ const ChapterNav = (props) => {
           onClick={props.onChapterAppend}
           type="button"
         >
-          <i className="fa fa-plus" /> {django.gettext('Add a new chapter')}
+          <i className="fa-solid fa-plus" /> {django.gettext('Add a new chapter')}
         </button>
       </p>
     </nav>
