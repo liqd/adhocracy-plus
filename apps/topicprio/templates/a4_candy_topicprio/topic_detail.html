@@ -22,12 +22,12 @@
             {% if object.category or object.labels %}
                 <div class="item-detail__labels">
                     {% if object.category %}
-                    <div class="badge label--big">{{ object.category }}</div>
+                    <div class="badge badge--big">{{ object.category }}</div>
                     {% endif %}
 
                     {% if object.labels %}
                     {% for label in object.labels.all %}
-                    <div class="badge label--big">{{ label.name }}</div>
+                    <div class="badge badge--big">{{ label.name }}</div>
                     {% endfor %}
                     {% endif %}
                 </div>
