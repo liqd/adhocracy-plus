@@ -189,6 +189,16 @@
                     </div>
 
                     {% else %} <!-- if just one module and no phase view to dispatch to -->
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2 mb-3">
+                            {% block module_description %}
+                                {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
+                                <h1 class="project-header__title">{{ module.name }}</h1>
+                                <p class="project-header__description">{{ module.description }}</p>
+                                {% endif %}
+                            {% endblock %}
+                        </div>
+                    </div>
                     {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
                         {% if not module.active_phase %}
                         <div class="row">
