@@ -219,7 +219,7 @@ export default class QuestionBox extends React.Component {
                 <div className="checkbox-btn">
                   <label
                     htmlFor="displayStatistics"
-                    className="checkbox-btn__label--light"
+                    className="checkbox-btn__badge--light"
                     title={ariaOpenStatistics}
                     aria-label={ariaOpenStatistics}
                   >
