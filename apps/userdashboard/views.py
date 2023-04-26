@@ -10,6 +10,7 @@ from adhocracy4.polls.models import Poll
 from adhocracy4.projects.models import Project
 from adhocracy4.rules import mixins as rules_mixins
 from apps.documents.models import Chapter
+from apps.documents.models import Paragraph
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
 from apps.organisations.models import Organisation
 from apps.projects import helpers
@@ -73,6 +74,7 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
                 target_content_type__in=[
                     ContentType.objects.get_for_model(Poll),
                     ContentType.objects.get_for_model(Chapter),
+                    ContentType.objects.get_for_model(Paragraph),
                 ]
             )
             .exclude(
