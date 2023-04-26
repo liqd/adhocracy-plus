@@ -143,6 +143,7 @@ class UserDashboardActivitiesView(UserDashboardBaseMixin):
                 target_content_type__in=[
                     ContentType.objects.get_for_model(Poll),
                     ContentType.objects.get_for_model(Chapter),
+                    ContentType.objects.get_for_model(Paragraph),
                 ]
             )
             .exclude(
