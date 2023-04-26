@@ -1,4 +1,6 @@
-.badge {
+// FIXME: this is a workaround to make 'badge' usage in a4 work
+// should change badge to label in a4
+.badge:not(.a4-comments__category__text) {
     display: inline-block;
     background-color: $text-color;
     color: contrast-color($text-color);
