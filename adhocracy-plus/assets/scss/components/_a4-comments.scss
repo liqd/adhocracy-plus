@@ -25,6 +25,11 @@
 .a4-comments__comment {
     border-top: solid 1px $gray-lightest;
     padding: 1.5 * $spacer 0 $spacer 0;
+
+    mark > p {
+        background-color: $brand-primary-tint;
+        display: inherit;
+    }
 }
 
 .a4-comments__box--left {
