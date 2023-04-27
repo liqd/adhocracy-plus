@@ -53,7 +53,7 @@ export default class ModerationNotificationList extends Component {
       },
       isLoaded: false
     },
-    () => this.loadData()
+    this.loadDataWithFilter
     )
   }
 
@@ -65,7 +65,7 @@ export default class ModerationNotificationList extends Component {
       },
       isLoaded: false
     },
-    () => this.loadData()
+    this.loadDataWithFilter
     )
   }
 
@@ -77,7 +77,7 @@ export default class ModerationNotificationList extends Component {
       },
       isLoaded: false
     },
-    () => this.loadData()
+    this.loadDataWithFilter
     )
   }
 
@@ -99,6 +99,16 @@ export default class ModerationNotificationList extends Component {
       hasMore: jsonData.next,
       isLoaded: true
     })
+  }
+
+  loadDataWithFilter () {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        numOfComments: PACKET_COMMENT_SIZE,
+        packetFactor: 1
+      }
+    }, this.loadData)
   }
 
   handleAlert = (message, type = 'Notification') => {
