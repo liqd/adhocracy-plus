@@ -33,7 +33,19 @@
     margin-left: 3 * $padding;
 }
 
+.action--withdate {
+    position: relative;
+}
+
 .action__date {
     color: $gray;
     font-size: $font-size-sm;
+}
+
+.action__icon--stacked {
+    color: $brand-primary;
+    position: absolute;
+    font-size: 0.7rem;
+    top: 1.6rem;
+    left: 0.95rem;
 }
