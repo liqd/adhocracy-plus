@@ -66,7 +66,7 @@ export default class Filter extends React.Component {
           <div className="checkbox-btn livequestion__filter--btn">
             <label
               htmlFor="showFilters"
-              className="checkbox-btn__badge--light"
+              className="checkbox-btn__label--light"
               aria-label={ariaOpenFilters}
               title={ariaOpenFilters}
             >
@@ -89,7 +89,7 @@ export default class Filter extends React.Component {
             <div className="checkbox-btn">
               <label
                 htmlFor="markedCheck"
-                className="checkbox-btn__badge--light"
+                className="checkbox-btn__label--light"
                 aria-label={ariaDisplayOnlyMarked}
                 title={ariaDisplayOnlyMarked}
               >
@@ -109,7 +109,7 @@ export default class Filter extends React.Component {
             <div className="checkbox-btn">
               <label
                 htmlFor="displayNotHiddenOnly"
-                className="checkbox-btn__badge--light ps-3"
+                className="checkbox-btn__label--light ps-3"
                 aria-label={ariaDisplayNotHidden}
                 title={ariaDisplayNotHidden}
               >
@@ -129,7 +129,7 @@ export default class Filter extends React.Component {
             <div className="checkbox-btn">
               <label
                 htmlFor="orderedByLikes"
-                className="checkbox-btn__badge--light ps-3"
+                className="checkbox-btn__label--light ps-3"
                 aria-label={ariaOrderLikes}
                 title={ariaOrderLikes}
               >
