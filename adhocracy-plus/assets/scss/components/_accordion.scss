@@ -10,7 +10,7 @@
 .accordion__title {
     display: block;
     position: relative;
-    padding: $padding / 2 $padding $padding / 2 $padding;
+    padding: ($padding / 2) (3 * $padding) ($padding / 2) $padding;
     color: inherit;
     border-bottom: solid 1px $border-color;
 
@@ -18,22 +18,18 @@
         border-bottom: none;
     }
 
-    h2 {
-        margin-top: $spacer;
-    }
-
     i {
+        font-family: "Font Awesome 5 Free", sans-serif;
+        font-weight: 900;
         font-size: 1.7rem;
         position: absolute;
-        top: 1.75 * $padding;
+        top: 1.25 * $padding;
         right: $padding;
         transition: transform 0.3s;
     }
 
     &[aria-expanded="true"] i {
-        font-family: "Font Awesome 5 Free", sans-serif;
-        font-weight: 900;
-        transform: rotate(180deg);
+        transform: rotate(45deg);
     }
 }
 
