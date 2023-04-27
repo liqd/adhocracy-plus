@@ -21,8 +21,7 @@ const translated = {
   notificationRead: django.gettext('Notification successfully marked as read.'),
   notificationUnread: django.gettext('Notification successfully marked as unread.'),
   aiClassified: django.gettext('AI'),
-  postedComment: django.gettext('posted a'),
-  comment: django.gettext('comment')
+  postedComment: django.gettext('posted a {}comment{}')
 }
 
 export const ModerationNotification = (props) => {
@@ -287,7 +286,9 @@ export const ModerationNotification = (props) => {
             </div>
           </div>
           <div>
-            <p className="m-0">{userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {translated.postedComment} <a href={commentUrl}>{translated.comment}</a></p>
+            <p className="m-0">
+              {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, commentUrl)}
+            </p>
             <p className="m-0">{commentChangeLog}</p>
           </div>
         </div>
