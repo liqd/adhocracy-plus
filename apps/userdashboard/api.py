@@ -79,7 +79,7 @@ class ModerationCommentViewSet(
     def mark_read(self, request, **kwargs):
         comment = self.get_object()
         comment.is_reviewed = True
-        comment.save()
+        comment.save(ignore_modified=True)
         serializer = self.get_serializer(comment)
 
         return Response(data=serializer.data, status=200)
@@ -88,7 +88,7 @@ class ModerationCommentViewSet(
     def mark_unread(self, request, **kwargs):
         comment = self.get_object()
         comment.is_reviewed = False
-        comment.save()
+        comment.save(ignore_modified=True)
         serializer = self.get_serializer(comment)
 
         return Response(data=serializer.data, status=200)

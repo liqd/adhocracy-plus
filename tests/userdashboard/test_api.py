@@ -173,15 +173,14 @@ def test_queryset_and_filters(apiclient, report_factory, comment_factory, idea_f
 
 
 @pytest.mark.django_db
-def test_comment_not_modified(apiclient, comment_factory, idea):
+def test_comment_not_modified_when_blocked(apiclient, comment_factory, idea):
     comment = comment_factory(content_object=idea)
     project = idea.project
     moderator = project.moderators.first()
     apiclient.login(username=moderator.email, password="password")
 
-    assert not comment.modified
     assert not comment.is_blocked
-    assert not comment.is_moderator_marked
+    assert not comment.modified
 
     url = reverse(
         "moderationcomments-detail", kwargs={"project_pk": project.pk, "pk": comment.pk}
@@ -191,14 +190,57 @@ def test_comment_not_modified(apiclient, comment_factory, idea):
 
     response = apiclient.patch(url, data)
     assert response.status_code == 200
-    assert not response.data["is_modified"]
-    assert response.data["is_blocked"]
-    assert not response.data["is_moderator_marked"]
+    comment.refresh_from_db()
+    assert comment.is_blocked
+    assert not comment.modified
 
+
+@pytest.mark.django_db
+def test_comment_not_modified_when_moderator_marked(apiclient, comment_factory, idea):
+    comment = comment_factory(content_object=idea)
+    project = idea.project
+    moderator = project.moderators.first()
+    apiclient.login(username=moderator.email, password="password")
+
+    assert not comment.is_moderator_marked
+    assert not comment.modified
+
+    url = reverse(
+        "moderationcomments-detail", kwargs={"project_pk": project.pk, "pk": comment.pk}
+    )
     data = {"is_moderator_marked": True}
 
     response = apiclient.patch(url, data)
     assert response.status_code == 200
-    assert not response.data["is_modified"]
-    assert response.data["is_blocked"]
-    assert response.data["is_moderator_marked"]
+    comment.refresh_from_db()
+    assert comment.is_moderator_marked
+    assert not comment.modified
+
+
+@pytest.mark.django_db
+def test_comment_not_modified_when_marked_read_or_unread(
+    apiclient, comment_factory, idea
+):
+    comment = comment_factory(content_object=idea)
+    project = idea.project
+    moderator = project.moderators.first()
+    apiclient.login(username=moderator.email, password="password")
+
+    assert not comment.is_reviewed
+    assert not comment.modified
+
+    url = reverse(
+        "moderationcomments-detail", kwargs={"project_pk": project.pk, "pk": comment.pk}
+    )
+    response = apiclient.get(url + "mark_read/")
+    assert response.status_code == 200
+    comment.refresh_from_db()
+    assert comment.is_reviewed
+    assert not comment.modified
+
+    # need the filter string as default filter only returns non reviewed comments
+    response = apiclient.get(url + "mark_unread/?is_reviewed=all")
+    assert response.status_code == 200
+    comment.refresh_from_db()
+    assert not comment.is_reviewed
+    assert not comment.modified
