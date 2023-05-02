@@ -166,7 +166,7 @@ export const ModerationNotification = (props) => {
   async function toggleIsBlocked () {
     const [response, error] =
       await api.fetch({
-        url: props.apiUrl,
+        url: props.apiUrl + props.getUrlParams(),
         method: 'PATCH',
         body: { is_blocked: !notification.is_blocked }
       })
@@ -192,7 +192,7 @@ export const ModerationNotification = (props) => {
   async function toggleIsHighlighted () {
     const [response, error] =
       await api.fetch({
-        url: props.apiUrl,
+        url: props.apiUrl + props.getUrlParams(),
         method: 'PATCH',
         body: { is_moderator_marked: !notification.is_moderator_marked }
       })

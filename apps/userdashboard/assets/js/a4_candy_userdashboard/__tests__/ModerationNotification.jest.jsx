@@ -76,6 +76,7 @@ test('showing highlighted alert', async () => {
   const tree = render(
     <ModerationNotification
       notification={mockedNotification}
+      getUrlParams={() => {}}
       loadData={mockedFn}
     />
   )
