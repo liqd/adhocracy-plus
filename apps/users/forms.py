@@ -63,10 +63,11 @@ class DefaultSignupForm(SignupForm):
 
     def save(self, request):
         user = super().save(request)
-        user.get_newsletters = self.cleaned_data["get_newsletters"]
-        user.language = get_language()
-        user.save()
-        return user
+        if user:
+            user.get_newsletters = self.cleaned_data["get_newsletters"]
+            user.language = get_language()
+            user.save()
+            return user
 
 
 class IgbceSignupForm(DefaultSignupForm):
@@ -97,7 +98,6 @@ class IgbceSignupForm(DefaultSignupForm):
     )
 
     def validateMemberNumberAndDate(self, member_number, birth_date):
-
         if not hasattr(settings, "IGBCE_NAV_URL") or not hasattr(
             settings, "IGBCE_NAV_SECURITYID"
         ):
@@ -167,7 +167,6 @@ class IgbceSignupForm(DefaultSignupForm):
         self.validateMemberNumberAndDate(member_number, birth_date)
 
     def save(self, request):
-
         user = super().save(request)
         if hasattr(settings, "SITE_ORGANISATION_SLUG"):
             organisation = Organisation.objects.get(
@@ -213,7 +212,6 @@ class SocialTermsSignupForm(SocialSignupForm):
 
 class ChangeUserAdminForm(auth_forms.UserChangeForm):
     def clean_username(self):
-
         username = self.cleaned_data["username"]
         try:
             user = User.objects.get(username__iexact=username)
@@ -238,7 +236,6 @@ class ChangeUserAdminForm(auth_forms.UserChangeForm):
 
 class AddUserAdminForm(auth_forms.UserCreationForm):
     def clean_username(self):
-
         username = self.cleaned_data["username"]
         user = User.objects.filter(username__iexact=username)
         if user.exists():
