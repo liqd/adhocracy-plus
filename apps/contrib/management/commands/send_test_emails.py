@@ -81,6 +81,7 @@ class Command(BaseCommand):
         self._send_allauth_email_confirmation()
         self._send_allauth_password_reset()
         self._send_allauth_unknown_account()
+        self._send_allauth_account_already_exists()
 
         self._send_notification_blocked_comment()
         self._send_notification_moderator_comment_feedback()
@@ -335,6 +336,20 @@ class Command(BaseCommand):
             self.user,
             receiver=[self.user],
             template_name="account/email/unknown_account",
+            **context
+        )
+
+    def _send_allauth_account_already_exists(self):
+        context = {
+            "user": self.user,
+            "email": "user@example.com",
+            "password_reset_url": "http://example.com/...",
+        }
+
+        TestEmail.send(
+            self.user,
+            receiver=[self.user],
+            template_name="account/email/account_already_exists",
             **context
         )
 
