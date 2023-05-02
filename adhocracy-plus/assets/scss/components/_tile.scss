@@ -20,6 +20,10 @@
 // more accessible method for card links
 // ref: https://inclusive-components.design/cards/
 .tile__link {
+    // to ensure correct focus ring
+    position: absolute;
+    inset: 0;
+
     &:before {
         content: "";
         position: absolute;

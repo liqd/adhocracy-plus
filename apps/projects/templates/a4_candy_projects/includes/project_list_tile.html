@@ -1,11 +1,14 @@
 {% load i18n project_tags a4_candy_project_tags contrib_tags thumbnail rules static %}
 
 <li class="tile tile--{{ orientation }}">
-
+    <a class="tile__link" aria-labelledby="tile-title-{{ object.pk }}" href="{{ url }}">
+        <h3 class="visually-hidden" id="tile-title-{{ object.pk }}">
+            {{ object.name }}
+        </h3>
+    </a>
     {% if type == 'project' %}
     {% project_tile_image object as project_image %}
     {% project_tile_image_copyright object as project_image_copyright %}
-    <a class="tile__link" aria-labelledby="tile-title-{{ object.pk }}" href="{{ url }}"></a>
     <div class="tile__head">
         <div class="tile__image"
           {% if project_image %}

@@ -96,6 +96,15 @@ export default class ModerationProjects extends Component {
             <ul className="ps-0">
               {items.map(item => (
                 <li key={item.title} className="tile tile--horizontal">
+                  <a
+                    href={item.moderation_detail_url}
+                    className="tile__link"
+                  >
+                    <h3 className="visually-hidden">
+                      {item.title}
+                    </h3>
+                    {item.num_unread_comments > 0 && <span className="text-info">• <span className="visually-hidden">{hasUnReadComments}</span></span>}
+                  </a>
                   <div className="tile__head tile__head--wide">
                     <div
                       className="tile__image  tile__image--fill tile__image--sm"
@@ -110,13 +119,7 @@ export default class ModerationProjects extends Component {
                     <div>
                       <span className="text-muted">{byText}{item.organisation}</span>
                       <h3 className="tile__title mb-2">
-                        <a
-                          href={item.moderation_detail_url}
-                          className="tile__link"
-                        >
-                          {item.num_unread_comments > 0 && <span className="text-info">• <span className="visually-hidden">{hasUnReadComments}</span></span>}
-                          {item.title}
-                        </a>
+                        {item.title}
                       </h3>
                       {item.access === 1 && <span className="badge badge--dark">{publicText}</span>}
                       {item.access === 2 && <span className="badge badge--dark">{semiPrivateText}</span>}
