@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-26 15:17+0200\n"
+"POT-Creation-Date: 2023-05-04 18:06+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Katharina Lindenlaub, 2023\n"
 "Language-Team: Kyrgyz (https://app.transifex.com/liqd/teams/109316/ky/)\n"
@@ -428,7 +428,7 @@ msgstr "Категориянын аталышы"
 msgid "Category icon"
 msgstr "Категориянын сүрөтчөсү"
 
-#: adhocracy4/comments/models.py:39
+#: adhocracy4/comments/models.py:44
 #: adhocracy4/polls/exports.py:40
 #: apps/budgeting/exports.py:78 apps/debate/exports.py:68
 #: apps/documents/exports.py:41 apps/ideas/exports.py:77
@@ -437,7 +437,7 @@ msgctxt "noun"
 msgid "Comment"
 msgstr "Пикир "
 
-#: adhocracy4/comments/models.py:40
+#: adhocracy4/comments/models.py:45
 #: adhocracy4/exports/mixins/comments.py:48
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:16
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:17
@@ -1379,7 +1379,7 @@ msgstr "Катышуу фазасы  жакында аяктайт: "
 msgid "on <a href=\"%(url)s\">%(name)s</a>"
 msgstr "<a href=\"%(url)s\">де %(name)s</a>"
 
-#: apps/actions/templates/a4_candy_actions/includes/reaction.html:20
+#: apps/actions/templates/a4_candy_actions/includes/reaction.html:18
 #, python-format
 msgid ""
 "\n"
@@ -1389,7 +1389,7 @@ msgid ""
 "                "
 msgstr ""
 
-#: apps/actions/templates/a4_candy_actions/includes/reaction.html:25
+#: apps/actions/templates/a4_candy_actions/includes/reaction.html:23
 #, python-format
 msgid ""
 "\n"
@@ -1399,7 +1399,7 @@ msgid ""
 "              "
 msgstr ""
 
-#: apps/actions/templates/a4_candy_actions/includes/reaction.html:32
+#: apps/actions/templates/a4_candy_actions/includes/reaction.html:30
 #, python-format
 msgid ""
 "\n"
@@ -1408,7 +1408,7 @@ msgid ""
 "                "
 msgstr ""
 
-#: apps/actions/templates/a4_candy_actions/includes/reaction.html:37
+#: apps/actions/templates/a4_candy_actions/includes/reaction.html:35
 #, python-format
 msgid ""
 "\n"
@@ -1417,7 +1417,7 @@ msgid ""
 "                "
 msgstr ""
 
-#: apps/actions/templates/a4_candy_actions/includes/reaction.html:43
+#: apps/actions/templates/a4_candy_actions/includes/reaction.html:41
 #, python-format
 msgid ""
 "\n"
@@ -2504,7 +2504,7 @@ msgid "During this event you can ask questions live"
 msgstr "Бул иш-чара учурунда сиз суроолорду онлайн түрүндө бере аласыз"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:25
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:67
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:64
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr "%(time_left)sкалды"
@@ -3402,7 +3402,7 @@ msgstr ""
 #: apps/organisations/models.py:133
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:36 apps/users/forms.py:188
+#: apps/users/forms.py:36 apps/users/forms.py:187
 #: adhocracy-plus/templates/email_base.html:79
 #: adhocracy-plus/templates/email_base.html:109
 #: adhocracy-plus/templates/footer.html:43
@@ -3638,7 +3638,7 @@ msgid "%(time_left)s remaining"
 msgstr "%(time_left)s калды"
 
 #: apps/projects/serializers.py:99
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:69
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:66
 msgid "more than 1 year remaining"
 msgstr "1 жылдан ашык убакыт калды "
 
@@ -3648,7 +3648,7 @@ msgid "Participation: from %(project_start)s"
 msgstr "Катышуу: %(project_start)s ден "
 
 #: apps/projects/serializers.py:107
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:102
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:99
 msgid "Participation ended. Read result."
 msgstr "Катышуу аяктады. Жыйынтыкты көрүү. "
 
@@ -3797,43 +3797,43 @@ msgstr ""
 "Бул электрондук кат %(receiver_mail)sжөнөтүлдү. Бул электрондук кат сиз "
 "жөнөтүлдү, себеби сиз жеке долбоорго чакырууну кабыл алдыңыз. "
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:19
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:20
 msgid "Project is private."
 msgstr "Долбоор жеке  долбоор болуп саналат. "
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:25
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:26
 msgid "Project is semi-public."
 msgstr "Долбоор аралаш долбоор болуп саналат. "
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:45
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
 msgid "Type of participation: "
 msgstr "Катышуунун түрү"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:52
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:51
 #, python-format
 msgid "%(num_entries)s Contribution"
 msgid_plural "%(num_entries)s Contributions"
 msgstr[0] "%(num_entries)s Салымдар "
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:77
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:74
 msgid "more than 1 year"
 msgstr "1 жылдан ашуун"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:77
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:74
 msgctxt "abbreviation \"more than 1 year\""
 msgid "> 1 Y"
 msgstr "1 жылдан аз"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:83
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:80
 msgid "JOIN IN"
 msgstr "КОШУЛУУ"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:85
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:82
 msgid "READ"
 msgstr "ОКУУ"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:94
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:96
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:91
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:93
 #, python-format
 msgid " Participation: from %(date)s"
 msgstr "%(date)s тартып катышуу "
@@ -4327,38 +4327,38 @@ msgstr ""
 msgid "Username/e-mail"
 msgstr "Колдонуучунун аты / электрондук почтасынын дареги "
 
-#: apps/users/forms.py:38 apps/users/forms.py:190 apps/users/models.py:73
+#: apps/users/forms.py:38 apps/users/forms.py:189 apps/users/models.py:73
 msgid "I would like to receive further information"
 msgstr "Мен кошумча маалыматты алгым келет "
 
-#: apps/users/forms.py:40 apps/users/forms.py:192 apps/users/models.py:76
+#: apps/users/forms.py:40 apps/users/forms.py:191 apps/users/models.py:76
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
 "Сиз катталган долбоорлор электрондук почта аркылуу кошумча маалыматты жибере "
 "алат."
 
-#: apps/users/forms.py:50 apps/users/forms.py:202
+#: apps/users/forms.py:50 apps/users/forms.py:201
 msgid "Your username will appear publicly next to your posts."
 msgstr ""
 "Сиздин колдонуучу атыңыз билдирүүлөрүңүздүн жанында  жалпыга көрүнүп турат. "
 
-#: apps/users/forms.py:74
+#: apps/users/forms.py:75
 msgid "Membership number of IG BCE"
 msgstr "IG BCE мүчөлүк номери "
 
-#: apps/users/forms.py:76
+#: apps/users/forms.py:77
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
 msgstr ""
 "Мүчөлүк номер жети сандык белгиден турат жана мүчөлүк картада жазылган. "
 
-#: apps/users/forms.py:83
+#: apps/users/forms.py:84
 msgid "Date of birth"
 msgstr "Туулган датасы /күнү/"
 
-#: apps/users/forms.py:85
+#: apps/users/forms.py:86
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
@@ -4366,7 +4366,7 @@ msgstr ""
 "Сураныч, тастыктоо үчүн туулган  жылыңызды АЙ/КҮН/ЖЫЛ форматында  жазыңыз. "
 "IG BCE мүчөлөрү гана катыша алат. "
 
-#: apps/users/forms.py:92
+#: apps/users/forms.py:93
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
@@ -4995,6 +4995,32 @@ msgstr "Дагы бир электрондук почта дарегин кош�
 msgid "Add Email"
 msgstr "Электрондук почтаны кошуу"
 
+#: adhocracy-plus/templates/account/email/account_already_exists.en.email:4
+msgid "Account Already Exists"
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/account_already_exists.en.email:8
+msgid ""
+"You are receiving this e-mail because you or someone else tried to signup "
+"for an\n"
+"    account using the e-mail address:"
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/account_already_exists.en.email:15
+msgid ""
+"However, an account using that e-mail address already exists.  In case you "
+"have\n"
+"    forgotten about this, please use the password forgotten procedure to "
+"recover\n"
+"    your account:"
+msgstr ""
+
+#: adhocracy-plus/templates/account/email/account_already_exists.en.email:21
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:15
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:6
+msgid "Reset password"
+msgstr "Сыр сөздү жокко чыгаруу"
+
 #: adhocracy-plus/templates/account/email/email_confirmation.en.email:4
 #, python-format
 msgid "Please confirm your email address on %(current_site)s"
@@ -5089,11 +5115,6 @@ msgstr ""
 "коюу үчүн \"Сыр сөздү жокко чыгаруу\" баскычына басыңыз. Сыр сөздү жокко "
 "чыгаруу сурамын жибербесеңиз, бул катка жооп бербей койсоңуз болот, жана "
 "Сиздин %(current_site)s сыр сөзүңүз  өзгөрбөйт. "
-
-#: adhocracy-plus/templates/account/email/password_reset_key.en.email:15
-#: adhocracy-plus/templates/account/email/unknown_account.en.email:6
-msgid "Reset password"
-msgstr "Сыр сөздү жокко чыгаруу"
 
 #: adhocracy-plus/templates/account/email/password_reset_key.en.email:17
 #, python-format
