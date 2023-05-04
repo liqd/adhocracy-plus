@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-26 15:17+0200\n"
+"POT-Creation-Date: 2023-05-04 18:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -355,7 +355,7 @@ msgstr "Category name"
 msgid "Category icon"
 msgstr "Category icon"
 
-#: adhocracy4/comments/models.py:39 adhocracy4/polls/exports.py:40
+#: adhocracy4/comments/models.py:44 adhocracy4/polls/exports.py:40
 #: apps/budgeting/exports.py:78 apps/debate/exports.py:68
 #: apps/documents/exports.py:41 apps/ideas/exports.py:77
 #: apps/mapideas/exports.py:78 apps/topicprio/exports.py:75
@@ -363,7 +363,7 @@ msgctxt "noun"
 msgid "Comment"
 msgstr "Comment"
 
-#: adhocracy4/comments/models.py:40 adhocracy4/exports/mixins/comments.py:48
+#: adhocracy4/comments/models.py:45 adhocracy4/exports/mixins/comments.py:48
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:16
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:17
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:18
@@ -1260,7 +1260,7 @@ msgstr "Participation phase will end soon:"
 msgid "on <a href=\"%(url)s\">%(name)s</a>"
 msgstr "on <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/actions/templates/a4_candy_actions/includes/reaction.html:20
+#: apps/actions/templates/a4_candy_actions/includes/reaction.html:18
 #, python-format
 msgid ""
 "\n"
@@ -1275,7 +1275,7 @@ msgstr ""
 "href=\"%(item_url)s\">contribution</a>\n"
 "                "
 
-#: apps/actions/templates/a4_candy_actions/includes/reaction.html:25
+#: apps/actions/templates/a4_candy_actions/includes/reaction.html:23
 #, python-format
 msgid ""
 "\n"
@@ -1290,7 +1290,7 @@ msgstr ""
 "href=\"%(parent_comment_url)s\">comment</a>\n"
 "              "
 
-#: apps/actions/templates/a4_candy_actions/includes/reaction.html:32
+#: apps/actions/templates/a4_candy_actions/includes/reaction.html:30
 #, python-format
 msgid ""
 "\n"
@@ -1303,7 +1303,7 @@ msgstr ""
 "href=\"%(feedback_url)s\">feedback</a> from moderation\n"
 "                "
 
-#: apps/actions/templates/a4_candy_actions/includes/reaction.html:37
+#: apps/actions/templates/a4_candy_actions/includes/reaction.html:35
 #, python-format
 msgid ""
 "\n"
@@ -1316,7 +1316,7 @@ msgstr ""
 "on your <a href=\"%(comment_url)s\">comment</a>\n"
 "                "
 
-#: apps/actions/templates/a4_candy_actions/includes/reaction.html:43
+#: apps/actions/templates/a4_candy_actions/includes/reaction.html:41
 #, python-format
 msgid ""
 "\n"
@@ -2397,7 +2397,7 @@ msgid "During this event you can ask questions live"
 msgstr "During this event you can ask questions live"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:25
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:67
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:64
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr " %(time_left)s remaining "
@@ -3303,7 +3303,7 @@ msgstr ""
 #: apps/organisations/models.py:133
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:36 apps/users/forms.py:188
+#: apps/users/forms.py:36 apps/users/forms.py:187
 #: adhocracy-plus/templates/email_base.html:79
 #: adhocracy-plus/templates/email_base.html:109
 #: adhocracy-plus/templates/footer.html:43
@@ -3532,7 +3532,7 @@ msgid "%(time_left)s remaining"
 msgstr "%(time_left)s remaining"
 
 #: apps/projects/serializers.py:99
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:69
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:66
 msgid "more than 1 year remaining"
 msgstr "more than 1 year remaining"
 
@@ -3542,7 +3542,7 @@ msgid "Participation: from %(project_start)s"
 msgstr "Participation: from %(project_start)s"
 
 #: apps/projects/serializers.py:107
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:102
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:99
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
@@ -3691,44 +3691,44 @@ msgstr ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you accepted the invitation to participate in a private project."
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:19
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:20
 msgid "Project is private."
 msgstr "Project is private."
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:25
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:26
 msgid "Project is semi-public."
 msgstr "Project is semi-public."
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:45
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
 msgid "Type of participation: "
 msgstr "Type of participation: "
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:52
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:51
 #, python-format
 msgid "%(num_entries)s Contribution"
 msgid_plural "%(num_entries)s Contributions"
 msgstr[0] "%(num_entries)s Contribution"
 msgstr[1] "%(num_entries)s Contributions"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:77
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:74
 msgid "more than 1 year"
 msgstr "more than 1 year"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:77
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:74
 msgctxt "abbreviation \"more than 1 year\""
 msgid "> 1 Y"
 msgstr "> 1 Y"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:83
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:80
 msgid "JOIN IN"
 msgstr "JOIN IN"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:85
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:82
 msgid "READ"
 msgstr "READ"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:94
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:96
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:91
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:93
 #, python-format
 msgid " Participation: from %(date)s"
 msgstr " Participation: from %(date)s"
@@ -4218,25 +4218,25 @@ msgstr "If you are having difficulty please contact us by {}email{}."
 msgid "Username/e-mail"
 msgstr "Username/e-mail"
 
-#: apps/users/forms.py:38 apps/users/forms.py:190 apps/users/models.py:73
+#: apps/users/forms.py:38 apps/users/forms.py:189 apps/users/models.py:73
 msgid "I would like to receive further information"
 msgstr "I would like to receive further information"
 
-#: apps/users/forms.py:40 apps/users/forms.py:192 apps/users/models.py:76
+#: apps/users/forms.py:40 apps/users/forms.py:191 apps/users/models.py:76
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
 "Projects you are following can send you additional information via email."
 
-#: apps/users/forms.py:50 apps/users/forms.py:202
+#: apps/users/forms.py:50 apps/users/forms.py:201
 msgid "Your username will appear publicly next to your posts."
 msgstr "Your username will appear publicly next to your posts."
 
-#: apps/users/forms.py:74
+#: apps/users/forms.py:75
 msgid "Membership number of IG BCE"
 msgstr "Membership number of IG BCE"
 
-#: apps/users/forms.py:76
+#: apps/users/forms.py:77
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
@@ -4244,11 +4244,11 @@ msgstr ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
 
-#: apps/users/forms.py:83
+#: apps/users/forms.py:84
 msgid "Date of birth"
 msgstr "Date of birth"
 
-#: apps/users/forms.py:85
+#: apps/users/forms.py:86
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
@@ -4256,7 +4256,7 @@ msgstr ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
 
-#: apps/users/forms.py:92
+#: apps/users/forms.py:93
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
@@ -4879,6 +4879,40 @@ msgstr "Add another Email"
 msgid "Add Email"
 msgstr "Add Email"
 
+#: adhocracy-plus/templates/account/email/account_already_exists.en.email:4
+msgid "Account Already Exists"
+msgstr "Account Already Exists"
+
+#: adhocracy-plus/templates/account/email/account_already_exists.en.email:8
+msgid ""
+"You are receiving this e-mail because you or someone else tried to signup "
+"for an\n"
+"    account using the e-mail address:"
+msgstr ""
+"You are receiving this e-mail because you or someone else tried to signup "
+"for an\n"
+"    account using the e-mail address:"
+
+#: adhocracy-plus/templates/account/email/account_already_exists.en.email:15
+msgid ""
+"However, an account using that e-mail address already exists.  In case you "
+"have\n"
+"    forgotten about this, please use the password forgotten procedure to "
+"recover\n"
+"    your account:"
+msgstr ""
+"However, an account using that e-mail address already exists.  In case you "
+"have\n"
+"    forgotten about this, please use the password forgotten procedure to "
+"recover\n"
+"    your account:"
+
+#: adhocracy-plus/templates/account/email/account_already_exists.en.email:21
+#: adhocracy-plus/templates/account/email/password_reset_key.en.email:15
+#: adhocracy-plus/templates/account/email/unknown_account.en.email:6
+msgid "Reset password"
+msgstr "Reset password"
+
 #: adhocracy-plus/templates/account/email/email_confirmation.en.email:4
 #, python-format
 msgid "Please confirm your email address on %(current_site)s"
@@ -4972,11 +5006,6 @@ msgstr ""
 "you have requested a password reset. Please click on \"Reset password\" to "
 "set a new password. If you have not requested a password reset, you can "
 "ighnore this email and your %(current_site)s password stays unchanged."
-
-#: adhocracy-plus/templates/account/email/password_reset_key.en.email:15
-#: adhocracy-plus/templates/account/email/unknown_account.en.email:6
-msgid "Reset password"
-msgstr "Reset password"
 
 #: adhocracy-plus/templates/account/email/password_reset_key.en.email:17
 #, python-format
