@@ -13,7 +13,6 @@ from apps.documents.models import Chapter
 from apps.documents.models import Paragraph
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
 from apps.organisations.models import Organisation
-from apps.projects import helpers
 from apps.users.models import User
 
 
@@ -46,9 +45,6 @@ class UserDashboardBaseMixin(
         projects = Project.objects.filter(
             follow__creator=self.request.user, follow__enabled=True
         )
-        for project in projects:
-            project.latest_comments_num = helpers.get_num_latest_comments(project)
-
         return projects
 
 
