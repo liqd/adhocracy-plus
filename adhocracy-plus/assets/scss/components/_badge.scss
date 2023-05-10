@@ -1,5 +1,5 @@
-// FIXME: this is a workaround to make 'badge' usage in a4 work
-// should change badge to label in a4
+// FIXME: this is a workaround to make 'badge' usage in a4 work.
+// it is needed in a4 to ensure text debate module's comment badges are working.
 .badge:not(.a4-comments__category__text) {
     display: inline-block;
     background-color: $text-color;
@@ -10,36 +10,36 @@
     padding: 0.2em 0.7em;
 }
 
-.badge--big {
+.badge.badge--big {
     padding: 0.4em 0.6em;
     font-size: $font-size-sm;
     border-radius: 0.3em;
 }
 
-.badge--active {
+.badge.badge--active {
     background-color: $body-bg;
     border: 2px solid $brand-primary;
     color: $text-color;
 }
 
-.badge--secondary {
+.badge.badge--secondary {
     background-color: $brand-secondary;
     color: contrast-color($brand-secondary);
 }
 
-.badge--danger {
+.badge.badge--danger {
     background-color: $brand-danger;
     color: contrast-color($brand-danger);
 }
 
-.badge--live {
+.badge.badge--live {
     background-color: $body-bg;
     border: 1px solid $brand-danger;
     color: $brand-danger;
     text-transform: uppercase;
 }
 
-.badge--info {
+.badge.badge--info {
     background-color: $body-bg;
     border: 1px solid $text-color;
     color: $text-color;
@@ -48,24 +48,24 @@
 
 // stylelint-disable selector-class-pattern
 // class names are coming from django
-.badge--CONSIDERATION {
+.badge.badge--CONSIDERATION {
     background-color: $feedback-color-consideration;
     color: contrast-color($feedback-color-consideration);
 }
 
-.badge--REJECTED {
+.badge.badge--REJECTED {
     background-color: $feedback-color-rejected;
     color: contrast-color($feedback-color-rejected);
 }
 
-.badge--ACCEPTED {
+.badge.badge--ACCEPTED {
     background-color: $feedback-color-accepted;
     color: contrast-color($feedback-color-accepted);
 }
 // stylelint-enable
 
 @media screen and (max-width: $breakpoint-xs-down) {
-    .badge--big {
+    .badge.badge--big {
         padding: 0.2em 0.7em;
         font-size: $font-size-xs;
     }
