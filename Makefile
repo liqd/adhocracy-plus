@@ -65,6 +65,8 @@ fixtures:
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata adhocracy-plus/fixtures/site-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata adhocracy-plus/fixtures/users-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata adhocracy-plus/fixtures/orga-dev.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata adhocracy-plus/fixtures/documents.json
+
 
 .PHONY: server
 server:
