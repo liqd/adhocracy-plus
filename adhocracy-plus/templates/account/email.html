@@ -11,8 +11,8 @@
 <section>
     <h2>{% translate 'Main Email' %}</h2>
     <span>{{ user.email }}</span>
-    <span class="label">{% translate "Primary" %}</span>
-    <span class="label">{% translate "Verified" %}</span>
+    <span class="badge">{% translate "Primary" %}</span>
+    <span class="badge">{% translate "Verified" %}</span>
 </section>
 
 {% if user.emailaddress_set.all|length > 1 %}

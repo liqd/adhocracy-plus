@@ -142,10 +142,10 @@
                         {% for phase in module.phases %}
                             {% if phase.is_over or phase == module.active_phase %}
                             <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
-                                <div class="font-weight-bold{% if phase == module.active_phase %} lr-bar{% endif %}">
+                                <div class="fw-bold{% if phase == module.active_phase %} lr-bar{% endif %}">
                                     {% if phase == module.active_phase %}
                                         <span class="lr-bar__left">{{ phase.name }}</span>
-                                        <span class="lr-bar__right phase-info__highlight">{% translate 'active' %}</span>
+                                        <span class="lr-bar__right text-primary">{% translate 'active' %}</span>
                                     {% else %}
                                         {{ phase.name }}
                                     {% endif %}
