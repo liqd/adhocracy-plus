@@ -58,7 +58,7 @@ export default class QuestionUser extends React.Component {
         <div>
           <div className="col-12">
             {this.props.category &&
-              <span className="label mb-2">{this.props.category}</span>}
+              <span className="badge mb-2">{this.props.category}</span>}
 
             <div>
               <p>

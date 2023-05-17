@@ -105,7 +105,7 @@ export default class QuestionModerator extends React.Component {
     return (
       <div className="list-item mb-2" data-testid="question-moderator">
         {this.props.category &&
-          <span className="label mb-2">{this.props.category}</span>}
+          <span className="badge mb-2">{this.props.category}</span>}
         <div>
           <p className={'text-break ' + (this.props.is_hidden ? 'text-muted u-text-line-through' : '')}>{this.props.children}</p>
         </div>

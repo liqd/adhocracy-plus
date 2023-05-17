@@ -1,6 +1,4 @@
-// FIXME: this is a workaround to make 'badge' usage in a4 work.
-// it is needed in a4 to ensure text debate module's comment badges are working.
-.badge:not(.a4-comments__category__text) {
+.badge {
     display: inline-block;
     background-color: $text-color;
     color: contrast-color($text-color);
