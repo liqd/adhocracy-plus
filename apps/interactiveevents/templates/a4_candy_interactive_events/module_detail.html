@@ -29,7 +29,7 @@
                     {% translate 'finished' %}
                 </span>
             {% endif %}
-            <span class="label">{% translate 'Interactive' %}</span>
+            <span class="badge">{% translate 'Interactive' %}</span>
             <h1>{{ module.name }}</h1>
             <div class="mb-2">
                 {% if module.description|length > 180 %}
@@ -54,7 +54,7 @@
                 {% endif %}
             </div>
             <div class="phase-info__item u-no-border">
-                <div class="font-weight-bold mb-1">
+                <div class="fw-bold mb-1">
                     {% if module.active_phase %}
                         {% html_date module.phases.first.start_date 'DATETIME_FORMAT' %}
                         &ndash; {% html_date module.phases.first.end_date 'DATETIME_FORMAT' %}
