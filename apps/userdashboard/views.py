@@ -1,17 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views import generic
 
-from adhocracy4.actions.models import Action
-from adhocracy4.comments.models import Comment
-from adhocracy4.polls.models import Poll
 from adhocracy4.projects.models import Project
 from adhocracy4.rules import mixins as rules_mixins
-from apps.documents.models import Chapter
-from apps.documents.models import Paragraph
-from apps.moderatorfeedback.models import ModeratorCommentFeedback
 from apps.organisations.models import Organisation
 from apps.users.models import User
 
@@ -54,56 +47,6 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
     menu_item = "overview"
 
     @property
-    def actions(self):
-        """Return comment/feedback actions that are  on content the user created.
-
-        Do not return actions on comments for polls and documents to not spam
-        initiators.
-        """
-        user = self.request.user
-        comment_actions = (
-            Action.objects.filter(
-                obj_content_type=ContentType.objects.get_for_model(Comment),
-                verb="add",
-            )
-            .exclude(
-                target_content_type__in=[
-                    ContentType.objects.get_for_model(Poll),
-                    ContentType.objects.get_for_model(Chapter),
-                    ContentType.objects.get_for_model(Paragraph),
-                ]
-            )
-            .exclude(
-                actor=user,
-            )
-            .select_related("actor", "project")
-            .prefetch_related("obj", "target__creator")
-        )
-        filtered_comment_actions = [
-            action
-            for action in comment_actions
-            if not action.obj.is_blocked and action.target.creator == user
-        ]
-        feedback_actions = (
-            Action.objects.filter(
-                obj_content_type=ContentType.objects.get_for_model(
-                    ModeratorCommentFeedback
-                ),
-            )
-            .exclude(actor=user)
-            .select_related("project", "project__organisation")
-            .prefetch_related("obj__comment__creator", "obj__comment__content_object")
-        )
-        filtered_feedback_actions = [
-            action for action in feedback_actions if action.obj.comment.creator == user
-        ]
-        return sorted(
-            filtered_comment_actions + filtered_feedback_actions,
-            key=lambda action: action.timestamp,
-            reverse=True,
-        )
-
-    @property
     def projects_carousel(self):
         (
             sorted_active_projects,
@@ -122,56 +65,6 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
 class UserDashboardActivitiesView(UserDashboardBaseMixin):
     template_name = "a4_candy_userdashboard/userdashboard_activities.html"
     menu_item = "overview"
-
-    @property
-    def actions(self):
-        """Return comment/feedback actions that are  on content the user created.
-
-        Do not return actions on comments for polls and documents to not spam
-        initiators.
-        """
-        user = self.request.user
-        comment_actions = (
-            Action.objects.filter(
-                obj_content_type=ContentType.objects.get_for_model(Comment), verb="add"
-            )
-            .exclude(
-                target_content_type__in=[
-                    ContentType.objects.get_for_model(Poll),
-                    ContentType.objects.get_for_model(Chapter),
-                    ContentType.objects.get_for_model(Paragraph),
-                ]
-            )
-            .exclude(
-                actor=user,
-            )
-            .select_related("actor", "project")
-            .prefetch_related("obj", "target__creator")
-        )
-
-        filtered_comment_actions = [
-            action
-            for action in comment_actions
-            if not action.obj.is_blocked and action.target.creator == user
-        ]
-        feedback_actions = (
-            Action.objects.filter(
-                obj_content_type=ContentType.objects.get_for_model(
-                    ModeratorCommentFeedback
-                ),
-            )
-            .exclude(actor=user)
-            .select_related("project")
-            .prefetch_related("obj__comment__creator")
-        )
-        filtered_feedback_actions = [
-            action for action in feedback_actions if action.obj.comment.creator == user
-        ]
-        return sorted(
-            filtered_comment_actions + filtered_feedback_actions,
-            key=lambda action: action.timestamp,
-            reverse=True,
-        )
 
 
 class UserDashboardFollowingView(UserDashboardBaseMixin):
