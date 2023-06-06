@@ -11,24 +11,7 @@ from adhocracy4.reports.models import Report
 
 def get_all_comments_project(project):
     return Comment.objects.filter(
-        Q(budget_proposal__module__project=project)
-        | Q(chapter__module__project=project)
-        | Q(idea__module__project=project)
-        | Q(mapidea__module__project=project)
-        | Q(paragraph__chapter__module__project=project)
-        | Q(poll__module__project=project)
-        | Q(subject__module__project=project)
-        | Q(topic__module__project=project)
-        |
-        # child comments
-        Q(parent_comment__budget_proposal__module__project=project)
-        | Q(parent_comment__chapter__module__project=project)
-        | Q(parent_comment__idea__module__project=project)
-        | Q(parent_comment__mapidea__module__project=project)
-        | Q(parent_comment__paragraph__chapter__module__project=project)
-        | Q(parent_comment__poll__module__project=project)
-        | Q(parent_comment__subject__module__project=project)
-        | Q(parent_comment__topic__module__project=project)
+        Q(project=project) | Q(parent_comment__project=project)
     )
 
 
