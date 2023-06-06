@@ -86,16 +86,15 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
                 obj_content_type=ContentType.objects.get_for_model(
                     ModeratorCommentFeedback
                 ),
+                obj_comment_creator=user,
             )
             .exclude(actor=user)
             .select_related("project", "project__organisation")
             .prefetch_related("obj__comment__creator", "obj__comment__content_object")
         )
-        filtered_feedback_actions = [
-            action for action in feedback_actions if action.obj.comment.creator == user
-        ]
+
         return sorted(
-            filtered_comment_actions + filtered_feedback_actions,
+            filtered_comment_actions + list(feedback_actions),
             key=lambda action: action.timestamp,
             reverse=True,
         )
@@ -155,16 +154,15 @@ class UserDashboardActivitiesView(UserDashboardBaseMixin):
                 obj_content_type=ContentType.objects.get_for_model(
                     ModeratorCommentFeedback
                 ),
+                obj_comment_creator=user,
             )
             .exclude(actor=user)
             .select_related("project")
             .prefetch_related("obj__comment__creator")
         )
-        filtered_feedback_actions = [
-            action for action in feedback_actions if action.obj.comment.creator == user
-        ]
+
         return sorted(
-            filtered_comment_actions + filtered_feedback_actions,
+            filtered_comment_actions + list(feedback_actions),
             key=lambda action: action.timestamp,
             reverse=True,
         )
