@@ -65,8 +65,8 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
             Action.objects.filter(
                 obj_content_type=ContentType.objects.get_for_model(Comment),
                 verb="add",
+                target_creator=user,
             )
-            .filter(target_creator=user)
             .exclude(
                 target_content_type__in=[
                     ContentType.objects.get_for_model(Poll),
@@ -129,9 +129,10 @@ class UserDashboardActivitiesView(UserDashboardBaseMixin):
         user = self.request.user
         comment_actions = (
             Action.objects.filter(
-                obj_content_type=ContentType.objects.get_for_model(Comment), verb="add"
+                obj_content_type=ContentType.objects.get_for_model(Comment),
+                verb="add",
+                target_creator=user,
             )
-            .filter(target_creator=user)
             .exclude(
                 target_content_type__in=[
                     ContentType.objects.get_for_model(Poll),
