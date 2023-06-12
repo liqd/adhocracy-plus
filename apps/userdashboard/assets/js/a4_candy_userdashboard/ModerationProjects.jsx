@@ -10,25 +10,29 @@ export default class ModerationProjects extends Component {
       items: [],
       isLoaded: false
     }
+    this.isLoading = false
   }
 
   componentDidMount () {
     this.loadData()
-    this.timer = setInterval(() => this.loadData(), 3000)
+    this.timer = setInterval(() => !this.isLoading && this.loadData(), 3000)
   }
 
   async loadData () {
-    fetch(this.props.projectApiUrl)
-      .then(res => res.json())
-      .then(json => {
-        json.sort((a, b) => b.num_reported_unread_comments - a.num_reported_unread_comments)
-        this.setState({
-          items: json,
-          isLoaded: true
-        })
-      }).catch((err) => {
-        console.log(err)
+    this.isLoading = true
+    try {
+      const data = await fetch(this.props.projectApiUrl)
+      const jsonData = await data.json()
+      jsonData.sort((a, b) => b.num_reported_unread_comments - a.num_reported_unread_comments)
+      this.setState({
+        items: jsonData,
+        isLoaded: true
       })
+    } catch (error) {
+      console.warn(error)
+    } finally {
+      this.isLoading = false
+    }
   }
 
   componentWillUnmount () {

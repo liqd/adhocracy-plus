@@ -35,14 +35,12 @@ export default class ModerationNotificationList extends Component {
       packetFactor: 1,
       isLoaded: false
     }
+    this.isLoading = false
   }
 
   componentDidMount () {
     this.loadData()
-    setInterval(
-      () => !this.timer && this.loadData(),
-      3000
-    )
+    this.timer = setInterval(() => !this.isLoading && this.loadData(), 3000)
   }
 
   isReadFilterChangeHandle (value) {
@@ -89,16 +87,21 @@ export default class ModerationNotificationList extends Component {
   }
 
   async loadData () {
-    this.timer = true
-    const url = this.props.moderationCommentsApiUrl + this.getUrlParams()
-    const data = await fetch(url)
-    const jsonData = await data.json()
-    this.timer = false
-    this.setState({
-      moderationComments: jsonData.results,
-      hasMore: jsonData.next,
-      isLoaded: true
-    })
+    this.isLoading = true
+    try {
+      const url = this.props.moderationCommentsApiUrl + this.getUrlParams()
+      const data = await fetch(url)
+      const jsonData = await data.json()
+      this.setState({
+        moderationComments: jsonData.results,
+        hasMore: jsonData.next,
+        isLoaded: true
+      })
+    } catch (error) {
+      console.warn(error)
+    } finally {
+      this.isLoading = false
+    }
   }
 
   loadDataWithFilter () {
