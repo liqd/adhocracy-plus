@@ -20,31 +20,31 @@ help:
 	@echo
 	@echo usage:
 	@echo
-	@echo "  make install         				-- install dev setup"
-	@echo "  make clean           				-- delete node modules and venv"
-	@echo "  make fixtures        				-- load example data"
-	@echo "  make server          				-- start a dev server"
-	@echo "  make watch           				-- start a dev server and rebuild js and css files on changes"
-	@echo "  make background      				-- start background processes"
-	@echo "  make test            				-- run all test cases"
-	@echo "  make pytest            			-- run all test cases with pytest"
-	@echo "  make pytest-lastfailed 			-- run test that failed last"
-	@echo "  make pytest-clean      			-- test on new database"
-	@echo "  make coverage        				-- write coverage report to dir htmlcov"
-	@echo "  make jstest            			-- run js tests with coverage"
-	@echo "  make jstest-nocov      			-- run js tests without coverage"
-	@echo "  make jstest-debug      			-- run changed tests only, no coverage"
-	@echo "  make jstest-updateSnapshots  -- update jest snapshots"
-	@echo "  make lint            				-- lint all project files"
-	@echo "  make lint-quick      				-- lint all files staged in git"
-	@echo "  make lint-fix      					-- fix linting for all js files staged in git"
-	@echo "  make po              				-- create new po files from the source"
-	@echo "  make mo              				-- create new mo files from the translated po files"
-	@echo "  make release         				-- build everything required for a release"
-	@echo "  make start-postgres  				-- start the local postgres cluster"
-	@echo "  make stop-postgres   				-- stops the local postgres cluster"
-	@echo "  make create-postgres   			-- create the local postgres cluster (only works on ubuntu 20.04)"
-	@echo "  make local-a4          			-- patch to use local a4 (needs to have path ../adhocracy4)"
+	@echo "  make install					-- install dev setup"
+	@echo "  make clean						-- delete node modules and venv"
+	@echo "  make fixtures					-- load example data"
+	@echo "  make server					-- start a dev server"
+	@echo "  make watch						-- start a dev server and rebuild js and css files on changes"
+	@echo "  make background				-- start background processes"
+	@echo "  make test						-- run all test cases"
+	@echo "  make pytest					-- run all test cases with pytest"
+	@echo "  make pytest-lastfailed			-- run test that failed last"
+	@echo "  make pytest-clean				-- test on new database"
+	@echo "  make coverage					-- write coverage report to dir htmlcov"
+	@echo "  make jstest					-- run js tests with coverage"
+	@echo "  make jstest-nocov				-- run js tests without coverage"
+	@echo "  make jstest-debug				-- run changed tests only, no coverage"
+	@echo "  make jstest-updateSnapshots	-- update jest snapshots"
+	@echo "  make lint						-- lint all project files"
+	@echo "  make lint-quick				-- lint all files staged in git"
+	@echo "  make lint-fix					-- fix linting for all js files staged in git"
+	@echo "  make po						-- create new po files from the source"
+	@echo "  make mo						-- create new mo files from the translated po files"
+	@echo "  make release					-- build everything required for a release"
+	@echo "  make start-postgres			-- start the local postgres cluster"
+	@echo "  make stop-postgres				-- stops the local postgres cluster"
+	@echo "  make create-postgres			-- create the local postgres cluster (only works on ubuntu 20.04)"
+	@echo "  make local-a4					-- patch to use local a4 (needs to have path ../adhocracy4)"
 	@echo
 
 .PHONY: install
@@ -52,8 +52,8 @@ install:
 	npm install --no-save
 	npm run build
 	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
-	$(VIRTUAL_ENV)/bin/python3 -m pip install --upgrade -r requirements/dev.txt
-	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
+	$(VIRTUAL_ENV)/bin/python -m pip install --upgrade -r requirements/dev.txt
+	$(VIRTUAL_ENV)/bin/python manage.py migrate
 
 .PHONY: clean
 clean:
@@ -63,23 +63,23 @@ clean:
 
 .PHONY: fixtures
 fixtures:
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata adhocracy-plus/fixtures/site-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata adhocracy-plus/fixtures/users-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata adhocracy-plus/fixtures/orga-dev.json
+	$(VIRTUAL_ENV)/bin/python manage.py loaddata adhocracy-plus/fixtures/site-dev.json
+	$(VIRTUAL_ENV)/bin/python manage.py loaddata adhocracy-plus/fixtures/users-dev.json
+	$(VIRTUAL_ENV)/bin/python manage.py loaddata adhocracy-plus/fixtures/orga-dev.json
 
 .PHONY: server
 server:
-	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8004
+	$(VIRTUAL_ENV)/bin/python manage.py runserver 8004
 
 .PHONY: watch
 watch:
 	trap 'kill %1' KILL; \
 	npm run watch & \
-	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8004
+	$(VIRTUAL_ENV)/bin/python manage.py runserver 8004
 
 .PHONY: background
 background:
-	$(VIRTUAL_ENV)/bin/python3 manage.py process_tasks
+	$(VIRTUAL_ENV)/bin/python manage.py process_tasks
 
 .PHONY: test
 test:
@@ -122,6 +122,7 @@ jstest-updateSnapshots:
 .PHONY: lint
 lint:
 	EXIT_STATUS=0; \
+	$(VIRTUAL_ENV)/bin/black $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/isort --diff -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
 	npm run lint ||  EXIT_STATUS=$$?; \
@@ -164,19 +165,14 @@ po:
 mo:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
-.PHONY: tx-mo
-tx-mo:
-	$(VIRTUAL_ENV)/bin/tx pull -a
-	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
-
 .PHONY: release
 release: export DJANGO_SETTINGS_MODULE ?= adhocracy-plus.config.settings.build
 release:
 	npm install --silent
 	npm run build:prod
-	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements.txt -q
-	$(VIRTUAL_ENV)/bin/python3 manage.py compilemessages -v0
-	$(VIRTUAL_ENV)/bin/python3 manage.py collectstatic --noinput -v0
+	$(VIRTUAL_ENV)/bin/python -m pip install -r requirements.txt -q
+	$(VIRTUAL_ENV)/bin/python manage.py compilemessages -v0
+	$(VIRTUAL_ENV)/bin/python manage.py collectstatic --noinput -v0
 
 .PHONY: start-postgres
 start-postgres:
@@ -201,7 +197,7 @@ create-postgres:
 .PHONY: local-a4
 local-a4:
 	if [ -d "../adhocracy4" ]; then \
-		$(VIRTUAL_ENV)/bin/python3 -m pip install --upgrade ../adhocracy4; \
-		$(VIRTUAL_ENV)/bin/python3 manage.py migrate; \
+		$(VIRTUAL_ENV)/bin/python -m pip install --upgrade ../adhocracy4; \
+		$(VIRTUAL_ENV)/bin/python manage.py migrate; \
 		npm link ../adhocracy4; \
 	fi
