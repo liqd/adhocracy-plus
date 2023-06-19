@@ -17,7 +17,7 @@
         <div class="widget widget--{{ field|widget_type }}">
           {% with describedby="hint_"|add:field.id_for_label %}
           {% if field.errors %}
-                {% render_field field aria-invalid="true" aria-describedby=describedby %}
+              {% render_field field aria-invalid="true" aria-describedby=describedby %}
           {% else %}
             {% render_field field aria-describedby=describedby %}
           {% endif %}
