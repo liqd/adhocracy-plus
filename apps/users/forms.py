@@ -57,9 +57,12 @@ class DefaultSignupForm(SignupForm):
         self.fields["email"].widget.attrs["autocomplete"] = "username"
         self.fields["password1"].widget.attrs["autocomplete"] = "new-password"
         self.fields["password2"].widget.attrs["autocomplete"] = "new-password"
-        self.fields["captcha"].help_text = helpers.add_email_link_to_helptext(
-            self.fields["captcha"].help_text, CAPTCHA_HELP
-        )
+        if not hasattr(settings, "CAPTCHA_URL") or settings.CAPTCHA_URL is None:
+            del self.fields["captcha"]
+        else:
+            self.fields["captcha"].help_text = helpers.add_email_link_to_helptext(
+                self.fields["captcha"].help_text, CAPTCHA_HELP
+            )
 
     def save(self, request):
         user = super().save(request)
