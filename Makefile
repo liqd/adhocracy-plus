@@ -26,14 +26,15 @@ help:
 	@echo "  make server          				-- start a dev server"
 	@echo "  make watch           				-- start a dev server and rebuild js and css files on changes"
 	@echo "  make background      				-- start background processes"
-	@echo "  make test            				-- run all test cases with pytest"
-	@echo "  make test-lastfailed 				-- run test that failed last"
-	@echo "  make test-clean      				-- test on new database"
+	@echo "  make test            				-- run all test cases"
+	@echo "  make pytest            			-- run all test cases with pytest"
+	@echo "  make pytest-lastfailed 			-- run test that failed last"
+	@echo "  make pytest-clean      			-- test on new database"
 	@echo "  make coverage        				-- write coverage report to dir htmlcov"
-	@echo "  make jest            				-- run js tests with coverage"
-	@echo "  make jest-nocov      				-- run js tests without coverage"
-	@echo "  make jest-debug      				-- run changed tests only, no coverage"
-	@echo "  make jest-updateSnapshots    -- update jest snapshots"
+	@echo "  make jstest            			-- run js tests with coverage"
+	@echo "  make jstest-nocov      			-- run js tests without coverage"
+	@echo "  make jstest-debug      			-- run changed tests only, no coverage"
+	@echo "  make jstest-updateSnapshots  -- update jest snapshots"
 	@echo "  make lint            				-- lint all project files"
 	@echo "  make lint-quick      				-- lint all files staged in git"
 	@echo "  make lint-fix      					-- fix linting for all js files staged in git"
@@ -83,13 +84,18 @@ background:
 .PHONY: test
 test:
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db
+	npm run testNoCov
 
-.PHONY: test-lastfailed
+.PHONY: pytest
+pytest:
+	$(VIRTUAL_ENV)/bin/py.test --reuse-db
+
+.PHONY: pytest-lastfailed
 test-lastfailed:
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db --last-failed
 
-.PHONY: test-clean
-test-clean:
+.PHONY: pytest-clean
+pytest-clean:
 	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
 	$(VIRTUAL_ENV)/bin/py.test
 
@@ -97,20 +103,20 @@ test-clean:
 coverage:
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db --cov --cov-report=html
 
-.PHONY: jest
-jest:
+.PHONY: jstest
+jstest:
 	npm run test
 
-.PHONY: jest-nocov
-jest-nocov:
+.PHONY: jstest-nocov
+jstest-nocov:
 	npm run testNoCov
 
-.PHONY: jest-debug
-jest-debug:
+.PHONY: jstest-debug
+jstest-debug:
 	npm run testDebug
 
-.PHONY: jest-updateSnapshots
-jest-updateSnapshots:
+.PHONY: jstest-updateSnapshots
+jstest-updateSnapshots:
 	npm run updateSnapshots
 
 .PHONY: lint
