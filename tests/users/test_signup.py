@@ -98,3 +98,23 @@ def test_signup_user_when_captcha_is_none(client):
     assert resp.status_code == 302
     user = User.objects.get()
     assert user.get_newsletters
+
+
+@override_settings()
+@pytest.mark.django_db
+def test_signup_user_when_not_captcha(client):
+    settings.CAPTCHA_URL = ""
+    resp = client.post(
+        reverse("account_signup"),
+        {
+            "username": "dauser",
+            "email": "mail@example.com",
+            "get_newsletters": "on",
+            "password1": "password",
+            "password2": "password",
+            "terms_of_use": "on",
+        },
+    )
+    assert resp.status_code == 302
+    user = User.objects.get()
+    assert user.get_newsletters
