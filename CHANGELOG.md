@@ -6,6 +6,10 @@ Since version v2306 the format is based on [Keep a Changelog](https://keepachang
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+### Added
+
+- add markdown rules to editorconfig
+
 ## v2306
 
 ### Fixed
