@@ -100,7 +100,7 @@
                 <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% translate 'breadcrumbs' %}">
                     <ul>
                         <li>
-                            <a href="{{ project.get_absolute_url }}">
+                            <a href="{{ project.get_absolute_url }}?initialSlide={{ initial_slide }}">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
                                 {{ project.name }}
                             </a>
