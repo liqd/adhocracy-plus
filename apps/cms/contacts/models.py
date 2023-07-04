@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from django.db import models
 from django.shortcuts import redirect
@@ -26,14 +27,15 @@ class FormField(AbstractFormField):
 class WagtailCaptchaFormBuilder(FormBuilder):
     @property
     def formfields(self):
-        # Add captcha to formfields property
         fields = super().formfields
-        fields["captcha"] = CaptcheckCaptchaField(
-            label=_("I am not a robot"),
-            help_text=_(
-                "If you are having difficulty please contact" "us, details adjacent"
-            ),
-        )
+        # Add captcha to formfields property if the URL exists in settings
+        if hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL:
+            fields["captcha"] = CaptcheckCaptchaField(
+                label=_("I am not a robot"),
+                help_text=_(
+                    "If you are having difficulty please contact" "us, details adjacent"
+                ),
+            )
 
         return fields
 
