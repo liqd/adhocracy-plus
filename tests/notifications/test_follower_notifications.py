@@ -9,7 +9,6 @@ from freezegun import freeze_time
 
 @pytest.mark.django_db
 def test_notify_follower_on_phase_started(phase_factory):
-
     phase = phase_factory(
         start_date=parse("2022-01-01 17:00:00 UTC"),
         end_date=parse("2022-05-01 18:00:00 UTC"),
@@ -24,7 +23,6 @@ def test_notify_follower_on_phase_started(phase_factory):
 
 @pytest.mark.django_db
 def test_notify_follower_on_phase_over_soon(phase_factory):
-
     phase = phase_factory(
         start_date=parse("2022-01-01 17:00:00 UTC"),
         end_date=parse("2022-05-01 18:00:00 UTC"),
@@ -47,4 +45,4 @@ def test_notify_follower_on_upcoming_event(offline_event_factory):
         call_command("create_offlineevent_system_actions")
 
     assert len(mail.outbox) == 1
-    assert mail.outbox[0].subject.startswith("Invitation to an event in project ")
+    assert mail.outbox[0].subject.startswith("Event in project ")

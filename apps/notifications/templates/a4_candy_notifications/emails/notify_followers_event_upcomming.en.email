@@ -1,7 +1,7 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktranslate with project_name=action.project.name %}Invitation to an event in project {{ project_name }}{% endblocktranslate %}{% endblock %}
+{% block subject %}{% blocktranslate with project_name=action.project.name %}Event in project {{ project_name }}{% endblocktranslate %}{% endblock %}
 
 {% block headline %}{% blocktranslate %}Event{% endblocktranslate %}{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}
