@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-04 18:06+0200\n"
+"POT-Creation-Date: 2023-07-06 16:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -355,7 +355,7 @@ msgstr "Category name"
 msgid "Category icon"
 msgstr "Category icon"
 
-#: adhocracy4/comments/models.py:44 adhocracy4/polls/exports.py:40
+#: adhocracy4/comments/models.py:47 adhocracy4/polls/exports.py:40
 #: apps/budgeting/exports.py:78 apps/debate/exports.py:68
 #: apps/documents/exports.py:41 apps/ideas/exports.py:77
 #: apps/mapideas/exports.py:78 apps/topicprio/exports.py:75
@@ -363,7 +363,7 @@ msgctxt "noun"
 msgid "Comment"
 msgstr "Comment"
 
-#: adhocracy4/comments/models.py:45 adhocracy4/exports/mixins/comments.py:48
+#: adhocracy4/comments/models.py:48 adhocracy4/exports/mixins/comments.py:48
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:16
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:17
 #: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:18
@@ -2397,7 +2397,7 @@ msgid "During this event you can ask questions live"
 msgstr "During this event you can ask questions live"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:25
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:64
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:67
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr " %(time_left)s remaining "
@@ -2796,8 +2796,8 @@ msgstr "Check your contribution"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:4
 #, python-format
-msgid "Invitation to an event in project %(project_name)s"
-msgstr "Invitation to an event in project %(project_name)s"
+msgid "Event in project %(project_name)s"
+msgstr "Event in project %(project_name)s"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:6
 msgid "Event"
@@ -3532,7 +3532,7 @@ msgid "%(time_left)s remaining"
 msgstr "%(time_left)s remaining"
 
 #: apps/projects/serializers.py:99
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:66
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:69
 msgid "more than 1 year remaining"
 msgstr "more than 1 year remaining"
 
@@ -3542,7 +3542,7 @@ msgid "Participation: from %(project_start)s"
 msgstr "Participation: from %(project_start)s"
 
 #: apps/projects/serializers.py:107
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:99
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:102
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
@@ -3691,44 +3691,44 @@ msgstr ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you accepted the invitation to participate in a private project."
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:20
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:23
 msgid "Project is private."
 msgstr "Project is private."
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:26
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:29
 msgid "Project is semi-public."
 msgstr "Project is semi-public."
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:44
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:47
 msgid "Type of participation: "
 msgstr "Type of participation: "
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:51
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:54
 #, python-format
 msgid "%(num_entries)s Contribution"
 msgid_plural "%(num_entries)s Contributions"
 msgstr[0] "%(num_entries)s Contribution"
 msgstr[1] "%(num_entries)s Contributions"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:74
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:77
 msgid "more than 1 year"
 msgstr "more than 1 year"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:74
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:77
 msgctxt "abbreviation \"more than 1 year\""
 msgid "> 1 Y"
 msgstr "> 1 Y"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:80
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:83
 msgid "JOIN IN"
 msgstr "JOIN IN"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:82
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:85
 msgid "READ"
 msgstr "READ"
 
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:91
-#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:93
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:94
+#: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:96
 #, python-format
 msgid " Participation: from %(date)s"
 msgstr " Participation: from %(date)s"
@@ -5346,6 +5346,10 @@ msgstr "Login with social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:23
 msgid "Login with "
 msgstr "Login with "
+
+#, python-format
+#~ msgid "Invitation to an event in project %(project_name)s"
+#~ msgstr "Invitation to an event in project %(project_name)s"
 
 #, python-format
 #~ msgid "%(number)d day left"
