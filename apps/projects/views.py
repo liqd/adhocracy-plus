@@ -16,14 +16,18 @@ from rules.contrib.views import PermissionRequiredMixin
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.modules import models as module_models
+from adhocracy4.polls.models import Answer
+from adhocracy4.polls.models import Poll
+from adhocracy4.polls.models import Vote
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
 from adhocracy4.ratings.models import Rating
-from apps.budgeting.models import Proposal
 from apps.ideas.models import Idea
+from apps.interactiveevents.models import Like
+from apps.interactiveevents.models import LiveQuestion
 from apps.mapideas.models import MapIdea
 
 from . import forms
@@ -294,48 +298,86 @@ class ProjectDetailView(
 
     def get_context_data(self, **kwargs):
         """Append insights to the template context."""
+
         context = super().get_context_data(**kwargs)
+        idea_blueprints = {"BS", "IC"}
+        map_idea_blueprints = {"MBS", "MIC", "PB"}
 
         modules = self.project.modules.all()
+        active_blueprints = set(modules.values_list("blueprint_type", flat=True))
+
+        enable_ideas = active_blueprints.intersection(idea_blueprints)
+        enable_map_ideas = active_blueprints.intersection(map_idea_blueprints)
+        enable_polls = "PO" in active_blueprints
+        enable_interactive_event = "IE" in active_blueprints
+
         ideas = Idea.objects.filter(module__in=modules)
         map_ideas = MapIdea.objects.filter(module__in=modules)
-        proposals = Proposal.objects.filter(module__in=modules)
         comments = get_all_comments_project(project=self.project)
 
-        ratings_ideas = Rating.objects.filter(idea__in=ideas)
-        ratings_map_ideas = Rating.objects.filter(mapidea__in=map_ideas)
-        ratings_comments = Rating.objects.filter(comment__in=comments)
+        polls = Poll.objects.filter(module__in=modules)
+        votes = Vote.objects.filter(choice__question__poll__in=polls)
+        answers = Answer.objects.filter(question__poll__in=polls)
+        live_questions = LiveQuestion.objects.filter(module__in=modules)
+        likes = Like.objects.filter(livequestion__in=live_questions)
+
+        values = [Rating.POSITIVE, Rating.NEGATIVE]
+        ratings_ideas = Rating.objects.filter(idea__in=ideas, value__in=values)
+        ratings_map_ideas = Rating.objects.filter(
+            mapidea__in=map_ideas, value__in=values
+        )
+        ratings_comments = Rating.objects.filter(comment__in=comments, value__in=values)
+
+        count_comments = comments.count()
+        count_ratings = ratings_comments.count()
+        count_ideas = 0
+        count_poll_answers = 0
+        count_event_questions = 0
 
         creator_objects = [
-            ideas,
-            map_ideas,
-            proposals,
             comments,
-            ratings_ideas,
-            ratings_map_ideas,
             ratings_comments,
         ]
+
+        if enable_ideas:
+            creator_objects.extend([ideas, ratings_ideas])
+            count_ideas += ideas.count()
+            count_ratings += ratings_ideas.count()
+
+        if enable_map_ideas:
+            creator_objects.extend([map_ideas, ratings_map_ideas])
+            count_ideas += map_ideas.count()
+            count_ratings += ratings_map_ideas.count()
+
+        if enable_polls:
+            count_poll_answers += votes.count() + answers.count()
+
+        if enable_interactive_event:
+            count_event_questions += live_questions.count()
+            count_ratings += likes.count()
+
         creators_ids = set()
         for x in creator_objects:
             creators_ids.update(set(x.values_list("creator", flat=True)))
 
         count_creators = len(creators_ids)
-        count_ideas = ideas.count()
-        count_map_ideas = map_ideas.count()
-        count_proposals = proposals.count()
-        count_comments = comments.count()
-        count_ratings = ratings_ideas.count()
-        count_ratings += ratings_map_ideas.count()
-        count_ratings += ratings_comments.count()
 
-        context["counts"] = [
-            (_("Ideas"), count_ideas),
-            (_("Map-Ideas"), count_map_ideas),
-            (_("Proposals"), count_proposals),
-            (_("Comments"), count_comments),
-            (_("Ratings"), count_ratings),
-            (_("Participants"), count_creators),
+        counts = [
+            (_("active participants"), count_creators),
+            (_("comments"), count_comments),
+            (_("ratings"), count_ratings),
         ]
+
+        if enable_ideas or enable_map_ideas:
+            counts.append((_("written ideas"), count_ideas))
+
+        if enable_polls or enable_interactive_event:
+            counts.append((_("poll answers"), count_poll_answers))
+
+        if enable_interactive_event:
+            counts.append((_("interactive event questions"), count_event_questions))
+
+        context["counts"] = counts
 
         return context
 
