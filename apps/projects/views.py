@@ -3,6 +3,8 @@ import itertools
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
+from django.db.models import Count
+from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -21,9 +23,11 @@ from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
+from adhocracy4.ratings.models import Rating
 
 from . import forms
 from . import models
+from .helpers import get_all_comments_project
 
 User = get_user_model()
 
@@ -99,7 +103,6 @@ class AbstractProjectUserInviteListView(
     generic.detail.SingleObjectMixin,
     generic.edit.ProcessFormView,
 ):
-
     form_class = forms.InviteUsersFromEmailForm
     invite_model = None
 
@@ -215,7 +218,6 @@ class AbstractProjectUserInviteListView(
 
 
 class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
-
     model = project_models.Project
     slug_url_kwarg = "project_slug"
     template_name = "a4_candy_projects/project_moderators.html"
@@ -235,7 +237,6 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
 
 
 class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
-
     model = project_models.Project
     slug_url_kwarg = "project_slug"
     template_name = "a4_candy_projects/project_participants.html"
@@ -275,7 +276,6 @@ class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
 class ProjectDetailView(
     PermissionRequiredMixin, ProjectModuleDispatchMixin, DisplayProjectOrModuleMixin
 ):
-
     model = models.Project
     permission_required = "a4projects.view_project"
     template_name = "a4_candy_projects/project_detail.html"
@@ -291,9 +291,29 @@ class ProjectDetailView(
     def raise_exception(self):
         return self.request.user.is_authenticated
 
+    def get_context_data(self, **kwargs):
+        """Append insights to the template context."""
+        context = super().get_context_data(**kwargs)
+
+        queryset = Rating.objects.exclude(value=0)
+        comments = get_all_comments_project(self.project).prefetch_related(
+            Prefetch("ratings", queryset=queryset)
+        )
+        ratings_comments = comments.aggregate(Count("ratings"))
+
+        # Sum of all ratings
+        # TODO: uncomment following when Hannes add the extra code
+        #        count_ratings = ratings_ideas.count() + ratings_map_ideas.count() + ratings_comments
+
+        # Add insights in context
+        context["comments"] = comments.count()
+        # TODO: update following with the sum when Hannes add the extra code
+        context["ratings"] = ratings_comments
+
+        return context
+
 
 class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
-
     model = module_models.Module
     permission_required = "a4projects.view_project"
     slug_url_kwarg = "module_slug"
