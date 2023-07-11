@@ -279,24 +279,13 @@
                 aria-expanded="false">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                            {% if comments %}
-                                Comments: {{ comments }}
-                            {% else %}
-                                {% translate 'No comments yet.' %}
-                            {% endif %}
 
-                        </div>
-                    <div class="row">
-                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                            {% if ratings %}
-                                Ratings: {{ ratings }}
-                            {% else %}
-                                {% translate 'No ratings yet.' %}
-                            {% endif %}
+                        {% for label, value in counts %}
+                            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                                {{ label }}: {{ value }}
+                            </div>
+                        {% endfor %}
 
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                             {% if project.result %}

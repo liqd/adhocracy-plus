@@ -3,8 +3,6 @@ import itertools
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
-from django.db.models import Count
-from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -24,6 +22,9 @@ from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
 from adhocracy4.ratings.models import Rating
+from apps.budgeting.models import Proposal
+from apps.ideas.models import Idea
+from apps.mapideas.models import MapIdea
 
 from . import forms
 from . import models
@@ -295,20 +296,46 @@ class ProjectDetailView(
         """Append insights to the template context."""
         context = super().get_context_data(**kwargs)
 
-        queryset = Rating.objects.exclude(value=0)
-        comments = get_all_comments_project(self.project).prefetch_related(
-            Prefetch("ratings", queryset=queryset)
-        )
-        ratings_comments = comments.aggregate(Count("ratings"))
+        modules = self.project.modules.all()
+        ideas = Idea.objects.filter(module__in=modules)
+        map_ideas = MapIdea.objects.filter(module__in=modules)
+        proposals = Proposal.objects.filter(module__in=modules)
+        comments = get_all_comments_project(project=self.project)
 
-        # Sum of all ratings
-        # TODO: uncomment following when Hannes add the extra code
-        #        count_ratings = ratings_ideas.count() + ratings_map_ideas.count() + ratings_comments
+        ratings_ideas = Rating.objects.filter(idea__in=ideas)
+        ratings_map_ideas = Rating.objects.filter(mapidea__in=map_ideas)
+        ratings_comments = Rating.objects.filter(comment__in=comments)
 
-        # Add insights in context
-        context["comments"] = comments.count()
-        # TODO: update following with the sum when Hannes add the extra code
-        context["ratings"] = ratings_comments
+        creator_objects = [
+            ideas,
+            map_ideas,
+            proposals,
+            comments,
+            ratings_ideas,
+            ratings_map_ideas,
+            ratings_comments,
+        ]
+        creators_ids = set()
+        for x in creator_objects:
+            creators_ids.update(set(x.values_list("creator", flat=True)))
+
+        count_creators = len(creators_ids)
+        count_ideas = ideas.count()
+        count_map_ideas = map_ideas.count()
+        count_proposals = proposals.count()
+        count_comments = comments.count()
+        count_ratings = ratings_ideas.count()
+        count_ratings += ratings_map_ideas.count()
+        count_ratings += ratings_comments.count()
+
+        context["counts"] = [
+            (_("Ideas"), count_ideas),
+            (_("Map-Ideas"), count_map_ideas),
+            (_("Proposals"), count_proposals),
+            (_("Comments"), count_comments),
+            (_("Ratings"), count_ratings),
+            (_("Participants"), count_creators),
+        ]
 
         return context
 
