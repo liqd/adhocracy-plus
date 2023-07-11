@@ -68,6 +68,7 @@
 
 .btn.btn--primary {
     @include button($brand-primary, $brand-primary, $text-color, 47%);
+    min-width: 10 * $spacer;
 }
 
 .btn.btn--secondary {
@@ -248,8 +249,17 @@
     }
 }
 
+.btn--facebook,
+.btn--google,
+.btn--twitter,
+.btn--github,
+.btn--project-holi {
+    width: 100%;
+}
+
+
 .btn.btn--facebook {
-    @include button($facebook, $facebook, $print-black, 55%);
+    @include button($facebook, $facebook, $print-black, 50%);
 }
 
 .btn.btn--google {
@@ -262,6 +272,10 @@
 
 .btn.btn--github {
     @include button($github, $github, $print-black, 70%);
+}
+
+.btn.btn--project-holi {
+    @include button($project-holi, $print-black, $print-black, 17%);
 }
 
 .checkbox-btn {
