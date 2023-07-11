@@ -1,80 +1,95 @@
 @font-face {
-  font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?jd0zuw');
-  src:  url('../fonts/icomoon.eot?jd0zuw#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?jd0zuw') format('truetype'),
-    url('../fonts/icomoon.woff?jd0zuw') format('woff'),
-    url('../fonts/icomoon.svg?jd0zuw#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'icomoon';
+    src:  url('../fonts/icomoon.eot?jd0zuw');
+    src:  url('../fonts/icomoon.eot?jd0zuw#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?jd0zuw') format('truetype'),
+        url('../fonts/icomoon.woff?jd0zuw') format('woff'),
+        url('../fonts/icomoon.svg?jd0zuw#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
 
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .icon-answered:before {
-  content: "\e900";
-  font-size: 0.9rem;
+    content: "\e900";
+    font-size: 0.9rem;
 }
+
 /* not used */
 .icon-arrow-down:before {
-  content: "\e901";
+    content: "\e901";
 }
+
 /* not used */
 .icon-arrow-right:before {
-  content: "\e902";
+    content: "\e902";
 }
+
 /* not used */
 .icon-clear:before {
-  content: "\e903";
+    content: "\e903";
 }
+
 .icon-in-list:before {
-  content: "\e904";
-  font-size: 1.1rem;
-  vertical-align: bottom;
+    content: "\e904";
+    font-size: 1.1rem;
+    vertical-align: bottom;
 }
+
 .icon-like:before {
-  content: "\e905";
+    content: "\e905";
 }
+
 /* not used */
 .icon-list:before {
-  content: "\e906";
-  font-size: 1.1rem;
+    content: "\e906";
+    font-size: 1.1rem;
 }
+
 .icon-push-in-list:before {
-  content: "\e907";
-  font-size: 1.1rem;
-  vertical-align: bottom;
+    content: "\e907";
+    font-size: 1.1rem;
+    vertical-align: bottom;
 }
+
 /* not used */
 .icon-screen-view:before {
-  content: "\e908";
+    content: "\e908";
 }
+
 /* not used */
 .icon-sort-list:before {
-  content: "\e909";
+    content: "\e909";
 }
+
 /* not used */
 .icon-talking-desired:before {
-  content: "\e90a";
+    content: "\e90a";
 }
 
 .fa-stack {
-  font-size: 0.5rem;
+    font-size: 0.5rem;
 }
 
 .fa-eye {
-  font-size: 1.05rem;
+    font-size: 1.05rem;
+}
+
+.fa-project-holi {
+    content: url('../fonts/holi_logo.ico');
+    height: 1rem;
 }

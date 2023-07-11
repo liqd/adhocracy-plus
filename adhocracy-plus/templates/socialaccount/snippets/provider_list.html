@@ -5,24 +5,28 @@
 {% if socialaccount_providers %}
     <h4>{% translate "Login with social media account" %}</h4>
     <div class="row pb-5">
-    {% for provider in socialaccount_providers %}
-        {% if provider.id == "openid" %}
-        {% for brand in provider.get_brands %}
-        <div class="col-md-6 pb-3">
-            <a title="{{ brand.name }}"
-               class="socialaccount-provider {{ provider.id }} {{ brand.id }}"
-               href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
-            >{{ brand.name }}</a>
+        <div class="col-xl-10">
+            <div class="row">
+                {% for provider in socialaccount_providers %}
+                {% if provider.id == "openid" %}
+                {% for brand in provider.get_brands %}
+                <div class="col-lg-6 pb-3">
+                    <a title="{{ brand.name }}"
+                       class="socialaccount-provider {{ provider.id }} {{ brand.id }}"
+                       href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
+                    >{{ brand.name }}</a>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <div class="col-lg-6 pb-3">
+                    <a title="{% translate 'Login with ' %} {{ provider.name }}"
+                       class="btn btn--light btn--{{ provider.id }} btn--small {{ provider.id }}"
+                       href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+                       {% translate 'Login with ' %} {{ provider.name|capfirst }} <i class="fab fa-{{ provider.id }}" aria-hidden="true"></i>
+                   </a>
+                </div>
+            {% endfor %}
+            </div>
         </div>
-        {% endfor %}
-        {% endif %}
-        <div class="col-md-6 pb-3">
-            <a title="{% translate 'Login with ' %} {{ provider.name }}"
-               class="btn btn--light btn--{{ provider.id }} btn--small {{ provider.id }}"
-               href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
-               {% translate 'Login with ' %} {{ provider.name|capfirst }} <i class="fab fa-{{ provider.id }}" aria-hidden="true"></i>
-           </a>
-        </div>
-    {% endfor %}
     </div>
 {% endif %}
