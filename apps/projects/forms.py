@@ -7,6 +7,7 @@ from apps.users import fields as user_fields
 
 from .models import ModeratorInvite
 from .models import ParticipantInvite
+from .models import ProjectInsight
 
 User = get_user_model()
 
@@ -64,3 +65,23 @@ class InviteUsersFromEmailForm(forms.Form):
         if not self.errors and not add_users and not add_users_upload:
             raise ValidationError(_("Please enter email addresses or upload a file"))
         return cleaned_data
+
+
+class InsightForm(forms.ModelForm):
+    class Meta:
+        model = ProjectInsight
+        fields = [
+            "active_participants",
+            "comments",
+            "ratings",
+            "written_ideas",
+            "poll_answers",
+            "live_questions",
+            "display",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name, field in self.fields.iteritems():
+            if not name == "display":
+                field.widget.attrs["readonly"] = "true"
