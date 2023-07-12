@@ -15,13 +15,16 @@ from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.dashboard import signals as a4dashboard_signals
+from adhocracy4.dashboard.components.forms.views import ProjectComponentFormView
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
+from apps.projects.models import ProjectInsight
 
+from . import dashboard
 from . import forms
 from . import models
 
@@ -99,7 +102,6 @@ class AbstractProjectUserInviteListView(
     generic.detail.SingleObjectMixin,
     generic.edit.ProcessFormView,
 ):
-
     form_class = forms.InviteUsersFromEmailForm
     invite_model = None
 
@@ -215,7 +217,6 @@ class AbstractProjectUserInviteListView(
 
 
 class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
-
     model = project_models.Project
     slug_url_kwarg = "project_slug"
     template_name = "a4_candy_projects/project_moderators.html"
@@ -235,7 +236,6 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
 
 
 class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
-
     model = project_models.Project
     slug_url_kwarg = "project_slug"
     template_name = "a4_candy_projects/project_participants.html"
@@ -273,9 +273,10 @@ class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
 
 
 class ProjectDetailView(
-    PermissionRequiredMixin, ProjectModuleDispatchMixin, DisplayProjectOrModuleMixin
+    PermissionRequiredMixin,
+    ProjectModuleDispatchMixin,
+    DisplayProjectOrModuleMixin,
 ):
-
     model = models.Project
     permission_required = "a4projects.view_project"
     template_name = "a4_candy_projects/project_detail.html"
@@ -292,8 +293,33 @@ class ProjectDetailView(
         return self.request.user.is_authenticated
 
 
-class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
+class ProjectResultInsightComponentFormView(ProjectComponentFormView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ProjectInsight.update_context(
+            project=self.project, context=context, dashboard=True
+        )
 
+        if self.request.POST:
+            context["insight_form"] = dashboard.ProjectInsightForm(
+                data=self.request.POST, instance=self.project.insight
+            )
+        else:
+            context["insight_form"] = dashboard.ProjectInsightForm(
+                instance=self.project.insight
+            )
+
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        insight_form = context["insight_form"]
+        if insight_form.is_valid():
+            insight_form.save()
+        return super().form_valid(form)
+
+
+class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
     model = module_models.Module
     permission_required = "a4projects.view_project"
     slug_url_kwarg = "module_slug"

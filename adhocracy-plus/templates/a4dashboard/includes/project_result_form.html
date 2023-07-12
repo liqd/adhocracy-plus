@@ -1,0 +1,21 @@
+{% load i18n %}
+
+<section class="u-bottom-divider">
+    <h2 class="form__section-title">{% translate 'Insights' %}</h2>
+
+    <p class="form-hint"> {{ insight_label }} </p>
+    <ul class="u-list-reset pt-2 pb-3">
+        {% for label, value in counts %}
+        <li>
+            {{ label|title }}: {{ value }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% include 'a4forms/includes/form_checkbox_field.html' with field=insight_form.display %}
+</section>
+<section>
+  <h2 class="form__section-title">{% translate 'Results' %}</h2>
+  {% include 'a4forms/includes/form_field.html' with field=form.result %}
+
+</section>

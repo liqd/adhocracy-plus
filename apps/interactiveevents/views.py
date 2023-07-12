@@ -39,7 +39,6 @@ class LiveQuestionModuleDetail(
 class LiveQuestionPresentationListView(
     ProjectMixin, PermissionRequiredMixin, generic.ListView
 ):
-
     model = models.LiveQuestion
     permission_required = "a4_candy_interactive_events.change_livequestion"
 
