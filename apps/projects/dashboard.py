@@ -3,8 +3,11 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import components
+from adhocracy4.dashboard.components.forms import ProjectDashboardForm
+from adhocracy4.dashboard.components.forms import ProjectFormComponent
 
 from . import views
+from .models import Insight
 
 
 class ParticipantsComponent(DashboardComponent):
@@ -61,5 +64,45 @@ class ModeratorsComponent(DashboardComponent):
         ]
 
 
+class InsightForm(ProjectDashboardForm):
+    class Meta:
+        model = Insight
+        fields = [
+            "active_participants",
+            "comments",
+            "ratings",
+            "written_ideas",
+            "poll_answers",
+            "live_questions",
+            "display",
+        ]
+        required_for_project_publish = []
+
+        help_texts = {
+            "display": _(
+                "Show insights with numbers "
+                "of contributions and participants "
+                "during the participation process"
+            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            if not name == "display":
+                field.widget.attrs["readonly"] = "true"
+
+
+class ProjectInsightComponent(ProjectFormComponent):
+    identifier = "insight"
+    weight = 12
+    label = _("Insights")
+
+    form_title = _("Insights")
+    form_class = InsightForm
+    form_template_name = "a4_candy_projects/includes/project_insight_form.html"
+
+
+components.register_project(ProjectInsightComponent())
 components.register_project(ModeratorsComponent())
 components.register_project(ParticipantsComponent())

@@ -37,7 +37,6 @@ class ParticipantInviteManager(models.Manager):
 
 
 class ParticipantInvite(Invite):
-
     objects = ParticipantInviteManager()
 
     def __str__(self):
@@ -68,7 +67,6 @@ class ModeratorInviteManager(models.Manager):
 
 
 class ModeratorInvite(Invite):
-
     objects = ModeratorInviteManager()
 
     def __str__(self):
@@ -87,3 +85,17 @@ class ModeratorInvite(Invite):
 
     class Meta:
         unique_together = ("email", "project")
+
+
+class Insight(base.TimeStampedModel):
+    project = models.OneToOneField(Project, on_delete=models.CASCADE)
+    active_participants = models.PositiveIntegerField()
+    comments = models.IntegerField()
+    ratings = models.IntegerField()
+    written_ideas = models.IntegerField()
+    poll_answers = models.IntegerField()
+    live_questions = models.IntegerField()
+    display = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "Insights for project %s" % self.project.name
