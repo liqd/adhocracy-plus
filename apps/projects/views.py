@@ -3,6 +3,7 @@ import itertools
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
+from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -15,13 +16,16 @@ from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.dashboard import signals as a4dashboard_signals
+from adhocracy4.dashboard.components.forms.views import ProjectComponentFormView
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
+from apps.projects.models import ProjectInsight
 
+from . import dashboard
 from . import forms
 from . import models
 
@@ -99,7 +103,6 @@ class AbstractProjectUserInviteListView(
     generic.detail.SingleObjectMixin,
     generic.edit.ProcessFormView,
 ):
-
     form_class = forms.InviteUsersFromEmailForm
     invite_model = None
 
@@ -215,7 +218,6 @@ class AbstractProjectUserInviteListView(
 
 
 class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
-
     model = project_models.Project
     slug_url_kwarg = "project_slug"
     template_name = "a4_candy_projects/project_moderators.html"
@@ -235,7 +237,6 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
 
 
 class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
-
     model = project_models.Project
     slug_url_kwarg = "project_slug"
     template_name = "a4_candy_projects/project_participants.html"
@@ -272,10 +273,28 @@ class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
         return super().delete(request, *args, **kwargs)
 
 
+def create_insight_context(insight: ProjectInsight) -> dict:
+    return dict(
+        insight=_(str(insight)),
+        insight_label=_(
+            """This session will provide you with valuable insights
+            into the number of individuals invloved in the process
+            and help you make informed decisions based on the data"""
+        ),
+        counts=[
+            (_("active participants"), insight.active_participants.count()),
+            (_("comments"), insight.comments),
+            (_("ratings"), insight.ratings),
+            (_("written ideas"), insight.written_ideas),
+            (_("poll answers"), insight.poll_answers),
+            (_("interactive event questions"), insight.live_questions),
+        ],
+    )
+
+
 class ProjectDetailView(
     PermissionRequiredMixin, ProjectModuleDispatchMixin, DisplayProjectOrModuleMixin
 ):
-
     model = models.Project
     permission_required = "a4projects.view_project"
     template_name = "a4_candy_projects/project_detail.html"
@@ -291,9 +310,45 @@ class ProjectDetailView(
     def raise_exception(self):
         return self.request.user.is_authenticated
 
+    def get_context_data(self, **kwargs):
+        """Append insights to the template context."""
+
+        context = super().get_context_data(**kwargs)
+
+        insight, created = ProjectInsight.objects.get_or_create(project=self.project)
+        if insight.display:
+            context.update(create_insight_context(insight=insight))
+
+        context["result_title"] = _("Final Results")
+
+        return context
+
+
+class ProjectResultInsightComponentFormView(ProjectComponentFormView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        insight, created = ProjectInsight.objects.get_or_create(project=self.project)
+        context.update(create_insight_context(insight=insight))
+
+        if self.request.POST:
+            context["insight_form"] = dashboard.ProjectInsightForm(
+                data=self.request.POST, instance=insight
+            )
+        else:
+            context["insight_form"] = dashboard.ProjectInsightForm(instance=insight)
+
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        insight_form = context["insight_form"]
+        with transaction.atomic():
+            if insight_form.is_valid():
+                insight_form.save()
+        return super().form_valid(form)
+
 
 class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
-
     model = module_models.Module
     permission_required = "a4projects.view_project"
     slug_url_kwarg = "module_slug"

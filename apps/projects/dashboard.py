@@ -1,10 +1,14 @@
+from django.forms import ModelForm
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import components
+from adhocracy4.dashboard.components.forms import ProjectFormComponent
+from adhocracy4.dashboard.forms import ProjectResultForm
 
 from . import views
+from .models import ProjectInsight
 
 
 class ParticipantsComponent(DashboardComponent):
@@ -61,5 +65,49 @@ class ModeratorsComponent(DashboardComponent):
         ]
 
 
+class ProjectInsightForm(ModelForm):
+    class Meta:
+        model = ProjectInsight
+        fields = ["display"]
+
+        labels = {
+            "display": _(
+                "Show insights with numbers "
+                "of contributions and participants "
+                "during the participation process"
+            ),
+        }
+
+
+class ProjectResultComponent(ProjectFormComponent):
+    identifier = "result"
+    weight = 12
+    label = _("Result")
+
+    form_title = _("Edit project result")
+    form_class = ProjectResultForm
+    form_template_name = "a4dashboard/includes/project_result_form.html"
+
+    def get_urls(self):
+        from .views import ProjectResultInsightComponentFormView
+
+        view = ProjectResultInsightComponentFormView.as_view(
+            component=self,
+            title=self.form_title,
+            form_class=self.form_class,
+            form_template_name=self.form_template_name,
+        )
+        return [
+            (
+                r"^projects/(?P<project_slug>[-\w_]+)/{identifier}/$".format(
+                    identifier=self.identifier
+                ),
+                view,
+                "dashboard-{identifier}-edit".format(identifier=self.identifier),
+            )
+        ]
+
+
 components.register_project(ModeratorsComponent())
 components.register_project(ParticipantsComponent())
+components.replace_project(ProjectResultComponent())

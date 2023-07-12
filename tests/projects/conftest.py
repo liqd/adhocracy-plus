@@ -7,3 +7,4 @@ from . import factories as invites
 register(invites.ModeratorInviteFactory)
 register(invites.ParticipantInviteFactory)
 register(poll_factories.PollFactory)
+register(invites.ProjectInsightFactory)
