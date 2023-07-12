@@ -49,8 +49,7 @@
     color: contrast-color($print-black);
 
     .project-header__title,
-    .project-header__description,
-    .project-header__tabs {
+    .project-header__description {
         text-shadow: 1px 1px 5px $print-black;
     }
 
@@ -124,5 +123,9 @@
     .project-header__logo-body {
         flex: 1 1 auto;
         align-self: center;
+    }
+
+    .project-header__tabs {
+        text-shadow: 1px 1px 5px $print-black;
     }
 }

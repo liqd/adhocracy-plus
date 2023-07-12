@@ -53,7 +53,6 @@ class TopicDetailView(idea_views.AbstractIdeaDetailView):
 
 
 class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
-
     defaults = {"ordering": "name"}
 
     category = category_filters.CategoryFilter()

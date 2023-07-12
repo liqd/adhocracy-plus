@@ -167,7 +167,6 @@ class AbstractIdeaModerateView(
     generic.detail.SingleObjectTemplateResponseMixin,
     contrib_forms.BaseMultiModelFormView,
 ):
-
     get_context_from_object = True
 
     def __init__(self):

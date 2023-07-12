@@ -283,7 +283,28 @@
                 aria-labelledby="tab-project-{{ project.pk }}-result"
                 aria-expanded="false">
                 <div class="container">
+                {% if project.insight.display %}
                     <div class="row">
+                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                          <h5>{% translate 'Insights' %}</h5>
+                          <p class="form-hint"> {{ insight_label }} </p>
+
+                          <dl class="row">
+                            {% for label, value in counts %}
+                            <div class="col-sm-6 col-lg-4 text-center mb-2">
+                                <dt class="dt--insight">{{ value }}</dt>
+                                <dd>{{ label|title }}</dd>
+                            </div>
+                            {% endfor %}
+                          </dl>
+                        </div>
+                    </div>
+                {% endif %}
+
+                    <div class="row">
+                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                          <h5>{{ result_title|title }}</h5>
+                        </div>
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                             {% if project.result %}
                                 {{ project.result | transform_collapsibles | richtext }}

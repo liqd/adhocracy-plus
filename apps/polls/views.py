@@ -4,7 +4,6 @@ from adhocracy4.exports.views import DashboardExportView
 
 
 class PollDashboardExportView(DashboardExportView):
-
     template_name = "a4exports/export_dashboard.html"
 
     def get_context_data(self, **kwargs):
