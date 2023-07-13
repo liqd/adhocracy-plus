@@ -53,7 +53,9 @@
         {% endif %}
 
         {% if form.captcha %}
-          {% include 'a4_candy_contrib/includes/form_field.html' with field=form.captcha tabindex=0 %}
+            {% with tabindex="0" %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.captcha tabindex=0 %}
+            {% endwith %}
         {% endif %}
 
         <p>
