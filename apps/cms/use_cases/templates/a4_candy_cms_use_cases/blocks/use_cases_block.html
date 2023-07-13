@@ -1,41 +1,38 @@
 {% load wagtailcore_tags wagtailimages_tags i18n %}
-<div class="container block-usecase">
+<div class="block-usecase row justify-content-md-center">
 
-    <div class="row justify-content-md-center">
-        <div class="col-12 col-md-10">
-            <h2 class="cms__title--serif cms__title--underlined text-center">{{ value.title }}</h2>
+    <div class="col-12">
+        <h2 class="cms__title--serif cms__title--underlined text-center">{{ value.title }}</h2>
+    </div>
+    <div class="col-12 col-lg-10">
+        <div class="row justify-content-md-center">
+            {% for use_case in value.use_cases %}
+            <div class="col-12 col-md-4 col-lg-3 cms-use-case__tile">
+                <a class="cms__tile-link" href="{% pageurl use_case %}">
+                    {% if use_case.image %}
+                    {% image use_case.image fill-500x350 as image %}
+                    <img src="{{ image.url }}" alt="{{ image.alt }}" />
+                    {% endif %}
+                    <div class="cms__text pt-4 text-muted cms__text--serif">
+                    {% blocktranslate with category=use_case.get_category_display %}For {{ category }}{% endblocktranslate %}
+                    </div>
+                    <h3 class="cms__title--bold">{{ use_case.subtitle }}</h3>
+                </a>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
-    <div class="row justify-content-center justify-content-sm-start">
-    {% for use_case in value.use_cases %}
-        <div class="col-12 col-md-4 cms-use-case__tile">
-            <a class="cms__tile-link" href="{% pageurl use_case %}">
-                {% if use_case.image %}
-                {% image use_case.image fill-500x350 as image %}
-                <img src="{{ image.url }}" alt="{{ image.alt }}" />
-                {% endif %}
-                <div class="cms__text pt-4 text-muted cms__text--serif">
-                {% blocktranslate with category=use_case.get_category_display %}For {{ category }}{% endblocktranslate %}
-                </div>
-                <h3 class="cms__title--bold">{{ use_case.subtitle }}</h3>
-            </a>
-        </div>
-    {% endfor %}
+    {% if value.demo_platform %}
+    <div class="col-12 col-sm-6 col-lg-3">
+        <a class="btn btn--full btn--transparent" href="{{ value.demo_platform }}">{% translate 'Visit Demosite' %}</a>
     </div>
+    {% endif %}
 
-    <div class="row justify-content-center">
-        {% if value.demo_platform %}
-        <div class="col-12 col-sm-6 col-lg-5">
-            <a class="btn btn--full btn--transparent" href="{{ value.demo_platform }}">{% translate 'Visit Demosite' %}</a>
-        </div>
-        {% endif %}
-
-        {% if value.use_case_page %}
-        <div class="col-12 col-sm-6 col-lg-5">
-            <a class="btn btn--full btn--transparent" href="{{ value.use_case_page.url }}">{% translate 'View more examples' %}</a>
-        </div>
-        {% endif %}
+    {% if value.use_case_page %}
+    <div class="col-12 col-sm-6 col-lg-3">
+        <a class="btn btn--full btn--transparent" href="{{ value.use_case_page.url }}">{% translate 'View more examples' %}</a>
     </div>
+    {% endif %}
 
 </div>

@@ -73,6 +73,7 @@
 
 .btn.btn--secondary {
     @include button($text-color-gray, $text-color, $text-color, 55%);
+    min-width: 10 * $spacer;
 }
 
 .btn.btn--secondary-filled {
@@ -249,6 +250,7 @@
     }
 }
 
+.btn--apple,
 .btn--facebook,
 .btn--google,
 .btn--twitter,
@@ -275,7 +277,7 @@
 }
 
 .btn.btn--project-holi {
-    @include button($project-holi, $print-black, $print-black, 17%);
+    @include button($project-holi, $print-black, $print-black, 19%);
 }
 
 .checkbox-btn {
