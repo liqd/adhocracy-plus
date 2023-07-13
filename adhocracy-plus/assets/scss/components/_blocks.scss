@@ -147,11 +147,17 @@ $block-padding-md: 7.5 * $padding;
 }
 
 // linked for specificty
-.btn--transparent.block-bg_btn-2 {
+.btn.btn--transparent.block-bg__btn--1 {
+    border-color: $text-color;
+}
+
+// linked for specificty
+.btn.btn--transparent.block-bg__btn--2 {
     @extend .btn--text-color-inverted;
 }
 
 .block-background_cta_block {
+    background-color: $body-bg;
     margin-left: -$r-spacer;
     margin-right: -$r-spacer;
     padding-left: $padding;
