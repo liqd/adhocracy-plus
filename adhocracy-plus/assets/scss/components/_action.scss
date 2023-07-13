@@ -19,13 +19,24 @@
     padding: 0.6em 0;
 }
 
-.action__icon {
-    @include multi-line-icon(2);
+.action__icon,
+.action__icon--sm {
     background-color: $bg-tertiary;
     color: $brand-primary;
     text-align: center;
+}
+
+.action__icon {
+    @include multi-line-icon(2);
+    padding: 0 0.5 * $padding;
     float: left;
-    padding: 0 0.2 * $padding;
+    min-width: 40px;
+}
+
+.action__icon--sm {
+    @include multi-line-icon(1.5);
+    padding: 0 0.35 * $padding;
+    width: 32px;
 }
 
 .action__main {

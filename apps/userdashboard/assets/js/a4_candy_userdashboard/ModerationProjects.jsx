@@ -121,7 +121,7 @@ export default class ModerationProjects extends Component {
                   </div>
                   <div className="tile__body">
                     <div>
-                      <span className="text-muted">{byText}{item.organisation}</span>
+                      <span className="u-text--gray">{byText}{item.organisation}</span>
                       <h3 className="tile__title mb-2">
                         {item.title}
                       </h3>
@@ -129,7 +129,7 @@ export default class ModerationProjects extends Component {
                       {item.access === 2 && <span className="badge badge--dark">{semiPrivateText}</span>}
                       {item.access === 3 && <span className="badge badge--dark">{privateText}</span>}
                     </div>
-                    <div className="row text-muted mt-3">
+                    <div className="row u-text--gray mt-3">
                       {item.num_reported_unread_comments > 0 && <div className="col-4"><i className="fas fa-exclamation-circle me-1" aria-hidden="true" /> {item.num_reported_unread_comments} <span className="d-none d-lg-inline-block">{reportCountText}</span></div>}
                       {item.comment_count > 0 && <div className="col-4"><i className="far fa-comment" aria-hidden="true" /> {item.comment_count} <span className="d-none d-lg-inline-block">{commentCountText}</span></div>}
                       {item.future_phase && !item.active_phase && <div className="col-4"><i className="far fa-clock" aria-hidden="true" /> {item.participation_string}</div>}

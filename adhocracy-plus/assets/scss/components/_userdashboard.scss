@@ -17,8 +17,10 @@
 }
 
 .userdashboard-profile__name {
+    font-family: $font-family-base;
+    font-size: $font-size-md;
+    font-weight: $demi-bold;
     overflow-wrap: break-word;
-    text-transform: none;
     margin-top: 0;
 }
 
@@ -69,7 +71,7 @@
     @extend .btn--none;
     border: 1px solid $gray-lightest;
 
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: $breakpoint) {
         border: none;
     }
 }
@@ -78,7 +80,7 @@
 .userdashboard-mod-notification__btn + div {
     min-width: 100%;
 
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: $breakpoint) {
         min-width: revert;
     }
 }
