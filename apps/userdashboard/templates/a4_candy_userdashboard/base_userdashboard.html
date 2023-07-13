@@ -59,7 +59,7 @@
                             {{ user.username }}
                             </h2>
                         </a>
-                        <div>
+                        <div class="u-text--gray">
                             {% trans 'Since' %} {{ request.user.date_joined|date:"d M Y" }}
                         </div>
                     </div>
@@ -76,15 +76,15 @@
                       <h2 class="fs-6">{% trans 'Initiator Organisations' %}</h2>
                       {% for organisation in request.user.organisations %}
                       <div>
-                          <a class="btn btn--link text-decoration-none text-muted d-flex align-items-center" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
+                          <a class="btn btn--link text-decoration-none u-text--gray d-flex align-items-center" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
                             {% if organisation.logo %}
                               <img
-                                src="{% thumbnail organisation.logo '0x40' %}"
+                                src="{% thumbnail organisation.logo '0x32' %}"
                                 alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}"
                               />
                             {% else %}
                               <i
-                                class="fas fa-home font--lg action__icon"
+                                class="fas fa-home font--lg action__icon--sm"
                                 role="img"
                                 aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
                               ></i>
@@ -115,12 +115,12 @@
                                       class="text-decoration-none text-muted d-flex align-items-center mb-2" >
                                      {% if organisation.logo %}
                                        <img
-                                        src="{% thumbnail organisation.logo '0x40' %}"
+                                        src="{% thumbnail organisation.logo '0x32' %}"
                                         alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}"
                                       />
                                      {% else %}
                                        <i
-                                        class="fas fa-home font--lg action__icon"
+                                        class="fas fa-home font--lg action__icon--sm"
                                         role="img"
                                         aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
                                       ></i>
@@ -140,15 +140,15 @@
                         <h2 class="fs-6">{% trans 'Organisations' %}</h2>
                         {% if view.organisations %}
                         {% for organisation in view.organisations %}
-                        <a class="btn btn--link text-decoration-none text-muted d-flex align-items-center" href="{% url 'organisation' organisation_slug=organisation.slug %}">
+                        <a class="btn btn--link text-decoration-none u-text--gray d-flex align-items-center" href="{% url 'organisation' organisation_slug=organisation.slug %}">
                           {% if organisation.logo %}
                             <img
-                              src="{% thumbnail organisation.logo '0x40' %}"
+                              src="{% thumbnail organisation.logo '0x32' %}"
                               alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}"
                             />
                           {% else %}
                             <i
-                              class="fas fa-home font--lg action__icon"
+                              class="fas fa-home font--lg action__icon--sm"
                               role="img"
                               aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
                             ></i>
@@ -185,10 +185,13 @@
                                    <a href="{% url 'organisation' organisation_slug=organisation.slug %}"
                                    class="text-decoration-none text-muted d-flex align-items-center mb-2" >
                                      {% if organisation.logo %}
-                                       <img src="{% thumbnail organisation.logo '0x40' %}" alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}" />
+                                       <img
+                                          src="{% thumbnail organisation.logo '0x32' %}"
+                                          alt="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %}"
+                                        />
                                      {% else %}
                                        <i
-                                        class="fas font--lg fa-home action__icon"
+                                        class="fas font--lg fa-home action__icon--sm"
                                         role="img"
                                         aria-label="{% if organisation.title %}{{ organisation.title }}{% else %}{{ organisation.name}}{% endif %} {% trans 'Home' %}"
                                       ></i>

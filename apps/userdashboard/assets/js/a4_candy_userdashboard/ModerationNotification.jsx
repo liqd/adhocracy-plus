@@ -218,8 +218,8 @@ export const ModerationNotification = (props) => {
 
   function translatedReportText (reportsFound) {
     const tmp = django.ngettext(
-      '\'s {}comment{} has been reported 1 time since it\'s creation',
-      '\'s {}comment{} has been reported %s times since it\'s creation',
+      'This {}comment{} has been reported 1 time since it\'s creation',
+      'This {}comment{} has been reported %s times since it\'s creation',
       reportsFound
     )
     return (
@@ -260,7 +260,13 @@ export const ModerationNotification = (props) => {
       <div className="u-border p-4">
         <div className="d-flex flex-wrap">
           {userImageDiv}
-          <div className="ms-auto order-lg-last">
+          <div>
+            <p className="mb-1">
+              {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, commentUrl)}
+            </p>
+            <p className="mb-1">{commentChangeLog}</p>
+          </div>
+          <div className="ms-auto">
             <div className="dropdown">
               <button
                 title="{% trans 'Notification menu' %}"
@@ -285,19 +291,14 @@ export const ModerationNotification = (props) => {
               </ul>
             </div>
           </div>
-          <div>
-            <p className="m-0">
-              {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, commentUrl)}
-            </p>
-            <p className="m-0">{commentChangeLog}</p>
-          </div>
         </div>
 
         {numReports > 0 &&
           <div>
-            <i className="fas fa-exclamation-circle me-1" aria-hidden="true" />
-            <strong>{userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName}</strong>
-            {getLink(translatedReportText(numReports), commentUrl)}
+            <p>
+              <i className="fas fa-exclamation-circle me-1" aria-hidden="true" />
+              {getLink(translatedReportText(numReports), commentUrl)}
+            </p>
           </div>}
 
         <p>{commentText}</p>

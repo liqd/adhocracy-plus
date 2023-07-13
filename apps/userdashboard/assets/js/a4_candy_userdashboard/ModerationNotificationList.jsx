@@ -184,7 +184,7 @@ export default class ModerationNotificationList extends Component {
             <h2 className="mt-2">
               <a href={projectUrl}>{projectTitle}</a>
             </h2>
-            <span className="text-muted">
+            <span className="u-text--gray">
               {byText}
               {organisation}
             </span>
