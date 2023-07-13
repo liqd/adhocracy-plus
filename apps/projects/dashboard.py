@@ -1,10 +1,11 @@
+from django.forms import ModelForm
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import components
-from adhocracy4.dashboard.components.forms import ProjectDashboardForm
 from adhocracy4.dashboard.components.forms import ProjectFormComponent
+from adhocracy4.dashboard.forms import ProjectResultForm
 
 from . import views
 from .models import Insight
@@ -64,10 +65,11 @@ class ModeratorsComponent(DashboardComponent):
         ]
 
 
-class InsightForm(ProjectDashboardForm):
+class ProjectInsightForm(ModelForm):
     class Meta:
         model = Insight
         fields = [
+            "project",
             "active_participants",
             "comments",
             "ratings",
@@ -76,7 +78,6 @@ class InsightForm(ProjectDashboardForm):
             "live_questions",
             "display",
         ]
-        required_for_project_publish = []
 
         help_texts = {
             "display": _(
@@ -93,16 +94,35 @@ class InsightForm(ProjectDashboardForm):
                 field.widget.attrs["readonly"] = "true"
 
 
-class ProjectInsightComponent(ProjectFormComponent):
-    identifier = "insight"
+class ProjectResultComponent(ProjectFormComponent):
+    identifier = "result"
     weight = 12
-    label = _("Insights")
+    label = _("Result")
 
-    form_title = _("Insights")
-    form_class = InsightForm
-    form_template_name = "a4_candy_projects/includes/project_insight_form.html"
+    form_title = _("Edit project result")
+    form_class = ProjectResultForm
+    form_template_name = "a4dashboard/includes/project_result_form.html"
+
+    def get_urls(self):
+        from .views import ProjectResultInsightComponentFormView
+
+        view = ProjectResultInsightComponentFormView.as_view(
+            component=self,
+            title=self.form_title,
+            form_class=self.form_class,
+            form_template_name=self.form_template_name,
+        )
+        return [
+            (
+                r"^projects/(?P<project_slug>[-\w_]+)/{identifier}/$".format(
+                    identifier=self.identifier
+                ),
+                view,
+                "dashboard-{identifier}-edit".format(identifier=self.identifier),
+            )
+        ]
 
 
-components.register_project(ProjectInsightComponent())
 components.register_project(ModeratorsComponent())
 components.register_project(ParticipantsComponent())
+components.replace_project(ProjectResultComponent())
