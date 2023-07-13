@@ -103,6 +103,6 @@ class ProjectInsightComponent(ProjectFormComponent):
     form_template_name = "a4_candy_projects/includes/project_insight_form.html"
 
 
-components.register_project(ProjectInsightComponent())
 components.register_project(ModeratorsComponent())
 components.register_project(ParticipantsComponent())
+components.register_project(ProjectInsightComponent())
