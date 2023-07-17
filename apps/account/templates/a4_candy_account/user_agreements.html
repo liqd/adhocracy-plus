@@ -4,7 +4,7 @@
 
 {% block title %}{% translate 'User Agreements' %} &mdash; {{ block.super }}{% endblock %}
 {% block dashboard_content %}
-    <h1 class="mt-0">{% translate 'User Agreements' %}</h1>
+    <h1 class="mt-md-0">{% translate 'User Agreements' %}</h1>
     <p>{% translate 'Here you can edit all your agreements' %}</p>
 
     <form method="post">
@@ -12,12 +12,14 @@
 
         {{ formset.management_form }}
         {% for agreement_form in formset.forms %}
-        <div class="d-flex u-bottom-divider py-4">
-            <img src="{% if agreement_form.instance.organisation.logo %}{% thumbnail agreement_form.instance.organisation.logo '0x160' %}{% endif %}" alt="" class="account__org-image{% if not agreement_form.instance.organisation.logo %} account__org-image--bg{% endif %}" />
-            <div role="group" aria-labelledby="org_name_{{ forloop.counter }}" class="flex-col">
-                <h2 id="org_name_{{ forloop.counter }}" class="mt-0">
-                {{ agreement_form.instance.organisation.name }}
-                </h2>
+        <div class="u-bottom-divider py-md-3">
+            <div class="account__org-info" role="group" aria-labelledby="org_name_{{ forloop.counter }}">
+                <div class="d-flex mb-2">
+                    <img src="{% if agreement_form.instance.organisation.logo %}{% thumbnail agreement_form.instance.organisation.logo '0x160' %}{% endif %}" alt="logo" class="account__org-image{% if not agreement_form.instance.organisation.logo %} account__org-image--bg{% endif %}" />
+                    <h2 id="org_name_{{ forloop.counter }}" class="account__org-name">
+                        {{ agreement_form.instance.organisation.name }}
+                    </h2>
+                </div>
 
                 {% for field in agreement_form.visible_fields %}
                     {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=field %}
