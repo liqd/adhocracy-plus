@@ -7,7 +7,7 @@ from adhocracy4.dashboard.components.forms import ProjectDashboardForm
 from adhocracy4.dashboard.components.forms import ProjectFormComponent
 
 from . import views
-from .models import Insight
+from .models import ProjectInsight
 
 
 class ParticipantsComponent(DashboardComponent):
@@ -66,7 +66,7 @@ class ModeratorsComponent(DashboardComponent):
 
 class InsightForm(ProjectDashboardForm):
     class Meta:
-        model = Insight
+        model = ProjectInsight
         fields = [
             "active_participants",
             "comments",

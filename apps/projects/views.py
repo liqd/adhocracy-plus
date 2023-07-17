@@ -21,6 +21,7 @@ from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
+from apps.projects.models import ProjectInsight
 
 from . import forms
 from . import models
@@ -99,7 +100,6 @@ class AbstractProjectUserInviteListView(
     generic.detail.SingleObjectMixin,
     generic.edit.ProcessFormView,
 ):
-
     form_class = forms.InviteUsersFromEmailForm
     invite_model = None
 
@@ -215,7 +215,6 @@ class AbstractProjectUserInviteListView(
 
 
 class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
-
     model = project_models.Project
     slug_url_kwarg = "project_slug"
     template_name = "a4_candy_projects/project_moderators.html"
@@ -235,7 +234,6 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
 
 
 class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
-
     model = project_models.Project
     slug_url_kwarg = "project_slug"
     template_name = "a4_candy_projects/project_participants.html"
@@ -275,7 +273,6 @@ class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
 class ProjectDetailView(
     PermissionRequiredMixin, ProjectModuleDispatchMixin, DisplayProjectOrModuleMixin
 ):
-
     model = models.Project
     permission_required = "a4projects.view_project"
     template_name = "a4_candy_projects/project_detail.html"
@@ -291,9 +288,43 @@ class ProjectDetailView(
     def raise_exception(self):
         return self.request.user.is_authenticated
 
+    def get_context_data(self, **kwargs):
+        """Append insights to the template context."""
+
+        context = super().get_context_data(**kwargs)
+
+        modules = self.project.modules.all()
+        active_blueprints = set(modules.values_list("blueprint_type", flat=True))
+
+        enable_ideas = active_blueprints.intersection({"BS", "IC"})
+        enable_map_ideas = active_blueprints.intersection({"MBS", "MIC", "PB"})
+        enable_proposals = "PB" in active_blueprints
+        enable_polls = "PO" in active_blueprints
+        enable_interactive_event = "IE" in active_blueprints
+
+        insights = ProjectInsight.objects.get(project=self.project)
+
+        counts = [
+            (_("active participants"), insights.active_participants.count()),
+            (_("comments"), insights.comments),
+            (_("ratings"), insights.ratings),
+        ]
+
+        if enable_ideas or enable_map_ideas or enable_proposals:
+            counts.append((_("written ideas"), insights.written_ideas))
+
+        if enable_polls or enable_interactive_event:
+            counts.append((_("poll answers"), insights.poll_answers))
+
+        if enable_interactive_event:
+            counts.append((_("interactive event questions"), insights.live_questions))
+
+        context["counts"] = counts
+
+        return context
+
 
 class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
-
     model = module_models.Module
     permission_required = "a4projects.view_project"
     slug_url_kwarg = "module_slug"
