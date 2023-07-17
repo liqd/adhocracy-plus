@@ -302,7 +302,7 @@ class ProjectDetailView(
         enable_polls = "PO" in active_blueprints
         enable_interactive_event = "IE" in active_blueprints
 
-        insights = ProjectInsight.objects.get(project=self.project)
+        insights, created = ProjectInsight.objects.get_or_create(project=self.project)
 
         counts = [
             (_("active participants"), insights.active_participants.count()),

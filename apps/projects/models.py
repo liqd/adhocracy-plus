@@ -91,11 +91,11 @@ class ModeratorInvite(Invite):
 class ProjectInsight(base.TimeStampedModel):
     project = models.OneToOneField(to=Project, on_delete=models.CASCADE)
     active_participants = models.ManyToManyField(to=User)
-    comments = models.PositiveIntegerField()
-    ratings = models.PositiveIntegerField()
-    written_ideas = models.PositiveIntegerField()
-    poll_answers = models.PositiveIntegerField()
-    live_questions = models.PositiveIntegerField()
+    comments = models.PositiveIntegerField(default=0)
+    ratings = models.PositiveIntegerField(default=0)
+    written_ideas = models.PositiveIntegerField(default=0)
+    poll_answers = models.PositiveIntegerField(default=0)
+    live_questions = models.PositiveIntegerField(default=0)
     display = models.BooleanField(default=False)
 
     def __str__(self):

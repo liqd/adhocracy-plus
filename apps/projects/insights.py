@@ -61,14 +61,13 @@ def create_insight(project: Project) -> ProjectInsight:
         ratings_topics,
         ratings_ideas,
         likes,
-        ratings_map_ideas,
     ]
 
     insight, _ = ProjectInsight.objects.update_or_create(
         project=project,
         comments=comments.count(),
         ratings=sum(x.count() for x in rating_objects),
-        written_ideas=ideas.count() + map_ideas.count() + proposals.count(),
+        written_ideas=sum(x.count() for x in [ideas, map_ideas, proposals, topics]),
         poll_answers=votes.count() + answers.count(),
         live_questions=live_questions.count(),
     )
