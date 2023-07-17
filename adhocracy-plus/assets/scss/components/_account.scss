@@ -8,3 +8,15 @@
 .account__org-image--bg {
     background-color: $brand-primary;
 }
+
+.account__org-name {
+    margin-top: 0.5 * $spacer;
+    font-size: $font-size-base;
+    font-weight: normal;
+}
+
+@media screen and (min-width: $breakpoint) {
+    .account__org-info .form-check {
+        margin-left: 2.5 * $spacer;
+    }
+}
