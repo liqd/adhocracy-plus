@@ -51,8 +51,6 @@ def create_insight(project: Project) -> ProjectInsight:
         votes,
         answers,
         proposals,
-        topics,
-        polls,
     ]
 
     rating_objects = [

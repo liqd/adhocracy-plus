@@ -9,7 +9,6 @@ def initialize_insights(apps, schema_editor):
     ProjectInsight = apps.get_model("a4_candy_projects", "ProjectInsight")
     Comment = apps.get_model("a4comments", "Comment")
     Answer = apps.get_model("a4polls", "Answer")
-    Poll = apps.get_model("a4polls", "Poll")
     Vote = apps.get_model("a4polls", "Vote")
     Rating = apps.get_model("a4ratings", "Rating")
     Proposal = apps.get_model("a4_candy_budgeting", "Proposal")
@@ -22,7 +21,7 @@ def initialize_insights(apps, schema_editor):
     insights = defaultdict(ProjectInsight)
     user_ids = defaultdict(set)
 
-    for idea_model in [Idea, MapIdea, Proposal, Topic]:
+    for idea_model in [Idea, MapIdea, Proposal]:
         for x in idea_model.objects.all():
             project = x.module.project
             insights[project].written_ideas += 1
@@ -33,18 +32,13 @@ def initialize_insights(apps, schema_editor):
 
     for answer in Answer.objects.all():
         project = answer.question.poll.module.project
-        insights[project].live_questions += 1
+        insights[project].poll_answers += 1
         user_ids[project].add(answer.creator.id)
 
     for vote in Vote.objects.all():
         project = vote.choice.question.poll.module.project
-        insights[project].live_questions += 1
+        insights[project].poll_answers += 1
         user_ids[project].add(vote.creator.id)
-
-    for poll in Poll.objects.all():
-        project = poll.module.project
-        insights[project].live_questions += 1
-        user_ids[project].add(poll.creator.id)
 
     for comment in Comment.objects.exclude(project=None):
         project = comment.project

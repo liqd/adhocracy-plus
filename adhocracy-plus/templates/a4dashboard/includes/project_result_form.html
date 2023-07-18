@@ -1,3 +1,20 @@
-{% include 'a4dashboard/includes/form_field.html' with field=form.display %}
+<div class="row">
+    <div class="col-md-10 col-lg-8">
+      <h5>{{ insight|title|slice:':9' }}</h5>
+    </div>
+
+    <div class="col-md-10 col-lg-12">
+      <p> {{ insight_label }} </p>
+    </div>
+      <p>
+
+    {% for label, value in counts %}
+        <div class="col-md-10 col-lg-8">
+            {{ label|title }}: {{ value }}
+        </div>
+    {% endfor %}
+      </p>
+</div>
+{% include 'a4dashboard/includes/form_field.html' with field=insight_form.display %}
 {% include 'a4dashboard/includes/form_field.html' with field=form.result %}
 

@@ -279,14 +279,26 @@
                 aria-expanded="false">
                 <div class="container">
                     <div class="row">
+                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                          <h5>{{ insight|title|slice:':9' }}</h5>
+                        </div>
 
+                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                          <p> {{ insight_label }} </p>
+                        </div>
+                        <p>
                         {% for label, value in counts %}
                             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                                {{ label }}: {{ value }}
+                                {{ label|title }}: {{ value }}
                             </div>
                         {% endfor %}
+                        </p>
+                    </div>
 
                     <div class="row">
+                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                          <h5>{{ result_title|title }}</h5>
+                        </div>
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                             {% if project.result %}
                                 {{ project.result | transform_collapsibles | richtext }}

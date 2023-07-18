@@ -295,20 +295,68 @@ class ProjectDetailView(
         """Append insights to the template context."""
         context = super().get_context_data(**kwargs)
 
-        insights = ProjectInsight.objects.filter(project=self.project)
-        if insights.display:
+        insight = ProjectInsight.objects.filter(project=self.project).first()
+        if insight.display:
+            insight_title = _(str(insight))
+            insight_label = _(
+                """This session will provide you with valuable insights
+                into the number of individuals invloved in the process
+                and help you make informed decisions based on the data"""
+            )
             counts = [
-                (_("active participants"), insights.active_participants.count()),
-                (_("comments"), insights.comments),
-                (_("ratings"), insights.ratings),
-                (_("written ideas"), insights.written_ideas),
-                (_("poll answers"), insights.poll_answers),
-                (_("interactive event questions"), insights.live_questions),
+                (_("active participants"), insight.active_participants.count()),
+                (_("comments"), insight.comments),
+                (_("ratings"), insight.ratings),
+                (_("written ideas"), insight.written_ideas),
+                (_("poll answers"), insight.poll_answers),
+                (_("interactive event questions"), insight.live_questions),
             ]
 
+            context["insight"] = insight_title
+            context["insight_label"] = insight_label
             context["counts"] = counts
+        context["result_title"] = _("Final Results")
 
         return context
+
+
+class ProjectResultInsightComponentFormView(ProjectComponentFormView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        insight = ProjectInsight.objects.filter(project=self.project).first()
+        insight_title = _(str(insight))
+        insight_label = _(
+            """This session will provide you with valuable insights
+            into the number of individuals invloved in the process
+            and help you make informed decisions based on the data"""
+        )
+        context["insight"] = insight_title
+        context["insight_label"] = insight_label
+        counts = [
+            (_("active participants"), insight.active_participants.count()),
+            (_("comments"), insight.comments),
+            (_("ratings"), insight.ratings),
+            (_("written ideas"), insight.written_ideas),
+            (_("poll answers"), insight.poll_answers),
+            (_("interactive event questions"), insight.live_questions),
+        ]
+
+        context["counts"] = counts
+        if self.request.POST:
+            context["insight_form"] = dashboard.ProjectInsightForm(
+                data=self.request.POST, instance=insight
+            )
+        else:
+            context["insight_form"] = dashboard.ProjectInsightForm(instance=insight)
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        insight_form = context["insight_form"]
+        with transaction.atomic():
+            if insight_form.is_valid():
+                insight_form.save()
+        return super().form_valid(form)
 
 
 class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
@@ -334,22 +382,3 @@ class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
         if "module" not in kwargs:
             kwargs["module"] = self.module
         return super().get_context_data(**kwargs)
-
-
-class ProjectResultInsightComponentFormView(ProjectComponentFormView):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        insight = self.project.insight
-        context["insight"] = insight
-        context["insight_form"] = dashboard.ProjectInsightForm(instance=insight)
-        return context
-
-    def form_valid(self, form):
-        form.instance.project = self.project
-        context = self.get_context_data()
-        insight_form = context["insight_form"]
-        with transaction.atomic():
-            if insight_form.is_valid():
-                insight_form.instance = self.project
-                insight_form.save()
-        return super().form_valid(form)

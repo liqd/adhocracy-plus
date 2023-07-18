@@ -68,16 +68,7 @@ class ModeratorsComponent(DashboardComponent):
 class ProjectInsightForm(ModelForm):
     class Meta:
         model = ProjectInsight
-        fields = [
-            "active_participants",
-            "comments",
-            "ratings",
-            "written_ideas",
-            "poll_answers",
-            "live_questions",
-            "display",
-        ]
-        required_for_project_publish = []
+        fields = ["display"]
 
         help_texts = {
             "display": _(
@@ -86,12 +77,6 @@ class ProjectInsightForm(ModelForm):
                 "during the participation process"
             ),
         }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for name, field in self.fields.items():
-            if not name == "display":
-                field.widget.attrs["readonly"] = "true"
 
 
 class ProjectResultComponent(ProjectFormComponent):

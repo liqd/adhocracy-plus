@@ -6,7 +6,6 @@ from django.urls import reverse
 
 from adhocracy4.models import base
 from adhocracy4.projects.models import Project
-from apps.users.models import User
 
 from . import emails
 
@@ -89,8 +88,10 @@ class ModeratorInvite(Invite):
 
 
 class ProjectInsight(base.TimeStampedModel):
-    project = models.OneToOneField(to=Project, on_delete=models.CASCADE)
-    active_participants = models.ManyToManyField(to=User)
+    project = models.OneToOneField(
+        Project, related_name="insight", on_delete=models.CASCADE
+    )
+    active_participants = models.ManyToManyField(settings.AUTH_USER_MODEL)
     comments = models.PositiveIntegerField(default=0)
     ratings = models.PositiveIntegerField(default=0)
     written_ideas = models.PositiveIntegerField(default=0)
