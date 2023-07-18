@@ -3,6 +3,7 @@ import itertools
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
+from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -22,6 +23,7 @@ from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
+from apps.projects.models import ProjectInsight
 
 from . import dashboard
 from . import forms
@@ -289,6 +291,25 @@ class ProjectDetailView(
     def raise_exception(self):
         return self.request.user.is_authenticated
 
+    def get_context_data(self, **kwargs):
+        """Append insights to the template context."""
+        context = super().get_context_data(**kwargs)
+
+        insights = ProjectInsight.objects.filter(project=self.project)
+        if insights.display:
+            counts = [
+                (_("active participants"), insights.active_participants.count()),
+                (_("comments"), insights.comments),
+                (_("ratings"), insights.ratings),
+                (_("written ideas"), insights.written_ideas),
+                (_("poll answers"), insights.poll_answers),
+                (_("interactive event questions"), insights.live_questions),
+            ]
+
+            context["counts"] = counts
+
+        return context
+
 
 class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
     model = module_models.Module
@@ -323,13 +344,12 @@ class ProjectResultInsightComponentFormView(ProjectComponentFormView):
         context["insight_form"] = dashboard.ProjectInsightForm(instance=insight)
         return context
 
-
-#    def form_valid(self, form):
-#        form.instance.module = self.module
-#        context = self.get_context_data()
-#        formset = context["insight_form"]
-#        with transaction.atomic():
-#            if formset.is_valid():
-#                formset.instance = self.module
-#                formset.save()
-#        return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.project = self.project
+        context = self.get_context_data()
+        insight_form = context["insight_form"]
+        with transaction.atomic():
+            if insight_form.is_valid():
+                insight_form.instance = self.project
+                insight_form.save()
+        return super().form_valid(form)
