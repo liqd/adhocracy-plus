@@ -215,6 +215,7 @@ class ModerationProjectSerializer(serializers.ModelSerializer):
             "title",
             "organisation",
             "tile_image",
+            "tile_image_alt_text",
             "tile_image_copyright",
             "status",
             "access",
@@ -268,6 +269,14 @@ class ModerationProjectSerializer(serializers.ModelSerializer):
             image = get_thumbnailer(instance.image)["project_thumbnail"]
             image_url = image.url
         return image_url
+
+    def get_tile_image_alt_text(self, instance):
+        if instance.tile_image:
+            return instance.tile_image_alt_text
+        elif instance.image:
+            return instance.image_alt_text
+        else:
+            return None
 
     def get_tile_image_copyright(self, instance):
         if instance.tile_image:

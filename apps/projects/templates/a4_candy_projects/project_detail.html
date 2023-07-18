@@ -54,9 +54,14 @@
         {% endblock %}
 
         {% block content %}
-            <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
-                           background-image: url({{ project.image |thumbnail_url:'heroimage' }});
-                           {% endif %}">
+            <div
+                class="project-header{% if project.image %} project-header--image{% endif %}"
+                {% if view.project.image %}
+                    style="background-image: url({{ project.image |thumbnail_url:'heroimage' }});"
+                    role="img"
+                    aria-label="{% if project.image_alt_text %}{{ project.image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
+                {% endif %}
+            >
                 <div class="mb-5 u-z-index--0">
                     <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                         <h1 class="project-header__title">{{ project.name }}</h1>
