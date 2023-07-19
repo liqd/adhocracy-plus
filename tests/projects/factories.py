@@ -20,3 +20,16 @@ class ModeratorInviteFactory(factory.django.DjangoModelFactory):
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     project = factory.SubFactory(a4_factories.ProjectFactory)
     email = factory.Sequence(lambda n: "user%d@liqd.net" % n)
+
+
+class ProjectInsightFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = models.ProjectInsight
+
+    project = factory.SubFactory(a4_factories.ProjectFactory)
+    comments = 8
+    ratings = 4
+    written_ideas = 3
+    poll_answers = 2
+    live_questions = 2
+    display = True
