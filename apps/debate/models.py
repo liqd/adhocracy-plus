@@ -73,14 +73,21 @@ class Subject(module_models.Item):
 
     @cached_property
     def last_three_creators(self):
-        comments = self.comments.all().select_related("creator").order_by("-created")
+        comments = (
+            self.comments.filter(
+                is_censored=False,
+                is_removed=False,
+            )
+            .select_related("creator")
+            .order_by("-created")
+        )
+
         last_three_creators = []
         if comments:
             for comment in comments:
-                if comment.creator not in last_three_creators and not (
-                    comment.is_censored or comment.is_removed
-                ):
+                if comment.creator not in last_three_creators:
                     last_three_creators.append(comment.creator)
                 if len(last_three_creators) >= 3:
-                    return last_three_creators
+                    break
+
         return last_three_creators
