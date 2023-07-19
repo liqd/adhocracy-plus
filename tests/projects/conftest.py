@@ -4,3 +4,4 @@ from . import factories as invites
 
 register(invites.ModeratorInviteFactory)
 register(invites.ParticipantInviteFactory)
+register(invites.ProjectInsightFactory)

@@ -5,7 +5,7 @@ from freezegun import freeze_time
 
 
 @pytest.mark.django_db
-def test_modules(client, project, module_factory, phase_factory):
+def test_modules(client, project, module_factory, phase_factory, project_insight):
     module1 = module_factory(project=project, weight=1)
     module2 = module_factory(project=project, weight=2)
     module3 = module_factory(project=project, weight=3)
@@ -41,8 +41,11 @@ def test_modules(client, project, module_factory, phase_factory):
         kwargs={"slug": project.slug, "organisation_slug": project.organisation.slug},
     )
     response = client.get(url)
+    print("CONTEXT", response.context_data)
     with freeze_time(parse("2013-01-01 18:00:00 UTC")):
         assert module1 in response.context_data["modules"]
         assert module2 in response.context_data["modules"]
         assert module3 == response.context_data["modules"][0]
         assert module4 in response.context_data["modules"]
+        assert "result_title" in response.context_data.keys()
+        assert "insight" in response.context_data.keys()
