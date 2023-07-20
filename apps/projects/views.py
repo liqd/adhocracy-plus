@@ -19,7 +19,6 @@ from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.dashboard.components.forms.views import ProjectComponentFormView
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
-from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
@@ -28,6 +27,8 @@ from apps.projects.models import ProjectInsight
 from . import dashboard
 from . import forms
 from . import models
+from .mixins import DisplayProjectOrModuleMixin
+from .mixins import create_insight_context
 
 User = get_user_model()
 
@@ -273,25 +274,6 @@ class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
         return super().delete(request, *args, **kwargs)
 
 
-def create_insight_context(insight: ProjectInsight) -> dict:
-    return dict(
-        insight=_(str(insight)),
-        insight_label=_(
-            """This session will provide you with valuable insights
-            into the number of individuals invloved in the process
-            and help you make informed decisions based on the data"""
-        ),
-        counts=[
-            (_("active participants"), insight.active_participants.count()),
-            (_("comments"), insight.comments),
-            (_("ratings"), insight.ratings),
-            (_("written ideas"), insight.written_ideas),
-            (_("poll answers"), insight.poll_answers),
-            (_("interactive event questions"), insight.live_questions),
-        ],
-    )
-
-
 class ProjectDetailView(
     PermissionRequiredMixin, ProjectModuleDispatchMixin, DisplayProjectOrModuleMixin
 ):
@@ -309,19 +291,6 @@ class ProjectDetailView(
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
-
-    def get_context_data(self, **kwargs):
-        """Append insights to the template context."""
-
-        context = super().get_context_data(**kwargs)
-
-        insight, created = ProjectInsight.objects.get_or_create(project=self.project)
-        if insight.display:
-            context.update(create_insight_context(insight=insight))
-
-        context["result_title"] = _("Final Results")
-
-        return context
 
 
 class ProjectResultInsightComponentFormView(ProjectComponentFormView):
