@@ -61,15 +61,18 @@ def create_insight(project: Project) -> ProjectInsight:
         likes,
     ]
 
-    insight, _ = ProjectInsight.objects.update_or_create(
-        project=project,
-        comments=comments.count(),
-        ratings=sum(x.count() for x in rating_objects),
-        written_ideas=sum(x.count() for x in [ideas, map_ideas, proposals, topics]),
-        poll_answers=votes.count() + answers.count(),
-        live_questions=live_questions.count(),
-    )
+    idea_objects = [ideas, map_ideas, proposals, topics]
 
+    insight, _ = ProjectInsight.objects.get_or_create(project=project)
+
+    insight.comments = comments.count()
+    insight.ratings = sum(x.count() for x in rating_objects)
+    insight.written_ideas = sum(x.count() for x in idea_objects)
+    insight.poll_answers = votes.count() + answers.count()
+    insight.live_questions = live_questions.count()
+    insight.save()
+
+    insight.active_participants.clear()
     for obj in creator_objects:
         ids = list(obj.values_list("creator", flat=True).distinct().order_by())
         insight.active_participants.add(*ids)
