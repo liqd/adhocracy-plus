@@ -11,7 +11,10 @@ def test_can_create_insight_for_empty_project(
     project_factory,
 ):
     project = project_factory()
+    assert not hasattr(project, "insight")
+
     create_insight(project=project)
+    assert hasattr(project, "insight")
 
 
 @pytest.mark.django_db

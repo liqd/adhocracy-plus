@@ -3,6 +3,7 @@ import uuid
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.models import base
 from adhocracy4.projects.models import Project
@@ -99,5 +100,30 @@ class ProjectInsight(base.TimeStampedModel):
     live_questions = models.PositiveIntegerField(default=0)
     display = models.BooleanField(default=False)
 
+    @staticmethod
+    def update_context(project, context, dashboard=False):
+        insight, created = ProjectInsight.objects.get_or_create(project=project)
+        if dashboard or insight.display:
+            context.update(create_insight_context(insight=insight))
+        return context
+
     def __str__(self):
         return "Insights for project %s" % self.project.name
+
+
+def create_insight_context(insight: ProjectInsight) -> dict:
+    return dict(
+        insight_label=_(
+            """This session will provide you with valuable insights
+            into the number of individuals invloved in the process
+            and help you make informed decisions based on the data"""
+        ),
+        counts=[
+            (_("active participants"), insight.active_participants.count()),
+            (_("comments"), insight.comments),
+            (_("ratings"), insight.ratings),
+            (_("written ideas"), insight.written_ideas),
+            (_("poll answers"), insight.poll_answers),
+            (_("interactive event questions"), insight.live_questions),
+        ],
+    )

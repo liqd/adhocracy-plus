@@ -19,6 +19,7 @@ from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.dashboard.components.forms.views import ProjectComponentFormView
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
@@ -27,8 +28,6 @@ from apps.projects.models import ProjectInsight
 from . import dashboard
 from . import forms
 from . import models
-from .mixins import DisplayProjectOrModuleMixin
-from .mixins import create_insight_context
 
 User = get_user_model()
 
@@ -275,7 +274,9 @@ class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
 
 
 class ProjectDetailView(
-    PermissionRequiredMixin, ProjectModuleDispatchMixin, DisplayProjectOrModuleMixin
+    PermissionRequiredMixin,
+    ProjectModuleDispatchMixin,
+    DisplayProjectOrModuleMixin,
 ):
     model = models.Project
     permission_required = "a4projects.view_project"
@@ -296,15 +297,18 @@ class ProjectDetailView(
 class ProjectResultInsightComponentFormView(ProjectComponentFormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        insight, created = ProjectInsight.objects.get_or_create(project=self.project)
-        context.update(create_insight_context(insight=insight))
+        ProjectInsight.update_context(
+            project=self.project, context=context, dashboard=True
+        )
 
         if self.request.POST:
             context["insight_form"] = dashboard.ProjectInsightForm(
-                data=self.request.POST, instance=insight
+                data=self.request.POST, instance=self.project.insight
             )
         else:
-            context["insight_form"] = dashboard.ProjectInsightForm(instance=insight)
+            context["insight_form"] = dashboard.ProjectInsightForm(
+                instance=self.project.insight
+            )
 
         return context
 

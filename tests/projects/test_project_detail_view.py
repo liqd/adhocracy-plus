@@ -48,4 +48,4 @@ def test_modules(client, project, module_factory, phase_factory, project_insight
         assert module3 == response.context_data["modules"][0]
         assert module4 in response.context_data["modules"]
         assert "result_title" in response.context_data.keys()
-        assert "insight" in response.context_data.keys()
+        assert "insight_label" in response.context_data.keys()
