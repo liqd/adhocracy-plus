@@ -24,7 +24,6 @@ class ImageCTABlock(blocks.StructBlock):
         icon = "view"
 
 
-# 2-col, headline, text, CTA btn, background colors, text colors
 class ColumnsImageCTABlock(blocks.StructBlock):
     columns_count = blocks.ChoiceBlock(
         choices=[(1, "One column"), (2, "Two columns")], default=2
@@ -37,6 +36,7 @@ class ColumnsImageCTABlock(blocks.StructBlock):
         icon = "list-ul"
 
 
+# 2-col, headline, text, CTA btn, background colors, text colors
 class ColBackgroundCTABlock(blocks.StructBlock):
     columns_count = blocks.ChoiceBlock(
         choices=[(1, "One column"), (2, "Two columns")], default=2
@@ -49,7 +49,7 @@ class ColBackgroundCTABlock(blocks.StructBlock):
         icon = "tick-inverse"
 
 
-# 3 column block with an optional button/link for each col,
+# 1-3 column block with an optional button/link for each col,
 # Call-to-action block can have up to 3 big CTA btn
 class ColumnsCTABlock(blocks.StructBlock):
     columns_count = blocks.ChoiceBlock(

@@ -11,7 +11,9 @@ $block-padding-md: 7.5 * $padding;
     @extend .col-md-3;
 }
 
-.block-col-3 {
+.block-col-3,
+.block-img-col-1,
+.block-img-col-2 {
     @extend .col-md-4;
 }
 
@@ -46,33 +48,10 @@ $block-padding-md: 7.5 * $padding;
     }
 }
 
-// image/list cta block
-
-.block-image_cta_block {
-    text-align: left;
-}
-
-.block-img-col-1 {
-    @extend .col-md-7;
-
-    img {
-        display: inline-block;
-        float: left;
-        padding-right: $padding;
-    }
-}
-
-.block-img-col-2 {
-    @extend .col-md-5;
-
-    .block-img-col__image {
-        width: 100%;
-        position: relative;
-
-        @media screen and (min-width: $breakpoint-xxl) {
-            margin-top: 2 * $spacer;
-        }
-    }
+// image cta block
+.block-col_list_image_cta_block > .row {
+    justify-content: center;
+    text-align: center;
 }
 
 // old block styling, still used in activity block
@@ -89,6 +68,7 @@ $block-padding-md: 7.5 * $padding;
 // responsive padding for image, 2 col cta
 .homepage__wrapper {
     .block-img-col-1,
+    .block-img-col-2,
     .block-row-2 {
         padding: 2 * $padding;
 
@@ -128,12 +108,6 @@ $block-padding-md: 7.5 * $padding;
         width: 80px;
         border-bottom: solid 8px $brand-secondary;
     }
-
-    .block-img-col-1 {
-        h2:after {
-            left: 0;
-        }
-    }
 }
 
 // coloured background block
@@ -167,6 +141,8 @@ $block-padding-md: 7.5 * $padding;
     @media screen and (min-width: $breakpoint-xxl) {
         margin-left: 0;
         margin-right: 0;
+        padding-left: 13px; // hack to work with wrapper on larger screens
+        padding-right: 13px;
     }
 
     .block {
@@ -193,12 +169,12 @@ $block-padding-md: 7.5 * $padding;
             padding: $block-padding-md;
         }
     }
+}
 
-    .block-col_cta-content {
-        @media screen and (min-width: $breakpoint-md) {
-            width: 70%;
-            margin: auto;
-        }
+.block-col_cta-content {
+    @media screen and (min-width: $breakpoint-md) {
+        width: 70%;
+        margin: auto;
     }
 }
 
