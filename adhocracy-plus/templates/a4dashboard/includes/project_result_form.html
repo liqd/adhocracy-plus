@@ -4,13 +4,14 @@
     <h2 class="form__section-title">{% translate 'Insights' %}</h2>
 
     <p class="form-hint"> {{ insight_label }} </p>
-    <p>
-    {% for label, value in counts %}
-        <div class="col-md-10 col-lg-8">
+    <ul class="u-list-reset pt-2 pb-3">
+        {% for label, value in counts %}
+        <li>
             {{ label|title }}: {{ value }}
-        </div>
-    {% endfor %}
-    </p>
+        </li>
+        {% endfor %}
+    </ul>
+
     {% include 'a4forms/includes/form_checkbox_field.html' with field=insight_form.display %}
 </section>
 <section>

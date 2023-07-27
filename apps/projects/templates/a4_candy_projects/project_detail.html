@@ -287,18 +287,17 @@
                     <div class="row">
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                           <h5>{% translate 'Insights' %}</h5>
-                        </div>
+                          <p class="form-hint"> {{ insight_label }} </p>
 
-                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                          <p> {{ insight_label }} </p>
-                        </div>
-                        <p>
-                        {% for label, value in counts %}
-                            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                                {{ label|title }}: {{ value }}
+                          <dl class="row">
+                            {% for label, value in counts %}
+                            <div class="col-sm-6 col-lg-4 text-center mb-2">
+                                <dt class="dt--insight">{{ value }}</dt>
+                                <dd>{{ label|title }}</dd>
                             </div>
-                        {% endfor %}
-                        </p>
+                            {% endfor %}
+                          </dl>
+                        </div>
                     </div>
                 {% endif %}
 
