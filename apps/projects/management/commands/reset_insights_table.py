@@ -1,12 +1,10 @@
-import logging
 from argparse import ArgumentParser
 
 from django.core.management.base import BaseCommand
 
+from apps import logger
 from apps.projects.insights import create_insights
 from apps.projects.models import Project
-
-logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -24,8 +22,8 @@ class Command(BaseCommand):
         if slug:
             project = Project.objects.filter(slug=slug).first()
             if not project:
-                known = sorted(Project.objects.values_list("slug", flat=True))
-                logger.warning(f"unknown project slug: {slug=}, {known=}")
+                known = Project.objects.order_by("slug").values_list("slug", flat=True)
+                logger.warning(f"unknown project slug: {slug=}, {list(known)=}")
                 return
 
             projects = [project]

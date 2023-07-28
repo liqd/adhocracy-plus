@@ -22,10 +22,10 @@ def initialize_insights(apps, schema_editor):
     user_ids = defaultdict(set)
 
     for idea_model in [Idea, MapIdea, Proposal]:
-        for x in idea_model.objects.all():
-            project = x.module.project
+        for idea_object in idea_model.objects.all():
+            project = idea_object.module.project
             insights[project].written_ideas += 1
-            user_ids[project].add(x.creator.id)
+            user_ids[project].add(idea_object.creator.id)
 
     for live_question in LiveQuestion.objects.all():
         insights[live_question.module.project].live_questions += 1

@@ -1,21 +1,35 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.polls import phases
+from adhocracy4.polls.models import Poll
 from adhocracy4.test.helpers import setup_phase
-from apps.interactiveevents import phases
-from apps.projects.insights import create_insight
 
 
 @pytest.mark.django_db
 def test_project_with_single_poll_module_and_insights(
-    client, phase_factory, poll_factory
+    client,
+    phase_factory,
+    answer_factory,
+    open_question_factory,
+    poll_factory,
+    project_insight_factory,
 ):
-    phase, module, project, _ = setup_phase(phase_factory, None, phases.IssuePhase)
+    phase, poll, project, _ = setup_phase(
+        phase_factory, poll_factory, phases.VotingPhase
+    )
 
-    create_insight(project=project)
+    project_insight = project_insight_factory(project=project)
     assert hasattr(project, "insight")
-    project.insight.display = True
-    project.insight.save()
+
+    poll = Poll.objects.first()
+    question = open_question_factory(poll=poll)
+
+    # post save signal in answer obj is called for
+    # adding the creator of the answer to the insights
+    answer = answer_factory(question=question)
+
+    assert project_insight.active_participants.first() == answer.creator
 
     url = reverse(
         "project-detail",

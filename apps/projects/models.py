@@ -115,7 +115,7 @@ def create_insight_context(insight: ProjectInsight) -> dict:
     return dict(
         insight_label=_(
             """This session will provide you with valuable insights
-            into the number of individuals invloved in the process
+            into the number of individuals involved in the process
             and help you make informed decisions based on the data"""
         ),
         counts=[

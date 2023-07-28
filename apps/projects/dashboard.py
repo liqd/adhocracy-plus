@@ -9,6 +9,7 @@ from adhocracy4.dashboard.forms import ProjectResultForm
 
 from . import views
 from .models import ProjectInsight
+from .views import ProjectResultInsightComponentFormView
 
 
 class ParticipantsComponent(DashboardComponent):
@@ -89,8 +90,6 @@ class ProjectResultComponent(ProjectFormComponent):
     form_template_name = "a4dashboard/includes/project_result_form.html"
 
     def get_urls(self):
-        from .views import ProjectResultInsightComponentFormView
-
         view = ProjectResultInsightComponentFormView.as_view(
             component=self,
             title=self.form_title,

@@ -33,3 +33,10 @@ class ProjectInsightFactory(factory.django.DjangoModelFactory):
     poll_answers = 2
     live_questions = 2
     display = True
+
+    @factory.post_generation
+    def active_participants(self, create, extracted, **kwargs):
+        if not (create and extracted):
+            return
+        for participant in extracted:
+            self.active_participants.add(participant)

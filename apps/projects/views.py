@@ -3,7 +3,6 @@ import itertools
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
-from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -315,9 +314,8 @@ class ProjectResultInsightComponentFormView(ProjectComponentFormView):
     def form_valid(self, form):
         context = self.get_context_data()
         insight_form = context["insight_form"]
-        with transaction.atomic():
-            if insight_form.is_valid():
-                insight_form.save()
+        if insight_form.is_valid():
+            insight_form.save()
         return super().form_valid(form)
 
 
