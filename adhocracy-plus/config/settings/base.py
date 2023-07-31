@@ -111,6 +111,8 @@ INSTALLED_APPS = (
     "apps.polls",
     "apps.topicprio",
     "apps.debate",
+    # dev
+    "apps.dev",
 )
 
 MIDDLEWARE = (
