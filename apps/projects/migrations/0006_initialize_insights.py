@@ -16,7 +16,6 @@ def initialize_insights(apps, schema_editor):
     Like = apps.get_model("a4_candy_interactive_events", "Like")
     LiveQuestion = apps.get_model("a4_candy_interactive_events", "LiveQuestion")
     MapIdea = apps.get_model("a4_candy_mapideas", "MapIdea")
-    Topic = apps.get_model("a4_candy_topicprio", "Topic")
 
     insights = defaultdict(ProjectInsight)
     user_ids = defaultdict(set)
@@ -59,7 +58,7 @@ def initialize_insights(apps, schema_editor):
 
         if model_name == "comment":
             project = content_object.project
-        elif model_name in ["idea", "map_idea", "topic", "proposal"]:
+        elif model_name in ["idea", "mapidea", "topic", "proposal"]:
             project = content_object.module.project
         else:
             print(f"could not identify project: {rating=}")
