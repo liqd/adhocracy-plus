@@ -112,18 +112,44 @@ class ProjectInsight(base.TimeStampedModel):
 
 
 def create_insight_context(insight: ProjectInsight) -> dict:
+    """
+    ("BS", _("brainstorming")),
+    ("MBS", _("spatial brainstorming")),
+    ("IC", _("idea challenge")),
+    ("MIC", _("spatial idea challenge")),
+    ("TR", _("text review")),
+    ("PO", _("poll")),
+    ("PB", _("participatory budgeting")),
+    ("IE", _("interactive event")),
+    ("TP", _("prioritization")),
+    ("DB", _("debate")),
+    """
+
+    blueprint_types = {module.blueprint_type for module in insight.project.modules}
+    show_polls = "PO" in blueprint_types
+    show_live_questions = "IE" in blueprint_types
+    show_ideas = bool(blueprint_types.intersection({"BS", "IC", "MBS", "MIC", "PB"}))
+
+    counts = [
+        (_("active participants"), insight.active_participants.count()),
+        (_("comments"), insight.comments),
+        (_("ratings"), insight.ratings),
+    ]
+
+    if show_ideas:
+        counts.append((_("written ideas"), insight.written_ideas))
+
+    if show_polls:
+        counts.append((_("poll answers"), insight.poll_answers))
+
+    if show_live_questions:
+        counts.append((_("interactive event questions"), insight.live_questions))
+
     return dict(
         insight_label=_(
             """This session will provide you with valuable insights
             into the number of individuals involved in the process
             and help you make informed decisions based on the data"""
         ),
-        counts=[
-            (_("active participants"), insight.active_participants.count()),
-            (_("comments"), insight.comments),
-            (_("ratings"), insight.ratings),
-            (_("written ideas"), insight.written_ideas),
-            (_("poll answers"), insight.poll_answers),
-            (_("interactive event questions"), insight.live_questions),
-        ],
+        counts=counts,
     )
