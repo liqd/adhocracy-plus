@@ -63,7 +63,7 @@ def test_idea_serializer(idea_factory, comment_factory, apiclient, label_factory
 
     assert response.status_code == 200
     assert response.data[0]["description"] == "description with a bold bit"
-    assert response.data[0]["comment_count"] == 4
+    assert response.data[0]["comment_count"] == 5
     assert response.data[0]["labels"] == [
         {"id": label1.pk, "name": label1.name},
         {"id": label2.pk, "name": label2.name},
