@@ -1,9 +1,40 @@
 import pytest
 
+from apps.dashboard.blueprints import blueprints
 from apps.projects.insights import create_insight
 from apps.projects.models import ProjectInsight
+from apps.projects.models import create_insight_context
 
 get_insight = ProjectInsight.objects.get
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("module_name", ["brainstorming", "poll", "interactive-event"])
+def test_create_insight_context(
+    module_name,
+    module_factory,
+):
+    expected_label = {
+        "brainstorming": "written ideas",
+        "poll": "poll answers",
+        "interactive-event": "interactive event questions",
+    }
+
+    blueprint_type = None
+    for blueprint in blueprints:
+        if blueprint[0] == module_name:
+            blueprint_type = blueprint[1].type
+            break
+
+    assert blueprint_type
+
+    module = module_factory(blueprint_type=blueprint_type)
+    insight = create_insight(project=module.project)
+    context = create_insight_context(insight=insight)
+
+    labels = [label for label, count in context["counts"]]
+
+    assert expected_label[module_name] in labels
 
 
 @pytest.mark.django_db
