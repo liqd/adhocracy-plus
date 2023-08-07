@@ -78,6 +78,7 @@
 
     .tab {
         color: $white;
+        text-shadow: 1px 1px 5px $print-black;
 
         &:focus,
         &:hover {
@@ -123,9 +124,5 @@
     .project-header__logo-body {
         flex: 1 1 auto;
         align-self: center;
-    }
-
-    .project-header__tabs {
-        text-shadow: 1px 1px 5px $print-black;
     }
 }
