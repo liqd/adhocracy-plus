@@ -125,7 +125,10 @@ def create_insight_context(insight: ProjectInsight) -> dict:
     ("DB", _("debate")),
     """
 
-    blueprint_types = {module.blueprint_type for module in insight.project.modules}
+    active_modules = [
+        module for module in insight.project.modules if not module.is_draft
+    ]
+    blueprint_types = {module.blueprint_type for module in active_modules}
     show_polls = "PO" in blueprint_types
     show_live_questions = "IE" in blueprint_types
     show_ideas = bool(blueprint_types.intersection({"BS", "IC", "MBS", "MIC", "PB"}))

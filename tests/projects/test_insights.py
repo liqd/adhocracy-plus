@@ -9,6 +9,44 @@ get_insight = ProjectInsight.objects.get
 
 
 @pytest.mark.django_db
+@pytest.mark.parametrize("insight_provider", [create_insight, get_insight])
+def test_draft_modules_do_not_trigger_show_results(
+    project_factory,
+    module_factory,
+    poll_factory,
+    insight_provider,
+    question_factory,
+    answer_factory,
+):
+    n_active_participants = 2
+    expected_label = "poll answers"
+
+    project = project_factory()
+    module = module_factory(project=project, is_draft=False, blueprint_type="PO")
+    poll = poll_factory(module=module)
+    question = question_factory(poll=poll, is_open=True)
+    answer_factory.create_batch(size=n_active_participants, question=question)
+
+    insight = insight_provider(project=project)
+
+    assert insight.active_participants.count() == n_active_participants
+    assert insight.poll_answers == n_active_participants
+
+    context = create_insight_context(insight=insight)
+    labels = [label for label, count in context["counts"]]
+
+    assert expected_label in labels
+
+    module.is_draft = True
+    module.save()
+    insight = insight_provider(project=project)
+    context = create_insight_context(insight=insight)
+    labels = [label for label, count in context["counts"]]
+
+    assert expected_label not in labels
+
+
+@pytest.mark.django_db
 @pytest.mark.parametrize("module_name", ["brainstorming", "poll", "interactive-event"])
 def test_create_insight_context(
     module_name,
