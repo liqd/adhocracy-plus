@@ -1,6 +1,6 @@
 module.exports = {
-  gettext: () => 'mock text',
-  pgettext: () => 'mock text',
-  ngettext: () => 'mock text',
-  interpolate: () => 'mock text'
+  gettext: (text) => text,
+  pgettext: (context, text) => text,
+  ngettext: (number, text) => text + number,
+  interpolate: (fmt, data) => fmt
 }
