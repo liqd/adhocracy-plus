@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-06 16:55+0200\n"
+"POT-Creation-Date: 2023-09-04 16:32+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Azamat Abdurakhmanov, 2023\n"
 "Language-Team: Kyrgyz (https://app.transifex.com/liqd/teams/109316/ky/)\n"
@@ -149,6 +149,7 @@ msgstr "Өчүрүү"
 #: adhocracy4/static/Modal.jsx:6
 #: adhocracy4/comments/static/comments/Comment.jsx:154
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:32
+#: adhocracy4/static/Modal.jsx:6
 msgid "Abort"
 msgstr "баш тартуу"
 
@@ -358,10 +359,10 @@ msgstr "Көрсөтүү: "
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:29
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:48
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:276
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:283
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:29
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:48
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:276
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:283
 #: apps/interactiveevents/assets/Filters.jsx:32
 #: apps/interactiveevents/assets/QuestionBox.jsx:57
 msgid "all"
@@ -372,20 +373,20 @@ msgstr "Баардыгы"
 msgid "sorted by: "
 msgstr "боюнча бөлүштүрүү"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:71
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:71
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:68
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:68
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:14
 msgid "Highlighted"
 msgstr "Баса белгилөө"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:100
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:100
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:109
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:109
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "Жазуулар"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:406
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:406
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:413
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:413
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "үчүн табылган жазуулар"
@@ -483,6 +484,7 @@ msgstr "Көп бурчтукту файлды жүктөө аркылуу им�
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
 #: adhocracy4/static/Alert.jsx:6
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
+#: adhocracy4/static/Alert.jsx:6
 #: apps/dashboard/assets/ajax_modal.js:12
 #: apps/maps/assets/map_choose_polygon_with_preset.js:87
 msgid "Close"
@@ -841,6 +843,7 @@ msgid "Send Report"
 msgstr "Отчетту жөнөтүү "
 
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
+#: adhocracy4/static/TermsOfUseCheckbox.jsx:5
 msgid ""
 "Yes, I have read and agree to this organisation's %(linkStart)s terms of use "
 "%(linkEnd)s."
@@ -849,20 +852,25 @@ msgstr ""
 "окудум жана макулмун."
 
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:6
+#: adhocracy4/static/TermsOfUseCheckbox.jsx:6
 msgid "You can still manage all your preferences on User Agreements."
 msgstr "Сиз дагы эле колдонуучу келишимдерин өзгөртө аласыз. "
 
 #: apps/captcha/assets/captcheck.js:29
+msgid "Click for image-based question"
+msgstr ""
+
+#: apps/captcha/assets/captcheck.js:30
+msgid "Click for text-based question"
+msgstr ""
+
+#: apps/captcha/assets/captcheck.js:31
 msgid "Image mode"
 msgstr "Сүрөт режими"
 
-#: apps/captcha/assets/captcheck.js:30
+#: apps/captcha/assets/captcheck.js:32
 msgid "Text mode"
 msgstr "Тексттик режим"
-
-#: apps/captcha/assets/captcheck.js:31
-msgid "Captcha: switch between image and text question"
-msgstr "Captcha: Сүрөт менен тексттеги суроону алмаштыруу "
 
 #: apps/documents/assets/ChapterForm.jsx:13
 msgid "Chapter title"
@@ -1142,9 +1150,9 @@ msgstr "{}комментарий{} жайгаштырылды"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:221
 #, javascript-format
-msgid "'s {}comment{} has been reported 1 time since it's creation"
-msgid_plural "'s {}comment{} has been reported %s times since it's creation"
-msgstr[0] "дын {}комментарии{} тууралуу%sжолу ачылгандан бери отчет берилди"
+msgid "This {}comment{} has been reported 1 time since its creation"
+msgid_plural "This {}comment{} has been reported %s times since its creation"
+msgstr[0] ""
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:240
 msgid "Mark as read"
@@ -1368,6 +1376,13 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "... дареги боюнча Vimeo  купуялуулук саясатында кененирээк маалыматты "
 "табууга болот. "
+
+#~ msgid "Captcha: switch between image and text question"
+#~ msgstr "Captcha: Сүрөт менен тексттеги суроону алмаштыруу "
+
+#~ msgid "'s {}comment{} has been reported 1 time since it's creation"
+#~ msgid_plural "'s {}comment{} has been reported %s times since it's creation"
+#~ msgstr[0] "дын {}комментарии{} тууралуу%sжолу ачылгандан бери отчет берилди"
 
 #~ msgid "posted a"
 #~ msgstr "жайгашкан"
