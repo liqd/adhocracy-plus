@@ -1,0 +1,21 @@
+import os
+
+from celery import Celery
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "adhocracy-plus.config.settings")
+
+celery_app = Celery()
+celery_app.config_from_object("django.conf:settings", namespace="CELERY")
+celery_app.autodiscover_tasks()
+
+
+@celery_app.task(name="dummy_task")
+def dummy_task():
+    """
+    This task is for testing purposes only.
+    """
+
+    result = "hello world"
+    print(result)
+
+    return result
