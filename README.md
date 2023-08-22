@@ -11,35 +11,39 @@ adhocracy+ is designed to make online participation easy and accessible to every
 
 ## Installation for development
 
-### Requirements:
+### Requirements
 
  * nodejs (+ npm)
  * python 3.x (+ venv + pip)
  * libpq (only if postgres should be used)
+ * redis (only if celery is used)
 
-### Installation:
+### Installation
 
     git clone https://github.com/liqd/adhocracy-plus.git
     cd adhocracy-plus
     make install
     make fixtures
 
-### Start virtual environment:
+### Start virtual environment
+
     source venv/bin/activate
 
-### Check if tests work:
+### Check if tests work
 
     make test
 
-### Start a local server:
+### Start a local server
+
     make watch
 
-### Use postgresql database for testing:
+### Use postgresql database for testing
+
 run the following command once:
 ```
 make create-postgres
 ```
-to start the testserver with postgresql, run:
+to start the test server with postgresql, run:
 ```
 export DATABASE=postgresql
 make start-postgres
@@ -47,6 +51,18 @@ make watch
 ```
 
 Go to http://localhost:8004/ and login with admin@liqd.net | password
+
+### Use Celery for task queues
+
+To start a celery worker node in the foreground, call:
+```
+make celery-worker-start
+```
+
+To inspect all registered tasks, list the running worker nodes, send a dummy task to the queue and report the result, call:
+```
+make celery-worker-status
+```
 
 ## Installation on a production system
 
@@ -57,4 +73,5 @@ You like adhocracy+ and want to run your own version? An installation guide for 
 If you found an issue, want to contribute, or would like to add your own features to your own version of adhocracy+, check out [contributing](./docs/contributing.md).
 
 ## Security
+
 We care about security. So, if you find any issues concerning security, please send us an email at info [at] liqd [dot] net.

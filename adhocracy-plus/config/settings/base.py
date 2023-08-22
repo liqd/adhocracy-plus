@@ -555,3 +555,8 @@ CAPTCHA_URL = ""
 
 # Add insights for project if insight model exists
 INSIGHT_MODEL = "a4_candy_projects.ProjectInsight"
+
+# Celery configuration
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
