@@ -52,3 +52,5 @@ if os.getenv("DATABASE") == "postgresql":
             "OPTIONS": {},
         }
     }
+
+CELERY_TASK_ALWAYS_EAGER = True
