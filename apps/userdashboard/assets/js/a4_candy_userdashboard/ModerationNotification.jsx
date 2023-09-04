@@ -218,8 +218,8 @@ export const ModerationNotification = (props) => {
 
   function translatedReportText (reportsFound) {
     const tmp = django.ngettext(
-      'This {}comment{} has been reported 1 time since it\'s creation',
-      'This {}comment{} has been reported %s times since it\'s creation',
+      'This {}comment{} has been reported 1 time since its creation',
+      'This {}comment{} has been reported %s times since its creation',
       reportsFound
     )
     return (
