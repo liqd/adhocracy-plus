@@ -91,7 +91,7 @@ pytest:
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db
 
 .PHONY: pytest-lastfailed
-test-lastfailed:
+pytest-lastfailed:
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db --last-failed
 
 .PHONY: pytest-clean
