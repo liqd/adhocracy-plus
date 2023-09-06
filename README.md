@@ -41,12 +41,12 @@ adhocracy+ is designed to make online participation easy and accessible to every
 
 run the following command once:
 ```
-make create-postgres
+make postgres-create
 ```
 to start the test server with postgresql, run:
 ```
 export DATABASE=postgresql
-make start-postgres
+make postgres-start
 make watch
 ```
 
