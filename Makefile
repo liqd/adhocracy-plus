@@ -41,9 +41,9 @@ help:
 	@echo "  make po						-- create new po files from the source"
 	@echo "  make mo						-- create new mo files from the translated po files"
 	@echo "  make release					-- build everything required for a release"
-	@echo "  make start-postgres			-- start the local postgres cluster"
-	@echo "  make stop-postgres				-- stops the local postgres cluster"
-	@echo "  make create-postgres			-- create the local postgres cluster (only works on ubuntu 20.04)"
+	@echo "  make postgres-start			-- start the local postgres cluster"
+	@echo "  make postgres-stop				-- stops the local postgres cluster"
+	@echo "  make postgres-create			-- create the local postgres cluster (only works on ubuntu 20.04)"
 	@echo "  make local-a4					-- patch to use local a4 (needs to have path ../adhocracy4)"
 	@echo "  make celery-worker-start		-- starts the celery worker in the foreground
 	@echo "  make celery-worker-status		-- lists all registered tasks and active worker nodes
@@ -177,16 +177,16 @@ release:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages -v0
 	$(VIRTUAL_ENV)/bin/python manage.py collectstatic --noinput -v0
 
-.PHONY: start-postgres
-start-postgres:
+.PHONY: postgres-start
+postgres-start:
 	sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/pg_ctl start
 
-.PHONY: stop-postgres
-stop-postgres:
+.PHONY: postgres-stop
+postgres-stop:
 	sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/pg_ctl stop
 
-.PHONY: create-postgres
-create-postgres:
+.PHONY: postgres-create
+postgres-create:
 	if [ -d "pgsql" ]; then \
 		echo "postgresql has already been initialized"; \
 	else \
