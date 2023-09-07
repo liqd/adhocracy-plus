@@ -7,8 +7,8 @@ from adhocracy4.test.helpers import create_thumbnail
 
 
 @pytest.mark.django_db
-def test_delete_user_signal(user_factory, ImagePNG):
-    user = user_factory(_avatar=ImagePNG)
+def test_delete_user_signal(user_factory, image_png):
+    user = user_factory(_avatar=image_png)
     image_path = os.path.join(settings.MEDIA_ROOT, user._avatar.path)
 
     assert os.path.isfile(image_path)
@@ -18,8 +18,8 @@ def test_delete_user_signal(user_factory, ImagePNG):
 
 
 @pytest.mark.django_db
-def test_image_deleted_after_update(user_factory, ImagePNG):
-    user = user_factory(_avatar=ImagePNG)
+def test_image_deleted_after_update(user_factory, image_png):
+    user = user_factory(_avatar=image_png)
     image_path = os.path.join(settings.MEDIA_ROOT, user._avatar.path)
     thumbnail_path = create_thumbnail(user._avatar)
 
