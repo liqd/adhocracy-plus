@@ -189,7 +189,7 @@ class NotifyInitiatorsOnProjectDeletedEmail(Email):
             ),
             "organisation_id": organisation.id,
         }
-        tasks.send_async_no_object(
+        tasks.send_async_no_object.delay(
             cls.__module__, cls.__name__, object_dict, args, kwargs
         )
         return []
