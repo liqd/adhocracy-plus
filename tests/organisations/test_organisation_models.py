@@ -23,44 +23,44 @@ def test_string_representation(organisation):
 
 
 @pytest.mark.django_db
-def test_image_validation_image_too_small(organisation_factory, smallImage):
-    organisation = organisation_factory(image=smallImage, logo=smallImage)
+def test_image_validation_image_too_small(organisation_factory, small_image):
+    organisation = organisation_factory(image=small_image, logo=small_image)
     with pytest.raises(Exception) as e:
         organisation.full_clean()
     assert "Image must be at least 500 pixels high" in str(e.value)
 
 
 @pytest.mark.django_db
-def test_image_big_enough(organisation_factory, bigImage, smallImage):
-    organisation = organisation_factory(image=bigImage, logo=smallImage)
+def test_image_big_enough(organisation_factory, big_image, small_image):
+    organisation = organisation_factory(image=big_image, logo=small_image)
     assert organisation.full_clean() is None
 
 
 @pytest.mark.django_db
-def test_image_validation_logo_too_big(organisation_factory, bigImage):
-    organisation = organisation_factory(logo=bigImage)
+def test_image_validation_logo_too_big(organisation_factory, big_image):
+    organisation = organisation_factory(logo=big_image)
     with pytest.raises(Exception) as e:
         organisation.full_clean()
     assert "Image must be at most 800 pixels high" in str(e.value)
 
 
 @pytest.mark.django_db
-def test_image_validation_type_not_allowed(organisation_factory, ImageBMP):
-    organisation = organisation_factory(image=ImageBMP, logo=ImageBMP)
+def test_image_validation_type_not_allowed(organisation_factory, image_bmp):
+    organisation = organisation_factory(image=image_bmp, logo=image_bmp)
     with pytest.raises(Exception) as e:
         organisation.full_clean()
     assert "Unsupported file format." in str(e.value)
 
 
 @pytest.mark.django_db
-def test_image_validation_image_type_allowed(organisation_factory, ImagePNG):
-    organisation = organisation_factory(image=ImagePNG)
+def test_image_validation_image_type_allowed(organisation_factory, image_png):
+    organisation = organisation_factory(image=image_png)
     assert organisation.full_clean() is None
 
 
 @pytest.mark.django_db
-def test_delete_organisation(organisation_factory, ImagePNG):
-    organisation = organisation_factory(image=ImagePNG, logo=ImagePNG)
+def test_delete_organisation(organisation_factory, image_png):
+    organisation = organisation_factory(image=image_png, logo=image_png)
     image_path = os.path.join(settings.MEDIA_ROOT, organisation.image.path)
     logo_path = os.path.join(settings.MEDIA_ROOT, organisation.logo.path)
     thumbnail_image_path = create_thumbnail(organisation.image)
@@ -83,8 +83,8 @@ def test_delete_organisation(organisation_factory, ImagePNG):
 
 
 @pytest.mark.django_db
-def test_image_deleted_after_update(organisation_factory, ImagePNG):
-    organisation = organisation_factory(image=ImagePNG, logo=ImagePNG)
+def test_image_deleted_after_update(organisation_factory, image_png):
+    organisation = organisation_factory(image=image_png, logo=image_png)
     image_path = os.path.join(settings.MEDIA_ROOT, organisation.image.path)
     logo_path = os.path.join(settings.MEDIA_ROOT, organisation.logo.path)
     thumbnail_image_path = create_thumbnail(organisation.image)

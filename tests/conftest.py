@@ -46,22 +46,22 @@ def apiclient():
 
 
 @pytest.fixture
-def ImagePNG():
+def image_png():
     return factory.django.ImageField(width=1500, height=1400, format="PNG")
 
 
 @pytest.fixture
-def ImageBMP():
+def image_bmp():
     return factory.django.ImageField(width=1500, height=1400, format="BMP")
 
 
 @pytest.fixture
-def smallImage():
+def small_image():
     return factory.django.ImageField(width=200, height=200)
 
 
 @pytest.fixture
-def bigImage():
+def big_image():
     return factory.django.ImageField(width=1500, height=1400)
 
 

@@ -13,11 +13,11 @@ def test_project_serializer(
     client,
     project_factory,
     phase_factory,
-    ImagePNG,
+    image_png,
 ):
     project_active = project_factory(
         name="active",
-        image=ImagePNG,
+        image=image_png,
         image_copyright="copyright",
         image_alt_text="img_alt",
     )
@@ -25,7 +25,7 @@ def test_project_serializer(
     project_active_and_future = project_factory(name="active and future")
     project_past = project_factory(
         name="past",
-        tile_image=ImagePNG,
+        tile_image=image_png,
         tile_image_copyright="copyright",
         tile_image_alt_text="img_alt",
     )

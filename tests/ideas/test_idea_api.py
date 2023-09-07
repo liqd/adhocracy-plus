@@ -251,7 +251,7 @@ def test_user_cannot_update_idea_after_phase(apiclient, phase_factory, idea_fact
 
 @pytest.mark.django_db
 def test_user_can_add_and_delete_idea_image_during_phase(
-    apiclient, bigImage, phase_factory, idea_factory
+    apiclient, big_image, phase_factory, idea_factory
 ):
     phase, _, project, idea = setup_phase(
         phase_factory, idea_factory, phases.CollectPhase

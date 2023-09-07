@@ -40,8 +40,8 @@ def test_project(idea):
 
 
 @pytest.mark.django_db
-def test_delete_idea(idea_factory, comment_factory, rating_factory, ImagePNG):
-    idea = idea_factory(image=ImagePNG)
+def test_delete_idea(idea_factory, comment_factory, rating_factory, image_png):
+    idea = idea_factory(image=image_png)
     image_path = os.path.join(settings.MEDIA_ROOT, idea.image.path)
     thumbnail_path = create_thumbnail(idea.image)
 
@@ -72,8 +72,8 @@ def test_delete_idea(idea_factory, comment_factory, rating_factory, ImagePNG):
 
 
 @pytest.mark.django_db
-def test_image_deleted_after_update(idea_factory, ImagePNG):
-    idea = idea_factory(image=ImagePNG)
+def test_image_deleted_after_update(idea_factory, image_png):
+    idea = idea_factory(image=image_png)
     image_path = os.path.join(settings.MEDIA_ROOT, idea.image.path)
     thumbnail_path = create_thumbnail(idea.image)
 

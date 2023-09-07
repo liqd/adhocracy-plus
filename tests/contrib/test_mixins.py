@@ -16,13 +16,13 @@ class IdeaForm(ImageRightOfUseMixin, forms.ModelForm):
 
 
 @pytest.mark.django_db
-def test_add_default(module, idea_factory, ImagePNG):
+def test_add_default(module, idea_factory, image_png):
     idea_no_image = idea_factory()
     form = IdeaForm(module=module, instance=idea_no_image)
     assert "right_of_use" in form.fields
     assert "right_of_use" not in form.initial
 
-    idea_with_image = idea_factory(image=ImagePNG)
+    idea_with_image = idea_factory(image=image_png)
     form = IdeaForm(module=module, instance=idea_with_image)
     assert "right_of_use" in form.fields
     assert "right_of_use" in form.initial
@@ -30,8 +30,8 @@ def test_add_default(module, idea_factory, ImagePNG):
 
 
 @pytest.mark.django_db
-def test_clean(module, idea_factory, ImagePNG):
-    idea_with_image = idea_factory(image=ImagePNG)
+def test_clean(module, idea_factory, image_png):
+    idea_with_image = idea_factory(image=image_png)
     data = {
         "right_of_use": False,
     }
