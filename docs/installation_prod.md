@@ -86,11 +86,16 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SESSION_COOKIE_HTTPONLY = True
 
 FILE_UPLOAD_PERMISSIONS = 0o644
+
+# celery configuration
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 ```
 
 #### Populate database
 
-This will create all required tables via so called **migrations**
+This will create all required tables via so-called **migrations**
 
 ```
 python manage.py migrate
@@ -117,7 +122,7 @@ Cancel the server after testing via `ctrl`+`c`
 
 ### Run the server as system daemon
 
-In order to start up the software as a regular system daemon, similar to a database or webserver, we need to create unit files.
+In order to start up the software as a regular system daemon, similar to a database or webserver, we need to create service files.
 
 `/etc/systemd/system/adhocracy-plus.service`:
 
@@ -139,25 +144,28 @@ StandardError=inherit
 WantedBy=default.target
 ```
 
-`/etc/systemd/system/adhocracy-plus-background-task.service`:
+`/etc/systemd/system/adhocracy-plus-celery-worker.service`:
 
 ```
 [Unit]
-Description=adhocracy+ background task
+Description=adhocracy+ celery worker
 After=network.target
 
 [Service]
+Type=forking
 User=aplus
 WorkingDirectory=/home/aplus/adhocracy-plus
-ExecStart=/home/aplus/.virtualenvs/aplus/bin/python manage.py process_tasks --settings adhocracy-plus.config.settings.production --sleep 5
+ExecStart=/home/aplus/.virtualenvs/aplus/bin/celery --app adhocracy-plus worker
 Restart=always
 RestartSec=3
-StandardOutput=append:/var/log/adhocracy-plus/adhocracy-plus-background-task.log
+StandardOutput=append:/var/log/adhocracy-plus/adhocracy-plus-celery-worker.log
 StandardError=inherit
 
 [Install]
 WantedBy=default.target
 ```
+
+Depending on your celery configuration you will also need to start a message broker service like redis or rabbit-mq and configure celery accordingly in `local.py` (see above). If you use redis and the default installation it should already be running, call `service redis status` to check.
 
 This will log all output to files in `/var/log/adhocracy-plus/`. You will also need to create that folder before starting the service (as `root` or using `sudo`):
 
@@ -170,14 +178,14 @@ Load and start units (as `root` or using `sudo`):
 ```
 systemctl daemon-reload
 systemctl start adhocracy-plus
-systemctl start adhocracy-plus-background-task
+systemctl start adhocracy-plus-celery-worker
 ```
 
 Enable autostart on boot:
 
 ```
 systemctl enable adhocracy-plus
-systemctl enable adhocracy-plus-background-task
+systemctl enable adhocracy-plus-celery-worker
 ```
 
 ### Setting up a proxy webserver
@@ -254,7 +262,7 @@ The landing page is managed via [wagtail](https://wagtail.io/). You can find the
 
 ```
 systemctl stop adhocracy-plus
-systemctl stop adhocracy-plus-background-task
+systemctl stop adhocracy-plus-celery-worker
 ```
 
 #### Switch to user
@@ -310,5 +318,5 @@ python manage.py runserver
 
 ```
 systemctl start adhocracy-plus
-systemctl start adhocracy-plus-background-task
+systemctl start adhocracy-plus-celery-worker
 ```

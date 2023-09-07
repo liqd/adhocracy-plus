@@ -19,3 +19,12 @@ def dummy_task():
     print(result)
 
     return result
+
+
+@celery_app.task(name="crash_task")
+def crash_task():
+    """
+    This task is for testing purposes only.
+    """
+
+    1 / 0

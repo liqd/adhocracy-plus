@@ -2,29 +2,17 @@ from io import BytesIO
 
 import factory
 import pytest
+from celery import Celery
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
-from django.urls.base import get_resolver
 from PIL import Image
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
 from adhocracy4.test import factories as a4_factories
 from adhocracy4.test.factories.maps import AreaSettingsFactory
-from adhocracy4.test.helpers import patch_background_task_decorator
 
 from . import factories
-
-
-def pytest_configure(config):
-    # Patch email background_task decorators for all tests
-    patch_background_task_decorator("adhocracy4.emails.tasks")
-    patch_background_task_decorator("apps.projects.tasks")
-
-    # Populate reverse dict with organisation patterns
-    resolver = get_resolver()
-    resolver.reverse_dict
-
 
 register(factories.UserFactory)
 register(factories.UserFactory, "user2")
@@ -46,6 +34,10 @@ register(a4_factories.GroupFactory)
 register(a4_factories.ProjectFactory)
 register(a4_factories.ModuleFactory)
 register(AreaSettingsFactory)
+
+
+def pytest_configure():
+    Celery(task_always_eager=True)
 
 
 @pytest.fixture

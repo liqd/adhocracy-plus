@@ -1,9 +1,9 @@
 import importlib
 
-from background_task import background
+from celery import shared_task
 
 
-@background(schedule=1)
+@shared_task
 def send_async_no_object(email_module_name, email_class_name, object, args, kwargs):
     mod = importlib.import_module(email_module_name)
     cls = getattr(mod, email_class_name)
