@@ -19,23 +19,6 @@ else:
 
     INTERNAL_IPS = ("127.0.0.1", "localhost")
 
-try:
-    from .local import *
-except ImportError:
-    pass
-
-try:
-    INSTALLED_APPS += tuple(ADDITIONAL_APPS)
-except NameError:
-    pass
-
-try:
-    CKEDITOR_CONFIGS["collapsible-image-editor"]["embed_provider"] = CKEDITOR_URL
-    CKEDITOR_CONFIGS["video-editor"]["embed_provider"] = CKEDITOR_URL
-except NameError:
-    pass
-
-
 WAGTAILADMIN_BASE_URL = "http://localhost:8004"
 CAPTCHA_URL = "https://captcheck.netsyms.com/api.php"
 SITE_ID = 1
@@ -54,3 +37,25 @@ if os.getenv("DATABASE") == "postgresql":
     }
 
 CELERY_TASK_ALWAYS_EAGER = True
+
+# The local.py import happen at the end of this file so that it can overwrite
+# any defaults in dev.py.
+# Special cases are:
+# 1) ADDITIONAL_APPS in local.py should be appended to INSTALLED_APPS.
+# 2) CKEDITOR_URL should be inserted into CKEDITOR_CONFIGS in the correct location.
+
+try:
+    from .local import *
+except ImportError:
+    pass
+
+try:
+    INSTALLED_APPS += tuple(ADDITIONAL_APPS)
+except NameError:
+    pass
+
+try:
+    CKEDITOR_CONFIGS["collapsible-image-editor"]["embed_provider"] = CKEDITOR_URL
+    CKEDITOR_CONFIGS["video-editor"]["embed_provider"] = CKEDITOR_URL
+except NameError:
+    pass
