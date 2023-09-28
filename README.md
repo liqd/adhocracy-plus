@@ -16,7 +16,7 @@ adhocracy+ is designed to make online participation easy and accessible to every
  * nodejs (+ npm)
  * python 3.x (+ venv + pip)
  * libpq (only if postgres should be used)
- * redis (only if celery is used)
+ * redis (in production, not needed for development)
 
 ### Installation
 
