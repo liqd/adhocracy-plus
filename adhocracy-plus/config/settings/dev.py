@@ -38,7 +38,7 @@ if os.getenv("DATABASE") == "postgresql":
 
 CELERY_TASK_ALWAYS_EAGER = True
 
-# The local.py import happen at the end of this file so that it can overwrite
+# The local.py import happens at the end of this file so that it can overwrite
 # any defaults in dev.py.
 # Special cases are:
 # 1) ADDITIONAL_APPS in local.py should be appended to INSTALLED_APPS.

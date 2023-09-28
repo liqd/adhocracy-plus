@@ -45,9 +45,9 @@ help:
 	@echo "  make postgres-stop				-- stops the local postgres cluster"
 	@echo "  make postgres-create			-- create the local postgres cluster (only works on ubuntu 20.04)"
 	@echo "  make local-a4					-- patch to use local a4 (needs to have path ../adhocracy4)"
-	@echo "  make celery-worker-start		-- starts the celery worker in the foreground
-	@echo "  make celery-worker-status		-- lists all registered tasks and active worker nodes
-	@echo "  make celery-worker-dummy-task	-- calls the dummy task and prints result from redis
+	@echo "  make celery-worker-start		-- starts the celery worker in the foreground"
+	@echo "  make celery-worker-status		-- lists all registered tasks and active worker nodes"
+	@echo "  make celery-worker-dummy-task	-- calls the dummy task and prints result from redis"
 	@echo
 
 .PHONY: install
