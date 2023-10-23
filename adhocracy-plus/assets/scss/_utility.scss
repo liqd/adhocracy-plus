@@ -159,6 +159,10 @@
     color: $text-muted;
 }
 
+.a4-sr-only {
+    @extend .visually-hidden;
+}
+
 // FIXME BS5.1 changed text- and bg- classes are created requires additional SASS map
 .text-info {
     color: $brand-info;
