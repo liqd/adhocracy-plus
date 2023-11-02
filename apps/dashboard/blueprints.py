@@ -176,4 +176,22 @@ blueprints = [
             type="DB",
         ),
     ),
+    (
+        "fair-vote",
+        ProjectBlueprint(
+            title=_("Fair vote"),
+            description=_(
+                "In a first phase, participants can submit their own ideas "
+                "and discuss the ideas of others. In a second phase, the "
+                "ideas can be rated (pro/contra)."
+            ),
+            content=[
+                ideas_phases.CollectPhase(),
+                ideas_phases.RatingPhase(),
+            ],
+            image="images/agenda-setting.svg",
+            settings_model=None,
+            type="FV",
+        ),
+    ),
 ]
