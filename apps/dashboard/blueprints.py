@@ -181,13 +181,12 @@ blueprints = [
         ProjectBlueprint(
             title=_("Fair vote"),
             description=_(
-                "In a first phase, participants can submit their own ideas "
-                "and discuss the ideas of others. In a second phase, the "
-                "ideas can be rated (pro/contra)."
+                "Participants can submit their own ideas, "
+                "discuss the ideas of others, and "
+                "ideas can be rated (pro/contra) - all at the same phase."
             ),
             content=[
-                ideas_phases.CollectPhase(),
-                ideas_phases.RatingPhase(),
+                ideas_phases.CollectFeedbackPhase(),
             ],
             image="images/agenda-setting.svg",
             settings_model=None,

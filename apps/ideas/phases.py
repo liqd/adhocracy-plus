@@ -45,7 +45,9 @@ class RatingPhase(phases.PhaseContent):
     description = _("Rate the previously collected ideas.")
     module_name = _("ideas collection")
 
-    features = {"rate": (models.Idea,)}
+    features = {
+        "rate": (models.Idea,)
+    }
 
 
 class FeedbackPhase(phases.PhaseContent):
@@ -57,7 +59,10 @@ class FeedbackPhase(phases.PhaseContent):
     description = _("Get feedback for collected ideas through rates and " "comments.")
     module_name = _("ideas collection")
 
-    features = {"rate": (models.Idea,), "comment": (models.Idea,)}
+    features = {
+        "rate": (models.Idea,), 
+        "comment": (models.Idea,)
+    }
 
 
 class CollectFeedbackPhase(phases.PhaseContent):
