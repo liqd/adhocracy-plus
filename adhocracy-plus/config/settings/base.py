@@ -36,7 +36,6 @@ INSTALLED_APPS = (
     "easy_thumbnails",
     "ckeditor",
     "ckeditor_uploader",
-    "background_task",
     "parler",
     # Wagtail cms components
     "wagtail.contrib.forms",
