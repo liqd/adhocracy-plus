@@ -111,6 +111,7 @@ INSTALLED_APPS = (
     "apps.polls",
     "apps.topicprio",
     "apps.debate",
+    "apps.fairvote",
 )
 
 MIDDLEWARE = (
@@ -524,6 +525,7 @@ A4_BLUEPRINT_TYPES = [
     ("IE", _("interactive event")),
     ("TP", _("prioritization")),
     ("DB", _("debate")),
+    ("FV", _("fair-vote")),
 ]
 
 A4_MAP_BASEURL = "https://{s}.tile.openstreetmap.org/"
