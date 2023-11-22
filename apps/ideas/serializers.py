@@ -58,6 +58,7 @@ class IdeaSerializer(serializers.ModelSerializer):
     has_commenting_permission = serializers.SerializerMethodField()
     has_changing_permission = serializers.SerializerMethodField()
     has_deleting_permission = serializers.SerializerMethodField()
+    choin_sum = serializers.SerializerMethodField()
 
     class Meta:
         model = Idea
@@ -80,6 +81,7 @@ class IdeaSerializer(serializers.ModelSerializer):
             "has_commenting_permission",
             "has_changing_permission",
             "has_deleting_permission",
+            "choin_sum",
         )
         read_only_fields = ("pk", "creator", "created", "reference_number")
 
@@ -155,3 +157,9 @@ class IdeaSerializer(serializers.ModelSerializer):
         validated_data["module"] = self.context["view"].module
 
         return super().create(validated_data)
+
+    def get_choin_sum(self, idea):
+        if hasattr(idea, "choin_sum"):
+            return idea.choin_sum
+        else:
+            return 0

@@ -18,7 +18,20 @@ from apps.moderatorfeedback.models import Moderateable
 from apps.moderatorremark import models as remark_models
 
 
-class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
+class BuyableQuerySet(models.QuerySet):
+    def annotate_choin_sum(self):
+        from django.db.models import F
+        from django.db.models import Value
+        from django.db.models.functions import Coalesce
+
+        return self.annotate(
+            choin_sum=Coalesce(
+                F("ideachoin__choins"), Value(0), output_field=models.FloatField()
+            )
+        )
+
+
+class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet, BuyableQuerySet):
     pass
 
 

@@ -32,17 +32,35 @@ class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
 def get_ordering_choices(view):
     choices = (("-created", _("Most recent")),)
     if view.module.has_feature("rate", models.Idea):
-        choices += (("-positive_rating_count", _("Most popular")),)
+        choices += (
+            ("-positive_rating_count", _("Most popular")),
+            ("-choin_sum", _("Most sponsored")),
+        )  #
     choices += (("-comment_count", _("Most commented")),)
     return choices
+
+
+class OrderingFilter(a4_filters.DynamicChoicesOrderingFilter):
+    def annotate_queryset(self, qs):
+        qs = qs.annotate_comment_count()
+        if hasattr(qs, "annotate_positive_rating_count"):
+            qs = qs.annotate_positive_rating_count().annotate_negative_rating_count()
+        if hasattr(qs, "annotate_choin_sum"):
+            qs = qs.annotate_choin_sum()
+        return qs
+
+    def filter(self, qs, value):
+        annotated_qs = self.annotate_queryset(qs)
+        if value == ["-choin_sum"]:
+            return annotated_qs.order_by("-choin_sum")
+        else:
+            return super().filter(annotated_qs, value)
 
 
 class IdeaFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {"ordering": "-created"}
     category = category_filters.CategoryFilter()
-    ordering = a4_filters.DynamicChoicesOrderingFilter(
-        choices=get_ordering_choices, widget=AplusOrderingWidget
-    )
+    ordering = OrderingFilter(choices=get_ordering_choices, widget=AplusOrderingWidget)
     search = FreeTextFilter(widget=FreeTextFilterWidget, fields=["name"])
 
     class Meta:
@@ -63,6 +81,8 @@ class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
         qs = qs.annotate_comment_count()
         if hasattr(qs, "annotate_positive_rating_count"):
             qs = qs.annotate_positive_rating_count().annotate_negative_rating_count()
+        if hasattr(qs, "annotate_choin_sum"):
+            qs = qs.annotate_choin_sum()
         return qs
 
 
@@ -80,7 +100,9 @@ class AbstractIdeaDetailView(
 class IdeaDetailView(AbstractIdeaDetailView):
     model = models.Idea
     queryset = (
-        models.Idea.objects.annotate_positive_rating_count().annotate_negative_rating_count()
+        models.Idea.objects.annotate_positive_rating_count()
+        .annotate_negative_rating_count()
+        .annotate_choin_sum()
     )
     permission_required = "a4_candy_ideas.view_idea"
 
