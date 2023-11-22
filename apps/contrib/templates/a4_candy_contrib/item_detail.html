@@ -36,7 +36,12 @@
 
                 <div class="item-detail">
                     <h1 class="item-detail__title">{{ object.name }}</h1>
-
+                    {% if object|has_feature:"buy" %}
+                    <div>
+                        {{ object.choin_sum }}
+                        <i class="fa fa-coins" aria-label="{% translate 'Choins' %}"></i>
+                    </div>
+                    {% endif %}
                     <div class="item-detail__labels">
                         {% if object.moderator_status %}
                             <span class="badge badge--big badge--{{ object.moderator_status|classify }}">
@@ -80,7 +85,6 @@
                                 {% react_ratings object %}
                             </div>
                         {% endif %}
-
                         {% get_item_change_permission object as change_perm %}
                         {% has_perm change_perm request.user object as user_may_change %}
                         {% get_item_permission object 'moderate' as moderate_perm %}

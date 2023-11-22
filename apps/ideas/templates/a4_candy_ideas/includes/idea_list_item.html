@@ -19,7 +19,17 @@
             <i class="far fa-comment" aria-label="{% translate 'Comments' %}"></i>
             {{ object.comment_count }}
         </span>
+        
         {% endspaceless %}
+        {% if object|has_feature:"buy" %}
+            <span>
+                <span class="list-item__comments is-read-only" title="{% translate 'Choins' %}">
+                    <i class="fa fa-coins" aria-label="{% translate 'Choins' %}"></i>
+                    {{ object.choin_sum }}
+                </span>
+            </span>
+        {% endif %}
+
     </div>
     <h3 class="u-first-heading">
         <a href="{{ object.get_absolute_url }}">
