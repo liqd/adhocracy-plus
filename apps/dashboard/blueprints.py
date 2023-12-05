@@ -189,7 +189,7 @@ blueprints = [
             content=[
                 fairvote_phases.FairVotePhase(),
             ],
-            image="images/agenda-setting.svg",
+            image="images/fair-vote.svg",
             settings_model=None,
             type="FV",
         ),

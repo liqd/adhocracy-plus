@@ -30,6 +30,48 @@ class BuyableQuerySet(models.QuerySet):
             )
         )
 
+    def annotate_remaining_choins(self):
+        from django.db.models import Case
+        from django.db.models import ExpressionWrapper
+        from django.db.models import F
+        from django.db.models import FloatField
+        from django.db.models import IntegerField
+        from django.db.models import Q
+        from django.db.models import Value
+        from django.db.models import When
+        from django.db.models.functions import Coalesce
+
+        return self.annotate(
+            remaining_choins=Case(
+                When(
+                    ~Q(moderator_status="ACCEPTED"),
+                    then=ExpressionWrapper(
+                        (
+                            Coalesce(
+                                F("ideachoin__goal"),
+                                Value(0),
+                                output_field=FloatField(),
+                            )
+                            - Coalesce(
+                                F("choin_sum"), Value(0), output_field=FloatField()
+                            )
+                        )
+                        / Case(
+                            When(
+                                Q(positive_rating_count__gt=0),
+                                then=F("positive_rating_count"),
+                            ),
+                            default=Value(1),
+                            output_field=IntegerField(),
+                        ),
+                        output_field=FloatField(),
+                    ),
+                ),
+                default=Value(0),
+                output_field=FloatField(),
+            )
+        )
+
 
 class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet, BuyableQuerySet):
     pass

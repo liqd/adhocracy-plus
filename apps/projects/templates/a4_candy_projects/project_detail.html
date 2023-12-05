@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
+{% load i18n rules react_follows react_user_idea_choins thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -76,6 +76,7 @@
                 {% endif %}
                   <div class="tablist project-header__tabs">
                       <nav class="nav d-none d-md-inline-block" role="tablist">
+                        <!--
                           <a
                               id="tab-project-{{ project.pk }}-information"
                               class="tab"
@@ -86,6 +87,7 @@
                               aria-expanded="false">
                               {% translate 'Information' %}
                           </a>
+                        -->
                           <a
                               id="tab-project-{{ project.pk }}-participation"
                               class="tab active"
@@ -96,6 +98,7 @@
                               aria-expanded="true">
                               {% translate 'Participation' %}
                           </a>
+                          <!--
                           <a
                               id="tab-project-{{ project.pk }}-result"
                               class="tab"
@@ -105,6 +108,17 @@
                               aria-controls="tabpanel-project-{{ project.pk }}-result"
                               aria-expanded="false">
                               {% translate 'Result' %}
+                          </a>
+                        -->
+                          <a
+                              id="tab-project-{{ project.pk }}-choins"
+                              class="tab"
+                              data-bs-toggle="tab"
+                              href="#tabpanel-project-{{ project.pk }}-choins"
+                              role="tab"
+                              aria-controls="tabpanel-project-{{ project.pk }}-choins"
+                              aria-expanded="false">
+                              {% translate 'History' %}
                           </a>
                       </nav>
                       {% include 'includes/project_header_mobile_toggle.html' %}
@@ -119,7 +133,7 @@
             {% else %}
             <div class="u-spacer-bottom-4"></div>
             {% endif %}
-
+                
             <div
                 class="tabpanel tabpanel--topnav"
                 id="tabpanel-project-{{ project.pk }}-information"
@@ -315,6 +329,22 @@
                     </div>
                 </div>
             </div>
+            <div
+                class="tabpanel tabpanel--topnav"
+                id="tabpanel-project-{{ project.pk }}-choins"
+                role="tabpanel"
+                aria-labelledby="tab-project-{{ project.pk }}-choins"
+                aria-expanded="false">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                            
+                            {% react_user_idea_choins project %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {% include 'footer_upper.html' with organisation=project.organisation %}
         </div>
     </div>

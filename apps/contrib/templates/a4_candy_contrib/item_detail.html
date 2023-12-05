@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments_async react_ratings react_reports wagtailcore_tags item_tags contrib_tags thumbnail moderatorremark_tags %}
+{% load i18n module_tags rules react_comments_async react_ratings react_ratings_choins react_reports  wagtailcore_tags item_tags contrib_tags thumbnail moderatorremark_tags %}
 
 {% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -40,6 +40,11 @@
                     <div>
                         {{ object.choin_sum }}
                         <i class="fa fa-coins" aria-label="{% translate 'Choins' %}"></i>
+                        {% if object.remaining_choins <= 0 and object.positive_rating_count > 0 %}
+                        goal achived
+                        {% else %}
+                            Required {{ object.remaining_choins }} Choins/supporter
+                        {% endif %}
                     </div>
                     {% endif %}
                     <div class="item-detail__labels">
@@ -80,9 +85,13 @@
                     </div>
 
                     <div class="item-detail__actions lr-bar">
-                        {% if object|has_feature:"rate" %}
+                        {% if object|has_feature:"rate"%}
                             <div class="lr-bar__left">
-                                {% react_ratings object %}
+                                {% if object|has_feature:"buy" %}
+                                    {% react_ratings_choins object %}
+                                {% else %}
+                                    {% react_ratings object %}
+                                {% endif %}
                             </div>
                         {% endif %}
                         {% get_item_change_permission object as change_perm %}

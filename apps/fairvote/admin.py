@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 from . import models
-from .forms import IncreaseChoinIdeaForm
 from .forms import UpdateChoinsForm
 from .views import ChoinView
 
@@ -33,7 +32,6 @@ class ChoinAdmin(admin.ModelAdmin):
 @admin.register(models.IdeaChoin)
 class IdeaChoinAdmin(admin.ModelAdmin):
     ordering = ["-choins"]
-    action_form = IncreaseChoinIdeaForm
     actions = [
         "update_ideas_choins",
         "add_all_ideas_choins",
@@ -61,6 +59,7 @@ class IdeaChoinAdmin(admin.ModelAdmin):
             idea_choins.accept_idea()
             [idea.update_choins() for idea in models.IdeaChoin.objects.all()]
 
-    def increase_choins_to_accept_idea(self, request, queryset):
-        module = request.POST["module"]
-        ChoinView.increase_choins_to_accept_idea(module)
+
+@admin.register(models.UserIdeaChoin)
+class UserIdeaChoinAdmin(admin.ModelAdmin):
+    list_display = ("user", "idea", "choins")

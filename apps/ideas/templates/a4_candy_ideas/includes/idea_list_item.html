@@ -1,4 +1,4 @@
-{% load i18n module_tags contrib_tags %}
+{% load i18n module_tags contrib_tags react_choins %}
 
 <li class="list-item list-item--squashed">
     <div class="list-item__stats">
@@ -6,19 +6,23 @@
         {% if object|has_feature:"rate" %}
             <span class="rating">
                 <span class="rating-button rating-up is-read-only" title="{% translate 'Positive Ratings' %}">
-                    <i class="fa fa-chevron-up" aria-label="{% translate 'Positive Ratings' %}"></i>
+                    <i class="fa fa-user" aria-label="{% translate 'Positive Ratings' %}"></i>
                     {{ object.positive_rating_count }}
                 </span>
+                {% if not object|has_feature:"buy" %}
                 <span class="rating-button rating-down is-read-only" title="{% translate 'Negative Ratings' %}">
                     <i class="fa fa-chevron-down" aria-label="{% translate 'Negative Ratings' %}"></i>
                     {{ object.negative_rating_count }}
                 </span>
+                {% endif %}
             </span>
         {% endif %}
+        {% if not object|has_feature:"buy" %}
         <span title="{% translate 'Comments' %}" class="list-item__comments">
             <i class="far fa-comment" aria-label="{% translate 'Comments' %}"></i>
             {{ object.comment_count }}
         </span>
+        {% endif %}
         
         {% endspaceless %}
         {% if object|has_feature:"buy" %}
@@ -26,6 +30,16 @@
                 <span class="list-item__comments is-read-only" title="{% translate 'Choins' %}">
                     <i class="fa fa-coins" aria-label="{% translate 'Choins' %}"></i>
                     {{ object.choin_sum }}
+                </span>
+                <span class="list-item__comments is-read-only" title="{% translate 'Need Choins/supporter' %}">
+                    <i class="fa fa-bullseye" aria-label="{% translate 'Choins' %}"></i>
+                    {% if object.remaining_choins <= 0 and object.positive_rating_count > 0 %}
+                        {%if object.moderator_status != 'ACCEPTED' %}
+                            goal achived
+                        {%endif%}
+                    {% else %}
+                        {{ object.remaining_choins }}
+                    {% endif %}
                 </span>
             </span>
         {% endif %}
@@ -43,6 +57,11 @@
         {% if object.moderator_status %}
             <span class="badge badge--big badge--{{ object.moderator_status|classify }} list-item__badge--moderator-feedback">
                 {{ object.get_moderator_status_display }}
+            </span>
+            <span class="list-item__comments is-read-only" title="{% translate 'Your investment' %}">
+                <div class="lr-bar__left">
+                   {% react_invested_choins object %}
+                </div>
             </span>
         {% endif %}
     </div>
