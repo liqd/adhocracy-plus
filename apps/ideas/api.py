@@ -31,7 +31,7 @@ class IdeaViewSet(
             .annotate_comment_count()
             .annotate_positive_rating_count()
             .annotate_negative_rating_count()
-            .annotate_choins_sum()
+            .annotate_choin_sum()
             .order_by("created")
         )
         return ideas
