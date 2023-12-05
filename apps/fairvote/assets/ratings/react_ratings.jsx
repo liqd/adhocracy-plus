@@ -1,7 +1,7 @@
 import React from 'react'
 import django from 'django'
 
-import Api from '../../static/api'
+import Api from '../api'
 import { RatingBox } from 'adhocracy4/adhocracy4/ratings/static/ratings/react_ratings'
 const translations = {
   upvote: django.gettext('vote')
