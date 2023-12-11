@@ -42,6 +42,8 @@
     {% endif %}
     {% endblock %}
 
+    <link rel="preload" href="{% static 'fonts.css' %}" as="font" type="font/woff2" crossorigin>
+
     <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>
