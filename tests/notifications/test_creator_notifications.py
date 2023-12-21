@@ -3,6 +3,7 @@ from django.core import mail
 from django.urls import reverse
 
 from adhocracy4.test.helpers import redirect_target
+from tests.helpers import get_emails_for_address
 
 
 @pytest.mark.django_db
@@ -33,10 +34,11 @@ def test_notify_creator_exclude_moderator(idea, comment_factory, user):
     comment_factory(content_object=idea)
 
     assert len(mail.outbox) == 3
+    mails = get_emails_for_address(creator_moderator.email)
+    assert len(mails) == 1
     # moderator notification instead of creator notification
-    assert mail.outbox[1].to[0] == creator_moderator.email
-    assert not mail.outbox[1].subject.startswith("Reaction to your contribution")
-    assert mail.outbox[1].subject.startswith("A comment was added to the project")
+    assert not mails[0].subject.startswith("Reaction to your contribution")
+    assert mails[0].subject.startswith("A comment was added to the project")
 
 
 @pytest.mark.django_db
