@@ -1,5 +1,14 @@
 # API
 
+## User Dashboard module
+### serializers
+
+::: apps.userdashboard.serializers
+### views
+
+::: apps.userdashboard.views
+
+
 ## users and permissions
 We enabled token authentification in a+. So to use the APIs,
 the user token has to be given instead of name and password.
