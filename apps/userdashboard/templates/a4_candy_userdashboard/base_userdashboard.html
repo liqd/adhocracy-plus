@@ -7,7 +7,7 @@
         <div class="container">
             <nav class="d-none d-sm-inline-block" aria-label="{% trans 'My dashboard' %}">
                 <a href="{% url 'userdashboard-overview' %}"
-                   class="tab {% ifequal view.menu_item 'overview' %}active{% endifequal %}">
+                   class="tab {% if view.menu_item == 'overview' %}active{% endif %}">
 
                     {% trans 'Overview' %}
                 </a>

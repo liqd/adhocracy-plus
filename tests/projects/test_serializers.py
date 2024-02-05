@@ -1,6 +1,7 @@
+from datetime import timedelta
+
 import pytest
 from dateutil.parser import parse
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from freezegun import freeze_time
 
@@ -31,10 +32,10 @@ def test_project_serializer(
     )
 
     now = parse("2013-01-01 18:00:00+01:00")
-    yesterday = now - timezone.timedelta(days=1)
-    last_week = now - timezone.timedelta(days=7)
-    tomorrow = now + timezone.timedelta(days=1)
-    next_week = now + timezone.timedelta(days=7)
+    yesterday = now - timedelta(days=1)
+    last_week = now - timedelta(days=7)
+    tomorrow = now + timedelta(days=1)
+    next_week = now + timedelta(days=7)
 
     # active phase
     phase_factory(

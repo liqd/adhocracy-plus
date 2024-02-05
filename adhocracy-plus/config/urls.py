@@ -89,21 +89,21 @@ comment_router.register(
 urlpatterns = [
     # General platform urls
     re_path(r"^django-admin/", admin.site.urls),
-    re_path(r"^admin/", include("wagtail.admin.urls")),
-    re_path(r"^documents/", include(wagtaildocs_urls)),
-    re_path(r"^accounts/", include("allauth.urls")),
-    re_path(r"^account/", include("apps.account.urls")),
-    re_path(r"^profile/", include("apps.users.urls")),
-    re_path(r"^userdashboard/", include("apps.userdashboard.urls")),
-    re_path(r"^i18n/", include(i18n)),
+    path("admin/", include("wagtail.admin.urls")),
+    path("documents/", include(wagtaildocs_urls)),
+    path("accounts/", include("allauth.urls")),
+    path("account/", include("apps.account.urls")),
+    path("profile/", include("apps.users.urls")),
+    path("userdashboard/", include("apps.userdashboard.urls")),
+    path("i18n/", include(i18n)),
     # API urls
-    re_path(r"^api/", include(ct_router.urls)),
-    re_path(r"^api/", include(module_router.urls)),
-    re_path(r"^api/", include(orga_router.urls)),
-    re_path(r"^api/", include(likes_router.urls)),
-    re_path(r"^api/", include(comment_router.urls)),
-    re_path(r"^api/", include(moderation_router.urls)),
-    re_path(r"^api/", include(router.urls)),
+    path("api/", include(ct_router.urls)),
+    path("api/", include(module_router.urls)),
+    path("api/", include(orga_router.urls)),
+    path("api/", include(likes_router.urls)),
+    path("api/", include(comment_router.urls)),
+    path("api/", include(moderation_router.urls)),
+    path("api/", include(router.urls)),
     re_path(r"^api/login", obtain_auth_token, name="api-login"),
     re_path(r"^api/account/", AccountViewSet.as_view(), name="api-account"),
     path(
@@ -111,8 +111,8 @@ urlpatterns = [
         user_is_project_admin(ckeditor5_views.upload_file),
         name="ck_editor_5_upload_file",
     ),
-    re_path(r"^components/$", contrib_views.ComponentLibraryView.as_view()),
-    re_path(r"^jsi18n/$", JavaScriptCatalog.as_view(), name="javascript-catalog"),
+    path("components/", contrib_views.ComponentLibraryView.as_view()),
+    path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
     re_path(
         r"^(?P<organisation_slug>[-\w_]+)/",
         include(
@@ -212,6 +212,6 @@ if settings.DEBUG:
 
 # generic patterns at the very end
 urlpatterns += [
-    re_path(r"", include("apps.organisations.urls")),
-    re_path(r"", include("wagtail.urls")),
+    path("", include("apps.organisations.urls")),
+    path("", include("wagtail.urls")),
 ]
