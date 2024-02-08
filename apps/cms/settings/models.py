@@ -2,14 +2,14 @@ from django.db import models
 from wagtail import fields
 from wagtail.admin.panels import FieldPanel
 from wagtail.admin.panels import PageChooserPanel
-from wagtail.contrib.settings.models import BaseSetting
+from wagtail.contrib.settings.models import BaseSiteSetting
 from wagtail.contrib.settings.models import register_setting
 
 from apps.contrib.translations import TranslatedField
 
 
 @register_setting(icon="warning")
-class ImportantPages(BaseSetting):
+class ImportantPages(BaseSiteSetting):
     terms_of_use = models.ForeignKey(
         "wagtailcore.Page",
         related_name="important_page_terms_of_use",
@@ -115,7 +115,7 @@ class ImportantPages(BaseSetting):
 
 # these are settings for platform organisation
 @register_setting(icon="pick")
-class OrganisationSettings(BaseSetting):
+class OrganisationSettings(BaseSiteSetting):
     platform_name = models.CharField(
         max_length=20,
         default="adhocracy+",
@@ -143,7 +143,7 @@ class OrganisationSettings(BaseSetting):
 
 
 @register_setting
-class SocialMedia(BaseSetting):
+class SocialMedia(BaseSiteSetting):
     facebook = models.URLField(blank=True)
     twitter = models.URLField(blank=True)
     github = models.URLField(blank=True)

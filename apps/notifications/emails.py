@@ -1,6 +1,6 @@
 from django.contrib import auth
 from django.urls import reverse
-from wagtail.core.models import Site
+from wagtail.models import Site
 
 from apps.cms.settings.models import ImportantPages
 from apps.organisations.models import Organisation
