@@ -10,6 +10,7 @@ from django.db.models import When
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.modules.models import Module
+from adhocracy4.ratings.models import Rating
 from apps.ideas.models import Idea
 
 DEFAULT_GOAL = 150
@@ -35,8 +36,11 @@ class Choin(models.Model):
 
 
 class IdeaChoin(models.Model):
-    idea = models.ForeignKey(Idea, on_delete=models.CASCADE)
+    idea = models.ForeignKey(Idea, on_delete=models.CASCADE, related_name="choin")
     choins = models.FloatField(blank=True, default=0, verbose_name=_("Choins"))
+    missing = models.FloatField(
+        blank=True, default=DEFAULT_GOAL, verbose_name=_("Missing Choins")
+    )
     goal = models.FloatField(blank=True, default=DEFAULT_GOAL, verbose_name=_("Goal"))
 
     def get_remaining_choins(self):
@@ -126,8 +130,23 @@ class IdeaChoin(models.Model):
         return idea_choin.get("choins_ann", 0) if idea_choin else 0
 
     def update_choins(self):
-        self.choins = self.get_choins_sum()
-        self.save()
+        print(self.idea)
+        if self.idea.moderator_status == "ACCEPTED":
+            self.choins = 0
+            self.missing = 0
+            self.save()
+        else:
+            self.choins = self.get_choins_sum()
+            print("choins:", self.choins)
+            supporters_count = Rating.objects.filter(idea=self.idea, value=1).count()
+            print("supporters count:", supporters_count)
+            self.missing = (
+                ((self.goal - self.choins) / supporters_count)
+                if supporters_count
+                else self.goal
+            )
+            print("missing:", self.missing)
+            self.save()
 
     def __str__(self):
         return "{}_{}".format(self.idea, self.choins)

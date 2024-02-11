@@ -38,12 +38,12 @@
                     <h1 class="item-detail__title">{{ object.name }}</h1>
                     {% if object|has_feature:"buy" %}
                     <div>
-                        {{ object.choin_sum }}
+                        {{ object.choin.first.choins |floatformat:"2" }}
                         <i class="fa fa-coins" aria-label="{% translate 'Choins' %}"></i>
-                        {% if object.remaining_choins <= 0 and object.positive_rating_count > 0 %}
+                        {% if object.choin.first.missing <= 0 and object.positive_rating_count > 0 %}
                         goal achived
                         {% else %}
-                            Required {{ object.remaining_choins }} Choins/supporter
+                            Required {{object.choin.first.missing |floatformat:"2" }} Choins/supporter
                         {% endif %}
                     </div>
                     {% endif %}

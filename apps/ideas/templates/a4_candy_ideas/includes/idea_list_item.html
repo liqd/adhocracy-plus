@@ -1,19 +1,17 @@
-{% load i18n module_tags contrib_tags react_choins %}
+{% load i18n module_tags contrib_tags react_ratings_choins react_choins %}
 
 <li class="list-item list-item--squashed">
     <div class="list-item__stats">
         {% spaceless %}
         {% if object|has_feature:"rate" %}
             <span class="rating">
-                <span class="rating-button rating-up is-read-only" title="{% translate 'Positive Ratings' %}">
-                    <i class="fa fa-user" aria-label="{% translate 'Positive Ratings' %}"></i>
-                    {{ object.positive_rating_count }}
-                </span>
                 {% if not object|has_feature:"buy" %}
                 <span class="rating-button rating-down is-read-only" title="{% translate 'Negative Ratings' %}">
                     <i class="fa fa-chevron-down" aria-label="{% translate 'Negative Ratings' %}"></i>
                     {{ object.negative_rating_count }}
                 </span>
+                {% else %}
+                    {% react_ratings_choins object %}
                 {% endif %}
             </span>
         {% endif %}
@@ -29,16 +27,16 @@
             <span>
                 <span class="list-item__comments is-read-only" title="{% translate 'Choins' %}">
                     <i class="fa fa-coins" aria-label="{% translate 'Choins' %}"></i>
-                    {{ object.choin_sum }}
+                    {{object.choin.first.choins |floatformat:"2" }}
                 </span>
                 <span class="list-item__comments is-read-only" title="{% translate 'Need Choins/supporter' %}">
                     <i class="fa fa-bullseye" aria-label="{% translate 'Choins' %}"></i>
-                    {% if object.remaining_choins <= 0 and object.positive_rating_count > 0 %}
+                    {% if object.choin.first.missing <= 0 and object.positive_rating_count > 0 %}
                         {%if object.moderator_status != 'ACCEPTED' %}
                             goal achived
                         {%endif%}
                     {% else %}
-                        {{ object.remaining_choins }}
+                        {{ object.choin.first.missing |floatformat:"2" }}
                     {% endif %}
                 </span>
             </span>

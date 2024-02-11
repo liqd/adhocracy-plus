@@ -38,8 +38,8 @@ export default class RatingChoinsBox extends RatingBox {
         console.log('Success:', response)
       })
       .catch((error) => {
-        alert('An error occurred. Please try again.')
-        console.log('Error Details:', error)
+        alert('An error occurred. Please try again.' + error.responseJSON.message)
+        console.log('Error Details:', error.responseJSON.message)
       })
   }
 
@@ -55,6 +55,7 @@ export default class RatingChoinsBox extends RatingBox {
     return (
       <div className="rating">
         <button
+          name="upvote"
           aria-label={translations.upvote}
           className={getRatingClasses('up')}
           disabled={this.props.isReadOnly}

@@ -35,8 +35,8 @@ def get_ordering_choices(view):
         choices += (("-positive_rating_count", _("Most popular")),)
     if view.module.has_feature("buy", models.Idea):
         choices += (
-            ("-choin_sum", _("Most sponsored")),
-            ("remaining_choins", _("Most fair")),
+            ("-choin__choins", _("Most sponsored")),
+            ("choin__missing", _("Most fair")),
         )
     choices += (("-comment_count", _("Most commented")),)
     return choices
@@ -47,18 +47,7 @@ class OrderingFilter(a4_filters.DynamicChoicesOrderingFilter):
         qs = qs.annotate_comment_count()
         if hasattr(qs, "annotate_positive_rating_count"):
             qs = qs.annotate_positive_rating_count().annotate_negative_rating_count()
-        if hasattr(qs, "annotate_choin_sum"):
-            qs = qs.annotate_choin_sum().annotate_remaining_choins()
         return qs
-
-    def filter(self, qs, value):
-        annotated_qs = self.annotate_queryset(qs)
-        if value == ["-choin_sum"]:
-            return annotated_qs.order_by("-choin_sum")
-        elif value == ["remaining_choins"]:
-            return annotated_qs.order_by("remaining_choins")
-        else:
-            return super().filter(annotated_qs, value)
 
 
 class IdeaFilterSet(a4_filters.DefaultsFilterSet):
@@ -85,10 +74,6 @@ class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
         qs = qs.annotate_comment_count()
         if hasattr(qs, "annotate_positive_rating_count"):
             qs = qs.annotate_positive_rating_count().annotate_negative_rating_count()
-        if hasattr(qs, "annotate_choin_sum"):
-            qs = qs.annotate_choin_sum()
-        if hasattr(qs, "annotate_reamining_choins"):
-            qs = qs.annotate_reamining_choins()
         return qs
 
 
@@ -106,10 +91,7 @@ class AbstractIdeaDetailView(
 class IdeaDetailView(AbstractIdeaDetailView):
     model = models.Idea
     queryset = (
-        models.Idea.objects.annotate_positive_rating_count()
-        .annotate_negative_rating_count()
-        .annotate_choin_sum()
-        .annotate_remaining_choins()
+        models.Idea.objects.annotate_positive_rating_count().annotate_negative_rating_count()
     )
     permission_required = "a4_candy_ideas.view_idea"
 

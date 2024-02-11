@@ -110,6 +110,16 @@
                               {% translate 'Result' %}
                           </a>
                         -->
+                            <a
+                              id="tab-project-{{ project.pk }}-accepted"
+                              class="tab"
+                              data-bs-toggle="tab"
+                              href="#tabpanel-project-{{ project.pk }}-accepted"
+                              role="tab"
+                              aria-controls="tabpanel-project-{{ project.pk }}-accepted"
+                              aria-expanded="false">
+                              {% translate 'History' %}
+                          </a>
                           <a
                               id="tab-project-{{ project.pk }}-choins"
                               class="tab"

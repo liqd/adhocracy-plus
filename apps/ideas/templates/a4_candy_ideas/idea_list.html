@@ -23,7 +23,9 @@
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                 <ul class="u-list-reset">
                     {% for object in object_list %}
-                        {% include "a4_candy_ideas/includes/idea_list_item.html" with object=object %}
+                        {% if object.moderator_status != 'ACCEPTED' %}
+                            {% include "a4_candy_ideas/includes/idea_list_item.html" with object=object %}
+                        {% endif %}
                     {% empty %}
                         {% translate "Nothing to show" %}
                     {% endfor %}
