@@ -3,8 +3,8 @@
 ## Usage Example
 
 Imagine a project with a 'fairvote' module, enabling the addition and support of ideas ('issues'). \
-In this instance, we enlist 40 users for project participation and generate various ideas related to citizen concerns \
-and , half are 'south' issues and the remaining half are 'north' region issues.
+In this instance, we enlist 40 users for project participation and generate various ideas related to citizen concerns: \
+half are 'south' issues and the remaining half are 'north' region issues.
 
 - 60% of users (24 individuals) are from the 'south'.
 - 40% of users (16 individuals) are from the 'north'.
