@@ -39,12 +39,15 @@ In this example, when a 'south' issue is accepted, the 'south' users' coins rese
 2. North issue now on top:
 ![North on Top](https://github.com/ariel-research/adhocracy-plus/assets/73301483/0f11620f-4c95-45be-88b8-172450e32248)
 
-3. North issue accepted:
+3. Observe that the coins for all South ideas have been reset at this point
+![south-reseted](https://github.com/ariel-research/adhocracy-plus/assets/73301483/80ebf547-f9cb-476b-9283-a1baa22348de)
+
+4. North issue accepted:
 ![North Issue Accepted](https://github.com/ariel-research/adhocracy-plus/assets/73301483/d744d94b-e4d3-4be5-a7fc-b442b1478c84)
 
-4. South issue now on top:
+5.  South issue now on top:
 ![South on Top](https://github.com/ariel-research/adhocracy-plus/assets/73301483/2ae89a89-b884-4f3e-9665-09621ee50fbc)
 
-5. Observe that the coins for all North ideas have been reset at this point:
+6. Observe that the coins for all North ideas have been reset at this point:
 ![image](https://github.com/ariel-research/adhocracy-plus/assets/73301483/8e82f69a-9faf-42e8-9835-4e2ede679026)
 
