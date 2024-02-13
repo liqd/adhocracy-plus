@@ -12,7 +12,9 @@ Each user supports only ideas related to his or her district. Therefore, initial
 ![South Ideas Votes](https://github.com/ariel-research/adhocracy-plus/assets/73301483/267ba19e-00ef-4587-a030-182346dd3078)
 ![North Ideas Votes](https://github.com/ariel-research/adhocracy-plus/assets/73301483/d10bece9-caf5-4c62-a763-d2daa062e9c5)
 
-Suppose the project manager accepts the top idea, which is south-oriented.
+Suppose the project manager accepts the top idea, which is south-oriented:
+![South Issue Accepted](https://github.com/ariel-research/adhocracy-plus/assets/73301483/33fa1136-e6a8-4b6f-9768-1b584d3e84d6)
+
 The **fairvote** module then gives all users the same amount of "choins" (virtual choice-coins),
 and then has the supporters of the accepted idea (the southern users) "pay" their choins for the accepted idea.
 
@@ -21,8 +23,8 @@ Therefore, each user receives 6.25, the southerners pay all their money to fund 
 
 As a result, the northern users have more choins, so their supported ideas jump to the top:
 
-![South Issue Accepted](https://github.com/ariel-research/adhocracy-plus/assets/73301483/33fa1136-e6a8-4b6f-9768-1b584d3e84d6)
 ![North on Top](https://github.com/ariel-research/adhocracy-plus/assets/73301483/0f11620f-4c95-45be-88b8-172450e32248)
+![south-reseted](https://github.com/ariel-research/adhocracy-plus/assets/73301483/80ebf547-f9cb-476b-9283-a1baa22348de)
 
 Near each idea, there are two numbers. 
 
@@ -31,9 +33,6 @@ Near each idea, there are two numbers.
 
 Within the fairvote module, you can sort ideas by 'most fair', which means an increasing order of the amount of remaining choins needed per user (the second number above).
 In our example, the northern ideas need fewer choins, so they appear at the top.
-
-Observe that the coins for all South ideas have been reset at this point:
-![south-reseted](https://github.com/ariel-research/adhocracy-plus/assets/73301483/80ebf547-f9cb-476b-9283-a1baa22348de)
 
 Suppose now that the project manager accepts a northern idea:
 ![North Issue Accepted](https://github.com/ariel-research/adhocracy-plus/assets/73301483/d744d94b-e4d3-4be5-a7fc-b442b1478c84)
