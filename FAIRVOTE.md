@@ -44,3 +44,7 @@ In this example, when a 'south' issue is accepted, the 'south' users' coins rese
 
 4. South issue now on top:
 ![South on Top](https://github.com/ariel-research/adhocracy-plus/assets/73301483/2ae89a89-b884-4f3e-9665-09621ee50fbc)
+
+5. Observe that the coins for all North ideas have been reset at this point:
+![image](https://github.com/ariel-research/adhocracy-plus/assets/73301483/8e82f69a-9faf-42e8-9835-4e2ede679026)
+
