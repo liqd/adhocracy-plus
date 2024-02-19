@@ -6,6 +6,7 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.admin.panels import ObjectList
 from wagtail.admin.panels import PageChooserPanel
 from wagtail.admin.panels import TabbedInterface
+from wagtail.admin.panels import TitleFieldPanel
 from wagtail.models import Page
 
 from apps.contrib.translations import TranslatedField
@@ -82,7 +83,7 @@ class UseCaseIndexPage(Page):
     ]
 
     common_panels = [
-        FieldPanel("title"),
+        TitleFieldPanel("title"),
         FieldPanel("slug"),
         FieldPanel("demo_link"),
         PageChooserPanel("form_page", "a4_candy_cms_contacts.FormPage"),
@@ -100,7 +101,6 @@ class UseCaseIndexPage(Page):
 
 
 class UseCasePage(Page):
-
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES)
 
     image = models.ForeignKey(
@@ -165,7 +165,7 @@ class UseCasePage(Page):
     de_content_panels = [FieldPanel("title_de"), FieldPanel("body_streamfield_de")]
 
     common_panels = [
-        FieldPanel("title"),
+        TitleFieldPanel("title"),
         FieldPanel("image"),
         FieldPanel("slug"),
         FieldPanel("category"),

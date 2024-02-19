@@ -9,6 +9,7 @@ from wagtail.admin.panels import MultiFieldPanel
 from wagtail.admin.panels import ObjectList
 from wagtail.admin.panels import PageChooserPanel
 from wagtail.admin.panels import TabbedInterface
+from wagtail.admin.panels import TitleFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
 
@@ -20,7 +21,6 @@ from apps.contrib.translations import TranslatedFieldLegal
 
 
 class HomePage(Page):
-
     image_1 = models.ForeignKey(
         "a4_candy_cms_images.CustomImage",
         null=True,
@@ -157,7 +157,7 @@ class HomePage(Page):
     ]
 
     common_panels = [
-        FieldPanel("title"),
+        TitleFieldPanel("title"),
         FieldPanel("slug"),
         PageChooserPanel("form_page", "a4_candy_cms_contacts.FormPage"),
         MultiFieldPanel(
@@ -293,7 +293,7 @@ class SimplePage(Page):
 
     ru_content_panels = [FieldPanel("body_streamfield_ru")]
 
-    common_panels = [FieldPanel("title"), FieldPanel("slug")]
+    common_panels = [TitleFieldPanel("title"), FieldPanel("slug")]
 
     edit_handler = TabbedInterface(
         [

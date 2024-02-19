@@ -7,6 +7,7 @@ from wagtail import fields
 from wagtail.admin.panels import FieldPanel
 from wagtail.admin.panels import ObjectList
 from wagtail.admin.panels import TabbedInterface
+from wagtail.admin.panels import TitleFieldPanel
 from wagtail.models import Page
 
 from apps.contrib.translations import TranslatedField
@@ -46,7 +47,7 @@ class NewsIndexPage(Page):
         FieldPanel("subtitle_en"),
     ]
 
-    common_panels = [FieldPanel("title"), FieldPanel("slug")]
+    common_panels = [TitleFieldPanel("title"), FieldPanel("slug")]
 
     edit_handler = TabbedInterface(
         [
@@ -116,7 +117,7 @@ class NewsPage(Page):
     ]
 
     common_panels = [
-        FieldPanel("title"),
+        TitleFieldPanel("title"),
         FieldPanel("image"),
         FieldPanel("author"),
         FieldPanel("slug"),
