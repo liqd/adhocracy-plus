@@ -110,9 +110,9 @@ class OfflineEventDeleteView(
     template_name = "a4_candy_offlineevents/offlineevent_confirm_delete.html"
     get_context_from_object = True
 
-    def delete(self, request, *args, **kwargs):
+    def form_valid(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
-        return super().delete(request, *args, **kwargs)
+        return super().form_valid(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse(

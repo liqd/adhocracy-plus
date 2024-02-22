@@ -26,7 +26,7 @@ SITE_ID = 1
 if os.getenv("DATABASE") == "postgresql":
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "ENGINE": "django.db.backends.postgresql",
             "NAME": "django",
             "USER": "django",
             "PASSWORD": "",

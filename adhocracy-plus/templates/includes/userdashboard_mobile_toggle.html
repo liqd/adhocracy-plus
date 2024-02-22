@@ -29,7 +29,7 @@
     {% else %}
     <nav class="d-inline-block d-sm-none" aria-label="{% trans 'Dashboard' %}">
         <a href="{% url 'userdashboard-overview' %}"
-           class="tab {% ifequal view.menu_item 'overview' %}active{% endifequal %}">
+           class="tab {% if view.menu_item == 'overview' %}active{% endif %}">
 
             {% trans 'Overview' %}
         </a>
