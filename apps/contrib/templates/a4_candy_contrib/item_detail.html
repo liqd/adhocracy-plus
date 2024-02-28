@@ -57,7 +57,9 @@
                     <div class="item-detail__content">
                         <div class="item-detail__basic-content">
                             <img class="item-detail__image" src="{% thumbnail object.image 'item_image' %}" alt="">
-                            {{ object.description | richtext }}
+			    <div class="ck-content">
+                                {{ object.description | richtext }}
+			    </div>
                         </div>
 
                         {% block additional_content %}{% endblock %}
@@ -144,7 +146,7 @@
                             </strong>
                             {% html_date object.moderator_feedback_text.created %}
                         </div>
-                        <div class="moderator-feedback__body">
+                        <div class="moderator-feedback__body ck-content">
                             {{ object.moderator_feedback_text.feedback_text | safe }}
                         </div>
                     </div>

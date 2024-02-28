@@ -129,7 +129,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                            {{ project.information | transform_collapsibles | richtext }}
+                            <div class="ck-content">
+                                {{ project.information | transform_collapsibles | richtext }}
+			    </div>
                             {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
                                 <h3 class="u-top-divider">{% translate 'Contact for questions' %}</h3>
                                 {% if project.contact_name %}
@@ -305,7 +307,7 @@
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                           <h5>{{ result_title|title }}</h5>
                         </div>
-                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 ck-content">
                             {% if project.result %}
                                 {{ project.result | transform_collapsibles | richtext }}
                             {% else %}
