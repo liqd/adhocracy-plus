@@ -176,6 +176,9 @@ urlpatterns = [
             ]
         ),
     ),
+    path(
+        "ckeditor5/", include("django_ckeditor_5.urls"), name="ck_editor_5_upload_file"
+    ),
     path("sitemap.xml", static_sitemap_index, name="static-sitemap-index"),
     path("sitemap-wagtail.xml", wagtail_sitemap, name="wagtail-sitemap"),
     path(

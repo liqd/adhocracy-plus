@@ -10,6 +10,21 @@ const ckReplace = function (id, config) {
   return window.CKEDITOR.replace(id, config)
 }
 
+// translations
+const translations = {
+  headline: django.gettext('Headline'),
+  paragraph: django.gettext('Paragraph'),
+  moveUp: django.gettext('Move up'),
+  moveDown: django.gettext('Move down'),
+  delete: django.gettext('Delete'),
+  helpText: django.gettext(
+    'If you add an image, please provide an ' +
+      'alternate text. It serves as a textual description of the image ' +
+      'content and is read out by screen readers. Describe the image in ' +
+      'approx. 80 characters. Example: A busy square with people in summer.'
+  )
+}
+
 class ParagraphForm extends React.Component {
   handleNameChange (e) {
     const name = e.target.value
@@ -68,7 +83,7 @@ class ParagraphForm extends React.Component {
               <label
                 htmlFor={'id_paragraphs-' + this.props.id + '-name'}
               >
-                {django.gettext('Headline')}
+                {translations.headline}
                 <input
                   className="form-control"
                   id={'id_paragraphs-' + this.props.id + '-name'}
@@ -82,12 +97,19 @@ class ParagraphForm extends React.Component {
             </div>
 
             <div className="form-group">
-              <label
-                htmlFor={'id_paragraphs-' + this.props.id + '-text'}
-              >
-                {django.gettext('Paragraph')}
+              <label htmlFor={'id_paragraphs-' + props.id + '-text'}>
+                {translations.paragraph}
+                <div
+                  id={'id_paragraph-help-text-' + props.id}
+                  className="form-hint"
+                >
+                  {translations.helpText}
+                </div>
                 <div
                   className="django-ckeditor-widget"
+                <div
+                  id={'id_paragraph-help-text-' + props.id}
+                  className="form-hint"
                   data-field-id={'id_paragraphs-' + this.props.id + '-text'}
                   style={{ display: 'inline-block' }}
                 >
@@ -107,35 +129,35 @@ class ParagraphForm extends React.Component {
             className="btn btn--light btn--small"
             onClick={this.props.onMoveUp}
             disabled={!this.props.onMoveUp}
-            title={django.gettext('Move up')}
+            title={translations.moveUp}
             type="button"
           >
             <i
               className="fa fa-chevron-up"
-              aria-label={django.gettext('Move up')}
+              aria-label={translations.moveUp}
             />
           </button>
           <button
             className="btn btn--light btn--small"
             onClick={this.props.onMoveDown}
             disabled={!this.props.onMoveDown}
-            title={django.gettext('Move down')}
+            title={translations.moveDown}
             type="button"
           >
             <i
               className="fa fa-chevron-down"
-              aria-label={django.gettext('Move down')}
+              aria-label={translations.moveDown}
             />
           </button>
           <button
             className="btn btn--light btn--small"
             onClick={this.props.onDelete}
-            title={django.gettext('Delete')}
+            title={translations.delete}
             type="button"
           >
             <i
               className="far fa-trash-alt"
-              aria-label={django.gettext('Delete')}
+              aria-label={translations.delete}
             />
           </button>
         </div>

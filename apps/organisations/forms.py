@@ -1,10 +1,9 @@
 import parler
-from ckeditor_uploader import widgets
-from ckeditor_uploader.fields import RichTextUploadingFormField
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 from adhocracy4 import transforms
 from apps.cms.settings import helpers
@@ -136,7 +135,7 @@ class OrganisationForm(forms.ModelForm):
         ),
         (
             "information",
-            RichTextUploadingFormField,
+            CKEditor5Widget,
             {
                 "config_name": "collapsible-image-editor",
                 "label": OrganisationTranslation._meta.get_field(
@@ -147,9 +146,7 @@ class OrganisationForm(forms.ModelForm):
                 ).help_text,
                 "external_plugin_resources": _external_plugin_resources,
                 "extra_plugins": ["collapsibleItem"],
-                "widget": widgets.CKEditorUploadingWidget(
-                    external_plugin_resources=_external_plugin_resources,
-                    extra_plugins=["collapsibleItem"],
+                "widget": CKEditor5Widget(
                     config_name="collapsible-image-editor",
                 ),
             },
