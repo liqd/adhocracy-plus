@@ -42,7 +42,9 @@
                                     <h3 class="paragraph__title">
                                         {{ paragraph.name }}
                                     </h3>
-                                    {{ paragraph.text|richtext }}
+                                    <div class="ck-content">
+                                        {{ paragraph.text|richtext }}
+                                    </div>
                                 </div>
                                 <div class="paragraph__actions">
                                     <a

@@ -1,10 +1,9 @@
 import parler
-from ckeditor_uploader import widgets
-from ckeditor_uploader.fields import RichTextUploadingFormField
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 from adhocracy4 import transforms
 from apps.cms.settings import helpers
@@ -102,7 +101,6 @@ SOCIAL_MEDIA_SIZES = {
 
 
 class OrganisationForm(forms.ModelForm):
-
     translated_fields = [
         (
             "description",
@@ -136,20 +134,18 @@ class OrganisationForm(forms.ModelForm):
         ),
         (
             "information",
-            RichTextUploadingFormField,
+            forms.CharField,
             {
-                "config_name": "collapsible-image-editor",
                 "label": OrganisationTranslation._meta.get_field(
                     "information"
                 ).verbose_name,
                 "help_text": OrganisationTranslation._meta.get_field(
                     "information"
                 ).help_text,
-                "external_plugin_resources": _external_plugin_resources,
-                "extra_plugins": ["collapsibleItem"],
-                "widget": widgets.CKEditorUploadingWidget(
-                    external_plugin_resources=_external_plugin_resources,
-                    extra_plugins=["collapsibleItem"],
+                "max_length": OrganisationTranslation._meta.get_field(
+                    "information"
+                ).max_length,
+                "widget": CKEditor5Widget(
                     config_name="collapsible-image-editor",
                 ),
             },
@@ -300,7 +296,6 @@ class CommunicationProjectChoiceForm(forms.Form):
 
 
 class CommunicationContentCreationForm(forms.Form):
-
     sizes = None
 
     def __init__(self, project=None, format=None, *args, **kwargs):

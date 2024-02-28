@@ -1,147 +1,151 @@
-const React = require('react')
-const django = require('django')
-const FormFieldError = require('adhocracy4/adhocracy4/static/FormFieldError')
+import React, { useEffect } from 'react'
+import django from 'django'
+import FormFieldError from 'adhocracy4/adhocracy4/static/FormFieldError'
 
-const ckGet = function (id) {
-  return window.CKEDITOR.instances[id]
+// translations
+const translations = {
+  headline: django.gettext('Headline'),
+  paragraph: django.gettext('Paragraph'),
+  moveUp: django.gettext('Move up'),
+  moveDown: django.gettext('Move down'),
+  delete: django.gettext('Delete'),
+  helpText: django.gettext(
+    'If you add an image, please provide an ' +
+      'alternate text. It serves as a textual description of the image ' +
+      'content and is read out by screen readers. Describe the image in ' +
+      'approx. 80 characters. Example: A busy square with people in summer.'
+  )
 }
 
-const ckReplace = function (id, config) {
-  return window.CKEDITOR.replace(id, config)
-}
+const ParagraphForm = (props) => {
+  const id = 'id_paragraphs-' + props.id
+  const ckeditorId = id + '-text'
 
-class ParagraphForm extends React.Component {
-  handleNameChange (e) {
-    const name = e.target.value
-    this.props.onNameChange(name)
-  }
-
-  ckId () {
-    return 'id_paragraphs-' + this.props.id + '-text'
-  }
-
-  ckEditorDestroy () {
-    const editor = ckGet(this.ckId())
+  useEffect(() => {
+    window.ckeditorRegisterCallback(ckeditorId, setDataHandler)
+    const editor = window.editors[ckeditorId]
     if (editor) {
-      editor.destroy()
+      setDataHandler(editor)
     }
-  }
-
-  ckEditorCreate () {
-    if (!ckGet(this.ckId())) {
-      const editor = ckReplace(this.ckId(), this.props.config)
-      editor.on('change', function (e) {
-        const text = e.editor.getData()
-        this.props.onTextChange(text)
-      }.bind(this))
-      editor.setData(this.props.paragraph.text)
+    return () => {
+      window.ckeditorUnregisterCallback(ckeditorId)
     }
+  }, [props.id, props.onTextChange, props.index])
+
+  const setDataHandler = (editor) => {
+    editor.model.document.on('change:data', () => {
+      props.onTextChange(editor.getData())
+    })
   }
 
-  UNSAFE_componentWillUpdate (nextProps) {
-    if (nextProps.index > this.props.index) {
-      this.ckEditorDestroy()
-    }
+  const handleNameChange = (e) => {
+    const name = e.target.value
+    props.onNameChange(name)
   }
 
-  componentDidUpdate (prevProps) {
-    if (this.props.index > prevProps.index) {
-      this.ckEditorCreate()
-    }
-  }
-
-  componentDidMount () {
-    this.ckEditorCreate()
-  }
-
-  componentWillUnmount () {
-    this.ckEditorDestroy()
-  }
-
-  render () {
-    const ckEditorToolbarsHeight = 60 // measured on example editor
-    return (
-      <section className="commenting">
-        <div className="commenting__content">
+  return (
+    <section>
+      <div className="row">
+        <div className="col-lg-9">
           <div className="commenting__content--border">
             <div className="form-group">
-              <label
-                htmlFor={'id_paragraphs-' + this.props.id + '-name'}
-              >
-                {django.gettext('Headline')}
+              <label htmlFor={id + '-name'}>
+                {translations.headline}
                 <input
                   className="form-control"
-                  id={'id_paragraphs-' + this.props.id + '-name'}
-                  name={'paragraphs-' + this.props.id + '-name'}
+                  id={id + '-name'}
+                  name={'paragraphs-' + props.id + '-name'}
                   type="text"
-                  value={this.props.paragraph.name}
-                  onChange={this.handleNameChange.bind(this)}
+                  value={props.paragraph.name}
+                  onChange={handleNameChange}
+                  aria-invalid={props.errors ? 'true' : 'false'}
+                  aria-describedby={props.errors && 'id_error-' + props.id}
+                />
+                <FormFieldError
+                  id={'id_error-' + props.id}
+                  error={props.errors}
+                  field="name"
                 />
               </label>
-              <FormFieldError id={'id_error-' + this.props.id} error={this.props.errors} field="name" />
             </div>
 
             <div className="form-group">
-              <label
-                htmlFor={'id_paragraphs-' + this.props.id + '-text'}
-              >
-                {django.gettext('Paragraph')}
+              <label htmlFor={id + '-text'}>
+                {translations.paragraph}
                 <div
-                  className="django-ckeditor-widget"
-                  data-field-id={'id_paragraphs-' + this.props.id + '-text'}
-                  style={{ display: 'inline-block' }}
+                  id={'id_paragraph-help-text-' + props.id}
+                  className="form-hint"
                 >
-                  <textarea
-                    // fix height to avoid jumping on ckeditor initalization
-                    style={{ height: this.props.config.height + ckEditorToolbarsHeight }}
-                    id={'id_paragraphs-' + this.props.id + '-text'}
-                  />
+                  {translations.helpText}
                 </div>
               </label>
-              <FormFieldError id={'id_error-' + this.props.id} error={this.props.errors} field="text" />
+              <div className="ck-editor-container">
+                <textarea
+                  id={ckeditorId}
+                  className="django_ckeditor_5"
+                  defaultValue={props.paragraph.text}
+                />
+                <div />
+                <span
+                  className="word-count"
+                  id={ckeditorId + '_script-word-count'}
+                />
+                <input
+                  type="hidden"
+                  id={ckeditorId + '_script-ck-editor-5-upload-url'}
+                  data-upload-url={props.uploadUrl}
+                  data-upload-file-types={JSON.stringify(props.uploadFileTypes)}
+                  data-csrf_cookie_name={props.csrfCookieName}
+                />
+                <span id={ckeditorId + '_script-span'}>
+                  <script id={ckeditorId + '_script'} type="application/json">
+                    {JSON.stringify(props.config)}
+                  </script>
+                </span>
+              </div>
+              <FormFieldError
+                id={'id_error-' + props.id}
+                error={props.errors}
+                field="text"
+              />
             </div>
           </div>
         </div>
+
         <div className="commenting__actions btn-group" role="group">
           <button
             className="btn btn--light btn--small"
-            onClick={this.props.onMoveUp}
-            disabled={!this.props.onMoveUp}
-            title={django.gettext('Move up')}
+            onClick={props.onMoveUp}
+            disabled={!props.onMoveUp}
+            title={translations.moveUp}
             type="button"
           >
-            <i
-              className="fa fa-chevron-up"
-              aria-label={django.gettext('Move up')}
-            />
+            <i className="fa fa-chevron-up" aria-label={translations.moveUp} />
           </button>
           <button
             className="btn btn--light btn--small"
-            onClick={this.props.onMoveDown}
-            disabled={!this.props.onMoveDown}
-            title={django.gettext('Move down')}
+            onClick={props.onMoveDown}
+            disabled={!props.onMoveDown}
+            title={translations.moveDown}
             type="button"
           >
             <i
               className="fa fa-chevron-down"
-              aria-label={django.gettext('Move down')}
+              aria-label={translations.moveDown}
             />
           </button>
           <button
             className="btn btn--light btn--small"
-            onClick={this.props.onDelete}
-            title={django.gettext('Delete')}
+            onClick={props.onDelete}
+            title={translations.delete}
             type="button"
           >
-            <i
-              className="far fa-trash-alt"
-              aria-label={django.gettext('Delete')}
-            />
+            <i className="fas fa-trash-alt" aria-label={translations.delete} />
           </button>
         </div>
-      </section>
-    )
-  }
+      </div>
+    </section>
+  )
 }
 
 module.exports = ParagraphForm

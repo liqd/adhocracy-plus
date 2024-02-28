@@ -14,7 +14,9 @@
                     </div>
                 </div>
                 <h1>{% translate 'Netiquette' %}</h1>
-                {{ organisation.netiquette|richtext }}
+                <div class="ck-content">
+                    {{ organisation.netiquette|richtext }}
+                </div>
             </div>
         </div>
     {% include 'footer_upper.html' with organisation=organisation %}

@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
-{% load ckeditor_tags i18n thumbnail wagtailcore_tags %}
+{% load static ckeditor_tags i18n thumbnail wagtailcore_tags %}
+
+<!-- ensure cookie overlay for embedded videos -->
+{% block extra_css %}
+  {{ block.super }}
+    <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+    <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
+{% endblock %}
 
 {% block title %}{% translate 'Information' %} &mdash; {{ block.super }}{% endblock %}
 
@@ -17,7 +28,9 @@
             <div class="row">
                 <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                     <h1>{% translate 'Information' %}</h1>
-                    {{ organisation.information | transform_collapsibles | richtext }}
+                    <div class="ck-content">
+                        {{ organisation.information | transform_collapsibles | richtext }}
+                    </div>
                 </div>
             </div>
 
