@@ -107,16 +107,16 @@ class ParagraphForm extends React.Component {
                 </div>
                 <div
                   className="django-ckeditor-widget"
-                <div
-                  id={'id_paragraph-help-text-' + props.id}
-                  className="form-hint"
                   data-field-id={'id_paragraphs-' + this.props.id + '-text'}
                   style={{ display: 'inline-block' }}
                 >
                   <textarea
-                    // fix height to avoid jumping on ckeditor initalization
-                    style={{ height: this.props.config.height + ckEditorToolbarsHeight }}
-                    id={'id_paragraphs-' + this.props.id + '-text'}
+                    id={'id_paragraphs-' + props.id + '-text'}
+                    aria-invalid={props.errors ? 'true' : 'false'}
+                    aria-describedby={
+                      (props.errors ? 'id_paragraph-help-text-' : 'id_error-') +
+                      props.id
+                    }
                   />
                 </div>
               </label>
