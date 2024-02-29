@@ -68,11 +68,6 @@ function init () {
     $('.js-select2').select2()
   }
 
-  // This function adds required classes to iframes added by ckeditor
-  $('.rich-text iframe').addClass('ck_embed_iframe')
-  $('.ck_embed_iframe').parent('div').addClass('ck_embed_iframe__container')
-}
-
 document.addEventListener('DOMContentLoaded', init, false)
 
 export function getCurrentPath () {
