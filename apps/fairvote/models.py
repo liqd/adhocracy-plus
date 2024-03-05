@@ -66,9 +66,19 @@ class IdeaChoin(models.Model):
         if choins_sum < self.goal:
             choins_per_user = (self.goal - choins_sum) / supporters_count
             print(choins_per_user)
-            Choin.objects.filter(module=self.idea.module).update(
-                choins=F("choins") + choins_per_user
-            )
+
+            users_choins = Choin.objects.filter(module=self.idea.module)
+            for user_choin in users_choins:
+                user_choin.choins += choins_per_user
+                user_choin.save()
+                message = f"All {users_choins.count()} participants received more {choins_per_user} choins."
+                ChoinEvent.objects.create(
+                    user=user_choin.user,
+                    content=message,
+                    balance=user_choin.choins,
+                    module=user_choin.module,
+                    type="ADD",
+                )
 
         print(supporters)
         choins_per_user = self.goal / supporters_count  # most fair option
@@ -83,9 +93,19 @@ class IdeaChoin(models.Model):
                 UserIdeaChoin.objects.create(
                     user=supporter.user, idea=self.idea, choins=supporter.choins
                 )
+                paid = supporter.choins
                 current_sum -= supporter.choins
                 supporter.choins = 0
                 supporter.save()
+                message = f"The idea {self.idea.name} has been accepted. {supporters_count} participants paid {self.goal} choins. You paid {paid}"
+                ChoinEvent.objects.create(
+                    user=supporter,
+                    content=message,
+                    balance=0,
+                    module=supporter.module,
+                    type="ACC",
+                )
+
             else:
                 last_user_index = index
                 break
@@ -102,6 +122,33 @@ class IdeaChoin(models.Model):
                 )
                 supporter.choins -= choins_per_user
                 supporter.save()
+                message = f"The idea {self.idea.name} has been accepted. {supporters_count} participants paid {self.goal} choins. You paid {choins_per_user}"
+                ChoinEvent.objects.create(
+                    user=supporter.user,
+                    content=message,
+                    balance=supporter.choins,
+                    module=supporter.module,
+                    type="ACC",
+                )
+
+        users_dont_support = Choin.objects.filter(
+            ~Q(user__rating__value=1, user__rating__idea=self.idea)
+            | Q(user__rating__isnull=True),
+            module=self.idea.module,
+        ).distinct()
+        message = f"The idea {self.idea.name} has been accepted. {supporters_count} participants paid {self.goal} choins. You paied 0"
+        ChoinEvent.objects.bulk_create(
+            [
+                ChoinEvent(
+                    user=user_choin.user,
+                    content=message,
+                    balance=user_choin.choins,
+                    module=user_choin.module,
+                    type="ACC",
+                )
+                for user_choin in users_dont_support
+            ]
+        )
 
     def get_choins_sum(self):
         idea_choin = (
@@ -163,3 +210,16 @@ class UserIdeaChoin(models.Model):
 
     def __str__(self):
         return "{}_{}_{}".format(self.user, self.idea, self.choins)
+
+
+class ChoinEvent(models.Model):
+    EVENT_TYPES = [
+        ("ADD", "Add Choins"),
+        ("ACC", "Idea Accepted"),
+    ]
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    type = models.CharField(choices=EVENT_TYPES, max_length=3, blank=False)
+    content = models.TextField(blank=True, max_length=255)
+    balance = models.FloatField(blank=True, default=0, verbose_name=_("Balance"))
+    created_at = models.DateTimeField(auto_now_add=True)

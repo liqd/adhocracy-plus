@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .scrollable-list {
+      max-height: 80%; /* Set a fixed height for the notification list */
+      overflow-y: auto; /* Enable vertical scrolling */
+      border: 1px solid #ccc; /* Add a border for styling */
+      padding: 10px;
+      max-width: 70%;
+      margin-left: 15%;
+      margin-right: 15%;
+    }
+  
+    .event-card {
+      border: 1px solid #ccc; /* Add a border for styling */
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow for a card effect */
+      list-style: none; /* Remove default list styles */
+      margin-bottom: 10px; /* Adjust the space between notifications */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .event-info {
+      max-width: 60%; /* Set the width for the left part of the card */
+    }
+
+    .event-actions {
+      width: 40%; /* Set the width for the right part of the card */
+      text-align: right;
+    }
+    .shift-left {
+        margin-left: 10%;
+    }
+</style>
+<div>
+<h2 class="shift-left">Choin Events</h2>
+
+<div class="scrollable-list">
+  <ul>
+    {% for choinevent in choinevent_list %}
+      <li class="event-card">
+        <div class="event-info">
+          <i class="{% if choinevent.type == 'ADD' %}fa fa-plus{% elif choinevent.type == 'ACC' %}fa fa-check{% else %}fa fa-bell{% endif %}"></i>
+          {{ choinevent.content }}<br/>
+          <p style="font-size: smaller;"><i class="fa fa-wallet" aria-label="balance"></i> {{ choinevent.balance }}
+          <br/>
+          {{ choinevent.created_at }}</p>
+        </div>
+        <div class="event-actions">
+          <!-- Add any additional actions or buttons on the right side of the card -->
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+</div>
+{% endblock %}

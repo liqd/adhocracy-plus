@@ -111,24 +111,22 @@
                           </a>
                         -->
                             <a
-                              id="tab-project-{{ project.pk }}-accepted"
+                              id="tab-project-{{ project.pk }}-history"
                               class="tab"
-                              data-bs-toggle="tab"
-                              href="#tabpanel-project-{{ project.pk }}-accepted"
+                              href="{% url 'choinevent-list' organisation_slug=project.organisation.slug %}"
                               role="tab"
-                              aria-controls="tabpanel-project-{{ project.pk }}-accepted"
+                              aria-controls="tabpanel-project-{{ project.pk }}-history"
                               aria-expanded="false">
                               {% translate 'History' %}
                           </a>
                           <a
-                              id="tab-project-{{ project.pk }}-choins"
+                              id="tab-project-{{ project.pk }}-accepted"
                               class="tab"
-                              data-bs-toggle="tab"
-                              href="#tabpanel-project-{{ project.pk }}-choins"
+                              href="{% url 'accepted_ideas' organisation_slug=project.organisation.slug obj_id=project.pk %}"
                               role="tab"
-                              aria-controls="tabpanel-project-{{ project.pk }}-choins"
+                              aria-controls="tabpanel-project-{{ project.pk }}-accepted"
                               aria-expanded="false">
-                              {% translate 'History' %}
+                              {% translate 'Accepted Ideas' %}
                           </a>
                       </nav>
                       {% include 'includes/project_header_mobile_toggle.html' %}
@@ -182,12 +180,12 @@
             </div>
 
             <div
-                class="tabpanel tabpanel--topnav active"
-                id="tabpanel-project-{{ project.pk }}-participation"
-                role="tabpanel"
-                aria-labelledby="tab-project-{{ project.pk }}-participation"
-                aria-expanded="true">
-                <div class="timeline-carousel__wrapper">
+            class="tabpanel tabpanel--topnav active"
+            id="tabpanel-project-{{ project.pk }}-participation"
+            role="tabpanel"
+            aria-labelledby="tab-project-{{ project.pk }}-participation"
+            aria-expanded="true">
+            <div class="timeline-carousel__wrapper">
                 {% if project.display_timeline %}
                     {% include "a4_candy_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
                 {% else %}
@@ -299,7 +297,9 @@
                 </div>
                 {% block phase_content %}{% endblock %}
             </div>
-
+        </div>
+    
+        
             <div
                 class="tabpanel tabpanel--topnav"
                 id="tabpanel-project-{{ project.pk }}-result"
@@ -340,20 +340,17 @@
                 </div>
             </div>
             <div
-                class="tabpanel tabpanel--topnav"
-                id="tabpanel-project-{{ project.pk }}-choins"
+                class="tabpanel tabpanel--topnav active"
+                id="tabpanel-project-{{ project.pk }}-history"
                 role="tabpanel"
-                aria-labelledby="tab-project-{{ project.pk }}-choins"
-                aria-expanded="false">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                            
-                            {% react_user_idea_choins project %}
-                        </div>
-                    </div>
-                </div>
-            </div>
+                aria-labelledby="tab-project-{{ project.pk }}-history"
+                aria-expanded="true">
+                <div class="timeline-carousel__wrapper">
+             </div>
+             </div>
+
+             
+                
 
             {% include 'footer_upper.html' with organisation=project.organisation %}
         </div>

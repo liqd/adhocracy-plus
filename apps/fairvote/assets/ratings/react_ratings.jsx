@@ -19,7 +19,7 @@ export default class RatingChoinsBox extends RatingBox {
         console.log('Success:', response)
       })
       .catch((error) => {
-        alert('An error occurred. Please try again.')
+        alert('An error occurred. Please try again: ', error.JSONResponse.message)
         console.log('Error Details:', error)
       })
   }
@@ -46,9 +46,10 @@ export default class RatingChoinsBox extends RatingBox {
   render () {
     const getRatingClasses = ratingType => {
       const valueForRatingType = ratingType === 'up' ? 1 : -1
+      const disabled = this.props.idea_status === 'ACCEPTED' ? 'disabled' : ''
       const cssClasses = this.state.userRating === valueForRatingType
-        ? 'rating-button rating-' + ratingType + ' is-selected'
-        : 'rating-button rating-' + ratingType
+        ? 'rating-button rating-' + ratingType + ' is-selected' + disabled
+        : 'rating-button rating-' + ratingType + disabled
       return cssClasses
     }
 

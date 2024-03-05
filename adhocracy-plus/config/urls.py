@@ -155,6 +155,7 @@ urlpatterns = [
                     ),
                 ),
                 path("projects/", include("apps.projects.urls")),
+                path("fairvote/", include("apps.fairvote.urls")),
                 path("interactiveevents/", include("apps.interactiveevents.urls")),
                 path(
                     "text/",

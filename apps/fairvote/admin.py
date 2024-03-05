@@ -63,3 +63,14 @@ class IdeaChoinAdmin(admin.ModelAdmin):
 @admin.register(models.UserIdeaChoin)
 class UserIdeaChoinAdmin(admin.ModelAdmin):
     list_display = ("user", "idea", "choins")
+
+
+@admin.register(models.ChoinEvent)
+class ChoinEventAdmin(admin.ModelAdmin):
+    list_display = ("user", "module", "display_content", "balance")
+
+    def display_content(self, obj):
+        # Adjust the number (e.g., 50) based on how many characters you want to display
+        return obj.content[:50] + "..." if len(obj.content) > 50 else obj.content
+
+    display_content.short_description = "Content"

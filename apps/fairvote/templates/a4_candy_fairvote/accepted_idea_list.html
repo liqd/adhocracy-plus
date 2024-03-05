@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .scrollable-list {
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      max-width: 70%;
+      margin-right: 15%;
+      margin-left: 15%;
+    }
+  
+    .idea-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .card-info {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .shift-left {
+        margin-left: 10%;
+    }
+</style>
+<div>
+<h1 class="shift-left">Accepted Ideas</h1>
+
+<div class="scrollable-list">
+  {% for module_id, module in user_fairvote_modules.items %}
+    {% for idea in module.ideas %}
+      <div class="idea-card">
+        <div class="card-title">{{ idea.name }}</div>
+        <div class="card-info">
+          <p>{{ idea.creator }}</p>
+          <p><i class="fa fa-cart-arrow-down" aria-label="invested"></i> {{ idea.support }}</p>
+          <p><i class="fa fa-bullseye" aria-label="goal"></i> {{ idea.goal }}</p>
+          <p><i class="fa fa-user" aria-label="supporters count"></i> {{ idea.supporters_count }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  {% endfor %}
+</div>
+</div>
+{% endblock %}
