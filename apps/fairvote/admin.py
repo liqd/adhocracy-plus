@@ -67,7 +67,13 @@ class UserIdeaChoinAdmin(admin.ModelAdmin):
 
 @admin.register(models.ChoinEvent)
 class ChoinEventAdmin(admin.ModelAdmin):
-    list_display = ("user", "module", "display_content", "balance")
+    list_display = (
+        "user",
+        "module",
+        "display_content",
+        "balance",
+        "created_at",
+    )
 
     def display_content(self, obj):
         # Adjust the number (e.g., 50) based on how many characters you want to display
