@@ -7,7 +7,10 @@ SED = sed
 ifneq (, $(shell command -v gsed;))
 	SED = gsed
 endif
-
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+endif
 .PHONY: all
 all: help
 
@@ -72,13 +75,13 @@ fixtures:
 
 .PHONY: server
 server:
-	$(VIRTUAL_ENV)/bin/python manage.py runserver 8004
+	$(VIRTUAL_ENV)/bin/python manage.py runserver $(PORT)
 
 .PHONY: watch
 watch:
 	trap 'kill %1' KILL; \
 	npm run watch & \
-	$(VIRTUAL_ENV)/bin/python manage.py runserver 8004
+	$(VIRTUAL_ENV)/bin/python manage.py runserver $(HOST):$(PORT)
 
 .PHONY: background
 background:
@@ -179,11 +182,11 @@ release:
 
 .PHONY: postgres-start
 postgres-start:
-	sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/pg_ctl start
+	sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/14/bin/pg_ctl start
 
 .PHONY: postgres-stop
 postgres-stop:
-	sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/pg_ctl stop
+	sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/14/bin/pg_ctl stop
 
 .PHONY: postgres-create
 postgres-create:
@@ -191,10 +194,10 @@ postgres-create:
 		echo "postgresql has already been initialized"; \
 	else \
 		sudo install -d -m 774 -o postgres -g $(USER) pgsql; \
-		sudo -u postgres /usr/lib/postgresql/12/bin/initdb pgsql; \
-		sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/pg_ctl start; \
-		sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/createuser -s django; \
-		sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/createdb -O django django; \
+		sudo -u postgres /usr/lib/postgresql/14/bin/initdb pgsql; \
+		sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/14/bin/pg_ctl start; \
+		sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/14/bin/createuser -s django; \
+		sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/14/bin/createdb -O django django; \
 	fi
 
 .PHONY: local-a4
