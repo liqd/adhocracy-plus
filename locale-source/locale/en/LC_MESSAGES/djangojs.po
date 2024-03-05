@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-06 16:55+0200\n"
+"POT-Creation-Date: 2023-09-04 16:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -277,7 +277,7 @@ msgstr "display: "
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:29
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:48
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:276
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:283
 #: apps/interactiveevents/assets/Filters.jsx:32
 #: apps/interactiveevents/assets/QuestionBox.jsx:57
 msgid "all"
@@ -287,18 +287,18 @@ msgstr "all"
 msgid "sorted by: "
 msgstr "sorted by: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:71
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:68
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:14
 msgid "Highlighted"
 msgstr "Highlighted"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:100
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:109
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "entry"
 msgstr[1] "entries"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:406
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:413
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "entry found for "
@@ -673,16 +673,20 @@ msgid "You can still manage all your preferences on User Agreements."
 msgstr "You can still manage all your preferences on User Agreements."
 
 #: apps/captcha/assets/captcheck.js:29
+msgid "Click for image-based question"
+msgstr "Click for image-based question"
+
+#: apps/captcha/assets/captcheck.js:30
+msgid "Click for text-based question"
+msgstr "Click for text-based question"
+
+#: apps/captcha/assets/captcheck.js:31
 msgid "Image mode"
 msgstr "Image mode"
 
-#: apps/captcha/assets/captcheck.js:30
+#: apps/captcha/assets/captcheck.js:32
 msgid "Text mode"
 msgstr "Text mode"
-
-#: apps/captcha/assets/captcheck.js:31
-msgid "Captcha: switch between image and text question"
-msgstr "Captcha: switch between image and text question"
 
 #: apps/documents/assets/ChapterForm.jsx:13
 msgid "Chapter title"
@@ -962,10 +966,10 @@ msgstr "posted a {}comment{}"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:221
 #, javascript-format
-msgid "'s {}comment{} has been reported 1 time since it's creation"
-msgid_plural "'s {}comment{} has been reported %s times since it's creation"
-msgstr[0] "'s {}comment{} has been reported 1 time since it's creation"
-msgstr[1] "'s {}comment{} has been reported %s times since it's creation"
+msgid "This {}comment{} has been reported 1 time since its creation"
+msgid_plural "This {}comment{} has been reported %s times since its creation"
+msgstr[0] "This {}comment{} has been reported 1 time since its creation"
+msgstr[1] "This {}comment{} has been reported %s times since its creation"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:240
 msgid "Mark as read"
@@ -1181,6 +1185,22 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
+
+#, javascript-format
+#~ msgid "This {}comment{} has been reported 1 time since it's creation"
+#~ msgid_plural ""
+#~ "This {}comment{} has been reported %s times since it's creation"
+#~ msgstr[0] "This {}comment{} has been reported 1 time since it's creation"
+#~ msgstr[1] "This {}comment{} has been reported %s times since it's creation"
+
+#~ msgid "Captcha: switch between image and text question"
+#~ msgstr "Captcha: switch between image and text question"
+
+#, javascript-format
+#~ msgid "'s {}comment{} has been reported 1 time since it's creation"
+#~ msgid_plural "'s {}comment{} has been reported %s times since it's creation"
+#~ msgstr[0] "'s {}comment{} has been reported 1 time since it's creation"
+#~ msgstr[1] "'s {}comment{} has been reported %s times since it's creation"
 
 #~ msgid "posted a"
 #~ msgstr "posted a"
