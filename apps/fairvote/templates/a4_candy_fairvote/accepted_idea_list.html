@@ -39,12 +39,12 @@
   {% for module_id, module in user_fairvote_modules.items %}
     {% for idea in module.ideas %}
       <div class="idea-card">
-        <div class="card-title">{{ idea.name }}</div>
+        <div class="card-title"><a title="link to idea page" href='{{ idea.url }}'>{{ idea.name }}</a></div>
         <div class="card-info">
-          <p>{{ idea.creator }}</p>
-          <p><i class="fa fa-cart-arrow-down" aria-label="invested"></i> {{ idea.support }}</p>
-          <p><i class="fa fa-bullseye" aria-label="goal"></i> {{ idea.goal }}</p>
-          <p><i class="fa fa-user" aria-label="supporters count"></i> {{ idea.supporters_count }}</p>
+          <p>Created by {{ idea.creator }}</p>
+          <p><i class="fa fa-cart-arrow-down" aria-label="invested"></i> You paid {{ idea.support }} </p>
+          <p><i class="fa fa-bullseye" aria-label="goal"></i> Total cost {{ idea.goal }}</p>
+          <p><i class="fa fa-user" aria-label="supporters count"></i> {{ idea.supporters_count }} supporters</p>
         </div>
       </div>
     {% endfor %}

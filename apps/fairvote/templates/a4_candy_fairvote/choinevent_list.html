@@ -42,11 +42,10 @@
     {% for choinevent in choinevent_list %}
       <li class="event-card">
         <div class="event-info">
-          <i class="{% if choinevent.type == 'ADD' %}fa fa-plus{% elif choinevent.type == 'ACC' %}fa fa-check{% else %}fa fa-bell{% endif %}"></i>
-          {{ choinevent.content }}<br/>
-          <p style="font-size: smaller;"><i class="fa fa-wallet" aria-label="balance"></i> {{ choinevent.balance }}
-          <br/>
-          {{ choinevent.created_at }}</p>
+          <p>{{ choinevent.created_at }}          </p>
+          <p><i class="{% if choinevent.type == 'ADD' %}fa fa-plus{% elif choinevent.type == 'ACC' %}fa fa-check{% else %}fa fa-bell{% endif %}"></i>
+          {{ choinevent.content }}<br/></p>
+          <p style="font-size: smaller;"><i class="fa fa-wallet" aria-label="balance"></i> Your balance: {{ choinevent.balance }}</p>
         </div>
         <div class="event-actions">
           <!-- Add any additional actions or buttons on the right side of the card -->
