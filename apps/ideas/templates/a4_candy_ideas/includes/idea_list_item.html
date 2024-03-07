@@ -33,7 +33,7 @@
                     <i class="fa fa-bullseye" aria-label="{% translate 'Choins' %}"></i>
                     {% if object.choin.first.missing <= 0 and object.positive_rating_count > 0 %}
                         {%if object.moderator_status != 'ACCEPTED' %}
-                            goal achived
+                            goal achieved
                         {%endif%}
                     {% else %}
                         {{ object.choin.first.missing |floatformat:"2" }}

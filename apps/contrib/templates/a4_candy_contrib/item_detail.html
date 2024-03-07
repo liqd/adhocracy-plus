@@ -41,7 +41,7 @@
                         {{ object.choin.first.choins |floatformat:"2" }}
                         <i class="fa fa-coins" aria-label="{% translate 'Choins' %}"></i>
                         {% if object.choin.first.missing <= 0 and object.positive_rating_count > 0 %}
-                        goal achived
+                        goal achieved
                         {% else %}
                             Required {{object.choin.first.missing |floatformat:"2" }} Choins/supporter
                         {% endif %}

@@ -61,11 +61,9 @@ class IdeaChoin(models.Model):
         supporters = self.get_supporters()
         supporters_count = supporters.count()
         choins_sum = self.get_choins_sum()
-        print(choins_sum)
 
         if choins_sum < self.goal:
             choins_per_user = (self.goal - choins_sum) / supporters_count
-            print(choins_per_user)
 
             users_choins = Choin.objects.filter(module=self.idea.module)
             for user_choin in users_choins:
@@ -80,15 +78,11 @@ class IdeaChoin(models.Model):
                     type="ADD",
                 )
 
-        print(supporters)
         choins_per_user = self.goal / supporters_count  # most fair option
         supportes_by_choins = sorted(supporters, key=lambda s: s.choins)
-        print(supportes_by_choins)
         current_sum = self.goal
         last_user_index = supporters_count
         for index, supporter in enumerate(supportes_by_choins):
-            print(current_sum)
-            print(supporter)
             if supporter.choins < choins_per_user:
                 UserIdeaChoin.objects.create(
                     user=supporter.user, idea=self.idea, choins=supporter.choins
@@ -115,7 +109,6 @@ class IdeaChoin(models.Model):
             choins_per_user = current_sum / users_count_to_divide
             for i in range(last_user_index, supporters_count):
                 supporter = supportes_by_choins[i]
-                print(supporter)
 
                 UserIdeaChoin.objects.create(
                     user=supporter.user, idea=self.idea, choins=supporter.choins
@@ -136,7 +129,7 @@ class IdeaChoin(models.Model):
             | Q(user__rating__isnull=True),
             module=self.idea.module,
         ).distinct()
-        message = f"The idea {self.idea.name} has been accepted. {supporters_count} participants paid {self.goal} choins. You paied 0"
+        message = f"The idea {self.idea.name} has been accepted. {supporters_count} participants paid {self.goal} choins. You paid 0"
         ChoinEvent.objects.bulk_create(
             [
                 ChoinEvent(
@@ -177,22 +170,18 @@ class IdeaChoin(models.Model):
         return idea_choin.get("choins_ann", 0) if idea_choin else 0
 
     def update_choins(self):
-        print(self.idea)
         if self.idea.moderator_status == "ACCEPTED":
             self.choins = 0
             self.missing = 0
             self.save()
         else:
             self.choins = self.get_choins_sum()
-            print("choins:", self.choins)
             supporters_count = Rating.objects.filter(idea=self.idea, value=1).count()
-            print("supporters count:", supporters_count)
             self.missing = (
                 ((self.goal - self.choins) / supporters_count)
                 if supporters_count
                 else self.goal
             )
-            print("missing:", self.missing)
             self.save()
 
     def __str__(self):
@@ -214,6 +203,7 @@ class UserIdeaChoin(models.Model):
 
 class ChoinEvent(models.Model):
     EVENT_TYPES = [
+        ("NEW", "Welcome"),
         ("ADD", "Add Choins"),
         ("ACC", "Idea Accepted"),
     ]
