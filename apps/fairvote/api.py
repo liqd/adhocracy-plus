@@ -14,6 +14,7 @@ from adhocracy4.api.permissions import ViewSetRulesPermission
 from apps.ideas.views import IdeaDetailView
 
 from .models import Choin
+from .models import ChoinEvent
 from .models import Idea
 from .models import IdeaChoin
 from .serializers import ChoinSerializer
@@ -103,7 +104,13 @@ class IdeaChoinViewSet(viewsets.ModelViewSet):
             idea = request.data["ideaId"]
             user = request.user
             module = Idea.objects.get(pk=idea).module
-            choins = Choin.objects.get_or_create(user=user, module=module)[0].choins
+            obj, created = Choin.objects.get_or_create(user=user, module=module)
+            if created:
+                messgae = f"You joined to {idea.module} - {idea.module.project}"
+                ChoinEvent.objects.create(
+                    user=user, module=module, type="NEW", content=messgae, balance=0
+                )
+            choins = obj.choins
             print(choins, user)
             if value == -1:  # NEGATIVE
                 choins = 0
@@ -126,7 +133,13 @@ class IdeaChoinViewSet(viewsets.ModelViewSet):
             idea = request.data["ideaId"]
             user = request.user
             module = Idea.objects.get(pk=idea).module
-            choins = Choin.objects.get_or_create(user=user, module=module)[0].choins
+            obj, created = Choin.objects.get_or_create(user=user, module=module)
+            if created:
+                messgae = f"You joined to {idea.module} - {idea.module.project}"
+                ChoinEvent.objects.create(
+                    user=user, module=module, type="NEW", content=messgae, balance=0
+                )
+            choins = obj.choins
             add = True
             if old_value == 1:  # POSITIVE
                 choins *= -1

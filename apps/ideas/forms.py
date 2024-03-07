@@ -5,6 +5,7 @@ from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from apps.contrib.mixins import ImageRightOfUseMixin
 from apps.fairvote.models import DEFAULT_GOAL
 from apps.fairvote.models import Choin
+from apps.fairvote.models import ChoinEvent
 from apps.fairvote.models import IdeaChoin
 from apps.organisations.mixins import OrganisationTermsOfUseMixin
 
@@ -25,7 +26,18 @@ class IdeaForm(
         idea = super().save(commit=commit)
         if idea.module.blueprint_type == "FV" and commit:
             IdeaChoin.objects.get_or_create(idea=idea, choins=0, goal=DEFAULT_GOAL)
-        Choin.objects.get_or_create(user=idea.creator, module=idea.module)
+        obj, created = Choin.objects.get_or_create(
+            user=idea.creator, module=idea.module
+        )
+        if created:
+            messgae = f"You joined to {idea.module} - {idea.module.project}"
+            ChoinEvent.objects.create(
+                user=idea.creator,
+                module=idea.module,
+                type="NEW",
+                content=messgae,
+                balance=0,
+            )
         return idea
 
 
