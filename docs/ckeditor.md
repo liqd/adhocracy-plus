@@ -5,7 +5,7 @@ adhocracy4.
 
 # Local Testing
 
-To test mb with a local version of django-ckeditor-5 you need to follow these
+To test aplus with a local version of django-ckeditor-5 you need to follow these
 steps:
 
 ```
@@ -19,7 +19,7 @@ npm install
 npm run dev
 ```
 
-Now in mb, do the folowing:
+Now in aplus, do the folowing:
 
 ```
 # activate the venv

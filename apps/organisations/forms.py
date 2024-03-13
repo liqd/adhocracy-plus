@@ -101,7 +101,6 @@ SOCIAL_MEDIA_SIZES = {
 
 
 class OrganisationForm(forms.ModelForm):
-
     translated_fields = [
         (
             "description",
@@ -138,9 +137,6 @@ class OrganisationForm(forms.ModelForm):
             CKEditor5Widget,
             {
                 "config_name": "collapsible-image-editor",
-                "label": OrganisationTranslation._meta.get_field(
-                    "information"
-                ).verbose_name,
                 "help_text": OrganisationTranslation._meta.get_field(
                     "information"
                 ).help_text,
@@ -175,6 +171,14 @@ class OrganisationForm(forms.ModelForm):
             for name, field_cls, kwargs in self.translated_fields:
                 self.instance.set_current_language(lang_code)
                 field = field_cls(**kwargs)
+                # The CKEditor5Widget doesn't have a label field, so we need to set it
+                # after creating the object
+                if isinstance(field, CKEditor5Widget):
+                    field.label = (
+                        OrganisationTranslation._meta.get_field(
+                            "information"
+                        ).verbose_name,
+                    )
                 identifier = self._get_identifier(lang_code, name)
                 field.required = False
 
@@ -297,7 +301,6 @@ class CommunicationProjectChoiceForm(forms.Form):
 
 
 class CommunicationContentCreationForm(forms.Form):
-
     sizes = None
 
     def __init__(self, project=None, format=None, *args, **kwargs):
