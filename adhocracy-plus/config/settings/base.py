@@ -35,8 +35,6 @@ INSTALLED_APPS = (
     "allauth.socialaccount",
     "rules.apps.AutodiscoverRulesConfig",
     "easy_thumbnails",
-    "ckeditor",
-    "ckeditor_uploader",
     "parler",
     # Wagtail cms components
     "wagtail.contrib.forms",
@@ -552,10 +550,7 @@ CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_RESULT_EXTENDED = True
 
-# CKEditor config
-CKEDITOR_UPLOAD_PATH = (
-    "uploads/"  # to be removed after django upgrade and ckeditor_uploader removal
-)
+# CKEditor5 config
 CKEDITOR_5_FILE_STORAGE = "adhocracy4.ckeditor.storage.CustomStorage"
 CKEDITOR_5_PATH_FROM_USERNAME = True
 CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
