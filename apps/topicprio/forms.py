@@ -5,7 +5,6 @@ from django_ckeditor_5.fields import CKEditor5Field
 from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
-from apps.contrib.widgets import Select2Widget
 
 from . import models
 
@@ -13,7 +12,6 @@ from . import models
 class TopicForm(
     CategorizableFieldMixin,
     LabelsAddableFieldMixin,
-#    CategoryAndLabelAliasMixin,
     forms.ModelForm,
 ):
     description = CKEditor5Field(
@@ -27,7 +25,6 @@ class TopicForm(
     class Meta:
         model = models.Topic
         fields = ["name", "description", "category", "labels"]
-        widgets = {"category": Select2Widget(attrs={"class": "select2__no-search"})}
         help_texts = {
             "description": _(
                 "If you add an image, please provide an alternate text. "
