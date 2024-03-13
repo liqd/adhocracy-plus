@@ -553,14 +553,17 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_RESULT_EXTENDED = True
 
 # CKEditor config
-CKEDITOR_UPLOAD_PATH = "uploads/"  # to be removed after django upgrade and ckeditor_uploader removal
+CKEDITOR_UPLOAD_PATH = (
+    "uploads/"  # to be removed after django upgrade and ckeditor_uploader removal
+)
 CKEDITOR_5_FILE_STORAGE = "adhocracy4.ckeditor.storage.CustomStorage"
 CKEDITOR_5_PATH_FROM_USERNAME = True
 CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
 CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpg", "jpeg", "png", "gif", "pdf", "docx"]
+CKEDITOR_5_USER_LANGUAGE = True
 CKEDITOR_5_CONFIGS = {
     "default": {
-        "language": "de",
+        "language": ["de", "en", "nl", "ky", "ru"],
         "toolbar": [
             "bold",
             "italic",
@@ -580,7 +583,6 @@ CKEDITOR_5_CONFIGS = {
         "link": {"defaultProtocol": "https://"},
     },
     "image-editor": {
-        "language": "de",
         "toolbar": {
             "items": [
                 "bold",
@@ -617,7 +619,6 @@ CKEDITOR_5_CONFIGS = {
         "link": {"defaultProtocol": "https://"},
     },
     "collapsible-image-editor": {
-        "language": "de",
         "toolbar": [
             "bold",
             "italic",
@@ -666,7 +667,6 @@ CKEDITOR_5_CONFIGS = {
         },
     },
     "video-editor": {
-        "language": "de",
         "toolbar": ["mediaEmbed"],
         "mediaEmbed": {
             "removeProviders": [
