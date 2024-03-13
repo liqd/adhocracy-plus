@@ -67,6 +67,7 @@ function init () {
   if ($.fn.select2) {
     $('.js-select2').select2()
   }
+}
 
 document.addEventListener('DOMContentLoaded', init, false)
 
