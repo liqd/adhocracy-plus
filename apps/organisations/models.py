@@ -7,12 +7,12 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 from jsonfield.fields import JSONField
 from parler.models import TranslatableModel
 from parler.models import TranslatedFields
 
 from adhocracy4 import transforms
-from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.images import fields as images_fields
 from adhocracy4.projects.models import Project
 from apps.projects import query
@@ -55,7 +55,7 @@ class Organisation(TranslatableModel):
             ),
             blank=True,
         ),
-        information=RichTextCollapsibleUploadingField(
+        information=CKEditor5Field(
             config_name="collapsible-image-editor",
             verbose_name=_("Information about your organisation"),
             help_text=_(
