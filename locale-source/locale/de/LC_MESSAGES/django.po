@@ -7,16 +7,18 @@
 # Katharina Schmid, 2021
 # Frederik Wegener <frederik.wegener@liqd.de>, 2021
 # Katharina Lindenlaub, 2023
+# JOster, 2023
 # Luca Thüer, 2023
+# Tietje Khieu, 2024
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 13:44+0100\n"
+"POT-Creation-Date: 2024-03-20 14:59+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Luca Thüer, 2023\n"
+"Last-Translator: Tietje Khieu, 2024\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -429,13 +431,15 @@ msgstr "Kategorieicon"
 
 #: adhocracy4/categories/models.py:36
 msgid "Type of category"
-msgstr ""
+msgstr "Art der Kategorie"
 
 #: adhocracy4/categories/models.py:38
 msgid ""
 "You can individualise the term category. The character limit is max. 25 "
 "characters (with spaces)."
 msgstr ""
+"Sie können die Begriffskategorie individuell gestalten. Die "
+"Zeichenbegrenzung beträgt max. 25 Zeichen (mit Leerzeichen)."
 
 #: adhocracy4/categories/models.py:46
 msgid ""
@@ -443,11 +447,14 @@ msgid ""
 "display of your proposal. The list of all proposals can be filtered by "
 "category."
 msgstr ""
+"Ordnen Sie Ihren Vorschlag einer Kategorie zu. Diese erscheint automatisch "
+"in der Anzeige Ihrer Idee. Die Liste aller Vorschläge kann nach Kategorien "
+"gefiltert werden."
 
 #: adhocracy4/categories/models.py:52
 #: adhocracy4/labels/models.py:29
 msgid "Description/Helptext"
-msgstr ""
+msgstr "Beschreibung/Hilfetext"
 
 #: adhocracy4/categories/models.py:54
 #: adhocracy4/labels/models.py:31
@@ -456,6 +463,10 @@ msgid ""
 "displayed to the participants as help text when they have to assign their "
 "ideas. The character limit is max. 300 characters (with spaces)."
 msgstr ""
+"Sie können den Beschreibungstext individuell gestalten. Der "
+"Beschreibungstext wird den Teilnehmern als Hilfetext angezeigt, wenn sie "
+"ihre Ideen zuordnen müssen. Die Zeichenbegrenzung beträgt max. 300 Zeichen "
+"(mit Leerzeichen)."
 
 #: adhocracy4/comments/models.py:47
 #: adhocracy4/polls/exports.py:40
@@ -795,7 +806,7 @@ msgstr "Urheber*in, die im {image_name} angezeigt wird."
 #: adhocracy4/images/fields.py:103
 #, python-brace-format
 msgid "{image_name} alt text"
-msgstr ""
+msgstr "{image_name} Alt-Text"
 
 #: adhocracy4/images/fields.py:106
 msgid ""
@@ -803,16 +814,19 @@ msgid ""
 "is read out by screen readers. Describe the image in max. 80 characters. "
 "Example: A busy square with people in summer."
 msgstr ""
+"Ein Alternativtext dient als textliche Beschreibung des Bildinhalts und wird "
+"von Screenreadern vorgelesen. Beschreiben Sie das Bild in max. 80 Zeichen. "
+"Beispiel: Ein belebter Platz mit Menschen im Sommer."
 
 #: adhocracy4/images/mixins.py:30
 #: adhocracy4/images/mixins.py:35
 msgid "Please add copyright information."
-msgstr ""
+msgstr "Bitte fügen Sie Angaben zum Copyright hinzu."
 
 #: adhocracy4/images/mixins.py:40
 #: adhocracy4/images/mixins.py:45
 msgid "Please add an alternative text for this image"
-msgstr ""
+msgstr "Bitte fügen Sie einen Alternativtext zu diesem Bild hinzu."
 
 #: adhocracy4/images/validators.py:26
 msgid "Unsupported file format. Supported formats are {}."
@@ -867,13 +881,15 @@ msgstr "Merkmal"
 
 #: adhocracy4/labels/models.py:12
 msgid "Type of label"
-msgstr ""
+msgstr "Art des Labels"
 
 #: adhocracy4/labels/models.py:14
 msgid ""
 "You can individualise the term label. The character limit is max. 25 "
 "characters (with spaces)."
 msgstr ""
+"Sie können die Begriffsbezeichnung individuell gestalten. Die "
+"Zeichenbegrenzung beträgt max. 25 Zeichen (mit Leerzeichen)."
 
 #: adhocracy4/labels/models.py:22
 msgid ""
@@ -881,6 +897,9 @@ msgid ""
 "appear in the display of your proposal. In addition, the list of all "
 "proposals can be filtered by labels."
 msgstr ""
+"Versehen Sie Ihren Vorschlag mit einem oder mehreren Etiketten. Diese werden "
+"dann automatisch in der Anzeige Ihres Vorschlags erscheinen. Darüber hinaus "
+"kann die Liste aller Vorschläge nach Bezeichnungen gefiltert werden."
 
 #: adhocracy4/maps/admin.py:15
 #: adhocracy4/maps/models.py:11
@@ -1190,7 +1209,7 @@ msgstr "öffentlich"
 
 #: adhocracy4/projects/mixins.py:173
 msgid "Final Results"
-msgstr ""
+msgstr "Ergebnisse"
 
 #: adhocracy4/projects/models.py:42
 msgid ""
@@ -2064,7 +2083,7 @@ msgstr "Nächste Seite"
 #: apps/debate/templates/a4_candy_debate/subject_detail.html:29
 #: apps/topicprio/templates/a4_candy_topicprio/topic_detail.html:20
 msgid "go to overview"
-msgstr ""
+msgstr "Zur Übersicht"
 
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:98
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:107
@@ -3027,7 +3046,7 @@ msgstr "Beitrag anzeigen"
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:4
 #, python-format
 msgid "Event in project %(project_name)s"
-msgstr ""
+msgstr "Event im Projekt %(project_name)s"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:6
 msgid "Event"
@@ -3766,6 +3785,8 @@ msgid ""
 "Show insights with numbers of contributions and participants during the "
 "participation process"
 msgstr ""
+"Insights im Reiter \"Ergebnis\" mit der Anzahl an Beiträgen und "
+"Teilnehmer*innen während des Beteiligungsprozesses anzeigen"
 
 #: apps/projects/forms.py:43 apps/projects/views.py:246
 msgid "Invite users via email"
@@ -3785,27 +3806,27 @@ msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 
 #: apps/projects/models.py:137
 msgid "active participants"
-msgstr ""
+msgstr "Aktive Teilnehmer*innen"
 
 #: apps/projects/models.py:138
 msgid "comments"
-msgstr ""
+msgstr "Kommentare"
 
 #: apps/projects/models.py:139
 msgid "ratings"
-msgstr ""
+msgstr "Bewertungen"
 
 #: apps/projects/models.py:143
 msgid "written ideas"
-msgstr ""
+msgstr "Eingereichte Ideen"
 
 #: apps/projects/models.py:146
 msgid "poll answers"
-msgstr ""
+msgstr "Umfrageantworten"
 
 #: apps/projects/models.py:149
 msgid "interactive event questions"
-msgstr ""
+msgstr "Interaktive Veranstaltung Fragen"
 
 #: apps/projects/models.py:153
 msgid ""
@@ -3813,6 +3834,10 @@ msgid ""
 "            into the number of individuals involved in the process\n"
 "            and help you make informed decisions based on the data"
 msgstr ""
+"Diese Abschnitt wird Ihnen wertvolle Einblicke geben\n"
+"über die Anzahl der an dem Prozess beteiligten Nutzer*innen\n"
+"und hilft Ihnen, auf der Grundlage der Daten fundierte Entscheidungen zu "
+"treffen"
 
 #: apps/projects/serializers.py:95
 #, python-format
@@ -3985,7 +4010,7 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/project_detail.html:62
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:13
 msgid "Here you can find a decorative picture."
-msgstr ""
+msgstr "Hier befindet sich ein dekoratives Bild."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:26
 msgid "Project is private."
@@ -4009,7 +4034,7 @@ msgstr[1] "%(num_entries)s Beiträge"
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:78
 #, python-format
 msgid " %(abbr_unit)s "
-msgstr ""
+msgstr "%(abbr_unit)s"
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:80
 msgid "more than 1 year"
@@ -4237,7 +4262,7 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/project_detail.html:289
 #: adhocracy-plus/templates/a4dashboard/includes/project_result_form.html:4
 msgid "Insights"
-msgstr ""
+msgstr "Insights"
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:312
 msgid "No results yet."
@@ -5082,7 +5107,7 @@ msgstr "Abbrechen"
 
 #: adhocracy-plus/templates/a4dashboard/includes/project_result_form.html:18
 msgid "Results"
-msgstr ""
+msgstr "Ergebnisse"
 
 #: adhocracy-plus/templates/a4dashboard/organisation_form_base.html:16
 msgid "General information"
@@ -5689,7 +5714,6 @@ msgstr "Mit Konto eines sozialen Netzwerks einloggen"
 msgid "Login with "
 msgstr "Einloggen mit "
 
-#, python-format
 #~ msgid "Invitation to an event in project %(project_name)s"
 #~ msgstr "Veranstaltung im Projekt %(project_name)s"
 
