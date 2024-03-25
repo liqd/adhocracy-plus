@@ -2,6 +2,7 @@
 
 from bs4 import BeautifulSoup
 from django.db import migrations
+from django.utils import translation
 
 
 def replace_iframe_with_figur(apps, schema_editor):
@@ -10,6 +11,8 @@ def replace_iframe_with_figur(apps, schema_editor):
         '{url}"></iframe></div></div></figure>'
     )
     Organisation = apps.get_model("a4_candy_organisations", "Organisation")
+    translation.activate("en")
+
     for organisation in Organisation.objects.all():
         soup = BeautifulSoup(organisation.description, "html.parser")
         iframes = soup.findAll("iframe")
