@@ -1,14 +1,6 @@
-const React = require('react')
-const django = require('django')
-const FormFieldError = require('adhocracy4/adhocracy4/static/FormFieldError')
-
-const ckGet = function (id) {
-  return window.CKEDITOR.instances[id]
-}
-
-const ckReplace = function (id, config) {
-  return window.CKEDITOR.replace(id, config)
-}
+import React, { useRef, useEffect } from 'react'
+import django from 'django'
+import FormFieldError from 'adhocracy4/adhocracy4/static/FormFieldError'
 
 // translations
 const translations = {
@@ -25,75 +17,90 @@ const translations = {
   )
 }
 
-class ParagraphForm extends React.Component {
-  handleNameChange (e) {
+const ParagraphForm = (props) => {
+  const editor = useRef(null)
+  const index = useRef(props.index)
+  const id = 'id_paragraphs-' + props.id + '-text'
+
+  useEffect(() => {
+    // destroy if component renders multiple times to prevent
+    // multiple CKEditors
+    let destroy = false
+    const createEditor = async () => {
+      const config = window.ckeditorPrepareConfig(
+        JSON.stringify(props.config),
+        props.csrfCookieName,
+        props.uploadUrl,
+        props.uploadFileTypes
+      )
+      const ckeditor = await window.ClassicEditor.create(
+        document.querySelector('#' + id),
+        config
+      )
+      if (destroy) {
+        ckeditor.destroy()
+      } else {
+        editor.current = ckeditor
+        editor.current.model.document.on('change:data', (e) => {
+          const text = editor.current.getData()
+          props.onTextChange(text)
+        })
+        editor.current.setData(props.paragraph.text)
+      }
+    }
+    if (editor.current) {
+      if (index.current !== props.index) {
+        // recreate if index changed
+        destroyEditor()
+      }
+    }
+    index.current = props.index
+    if (!editor.current) {
+      createEditor()
+      return () => {
+        // destroy if still in process of creating
+        destroy = true
+        // destroy if already created
+        destroyEditor()
+      }
+    }
+  }, [props.index])
+
+  const destroyEditor = () => {
+    if (editor.current) {
+      editor.current.destroy()
+      editor.current = null
+    }
+  }
+  const handleNameChange = (e) => {
     const name = e.target.value
-    this.props.onNameChange(name)
+    props.onNameChange(name)
   }
 
-  ckId () {
-    return 'id_paragraphs-' + this.props.id + '-text'
-  }
-
-  ckEditorDestroy () {
-    const editor = ckGet(this.ckId())
-    if (editor) {
-      editor.destroy()
-    }
-  }
-
-  ckEditorCreate () {
-    if (!ckGet(this.ckId())) {
-      const editor = ckReplace(this.ckId(), this.props.config)
-      editor.on('change', function (e) {
-        const text = e.editor.getData()
-        this.props.onTextChange(text)
-      }.bind(this))
-      editor.setData(this.props.paragraph.text)
-    }
-  }
-
-  UNSAFE_componentWillUpdate (nextProps) {
-    if (nextProps.index > this.props.index) {
-      this.ckEditorDestroy()
-    }
-  }
-
-  componentDidUpdate (prevProps) {
-    if (this.props.index > prevProps.index) {
-      this.ckEditorCreate()
-    }
-  }
-
-  componentDidMount () {
-    this.ckEditorCreate()
-  }
-
-  componentWillUnmount () {
-    this.ckEditorDestroy()
-  }
-
-  render () {
-    const ckEditorToolbarsHeight = 60 // measured on example editor
-    return (
-      <section className="commenting">
-        <div className="commenting__content">
+  return (
+    <section>
+      <div className="row">
+        <div className="col-lg-9">
           <div className="commenting__content--border">
             <div className="form-group">
-              <label
-                htmlFor={'id_paragraphs-' + this.props.id + '-name'}
-              >
+              <label htmlFor={'id_paragraphs-' + props.id + '-name'}>
                 {translations.headline}
                 <input
                   className="form-control"
-                  id={'id_paragraphs-' + this.props.id + '-name'}
-                  name={'paragraphs-' + this.props.id + '-name'}
+                  id={'id_paragraphs-' + props.id + '-name'}
+                  name={'paragraphs-' + props.id + '-name'}
                   type="text"
-                  value={this.props.paragraph.name}
-                  onChange={this.handleNameChange.bind(this)}
+                  value={props.paragraph.name}
+                  onChange={handleNameChange}
+                  aria-invalid={props.errors ? 'true' : 'false'}
+                  aria-describedby={props.errors && 'id_error-' + props.id}
+                />
+                <FormFieldError
+                  id={'id_error-' + props.id}
+                  error={props.errors}
+                  field="name"
                 />
               </label>
-              <FormFieldError id={'id_error-' + this.props.id} error={this.props.errors} field="name" />
             </div>
 
             <div className="form-group">
@@ -107,7 +114,7 @@ class ParagraphForm extends React.Component {
                 </div>
                 <div
                   className="django-ckeditor-widget"
-                  data-field-id={'id_paragraphs-' + this.props.id + '-text'}
+                  data-field-id={'id_paragraphs-' + props.id + '-text'}
                   style={{ display: 'inline-block' }}
                 >
                   <textarea
@@ -119,28 +126,30 @@ class ParagraphForm extends React.Component {
                     }
                   />
                 </div>
+                <FormFieldError
+                  id={'id_error-' + props.id}
+                  error={props.errors}
+                  field="text"
+                />
               </label>
-              <FormFieldError id={'id_error-' + this.props.id} error={this.props.errors} field="text" />
             </div>
           </div>
         </div>
+
         <div className="commenting__actions btn-group" role="group">
           <button
             className="btn btn--light btn--small"
-            onClick={this.props.onMoveUp}
-            disabled={!this.props.onMoveUp}
+            onClick={props.onMoveUp}
+            disabled={!props.onMoveUp}
             title={translations.moveUp}
             type="button"
           >
-            <i
-              className="fa fa-chevron-up"
-              aria-label={translations.moveUp}
-            />
+            <i className="fa fa-chevron-up" aria-label={translations.moveUp} />
           </button>
           <button
             className="btn btn--light btn--small"
-            onClick={this.props.onMoveDown}
-            disabled={!this.props.onMoveDown}
+            onClick={props.onMoveDown}
+            disabled={!props.onMoveDown}
             title={translations.moveDown}
             type="button"
           >
@@ -151,19 +160,16 @@ class ParagraphForm extends React.Component {
           </button>
           <button
             className="btn btn--light btn--small"
-            onClick={this.props.onDelete}
+            onClick={props.onDelete}
             title={translations.delete}
             type="button"
           >
-            <i
-              className="far fa-trash-alt"
-              aria-label={translations.delete}
-            />
+            <i className="fas fa-trash-alt" aria-label={translations.delete} />
           </button>
         </div>
-      </section>
-    )
-  }
+      </div>
+    </section>
+  )
 }
 
 module.exports = ParagraphForm

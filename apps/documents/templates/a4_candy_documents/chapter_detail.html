@@ -38,13 +38,13 @@
                         {% for paragraph in object.paragraphs.all %}
 
                             <section class="paragraph" id="paragraph-{{ object.pk }}-{{ paragraph.pk }}">
-                                <div class="paragraph__content ck-content">
+                                <div class="paragraph__content">
                                     <h3 class="paragraph__title">
                                         {{ paragraph.name }}
                                     </h3>
-				    <div class="ck-content">
+                                    <div class="ck-content">
                                         {{ paragraph.text|richtext }}
-				    </div>
+                                    </div>
                                 </div>
                                 <div class="paragraph__actions">
                                     <a
