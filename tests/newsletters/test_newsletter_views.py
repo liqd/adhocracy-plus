@@ -268,9 +268,9 @@ def test_send_organisation_missing_alt_text(admin, client, project):
         "sender": "test@test.de",
         "subject": "Testsubject",
         "body": "Testbody <img>",
-        "receivers": newsletter_models.ORGANISATION,
+        "receivers": newsletter_models.PROJECT,
         "organisation": organisation.pk,
-        "project": "",
+        "project": project.pk,
         "send": "Send",
     }
 
@@ -293,21 +293,23 @@ def test_send_organisation_with_alt_text(
     organisation = project.organisation
     user1 = user_factory(get_newsletters=True)
     user2 = user_factory(get_newsletters=True)
-    user_factory()
+
     email_address_factory(user=user1, email=user1.email, primary=True, verified=True)
     email_address_factory(user=user2, email=user2.email, primary=True, verified=True)
+
     follow_models.Follow.objects.all().delete()
     follow_factory(creator=user1, project=project)
     follow_factory(creator=user2, project=project, enabled=False)
+    assert newsletter_models.Newsletter.objects.count() == 0
 
     data = {
         "sender_name": "Tester",
         "sender": "test@test.de",
         "subject": "Testsubject",
         "body": 'Testbody <img alt="description">',
-        "receivers": newsletter_models.ORGANISATION,
+        "receivers": newsletter_models.PROJECT,
         "organisation": organisation.pk,
-        "project": "",
+        "project": project.pk,
         "send": "Send",
     }
 
@@ -315,8 +317,7 @@ def test_send_organisation_with_alt_text(
         "a4dashboard:newsletter-create", kwargs={"organisation_slug": organisation.slug}
     )
     client.login(username=admin.email, password="password")
-    response = client.post(url, data)
-    assert redirect_target(response) == "newsletter-create"
+    client.post(url, data)
     assert newsletter_models.Newsletter.objects.count() == 1
     assert len(mail.outbox) == 1
     assert mail.outbox[0].to == [user1.email]

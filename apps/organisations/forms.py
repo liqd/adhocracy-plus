@@ -134,14 +134,17 @@ class OrganisationForm(forms.ModelForm):
         ),
         (
             "information",
-            CKEditor5Widget,
+            forms.CharField,
             {
-                "config_name": "collapsible-image-editor",
+                "label": OrganisationTranslation._meta.get_field(
+                    "information"
+                ).verbose_name,
                 "help_text": OrganisationTranslation._meta.get_field(
                     "information"
                 ).help_text,
-                "external_plugin_resources": _external_plugin_resources,
-                "extra_plugins": ["collapsibleItem"],
+                "max_length": OrganisationTranslation._meta.get_field(
+                    "information"
+                ).max_length,
                 "widget": CKEditor5Widget(
                     config_name="collapsible-image-editor",
                 ),
@@ -170,15 +173,8 @@ class OrganisationForm(forms.ModelForm):
         for lang_code in self.languages:
             for name, field_cls, kwargs in self.translated_fields:
                 self.instance.set_current_language(lang_code)
+                print(field_cls)
                 field = field_cls(**kwargs)
-                # The CKEditor5Widget doesn't have a label field, so we need to set it
-                # after creating the object
-                if isinstance(field, CKEditor5Widget):
-                    field.label = (
-                        OrganisationTranslation._meta.get_field(
-                            "information"
-                        ).verbose_name,
-                    )
                 identifier = self._get_identifier(lang_code, name)
                 field.required = False
 
