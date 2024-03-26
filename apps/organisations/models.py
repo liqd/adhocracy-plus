@@ -1,5 +1,4 @@
 from autoslug import AutoSlugField
-from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
@@ -120,7 +119,7 @@ class Organisation(TranslatableModel):
         blank=True,
         verbose_name="Instagram handle",
     )
-    imprint = RichTextField(
+    imprint = CKEditor5Field(
         verbose_name=_("Imprint"),
         help_text=_(
             "Please provide all the legally "
@@ -129,7 +128,7 @@ class Organisation(TranslatableModel):
         ),
         blank=True,
     )
-    terms_of_use = RichTextField(
+    terms_of_use = CKEditor5Field(
         verbose_name=_("Terms of use"),
         help_text=_(
             "Please provide all the legally "
@@ -138,7 +137,7 @@ class Organisation(TranslatableModel):
         ),
         blank=True,
     )
-    data_protection = RichTextField(
+    data_protection = CKEditor5Field(
         verbose_name=_("Data protection policy"),
         help_text=_(
             "Please provide all the legally "
@@ -148,7 +147,7 @@ class Organisation(TranslatableModel):
         ),
         blank=True,
     )
-    netiquette = RichTextField(
+    netiquette = CKEditor5Field(
         verbose_name=_("Netiquette"),
         help_text=_(
             "Please provide a netiquette for the participants. "
