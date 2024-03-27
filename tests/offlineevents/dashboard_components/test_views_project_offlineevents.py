@@ -110,10 +110,10 @@ def test_offlineevent_update_view_missing_alt_text(
     )
     initiator = module.project.organisation.initiators.first()
     event = offline_event_factory(project=project)
-    url = reverse("a4dashboard:offlineevent-update", kwargs={
-        "organisation_slug": project.organisation.slug,
-        "slug": event.slug}
-        )
+    url = reverse(
+        "a4dashboard:offlineevent-update",
+        kwargs={"organisation_slug": project.organisation.slug, "slug": event.slug},
+    )
     data = {
         "name": "name",
         "event_type": "event_type",
@@ -142,10 +142,10 @@ def test_offlineevent_update_view_with_alt_text(
     )
     initiator = module.project.organisation.initiators.first()
     event = offline_event_factory(project=project)
-    url = reverse("a4dashboard:offlineevent-update", kwargs={
-        "organisation_slug": project.organisation.slug,
-        "slug": event.slug}
-        )
+    url = reverse(
+        "a4dashboard:offlineevent-update",
+        kwargs={"organisation_slug": project.organisation.slug, "slug": event.slug},
+    )
     data = {
         "name": "name",
         "event_type": "event_type",

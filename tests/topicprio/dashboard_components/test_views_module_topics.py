@@ -109,11 +109,12 @@ def test_topic_update_view_missing_alt_text(
     initiator = module.project.organisation.initiators.first()
     category = category_factory(module=module)
     url = reverse(
-        "a4dashboard:topic-update", kwargs={
+        "a4dashboard:topic-update",
+        kwargs={
             "organisation_slug": item.module.project.organisation.slug,
             "pk": item.pk,
-            "year": item.created.year
-            }
+            "year": item.created.year,
+        },
     )
     data = {
         "name": "name",
@@ -139,11 +140,12 @@ def test_topic_update_view_with_alt_text(
     initiator = module.project.organisation.initiators.first()
     category = category_factory(module=module)
     url = reverse(
-        "a4dashboard:topic-update", kwargs={
+        "a4dashboard:topic-update",
+        kwargs={
             "organisation_slug": item.module.project.organisation.slug,
             "pk": item.pk,
-            "year": item.created.year
-            }
+            "year": item.created.year,
+        },
     )
     data = {
         "name": "name",
