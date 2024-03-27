@@ -18,6 +18,11 @@ import {
   widget as ReactWidget
 } from 'adhocracy4'
 
+import { init as renderChoins } from '../../../apps/fairvote/assets/choins/react_choins_init.jsx'
+import { init as renderUserIdeaChoins } from '../../../apps/fairvote/assets/choins/react_user_idea_choins_init.jsx'
+import { init as renderInvestedChoins } from '../../../apps/fairvote/assets/choins/react_invested_choins_init.jsx'
+import { init as renderRatingChoins } from '../../../apps/fairvote/assets/ratings/react_ratings_init.jsx'
+
 import { renderLanguageChoice } from '../../../apps/organisations/assets/react_language_choice.jsx'
 
 function init () {
@@ -26,7 +31,12 @@ function init () {
   ReactWidget.initialise('a4', 'ratings', ReactRatings.renderRatings)
   ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
 
+  ReactWidget.initialise('aplus', 'ratings', renderRatingChoins)
+
   ReactWidget.initialise('euth', 'language-choice', renderLanguageChoice)
+  ReactWidget.initialise('aplus', 'choins', renderChoins)
+  ReactWidget.initialise('aplus', 'fv_modules', renderUserIdeaChoins)
+  ReactWidget.initialise('aplus', 'invested_choins', renderInvestedChoins)
 
   $('.timeline-carousel__item').slick({
     initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),

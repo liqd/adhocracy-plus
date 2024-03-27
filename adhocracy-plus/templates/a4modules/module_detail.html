@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
+{% load i18n rules react_follows react_choins thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -110,7 +110,10 @@
                 {% block module_description %}
                     {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
                     <h1 class="project-header__title">{{ module.name }}</h1>
+                    {% react_choins module %}
                     <p class="project-header__description">{{ module.description }}</p>
+                    {% endif %}
+                    {% if not module.choin %}
                     {% endif %}
                 {% endblock %}
             </div>

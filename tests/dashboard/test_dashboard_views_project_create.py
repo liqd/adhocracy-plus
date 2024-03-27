@@ -63,12 +63,14 @@ def test_module_blueprint_list(client, project):
     assert brainstorming_url in response.content.decode()
 
     blueprint_names = [b[0] for b in response.context_data["view"].blueprints]
+    print(blueprint_names)
     assert "idea-collection" in blueprint_names
     assert "text-review" in blueprint_names
     assert "poll" in blueprint_names
     assert "debate" in blueprint_names
 
     blueprint_types = [b[1][5] for b in response.context_data["view"].blueprints]
+    print(blueprint_types)
     settings_blueprint_types = [b[0] for b in settings.A4_BLUEPRINT_TYPES]
     for blueprint_type in blueprint_types:
         assert blueprint_type in settings_blueprint_types
@@ -117,7 +119,6 @@ def test_module_create(client, project):
 
 @pytest.mark.django_db
 def test_module_publish(client, project):
-
     organisation = project.organisation
     initiator = organisation.initiators.first()
     url = reverse(

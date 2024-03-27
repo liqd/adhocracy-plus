@@ -123,6 +123,7 @@ def create_insight_context(insight: ProjectInsight) -> dict:
     ("IE", _("interactive event")),
     ("TP", _("prioritization")),
     ("DB", _("debate")),
+    ("FV", _("fair vote")),
     """
 
     active_modules = [
@@ -131,7 +132,9 @@ def create_insight_context(insight: ProjectInsight) -> dict:
     blueprint_types = {module.blueprint_type for module in active_modules}
     show_polls = "PO" in blueprint_types
     show_live_questions = "IE" in blueprint_types
-    show_ideas = bool(blueprint_types.intersection({"BS", "IC", "MBS", "MIC", "PB"}))
+    show_ideas = bool(
+        blueprint_types.intersection({"BS", "IC", "MBS", "MIC", "PB", "FV"})
+    )
 
     counts = [
         (_("active participants"), insight.active_participants.count()),

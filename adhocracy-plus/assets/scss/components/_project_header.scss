@@ -11,7 +11,7 @@
     min-height: $hero-height-mobile;
 
     @media (min-width: $breakpoint) {
-        min-height: ($hero-height-mobile + $hero-height-secondary) / 2;
+        min-height: calc(($hero-height-mobile + $hero-height-secondary) / 2);
         margin: $spacer 0;
     }
 

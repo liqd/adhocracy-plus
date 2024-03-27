@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
+{% load i18n rules react_follows react_user_idea_choins thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -76,6 +76,7 @@
                 {% endif %}
                   <div class="tablist project-header__tabs">
                       <nav class="nav d-none d-md-inline-block" role="tablist">
+                        <!--
                           <a
                               id="tab-project-{{ project.pk }}-information"
                               class="tab"
@@ -86,6 +87,7 @@
                               aria-expanded="false">
                               {% translate 'Information' %}
                           </a>
+                        -->
                           <a
                               id="tab-project-{{ project.pk }}-participation"
                               class="tab active"
@@ -96,6 +98,7 @@
                               aria-expanded="true">
                               {% translate 'Participation' %}
                           </a>
+                          <!--
                           <a
                               id="tab-project-{{ project.pk }}-result"
                               class="tab"
@@ -105,6 +108,25 @@
                               aria-controls="tabpanel-project-{{ project.pk }}-result"
                               aria-expanded="false">
                               {% translate 'Result' %}
+                          </a>
+                        -->
+                            <a
+                              id="tab-project-{{ project.pk }}-history"
+                              class="tab"
+                              href="{% url 'choinevent-list' organisation_slug=project.organisation.slug %}"
+                              role="tab"
+                              aria-controls="tabpanel-project-{{ project.pk }}-history"
+                              aria-expanded="false">
+                              {% translate 'History' %}
+                          </a>
+                          <a
+                              id="tab-project-{{ project.pk }}-accepted"
+                              class="tab"
+                              href="{% url 'accepted_ideas' organisation_slug=project.organisation.slug obj_id=project.pk %}"
+                              role="tab"
+                              aria-controls="tabpanel-project-{{ project.pk }}-accepted"
+                              aria-expanded="false">
+                              {% translate 'Accepted Ideas' %}
                           </a>
                       </nav>
                       {% include 'includes/project_header_mobile_toggle.html' %}
@@ -119,7 +141,7 @@
             {% else %}
             <div class="u-spacer-bottom-4"></div>
             {% endif %}
-
+                
             <div
                 class="tabpanel tabpanel--topnav"
                 id="tabpanel-project-{{ project.pk }}-information"
@@ -158,12 +180,12 @@
             </div>
 
             <div
-                class="tabpanel tabpanel--topnav active"
-                id="tabpanel-project-{{ project.pk }}-participation"
-                role="tabpanel"
-                aria-labelledby="tab-project-{{ project.pk }}-participation"
-                aria-expanded="true">
-                <div class="timeline-carousel__wrapper">
+            class="tabpanel tabpanel--topnav active"
+            id="tabpanel-project-{{ project.pk }}-participation"
+            role="tabpanel"
+            aria-labelledby="tab-project-{{ project.pk }}-participation"
+            aria-expanded="true">
+            <div class="timeline-carousel__wrapper">
                 {% if project.display_timeline %}
                     {% include "a4_candy_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
                 {% else %}
@@ -275,7 +297,9 @@
                 </div>
                 {% block phase_content %}{% endblock %}
             </div>
-
+        </div>
+    
+        
             <div
                 class="tabpanel tabpanel--topnav"
                 id="tabpanel-project-{{ project.pk }}-result"
@@ -315,6 +339,19 @@
                     </div>
                 </div>
             </div>
+            <div
+                class="tabpanel tabpanel--topnav active"
+                id="tabpanel-project-{{ project.pk }}-history"
+                role="tabpanel"
+                aria-labelledby="tab-project-{{ project.pk }}-history"
+                aria-expanded="true">
+                <div class="timeline-carousel__wrapper">
+             </div>
+             </div>
+
+             
+                
+
             {% include 'footer_upper.html' with organisation=project.organisation %}
         </div>
     </div>
