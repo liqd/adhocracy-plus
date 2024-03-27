@@ -46,10 +46,9 @@ export default class RatingChoinsBox extends RatingBox {
   render () {
     const getRatingClasses = ratingType => {
       const valueForRatingType = ratingType === 'up' ? 1 : -1
-      const disabled = this.props.idea_status === 'ACCEPTED' ? 'disabled' : ''
       const cssClasses = this.state.userRating === valueForRatingType
-        ? 'rating-button rating-' + ratingType + ' is-selected' + disabled
-        : 'rating-button rating-' + ratingType + disabled
+        ? 'rating-button rating-' + ratingType + ' is-selected'
+        : 'rating-button rating-' + ratingType
       return cssClasses
     }
 
@@ -59,7 +58,8 @@ export default class RatingChoinsBox extends RatingBox {
           name="upvote"
           aria-label={translations.upvote}
           className={getRatingClasses('up')}
-          disabled={this.props.isReadOnly}
+          style={this.state.userRating && this.props.ideaStatus === 'ACCEPTED' ? { color: '#A0A0FF' } : {}}
+          disabled={this.props.ideaStatus === 'ACCEPTED'}
           onClick={this.ratingUp.bind(this)}
         >
           <i className="fa fa-chevron-up" aria-hidden="true" />

@@ -7,8 +7,11 @@ from django.conf import locale
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
+load_dotenv()
+
 HOST = os.getenv("HOST")
 PORT = os.getenv("PORT")
+DOMAIN = os.getenv("DOMAIN")
 CONFIG_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(CONFIG_DIR)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -265,10 +268,11 @@ THUMBNAIL_ALIASES = {
 }
 
 ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
-ALLOWED_HOSTS = [HOST, "localhost"]
+ALLOWED_HOSTS = [HOST, DOMAIN, "localhost"]
 CORS_ALLOWED_ORIGINS = [
     f"http://{HOST}:{PORT}",
     f"http://{HOST}:8005",
+    f"https://{DOMAIN}",
 ]
 
 # Authentication
@@ -306,6 +310,7 @@ LOGIN_URL = "account_login"
 LOGIN_REDIRECT_URL = "/"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_HOST = "127.0.0.1"
 
 # Rest Framework
 REST_FRAMEWORK = {

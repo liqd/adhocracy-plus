@@ -36,6 +36,7 @@ def react_ratings_choins(context, obj):
     attributes = {
         "contentType": contenttype.pk,
         "objectId": obj.pk,
+        "ideaStatus": obj.moderator_status,
         "authenticatedAs": authenticated_as,
         "positiveRatings": obj.positive_rating_count,
         "negativeRatings": obj.negative_rating_count,

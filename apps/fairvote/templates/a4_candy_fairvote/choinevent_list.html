@@ -23,11 +23,12 @@
     }
 
     .event-info {
-      max-width: 60%; /* Set the width for the left part of the card */
+      /* Set the width for the left part of the card */
+      max-width: 80%;
     }
 
     .event-actions {
-      width: 40%; /* Set the width for the right part of the card */
+      width: 20%; /* Set the width for the right part of the card */
       text-align: right;
     }
     .shift-left {
@@ -42,13 +43,39 @@
     {% for choinevent in choinevent_list %}
       <li class="event-card">
         <div class="event-info">
-          <p>{{ choinevent.created_at }}          </p>
-          <p><i class="{% if choinevent.type == 'ADD' %}fa fa-plus{% elif choinevent.type == 'ACC' %}fa fa-check{% else %}fa fa-bell{% endif %}"></i>
-          {{ choinevent.content }}<br/></p>
-          <p style="font-size: smaller;"><i class="fa fa-wallet" aria-label="balance"></i> Your balance: {{ choinevent.balance }}</p>
+          <p>{{ choinevent.created_at }}</p>
+          {% if choinevent.content_params %}
+            {% if choinevent.type == 'NEW' %}
+            <p><i class="fa fa-user-plus"></i>
+              You joined module '{{choinevent.module_name}}' - project '{{choinevent.project_name}}'
+            {% elif choinevent.type == 'ADD' %}
+            <p><i class="fa fa-plus"></i>
+              Choin Giveaway! All {{ choinevent.user_count}} users receive {{choinevent.choins_per_user|floatformat:2 }} choins.
+            </p>
+            {%elif choinevent.type == 'ACC' %}
+              {%if choinevent.support %}
+                <p><i class="fa fa-check" style="color: deepskyblue;"></i>
+                  Idea accepted! <a href={{choinevent.idea_url}}>{{choinevent.idea_name}}</a>
+                  cost {{choinevent.total_cost}} choins.<br/>It was funded by {{choinevent.supporters_count}} supporters.
+                  <br/>
+                  All participants received more {{choinevent.giveaway|floatformat:2 }} choins. You supported it and paid {{choinevent.paid|floatformat:2 }} choins.
+              {%else%}
+              <p><i class="fa fa-check" style="color: crimson" ></i>
+                Idea accepted! <a href={{choinevent.idea_url}}>{{choinevent.idea_name}}</a>
+                cost {{choinevent.total_cost}} choins.<br/>It was funded by {{choinevent.supporters_count}} supporters.
+                <br/>
+                You did not support it so you recieved more {{choinevent.giveaway|floatformat:2 }} choins as a compensation.
+              {% endif %}
+            </p>
+              {%else%}
+              <p><i class="fa fa-bell"></i></p>
+              {% endif %}
+            {%else%}
+              {{choinevent.content | safe}}
+            {%endif%}
         </div>
         <div class="event-actions">
-          <!-- Add any additional actions or buttons on the right side of the card -->
+          <p><i class="fa fa-wallet" aria-label="balance"></i> Your balance: {{ choinevent.balance|floatformat:2  }}</p>
         </div>
       </li>
     {% endfor %}

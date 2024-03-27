@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 from django.db.models import F
 from django_filters import rest_framework as filters
@@ -79,7 +81,8 @@ class IdeaChoinViewSet(viewsets.ModelViewSet):
             return cost
         return 0
 
-    def update_idea_choins(self, idea, choins, add=True):
+    def update_idea_choins(self, idea_id, choins, add=True):
+        idea = Idea.objects.get(pk=idea_id)
         obj, created = IdeaChoin.objects.update_or_create(
             idea=idea, defaults={"choins": F("choins") + choins}
         )
@@ -101,20 +104,33 @@ class IdeaChoinViewSet(viewsets.ModelViewSet):
         try:
             print(request)
             value = request.data["value"]
-            idea = request.data["ideaId"]
+            idea_id = request.data["ideaId"]
             user = request.user
-            module = Idea.objects.get(pk=idea).module
+            module = Idea.objects.get(pk=idea_id).module
             obj, created = Choin.objects.get_or_create(user=user, module=module)
             if created:
-                messgae = f"You joined to {idea.module} - {idea.module.project}"
+                message = f"You joined module '{module.name}' - project '{module.project.name}'"
+
+                message_params = {
+                    "module_name": module.name,
+                    "project_name": module.project.name,
+                }
+                message_params_json = json.dumps(message_params)
+                # EREL: attempt to use parameters; currently not uesd
+
                 ChoinEvent.objects.create(
-                    user=user, module=module, type="NEW", content=messgae, balance=0
+                    user=user,
+                    module=module,
+                    type="NEW",
+                    content=message,
+                    balance=0,
+                    content_params=message_params_json,
                 )
             choins = obj.choins
             print(choins, user)
             if value == -1:  # NEGATIVE
                 choins = 0
-            self.update_idea_choins(idea, choins)
+            self.update_idea_choins(idea_id, choins)
             return Response(
                 {"message": "choins are created"}, status=status.HTTP_201_CREATED
             )
@@ -130,14 +146,27 @@ class IdeaChoinViewSet(viewsets.ModelViewSet):
             print("hey")
             old_value = request.data["oldValue"]
             new_value = request.data["newValue"]
-            idea = request.data["ideaId"]
+            idea_id = request.data["ideaId"]
             user = request.user
-            module = Idea.objects.get(pk=idea).module
+            module = Idea.objects.get(pk=idea_id).module
             obj, created = Choin.objects.get_or_create(user=user, module=module)
             if created:
-                messgae = f"You joined to {idea.module} - {idea.module.project}"
+                message = f"You joined module '{module.name}' - project '{module.project.name}'"
+
+                message_params = {
+                    "module_name": module.name,
+                    "project_name": module.project.name,
+                }
+                message_params_json = json.dumps(message_params)
+                # EREL: attempt to use parameters; currently not uesd
+
                 ChoinEvent.objects.create(
-                    user=user, module=module, type="NEW", content=messgae, balance=0
+                    user=user,
+                    module=module,
+                    type="NEW",
+                    content=message,
+                    balance=0,
+                    content_params=message_params_json,
                 )
             choins = obj.choins
             add = True
@@ -146,7 +175,7 @@ class IdeaChoinViewSet(viewsets.ModelViewSet):
                 add = False
             elif new_value != 1:
                 return
-            self.update_idea_choins(idea, choins, add)
+            self.update_idea_choins(idea_id, choins, add)
 
             return Response(
                 {"message": "choins are updated"}, status=status.HTTP_200_OK

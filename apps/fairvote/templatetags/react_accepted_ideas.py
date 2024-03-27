@@ -7,6 +7,7 @@ from apps.fairvote.models import Choin
 from apps.fairvote.models import Idea
 from apps.fairvote.models import IdeaChoin
 from apps.fairvote.models import UserIdeaChoin
+from apps.fairvote.models import get_supporters
 
 register = template.Library()
 
@@ -43,7 +44,7 @@ def react_user_idea_choins(context, obj):
         for idea in ideas:
             user_idea_choins = UserIdeaChoin.objects.filter(user=user.pk, idea=idea)
             idea_choin = IdeaChoin.objects.get(idea=idea)
-            supporters_count = idea_choin.get_supporters().count()
+            supporters_count = get_supporters(idea).count()
             print(idea.ratings)
             idea_url = idea.get_absolute_url()
             modules[fv_module.pk]["ideas"].append(

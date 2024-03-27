@@ -6,6 +6,7 @@ from .models import ChoinEvent
 from .models import Idea
 from .models import IdeaChoin
 from .models import UserIdeaChoin
+from .models import get_supporters
 
 USER_MODEL = get_user_model()
 
@@ -28,7 +29,18 @@ class ChoinEventListView(ListView):
     context_object_name = "choinevent_list"
 
     def get_queryset(self):
-        return ChoinEvent.objects.filter(user=self.request.user).order_by("-created_at")
+        import json
+
+        choinevents = ChoinEvent.objects.filter(user=self.request.user).order_by(
+            "-created_at"
+        )
+        for event in choinevents:
+            if event.content_params:
+                parsed_content_params = json.loads(event.content_params)
+                for key, val in parsed_content_params.items():
+                    event.__setattr__(key, val)
+
+        return choinevents
 
 
 def accepted_ideas(request, organisation_slug, obj_id):
@@ -61,7 +73,7 @@ def accepted_ideas(request, organisation_slug, obj_id):
                 user=request_user.pk, idea=idea
             ).first()
             idea_choin = IdeaChoin.objects.get(idea=idea)
-            supporters_count = idea_choin.get_supporters().count()
+            supporters_count = get_supporters(idea).count()
             idea_url = idea.get_absolute_url()
             modules[fv_module.pk]["ideas"].append(
                 {

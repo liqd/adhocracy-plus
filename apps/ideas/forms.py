@@ -1,3 +1,5 @@
+import json
+
 from django import forms
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
@@ -30,25 +32,42 @@ class IdeaForm(
             user=idea.creator, module=idea.module
         )
         if created:
-            messgae = f"You joined to {idea.module} - {idea.module.project}"
+            message = f"You joined module '{idea.module.name}' - project '{idea.module.project.name}'"
+
+            message_params = {
+                "module_name": idea.module.name,
+                "project_name": idea.module.project.name,
+            }
+            message_params_json = json.dumps(message_params)
+            # EREL: attempt to use parameters; currently not uesd
+
             ChoinEvent.objects.create(
                 user=idea.creator,
                 module=idea.module,
                 type="NEW",
-                content=messgae,
+                content=message,
+                content_params=message_params_json,
                 balance=0,
             )
         return idea
 
 
 class IdeaModerateForm(forms.ModelForm):
+    """
+    The form that the superuser uses to "moderate" an idea.
+    In particular, the superuser can use this form to accept an idea.
+    """
+
     class Meta:
         model = models.Idea
         fields = ["moderator_status"]
 
     def save(self, commit=True):
         idea = super().save(commit=commit)
-        if idea.moderator_status == "ACCEPTED":
+
+        # If this is a "fairvote" module, and the superuser accepts an idea, we have to adjust the "choins" of all users in the module.
+        if idea.module.blueprint_type == "FV" and idea.moderator_status == "ACCEPTED":
             IdeaChoin.objects.get(idea=idea).accept_idea()
-            [idea.update_choins() for idea in IdeaChoin.objects.all()]
+            [other_idea.update_choins() for other_idea in IdeaChoin.objects.all()]
+
         return idea

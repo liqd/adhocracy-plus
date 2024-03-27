@@ -6,6 +6,7 @@ from django.utils.html import format_html
 from apps.fairvote.models import Choin
 from apps.fairvote.models import IdeaChoin
 from apps.fairvote.models import UserIdeaChoin
+from apps.fairvote.models import get_supporters
 
 register = template.Library()
 
@@ -48,8 +49,7 @@ def react_user_idea_choins(context, obj):
             for user_idea in user_idea_choins:
                 content_idea = user_idea.idea
                 idea_choin = IdeaChoin.objects.get(idea=content_idea)
-                supporters_count = idea_choin.get_supporters().count() - 1
-                print(content_idea.ratings)
+                supporters_count = get_supporters(content_idea).count() - 1
                 idea_url = content_idea.get_absolute_url()
                 modules[fv_module.pk]["ideas"].append(
                     {
