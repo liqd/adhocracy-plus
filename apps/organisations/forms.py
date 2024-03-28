@@ -173,7 +173,6 @@ class OrganisationForm(forms.ModelForm):
         for lang_code in self.languages:
             for name, field_cls, kwargs in self.translated_fields:
                 self.instance.set_current_language(lang_code)
-                print(field_cls)
                 field = field_cls(**kwargs)
                 identifier = self._get_identifier(lang_code, name)
                 field.required = False

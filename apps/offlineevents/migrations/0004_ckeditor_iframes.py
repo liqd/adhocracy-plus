@@ -19,7 +19,7 @@ def replace_iframe_with_figur(apps, schema_editor):
             )
             iframe.replaceWith(figure)
         if iframes:
-            offlineEvent.live_stream = soup.prettify(formatter="html")
+            offlineEvent.description = soup.prettify(formatter="html")
             offlineEvent.save()
 
 
