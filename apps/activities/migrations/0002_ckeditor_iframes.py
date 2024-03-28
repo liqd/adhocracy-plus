@@ -19,7 +19,7 @@ def replace_iframe_with_figur(apps, schema_editor):
             )
             iframe.replaceWith(figure)
         if iframes:
-            activity.live_stream = soup.prettify(formatter="html")
+            activity.description = soup.prettify(formatter="html")
             activity.save()
 
 

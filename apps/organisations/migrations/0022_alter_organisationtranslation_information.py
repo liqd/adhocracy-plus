@@ -6,7 +6,7 @@ import django_ckeditor_5.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("a4_candy_organisations", "0022_ckeditor_iframes"),
+        ("a4_candy_organisations", "0021_alter_organisation_logo"),
     ]
 
     operations = [
