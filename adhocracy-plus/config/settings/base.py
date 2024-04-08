@@ -558,7 +558,7 @@ CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpg", "jpeg", "png", "gif", "pdf", "docx"]
 CKEDITOR_5_USER_LANGUAGE = True
 CKEDITOR_5_CONFIGS = {
     "default": {
-        "language": ["de", "en", "nl", "ky", "ru"],
+        "language": ["de", "en", "nl", "ru"],
         "toolbar": [
             "bold",
             "italic",
