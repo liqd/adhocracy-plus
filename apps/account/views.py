@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db import transaction
@@ -20,7 +21,6 @@ class AccountView(RedirectView):
 
 
 class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
-
     model = User
     template_name = "a4_candy_account/profile.html"
     form_class = forms.ProfileForm
@@ -33,16 +33,18 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateV
         return self.request.path
 
     def form_valid(self, form):
-        set_session_language(
-            self.request.user.email, form.cleaned_data["language"], self.request
-        )
+        set_session_language(self.request.user.email, form.cleaned_data["language"])
         return super(ProfileUpdateView, self).form_valid(form)
+
+    def render_to_response(self, context, **response_kwargs):
+        response = super().render_to_response(context, **response_kwargs)
+        response.set_cookie(settings.LANGUAGE_COOKIE_NAME, self.request.user.language)
+        return response
 
 
 class OrganisationTermsOfUseUpdateView(
     LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
 ):
-
     model = User
     template_name = "a4_candy_account/user_agreements.html"
     form_class = forms.OrganisationTermsOfUseForm
