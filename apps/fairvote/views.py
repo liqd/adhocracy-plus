@@ -1,12 +1,12 @@
 from django.contrib.auth import get_user_model
 from django.views.generic import ListView
 
+from .algortihms import get_supporters
 from .models import Choin
 from .models import ChoinEvent
 from .models import Idea
 from .models import IdeaChoin
 from .models import UserIdeaChoin
-from .models import get_supporters
 
 USER_MODEL = get_user_model()
 
@@ -31,6 +31,8 @@ class ChoinEventListView(ListView):
     def get_queryset(self):
         import json
 
+        if self.request.user.is_anonymous:
+            return ChoinEvent.objects.none()
         choinevents = ChoinEvent.objects.filter(user=self.request.user).order_by(
             "-created_at"
         )
@@ -46,7 +48,6 @@ class ChoinEventListView(ListView):
 def accepted_ideas(request, organisation_slug, obj_id):
     from django.shortcuts import render
 
-    print("start!")
     request_user = request.user
 
     if request_user.is_authenticated:
@@ -94,5 +95,4 @@ def accepted_ideas(request, organisation_slug, obj_id):
         "is_read_only": False,
         "style": "ideas",
     }
-    print("modules:", modules)
     return render(request, "a4_candy_fairvote/accepted_idea_list.html", context)

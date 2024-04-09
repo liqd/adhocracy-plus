@@ -1,6 +1,8 @@
 from django.contrib import admin
 
 from . import models
+from .algortihms import accept_idea
+from .algortihms import update_idea_choins
 from .forms import UpdateChoinsForm
 from .views import ChoinView
 
@@ -9,16 +11,18 @@ from .views import ChoinView
 class ChoinAdmin(admin.ModelAdmin):
     list_display = ("user", "module", "choins")
     action_form = UpdateChoinsForm
-    actions = ["update_choins", "add_all_users_choins"]
+    actions = ["update_user_choins", "add_all_users_choins"]
 
-    def update_choins(self, request, queryset):
-        print(request.POST)
+    def update_user_choins(self, request, queryset):
+        """
+        Add or change the number of choins in a user's wallet
+        """
         choins_amount = request.POST["choins_amount"]
         append = request.POST.get("append", None)
         for user_choins in queryset:
-            user_choins.update_choins(choins_amount, append)
+            user_choins.update_user_choins(choins_amount, append)
 
-    update_choins.short_description = "Update Choins for Selected users choins"
+    update_user_choins.short_description = "Update Choins for Selected users choins"
 
     def add_all_users_choins(self, request, queryset):
         ChoinView.create_users_choins()
@@ -35,13 +39,13 @@ class IdeaChoinAdmin(admin.ModelAdmin):
     actions = [
         "update_ideas_choins",
         "add_all_ideas_choins",
-        "accept_idea",
+        "accept_selected_idea",
         "increase_choins_to_accept_idea",
     ]
 
     def update_ideas_choins(self, request, queryset):
         for idea_choins in queryset:
-            idea_choins.update_choins()
+            update_idea_choins(idea_choins)
         self.message_user(request, f"Updated {queryset.count()} ideas choins.")
 
     update_ideas_choins.short_description = "Update selected ideas choins"
@@ -54,10 +58,10 @@ class IdeaChoinAdmin(admin.ModelAdmin):
 
     add_all_ideas_choins.short_description = "Add ideas choins"
 
-    def accept_idea(self, request, queryset):
+    def accept_selected_idea(self, request, queryset):
         for idea_choins in queryset:
-            idea_choins.accept_idea()
-            [idea.update_choins() for idea in models.IdeaChoin.objects.all()]
+            accept_idea(idea_choins)
+            [update_idea_choins(idea) for idea in models.IdeaChoin.objects.all()]
 
 
 @admin.register(models.UserIdeaChoin)

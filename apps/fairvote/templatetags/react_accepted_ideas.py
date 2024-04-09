@@ -3,11 +3,11 @@ import json
 from django import template
 from django.utils.html import format_html
 
+from apps.fairvote.algortihms import get_supporters
 from apps.fairvote.models import Choin
 from apps.fairvote.models import Idea
 from apps.fairvote.models import IdeaChoin
 from apps.fairvote.models import UserIdeaChoin
-from apps.fairvote.models import get_supporters
 
 register = template.Library()
 
@@ -16,12 +16,6 @@ register = template.Library()
 def react_user_idea_choins(context, obj):
     request = context["request"]
     user = request.user
-
-    # contenttype = ContentType.objects.get_for_model(obj)
-    # permission = "{ct.app_label}.invest_{ct.model}".format(ct=contenttype)
-    # has_rate_permission = user.has_perm(permission, obj)
-
-    # would_have_rate_permission = NormalUser().would_have_perm(permission, obj)
 
     if user.is_authenticated:
         authenticated_as = user.username
@@ -32,7 +26,6 @@ def react_user_idea_choins(context, obj):
     user_fairvote_modules = Choin.objects.filter(
         user=user.pk, module__project=obj.pk, module__blueprint_type="FV"
     )
-    print("user ideas: ", user_fairvote_modules)
     for fv_choin in user_fairvote_modules:
         fv_module = fv_choin.module
         modules[fv_module.pk] = {
@@ -45,7 +38,6 @@ def react_user_idea_choins(context, obj):
             user_idea_choins = UserIdeaChoin.objects.filter(user=user.pk, idea=idea)
             idea_choin = IdeaChoin.objects.get(idea=idea)
             supporters_count = get_supporters(idea).count()
-            print(idea.ratings)
             idea_url = idea.get_absolute_url()
             modules[fv_module.pk]["ideas"].append(
                 {

@@ -5,6 +5,8 @@ from django import forms
 from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from apps.contrib.mixins import ImageRightOfUseMixin
+from apps.fairvote.algortihms import accept_idea
+from apps.fairvote.algortihms import update_idea_choins
 from apps.fairvote.models import DEFAULT_GOAL
 from apps.fairvote.models import Choin
 from apps.fairvote.models import ChoinEvent
@@ -67,7 +69,7 @@ class IdeaModerateForm(forms.ModelForm):
 
         # If this is a "fairvote" module, and the superuser accepts an idea, we have to adjust the "choins" of all users in the module.
         if idea.module.blueprint_type == "FV" and idea.moderator_status == "ACCEPTED":
-            IdeaChoin.objects.get(idea=idea).accept_idea()
-            [other_idea.update_choins() for other_idea in IdeaChoin.objects.all()]
+            accept_idea(IdeaChoin.objects.get(idea=idea))
+            [update_idea_choins(other_idea) for other_idea in IdeaChoin.objects.all()]
 
         return idea

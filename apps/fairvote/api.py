@@ -1,7 +1,7 @@
 import json
+import logging
 
 from django.conf import settings
-from django.db.models import F
 from django_filters import rest_framework as filters
 from rest_framework import mixins
 from rest_framework import status
@@ -13,14 +13,16 @@ from rest_framework.serializers import ValidationError
 
 from adhocracy4.api.mixins import ContentTypeMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
-from apps.ideas.views import IdeaDetailView
 
+from .algortihms import update_idea_choins_after_rating
 from .models import Choin
 from .models import ChoinEvent
 from .models import Idea
 from .models import IdeaChoin
 from .serializers import ChoinSerializer
 from .serializers import IdeaChoinSerializer
+
+logger = logging.getLogger(__name__)
 
 
 class ChoinViewSet(
@@ -73,115 +75,77 @@ class IdeaChoinViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     # filter_backends = (filters.DjangoFilterBackend,)
 
-    def calculate_missing_choins(self, idea_choins, supporters_count, goal):
-        print("supdated supporters: ", idea_choins)
-        cost = (goal - idea_choins) / (supporters_count)
-        print("cost: ", cost)
-        if cost > 0:
-            return cost
-        return 0
-
-    def update_idea_choins(self, idea_id, choins, add=True):
-        idea = Idea.objects.get(pk=idea_id)
-        obj, created = IdeaChoin.objects.update_or_create(
-            idea=idea, defaults={"choins": F("choins") + choins}
-        )
-        idea_choins = IdeaChoin.objects.values_list("choins", flat=True).get(pk=obj.pk)
-        supporters_count = IdeaDetailView.queryset.get(
-            id=obj.idea.id
-        ).positive_rating_count
-        if supporters_count > 0:
-            print("positive reating count:", supporters_count)
-            obj.missing = self.calculate_missing_choins(
-                idea_choins, supporters_count, obj.goal
-            )
-        else:
-            obj.missing = obj.goal
-        obj.save()
-
     @action(detail=False, methods=["POST"])
-    def add_choins_sum(self, request):
+    def update_idea_choins_at_user_first_rating(self, request):
+        """
+        Should be called at the first time that a given user rates a given idea.
+        """
         try:
-            print(request)
+            logger.info(request)
             value = request.data["value"]
             idea_id = request.data["ideaId"]
             user = request.user
             module = Idea.objects.get(pk=idea_id).module
             obj, created = Choin.objects.get_or_create(user=user, module=module)
-            if created:
+            if (
+                created
+            ):  # Happens if this is the first time that the user rates any idea.
                 message = f"You joined module '{module.name}' - project '{module.project.name}'"
-
                 message_params = {
                     "module_name": module.name,
                     "project_name": module.project.name,
                 }
-                message_params_json = json.dumps(message_params)
-                # EREL: attempt to use parameters; currently not uesd
-
                 ChoinEvent.objects.create(
                     user=user,
                     module=module,
                     type="NEW",
                     content=message,
                     balance=0,
-                    content_params=message_params_json,
+                    content_params=json.dumps(message_params),
                 )
             choins = obj.choins
-            print(choins, user)
+            logger.info(choins, user)
             if value == -1:  # NEGATIVE
                 choins = 0
-            self.update_idea_choins(idea_id, choins)
+            update_idea_choins_after_rating(idea_id, choins)
             return Response(
                 {"message": "choins are created"}, status=status.HTTP_201_CREATED
             )
         except Exception as e:
-            print(e)
+            logger.error(e)
             return Response(
                 {"message": "error: " + str(e)}, status=status.HTTP_400_BAD_REQUEST
             )
 
     @action(detail=False, methods=["POST"])
-    def update_choins_sum(self, request):
+    def update_idea_choins_at_user_rating_update(self, request):
+        """
+        Should be called when a given user updates the rating to a given idea.
+        """
         try:
-            print("hey")
             old_value = request.data["oldValue"]
             new_value = request.data["newValue"]
+            logger.info("old rating: ", old_value, "new rating: ", new_value)
             idea_id = request.data["ideaId"]
             user = request.user
             module = Idea.objects.get(pk=idea_id).module
             obj, created = Choin.objects.get_or_create(user=user, module=module)
             if created:
-                message = f"You joined module '{module.name}' - project '{module.project.name}'"
-
-                message_params = {
-                    "module_name": module.name,
-                    "project_name": module.project.name,
-                }
-                message_params_json = json.dumps(message_params)
-                # EREL: attempt to use parameters; currently not uesd
-
-                ChoinEvent.objects.create(
-                    user=user,
-                    module=module,
-                    type="NEW",
-                    content=message,
-                    balance=0,
-                    content_params=message_params_json,
+                logger.info(
+                    "Warning: New Choin created, although the user already rated"
                 )
             choins = obj.choins
-            add = True
-            if old_value == 1:  # POSITIVE
+            if old_value == 1:  # If user remove their supporting
                 choins *= -1
-                add = False
             elif new_value != 1:
                 return
-            self.update_idea_choins(idea_id, choins, add)
+            update_idea_choins_after_rating(idea_id, choins)
 
             return Response(
                 {"message": "choins are updated"}, status=status.HTTP_200_OK
             )
         except Exception as e:
-            print(e)
+            logger.error(e)
             return Response(
                 {"message": "error: " + str(e)}, status=status.HTTP_400_BAD_REQUEST
             )
