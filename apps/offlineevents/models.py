@@ -29,10 +29,10 @@ class OfflineEvent(UserGeneratedContentModel):
     )
     date = models.DateTimeField(verbose_name=_("Date"))
     description = CKEditor5Field(
-            config_name="collapsible-image-editor",
-            verbose_name=_("Description"),
-            validators=[ImageAltTextValidator()],
-            )
+        config_name="collapsible-image-editor",
+        verbose_name=_("Description"),
+        validators=[ImageAltTextValidator()],
+    )
     project = models.ForeignKey(project_models.Project, on_delete=models.CASCADE)
 
     objects = OfflineEventsQuerySet.as_manager()
@@ -43,9 +43,11 @@ class OfflineEvent(UserGeneratedContentModel):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description, "image-editor")
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"description"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
     @cached_property
     def get_timeline_index(self):

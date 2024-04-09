@@ -232,9 +232,11 @@ class Organisation(TranslatableModel):
     def has_social_share(self):
         return self.twitter_handle or self.facebook_handle or self.instagram_handle
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.imprint = transforms.clean_html_field(self.imprint)
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"imprint"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
 
 class Member(models.Model):
