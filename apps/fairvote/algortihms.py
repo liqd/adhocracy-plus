@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 # User Choin
 
 
-def get_supporters(idea: Idea) -> QuerySet:  # WRONG!!
+def get_supporters(idea: Idea) -> QuerySet:
     """
     Returns a query-set describing the users who support the given idea.
     """
