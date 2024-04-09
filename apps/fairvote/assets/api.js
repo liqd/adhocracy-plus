@@ -15,10 +15,12 @@ const baseURL = '/api/idea-choins/'
 const Api = {
   rating: {
     add: function (data) {
-      return _sendRequest(baseURL + 'add_choins_sum/', 'POST', data)
+      // Rating this idea for the first time
+      return _sendRequest(baseURL + 'update_idea_choins_at_user_first_rating/', 'POST', data)
     },
     change: function (data) {
-      return _sendRequest(baseURL + 'update_choins_sum/', 'POST', data)
+      // Rating this idea that already has ratings
+      return _sendRequest(baseURL + 'update_idea_choins_at_user_rating_update/', 'POST', data)
     }
   }
 }
