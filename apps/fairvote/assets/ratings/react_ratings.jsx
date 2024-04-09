@@ -3,6 +3,8 @@ import django from 'django'
 
 import Api from '../api'
 import { RatingBox } from 'adhocracy4/adhocracy4/ratings/static/ratings/react_ratings'
+import api from 'adhocracy4/adhocracy4/static/api'
+
 const translations = {
   upvote: django.gettext('vote')
 }
@@ -28,7 +30,22 @@ export default class RatingChoinsBox extends RatingBox {
     const oldValue = this.state.userRating
     console.log(this.props.objectId)
 
-    super.handleRatingModify(number, id)
+    // super.handleRatingModify(number, id)
+    api.rating.change({
+      urlReplaces: {
+        objectPk: this.props.objectId,
+        contentTypeId: this.props.contentType
+      },
+      value: number
+    }, id)
+      .done(function (data) {
+        this.setState({
+          positiveRatings: data.meta_info.positive_ratings_on_same_object,
+          negativeRatings: data.meta_info.negative_ratings_on_same_object,
+          userRating: data.meta_info.user_rating_on_same_object_value
+        })
+      }.bind(this))
+
     Api.rating.change({
       oldValue,
       newValue: number,
