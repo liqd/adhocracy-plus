@@ -82,6 +82,8 @@ class ExtraFieldsInteractiveEvent(module_models.Item):
         blank=True,
     )
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.live_stream = transforms.clean_html_field(self.live_stream, "video-editor")
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"live_stream"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)

@@ -66,9 +66,11 @@ class Topic(module_models.Item):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description, "image-editor")
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"description"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
     def get_absolute_url(self):
         return reverse(
