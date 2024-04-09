@@ -293,9 +293,9 @@ def vote_ideas_simulator(ideas):
         driver.delete_all_cookies()
 
 
-def accept_ideas_simulator():
+def accept_ideas_simulator(n):
     login(superuser_name, superuser_pass)
-    accept_ideas_fair_order(4)
+    accept_ideas_fair_order(n)
 
 
 # users = user_list.copy()
@@ -306,5 +306,5 @@ link = f"{URL}/{ORG}/projects/module/{MODULE}/?"
 ideas_p = get_all_ideas(link)
 # print(ideas_p)
 vote_ideas_simulator(ideas_p)
-# accept_ideas_simulator()
+# accept_ideas_simulator(3)
 driver.quit()

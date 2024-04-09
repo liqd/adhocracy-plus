@@ -125,65 +125,85 @@ def register():
 
 
 def delete_users():
+    """
+    delete all users in `user_list`.
+    """
     User.objects.filter(username__in=usernames).delete()
     print("delete_users")
 
 
 def delete_org():
+    """ "
+    delete organisation
+    """
     Organisation.objects.get(name=ORG).delete()
-    print("delete_org")
 
 
 def delete_ideas():
+    """
+    delete ideas
+    """
     Idea.objects.filter(module__name=MODULE, module__project__name=PROJECT).delete()
-    print("delete_ideas")
 
 
 def delete_ratings():
+    """
+    delete ratings
+    """
     print(Rating.objects.filter(idea__module__project__name=PROJECT).delete())
-    print("delete_ratings")
 
 
 def delete_all():
+    """
+    delete all relevant data (all depend on org and users)
+    """
     delete_org()
     delete_users()
 
 
 def reset_users_choins():
+    """
+    update all users choins to 0
+    """
     Choin.objects.update(choins=0)
-    print("reset_users_choins")
 
 
 def delete_users_choins():
+    """
+    delete all users choins
+    """
     Choin.objects.all().delete()
-    print("delete_users_choins")
 
 
 def reset_idea_choins():
+    """
+    update all ideas to be with 0 choins and 150 missing choins.
+    """
     IdeaChoin.objects.update(choins=0, missing=150)
     print("reset_idea_choins")
 
 
-def reset_idea_status():
-    Idea.objects.update(moderator_status="")
-    print("reset_idea_status")
-
-
 def update_missing_choins():
+    """
+    update all ideas with 0 missing choins to 150 missing choins.
+    """
     IdeaChoin.objects.filter(missing=0.0).update(missing=150.0)
-    print("update_missing_choins")
 
 
 def unaccept_all_ideas():
+    """
+    reset all ideas status
+    """
     Idea.objects.filter(module__name=MODULE, module__project__name=PROJECT).update(
         moderator_status=""
     )
-    print("unaccept_all_ideas")
 
 
 def delete_users_invest_records():
+    """
+    delete users "paid" for ideas records
+    """
     UserIdeaChoin.objects.filter(idea__module__project__name=PROJECT).delete()
-    print("delete_users_invest_records")
 
 
 def delete_choin_events():
@@ -191,9 +211,10 @@ def delete_choin_events():
     print("delete_choin_events")
 
 
-def keep_only_ideas_and_users():
+def reset_as_before_votes():
     """
     keep users and ideas(including porject and organization)
+    delete votes and choins of users and ideas.
     """
     delete_ratings()
     reset_idea_choins()
@@ -217,4 +238,5 @@ if __name__ == "__main__":
     # register()
     # delete_users()
     # update_missing_choins()
-    keep_only_ideas_and_users()
+    # reset_as_before_votes()
+    pass
