@@ -1,4 +1,5 @@
 import pytest
+from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 from adhocracy4.test.helpers import redirect_target
@@ -74,3 +75,54 @@ def test_organisation_terms_edit(
     assert not terms_1.has_agreed
     terms_2.refresh_from_db()
     assert terms_2.has_agreed
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("password", [None, "", "wrong_password"])
+def test_account_deletion_invalid_password(client, user, password):
+    User = get_user_model()
+    pk = user.pk
+    client.login(email=user.email, password="password")
+    url = reverse("account_deletion")
+
+    assert User.objects.count() == 1
+    assert User.objects.filter(pk=pk).exists()
+    if password is None:
+        # test without data
+        response = client.post(url)
+    else:
+        response = client.post(
+            url,
+            {
+                "password": password,
+            },
+        )
+
+    assert response.status_code == 200
+    assert User.objects.count() == 1
+    assert User.objects.filter(pk=pk).exists()
+    form = response.context_data["form"]
+    assert not form.is_valid()
+
+
+@pytest.mark.django_db
+def test_account_deletion(client, user):
+    User = get_user_model()
+    client.login(email=user.email, password="password")
+    url = reverse("account_deletion")
+
+    assert User.objects.count() == 1
+    assert User.objects.filter(pk=user.pk).exists()
+
+    response = client.post(
+        url,
+        {
+            "password": "password",
+        },
+    )
+
+    assert response.status_code == 302
+    assert User.objects.count() == 0
+    assert not User.objects.filter(pk=user.pk).exists()
+    # assert that user is redirected to homepage
+    assert redirect_target(response) == "wagtail_serve"

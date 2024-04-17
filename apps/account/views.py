@@ -1,6 +1,8 @@
 from django.conf import settings
+from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
@@ -41,6 +43,27 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateV
         response = super().render_to_response(context, **response_kwargs)
         response.set_cookie(settings.LANGUAGE_COOKIE_NAME, self.request.user.language)
         return response
+
+
+class AccountDeletionView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):
+    template_name = "a4_candy_account/account_deletion.html"
+    form_class = forms.AccountDeletionForm
+    success_message = _("Your account was successfully deleted.")
+    success_url = "/"
+
+    def get_object(self):
+        return get_object_or_404(User, pk=self.request.user.id)
+
+    def form_valid(self, form):
+        user = self.request.user
+        password = form.cleaned_data.get("password")
+        if not user.check_password(password):
+            form.add_error(
+                "password", ValidationError("Incorrect password.", "invalid")
+            )
+            return super().form_invalid(form)
+        logout(self.request)
+        return super().form_valid(form)
 
 
 class OrganisationTermsOfUseUpdateView(

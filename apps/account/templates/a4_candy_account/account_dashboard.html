@@ -50,6 +50,13 @@
                             {% translate 'User Agreements' %}
                         </a>
                     </li>
+                    <li class="dashboard-nav__page">
+                        <a href="{% url 'account_deletion' %}"
+                           class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_deletion" %}is-active{% endif %}">
+                            <i class="fas fa-user-slash" aria-hidden="true"></i>
+                            {% translate 'Delete account' %}
+                        </a>
+                    </li>
                 </ul>
             {% endwith %}
             </div>
