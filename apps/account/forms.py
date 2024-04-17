@@ -45,6 +45,10 @@ class ProfileForm(forms.ModelForm):
         return username
 
 
+class AccountDeletionForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+
 class OrganisationTermsOfUseForm(forms.ModelForm):
     class Meta:
         model = OrganisationTermsOfUse
