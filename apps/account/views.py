@@ -37,6 +37,7 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateV
         return super(ProfileUpdateView, self).form_valid(form)
 
     def render_to_response(self, context, **response_kwargs):
+        set_session_language(self.request.user.email, self.request.user.language)
         response = super().render_to_response(context, **response_kwargs)
         response.set_cookie(settings.LANGUAGE_COOKIE_NAME, self.request.user.language)
         return response
