@@ -13,7 +13,7 @@ USERNAME_INVALID_MESSAGE = _(
 def set_language(sender, user, **kwargs):
     from .utils import set_session_language
 
-    set_session_language(user, None)
+    set_session_language(user.email)
 
 
 user_logged_in.connect(set_language)
