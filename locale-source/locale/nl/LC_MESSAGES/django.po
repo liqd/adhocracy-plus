@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 14:59+0100\n"
+"POT-Creation-Date: 2024-04-22 11:06+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
@@ -240,7 +240,7 @@ msgstr "privé"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:112
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:114
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
 #: apps/projects/templates/a4_candy_projects/project_detail.html:117
@@ -409,46 +409,46 @@ msgstr "Categorieën"
 msgid "Edit categories"
 msgstr "Categorieën bewerken"
 
-#: adhocracy4/categories/fields.py:11
+#: adhocracy4/categories/fields.py:10
 #: adhocracy4/categories/filters.py:16
-#: adhocracy4/categories/forms.py:52
-#: adhocracy4/categories/models.py:34
+#: adhocracy4/categories/forms.py:53
+#: adhocracy4/categories/models.py:24
 #: adhocracy4/exports/mixins/items.py:24
 msgid "Category"
 msgstr "Categorie"
 
-#: adhocracy4/categories/forms.py:46
+#: adhocracy4/categories/forms.py:47
 #: adhocracy4/labels/forms.py:23
 msgid "Category name"
 msgstr "Categorienaam"
 
-#: adhocracy4/categories/forms.py:47
+#: adhocracy4/categories/forms.py:48
 msgid "Category icon"
 msgstr "Categorie-icoon"
 
-#: adhocracy4/categories/models.py:36
+#: adhocracy4/categories/models.py:26
 msgid "Type of category"
 msgstr ""
 
-#: adhocracy4/categories/models.py:38
+#: adhocracy4/categories/models.py:28
 msgid ""
 "You can individualise the term category. The character limit is max. 25 "
 "characters (with spaces)."
 msgstr ""
 
-#: adhocracy4/categories/models.py:46
+#: adhocracy4/categories/models.py:36
 msgid ""
 "Assign your proposal to a category. This automatically appears in the "
 "display of your proposal. The list of all proposals can be filtered by "
 "category."
 msgstr ""
 
-#: adhocracy4/categories/models.py:52
+#: adhocracy4/categories/models.py:42
 #: adhocracy4/labels/models.py:29
 msgid "Description/Helptext"
 msgstr ""
 
-#: adhocracy4/categories/models.py:54
+#: adhocracy4/categories/models.py:44
 #: adhocracy4/labels/models.py:31
 msgid ""
 "You can individualise the description text. The description text is "
@@ -515,8 +515,8 @@ msgid "Edit basic settings"
 msgstr "Bewerk de basisinstellingen"
 
 #: adhocracy4/dashboard/dashboard.py:23
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:4
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:19
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:15
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:30
 #: apps/projects/templates/a4_candy_projects/project_detail.html:87
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:23
 msgid "Information"
@@ -598,7 +598,7 @@ msgid "Only invited users can participate (private)."
 msgstr "Alleen uitgenodigde gebruikers kunnen deelnemen (privé)."
 
 #: adhocracy4/dashboard/forms.py:91
-#: apps/projects/templates/a4_candy_projects/project_detail.html:134
+#: apps/projects/templates/a4_candy_projects/project_detail.html:136
 msgid "Contact for questions"
 msgstr "Contactpersoon voor vragen"
 
@@ -616,21 +616,39 @@ msgstr ""
 msgid "More contact possibilities"
 msgstr "Meer contactmogelijkheden"
 
-#: adhocracy4/dashboard/forms.py:144
+#: adhocracy4/dashboard/forms.py:114
+msgid ""
+"The project description will be shown in the info-tab. If you add an image, "
+"please provide an alternate text. It serves as a textual description of the "
+"image content and is read out by screen readers. Describe the image in "
+"approx. 80 characters. Example: A busy square with people in summer."
+msgstr ""
+
+#: adhocracy4/dashboard/forms.py:134
+msgid ""
+"The results description will be shown in the result-tab. Please describe a "
+"participation promise beforehand (what will happen with the outcome?) and "
+"inform afterwards about the outcome. If you add an image, please provide an "
+"alternate text. It serves as a textual description of the image content and "
+"is read out by screen readers. Describe the image in approx. 80 characters. "
+"Example: A busy square with people in summer."
+msgstr ""
+
+#: adhocracy4/dashboard/forms.py:165
 #: adhocracy4/phases/models.py:66
 msgid "End date"
 msgstr "Einddatum"
 
-#: adhocracy4/dashboard/forms.py:144
+#: adhocracy4/dashboard/forms.py:165
 msgid "End time"
 msgstr "Eindtijd"
 
-#: adhocracy4/dashboard/forms.py:150
+#: adhocracy4/dashboard/forms.py:171
 #: adhocracy4/phases/models.py:64
 msgid "Start date"
 msgstr "Startdatum"
 
-#: adhocracy4/dashboard/forms.py:150
+#: adhocracy4/dashboard/forms.py:171
 msgid "Start time"
 msgstr "Starttijd"
 
@@ -719,12 +737,12 @@ msgstr "Locatielabel"
 
 #: adhocracy4/exports/mixins/items.py:43
 #: adhocracy4/labels/dashboard.py:13
-#: apps/ideas/models.py:46 apps/topicprio/models.py:50
+#: apps/ideas/models.py:46 apps/topicprio/models.py:53
 msgid "Labels"
 msgstr "Labels"
 
 #: adhocracy4/exports/mixins/items.py:61
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:72
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:74
 msgid "Reference No."
 msgstr "Referentienr."
 
@@ -812,42 +830,46 @@ msgstr ""
 msgid "Please add an alternative text for this image"
 msgstr ""
 
-#: adhocracy4/images/validators.py:26
+#: adhocracy4/images/validators.py:28
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Niet-ondersteunde bestandsformaat. Ondersteunde formaten zijn {}."
 
-#: adhocracy4/images/validators.py:33
-#: apps/organisations/forms.py:362
+#: adhocracy4/images/validators.py:35
+#: apps/organisations/forms.py:357
 #, python-brace-format
 msgid "Image should be at most {max_size} MB"
 msgstr "Het beeld kan maximaal {max_size} MB zijn"
 
-#: adhocracy4/images/validators.py:41
-#: apps/organisations/forms.py:370
+#: adhocracy4/images/validators.py:43
+#: apps/organisations/forms.py:365
 #, python-brace-format
 msgid "Image must be at least {min_width} pixels wide"
 msgstr "Beeld moet minstens {min_width} pixels breed zijn"
 
-#: adhocracy4/images/validators.py:49
-#: apps/organisations/forms.py:380
+#: adhocracy4/images/validators.py:51
+#: apps/organisations/forms.py:375
 #, python-brace-format
 msgid "Image must be at least {min_height} pixels high"
 msgstr "Beeld moet minstens {min_height} pixels hoog zijn"
 
-#: adhocracy4/images/validators.py:55
+#: adhocracy4/images/validators.py:57
 #, python-brace-format
 msgid "Image must be at most {max_width} pixels wide"
 msgstr "Afbeelding kan maximaal {max_width} pixels breed zijn"
 
-#: adhocracy4/images/validators.py:58
+#: adhocracy4/images/validators.py:60
 #, python-brace-format
 msgid "Image must be at most {max_height} pixels high"
 msgstr "Afbeelding kan maximaal {max_height} pixels hoog zijn"
 
-#: adhocracy4/images/validators.py:67
+#: adhocracy4/images/validators.py:69
 #, python-brace-format
 msgid "Image aspect ratio should be {aspect_width}:{aspect_height}"
 msgstr "De beeldverhouding moet {aspect_width}:{aspect_height} zijn."
+
+#: adhocracy4/images/validators.py:87
+msgid "Please add an alternative text for all images."
+msgstr ""
 
 #: adhocracy4/images/widgets.py:28
 msgid "Select a picture from your local folder."
@@ -913,11 +935,11 @@ msgstr "Teken een gebied op de kaart."
 msgid "Modified"
 msgstr "Gewijzigd"
 
-#: adhocracy4/modules/models.py:74
+#: adhocracy4/modules/models.py:72
 msgid "Title of the module"
 msgstr "Titel van de module"
 
-#: adhocracy4/modules/models.py:76
+#: adhocracy4/modules/models.py:74
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
@@ -925,11 +947,11 @@ msgstr ""
 "Deze titel verschijnt in de tijdlijn en de kop op de detailpagina’s van de "
 "module en het project. Het kan max. 512 tekens lang zijn"
 
-#: adhocracy4/modules/models.py:85
+#: adhocracy4/modules/models.py:83
 msgid "Short description of the module"
 msgstr "Korte beschrijving van de module"
 
-#: adhocracy4/modules/models.py:87
+#: adhocracy4/modules/models.py:85
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
@@ -939,58 +961,58 @@ msgstr ""
 "projectdetailpagina’s. Het moet kort het doel van de module beschrijven in "
 "max. 512 karakters."
 
-#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:222
 msgid "day"
 msgstr "dag"
 
-#: adhocracy4/modules/models.py:224
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:222
+#: adhocracy4/modules/models.py:229
 msgid "days"
 msgstr "dagen"
 
-#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:223
 msgid "hour"
 msgstr "uur"
 
-#: adhocracy4/modules/models.py:225
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:223
+#: adhocracy4/modules/models.py:230
 msgid "hours"
 msgstr "uren"
 
-#: adhocracy4/modules/models.py:226
+#: adhocracy4/modules/models.py:224
 msgid "minute"
 msgstr "minuut"
 
-#: adhocracy4/modules/models.py:226
-#: adhocracy4/modules/models.py:233
+#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:231
 msgid "minutes"
 msgstr "minuten"
 
-#: adhocracy4/modules/models.py:227
+#: adhocracy4/modules/models.py:225
 msgid "second"
 msgstr "seconde"
 
-#: adhocracy4/modules/models.py:227
-#: adhocracy4/modules/models.py:234
+#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:232
 msgid "seconds"
 msgstr "seconden"
 
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:229
 msgctxt "abbreviation for day(s)"
 msgid "D"
 msgstr "D"
 
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:230
 msgctxt "abbreviation for hour(s)"
 msgid "H"
 msgstr "H"
 
-#: adhocracy4/modules/models.py:233
+#: adhocracy4/modules/models.py:231
 msgctxt "abbreviation for minute(s)"
 msgid "M"
 msgstr "M"
 
-#: adhocracy4/modules/models.py:234
+#: adhocracy4/modules/models.py:232
 msgctxt "abbreviation for second(s)"
 msgid "S"
 msgstr "S"
@@ -1012,9 +1034,9 @@ msgstr "Naam"
 
 #: adhocracy4/phases/models.py:60
 #: apps/activities/models.py:22 apps/debate/models.py:25
-#: apps/ideas/models.py:34 apps/offlineevents/models.py:36
-#: apps/organisations/forms.py:322 apps/topicprio/forms.py:14
-#: apps/topicprio/models.py:32
+#: apps/ideas/models.py:34 apps/offlineevents/models.py:33
+#: apps/organisations/forms.py:317 apps/topicprio/forms.py:23
+#: apps/topicprio/models.py:34
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -1148,13 +1170,13 @@ msgid "Only one vote per choice is allowed per user."
 msgstr "Per gebruiker is slechts één stem per keuze toegestaan."
 
 #: adhocracy4/projects/admin.py:10
-#: apps/newsletters/forms.py:38
+#: apps/newsletters/forms.py:48
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Project"
 
 #: adhocracy4/projects/admin.py:63
-#: apps/projects/admin.py:38
+#: apps/projects/admin.py:34
 msgid "Information and result"
 msgstr "Informatie en resultaat"
 
@@ -1162,17 +1184,17 @@ msgstr "Informatie en resultaat"
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:44
+#: apps/projects/admin.py:40
 msgid "Settings"
 msgstr "Instellingen"
 
 #: adhocracy4/projects/admin.py:81
-#: apps/projects/admin.py:58
+#: apps/projects/admin.py:54
 msgid "Images"
 msgstr "Afbeeldingen"
 
 #: adhocracy4/projects/admin.py:93
-#: apps/projects/admin.py:70 adhocracy-plus/templates/email_base.html:112
+#: apps/projects/admin.py:66 adhocracy-plus/templates/email_base.html:112
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "Contact"
@@ -1185,7 +1207,7 @@ msgstr "openbaar"
 msgid "Final Results"
 msgstr ""
 
-#: adhocracy4/projects/models.py:42
+#: adhocracy4/projects/models.py:63
 msgid ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
@@ -1193,34 +1215,34 @@ msgstr ""
 "Telefoonnummers kunnen alleen cijfers, spaties en de volgende tekens "
 "bevatten: -, +, (, ). Het moet tussen de 8 en 20 karakters lang zijn."
 
-#: adhocracy4/projects/models.py:49
+#: adhocracy4/projects/models.py:70
 msgid "Postal address"
 msgstr "Postadres"
 
-#: adhocracy4/projects/models.py:52
+#: adhocracy4/projects/models.py:73
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
-#: apps/projects/templates/a4_candy_projects/project_detail.html:146
+#: apps/projects/templates/a4_candy_projects/project_detail.html:148
 msgid "Email"
 msgstr "E-mail"
 
-#: adhocracy4/projects/models.py:55
+#: adhocracy4/projects/models.py:76
 msgid "Contact person"
 msgstr "Contactpersoon"
 
-#: adhocracy4/projects/models.py:59
+#: adhocracy4/projects/models.py:80
 msgid "Phone"
 msgstr "Telefoon"
 
-#: adhocracy4/projects/models.py:62
-#: apps/projects/templates/a4_candy_projects/project_detail.html:151
+#: adhocracy4/projects/models.py:83
+#: apps/projects/templates/a4_candy_projects/project_detail.html:153
 msgid "Website"
 msgstr "Website"
 
-#: adhocracy4/projects/models.py:72
+#: adhocracy4/projects/models.py:93
 msgid "Can your project be located on the map?"
 msgstr "Kan uw project op de kaart worden geplaatst?"
 
-#: adhocracy4/projects/models.py:74
+#: adhocracy4/projects/models.py:95
 msgid ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
@@ -1229,15 +1251,15 @@ msgstr ""
 "markering in te stellen. Een ingestelde markering kan worden gesleept "
 "wanneer deze wordt ingedrukt."
 
-#: adhocracy4/projects/models.py:86
+#: adhocracy4/projects/models.py:107
 msgid "Administrative district"
 msgstr "Administrative district"
 
-#: adhocracy4/projects/models.py:174
+#: adhocracy4/projects/models.py:195
 msgid "Title of your project"
 msgstr "Titel van uw project"
 
-#: adhocracy4/projects/models.py:176
+#: adhocracy4/projects/models.py:197
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -1245,11 +1267,11 @@ msgstr ""
 "Deze titel verschijnt in het overzicht en bovenaan de pagina van het "
 "project. Het kan maximaal 120 tekens lang zijn"
 
-#: adhocracy4/projects/models.py:189
+#: adhocracy4/projects/models.py:210
 msgid "Short description of your project"
 msgstr "Korte beschrijving van uw project"
 
-#: adhocracy4/projects/models.py:191
+#: adhocracy4/projects/models.py:212
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -1258,79 +1280,51 @@ msgstr ""
 "teaser. Het moet kort het doel van het project omschrijven in max. 250 "
 "karakters."
 
-#: adhocracy4/projects/models.py:200
+#: adhocracy4/projects/models.py:221
 msgid "Description of your project"
 msgstr "Beschrijving van uw project"
 
-#: adhocracy4/projects/models.py:202
-msgid ""
-"This description should tell participants what the goal of the project is, "
-"how the project’s participation will look like. It will be always visible in "
-"the „Info“ tab on your project’s page."
-msgstr ""
-"Deze beschrijving vertelt de deelnemers wat het doel van het project is en "
-"hoe de deelname aan het project eruit ziet. Het is altijd zichtbaar in de "
-"‘Info’ tab op de pagina van uw project."
-
-#: adhocracy4/projects/models.py:211
+#: adhocracy4/projects/models.py:227
 msgid "Results of your project"
 msgstr "Resultaten van uw project"
 
-#: adhocracy4/projects/models.py:213
-msgid ""
-"Here you should explain what the expected outcome of the project will be and "
-"how you are planning to use the results. If the project is finished you "
-"should add a summary of the results."
-msgstr ""
-"Leg uit wat het verwachte resultaat van het project zal zijn en hoe de "
-"resultaten zullen worden gebruikt. Als het project klaar is, voegt u hier "
-"een samenvatting van de resultaten toe."
-
-#: adhocracy4/projects/models.py:220
+#: adhocracy4/projects/models.py:231
 msgid "Access to the project"
 msgstr "Toegang tot het project"
 
-#: adhocracy4/projects/models.py:225
-#: adhocracy4/projects/models.py:231
-#: adhocracy4/projects/models.py:232
-#: apps/organisations/models.py:97
+#: adhocracy4/projects/models.py:236
+#: adhocracy4/projects/models.py:242
+#: adhocracy4/projects/models.py:243
+#: apps/organisations/models.py:96
 msgid "Header image"
 msgstr "Kop afbeelding"
 
-#: adhocracy4/projects/models.py:226
-#: apps/organisations/models.py:98
+#: adhocracy4/projects/models.py:237
+#: apps/organisations/models.py:97
 msgid "The image will be shown as a decorative background image."
 msgstr "De afbeelding wordt getoond als een decoratieve achtergrondafbeelding."
 
-#: adhocracy4/projects/models.py:235
-#: adhocracy4/projects/models.py:241
-#: adhocracy4/projects/models.py:242
+#: adhocracy4/projects/models.py:246
+#: adhocracy4/projects/models.py:252
+#: adhocracy4/projects/models.py:253
 msgid "Tile image"
 msgstr "Beeld voor overzicht"
 
-#: adhocracy4/projects/models.py:236
+#: adhocracy4/projects/models.py:247
 msgid "The image will be shown in the project tile."
 msgstr "Het beeld wordt in de samenvatting van het project getoond."
 
-#: adhocracy4/projects/models.py:255
+#: adhocracy4/projects/models.py:266
 msgid "Project is archived"
 msgstr "Project is gearchiveerd"
 
-#: adhocracy4/projects/models.py:257
+#: adhocracy4/projects/models.py:268
 msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
 msgstr ""
 "Gearchiveerde projecten worden niet getoond in het projectoverzicht. Voor "
 "projectinitiatiefnemers zijn ze nog wel zichtbaar in het dashboard."
-
-#: adhocracy4/projects/models.py:263
-msgid "Project topics"
-msgstr "Projectonderwerpen"
-
-#: adhocracy4/projects/models.py:263
-msgid "Add topics to your project."
-msgstr "Voeg onderwerpen toe aan uw project."
 
 #: adhocracy4/projects/utils.py:46
 msgid "{}. Online Participation"
@@ -1341,7 +1335,7 @@ msgid "Online Participation"
 msgstr "Online deelname"
 
 #: adhocracy4/reports/templatetags/react_reports.py:28
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:123
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:125
 msgid "Report"
 msgstr "Rapporteer"
 
@@ -1407,7 +1401,7 @@ msgstr "Hier kunt u uw overeenkomsten bewerken"
 msgid "Your profile was successfully updated."
 msgstr "Uw profiel is met succes bijgewerkt."
 
-#: apps/account/views.py:49
+#: apps/account/views.py:51
 msgid "Your agreements were successfully updated."
 msgstr "Uw overeenkomsten zijn bijgewerkt."
 
@@ -1525,8 +1519,8 @@ msgid "Face-to-Face Information"
 msgstr "Face-to-Face Informatie"
 
 #: apps/activities/models.py:12 apps/debate/models.py:20
-#: apps/ideas/models.py:33 apps/offlineevents/models.py:24
-#: apps/organisations/forms.py:313 apps/topicprio/models.py:30
+#: apps/ideas/models.py:33 apps/offlineevents/models.py:25
+#: apps/organisations/forms.py:308 apps/topicprio/models.py:31
 msgid "Title"
 msgstr "Titel"
 
@@ -1583,7 +1577,7 @@ msgid "Post ideas with budget proposals, comment on them and rate them."
 msgstr ""
 "Plaats ideeën met begrotingsvoorstellen, becommentarieer ze en beoordeel ze."
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:522
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:511
 msgid "participatory budgeting"
 msgstr "participatieve budgettering"
 
@@ -2058,12 +2052,12 @@ msgstr "Volgende pagina"
 msgid "go to overview"
 msgstr ""
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:98
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:107
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:100
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:109
 msgid "Actions"
 msgstr "Acties"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:114
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:116
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:24
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:25
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:24
@@ -2072,12 +2066,12 @@ msgstr "Acties"
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:118
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:120
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:4
 msgid "Give feedback"
 msgstr "Geef feedback"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:140
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:142
 msgid "Official Feedback"
 msgstr "Officiële feedback"
 
@@ -2407,7 +2401,7 @@ msgstr "Reageer op de alinea’s van de tekst"
 msgid "Table of Contents"
 msgstr "Inhoudsopgave"
 
-#: apps/documents/templates/a4_candy_documents/chapter_detail.html:53
+#: apps/documents/templates/a4_candy_documents/chapter_detail.html:55
 #, python-format
 msgid "%(count)s Comment"
 msgid_plural "%(count)s Comments"
@@ -2432,11 +2426,11 @@ msgstr "Volgend hoofdstuk"
 msgid "back to chapter"
 msgstr "terug naar hoofdstuk"
 
-#: apps/documents/views.py:65
+#: apps/documents/views.py:72
 msgid "Document has no chapters defined."
 msgstr "Het document heeft geen hoofdstukken gedefinieerd."
 
-#: apps/ideas/models.py:37 apps/topicprio/models.py:36
+#: apps/ideas/models.py:37 apps/topicprio/models.py:39
 msgid "Add image"
 msgstr "Afbeelding toevoegen"
 
@@ -2726,6 +2720,14 @@ msgstr "U kunt een voorinstelling kiezen voor verdere aanpassing."
 msgid "Moderator feedback for items with fixed feedback choices"
 msgstr "Moderator feedback voor items met vaste feedbackkeuzes"
 
+#: apps/moderatorfeedback/forms.py:13
+msgid ""
+"The official feedback will appear below the idea, indicating your "
+"organisation. The idea provider receives a notification."
+msgstr ""
+"De officiële feedback verschijnt onder het idee, met vermelding van uw "
+"organisatie. De ideeënbedenker ontvangt een melding."
+
 #: apps/moderatorfeedback/models.py:12
 msgid "Under consideration"
 msgstr "In overweging"
@@ -2742,19 +2744,11 @@ msgstr "Geaccepteerd"
 msgid "Official feedback"
 msgstr "Officiële feedback"
 
-#: apps/moderatorfeedback/models.py:23
-msgid ""
-"The official feedback will appear below the idea, indicating your "
-"organisation. The idea provider receives a notification."
-msgstr ""
-"De officiële feedback verschijnt onder het idee, met vermelding van uw "
-"organisatie. De ideeënbedenker ontvangt een melding."
-
-#: apps/moderatorfeedback/models.py:38
+#: apps/moderatorfeedback/models.py:35
 msgid "Processing status"
 msgstr "Verwerkingsstatus"
 
-#: apps/moderatorfeedback/models.py:40
+#: apps/moderatorfeedback/models.py:37
 msgid ""
 "The editing status appears below the title of the idea in red, yellow or "
 "green. The idea provider receives a notification."
@@ -2762,7 +2756,7 @@ msgstr ""
 "De bewerkingsstatus verschijnt onder de titel van het idee in rood, geel of "
 "groen. De ideeënbedenker ontvangt een melding."
 
-#: apps/moderatorfeedback/models.py:61
+#: apps/moderatorfeedback/models.py:58
 msgid "Moderator feedback"
 msgstr "Moderator feedback"
 
@@ -2778,31 +2772,40 @@ msgstr "Schrijf uw opmerking op!"
 msgid "Note only visible internally within project."
 msgstr "Let op: alleen intern zichtbaar binnen het project."
 
-#: apps/newsletters/forms.py:41
+#: apps/newsletters/forms.py:29
+msgid ""
+"If you add an image, please ensure to set the width no larger than 650px and "
+"to provide an alternate text of the image. An alternate text serves as a "
+"textual description of the image content and is read out by screen readers. "
+"Describe the image in approx. 80 characters. Example: A busy square with "
+"people in summer."
+msgstr ""
+
+#: apps/newsletters/forms.py:51
 msgid "Receivers are all users which follow the following project:"
 msgstr "Ontvangers zijn alle gebruikers die het volgende project volgen:"
 
-#: apps/newsletters/forms.py:45
+#: apps/newsletters/forms.py:55
 msgid "Organisation"
 msgstr "Organisatie"
 
-#: apps/newsletters/forms.py:56
+#: apps/newsletters/forms.py:66
 msgid "Select a Project"
 msgstr "Selecteer een project"
 
-#: apps/newsletters/models.py:19
+#: apps/newsletters/models.py:20
 msgid "Users following a specific project"
 msgstr "Gebruikers die een specifiek project volgen"
 
-#: apps/newsletters/models.py:20
+#: apps/newsletters/models.py:21
 msgid "Users following your organisation"
 msgstr "Gebruikers die uw organisatie volgen"
 
-#: apps/newsletters/models.py:21
+#: apps/newsletters/models.py:22
 msgid "Every initiator of your organisation"
 msgstr "Elke initiatiefnemer van uw organisatie"
 
-#: apps/newsletters/models.py:22
+#: apps/newsletters/models.py:23
 msgid "Every user of the platform"
 msgstr "Elke gebruiker van het platform"
 
@@ -2814,18 +2817,11 @@ msgstr "Afzender"
 msgid "Email body"
 msgstr "E-mailbericht"
 
-#: apps/newsletters/models.py:36
-msgid ""
-"When adding images, please ensure to set the width no larger than 600px."
-msgstr ""
-"Bij het toevoegen van afbeeldingen, zorg ervoor dat de breedte niet groter "
-"is dan 600px."
-
-#: apps/newsletters/models.py:40
+#: apps/newsletters/models.py:37
 msgid "Sent"
 msgstr "Verzonden"
 
-#: apps/newsletters/models.py:43
+#: apps/newsletters/models.py:40
 msgid "Receivers"
 msgstr "Ontvangers"
 
@@ -3268,7 +3264,7 @@ msgstr ""
 msgid "Offline Events"
 msgstr "Offline evenementen"
 
-#: apps/offlineevents/forms.py:15 apps/offlineevents/models.py:34
+#: apps/offlineevents/forms.py:15 apps/offlineevents/models.py:30
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:8
 msgid "Date"
 msgstr "Datum"
@@ -3277,11 +3273,15 @@ msgstr "Datum"
 msgid "Time"
 msgstr "Tijd"
 
-#: apps/offlineevents/models.py:27
-msgid "Event type"
-msgstr "Event type"
+#: apps/offlineevents/forms.py:23 apps/topicprio/forms.py:30
+msgid ""
+"If you add an image, please provide an alternate text. It serves as a "
+"textual description of the image content and is read out by screen readers. "
+"Describe the image in approx. 80 characters. Example: A busy square with "
+"people in summer."
+msgstr ""
 
-#: apps/offlineevents/models.py:29
+#: apps/offlineevents/forms.py:30
 msgid ""
 "The content of this field is shown in the timeline. It should have no more "
 "than 30 characters e.g. Information event or 3rd public workshop."
@@ -3289,6 +3289,10 @@ msgstr ""
 "De inhoud van dit veld wordt in de tijdlijn weergegeven. Het mag niet meer "
 "dan 30 karakters hebben, bijv. een informatie-evenement of een derde "
 "openbare workshop."
+
+#: apps/offlineevents/models.py:28
+msgid "Event type"
+msgstr "Event type"
 
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:4
 msgid "Confirm Offline Event Deletion"
@@ -3330,44 +3334,44 @@ msgstr "Offline-evenement bewerken"
 msgid "The offline event has been deleted"
 msgstr "Het offline evenement is verwijderd"
 
-#: apps/organisations/forms.py:17
+#: apps/organisations/forms.py:16
 msgid "Here you can find an example of an {}imprint{}."
 msgstr "Hier vindt u een voorbeeld van een {}imprint{}."
 
-#: apps/organisations/forms.py:18
+#: apps/organisations/forms.py:17
 msgid "Here you can find an example of {}terms of use{}."
 msgstr "Hier vindt u een voorbeeld van {}terms of use{}."
 
-#: apps/organisations/forms.py:20
+#: apps/organisations/forms.py:19
 msgid "Here you can find an example of a {}data protection policy{}."
 msgstr "Hier vindt u een voorbeeld van een {}data protection policy{}."
 
-#: apps/organisations/forms.py:22
+#: apps/organisations/forms.py:21
 msgid "Here you can find an example of a {}netiquette{}."
 msgstr "Hier vindt u een voorbeeld van een {}netiquette{}."
 
-#: apps/organisations/forms.py:34
+#: apps/organisations/forms.py:33
 msgid "Instagram Post 1080x1080"
 msgstr "Instagram Post 1080x1080"
 
-#: apps/organisations/forms.py:35
+#: apps/organisations/forms.py:34
 msgid "Instagram Story 1080x1920"
 msgstr "Instagram verhaal 1080x1920"
 
-#: apps/organisations/forms.py:36
+#: apps/organisations/forms.py:35
 msgid "Linkedin 1104x736"
 msgstr "Linkedin 1104x736"
 
-#: apps/organisations/forms.py:37
+#: apps/organisations/forms.py:36
 msgid "Twitter 1200x675"
 msgstr "Twitter 1200x675"
 
-#: apps/organisations/forms.py:281
+#: apps/organisations/forms.py:277
 #: adhocracy-plus/templates/a4dashboard/communication_form_base.html:23
 msgid "Social Media"
 msgstr "Sociale media"
 
-#: apps/organisations/forms.py:285
+#: apps/organisations/forms.py:281
 msgid ""
 "Here you can create sharepics for social media that will help you get "
 "publicity for your project. You can choose between different formats."
@@ -3376,22 +3380,22 @@ msgstr ""
 "publiciteit te krijgen voor uw project. U kunt kiezen uit verschillende "
 "formaten."
 
-#: apps/organisations/forms.py:292
+#: apps/organisations/forms.py:288
 msgid "Select Project"
 msgstr "Selecteer project"
 
-#: apps/organisations/forms.py:297
+#: apps/organisations/forms.py:293
 msgid "Please select a project of your organisation and click select."
 msgstr "Selecteer een project van uw organisatie en klik op selecteren."
 
-#: apps/organisations/forms.py:316
+#: apps/organisations/forms.py:311
 msgid ""
 "This title will be displayed as a header. It should be max. {} characters "
 "long."
 msgstr ""
 "De titel wordt weergegeven als kopregel. Hij kan max. {} tekens lang zijn."
 
-#: apps/organisations/forms.py:325
+#: apps/organisations/forms.py:320
 msgid ""
 "This description will be displayed below the title. It should briefly state "
 "the goal of the project in max. {} chars."
@@ -3399,11 +3403,11 @@ msgstr ""
 "De beschrijving wordt onder de titel weergegeven. Hij moet kort het doel van "
 "het project vermelden in max. {} tekens."
 
-#: apps/organisations/forms.py:332
+#: apps/organisations/forms.py:327
 msgid "Picture Upload"
 msgstr "Afbeelding uploaden"
 
-#: apps/organisations/forms.py:336
+#: apps/organisations/forms.py:331
 msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
@@ -3426,11 +3430,11 @@ msgstr ""
 "Ga akkoord met de gebruiksvoorwaarden van de organisatie om content te mogen "
 "creëren."
 
-#: apps/organisations/models.py:26
+#: apps/organisations/models.py:25
 msgid "Title of your organisation"
 msgstr "Naam van uw organisatie"
 
-#: apps/organisations/models.py:29
+#: apps/organisations/models.py:28
 msgid ""
 "The title of your organisation will be shown on the landing page. max. 100 "
 "characters"
@@ -3438,21 +3442,21 @@ msgstr ""
 "De naam van uw organisatie wordt op de landingspagina getoond. max. 100 "
 "tekens"
 
-#: apps/organisations/models.py:37
+#: apps/organisations/models.py:36
 msgid "Short description of your organisation"
 msgstr "Korte beschrijving van uw organisatie"
 
-#: apps/organisations/models.py:39
+#: apps/organisations/models.py:38
 msgid ""
 "The description will be displayed on the landing page. max. 800 characters"
 msgstr ""
 "De beschrijving wordt weergegeven op de landingspagina. max. 800 tekens"
 
-#: apps/organisations/models.py:47
+#: apps/organisations/models.py:46
 msgid "Slogan"
 msgstr "Slogan"
 
-#: apps/organisations/models.py:49
+#: apps/organisations/models.py:48
 msgid ""
 "The slogan will be shown below the title of your organisation on the landing "
 "page. The slogan can provide context or additional information to the title. "
@@ -3462,11 +3466,11 @@ msgstr ""
 "getoond. De slogan kan context of aanvullende informatie geven bij de titel. "
 "max. 200 tekens"
 
-#: apps/organisations/models.py:60
+#: apps/organisations/models.py:59
 msgid "Information about your organisation"
 msgstr "Informatie over uw organisatie"
 
-#: apps/organisations/models.py:62
+#: apps/organisations/models.py:61
 msgid ""
 "You can provide general information about your participation platform to "
 "your visitors. It’s also helpful to name a general person of contact for "
@@ -3478,11 +3482,11 @@ msgstr ""
 "vragen. De informatie wordt getoond op een aparte \"Over\" pagina die via "
 "het hoofdmenu te bereiken is."
 
-#: apps/organisations/models.py:75
+#: apps/organisations/models.py:74
 msgid "Logo"
 msgstr "Logo"
 
-#: apps/organisations/models.py:77
+#: apps/organisations/models.py:76
 msgid ""
 "The Logo representing your organisation. The image must be square and it "
 "should be min. 200 pixels wide and 200 pixels tall and max. 800 pixels wide "
@@ -3494,19 +3498,19 @@ msgstr ""
 "pixels hoog zijn. Toegestane bestandsformaten zijn PNG, JPG, en GIF. De "
 "bestandsgrootte mag max. 5 MB zijn."
 
-#: apps/organisations/models.py:92
+#: apps/organisations/models.py:91
 msgid "Please enter a full url which starts with https:// or http://"
 msgstr "Voer een volledige url in die begint met https:// of http://"
 
-#: apps/organisations/models.py:104
+#: apps/organisations/models.py:103
 msgid "Header image copyright"
 msgstr "Auteursrecht op de kopafbeelding"
 
-#: apps/organisations/models.py:106
+#: apps/organisations/models.py:105
 msgid "Author, which is displayed in the header image."
 msgstr "Auteur, die wordt weergegeven in de kop."
 
-#: apps/organisations/models.py:124
+#: apps/organisations/models.py:123
 #: apps/organisations/templates/a4_candy_organisations/organisation_imprint.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_imprint.html:16
 #: adhocracy-plus/templates/email_base.html:75
@@ -3516,7 +3520,7 @@ msgstr "Auteur, die wordt weergegeven in de kop."
 msgid "Imprint"
 msgstr "Impressum"
 
-#: apps/organisations/models.py:126
+#: apps/organisations/models.py:125
 msgid ""
 "Please provide all the legally required information of your imprint. The "
 "imprint will be shown on a separate page."
@@ -3524,7 +3528,7 @@ msgstr ""
 "Geef alle wettelijk vereiste informatie over uw organisatie. Het impressum "
 "wordt op een aparte pagina getoond."
 
-#: apps/organisations/models.py:133
+#: apps/organisations/models.py:132
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
 #: apps/users/forms.py:36 apps/users/forms.py:190
@@ -3535,7 +3539,7 @@ msgstr ""
 msgid "Terms of use"
 msgstr "Gebruiksvoorwaarden"
 
-#: apps/organisations/models.py:135
+#: apps/organisations/models.py:134
 msgid ""
 "Please provide all the legally required information of your terms of use. "
 "The terms of use will be shown on a separate page."
@@ -3543,14 +3547,14 @@ msgstr ""
 "Geef alle wettelijk vereiste informatie over uw gebruiksvoorwaarden. De "
 "gebruiksvoorwaarden worden op een aparte pagina weergegeven."
 
-#: apps/organisations/models.py:142
+#: apps/organisations/models.py:141
 #: adhocracy-plus/templates/email_base.html:106
 #: adhocracy-plus/templates/footer.html:48
 #: adhocracy-plus/templates/footer_upper.html:21
 msgid "Data protection policy"
 msgstr "Privacyverklaring"
 
-#: apps/organisations/models.py:144
+#: apps/organisations/models.py:143
 msgid ""
 "Please provide all the legally required information of your data protection. "
 "The data protection policy will be shown on a separate page."
@@ -3558,7 +3562,7 @@ msgstr ""
 "Geef a.u.b. alle wettelijk vereiste informatie over uw gegevensbescherming. "
 "De privacyverklaring wordt op een aparte pagina weergegeven."
 
-#: apps/organisations/models.py:152
+#: apps/organisations/models.py:151
 #: apps/organisations/templates/a4_candy_organisations/organisation_netiquette.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_netiquette.html:16
 #: adhocracy-plus/templates/footer.html:53
@@ -3566,7 +3570,7 @@ msgstr ""
 msgid "Netiquette"
 msgstr "Netiquette"
 
-#: apps/organisations/models.py:154
+#: apps/organisations/models.py:153
 msgid ""
 "Please provide a netiquette for the participants. The netiquette helps "
 "improving the climate of online discussions and supports the moderation."
@@ -3574,11 +3578,11 @@ msgstr ""
 "Geef een netiquette voor de deelnemers. De netiquette helpt het klimaat van "
 "online discussies te verbeteren en ondersteunt de moderatie."
 
-#: apps/organisations/models.py:162
+#: apps/organisations/models.py:161
 msgid "is a supporting organisation"
 msgstr "is een ondersteunende organisatie"
 
-#: apps/organisations/models.py:164
+#: apps/organisations/models.py:163
 msgid ""
 "For supporting organisations, the banner asking for donations is not "
 "displayed on their pages."
@@ -3586,11 +3590,11 @@ msgstr ""
 "Voor ondersteunende organisaties wordt de banner die om donaties vraagt niet "
 "op hun pagina’s getoond."
 
-#: apps/organisations/models.py:169
+#: apps/organisations/models.py:168
 msgid "Default language for e-mails"
 msgstr "Standaardtaal voor e-mails"
 
-#: apps/organisations/models.py:174
+#: apps/organisations/models.py:173
 msgid ""
 "All e-mails to unregistered users (invites) will be sent in this language."
 msgstr ""
@@ -3655,11 +3659,11 @@ msgstr ""
 msgid "Edit your legal information"
 msgstr "Bewerk uw juridische informatie"
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:27
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:40
 msgid "More about "
 msgstr "Meer over "
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:28
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:41
 msgid "Find us on social media and share your insights of this participation."
 msgstr "Vind ons op social media en deel uw inzichten over deze deelname."
 
@@ -3716,11 +3720,11 @@ msgstr "Organisatie-informatie succesvol bijgewerkt."
 msgid "Legal information successfully updated."
 msgstr "Juridische informatie succesvol bijgewerkt."
 
-#: apps/projects/admin.py:12
+#: apps/projects/admin.py:8
 msgid "archive"
 msgstr "archief"
 
-#: apps/projects/admin.py:19
+#: apps/projects/admin.py:13
 msgid "dearchive"
 msgstr "ont-archief"
 
@@ -3784,9 +3788,8 @@ msgstr ""
 
 #: apps/projects/models.py:153
 msgid ""
-"This session will provide you with valuable insights\n"
-"            into the number of individuals involved in the process\n"
-"            and help you make informed decisions based on the data"
+"This section provides an overview of the participation\n"
+"            activities in this project."
 msgstr ""
 
 #: apps/projects/serializers.py:95
@@ -4152,44 +4155,44 @@ msgstr "Dit project is nog niet gepubliceerd."
 msgid "Participation"
 msgstr "Deelname"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:142
+#: apps/projects/templates/a4_candy_projects/project_detail.html:144
 msgid "Telephone"
 msgstr "Telefoon"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:170
+#: apps/projects/templates/a4_candy_projects/project_detail.html:172
 msgid "Online participation"
 msgstr "Online deelname"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:212
+#: apps/projects/templates/a4_candy_projects/project_detail.html:214
 #: adhocracy-plus/templates/a4modules/module_detail.html:124
 msgid "Participation is not possible at the moment."
 msgstr "Deelname is op dit moment niet mogelijk."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:215
+#: apps/projects/templates/a4_candy_projects/project_detail.html:217
 #: adhocracy-plus/templates/a4modules/module_detail.html:127
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "Het begint op %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:218
+#: apps/projects/templates/a4_candy_projects/project_detail.html:220
 #: adhocracy-plus/templates/a4modules/module_detail.html:130
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "Het gaat verder op %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:221
+#: apps/projects/templates/a4_candy_projects/project_detail.html:223
 #: adhocracy-plus/templates/a4modules/module_detail.html:133
 #, python-format
 msgid "It ended on %(date)s."
 msgstr "Het eindigde op %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:236
+#: apps/projects/templates/a4_candy_projects/project_detail.html:238
 #: apps/users/models.py:53
 #: adhocracy-plus/templates/a4modules/module_detail.html:148
 msgid "active"
 msgstr "actief"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:262
+#: apps/projects/templates/a4_candy_projects/project_detail.html:264
 #: adhocracy-plus/templates/a4modules/module_detail.html:172
 msgid ""
 "This project is not publicly visible. Only invited users can see content and "
@@ -4198,7 +4201,7 @@ msgstr ""
 "Dit project is niet publiekelijk zichtbaar. Alleen uitgenodigde gebruikers "
 "kunnen de inhoud zien en actief deelnemen."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:266
+#: apps/projects/templates/a4_candy_projects/project_detail.html:268
 #: adhocracy-plus/templates/a4modules/module_detail.html:178
 msgid ""
 "This project is publicly visible. Invited users can actively participate."
@@ -4206,12 +4209,12 @@ msgstr ""
 "Dit project is publiekelijk zichtbaar. Uitgenodigde gebruikers kunnen actief "
 "deelnemen."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:289
+#: apps/projects/templates/a4_candy_projects/project_detail.html:291
 #: adhocracy-plus/templates/a4dashboard/includes/project_result_form.html:4
 msgid "Insights"
 msgstr ""
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:312
+#: apps/projects/templates/a4_candy_projects/project_detail.html:314
 msgid "No results yet."
 msgstr "Nog geen resultaten."
 
@@ -4455,7 +4458,7 @@ msgstr "Nog geen activiteit. "
 msgid "Account activity page"
 msgstr "Accountactiviteiten pagina"
 
-#: apps/users/__init__.py:8
+#: apps/users/__init__.py:6
 msgid ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
 "and @/./+/-/_ characters. It must start with a digit or a letter."
@@ -4734,136 +4737,131 @@ msgstr "Lijst van laatste activiteiten op hun account"
 msgid "Activities"
 msgstr "Activiteiten"
 
-#: adhocracy-plus/config/settings/base.py:190
+#: adhocracy-plus/config/settings/base.py:189
 msgid "English"
 msgstr "Engels"
 
-#: adhocracy-plus/config/settings/base.py:191
+#: adhocracy-plus/config/settings/base.py:190
 msgid "German"
 msgstr "Duits"
 
-#: adhocracy-plus/config/settings/base.py:192
+#: adhocracy-plus/config/settings/base.py:191
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: adhocracy-plus/config/settings/base.py:193
+#: adhocracy-plus/config/settings/base.py:192
 msgid "Kyrgyz"
 msgstr "Kirgizisch"
 
-#: adhocracy-plus/config/settings/base.py:194
+#: adhocracy-plus/config/settings/base.py:193
 msgid "Russian"
 msgstr "Russisch"
 
-#: adhocracy-plus/config/settings/base.py:337
-#: adhocracy-plus/config/settings/base.py:353
-msgid "Rich text editor"
-msgstr "Tekstverwerker met opmaak"
-
-#: adhocracy-plus/config/settings/base.py:455
+#: adhocracy-plus/config/settings/base.py:444
 msgid "suggestion"
 msgstr "suggestie"
 
-#: adhocracy-plus/config/settings/base.py:456
+#: adhocracy-plus/config/settings/base.py:445
 msgid "note"
 msgstr "notitie"
 
-#: adhocracy-plus/config/settings/base.py:457
+#: adhocracy-plus/config/settings/base.py:446
 msgid "question"
 msgstr "vraag"
 
-#: adhocracy-plus/config/settings/base.py:498
+#: adhocracy-plus/config/settings/base.py:487
 msgid "Pin without icon"
 msgstr "Markeer zonder icoon"
 
-#: adhocracy-plus/config/settings/base.py:499
+#: adhocracy-plus/config/settings/base.py:488
 msgid "Diamond"
 msgstr "Diamant"
 
-#: adhocracy-plus/config/settings/base.py:500
+#: adhocracy-plus/config/settings/base.py:489
 msgid "Triangle up"
 msgstr "Driehoek naar boven"
 
-#: adhocracy-plus/config/settings/base.py:501
+#: adhocracy-plus/config/settings/base.py:490
 msgid "Triangle down"
 msgstr "Driehoek naar beneden"
 
-#: adhocracy-plus/config/settings/base.py:502
+#: adhocracy-plus/config/settings/base.py:491
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: adhocracy-plus/config/settings/base.py:503
+#: adhocracy-plus/config/settings/base.py:492
 msgid "Semi circle"
 msgstr "Halve cirkel"
 
-#: adhocracy-plus/config/settings/base.py:504
+#: adhocracy-plus/config/settings/base.py:493
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: adhocracy-plus/config/settings/base.py:505
+#: adhocracy-plus/config/settings/base.py:494
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: adhocracy-plus/config/settings/base.py:506
+#: adhocracy-plus/config/settings/base.py:495
 msgid "Star"
 msgstr "Ster"
 
-#: adhocracy-plus/config/settings/base.py:507
+#: adhocracy-plus/config/settings/base.py:496
 msgid "Square"
 msgstr "Vierkant"
 
-#: adhocracy-plus/config/settings/base.py:508
+#: adhocracy-plus/config/settings/base.py:497
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: adhocracy-plus/config/settings/base.py:509
+#: adhocracy-plus/config/settings/base.py:498
 msgid "Rectangle"
 msgstr "Rechthoek"
 
-#: adhocracy-plus/config/settings/base.py:510
+#: adhocracy-plus/config/settings/base.py:499
 msgid "Circle"
 msgstr "Cirkel"
 
-#: adhocracy-plus/config/settings/base.py:511
+#: adhocracy-plus/config/settings/base.py:500
 msgid "Right triangle"
 msgstr "Rechter driehoek"
 
-#: adhocracy-plus/config/settings/base.py:512
+#: adhocracy-plus/config/settings/base.py:501
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: adhocracy-plus/config/settings/base.py:516
+#: adhocracy-plus/config/settings/base.py:505
 msgid "brainstorming"
 msgstr "Brainstorm"
 
-#: adhocracy-plus/config/settings/base.py:517
+#: adhocracy-plus/config/settings/base.py:506
 msgid "spatial brainstorming"
 msgstr "Ruimtelijke brainstorm"
 
-#: adhocracy-plus/config/settings/base.py:518
+#: adhocracy-plus/config/settings/base.py:507
 msgid "idea challenge"
 msgstr "Ideeënuitdaging"
 
-#: adhocracy-plus/config/settings/base.py:519
+#: adhocracy-plus/config/settings/base.py:508
 msgid "spatial idea challenge"
 msgstr "Ruimtelijke ideeënuitdaging"
 
-#: adhocracy-plus/config/settings/base.py:520
+#: adhocracy-plus/config/settings/base.py:509
 msgid "text review"
 msgstr "Tekstherziening"
 
-#: adhocracy-plus/config/settings/base.py:521
+#: adhocracy-plus/config/settings/base.py:510
 msgid "poll"
 msgstr "Poll"
 
-#: adhocracy-plus/config/settings/base.py:523
+#: adhocracy-plus/config/settings/base.py:512
 msgid "interactive event"
 msgstr "Interactief evenement"
 
-#: adhocracy-plus/config/settings/base.py:524
+#: adhocracy-plus/config/settings/base.py:513
 msgid "prioritization"
 msgstr "Prioriteitstelling"
 
-#: adhocracy-plus/config/settings/base.py:525
+#: adhocracy-plus/config/settings/base.py:514
 msgid "debate"
 msgstr "Debat"
 
@@ -5642,51 +5640,3 @@ msgstr "Inloggen met social media account"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:25
 msgid "Login with "
 msgstr "Inloggen met "
-
-#~ msgid "Invitation to an event in project %(project_name)s"
-#~ msgstr "Uitnodiging voor een evenement in project %(project_name)s"
-
-#~ msgid "%(number)d day left"
-#~ msgid_plural "%(number)d days left"
-#~ msgstr[0] "%(number)d dag over"
-#~ msgstr[1] "%(number)d dagen over"
-
-#~ msgid "a few hours left"
-#~ msgstr "nog een paar uur"
-
-#~ msgid "Official Statement"
-#~ msgstr "Officiële verklaring"
-
-#~ msgid "You are logged in as "
-#~ msgstr "U bent ingelogd als "
-
-#~ msgid "Go to platform"
-#~ msgstr "Ga naar het platform"
-
-#~ msgid "Confirm login"
-#~ msgstr "Login bevestigen"
-
-#~ msgid ""
-#~ "You need to login first. By clicking \"Login\" a popup will open so you "
-#~ "can sign in safely. Do you want to login now?"
-#~ msgstr ""
-#~ "U moet eerst inloggen. Door op \"Inloggen\" te klikken wordt een popup "
-#~ "geopend zodat u zich veilig kunt aanmelden. Wilt u nu inloggen?"
-
-#~ msgid "View your profile"
-#~ msgstr "Bekijk uw profiel"
-
-#~ msgid "Info"
-#~ msgstr "Info"
-
-#~ msgid "Participations"
-#~ msgstr "Participaties"
-
-#~ msgid "Active in these platforms"
-#~ msgstr "Actief op deze platforms"
-
-#~ msgid "This user is not active in any platform yet."
-#~ msgstr "Deze gebruiker is nog op geen enkel platform actief."
-
-#~ msgid "Check some platforms out."
-#~ msgstr "Kijk eens naar een paar platforms."

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 14:59+0100\n"
+"POT-Creation-Date: 2024-04-22 11:06+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Russian (https://app.transifex.com/liqd/teams/109316/ru/)\n"
@@ -245,7 +245,7 @@ msgstr "Частный"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:112
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:114
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
 #: apps/projects/templates/a4_candy_projects/project_detail.html:117
@@ -413,46 +413,46 @@ msgstr "категории"
 msgid "Edit categories"
 msgstr "редактировать категории"
 
-#: adhocracy4/categories/fields.py:11
+#: adhocracy4/categories/fields.py:10
 #: adhocracy4/categories/filters.py:16
-#: adhocracy4/categories/forms.py:52
-#: adhocracy4/categories/models.py:34
+#: adhocracy4/categories/forms.py:53
+#: adhocracy4/categories/models.py:24
 #: adhocracy4/exports/mixins/items.py:24
 msgid "Category"
 msgstr "Категория"
 
-#: adhocracy4/categories/forms.py:46
+#: adhocracy4/categories/forms.py:47
 #: adhocracy4/labels/forms.py:23
 msgid "Category name"
 msgstr "Наименование категории"
 
-#: adhocracy4/categories/forms.py:47
+#: adhocracy4/categories/forms.py:48
 msgid "Category icon"
 msgstr "Иконка категории"
 
-#: adhocracy4/categories/models.py:36
+#: adhocracy4/categories/models.py:26
 msgid "Type of category"
 msgstr ""
 
-#: adhocracy4/categories/models.py:38
+#: adhocracy4/categories/models.py:28
 msgid ""
 "You can individualise the term category. The character limit is max. 25 "
 "characters (with spaces)."
 msgstr ""
 
-#: adhocracy4/categories/models.py:46
+#: adhocracy4/categories/models.py:36
 msgid ""
 "Assign your proposal to a category. This automatically appears in the "
 "display of your proposal. The list of all proposals can be filtered by "
 "category."
 msgstr ""
 
-#: adhocracy4/categories/models.py:52
+#: adhocracy4/categories/models.py:42
 #: adhocracy4/labels/models.py:29
 msgid "Description/Helptext"
 msgstr ""
 
-#: adhocracy4/categories/models.py:54
+#: adhocracy4/categories/models.py:44
 #: adhocracy4/labels/models.py:31
 msgid ""
 "You can individualise the description text. The description text is "
@@ -519,8 +519,8 @@ msgid "Edit basic settings"
 msgstr "Изменить основные настройки"
 
 #: adhocracy4/dashboard/dashboard.py:23
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:4
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:19
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:15
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:30
 #: apps/projects/templates/a4_candy_projects/project_detail.html:87
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:23
 msgid "Information"
@@ -602,7 +602,7 @@ msgid "Only invited users can participate (private)."
 msgstr "Только приглашенные пользователи могут участвовать (частный доступ)."
 
 #: adhocracy4/dashboard/forms.py:91
-#: apps/projects/templates/a4_candy_projects/project_detail.html:134
+#: apps/projects/templates/a4_candy_projects/project_detail.html:136
 msgid "Contact for questions"
 msgstr "Контактные данные для вопросов"
 
@@ -620,21 +620,39 @@ msgstr ""
 msgid "More contact possibilities"
 msgstr "Больше возможностей контакта"
 
-#: adhocracy4/dashboard/forms.py:144
+#: adhocracy4/dashboard/forms.py:114
+msgid ""
+"The project description will be shown in the info-tab. If you add an image, "
+"please provide an alternate text. It serves as a textual description of the "
+"image content and is read out by screen readers. Describe the image in "
+"approx. 80 characters. Example: A busy square with people in summer."
+msgstr ""
+
+#: adhocracy4/dashboard/forms.py:134
+msgid ""
+"The results description will be shown in the result-tab. Please describe a "
+"participation promise beforehand (what will happen with the outcome?) and "
+"inform afterwards about the outcome. If you add an image, please provide an "
+"alternate text. It serves as a textual description of the image content and "
+"is read out by screen readers. Describe the image in approx. 80 characters. "
+"Example: A busy square with people in summer."
+msgstr ""
+
+#: adhocracy4/dashboard/forms.py:165
 #: adhocracy4/phases/models.py:66
 msgid "End date"
 msgstr "Дата окончания"
 
-#: adhocracy4/dashboard/forms.py:144
+#: adhocracy4/dashboard/forms.py:165
 msgid "End time"
 msgstr "Время окончания"
 
-#: adhocracy4/dashboard/forms.py:150
+#: adhocracy4/dashboard/forms.py:171
 #: adhocracy4/phases/models.py:64
 msgid "Start date"
 msgstr "Дата начала"
 
-#: adhocracy4/dashboard/forms.py:150
+#: adhocracy4/dashboard/forms.py:171
 msgid "Start time"
 msgstr "Время начала"
 
@@ -722,12 +740,12 @@ msgstr "Местоположения ярлыка"
 
 #: adhocracy4/exports/mixins/items.py:43
 #: adhocracy4/labels/dashboard.py:13
-#: apps/ideas/models.py:46 apps/topicprio/models.py:50
+#: apps/ideas/models.py:46 apps/topicprio/models.py:53
 msgid "Labels"
 msgstr "Ярлыки"
 
 #: adhocracy4/exports/mixins/items.py:61
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:72
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:74
 msgid "Reference No."
 msgstr "Номер ссылки"
 
@@ -815,43 +833,47 @@ msgstr ""
 msgid "Please add an alternative text for this image"
 msgstr ""
 
-#: adhocracy4/images/validators.py:26
+#: adhocracy4/images/validators.py:28
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Неподдерживаемый формат файла. Поддерживаемые форматы {}."
 
-#: adhocracy4/images/validators.py:33
-#: apps/organisations/forms.py:362
+#: adhocracy4/images/validators.py:35
+#: apps/organisations/forms.py:357
 #, python-brace-format
 msgid "Image should be at most {max_size} MB"
 msgstr "Размер изображения не должен превышать {max_size}МБ"
 
-#: adhocracy4/images/validators.py:41
-#: apps/organisations/forms.py:370
+#: adhocracy4/images/validators.py:43
+#: apps/organisations/forms.py:365
 #, python-brace-format
 msgid "Image must be at least {min_width} pixels wide"
 msgstr "Изображение должно быть не менее {min_width} пикселей в ширину."
 
-#: adhocracy4/images/validators.py:49
-#: apps/organisations/forms.py:380
+#: adhocracy4/images/validators.py:51
+#: apps/organisations/forms.py:375
 #, python-brace-format
 msgid "Image must be at least {min_height} pixels high"
 msgstr "Изображение должно быть не менее {min_height} пикселей в высоту."
 
-#: adhocracy4/images/validators.py:55
+#: adhocracy4/images/validators.py:57
 #, python-brace-format
 msgid "Image must be at most {max_width} pixels wide"
 msgstr "Изображение должно быть не более {max_width} пикселей в ширину"
 
-#: adhocracy4/images/validators.py:58
+#: adhocracy4/images/validators.py:60
 #, python-brace-format
 msgid "Image must be at most {max_height} pixels high"
 msgstr "Изображение должно быть не более {max_height} пикселей в высоту"
 
-#: adhocracy4/images/validators.py:67
+#: adhocracy4/images/validators.py:69
 #, python-brace-format
 msgid "Image aspect ratio should be {aspect_width}:{aspect_height}"
 msgstr ""
 "Соотношение сторон изображения должно быть {aspect_width}:{aspect_height}"
+
+#: adhocracy4/images/validators.py:87
+msgid "Please add an alternative text for all images."
+msgstr ""
 
 #: adhocracy4/images/widgets.py:28
 msgid "Select a picture from your local folder."
@@ -917,11 +939,11 @@ msgstr "Пожалуйста, нарисуйте область на карте.
 msgid "Modified"
 msgstr "изменено"
 
-#: adhocracy4/modules/models.py:74
+#: adhocracy4/modules/models.py:72
 msgid "Title of the module"
 msgstr "Заголовок модуля"
 
-#: adhocracy4/modules/models.py:76
+#: adhocracy4/modules/models.py:74
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
@@ -930,11 +952,11 @@ msgstr ""
 "страницах сведений о модуле и проекте. Количество символов не должно "
 "превышать 512 "
 
-#: adhocracy4/modules/models.py:85
+#: adhocracy4/modules/models.py:83
 msgid "Short description of the module"
 msgstr "Краткое описание модуля"
 
-#: adhocracy4/modules/models.py:87
+#: adhocracy4/modules/models.py:85
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
@@ -944,58 +966,58 @@ msgstr ""
 "подробных сведений о проекте. Количество символов в кратком описании не "
 "должно превышать 512 ."
 
-#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:222
 msgid "day"
 msgstr "день"
 
-#: adhocracy4/modules/models.py:224
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:222
+#: adhocracy4/modules/models.py:229
 msgid "days"
 msgstr "дни"
 
-#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:223
 msgid "hour"
 msgstr "час"
 
-#: adhocracy4/modules/models.py:225
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:223
+#: adhocracy4/modules/models.py:230
 msgid "hours"
 msgstr "часы"
 
-#: adhocracy4/modules/models.py:226
+#: adhocracy4/modules/models.py:224
 msgid "minute"
 msgstr "минута"
 
-#: adhocracy4/modules/models.py:226
-#: adhocracy4/modules/models.py:233
+#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:231
 msgid "minutes"
 msgstr "минуты"
 
-#: adhocracy4/modules/models.py:227
+#: adhocracy4/modules/models.py:225
 msgid "second"
 msgstr "секунда"
 
-#: adhocracy4/modules/models.py:227
-#: adhocracy4/modules/models.py:234
+#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:232
 msgid "seconds"
 msgstr "секунды"
 
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:229
 msgctxt "abbreviation for day(s)"
 msgid "D"
 msgstr "D"
 
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:230
 msgctxt "abbreviation for hour(s)"
 msgid "H"
 msgstr "H"
 
-#: adhocracy4/modules/models.py:233
+#: adhocracy4/modules/models.py:231
 msgctxt "abbreviation for minute(s)"
 msgid "M"
 msgstr "M"
 
-#: adhocracy4/modules/models.py:234
+#: adhocracy4/modules/models.py:232
 msgctxt "abbreviation for second(s)"
 msgid "S"
 msgstr "S"
@@ -1017,9 +1039,9 @@ msgstr "Имя"
 
 #: adhocracy4/phases/models.py:60
 #: apps/activities/models.py:22 apps/debate/models.py:25
-#: apps/ideas/models.py:34 apps/offlineevents/models.py:36
-#: apps/organisations/forms.py:322 apps/topicprio/forms.py:14
-#: apps/topicprio/models.py:32
+#: apps/ideas/models.py:34 apps/offlineevents/models.py:33
+#: apps/organisations/forms.py:317 apps/topicprio/forms.py:23
+#: apps/topicprio/models.py:34
 msgid "Description"
 msgstr "Описание"
 
@@ -1153,13 +1175,13 @@ msgid "Only one vote per choice is allowed per user."
 msgstr "Одному голосующему можно проголосовать только один раз"
 
 #: adhocracy4/projects/admin.py:10
-#: apps/newsletters/forms.py:38
+#: apps/newsletters/forms.py:48
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Проект"
 
 #: adhocracy4/projects/admin.py:63
-#: apps/projects/admin.py:38
+#: apps/projects/admin.py:34
 msgid "Information and result"
 msgstr "Информация и результат"
 
@@ -1167,17 +1189,17 @@ msgstr "Информация и результат"
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:44
+#: apps/projects/admin.py:40
 msgid "Settings"
 msgstr "Настройки"
 
 #: adhocracy4/projects/admin.py:81
-#: apps/projects/admin.py:58
+#: apps/projects/admin.py:54
 msgid "Images"
 msgstr "Изображения"
 
 #: adhocracy4/projects/admin.py:93
-#: apps/projects/admin.py:70 adhocracy-plus/templates/email_base.html:112
+#: apps/projects/admin.py:66 adhocracy-plus/templates/email_base.html:112
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "Контактные данные"
@@ -1190,7 +1212,7 @@ msgstr "Открытый доступ"
 msgid "Final Results"
 msgstr ""
 
-#: adhocracy4/projects/models.py:42
+#: adhocracy4/projects/models.py:63
 msgid ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
@@ -1198,34 +1220,34 @@ msgstr ""
 "Номера телефонов могут содержать только цифры, пробелы и следующие символы: "
 "-, +, (,). Номер телефона должен содержать от 8 до 20 символов."
 
-#: adhocracy4/projects/models.py:49
+#: adhocracy4/projects/models.py:70
 msgid "Postal address"
 msgstr "Почтовый адрес"
 
-#: adhocracy4/projects/models.py:52
+#: adhocracy4/projects/models.py:73
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
-#: apps/projects/templates/a4_candy_projects/project_detail.html:146
+#: apps/projects/templates/a4_candy_projects/project_detail.html:148
 msgid "Email"
 msgstr "Электронная почта"
 
-#: adhocracy4/projects/models.py:55
+#: adhocracy4/projects/models.py:76
 msgid "Contact person"
 msgstr "Контактное лицо"
 
-#: adhocracy4/projects/models.py:59
+#: adhocracy4/projects/models.py:80
 msgid "Phone"
 msgstr "Телефон"
 
-#: adhocracy4/projects/models.py:62
-#: apps/projects/templates/a4_candy_projects/project_detail.html:151
+#: adhocracy4/projects/models.py:83
+#: apps/projects/templates/a4_candy_projects/project_detail.html:153
 msgid "Website"
 msgstr "Вебсайт"
 
-#: adhocracy4/projects/models.py:72
+#: adhocracy4/projects/models.py:93
 msgid "Can your project be located on the map?"
 msgstr "Может ли ваш проект быть размещен на карте?"
 
-#: adhocracy4/projects/models.py:74
+#: adhocracy4/projects/models.py:95
 msgid ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
@@ -1234,15 +1256,15 @@ msgstr ""
 "или введите адрес, чтобы установить маркер. Установленный маркер можно "
 "перетащить при нажатии."
 
-#: adhocracy4/projects/models.py:86
+#: adhocracy4/projects/models.py:107
 msgid "Administrative district"
 msgstr "Административный район"
 
-#: adhocracy4/projects/models.py:174
+#: adhocracy4/projects/models.py:195
 msgid "Title of your project"
 msgstr "Название вашего проекта"
 
-#: adhocracy4/projects/models.py:176
+#: adhocracy4/projects/models.py:197
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -1250,11 +1272,11 @@ msgstr ""
 "Этот заголовок появится на карточке-тизере и в верхней части страницы "
 "сведений о проекте. Количество символов не должно превышать 120 символов"
 
-#: adhocracy4/projects/models.py:189
+#: adhocracy4/projects/models.py:210
 msgid "Short description of your project"
 msgstr "Краткое описание вашего проекта"
 
-#: adhocracy4/projects/models.py:191
+#: adhocracy4/projects/models.py:212
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -1262,79 +1284,51 @@ msgstr ""
 "Это краткое описание появится в шапке проекта и в анонсе. Следует кратко "
 "изложить цель проекта не превышая 250 символов."
 
-#: adhocracy4/projects/models.py:200
+#: adhocracy4/projects/models.py:221
 msgid "Description of your project"
 msgstr "Описание вашего проекта"
 
-#: adhocracy4/projects/models.py:202
-msgid ""
-"This description should tell participants what the goal of the project is, "
-"how the project’s participation will look like. It will be always visible in "
-"the „Info“ tab on your project’s page."
-msgstr ""
-"Это описание должно рассказывать участникам какова цель проекта, как будет "
-"выглядеть участие в проекте. Оно всегда будет видно на вкладке «Информация» "
-"на странице вашего проекта."
-
-#: adhocracy4/projects/models.py:211
+#: adhocracy4/projects/models.py:227
 msgid "Results of your project"
 msgstr "Результаты вашего проекта"
 
-#: adhocracy4/projects/models.py:213
-msgid ""
-"Here you should explain what the expected outcome of the project will be and "
-"how you are planning to use the results. If the project is finished you "
-"should add a summary of the results."
-msgstr ""
-"Здесь вы должны объяснить, каким будет ожидаемый результат проекта и как вы "
-"планируете использовать результаты. Если проект завершен, вы должны добавить "
-"сводку результатов."
-
-#: adhocracy4/projects/models.py:220
+#: adhocracy4/projects/models.py:231
 msgid "Access to the project"
 msgstr "Доступ к проекту"
 
-#: adhocracy4/projects/models.py:225
-#: adhocracy4/projects/models.py:231
-#: adhocracy4/projects/models.py:232
-#: apps/organisations/models.py:97
+#: adhocracy4/projects/models.py:236
+#: adhocracy4/projects/models.py:242
+#: adhocracy4/projects/models.py:243
+#: apps/organisations/models.py:96
 msgid "Header image"
 msgstr "Заглавное изображение"
 
-#: adhocracy4/projects/models.py:226
-#: apps/organisations/models.py:98
+#: adhocracy4/projects/models.py:237
+#: apps/organisations/models.py:97
 msgid "The image will be shown as a decorative background image."
 msgstr "Изображение будет отображаться как декоративное фоновое изображение."
 
-#: adhocracy4/projects/models.py:235
-#: adhocracy4/projects/models.py:241
-#: adhocracy4/projects/models.py:242
+#: adhocracy4/projects/models.py:246
+#: adhocracy4/projects/models.py:252
+#: adhocracy4/projects/models.py:253
 msgid "Tile image"
 msgstr "Замостить изображение"
 
-#: adhocracy4/projects/models.py:236
+#: adhocracy4/projects/models.py:247
 msgid "The image will be shown in the project tile."
 msgstr "Изображение будет показано на клетке проекта."
 
-#: adhocracy4/projects/models.py:255
+#: adhocracy4/projects/models.py:266
 msgid "Project is archived"
 msgstr "Проект заархивирован"
 
-#: adhocracy4/projects/models.py:257
+#: adhocracy4/projects/models.py:268
 msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
 msgstr ""
 "Заархивированные проекты не отображаются в обзоре проектов. Для "
 "организаторов проекта они по-прежнему видны на панели инструментов."
-
-#: adhocracy4/projects/models.py:263
-msgid "Project topics"
-msgstr "Темы проекта"
-
-#: adhocracy4/projects/models.py:263
-msgid "Add topics to your project."
-msgstr "Добавьте темы в свой проект."
 
 #: adhocracy4/projects/utils.py:46
 msgid "{}. Online Participation"
@@ -1345,7 +1339,7 @@ msgid "Online Participation"
 msgstr "Онлайн-участие"
 
 #: adhocracy4/reports/templatetags/react_reports.py:28
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:123
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:125
 msgid "Report"
 msgstr "Отчет"
 
@@ -1409,7 +1403,7 @@ msgstr "Здесь вы можете редактировать все свои 
 msgid "Your profile was successfully updated."
 msgstr "Ваш профиль был успешно обновлен."
 
-#: apps/account/views.py:49
+#: apps/account/views.py:51
 msgid "Your agreements were successfully updated."
 msgstr "Ваши соглашения были успешно обновлены."
 
@@ -1521,8 +1515,8 @@ msgid "Face-to-Face Information"
 msgstr "Личная информация"
 
 #: apps/activities/models.py:12 apps/debate/models.py:20
-#: apps/ideas/models.py:33 apps/offlineevents/models.py:24
-#: apps/organisations/forms.py:313 apps/topicprio/models.py:30
+#: apps/ideas/models.py:33 apps/offlineevents/models.py:25
+#: apps/organisations/forms.py:308 apps/topicprio/models.py:31
 msgid "Title"
 msgstr "Заголовок"
 
@@ -1577,7 +1571,7 @@ msgid "Post ideas with budget proposals, comment on them and rate them."
 msgstr ""
 "Публикуйте идеи с предложениями по бюджету, комментируйте их и оценивайте."
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:522
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:511
 msgid "participatory budgeting"
 msgstr "Принятие бюджета с участием местных жителей"
 
@@ -2053,12 +2047,12 @@ msgstr "Следующая страница"
 msgid "go to overview"
 msgstr ""
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:98
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:107
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:100
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:109
 msgid "Actions"
 msgstr "Действия"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:114
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:116
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:24
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:25
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:24
@@ -2067,12 +2061,12 @@ msgstr "Действия"
 msgid "Delete"
 msgstr "Удалить"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:118
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:120
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:4
 msgid "Give feedback"
 msgstr "Оставить отзыв"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:140
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:142
 msgid "Official Feedback"
 msgstr "официальная обратная связь"
 
@@ -2400,7 +2394,7 @@ msgstr "Публиковать комментарии к абзацам текс
 msgid "Table of Contents"
 msgstr "Содержание"
 
-#: apps/documents/templates/a4_candy_documents/chapter_detail.html:53
+#: apps/documents/templates/a4_candy_documents/chapter_detail.html:55
 #, python-format
 msgid "%(count)s Comment"
 msgid_plural "%(count)s Comments"
@@ -2427,11 +2421,11 @@ msgstr "Следующая глава"
 msgid "back to chapter"
 msgstr "Вернуться к главе"
 
-#: apps/documents/views.py:65
+#: apps/documents/views.py:72
 msgid "Document has no chapters defined."
 msgstr "В документе не определены главы."
 
-#: apps/ideas/models.py:37 apps/topicprio/models.py:36
+#: apps/ideas/models.py:37 apps/topicprio/models.py:39
 msgid "Add image"
 msgstr "Добавить изображение"
 
@@ -2716,6 +2710,14 @@ msgstr "Вы можете выбрать предустановки для да�
 msgid "Moderator feedback for items with fixed feedback choices"
 msgstr "Отзыв модератора для элементов с фиксированным выбором отзывов"
 
+#: apps/moderatorfeedback/forms.py:13
+msgid ""
+"The official feedback will appear below the idea, indicating your "
+"organisation. The idea provider receives a notification."
+msgstr ""
+"Официальный отзыв появится под идеей с указанием вашей организации. "
+"Поставщик идеи получает уведомление."
+
 #: apps/moderatorfeedback/models.py:12
 msgid "Under consideration"
 msgstr "На рассмотрении"
@@ -2732,19 +2734,11 @@ msgstr "Принято"
 msgid "Official feedback"
 msgstr "Официальный отзыв"
 
-#: apps/moderatorfeedback/models.py:23
-msgid ""
-"The official feedback will appear below the idea, indicating your "
-"organisation. The idea provider receives a notification."
-msgstr ""
-"Официальный отзыв появится под идеей с указанием вашей организации. "
-"Поставщик идеи получает уведомление."
-
-#: apps/moderatorfeedback/models.py:38
+#: apps/moderatorfeedback/models.py:35
 msgid "Processing status"
 msgstr "Статус обработки"
 
-#: apps/moderatorfeedback/models.py:40
+#: apps/moderatorfeedback/models.py:37
 msgid ""
 "The editing status appears below the title of the idea in red, yellow or "
 "green. The idea provider receives a notification."
@@ -2752,7 +2746,7 @@ msgstr ""
 "Статус редактирования отображается под названием идеи красным, желтым или "
 "зеленым цветом. Автор идеи получает уведомление."
 
-#: apps/moderatorfeedback/models.py:61
+#: apps/moderatorfeedback/models.py:58
 msgid "Moderator feedback"
 msgstr "Обратная связь модератора"
 
@@ -2768,32 +2762,41 @@ msgstr "Впишите свое примечание!"
 msgid "Note only visible internally within project."
 msgstr "Примечание видно только внутри проекта."
 
-#: apps/newsletters/forms.py:41
+#: apps/newsletters/forms.py:29
+msgid ""
+"If you add an image, please ensure to set the width no larger than 650px and "
+"to provide an alternate text of the image. An alternate text serves as a "
+"textual description of the image content and is read out by screen readers. "
+"Describe the image in approx. 80 characters. Example: A busy square with "
+"people in summer."
+msgstr ""
+
+#: apps/newsletters/forms.py:51
 msgid "Receivers are all users which follow the following project:"
 msgstr ""
 "Получатели - это все пользователи, которые следят за следующим проектом:"
 
-#: apps/newsletters/forms.py:45
+#: apps/newsletters/forms.py:55
 msgid "Organisation"
 msgstr "Организация"
 
-#: apps/newsletters/forms.py:56
+#: apps/newsletters/forms.py:66
 msgid "Select a Project"
 msgstr "Выбрать проект"
 
-#: apps/newsletters/models.py:19
+#: apps/newsletters/models.py:20
 msgid "Users following a specific project"
 msgstr "Пользователи, подписанные на конкретный проект"
 
-#: apps/newsletters/models.py:20
+#: apps/newsletters/models.py:21
 msgid "Users following your organisation"
 msgstr "Пользователи, подписанные на вашу организацию"
 
-#: apps/newsletters/models.py:21
+#: apps/newsletters/models.py:22
 msgid "Every initiator of your organisation"
 msgstr "Каждый организатор вашей организации"
 
-#: apps/newsletters/models.py:22
+#: apps/newsletters/models.py:23
 msgid "Every user of the platform"
 msgstr "Каждый пользователь платформы"
 
@@ -2805,17 +2808,11 @@ msgstr "Отправитель"
 msgid "Email body"
 msgstr "Текст сообщения электронной почты"
 
-#: apps/newsletters/models.py:36
-msgid ""
-"When adding images, please ensure to set the width no larger than 600px."
-msgstr ""
-"При добавлении изображений убедитесь, что ширина не превышает 600 пикселей."
-
-#: apps/newsletters/models.py:40
+#: apps/newsletters/models.py:37
 msgid "Sent"
 msgstr "Отправлено"
 
-#: apps/newsletters/models.py:43
+#: apps/newsletters/models.py:40
 msgid "Receivers"
 msgstr "Получатели"
 
@@ -3248,7 +3245,7 @@ msgstr ""
 msgid "Offline Events"
 msgstr "Офлайн-события"
 
-#: apps/offlineevents/forms.py:15 apps/offlineevents/models.py:34
+#: apps/offlineevents/forms.py:15 apps/offlineevents/models.py:30
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:8
 msgid "Date"
 msgstr "Дата"
@@ -3257,11 +3254,15 @@ msgstr "Дата"
 msgid "Time"
 msgstr "Время"
 
-#: apps/offlineevents/models.py:27
-msgid "Event type"
-msgstr "Тип события"
+#: apps/offlineevents/forms.py:23 apps/topicprio/forms.py:30
+msgid ""
+"If you add an image, please provide an alternate text. It serves as a "
+"textual description of the image content and is read out by screen readers. "
+"Describe the image in approx. 80 characters. Example: A busy square with "
+"people in summer."
+msgstr ""
 
-#: apps/offlineevents/models.py:29
+#: apps/offlineevents/forms.py:30
 msgid ""
 "The content of this field is shown in the timeline. It should have no more "
 "than 30 characters e.g. Information event or 3rd public workshop."
@@ -3269,6 +3270,10 @@ msgstr ""
 "Содержимое этого поля отображается на расписании. Оно должно содержать не "
 "более 30 символов, как например Информационное мероприятие или 3-й "
 "общественный семинар."
+
+#: apps/offlineevents/models.py:28
+msgid "Event type"
+msgstr "Тип события"
 
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:4
 msgid "Confirm Offline Event Deletion"
@@ -3310,44 +3315,44 @@ msgstr "Изменить офлайн-событие"
 msgid "The offline event has been deleted"
 msgstr "Офлайн-событие удалено"
 
-#: apps/organisations/forms.py:17
+#: apps/organisations/forms.py:16
 msgid "Here you can find an example of an {}imprint{}."
 msgstr "Здесь вы можете найти пример {} выходных данных {}."
 
-#: apps/organisations/forms.py:18
+#: apps/organisations/forms.py:17
 msgid "Here you can find an example of {}terms of use{}."
 msgstr "Здесь вы можете найти пример {} условий использования {}."
 
-#: apps/organisations/forms.py:20
+#: apps/organisations/forms.py:19
 msgid "Here you can find an example of a {}data protection policy{}."
 msgstr "Здесь вы можете найти пример {} политики защиты данных {}."
 
-#: apps/organisations/forms.py:22
+#: apps/organisations/forms.py:21
 msgid "Here you can find an example of a {}netiquette{}."
 msgstr "Здесь вы можете найти пример {} сетевого этикета {}."
 
-#: apps/organisations/forms.py:34
+#: apps/organisations/forms.py:33
 msgid "Instagram Post 1080x1080"
 msgstr "Инстаграм пост 1080х1080"
 
-#: apps/organisations/forms.py:35
+#: apps/organisations/forms.py:34
 msgid "Instagram Story 1080x1920"
 msgstr "Instagram Story 1080x1920"
 
-#: apps/organisations/forms.py:36
+#: apps/organisations/forms.py:35
 msgid "Linkedin 1104x736"
 msgstr "Линкедин 1104х736"
 
-#: apps/organisations/forms.py:37
+#: apps/organisations/forms.py:36
 msgid "Twitter 1200x675"
 msgstr "Твиттер 1200х675"
 
-#: apps/organisations/forms.py:281
+#: apps/organisations/forms.py:277
 #: adhocracy-plus/templates/a4dashboard/communication_form_base.html:23
 msgid "Social Media"
 msgstr "Социальные медиа"
 
-#: apps/organisations/forms.py:285
+#: apps/organisations/forms.py:281
 msgid ""
 "Here you can create sharepics for social media that will help you get "
 "publicity for your project. You can choose between different formats."
@@ -3356,22 +3361,22 @@ msgstr ""
 "помогут вам привлечь внимание к вашему проекту. Вы можете выбирать между "
 "различными форматами."
 
-#: apps/organisations/forms.py:292
+#: apps/organisations/forms.py:288
 msgid "Select Project"
 msgstr "Выбор проекта"
 
-#: apps/organisations/forms.py:297
+#: apps/organisations/forms.py:293
 msgid "Please select a project of your organisation and click select."
 msgstr "Пожалуйста, выберите проект вашей организации и нажмите выбрать."
 
-#: apps/organisations/forms.py:316
+#: apps/organisations/forms.py:311
 msgid ""
 "This title will be displayed as a header. It should be max. {} characters "
 "long."
 msgstr ""
 "Название будет размещено как заголовок. Оно должно быть не больше  {} . "
 
-#: apps/organisations/forms.py:325
+#: apps/organisations/forms.py:320
 msgid ""
 "This description will be displayed below the title. It should briefly state "
 "the goal of the project in max. {} chars."
@@ -3379,11 +3384,11 @@ msgstr ""
 "Описание будет размещено ниже названия. Оно должно вкратце описать цель "
 "проекта не более {}. "
 
-#: apps/organisations/forms.py:332
+#: apps/organisations/forms.py:327
 msgid "Picture Upload"
 msgstr "Размещение рисунка"
 
-#: apps/organisations/forms.py:336
+#: apps/organisations/forms.py:331
 msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
@@ -3406,11 +3411,11 @@ msgstr ""
 "Пожалуйста, с условиями использования организации для того, чтобы дать вам "
 "разрешение на создание контента."
 
-#: apps/organisations/models.py:26
+#: apps/organisations/models.py:25
 msgid "Title of your organisation"
 msgstr "Название вашей организации"
 
-#: apps/organisations/models.py:29
+#: apps/organisations/models.py:28
 msgid ""
 "The title of your organisation will be shown on the landing page. max. 100 "
 "characters"
@@ -3418,20 +3423,20 @@ msgstr ""
 "Название вашей организации будет показано на целевой странице. Максимум 100 "
 "символов"
 
-#: apps/organisations/models.py:37
+#: apps/organisations/models.py:36
 msgid "Short description of your organisation"
 msgstr "Краткое описание вашей организации"
 
-#: apps/organisations/models.py:39
+#: apps/organisations/models.py:38
 msgid ""
 "The description will be displayed on the landing page. max. 800 characters"
 msgstr "Описание будет отображаться на целевой странице. Максимум 800 символов"
 
-#: apps/organisations/models.py:47
+#: apps/organisations/models.py:46
 msgid "Slogan"
 msgstr "Слоган"
 
-#: apps/organisations/models.py:49
+#: apps/organisations/models.py:48
 msgid ""
 "The slogan will be shown below the title of your organisation on the landing "
 "page. The slogan can provide context or additional information to the title. "
@@ -3441,11 +3446,11 @@ msgstr ""
 "странице. Слоган может содержать контекст или дополнительную информацию к "
 "заголовку. Максимум 200 символов"
 
-#: apps/organisations/models.py:60
+#: apps/organisations/models.py:59
 msgid "Information about your organisation"
 msgstr "Информация о вашей организации"
 
-#: apps/organisations/models.py:62
+#: apps/organisations/models.py:61
 msgid ""
 "You can provide general information about your participation platform to "
 "your visitors. It’s also helpful to name a general person of contact for "
@@ -3457,11 +3462,11 @@ msgstr ""
 "Информация будет отображаться на отдельной странице «О программе», в которую "
 "можно попасть через главное меню."
 
-#: apps/organisations/models.py:75
+#: apps/organisations/models.py:74
 msgid "Logo"
 msgstr "Логотип"
 
-#: apps/organisations/models.py:77
+#: apps/organisations/models.py:76
 msgid ""
 "The Logo representing your organisation. The image must be square and it "
 "should be min. 200 pixels wide and 200 pixels tall and max. 800 pixels wide "
@@ -3473,19 +3478,19 @@ msgstr ""
 "более 800 пикселей в ширину и 800 пикселей в высоту. Разрешенные форматы "
 "файлов: png, jpeg, gif. Размер файла должен быть не более 5 МБт."
 
-#: apps/organisations/models.py:92
+#: apps/organisations/models.py:91
 msgid "Please enter a full url which starts with https:// or http://"
 msgstr "Введите полный URL-адрес, который начинается с https: // или http: //."
 
-#: apps/organisations/models.py:104
+#: apps/organisations/models.py:103
 msgid "Header image copyright"
 msgstr "Авторское право на заглавное изображение"
 
-#: apps/organisations/models.py:106
+#: apps/organisations/models.py:105
 msgid "Author, which is displayed in the header image."
 msgstr "Автор, который отображается в заглавном изображении."
 
-#: apps/organisations/models.py:124
+#: apps/organisations/models.py:123
 #: apps/organisations/templates/a4_candy_organisations/organisation_imprint.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_imprint.html:16
 #: adhocracy-plus/templates/email_base.html:75
@@ -3495,7 +3500,7 @@ msgstr "Автор, который отображается в заглавно�
 msgid "Imprint"
 msgstr "Выходные данные"
 
-#: apps/organisations/models.py:126
+#: apps/organisations/models.py:125
 msgid ""
 "Please provide all the legally required information of your imprint. The "
 "imprint will be shown on a separate page."
@@ -3503,7 +3508,7 @@ msgstr ""
 "Пожалуйста, предоставьте всю юридически необходимую информацию о ваших "
 "выходных данных. Выходные данные будут показаны на отдельной странице."
 
-#: apps/organisations/models.py:133
+#: apps/organisations/models.py:132
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
 #: apps/users/forms.py:36 apps/users/forms.py:190
@@ -3514,7 +3519,7 @@ msgstr ""
 msgid "Terms of use"
 msgstr "Условия использования"
 
-#: apps/organisations/models.py:135
+#: apps/organisations/models.py:134
 msgid ""
 "Please provide all the legally required information of your terms of use. "
 "The terms of use will be shown on a separate page."
@@ -3523,14 +3528,14 @@ msgstr ""
 "условиях использования. Условия использования будут показаны на отдельной "
 "странице."
 
-#: apps/organisations/models.py:142
+#: apps/organisations/models.py:141
 #: adhocracy-plus/templates/email_base.html:106
 #: adhocracy-plus/templates/footer.html:48
 #: adhocracy-plus/templates/footer_upper.html:21
 msgid "Data protection policy"
 msgstr "Политика защиты данных"
 
-#: apps/organisations/models.py:144
+#: apps/organisations/models.py:143
 msgid ""
 "Please provide all the legally required information of your data protection. "
 "The data protection policy will be shown on a separate page."
@@ -3539,7 +3544,7 @@ msgstr ""
 "политике защиты данных. Политика защиты данных будет показана на отдельной "
 "странице."
 
-#: apps/organisations/models.py:152
+#: apps/organisations/models.py:151
 #: apps/organisations/templates/a4_candy_organisations/organisation_netiquette.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_netiquette.html:16
 #: adhocracy-plus/templates/footer.html:53
@@ -3547,7 +3552,7 @@ msgstr ""
 msgid "Netiquette"
 msgstr "Сетевой этикет"
 
-#: apps/organisations/models.py:154
+#: apps/organisations/models.py:153
 msgid ""
 "Please provide a netiquette for the participants. The netiquette helps "
 "improving the climate of online discussions and supports the moderation."
@@ -3555,11 +3560,11 @@ msgstr ""
 "Пожалуйста, предоставьте участникам сетевой этикет. Сетевой этикет помогает "
 "улучшить атмосферу онлайн-дискуссий и способствует лучшей модерации."
 
-#: apps/organisations/models.py:162
+#: apps/organisations/models.py:161
 msgid "is a supporting organisation"
 msgstr "это поддерживающая организация"
 
-#: apps/organisations/models.py:164
+#: apps/organisations/models.py:163
 msgid ""
 "For supporting organisations, the banner asking for donations is not "
 "displayed on their pages."
@@ -3567,11 +3572,11 @@ msgstr ""
 "Для поддерживающих организаций баннер с просьбой о пожертвованиях не "
 "отображается на их страницах."
 
-#: apps/organisations/models.py:169
+#: apps/organisations/models.py:168
 msgid "Default language for e-mails"
 msgstr "Язык электронной почты по умолчанию"
 
-#: apps/organisations/models.py:174
+#: apps/organisations/models.py:173
 msgid ""
 "All e-mails to unregistered users (invites) will be sent in this language."
 msgstr ""
@@ -3636,11 +3641,11 @@ msgstr ""
 msgid "Edit your legal information"
 msgstr "Изменить вашу юридическую информацию"
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:27
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:40
 msgid "More about "
 msgstr "Больше о"
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:28
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:41
 msgid "Find us on social media and share your insights of this participation."
 msgstr ""
 "Найдите нас в социальных сетях и поделитесь своим мнением об этом участии."
@@ -3696,11 +3701,11 @@ msgstr "Информация об организации успешно обно
 msgid "Legal information successfully updated."
 msgstr "Юридическая информация успешно обновлена."
 
-#: apps/projects/admin.py:12
+#: apps/projects/admin.py:8
 msgid "archive"
 msgstr "архив"
 
-#: apps/projects/admin.py:19
+#: apps/projects/admin.py:13
 msgid "dearchive"
 msgstr "разархивировать"
 
@@ -3764,9 +3769,8 @@ msgstr ""
 
 #: apps/projects/models.py:153
 msgid ""
-"This session will provide you with valuable insights\n"
-"            into the number of individuals involved in the process\n"
-"            and help you make informed decisions based on the data"
+"This section provides an overview of the participation\n"
+"            activities in this project."
 msgstr ""
 
 #: apps/projects/serializers.py:95
@@ -4131,44 +4135,44 @@ msgstr "Этот проект еще не опубликован."
 msgid "Participation"
 msgstr "Участие"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:142
+#: apps/projects/templates/a4_candy_projects/project_detail.html:144
 msgid "Telephone"
 msgstr "Телефон"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:170
+#: apps/projects/templates/a4_candy_projects/project_detail.html:172
 msgid "Online participation"
 msgstr "Онлайн участие"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:212
+#: apps/projects/templates/a4_candy_projects/project_detail.html:214
 #: adhocracy-plus/templates/a4modules/module_detail.html:124
 msgid "Participation is not possible at the moment."
 msgstr "На данный момент участие невозможно."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:215
+#: apps/projects/templates/a4_candy_projects/project_detail.html:217
 #: adhocracy-plus/templates/a4modules/module_detail.html:127
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "Это начинается с %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:218
+#: apps/projects/templates/a4_candy_projects/project_detail.html:220
 #: adhocracy-plus/templates/a4modules/module_detail.html:130
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "Это продолжится с %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:221
+#: apps/projects/templates/a4_candy_projects/project_detail.html:223
 #: adhocracy-plus/templates/a4modules/module_detail.html:133
 #, python-format
 msgid "It ended on %(date)s."
 msgstr "Это закончилось%(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:236
+#: apps/projects/templates/a4_candy_projects/project_detail.html:238
 #: apps/users/models.py:53
 #: adhocracy-plus/templates/a4modules/module_detail.html:148
 msgid "active"
 msgstr "Активный"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:262
+#: apps/projects/templates/a4_candy_projects/project_detail.html:264
 #: adhocracy-plus/templates/a4modules/module_detail.html:172
 msgid ""
 "This project is not publicly visible. Only invited users can see content and "
@@ -4177,7 +4181,7 @@ msgstr ""
 "Этот проект не является общедоступным. Только приглашенные пользователи "
 "могут видеть контент и активно участвовать."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:266
+#: apps/projects/templates/a4_candy_projects/project_detail.html:268
 #: adhocracy-plus/templates/a4modules/module_detail.html:178
 msgid ""
 "This project is publicly visible. Invited users can actively participate."
@@ -4185,12 +4189,12 @@ msgstr ""
 "Этот проект находится в открытом доступе. Приглашенные пользователи могут "
 "активно участвовать."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:289
+#: apps/projects/templates/a4_candy_projects/project_detail.html:291
 #: adhocracy-plus/templates/a4dashboard/includes/project_result_form.html:4
 msgid "Insights"
 msgstr ""
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:312
+#: apps/projects/templates/a4_candy_projects/project_detail.html:314
 msgid "No results yet."
 msgstr "Пока результатов нет."
 
@@ -4434,7 +4438,7 @@ msgstr "Пока нет активности."
 msgid "Account activity page"
 msgstr "Страница активности учетной записи"
 
-#: apps/users/__init__.py:8
+#: apps/users/__init__.py:6
 msgid ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
 "and @/./+/-/_ characters. It must start with a digit or a letter."
@@ -4717,136 +4721,131 @@ msgstr "Список последних действий в их аккаунт�
 msgid "Activities"
 msgstr "Деятельность"
 
-#: adhocracy-plus/config/settings/base.py:190
+#: adhocracy-plus/config/settings/base.py:189
 msgid "English"
 msgstr "Английский язык"
 
-#: adhocracy-plus/config/settings/base.py:191
+#: adhocracy-plus/config/settings/base.py:190
 msgid "German"
 msgstr "Немецкий язык"
 
-#: adhocracy-plus/config/settings/base.py:192
+#: adhocracy-plus/config/settings/base.py:191
 msgid "Dutch"
 msgstr "Голландский язык"
 
-#: adhocracy-plus/config/settings/base.py:193
+#: adhocracy-plus/config/settings/base.py:192
 msgid "Kyrgyz"
 msgstr "Кыргызский"
 
-#: adhocracy-plus/config/settings/base.py:194
+#: adhocracy-plus/config/settings/base.py:193
 msgid "Russian"
 msgstr "Русский"
 
-#: adhocracy-plus/config/settings/base.py:337
-#: adhocracy-plus/config/settings/base.py:353
-msgid "Rich text editor"
-msgstr "Редактор форматированного текста"
-
-#: adhocracy-plus/config/settings/base.py:455
+#: adhocracy-plus/config/settings/base.py:444
 msgid "suggestion"
 msgstr "Предложение"
 
-#: adhocracy-plus/config/settings/base.py:456
+#: adhocracy-plus/config/settings/base.py:445
 msgid "note"
 msgstr "Примечание"
 
-#: adhocracy-plus/config/settings/base.py:457
+#: adhocracy-plus/config/settings/base.py:446
 msgid "question"
 msgstr "Вопрос"
 
-#: adhocracy-plus/config/settings/base.py:498
+#: adhocracy-plus/config/settings/base.py:487
 msgid "Pin without icon"
 msgstr "Закрепить без значка"
 
-#: adhocracy-plus/config/settings/base.py:499
+#: adhocracy-plus/config/settings/base.py:488
 msgid "Diamond"
 msgstr "Алмаз"
 
-#: adhocracy-plus/config/settings/base.py:500
+#: adhocracy-plus/config/settings/base.py:489
 msgid "Triangle up"
 msgstr "Треугольник вверх"
 
-#: adhocracy-plus/config/settings/base.py:501
+#: adhocracy-plus/config/settings/base.py:490
 msgid "Triangle down"
 msgstr "Треугольник вниз"
 
-#: adhocracy-plus/config/settings/base.py:502
+#: adhocracy-plus/config/settings/base.py:491
 msgid "Ellipse"
 msgstr "Эллипс"
 
-#: adhocracy-plus/config/settings/base.py:503
+#: adhocracy-plus/config/settings/base.py:492
 msgid "Semi circle"
 msgstr "Полукруг"
 
-#: adhocracy-plus/config/settings/base.py:504
+#: adhocracy-plus/config/settings/base.py:493
 msgid "Hexagon"
 msgstr "Шестиугольник"
 
-#: adhocracy-plus/config/settings/base.py:505
+#: adhocracy-plus/config/settings/base.py:494
 msgid "Rhomboid"
 msgstr "Ромбоид"
 
-#: adhocracy-plus/config/settings/base.py:506
+#: adhocracy-plus/config/settings/base.py:495
 msgid "Star"
 msgstr "Звезда"
 
-#: adhocracy-plus/config/settings/base.py:507
+#: adhocracy-plus/config/settings/base.py:496
 msgid "Square"
 msgstr "Квадрат"
 
-#: adhocracy-plus/config/settings/base.py:508
+#: adhocracy-plus/config/settings/base.py:497
 msgid "Octothorpe"
 msgstr "Решетка"
 
-#: adhocracy-plus/config/settings/base.py:509
+#: adhocracy-plus/config/settings/base.py:498
 msgid "Rectangle"
 msgstr "Прямоугольник"
 
-#: adhocracy-plus/config/settings/base.py:510
+#: adhocracy-plus/config/settings/base.py:499
 msgid "Circle"
 msgstr "Круг"
 
-#: adhocracy-plus/config/settings/base.py:511
+#: adhocracy-plus/config/settings/base.py:500
 msgid "Right triangle"
 msgstr "Прямоугольный треугольник"
 
-#: adhocracy-plus/config/settings/base.py:512
+#: adhocracy-plus/config/settings/base.py:501
 msgid "Zigzag"
 msgstr "Зигзаг"
 
-#: adhocracy-plus/config/settings/base.py:516
+#: adhocracy-plus/config/settings/base.py:505
 msgid "brainstorming"
 msgstr "Групповое обсуждение"
 
-#: adhocracy-plus/config/settings/base.py:517
+#: adhocracy-plus/config/settings/base.py:506
 msgid "spatial brainstorming"
 msgstr "Объемное коллективное обсуждение"
 
-#: adhocracy-plus/config/settings/base.py:518
+#: adhocracy-plus/config/settings/base.py:507
 msgid "idea challenge"
 msgstr "Испытать идею"
 
-#: adhocracy-plus/config/settings/base.py:519
+#: adhocracy-plus/config/settings/base.py:508
 msgid "spatial idea challenge"
 msgstr "Объемное испытание идеи"
 
-#: adhocracy-plus/config/settings/base.py:520
+#: adhocracy-plus/config/settings/base.py:509
 msgid "text review"
 msgstr "Обзор текста"
 
-#: adhocracy-plus/config/settings/base.py:521
+#: adhocracy-plus/config/settings/base.py:510
 msgid "poll"
 msgstr "Опрос"
 
-#: adhocracy-plus/config/settings/base.py:523
+#: adhocracy-plus/config/settings/base.py:512
 msgid "interactive event"
 msgstr "Интерактивное мероприятие"
 
-#: adhocracy-plus/config/settings/base.py:524
+#: adhocracy-plus/config/settings/base.py:513
 msgid "prioritization"
 msgstr "Приоретизация"
 
-#: adhocracy-plus/config/settings/base.py:525
+#: adhocracy-plus/config/settings/base.py:514
 msgid "debate"
 msgstr "Дебаты"
 
@@ -5623,53 +5622,3 @@ msgstr "Войти в систему через учетную запись в �
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:25
 msgid "Login with "
 msgstr "Войти в систему через"
-
-#~ msgid "Invitation to an event in project %(project_name)s"
-#~ msgstr "Приглашение на мероприятие в проекте%(project_name)s"
-
-#~ msgid "%(number)d day left"
-#~ msgid_plural "%(number)d days left"
-#~ msgstr[0] "Остался %(number)dдень"
-#~ msgstr[1] "Осталось %(number)d дня"
-#~ msgstr[2] "Осталось %(number)d дней"
-#~ msgstr[3] "Осталось%(number)d дней"
-
-#~ msgid "a few hours left"
-#~ msgstr "Осталось несколько часов"
-
-#~ msgid "Official Statement"
-#~ msgstr "Официальное заявление"
-
-#~ msgid "You are logged in as "
-#~ msgstr "Вы вошли как"
-
-#~ msgid "Go to platform"
-#~ msgstr "Перейти на платформу"
-
-#~ msgid "Confirm login"
-#~ msgstr "Подтвердите логин"
-
-#~ msgid ""
-#~ "You need to login first. By clicking \"Login\" a popup will open so you "
-#~ "can sign in safely. Do you want to login now?"
-#~ msgstr ""
-#~ "Вы должны войти. При нажатии «Войти» откроется всплывающее окно, чтобы вы "
-#~ "могли безопасно войти в систему. Вы хотите войти сейчас?"
-
-#~ msgid "View your profile"
-#~ msgstr "Посмотреть свой профиль"
-
-#~ msgid "Info"
-#~ msgstr "Информация"
-
-#~ msgid "Participations"
-#~ msgstr "Участия"
-
-#~ msgid "Active in these platforms"
-#~ msgstr "Активно на этих платформах"
-
-#~ msgid "This user is not active in any platform yet."
-#~ msgstr "Этот пользователь еще не активен ни на одной платформе."
-
-#~ msgid "Check some platforms out."
-#~ msgstr "Проверьте некоторые платформы."
