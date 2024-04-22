@@ -553,6 +553,7 @@ CELERY_RESULT_EXTENDED = True
 # CKEditor5 config
 CKEDITOR_5_FILE_STORAGE = "adhocracy4.ckeditor.storage.CustomStorage"
 CKEDITOR_5_PATH_FROM_USERNAME = True
+CKEDITOR_5_UNRESTRICTED_UPLOADS = True
 CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
 CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpg", "jpeg", "png", "gif", "pdf", "docx"]
 CKEDITOR_5_USER_LANGUAGE = True
