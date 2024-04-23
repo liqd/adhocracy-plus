@@ -146,33 +146,25 @@ $block-padding-md: 7.5 * $padding;
     color: $text-color-inverted;
 }
 
-// linked for specificty
+// linked for specificity
 .btn.btn--transparent.block-bg__btn--1 {
     border-color: $text-color;
 }
 
-// linked for specificty
+// linked for specificity
 .btn.btn--transparent.block-bg__btn--2 {
     @extend .btn--text-color-inverted;
 }
 
 .block-background_cta_block {
     background-color: $body-bg;
-    margin-left: -$r-spacer;
-    margin-right: -$r-spacer;
+    margin-left: -0.25 * $r-spacer;
+    margin-right: -0.25 * $r-spacer;
     padding-left: $padding;
     padding-right: $padding;
     text-align: center;
 
-    @media screen and (min-width: $breakpoint-xxl) {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
     .block {
-        border-top: 2 * $r-spacer solid $body-bg;
-        border-bottom: 2 * $r-spacer solid $body-bg;
-
         h2:after {
             border-bottom: none;
         }
