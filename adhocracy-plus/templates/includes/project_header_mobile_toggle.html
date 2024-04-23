@@ -14,30 +14,33 @@
           </a>
           <div class="dropdown-menu dropdown-menu-end">
               <a
-                  class="dropdown-item"
                   id="tab-project-{{ project.pk }}-information"
+                  class="dropdown-item"
+                  data-bs-toggle="tab"
                   href="#tabpanel-project-{{ project.pk }}-information"
+                  role="tab"
                   aria-controls="tabpanel-project-{{ project.pk }}-information"
-                  aria-expanded="false"
-                  data-bs-toggle="tab">
+                  aria-expanded="false">
                   {% translate 'Information' %}
               </a>
               <a
-                  class="dropdown-item"
                   id="tab-project-{{ project.pk }}-participation"
+                  class="dropdown-item active"
+                  data-bs-toggle="tab"
                   href="#tabpanel-project-{{ project.pk }}-participation"
+                  role="tab"
                   aria-controls="tabpanel-project-{{ project.pk }}-participation"
-                  aria-expanded="true"
-                  data-bs-toggle="tab">
+                  aria-expanded="true">
                   {% translate 'Participation' %}
               </a>
               <a
-                  class="dropdown-item"
-                  href="#tabpanel-project-{{ project.pk }}-result"
                   id="tab-project-{{ project.pk }}-result"
+                  class="dropdown-item"
+                  data-bs-toggle="tab"
+                  href="#tabpanel-project-{{ project.pk }}-result"
+                  role="tab"
                   aria-controls="tabpanel-project-{{ project.pk }}-result"
-                  aria-expanded="false"
-                  data-bs-toggle="tab">
+                  aria-expanded="false">
                   {% translate 'Result' %}
               </a>
           </div>
