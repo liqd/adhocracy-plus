@@ -3,6 +3,7 @@ NODE_BIN = node_modules/.bin
 SOURCE_DIRS = adhocracy-plus apps tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
 
+# for mac os gsed is needed (brew install gnu-sed and brew install gsed)
 SED = sed
 ifneq (, $(shell command -v gsed;))
 	SED = gsed
@@ -30,14 +31,17 @@ help:
 	@echo "  make pytest					-- run all test cases with pytest"
 	@echo "  make pytest-lastfailed			-- run test that failed last"
 	@echo "  make pytest-clean				-- test on new database"
-	@echo "  make coverage					-- write coverage report to dir htmlcov"
 	@echo "  make jstest					-- run js tests with coverage"
 	@echo "  make jstest-nocov				-- run js tests without coverage"
 	@echo "  make jstest-debug				-- run changed tests only, no coverage"
 	@echo "  make jstest-updateSnapshots	-- update jest snapshots"
+	@echo "  make coverage					-- write coverage report to dir htmlcov"
 	@echo "  make lint						-- lint all project files"
 	@echo "  make lint-quick				-- lint all files staged in git"
-	@echo "  make lint-fix					-- fix linting for all js files staged in git"
+	@echo "  make lint-js-fix				-- fix linting for all js files staged in git"
+	@echo "  make lint-html-fix				-- fix linting for all html files passed as argument"
+	@echo "  make lint-html-files			-- lint for all html files with django profile rules"
+	@echo "  make lint-python-files			-- lint all python files passed as argument"
 	@echo "  make po						-- create new po files from the source"
 	@echo "  make mo						-- create new mo files from the translated po files"
 	@echo "  make release					-- build everything required for a release"
@@ -102,10 +106,6 @@ pytest-clean:
 	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
 	$(VIRTUAL_ENV)/bin/py.test
 
-.PHONY: coverage
-coverage:
-	$(VIRTUAL_ENV)/bin/py.test --reuse-db --cov --cov-report=html
-
 .PHONY: jstest
 jstest:
 	npm run test
@@ -122,10 +122,13 @@ jstest-debug:
 jstest-updateSnapshots:
 	npm run updateSnapshots
 
+.PHONY: coverage
+coverage:
+	$(VIRTUAL_ENV)/bin/py.test --reuse-db --cov --cov-report=html
+
 .PHONY: lint
 lint:
 	EXIT_STATUS=0; \
-	$(VIRTUAL_ENV)/bin/black $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/isort --diff -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
 	npm run lint ||  EXIT_STATUS=$$?; \
@@ -139,18 +142,31 @@ lint-quick:
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
+.PHONY: lint-js-fix
+lint-js-fix:
+	EXIT_STATUS=0; \
+	npm run lint-fix ||  EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
+
+# Use with caution, the automatic fixing might produce bad results
+.PHONY: lint-html-fix
+lint-html-fix:
+	EXIT_STATUS=0; \
+	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --reformat --profile=django || EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
+
+.PHONY: lint-html-files
+lint-html-files:
+	EXIT_STATUS=0; \
+	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --profile=django --ignore=H006,H030,H031 || EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
+
 .PHONY: lint-python-files
 lint-python-files:
 	EXIT_STATUS=0; \
 	$(VIRTUAL_ENV)/bin/black $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/isort $(ARGUMENTS) --filter-files || EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
-	exit $${EXIT_STATUS}
-
-.PHONY: lint-fix
-lint-fix:
-	EXIT_STATUS=0; \
-	npm run lint-fix ||  EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: po
