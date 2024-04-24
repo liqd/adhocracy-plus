@@ -156,8 +156,8 @@
         {% endblock %}
 
         <div class="row">
-            <div class="col-md-8 offset-md-2 my-4">
-                {% react_comments_async object %}
+            <div class="col-md-8 offset-md-2 mt-1 mb-4">
+                {% react_comments_async obj=object no_control_bar=True %}
             </div>
         </div>
         {% include 'footer_upper.html' with organisation=module.project.organisation %}

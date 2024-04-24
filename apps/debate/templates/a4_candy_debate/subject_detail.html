@@ -38,7 +38,7 @@
                         <h1 class="item-detail__title">{{ object.name }}</h1>
                         <p class="item-detail__description">{{ object.description }}</p>
 
-                        {% react_comments_async object True %}
+                        {% react_comments_async obj=object with_categories=True no_control_bar=True %}
                     </div>
                 </div>
             </div>

@@ -1,8 +1,29 @@
 .a4-comments__commentbox__form,
 .a4-comments__child--list {
-    fieldset {
+    fieldset, .form-group {
         margin-bottom: 0;
     }
+}
+
+.a4-comments__comment-form__terms-and-buttons {
+    margin-bottom: 0;
+}
+
+.a4-comments__comment-form__actions__left {
+    display: flex;
+}
+
+.a4-comments__comment-form__terms-of-use {
+    @extend .col-12;
+    @extend .col-sm-9;
+}
+
+.a4-comments__comment-form__actions {
+    @extend .col-12;
+    @extend .col-sm-3;
+
+    display: flex;
+    justify-content: end;
 }
 
 .a4-comments__textarea--big,
@@ -74,7 +95,8 @@
 }
 
 .a4-comments__submit-input {
-    @extend .btn--default;
+    min-width: 6.15 * $spacer;
+
 }
 
 .a4-comments__dropdown {
@@ -299,6 +321,7 @@
     color: $gray !important;
     font-size: $font-size-sm !important;
     font-weight: normal !important;
+    margin-bottom: 0;
 }
 
 .a4-comments__loading {
