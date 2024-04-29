@@ -1,5 +1,6 @@
 import pytest
 from django.contrib.auth import get_user_model
+from django.core import mail
 from django.urls import reverse
 
 from adhocracy4.test.helpers import redirect_target
@@ -101,6 +102,7 @@ def test_account_deletion_invalid_password(client, user, password):
     assert response.status_code == 200
     assert User.objects.count() == 1
     assert User.objects.filter(pk=pk).exists()
+    assert len(mail.outbox) == 0
     form = response.context_data["form"]
     assert not form.is_valid()
 
@@ -124,5 +126,9 @@ def test_account_deletion(client, user):
     assert response.status_code == 302
     assert User.objects.count() == 0
     assert not User.objects.filter(pk=user.pk).exists()
+    assert len(mail.outbox) == 1
+    assert mail.outbox[0].subject == (
+        "Confirmation: Deletion of Your Account on " "adhocracy+"
+    )
     # assert that user is redirected to homepage
     assert redirect_target(response) == "wagtail_serve"

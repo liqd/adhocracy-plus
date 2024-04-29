@@ -1,1 +1,3 @@
+{% load i18n wagtailsettings_tags %}
+{% get_settings use_default_site=True %}
 {% block subject %}{% endblock %}

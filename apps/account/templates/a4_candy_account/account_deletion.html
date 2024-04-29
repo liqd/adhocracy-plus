@@ -18,6 +18,8 @@
             {% for field in form %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
             {% endfor %}
+            {# prevent form submission via enter/return, effectively bypassing the modal #}
+            <button class="d-none" type="submit" disabled aria-hidden="true"></button>
         </form>
         <div class="d-flex justify-content-end">
             <button class="btn btn--primary" data-bs-toggle="modal" data-bs-target="#account-delete-modal">Delete account</button>

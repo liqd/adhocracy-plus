@@ -11,6 +11,7 @@ from adhocracy4.emails.mixins import SyncEmailMixin
 from adhocracy4.projects.models import Project
 from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
+from apps.account.emails import AccountDeletionEmail
 from apps.cms.contacts.models import CustomFormSubmission
 from apps.cms.contacts.models import FormPage
 from apps.ideas.models import Idea
@@ -85,6 +86,7 @@ class Command(BaseCommand):
 
         self._send_notification_blocked_comment()
         self._send_notification_moderator_comment_feedback()
+        self._send_account_deleted_mail()
 
     def _send_notifications_create_idea(self):
         # Send notification for a newly created item
@@ -397,4 +399,11 @@ class Command(BaseCommand):
             comment_url=feedback.comment.get_absolute_url(),
             receiver=[self.user],
             template_name=notification_emails.NotifyCreatorOnModeratorCommentFeedback.template_name,
+        )
+
+    def _send_account_deleted_mail(self):
+        TestEmail.send(
+            self.user,
+            receiver=[self.user],
+            template_name=AccountDeletionEmail.template_name,
         )
