@@ -13,6 +13,7 @@ from apps.users.models import User
 from apps.users.utils import set_session_language
 
 from . import forms
+from .emails import AccountDeletionEmail
 
 
 class AccountView(RedirectView):
@@ -63,6 +64,7 @@ class AccountDeletionView(LoginRequiredMixin, SuccessMessageMixin, generic.Delet
             )
             return super().form_invalid(form)
         logout(self.request)
+        AccountDeletionEmail.send(user)
         return super().form_valid(form)
 
 
