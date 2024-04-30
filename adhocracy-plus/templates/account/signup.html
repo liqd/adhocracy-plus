@@ -1,14 +1,19 @@
 {% extends "account/base.html" %}
 {% load i18n %}
-
-{% block head_title %}{% translate "Register" %}{% endblock %}
-
+{% block head_title %}
+    {% translate "Register" %}
+{% endblock %}
 {% block content %}
     <h1>{% translate "Register" %}</h1>
-
-    <p>{% blocktranslate %}Already have an account? Then please
-        <a href="{{ login_url }}">login</a>.{% endblocktranslate %}</p>
-
+    {% with page=settings.a4_candy_cms_settings.ImportantPages.registration %}
+        {% if page.live and page.url %}
+            <a href="{{ page.url }}" target="_blank">{% blocktranslate %}Why register?{% endblocktranslate %}</a>
+        {% endif %}
+    {% endwith %}
+    <p>
+        {% blocktranslate %}Already have an account? Then please
+        <a href="{{ login_url }}">login</a>.{% endblocktranslate %}
+    </p>
     <form id="signup_form" method="post" action="{% url 'account_signup' %}">
         {{ form.non_field_errors }}
         {{ form.media }}
@@ -24,51 +29,51 @@
                 {% blocktranslate with terms_of_use_url=settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url data_protection_policy=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url %}
                 I confirm that I have read and accepted the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{data_protection_policy}}" target="_blank">data protection policy</a>.
                 {% endblocktranslate %}
-                {% if form.terms_of_use.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
+                {% if form.terms_of_use.field.required %}
+                    <span role="presentation" title="{% translate 'This field is required' %}">*</span>
+                {% endif %}
             </label>
             {{ form.terms_of_use.errors }}
         </div>
         {% if form.terms_of_use_extra %}
-        <div class="form-check">
-          <label class="form-check__label">
-            {{ form.terms_of_use_extra }}
-            {{ form.terms_of_use_extra.label|safe}}
-            {% if form.terms_of_use_extra.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
-            </label>
-            {{ form.terms_of_use.errors }}
-        </div>
+            <div class="form-check">
+                <label class="form-check__label">
+                    {{ form.terms_of_use_extra }}
+                    {{ form.terms_of_use_extra.label|safe }}
+                    {% if form.terms_of_use_extra.field.required %}
+                        <span role="presentation" title="{% translate 'This field is required' %}">*</span>
+                    {% endif %}
+                </label>
+                {{ form.terms_of_use.errors }}
+            </div>
         {% endif %}
         <div class="form-check">
             <label class="form-check__label">
                 {{ form.get_newsletters }}
                 {{ form.get_newsletters.label }}
             </label>
-            <div class="form-hint">
-                {{ form.get_newsletters.help_text }}
-            </div>
+            <div class="form-hint">{{ form.get_newsletters.help_text }}</div>
             {{ form.get_newsletters.errors }}
         </div>
         {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            <input type="hidden"
+                   name="{{ redirect_field_name }}"
+                   value="{{ redirect_field_value }}" />
         {% endif %}
-
         {% if form.captcha %}
             {% with tabindex="0" %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=form.captcha tabindex=0 %}
             {% endwith %}
         {% endif %}
-
         <p>
-        {% blocktranslate with data_protection_url=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}
+            {% blocktranslate with data_protection_url=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}
             With your account on {{ platformname }}, you can take part in every public participation project on this platform. This platform allows organisations initiatives to conduct digital participation projects.
             If you have any questions regarding the data protection on this platform you can find <a href="{{ data_protection_url }}" target="_blank">further information here</a>.
         {% endblocktranslate %}
         </p>
-
         <div class="u-spacer-bottom-double">
             <button class="btn btn--primary" type="submit">{% translate "Register" %}</button>
         </div>
     </form>
-
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
 {% endblock %}
