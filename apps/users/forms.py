@@ -19,7 +19,10 @@ from apps.users.models import User
 
 logger = logging.getLogger(__name__)
 
-CAPTCHA_HELP = _("If you are having difficulty please contact us" " by {}email{}.")
+CAPTCHA_HELP = _(
+    "Solve the math problem and click on the correct result.<br>"
+    "If you are having difficulty please contact us  by {}email{}."
+)
 
 
 class DefaultLoginForm(LoginForm):
