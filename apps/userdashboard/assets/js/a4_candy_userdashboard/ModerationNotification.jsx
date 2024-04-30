@@ -245,7 +245,7 @@ export const ModerationNotification = (props) => {
     const sectionStyle = {
       backgroundImage: 'url(' + userImage + ')'
     }
-    userImageDiv = <div className="user-avatar user-avatar--small user-avatar--shadow mb-1 userindicator__btn-img" style={sectionStyle} />
+    userImageDiv = <div className="col-4 user-avatar user-avatar--small user-avatar--shadow mb-1 userindicator__btn-img" style={sectionStyle} />
   }
 
   let commentChangeLog
@@ -260,13 +260,13 @@ export const ModerationNotification = (props) => {
       <div className="u-border p-4">
         <div className="d-flex flex-wrap">
           {userImageDiv}
-          <div>
+          <div className="col-6 d-none d-md-block">
             <p className="mb-1">
               {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, commentUrl)}
             </p>
             <p className="mb-1">{commentChangeLog}</p>
           </div>
-          <div className="ms-auto">
+          <div className="col-auto ms-auto">
             <div className="dropdown">
               <button
                 title="{% trans 'Notification menu' %}"
@@ -290,6 +290,12 @@ export const ModerationNotification = (props) => {
                 </li>
               </ul>
             </div>
+          </div>
+          <div className="col-12 d-md-none">
+            <p className="mb-1">
+              {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, commentUrl)}
+            </p>
+            <p className="mb-1">{commentChangeLog}</p>
           </div>
         </div>
 
