@@ -1,29 +1,25 @@
-{% load i18n static thumbnail %}
-
+{% load i18n static thumbnail settings %}
 {% if request.user.is_authenticated %}
     <div class="dropdown userindicator__dropdown">
-
-        <button
-            title="{% trans 'Menu' %}"
-            class="d-md-none dropdown-toggle btn btn--secondary-filled  btn--attached-top header-upper__mobile-toggle"
-            data-bs-toggle="dropdown"
-            data-flip="false"
-            aria-haspopup="true"
-            aria-expanded="false"
-            id="user-actions-mobile">
+        <button title="{% translate 'Menu' %}"
+                class="d-md-none dropdown-toggle btn btn--secondary-filled  btn--attached-top header-upper__mobile-toggle"
+                data-bs-toggle="dropdown"
+                data-flip="false"
+                aria-haspopup="true"
+                aria-expanded="false"
+                id="user-actions-mobile">
             <span class="d-none d-sm-inline-block pe-1">{% translate 'Menu' %}</span>
         </button>
-
-        <button
-            title="{% trans 'Menu' %}"
-            class="d-none d-md-inline-block dropdown-toggle btn btn--secondary-filled btn--attached-top  btn--align-left header-upper__toggle"
-            data-bs-toggle="dropdown"
-            data-flip="false"
-            aria-haspopup="true"
-            aria-expanded="false"
-            id="user-actions"
-        >
-            <div class="userindicator__btn-img" style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar'}}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}"></div>
+        <button title="{% translate 'Menu' %}"
+                class="d-none d-md-inline-block dropdown-toggle btn btn--secondary-filled btn--attached-top  btn--align-left header-upper__toggle"
+                data-bs-toggle="dropdown"
+                data-flip="false"
+                aria-haspopup="true"
+                aria-expanded="false"
+                id="user-actions">
+            <div class="userindicator__btn-img"
+                 style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar' }}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}">
+            </div>
             <div class="userindicator__btn-text text-start">
                 <span class="userindicator__hello">{% translate "Hello" %}</span>
                 <br>
@@ -31,32 +27,38 @@
             </div>
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
         </button>
-
-        <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu" aria-labelledby="user-actions user-actions-mobile">
+        <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu"
+             aria-labelledby="user-actions user-actions-mobile">
             {% if request.user.is_superuser %}
                 <a class="dropdown-item" href="{% url 'admin:index' %}">{% translate "Admin" %}</a>
             {% endif %}
             <a class="dropdown-item" href="{% url 'userdashboard-overview' %}">{% translate 'My Overview' %}</a>
-
             <a class="dropdown-item" href="{% url 'account' %}">{% translate "Account Settings" %}</a>
-
             {% for organisation in request.user.organisations %}
-            <a class="dropdown-item" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
+                <a class="dropdown-item"
+                   href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
                     {{ organisation.name }}
                 </a>
             {% endfor %}
-
-            <form class="form--inline" action="{% url 'account_logout' %}" method="post" aria-label="{% translate 'Logout' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ redirect_field_value }}">
-                    <button type="submit" class="dropdown-item">{% translate "Logout" %}</button>
+            {% settings_value "APLUS_MANUAL_URL" as manual_url %}
+            {% if manual_url %}
+                <a class="dropdown-item"
+                   href="{{ manual_url }}/{{ LANGUAGE_CODE }}:start"
+                   target="_blank">{% translate 'Help' %}</a>
+            {% endif %}
+            <form class="form--inline"
+                  action="{% url 'account_logout' %}"
+                  method="post"
+                  aria-label="{% translate 'Logout' %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ redirect_field_value }}">
+                <button type="submit" class="dropdown-item">{% translate "Logout" %}</button>
             </form>
         </div>
-
     {% else %}
         <div class="btn btn--secondary-filled btn--huge btn--attached-top">
             <span class="navi__item"><a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% translate "Login" %}</a></span>
-                <span class="d-none d-md-inline">/</span>
+            <span class="d-none d-md-inline">/</span>
             <span class="navi__item"><a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% translate "Register" %}</a></span>
         </div>
     </div>
