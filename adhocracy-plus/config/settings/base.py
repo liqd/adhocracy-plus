@@ -13,6 +13,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # General settings
 CONTACT_EMAIL = "contact@domain"
 
+# Link to a dokuwiki instance containing a manual for aplus
+# Leave blank to disable
+APLUS_MANUAL_URL = ""
+
 # Application definition
 
 INSTALLED_APPS = (
