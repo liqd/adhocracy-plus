@@ -59,7 +59,7 @@ class OfflineEvent(UserGeneratedContentModel):
 
     def get_absolute_url(self):
         if self.project.display_timeline:
-            return "{}?initialSlide={}".format(
+            return "{}?initialSlide={}#timeline-carousel".format(
                 self.project.get_absolute_url(), self.get_timeline_index
             )
         return self.project.get_absolute_url()

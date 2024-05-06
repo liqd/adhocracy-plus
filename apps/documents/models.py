@@ -34,7 +34,9 @@ class Chapter(module_models.Item):
             ),
         )
         if self.project.display_timeline and not self.module.is_in_module_cluster:
-            return "{}?initialSlide={}".format(url, self.module.get_timeline_index)
+            return "{}?initialSlide={}#timeline-carousel".format(
+                url, self.module.get_timeline_index
+            )
         return url
 
     @cached_property
