@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .scrollable-list {
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      max-width: 70%;
+      margin-right: 15%;
+      margin-left: 15%;
+    }
+  
+    .idea-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .card-info {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .shift-left {
+        margin-left: 10%;
+    }
+</style>
+<div>
+<h1 class="shift-left">Ideas: Fair Acceptance Order</h1>
+<h4 class="shift-left">You support {{ideas.voted}} ideas from this list</h4>
+<div class="scrollable-list">
+  {% for idea in ideas %}
+      <div class="idea-card">
+        <div class="card-title"><a title="link to idea page" href='{{ idea.url }}'>{{ idea.name }}</a></div>
+        <div class="card-info">
+          <p>{{ idea.creator.username }}</p>
+          <p><i class="fa fa-coins" aria-label="invested"></i> Choins: {{ idea.choins|floatformat:0 }}/{{idea.cost|floatformat:0 }} </p>
+          <p><i class="fa fa-bullseye" aria-label="goal"></i> Missing: {{ idea.missing|floatformat:0 }}</p>
+          <p><i class="fa fa-user" aria-label="supporters count"></i> {{ idea.supporters }} Supporters</p>
+          {%if idea.voted%}
+            <p><i class="fa fa-check" style="color: deepskyblue;"></i>You support it</p>
+          {%else%}
+            <p><i class="fa fa-check" style="color: crimson" ></i>Not supported</p>
+          {%endif%}
+        </div>
+      </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
