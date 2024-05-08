@@ -37,7 +37,10 @@
 </style>
 <div>
 <h2 class="shift-left">Choin Events</h2>
-
+<div class="shift-left">
+  <p>Contribution to your supported ideas: {{ choinevent_list.user_paid|floatformat:0 }} choins</p>
+  <p>Contribution to all ideas: {{ choinevent_list.paid|floatformat:0 }} choins </p>
+</div>
 <div class="scrollable-list">
   <ul>
     {% for choinevent in choinevent_list %}
@@ -50,21 +53,21 @@
               You joined module '{{choinevent.module_name}}' - project '{{choinevent.project_name}}'
             {% elif choinevent.type == 'ADD' %}
             <p><i class="fa fa-plus"></i>
-              Choin Giveaway! All {{ choinevent.user_count}} users receive {{choinevent.choins_per_user|floatformat:2 }} choins.
+              Choin Giveaway! All {{ choinevent.user_count}} users receive {{choinevent.choins_per_user|floatformat:0 }} choins.
             </p>
             {%elif choinevent.type == 'ACC' %}
               {%if choinevent.support %}
                 <p><i class="fa fa-check" style="color: deepskyblue;"></i>
                   Idea accepted! <a href={{choinevent.idea_url}}>{{choinevent.idea_name}}</a>
-                  cost {{choinevent.total_cost}} choins.<br/>It was funded by {{choinevent.supporters_count}} supporters.
+                  cost {{choinevent.total_cost|floatformat:0}} choins.<br/>It was funded by {{choinevent.supporters_count}} supporters.
                   <br/>
-                  All participants received more {{choinevent.giveaway|floatformat:2 }} choins. You supported it and paid {{choinevent.paid|floatformat:2 }} choins.
+                  All participants received more {{choinevent.giveaway|floatformat:0 }} choins. You supported it and paid {{choinevent.paid|floatformat:0 }} choins.
               {%else%}
               <p><i class="fa fa-check" style="color: crimson" ></i>
                 Idea accepted! <a href={{choinevent.idea_url}}>{{choinevent.idea_name}}</a>
-                cost {{choinevent.total_cost}} choins.<br/>It was funded by {{choinevent.supporters_count}} supporters.
+                cost {{choinevent.total_cost|floatformat:0}} choins.<br/>It was funded by {{choinevent.supporters_count}} supporters.
                 <br/>
-                You did not support it so you recieved more {{choinevent.giveaway|floatformat:2 }} choins as a compensation.
+                You did not support it so you recieved more {{choinevent.giveaway|floatformat:0 }} choins as a compensation.
               {% endif %}
             </p>
               {%else%}
@@ -75,7 +78,7 @@
             {%endif%}
         </div>
         <div class="event-actions">
-          <p><i class="fa fa-wallet" aria-label="balance"></i> Your balance: {{ choinevent.balance|floatformat:2  }}</p>
+          <p><i class="fa fa-wallet" aria-label="balance"></i> Your balance: {{ choinevent.balance|floatformat:0  }}</p>
         </div>
       </li>
     {% endfor %}
