@@ -1,8 +1,10 @@
 import json
 
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import template
-from rest_framework.renderers import JSONRenderer
+from django.conf import settings
+from django.urls import reverse
+from django.utils.html import format_html
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 from apps.documents.models import Chapter
 from apps.documents.serializers import ChapterSerializer
@@ -10,23 +12,26 @@ from apps.documents.serializers import ChapterSerializer
 register = template.Library()
 
 
-@register.inclusion_tag("a4_candy_documents/react_documents.html", takes_context=True)
-def react_documents(context, module, reload_on_success=False):
+@register.simple_tag()
+def react_documents(module, reload_on_success=False):
     chapters = Chapter.objects.filter(module=module)
     serializer = ChapterSerializer(chapters, many=True)
-    chapters_json = JSONRenderer().render(serializer.data).decode("utf-8")
+    widget = CKEditor5Widget(config_name="image-editor")
 
-    widget = CKEditorUploadingWidget(config_name="image-editor")
-    widget._set_config()
-    config = JSONRenderer().render(widget.config).decode("utf-8")
-
-    context = {
-        "chapters": chapters_json,
+    attributes = {
+        "key": module.pk,
+        "chapters": serializer.data,
         "module": module.pk,
-        "config": config,
+        "config": widget.config,
+        "csrfCookieName": settings.CSRF_COOKIE_NAME,  # double check
+        "uploadUrl": reverse("ck_editor_5_upload_file"),
+        "uploadFileTypes": settings.CKEDITOR_5_UPLOAD_FILE_TYPES,
         "id": "document-" + str(module.id),
-        "reload_on_success": json.dumps(reload_on_success),
-        "ckeditor_media": widget.media,
+        "reload_on_success": reload_on_success,
     }
 
-    return context
+    return format_html(
+        '<div data-mb-widget="document-management" '
+        'data-attributes="{attributes}"></div>',
+        attributes=json.dumps(attributes),
+    )

@@ -1,5 +1,5 @@
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.contrib import admin
+from django_ckeditor_5.widgets import CKEditor5Widget
 from parler.admin import TranslatableAdmin
 from parler.forms import TranslatableModelForm
 
@@ -19,7 +19,7 @@ class OrganisationAdminForm(TranslatableModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields["information"].widget = CKEditorUploadingWidget(
+        self.fields["information"].widget = CKEditor5Widget(
             config_name="collapsible-image-editor"
         )
 

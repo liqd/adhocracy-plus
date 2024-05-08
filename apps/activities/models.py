@@ -1,9 +1,9 @@
 from autoslug import AutoSlugField
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms as html_transforms
-from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.modules import models as module_models
 
 
@@ -18,15 +18,17 @@ class Activity(module_models.Item):
             "or location of your face-to-face event"
         ),
     )
-    description = RichTextCollapsibleUploadingField(
+    description = CKEditor5Field(
         config_name="collapsible-image-editor", verbose_name=_("Description")
     )
 
     def get_absolute_url(self):
         return self.project.get_absolute_url()
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.description = html_transforms.clean_html_field(
             self.description, "collapsible-image-editor"
         )
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"description"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)

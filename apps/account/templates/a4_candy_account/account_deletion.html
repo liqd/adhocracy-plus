@@ -1,0 +1,54 @@
+{% extends "a4_candy_account/account_dashboard.html" %}
+
+{% load i18n %}
+
+{% block title %}
+    {% translate 'Your user profile' %}
+    &mdash;
+    {{ block.super }}
+{% endblock %}
+{% block dashboard_content %}
+    <div class="my-5 my-md-0">
+        <h1 class="mt-0">{% translate 'Delete account' %}</h1>
+        <p class="u-text--gray">{% blocktranslate %}Please note that deleting your account will result in the permanent removal of all associated data and content, including your comments, ideas & votes.{% endblocktranslate %}</p>
+        <p class="u-text--gray">{% blocktranslate %}
+            To confirm your identity, please enter your password to proceed:{% endblocktranslate %}</p>
+        <form id="account-delete-form" novalidate action="{% url "account_deletion" %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
+            {% endfor %}
+            {# prevent form submission via enter/return, effectively bypassing the modal #}
+            <button class="d-none" type="submit" disabled aria-hidden="true"></button>
+        </form>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn--primary" data-bs-toggle="modal" data-bs-target="#account-delete-modal">Delete account</button>
+        </div>
+    </div>
+
+    <div class="modal fade account__delete-modal" id="account-delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content p-3">
+                <div
+                    class="modal-header">
+                    <!-- Not using Bootstrap, but utility classes on purpose to align with component in A4 -->
+                    <h2 className="u-no-margin-bottom u-spacer-top-one-half">
+                        {% translate 'Delete account' %}
+                    </h2>
+                    <button class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="u-spacer-bottom u-text--gray">
+                        {% blocktranslate %}Are you sure you want to delete your account?{% endblocktranslate %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel-button" data-bs-dismiss="modal">{% translate 'Cancel' %}</button>
+                    <button type="submit" form="account-delete-form" class="submit-button">{% translate 'Delete Account' %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock dashboard_content %}

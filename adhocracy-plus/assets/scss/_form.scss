@@ -12,6 +12,7 @@ label {
     border-radius: 0;
 }
 
+
 textarea,
 select,
 input {
@@ -69,14 +70,13 @@ div.cke_focus {
     color: $text-color-inverted;
 }
 
-.django-ckeditor-widget {
-    display: block !important;
-    margin-bottom: $spacer;
+.ck-editor-container {
+    margin-top: $spacer;
 }
 
 .form-check,
 .form-group {
-    .django-ckeditor-widget,
+    .ck-editor-container,
     %input-base:not([type="radio"], [type="checkbox"]) {
         width: 100%;
 

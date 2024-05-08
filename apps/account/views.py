@@ -1,5 +1,8 @@
+from django.conf import settings
+from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
@@ -10,6 +13,7 @@ from apps.users.models import User
 from apps.users.utils import set_session_language
 
 from . import forms
+from .emails import AccountDeletionEmail
 
 
 class AccountView(RedirectView):
@@ -20,7 +24,6 @@ class AccountView(RedirectView):
 
 
 class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
-
     model = User
     template_name = "a4_candy_account/profile.html"
     form_class = forms.ProfileForm
@@ -33,16 +36,41 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateV
         return self.request.path
 
     def form_valid(self, form):
-        set_session_language(
-            self.request.user.email, form.cleaned_data["language"], self.request
-        )
+        set_session_language(self.request.user.email, form.cleaned_data["language"])
         return super(ProfileUpdateView, self).form_valid(form)
+
+    def render_to_response(self, context, **response_kwargs):
+        set_session_language(self.request.user.email, self.request.user.language)
+        response = super().render_to_response(context, **response_kwargs)
+        response.set_cookie(settings.LANGUAGE_COOKIE_NAME, self.request.user.language)
+        return response
+
+
+class AccountDeletionView(LoginRequiredMixin, SuccessMessageMixin, generic.DeleteView):
+    template_name = "a4_candy_account/account_deletion.html"
+    form_class = forms.AccountDeletionForm
+    success_message = _("Your account was successfully deleted.")
+    success_url = "/"
+
+    def get_object(self):
+        return get_object_or_404(User, pk=self.request.user.id)
+
+    def form_valid(self, form):
+        user = self.request.user
+        password = form.cleaned_data.get("password")
+        if not user.check_password(password):
+            form.add_error(
+                "password", ValidationError("Incorrect password.", "invalid")
+            )
+            return super().form_invalid(form)
+        logout(self.request)
+        AccountDeletionEmail.send(user)
+        return super().form_valid(form)
 
 
 class OrganisationTermsOfUseUpdateView(
     LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
 ):
-
     model = User
     template_name = "a4_candy_account/user_agreements.html"
     form_class = forms.OrganisationTermsOfUseForm

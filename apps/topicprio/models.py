@@ -1,14 +1,15 @@
 from autoslug import AutoSlugField
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
 from adhocracy4.comments import models as comment_models
 from adhocracy4.images.fields import ConfiguredImageField
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.labels import models as labels_models
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
@@ -28,8 +29,10 @@ class Topic(module_models.Item):
     )
     slug = AutoSlugField(populate_from="name", unique=True)
     name = models.CharField(max_length=120, verbose_name=_("Title"))
-    description = RichTextUploadingField(
-        config_name="image-editor", verbose_name=_("Description")
+    description = CKEditor5Field(
+        config_name="image-editor",
+        verbose_name=_("Description"),
+        validators=[ImageAltTextValidator()],
     )
     image = ConfiguredImageField(
         "idea_image",
@@ -63,9 +66,11 @@ class Topic(module_models.Item):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description, "image-editor")
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"description"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
     def get_absolute_url(self):
         return reverse(

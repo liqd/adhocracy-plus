@@ -2,14 +2,14 @@ from django.db import models
 from wagtail import fields
 from wagtail.admin.panels import FieldPanel
 from wagtail.admin.panels import PageChooserPanel
-from wagtail.contrib.settings.models import BaseSetting
+from wagtail.contrib.settings.models import BaseSiteSetting
 from wagtail.contrib.settings.models import register_setting
 
 from apps.contrib.translations import TranslatedField
 
 
 @register_setting(icon="warning")
-class ImportantPages(BaseSetting):
+class ImportantPages(BaseSiteSetting):
     terms_of_use = models.ForeignKey(
         "wagtailcore.Page",
         related_name="important_page_terms_of_use",
@@ -45,6 +45,14 @@ class ImportantPages(BaseSetting):
         blank=True,
         on_delete=models.SET_NULL,
     )
+    registration = models.ForeignKey(
+        "wagtailcore.Page",
+        related_name="important_page_registration",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
+
     donate_link = models.URLField(blank=True)
     manual_link = models.URLField(blank=True)
     github_repo_link = models.URLField(blank=True)
@@ -106,6 +114,17 @@ class ImportantPages(BaseSetting):
                 "a4_candy_cms_use_cases.UseCasePage",
             ],
         ),
+        PageChooserPanel(
+            "registration",
+            [
+                "a4_candy_cms_pages.SimplePage",
+                "a4_candy_cms_contacts.FormPage",
+                "a4_candy_cms_news.NewsIndexPage",
+                "a4_candy_cms_news.NewsPage",
+                "a4_candy_cms_use_cases.UseCaseIndexPage",
+                "a4_candy_cms_use_cases.UseCasePage",
+            ],
+        ),
         FieldPanel("donate_link"),
         FieldPanel("manual_link"),
         FieldPanel("github_repo_link"),
@@ -115,7 +134,7 @@ class ImportantPages(BaseSetting):
 
 # these are settings for platform organisation
 @register_setting(icon="pick")
-class OrganisationSettings(BaseSetting):
+class OrganisationSettings(BaseSiteSetting):
     platform_name = models.CharField(
         max_length=20,
         default="adhocracy+",
@@ -143,7 +162,7 @@ class OrganisationSettings(BaseSetting):
 
 
 @register_setting
-class SocialMedia(BaseSetting):
+class SocialMedia(BaseSiteSetting):
     facebook = models.URLField(blank=True)
     twitter = models.URLField(blank=True)
     github = models.URLField(blank=True)

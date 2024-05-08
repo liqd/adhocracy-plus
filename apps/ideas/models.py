@@ -1,10 +1,10 @@
 from autoslug import AutoSlugField
-from ckeditor.fields import RichTextField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
@@ -31,7 +31,7 @@ class AbstractIdea(module_models.Item, Moderateable):
     )
     slug = AutoSlugField(populate_from="name", unique=True)
     name = models.CharField(max_length=120, verbose_name=_("Title"))
-    description = RichTextField(verbose_name=_("Description"))
+    description = CKEditor5Field(verbose_name=_("Description"))
     image = ConfiguredImageField(
         "idea_image",
         verbose_name=_("Add image"),
@@ -66,9 +66,11 @@ class AbstractIdea(module_models.Item, Moderateable):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description)
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"description"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
 
 class Idea(AbstractIdea):

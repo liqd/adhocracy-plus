@@ -9,6 +9,7 @@ from wagtail.admin.panels import FieldRowPanel
 from wagtail.admin.panels import MultiFieldPanel
 from wagtail.admin.panels import ObjectList
 from wagtail.admin.panels import TabbedInterface
+from wagtail.admin.panels import TitleFieldPanel
 from wagtail.contrib.forms.forms import FormBuilder
 from wagtail.contrib.forms.models import AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField
@@ -195,7 +196,7 @@ class FormPage(WagtailCaptchaEmailForm):
     ]
 
     common_panels = [
-        FieldPanel("title"),
+        TitleFieldPanel("title"),
         FieldPanel("slug"),
         MultiFieldPanel(
             [

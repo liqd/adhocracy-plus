@@ -45,6 +45,14 @@ class ProfileForm(forms.ModelForm):
         return username
 
 
+class AccountDeletionForm(forms.Form):
+    password = forms.CharField(
+        label=_("Password"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+    )
+
+
 class OrganisationTermsOfUseForm(forms.ModelForm):
     class Meta:
         model = OrganisationTermsOfUse

@@ -266,10 +266,10 @@ class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
             kwargs={"organisation_slug": self.get_object().organisation.slug},
         )
 
-    def delete(self, request, *args, **kwargs):
+    def form_valid(self, request, *args, **kwargs):
         obj = self.get_object()
         messages.success(self.request, self.success_message % obj.__dict__)
-        return super().delete(request, *args, **kwargs)
+        return super().form_valid(request, *args, **kwargs)
 
 
 class ProjectDetailView(

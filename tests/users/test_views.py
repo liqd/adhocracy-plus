@@ -4,7 +4,9 @@ import pytest
 from allauth.account.models import EmailAddress
 from django.contrib import auth
 from django.core import mail
+from django.test import override_settings
 from django.urls import reverse
+from django.utils import translation
 
 from adhocracy4.test.helpers import redirect_target
 from apps.users import models
@@ -12,14 +14,20 @@ from apps.users import models
 User = auth.get_user_model()
 
 
+@override_settings(LANGUAGE_CODE="de")
 @pytest.mark.django_db
 def test_login(client, user, login_url):
+    assert user.language == "en"  # english is set by default
+    assert translation.get_language() == "de"
+    assert translation.get_language() != user.language
+
     response = client.get(login_url)
     assert response.status_code == 200
 
     response = client.post(login_url, {"login": user.email, "password": "password"})
     assert response.status_code == 302
     assert int(client.session["_auth_user_id"]) == user.pk
+    assert translation.get_language() == user.language
 
 
 @pytest.mark.django_db

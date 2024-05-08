@@ -16,6 +16,7 @@ adhocracy+ is designed to make online participation easy and accessible to every
  * nodejs (+ npm)
  * python 3.x (+ venv + pip)
  * libpq (only if postgres should be used)
+ * sqlite3 [with JSON1 enabled](https://code.djangoproject.com/wiki/JSON1Extension)
  * redis (in production, not needed for development)
 
 ### Installation

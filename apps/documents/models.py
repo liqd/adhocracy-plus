@@ -1,11 +1,12 @@
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
 from adhocracy4.comments import models as comment_models
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.models import base
 from adhocracy4.modules import models as module_models
 
@@ -33,7 +34,9 @@ class Chapter(module_models.Item):
             ),
         )
         if self.project.display_timeline and not self.module.is_in_module_cluster:
-            return "{}?initialSlide={}".format(url, self.module.get_timeline_index)
+            return "{}?initialSlide={}#timeline-carousel".format(
+                url, self.module.get_timeline_index
+            )
         return url
 
     @cached_property
@@ -57,7 +60,10 @@ class Chapter(module_models.Item):
 
 class Paragraph(base.TimeStampedModel):
     name = models.CharField(max_length=120, blank=True)
-    text = RichTextUploadingField(config_name="image-editor")
+    text = CKEditor5Field(
+        config_name="image-editor", validators=[ImageAltTextValidator()]
+    )
+
     weight = models.PositiveIntegerField()
     chapter = models.ForeignKey(
         Chapter, on_delete=models.CASCADE, related_name="paragraphs"
@@ -74,9 +80,11 @@ class Paragraph(base.TimeStampedModel):
     def __str__(self):
         return "{}_paragraph_{}".format(str(self.chapter), self.weight)
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.text = transforms.clean_html_field(self.text, "image-editor")
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"text"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
     def get_absolute_url(self):
         return reverse(

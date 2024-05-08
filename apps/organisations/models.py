@@ -1,5 +1,4 @@
 from autoslug import AutoSlugField
-from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
@@ -7,12 +6,12 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 from jsonfield.fields import JSONField
 from parler.models import TranslatableModel
 from parler.models import TranslatedFields
 
 from adhocracy4 import transforms
-from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.images import fields as images_fields
 from adhocracy4.projects.models import Project
 from apps.projects import query
@@ -55,7 +54,7 @@ class Organisation(TranslatableModel):
             ),
             blank=True,
         ),
-        information=RichTextCollapsibleUploadingField(
+        information=CKEditor5Field(
             config_name="collapsible-image-editor",
             verbose_name=_("Information about your organisation"),
             help_text=_(
@@ -120,7 +119,7 @@ class Organisation(TranslatableModel):
         blank=True,
         verbose_name="Instagram handle",
     )
-    imprint = RichTextField(
+    imprint = CKEditor5Field(
         verbose_name=_("Imprint"),
         help_text=_(
             "Please provide all the legally "
@@ -129,7 +128,7 @@ class Organisation(TranslatableModel):
         ),
         blank=True,
     )
-    terms_of_use = RichTextField(
+    terms_of_use = CKEditor5Field(
         verbose_name=_("Terms of use"),
         help_text=_(
             "Please provide all the legally "
@@ -138,7 +137,7 @@ class Organisation(TranslatableModel):
         ),
         blank=True,
     )
-    data_protection = RichTextField(
+    data_protection = CKEditor5Field(
         verbose_name=_("Data protection policy"),
         help_text=_(
             "Please provide all the legally "
@@ -148,7 +147,7 @@ class Organisation(TranslatableModel):
         ),
         blank=True,
     )
-    netiquette = RichTextField(
+    netiquette = CKEditor5Field(
         verbose_name=_("Netiquette"),
         help_text=_(
             "Please provide a netiquette for the participants. "
@@ -233,9 +232,11 @@ class Organisation(TranslatableModel):
     def has_social_share(self):
         return self.twitter_handle or self.facebook_handle or self.instagram_handle
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.imprint = transforms.clean_html_field(self.imprint)
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"imprint"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
 
 class Member(models.Model):

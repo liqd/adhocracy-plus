@@ -2,10 +2,10 @@ from django.contrib.auth.models import AnonymousUser
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
-from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.models.base import TimeStampedModel
 from adhocracy4.modules import models as module_models
@@ -70,7 +70,7 @@ class Like(models.Model):
 
 
 class ExtraFieldsInteractiveEvent(module_models.Item):
-    live_stream = RichTextCollapsibleUploadingField(
+    live_stream = CKEditor5Field(
         verbose_name="Live Stream", blank=True, config_name="video-editor"
     )
 
@@ -82,6 +82,8 @@ class ExtraFieldsInteractiveEvent(module_models.Item):
         blank=True,
     )
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.live_stream = transforms.clean_html_field(self.live_stream, "video-editor")
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"live_stream"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
