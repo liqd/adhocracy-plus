@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.modules.models import Module
 from apps.ideas.models import Idea
+from apps.projects.models import Project
 
 DEFAULT_GOAL = 150
 
@@ -21,6 +22,9 @@ class Choin(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     choins = models.FloatField(blank=True, default=0, verbose_name=_("Choins"))
+    supported_ideas_paid = models.FloatField(
+        blank=True, default=0, verbose_name=_("Contribution to your supported ideas")
+    )
 
     class Meta:
         unique_together = ("user", "module")
@@ -37,6 +41,13 @@ class Choin(models.Model):
             self.choins + float(choins_amount) if append else float(choins_amount)
         )
         self.save()
+
+
+class ProjectChoin(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="choin")
+    paid = models.FloatField(
+        blank=True, default=0, verbose_name=_("Contribution to all ideas")
+    )
 
 
 class IdeaChoin(models.Model):

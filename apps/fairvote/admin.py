@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 from . import models
-from .algortihms import accept_idea
-from .algortihms import update_idea_choins
+from .algorithms import accept_idea
+from .algorithms import update_idea_choins
 from .forms import UpdateChoinsForm
 from .views import ChoinView
 
@@ -84,3 +84,8 @@ class ChoinEventAdmin(admin.ModelAdmin):
         return obj.content[:50] + "..." if len(obj.content) > 50 else obj.content
 
     display_content.short_description = "Content"
+
+
+@admin.register(models.ProjectChoin)
+class ProjectChoinAdmin(admin.ModelAdmin):
+    pass

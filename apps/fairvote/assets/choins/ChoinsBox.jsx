@@ -11,10 +11,11 @@ export default class ChoinsBox extends React.Component {
     super(props)
 
     this.state = {
-      userChoins: this.props.userChoins,
+      userChoins: parseFloat(this.props.userChoins).toFixed(2),
       userHasChoins: this.props.userChoins !== null,
       userChoinsId: this.props.userChoinsId
     }
+    console.log(typeof this.props.userChoins)
   }
 
   render () {
@@ -23,7 +24,7 @@ export default class ChoinsBox extends React.Component {
         {this.state.userHasChoins && (
           <>
             <span>{translations.wallet}</span>
-            {this.state.userChoins}
+            {this.state.userChoins} Choins
           </>
         )}
       </div>

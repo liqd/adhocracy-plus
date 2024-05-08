@@ -5,8 +5,8 @@ from django import forms
 from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from apps.contrib.mixins import ImageRightOfUseMixin
-from apps.fairvote.algortihms import accept_idea
-from apps.fairvote.algortihms import update_idea_choins
+from apps.fairvote.algorithms import accept_idea
+from apps.fairvote.algorithms import update_idea_choins
 from apps.fairvote.models import DEFAULT_GOAL
 from apps.fairvote.models import Choin
 from apps.fairvote.models import ChoinEvent

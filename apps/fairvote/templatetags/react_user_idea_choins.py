@@ -3,7 +3,7 @@ import json
 from django import template
 from django.utils.html import format_html
 
-from apps.fairvote.algortihms import get_supporters
+from apps.fairvote.algorithms import get_supporters
 from apps.fairvote.models import Choin
 from apps.fairvote.models import IdeaChoin
 from apps.fairvote.models import UserIdeaChoin

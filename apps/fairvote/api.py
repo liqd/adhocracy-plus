@@ -14,7 +14,7 @@ from rest_framework.serializers import ValidationError
 from adhocracy4.api.mixins import ContentTypeMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
 
-from .algortihms import update_idea_choins_after_rating
+from .algorithms import update_idea_choins_after_rating
 from .models import Choin
 from .models import ChoinEvent
 from .models import Idea

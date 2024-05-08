@@ -1,11 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.views.generic import ListView
 
-from .algortihms import get_supporters
+from .algorithms import fair_acceptance_order
+from .algorithms import get_supporters
 from .models import Choin
 from .models import ChoinEvent
 from .models import Idea
 from .models import IdeaChoin
+from .models import ProjectChoin
 from .models import UserIdeaChoin
 
 USER_MODEL = get_user_model()
@@ -41,7 +43,16 @@ class ChoinEventListView(ListView):
                 parsed_content_params = json.loads(event.content_params)
                 for key, val in parsed_content_params.items():
                     event.__setattr__(key, val)
+        try:
+            user_choin = Choin.objects.get(user=self.request.user)
+            choinevents.user_paid = user_choin.supported_ideas_paid
+            choinevents.paid = ProjectChoin.objects.get(
+                project=user_choin.module.project
+            ).paid
 
+        except Choin.DoesNotExist:
+            choinevents.user_paid = "unavailable"
+            choinevents.paid = "unavailable"
         return choinevents
 
 
@@ -96,3 +107,19 @@ def accepted_ideas(request, organisation_slug, obj_id):
         "style": "ideas",
     }
     return render(request, "a4_candy_fairvote/accepted_idea_list.html", context)
+
+
+def ideas_fair_acceptance_order(request, organisation_slug, obj_id):
+    from django.shortcuts import render
+
+    top = int(request.GET.get("top", 5))
+    user = request.user
+    ideas = fair_acceptance_order(obj_id, user, top)
+    context = {
+        "ideas": ideas,
+        "is_read_only": False,
+        "style": "ideas",
+    }
+    return render(
+        request, "a4_candy_fairvote/ideas_fair_acceptance_order.html", context
+    )
