@@ -42,8 +42,8 @@
         <div class="card-title"><a title="link to idea page" href='{{ idea.url }}'>{{ idea.name }}</a></div>
         <div class="card-info">
           <p>Created by {{ idea.creator }}</p>
-          <p><i class="fa fa-cart-arrow-down" aria-label="invested"></i> You paid {{ idea.support|floatformat:2  }} </p>
-          <p><i class="fa fa-bullseye" aria-label="goal"></i> Total cost {{ idea.goal }}</p>
+          <p><i class="fa fa-cart-arrow-down" aria-label="invested"></i> You paid {{ idea.support|floatformat:0 }} </p>
+          <p><i class="fa fa-bullseye" aria-label="goal"></i> Total cost {{ idea.goal|floatformat:0 }}</p>
           <p><i class="fa fa-user" aria-label="supporters count"></i> {{ idea.supporters_count }} supporters</p>
         </div>
       </div>

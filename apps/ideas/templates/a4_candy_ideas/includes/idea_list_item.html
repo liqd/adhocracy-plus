@@ -31,7 +31,7 @@
             <span>
                 <span class="list-item__comments is-read-only" title="{% translate 'Choins' %}">
                     <i class="fa fa-coins" aria-label="{% translate 'Choins' %}"></i>
-                    {{object.choin.first.choins |floatformat:"2" }}
+                    {{object.choin.first.choins |floatformat:0 }}/{{object.choin.first.goal|floatformat:0 }}
                 </span>
                 <span class="list-item__comments is-read-only" title="{% translate 'Need Choins/supporter' %}">
                     <i class="fa fa-bullseye" aria-label="{% translate 'Choins' %}"></i>
@@ -40,7 +40,7 @@
                             goal achieved
                         {%endif%}
                     {% else %}
-                        {{ object.choin.first.missing |floatformat:"2" }}
+                        {{ object.choin.first.missing |floatformat:0 }}
                     {% endif %}
                 </span>
             </span>
