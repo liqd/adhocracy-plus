@@ -7,7 +7,16 @@ Database: We're using Mysql
 
 ## Installation
 1. Follow the adhocracy-plus installation guide.
-2. 
+
+## Production
+1. Run the following commands:
+        
+        npm run build:prod
+        export DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.build
+        python manage.py compilemessages
+        python manage.py collectstatic
+
+2. Restart the service.
 
 ## Simulations:
 ### `create-delete` file:
