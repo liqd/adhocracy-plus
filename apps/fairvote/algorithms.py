@@ -28,11 +28,11 @@ def get_supporters(idea: Idea) -> QuerySet:
     """
     Returns a query-set describing the users who support the given idea.
     """
-    for rating in Rating.objects.filter(idea=idea):
-        logger.info(rating.creator, rating.value)
-    return Choin.objects.filter(
-        Q(user__rating__value=1) & Q(user__rating__idea=idea), module=idea.module
-    ).distinct()
+    ratings = Rating.objects.filter(idea=idea).filter(value=1)
+    logger.info("Ratings count: %s", ratings.count())
+    for rating in ratings:
+        logger.info("Rating creator: %s, value: %s", rating.creator, rating.value)
+    return Choin.objects.filter(user__rating__in=ratings, module=idea.module).distinct()
 
 
 # Rating and IdeaChoin
@@ -45,7 +45,7 @@ def calculate_missing_choins(goal, choins, supporters_count):
 # Rating
 
 
-def update_idea_choins_after_rating(idea_id, choins):
+def update_idea_choins_after_rating(idea_id, choins, positive_ratings):
     """
     After a user rates or updates the rating of an idea, we re-compute the total number
     of choins and the number of missing choins for this idea.
@@ -57,11 +57,12 @@ def update_idea_choins_after_rating(idea_id, choins):
     idea_choins = IdeaChoin.objects.values_list("choins", flat=True).get(
         pk=obj.pk
     )  # the updated idea choins
-    supporters_count = get_supporters(
-        idea
-    ).count()  # happens after user changed their rating -> updated value
-    logger.info("supporters count: ", supporters_count, "idea choins: ", idea_choins)
+    supporters_count = (
+        positive_ratings  # happens after user changed their rating -> updated value
+    )
+    logger.info("supporters count: %s, idea choins: %s", idea_choins, supporters_count)
     obj.missing = calculate_missing_choins(obj.goal, idea_choins, supporters_count)
+    obj.save()
 
 
 # Idea Choin
@@ -272,7 +273,7 @@ def simulate_calculate_user_payments_for_accepting_an_idea(
     ]  # Get the computed choins_sum from the table.
 
     logger.debug(
-        f"{supporters_count} supporters: {supporters}. choins_sum={choins_sum}"
+        "%s supporters: %s. choins_sum= %s", supporters_count, supporters, choins_sum
     )
 
     goal = simulated_idea_choin["goal"]

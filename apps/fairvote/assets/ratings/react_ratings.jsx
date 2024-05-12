@@ -44,20 +44,21 @@ export default class RatingChoinsBox extends RatingBox {
           negativeRatings: data.meta_info.negative_ratings_on_same_object,
           userRating: data.meta_info.user_rating_on_same_object_value
         })
-      }.bind(this))
 
-    Api.rating.change({
-      oldValue,
-      newValue: number,
-      ideaId: this.props.objectId
-    })
-      .then((response) => {
-        console.log('Success:', response)
-      })
-      .catch((error) => {
-        alert('An error occurred. Please try again.' + error.responseJSON.message)
-        console.log('Error Details:', error.responseJSON.message)
-      })
+        Api.rating.change({
+          oldValue,
+          newValue: number,
+          positiveRatings: data.meta_info.positive_ratings_on_same_object,
+          ideaId: this.props.objectId
+        })
+          .then((response) => {
+            console.log('Success:', response)
+          })
+          .catch((error) => {
+            alert('An error occurred. Please try again.' + error.responseJSON.message)
+            console.log('Error Details:', error.responseJSON.message)
+          })
+      }.bind(this))
   }
 
   render () {
