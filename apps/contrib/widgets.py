@@ -2,6 +2,7 @@ from django import forms
 from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.filters.widgets import FreeTextFilterWidget as A4FreeTextFilterWidget
 from adhocracy4.filters.widgets import OrderingWidget
 from adhocracy4.images.widgets import ImageInputWidget
 
@@ -54,9 +55,14 @@ class TextWithDatalistWidget(forms.TextInput):
 
 
 class AplusOrderingWidget(OrderingWidget):
-    # FIXME: only because https://github.com/liqd/adhocracy-plus/issues/1659
-    # test and remove from time to time
     label = _("Ordering")
+
+    def option_string(self):
+        return '<li><a%(attrs)s href="?%(query_string)s#index">%(label)s</a></li>'
+
+
+class FreeTextFilterWidget(A4FreeTextFilterWidget):
+    label = _("Search")
 
 
 class ImageInputWidgetSimple(ImageInputWidget):
