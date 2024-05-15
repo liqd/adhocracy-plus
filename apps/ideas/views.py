@@ -8,7 +8,6 @@ from adhocracy4.categories import filters as category_filters
 from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
-from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
@@ -16,6 +15,7 @@ from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import forms as contrib_forms
 from apps.contrib.views import CanonicalURLDetailView
 from apps.contrib.widgets import AplusOrderingWidget
+from apps.contrib.widgets import FreeTextFilterWidget
 from apps.moderatorfeedback.forms import ModeratorFeedbackForm
 from apps.moderatorfeedback.models import ModeratorFeedback
 from apps.notifications.emails import NotifyCreatorOnModeratorFeedback
@@ -23,10 +23,6 @@ from apps.organisations.mixins import UserFormViewMixin
 
 from . import forms
 from . import models
-
-
-class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
-    label = _("Search")
 
 
 def get_ordering_choices(view):
