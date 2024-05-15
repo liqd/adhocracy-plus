@@ -25,6 +25,8 @@ from apps.account.api import AccountViewSet
 from apps.contrib import views as contrib_views
 from apps.contrib.sitemaps import static_sitemap_index
 from apps.documents.api import DocumentViewSet
+from apps.fairvote.api import ChoinViewSet
+from apps.fairvote.api import IdeaChoinViewSet
 from apps.ideas.api import IdeaViewSet
 from apps.interactiveevents.api import LikesViewSet
 from apps.interactiveevents.api import LiveQuestionViewSet
@@ -51,6 +53,8 @@ router.register(r"users", UserViewSet, basename="users")
 router.register(
     r"moderationprojects", ModerationProjectsViewSet, basename="moderationprojects"
 )
+router.register(r"choins", ChoinViewSet, basename="choins")
+router.register(r"idea-choins", IdeaChoinViewSet, basename="idea-choins")
 
 
 module_router = a4routers.ModuleDefaultRouter()
@@ -147,6 +151,7 @@ urlpatterns = [
                     ),
                 ),
                 path("projects/", include("apps.projects.urls")),
+                path("fairvote/", include("apps.fairvote.urls")),
                 path("interactiveevents/", include("apps.interactiveevents.urls")),
                 path(
                     "text/",

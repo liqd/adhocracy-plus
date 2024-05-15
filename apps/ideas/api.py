@@ -18,7 +18,6 @@ class IdeaViewSet(
     mixins.UpdateModelMixin,
     viewsets.GenericViewSet,
 ):
-
     serializer_class = IdeaSerializer
     permission_classes = (ViewSetRulesPermission,)
     lookup_field = "pk"

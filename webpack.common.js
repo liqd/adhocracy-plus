@@ -50,6 +50,12 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    fairvote_choins: {
+      import: [
+        './apps/fairvote/assets/choins/react_choins_init.jsx',
+        './apps/fairvote/assets/ratings/react_ratings_init.jsx'
+      ]
+    },
     interactiveevents: {
       import: [
         './apps/interactiveevents/assets/react_interactiveevents_init.jsx'

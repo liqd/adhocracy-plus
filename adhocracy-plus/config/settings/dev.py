@@ -7,7 +7,7 @@ for template_engine in TEMPLATES:
     template_engine["OPTIONS"]["debug"] = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "k3l^@x53$l5@y(fo6ivgplj&q^^rmtl^enzse5ozxuepx0$s()"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 try:
     import debug_toolbar

@@ -33,16 +33,27 @@ def get_ordering_choices(view):
     choices = (("-created", _("Most recent")),)
     if view.module.has_feature("rate", models.Idea):
         choices += (("-positive_rating_count", _("Most popular")),)
+    if view.module.has_feature("buy", models.Idea):
+        choices += (
+            ("-choin__choins", _("Most sponsored")),
+            ("choin__missing", _("Nearest to goal")),
+        )
     choices += (("-comment_count", _("Most commented")),)
     return choices
+
+
+class OrderingFilter(a4_filters.DynamicChoicesOrderingFilter):
+    def annotate_queryset(self, qs):
+        qs = qs.annotate_comment_count()
+        if hasattr(qs, "annotate_positive_rating_count"):
+            qs = qs.annotate_positive_rating_count().annotate_negative_rating_count()
+        return qs
 
 
 class IdeaFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {"ordering": "-created"}
     category = category_filters.CategoryFilter()
-    ordering = a4_filters.DynamicChoicesOrderingFilter(
-        choices=get_ordering_choices, widget=AplusOrderingWidget
-    )
+    ordering = OrderingFilter(choices=get_ordering_choices, widget=AplusOrderingWidget)
     search = FreeTextFilter(widget=FreeTextFilterWidget, fields=["name"])
 
     class Meta:
@@ -63,6 +74,8 @@ class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
         qs = qs.annotate_comment_count()
         if hasattr(qs, "annotate_positive_rating_count"):
             qs = qs.annotate_positive_rating_count().annotate_negative_rating_count()
+        if hasattr(qs, "annotate_accept_order"):
+            qs = qs.annotate_accept_order()
         return qs
 
 

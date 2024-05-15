@@ -5,7 +5,13 @@ import os
 
 from django.conf import locale
 from django.utils.translation import gettext_lazy as _
+from dotenv import load_dotenv
 
+load_dotenv()
+
+HOST = os.getenv("HOST")
+PORT = os.getenv("PORT")
+DOMAIN = os.getenv("DOMAIN")
 CONFIG_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(CONFIG_DIR)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -109,6 +115,7 @@ INSTALLED_APPS = (
     "apps.polls",
     "apps.topicprio",
     "apps.debate",
+    "apps.fairvote",
 )
 
 MIDDLEWARE = (
@@ -163,11 +170,12 @@ WSGI_APPLICATION = "adhocracy-plus.config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        "TEST": {
-            "NAME": os.path.join(BASE_DIR, "test_db.sqlite3"),
-        },
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": os.getenv("MYSQL_DB"),
+        "USER": os.getenv("MYSQL_USERNAME"),
+        "PASSWORD": os.getenv("MYSQL_PASS"),
+        "HOST": "localhost",
+        "PORT": "3306",
     }
 }
 
@@ -176,9 +184,9 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = "en"
-DEFAULT_USER_LANGUAGE_CODE = "de"
+DEFAULT_USER_LANGUAGE_CODE = "en"
 
-TIME_ZONE = "Europe/Berlin"
+TIME_ZONE = "Asia/Jerusalem"
 
 USE_I18N = True
 
@@ -258,7 +266,12 @@ THUMBNAIL_ALIASES = {
 }
 
 ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
-
+ALLOWED_HOSTS = [HOST, DOMAIN, "localhost"]
+CORS_ALLOWED_ORIGINS = [
+    f"http://{HOST}:{PORT}",
+    f"http://{HOST}:8005",
+    f"https://{DOMAIN}",
+]
 
 # Authentication
 
@@ -295,6 +308,7 @@ LOGIN_URL = "account_login"
 LOGIN_REDIRECT_URL = "/"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_HOST = "127.0.0.1"
 
 # Rest Framework
 REST_FRAMEWORK = {
@@ -512,6 +526,7 @@ A4_BLUEPRINT_TYPES = [
     ("IE", _("interactive event")),
     ("TP", _("prioritization")),
     ("DB", _("debate")),
+    ("FV", _("fair-vote")),
 ]
 
 A4_MAP_BASEURL = "https://{s}.tile.openstreetmap.org/"

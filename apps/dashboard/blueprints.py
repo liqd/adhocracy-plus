@@ -5,6 +5,7 @@ from adhocracy4.polls import phases as poll_phases
 from apps.budgeting import phases as budgeting_phases
 from apps.debate import phases as debate_phases
 from apps.documents import phases as documents_phases
+from apps.fairvote import phases as fairvote_phases
 from apps.ideas import phases as ideas_phases
 from apps.interactiveevents import phases as interactiveevent_phases
 from apps.mapideas import phases as mapideas_phases
@@ -174,6 +175,23 @@ blueprints = [
             image="images/debate.svg",
             settings_model=None,
             type="DB",
+        ),
+    ),
+    (
+        "fair-vote",
+        ProjectBlueprint(
+            title=_("Fair vote"),
+            description=_(
+                "Participants can submit their own ideas, "
+                "discuss the ideas of others, and "
+                "ideas can be rated (pro/contra) - all at the same phase."
+            ),
+            content=[
+                fairvote_phases.FairVotePhase(),
+            ],
+            image="images/fair-vote.svg",
+            settings_model=None,
+            type="FV",
         ),
     ),
 ]

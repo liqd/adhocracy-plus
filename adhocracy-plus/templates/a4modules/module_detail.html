@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
+{% load i18n rules react_follows react_choins thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -110,6 +110,9 @@
                 {% block module_description %}
                     {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
                     <h1 class="project-header__title">{{ module.name }}</h1>
+                    {% if module.blueprint_type == 'FV' %}
+                        {% react_choins module %}
+                    {% endif %}
                     <p class="project-header__description">{{ module.description }}</p>
                     {% endif %}
                 {% endblock %}
@@ -160,8 +163,37 @@
                             </div>
                             {% endif %}
                         {% endfor %}
+                    </div>  
+                </div>                          
+                {% if module.blueprint_type == 'FV' %}
+                <div class="row mb-4">
+                    <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                                $('#ideas_count').on('input', function() {
+                                    var inputValue =$('this').val();
+                                    if (inputValue<1){
+                                        $('this').value=1
+                                    }
+                                })
+                                $('#fair_order').on('click', function() {
+                                    var inputValue =$('#ideas_count').val();
+                                    targetUrl = "{% url 'fair_acceptance_order' organisation_slug=project.organisation.slug obj_id=module.pk %}" + "?top=" + inputValue;
+                                    window.location.href = targetUrl;
+                                });
+                            });
+                        </script>
+                        <div style="display: flex;">
+                            <a 
+                                id="fair_order" name="fair_order"
+                                class="btn btn-secondary"
+                            >Fair Acceptnace Order: Top </a>
+                            <input type="number" id="ideas_count" name="ideas_count" value=5 min=1 style="width: 50px;"/>
+                        </div>
                     </div>
                 </div>
+                {% endif %}
                 {% endwith %}
             {% endif %}
         {% endblock %}
