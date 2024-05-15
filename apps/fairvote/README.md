@@ -6,8 +6,7 @@ Database: We're using Mysql
 ## Requirements:
 
 ## Installation
-1. Follow the adhocracy-plus installation guide.
-2. 
+Follow the [adhocracy-plus installation guide](https://github.com/ariel-research/adhocracy-plus/README.md).
 
 ## Simulations:
 ### `create-delete` file:
