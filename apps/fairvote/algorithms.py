@@ -45,22 +45,22 @@ def calculate_missing_choins(goal, choins, supporters_count):
 # Rating
 
 
-def update_idea_choins_after_rating(idea_id, choins, positive_ratings):
+def update_idea_choins_after_rating(idea_id, choins, positive_ratings=None):
     """
     After a user rates or updates the rating of an idea, we re-compute the total number
     of choins and the number of missing choins for this idea.
     """
     idea = Idea.objects.get(pk=idea_id)
-    obj, created = IdeaChoin.objects.update_or_create(
-        idea=idea, defaults={"choins": F("choins") + choins}
-    )
-    idea_choins = IdeaChoin.objects.values_list("choins", flat=True).get(
-        pk=obj.pk
-    )  # the updated idea choins
-    supporters_count = (
-        positive_ratings  # happens after user changed their rating -> updated value
-    )
-    logger.info("supporters count: %s, idea choins: %s", idea_choins, supporters_count)
+    obj, created = IdeaChoin.objects.get_or_create(idea=idea)
+    obj.choins += choins
+    idea_choins = obj.choins
+    if positive_ratings:
+        supporters_count = (
+            positive_ratings  # happens after user changed their rating -> updated value
+        )
+    else:
+        supporters_count = get_supporters(idea).count()
+    logger.info("supporters count: %s, idea choins: %s", supporters_count, idea_choins)
     obj.missing = calculate_missing_choins(obj.goal, idea_choins, supporters_count)
     obj.save()
 
