@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>django basics - Adhocracy+</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "django basics";
+        var mkdocs_page_input_path = "django_shell_basics.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Adhocracy+
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">django basics</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#importing-models">Importing models</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#retrieving-objects-and-manipulating-them">Retrieving objects and manipulating them</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#filtering">Filtering</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/">api</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../celery/">celery</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ckeditor/">ckeditor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../management_commands/">management commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../project_insights/">project insights</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../reference/">reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../languages_and_translations/">translations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../software_architecture/">architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tests/">tests</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation_prod/">Install</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contributing/">Contribute</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../howtomkdocs/">Documentation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="https://github.com/liqd/adhocracy-plus">Source code</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Adhocracy+</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">API</li>
+      <li class="breadcrumb-item active">django basics</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="django-shell-basics">Django shell basics</h1>
+<p>To start the django shell, first activate your virtual environment, which
+should be installed inside your project folder</p>
+<p><code>source venv/bin/activate</code></p>
+<p>If you are working on a server, which was set up as described in the <a href="https://github.com/liqd/adhocracy-plus/blob/main/docs/installation_prod.md">installation docs</a>, the virtualenv is started with</p>
+<p><code>su aplus</code></p>
+<p><code>cd ~/adhocracy-plus</code></p>
+<p><code>workon aplus</code></p>
+<p>or in other environments you might need to specify the path to where your python is installed.</p>
+<p>Then start the django shell</p>
+<p><code>python manage.py shell</code></p>
+<h2 id="importing-models">Importing models</h2>
+<p>You can access objects of your models by first importing the model and then accessing the objects
+that are stored in your database. For instance to get all projects (the project model is imported
+from adhocrady4), do</p>
+<p><code>from adhocracy4.projects.models import Project</code></p>
+<p><code>Project.objects.all()</code></p>
+<h2 id="retrieving-objects-and-manipulating-them">Retrieving objects and manipulating them</h2>
+<p>To get a specific project, you can get it by the id of the project, as this is the primary key</p>
+<p><code>project = Project.objects.get(id=$myProjectId)</code></p>
+<p>You could also get it by the name of the project, but since the name is not unique, this might raise an error
+if there are several projects with the same name. To do so, type</p>
+<p><code>project = Project.objects.get(name=$myProjectName)</code></p>
+<p>You can then access all model fields of your objects, e.g. to get the name of the project, type</p>
+<p><code>project.name</code></p>
+<p>If the field you are accessing is an object itself, you can then access this object. For instance to get
+the project name of an idea, do</p>
+<p><code>from apps.ideas.models import Idea</code></p>
+<p><code>idea = Idea.objects.first()</code></p>
+<p>This gives you the first idea. Ideas have the field module and a module belongs to project.
+Thus you get the project name by</p>
+<p><code>idea.module.project.name</code></p>
+<p>You can also change the values of fields, e.g. to change the name of a project do</p>
+<p><code>project.name = 'my new project name'</code></p>
+<p><code>project.save()</code></p>
+<p>You can also call any method that is defined on the model, e.g. to get the url of you project</p>
+<p><code>project.get_absolute_url()</code></p>
+<p>To see all available fields and methods on your project, type:</p>
+<p><code>dir(project)</code></p>
+<h2 id="filtering">Filtering</h2>
+<p>You can filter the objects of your model by specific characteristics, e.g. you could filter all ideas that belong
+to the same project:</p>
+<p><code>project_ideas = Idea.objects.filter(module__project=project)</code></p>
+<p>project_ideas is a queryset, to see all objects it contatins, type</p>
+<p><code>project_ideas.all()</code></p>
+<p>You can also loop through a queryset. To print the names of you project_ideas queryset, do</p>
+<p><code>for idea in project_ideas.all(): print(idea.name)</code></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../api/" class="btn btn-neutral float-right" title="api">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../api/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
