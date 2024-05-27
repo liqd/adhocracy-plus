@@ -132,6 +132,10 @@
     }
 }
 
+.btn.btn--danger-light {
+    @include button-bg(#dc3545, #dc3545, $body-bg, 10%);
+}
+
 .btn--align-left {
     text-align: left;
 }
