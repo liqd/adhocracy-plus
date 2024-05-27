@@ -203,6 +203,7 @@ class SocialTermsSignupForm(SocialSignupForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.prevent_enumeration = False
         self.fields["username"].help_text = _(
             "Your username will appear publicly next to your posts."
         )
