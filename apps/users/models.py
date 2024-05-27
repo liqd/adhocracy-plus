@@ -39,8 +39,6 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     email = models.EmailField(
         _("Email address"),
-        unique=True,
-        error_messages={"unique": _("Email is invalid or already taken.")},
     )
 
     is_staff = models.BooleanField(
@@ -127,8 +125,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     objects = auth_models.UserManager()
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
+    USERNAME_FIELD = "username"
 
     def get_projects_follow_list(self, exclude_private_projects=False):
         projects = Project.objects.filter(
