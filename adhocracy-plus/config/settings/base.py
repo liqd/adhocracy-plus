@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "allauth.socialaccount.providers.dummy",
     "rules.apps.AutodiscoverRulesConfig",
     "easy_thumbnails",
     "parler",
@@ -284,8 +285,7 @@ ACCOUNT_FORMS = {
     "signup": "apps.users.forms.DefaultSignupForm",
     "login": "apps.users.forms.DefaultLoginForm",
 }
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 10
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
+ACCOUNT_RATE_LIMITS = {"login_failed": "10/5m/ip"}
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_USERNAME_MIN_LENGTH = 5
