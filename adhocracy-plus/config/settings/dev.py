@@ -9,6 +9,8 @@ for template_engine in TEMPLATES:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "k3l^@x53$l5@y(fo6ivgplj&q^^rmtl^enzse5ozxuepx0$s()"
 
+INSTALLED_APPS += ("allauth.socialaccount.providers.dummy",)
+
 try:
     import debug_toolbar
 except ImportError:

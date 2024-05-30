@@ -37,7 +37,6 @@ INSTALLED_APPS = (
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "allauth.socialaccount.providers.dummy",
     "rules.apps.AutodiscoverRulesConfig",
     "easy_thumbnails",
     "parler",
