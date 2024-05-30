@@ -7,21 +7,32 @@ The translations for the main branch are done in transifex. If you want to trans
 ## Transifex
 ### Install the transifex client if you haven't already
 - see https://github.com/transifex/cli for instructions
-### No translations have been added locally:
+
+### Register on transifex and become member of Liquid Democracy projects
+1. register on [Transifex website](https://www.transifex.com/) with your email of liqd.net
+2. Make your profile public by visiting [My profile](https://app.transifex.com/user/settings/), scroll down to `Privacy` section and check the box `Make my profile accessible by anyone (public)`
+3. visit [Liquid Democracy projects on transifex](https://explore.transifex.com/liqd/adhocracy-plus/), choose Adhocracy+ and click on `Join this project`
+4. Ping a colleague who is already member of the transifex liqd organisation to accept your request, e.g your fellow developer.
+5. Generate an API token from your [profile](https://app.transifex.com/user/settings/api/). Save the token somewhere, preferably in your vaultwarden account, as you will be asked to provide it later. Visit official documentation [here](https://help.transifex.com/en/articles/6248858-generating-an-api-token)
+
+
+## Work locally to generate translations:
+### Transifex initial configuration
+the adhocracy-plus repository includes the `.tx/config` file, so no initialization of transifex  or other configuration is required from you.
 #### Push new source strings to transifex
-Make branch and create message files with the new strings added during development
+Create new branch and generate message files with the new strings added during development with:
 
 `make po`
 
-Test that new messages compile without any errors
+Test that new messages compile without any errors with:
 
-`make mo`
+`make mo`  
 
 Push updated source file with new strings to transifex to be be translated (Note: commented out strings will not be ignored by transifex, but handled as normal source strings, so remove them before from source files)
 
-(If you do this the first time, you might need to [generate an API token](https://docs.transifex.com/account/authentication) and add it in the terminal. It will be automatically stored in your `~/.transifexrc`)
 
-`tx push -s`
+`tx push`  
+NOTE: if it's first time you push, you will be asked to provide your API token, which then will be saved in a local file for future authenitcations.
 
 Commit and push message files to github
 
