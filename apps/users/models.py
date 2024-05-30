@@ -126,6 +126,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     objects = auth_models.UserManager()
 
     USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email"]
 
     def get_projects_follow_list(self, exclude_private_projects=False):
         projects = Project.objects.filter(
