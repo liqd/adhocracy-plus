@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-22 11:06+0200\n"
+"POT-Creation-Date: 2024-05-29 17:23+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Csaba Madarász <madarasz.csaba@gmail.com>, 2023\n"
 "Language-Team: Hungarian (https://app.transifex.com/liqd/teams/109316/hu/)\n"
@@ -183,6 +183,7 @@ msgstr "Vázlat létrehozása"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
+#: apps/account/templates/a4_candy_account/account_deletion.html:48
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:31
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:14
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
@@ -201,6 +202,7 @@ msgstr "Vázlat létrehozása"
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_form.html:21
 #: apps/topicprio/templates/a4_candy_topicprio/topic_confirm_delete.html:13
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:45
+#: adhocracy-plus/templates/dummy/authenticate_form.html:20
 msgid "Cancel"
 msgstr "Mégsem"
 
@@ -301,7 +303,8 @@ msgstr "minden hozzászólást itt exportálhat"
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: apps/debate/filters.py:12 apps/ideas/views.py:29 apps/topicprio/views.py:21
+#: apps/contrib/widgets.py:65 apps/debate/filters.py:12
+#: apps/topicprio/views.py:21
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:4
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:10
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:11
@@ -312,8 +315,8 @@ msgstr ""
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: apps/contrib/templates/a4_candy_contrib/includes/form_checkbox_field.html:6
 #: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
-#: adhocracy-plus/templates/account/signup.html:27
-#: adhocracy-plus/templates/account/signup.html:36
+#: adhocracy-plus/templates/account/signup.html:33
+#: adhocracy-plus/templates/account/signup.html:44
 #: adhocracy-plus/templates/socialaccount/signup.html:31
 msgid "This field is required"
 msgstr ""
@@ -504,7 +507,7 @@ msgstr ""
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:15
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:30
 #: apps/projects/templates/a4_candy_projects/project_detail.html:87
-#: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:23
+#: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:24
 msgid "Information"
 msgstr ""
 
@@ -515,7 +518,7 @@ msgstr ""
 #: adhocracy4/dashboard/dashboard.py:33
 #: apps/projects/dashboard.py:86
 #: apps/projects/templates/a4_candy_projects/project_detail.html:107
-#: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:41
+#: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:44
 msgid "Result"
 msgstr ""
 
@@ -760,7 +763,7 @@ msgid "no"
 msgstr ""
 
 #: adhocracy4/filters/widgets.py:76
-#: apps/contrib/widgets.py:59
+#: apps/contrib/widgets.py:58
 msgid "Ordering"
 msgstr ""
 
@@ -1292,7 +1295,13 @@ msgstr ""
 msgid "Report"
 msgstr ""
 
-#: apps/account/forms.py:63 apps/organisations/mixins.py:58
+#: apps/account/forms.py:50
+#: adhocracy-plus/templates/account/password_change.html:22
+#: adhocracy-plus/templates/account/password_change.html:28
+msgid "Password"
+msgstr ""
+
+#: apps/account/forms.py:71 apps/organisations/mixins.py:58
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr ""
 
@@ -1329,8 +1338,53 @@ msgstr ""
 msgid "User Agreements"
 msgstr ""
 
+#: apps/account/templates/a4_candy_account/account_dashboard.html:57
+#: apps/account/templates/a4_candy_account/account_deletion.html:12
+#: apps/account/templates/a4_candy_account/account_deletion.html:36
+msgid "Delete account"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_deletion.html:6
 #: apps/account/templates/a4_candy_account/profile.html:5
 msgid "Your user profile"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_deletion.html:13
+msgid ""
+"Please note that deleting your account will result in the permanent removal "
+"of all associated data and content, including your comments, ideas & votes."
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_deletion.html:14
+msgid ""
+"\n"
+"            To confirm your identity, please enter your password to proceed:"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_deletion.html:44
+msgid "Are you sure you want to delete your account?"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_deletion.html:49
+msgid "Delete Account"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:5
+#, python-format
+msgid "Confirmation: Deletion of Your Account on %(platformname)s"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:6
+#, python-format
+msgid "Your account on %(platformname)s has been deleted"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:39
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:17
+#, python-format
+msgid ""
+"This email was sent to %(receiver)s. If you have any further questions, "
+"please contact us via %(contact_email)s"
 msgstr ""
 
 #: apps/account/templates/a4_candy_account/profile.html:7
@@ -1348,11 +1402,15 @@ msgstr ""
 msgid "Here you can edit all your agreements"
 msgstr ""
 
-#: apps/account/views.py:27
+#: apps/account/views.py:30
 msgid "Your profile was successfully updated."
 msgstr ""
 
-#: apps/account/views.py:51
+#: apps/account/views.py:52
+msgid "Your account was successfully deleted."
+msgstr ""
+
+#: apps/account/views.py:77
 msgid "Your agreements were successfully updated."
 msgstr ""
 
@@ -1501,7 +1559,7 @@ msgstr ""
 msgid "Post ideas with budget proposals, comment on them and rate them."
 msgstr ""
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:511
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:518
 msgid "participatory budgeting"
 msgstr ""
 
@@ -1651,16 +1709,16 @@ msgstr ""
 msgid "Edit proposal"
 msgstr ""
 
-#: apps/budgeting/views.py:19 apps/ideas/views.py:33 apps/mapideas/views.py:17
+#: apps/budgeting/views.py:19 apps/ideas/views.py:29 apps/mapideas/views.py:17
 msgid "Most recent"
 msgstr ""
 
-#: apps/budgeting/views.py:21 apps/ideas/views.py:35 apps/mapideas/views.py:19
+#: apps/budgeting/views.py:21 apps/ideas/views.py:31 apps/mapideas/views.py:19
 #: apps/topicprio/views.py:30
 msgid "Most popular"
 msgstr ""
 
-#: apps/budgeting/views.py:22 apps/debate/filters.py:19 apps/ideas/views.py:36
+#: apps/budgeting/views.py:22 apps/debate/filters.py:19 apps/ideas/views.py:32
 #: apps/mapideas/views.py:20 apps/topicprio/views.py:31
 msgid "Most commented"
 msgstr ""
@@ -1677,7 +1735,7 @@ msgstr ""
 msgid "Your answer to the captcha was wrong."
 msgstr ""
 
-#: apps/cms/contacts/models.py:35 apps/users/forms.py:45
+#: apps/cms/contacts/models.py:35 apps/users/forms.py:48
 msgid "I am not a robot"
 msgstr ""
 
@@ -1865,6 +1923,8 @@ msgid "You have signed out."
 msgstr ""
 
 #: apps/contrib/django_standard_messages.py:7
+#: adhocracy-plus/templates/account/verification_sent.html:5
+#: adhocracy-plus/templates/account/verification_sent.html:8
 msgid "Verify Your E-mail Address"
 msgstr ""
 
@@ -2390,7 +2450,7 @@ msgstr ""
 msgid "Edit idea"
 msgstr ""
 
-#: apps/ideas/views.py:158 apps/mapideas/views.py:71
+#: apps/ideas/views.py:154 apps/mapideas/views.py:71
 msgid "Your Idea has been deleted"
 msgstr ""
 
@@ -3307,7 +3367,7 @@ msgstr ""
 #: apps/organisations/models.py:132
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:36 apps/users/forms.py:190
+#: apps/users/forms.py:39 apps/users/forms.py:193
 #: adhocracy-plus/templates/email_base.html:79
 #: adhocracy-plus/templates/email_base.html:109
 #: adhocracy-plus/templates/footer.html:43
@@ -3810,11 +3870,11 @@ msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:15
-#: apps/users/templates/a4_candy_users/indicator.html:60
+#: apps/users/templates/a4_candy_users/indicator.html:62
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:24
 #: adhocracy-plus/templates/account/signup.html:4
 #: adhocracy-plus/templates/account/signup.html:7
-#: adhocracy-plus/templates/account/signup.html:69
+#: adhocracy-plus/templates/account/signup.html:70
 #: adhocracy-plus/templates/socialaccount/signup.html:49
 msgid "Register"
 msgstr ""
@@ -3874,7 +3934,7 @@ msgid "This project is not yet published."
 msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:97
-#: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:32
+#: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:34
 msgid "Participation"
 msgstr ""
 
@@ -3910,7 +3970,7 @@ msgid "It ended on %(date)s."
 msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:238
-#: apps/users/models.py:53
+#: apps/users/models.py:52
 #: adhocracy-plus/templates/a4modules/module_detail.html:148
 msgid "active"
 msgstr ""
@@ -4072,7 +4132,7 @@ msgid "My user Settings"
 msgstr ""
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/base_userdashboard.html:48
-#: apps/users/templates/a4_candy_users/indicator.html:41
+#: apps/users/templates/a4_candy_users/indicator.html:36
 #: apps/users/templates/a4_candy_users/user_detail.html:28
 msgid "Account Settings"
 msgstr ""
@@ -4207,65 +4267,67 @@ msgstr ""
 msgid "Please enter correct email addresses, separated by commas."
 msgstr ""
 
-#: apps/users/forms.py:22
-msgid "If you are having difficulty please contact us by {}email{}."
+#: apps/users/forms.py:23
+msgid ""
+"Solve the math problem and click on the correct result.<br>If you are having "
+"difficulty please contact us  by {}email{}."
 msgstr ""
 
-#: apps/users/forms.py:28
+#: apps/users/forms.py:31
 msgid "Username/e-mail"
 msgstr ""
 
-#: apps/users/forms.py:38 apps/users/forms.py:192 apps/users/models.py:73
+#: apps/users/forms.py:41 apps/users/forms.py:195 apps/users/models.py:72
 msgid "I would like to receive further information"
 msgstr ""
 
-#: apps/users/forms.py:40 apps/users/forms.py:194 apps/users/models.py:76
+#: apps/users/forms.py:43 apps/users/forms.py:197 apps/users/models.py:75
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
 
-#: apps/users/forms.py:50 apps/users/forms.py:204
+#: apps/users/forms.py:53 apps/users/forms.py:208
 msgid "Your username will appear publicly next to your posts."
 msgstr ""
 
-#: apps/users/forms.py:78
+#: apps/users/forms.py:81
 msgid "Membership number of IG BCE"
 msgstr ""
 
-#: apps/users/forms.py:80
+#: apps/users/forms.py:83
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
 msgstr ""
 
-#: apps/users/forms.py:87
+#: apps/users/forms.py:90
 msgid "Date of birth"
 msgstr ""
 
-#: apps/users/forms.py:89
+#: apps/users/forms.py:92
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
 msgstr ""
 
-#: apps/users/forms.py:96
+#: apps/users/forms.py:99
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
 msgstr ""
 
-#: apps/users/forms.py:108 apps/users/forms.py:148
+#: apps/users/forms.py:111 apps/users/forms.py:151
 msgid "Something is wrong with the setup - please try again later"
 msgstr ""
 
-#: apps/users/forms.py:114
+#: apps/users/forms.py:117
 msgid ""
 "There is already a participant with this membership number. Please check "
 "your entry. If this is your membership number, please send an email to "
 "\"zukunftsgewerkschaft@igbce.de\"."
 msgstr ""
 
-#: apps/users/forms.py:154
+#: apps/users/forms.py:157
 msgid ""
 "Unfortunately, the member number and / or date of birth could not be linked "
 "to an active member account. Please check your input and try again. If you "
@@ -4293,103 +4355,104 @@ msgstr ""
 msgid "Email address"
 msgstr ""
 
-#: apps/users/models.py:43
-msgid "Email is invalid or already taken."
-msgstr ""
-
-#: apps/users/models.py:47
+#: apps/users/models.py:46
 msgid "staff status"
 msgstr ""
 
-#: apps/users/models.py:49
+#: apps/users/models.py:48
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: apps/users/models.py:56
+#: apps/users/models.py:55
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: apps/users/models.py:64
+#: apps/users/models.py:63
 msgid "Send me email notifications"
 msgstr ""
 
-#: apps/users/models.py:67
+#: apps/users/models.py:66
 msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
 msgstr ""
 
-#: apps/users/models.py:84
+#: apps/users/models.py:83
 msgid "Biography"
 msgstr ""
 
-#: apps/users/models.py:85
+#: apps/users/models.py:84
 msgid "Tell us about yourself in 255 characters!"
 msgstr ""
 
-#: apps/users/models.py:91
+#: apps/users/models.py:90
 msgid "Twitter handle"
 msgstr ""
 
-#: apps/users/models.py:97
+#: apps/users/models.py:96
 msgid "Facebook name"
 msgstr ""
 
-#: apps/users/models.py:99
+#: apps/users/models.py:98
 msgid ""
 "Your facebook name is the last part of the URL, when you access your profile."
 msgstr ""
 
-#: apps/users/models.py:107
+#: apps/users/models.py:106
 #: apps/users/templates/a4_candy_users/user_detail.html:55
 msgid "Homepage"
 msgstr ""
 
-#: apps/users/models.py:114
+#: apps/users/models.py:113
 msgid "Avatar picture"
 msgstr ""
 
-#: apps/users/models.py:118
+#: apps/users/models.py:117
 msgid "Your preferred language"
 msgstr ""
 
-#: apps/users/models.py:123
+#: apps/users/models.py:122
 msgid ""
 "Specify your preferred language for the user interface and the notifications "
 "of the platform."
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:7
-#: apps/users/templates/a4_candy_users/indicator.html:14
-#: apps/users/templates/a4_candy_users/indicator.html:18
+#: apps/users/templates/a4_candy_users/indicator.html:4
+#: apps/users/templates/a4_candy_users/indicator.html:11
+#: apps/users/templates/a4_candy_users/indicator.html:13
 #: adhocracy-plus/templates/includes/header_mobile_toggle.html:9
 msgid "Menu"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:28
+#: apps/users/templates/a4_candy_users/indicator.html:24
 #: adhocracy-plus/templates/email_base.html:40
 msgid "Hello"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:37
+#: apps/users/templates/a4_candy_users/indicator.html:33
 msgid "Admin"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:39
+#: apps/users/templates/a4_candy_users/indicator.html:35
 msgid "My Overview"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:49
+#: apps/users/templates/a4_candy_users/indicator.html:47
+msgid "Help"
+msgstr ""
+
 #: apps/users/templates/a4_candy_users/indicator.html:52
+#: apps/users/templates/a4_candy_users/indicator.html:55
 msgid "Logout"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:58
+#: apps/users/templates/a4_candy_users/indicator.html:60
 #: adhocracy-plus/templates/account/login.html:4
 #: adhocracy-plus/templates/account/login.html:7
 #: adhocracy-plus/templates/account/login.html:27
+#: adhocracy-plus/templates/dummy/authenticate_form.html:17
 msgid "Login"
 msgstr ""
 
@@ -4425,131 +4488,131 @@ msgstr ""
 msgid "Activities"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:189
+#: adhocracy-plus/config/settings/base.py:195
 msgid "English"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:190
+#: adhocracy-plus/config/settings/base.py:196
 msgid "German"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:191
+#: adhocracy-plus/config/settings/base.py:197
 msgid "Dutch"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:192
+#: adhocracy-plus/config/settings/base.py:198
 msgid "Kyrgyz"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:193
+#: adhocracy-plus/config/settings/base.py:199
 msgid "Russian"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:444
+#: adhocracy-plus/config/settings/base.py:451
 msgid "suggestion"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:445
+#: adhocracy-plus/config/settings/base.py:452
 msgid "note"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:446
+#: adhocracy-plus/config/settings/base.py:453
 msgid "question"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:487
+#: adhocracy-plus/config/settings/base.py:494
 msgid "Pin without icon"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:488
+#: adhocracy-plus/config/settings/base.py:495
 msgid "Diamond"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:489
+#: adhocracy-plus/config/settings/base.py:496
 msgid "Triangle up"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:490
+#: adhocracy-plus/config/settings/base.py:497
 msgid "Triangle down"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:491
+#: adhocracy-plus/config/settings/base.py:498
 msgid "Ellipse"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:492
+#: adhocracy-plus/config/settings/base.py:499
 msgid "Semi circle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:493
+#: adhocracy-plus/config/settings/base.py:500
 msgid "Hexagon"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:494
+#: adhocracy-plus/config/settings/base.py:501
 msgid "Rhomboid"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:495
+#: adhocracy-plus/config/settings/base.py:502
 msgid "Star"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:496
+#: adhocracy-plus/config/settings/base.py:503
 msgid "Square"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:497
+#: adhocracy-plus/config/settings/base.py:504
 msgid "Octothorpe"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:498
+#: adhocracy-plus/config/settings/base.py:505
 msgid "Rectangle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:499
+#: adhocracy-plus/config/settings/base.py:506
 msgid "Circle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:500
+#: adhocracy-plus/config/settings/base.py:507
 msgid "Right triangle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:501
+#: adhocracy-plus/config/settings/base.py:508
 msgid "Zigzag"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:505
+#: adhocracy-plus/config/settings/base.py:512
 msgid "brainstorming"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:506
+#: adhocracy-plus/config/settings/base.py:513
 msgid "spatial brainstorming"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:507
+#: adhocracy-plus/config/settings/base.py:514
 msgid "idea challenge"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:508
+#: adhocracy-plus/config/settings/base.py:515
 msgid "spatial idea challenge"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:509
+#: adhocracy-plus/config/settings/base.py:516
 msgid "text review"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:510
+#: adhocracy-plus/config/settings/base.py:517
 msgid "poll"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:512
+#: adhocracy-plus/config/settings/base.py:519
 msgid "interactive event"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:513
+#: adhocracy-plus/config/settings/base.py:520
 msgid "prioritization"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:514
+#: adhocracy-plus/config/settings/base.py:521
 msgid "debate"
 msgstr ""
 
@@ -4894,13 +4957,6 @@ msgstr ""
 msgid "Confirm your email address"
 msgstr ""
 
-#: adhocracy-plus/templates/account/email/email_confirmation.en.email:17
-#, python-format
-msgid ""
-"This email was sent to %(receiver)s. If you have any further questions, "
-"please contact us via %(contact_email)s"
-msgstr ""
-
 #: adhocracy-plus/templates/account/email/email_confirmation_signup.en.email:4
 #, python-format
 msgid "Please confirm your registration on %(current_site)s"
@@ -5036,17 +5092,14 @@ msgstr ""
 msgid "Change your password"
 msgstr ""
 
-#: adhocracy-plus/templates/account/password_change.html:22
-#: adhocracy-plus/templates/account/password_change.html:28
-msgid "Password"
-msgstr ""
-
 #: adhocracy-plus/templates/account/password_change.html:34
 msgid "Repeat password"
 msgstr ""
 
 #: adhocracy-plus/templates/account/password_reset.html:4
 #: adhocracy-plus/templates/account/password_reset.html:7
+#: adhocracy-plus/templates/account/password_reset_done.html:8
+#: adhocracy-plus/templates/account/password_reset_done.html:12
 msgid "Password Reset"
 msgstr ""
 
@@ -5062,6 +5115,12 @@ msgstr ""
 
 #: adhocracy-plus/templates/account/password_reset.html:20
 msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+
+#: adhocracy-plus/templates/account/password_reset_done.html:17
+msgid ""
+"We have sent you an e-mail. If you have not received it please check your "
+"spam folder. Otherwise contact us if you do not receive it in a few minutes."
 msgstr ""
 
 #: adhocracy-plus/templates/account/password_reset_from_key.html:4
@@ -5089,14 +5148,18 @@ msgstr ""
 msgid "Your password is now changed."
 msgstr ""
 
-#: adhocracy-plus/templates/account/signup.html:9
+#: adhocracy-plus/templates/account/signup.html:10
+msgid "Why register?"
+msgstr ""
+
+#: adhocracy-plus/templates/account/signup.html:14
 #, python-format
 msgid ""
 "Already have an account? Then please\n"
 "        <a href=\"%(login_url)s\">login</a>."
 msgstr ""
 
-#: adhocracy-plus/templates/account/signup.html:24
+#: adhocracy-plus/templates/account/signup.html:29
 #: adhocracy-plus/templates/socialaccount/signup.html:28
 #, python-format
 msgid ""
@@ -5108,17 +5171,12 @@ msgid ""
 "                "
 msgstr ""
 
-#: adhocracy-plus/templates/account/signup.html:62
-#, python-format
+#: adhocracy-plus/templates/account/verification_sent.html:10
 msgid ""
-"\n"
-"            With your account on %(platformname)s, you can take part in "
-"every public participation project on this platform. This platform allows "
-"organisations initiatives to conduct digital participation projects.\n"
-"            If you have any questions regarding the data protection on this "
-"platform you can find <a href=\"%(data_protection_url)s\" "
-"target=\"_blank\">further information here</a>.\n"
-"        "
+"We have sent an e-mail to you for verification. Follow the link provided to "
+"finalize the signup process. If you do not see the verification e-mail in "
+"your main inbox, check your spam folder. Please contact us if you do not "
+"receive the verification e-mail within a few minutes."
 msgstr ""
 
 #: adhocracy-plus/templates/base.html:58
@@ -5146,6 +5204,10 @@ msgstr ""
 #: adhocracy-plus/templates/base_errors.html:12
 #, python-format
 msgid "Back to %(platformname)s"
+msgstr ""
+
+#: adhocracy-plus/templates/dummy/authenticate_form.html:5
+msgid "Dummy Provider Login"
 msgstr ""
 
 #: adhocracy-plus/templates/email_base.html:64
@@ -5198,6 +5260,16 @@ msgstr ""
 msgid "About"
 msgstr ""
 
+#: adhocracy-plus/templates/socialaccount/authentication_error.html:5
+#: adhocracy-plus/templates/socialaccount/authentication_error.html:9
+msgid "Third-Party Login Failure"
+msgstr ""
+
+#: adhocracy-plus/templates/socialaccount/authentication_error.html:11
+msgid ""
+"An error occurred while attempting to login via your third-party account."
+msgstr ""
+
 #: adhocracy-plus/templates/socialaccount/connections.html:5
 #: adhocracy-plus/templates/socialaccount/connections.html:8
 msgid "Social Connections"
@@ -5217,6 +5289,34 @@ msgstr ""
 #: adhocracy-plus/templates/socialaccount/connections.html:35
 msgid ""
 "You currently have no social network accounts connected to this account."
+msgstr ""
+
+#: adhocracy-plus/templates/socialaccount/login.html:5
+msgid "Sign In"
+msgstr ""
+
+#: adhocracy-plus/templates/socialaccount/login.html:10
+#, python-format
+msgid "Connect %(provider)s"
+msgstr ""
+
+#: adhocracy-plus/templates/socialaccount/login.html:13
+#, python-format
+msgid "You are about to connect a new third-party account from %(provider)s."
+msgstr ""
+
+#: adhocracy-plus/templates/socialaccount/login.html:17
+#, python-format
+msgid "Sign In Via %(provider)s"
+msgstr ""
+
+#: adhocracy-plus/templates/socialaccount/login.html:20
+#, python-format
+msgid "You are about to sign in using a third-party account from %(provider)s."
+msgstr ""
+
+#: adhocracy-plus/templates/socialaccount/login.html:27
+msgid "Continue"
 msgstr ""
 
 #: adhocracy-plus/templates/socialaccount/signup.html:5
