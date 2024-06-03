@@ -4,7 +4,7 @@ We take care to make all strings in the code (like texts on buttons, headlines t
 
 The translations for the main branch are done in transifex. If you want to translate A+ into your language, please get in touch: info [at] liqd [dot] net
 
-## Transifex
+## Transifex installation and configuration
 ### Install the transifex client if you haven't already
 - see https://github.com/transifex/cli for instructions
 
@@ -16,9 +16,11 @@ The translations for the main branch are done in transifex. If you want to trans
 5. Generate an API token from your [profile](https://app.transifex.com/user/settings/api/). Save the token somewhere, preferably in your vaultwarden account, as you will be asked to provide it later. Visit official documentation [here](https://help.transifex.com/en/articles/6248858-generating-an-api-token)
 
 
-## Work locally to generate translations:
-### Transifex initial configuration
+## Transifex local configuration
 the adhocracy-plus repository includes the `.tx/config` file, so no initialization of transifex  or other configuration is required from you.
+
+## Work locally to generate translations:
+From within adhocracy-plus directory, run `make install` to pull the relative adhocracy4 dependency that should be included for translations
 #### Push new source strings to transifex
 Create new branch and generate message files with the new strings added during development with:
 
@@ -32,9 +34,9 @@ Push updated source file with new strings to transifex to be be translated (Note
 
 
 `tx push`  
-NOTE: if it's first time you push, you will be asked to provide your API token, which then will be saved in a local file for future authenitcations.
+NOTE: you will be asked to provide your API token, which then will be saved in a local file, whose location will be indicated in the terminal. For future authenitcations, you will need to provide it when pushing, or add it as [enviroment variable in your terminal profile](https://developers.transifex.com/docs/using-the-client#using-environment-variables). 
 
-Commit and push message files to github
+Commit and push your branch to github
 
 #### Pull new translations from transifex
 Once translations have been added on transifex, create branch and force pull all translations from transifex (force is needed because the time stamps cause errors)

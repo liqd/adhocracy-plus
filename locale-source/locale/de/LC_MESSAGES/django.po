@@ -9,16 +9,16 @@
 # Katharina Lindenlaub, 2023
 # JOster, 2023
 # Luca Thüer, 2023
-# Tietje Khieu, 2024
+# Tietje, 2024
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-29 17:23+0200\n"
+"POT-Creation-Date: 2024-06-03 17:28+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Tietje Khieu, 2024\n"
+"Last-Translator: Tietje, 2024\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -639,6 +639,11 @@ msgid ""
 "image content and is read out by screen readers. Describe the image in "
 "approx. 80 characters. Example: A busy square with people in summer."
 msgstr ""
+"Die Projektbeschreibung wird im Info-Tab angezeigt. Wenn Sie ein Bild "
+"hinzufügen, geben Sie bitte einen alternativen Text an. Dieser dient als "
+"textliche Beschreibung des Bildinhalts und wird von Screenreadern "
+"vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein "
+"belebter Platz mit Menschen im Sommer."
 
 #: adhocracy4/dashboard/forms.py:134
 msgid ""
@@ -649,6 +654,13 @@ msgid ""
 "is read out by screen readers. Describe the image in approx. 80 characters. "
 "Example: A busy square with people in summer."
 msgstr ""
+"Die Ergebnisbeschreibung wird im Ergebnis-Tab angezeigt. Bitte formulieren "
+"Sie im Vorfeld ein Teilnahmeversprechen (was wird mit dem Ergebnis "
+"passieren?) und informieren Sie anschließend über das Ergebnis. Wenn Sie ein "
+"Bild hinzufügen, geben Sie bitte einen alternativen Text an. Dieser dient "
+"als textliche Beschreibung des Bildinhalts und wird von Screenreadern "
+"vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein "
+"belebter Platz mit Menschen im Sommer."
 
 #: adhocracy4/dashboard/forms.py:165
 #: adhocracy4/phases/models.py:66
@@ -888,7 +900,7 @@ msgstr "Das Seitenverhältnis muss {aspect_width}:{aspect_height} entsprechen."
 
 #: adhocracy4/images/validators.py:87
 msgid "Please add an alternative text for all images."
-msgstr ""
+msgstr "Bitte fügen Sie für alle Bilder einen alternativen Text hinzu."
 
 #: adhocracy4/images/widgets.py:28
 msgid "Select a picture from your local folder."
@@ -1417,7 +1429,7 @@ msgstr "Nutzungsvereinbarungen"
 #: apps/account/templates/a4_candy_account/account_deletion.html:12
 #: apps/account/templates/a4_candy_account/account_deletion.html:36
 msgid "Delete account"
-msgstr ""
+msgstr "Account löschen"
 
 #: apps/account/templates/a4_candy_account/account_deletion.html:6
 #: apps/account/templates/a4_candy_account/profile.html:5
@@ -1429,30 +1441,36 @@ msgid ""
 "Please note that deleting your account will result in the permanent removal "
 "of all associated data and content, including your comments, ideas & votes."
 msgstr ""
+"Bitte beachten Sie, dass das Löschen Ihres Accounts zur dauerhaften "
+"Entfernung aller zugehörigen Daten und Inhalte führt, einschließlich Ihrer "
+"Kommentare, Ideen und Abstimmungen."
 
 #: apps/account/templates/a4_candy_account/account_deletion.html:14
 msgid ""
 "\n"
 "            To confirm your identity, please enter your password to proceed:"
 msgstr ""
+"\n"
+"            Geben Sie bitte Ihr Passwort ein, um Ihre Identität zu "
+"bestätigen:"
 
 #: apps/account/templates/a4_candy_account/account_deletion.html:44
 msgid "Are you sure you want to delete your account?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie Ihren Account löschen möchten?"
 
 #: apps/account/templates/a4_candy_account/account_deletion.html:49
 msgid "Delete Account"
-msgstr ""
+msgstr "Account löschen"
 
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:5
 #, python-format
 msgid "Confirmation: Deletion of Your Account on %(platformname)s"
-msgstr ""
+msgstr "Bestätigung: Löschen Ihres Kontos auf %(platformname)s"
 
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:6
 #, python-format
 msgid "Your account on %(platformname)s has been deleted"
-msgstr ""
+msgstr "Ihr Account auf %(platformname)s wurde gelöscht"
 
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:39
 #: adhocracy-plus/templates/account/email/email_confirmation.en.email:17
@@ -1485,7 +1503,7 @@ msgstr "Ihr Profil wurde erfolgreich aktualisiert."
 
 #: apps/account/views.py:52
 msgid "Your account was successfully deleted."
-msgstr ""
+msgstr "Ihr Account wurde erfolgreich gelöscht."
 
 #: apps/account/views.py:77
 msgid "Your agreements were successfully updated."
@@ -1658,7 +1676,7 @@ msgstr "Vorschlagsphase"
 msgid "Post ideas with budget proposals, comment on them and rate them."
 msgstr "Ideen mit Budgetangabe einreichen, kommentieren und bewerten."
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:518
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:517
 msgid "participatory budgeting"
 msgstr "Bürgerhaushalt"
 
@@ -2872,6 +2890,11 @@ msgid ""
 "Describe the image in approx. 80 characters. Example: A busy square with "
 "people in summer."
 msgstr ""
+"Wenn Sie ein Bild hinzufügen, stellen Sie bitte sicher, dass die Breite "
+"nicht größer als 650px ist und geben Sie einen alternativen Text für das "
+"Bild an. Ein alternativer Text dient als textliche Beschreibung des "
+"Bildinhalts und wird von Screenreadern vorgelesen. Beschreiben Sie das Bild "
+"in ca. 80 Zeichen. Beispiel: Ein belebter Platz mit Menschen im Sommer."
 
 #: apps/newsletters/forms.py:51
 msgid "Receivers are all users which follow the following project:"
@@ -3375,6 +3398,10 @@ msgid ""
 "Describe the image in approx. 80 characters. Example: A busy square with "
 "people in summer."
 msgstr ""
+"Wenn Sie ein Bild hinzufügen, geben Sie bitte einen alternativen Text an. "
+"Dieser dient als textliche Beschreibung des Bildinhalts und wird von "
+"Screenreadern vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. "
+"Beispiel: Ein belebter Platz mit Menschen im Sommer."
 
 #: apps/offlineevents/forms.py:30
 msgid ""
@@ -3897,6 +3924,8 @@ msgid ""
 "This section provides an overview of the participation\n"
 "            activities in this project."
 msgstr ""
+"Dieser Abschnitt bietet einen Überblick über die\n"
+"            Beteiligungsaktivitäten in diesem Projekt."
 
 #: apps/projects/serializers.py:95
 #, python-format
@@ -4296,7 +4325,7 @@ msgid "It ended on %(date)s."
 msgstr "Sie hat am %(date)s geendet."
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:238
-#: apps/users/models.py:52
+#: apps/users/models.py:51
 #: adhocracy-plus/templates/a4modules/module_detail.html:148
 msgid "active"
 msgstr "aktiv"
@@ -4610,16 +4639,19 @@ msgid ""
 "Solve the math problem and click on the correct result.<br>If you are having "
 "difficulty please contact us  by {}email{}."
 msgstr ""
+"Lösen Sie die Matheaufgabe und klicken Sie auf das richtige Ergebnis."
+"<br>Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte per {}E-"
+"Mail{}."
 
 #: apps/users/forms.py:31
 msgid "Username/e-mail"
 msgstr "Benutzername/E-Mail"
 
-#: apps/users/forms.py:41 apps/users/forms.py:195 apps/users/models.py:72
+#: apps/users/forms.py:41 apps/users/forms.py:195 apps/users/models.py:71
 msgid "I would like to receive further information"
 msgstr "Ich möchte weitere Informationen erhalten."
 
-#: apps/users/forms.py:43 apps/users/forms.py:197 apps/users/models.py:75
+#: apps/users/forms.py:43 apps/users/forms.py:197 apps/users/models.py:74
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
@@ -4713,17 +4745,17 @@ msgstr "Dieser Nutzername ist ungültig."
 msgid "Email address"
 msgstr "E-Mail Adresse"
 
-#: apps/users/models.py:46
+#: apps/users/models.py:45
 msgid "staff status"
 msgstr "Mitarbeiterstatus"
 
-#: apps/users/models.py:48
+#: apps/users/models.py:47
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 "Bitte bestätigen Sie, dass der Nutzer auf dieser Seite als Admin agieren "
 "kann."
 
-#: apps/users/models.py:55
+#: apps/users/models.py:54
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -4731,11 +4763,11 @@ msgstr ""
 "Bitte setzen Sie einen Haken, um den Nutzer aktiv zu schalten. Nehmen Sie "
 "den Haken raus, um den Nutzer inaktiv zu schalten."
 
-#: apps/users/models.py:63
+#: apps/users/models.py:62
 msgid "Send me email notifications"
 msgstr "Bitte senden Sie mir E-Mail Benachrichtigungen"
 
-#: apps/users/models.py:66
+#: apps/users/models.py:65
 msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
@@ -4744,43 +4776,43 @@ msgstr ""
 "erhalten möchten. Nehmen Sie den Haken raus, falls Sie keine "
 "Benachrichtigungen per E-Mail erhalten möchten."
 
-#: apps/users/models.py:83
+#: apps/users/models.py:82
 msgid "Biography"
 msgstr "Biografie"
 
-#: apps/users/models.py:84
+#: apps/users/models.py:83
 msgid "Tell us about yourself in 255 characters!"
 msgstr "Erzählen Sie von sich - in 255 Zeichen!"
 
-#: apps/users/models.py:90
+#: apps/users/models.py:89
 msgid "Twitter handle"
 msgstr "Twitter handle"
 
-#: apps/users/models.py:96
+#: apps/users/models.py:95
 msgid "Facebook name"
 msgstr "Facebook Name"
 
-#: apps/users/models.py:98
+#: apps/users/models.py:97
 msgid ""
 "Your facebook name is the last part of the URL, when you access your profile."
 msgstr ""
 "Ihr Facebook-Name ist der letzte Teil der URL, wenn Sie ihr Facebook-Profil "
 "aufrufen"
 
-#: apps/users/models.py:106
+#: apps/users/models.py:105
 #: apps/users/templates/a4_candy_users/user_detail.html:55
 msgid "Homepage"
 msgstr "Homepage"
 
-#: apps/users/models.py:113
+#: apps/users/models.py:112
 msgid "Avatar picture"
 msgstr "Avatar Bild"
 
-#: apps/users/models.py:117
+#: apps/users/models.py:116
 msgid "Your preferred language"
 msgstr "Ihre bevorzugte Sprache"
 
-#: apps/users/models.py:122
+#: apps/users/models.py:121
 msgid ""
 "Specify your preferred language for the user interface and the notifications "
 "of the platform."
@@ -4810,7 +4842,7 @@ msgstr "Meine Übersicht"
 
 #: apps/users/templates/a4_candy_users/indicator.html:47
 msgid "Help"
-msgstr ""
+msgstr "Hilfe"
 
 #: apps/users/templates/a4_candy_users/indicator.html:52
 #: apps/users/templates/a4_candy_users/indicator.html:55
@@ -4857,131 +4889,131 @@ msgstr "Liste der letzten Aktivitäten ihres Nutzerkontos"
 msgid "Activities"
 msgstr "Aktivitäten"
 
-#: adhocracy-plus/config/settings/base.py:195
+#: adhocracy-plus/config/settings/base.py:194
 msgid "English"
 msgstr "Englisch"
 
-#: adhocracy-plus/config/settings/base.py:196
+#: adhocracy-plus/config/settings/base.py:195
 msgid "German"
 msgstr "Deutsch"
 
-#: adhocracy-plus/config/settings/base.py:197
+#: adhocracy-plus/config/settings/base.py:196
 msgid "Dutch"
 msgstr "Niederländisch"
 
-#: adhocracy-plus/config/settings/base.py:198
+#: adhocracy-plus/config/settings/base.py:197
 msgid "Kyrgyz"
 msgstr "Kirgisisch"
 
-#: adhocracy-plus/config/settings/base.py:199
+#: adhocracy-plus/config/settings/base.py:198
 msgid "Russian"
 msgstr "Russisch"
 
-#: adhocracy-plus/config/settings/base.py:451
+#: adhocracy-plus/config/settings/base.py:450
 msgid "suggestion"
 msgstr "Vorschlag"
 
-#: adhocracy-plus/config/settings/base.py:452
+#: adhocracy-plus/config/settings/base.py:451
 msgid "note"
 msgstr "Anmerkung"
 
-#: adhocracy-plus/config/settings/base.py:453
+#: adhocracy-plus/config/settings/base.py:452
 msgid "question"
 msgstr "Frage"
 
-#: adhocracy-plus/config/settings/base.py:494
+#: adhocracy-plus/config/settings/base.py:493
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: adhocracy-plus/config/settings/base.py:495
+#: adhocracy-plus/config/settings/base.py:494
 msgid "Diamond"
 msgstr "Diamant"
 
-#: adhocracy-plus/config/settings/base.py:496
+#: adhocracy-plus/config/settings/base.py:495
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: adhocracy-plus/config/settings/base.py:497
+#: adhocracy-plus/config/settings/base.py:496
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: adhocracy-plus/config/settings/base.py:498
+#: adhocracy-plus/config/settings/base.py:497
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: adhocracy-plus/config/settings/base.py:499
+#: adhocracy-plus/config/settings/base.py:498
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: adhocracy-plus/config/settings/base.py:500
+#: adhocracy-plus/config/settings/base.py:499
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: adhocracy-plus/config/settings/base.py:501
+#: adhocracy-plus/config/settings/base.py:500
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: adhocracy-plus/config/settings/base.py:502
+#: adhocracy-plus/config/settings/base.py:501
 msgid "Star"
 msgstr "Stern"
 
-#: adhocracy-plus/config/settings/base.py:503
+#: adhocracy-plus/config/settings/base.py:502
 msgid "Square"
 msgstr "Quadrat"
 
-#: adhocracy-plus/config/settings/base.py:504
+#: adhocracy-plus/config/settings/base.py:503
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: adhocracy-plus/config/settings/base.py:505
+#: adhocracy-plus/config/settings/base.py:504
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: adhocracy-plus/config/settings/base.py:506
+#: adhocracy-plus/config/settings/base.py:505
 msgid "Circle"
 msgstr "Kreis"
 
-#: adhocracy-plus/config/settings/base.py:507
+#: adhocracy-plus/config/settings/base.py:506
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: adhocracy-plus/config/settings/base.py:508
+#: adhocracy-plus/config/settings/base.py:507
 msgid "Zigzag"
 msgstr "ZickZack"
 
-#: adhocracy-plus/config/settings/base.py:512
+#: adhocracy-plus/config/settings/base.py:511
 msgid "brainstorming"
 msgstr "Brainstorming"
 
-#: adhocracy-plus/config/settings/base.py:513
+#: adhocracy-plus/config/settings/base.py:512
 msgid "spatial brainstorming"
 msgstr "Brainstorming mit Karte"
 
-#: adhocracy-plus/config/settings/base.py:514
+#: adhocracy-plus/config/settings/base.py:513
 msgid "idea challenge"
 msgstr "Ideenwettbewerb"
 
-#: adhocracy-plus/config/settings/base.py:515
+#: adhocracy-plus/config/settings/base.py:514
 msgid "spatial idea challenge"
 msgstr "Ideenwettbewerb mit Karte"
 
-#: adhocracy-plus/config/settings/base.py:516
+#: adhocracy-plus/config/settings/base.py:515
 msgid "text review"
 msgstr "Text diskutieren"
 
-#: adhocracy-plus/config/settings/base.py:517
+#: adhocracy-plus/config/settings/base.py:516
 msgid "poll"
 msgstr "Umfrage"
 
-#: adhocracy-plus/config/settings/base.py:519
+#: adhocracy-plus/config/settings/base.py:518
 msgid "interactive event"
 msgstr "Interaktive Veranstaltung"
 
-#: adhocracy-plus/config/settings/base.py:520
+#: adhocracy-plus/config/settings/base.py:519
 msgid "prioritization"
 msgstr "Priorisierung"
 
-#: adhocracy-plus/config/settings/base.py:521
+#: adhocracy-plus/config/settings/base.py:520
 msgid "debate"
 msgstr "Debatte"
 
@@ -5553,6 +5585,9 @@ msgid ""
 "We have sent you an e-mail. If you have not received it please check your "
 "spam folder. Otherwise contact us if you do not receive it in a few minutes."
 msgstr ""
+"Wir haben Ihnen eine E-Mail gesendet. Wenn Sie sie nicht erhalten haben, "
+"überprüfen Sie bitte Ihren Spam-Ordner. Kontaktieren Sie uns bitte, wenn Sie "
+"sie nicht innerhalb weniger Minuten erhalten."
 
 #: adhocracy-plus/templates/account/password_reset_from_key.html:4
 #: adhocracy-plus/templates/account/password_reset_from_key.html:7
@@ -5584,7 +5619,7 @@ msgstr "Ihr Passwort wurde geändert."
 
 #: adhocracy-plus/templates/account/signup.html:10
 msgid "Why register?"
-msgstr ""
+msgstr "Warum registrieren?"
 
 #: adhocracy-plus/templates/account/signup.html:14
 #, python-format
@@ -5620,6 +5655,11 @@ msgid ""
 "your main inbox, check your spam folder. Please contact us if you do not "
 "receive the verification e-mail within a few minutes."
 msgstr ""
+"Wir haben Ihnen eine E-Mail zur Verifizierung gesendet. Klicken Sie auf den "
+"Link in der E-Mail, um den Anmeldeprozess abzuschließen. Falls Sie die "
+"Verifizierungs-E-Mail nicht im Posteingang finden, überprüfen Sie bitte "
+"Ihren Spam-Ordner. Bitte kontaktieren Sie uns, falls Sie die Verifizierungs-"
+"E-Mail nicht innerhalb weniger Minuten erhalten."
 
 #: adhocracy-plus/templates/base.html:58
 msgid "Skip to content "
@@ -5650,7 +5690,7 @@ msgstr "Zurück zu %(platformname)s "
 
 #: adhocracy-plus/templates/dummy/authenticate_form.html:5
 msgid "Dummy Provider Login"
-msgstr ""
+msgstr "Dummy Provider Login"
 
 #: adhocracy-plus/templates/email_base.html:64
 msgid "Responsible for the participation project:"
@@ -5710,12 +5750,14 @@ msgstr "Hintergrund"
 #: adhocracy-plus/templates/socialaccount/authentication_error.html:5
 #: adhocracy-plus/templates/socialaccount/authentication_error.html:9
 msgid "Third-Party Login Failure"
-msgstr ""
+msgstr "Fehler bei der Anmeldung über Drittanbieter"
 
 #: adhocracy-plus/templates/socialaccount/authentication_error.html:11
 msgid ""
 "An error occurred while attempting to login via your third-party account."
 msgstr ""
+"Es ist ein Fehler aufgetreten beim Versuch, sich über Ihr Drittanbieter-"
+"Konto anzumelden."
 
 #: adhocracy-plus/templates/socialaccount/connections.html:5
 #: adhocracy-plus/templates/socialaccount/connections.html:8
@@ -5745,31 +5787,35 @@ msgstr ""
 
 #: adhocracy-plus/templates/socialaccount/login.html:5
 msgid "Sign In"
-msgstr ""
+msgstr "Anmelden"
 
 #: adhocracy-plus/templates/socialaccount/login.html:10
 #, python-format
 msgid "Connect %(provider)s"
-msgstr ""
+msgstr "Verbinde %(provider)s"
 
 #: adhocracy-plus/templates/socialaccount/login.html:13
 #, python-format
 msgid "You are about to connect a new third-party account from %(provider)s."
 msgstr ""
+"Sie sind dabei, sich mit einem neuen Drittanbieter-Konto von %(provider)s zu "
+"verbinden."
 
 #: adhocracy-plus/templates/socialaccount/login.html:17
 #, python-format
 msgid "Sign In Via %(provider)s"
-msgstr ""
+msgstr "Anmelden mit %(provider)s"
 
 #: adhocracy-plus/templates/socialaccount/login.html:20
 #, python-format
 msgid "You are about to sign in using a third-party account from %(provider)s."
 msgstr ""
+"Sie sind dabei, sich mit einem Drittanbieter-Konto von %(provider)s "
+"anzumelden."
 
 #: adhocracy-plus/templates/socialaccount/login.html:27
 msgid "Continue"
-msgstr ""
+msgstr "Weiter"
 
 #: adhocracy-plus/templates/socialaccount/signup.html:5
 msgid "Signup"
