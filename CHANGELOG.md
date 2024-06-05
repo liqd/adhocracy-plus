@@ -5,14 +5,160 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## v2406.1
 
 ### Added
 
 - add markdown rules to editorconfig
+- add a changelog folder and readme with guideline for new changelog system
+- add pyenv file and vim backup extension in gitignore
+- custom middleware for user language
+- add script to check in CI that a4 hashes for pip and npm match
+- pass initial_slide as url param when going back from module to project
+- in contrib templates for item_detail:
+    request http referer for go back/overview to filtered/paginated list
+- in topicprio templates for topic_detail:
+    request http referer for go back/overview to filtered/paginated list
+- in budgeting, idea, mapidea, topicprio:
+    index id to be used with href anchor to navigate back to item list
+- in contrib templates for map_filter_and_sort and pagination:
+    index id to be used with href anchor to navigate back to item list
+- logo icon and styling for project-holi btn (!7430)
+- project insight model, create insight function,
+  update insights with signals (#2492)
+- adds support for celery task queues with a redis message broker
+- adds makefile commands for starting and status checking of celery worker processes
+- custom migration to make iframes work with ckeditor5
+- added dependency beautifulsoup4
+- add helptext to paragraph form in documents/text review
+- add helptext for maptopicprio ckeditor5 field
+- add helptext for topicprio ckeditor5 field
+- add helptext for offlinevent ckeditor5 field
+- template for github pull requests
+- test helper for testing emails
+- initial doc on testing
+- add font-display: swap to fonts
+- mkdocs generated from files inside the docs directory and docstrings in the code
+- add an equal sign to the math equation in the captcha
+- add new ImportantPage "registration" to wagtail
+- show "Why register?" link on signup page if the new registration ImportangPage
+  is set
+- add option to delete account to user settings
+- add new button style btn--danger-light which has a lighter red than
+  btn--danger
+- add new django setting APLUS_MANUAL_URL which contains a link to a manual. The
+  link will get the language code + ":start" appended to account for the user
+  language. If something else then dokuwiki as a target is used this needs to be
+  changed in the template.
+- add Help menu item to user indicator which opens the url set with
+  APLUS_MANUAL_URL in a new tab
+- customise django filter widget option_string by adding an html anchor
+- add react-leaflet and @react-leaflet/core as dependencies (required by the new
+  maps in a4)
+- add djlint to lint django templates
+- add alt text form field to projects and add to alt text to templates with template tag
+- add alt text to project serializer to show it in moderation dashboard
+- social account autoconnect to enable social account email connecting to existing regular account
+- dummy provider in dev settings for testing purposes
+- templates for email verification, password reset, socialaccount login, authentication error, and dummy authentication to address the template changes of allauth v.0.58.0
+
+### Removed
+
+- kyrgyz translation for ckeditor
+- background_task_completedtask and background_task tables
+- background_task app from the settings
+- background_task app from the requirements
+- removed frontend coverage ci actions
+- removed the info text above the register button on the sign-up page
+- unique email constraint
+- deprecated settings for account rate limits (removed in allauth v.0.61.0)
+
+### Fixed
+
+- language setting as a cookie instead of session key according to django deprecation
+- captcha becomes optional depending on project settings (#2449)
+assets/blocks: small home page block improvements fixes #2493
+assets/variables//button: rm twitter related styling and variable partial fix for #2363
+apps/captcha: rm inline css and add to own file update structure to be more a11y friendly
+apps/userdashboard/*: small styling fixes fixes #2392
+assets/variables: reduce lightening slightly on tertiary background colour fixes #2369
+templates/project_list_tile: ensure abbr date title is translatable and update styling and make it hoverable on a tile link fixes #2222
+assets/account: update styling for user agreements fixes #1922
+- language not changing to user preference after login
+- fix broken pytest-lastfailed command in Makefile
+- fixed the flaky test_notify_creator_exclude_moderator test
+- fixed incorrect font-style: bold
+- fixed non-matching padding between background cta block and others
+- fixed broken mobile styling for usecase black
+- fix padding on dashboard nav dropdown for mobile
+- fix dropdown caret icon not being cented on dashboard nav dropdown for mobile
+- apps/userdashboard: fix wrong position of ModerationNotification dropdown on
+  small screens
+- add missing roles to project header tab dropdown on mobile, each tab now shows
+  the correct content.
+- fix badge text overflowing/not breaking on long words or sentences
+- Fixed issue on `base_userdashboard.html` where the lack of word wrapping caused text to overlap.- email not rendering in unknown_account.email
 
 ### Changed
 
+- update a4 to aplus-v2406.1
+- update js dependencies
+- update python dependencies
+- changed wording of emails of event notifications
+- replace django-ckeditor with django-ckeditor5
+- disable browser-side form checks for forms which use ckeditor by adding
+  `novalidate` to them  This is necessary as ckeditor form fields which are
+  required will block form submission otherwise.
+- update and move helptext for plans ckeditor5 field from model to form
+- update and move helptext for newsletter ckeditor5 field from model to form
+- update and move helptext for plattform email ckeditor5 field from model to
+  form
+- add image validator which validates that all img tags have the alt attribute
+  set to all ckedito5 fields
+- disable browser-side form checks for forms which use ckeditor by adding
+  `novalidate` to them  This is necessary as ckeditor form fields which are
+  required will block form submission otherwise.
+- changed font-weight: normal to 400 to consistenly use numbers
+- changed the register button from btn--primary to btn--secondary-filled
+- changed helptext of captcha field to include an explanation on how to solve
+  the captcha
+- adjusted to the changed comments in a4
+- the comment form now has a headline "Join the discussion"
+- the comment section now has a headline "Discussion" to make the page structure
+  more clear.
+- add anchor to all timeline buttons / links to make the browser always show the
+  main content
+- Changed the default display of the chapter-detail table of contents to be open.- update jquery to 3.7.1
+- update react-markdown to 9.0.1
+- revert bootstrap to previous version, add rule to lock version 5.2.3 for renovate
+- Django from 3.2.20 to 4.0
+  - remove app label from `__init__.py` inside app directories
+  - replace `re_path` with `path` for included urls.
+  - remove `USE_L10N` in settings as it is now True by default
+  - replace `postgresql_psycopg2` with `postgresql` in DATABASE settings
+  - set admin fields description as decorators in ProjectAdminForm
+  - replace deprecated `ifequal` with `if .. == ..` expression
+  - replace deprecated custom `delete()` method with `form_valid()` in relevant `apps/<app-name>/views.py`
+  - replace deprecated session LANGUAGE_SESSION_KEY with LANGUAGE_COOKIE_NAME cookie
+  - generate migrations for related name labels
+- Django from 4.0 to 4.2
+  custom model save() methods should the update_fields keyword argument before calling super()
+  psycopg to 3.1.18
+  allauth to 0.55
+- wagtail from 4.1.9 to 4.2
+  - replace BaseSettings with BaseSiteSettings
+  - import Site from wagtail.models instead of wagtail.core.models
+  - migration for WagtailImageField which extends Django’s ImageField to use Willow for image file handling
+- wagtail from 4.2 to 5.0x
+  - New field for choosing css themes
+    wagtail/users/migrations/0012_userprofile_theme.py
+  - Migrate FieldPanel to TitleFieldPanel for slug field sync functionality
+- wagtail from 5.0 to 5.1.x
+- wagtail: upgrade to 5.2.x
+- django-filters: upgrade to 23.5 as required by wagtail 5.2
+- apps/interactiveevent: display module description and phase info as plain text
+-  inherited adapter's method from get_email_confirmation_redirect_url to get_email_verification_redirect_url
+-  to latest allauth v.0.63.2
 - reformat CHANGELOG.md
 
 ## v2306
