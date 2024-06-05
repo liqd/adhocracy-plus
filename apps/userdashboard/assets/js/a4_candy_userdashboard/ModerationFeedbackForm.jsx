@@ -36,7 +36,7 @@ export const ModerationFeedbackForm = (props) => {
         <div className="a4-comments__submit d-flex col-6">
           <button
             type="submit"
-            className="btn a4-comments__submit-input ms-auto"
+            className="btn btn--default a4-comments__submit-input ms-auto"
           >
             {props.editing ? translated.submitEditLabel : translated.submitLabel}
           </button>
