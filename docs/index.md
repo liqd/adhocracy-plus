@@ -1,83 +1,43 @@
 # Welcome to Adhocracy+
 
-
-## Getting started
-
 adhocracy+ is designed to make online participation easy and accessible to everyone. It can be used on our SaaS-platform or installed on your own servers. How to get started on our platform is explained [here](https://adhocracy.plus/info/start/).
 
-## Installation for development
+*ongoing revision*
 
-### Requirements
+## Features of our software
+#### [Activity Thread](#activity)
+#### [Blueprints/Modules/Templates: Predefined participation modules that can be combined in a project]()
 
- * nodejs (+ npm)
- * python 3.x (+ venv + pip)
- * libpq (only if postgres should be used)
- * sqlite3 [with JSON1 enabled](https://code.djangoproject.com/wiki/JSON1Extension)
- * redis (in production, not needed for development)
+#### [Comments: Comments are an essential part of our platforms as they allow online discussions and debates]()
+#### [Community management: Via django (admins) or via frontend (moderators)]()
+#### [Dashboard (Initiator Interface)]()
+#### [Decision Support Tool: A System that helps to setup a participation process]()
+#### [Follow-System: Users can follow projects or other items on our platform.]()
+#### [Internationalisation: How to deal with different languages and/or different timzones]()
+#### [Login]()
+#### [Mailings: All administrative mailings, invitations, notifications, newsletters, platform-mail]()
+#### [Moderations Interface]()
+#### [Private Projects](#private-projects)
+#### [Timelines](#timelines)
+#### [User Profile]()
+#### [User Permissions]()
+#### [Sessions & Tokens for Log-In & Voting]()
 
-### Installation
 
-    git clone https://github.com/liqd/adhocracy-plus.git
-    cd adhocracy-plus
-    make install
-    make fixtures
+## <a name="activity">Activity Thread</a>
+there is a table in which each creation, changing and deletion of a configured item is saved, also the project is saved
+table can be filtered by project or user and be displayed on userprofile or projectpage
 
-### Start virtual environment
+## <a name="private-projects">Private Projects</a>
+ When setting up a project it is possible to make this project 'private'. This means not all user on the platform can participate in the project but only the ones that have been added by the project moderators.
 
-    source venv/bin/activate
+There are two concepts on how to access a private projects:
 
-### Check if tests work
+> Moderators invite users via email. Private projects are not shown in any projects overviews at all or only to the ones that have been invited and accepted the invitation
+Private Projects are visible within project overviews. When a user that has not been added to the project accesses the project he/she can't see the content of the project but instead a button that allows him/her to request membership
 
-    make test
 
-### Start a local server
+## <a name="timelines">Timelines</a>
+*Phase-Timelines*
 
-    make watch
-
-### Use postgresql database for testing
-
-run the following command once:
-```
-make postgres-create
-```
-to start the test server with postgresql, run:
-```
-export DATABASE=postgresql
-make postgres-start
-make watch
-```
-
-Go to http://localhost:8004/ and login with admin@liqd.net | password
-
-### Use Celery for task queues
-
-For a celery worker to pick up tasks you need to make sure that:
-- the redis server is running
-- the celery config parameter "always eager" is disabled (add `CELERY_TASK_ALWAYS_EAGER = False` to your `local.py`)
-
-To start a celery worker node in the foreground, call:
-```
-make celery-worker-start
-```
-
-To inspect all registered tasks, list the running worker nodes, call:
-```
-make celery-worker-status
-```
-
-To send a dummy task to the queue and report the result, call:
-```
-make celery-worker-dummy-task
-```
-
-## Installation on a production system
-
-You like adhocracy+ and want to run your own version? An installation guide for production systems can be found [here](./docs/installation_prod.md).
-
-## Contributing or maintaining your own fork
-
-If you found an issue, want to contribute, or would like to add your own features to your own version of adhocracy+, check out [contributing](./docs/contributing.md).
-
-## Security
-
-We care about security. So, if you find any issues concerning security, please send us an email at info [at] liqd [dot] net.
+A participation project can consist of one or more participation modules. Each participation module can consist of one or more phases. Phases define what a user is allowed to do within a certain timeframe, e.g. within an Idea Challenge(→ Participation Module)users can first hand in their ideas (Phase 1) and then - as soon as the second phase starts - rate on the ideas that have been handed in. Phases have to run after one another (so, no simultaneous phases are allowed). So if there are more then one phases inside a module it makes sense to display a timeline, that tells users what they are allowed to do at the moment and in the future.

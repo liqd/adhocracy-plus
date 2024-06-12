@@ -2,21 +2,27 @@ site_name: Adhocracy+
 
 nav:
   - Home: index.md
-  - API:
+  - HOWTO: 
+    - install for development: installation_dev.md
     - django basics: django_shell_basics.md 
-    - api: api.md
+    - management commands: management_commands.md 
+    - translations: languages_and_translations.md 
+    - create documentation: howtomkdocs.md
+    - install on production: installation_prod.md
+  - Diagrams: 
+    - participation modules: diagrams_modules.md
+  - API:
+    - code reference: api.md
+  - Explanations:
     - celery: celery.md 
     - ckeditor: ckeditor.md 
-    - management commands: management_commands.md 
     - project insights: project_insights.md 
-    - reference: reference.md 
-    - translations: languages_and_translations.md 
+      #- reference: reference.md 
     - architecture: software_architecture.md 
     - tests: tests.md
-  - Install: installation_prod.md
-  - Contribute: contributing.md
-  - Documentation: howtomkdocs.md
-  - Source code: https://github.com/liqd/adhocracy-plus
+  - Repository:
+    - source code: https://github.com/liqd/adhocracy-plus
+    - contribute: contributing.md
 
 
 theme:
