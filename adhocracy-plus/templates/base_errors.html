@@ -1,19 +1,24 @@
 {% extends "base.html" %}
 {% load i18n %}
-
-{% block title %}{% translate 'Error' %} &mdash; {{ block.super }}{% endblock %}
-
+{% block title %}
+    {% translate "Error" %} — {{ block.super }}
+{% endblock title %}
 {% block content %}
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-            <h1>{% block error_status %}{% endblock %}</h1>
-            <p class="u-font-size-lg">{% block error_description %}{% endblock %}</p>
-            <a href="/">{% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Back to {{ platformname }}{% endblocktranslate %}</a>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+                <h1>
+                    {% block error_status %}
+                    {% endblock error_status %}
+                </h1>
+                <p class="u-font-size-lg">
+                    {% block error_description %}
+                    {% endblock error_description %}
+                </p>
+                <a href="{% url 'wagtail_serve' '' %}">{% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Back to {{ platformname }}{% endblocktranslate %}</a>
+            </div>
         </div>
     </div>
-</div>
-{% endblock %}
-
+{% endblock content %}
 {% block donation_banner %}
-{% endblock %}
+{% endblock donation_banner %}
