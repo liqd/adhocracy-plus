@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2406.2 
+
+### Added
+- modules diagrams
+- added pytest-mock to dev dependencies (currently only used in forks)
+
+### Fixed
+- fixed outdated telephone number in error templates
+- fixed linting errors and reformat the modified templates
+- disable password help text provided by django-allauth on login form
+
+### Changed
+
+- changed link on error templates from hardcoded value to page root
+- docs structure
+
 ## v2406.1
 
 ### Added
@@ -80,7 +96,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 assets/blocks: small home page block improvements fixes #2493
 assets/variables//button: rm twitter related styling and variable partial fix for #2363
 apps/captcha: rm inline css and add to own file update structure to be more a11y friendly
-apps/userdashboard/*: small styling fixes fixes #2392
+apps/userdashboard/: small styling fixes fixes #2392
 assets/variables: reduce lightening slightly on tertiary background colour fixes #2369
 templates/project_list_tile: ensure abbr date title is translatable and update styling and make it hoverable on a tile link fixes #2222
 assets/account: update styling for user agreements fixes #1922
@@ -160,6 +176,10 @@ assets/account: update styling for user agreements fixes #1922
 -  inherited adapter's method from get_email_confirmation_redirect_url to get_email_verification_redirect_url
 -  to latest allauth v.0.63.2
 - reformat CHANGELOG.md
+- fixed outdated telephone number in error templates
+- changed link on error templates from hardcoded value to page root
+- fix linting errors and reformat the modified templates
+- docs structure
 
 ## v2306
 
