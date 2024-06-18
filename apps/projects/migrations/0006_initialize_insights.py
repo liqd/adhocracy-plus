@@ -21,34 +21,44 @@ def initialize_insights(apps, schema_editor):
     user_ids = defaultdict(set)
 
     for idea_model in [Idea, MapIdea, Proposal]:
-        for idea_object in idea_model.objects.all():
+        for idea_object in idea_model.objects.all().select_related(
+            "creator", "module__project"
+        ):
             project = idea_object.module.project
             insights[project].written_ideas += 1
             user_ids[project].add(idea_object.creator.id)
 
-    for live_question in LiveQuestion.objects.all():
+    for live_question in LiveQuestion.objects.all().select_related("module__project"):
         insights[live_question.module.project].live_questions += 1
 
-    for answer in Answer.objects.all():
+    for answer in Answer.objects.all().select_related(
+        "creator",
+        "question__poll__module__project",
+    ):
         project = answer.question.poll.module.project
         insights[project].poll_answers += 1
         user_ids[project].add(answer.creator.id)
 
-    for vote in Vote.objects.all():
+    for vote in Vote.objects.all().select_related(
+        "creator",
+        "choice__question__poll__module__project",
+    ):
         project = vote.choice.question.poll.module.project
         insights[project].poll_answers += 1
         user_ids[project].add(vote.creator.id)
 
-    for comment in Comment.objects.exclude(project=None):
+    for comment in Comment.objects.exclude(project=None).select_related(
+        "project", "creator"
+    ):
         project = comment.project
         insights[project].comments += 1
         user_ids[project].add(comment.creator.id)
 
-    for like in Like.objects.all():
+    for like in Like.objects.all().select_related("livequestion__module__project"):
         project = like.livequestion.module.project
         insights[project].ratings += 1
 
-    for rating in Rating.objects.all():
+    for rating in Rating.objects.all().select_related("creator", "content_type"):
         model_name = rating.content_type.model
         content_model = apps.get_model(
             app_label=rating.content_type.app_label,
