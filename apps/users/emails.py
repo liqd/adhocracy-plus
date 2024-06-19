@@ -1,10 +1,12 @@
 from email.mime.image import MIMEImage
 
+import magic
 from django.conf import settings
 from django.template.loader import get_template
 from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import gettext_lazy as _
+from sentry_sdk import capture_message
 
 from adhocracy4.emails import Email
 
@@ -46,10 +48,24 @@ class EmailAplus(Email):
 
         organisation = self.get_organisation()
         if organisation and organisation.logo:
-            f = open(organisation.logo.path, "rb")
-            logo = MIMEImage(f.read())
-            logo.add_header("Content-ID", "<{}>".format("organisation_logo"))
-            attachments += [logo]
+            logo = None
+            with open(organisation.logo.path, "rb") as f:
+                data = f.read()
+                try:
+                    logo = MIMEImage(data)
+                except TypeError:
+                    capture_message(
+                        "warning: MIMEImage failed to detect mime type:\n"
+                        "organisation:"
+                        + organisation.name
+                        + "\nfile:"
+                        + organisation.logo.path
+                    )
+                    mime_type = magic.from_buffer(data, mime=True)
+                    logo = MIMEImage(data, _subtype=mime_type)
+            if logo:
+                logo.add_header("Content-ID", "<{}>".format("organisation_logo"))
+                attachments += [logo]
             # need to remove standard email logo bc some email clients
             # display all attachments, even if not used
             attachments = [a for a in attachments if a["Content-Id"] != "<logo>"]

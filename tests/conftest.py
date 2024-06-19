@@ -66,6 +66,11 @@ def big_image():
 
 
 @pytest.fixture
+def test_file():
+    return factory.django.FileField(data=b"examplefile")
+
+
+@pytest.fixture
 def login_url():
     return reverse("account_login")
 
