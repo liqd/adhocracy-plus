@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2406.3
+### Changed
+
+- update a4 to aplus-v2406.3
+- use magic as fallback to detect image filetype if MIMEImage fails to detect
+  it.
+
 ## v2406.2
 
 ### Added
