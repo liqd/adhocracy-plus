@@ -189,7 +189,7 @@ release: export DJANGO_SETTINGS_MODULE ?= adhocracy-plus.config.settings.build
 release:
 	npm install --silent
 	npm run build:prod
-	$(VIRTUAL_ENV)/bin/python -m pip install -r requirements.txt -q
+	$(VIRTUAL_ENV)/bin/python -m pip install -r requirements.txt
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages -v0
 	$(VIRTUAL_ENV)/bin/python manage.py collectstatic --noinput -v0
 
