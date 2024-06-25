@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 15:53+0200\n"
+"POT-Creation-Date: 2024-06-25 16:51+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Russian (https://app.transifex.com/liqd/teams/109316/ru/)\n"
@@ -942,11 +942,11 @@ msgstr "Пожалуйста, нарисуйте область на карте.
 msgid "Modified"
 msgstr "изменено"
 
-#: adhocracy4/modules/models.py:72
+#: adhocracy4/modules/models.py:73
 msgid "Title of the module"
 msgstr "Заголовок модуля"
 
-#: adhocracy4/modules/models.py:74
+#: adhocracy4/modules/models.py:75
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
@@ -955,11 +955,11 @@ msgstr ""
 "страницах сведений о модуле и проекте. Количество символов не должно "
 "превышать 512 "
 
-#: adhocracy4/modules/models.py:83
+#: adhocracy4/modules/models.py:84
 msgid "Short description of the module"
 msgstr "Краткое описание модуля"
 
-#: adhocracy4/modules/models.py:85
+#: adhocracy4/modules/models.py:86
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
@@ -969,58 +969,58 @@ msgstr ""
 "подробных сведений о проекте. Количество символов в кратком описании не "
 "должно превышать 512 ."
 
-#: adhocracy4/modules/models.py:222
+#: adhocracy4/modules/models.py:223
 msgid "day"
 msgstr "день"
 
-#: adhocracy4/modules/models.py:222
-#: adhocracy4/modules/models.py:229
+#: adhocracy4/modules/models.py:223
+#: adhocracy4/modules/models.py:230
 msgid "days"
 msgstr "дни"
 
-#: adhocracy4/modules/models.py:223
+#: adhocracy4/modules/models.py:224
 msgid "hour"
 msgstr "час"
 
-#: adhocracy4/modules/models.py:223
-#: adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:231
 msgid "hours"
 msgstr "часы"
 
-#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:225
 msgid "minute"
 msgstr "минута"
 
-#: adhocracy4/modules/models.py:224
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:232
 msgid "minutes"
 msgstr "минуты"
 
-#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:226
 msgid "second"
 msgstr "секунда"
 
-#: adhocracy4/modules/models.py:225
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:226
+#: adhocracy4/modules/models.py:233
 msgid "seconds"
 msgstr "секунды"
 
-#: adhocracy4/modules/models.py:229
+#: adhocracy4/modules/models.py:230
 msgctxt "abbreviation for day(s)"
 msgid "D"
 msgstr "D"
 
-#: adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:231
 msgctxt "abbreviation for hour(s)"
 msgid "H"
 msgstr "H"
 
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:232
 msgctxt "abbreviation for minute(s)"
 msgid "M"
 msgstr "M"
 
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:233
 msgctxt "abbreviation for second(s)"
 msgid "S"
 msgstr "S"
@@ -1349,6 +1349,7 @@ msgstr "Отчет"
 #: apps/account/forms.py:50
 #: adhocracy-plus/templates/account/password_change.html:22
 #: adhocracy-plus/templates/account/password_change.html:28
+#: adhocracy-plus/templates/account/password_set.html:22
 msgid "Password"
 msgstr "Пароль"
 
@@ -1428,6 +1429,40 @@ msgstr ""
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:6
 #, python-format
 msgid "Your account on %(platformname)s has been deleted"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:10
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:21
+msgid ""
+"We would like to confirm that your account has been successfully deleted "
+"from our platform. We regret that you have chosen to leave us but we respect "
+"your decision."
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:12
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:24
+msgid ""
+"Please note that all data associated with your account, including your "
+"personal information and activities, have been permanently deleted. You will "
+"not receive any further communications from us unless you decide to re-"
+"register at a later date."
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:14
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:27
+msgid ""
+"We thank you for your past use of our services and remain available to "
+"assist you with any questions or concerns."
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:16
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:30
+msgid "Best regards,"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:18
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:34
+msgid "adhocracy+ Team"
 msgstr ""
 
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:39
@@ -1809,7 +1844,7 @@ msgstr "Что-то в ответе на капчу было не так."
 msgid "Your answer to the captcha was wrong."
 msgstr "Ваш ответ на капчу был неправильным."
 
-#: apps/cms/contacts/models.py:35 apps/users/forms.py:48
+#: apps/cms/contacts/models.py:35 apps/users/forms.py:49
 msgid "I am not a robot"
 msgstr "Я не робот"
 
@@ -3573,7 +3608,7 @@ msgstr ""
 #: apps/organisations/models.py:132
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:39 apps/users/forms.py:193
+#: apps/users/forms.py:40 apps/users/forms.py:194
 #: adhocracy-plus/templates/email_base.html:79
 #: adhocracy-plus/templates/email_base.html:109
 #: adhocracy-plus/templates/footer.html:43
@@ -4517,7 +4552,7 @@ msgstr "Разрешения"
 msgid "Important dates"
 msgstr "Важные даты"
 
-#: apps/users/emails.py:14
+#: apps/users/emails.py:16
 msgid ""
 "If you no longer want to receive any notifications, change the settings for "
 "your {}account{}."
@@ -4525,7 +4560,7 @@ msgstr ""
 "Если вы больше не хотите получать уведомления, измените настройки своей {} "
 "учетной записи {}."
 
-#: apps/users/emails.py:18
+#: apps/users/emails.py:20
 msgid ""
 "If you no longer want to receive notifications about this project, "
 "unsubscribe from the {}project{}."
@@ -4548,38 +4583,38 @@ msgstr ""
 msgid "Username/e-mail"
 msgstr "Имя пользователя / электронная почта"
 
-#: apps/users/forms.py:41 apps/users/forms.py:195 apps/users/models.py:71
+#: apps/users/forms.py:42 apps/users/forms.py:196 apps/users/models.py:71
 msgid "I would like to receive further information"
 msgstr "Я хочу получить дополнительную информацию"
 
-#: apps/users/forms.py:43 apps/users/forms.py:197 apps/users/models.py:74
+#: apps/users/forms.py:44 apps/users/forms.py:198 apps/users/models.py:74
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
 "Проекты, на которые вы подписаны, могут отправлять вам дополнительную "
 "информацию по электронной почте."
 
-#: apps/users/forms.py:53 apps/users/forms.py:208
+#: apps/users/forms.py:54 apps/users/forms.py:209
 msgid "Your username will appear publicly next to your posts."
 msgstr ""
 "Ваше имя пользователя будет публично отображаться рядом с вашими сообщениями."
 
-#: apps/users/forms.py:81
+#: apps/users/forms.py:82
 msgid "Membership number of IG BCE"
 msgstr "Членский номер IG BCE"
 
-#: apps/users/forms.py:83
+#: apps/users/forms.py:84
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
 msgstr ""
 "Членский номер состоит из семизначного числа и указан на членской карте."
 
-#: apps/users/forms.py:90
+#: apps/users/forms.py:91
 msgid "Date of birth"
 msgstr "Дата рождения"
 
-#: apps/users/forms.py:92
+#: apps/users/forms.py:93
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
@@ -4587,7 +4622,7 @@ msgstr ""
 "Пожалуйста, также введите дату вашего рождения в формате ММ / ДД / ГГГГ для "
 "подтверждения. Участвовать могут только члены IG BCE."
 
-#: apps/users/forms.py:99
+#: apps/users/forms.py:100
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
@@ -4595,11 +4630,11 @@ msgstr ""
 "Я подтверждаю, что я прочитал и принимаю <a href=\"/info/ig-bce-datenschutz/"
 "\" target=\"_blank\"> политику защиты данных</a>IG BCE."
 
-#: apps/users/forms.py:111 apps/users/forms.py:151
+#: apps/users/forms.py:112 apps/users/forms.py:152
 msgid "Something is wrong with the setup - please try again later"
 msgstr "Что-то не так с настройкой - повторите попытку позже"
 
-#: apps/users/forms.py:117
+#: apps/users/forms.py:118
 msgid ""
 "There is already a participant with this membership number. Please check "
 "your entry. If this is your membership number, please send an email to "
@@ -4609,7 +4644,7 @@ msgstr ""
 "запись. Если это ваш членский номер, отправьте электронное письмо по адресу "
 "«zukunftsgewerkschaft@igbce.de»."
 
-#: apps/users/forms.py:157
+#: apps/users/forms.py:158
 msgid ""
 "Unfortunately, the member number and / or date of birth could not be linked "
 "to an active member account. Please check your input and try again. If you "
@@ -5438,6 +5473,7 @@ msgid "Change your password"
 msgstr "Изменить свой пароль"
 
 #: adhocracy-plus/templates/account/password_change.html:34
+#: adhocracy-plus/templates/account/password_set.html:28
 msgid "Repeat password"
 msgstr "Повторите пароль"
 
@@ -5497,6 +5533,15 @@ msgstr "изменить пароль"
 #: adhocracy-plus/templates/account/password_reset_from_key.html:23
 msgid "Your password is now changed."
 msgstr "Ваш пароль был изменен."
+
+#: adhocracy-plus/templates/account/password_set.html:5
+#: adhocracy-plus/templates/account/password_set.html:34
+msgid "Set password"
+msgstr ""
+
+#: adhocracy-plus/templates/account/password_set.html:8
+msgid "Set your password"
+msgstr ""
 
 #: adhocracy-plus/templates/account/signup.html:10
 msgid "Why register?"
@@ -5558,7 +5603,7 @@ msgstr "Внести добровольный взнос на счет %(platfor
 msgid "Error"
 msgstr "Ошибка"
 
-#: adhocracy-plus/templates/base_errors.html:12
+#: adhocracy-plus/templates/base_errors.html:18
 #, python-format
 msgid "Back to %(platformname)s"
 msgstr "Вернуться к %(platformname)s"
