@@ -7,31 +7,31 @@
 
 {% block content %}
 {% if part_type == "txt" %}
-We would like to confirm that your account has been successfully deleted from our platform. We regret that you have chosen to leave us but we respect your decision.
+{% blocktranslate %}We would like to confirm that your account has been successfully deleted from our platform. We regret that you have chosen to leave us but we respect your decision.{% endblocktranslate %}
 
-Please note that all data associated with your account, including your personal information and activities, have been permanently deleted. You will not receive any further communications from us unless you decide to re-register at a later date.
+{% blocktranslate %}Please note that all data associated with your account, including your personal information and activities, have been permanently deleted. You will not receive any further communications from us unless you decide to re-register at a later date.{% endblocktranslate %}
 
-We thank you for your past use of our services and remain available to assist you with any questions or concerns.
+{% blocktranslate %}We thank you for your past use of our services and remain available to assist you with any questions or concerns.{% endblocktranslate %}
 
-Best regards,
+{% blocktranslate %}Best regards,{% endblocktranslate %}
 
-adhocracy+ Team
+{% blocktranslate %}adhocracy+ Team{% endblocktranslate %}
 {% else %}
 <p>
-We would like to confirm that your account has been successfully deleted from our platform. We regret that you have chosen to leave us but we respect your decision.
+{% blocktranslate %}We would like to confirm that your account has been successfully deleted from our platform. We regret that you have chosen to leave us but we respect your decision.{% endblocktranslate %}
 </p>
 <p>
-Please note that all data associated with your account, including your personal information and activities, have been permanently deleted. You will not receive any further communications from us unless you decide to re-register at a later date.
+{% blocktranslate %}Please note that all data associated with your account, including your personal information and activities, have been permanently deleted. You will not receive any further communications from us unless you decide to re-register at a later date.{% endblocktranslate %}
 </p>
 <p>
-We thank you for your past use of our services and remain available to assist you with any questions or concerns.
+{% blocktranslate %}We thank you for your past use of our services and remain available to assist you with any questions or concerns.{% endblocktranslate %}
 </p>
 <p>
-Best regards,
+{% blocktranslate %}Best regards,{% endblocktranslate %}
 </p>
 
 <p>
-adhocracy+ Team
+{% blocktranslate %}adhocracy+ Team{% endblocktranslate %}
 </p>
 {% endif %}
 {% endblock %}
