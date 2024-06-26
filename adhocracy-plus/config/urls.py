@@ -40,6 +40,7 @@ from apps.userdashboard.api import ModerationCommentViewSet
 from apps.userdashboard.routers import ModerationDetailDefaultRouter
 from apps.users.api import UserViewSet
 from apps.users.decorators import user_is_project_admin
+from apps.users.views import set_language_overwrite
 
 router = routers.DefaultRouter()
 router.register(r"follows", FollowViewSet, basename="follows")
@@ -95,6 +96,8 @@ urlpatterns = [
     path("account/", include("apps.account.urls")),
     path("profile/", include("apps.users.urls")),
     path("userdashboard/", include("apps.userdashboard.urls")),
+    # this needs to be above i18n/ to make the overwrite work
+    path("i18n/setlang/", set_language_overwrite, name="set_language"),
     path("i18n/", include(i18n)),
     # API urls
     path("api/", include(ct_router.urls)),
