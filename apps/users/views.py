@@ -1,4 +1,7 @@
+from django.utils.translation import check_for_language
 from django.views.generic.detail import DetailView
+from django.views.i18n import LANGUAGE_QUERY_PARAMETER
+from django.views.i18n import set_language
 
 from adhocracy4.actions.models import Action
 from apps.organisations.models import Organisation
@@ -38,3 +41,17 @@ class ProfileView(DetailView):
             .filter_public()
             .exclude_updates()[:25]
         )
+
+
+def set_language_overwrite(request):
+    """Overwrite Djangos set_language to update the user language when switching via
+    the language indicator"""
+    if request.method == "POST":
+        lang_code = request.POST.get(LANGUAGE_QUERY_PARAMETER)
+        if lang_code and check_for_language(lang_code):
+            user = request.user
+            if hasattr(user, "language"):
+                if user.language != lang_code:
+                    user.language = lang_code
+                    user.save()
+    return set_language(request)
