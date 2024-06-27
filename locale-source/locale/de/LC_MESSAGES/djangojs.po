@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 15:53+0200\n"
+"POT-Creation-Date: 2024-06-27 13:59+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Julian Dehm <j.dehm@liqd.net>, 2024\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
@@ -154,11 +154,13 @@ msgid "save changes"
 msgstr "Änderungen speichern"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:35
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:35
 msgid "cancel"
 msgstr "Abbrechen"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:39
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:16
 #: adhocracy4/comments/static/comments/CommentForm.jsx:39
 msgid "post"
 msgstr "Senden"
@@ -330,39 +332,66 @@ msgid_plural "%s replies"
 msgstr[0] "1 Antwort"
 msgstr[1] "%s Antworten"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:14
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:14
 msgid "Newest"
 msgstr "Neueste"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:16
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 msgid "Most up votes"
 msgstr "Meiste Zustimmung"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:16
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:17
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:16
 msgid "Most down votes"
 msgstr "Meiste Ablehnung"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:17
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:18
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:17
 msgid "Most answers"
 msgstr "Meiste Antworten"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:18
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:19
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:18
 msgid "Last discussed"
 msgstr "Zuletzt diskutiert"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:22
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:22
-msgid "Discussion"
-msgstr "Diskussion"
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:23
+msgid "Comments"
+msgstr ""
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:278
-#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:6
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:24
+msgid "Show filters"
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:25
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
+msgid "Filters"
+msgstr "Filter"
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:26
+msgid "Hide filters"
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:27
+#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:5
+msgid "Search contributions"
+msgstr "Beiträge durchsuchen"
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:28
+#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:6
+msgid "Clear search"
+msgstr "Suche aufheben"
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:29
+#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:5
+msgid "display: "
+msgstr "anzeigen: "
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:30
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:49
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:284
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:278
 #: adhocracy4/comments_async/static/comments_async/filter_category.jsx:6
@@ -371,46 +400,24 @@ msgstr "Diskussion"
 msgid "all"
 msgstr "Alle"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:61
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:31
+msgid "sorted by: "
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:69
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:61
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:14
 msgid "Highlighted"
 msgstr "Hervorgehoben"
 
-#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
-#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
-msgid "Show more"
-msgstr "Mehr anzeigen "
-
-#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
-#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
-msgid "Show less"
-msgstr "Weniger anzeigen"
-
-#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
-#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
-msgid "Ordering"
-msgstr "Sortierung"
-
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
-msgid "Filters"
-msgstr "Filter"
-
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:21
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:110
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:21
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "Beitrag"
 msgstr[1] "Beiträge"
 
-#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:25
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:414
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:25
 msgid "entry found for "
 msgid_plural "entries found for "
@@ -418,31 +425,26 @@ msgstr[0] "Beitrag gefunden zu "
 msgstr[1] "Beiträge gefunden zu "
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
-msgid "Join the discussion"
-msgstr "Mitdiskutieren"
-
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 msgid "Your comment"
 msgstr "Ihr Kommentar"
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:13
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:13
 msgid "Please add a comment."
 msgstr "Bitte fügen Sie eine Kommentar ein."
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:14
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:13
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:14
 msgid "Something seems to have gone wrong, please try again."
 msgstr "Anscheinend ist etwas schiefgegangen. Bitte versuchen Sie es erneut."
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:15
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:14
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:15
 msgid "Your reply"
 msgstr "Ihre Antwort"
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:16
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:15
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:16
 #: apps/interactiveevents/assets/QuestionForm.jsx:79
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationFeedbackForm.jsx:10
@@ -450,32 +452,8 @@ msgid " characters"
 msgstr " Zeichen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:17
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:17
-msgid "Post"
-msgstr "Veröffentlichen"
-
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
-#: apps/maps/assets/map_choose_polygon_with_preset.js:108
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:5
-#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:5
-msgid "display: "
-msgstr "anzeigen: "
-
-#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:5
-#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:5
-msgid "Search contributions"
-msgstr "Beiträge durchsuchen"
-
-#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:6
-#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:6
-msgid "Clear search"
-msgstr "Suche aufheben"
+msgid "Comment"
+msgstr ""
 
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
@@ -591,6 +569,13 @@ msgstr ""
 #: apps/maps/assets/map_choose_polygon_with_preset.js:101
 msgid "Upload"
 msgstr "Hochladen"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
+#: apps/maps/assets/map_choose_polygon_with_preset.js:108
+msgid "Cancel"
+msgstr "Abbrechen"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:148
@@ -930,12 +915,37 @@ msgstr ""
 "Sie können weiterhin alle Ihre Einstellungen unter Nutzungsvereinbarungen "
 "verwalten."
 
-#: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:22
+msgid "Discussion"
+msgstr "Diskussion"
+
+#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
+msgid "Show more"
+msgstr "Mehr anzeigen "
+
+#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
+msgid "Show less"
+msgstr "Weniger anzeigen"
+
+#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
+msgid "Ordering"
+msgstr "Sortierung"
+
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
+msgid "Join the discussion"
+msgstr "Mitdiskutieren"
+
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:17
+msgid "Post"
+msgstr "Veröffentlichen"
+
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
 msgid "Search"
 msgstr "Suchen"
 
-#: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
 msgid "Start search"
 msgstr "Suche starten"
