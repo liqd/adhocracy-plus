@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-25 16:51+0200\n"
+"POT-Creation-Date: 2024-06-27 13:59+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Tietje, 2024\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
@@ -975,11 +975,11 @@ msgstr ""
 msgid "Modified"
 msgstr "Bearbeitet"
 
-#: adhocracy4/modules/models.py:73
+#: adhocracy4/modules/models.py:72
 msgid "Title of the module"
 msgstr "Modultitel"
 
-#: adhocracy4/modules/models.py:75
+#: adhocracy4/modules/models.py:74
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
@@ -987,11 +987,11 @@ msgstr ""
 "Der Modultitel wird in der Zeitleiste und auf der Projektseite erscheinen. "
 "Er sollte maximal 512 Zeichen lang sein."
 
-#: adhocracy4/modules/models.py:84
+#: adhocracy4/modules/models.py:83
 msgid "Short description of the module"
 msgstr "Kurzbeschreibung des Moduls"
 
-#: adhocracy4/modules/models.py:86
+#: adhocracy4/modules/models.py:85
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
@@ -1000,58 +1000,58 @@ msgstr ""
 "Die Kurzbeschreibung des Moduls erscheint auf der Projektseite. Sie sollte "
 "in maximal 512 Zeichen das Ziel des Moduls beschreiben."
 
-#: adhocracy4/modules/models.py:223
+#: adhocracy4/modules/models.py:222
 msgid "day"
 msgstr "Tag"
 
-#: adhocracy4/modules/models.py:223
-#: adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:222
+#: adhocracy4/modules/models.py:229
 msgid "days"
 msgstr "Tage"
 
-#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:223
 msgid "hour"
 msgstr "Stunde"
 
-#: adhocracy4/modules/models.py:224
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:223
+#: adhocracy4/modules/models.py:230
 msgid "hours"
 msgstr "Stunden"
 
-#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:224
 msgid "minute"
 msgstr "Minute"
 
-#: adhocracy4/modules/models.py:225
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:231
 msgid "minutes"
 msgstr "Minuten"
 
-#: adhocracy4/modules/models.py:226
+#: adhocracy4/modules/models.py:225
 msgid "second"
 msgstr "Sekunde"
 
-#: adhocracy4/modules/models.py:226
-#: adhocracy4/modules/models.py:233
+#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:232
 msgid "seconds"
 msgstr "Sekunden"
 
-#: adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:229
 msgctxt "abbreviation for day(s)"
 msgid "D"
 msgstr "T"
 
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:230
 msgctxt "abbreviation for hour(s)"
 msgid "H"
 msgstr "S"
 
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:231
 msgctxt "abbreviation for minute(s)"
 msgid "M"
 msgstr "M"
 
-#: adhocracy4/modules/models.py:233
+#: adhocracy4/modules/models.py:232
 msgctxt "abbreviation for second(s)"
 msgid "S"
 msgstr "S"
@@ -1480,6 +1480,9 @@ msgid ""
 "from our platform. We regret that you have chosen to leave us but we respect "
 "your decision."
 msgstr ""
+"Wir bestätigen Ihnen hiermit, dass Ihr Konto erfolgreich von unserer "
+"Plattform gelöscht wurde. Wir bedauern es sehr, dass Sie sich dazu "
+"entschlossen haben. Ihre Entscheidung respektieren wir selbstverständlich."
 
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:12
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:24
@@ -1489,6 +1492,11 @@ msgid ""
 "not receive any further communications from us unless you decide to re-"
 "register at a later date."
 msgstr ""
+"Bitte beachten Sie, dass alle mit Ihrem Konto verknüpften Daten, "
+"einschließlich Ihrer persönlichen Informationen und Aktivitäten, dauerhaft "
+"gelöscht wurden. Sie werden keine weiteren Mitteilungen von uns erhalten, es "
+"sei denn, Sie entscheiden sich zu einem späteren Zeitpunkt für eine erneute "
+"Registrierung."
 
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:14
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:27
@@ -1496,16 +1504,18 @@ msgid ""
 "We thank you for your past use of our services and remain available to "
 "assist you with any questions or concerns."
 msgstr ""
+"Wir danken Ihnen für die Nutzung von adhocracy.plus und stehen Ihnen "
+"weiterhin gerne für Fragen oder Anliegen zur Verfügung."
 
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:16
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:30
 msgid "Best regards,"
-msgstr ""
+msgstr "Mit freundlichen Grüßen"
 
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:18
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:34
 msgid "adhocracy+ Team"
-msgstr ""
+msgstr "adhocracy+ Team"
 
 #: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:39
 #: adhocracy-plus/templates/account/email/email_confirmation.en.email:17
@@ -2042,7 +2052,7 @@ msgstr "Weitere Möglichkeiten anschauen"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/includes/use_case_share_btns.html:4
 msgid "Share on Twitter"
-msgstr "Auf Twitter teilen"
+msgstr "Auf X teilen"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/includes/use_case_share_btns.html:4
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/includes/use_case_share_btns.html:6
@@ -3521,7 +3531,7 @@ msgstr "Linkedin 1104x736"
 
 #: apps/organisations/forms.py:36
 msgid "Twitter 1200x675"
-msgstr "Twitter 1200x675"
+msgstr "X 1200x675"
 
 #: apps/organisations/forms.py:277
 #: adhocracy-plus/templates/a4dashboard/communication_form_base.html:23
@@ -4673,7 +4683,7 @@ msgid ""
 "Solve the math problem and click on the correct result.<br>If you are having "
 "difficulty please contact us  by {}email{}."
 msgstr ""
-"Lösen Sie die Matheaufgabe und klicken Sie auf das richtige Ergebnis."
+"Lösen Sie die Rechenaufgabe und klicken Sie auf das richtige Ergebnis."
 "<br>Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte per {}E-"
 "Mail{}."
 
@@ -4820,7 +4830,7 @@ msgstr "Erzählen Sie von sich - in 255 Zeichen!"
 
 #: apps/users/models.py:89
 msgid "Twitter handle"
-msgstr "Twitter handle"
+msgstr "X handle"
 
 #: apps/users/models.py:95
 msgid "Facebook name"
@@ -4905,7 +4915,7 @@ msgstr "Facebook"
 
 #: apps/users/templates/a4_candy_users/user_detail.html:67
 msgid "Twitter"
-msgstr "Twitter"
+msgstr "X"
 
 #: apps/users/templates/a4_candy_users/user_detail.html:76
 msgid "Selection of projects the are following"
@@ -5655,15 +5665,15 @@ msgstr "Ihr Passwort wurde geändert."
 #: adhocracy-plus/templates/account/password_set.html:5
 #: adhocracy-plus/templates/account/password_set.html:34
 msgid "Set password"
-msgstr ""
+msgstr "Passwort festlegen"
 
 #: adhocracy-plus/templates/account/password_set.html:8
 msgid "Set your password"
-msgstr ""
+msgstr "Passwort festlegen"
 
 #: adhocracy-plus/templates/account/signup.html:10
 msgid "Why register?"
-msgstr "Warum registrieren?"
+msgstr "Warum muss ich mich registrieren?"
 
 #: adhocracy-plus/templates/account/signup.html:14
 #, python-format
