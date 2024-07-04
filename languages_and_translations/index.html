@@ -40,35 +40,31 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">API</span></p>
+              <p class="caption"><span class="caption-text">HOWTO</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../installation_dev/">install for development</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../django_shell_basics/">django basics</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../api/">api</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../celery/">celery</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ckeditor/">ckeditor</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../management_commands/">management commands</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../project_insights/">project insights</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../reference/">reference</a>
-                  </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">translations</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#transifex">Transifex</a>
+    <li class="toctree-l2"><a class="reference internal" href="#transifex-installation-and-configuration">Transifex installation and configuration</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#install-the-transifex-client-if-you-havent-already">Install the transifex client if you haven't already</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#no-translations-have-been-added-locally">No translations have been added locally:</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#push-new-source-strings-to-transifex">Push new source strings to transifex</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#pull-new-translations-from-transifex">Pull new translations from transifex</a>
+    <li class="toctree-l3"><a class="reference internal" href="#register-on-transifex-and-become-member-of-liquid-democracy-projects">Register on transifex and become member of Liquid Democracy projects</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#transifex-local-configuration">Transifex local configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#work-locally-to-generate-translations">Work locally to generate translations:</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#push-new-source-strings-to-transifex">Push new source strings to transifex</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pull-new-translations-from-transifex">Pull new translations from transifex</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#translations-have-been-added-locally-de">Translations have been added locally (DE)</a>
     </li>
@@ -92,26 +88,40 @@
     </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../howtomkdocs/">create documentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../installation_prod/">install on production</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Diagrams</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../diagrams_modules/">participation modules</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/">code reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../celery/">celery</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ckeditor/">ckeditor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../project_insights/">project insights</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../software_architecture/">architecture</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../tests/">tests</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">Repository</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../installation_prod/">Install</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../contributing/">Contribute</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../howtomkdocs/">Documentation</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="" href="https://github.com/liqd/adhocracy-plus">Source code</a>
-                </li>
+                  <li class="toctree-l1"><a class="" href="https://github.com/liqd/adhocracy-plus">source code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing/">contribute</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -127,7 +137,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">API</li>
+          <li class="breadcrumb-item">HOWTO</li>
       <li class="breadcrumb-item active">translations</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -140,21 +150,32 @@
                 <h1 id="translations">Translations</h1>
 <p>We take care to make all strings in the code (like texts on buttons, headlines that don't come from django models, ...) translatable.</p>
 <p>The translations for the main branch are done in transifex. If you want to translate A+ into your language, please get in touch: info [at] liqd [dot] net</p>
-<h2 id="transifex">Transifex</h2>
+<h2 id="transifex-installation-and-configuration">Transifex installation and configuration</h2>
 <h3 id="install-the-transifex-client-if-you-havent-already">Install the transifex client if you haven't already</h3>
 <ul>
 <li>see https://github.com/transifex/cli for instructions</li>
 </ul>
-<h3 id="no-translations-have-been-added-locally">No translations have been added locally:</h3>
+<h3 id="register-on-transifex-and-become-member-of-liquid-democracy-projects">Register on transifex and become member of Liquid Democracy projects</h3>
+<ol>
+<li>register on <a href="https://www.transifex.com/">Transifex website</a> with your email of liqd.net</li>
+<li>Make your profile public by visiting <a href="https://app.transifex.com/user/settings/">My profile</a>, scroll down to <code>Privacy</code> section and check the box <code>Make my profile accessible by anyone (public)</code></li>
+<li>visit <a href="https://explore.transifex.com/liqd/adhocracy-plus/">Liquid Democracy projects on transifex</a>, choose Adhocracy+ and click on <code>Join this project</code></li>
+<li>Ping a colleague who is already member of the transifex liqd organisation to accept your request, e.g your fellow developer.</li>
+<li>Generate an API token from your <a href="https://app.transifex.com/user/settings/api/">profile</a>. Save the token somewhere, preferably in your vaultwarden account, as you will be asked to provide it later. Visit official documentation <a href="https://help.transifex.com/en/articles/6248858-generating-an-api-token">here</a></li>
+</ol>
+<h2 id="transifex-local-configuration">Transifex local configuration</h2>
+<p>the adhocracy-plus repository includes the <code>.tx/config</code> file, so no initialization of transifex  or other configuration is required from you.</p>
+<h2 id="work-locally-to-generate-translations">Work locally to generate translations:</h2>
+<p>From within adhocracy-plus directory, run <code>make install</code> to pull the relative adhocracy4 dependency that should be included for translations</p>
 <h4 id="push-new-source-strings-to-transifex">Push new source strings to transifex</h4>
-<p>Make branch and create message files with the new strings added during development</p>
+<p>Create new branch and generate message files with the new strings added during development with:</p>
 <p><code>make po</code></p>
-<p>Test that new messages compile without any errors</p>
-<p><code>make mo</code></p>
+<p>Test that new messages compile without any errors with:</p>
+<p><code>make mo</code>  </p>
 <p>Push updated source file with new strings to transifex to be be translated (Note: commented out strings will not be ignored by transifex, but handled as normal source strings, so remove them before from source files)</p>
-<p>(If you do this the first time, you might need to <a href="https://docs.transifex.com/account/authentication">generate an API token</a> and add it in the terminal. It will be automatically stored in your <code>~/.transifexrc</code>)</p>
-<p><code>tx push -s</code></p>
-<p>Commit and push message files to github</p>
+<p><code>tx push</code><br />
+NOTE: you will be asked to provide your API token, which then will be saved in a local file, whose location will be indicated in the terminal. For future authenitcations, you will need to provide it when pushing, or add it as <a href="https://developers.transifex.com/docs/using-the-client#using-environment-variables">enviroment variable in your terminal profile</a>. </p>
+<p>Commit and push your branch to github</p>
 <h4 id="pull-new-translations-from-transifex">Pull new translations from transifex</h4>
 <p>Once translations have been added on transifex, create branch and force pull all translations from transifex (force is needed because the time stamps cause errors)</p>
 <p><code>tx pull -af</code></p>
@@ -233,8 +254,8 @@ Update tests.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../reference/" class="btn btn-neutral float-left" title="reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../software_architecture/" class="btn btn-neutral float-right" title="architecture">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../management_commands/" class="btn btn-neutral float-left" title="management commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../howtomkdocs/" class="btn btn-neutral float-right" title="create documentation">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -257,10 +278,10 @@ Update tests.</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../reference/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../management_commands/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../software_architecture/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../howtomkdocs/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

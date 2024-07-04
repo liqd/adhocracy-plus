@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>ckeditor - Adhocracy+</title>
+    <title>install for development - Adhocracy+</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "ckeditor";
-        var mkdocs_page_input_path = "ckeditor.md";
+        var mkdocs_page_name = "install for development";
+        var mkdocs_page_input_path = "installation_dev.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -41,8 +41,24 @@
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">HOWTO</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../installation_dev/">install for development</a>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">install for development</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#start-virtual-environment">Start virtual environment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#check-if-tests-work">Check if tests work</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#start-a-local-server">Start a local server</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#use-postgresql-database-for-testing">Use postgresql database for testing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#use-celery-for-task-queues">Use Celery for task queues</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../django_shell_basics/">django basics</a>
                   </li>
@@ -66,12 +82,10 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Explanations</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../celery/">celery</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">ckeditor</a>
-    <ul class="current">
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../ckeditor/">ckeditor</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../project_insights/">project insights</a>
                   </li>
@@ -101,8 +115,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Explanations</li>
-      <li class="breadcrumb-item active">ckeditor</li>
+          <li class="breadcrumb-item">HOWTO</li>
+      <li class="breadcrumb-item active">install for development</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -111,35 +125,65 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="general">General</h1>
-<p>for general info see <a href="https://github.com/liqd/adhocracy4/blob/main/docs/ckeditor.md">ckeditor</a> in
-adhocracy4.</p>
-<h1 id="local-testing">Local Testing</h1>
-<p>To test aplus with a local version of django-ckeditor-5 you need to follow these
-steps:</p>
-<pre><code># clone django-ckeditor-5
-git clone git@github.com:liqd/django-ckeditor-5.git
-# cd into the directory
-cd django-ckeditor-5/django-ckeditor-5
-# install npm dependencies
-npm install
-# build js files
-npm run dev
+                <h2 id="installation-for-development">Installation for development</h2>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>nodejs (+ npm)</li>
+<li>python 3.x (+ venv + pip)</li>
+<li>libpq (only if postgres should be used)</li>
+<li>sqlite3 <a href="https://code.djangoproject.com/wiki/JSON1Extension">with JSON1 enabled</a></li>
+<li>redis (in production, not needed for development)</li>
+</ul>
+<h3 id="installation">Installation</h3>
+<pre><code>git clone https://github.com/liqd/adhocracy-plus.git
+cd adhocracy-plus
+make install
+make fixtures
 </code></pre>
-<p>Now in aplus, do the folowing:</p>
-<pre><code># activate the venv
-source venv/bin/activate
-# install the local django-ckeditor-5
-# replace ../django-ckeditor-5 with the correct path if its not in the parent
-# directory
-pip install -e ../django-ckeditor-5
+<h3 id="start-virtual-environment">Start virtual environment</h3>
+<pre><code>source venv/bin/activate
 </code></pre>
+<h3 id="check-if-tests-work">Check if tests work</h3>
+<pre><code>make test
+</code></pre>
+<h3 id="start-a-local-server">Start a local server</h3>
+<pre><code>make watch
+</code></pre>
+<h3 id="use-postgresql-database-for-testing">Use postgresql database for testing</h3>
+<p>run the following command once:</p>
+<pre><code>make postgres-create
+</code></pre>
+<p>to start the test server with postgresql, run:</p>
+<pre><code>export DATABASE=postgresql
+make postgres-start
+make watch
+</code></pre>
+<p>Go to http://localhost:8004/ and login with admin@liqd.net | password</p>
+<h3 id="use-celery-for-task-queues">Use Celery for task queues</h3>
+<p>For a celery worker to pick up tasks you need to make sure that:
+- the redis server is running
+- the celery config parameter "always eager" is disabled (add <code>CELERY_TASK_ALWAYS_EAGER = False</code> to your <code>local.py</code>)</p>
+<p>To start a celery worker node in the foreground, call:</p>
+<pre><code>make celery-worker-start
+</code></pre>
+<p>To inspect all registered tasks, list the running worker nodes, call:</p>
+<pre><code>make celery-worker-status
+</code></pre>
+<p>To send a dummy task to the queue and report the result, call:</p>
+<pre><code>make celery-worker-dummy-task
+</code></pre>
+<h2 id="installation-on-a-production-system">Installation on a production system</h2>
+<p>You like adhocracy+ and want to run your own version? An installation guide for production systems can be found <a href="../installation_prod/">here</a>.</p>
+<h2 id="contributing-or-maintaining-your-own-fork">Contributing or maintaining your own fork</h2>
+<p>If you found an issue, want to contribute, or would like to add your own features to your own version of adhocracy+, check out <a href="../contributing/">contributing</a>.</p>
+<h2 id="security">Security</h2>
+<p>We care about security. So, if you find any issues concerning security, please send us an email at info [at] liqd [dot] net.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../celery/" class="btn btn-neutral float-left" title="celery"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../project_insights/" class="btn btn-neutral float-right" title="project insights">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../django_shell_basics/" class="btn btn-neutral float-right" title="django basics">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -162,10 +206,10 @@ pip install -e ../django-ckeditor-5
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../celery/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../project_insights/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../django_shell_basics/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
