@@ -86,6 +86,7 @@ INSTALLED_APPS = (
     "adhocracy4.reports",
     "adhocracy4.rules",
     # General components that define models or helpers
+    "apps.arpas",
     "apps.actions",
     "apps.captcha",
     "apps.contrib",
@@ -518,6 +519,7 @@ A4_BLUEPRINT_TYPES = [
     ("IE", _("interactive event")),
     ("TP", _("prioritization")),
     ("DB", _("debate")),
+    ("AR", _("arpas")),
 ]
 
 A4_MAP_BASEURL = "https://{s}.tile.openstreetmap.org/"
