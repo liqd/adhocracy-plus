@@ -1,37 +1,37 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  adhocracy-plus:
-    build: .
-    container_name: adhocracy-plus
-    ports:
-      - "8004:8004"
-    environment:
-      - DATABASE=sqlite
-    volumes:
-      - .:/adhocracy-plus
-    depends_on:
-      - redis
-      - postgres
-    command: /bin/bash -c "source /adhocracy-plus/venv/bin/activate && make watch"
+    adhocracy-plus:
+        build: .
+        container_name: adhocracy-plus
+        ports:
+            - "8004:8004"
+        environment:
+            - DATABASE=sqlite
+        volumes:
+            - .:/adhocracy-plus
+        depends_on:
+            - redis
+            - postgres
+        command: /bin/bash -c "source /adhocracy-plus/venv/bin/activate && make watch"
 
-  redis:
-    image: redis:alpine
-    container_name: redis
-    ports:
-      - "6379:6379"
+    redis:
+        image: redis:alpine
+        container_name: redis
+        ports:
+            - "6379:6379"
 
-  postgres:
-    image: postgres:13-alpine
-    container_name: postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: adhocracy
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    postgres:
+        image: postgres:13-alpine
+        container_name: postgres
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: adhocracy
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+    postgres_data:
