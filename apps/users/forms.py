@@ -31,6 +31,7 @@ class DefaultLoginForm(LoginForm):
         self.fields["login"].label = _("Username/e-mail")
         del self.fields["login"].widget.attrs["placeholder"]
         del self.fields["password"].widget.attrs["placeholder"]
+        self.fields["password"].help_text = ""
         self.fields["login"].widget.attrs["autocomplete"] = "username"
         self.fields["password"].widget.attrs["autocomplete"] = "current-password"
 
