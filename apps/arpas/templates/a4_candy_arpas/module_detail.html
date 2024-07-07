@@ -1,5 +1,7 @@
-{% extends extends %} {% load static i18n discovery_tags ckeditor_tags
-wagtailcore_tags contrib_tags thumbnail %} {% block phase_content %}
+{% extends extends %}
+{% load static i18n discovery_tags ckeditor_tags wagtailcore_tags contrib_tags thumbnail %}
+
+{% block phase_content %}
 <div class="row">
     <div class="col-md-12 my-2">
         <div class="alert" role="alert">
@@ -8,13 +10,13 @@ wagtailcore_tags contrib_tags thumbnail %} {% block phase_content %}
         </div>
     </div>
 </div>
-<div
-    data-aplus-widget="arpas"
-    data-project-title="{{ view.project.name }}"
-    data-project-id="{{ view.project.id }}"
-    data-organisation="{{ view.project.organisation }}"
-    data-project-url="{{ view.project_url }}"
-></div>
+<div data-aplus-widget="arpas"
+     data-project-title ="{{ view.project.name }}"
+     data-project-id ="{{ view.project.id }}"
+     data-organisation ="{{ view.project.organisation }}"
+     data-project-url ="{{ view.project_url }}" >
+</div>
 
 <script type="text/javascript" src="{% static 'arpas.js' %}"></script>
 {% endblock %}
+
