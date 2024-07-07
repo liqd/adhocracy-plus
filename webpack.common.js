@@ -149,6 +149,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules\/(?!(adhocracy4)\/).*/, // exclude all dependencies but adhocracy4
         use: {
@@ -210,7 +215,7 @@ module.exports = {
       path: require.resolve("path-browserify"),
     },
     // attempt to resolve these extensions in this order.
-    extensions: ["*", ".js", ".jsx", ".scss", ".css"],
+    extensions: ["*", ".js", ".jsx", ".scss", ".css", ".ts", ".tsx"],
     // create aliases to import or require certain modules more easily, $ signifys exact match
     alias: {
       bootstrap$: "bootstrap/dist/js/bootstrap.bundle.min.js",

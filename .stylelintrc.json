@@ -1,13 +1,7 @@
 {
-  "extends": [
-    "stylelint-config-standard-scss"
-  ],
-  "ignoreFiles": [
-    "**/_variables.scss"
-  ],
-  "plugins": [
-    "stylelint-declaration-strict-value"
-  ],
+  "extends": ["stylelint-config-standard-scss"],
+  "ignoreFiles": ["**/_variables.scss", "**/*.html"],
+  "plugins": ["stylelint-declaration-strict-value"],
   "rules": {
     "font-family-name-quotes": "always-unless-keyword",
 
@@ -33,27 +27,29 @@
     "alpha-value-notation": null,
     "color-function-notation": null,
 
-    "at-rule-empty-line-before": [ "always", {
-      "except": ["first-nested"],
-      "ignore": [
-        "blockless-after-blockless",
-        "after-comment"
-      ]
-    }],
-    "at-rule-no-unknown": [ true, {
-      "ignoreAtRules": [
-        "extend",
-        "include",
-        "mixin"
-      ]
-    }],
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested"],
+        "ignore": ["blockless-after-blockless", "after-comment"]
+      }
+    ],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["extend", "include", "mixin"]
+      }
+    ],
 
     "indentation": 4,
     "max-nesting-depth": 2,
 
-    "scale-unlimited/declaration-strict-value": ["/color/", {
-      "ignoreKeywords": ["inherit", "transparent"]
-    }],
+    "scale-unlimited/declaration-strict-value": [
+      "/color/",
+      {
+        "ignoreKeywords": ["inherit", "transparent"]
+      }
+    ],
 
     "declaration-empty-line-before": null
   }

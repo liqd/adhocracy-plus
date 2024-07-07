@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { widget as ReactWidget } from "adhocracy4";
-import ArBase from "./ArBase";
+import ArBase from "./Prototype";
 
 function init() {
   ReactWidget.initialise("aplus", "arpas", function (el) {
