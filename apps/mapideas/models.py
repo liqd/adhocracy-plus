@@ -14,7 +14,7 @@ class AbstractMapIdea(idea_models.AbstractIdea):
         verbose_name=_("Where can your idea be located on a map?"),
         help_text=_(
             "Click inside the marked area "
-            "or type in an address to set the marker. A set "
+            "to set the marker. A set "
             "marker can be dragged when pressed."
         ),
     )
