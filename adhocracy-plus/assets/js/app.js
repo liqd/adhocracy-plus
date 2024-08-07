@@ -3,6 +3,8 @@ import 'django'
 import 'select2' // used to skin select element used in livequestions
 import 'slick-carousel' // for project timeline
 
+import 'core-js/actual/object/has-own' // required polyfill for older browsers
+
 import '../../../apps/actions/assets/timestamps.js'
 import '../../../apps/dashboard/assets/ajax_modal.js'
 import '../../../apps/maps/assets/map-address.js'
