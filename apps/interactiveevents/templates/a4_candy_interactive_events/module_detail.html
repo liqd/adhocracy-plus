@@ -34,10 +34,10 @@
             <div class="mb-2">
                 {% if module.description|length > 180 %}
                     <div id="collapsibleContentEvent" class="collapse show u-no-transition">
-                        {{ module.description|truncatechars:160|richtext }}
+                        {{ module.description|truncatechars:160 }}
                     </div>
                     <div id="collapsibleContentEvent" class="collapse u-no-transition">
-                        {{ module.description|richtext }}
+                        {{ module.description }}
                     </div>
                     <button
                         class="btn--link collapsible    "
@@ -65,10 +65,10 @@
                 <div class="mb-5">
                     {% if module.phases.first.description|length > 180 %}
                         <div id="collapsibleContentPhase" class="collapse show u-no-transition">
-                            {{ module.phases.first.description|truncatechars:160|richtext }}
+                            {{ module.phases.first.description|truncatechars:160 }}
                         </div>
                         <div id="collapsibleContentPhase" class="collapse u-no-transition">
-                            {{ module.phases.first.description|richtext }}
+                            {{ module.phases.first.description }}
                         </div>
                         <button
                             class="btn--link collapsible    "

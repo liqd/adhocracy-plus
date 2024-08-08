@@ -1,0 +1,39 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n wagtailsettings_tags %}
+{% get_settings use_default_site=True %}
+
+{% block subject %}{% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Confirmation: Deletion of Your Account on {{ platformname }}{% endblocktranslate %}{% endblock %}
+{% block headline %}{% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Your account on {{ platformname }} has been deleted{% endblocktranslate %}{% endblock %}
+
+{% block content %}
+{% if part_type == "txt" %}
+We would like to confirm that your account has been successfully deleted from our platform. We regret that you have chosen to leave us but we respect your decision.
+
+Please note that all data associated with your account, including your personal information and activities, have been permanently deleted. You will not receive any further communications from us unless you decide to re-register at a later date.
+
+We thank you for your past use of our services and remain available to assist you with any questions or concerns.
+
+Best regards,
+
+adhocracy+ Team
+{% else %}
+<p>
+We would like to confirm that your account has been successfully deleted from our platform. We regret that you have chosen to leave us but we respect your decision.
+</p>
+<p>
+Please note that all data associated with your account, including your personal information and activities, have been permanently deleted. You will not receive any further communications from us unless you decide to re-register at a later date.
+</p>
+<p>
+We thank you for your past use of our services and remain available to assist you with any questions or concerns.
+</p>
+<p>
+Best regards,
+</p>
+
+<p>
+adhocracy+ Team
+</p>
+{% endif %}
+{% endblock %}
+
+{% block reason %}{% blocktranslate %}This email was sent to {{ receiver }}. If you have any further questions, please contact us via {{ contact_email }}{% endblocktranslate %}{% endblock %}

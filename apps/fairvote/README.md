@@ -6,7 +6,7 @@ Database: We're using Mysql
 ## Requirements:
 
 ## Installation
-1. Follow the adhocracy-plus installation guide.
+1. Follow the [adhocracy-plus installation guide](https://github.com/ariel-research/adhocracy-plus/README.md).
 
 ## Production
 1. Run the following commands:

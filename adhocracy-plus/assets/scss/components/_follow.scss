@@ -1,20 +1,33 @@
-.follow__notification {
+.a4-follow__notification {
     .alert {
         margin-top: $r-spacer;
     }
 }
 
-// nasty overwrite, needs to be changed in a4
+.a4-btn--follow:before,
+.a4-btn--following:before {
+    font-family: "Font Awesome\ 5 Free", sans-serif;
+    font-weight: 900;
+    margin-right: 0.3em;
+}
 
-.follow > .btn--light,
-.follow > .btn--primary {
+.a4-btn--follow:before {
+    content: "\f067"; // plus
+}
+
+.a4-btn--following:before {
+    content: "\f00c"; // check
+}
+
+.a4-btn--follow,
+.a4-btn--following {
     background-color: transparent;
     border: none;
 }
 
 .project-header--image {
-    .follow > .btn--light,
-    .follow > .btn--primary {
+    .a4-btn--follow,
+    .a4-btn--following {
         color: $white;
         background-color: transparent;
         border: none;

@@ -124,8 +124,8 @@ window.onload = function () {
           questionDiv.setAttribute('class', 'captcheck_label_message')
           questionDiv.setAttribute('id', 'captcheck_' + idp + '_label_message')
           questionDiv.innerHTML =
-          "<label class='captcheck_question_image' id='captcheck_" + idp + "_question_image' tabindex='0'>" + data.question_i + '</label>' +
-          "<label class='captcheck_question_access' id='captcheck_" + idp + "_question_access' tabindex='0'>" + data.question_a + '</label>' +
+          "<label class='captcheck_question_image' id='captcheck_" + idp + "_question_image' tabindex='0'>" + data.question_i + ' = ?</label>' +
+          "<label class='captcheck_question_access' id='captcheck_" + idp + "_question_access' tabindex='0'>" + data.question_a + ' = ?</label>' +
           "<a href='' class='captcheck_alt_question_button' data-prefix='" + idp + "' id='captcheck_" + idp + "_alt_question_button' aria-role='button' tabindex='0' aria-label='" + ariaLabelText + "'>" + textTextMode + '</a>'
 
           /* Add question and answers */

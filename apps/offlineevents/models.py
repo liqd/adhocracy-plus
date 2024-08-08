@@ -1,13 +1,14 @@
 from datetime import timedelta
 
 from autoslug import AutoSlugField
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
 
@@ -25,15 +26,12 @@ class OfflineEvent(UserGeneratedContentModel):
     event_type = models.CharField(
         max_length=30,
         verbose_name=_("Event type"),
-        help_text=_(
-            "The content of this field is shown in the timeline. It "
-            "should have no more than 30 characters e.g. Information "
-            "event or 3rd public workshop."
-        ),
     )
     date = models.DateTimeField(verbose_name=_("Date"))
-    description = RichTextUploadingField(
-        config_name="image-editor", verbose_name=_("Description")
+    description = CKEditor5Field(
+        config_name="collapsible-image-editor",
+        verbose_name=_("Description"),
+        validators=[ImageAltTextValidator()],
     )
     project = models.ForeignKey(project_models.Project, on_delete=models.CASCADE)
 
@@ -45,9 +43,11 @@ class OfflineEvent(UserGeneratedContentModel):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description, "image-editor")
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"description"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
     @cached_property
     def get_timeline_index(self):
@@ -59,7 +59,7 @@ class OfflineEvent(UserGeneratedContentModel):
 
     def get_absolute_url(self):
         if self.project.display_timeline:
-            return "{}?initialSlide={}".format(
+            return "{}?initialSlide={}#timeline-carousel".format(
                 self.project.get_absolute_url(), self.get_timeline_index
             )
         return self.project.get_absolute_url()

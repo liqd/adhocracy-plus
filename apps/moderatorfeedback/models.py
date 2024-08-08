@@ -1,6 +1,6 @@
-from ckeditor.fields import RichTextField
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
 from adhocracy4.comments.models import Comment
@@ -16,19 +16,16 @@ DEFAULT_CHOICES = (
 
 
 class ModeratorFeedback(UserGeneratedContentModel):
-    feedback_text = RichTextField(
+    feedback_text = CKEditor5Field(
         blank=True,
         verbose_name=_("Official feedback"),
-        help_text=_(
-            "The official feedback will appear below the idea, "
-            "indicating your organisation. The idea provider receives "
-            "a notification."
-        ),
     )
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.feedback_text = transforms.clean_html_field(self.feedback_text)
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"feedback_text"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
 
 class Moderateable(models.Model):
@@ -56,7 +53,7 @@ class Moderateable(models.Model):
 
 
 class ModeratorCommentFeedback(UserGeneratedContentModel):
-    feedback_text = RichTextField(
+    feedback_text = CKEditor5Field(
         blank=True,
         verbose_name=_("Moderator feedback"),
     )
