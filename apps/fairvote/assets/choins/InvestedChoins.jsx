@@ -2,7 +2,7 @@ import React from 'react'
 import django from 'django'
 
 const translations = {
-  choins: django.gettext('choins'),
+  choins: django.gettext('Choins'),
   your_investment: django.gettext('Your investment')
 }
 

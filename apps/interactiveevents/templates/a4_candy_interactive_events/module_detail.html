@@ -49,7 +49,7 @@
                         <span class="link--more">{% translate 'Read more' %}</span>
                         <span class="link--less">{% translate 'Read Less' %}</span>
                     </button>
-                {% else %}
+                {% elif module.description != '.' %}
                     {{ module.description|richtext }}
                 {% endif %}
             </div>
@@ -80,7 +80,7 @@
                             <span class="link--more">{% translate 'Read more' %}</span>
                             <span class="link--less">{% translate 'Read Less' %}</span>
                         </button>
-                    {% else %}
+                    {% elif module.phases.first.description != '.' %}
                         {{ module.phases.first.description|richtext }}
                     {% endif %}
                 </div>

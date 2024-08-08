@@ -38,12 +38,15 @@
                     <h1 class="item-detail__title">{{ object.name }}</h1>
                     {% if object|has_feature:"buy" %}
                     <div>
-                        {{ object.choin.first.choins |floatformat:0 }}
+                        {{ object.choin.first.choins |floatformat:0 }}/{{object.choin.first.goal |floatformat:0 }}
                         <i class="fa fa-coins" aria-label="{% translate 'Choins' %}"></i>
                         {% if object.choin.first.missing <= 0 and object.positive_rating_count > 0 %}
-                        goal achieved
+                            goal achieved
                         {% else %}
-                            Required {{object.choin.first.missing |floatformat:0 }} Choins/supporter
+                            <div>
+                                {{object.choin.first.missing |floatformat:0 }}
+                                {% trans 'Choins are missing per supporter' %}
+                            </div>
                         {% endif %}
                     </div>
                     {% endif %}
@@ -88,7 +91,10 @@
                         {% if object|has_feature:"rate"%}
                             <div class="lr-bar__left">
                                 {% if object|has_feature:"buy" %}
-                                    {% react_ratings_choins object %}
+                                    <div class="col">
+                                       {% react_ratings_choins object %} 
+                                    </div>
+                                    
                                 {% else %}
                                     {% react_ratings object %}
                                 {% endif %}

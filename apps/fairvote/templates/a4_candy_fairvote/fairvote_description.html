@@ -1,0 +1,40 @@
+{% load i18n%}
+
+<div class="container">
+<div id="collapsibleContentFV" class="collapse show u-no-transition">
+    <div style="white-space: pre-line;">
+        {% blocktrans %}
+            Participants can submit their own ideas, discuss the ideas of others,
+            and vote for the ideas they support.
+            The ideas are ordered in a fair way.
+            Rather than just ordering them by number of votes, which may be unfair towards minorities,
+            the module uses an algorithm that guarantees to each group a proportional share of the locations on the first page.{% endblocktrans %}
+    </div>
+</div>
+<div id="collapsibleContentFV" class="collapse u-no-transition">
+    <div style="white-space: pre-line;">
+        {% blocktrans %}
+            Participants can submit their own ideas, discuss the ideas of others,
+            and vote for the ideas they support.
+            The ideas are ordered in a fair way.
+            Rather than just ordering them by number of votes, which may be unfair towards minorities,
+            the module uses an algorithm that guarantees to each group a proportional share of the locations on the first page.
+            Fairness is maintained through <strong>choins</strong>.
+            Whenever an idea gets accepted, all users receive choins based on the cost of the accepted idea.
+            If you voted for the idea, you pay your choins to support that idea;  otherwise, you keep the choins.
+            The remaining ideas are ordered according to the number of choins
+            that their supporters need in order to pay their cost.
+            This mechanism guarantees that  no group of users will be ignored for too long.{% endblocktrans %}
+    </div>
+</div>
+<button
+    class="btn--link collapsible    "
+    type="button" data-bs-toggle="collapse"
+    data-bs-target="#collapsibleContentFV"
+    aria-expanded="false"
+    aria-controls="collapseReadLink"
+>
+    <span class="link--more" style="color: royalblue;">{% translate 'Read more' %}</span>
+    <span class="link--less" style="color: royalblue;">{% translate 'Read Less' %}</span>
+</button>
+</div>

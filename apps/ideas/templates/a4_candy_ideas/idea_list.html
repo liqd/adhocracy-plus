@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags %}
+{% load i18n discovery_tags react_user_vote_count%}
 
 {% block project_action %}
     {% has_or_would_have_perm 'a4_candy_ideas.add_idea' request.user module as propose_allowed %}
@@ -13,6 +13,11 @@
 {% block phase_content %}
     <div class="l-top-overlap" id="index">
         <div class="row">
+            {%if request.user.is_authenticated and view.filter.form.ordering.value.0 ==  'choin__order' and page_obj.number == 1%}
+            <div class="col-md-2 col-lg-8 offset-md-1 offset-lg-2">
+                {% react_user_vote_count module %}
+                </div>
+            {%endif%}
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
                 {% include "a4_candy_contrib/includes/filter_and_sort.html" with filter=view.filter %}
             </div>

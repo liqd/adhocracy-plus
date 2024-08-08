@@ -58,7 +58,7 @@ class IdeaSerializer(serializers.ModelSerializer):
     has_commenting_permission = serializers.SerializerMethodField()
     has_changing_permission = serializers.SerializerMethodField()
     has_deleting_permission = serializers.SerializerMethodField()
-    choin_sum = serializers.SerializerMethodField()
+    modified = serializers.SerializerMethodField()
 
     class Meta:
         model = Idea
@@ -81,7 +81,7 @@ class IdeaSerializer(serializers.ModelSerializer):
             "has_commenting_permission",
             "has_changing_permission",
             "has_deleting_permission",
-            "choin_sum",
+            "modified",
         )
         read_only_fields = ("pk", "creator", "created", "reference_number")
 
@@ -158,8 +158,5 @@ class IdeaSerializer(serializers.ModelSerializer):
 
         return super().create(validated_data)
 
-    def get_choin_sum(self, idea):
-        if hasattr(idea, "choin_sum"):
-            return idea.choin_sum
-        else:
-            return 0
+    def get_modified(self, idea: Idea):
+        get_date_display(idea.moderator_feedback_text.modified)

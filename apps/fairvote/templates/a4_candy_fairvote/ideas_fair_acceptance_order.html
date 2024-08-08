@@ -37,6 +37,8 @@
 <h4 class="shift-left">You support {{ideas.voted}} ideas from this list</h4>
 <div class="scrollable-list">
   {% for idea in ideas %}
+  {% include "a4_candy_ideas/includes/idea_list_item.html" with object=idea %}
+<!---
       <div class="idea-card">
         <div class="card-title"><a title="link to idea page" href='{{ idea.url }}'>{{ idea.name }}</a></div>
         <div class="card-info">
@@ -50,7 +52,7 @@
             <p><i class="fa fa-check" style="color: crimson" ></i>Not supported</p>
           {%endif%}
         </div>
-      </div>
+      </div>-->
     {% endfor %}
 </div>
 </div>

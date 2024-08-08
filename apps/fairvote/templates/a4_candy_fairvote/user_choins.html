@@ -1,0 +1,6 @@
+{% load i18n %}
+{% if not user_choins_value == None  %}
+    <div class="rating">
+        {% trans 'Wallet' %}: {{ user_choins_value|floatformat:0 }} {% trans 'Choins' %}
+    </div>
+{% endif %}

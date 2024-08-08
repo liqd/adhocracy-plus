@@ -5,6 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.html import format_html
 
 from adhocracy4.ratings import models as rating_models
+from adhocracy4.rules.discovery import NormalUser
 
 register = template.Library()
 
@@ -14,10 +15,10 @@ def react_ratings_choins(context, obj):
     request = context["request"]
     user = request.user
     contenttype = ContentType.objects.get_for_model(obj)
-    # permission = "a4ratings.rate_idea".format(ct=contenttype)
-    has_rate_permission = True
+    permission = "{ct.app_label}.rate_{ct.model}".format(ct=contenttype)
+    has_rate_permission = user.has_perm(permission, obj)
 
-    would_have_rate_permission = True
+    would_have_rate_permission = NormalUser().would_have_perm(permission, obj)
 
     if user.is_authenticated:
         authenticated_as = user.username

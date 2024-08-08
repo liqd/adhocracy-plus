@@ -12,6 +12,7 @@ from django.db.models import When
 
 from adhocracy4.ratings.models import Rating
 
+from .models import MAX_ACCEPTED_IDEAS
 from .models import Choin
 from .models import ChoinEvent
 from .models import Idea
@@ -19,8 +20,9 @@ from .models import IdeaChoin
 from .models import ProjectChoin
 from .models import UserIdeaChoin
 
-logger = logging.getLogger(__name__)
+logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
 
+logger = logging.getLogger(__name__)
 # User Choin
 
 
@@ -31,11 +33,20 @@ def get_supporters(idea: Idea) -> QuerySet:
     ratings = Rating.objects.filter(idea=idea).filter(value=1)
     logger.info("Ratings count: %s", ratings.count())
     for rating in ratings:
-        logger.info("Rating creator: %s, value: %s", rating.creator, rating.value)
+        logger.debug("Rating creator: %s, value: %s", rating.creator, rating.value)
     return Choin.objects.filter(user__rating__in=ratings, module=idea.module).distinct()
 
 
 # Rating and IdeaChoin
+
+
+def update_idea_goal(idea_choin: IdeaChoin, goal):
+    idea_choin.goal = goal
+    supporters_count = get_supporters(idea_choin.idea).count()
+    idea_choin.missing = calculate_missing_choins(
+        goal, idea_choin.choins, supporters_count
+    )
+    idea_choin.save()
 
 
 def calculate_missing_choins(goal, choins, supporters_count):
@@ -63,24 +74,31 @@ def update_idea_choins_after_rating(idea_id, choins, positive_ratings=None):
     logger.info("supporters count: %s, idea choins: %s", supporters_count, idea_choins)
     obj.missing = calculate_missing_choins(obj.goal, idea_choins, supporters_count)
     obj.save()
+    update_ideas_acceptance_order(idea.module.pk)
 
 
 # Idea Choin
+
+
+def user_vote_count(user):
+    supported_ideas = Idea.objects.filter(rating__user=user).filter(rating__value=1)
+    return supported_ideas.count()
+
+
+def update_ideas_acceptance_order(module_id):
+    fair_acceptance_order(module_id, top=MAX_ACCEPTED_IDEAS)
 
 
 def accept_idea(idea_choin: IdeaChoin):
     """
     Make all required modifications once the current idea is accepted by the admin.
     """
-    if idea_choin.idea.moderator_status != "ACCEPTED":
-        idea_choin.idea.moderator_status = "ACCEPTED"
-        calculate_user_payments_for_accepting_an_idea(idea_choin)
-        project, created = ProjectChoin.objects.get_or_create(
-            project=idea_choin.idea.module.project
-        )
-        project.paid += idea_choin.goal
-        project.save()
-        idea_choin.idea.save()
+    calculate_user_payments_for_accepting_an_idea(idea_choin)
+    project, created = ProjectChoin.objects.get_or_create(
+        project=idea_choin.idea.module.project
+    )
+    project.paid += idea_choin.goal
+    project.save()
 
 
 def add_choin_event_for_a_supporter(
@@ -112,7 +130,11 @@ def add_choin_event_for_a_supporter(
 
 
 def calculate_giveaway_choins(goal, choins_sum, supporters_count):
-    return (goal - choins_sum) / supporters_count if choins_sum < goal else 0
+    return (
+        (goal - choins_sum) / supporters_count
+        if (supporters_count and choins_sum < goal)
+        else 0
+    )
 
 
 def get_users_dont_support(idea_choin: IdeaChoin):
@@ -135,13 +157,11 @@ def calculate_user_payments_for_accepting_an_idea(idea_choin: IdeaChoin):
         idea=idea_choin.idea
     ).choins  # Get the computed choins_sum from the table.
 
-    logger.debug(
-        f"{supporters_count} supporters: {supporters}. choins_sum={choins_sum}"
-    )
+    logger.info(f"{supporters_count} supporters: {supporters}. choins_sum={choins_sum}")
 
     idea_name = idea_choin.idea.name
     idea_url = idea_choin.idea.get_absolute_url()
-
+    giveaway_choins = 0
     if choins_sum <= idea_choin.goal:
         giveaway_choins = calculate_giveaway_choins(
             idea_choin.goal, choins_sum, supporters_count
@@ -158,7 +178,7 @@ def calculate_user_payments_for_accepting_an_idea(idea_choin: IdeaChoin):
                 idea_choin, supporters_count, paid, giveaway_choins, supporter
             )
     else:
-        choins_to_divide = choins_sum / idea_choin.goal
+        choins_to_divide = idea_choin.goal / choins_sum
         for supporter in supporters:
             paid = supporter.choins * choins_to_divide
             supporter.choins -= paid
@@ -272,7 +292,7 @@ def simulate_calculate_user_payments_for_accepting_an_idea(
         "choins"
     ]  # Get the computed choins_sum from the table.
 
-    logger.debug(
+    logger.info(
         "%s supporters: %s. choins_sum= %s", supporters_count, supporters, choins_sum
     )
 
@@ -286,7 +306,7 @@ def simulate_calculate_user_payments_for_accepting_an_idea(
             user_choins = users[username]
             paid = user_choins + giveaway_choins
             users[username] = 0
-            if username == user.username:
+            if user is not None and username == user.username:
                 voted = True
         # users who didn't support
         users_dont_support = get_users_dont_support(idea_choin)
@@ -297,7 +317,7 @@ def simulate_calculate_user_payments_for_accepting_an_idea(
             users[username] += giveaway_choins
 
     else:
-        choins_to_divide = choins_sum / goal
+        choins_to_divide = goal / choins_sum
         for supporter in supporters:
             username = supporter.user.username
             user_choins = users[username]
@@ -338,15 +358,15 @@ def simulate_update_ideas_choins(ideas, users):
     return next_accepted_idea
 
 
-def fair_acceptance_order(module, user=None, top=5):
+def fair_acceptance_order(module_id: int, user=None, top=5):
     """
     Simulate acceptance in the most fair order - for the top `top` ideas of the given module
     """
     # ideas choins qurey set - informaiton like choins,missing choins of each idea
     ideas_qs = IdeaChoin.objects.filter(
-        ~Q(idea__moderator_status="ACCEPTED"), idea__module__id=module
+        ~Q(idea__moderator_status="ACCEPTED"), idea__module__id=module_id
     ).order_by("missing")
-    logger.debug("IDEAS QS: %s", ideas_qs)
+    logger.info("IDEAS QS: %s", ideas_qs)
     # ideas dict - for customize the above information
     ideas = {
         idea_choin.pk: {
@@ -357,11 +377,11 @@ def fair_acceptance_order(module, user=None, top=5):
         }
         for idea_choin in ideas_qs
     }
-    logger.debug("IDEAS: %s", ideas)
+    # logger.info("IDEAS: %s", ideas)
     # users dict - keys: users names, values: users choins
     users = {
         user_choin.user.username: user_choin.choins
-        for user_choin in Choin.objects.filter(module=module)
+        for user_choin in Choin.objects.filter(module=module_id)
     }
     # ideas dict of the future accpeted ideas
     returned_ideas = {}
@@ -371,6 +391,8 @@ def fair_acceptance_order(module, user=None, top=5):
     count = 0
     voted_count = 0
     while count < top and ideas:
+        if next_accepted_idea:
+            count += 1
         simulated_idea_choin = ideas[
             next_accepted_idea.pk
         ]  # get the current simulated idea info
@@ -382,6 +404,16 @@ def fair_acceptance_order(module, user=None, top=5):
             voted_count += 1
         # remove the idea from the ideas dict - this is how we accept here the idea
         accepted_idea = ideas.pop(next_accepted_idea.pk)
+        # save order in db
+        next_accepted_idea.order = count
+        next_accepted_idea.save()
+        logger.info(
+            "%s. (%s)accepted idea: %s",
+            count,
+            next_accepted_idea.order,
+            next_accepted_idea,
+        )
+        # logger.info("accepted idea with the simulate data: %s", accepted_idea)
         returned_ideas[next_accepted_idea.idea.pk] = {
             "choins": next_accepted_idea.choins,
             "cost": next_accepted_idea.goal,
@@ -393,15 +425,25 @@ def fair_acceptance_order(module, user=None, top=5):
         next_idea = simulate_update_ideas_choins(ideas, users)
         # get the idea object for returning the IdeaQureySet object
         print(next_accepted_idea, next_idea)
+        if not next_idea:
+            break
         next_accepted_idea = ideas_qs.get(id=next_idea[0])
-        if next_accepted_idea:
-            count += 1
+        print("for count: ", next_accepted_idea)
 
     # get the IdeaQureySet and annotate the order
-    logger.debug("RETURNED: %s", returned_ideas)
-    from django.db.models import IntegerField
+    logger.info("RETURNED: %s", returned_ideas)
+    logger.info("count RETURNED: %s", len(returned_ideas))
 
-    annotated_ideas = (
+    if ideas:
+        for idea in ideas_qs.filter(pk__in=ideas.keys()).order_by("missing"):
+            count += 1
+            idea.order = count
+            idea.save()
+            print(f"idea {count} - {idea.order}", idea)
+
+    """from django.db.models import IntegerField
+
+    annotated_ideas = IdeaQuerySet(
         Idea.objects.filter(id__in=returned_ideas.keys())
         .annotate(
             custom_order=Case(
@@ -425,7 +467,7 @@ def fair_acceptance_order(module, user=None, top=5):
         idea.cost = values["cost"]
         idea.supporters = values["supporters"]
     annotated_ideas.voted = voted_count
-    return annotated_ideas
+    return annotated_ideas"""
 
 
 """from apps.fairvote.algorithms import order_by_accept_most_fair

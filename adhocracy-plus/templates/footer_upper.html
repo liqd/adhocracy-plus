@@ -12,10 +12,10 @@
                 {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
                 <a href="{{ organisation_url }}" class="navi-link">{{ organisation.name }}</a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 {% url 'organisation-imprint' organisation_slug=organisation.slug as organisation_imprint_url %}
                 <a href="{{ organisation_imprint_url }}" class="navi-link">{% translate 'Imprint' %}</a>
-            </li>
+            </li>-->
             <li class="nav-item">
                 {% url 'organisation-data-protection' organisation_slug=organisation.slug as organisation_data_protection_url %}
                 <a href="{{ organisation_data_protection_url }}" class="navi-link">{% translate 'Data protection policy' %}</a>

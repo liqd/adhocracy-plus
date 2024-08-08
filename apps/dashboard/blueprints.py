@@ -184,7 +184,16 @@ blueprints = [
             description=_(
                 "Participants can submit their own ideas, "
                 "discuss the ideas of others, and "
-                "ideas can be rated (pro/contra) - all at the same phase."
+                "vote for the ideas they support."
+                "The ideas are ordered in a fair way."
+                "Rather than just ordering them by number of votes, which may be unfair towards minorities,"
+                "the module uses an algorithm that guarantees to each group a proportional share of the locations on the first page."
+                "Fairness is maintained through *choins*. "
+                "Whenever  an idea gets accepted, all users receive choins based on the cost of the accepted idea."
+                "If you voted for the idea, you pay your choins to support that idea;  otherwise, you keep the choins."
+                "The remaining ideas are ordered according to the number of choins that their supporters need in order to"
+                "pay their cost."
+                "This mechanism guarantees that  no group of users will be ignored for too long."
             ),
             content=[
                 fairvote_phases.FairVotePhase(),

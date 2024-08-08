@@ -3,11 +3,11 @@ from django.views.generic import ListView
 
 from .algorithms import fair_acceptance_order
 from .algorithms import get_supporters
+from .algorithms import user_vote_count
 from .models import Choin
 from .models import ChoinEvent
 from .models import Idea
 from .models import IdeaChoin
-from .models import ProjectChoin
 from .models import UserIdeaChoin
 
 USER_MODEL = get_user_model()
@@ -27,10 +27,9 @@ class ChoinView:
 
 class ChoinEventListView(ListView):
     model = ChoinEvent
-    template_name = "a4_candy_fairvote/choinevent_list.html"  # Update with your actual template path
     context_object_name = "choinevent_list"
 
-    def get_queryset(self):
+    """def get_queryset(self):
         import json
 
         if self.request.user.is_anonymous:
@@ -46,14 +45,17 @@ class ChoinEventListView(ListView):
         try:
             user_choin = Choin.objects.get(user=self.request.user)
             choinevents.user_paid = user_choin.supported_ideas_paid
-            choinevents.paid = ProjectChoin.objects.get(
+            project_choin = ProjectChoin.objects.get(
                 project=user_choin.module.project
-            ).paid
+            )
+            choinevents.paid = project_choin.paid
+            choinevents.project = project_choin.project
 
         except Choin.DoesNotExist:
             choinevents.user_paid = "unavailable"
             choinevents.paid = "unavailable"
-        return choinevents
+
+        return choinevents"""
 
 
 def accepted_ideas(request, organisation_slug, obj_id):
@@ -123,3 +125,14 @@ def ideas_fair_acceptance_order(request, organisation_slug, obj_id):
     return render(
         request, "a4_candy_fairvote/ideas_fair_acceptance_order.html", context
     )
+
+
+def user_vote_count_fair_order(request):
+    from django.shortcuts import render
+
+    vote_count = user_vote_count(request.user)
+
+    context = {
+        "vote_count": vote_count,
+    }
+    return render(request, "a4_candy_fairvote/user_vote_count.html", context)

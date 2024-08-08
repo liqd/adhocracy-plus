@@ -8,9 +8,9 @@ from . import models
 class FairVotePhase(idea_phases.CollectFeedbackPhase):
     phase = "fair-vote"
 
-    name = _("Collect ideas, get feedback and prioritize")
+    name = _("Suggest ideas and vote for others' ideas")
     description = _(
-        "Create new ideas and get feedback through rates, choins and " "comments."
+        "You can add ideas, discuss them, and vote for them in a single phase."
     )
 
     features = {
