@@ -4,4 +4,9 @@ from adhocracy4.modules import admin as module_admin
 
 from . import models
 
-admin.site.register(models.Idea, module_admin.ItemAdmin)
+
+class IdeaAdmin(module_admin.ItemAdmin):
+    list_display = ("__str__", "creator", "created", "moderator_status")
+
+
+admin.site.register(models.Idea, IdeaAdmin)

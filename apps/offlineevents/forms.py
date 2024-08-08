@@ -7,7 +7,6 @@ from . import models
 
 
 class OfflineEventForm(forms.ModelForm):
-
     date = DateTimeField(
         time_format="%H:%M",
         required=True,

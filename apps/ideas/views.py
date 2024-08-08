@@ -37,6 +37,7 @@ def get_ordering_choices(view):
         choices += (
             ("-choin__choins", _("Most sponsored")),
             ("choin__missing", _("Nearest to goal")),
+            ("choin__order", _("Fair Acceptance Order")),
         )
     choices += (("-comment_count", _("Most commented")),)
     return choices
@@ -51,7 +52,7 @@ class OrderingFilter(a4_filters.DynamicChoicesOrderingFilter):
 
 
 class IdeaFilterSet(a4_filters.DefaultsFilterSet):
-    defaults = {"ordering": "-created"}
+    defaults = {"ordering": "choin__order"}
     category = category_filters.CategoryFilter()
     ordering = OrderingFilter(choices=get_ordering_choices, widget=AplusOrderingWidget)
     search = FreeTextFilter(widget=FreeTextFilterWidget, fields=["name"])

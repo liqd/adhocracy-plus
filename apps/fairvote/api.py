@@ -81,7 +81,7 @@ class IdeaChoinViewSet(viewsets.ModelViewSet):
         Should be called at the first time that a given user rates a given idea.
         """
         try:
-            logger.info(request)
+            logger.info("request: %s", request)
             value = request.data["value"]
             idea_id = request.data["ideaId"]
             user = request.user
@@ -104,7 +104,7 @@ class IdeaChoinViewSet(viewsets.ModelViewSet):
                     content_params=json.dumps(message_params),
                 )
             choins = obj.choins
-            logger.info(choins, user)
+            logger.info("choins: %s, user: %s", choins, user)
             if value == -1:  # NEGATIVE
                 choins = 0
             update_idea_choins_after_rating(idea_id, choins)
@@ -125,7 +125,13 @@ class IdeaChoinViewSet(viewsets.ModelViewSet):
         try:
             old_value = request.data["oldValue"]
             new_value = request.data["newValue"]
-            logger.info("old rating: ", old_value, "new rating: ", new_value)
+            positive_ratings = request.data["positiveRatings"]
+            logger.info(
+                "old rating: %s, new rating: %s, positive ratings: %s",
+                old_value,
+                new_value,
+                positive_ratings,
+            )
             idea_id = request.data["ideaId"]
             user = request.user
             module = Idea.objects.get(pk=idea_id).module
@@ -139,7 +145,7 @@ class IdeaChoinViewSet(viewsets.ModelViewSet):
                 choins *= -1
             elif new_value != 1:
                 return
-            update_idea_choins_after_rating(idea_id, choins)
+            update_idea_choins_after_rating(idea_id, choins, positive_ratings)
 
             return Response(
                 {"message": "choins are updated"}, status=status.HTTP_200_OK

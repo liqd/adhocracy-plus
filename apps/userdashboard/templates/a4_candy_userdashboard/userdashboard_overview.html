@@ -11,7 +11,11 @@
           <span id="sr-following-header" class="visually-hidden">{% trans 'Selection of projects I am following' %}</span>
           {% trans 'Following' %}
         </h2>
-
+        {% if view.projects.count == 1 %}
+          <script>
+           window.location = "{{ view.projects.first.get_absolute_url }}"
+          </script>
+        {% endif %}
         {% if view.projects.count > 2 %}
         <a
           class="btn btn--none float-end px-0"

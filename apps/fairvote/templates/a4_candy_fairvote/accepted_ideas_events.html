@@ -1,0 +1,63 @@
+{% load i18n %}
+<style>
+    .scrollable-list {
+      max-height: 80%; /* Set a fixed height for the notification list */
+      overflow-y: auto; /* Enable vertical scrolling */
+      border: 1px solid #ccc; /* Add a border for styling */
+      padding: 10px;
+      max-width: 70%;
+      margin-left: 15%;
+      margin-right: 15%;
+    }
+  
+    .event-card {
+      border: 1px solid #ccc; /* Add a border for styling */
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow for a card effect */
+      list-style: none; /* Remove default list styles */
+      margin-bottom: 10px; /* Adjust the space between notifications */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .event-info {
+      /* Set the width for the left part of the card */
+      max-width: 80%;
+    }
+
+    .event-actions {
+      width: 20%; /* Set the width for the right part of the card */
+      text-align: right;
+    }
+    .shift-left {
+        margin-left: 10%;
+    }
+</style>
+
+<h3 class="shift-left">{% trans 'Before you joined' %}</h2>
+{% if user_fairvote_modules or use %}
+    <div class="scrollable-list">
+        <ul>      
+            {% for module_id, module in user_fairvote_modules.items %}
+                {% for idea in module.ideas %}
+                
+                    <li class="event-card">
+                        <div class="event-info">
+                            <p>{{ idea.accepted_at }}</p>
+                                <p><i class="fa fa-check" style="color: chocolate;"></i>
+                                    {% blocktrans with url=idea.url name=idea.name cost=idea.goal|floatformat:0 count=idea.supporters_count %}
+                                    Idea accepted! <a href={{url}}>{{ name }}</a>
+                                    cost {{ cost }} choins.<br/>It was funded by {{ count }} supporters.
+                                    <br/>
+                                    {% endblocktrans %}
+                            
+                        </div>
+                    </li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+      {% trans "Nothing to show" %}
+{% endif %}

@@ -6,7 +6,8 @@ from adhocracy4.modules.models import Module
 from apps.ideas.models import Idea
 from apps.projects.models import Project
 
-DEFAULT_GOAL = 150
+MAX_ACCEPTED_IDEAS = 15
+DEFAULT_GOAL = 1000
 
 
 class Choin(models.Model):
@@ -64,6 +65,9 @@ class IdeaChoin(models.Model):
     choins = models.FloatField(blank=True, default=0, verbose_name=_("Choins"))
     missing = models.FloatField(
         blank=True, default=DEFAULT_GOAL, verbose_name=_("Missing Choins")
+    )
+    order = models.IntegerField(
+        blank=True, default=MAX_ACCEPTED_IDEAS + 1, verbose_name=_("order")
     )
 
     def __str__(self):

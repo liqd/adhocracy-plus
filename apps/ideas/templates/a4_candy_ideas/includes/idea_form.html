@@ -1,11 +1,17 @@
-{% load i18n %}
-<form novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
+{% load i18n rules %}
+<form enctype="multipart/form-data" action="{{ request.path }}" method="post">
     {% csrf_token %}
     {{ form.media }}
 
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.name %}
 
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.description %}
+
+    {% has_perm 'a4_candy_modules.is_context_moderator' request.user form.model as is_moderator%}
+    {% if is_moderator %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.goal %}
+    {% endif %}
+
 
     {% if form.show_categories %}
         {% include 'a4_candy_contrib/includes/form_field.html' with field=form.category %}

@@ -4,6 +4,9 @@
 {% block content %}
     <div class="homepage__wrapper">
     {% include "a4_candy_cms_pages/includes/homepage_hero.html" with image=page.random_image title=page.hero_title subtitle=page.hero_subtitle|richtext %}
+        <script>
+            window.location = "/userdashboard/overview/";
+        </script>
         {% if page.body %}
         <div class="p-3">{{ page.body|richtext }}</div>
         {% endif %}

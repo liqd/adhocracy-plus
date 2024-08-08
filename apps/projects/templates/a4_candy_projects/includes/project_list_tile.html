@@ -82,7 +82,7 @@
                 </span>
                 {% has_perm 'a4projects.participate_in_project' request.user project as user_may_participate_in_project %}
                 {% if user_may_participate_in_project %}
-                    <span class="list-item__cta list-item__hover">{% translate 'JOIN IN' %}</span>
+                    <span class="list-item__cta list-item__hover">{% translate 'SHOW MORE' %}</span>
                 {% else %}
                     <span class="list-item__cta list-item__hover">{% translate 'READ' %}</span>
                 {% endif %}

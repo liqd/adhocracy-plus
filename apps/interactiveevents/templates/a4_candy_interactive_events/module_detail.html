@@ -49,8 +49,8 @@
                         <span class="link--more">{% translate 'Read more' %}</span>
                         <span class="link--less">{% translate 'Read Less' %}</span>
                     </button>
-                {% else %}
-                    {{ module.description }}
+                {% elif module.description != '.' %}
+                    {{ module.description|richtext }}
                 {% endif %}
             </div>
             <div class="phase-info__item u-no-border">
@@ -80,8 +80,8 @@
                             <span class="link--more">{% translate 'Read more' %}</span>
                             <span class="link--less">{% translate 'Read Less' %}</span>
                         </button>
-                    {% else %}
-                        {{ module.phases.first.description }}
+                    {% elif module.phases.first.description != '.' %}
+                        {{ module.phases.first.description|richtext }}
                     {% endif %}
                 </div>
             </div>

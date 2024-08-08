@@ -2,7 +2,7 @@
 {% load absolute_url contrib_tags i18n organisation_tags static wagtailimages_tags wagtailsettings_tags wagtailuserbar %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_organisation as ORGANISATION %}
-<html lang="{{ LANGUAGE_CODE }}">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'he' %}rtl{% else %}ltr{% endif %}">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

@@ -35,6 +35,7 @@ class ChoinAdmin(admin.ModelAdmin):
 
 @admin.register(models.IdeaChoin)
 class IdeaChoinAdmin(admin.ModelAdmin):
+    list_display = ("idea", "choins", "order")
     ordering = ["-choins"]
     actions = [
         "update_ideas_choins",
