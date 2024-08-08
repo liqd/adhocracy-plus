@@ -92,13 +92,22 @@ comment_router.register(
 
 urlpatterns = [
     # General platform urls
-    re_path(r"^django-admin/", admin.site.urls),
-    path("admin/", include("wagtail.admin.urls")),
-    path("documents/", include(wagtaildocs_urls)),
-    path("accounts/", include("allauth.urls")),
+    re_path(r"^django-admin/", admin.site.urls),   # https://aplus.csariel.xyz/django-admin/
+    path("admin/", include("wagtail.admin.urls")), # https://aplus.csariel.xyz/admin/
+    path("documents/", include(wagtaildocs_urls)), # https://aplus.csariel.xyz/admin/documents/ ?
+
+
+    path("accounts/", include("allauth.urls")),       # https://github.com/pennersr/django-allauth/blob/main/allauth/urls.py
+        # https://aplus.csariel.xyz/accounts/login/   # https://github.com/pennersr/django-allauth/blob/main/allauth/account/urls.py
+        # https://aplus.csariel.xyz/accounts/logout/ 
+        # https://aplus.csariel.xyz/accounts/inactive/ 
+
     path("account/", include("apps.account.urls")),
+        # https://aplus.csariel.xyz/account
+        # https://aplus.csariel.xyz/account/profile
+
     path("profile/", include("apps.users.urls")),
-    path("userdashboard/", include("apps.userdashboard.urls")),
+    path("userdashboard/", include("apps.userdashboard.urls")),  # https://aplus.csariel.xyz/userdashboard/overview/
     path("i18n/", include(i18n)),
     # API urls
     path("api/", include(ct_router.urls)),
@@ -177,7 +186,7 @@ urlpatterns = [
             ]
         ),
     ),
-    path("sitemap.xml", static_sitemap_index, name="static-sitemap-index"),
+    path("sitemap.xml", static_sitemap_index, name="static-sitemap-index"),  # https://aplus.csariel.xyz/sitemap.xml
     path("sitemap-wagtail.xml", wagtail_sitemap, name="wagtail-sitemap"),
     path(
         "sitemap-organisations.xml",
@@ -215,8 +224,20 @@ if settings.DEBUG:
         ] + urlpatterns
 
 
+from django.views.generic.base import RedirectView
+
+class HomePageView(RedirectView):
+    permanent = False
+    pattern_name = "accounts_login"  # redirect home page to accounts/login
+
+
 # generic patterns at the very end
 urlpatterns += [
-    path("", include("apps.organisations.urls")),
-    path("", include("wagtail.urls")),
+    path("", include("apps.organisations.urls")),    # /<organization_slug>/
+
+    # path("", include("wagtail.urls")),             # /  
+        # https://aplus.csariel.xyz/_util/login/
+
+    path("", HomePageView.as_view()),                 # /  
+
 ]

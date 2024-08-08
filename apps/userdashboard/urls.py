@@ -4,16 +4,16 @@ from django.urls import re_path
 from . import views
 
 urlpatterns = [
-    path('overview/',
+    path('overview/',     # https://aplus.csariel.xyz/userdashboard/overview/ 
          views.UserDashboardOverviewView.as_view(),
          name='userdashboard-overview'),
-    path('moderation/',
+    path('moderation/',   # https://aplus.csariel.xyz/userdashboard/moderation/
          views.UserDashboardModerationView.as_view(),
          name='userdashboard-moderation'),
-    path('overview/activities/',
+    path('overview/activities/',   # https://aplus.csariel.xyz/userdashboard/overview/activities/
          views.UserDashboardActivitiesView.as_view(),
          name='userdashboard-activities'),
-    path('overview/following/',
+    path('overview/following/',    # https://aplus.csariel.xyz/userdashboard/overview/following
          views.UserDashboardFollowingView.as_view(),
          name='userdashboard-following'),
     re_path(r'^moderation/detail/(?P<slug>[-\w_]+)/$',

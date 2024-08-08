@@ -18,14 +18,14 @@ from .emails import AccountDeletionEmail
 
 class AccountView(RedirectView):
     permanent = False
-    pattern_name = "account_profile"
+    pattern_name = "account_profile"  # redirect account/ to account/profile
     # Placeholder View to be replaced if we want to use a custom account
     # dashboard function overview.
 
 
 class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     model = User
-    template_name = "a4_candy_account/profile.html"
+    template_name = "a4_candy_account/profile.html"  # under apps/account/templates/a4_candy_account/profile.html
     form_class = forms.ProfileForm
     success_message = _("Your profile was successfully updated.")
 
