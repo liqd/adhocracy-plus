@@ -134,10 +134,12 @@
 }
 
 .a4-comments__action-bar-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
+    @media screen and (min-width: $breakpoint) {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+    }
 }
 
 .a4-comments__action-bar {
@@ -151,6 +153,10 @@
 
     &:first-child {
         margin-left: 0 !important;
+    }
+
+    i {
+        margin-right: 0.4em;
     }
 }
 
