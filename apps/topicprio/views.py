@@ -139,7 +139,7 @@ class TopicUpdateView(
 class TopicDeleteView(
     mixins.DashboardBaseMixin,
     mixins.DashboardComponentMixin,
-    mixins.DashboardComponentDeleteSignalMixin,
+    mixins.DashboardComponentFormSignalMixin,
     idea_views.AbstractIdeaDeleteView,
 ):
     model = models.Topic

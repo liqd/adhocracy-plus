@@ -101,7 +101,7 @@ class OfflineEventDeleteView(
     ProjectMixin,
     mixins.DashboardBaseMixin,
     mixins.DashboardComponentMixin,
-    mixins.DashboardComponentDeleteSignalMixin,
+    mixins.DashboardComponentFormSignalMixin,
     generic.DeleteView,
 ):
     model = models.OfflineEvent
