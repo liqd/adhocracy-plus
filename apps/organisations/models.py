@@ -213,7 +213,7 @@ class Organisation(TranslatableModel):
             projects.annotate(project_start=min_module_start)
             .annotate(project_end=max_module_end)
             .filter(project_end__lt=now)
-            .order_by("project_start")
+            .order_by("-project_end")
         )
 
         return sorted_active_projects, sorted_future_projects, sorted_past_projects

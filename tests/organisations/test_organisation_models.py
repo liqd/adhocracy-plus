@@ -146,53 +146,47 @@ def test_has_org_member(member, user_factory):
 def test_get_projects_list(
     module_factory, organisation, phase_factory, project_factory, admin, user
 ):
-    pro1 = project_factory(organisation=organisation)
-    pro2 = project_factory(organisation=organisation)
-    pro3 = project_factory(access=Access.PRIVATE, organisation=organisation)
-    pro4 = project_factory(access=Access.PRIVATE, organisation=organisation)
-    pro5 = project_factory(organisation=organisation)
-
-    module1 = module_factory(project=pro1)
-    module2 = module_factory(project=pro2)
-    module3 = module_factory(project=pro3)
-    module4 = module_factory(project=pro4)
-    module5 = module_factory(project=pro5)
-    module6 = module_factory(project=pro5)
+    project_active1 = project_factory(organisation=organisation)
+    project_active2 = project_factory(organisation=organisation)
+    project_future1 = project_factory(organisation=organisation)
+    project_future2 = project_factory(access=Access.PRIVATE, organisation=organisation)
+    project_past1 = project_factory(access=Access.PRIVATE, organisation=organisation)
+    project_past2 = project_factory(organisation=organisation)
 
     phase_factory(
-        module=module1,
+        module__project=project_active1,
         start_date=parse("2013-01-01 17:10:00 UTC"),
         end_date=parse("2013-01-01 19:05:00 UTC"),
     )
 
     phase_factory(
-        module=module2,
-        start_date=parse("2013-01-01 19:05:00 UTC"),
-        end_date=parse("2013-01-01 20:00:00 UTC"),
-    )
-
-    phase_factory(
-        module=module3,
+        module__project=project_active2,
         start_date=parse("2013-01-01 17:50:00 UTC"),
         end_date=parse("2013-01-01 20:00:00 UTC"),
     )
 
     phase_factory(
-        module=module4,
+        module__project=project_future1,
+        start_date=parse("2013-01-01 19:05:00 UTC"),
+        end_date=parse("2013-01-01 20:00:00 UTC"),
+    )
+
+    phase_factory(
+        module__project=project_future2,
+        start_date=parse("2013-01-01 19:25:00 UTC"),
+        end_date=parse("2013-01-01 20:15:00 UTC"),
+    )
+
+    phase_factory(
+        module__project=project_past1,
         start_date=parse("2013-01-01 14:50:00 UTC"),
         end_date=parse("2013-01-01 17:00:00 UTC"),
     )
 
     phase_factory(
-        module=module5,
+        module__project=project_past2,
         start_date=parse("2013-01-01 17:10:00 UTC"),
         end_date=parse("2013-01-01 17:30:00 UTC"),
-    )
-
-    phase_factory(
-        module=module6,
-        start_date=parse("2013-01-01 18:10:00 UTC"),
-        end_date=parse("2013-01-01 19:05:00 UTC"),
     )
 
     with freeze_time(parse("2013-01-01 18:00:00 UTC")):
@@ -203,8 +197,11 @@ def test_get_projects_list(
 
         assert projects_list
         assert len(active_projects) == 2
+        # assert sorting: earliest end date -> latest end date
+        assert active_projects[0] == project_active1
+        assert active_projects[1] == project_active2
         assert len(future_projects) == 1
-        assert not past_projects
+        assert len(past_projects) == 1
 
         projects_list = organisation.get_projects_list(admin)
         active_projects = projects_list[0]
@@ -212,6 +209,17 @@ def test_get_projects_list(
         past_projects = projects_list[2]
 
         assert projects_list
-        assert len(active_projects) == 3
-        assert len(future_projects) == 1
-        assert len(past_projects) == 1
+        assert len(active_projects) == 2
+        # assert sorting: earliest end date -> latest end date
+        assert active_projects[0] == project_active1
+        assert active_projects[1] == project_active2
+
+        assert len(future_projects) == 2
+        # assert sorting: earliest start date -> latest start date
+        assert future_projects[0] == project_future1
+        assert future_projects[1] == project_future2
+
+        assert len(past_projects) == 2
+        # assert sorting: latest end date ->  earliest end date
+        assert past_projects[0] == project_past2
+        assert past_projects[1] == project_past1
