@@ -1,12 +1,3 @@
-// icon in module categories dropdown
-.dropdown-item__icon {
-    max-width: 2 * $spacer;
-}
-
-.dropdown-toggle > .dropdown-item__icon {
-    display: none;
-}
-
 // bootstrap overwrites
 .dropdown-menu {
     position: relative;
@@ -53,5 +44,21 @@
 
     @media print {
         display: none;
+    }
+}
+
+// icon in module categories dropdown
+.dropdown-item__icon {
+    max-width: 2 * $spacer;
+}
+
+.dropdown-toggle > .dropdown-item__icon {
+    display: none;
+}
+
+// comments customization
+.a4-comments__dropdown {
+    .dropdown-item {
+        padding: 0;
     }
 }
