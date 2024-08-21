@@ -61,6 +61,7 @@ class IdeaForm(
             obj, created = Choin.objects.get_or_create(
                 user=idea.creator, module=idea.module
             )
+            update_ideas_acceptance_order(idea.module)
             if created:
                 message = f"You joined module '{idea.module.name}' - project '{idea.module.project.name}'"
 

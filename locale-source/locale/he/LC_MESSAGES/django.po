@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 10:57+0300\n"
+"POT-Creation-Date: 2024-08-08 15:12+0300\n"
 "PO-Revision-Date: 2024-07-02 15:20+0300\n"
 "Last-Translator: Oriya Alperin <oriya2011@gmail.com>\n"
 "Language-Team: Hebrew <LL@li.org>\n"
@@ -26,6 +26,9 @@ msgid ""
 "categories. If you create any, each contribution has to be assigned\n"
 "to one of them. This way, content can be classified."
 msgstr ""
+"בסעיף זה תוכל/י ליצור "
+"קטגוריות. אם תיצור/י קטגוריות, כל תרומה חייבת להיות משויכת "
+"לאחת מהן. כך ניתן לסווג את התוכן."
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
@@ -178,6 +181,7 @@ msgstr "יצירת טיוטה"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
+#: apps/account/templates/a4_candy_account/account_deletion.html:48
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:31
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:14
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
@@ -232,7 +236,7 @@ msgstr "פרטי"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:131
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:133
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
 #: apps/projects/templates/a4_candy_projects/project_detail.html:141
@@ -307,8 +311,8 @@ msgstr "חיפוש"
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: apps/contrib/templates/a4_candy_contrib/includes/form_checkbox_field.html:6
 #: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
-#: adhocracy-plus/templates/account/signup.html:27
-#: adhocracy-plus/templates/account/signup.html:36
+#: adhocracy-plus/templates/account/signup.html:33
+#: adhocracy-plus/templates/account/signup.html:44
 #: adhocracy-plus/templates/socialaccount/signup.html:31
 msgid "This field is required"
 msgstr "שדה נדרש"
@@ -397,28 +401,28 @@ msgstr "קטגוריות"
 msgid "Edit categories"
 msgstr "עריכת קטגוריות"
 
-#: adhocracy4/categories/fields.py:11
+#: adhocracy4/categories/fields.py:10
 #: adhocracy4/categories/filters.py:16
-#: adhocracy4/categories/forms.py:52
-#: adhocracy4/categories/models.py:34
+#: adhocracy4/categories/forms.py:53
+#: adhocracy4/categories/models.py:24
 #: adhocracy4/exports/mixins/items.py:24
 msgid "Category"
 msgstr "קטגוריה"
 
-#: adhocracy4/categories/forms.py:46
+#: adhocracy4/categories/forms.py:47
 #: adhocracy4/labels/forms.py:23
 msgid "Category name"
 msgstr "שם קטגוריה"
 
-#: adhocracy4/categories/forms.py:47
+#: adhocracy4/categories/forms.py:48
 msgid "Category icon"
 msgstr "אייקון קטגוריה"
 
-#: adhocracy4/categories/models.py:36
+#: adhocracy4/categories/models.py:26
 msgid "Type of category"
 msgstr "סוג קטגוריה"
 
-#: adhocracy4/categories/models.py:38
+#: adhocracy4/categories/models.py:28
 msgid ""
 "You can individualise the term category. The character limit is max. 25 "
 "characters (with spaces)."
@@ -426,19 +430,19 @@ msgstr ""
 "ניתן להתאים אישית את המונח קטגוריה. מגבלת התווים היא מקסימום 25 תווים (כולל "
 "רווחים)."
 
-#: adhocracy4/categories/models.py:46
+#: adhocracy4/categories/models.py:36
 msgid ""
 "Assign your proposal to a category. This automatically appears in the "
 "display of your proposal. The list of all proposals can be filtered by "
 "category."
 msgstr ""
 
-#: adhocracy4/categories/models.py:52
+#: adhocracy4/categories/models.py:42
 #: adhocracy4/labels/models.py:29
 msgid "Description/Helptext"
 msgstr "תיאור/טקסט עזר"
 
-#: adhocracy4/categories/models.py:54
+#: adhocracy4/categories/models.py:44
 #: adhocracy4/labels/models.py:31
 msgid ""
 "You can individualise the description text. The description text is "
@@ -508,8 +512,8 @@ msgid "Edit basic settings"
 msgstr "עריכת הגדרות בסיסיות"
 
 #: adhocracy4/dashboard/dashboard.py:23
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:4
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:19
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:15
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:30
 #: apps/projects/templates/a4_candy_projects/project_detail.html:88
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:24
 msgid "Information"
@@ -583,14 +587,14 @@ msgstr "כן"
 
 #: adhocracy4/dashboard/forms.py:80
 msgid "All users can participate (public)."
-msgstr ""
+msgstr "כל המשתמשים יכולים להשתתף (ציבורי)."
 
 #: adhocracy4/dashboard/forms.py:83
 msgid "Only invited users can participate (private)."
 msgstr "רק משתתפים שהוזמנו יכולים להשתתף (פרטי)"
 
 #: adhocracy4/dashboard/forms.py:91
-#: apps/projects/templates/a4_candy_projects/project_detail.html:158
+#: apps/projects/templates/a4_candy_projects/project_detail.html:160
 msgid "Contact for questions"
 msgstr "איש קשר לשאלות"
 
@@ -600,26 +604,54 @@ msgid ""
 "this project and to whom they can address possible questions. The contact "
 "person will be shown in the information tab on the project page."
 msgstr ""
+"אנא ציין/י איש קשר. המשתמש ידע אז מי מבצע את הפרויקט "
+"ולמי ניתן לפנות עם שאלות אפשריות. איש הקשר יוצג בכרטיס המידע "
+"בעמוד הפרויקט."
 
 #: adhocracy4/dashboard/forms.py:99
 msgid "More contact possibilities"
 msgstr ""
 
-#: adhocracy4/dashboard/forms.py:144
+#: adhocracy4/dashboard/forms.py:114
+msgid ""
+"The project description will be shown in the info-tab. If you add an image, "
+"please provide an alternate text. It serves as a textual description of the "
+"image content and is read out by screen readers. Describe the image in "
+"approx. 80 characters. Example: A busy square with people in summer."
+msgstr ""
+"תיאור הפרויקט יופיע בכרטיס המידע. אם תוסיף/י תמונה, "
+"אנא ספק/י טקסט חלופי. הטקסט משמש כתיאור טקסטואלי של תוכן התמונה ונקרא "
+"על ידי קוראי מסך. תאר/י את התמונה ב־80 תווים בערך. דוגמה: כיכר הומה עם אנשים בקיץ."
+
+#: adhocracy4/dashboard/forms.py:134
+msgid ""
+"The results description will be shown in the result-tab. Please describe a "
+"participation promise beforehand (what will happen with the outcome?) and "
+"inform afterwards about the outcome. If you add an image, please provide an "
+"alternate text. It serves as a textual description of the image content and "
+"is read out by screen readers. Describe the image in approx. 80 characters. "
+"Example: A busy square with people in summer."
+msgstr ""
+"תיאור התוצאות יוצג בכרטיס התוצאות. אנא תאר/י הבטחת השתתפות מראש "
+"(מה יקרה עם התוצאה?) ומידע לאחר מכן על התוצאה. אם תוסיף/י תמונה, "
+"אנא ספק/י טקסט חלופי. הטקסט משמש כתיאור טקסטואלי של תוכן התמונה ונקרא "
+"על ידי קוראי מסך. תאר/י את התמונה ב־80 תווים בערך. דוגמה: כיכר הומה עם אנשים בקיץ."
+
+#: adhocracy4/dashboard/forms.py:165
 #: adhocracy4/phases/models.py:66
 msgid "End date"
-msgstr ""
+msgstr "תאריך סיום"
 
-#: adhocracy4/dashboard/forms.py:144
+#: adhocracy4/dashboard/forms.py:165
 msgid "End time"
 msgstr "שעת סיום"
 
-#: adhocracy4/dashboard/forms.py:150
+#: adhocracy4/dashboard/forms.py:171
 #: adhocracy4/phases/models.py:64
 msgid "Start date"
 msgstr "תאריך התחלה"
 
-#: adhocracy4/dashboard/forms.py:150
+#: adhocracy4/dashboard/forms.py:171
 msgid "Start time"
 msgstr "שעת התחלה"
 
@@ -707,12 +739,12 @@ msgstr "תווית מיקום"
 
 #: adhocracy4/exports/mixins/items.py:43
 #: adhocracy4/labels/dashboard.py:13
-#: apps/ideas/models.py:46 apps/topicprio/models.py:50
+#: apps/ideas/models.py:46 apps/topicprio/models.py:53
 msgid "Labels"
 msgstr "תוויות"
 
 #: adhocracy4/exports/mixins/items.py:61
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:85
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:87
 msgid "Reference No."
 msgstr "אזכור מספר "
 
@@ -781,7 +813,7 @@ msgstr "זכויות יוצרים מוצגים ב{image_name}."
 #: adhocracy4/images/fields.py:103
 #, python-brace-format
 msgid "{image_name} alt text"
-msgstr ""
+msgstr "{image_name} טקסט חלופי"
 
 #: adhocracy4/images/fields.py:106
 msgid ""
@@ -802,41 +834,45 @@ msgstr "אנא הוסיפו מידע אודות זכויות יוצרים"
 msgid "Please add an alternative text for this image"
 msgstr "אנא הוסיפו טקסט חלופי לתמונה זו"
 
-#: adhocracy4/images/validators.py:26
+#: adhocracy4/images/validators.py:28
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "פורמט קובץ לא נתמך. הפורמטים הנתמכים: {}"
 
-#: adhocracy4/images/validators.py:33
-#: apps/organisations/forms.py:362
+#: adhocracy4/images/validators.py:35
+#: apps/organisations/forms.py:357
 #, python-brace-format
 msgid "Image should be at most {max_size} MB"
 msgstr "גודל תמונה לכל היותר {max_size} MB"
 
-#: adhocracy4/images/validators.py:41
-#: apps/organisations/forms.py:370
+#: adhocracy4/images/validators.py:43
+#: apps/organisations/forms.py:365
 #, python-brace-format
 msgid "Image must be at least {min_width} pixels wide"
 msgstr "רוחב תמונה לפחות {min_width} פיקסלים"
 
-#: adhocracy4/images/validators.py:49
-#: apps/organisations/forms.py:380
+#: adhocracy4/images/validators.py:51
+#: apps/organisations/forms.py:375
 #, python-brace-format
 msgid "Image must be at least {min_height} pixels high"
 msgstr "גובה תמונה לפחות {min_height} פיקסלים"
 
-#: adhocracy4/images/validators.py:55
+#: adhocracy4/images/validators.py:57
 #, python-brace-format
 msgid "Image must be at most {max_width} pixels wide"
 msgstr "רוחב תמונה לכל היותר {max_width} פיקסלים"
 
-#: adhocracy4/images/validators.py:58
+#: adhocracy4/images/validators.py:60
 #, python-brace-format
 msgid "Image must be at most {max_height} pixels high"
 msgstr "אורך תמונה לכל היותר {max_height} פיקסלים"
 
-#: adhocracy4/images/validators.py:67
+#: adhocracy4/images/validators.py:69
 #, python-brace-format
 msgid "Image aspect ratio should be {aspect_width}:{aspect_height}"
+msgstr ""
+
+#: adhocracy4/images/validators.py:87
+msgid "Please add an alternative text for all images."
 msgstr ""
 
 #: adhocracy4/images/widgets.py:28
@@ -903,79 +939,79 @@ msgstr ""
 msgid "Modified"
 msgstr "השתנה"
 
-#: adhocracy4/modules/models.py:74
+#: adhocracy4/modules/models.py:72
 msgid "Title of the module"
 msgstr "כותרת המודול"
 
-#: adhocracy4/modules/models.py:76
+#: adhocracy4/modules/models.py:74
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
 msgstr "כותרת זו תופיע בדפי ציר הזמן, המודול  ופרטי הפרויקט. מקסימום 512 תווים"
 
-#: adhocracy4/modules/models.py:85
+#: adhocracy4/modules/models.py:83
 msgid "Short description of the module"
 msgstr "תיאור קצר של הפרויקט"
 
-#: adhocracy4/modules/models.py:87
+#: adhocracy4/modules/models.py:85
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
-msgstr "תיאור קצר זה יופי בדפי המודול  ופרטי הפרויקט. מקסימום 512 תווים"
+msgstr "תיאור קצר זה יופיע בדפי המודול  ופרטי הפרויקט. מקסימום 512 תווים"
 
-#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:222
 msgid "day"
 msgstr "יום"
 
-#: adhocracy4/modules/models.py:224
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:222
+#: adhocracy4/modules/models.py:229
 msgid "days"
 msgstr "ימים"
 
-#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:223
 msgid "hour"
 msgstr "שעה"
 
-#: adhocracy4/modules/models.py:225
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:223
+#: adhocracy4/modules/models.py:230
 msgid "hours"
 msgstr "שעות"
 
-#: adhocracy4/modules/models.py:226
+#: adhocracy4/modules/models.py:224
 msgid "minute"
 msgstr "דקה"
 
-#: adhocracy4/modules/models.py:226
-#: adhocracy4/modules/models.py:233
+#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:231
 msgid "minutes"
 msgstr "דקות"
 
-#: adhocracy4/modules/models.py:227
+#: adhocracy4/modules/models.py:225
 msgid "second"
 msgstr "שניה"
 
-#: adhocracy4/modules/models.py:227
-#: adhocracy4/modules/models.py:234
+#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:232
 msgid "seconds"
 msgstr "שניות"
 
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:229
 msgctxt "abbreviation for day(s)"
 msgid "D"
 msgstr "י"
 
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:230
 msgctxt "abbreviation for hour(s)"
 msgid "H"
 msgstr "שע"
 
-#: adhocracy4/modules/models.py:233
+#: adhocracy4/modules/models.py:231
 msgctxt "abbreviation for minute(s)"
 msgid "M"
 msgstr "ד"
 
-#: adhocracy4/modules/models.py:234
+#: adhocracy4/modules/models.py:232
 msgctxt "abbreviation for second(s)"
 msgid "S"
 msgstr "שנ"
@@ -996,9 +1032,9 @@ msgstr "שם"
 
 #: adhocracy4/phases/models.py:60
 #: apps/activities/models.py:22 apps/debate/models.py:25
-#: apps/ideas/models.py:34 apps/offlineevents/models.py:36
-#: apps/organisations/forms.py:322 apps/topicprio/forms.py:14
-#: apps/topicprio/models.py:32
+#: apps/ideas/models.py:34 apps/offlineevents/models.py:33
+#: apps/organisations/forms.py:317 apps/topicprio/forms.py:23
+#: apps/topicprio/models.py:34
 msgid "Description"
 msgstr "תיאור"
 
@@ -1130,13 +1166,13 @@ msgid "Only one vote per choice is allowed per user."
 msgstr "רק הצבעה אחת לבחירה מותרת לכל משתמש"
 
 #: adhocracy4/projects/admin.py:10
-#: apps/newsletters/forms.py:38
+#: apps/newsletters/forms.py:48
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "פרויקט"
 
 #: adhocracy4/projects/admin.py:63
-#: apps/projects/admin.py:38
+#: apps/projects/admin.py:34
 msgid "Information and result"
 msgstr "מידע ותוצאה"
 
@@ -1144,17 +1180,17 @@ msgstr "מידע ותוצאה"
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:44
+#: apps/projects/admin.py:40
 msgid "Settings"
 msgstr "הגדרות"
 
 #: adhocracy4/projects/admin.py:81
-#: apps/projects/admin.py:58
+#: apps/projects/admin.py:54
 msgid "Images"
 msgstr ""
 
 #: adhocracy4/projects/admin.py:93
-#: apps/projects/admin.py:70 adhocracy-plus/templates/email_base.html:112
+#: apps/projects/admin.py:66 adhocracy-plus/templates/email_base.html:112
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
 msgstr "יצירת קשר"
@@ -1167,7 +1203,7 @@ msgstr "ציבורי"
 msgid "Final Results"
 msgstr "תוצאות סופיות"
 
-#: adhocracy4/projects/models.py:42
+#: adhocracy4/projects/models.py:63
 msgid ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
@@ -1175,58 +1211,60 @@ msgstr ""
 "מספר טלפון יכול להכיל רק מספרים, רווחים ואת התווים האים: -, +, (, ). אורכו "
 "צריך להיות בין 8 ל20 תווים."
 
-#: adhocracy4/projects/models.py:49
+#: adhocracy4/projects/models.py:70
 msgid "Postal address"
 msgstr "כתובת לדיוור"
 
-#: adhocracy4/projects/models.py:52
+#: adhocracy4/projects/models.py:73
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
-#: apps/projects/templates/a4_candy_projects/project_detail.html:170
+#: apps/projects/templates/a4_candy_projects/project_detail.html:172
 msgid "Email"
 msgstr "אימייל"
 
-#: adhocracy4/projects/models.py:55
+#: adhocracy4/projects/models.py:76
 msgid "Contact person"
 msgstr "איש קשר"
 
-#: adhocracy4/projects/models.py:59
+#: adhocracy4/projects/models.py:80
 msgid "Phone"
 msgstr "טלפון"
 
-#: adhocracy4/projects/models.py:62
-#: apps/projects/templates/a4_candy_projects/project_detail.html:175
+#: adhocracy4/projects/models.py:83
+#: apps/projects/templates/a4_candy_projects/project_detail.html:177
 msgid "Website"
 msgstr "אתר"
 
-#: adhocracy4/projects/models.py:72
+#: adhocracy4/projects/models.py:93
 msgid "Can your project be located on the map?"
 msgstr "האם ניתן למקם את הפרויקט שלך על מפה?"
 
-#: adhocracy4/projects/models.py:74
+#: adhocracy4/projects/models.py:95
 msgid ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
 msgstr ""
 
-#: adhocracy4/projects/models.py:86
+#: adhocracy4/projects/models.py:107
 msgid "Administrative district"
 msgstr ""
 
-#: adhocracy4/projects/models.py:174
+#: adhocracy4/projects/models.py:195
 msgid "Title of your project"
 msgstr "כותרת פרויקט"
 
-#: adhocracy4/projects/models.py:176
+#: adhocracy4/projects/models.py:197
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
 msgstr ""
+"הכותרת הזו תופיע בכרטיס הטריילר ובחלק העליון של עמוד פרטי הפרויקט. "
+"עליה להיות באורך מקסימלי של 120 תווים."
 
-#: adhocracy4/projects/models.py:189
+#: adhocracy4/projects/models.py:210
 msgid "Short description of your project"
 msgstr "תיאור קצר של הפרויקט"
 
-#: adhocracy4/projects/models.py:191
+#: adhocracy4/projects/models.py:212
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -1234,74 +1272,50 @@ msgstr ""
 "תיאור קצר זה יופיע בראש דף הפרויקט ובטיזר. יש לציין בקצרה את מטרת הפרויקט. "
 "מקסימום 250 תווים."
 
-#: adhocracy4/projects/models.py:200
+#: adhocracy4/projects/models.py:221
 msgid "Description of your project"
 msgstr "תיאור פרויקט"
 
-#: adhocracy4/projects/models.py:202
-msgid ""
-"This description should tell participants what the goal of the project is, "
-"how the project’s participation will look like. It will be always visible in "
-"the „Info“ tab on your project’s page."
-msgstr ""
-
-#: adhocracy4/projects/models.py:211
+#: adhocracy4/projects/models.py:227
 msgid "Results of your project"
 msgstr "תוצאות הפרויקט שלך"
 
-#: adhocracy4/projects/models.py:213
-msgid ""
-"Here you should explain what the expected outcome of the project will be and "
-"how you are planning to use the results. If the project is finished you "
-"should add a summary of the results."
-msgstr ""
-"כאן צריך להוסיף הסבר מה תוצאות הפרויקט יהיו ואיך אתם מתכוונים להשתמש "
-"בתוצאות. אם הפרויקט הסתיים יש להוסיף את סיכום התוצאות."
-
-#: adhocracy4/projects/models.py:220
+#: adhocracy4/projects/models.py:231
 msgid "Access to the project"
 msgstr "גישה לפרויקט"
 
-#: adhocracy4/projects/models.py:225
-#: adhocracy4/projects/models.py:231
-#: adhocracy4/projects/models.py:232
-#: apps/organisations/models.py:97
+#: adhocracy4/projects/models.py:236
+#: adhocracy4/projects/models.py:242
+#: adhocracy4/projects/models.py:243
+#: apps/organisations/models.py:96
 msgid "Header image"
 msgstr "תמונה עליונה"
 
-#: adhocracy4/projects/models.py:226
-#: apps/organisations/models.py:98
+#: adhocracy4/projects/models.py:237
+#: apps/organisations/models.py:97
 msgid "The image will be shown as a decorative background image."
 msgstr "התמונה תוצג כתמונת רקע."
 
-#: adhocracy4/projects/models.py:235
-#: adhocracy4/projects/models.py:241
-#: adhocracy4/projects/models.py:242
+#: adhocracy4/projects/models.py:246
+#: adhocracy4/projects/models.py:252
+#: adhocracy4/projects/models.py:253
 msgid "Tile image"
 msgstr "תמונה תחתונה"
 
-#: adhocracy4/projects/models.py:236
+#: adhocracy4/projects/models.py:247
 msgid "The image will be shown in the project tile."
 msgstr "התמונה תוצג בחלק התחתון של הפרויקט."
 
-#: adhocracy4/projects/models.py:255
+#: adhocracy4/projects/models.py:266
 msgid "Project is archived"
 msgstr "הפרויקט הועבר לארכיון"
 
-#: adhocracy4/projects/models.py:257
+#: adhocracy4/projects/models.py:268
 msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
 msgstr ""
 "פרויקטים בארכיון לא מוצגים בסקירה. ליזמי הפרויקט הם עדיין מוצגים בדאשבורד."
-
-#: adhocracy4/projects/models.py:263
-msgid "Project topics"
-msgstr "נושאי פרויקט"
-
-#: adhocracy4/projects/models.py:263
-msgid "Add topics to your project."
-msgstr "הוספת נושאים לפרויקט "
 
 #: adhocracy4/projects/utils.py:46
 msgid "{}. Online Participation"
@@ -1312,11 +1326,17 @@ msgid "Online Participation"
 msgstr "השתתפות אונליין"
 
 #: adhocracy4/reports/templatetags/react_reports.py:28
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:142
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:144
 msgid "Report"
 msgstr "דיווח"
 
-#: apps/account/forms.py:63 apps/organisations/mixins.py:58
+#: apps/account/forms.py:50
+#: adhocracy-plus/templates/account/password_change.html:22
+#: adhocracy-plus/templates/account/password_change.html:28
+msgid "Password"
+msgstr "סיסמא"
+
+#: apps/account/forms.py:71 apps/organisations/mixins.py:58
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr "כן, קראתי את {}תנאי השימוש{} של הארגון והסכמתי עליהם."
 
@@ -1353,9 +1373,54 @@ msgstr "חשבונות מקושרים"
 msgid "User Agreements"
 msgstr "הסכמי משתמש"
 
+#: apps/account/templates/a4_candy_account/account_dashboard.html:57
+#: apps/account/templates/a4_candy_account/account_deletion.html:12
+#: apps/account/templates/a4_candy_account/account_deletion.html:36
+msgid "Delete account"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_deletion.html:6
 #: apps/account/templates/a4_candy_account/profile.html:5
 msgid "Your user profile"
 msgstr "פרופיל המשתמש שלך"
+
+#: apps/account/templates/a4_candy_account/account_deletion.html:13
+msgid ""
+"Please note that deleting your account will result in the permanent removal "
+"of all associated data and content, including your comments, ideas & votes."
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_deletion.html:14
+msgid ""
+"\n"
+"            To confirm your identity, please enter your password to proceed:"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_deletion.html:44
+msgid "Are you sure you want to delete your account?"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/account_deletion.html:49
+msgid "Delete Account"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:5
+#, python-format
+msgid "Confirmation: Deletion of Your Account on %(platformname)s"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:6
+#, python-format
+msgid "Your account on %(platformname)s has been deleted"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/emails/account_deleted.en.email:39
+#: adhocracy-plus/templates/account/email/email_confirmation.en.email:17
+#, python-format
+msgid ""
+"This email was sent to %(receiver)s. If you have any further questions, "
+"please contact us via %(contact_email)s"
+msgstr ""
 
 #: apps/account/templates/a4_candy_account/profile.html:7
 msgid "Your profile"
@@ -1372,11 +1437,15 @@ msgstr "שמירת שינויים"
 msgid "Here you can edit all your agreements"
 msgstr "כאן ניתן לערוך את כל ההסכמים שלך"
 
-#: apps/account/views.py:27
+#: apps/account/views.py:30
 msgid "Your profile was successfully updated."
 msgstr "הפרופיל שלך עודכן בהצלחה."
 
-#: apps/account/views.py:49
+#: apps/account/views.py:52
+msgid "Your account was successfully deleted."
+msgstr ""
+
+#: apps/account/views.py:77
 msgid "Your agreements were successfully updated."
 msgstr "ההסכמים שלך עודכנו בהצלחה."
 
@@ -1461,7 +1530,7 @@ msgid ""
 msgstr ""
 "\n"
 "                <a href=\"%(comment_url)s\">התגובה</a> שלך קיבלה <a "
-"href=\"%(feedback_url)s\">משוב</a> ממנחה\n"
+"href=\"%(feedback_url)s\">משוב</a> ממנהל\n"
 "                "
 
 #: apps/actions/templates/a4_candy_actions/includes/reaction.html:35
@@ -1473,7 +1542,7 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                מנחה עדכנ/ה <a href=\"%(feedback_url)s\">משוב</a> על ה<a "
+"                מנהל/ת עדכנ/ה <a href=\"%(feedback_url)s\">משוב</a> על ה<a "
 "href=\"%(comment_url)s\">תגובה</a> שלך\n"
 "                "
 
@@ -1493,8 +1562,8 @@ msgid "Face-to-Face Information"
 msgstr ""
 
 #: apps/activities/models.py:12 apps/debate/models.py:20
-#: apps/ideas/models.py:33 apps/offlineevents/models.py:24
-#: apps/organisations/forms.py:313 apps/topicprio/models.py:30
+#: apps/ideas/models.py:33 apps/offlineevents/models.py:25
+#: apps/organisations/forms.py:308 apps/topicprio/models.py:31
 msgid "Title"
 msgstr "כותרת"
 
@@ -1546,7 +1615,7 @@ msgstr ""
 msgid "Post ideas with budget proposals, comment on them and rate them."
 msgstr ""
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:548
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:536
 msgid "participatory budgeting"
 msgstr ""
 
@@ -1724,31 +1793,31 @@ msgstr ""
 msgid "Your answer to the captcha was wrong."
 msgstr ""
 
-#: apps/cms/contacts/models.py:34 apps/users/forms.py:45
+#: apps/cms/contacts/models.py:35 apps/users/forms.py:48
 msgid "I am not a robot"
 msgstr "אני לא רובוט"
 
-#: apps/cms/contacts/models.py:36
+#: apps/cms/contacts/models.py:37
 msgid "If you are having difficulty please contactus, details adjacent"
 msgstr ""
 
-#: apps/cms/contacts/models.py:135
+#: apps/cms/contacts/models.py:136
 msgid "I want to receive a copy of my message"
 msgstr "אני רוצה לקבל העתק של ההודעה שלי"
 
-#: apps/cms/contacts/models.py:145
+#: apps/cms/contacts/models.py:146
 msgid "Your message"
 msgstr "ההודעה שלך"
 
-#: apps/cms/contacts/models.py:156
+#: apps/cms/contacts/models.py:157
 msgid "Your email address"
 msgstr "כתובת האימייל שלך"
 
-#: apps/cms/contacts/models.py:167
+#: apps/cms/contacts/models.py:168
 msgid "Your telephone number"
 msgstr "מספר הטלפון שלך"
 
-#: apps/cms/contacts/models.py:178
+#: apps/cms/contacts/models.py:179
 msgid "Your name"
 msgstr "שמך"
 
@@ -1832,23 +1901,23 @@ msgstr "ראש התמונה: "
 msgid "Please look {}here{} for more information."
 msgstr "אנא הסתכלו {}כאן{} לעוד מידע."
 
-#: apps/cms/use_cases/models.py:22
+#: apps/cms/use_cases/models.py:23
 msgid "Municipalities"
 msgstr ""
 
-#: apps/cms/use_cases/models.py:23
+#: apps/cms/use_cases/models.py:24
 msgid "Citizen Assemblies"
 msgstr ""
 
-#: apps/cms/use_cases/models.py:24
+#: apps/cms/use_cases/models.py:25
 msgid "Associations & NGOs"
 msgstr ""
 
-#: apps/cms/use_cases/models.py:25
+#: apps/cms/use_cases/models.py:26
 msgid "Companies & Co-Operatives"
 msgstr ""
 
-#: apps/cms/use_cases/models.py:26
+#: apps/cms/use_cases/models.py:27
 msgid "Politicians"
 msgstr "פוליטיקאים"
 
@@ -2024,12 +2093,12 @@ msgstr "מטבעות-בחירה"
 msgid "Choins are missing per supporter"
 msgstr "מטבעות חסרים עבור תומך"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:117
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:126
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:119
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:128
 msgid "Actions"
 msgstr "פעולות"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:133
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:135
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:24
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:25
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:24
@@ -2038,12 +2107,12 @@ msgstr "פעולות"
 msgid "Delete"
 msgstr "מחיקה"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:137
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:139
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:4
 msgid "Give feedback"
 msgstr "מתן משוב"
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:159
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:161
 msgid "Official Feedback"
 msgstr "משוב רשמי"
 
@@ -2330,7 +2399,7 @@ msgstr "דונו איתנו!"
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:49
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:80
 msgid "Read more"
-msgstr "קראו עוד"
+msgstr "קרא/י עוד"
 
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:4
 msgid "Confirm Subject Deletion"
@@ -2384,7 +2453,7 @@ msgstr "פרסום תגובות על פסקאות הטקסט"
 msgid "Table of Contents"
 msgstr "תוכן עניינים"
 
-#: apps/documents/templates/a4_candy_documents/chapter_detail.html:53
+#: apps/documents/templates/a4_candy_documents/chapter_detail.html:55
 #, python-format
 msgid "%(count)s Comment"
 msgid_plural "%(count)s Comments"
@@ -2411,7 +2480,7 @@ msgstr "פרק הבא"
 msgid "back to chapter"
 msgstr "בחזרה לפרק"
 
-#: apps/documents/views.py:65
+#: apps/documents/views.py:72
 msgid "Document has no chapters defined."
 msgstr "לא הוגדרו פרקים למסמך"
 
@@ -2627,7 +2696,7 @@ msgstr ""
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:50
 #: apps/interactiveevents/templates/a4_candy_interactive_events/module_detail.html:81
 msgid "Read Less"
-msgstr "קרא/י עוד"
+msgstr "קרא/י פחות"
 
 #: apps/fairvote/templates/a4_candy_fairvote/project_tabs.html:13
 #: apps/projects/templates/a4_candy_projects/project_detail.html:99
@@ -2642,46 +2711,46 @@ msgid "History"
 msgstr "היסטוריה"
 
 #: apps/fairvote/templates/a4_candy_fairvote/project_tabs.html:47
-#: apps/projects/templates/a4_candy_projects/project_detail.html:194
+#: apps/projects/templates/a4_candy_projects/project_detail.html:196
 msgid "Online participation"
 msgstr "השתתפות אונליין"
 
 #: apps/fairvote/templates/a4_candy_fairvote/project_tabs.html:92
-#: apps/projects/templates/a4_candy_projects/project_detail.html:246
+#: apps/projects/templates/a4_candy_projects/project_detail.html:248
 #: adhocracy-plus/templates/a4modules/module_detail.html:112
 msgid "Participation is not possible at the moment."
 msgstr "השתתפות אינה אפשרית כרגע."
 
 #: apps/fairvote/templates/a4_candy_fairvote/project_tabs.html:95
-#: apps/projects/templates/a4_candy_projects/project_detail.html:249
+#: apps/projects/templates/a4_candy_projects/project_detail.html:251
 #: adhocracy-plus/templates/a4modules/module_detail.html:115
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "מתחיל ב %(date)s."
 
 #: apps/fairvote/templates/a4_candy_fairvote/project_tabs.html:98
-#: apps/projects/templates/a4_candy_projects/project_detail.html:252
+#: apps/projects/templates/a4_candy_projects/project_detail.html:254
 #: adhocracy-plus/templates/a4modules/module_detail.html:118
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "ממשיך ב %(date)s."
 
 #: apps/fairvote/templates/a4_candy_fairvote/project_tabs.html:101
-#: apps/projects/templates/a4_candy_projects/project_detail.html:255
+#: apps/projects/templates/a4_candy_projects/project_detail.html:257
 #: adhocracy-plus/templates/a4modules/module_detail.html:121
 #, python-format
 msgid "It ended on %(date)s."
 msgstr "מסתיים ב %(date)s."
 
 #: apps/fairvote/templates/a4_candy_fairvote/project_tabs.html:116
-#: apps/projects/templates/a4_candy_projects/project_detail.html:270
+#: apps/projects/templates/a4_candy_projects/project_detail.html:272
 #: apps/users/models.py:53
 #: adhocracy-plus/templates/a4modules/module_detail.html:136
 msgid "active"
 msgstr "פעיל"
 
 #: apps/fairvote/templates/a4_candy_fairvote/project_tabs.html:142
-#: apps/projects/templates/a4_candy_projects/project_detail.html:298
+#: apps/projects/templates/a4_candy_projects/project_detail.html:300
 #: adhocracy-plus/templates/a4modules/module_detail.html:160
 msgid ""
 "This project is not publicly visible. Only invited users can see content and "
@@ -2691,20 +2760,20 @@ msgstr ""
 "פעיל."
 
 #: apps/fairvote/templates/a4_candy_fairvote/project_tabs.html:146
-#: apps/projects/templates/a4_candy_projects/project_detail.html:302
+#: apps/projects/templates/a4_candy_projects/project_detail.html:304
 #: adhocracy-plus/templates/a4modules/module_detail.html:166
 msgid ""
 "This project is publicly visible. Invited users can actively participate."
 msgstr "פרויקט זה הינו ציבורי. משתתפים שהוזמנו יכולים להשתתף באופן פעיל."
 
 #: apps/fairvote/templates/a4_candy_fairvote/project_tabs.html:169
-#: apps/projects/templates/a4_candy_projects/project_detail.html:324
+#: apps/projects/templates/a4_candy_projects/project_detail.html:326
 #: adhocracy-plus/templates/a4dashboard/includes/project_result_form.html:4
 msgid "Insights"
 msgstr ""
 
 #: apps/fairvote/templates/a4_candy_fairvote/project_tabs.html:192
-#: apps/projects/templates/a4_candy_projects/project_detail.html:347
+#: apps/projects/templates/a4_candy_projects/project_detail.html:349
 msgid "No results yet."
 msgstr "אין תוצאות עדיין."
 
@@ -2716,14 +2785,14 @@ msgstr "ארנק"
 #, python-format
 msgid ""
 "\n"
-"            You support %(vote_count)s ideas from this list\n"
+"            You support %(vote_count)s ideas on the first page\n"
 "        "
 msgstr ""
 "\n"
-"            תמכת ב%(vote_count)s רעיונות מרשימה זו\n"
+"            את/ה תומכ/ת ב-%(vote_count)s רעיונות בעמוד הראשון\n"
 "        "
 
-#: apps/ideas/models.py:37 apps/topicprio/models.py:36
+#: apps/ideas/models.py:37 apps/topicprio/models.py:39
 msgid "Add image"
 msgstr "הוספת תמונה"
 
@@ -3017,6 +3086,12 @@ msgstr "ניתן לבחור הגדרה מראש לצורך התאמה אישית
 msgid "Moderator feedback for items with fixed feedback choices"
 msgstr "משוב מנהל עבור פריטים עם אפשרויות משוב קבועות"
 
+#: apps/moderatorfeedback/forms.py:13
+msgid ""
+"The official feedback will appear below the idea, indicating your "
+"organisation. The idea provider receives a notification."
+msgstr "המשוב הרשמי יופיע מתחת לרעיון.יוצר הרעיון יקבל התראה."
+
 #: apps/moderatorfeedback/models.py:12
 msgid "Under consideration"
 msgstr "תחת שיקול"
@@ -3033,17 +3108,11 @@ msgstr "התקבל"
 msgid "Official feedback"
 msgstr "משוב רשמי"
 
-#: apps/moderatorfeedback/models.py:23
-msgid ""
-"The official feedback will appear below the idea, indicating your "
-"organisation. The idea provider receives a notification."
-msgstr "המשוב הרשמי יופיע מתחת לרעיון.יוצר הרעיון יקבל התראה."
-
-#: apps/moderatorfeedback/models.py:38
+#: apps/moderatorfeedback/models.py:35
 msgid "Processing status"
 msgstr "סטטוס תהליך"
 
-#: apps/moderatorfeedback/models.py:40
+#: apps/moderatorfeedback/models.py:37
 msgid ""
 "The editing status appears below the title of the idea in red, yellow or "
 "green. The idea provider receives a notification."
@@ -3051,13 +3120,13 @@ msgstr ""
 "הסטטוס שנערך יופיע מתחת לכותרת הרעיון באדום, צהוב או ירוק. יוצר הרעיון יקבל "
 "התראה."
 
-#: apps/moderatorfeedback/models.py:61
+#: apps/moderatorfeedback/models.py:58
 msgid "Moderator feedback"
-msgstr "משוב מנחה"
+msgstr "משוב מנהל"
 
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:15
 msgid "Moderator remark"
-msgstr "הערת מנחה"
+msgstr "הערת מנהל"
 
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:22
 msgid "Write down your remark!"
@@ -3067,31 +3136,40 @@ msgstr "כתבו למטה את הערתכם!"
 msgid "Note only visible internally within project."
 msgstr "הערה גלויה רק פנימית בתוך הפרויקט."
 
-#: apps/newsletters/forms.py:41
+#: apps/newsletters/forms.py:29
+msgid ""
+"If you add an image, please ensure to set the width no larger than 650px and "
+"to provide an alternate text of the image. An alternate text serves as a "
+"textual description of the image content and is read out by screen readers. "
+"Describe the image in approx. 80 characters. Example: A busy square with "
+"people in summer."
+msgstr ""
+
+#: apps/newsletters/forms.py:51
 msgid "Receivers are all users which follow the following project:"
 msgstr "הנמענים הם כל המשתמשים שמעקב אחרי הפרויקט הבא:"
 
-#: apps/newsletters/forms.py:45
+#: apps/newsletters/forms.py:55
 msgid "Organisation"
 msgstr "ארגון"
 
-#: apps/newsletters/forms.py:56
+#: apps/newsletters/forms.py:66
 msgid "Select a Project"
 msgstr "בחר/י פרויקט"
 
-#: apps/newsletters/models.py:19
+#: apps/newsletters/models.py:20
 msgid "Users following a specific project"
 msgstr " משתמשים העוקבים אחרי פרויקט מסוים"
 
-#: apps/newsletters/models.py:20
+#: apps/newsletters/models.py:21
 msgid "Users following your organisation"
 msgstr "משתמשים העוקבים אחרי הארגון שלך"
 
-#: apps/newsletters/models.py:21
+#: apps/newsletters/models.py:22
 msgid "Every initiator of your organisation"
 msgstr "כל יוזם בארגון שלך"
 
-#: apps/newsletters/models.py:22
+#: apps/newsletters/models.py:23
 msgid "Every user of the platform"
 msgstr "כל משתמש בפלטפורה"
 
@@ -3103,16 +3181,11 @@ msgstr "שולח"
 msgid "Email body"
 msgstr "תוכן האימייל"
 
-#: apps/newsletters/models.py:36
-msgid ""
-"When adding images, please ensure to set the width no larger than 600px."
-msgstr "בעת הוספת תמונות, יש לוודא שהרוחב לא יעלה על 600 פיקסלים."
-
-#: apps/newsletters/models.py:40
+#: apps/newsletters/models.py:37
 msgid "Sent"
 msgstr "נשלח"
 
-#: apps/newsletters/models.py:43
+#: apps/newsletters/models.py:40
 msgid "Receivers"
 msgstr "נמענים"
 
@@ -3131,7 +3204,7 @@ msgstr "ניוזלטר"
 
 #: apps/newsletters/templates/a4_candy_newsletters/restricted_newsletter_dashboard_form.html:8
 msgid "Create Newsletter"
-msgstr "יצירת ניוזלט"
+msgstr "יצירת ניוזלטר"
 
 #: apps/newsletters/views.py:57
 msgid "Newsletter has been saved and will be sent to the recipients."
@@ -3515,26 +3588,34 @@ msgstr ""
 msgid "Offline Events"
 msgstr "אירועי אופליין"
 
-#: apps/offlineevents/forms.py:15 apps/offlineevents/models.py:34
+#: apps/offlineevents/forms.py:14 apps/offlineevents/models.py:30
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:8
 msgid "Date"
 msgstr "תאריך"
 
-#: apps/offlineevents/forms.py:15
+#: apps/offlineevents/forms.py:14
 msgid "Time"
 msgstr "זמן"
 
-#: apps/offlineevents/models.py:27
-msgid "Event type"
-msgstr "סוג אירוע"
+#: apps/offlineevents/forms.py:22 apps/topicprio/forms.py:30
+msgid ""
+"If you add an image, please provide an alternate text. It serves as a "
+"textual description of the image content and is read out by screen readers. "
+"Describe the image in approx. 80 characters. Example: A busy square with "
+"people in summer."
+msgstr ""
 
-#: apps/offlineevents/models.py:29
+#: apps/offlineevents/forms.py:29
 msgid ""
 "The content of this field is shown in the timeline. It should have no more "
 "than 30 characters e.g. Information event or 3rd public workshop."
 msgstr ""
 "התוכן של שדה זה מוצג בציר הזמן. זה צריך לכלול לא יותר מ־30 תווים, לדוגמה: "
 "אירוע מידע או הסדנה הציבורית ה־3."
+
+#: apps/offlineevents/models.py:28
+msgid "Event type"
+msgstr "סוג אירוע"
 
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:4
 msgid "Confirm Offline Event Deletion"
@@ -3574,75 +3655,77 @@ msgstr "עריכת אירוע אופליין"
 msgid "The offline event has been deleted"
 msgstr "אירוע האופליין נמחק"
 
-#: apps/organisations/forms.py:17
+#: apps/organisations/forms.py:16
 msgid "Here you can find an example of an {}imprint{}."
 msgstr "כאן ניתן למצוא דוגמא ל{}חותם{}."
 
-#: apps/organisations/forms.py:18
+#: apps/organisations/forms.py:17
 msgid "Here you can find an example of {}terms of use{}."
 msgstr "כאן ניתן למצוא דוגמא ל{}תנאי שימוש{}."
 
-#: apps/organisations/forms.py:20
+#: apps/organisations/forms.py:19
 msgid "Here you can find an example of a {}data protection policy{}."
 msgstr "כאן ניתן למצוא דוגמא ל{}מדיניות הגנת מידע{}."
 
-#: apps/organisations/forms.py:22
+#: apps/organisations/forms.py:21
 msgid "Here you can find an example of a {}netiquette{}."
 msgstr ""
 
-#: apps/organisations/forms.py:34
+#: apps/organisations/forms.py:33
 msgid "Instagram Post 1080x1080"
 msgstr "פוסט אינסטגרם 1080x1080"
 
-#: apps/organisations/forms.py:35
+#: apps/organisations/forms.py:34
 msgid "Instagram Story 1080x1920"
 msgstr "סטורי אינסטגרם 1080x1920"
 
-#: apps/organisations/forms.py:36
+#: apps/organisations/forms.py:35
 msgid "Linkedin 1104x736"
 msgstr "לינקדאין 1104x736"
 
-#: apps/organisations/forms.py:37
+#: apps/organisations/forms.py:36
 msgid "Twitter 1200x675"
 msgstr "טוויטר 1200x675"
 
-#: apps/organisations/forms.py:281
+#: apps/organisations/forms.py:277
 #: adhocracy-plus/templates/a4dashboard/communication_form_base.html:23
 msgid "Social Media"
 msgstr "רשת חברתית"
 
-#: apps/organisations/forms.py:285
+#: apps/organisations/forms.py:281
 msgid ""
 "Here you can create sharepics for social media that will help you get "
 "publicity for your project. You can choose between different formats."
 msgstr ""
+"כאן תוכל/י ליצור תמונות לשיתוף ברשתות החברתיות שיעזרו לך לקבל חשיפה לפרויקט "
+"שלך. תוכל/י לבחור בין פורמטים שונים."
 
-#: apps/organisations/forms.py:292
+#: apps/organisations/forms.py:288
 msgid "Select Project"
 msgstr "בחירת פרויקט"
 
-#: apps/organisations/forms.py:297
+#: apps/organisations/forms.py:293
 msgid "Please select a project of your organisation and click select."
 msgstr "אנא בחרו פרויקט של הארגון שלכם ולחצו על בחירה."
 
-#: apps/organisations/forms.py:316
+#: apps/organisations/forms.py:311
 msgid ""
 "This title will be displayed as a header. It should be max. {} characters "
 "long."
 msgstr "כותרת זו מוצגת בראש הדף. היא צריכה להיות מקסימום {} תווים "
 
-#: apps/organisations/forms.py:325
+#: apps/organisations/forms.py:320
 msgid ""
 "This description will be displayed below the title. It should briefly state "
 "the goal of the project in max. {} chars."
 msgstr ""
 "תיאור זה יוצג מתחת לכותרת. יש לציין בקצרה  את מטרת הפרויקט במקסימום {} תווים."
 
-#: apps/organisations/forms.py:332
+#: apps/organisations/forms.py:327
 msgid "Picture Upload"
 msgstr "העלאת תמונה"
 
-#: apps/organisations/forms.py:336
+#: apps/organisations/forms.py:331
 msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
@@ -3662,30 +3745,30 @@ msgid ""
 "content."
 msgstr "נא להסכים לתנאי השימוש של הארגון כדי לקבל הרשאה ליצירת תוכן."
 
-#: apps/organisations/models.py:26
+#: apps/organisations/models.py:25
 msgid "Title of your organisation"
 msgstr "כותרת הארגון שלך"
 
-#: apps/organisations/models.py:29
+#: apps/organisations/models.py:28
 msgid ""
 "The title of your organisation will be shown on the landing page. max. 100 "
 "characters"
 msgstr "כותרת הארגון שלך תופיע בדף הנחיתה. מקסימום 100 תווים"
 
-#: apps/organisations/models.py:37
+#: apps/organisations/models.py:36
 msgid "Short description of your organisation"
 msgstr "תיאור קצר של הארגון שלך"
 
-#: apps/organisations/models.py:39
+#: apps/organisations/models.py:38
 msgid ""
 "The description will be displayed on the landing page. max. 800 characters"
 msgstr "תיאור הארגון שלך תופיע בדף הנחיתה. מקסימום 800 תווים"
 
-#: apps/organisations/models.py:47
+#: apps/organisations/models.py:46
 msgid "Slogan"
 msgstr "סלוגן"
 
-#: apps/organisations/models.py:49
+#: apps/organisations/models.py:48
 msgid ""
 "The slogan will be shown below the title of your organisation on the landing "
 "page. The slogan can provide context or additional information to the title. "
@@ -3694,11 +3777,11 @@ msgstr ""
 "הסלוגן יוצג מתחת לכותרת הארגון שלך בדף הנחיתה. הסלוגן יכול לספק הקשר או מידע "
 "נוסף לכותרת. מקסימום 200 תווים"
 
-#: apps/organisations/models.py:60
+#: apps/organisations/models.py:59
 msgid "Information about your organisation"
 msgstr "מידע על הארגון שלך"
 
-#: apps/organisations/models.py:62
+#: apps/organisations/models.py:61
 msgid ""
 "You can provide general information about your participation platform to "
 "your visitors. It’s also helpful to name a general person of contact for "
@@ -3708,11 +3791,11 @@ msgstr ""
 "ניתן לספק מידע בסיסי על פלטפורמת ההשתתפות שלך למבקריך. מומלץ לנקוב באיש קשר "
 "לפניות. המידע יוצג בדף \"אודות\" נפרד שאליו ניתן להגיע דרך התפריט הראשי."
 
-#: apps/organisations/models.py:75
+#: apps/organisations/models.py:74
 msgid "Logo"
 msgstr "לוגו"
 
-#: apps/organisations/models.py:77
+#: apps/organisations/models.py:76
 msgid ""
 "The Logo representing your organisation. The image must be square and it "
 "should be min. 200 pixels wide and 200 pixels tall and max. 800 pixels wide "
@@ -3722,19 +3805,19 @@ msgstr ""
 "הלוגו מייצג את הארגון שלך. התמונה חייבת להיות מרובעת, ברוחב ובאורך של "
 "200-800 פיקסלים. פורמטים אפשריים: png, jpeg, gif. גודל הקובץ מקסימום 5 MB."
 
-#: apps/organisations/models.py:92
+#: apps/organisations/models.py:91
 msgid "Please enter a full url which starts with https:// or http://"
 msgstr "אנא הכניסו כתובת url שלמה המתחילה בhttps:// או http://"
 
-#: apps/organisations/models.py:104
+#: apps/organisations/models.py:103
 msgid "Header image copyright"
 msgstr "זכויות יוצרים בראש התמונה"
 
-#: apps/organisations/models.py:106
+#: apps/organisations/models.py:105
 msgid "Author, which is displayed in the header image."
 msgstr "מחבר, המוצג בראש התמונה"
 
-#: apps/organisations/models.py:124
+#: apps/organisations/models.py:123
 #: apps/organisations/templates/a4_candy_organisations/organisation_imprint.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_imprint.html:16
 #: adhocracy-plus/templates/email_base.html:75
@@ -3744,16 +3827,16 @@ msgstr "מחבר, המוצג בראש התמונה"
 msgid "Imprint"
 msgstr "חותם"
 
-#: apps/organisations/models.py:126
+#: apps/organisations/models.py:125
 msgid ""
 "Please provide all the legally required information of your imprint. The "
 "imprint will be shown on a separate page."
 msgstr "אנא ספק/י את כל המידע הנדרש לפי החוק עבור החותם. החותם תוצג בדף נפרד."
 
-#: apps/organisations/models.py:133
+#: apps/organisations/models.py:132
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:36 apps/users/forms.py:190
+#: apps/users/forms.py:39 apps/users/forms.py:193
 #: adhocracy-plus/templates/email_base.html:79
 #: adhocracy-plus/templates/email_base.html:109
 #: adhocracy-plus/templates/footer.html:43
@@ -3761,7 +3844,7 @@ msgstr "אנא ספק/י את כל המידע הנדרש לפי החוק עבו�
 msgid "Terms of use"
 msgstr "תנאי שימוש"
 
-#: apps/organisations/models.py:135
+#: apps/organisations/models.py:134
 msgid ""
 "Please provide all the legally required information of your terms of use. "
 "The terms of use will be shown on a separate page."
@@ -3769,14 +3852,14 @@ msgstr ""
 "אנא ספקו את כל המידע החוקי הדרוש על תנאי השימוש שלכם. תנאי השימוש יוצגו בדף "
 "נפרד."
 
-#: apps/organisations/models.py:142
+#: apps/organisations/models.py:141
 #: adhocracy-plus/templates/email_base.html:106
 #: adhocracy-plus/templates/footer.html:48
 #: adhocracy-plus/templates/footer_upper.html:21
 msgid "Data protection policy"
 msgstr "מדיניות הגנת מידע"
 
-#: apps/organisations/models.py:144
+#: apps/organisations/models.py:143
 msgid ""
 "Please provide all the legally required information of your data protection. "
 "The data protection policy will be shown on a separate page."
@@ -3784,7 +3867,7 @@ msgstr ""
 "אנא ספקו את כל המידע החוקי הדרוש על הגנת המידע שלכם. מדיניות הגנת המידע תוצג "
 "בדף נפרד."
 
-#: apps/organisations/models.py:152
+#: apps/organisations/models.py:151
 #: apps/organisations/templates/a4_candy_organisations/organisation_netiquette.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_netiquette.html:16
 #: adhocracy-plus/templates/footer.html:53
@@ -3792,7 +3875,7 @@ msgstr ""
 msgid "Netiquette"
 msgstr "כללי התנהגות"
 
-#: apps/organisations/models.py:154
+#: apps/organisations/models.py:153
 msgid ""
 "Please provide a netiquette for the participants. The netiquette helps "
 "improving the climate of online discussions and supports the moderation."
@@ -3800,21 +3883,21 @@ msgstr ""
 "אנא ספק/י כללי התנהגות רשת (netiquette) עבור המשתתפים. הכללים עוזרים לשפר את "
 "האווירה של דיונים אונליין ותומכים בניהול."
 
-#: apps/organisations/models.py:162
+#: apps/organisations/models.py:161
 msgid "is a supporting organisation"
 msgstr "הוא ארגון תומך"
 
-#: apps/organisations/models.py:164
+#: apps/organisations/models.py:163
 msgid ""
 "For supporting organisations, the banner asking for donations is not "
 "displayed on their pages."
 msgstr "עבור ארגונים תומכים, הבאנר המבקש תרומות לא מוצג בדפים שלהם."
 
-#: apps/organisations/models.py:169
+#: apps/organisations/models.py:168
 msgid "Default language for e-mails"
 msgstr "שפת ברירת-מחדל עבור אימיילים."
 
-#: apps/organisations/models.py:174
+#: apps/organisations/models.py:173
 msgid ""
 "All e-mails to unregistered users (invites) will be sent in this language."
 msgstr "כל האימיילים הנשלחים למשתמשים לא רשומים (שהוזמנו) ישלחו בשפה זו."
@@ -3875,11 +3958,11 @@ msgstr "נהל/י כאן את תוכן הדף שלך בשפות הרצויות. 
 msgid "Edit your legal information"
 msgstr "עריכת המידע המשפטי שלך"
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:27
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:40
 msgid "More about "
 msgstr "עוד אודות "
 
-#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:28
+#: apps/organisations/templates/a4_candy_organisations/organisation_information.html:41
 msgid "Find us on social media and share your insights of this participation."
 msgstr "מצא/י אותנו ברשתות החברתיות ושתף/י את התובנות שלך לגבי השתתפות זו."
 
@@ -3933,11 +4016,11 @@ msgstr "מידע הארגון התעדכן בהצלחה."
 msgid "Legal information successfully updated."
 msgstr "מידע משפטי עודכן בהצלחה."
 
-#: apps/projects/admin.py:12
+#: apps/projects/admin.py:8
 msgid "archive"
 msgstr "העברה לארכיון"
 
-#: apps/projects/admin.py:19
+#: apps/projects/admin.py:13
 msgid "dearchive"
 msgstr "הסרה מארכיון"
 
@@ -4001,10 +4084,11 @@ msgstr "שאלות אירוע אינטראקטיבי"
 
 #: apps/projects/models.py:156
 msgid ""
-"This session will provide you with valuable insights\n"
-"            into the number of individuals involved in the process\n"
-"            and help you make informed decisions based on the data"
+"This section provides an overview of the participation\n"
+"            activities in this project."
 msgstr ""
+"סעיף זה מספק סקירה של פעילויות ההשתתפות "
+"בפרויקט זה."
 
 #: apps/projects/serializers.py:95
 #, python-format
@@ -4276,7 +4360,7 @@ msgstr "המשך להתחברות"
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:24
 #: adhocracy-plus/templates/account/signup.html:4
 #: adhocracy-plus/templates/account/signup.html:7
-#: adhocracy-plus/templates/account/signup.html:69
+#: adhocracy-plus/templates/account/signup.html:70
 #: adhocracy-plus/templates/socialaccount/signup.html:49
 msgid "Register"
 msgstr "הרשמה"
@@ -4343,13 +4427,13 @@ msgstr ""
 msgid "This project is not yet published."
 msgstr "פרויקט זה עדיין לא פורסם."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:166
+#: apps/projects/templates/a4_candy_projects/project_detail.html:168
 msgid "Telephone"
 msgstr "טלפון"
 
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:7
 msgid "Edit Moderators"
-msgstr "עריכת מנחים"
+msgstr "עריכת מנהלים"
 
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:10
 #: apps/projects/templates/a4_candy_projects/project_participants.html:10
@@ -4378,23 +4462,23 @@ msgstr "משתמשים במעקב שכבר הוזמנו: "
 
 #: apps/projects/views.py:227
 msgid "Invite moderators via email"
-msgstr "הזמינו מנחים דרך אימייל"
+msgstr "הזמינו מנהלים דרך אימייל"
 
 #: apps/projects/views.py:228
 msgid "Invite moderators via file upload"
-msgstr "הזמינו מנחים דרך העלאת קובץ"
+msgstr "הזמינו מנהלים דרך העלאת קובץ"
 
 #: apps/projects/views.py:229
 msgid "{} moderator invited."
-msgstr "{} מנחה הוזמנ/ה."
+msgstr "{} מנהל הוזמנ/ה."
 
 #: apps/projects/views.py:229
 msgid "{} moderators invited."
-msgstr "{} מנחים הוזמנו."
+msgstr "{} מנהלים הוזמנו."
 
 #: apps/projects/views.py:230
 msgid "Moderator successfully removed."
-msgstr "מנחה נמחק בהצלחה."
+msgstr "מנהל נמחק בהצלחה."
 
 #: apps/projects/views.py:248
 msgid "{} participant invited."
@@ -4471,7 +4555,7 @@ msgstr "סקירה"
 #: adhocracy-plus/templates/includes/userdashboard_mobile_toggle.html:16
 #: adhocracy-plus/templates/includes/userdashboard_mobile_toggle.html:24
 msgid "Moderation"
-msgstr "הנחיה"
+msgstr "ניהול"
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/base_userdashboard.html:30
 msgid "My profile"
@@ -4587,7 +4671,7 @@ msgstr "אין פעילות עדיין. "
 msgid "Account activity page"
 msgstr "דף פעילות חשבון"
 
-#: apps/users/__init__.py:8
+#: apps/users/__init__.py:6
 msgid ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
 "and @/./+/-/_ characters. It must start with a digit or a letter."
@@ -4620,42 +4704,44 @@ msgstr ""
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "אנא הכינסו כתובות אימייל תקינות, מופרדות בפסיקים."
 
-#: apps/users/forms.py:22
-msgid "If you are having difficulty please contact us by {}email{}."
-msgstr "אם נתקלתם בקושי אנא צרו קשר איתנו באמצעות {}אימייל{}."
+#: apps/users/forms.py:23
+msgid ""
+"Solve the math problem and click on the correct result.<br>If you are having "
+"difficulty please contact us  by {}email{}."
+msgstr ""
 
-#: apps/users/forms.py:28
+#: apps/users/forms.py:31
 msgid "Username/e-mail"
 msgstr "שם משתמש/אימייל"
 
-#: apps/users/forms.py:38 apps/users/forms.py:192 apps/users/models.py:73
+#: apps/users/forms.py:41 apps/users/forms.py:195 apps/users/models.py:73
 msgid "I would like to receive further information"
 msgstr "אשמח לקבל מידע נוסף"
 
-#: apps/users/forms.py:40 apps/users/forms.py:194 apps/users/models.py:76
+#: apps/users/forms.py:43 apps/users/forms.py:197 apps/users/models.py:76
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr "פרויקטים במעקב שלך יכולים לשלוח אליך מידע נוסף באימייל."
 
-#: apps/users/forms.py:50 apps/users/forms.py:204
+#: apps/users/forms.py:53 apps/users/forms.py:207
 msgid "Your username will appear publicly next to your posts."
 msgstr "שם המשתמש שלך יופיע באופן ציבורי."
 
-#: apps/users/forms.py:78
+#: apps/users/forms.py:81
 msgid "Membership number of IG BCE"
 msgstr "מספר חבר של IG BCE"
 
-#: apps/users/forms.py:80
+#: apps/users/forms.py:83
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
 msgstr "מספר החבר מורכב ממספר בן שבע ספרות וניתן למצוא אותו בכרטיס החבר."
 
-#: apps/users/forms.py:87
+#: apps/users/forms.py:90
 msgid "Date of birth"
 msgstr "תאריך לידה"
 
-#: apps/users/forms.py:89
+#: apps/users/forms.py:92
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
@@ -4663,7 +4749,7 @@ msgstr ""
 "אנא הזן/י גם את תאריך הלידה שלך בפורמט MM/DD/YYYY לצורך אימות. רק חברי IG "
 "BCE יכולים להשתתף."
 
-#: apps/users/forms.py:96
+#: apps/users/forms.py:99
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
@@ -4671,11 +4757,11 @@ msgstr ""
 "אני מאשר/ת שקראתי והסכמתי ל<a href=\"/info/ig-bce-datenschutz/\" "
 "target=\"_blank\">מדיניות הגנת הפרטיות</a> של IG BCE."
 
-#: apps/users/forms.py:108 apps/users/forms.py:148
+#: apps/users/forms.py:111 apps/users/forms.py:151
 msgid "Something is wrong with the setup - please try again later"
 msgstr "משהו לא תקין בהגדרה - אנא נסה/י שוב מאוחר יותר"
 
-#: apps/users/forms.py:114
+#: apps/users/forms.py:117
 msgid ""
 "There is already a participant with this membership number. Please check "
 "your entry. If this is your membership number, please send an email to "
@@ -4684,7 +4770,7 @@ msgstr ""
 "כבר קיים משתתף עם מספר החבר הזה. אנא בדוק/י את הרישום שלך. אם זהו מספר החבר "
 "שלך, אנא שלח/י אימייל לכתובת \"zukunftsgewerkschaft@igbce.de\"."
 
-#: apps/users/forms.py:154
+#: apps/users/forms.py:157
 msgid ""
 "Unfortunately, the member number and / or date of birth could not be linked "
 "to an active member account. Please check your input and try again. If you "
@@ -4850,144 +4936,139 @@ msgstr "רשימת פעילויות אחרונות בחשבון שלהם"
 msgid "Activities"
 msgstr "פעילויות"
 
-#: adhocracy-plus/config/settings/base.py:199
+#: adhocracy-plus/config/settings/base.py:197
 msgid "English"
 msgstr "אנגלית"
 
-#: adhocracy-plus/config/settings/base.py:200
+#: adhocracy-plus/config/settings/base.py:198
 msgid "German"
 msgstr "גרמנית"
 
-#: adhocracy-plus/config/settings/base.py:201
+#: adhocracy-plus/config/settings/base.py:199
 msgid "Dutch"
 msgstr "הולנדית"
 
-#: adhocracy-plus/config/settings/base.py:202
+#: adhocracy-plus/config/settings/base.py:200
 msgid "Kyrgyz"
 msgstr "קירגיזית"
 
-#: adhocracy-plus/config/settings/base.py:203
+#: adhocracy-plus/config/settings/base.py:201
 msgid "Russian"
 msgstr "רוסית"
 
-#: adhocracy-plus/config/settings/base.py:204
+#: adhocracy-plus/config/settings/base.py:202
 msgid "Hebrew"
 msgstr "עברית"
 
-#: adhocracy-plus/config/settings/base.py:363
-#: adhocracy-plus/config/settings/base.py:379
-msgid "Rich text editor"
-msgstr "עורך טקסט עשיר"
-
-#: adhocracy-plus/config/settings/base.py:481
+#: adhocracy-plus/config/settings/base.py:469
 msgid "suggestion"
 msgstr "הצעה"
 
-#: adhocracy-plus/config/settings/base.py:482
+#: adhocracy-plus/config/settings/base.py:470
 msgid "note"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:483
+#: adhocracy-plus/config/settings/base.py:471
 msgid "question"
 msgstr "שאלה"
 
-#: adhocracy-plus/config/settings/base.py:524
+#: adhocracy-plus/config/settings/base.py:512
 msgid "Pin without icon"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:525
+#: adhocracy-plus/config/settings/base.py:513
 msgid "Diamond"
 msgstr "יהלום"
 
-#: adhocracy-plus/config/settings/base.py:526
+#: adhocracy-plus/config/settings/base.py:514
 msgid "Triangle up"
 msgstr "משולש"
 
-#: adhocracy-plus/config/settings/base.py:527
+#: adhocracy-plus/config/settings/base.py:515
 msgid "Triangle down"
 msgstr "משולש הפוך"
 
-#: adhocracy-plus/config/settings/base.py:528
+#: adhocracy-plus/config/settings/base.py:516
 msgid "Ellipse"
 msgstr "אליפסה"
 
-#: adhocracy-plus/config/settings/base.py:529
+#: adhocracy-plus/config/settings/base.py:517
 msgid "Semi circle"
 msgstr "חצי עיגול"
 
-#: adhocracy-plus/config/settings/base.py:530
+#: adhocracy-plus/config/settings/base.py:518
 msgid "Hexagon"
 msgstr "משושה"
 
-#: adhocracy-plus/config/settings/base.py:531
+#: adhocracy-plus/config/settings/base.py:519
 msgid "Rhomboid"
 msgstr "מקבילית"
 
-#: adhocracy-plus/config/settings/base.py:532
+#: adhocracy-plus/config/settings/base.py:520
 msgid "Star"
 msgstr "כוכב"
 
-#: adhocracy-plus/config/settings/base.py:533
+#: adhocracy-plus/config/settings/base.py:521
 msgid "Square"
 msgstr "ריבוע"
 
-#: adhocracy-plus/config/settings/base.py:534
+#: adhocracy-plus/config/settings/base.py:522
 msgid "Octothorpe"
 msgstr "סולמית"
 
-#: adhocracy-plus/config/settings/base.py:535
+#: adhocracy-plus/config/settings/base.py:523
 msgid "Rectangle"
 msgstr "מלבן"
 
-#: adhocracy-plus/config/settings/base.py:536
+#: adhocracy-plus/config/settings/base.py:524
 msgid "Circle"
 msgstr "עיגול"
 
-#: adhocracy-plus/config/settings/base.py:537
+#: adhocracy-plus/config/settings/base.py:525
 msgid "Right triangle"
 msgstr "משולש ישר זווית"
 
-#: adhocracy-plus/config/settings/base.py:538
+#: adhocracy-plus/config/settings/base.py:526
 msgid "Zigzag"
 msgstr "זיגזג"
 
-#: adhocracy-plus/config/settings/base.py:542
+#: adhocracy-plus/config/settings/base.py:530
 msgid "brainstorming"
 msgstr "סיעור מוחות"
 
-#: adhocracy-plus/config/settings/base.py:543
+#: adhocracy-plus/config/settings/base.py:531
 msgid "spatial brainstorming"
 msgstr "סיעור מוחות מרחבי"
 
-#: adhocracy-plus/config/settings/base.py:544
+#: adhocracy-plus/config/settings/base.py:532
 msgid "idea challenge"
 msgstr "תחרות רעיונות"
 
-#: adhocracy-plus/config/settings/base.py:545
+#: adhocracy-plus/config/settings/base.py:533
 msgid "spatial idea challenge"
 msgstr "תחרות רעיונות מרחבית"
 
-#: adhocracy-plus/config/settings/base.py:546
+#: adhocracy-plus/config/settings/base.py:534
 msgid "text review"
 msgstr "טקסט חוות דעת"
 
-#: adhocracy-plus/config/settings/base.py:547
+#: adhocracy-plus/config/settings/base.py:535
 msgid "poll"
 msgstr "שאלון"
 
-#: adhocracy-plus/config/settings/base.py:549
+#: adhocracy-plus/config/settings/base.py:537
 msgid "interactive event"
 msgstr "אירוע אינטראקטיבי"
 
-#: adhocracy-plus/config/settings/base.py:550
+#: adhocracy-plus/config/settings/base.py:538
 msgid "prioritization"
 msgstr "תעדוף"
 
-#: adhocracy-plus/config/settings/base.py:551
+#: adhocracy-plus/config/settings/base.py:539
 msgid "debate"
 msgstr "עימות"
 
-#: adhocracy-plus/config/settings/base.py:552
+#: adhocracy-plus/config/settings/base.py:540
 msgid "fair-vote"
 msgstr "בחירות-הוגנות"
 
@@ -5013,7 +5094,7 @@ msgstr "לא מצאנו את הדף הזה"
 #: adhocracy-plus/templates/a4dashboard/base_project_list.html:7
 #: adhocracy-plus/templates/a4dashboard/base_project_list.html:10
 msgid "Participation projects"
-msgstr ""
+msgstr "פרויקטים השתתפותיים"
 
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:62
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:86
@@ -5192,7 +5273,7 @@ msgstr "מחיקת פריט"
 msgid ""
 "Your image will be uploaded/removed once you save your changes at the end of "
 "this page."
-msgstr ""
+msgstr "התמונה שלך תועלה/תוסר לאחר שמירת השינויים שלך בסוף עמוד זה."
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:46
 msgid "This project is in not published yet."
@@ -5332,13 +5413,6 @@ msgstr ""
 
 #: adhocracy-plus/templates/account/email/email_confirmation.en.email:15
 msgid "Confirm your email address"
-msgstr ""
-
-#: adhocracy-plus/templates/account/email/email_confirmation.en.email:17
-#, python-format
-msgid ""
-"This email was sent to %(receiver)s. If you have any further questions, "
-"please contact us via %(contact_email)s"
 msgstr ""
 
 #: adhocracy-plus/templates/account/email/email_confirmation_signup.en.email:4
@@ -5483,11 +5557,6 @@ msgstr "את/ה בטוח/ה שברצונך להתנתק?"
 msgid "Change your password"
 msgstr "שינוי סיסמא"
 
-#: adhocracy-plus/templates/account/password_change.html:22
-#: adhocracy-plus/templates/account/password_change.html:28
-msgid "Password"
-msgstr "סיסמא"
-
 #: adhocracy-plus/templates/account/password_change.html:34
 msgid "Repeat password"
 msgstr "אימות סיסמא"
@@ -5540,7 +5609,11 @@ msgstr "שינוי סיסמא"
 msgid "Your password is now changed."
 msgstr "הסיסמא שלך שונתה."
 
-#: adhocracy-plus/templates/account/signup.html:9
+#: adhocracy-plus/templates/account/signup.html:10
+msgid "Why register?"
+msgstr ""
+
+#: adhocracy-plus/templates/account/signup.html:14
 #, python-format
 msgid ""
 "Already have an account? Then please\n"
@@ -5549,7 +5622,7 @@ msgstr ""
 "כבר יש לך חשבון? אנא\n"
 "        <a href=\"%(login_url)s\">התחבר/י</a>."
 
-#: adhocracy-plus/templates/account/signup.html:24
+#: adhocracy-plus/templates/account/signup.html:29
 #: adhocracy-plus/templates/socialaccount/signup.html:28
 #, python-format
 msgid ""
@@ -5565,26 +5638,6 @@ msgstr ""
 "target=\"_blank\">תנאי השימוש</a> ו<a href=\"%(data_protection_policy)s\" "
 "target=\"_blank\">מדיניות הגנת נתונים</a>.\n"
 "                "
-
-#: adhocracy-plus/templates/account/signup.html:62
-#, python-format
-msgid ""
-"\n"
-"            With your account on %(platformname)s, you can take part in "
-"every public participation project on this platform. This platform allows "
-"organisations initiatives to conduct digital participation projects.\n"
-"            If you have any questions regarding the data protection on this "
-"platform you can find <a href=\"%(data_protection_url)s\" "
-"target=\"_blank\">further information here</a>.\n"
-"        "
-msgstr ""
-"\n"
-"            עם חשבונך ב %(platformname)s,תוכל/י לקחת חלק  בכל השתתפות "
-"ציבורית בפלטפורמה זו. פלטפורמה זו מאפשרת יוזמות של ארגונים לבצע השתתפות "
-"דיגיטלית בפרויקטים.\n"
-"            אם יש לך שאלות לגבי הגנת מידע בפלטפורמה זו, תוכל/י למצוא <a "
-"href=\"%(data_protection_url)s\" target=\"_blank\">מידע נוסף כאן</a>.\n"
-"        "
 
 #: adhocracy-plus/templates/base.html:58
 msgid "Skip to content "
@@ -5715,56 +5768,3 @@ msgstr "התחברות עם חשבון רשת חברתית"
 #: adhocracy-plus/templates/socialaccount/snippets/provider_list.html:25
 msgid "Login with "
 msgstr "התחברות עם"
-
-#~ msgid ""
-#~ "\n"
-#~ "                Participants can submit their own ideas, discuss the "
-#~ "ideas of others,\n"
-#~ "                and vote for the ideas they support.\n"
-#~ "                The ideas are ordered in a fair way.\n"
-#~ "                Rather than just ordering them by number of votes, which "
-#~ "may be unfair towards minorities,\n"
-#~ "                the module uses an algorithm that guarantees to each "
-#~ "group a proportional share of the locations on the first page.\n"
-#~ "            "
-#~ msgstr ""
-#~ "\n"
-#~ "            משתתפים יכולים להגיש רעיונות, לדון בהם עם אחרים,\n"
-#~ "            להצביע עבור רעיונות שבהם תומכים.\n"
-#~ "            הרעיונות ממויינים בסדר הוגן.\n"
-#~ "            במקום למיין רק על סמך כמות ההצבעות - מיון אשר יכול להיות לא "
-#~ "הוגן כלפי מיעוטים,\n"
-#~ "            המרחב מאפשר שימוש באלגוריתם המבטיח לכל קבוצה חלוקה "
-#~ "פרופורציונלית של מיקומים המוצגת בדף הראשון.\n"
-#~ "            "
-
-#~ msgid ""
-#~ "\n"
-#~ "                Fairness is maintained through <strong>choins</strong>.\n"
-#~ "                Whenever an idea gets accepted, all users receive choins "
-#~ "based on the cost of the accepted idea.\n"
-#~ "                If you voted for the idea, you pay your choins to support "
-#~ "that idea;  otherwise, you keep the choins.\n"
-#~ "                The remaining ideas are ordered according to the number "
-#~ "of choins\n"
-#~ "                that their supporters need in order to pay their cost.\n"
-#~ "                This mechanism guarantees that  no group of users will be "
-#~ "ignored for too long.\n"
-#~ "            "
-#~ msgstr ""
-#~ "\n"
-#~ "                הסדר ההוגן מחושב בעזרת <strong>מטבעות</strong>.\n"
-#~ "                בכל פעם שרעיון מתקבל, כל המשתתפים מקבלים מטבעות "
-#~ "וירטואליים בהתאם לעלות הרעיון שהתקבל.\n"
-#~ "                מי שתמך ברעיון משלם את המטבעות שלו עבור אותו רעיון;  מי "
-#~ "שלא תמך לא משלם.\n"
-#~ "                שאר הרעיונות ממויינים לפי מספר המטבעות\n"
-#~ "                שתומכי אותם רעיונות צריכים כדי לשלם את עלות הרעיון.\n"
-#~ "                כל זה מבטיח שאף קבוצה של משתמשים לא תשאר מקופחת לזמן רב.\n"
-#~ "            "
-
-#~ msgid "Show more"
-#~ msgstr "הצג עוד"
-
-#~ msgid "Show less"
-#~ msgstr "הצג פחות"

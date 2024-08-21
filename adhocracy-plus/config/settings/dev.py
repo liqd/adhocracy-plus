@@ -36,6 +36,31 @@ if os.getenv("DATABASE") == "postgresql":
         }
     }
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        # Define a handler that prints logs to the console (terminal)
+        "console": {
+            "level": "INFO",  # Set the level to INFO to print info and debug messages
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        # Define a logger for your Django app (replace 'yourapp' with your app name)
+        "apps.fairvote": {
+            "handlers": ["console"],
+            "level": "INFO",  # Set the level to DEBUG to print debug messages
+            "propagate": True,
+        },
+        "apps.fairvote2": {
+            "handlers": ["console"],
+            "level": "DEBUG",  # Set the level to DEBUG to print debug messages
+            "propagate": True,
+        },
+    },
+}
+
 CELERY_TASK_ALWAYS_EAGER = True
 
 # The local.py import happens at the end of this file so that it can overwrite
@@ -44,11 +69,12 @@ CELERY_TASK_ALWAYS_EAGER = True
 # 1) ADDITIONAL_APPS in local.py should be appended to INSTALLED_APPS.
 # 2) CKEDITOR_URL should be inserted into CKEDITOR_CONFIGS in the correct location.
 
+"""
 try:
     from .local import *
 except ImportError:
     pass
-
+"""
 try:
     INSTALLED_APPS += tuple(ADDITIONAL_APPS)
 except NameError:

@@ -9,4 +9,4 @@ SITE_ID = 1
 
 CAPTCHA_TEST_ACCEPTED_ANSWER = "testpass"
 CAPTCHA_URL = "https://captcheck.netsyms.com/api.php"
-WAGTAILADMIN_BASE_URL = "http://localhost:8004"
+WAGTAILADMIN_BASE_URL = "http://104.248.16.54:8004"

@@ -184,7 +184,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = "en"
-DEFAULT_USER_LANGUAGE_CODE = "en"
+DEFAULT_USER_LANGUAGE_CODE = "he"
 
 TIME_ZONE = "Asia/Jerusalem"
 
@@ -199,6 +199,7 @@ LANGUAGES = [
     ("nl", _("Dutch")),
     ("ky", _("Kyrgyz")),
     ("ru", _("Russian")),
+    ("he", _("Hebrew")),
 ]
 
 # adding language info for ky
@@ -208,6 +209,12 @@ EXTRA_LANG_INFO = {
         "code": "ky",
         "name": "Kyrgyz",
         "name_local": "Кыргызча",
+    },
+    "he": {
+        "dir": "rtl",
+        "code": "he",
+        "name": "Hebrew",
+        "name_local": "עברית",
     },
 }
 LANG_INFO = dict(locale.LANG_INFO, **EXTRA_LANG_INFO)
@@ -308,7 +315,11 @@ LOGIN_URL = "account_login"
 LOGIN_REDIRECT_URL = "/"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-EMAIL_HOST = "127.0.0.1"
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = "{} <{}>".format(os.getenv("FROM_EMAIL"), EMAIL_HOST_USER)
 
 # Rest Framework
 REST_FRAMEWORK = {
@@ -574,7 +585,7 @@ CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpg", "jpeg", "png", "gif", "pdf", "docx"]
 CKEDITOR_5_USER_LANGUAGE = True
 CKEDITOR_5_CONFIGS = {
     "default": {
-        "language": ["de", "en", "nl", "ru"],
+        "language": ["he", "de", "en", "nl", "ru"],
         "toolbar": [
             "bold",
             "italic",
