@@ -13,12 +13,12 @@ adhocracy+ is designed to make online participation easy and accessible to every
 
 ### Requirements
 
- * nodejs (+ npm) (Use Homebrew to reinstall the node in the projects folder runnign: brew install node)
+ * nodejs (+ npm) 
  * python 3.x (+ venv + pip)
  * libpq (only if postgres should be used)
  * sqlite3 [with JSON1 enabled](https://code.djangoproject.com/wiki/JSON1Extension)
  * redis (in production, not needed for development)
- * pillow-heif (for macOS M1 Monterey and newer versions)
+ * pillow-heif (required for macos M1 ...etc)
 
 ### Installation
 
@@ -41,7 +41,7 @@ adhocracy+ is designed to make online participation easy and accessible to every
 
 ### Use postgresql database for testing
 
-To use postgresql database in production run the following command once:
+run the following command once:
 ```
 make postgres-create
 ```
@@ -60,6 +60,7 @@ For a celery worker to pick up tasks you need to make sure that:
 - the redis server is running
     run: redis-cli ping (it should return: PONG)
 - the celery config parameter "always eager" is disabled (add `CELERY_TASK_ALWAYS_EAGER = False` to your `local.py`)
+    (Celery's always_eager is disabled to ensure tests run tasks when calling code instead of schedulingmac them via the Redis broker.)
     To find local.py run: find . -name "local.py"
 
 To start a celery worker node in the foreground, call:
@@ -76,6 +77,7 @@ To send a dummy task to the queue and report the result, call:
 ```
 make celery-worker-dummy-task
 ```
+Check out our extensive [celery documentation](https://github.com/liqd/adhocracy-plus/compare/docs/celery.md?expand=1)
 
 ## Installation on a production system
 
