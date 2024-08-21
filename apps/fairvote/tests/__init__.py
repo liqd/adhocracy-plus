@@ -1,0 +1,1 @@
+from apps.fairvote.tests.test_fairvote_sn import *
