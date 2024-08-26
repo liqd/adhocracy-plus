@@ -1,19 +1,24 @@
-# Saving and Deletion of images  
-_conforming to GDPR (General Data Protection Regulation) / DSGVO (General Data Protection Regulation)_
+# Saving and deletion of images  
+_conforming to GDPR (General Data Protection Regulation) / DSGVO (Datenschutz-Grundverordnung)_
 
 ## General info
 All image uploads in the platform, delete previous uploads. E.g when a user uploads a new profile picture, their past picture gets deleted.  
 Same for projects, organisations and the modules, the new image will replace the old one.  
+Images associated to users and organisations gets deleted when they are deleted. Images uploaded by users for projects and modules are not deleted when a user is deleted, except when the project or the modules are deleted.
 
 ## API
-The code implementation of this functions is part of Adhocracy4.  
-More specifically it happens in the files [images/service.py](https://github.com/liqd/adhocracy4/blob/main/adhocracy4/images/services.py) and [images/signals.py](https://github.com/liqd/adhocracy4/blob/main/adhocracy4/images/signals.py).
-Inside `serivece.py` the function `delete_images` gets a list of image fields as attribute and deletes both the image and the thumbnail of each imagefield from the storage.
-The `delete_images` function is called from the `signals.py` file, which defines what signals should be triggered and when.  
-The signal `post_save` is triggered when an object (user, project, idea, etc) saves a new image, then the old ones, if any, are deleted (original upload and thumbnail) and new ones are added as a list attribute.  
-E.g `project.image` and `project.tile_image` are added as a list --> `project._a4images_image_fields_current_images` and it returns a list of the image paths
-The signal `post_delete` deletes the images asscociated with the object when the object is deleted.
-Finally the signal `post_init`, which is called every time an object is created, sets the list of images associated to that object, as a new object attribute.
+The code implementation of the image replacement function is part of Adhocracy4.  
+More specifically it happens in the files [images/service.py](https://github.com/liqd/adhocracy4/blob/main/adhocracy4/images/services.py) and [images/signals.py](https://github.com/liqd/adhocracy4/blob/main/adhocracy4/images/signals.py).  
+Inside `service.py` the function `delete_images` gets a list of image fields as a function attribute and deletes both the image and the thumbnail of each image field from their respective storage.
+The `delete_images` function is called from the `signals.py` file, which defines what object actions (create, save, update, delete an object) should trigger signals.  
+The signal `post_save` is triggered when an object (user, project, idea, etc) saves a new image, then the old ones, if any, are deleted (original upload and generated thumbnail) and the new ones are added as a list attribute.  
+E.g   
+`project.image` and `project.tile_image` 
+are added as a list --> `project._a4images_image_fields_current_images` 
+which returns a list of the image paths  
+The signal `post_init`, which is called every time an object is created, also sets the above attribute for the list of images associated to the object.
+Finally, the signal `post_delete` deletes all the images asscociated with the object when the object is deleted.  
+
 
 ## Users
 user's image is refered to as `avatar` and it is saved under:
