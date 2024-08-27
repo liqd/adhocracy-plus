@@ -8,7 +8,6 @@ from django.urls import path
 from django.urls import re_path
 from django.views.defaults import server_error
 from django.views.generic import TemplateView
-from django.views.generic.base import RedirectView
 from django.views.i18n import JavaScriptCatalog
 from django_ckeditor_5 import views as ckeditor5_views
 from rest_framework import routers
@@ -231,15 +230,8 @@ if settings.DEBUG:
         ] + urlpatterns
 
 
-class HomePageView(RedirectView):
-    permanent = False
-    pattern_name = "accounts_login"  # redirect home page to accounts/login
-
-
 # generic patterns at the very end
 urlpatterns += [
     path("", include("apps.organisations.urls")),  # /<organization_slug>/
-    # path("", include("wagtail.urls")),             # /
-    # https://aplus.csariel.xyz/_util/login/
-    path("", HomePageView.as_view()),  # /
+    path("", include("wagtail.urls")),  # /
 ]
