@@ -18,7 +18,7 @@ adhocracy+ is designed to make online participation easy and accessible to every
  * libpq (only if postgres should be used)
  * sqlite3 [with JSON1 enabled](https://code.djangoproject.com/wiki/JSON1Extension)
  * redis (in production, not needed for development)
- * pillow-heif (required for macos M1 ...etc)
+ * pillow-heif (required for macOS M1 Monterey and newer versions)
 
 ### Installation
 
@@ -38,6 +38,21 @@ adhocracy+ is designed to make online participation easy and accessible to every
 ### Start a local server
 
     make watch
+
+## Installation on a production system
+
+You like adhocracy+ and want to run your own version? An installation guide for production systems can be found [here](./docs/installation_prod.md).
+
+## Contributing or maintaining your own fork
+
+If you found an issue, want to contribute, or would like to add your own features to your own version of adhocracy+, check out [contributing](./docs/contributing.md).
+
+## Security
+
+We care about security. So, if you find any issues concerning security, please send us an email at info [at] liqd [dot] net.
+
+
+## Advance settings 
 
 ### Use postgresql database for testing
 
@@ -60,8 +75,8 @@ For a celery worker to pick up tasks you need to make sure that:
 - the redis server is running
     run: redis-cli ping (it should return: PONG)
 - the celery config parameter "always eager" is disabled (add `CELERY_TASK_ALWAYS_EAGER = False` to your `local.py`)
-    (Celery's always_eager is disabled to ensure tests run tasks when calling code instead of schedulingmac them via the Redis broker.)
-    To find local.py run: find . -name "local.py"
+    (Celery's always_eager is disabled to ensure tests run tasks when calling code instead of scheduling them via the Redis broker.)
+    local.py should be under adhocracy_plus/config/settings, create one if it doesn't exist. This file saves settings for local development.
 
 To start a celery worker node in the foreground, call:
 ```
@@ -78,15 +93,3 @@ To send a dummy task to the queue and report the result, call:
 make celery-worker-dummy-task
 ```
 Check out our extensive [celery documentation](https://github.com/liqd/adhocracy-plus/compare/docs/celery.md?expand=1)
-
-## Installation on a production system
-
-You like adhocracy+ and want to run your own version? An installation guide for production systems can be found [here](./docs/installation_prod.md).
-
-## Contributing or maintaining your own fork
-
-If you found an issue, want to contribute, or would like to add your own features to your own version of adhocracy+, check out [contributing](./docs/contributing.md).
-
-## Security
-
-We care about security. So, if you find any issues concerning security, please send us an email at info [at] liqd [dot] net.
