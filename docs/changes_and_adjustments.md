@@ -139,11 +139,12 @@ To adjust the number of ideas displayed per page, follow these steps:
 ### Restart the server
 
 To restart the server after making changes, run the following (you can do this as `root@csariel.xyz`):
+
     ```
     sudo service adhocracy-plus restart
     ```
 
-If it doesn't work, see [installation_ariel-res.md#51] for other things to run.
+If it doesn't work, see [here](installation_ariel-res.md#51) for other things to run.
 
 
 ## Notes
