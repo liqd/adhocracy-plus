@@ -60,5 +60,5 @@ Database: We're using Mysql
 
 3. Restart the service:
     ```
-    sudo service <service_name> restart
+    sudo service adhocracy-plus restart
     ```
