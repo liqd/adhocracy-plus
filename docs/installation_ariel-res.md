@@ -58,7 +58,7 @@ Database: We're using Mysql
         python manage.py compilemessages
         python manage.py collectstatic     # wait several minutes
 
-3. Restart the service:
+3. Restart the service (you can do this as the `root@csariel.xyz` user):
     ```
     sudo service adhocracy-plus restart
     ```
