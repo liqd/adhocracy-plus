@@ -136,6 +136,15 @@ To adjust the number of ideas displayed per page, follow these steps:
    For Fairvote modules, the fair acceptance order is calculated only for the first page of ideas. This value is controlled by the `MAX_ACCEPTED_IDEAS` field in [models.py](../apps/fairvote/models.py#9). If you change the number of ideas per page, make sure to adjust this field accordingly.
 
 
+### Restart the server
+
+To restart the server after making changes, run the following (you can do this as `root@csariel.xyz`):
+    ```
+    sudo service adhocracy-plus restart
+    ```
+
+If it doesn't work, see [installation_ariel-res.md#51] for other things to run.
+
 
 ## Notes
 
