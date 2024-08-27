@@ -1,5 +1,6 @@
 # adhocracy+
 
+The project's [technical documentation] (https://liqd.github.io/adhocracy-plus/) currently is in progress. You are welcome to provide feedback by creating a GitHub issue..
 [adhocracy.plus](https://adhocracy.plus/) is a free Open-Source participation platform maintained and primarily developed by Liquid Democracy e.V.. It is based on [adhocracy 4](https://github.com/liqd/adhocracy4) and [Django](https://github.com/django/django).
 
 ![Build Status](https://github.com/liqd/adhocracy-plus/actions/workflows/django.yml/badge.svg)
@@ -38,6 +39,7 @@ adhocracy+ is designed to make online participation easy and accessible to every
 ### Start a local server
 
     make watch
+
     Go to http://localhost:8004/ and login with admin@liqd.net | password
 
 ## Installation on a production system
@@ -50,7 +52,7 @@ If you found an issue, want to contribute, or would like to add your own feature
 
 ## Security
 
-We care about security. So, if you find any issues concerning security, please send us an email at info [at] liqd [dot] net.
+We take security seriously. If you find any security issues, please feel free to email us at info [at] liqd [dot] net.
 
 
 ## Advanced settings 
@@ -71,11 +73,15 @@ make watch
 ### Use Celery for task queues
 
 For a celery worker to pick up tasks you need to make sure that:
-- the redis server is running
-    run: redis-cli ping (it should return: PONG)
+- the redis server is running. Check it by running
+```
+redis-cli ping 
+```
+it should return: PONG
+
 - the celery config parameter "always eager" is disabled (add `CELERY_TASK_ALWAYS_EAGER = False` to your `local.py`)
-    Celery's always_eager is disabled to ensure tests run the celery tasks inline instead of scheduling them via the Redis broker.
-    local.py should be under adhocracy_plus/config/settings, create one if it doesn't exist. This file saves settings for local development.
+Celery's always_eager is disabled to ensure tests run the celery tasks inline instead of scheduling them via the Redis broker.
+local.py should be under adhocracy_plus/config/settings, create one if it doesn't exist. This file saves settings for local development.
 
 To start a celery worker node in the foreground, call:
 ```
