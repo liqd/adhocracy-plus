@@ -50,13 +50,15 @@ Database: We're using Mysql
 
 ## Production
 1. Run the following commands:
-        
-        npm run build:prod
+
+        cd ~/adhocracy-plus
+        source venv/bin/activate
+        npm run build:prod                 # wait several minutes
         export DJANGO_SETTINGS_MODULE=adhocracy-plus.config.settings.build
         python manage.py compilemessages
-        python manage.py collectstatic
+        python manage.py collectstatic     # wait several minutes
 
-2. Restart the service:
+3. Restart the service:
     ```
     sudo service <service_name> restart
     ```
