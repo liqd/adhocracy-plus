@@ -35,7 +35,7 @@ class AbstractIdea(module_models.Item, Moderateable):
     image = ConfiguredImageField(
         "idea_image",
         verbose_name=_("Add image"),
-        upload_to="ideas/images",
+        upload_to="ideas/images/%Y/%m/%d/",
         blank=True,
         help_prefix=_("Visualize your idea."),
     )
