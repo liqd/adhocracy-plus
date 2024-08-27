@@ -144,7 +144,7 @@ To restart the server after making changes, run the following (you can do this a
     sudo service adhocracy-plus restart
     ```
 
-If it doesn't work, see [here](installation_ariel-res.md#51) for other things to run.
+If it doesn't work, see [here](installation_ariel-res.md#production) for other things to run.
 
 
 ## Notes
