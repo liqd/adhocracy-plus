@@ -1,7 +1,6 @@
 # adhocracy+
 
-The project's [technical documentation] (https://liqd.github.io/adhocracy-plus/) currently is in progress. You are welcome to provide feedback by creating a GitHub issue..
-[adhocracy.plus](https://adhocracy.plus/) is a free Open-Source participation platform maintained and primarily developed by Liquid Democracy e.V.. It is based on [adhocracy 4](https://github.com/liqd/adhocracy4) and [Django](https://github.com/django/django).
+[adhocracy.plus](https://adhocracy.plus/) is a free Open-Source participation platform maintained and primarily developed by Liquid Democracy e.V.. It is based on [adhocracy 4](https://github.com/liqd/adhocracy4) and [Django](https://github.com/django/django). The project's [technical documentation] (https://liqd.github.io/adhocracy-plus/) currently is in progress. You are welcome to provide feedback by creating a GitHub issue.
 
 ![Build Status](https://github.com/liqd/adhocracy-plus/actions/workflows/django.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/liqd/adhocracy-plus/badge.svg?branch=main)](https://coveralls.io/github/liqd/adhocracy-plus?branch=main)
@@ -29,18 +28,18 @@ adhocracy+ is designed to make online participation easy and accessible to every
     make fixtures
 
 ### Start virtual environment
-
+```
     source venv/bin/activate
-
+```
 ### Check if tests work
-
+```
     make test
-
+```
 ### Start a local server
-
+```
     make watch
-
-    Go to http://localhost:8004/ and login with admin@liqd.net | password
+```
+Go to http://localhost:8004/ and login with admin@liqd.net | password
 
 ## Installation on a production system
 
