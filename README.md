@@ -1,6 +1,6 @@
 # adhocracy+
 
-[adhocracy.plus](https://adhocracy.plus/) is a free Open-Source participation platform maintained and primarily developed by Liquid Democracy e.V.. It is based on [adhocracy 4](https://github.com/liqd/adhocracy4) and [Django](https://github.com/django/django). The project's [technical documentation] (https://liqd.github.io/adhocracy-plus/) currently is in progress. You are welcome to provide feedback by creating a GitHub issue.
+[adhocracy.plus](https://adhocracy.plus/) is a free Open-Source participation platform maintained and primarily developed by Liquid Democracy e.V.. It is based on [adhocracy 4](https://github.com/liqd/adhocracy4) and [Django](https://github.com/django/django). The project's [technical documentation](https://liqd.github.io/adhocracy-plus/) currently is in progress. You are welcome to provide feedback by creating a GitHub issue.
 
 ![Build Status](https://github.com/liqd/adhocracy-plus/actions/workflows/django.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/liqd/adhocracy-plus/badge.svg?branch=main)](https://coveralls.io/github/liqd/adhocracy-plus?branch=main)
@@ -29,15 +29,15 @@ adhocracy+ is designed to make online participation easy and accessible to every
 
 ### Start virtual environment
 ```
-    source venv/bin/activate
+source venv/bin/activate
 ```
 ### Check if tests work
 ```
-    make test
+make test
 ```
 ### Start a local server
 ```
-    make watch
+make watch
 ```
 Go to http://localhost:8004/ and login with admin@liqd.net | password
 
@@ -47,7 +47,7 @@ You like adhocracy+ and want to run your own version? An installation guide for 
 
 ## Contributing or maintaining your own fork
 
-If you found an issue, want to contribute, or would like to add your own features to your own version of adhocracy+, check out [contributing](./docs/contributing.md).
+If you found an issue, want to contribute, or would like to add your own features to your own version of adhocracy+, check out our [contributing](./docs/contributing.md) document.
 
 ## Security
 
