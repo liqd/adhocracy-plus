@@ -34,10 +34,10 @@ account_deletion  # the namespace defined in the accounts.urls.py
 ```
 
 ## Project
-project's two images are saved under:
+Image storage for projects is categorised by date, and a project's two images are saved under:
 ```
-       "media/projects/backgrounds"  # decorative background image
-       "media/projects/tiles"       # project's tile image
+       "media/projects/backgrounds/YYYY/MM/DD"  # decorative background image
+       "media/projects/tiles/YYYY/MM/DD"       # project's tile image
 ```
 project images are deleted when its organisation is deleted, and when the project is deleted via the user dashboard in the browser, which calls the endpoint: 
 ```
@@ -57,9 +57,9 @@ When an organisation is deleted, all its related projects with their modules get
 ## Modules
 
 ### Idea
-idea's image is saved under:
+Image storage for ideas is categorised by date, and an idea's image is saved under:
 ```
-       "media/ideas/images"
+       "media/ideas/images/YYYY/MM/DD"
 ```
 
 idea image gets deleted when an idea is deleted via its idea detail page in the browser, which calls the endpoint:
@@ -78,7 +78,7 @@ idea-delete  # defined in the ideas.urls.py
 for those modules, images are deleted when the module is deleted either via the module page or the user dashboard.
 Their deletion inherits from the AbstractIdeaDeleteView and their images are also uploaded to:
 ```
-       "media/ideas/images"
+       "media/ideas/images/YYYY/MM/DD"
 ```
 
 ### Budgeting
