@@ -175,3 +175,67 @@ def test_app_project_serializer(
         == "Participation ended. Read result."
     )
     assert not response.data[0]["module_running_progress"]
+
+
+@pytest.mark.django_db
+def test_app_project_api_with_jwt_auth(user, project_factory, apiclient):
+    project_1 = project_factory(is_app_accessible=True)
+    project_2 = project_factory(is_app_accessible=True)
+
+    url = reverse("app-projects-list")
+    response = apiclient.get(url, format="json")
+    assert response.status_code == 401
+
+    # Perform the login request
+    login_data = {
+        "username": user.email,
+        "password": "password",
+    }
+
+    response = apiclient.post(reverse("token_obtain_jwt"), login_data, format="json")
+
+    access_token = response.data["access"]
+    apiclient.credentials(HTTP_AUTHORIZATION=f"Bearer {access_token}")
+
+    response = apiclient.get(url, format="json")
+    assert response.status_code == 200
+
+    assert any(
+        [
+            True
+            for dict in response.data
+            if ("pk" in dict and dict["pk"] == project_1.pk)
+        ]
+    )
+    assert any(
+        [
+            True
+            for dict in response.data
+            if ("pk" in dict and dict["pk"] == project_2.pk)
+        ]
+    )
+
+
+@pytest.mark.django_db
+def test_retrieve_project_with_jwt_auth(apiclient, user, project_factory):
+    project = project_factory(is_app_accessible=True)
+    url = reverse("app-projects-detail", args=[project.slug])
+
+    # Perform the GET request
+    response = apiclient.get(url)
+    assert response.status_code == 401
+
+    # Perform the login request
+    login_data = {
+        "username": user.email,
+        "password": "password",
+    }
+
+    response = apiclient.post(reverse("token_obtain_jwt"), login_data, format="json")
+
+    access_token = response.data["access"]
+    apiclient.credentials(HTTP_AUTHORIZATION=f"Bearer {access_token}")
+
+    # Assert that the response is successful
+    response = apiclient.get(url)
+    assert response.status_code == 200

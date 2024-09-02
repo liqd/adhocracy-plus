@@ -2,6 +2,7 @@
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from datetime import timedelta
 
 from django.conf import locale
 from django.utils.translation import gettext_lazy as _
@@ -33,6 +34,8 @@ INSTALLED_APPS = (
     "widget_tweaks",
     "rest_framework",
     "rest_framework.authtoken",
+    # JWT authentication
+    "rest_framework_simplejwt.token_blacklist",
     "django_filters",
     "allauth",
     "allauth.account",
@@ -307,7 +310,19 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
 BLEACH_LIST = {
