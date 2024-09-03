@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Reference - Adhocracy+</title>
+    <title>authentication - Adhocracy+</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Reference";
-        var mkdocs_page_input_path = "reference.md";
+        var mkdocs_page_name = "authentication";
+        var mkdocs_page_input_path = "authentication.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -66,8 +66,10 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Explanations</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../authentication/">authentication</a>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">authentication</a>
+    <ul class="current">
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../celery/">celery</a>
                   </li>
@@ -105,7 +107,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Reference</li>
+          <li class="breadcrumb-item">Explanations</li>
+      <li class="breadcrumb-item active">authentication</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -114,290 +117,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>This part of the project documentation focuses on
-an <strong>information-oriented</strong> approach. Use it as a
-reference for the technical implementation of the
-<code>adhocracy+</code> project code.</p>
-
-
-<div class="doc doc-object doc-module">
-
-
-
-<a id="apps.projects.models"></a>
-  <div class="doc doc-contents first">
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h2 id="apps.projects.models.create_insight_context" class="doc doc-heading">
-          <code class="highlight language-python">create_insight_context(insight)</code>
-
-</h2>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>("BS", <em>("brainstorming")),
-("MBS", </em>("spatial brainstorming")),
-("IC", <em>("idea challenge")),
-("MIC", </em>("spatial idea challenge")),
-("TR", <em>("text review")),
-("PO", </em>("poll")),
-("PB", <em>("participatory budgeting")),
-("IE", </em>("interactive event")),
-("TP", <em>("prioritization")),
-("DB", </em>("debate")),</p>
-
-          <details class="quote">
-            <summary>Source code in <code>apps/projects/models.py</code></summary>
-            <pre class="highlight"><code class="language-python">def create_insight_context(insight: ProjectInsight) -&gt; dict:
-    """
-    ("BS", _("brainstorming")),
-    ("MBS", _("spatial brainstorming")),
-    ("IC", _("idea challenge")),
-    ("MIC", _("spatial idea challenge")),
-    ("TR", _("text review")),
-    ("PO", _("poll")),
-    ("PB", _("participatory budgeting")),
-    ("IE", _("interactive event")),
-    ("TP", _("prioritization")),
-    ("DB", _("debate")),
-    """
-
-    active_modules = [
-        module for module in insight.project.modules if not module.is_draft
-    ]
-    blueprint_types = {module.blueprint_type for module in active_modules}
-    show_polls = "PO" in blueprint_types
-    show_live_questions = "IE" in blueprint_types
-    show_ideas = bool(blueprint_types.intersection({"BS", "IC", "MBS", "MIC", "PB"}))
-
-    counts = [
-        (_("active participants"), insight.active_participants.count()),
-        (_("comments"), insight.comments),
-        (_("ratings"), insight.ratings),
-    ]
-
-    if show_ideas:
-        counts.append((_("written ideas"), insight.written_ideas))
-
-    if show_polls:
-        counts.append((_("poll answers"), insight.poll_answers))
-
-    if show_live_questions:
-        counts.append((_("interactive event questions"), insight.live_questions))
-
-    return dict(
-        insight_label=_(
-            """This section provides an overview of the participation
-            activities in this project."""
-        ),
-        counts=counts,
-    )</code></pre>
-          </details>
-  </div>
-
-</div>
-
-
-
-  </div>
-
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-module">
-
-
-
-<a id="apps.projects.views"></a>
-  <div class="doc doc-contents first">
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-<div class="doc doc-object doc-class">
-
-
-
-<h2 id="apps.projects.views.ModuleDetailView" class="doc doc-heading">
-          <code>ModuleDetailView</code>
-
-
-</h2>
-
-
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="rules.contrib.views.PermissionRequiredMixin">PermissionRequiredMixin</span></code>, <code><span title="adhocracy4.projects.mixins.PhaseDispatchMixin">PhaseDispatchMixin</span></code></p>
-
-
-            <details class="quote">
-              <summary>Source code in <code>apps/projects/views.py</code></summary>
-              <pre class="highlight"><code class="language-python">class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
-    model = module_models.Module
-    permission_required = "a4projects.view_project"
-    slug_url_kwarg = "module_slug"
-
-    @cached_property
-    def project(self):
-        return self.module.project
-
-    @cached_property
-    def module(self):
-        return self.get_object()
-
-    def get_permission_object(self):
-        return self.project
-
-    def get_context_data(self, **kwargs):
-        """Append project and module to the template context."""
-        if "project" not in kwargs:
-            kwargs["project"] = self.project
-        if "module" not in kwargs:
-            kwargs["module"] = self.module
-        return super().get_context_data(**kwargs)</code></pre>
-            </details>
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="apps.projects.views.ModuleDetailView.get_context_data" class="doc doc-heading">
-          <code class="highlight language-python">get_context_data(**kwargs)</code>
-
-</h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Append project and module to the template context.</p>
-
-          <details class="quote">
-            <summary>Source code in <code>apps/projects/views.py</code></summary>
-            <pre class="highlight"><code class="language-python">def get_context_data(self, **kwargs):
-    """Append project and module to the template context."""
-    if "project" not in kwargs:
-        kwargs["project"] = self.project
-    if "module" not in kwargs:
-        kwargs["module"] = self.module
-    return super().get_context_data(**kwargs)</code></pre>
-          </details>
-  </div>
-
-</div>
-
-
-
-  </div>
-
-  </div>
-
-
-</div>
-
-
-
-
-  </div>
-
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-module">
-
-
-
-<a id="apps.projects.forms"></a>
-  <div class="doc doc-contents first">
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-module">
-
-
-
-<a id="apps.projects.tasks"></a>
-  <div class="doc doc-contents first">
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-  </div>
-
-</div>
+                <h1 id="authentication">Authentication</h1>
+<p>We use <a href="https://docs.allauth.org/">Django Allauth</a> for handling user registration, email and social logins via the browser.</p>
+<p>For API authentication we setup Django Rest Framework with Simple JWT for authentication via JWT tokens. Existing users can obtain JWT tokens through the TokenObtainPairView. We haven't enabled JWT based registration yet, as this is an implementation for an external partner, and not as part of the software architecture exposing API registration with JWT.</p>
+<p>Login: Users can obtain JWT tokens via the <code>/api/token/</code> endpoint.
+For testing via the terminal try:</p>
+<pre><code>curl -X POST -H &quot;Content-Type: application/json&quot; -d '{&quot;username&quot;: &quot;admin&quot;,&quot;password&quot;: &quot;password&quot;}' http://adhocracy.plus/api/token/
+
+</code></pre>
+<p>For testing in dev and stage servers replace the domain name with <code>http://aplus-dev.liqd.net/api/token/</code> and <code>http://aplus-stage.liqd.net/api/token/</code> respectively.
+Make sure to use your corresponding user credentials (username, password).</p>
+<p>The response of the above command, will include an access and a refresh token.</p>
+<p>For accessing the projects list endpoint <code>/api/app-projects/</code>, user need to supply the obtained JWT token.
+E.g testing via the terminal with:</p>
+<pre><code>curl -H &quot;Authorization: Bearer &lt;access token from the response&gt;&quot; https://adhocracy.plus/api/app-projects/ 
+</code></pre>
+<p>For accessing a project details, we can lookup the <code>slug</code> key from the projects list, and call the endpoint <code>/api/app-projects/app-testing/</code>, where the slug is <code>app-testing</code>.
+E.g for testing in the terminal, we can run:</p>
+<pre><code>curl -H &quot;Authorization: Bearer &lt;access token from the response&gt;&quot; https://aplus-dev.liqd.net/api/app-projects/app-testing/
+</code></pre>
+<p>The expiration time for JWT access token is 5hrs, after which the user can refresh it by calling the <code>api/token/refresh/</code> with the <code>refresh</code> token obtained during login.
+Refresh token expires after 1 day. They expiration times are set in the settings file <code>adhocracy-plus/config/settings/base.py</code> as <code>SIMPLE_JWT</code>.</p>
+<p>For more info about how to obtain and refresh a token, visit the <a href="https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#usage">django restframework simple jwt</a> docs.</p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../api/" class="btn btn-neutral float-left" title="code reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../celery/" class="btn btn-neutral float-right" title="celery">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -419,6 +167,10 @@ reference for the technical implementation of the
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../api/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../celery/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
