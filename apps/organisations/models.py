@@ -164,6 +164,10 @@ class Organisation(TranslatableModel):
             "for donations is not displayed on their pages."
         ),
     )
+    enable_geolocation = models.BooleanField(
+        default=False,
+        verbose_name=_("enable geolocation for projects"),
+    )
     language = models.CharField(
         verbose_name=_("Default language for e-mails"),
         choices=settings.LANGUAGES,
