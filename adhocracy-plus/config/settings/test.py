@@ -10,3 +10,8 @@ SITE_ID = 1
 CAPTCHA_TEST_ACCEPTED_ANSWER = "testpass"
 CAPTCHA_URL = "https://captcheck.netsyms.com/api.php"
 WAGTAILADMIN_BASE_URL = "http://localhost:8004"
+
+try:
+    from .polygons import *
+except ImportError:
+    pass
