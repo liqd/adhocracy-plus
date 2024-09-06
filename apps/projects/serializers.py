@@ -33,6 +33,7 @@ class AppProjectSerializer(serializers.ModelSerializer):
         fields = (
             "pk",
             "slug",
+            "point",
             "name",
             "description",
             "information",
