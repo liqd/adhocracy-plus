@@ -74,7 +74,7 @@ class OrganisationAdmin(TranslatableAdmin):
         (
             "Settings",
             {
-                "fields": ("is_supporting", "enable_geolocation", "language", "site"),
+                "fields": ("is_supporting", "language", "site"),
             },
         ),
     )
