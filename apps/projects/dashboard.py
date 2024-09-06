@@ -7,7 +7,6 @@ from adhocracy4.dashboard import components
 from adhocracy4.dashboard.components.forms import ProjectFormComponent
 from adhocracy4.dashboard.forms import ProjectResultForm
 
-from . import forms
 from . import views
 from .models import ProjectInsight
 from .views import ProjectResultInsightComponentFormView
@@ -108,34 +107,6 @@ class ProjectResultComponent(ProjectFormComponent):
         ]
 
 
-class ProjectLocationComponent(ProjectFormComponent):
-    identifier = "location"
-    weight = 34
-    label = _("Location")
-
-    form_title = _("Edit location")
-    form_class = forms.PointForm
-    form_template_name = "a4dashboard/includes/project_location_form.html"
-
-    def get_urls(self):
-        view = ProjectResultInsightComponentFormView.as_view(
-            component=self,
-            title=self.form_title,
-            form_class=self.form_class,
-            form_template_name=self.form_template_name,
-        )
-        return [
-            (
-                r"^projects/(?P<project_slug>[-\w_]+)/{identifier}/$".format(
-                    identifier=self.identifier
-                ),
-                view,
-                "dashboard-{identifier}-edit".format(identifier=self.identifier),
-            )
-        ]
-
-
 components.register_project(ModeratorsComponent())
 components.register_project(ParticipantsComponent())
 components.replace_project(ProjectResultComponent())
-components.replace_project(ProjectLocationComponent())
