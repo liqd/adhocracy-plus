@@ -1,3 +1,5 @@
+# FIXME: rename BERLIN_POLYGON to GERMANY_POLYGON
+# Germany Polygon extracted from open street maps: https://osm-countries-geojson.monicz.dev/
 BERLIN_POLYGON = {
     "type": "Feature",
     "geometry": {
