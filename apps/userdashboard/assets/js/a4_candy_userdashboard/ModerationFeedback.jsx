@@ -65,7 +65,7 @@ export const ModerationFeedback = (props) => {
       </div>
       <div className="row">
         <div className="col-12">
-          <p>{feedbackText}</p>
+          <span className="userdashboard-mod-feedback__text">{feedbackText}</span>
         </div>
       </div>
     </div>
