@@ -150,6 +150,7 @@ def test_app_project_serializer(
     assert response.status_code == 200
     assert response.data[0]["information"] == html_no_whitespace
     assert response.data[0]["result"] == html_no_whitespace
+    assert response.data[0]["url"]
     assert response.data[0]["published_modules"] == [module.pk]
     assert response.data[0]["organisation"] == project.organisation.name
     assert response.data[0]["access"] == "PUBLIC"

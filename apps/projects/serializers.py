@@ -27,6 +27,7 @@ class AppProjectSerializer(serializers.ModelSerializer):
     single_poll_module = serializers.SerializerMethodField()
     participation_time_display = serializers.SerializerMethodField()
     has_contact_info = serializers.SerializerMethodField()
+    url = serializers.SerializerMethodField()
 
     class Meta:
         model = Project
@@ -35,6 +36,7 @@ class AppProjectSerializer(serializers.ModelSerializer):
             "slug",
             "point",
             "name",
+            "url",
             "description",
             "information",
             "result",
@@ -54,6 +56,9 @@ class AppProjectSerializer(serializers.ModelSerializer):
             "contact_email",
             "contact_url",
         )
+
+    def get_url(self, project: Project) -> str:
+        return project.get_absolute_url()
 
     def get_information(self, project):
         return project.information.strip()
