@@ -27,6 +27,7 @@ class AppProjectsViewSet(viewsets.ReadOnlyModelViewSet):
             module__phase__end_date__gt=now,
             is_draft=False,
             is_archived=False,
+            organisation__enable_geolocation=True,  # TODO: replace with a django filter later
         )
 
 
