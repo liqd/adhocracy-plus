@@ -1,6 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard.blueprints import ProjectBlueprint
+from adhocracy4.open_poll import phases as open_poll_phases
 from adhocracy4.polls import phases as poll_phases
 from apps.budgeting import phases as budgeting_phases
 from apps.debate import phases as debate_phases
@@ -90,6 +91,22 @@ blueprints = [
             image="images/text-review.svg",
             settings_model=None,
             type="TR",
+        ),
+    ),
+    (
+        "open_poll",
+        ProjectBlueprint(
+            title=_("Open Poll"),
+            description=_(
+                "Participants can answer open and multiple choice questions without "
+                "registration"
+            ),
+            content=[
+                open_poll_phases.VotingPhase(),
+            ],
+            image="images/poll.svg",
+            settings_model=None,
+            type="OP",
         ),
     ),
     (

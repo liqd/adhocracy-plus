@@ -129,9 +129,21 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    open_poll_management: {
+      import: [
+        'adhocracy4/adhocracy4/open_poll/static/react_poll_management.jsx'
+      ],
+      dependOn: 'adhocracy4'
+    },
     poll_management: {
       import: [
         'adhocracy4/adhocracy4/polls/static/react_poll_management.jsx'
+      ],
+      dependOn: 'adhocracy4'
+    },
+    open_poll: {
+      import: [
+        'adhocracy4/adhocracy4/open_poll/static/react_polls.jsx'
       ],
       dependOn: 'adhocracy4'
     },

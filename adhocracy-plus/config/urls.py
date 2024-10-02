@@ -21,6 +21,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentModerateSet
 from adhocracy4.follows.api import FollowViewSet
+from adhocracy4.open_poll.api import OpenPollViewSet
 from adhocracy4.polls.api import PollViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
@@ -49,6 +50,7 @@ router = routers.DefaultRouter()
 router.register(r"follows", FollowViewSet, basename="follows")
 router.register(r"reports", ReportViewSet, basename="reports")
 router.register(r"polls", PollViewSet, basename="polls")
+router.register(r"open_poll", OpenPollViewSet, basename="open_poll")
 router.register(r"app-projects", AppProjectsViewSet, basename="app-projects")
 router.register(r"app-modules", AppModuleViewSet, basename="app-modules")
 router.register(r"users", UserViewSet, basename="users")
