@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-27 13:59+0200\n"
+"POT-Creation-Date: 2024-10-14 14:53+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Kyrgyz (https://app.transifex.com/liqd/teams/109316/ky/)\n"
@@ -59,8 +59,8 @@ msgstr "Долбоордун тууралоосу"
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:49
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:103
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:50
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:105
 msgid "Missing fields for publication"
 msgstr "Жарыялоо үчүн тилкелер жок"
 
@@ -462,7 +462,7 @@ msgid ""
 "ideas. The character limit is max. 300 characters (with spaces)."
 msgstr ""
 
-#: adhocracy4/comments/models.py:47
+#: adhocracy4/comments/models.py:54
 #: adhocracy4/polls/exports.py:39
 #: apps/budgeting/exports.py:78 apps/debate/exports.py:68
 #: apps/documents/exports.py:41 apps/ideas/exports.py:77
@@ -471,7 +471,7 @@ msgctxt "noun"
 msgid "Comment"
 msgstr "Пикир "
 
-#: adhocracy4/comments/models.py:48
+#: adhocracy4/comments/models.py:55
 #: adhocracy4/exports/mixins/comments.py:48
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:16
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:17
@@ -495,7 +495,7 @@ msgstr "Сураныч, категорияны тандаңыз"
 msgid "unknown user"
 msgstr "белгисиз колдонуучу "
 
-#: adhocracy4/comments_async/api.py:148
+#: adhocracy4/comments_async/api.py:149
 #: adhocracy4/polls/api.py:115
 msgid "Please agree to the organisation's terms of use."
 msgstr ""
@@ -534,14 +534,14 @@ msgid "Edit project information"
 msgstr "Долбоор тууралуу маалыматты оңдоо "
 
 #: adhocracy4/dashboard/dashboard.py:33
-#: apps/projects/dashboard.py:86
+#: apps/projects/dashboard.py:87
 #: apps/projects/templates/a4_candy_projects/project_detail.html:107
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:44
 msgid "Result"
 msgstr "Жыйынтык"
 
 #: adhocracy4/dashboard/dashboard.py:35
-#: apps/projects/dashboard.py:88
+#: apps/projects/dashboard.py:89
 msgid "Edit project result"
 msgstr "Долбоордун жыйынтыгын оңдоо "
 
@@ -944,11 +944,11 @@ msgstr "Сураныч, картага тиешелүү аймакты  тарт
 msgid "Modified"
 msgstr "жаныланды"
 
-#: adhocracy4/modules/models.py:72
+#: adhocracy4/modules/models.py:73
 msgid "Title of the module"
 msgstr "Модулдун аталышы"
 
-#: adhocracy4/modules/models.py:74
+#: adhocracy4/modules/models.py:75
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
@@ -956,11 +956,11 @@ msgstr ""
 "Бул аталыш убакыт шкаласында, модуль жана долбоор тууралуу маалыматтар "
 "баракчасында башкы бөлүгүндө көрүнүп турат.  512 символдон ашпашы  керек. "
 
-#: adhocracy4/modules/models.py:83
+#: adhocracy4/modules/models.py:84
 msgid "Short description of the module"
 msgstr "Модулдун кыскача мүнөздөмөсү "
 
-#: adhocracy4/modules/models.py:85
+#: adhocracy4/modules/models.py:86
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
@@ -970,58 +970,58 @@ msgstr ""
 "тууралуу  кененирээк маалыматтарда жазылган. Кыскача мүнөздөмө  512 "
 "символдон ашпашы керек. "
 
-#: adhocracy4/modules/models.py:222
+#: adhocracy4/modules/models.py:223
 msgid "day"
 msgstr "күн"
 
-#: adhocracy4/modules/models.py:222
-#: adhocracy4/modules/models.py:229
+#: adhocracy4/modules/models.py:223
+#: adhocracy4/modules/models.py:230
 msgid "days"
 msgstr "күндөр"
 
-#: adhocracy4/modules/models.py:223
+#: adhocracy4/modules/models.py:224
 msgid "hour"
 msgstr "саат"
 
-#: adhocracy4/modules/models.py:223
-#: adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:231
 msgid "hours"
 msgstr "сааттар"
 
-#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:225
 msgid "minute"
 msgstr "мүнөт"
 
-#: adhocracy4/modules/models.py:224
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:232
 msgid "minutes"
 msgstr "мүнөттөр"
 
-#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:226
 msgid "second"
 msgstr "секунда"
 
-#: adhocracy4/modules/models.py:225
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:226
+#: adhocracy4/modules/models.py:233
 msgid "seconds"
 msgstr "секундалар"
 
-#: adhocracy4/modules/models.py:229
+#: adhocracy4/modules/models.py:230
 msgctxt "abbreviation for day(s)"
 msgid "D"
 msgstr "D"
 
-#: adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:231
 msgctxt "abbreviation for hour(s)"
 msgid "H"
 msgstr "H"
 
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:232
 msgctxt "abbreviation for minute(s)"
 msgid "M"
 msgstr "M"
 
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:233
 msgctxt "abbreviation for second(s)"
 msgid "S"
 msgstr "S"
@@ -1672,7 +1672,7 @@ msgstr ""
 "Бюджет боюнча сунуштар менен идеяларды жарыялаңыз, алар тууралуу пикир "
 "калтырыңыз жана баалаңыз. "
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:517
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:535
 msgid "participatory budgeting"
 msgstr "Жергиликтүү бюджетти коомчулуктун катышуусу менен кабыл алуу "
 
@@ -2161,8 +2161,8 @@ msgstr "Иш-аракеттер "
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:24
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:25
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:24
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:70
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:71
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:72
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:73
 msgid "Delete"
 msgstr "Өчүрүү"
 
@@ -2756,11 +2756,9 @@ msgstr "Сиздин идея картанын кайсы жеринде жай�
 
 #: apps/mapideas/models.py:16
 msgid ""
-"Click inside the marked area or type in an address to set the marker. A set "
-"marker can be dragged when pressed."
+"Click inside the marked area to set the marker. A set marker can be dragged "
+"when pressed."
 msgstr ""
-"Маркерди орнотуу үчүн белгиленген бөлүктүн ичине басыңыз же даректи жазыңыз. "
-"Белгиленген маркерди басуу менен жылдырсаңыз болот. "
 
 #: apps/mapideas/models.py:26
 msgid "Label of the ideas location"
@@ -3675,11 +3673,15 @@ msgstr ""
 "Колдоо көрсөтүүчү уюмдар үчүн кайрымдуулук тууралуу өтүнүч  менен баннер  "
 "алардын баракчасында көрүнбөйт. "
 
-#: apps/organisations/models.py:168
+#: apps/organisations/models.py:169
+msgid "enable geolocation for projects"
+msgstr ""
+
+#: apps/organisations/models.py:172
 msgid "Default language for e-mails"
 msgstr "Электрондук почтанын башынан белгиленген тили "
 
-#: apps/organisations/models.py:173
+#: apps/organisations/models.py:177
 msgid ""
 "All e-mails to unregistered users (invites) will be sent in this language."
 msgstr ""
@@ -3816,37 +3818,45 @@ msgstr "архив"
 msgid "dearchive"
 msgstr "архивден чыгаруу"
 
-#: apps/projects/dashboard.py:18
+#: apps/projects/dashboard.py:19
 #: apps/projects/templates/a4_candy_projects/project_participants.html:4
 #: apps/projects/templates/a4_candy_projects/project_participants.html:12
 msgid "Participants"
 msgstr "Катышуучулар"
 
-#: apps/projects/dashboard.py:45
+#: apps/projects/dashboard.py:46
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:4
 #: apps/projects/templates/a4_candy_projects/project_moderators.html:12
 msgid "Moderators"
 msgstr "Модераторлор"
 
-#: apps/projects/dashboard.py:76
+#: apps/projects/dashboard.py:77
 msgid ""
 "Show insights with numbers of contributions and participants during the "
 "participation process"
 msgstr ""
 
-#: apps/projects/forms.py:43 apps/projects/views.py:246
+#: apps/projects/dashboard.py:114
+msgid "Location"
+msgstr ""
+
+#: apps/projects/dashboard.py:116
+msgid "Edit location"
+msgstr ""
+
+#: apps/projects/forms.py:47 apps/projects/views.py:246
 msgid "Invite users via email"
 msgstr "Электрондук почта аркылуу колдонуучуларды чакыруу"
 
-#: apps/projects/forms.py:48 apps/projects/views.py:247
+#: apps/projects/forms.py:52 apps/projects/views.py:247
 msgid "Invite users via file upload"
 msgstr "Файлды жүктөө аркылуу колдонуучуларды чакыруу"
 
-#: apps/projects/forms.py:49
+#: apps/projects/forms.py:53
 msgid "Upload a csv file containing email addresses."
 msgstr "Электрондук почтанын даректерин камтыган csv  файлды жүктөңүз. "
 
-#: apps/projects/forms.py:65
+#: apps/projects/forms.py:69
 msgid "Please enter email addresses or upload a file"
 msgstr "Сураныч, электрондук почтанын даректерин жазыңыз же файлды жүктөңүз"
 
@@ -3880,39 +3890,39 @@ msgid ""
 "            activities in this project."
 msgstr ""
 
-#: apps/projects/serializers.py:95
+#: apps/projects/serializers.py:102
 #, python-format
 msgid "%(time_left)s remaining"
 msgstr "%(time_left)s калды"
 
-#: apps/projects/serializers.py:99
+#: apps/projects/serializers.py:106
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:72
 msgid "more than 1 year remaining"
 msgstr "1 жылдан ашык убакыт калды "
 
-#: apps/projects/serializers.py:101
+#: apps/projects/serializers.py:108
 #, python-format
 msgid "Participation: from %(project_start)s"
 msgstr "Катышуу: %(project_start)s ден "
 
-#: apps/projects/serializers.py:107
+#: apps/projects/serializers.py:114
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:105
 msgid "Participation ended. Read result."
 msgstr "Катышуу аяктады. Жыйынтыкты көрүү. "
 
-#: apps/projects/serializers.py:237
+#: apps/projects/serializers.py:244
 msgid "running"
 msgstr "азыркы"
 
-#: apps/projects/serializers.py:242
+#: apps/projects/serializers.py:249
 msgid "starts on {}"
 msgstr "{} башталат"
 
-#: apps/projects/serializers.py:250
+#: apps/projects/serializers.py:257
 msgid "starts in the future"
 msgstr "келечекте башталат"
 
-#: apps/projects/serializers.py:252
+#: apps/projects/serializers.py:259
 msgid "completed"
 msgstr "бүттү"
 
@@ -4828,131 +4838,131 @@ msgstr "Алардагы акыркы аракеттердин тизмеси"
 msgid "Activities"
 msgstr "Ишмердүүлүк"
 
-#: adhocracy-plus/config/settings/base.py:194
+#: adhocracy-plus/config/settings/base.py:197
 msgid "English"
 msgstr "Англис тили"
 
-#: adhocracy-plus/config/settings/base.py:195
+#: adhocracy-plus/config/settings/base.py:198
 msgid "German"
 msgstr "Немис тили."
 
-#: adhocracy-plus/config/settings/base.py:196
+#: adhocracy-plus/config/settings/base.py:199
 msgid "Dutch"
 msgstr "Голланд тили."
 
-#: adhocracy-plus/config/settings/base.py:197
+#: adhocracy-plus/config/settings/base.py:200
 msgid "Kyrgyz"
 msgstr "Кыргызча"
 
-#: adhocracy-plus/config/settings/base.py:198
+#: adhocracy-plus/config/settings/base.py:201
 msgid "Russian"
 msgstr "Орусча"
 
-#: adhocracy-plus/config/settings/base.py:450
+#: adhocracy-plus/config/settings/base.py:468
 msgid "suggestion"
 msgstr "Сунуш "
 
-#: adhocracy-plus/config/settings/base.py:451
+#: adhocracy-plus/config/settings/base.py:469
 msgid "note"
 msgstr "Эскертүү"
 
-#: adhocracy-plus/config/settings/base.py:452
+#: adhocracy-plus/config/settings/base.py:470
 msgid "question"
 msgstr "Суроо"
 
-#: adhocracy-plus/config/settings/base.py:493
+#: adhocracy-plus/config/settings/base.py:511
 msgid "Pin without icon"
 msgstr "Белгисиз тиркөө"
 
-#: adhocracy-plus/config/settings/base.py:494
+#: adhocracy-plus/config/settings/base.py:512
 msgid "Diamond"
 msgstr "Алмаз"
 
-#: adhocracy-plus/config/settings/base.py:495
+#: adhocracy-plus/config/settings/base.py:513
 msgid "Triangle up"
 msgstr "Үч бурчтук өйдө "
 
-#: adhocracy-plus/config/settings/base.py:496
+#: adhocracy-plus/config/settings/base.py:514
 msgid "Triangle down"
 msgstr "Үч бурчтук ылдый"
 
-#: adhocracy-plus/config/settings/base.py:497
+#: adhocracy-plus/config/settings/base.py:515
 msgid "Ellipse"
 msgstr "Эллипс"
 
-#: adhocracy-plus/config/settings/base.py:498
+#: adhocracy-plus/config/settings/base.py:516
 msgid "Semi circle"
 msgstr "Жарым  айлана"
 
-#: adhocracy-plus/config/settings/base.py:499
+#: adhocracy-plus/config/settings/base.py:517
 msgid "Hexagon"
 msgstr "Алты бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:500
+#: adhocracy-plus/config/settings/base.py:518
 msgid "Rhomboid"
 msgstr "Ромбоид"
 
-#: adhocracy-plus/config/settings/base.py:501
+#: adhocracy-plus/config/settings/base.py:519
 msgid "Star"
 msgstr "Жылдыз"
 
-#: adhocracy-plus/config/settings/base.py:502
+#: adhocracy-plus/config/settings/base.py:520
 msgid "Square"
 msgstr "Төрт бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:503
+#: adhocracy-plus/config/settings/base.py:521
 msgid "Octothorpe"
 msgstr "Торчо"
 
-#: adhocracy-plus/config/settings/base.py:504
+#: adhocracy-plus/config/settings/base.py:522
 msgid "Rectangle"
 msgstr "Тик бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:505
+#: adhocracy-plus/config/settings/base.py:523
 msgid "Circle"
 msgstr "Айлана"
 
-#: adhocracy-plus/config/settings/base.py:506
+#: adhocracy-plus/config/settings/base.py:524
 msgid "Right triangle"
 msgstr "Тик бурчтуу үч бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:507
+#: adhocracy-plus/config/settings/base.py:525
 msgid "Zigzag"
 msgstr "Ийри-буйру сызык"
 
-#: adhocracy-plus/config/settings/base.py:511
+#: adhocracy-plus/config/settings/base.py:529
 msgid "brainstorming"
 msgstr "Жамааттык талкуу"
 
-#: adhocracy-plus/config/settings/base.py:512
+#: adhocracy-plus/config/settings/base.py:530
 msgid "spatial brainstorming"
 msgstr "Көлөмдүү жамааттык талкуу"
 
-#: adhocracy-plus/config/settings/base.py:513
+#: adhocracy-plus/config/settings/base.py:531
 msgid "idea challenge"
 msgstr "Идеяны сынап көрүү"
 
-#: adhocracy-plus/config/settings/base.py:514
+#: adhocracy-plus/config/settings/base.py:532
 msgid "spatial idea challenge"
 msgstr "Идеяны көлөмдүү сыноо"
 
-#: adhocracy-plus/config/settings/base.py:515
+#: adhocracy-plus/config/settings/base.py:533
 msgid "text review"
 msgstr "Текстти карап чыгуу"
 
-#: adhocracy-plus/config/settings/base.py:516
+#: adhocracy-plus/config/settings/base.py:534
 msgid "poll"
 msgstr "Сурамжылоо"
 
-#: adhocracy-plus/config/settings/base.py:518
+#: adhocracy-plus/config/settings/base.py:536
 msgid "interactive event"
 msgstr "Интерактивдүү иш-чара"
 
-#: adhocracy-plus/config/settings/base.py:519
+#: adhocracy-plus/config/settings/base.py:537
 msgid "prioritization"
 msgstr "Ыраатташтыруу"
 
-#: adhocracy-plus/config/settings/base.py:520
+#: adhocracy-plus/config/settings/base.py:538
 msgid "debate"
 msgstr "Дебаттар"
 
@@ -5014,23 +5024,23 @@ msgstr "Долбоор жарыялоого даяр"
 msgid "Project not ready for publication"
 msgstr "Долбоор жарыялоого даяр эмес"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:89
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:91
 msgid "Module ready for addition"
 msgstr "Модуль кошууга даяр"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:91
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:93
 msgid "Module not ready for addition"
 msgstr "Модуль кошууга даяр эмес"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:132
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:134
 msgid "Hide from project"
 msgstr "Долбоордон жашыруу"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:142
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:144
 msgid "Add to project"
 msgstr "Долбоорго кошуу"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:157
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:159
 msgid "Add Module"
 msgstr "Модулду кошуу"
 
