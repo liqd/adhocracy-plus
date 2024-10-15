@@ -23,8 +23,7 @@ fieldset {
 }
 
 html {
-    overflow-y: scroll;
-    overflow-x: hidden;  // stops horizontal scroll
+    overflow: hidden scroll;  // stops horizontal scroll
     background-color: $body-bg;
     color: contrast-color($body-bg);
     box-sizing: border-box;
