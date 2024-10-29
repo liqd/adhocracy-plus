@@ -2,8 +2,6 @@
 
 import adhocracy4.images.fields
 import autoslug.fields
-import ckeditor.fields
-import ckeditor_uploader.fields
 import parler.models
 from django.conf import settings
 from django.db import migrations, models
@@ -85,7 +83,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "information",
-                    ckeditor_uploader.fields.RichTextUploadingField(
+                    models.TextField(
                         blank=True,
                         help_text="You can provide general information about your participation platform to your visitors. It’s also helpful to name a general person of contact for inquiries. The information will be shown on a separate page that can be reached via the main menu.",
                         verbose_name="Information about your organisation",
@@ -93,7 +91,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "imprint",
-                    ckeditor.fields.RichTextField(
+                    models.TextField(
                         help_text="Please provide all the legally required information of your imprint. The imprint will be shown on a separate page.",
                         verbose_name="Imprint",
                     ),

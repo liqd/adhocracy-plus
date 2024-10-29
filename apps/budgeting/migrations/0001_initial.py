@@ -5,7 +5,6 @@ import adhocracy4.images.fields
 import adhocracy4.maps.fields
 import apps.moderatorfeedback.fields
 import autoslug.fields
-import ckeditor.fields
 from django.db import migrations, models
 import django.db.models.deletion
 
@@ -61,7 +60,7 @@ class Migration(migrations.Migration):
                 ("name", models.CharField(max_length=120, verbose_name="Title")),
                 (
                     "description",
-                    ckeditor.fields.RichTextField(verbose_name="Description"),
+                    models.TextField(verbose_name="Description"),
                 ),
                 (
                     "image",
