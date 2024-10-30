@@ -91,7 +91,7 @@
     "lint": "eslint apps adhocracy-plus/assets --ext .js,.jsx && stylelint 'adhocracy-plus/assets/scss/**/*.scss'",
     "lint-staged": "lint-staged",
     "lint-fix": "eslint --fix --ext .js,.jsx .",
-    "postinstall": "husky install",
+    "prepare": "husky",
     "test": "jest --passWithNoTests",
     "testDebug": "jest -o --coverage=false",
     "testNoCov": "jest --coverage=false",
