@@ -1,6 +1,8 @@
 from typing import Iterable
 from typing import List
 
+from django.core.exceptions import FieldDoesNotExist
+
 from adhocracy4.polls.models import Answer
 from adhocracy4.polls.models import Poll
 from adhocracy4.polls.models import Vote
@@ -73,8 +75,34 @@ def create_insight(project: Project) -> ProjectInsight:
     insight.save()
 
     insight.active_participants.clear()
-    for obj in creator_objects:
-        ids = list(obj.values_list("creator", flat=True).distinct().order_by())
-        insight.active_participants.add(*ids)
+    unregistered_participants = set()
 
+    for obj in creator_objects:
+        # ignore objects which don't have a creator, they are counted in the next step.
+        ids = list(
+            obj.filter(creator__isnull=False)
+            .values_list("creator", flat=True)
+            .distinct()
+            .order_by()
+        )
+        insight.active_participants.add(*ids)
+        # content from unregistered users doesn't have a creator but a content_id
+        if model_field_exists(obj.model, "content_id"):
+            content_ids = set(
+                obj.filter(content_id__isnull=False)
+                .values_list("content_id", flat=True)
+                .distinct()
+                .order_by()
+            )
+            unregistered_participants = unregistered_participants.union(content_ids)
+
+    insight.unregistered_participants = len(unregistered_participants)
     return insight
+
+
+def model_field_exists(cls, field):
+    try:
+        cls._meta.get_field(field)
+        return True
+    except FieldDoesNotExist:
+        return False

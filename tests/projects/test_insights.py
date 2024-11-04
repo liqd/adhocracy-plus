@@ -1,5 +1,12 @@
 import pytest
+from django.urls import reverse
+from rest_framework import status
 
+from adhocracy4.polls import phases
+from adhocracy4.polls.models import Poll
+from adhocracy4.polls.models import Vote
+from adhocracy4.test.helpers import freeze_phase
+from adhocracy4.test.helpers import setup_phase
 from apps.dashboard.blueprints import blueprints
 from apps.projects.insights import create_insight
 from apps.projects.models import ProjectInsight
@@ -18,19 +25,18 @@ def test_draft_modules_do_not_trigger_show_results(
     question_factory,
     answer_factory,
 ):
-    n_active_participants = 2
+    n_answers = 2
     expected_label = "poll answers"
 
     project = project_factory()
     module = module_factory(project=project, is_draft=False, blueprint_type="PO")
     poll = poll_factory(module=module)
     question = question_factory(poll=poll, is_open=True)
-    answer_factory.create_batch(size=n_active_participants, question=question)
+    answer_factory.create_batch(size=n_answers, question=question)
 
     insight = insight_provider(project=project)
 
-    assert insight.active_participants.count() == n_active_participants
-    assert insight.poll_answers == n_active_participants
+    assert insight.poll_answers == n_answers
 
     context = create_insight_context(insight=insight)
     labels = [label for label, count in context["counts"]]
@@ -229,7 +235,6 @@ def test_complex_example(
     assert insight.comments == len(comments)
     assert insight.poll_answers == len(answers) + len(votes)
     assert insight.ratings == len(ratings) + len(likes)
-    assert insight.active_participants.count() == len(users)
 
 
 @pytest.mark.django_db
@@ -263,3 +268,80 @@ def test_create_insight_for_ideas(
     assert insight.ratings == 3
     assert insight.comments == 3
     assert insight.active_participants.count() == 4
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("insight_provider", [create_insight, get_insight])
+def test_create_insight_contexts_combines_unregistered_users_and_registered_users(
+    apiclient,
+    user_factory,
+    phase_factory,
+    poll_factory,
+    choice_factory,
+    question_factory,
+    insight_provider,
+):
+    phase, module, project, _ = setup_phase(
+        phase_factory, poll_factory, phases.VotingPhase
+    )
+
+    poll = Poll.objects.first()
+    poll.allow_unregistered_users = True
+    poll.save()
+    question = question_factory(poll=poll)
+    choice1 = choice_factory(question=question)
+    choice_factory(question=question)
+    open_question = question_factory(poll=poll, is_open=True)
+
+    assert Vote.objects.count() == 0
+
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
+
+    users = user_factory.create_batch(size=4)
+    n_unregistered_users = 2
+    with freeze_phase(phase):
+        for i in range(n_unregistered_users):
+            data = {
+                "votes": {
+                    question.pk: {
+                        "choices": [choice1.pk],
+                        "other_choice_answer": "",
+                        "open_answer": "",
+                    },
+                    open_question.pk: {
+                        "choices": [],
+                        "other_choice_answer": "",
+                        "open_answer": "an open answer",
+                    },
+                },
+                "agreed_terms_of_use": True,
+                "captcha": "testpass:1",
+            }
+            response = apiclient.post(url, data, format="json")
+            assert response.status_code == status.HTTP_201_CREATED
+
+        for user in users:
+            apiclient.force_authenticate(user=user)
+            data = {
+                "votes": {
+                    question.pk: {
+                        "choices": [choice1.pk],
+                        "other_choice_answer": "",
+                        "open_answer": "",
+                    },
+                    open_question.pk: {
+                        "choices": [],
+                        "other_choice_answer": "",
+                        "open_answer": "an open answer",
+                    },
+                },
+                "agreed_terms_of_use": True,
+            }
+            response = apiclient.post(url, data, format="json")
+            assert response.status_code == status.HTTP_201_CREATED
+
+    insight = insight_provider(project=project)
+    assert insight.active_participants.count() == len(users)
+    assert insight.unregistered_participants == n_unregistered_users
+    context = create_insight_context(insight)
+    assert context["counts"][0][1] == len(users) + n_unregistered_users
