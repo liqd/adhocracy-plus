@@ -93,5 +93,6 @@ def increase_poll_answers_count(sender, instance, created, **kwargs):
 
         insight, _ = ProjectInsight.objects.get_or_create(project=project)
         insight.poll_answers += 1
-        insight.active_participants.add(instance.creator.id)
+        if instance.creator:
+            insight.active_participants.add(instance.creator.id)
         insight.save()
