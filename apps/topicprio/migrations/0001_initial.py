@@ -3,7 +3,6 @@
 import adhocracy4.categories.fields
 import adhocracy4.images.fields
 import autoslug.fields
-import ckeditor_uploader.fields
 from django.db import migrations, models
 import django.db.models.deletion
 
@@ -40,7 +39,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("name", models.CharField(max_length=120, verbose_name="Title")),
-                ("description", ckeditor_uploader.fields.RichTextUploadingField()),
+                ("description", models.TextField()),
                 (
                     "image",
                     adhocracy4.images.fields.ConfiguredImageField(
