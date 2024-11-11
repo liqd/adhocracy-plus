@@ -46,7 +46,7 @@
     display: initial;
 }
 
-.captcheck_question_access {
+:not(.react_captcha).captcheck_question_access {
     display: none;
 }
 
@@ -79,6 +79,6 @@
     display: initial;
 }
 
-.captcheck_answer_access {
+:not(.react_captcha).captcheck_answer_access {
     display: none;
 }
