@@ -48,3 +48,16 @@ Finally, we decided that we want to add a custom migration that initializes the 
 The custom migration (0006_initialize_insights.py) was hard to write because of the limited query manager access in custom migrations (Django's fake migration models). In particular, the generic relations on ratings and comments forced us to migrate by "looping and counting".
 
 Finally, we added a management command ("reset_insights_table") to refresh the insights table. This code makes use of regular models (instead of Django's fake migration models) and can therefore be tested and keeps our options open for future background tasks and bug fixes.
+
+## Updates
+
+- With the new feature of the poll module optionally allowing unregistered users
+  to vote, we had to find a way for the number of participants to include
+unregistered users, as currently they are tied to the user as part of a m2m
+relation. We introduced a new base model `GeneratedContent` which has an
+optional field `creator` which is used if a registered user participated and an optional field
+`content_id` for unregistered users. In case of a poll submission from an
+unregistered user a unique uuid4 is created and
+stored in `content_id` to allow counting the amount of unregistered users which
+participated in the poll. We extended the `ProjectInsight` model with a
+`unregistered_participants` field which stores this number.

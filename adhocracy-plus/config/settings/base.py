@@ -553,6 +553,9 @@ A4_ACTIONS_PHASE_ENDS_HOURS = 48
 
 A4_USE_ORGANISATION_TERMS_OF_USE = True
 
+# Enable the option to allow unregistered users to partipicate in a poll
+A4_POLL_ENABLE_UNREGISTERED_USERS = True
+
 # Disable CSP by default
 CSP_REPORT_ONLY = True
 CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", "data:", "blob:", "*"]
