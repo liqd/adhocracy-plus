@@ -1,211 +1,203 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
-
-{% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
-
+{% block title %}
+    {{ project.name }} — {{ block.super }}
+{% endblock title %}
 {% block social_meta_image %}
-{% if project.image %}
-<meta name="twitter:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
-<meta name="linkedin:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
-<meta property="og:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
-<meta property="og:image:width" content="1500">
-<meta property="og:image:height" content="500">
-{% endif %}
-{% endblock %}
-
+    {% if project.image %}
+        <meta name="twitter:image"
+              content="{{ project.image |thumbnail_url:'heroimage' }}">
+        <meta name="linkedin:image"
+              content="{{ project.image |thumbnail_url:'heroimage' }}">
+        <meta property="og:image"
+              content="{{ project.image |thumbnail_url:'heroimage' }}">
+        <meta property="og:image:width" content="1500">
+        <meta property="og:image:height" content="500">
+    {% endif %}
+{% endblock social_meta_image %}
 {% block social_meta_description %}
-{% if module.name %}
-<meta name="twitter:description" content="{{ module.name }}">
-<meta name="linkedin:description" content="{{ module.name }}">
-<meta property="og:description" content="{{ module.name }}">
-{% endif %}
-{% endblock %}
-
+    {% if module.name %}
+        <meta name="twitter:description" content="{{ module.name }}">
+        <meta name="linkedin:description" content="{{ module.name }}">
+        <meta property="og:description" content="{{ module.name }}">
+    {% endif %}
+{% endblock social_meta_description %}
 <!-- ensure cookie overlay for embedded videos -->
 {% block extra_css %}
-  {{ block.super }}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
-{% endblock %}
-
+{% endblock extra_css %}
 {% block extra_js %}
-  {{ block.super }}
+    {{ block.super }}
     <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
-{% endblock %}
-
+{% endblock extra_js %}
 {% block extra_messages %}
     {{ block.super }}
     {% if project.is_draft %}
-    <div class="u-bg-light py-5">
-        <div class="container container--shadow">
-            <div class="row">
-              <div class="col">
-                <ul class="messages">
-                    <li class="alert alert--warning" role="alert">
-                        <div class="container">
-                            {% translate 'This project is in not published yet.' %}
-                        </div>
-                    </li>
-                </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-{% endblock %}
-
-{% block content %}
-<div class="u-bg-light py-5">
-    <div class="container">
-      <div class="col-12 container--shadow">
-        <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
-                       background-image: url({{ project.image |thumbnail_url:'heroimage' }});
-                       {% endif %}">
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-                        <h1 class="project-header__title">{{ project.name }}</h1>
-                        <p class="project-header__description">{{ project.description }}</p>
-                        {% if request.user.is_authenticated %}
-                            {% react_follows project %}
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            {% if project.image_copyright %}
-            <div class="header__copyright copyright">© {{ project.image_copyright }}</div>
-            {% endif %}
-            {% include 'header_lower.html' with organisation=project.organisation %}
-        </div>
-        {% block module_nav %}
-            {% if module.is_in_module_cluster  %}
-                <div class="my-5 pt-3 pt-sm-0 me-md-3 d-flex justify-content-center justify-content-sm-end">
-                {% if module.previous_module_in_cluster %}
-                    <a class="btn btn--light text-muted" href="{{ module.previous_module_in_cluster.get_absolute_url }}">
-                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                        <span>{% translate 'Previous' %}</span>
-                    </a>
-                {% endif %}
-                    <span class="my-2 mx-3">{{ module.readable_index_in_cluster }} {% translate 'of' %} {{ module.module_cluster|length }}</span>
-                {% if module.next_module_in_cluster %}
-                    <a class="btn btn--light text-muted" href="{{ module.next_module_in_cluster.get_absolute_url }}">
-                        <span>{% translate 'Next' %}</span>
-                        <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-                {% endif %}
-                </div>
-            {% endif %}
-        {% endblock %}
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% translate 'breadcrumbs' %}">
-                    <ul>
-                        <li>
-                            <a href="{{ project.get_absolute_url }}?initialSlide={{ initial_slide }}#timeline-carousel">
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                {{ project.name }}
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                {% block module_description %}
-                    {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
-                    <h1 class="project-header__title">{{ module.name }}</h1>
-                    <p class="project-header__description">{{ module.description }}</p>
-                    {% endif %}
-                {% endblock %}
-            </div>
-        </div>
-        {% block phase_info %}
-            {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
-                {% if not module.active_phase %}
+        <div class="u-bg-light py-5">
+            <div class="container container--shadow">
                 <div class="row">
-                    <div class="col-md-8 offset-md-2 mb-3">
-                        <strong>
-                            {% translate 'Participation is not possible at the moment.' %}
-                            {% if not module.past_phases %}
-                                {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                                {% blocktranslate with date=start_date %}It starts on {{ date }}.{% endblocktranslate%}
-                            {% elif module.future_phases %}
-                                {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                                {% blocktranslate with date=start_date %}It continues on {{ date }}.{% endblocktranslate%}
-                            {% else %}
-                                {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
-                                {% blocktranslate with date=end_date %}It ended on {{ date }}.{% endblocktranslate%}
-                            {% endif %}
-                        </strong>
-                    </div>
-                </div>
-                {% endif %}
-                {% with phase_count=module.phases.count %}
-                <div class="row mb-4">
-                    <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                        {% for phase in module.phases %}
-                            {% if phase.is_over or phase == module.active_phase %}
-                            <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
-                                <div class="fw-bold{% if phase == module.active_phase %} lr-bar{% endif %}">
-                                    {% if phase == module.active_phase %}
-                                        <span class="lr-bar__left">{{ phase.name }}</span>
-                                        <span class="lr-bar__right text-primary">{% translate 'active' %}</span>
-                                    {% else %}
-                                        {{ phase.name }}
-                                    {% endif %}
-                                </div>
-                                <div class="phase-info__item__subtitle">
-                                    {% html_date phase.start_date 'DATETIME_FORMAT' %}
-                                    &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
-                                </div>
-                                <div class="phase-info__item__description">
-                                    {{ phase.description }}
-                                </div>
-                            </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endwith %}
-            {% endif %}
-        {% endblock %}
-
-        {% if project.is_private %}
-        <div class="row">
-            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs mb-4">
-                <i class="fas fa-lock pe-2" aria-hidden="true"></i>{% translate 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
-            </div>
-        </div>
-        {% elif project.is_semipublic %}
-        <div class="row">
-            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs mb-4">
-                <i class="fas fa-eye pe-2" aria-hidden="true"></i>{% translate 'This project is publicly visible. Invited users can actively participate.' %}
-            </div>
-        </div>
-        {% endif %}
-
-        <div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
-                {% block project_action %}{% endblock %}
-                </div>
-            </div>
-        </div>
-        {% block phase_content %}{% endblock %}
-        {% block other_modules %}
-            {% if module.is_in_module_cluster %}
-                <div class="row">
-                    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                        <h3 class="tile__list-header">{%  translate 'More questions from this online participation' %}</h3>
-                        <ul class="l-tiles-3">
-                            {% for other_module in module.module_cluster %}
-                                {% if not other_module == module %}
-                                    {% include "a4_candy_projects/includes/project_list_tile.html" with object=other_module project=other_module.project orientation='vertical' type='module' url=other_module.get_absolute_url %}
-                                {% endif %}
-                            {% endfor %}
+                    <div class="col">
+                        <ul class="messages">
+                            <li class="alert alert--warning" role="alert">
+                                <div class="container">{% translate "This project is in not published yet." %}</div>
+                            </li>
                         </ul>
                     </div>
                 </div>
-            {% endif %}
-        {% endblock %}
-        {% include 'footer_upper.html' with organisation=project.organisation %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock extra_messages %}
+{% block content %}
+    <div class="u-bg-light py-5">
+        <div class="container">
+            <div class="col-12 container--shadow">
+                <div class="project-header{% if project.image %} project-header--image{% endif %}"
+                     style="{% if view.project.image %} background-image: url({{ project.image |thumbnail_url:'heroimage' }});
+                            {% endif %}">
+                    <div class="container">
+                        <div class="row mb-5">
+                            <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+                                <h1 class="project-header__title">{{ project.name }}</h1>
+                                <p class="project-header__description">{{ project.description }}</p>
+                                {% if request.user.is_authenticated %}
+                                    {% react_follows project %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% if project.image_copyright %}
+                        <div class="header__copyright copyright">© {{ project.image_copyright }}</div>
+                    {% endif %}
+                    {% include "header_lower.html" with organisation=project.organisation %}
+                </div>
+                {% block module_nav %}
+                    {% if module.is_in_module_cluster %}
+                        <div class="my-5 pt-3 pt-sm-0 me-md-3 d-flex justify-content-center justify-content-sm-end">
+                            {% if module.previous_module_in_cluster %}
+                                <a class="btn btn--light text-muted"
+                                   href="{{ module.previous_module_in_cluster.get_absolute_url }}">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                    <span>{% translate "Previous" %}</span>
+                                </a>
+                            {% endif %}
+                            <span class="my-2 mx-3">{{ module.readable_index_in_cluster }} {% translate "of" %} {{ module.module_cluster|length }}</span>
+                            {% if module.next_module_in_cluster %}
+                                <a class="btn btn--light text-muted"
+                                   href="{{ module.next_module_in_cluster.get_absolute_url }}">
+                                    <span>{% translate "Next" %}</span>
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endblock module_nav %}
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <nav class="breadcrumbs u-spacer-bottom-double"
+                             aria-label="{% translate "breadcrumbs" %}">
+                            <ul>
+                                <li>
+                                    <a href="{{ project.get_absolute_url }}?initialSlide={{ initial_slide }}#timeline-carousel">
+                                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                        {{ project.name }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                {% include "a4modules/includes/module_description.html" %}
+                {% block phase_info %}
+                    {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
+                        {% if not module.active_phase %}
+                            <div class="row">
+                                <div class="col-md-8 offset-md-2 mb-3">
+                                    <strong>
+                                        {% translate "Participation is not possible at the moment." %}
+                                        {% if not module.past_phases %}
+                                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                                            {% blocktranslate with date=start_date %}It starts on {{ date }}.{% endblocktranslate%}
+                                        {% elif module.future_phases %}
+                                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                                            {% blocktranslate with date=start_date %}It continues on {{ date }}.{% endblocktranslate%}
+                                        {% else %}
+                                            {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
+                                            {% blocktranslate with date=end_date %}It ended on {{ date }}.{% endblocktranslate%}
+                                        {% endif %}
+                                    </strong>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% with phase_count=module.phases.count %}
+                            <div class="row mb-4">
+                                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                                    {% for phase in module.phases %}
+                                        {% if phase.is_over or phase == module.active_phase %}
+                                            <div class="phase-info__item {% if phase_count == 1 %}u-no-border{% endif %}">
+                                                <div class="fw-bold{% if phase == module.active_phase %} lr-bar{% endif %}">
+                                                    {% if phase == module.active_phase %}
+                                                        <span class="lr-bar__left">{{ phase.name }}</span>
+                                                        <span class="lr-bar__right text-primary">{% translate "active" %}</span>
+                                                    {% else %}
+                                                        {{ phase.name }}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="phase-info__item__subtitle">
+                                                    {% html_date phase.start_date 'DATETIME_FORMAT' %}
+                                                    - {% html_date phase.end_date 'DATETIME_FORMAT' %}
+                                                </div>
+                                                <div class="phase-info__item__description">{{ phase.description }}</div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endwith %}
+                    {% endif %}
+                {% endblock phase_info %}
+                {% if project.is_private %}
+                    <div class="row">
+                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs mb-4">
+                            <i class="fas fa-lock pe-2" aria-hidden="true"></i>{% translate "This project is not publicly visible. Only invited users can see content and actively participate." %}
+                        </div>
+                    </div>
+                {% elif project.is_semipublic %}
+                    <div class="row">
+                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs mb-4">
+                            <i class="fas fa-eye pe-2" aria-hidden="true"></i>{% translate "This project is publicly visible. Invited users can actively participate." %}
+                        </div>
+                    </div>
+                {% endif %}
+                <div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+                            {% block project_action %}
+                            {% endblock project_action %}
+                        </div>
+                    </div>
+                </div>
+                {% block phase_content %}
+                {% endblock phase_content %}
+                {% block other_modules %}
+                    {% if module.is_in_module_cluster %}
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                                <h3 class="tile__list-header">{% translate "More questions from this online participation" %}</h3>
+                                <ul class="l-tiles-3">
+                                    {% for other_module in module.module_cluster %}
+                                        {% if not other_module == module %}
+                                            {% include "a4_candy_projects/includes/project_list_tile.html" with object=other_module project=other_module.project orientation="vertical" type="module" url=other_module.get_absolute_url %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endblock other_modules %}
+                {% include "footer_upper.html" with organisation=project.organisation %}
+            </div>
         </div>
     </div>
-</div>
-{% endblock %}
+{% endblock content %}
