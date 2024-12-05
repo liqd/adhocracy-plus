@@ -1,0 +1,13 @@
+{% block module_description %}
+    {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
+        <section class="row">
+            <div class="col-md-8 offset-md-2 mb-3">
+                <header>
+                    <h2>{{ module.name }}</h2>
+                </header>
+                {% include "a4polls/includes/unregistered-users-info-box.html" %}
+                <p>{{ module.description }}</p>
+            </div>
+        </section>
+    {% endif %}
+{% endblock module_description %}
