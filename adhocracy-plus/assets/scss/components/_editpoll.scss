@@ -20,6 +20,15 @@
     color: $text-color-gray;
 }
 
+.editpoll__questions-options__form-check {
+    display: flex;
+
+    & :nth-child(1) {
+        order: 2;
+        margin-left: 0.5em;
+    }
+}
+
 .editpoll__btns--question {
     display: flex;
     flex-flow: column wrap;
