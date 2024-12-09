@@ -88,13 +88,11 @@ class NewsPage(Page):
 
     body_streamfield_de = fields.StreamField(
         [("paragraph", blocks.RichTextBlock()), ("html", blocks.RawHTMLBlock())],
-        use_json_field=True,
         blank=True,
     )
 
     body_streamfield_en = fields.StreamField(
         [("paragraph", blocks.RichTextBlock()), ("html", blocks.RawHTMLBlock())],
-        use_json_field=True,
         blank=True,
     )
 
