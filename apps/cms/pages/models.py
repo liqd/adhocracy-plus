@@ -106,7 +106,6 @@ class HomePage(Page):
             ("news", NewsBlock()),
             ("use_cases", UseCaseBlock()),
         ],
-        use_json_field=True,
         blank=True,
     )
 
@@ -120,7 +119,6 @@ class HomePage(Page):
             ("news", NewsBlock()),
             ("use_cases", UseCaseBlock()),
         ],
-        use_json_field=True,
         blank=True,
     )
 
@@ -209,7 +207,6 @@ class SimplePage(Page):
             ("downloads", cms_blocks.DownloadListBlock()),
             ("quote", cms_blocks.QuoteBlock()),
         ],
-        use_json_field=True,
     )
     body_streamfield_en = fields.StreamField(
         [
@@ -223,7 +220,6 @@ class SimplePage(Page):
             ("downloads", cms_blocks.DownloadListBlock()),
             ("quote", cms_blocks.QuoteBlock()),
         ],
-        use_json_field=True,
         blank=True,
     )
 
@@ -239,7 +235,6 @@ class SimplePage(Page):
             ("downloads", cms_blocks.DownloadListBlock()),
             ("quote", cms_blocks.QuoteBlock()),
         ],
-        use_json_field=True,
         blank=True,
     )
 
@@ -255,7 +250,6 @@ class SimplePage(Page):
             ("downloads", cms_blocks.DownloadListBlock()),
             ("quote", cms_blocks.QuoteBlock()),
         ],
-        use_json_field=True,
         blank=True,
     )
 
@@ -271,7 +265,6 @@ class SimplePage(Page):
             ("downloads", cms_blocks.DownloadListBlock()),
             ("quote", cms_blocks.QuoteBlock()),
         ],
-        use_json_field=True,
         blank=True,
     )
 
