@@ -1,22 +1,21 @@
 {% extends extends %}
 {% load static react_polls react_comments_async %}
 
-
 {% block phase_content %}
-<div class="row">
-    <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-        {% react_polls poll %}
-    </div>
-</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 mb-3">
+                {% react_polls poll %}
+            </div>
 
-<div class="row mt-5">
-    <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 my-4">
-        {% react_comments_async obj=object no_control_bar=True %}
+            <div class="col-md-8 offset-md-2 mb-3">
+                {% react_comments_async obj=object no_control_bar=True %}
+            </div>
+        </div>
     </div>
-</div>
-{% endblock %}
+{% endblock phase_content %}
 
 {% block extra_js %}
   {{ block.super }}
     <script type="text/javascript" src="{% static 'polls.js' %}"></script>
-{% endblock %}
+{% endblock extra_js %}
