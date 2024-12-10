@@ -20,10 +20,20 @@
     color: $text-color-gray;
 }
 
+.editpoll__questions-options__form-check {
+    display: flex;
+    align-items: center;
+  
+    input {
+        margin: 0 0.5em 0 0;
+    }
+}
+
 .editpoll__btns--question {
     display: flex;
     flex-flow: column wrap;
 }
+
 
 @media (min-width: $breakpoint-md) {
     .editpoll__btns--question {
