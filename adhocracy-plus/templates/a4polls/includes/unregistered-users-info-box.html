@@ -1,0 +1,20 @@
+{% load i18n static settings %}
+{% settings_value "APLUS_MANUAL_URL" as manual_url %}
+
+{% if poll.allow_unregistered_users %}
+    <aside class="info-box" aria-labelledby="info-box-title">
+        <h3 class="visually-hidden" id="info-box-title">{% translate "Poll Participation Info" %}</h3>
+        <div class="info-box__content">
+            <i class="far fa-lightbulb" aria-hidden="true"></i>
+            <div class="info-box__text">
+                {% blocktrans %}
+                    <p>You can now participate in this poll even if you're not logged in.</p>
+                    <p><strong>Unregistered users can't edit their votes once submitted.</strong></p>
+                {% endblocktrans %}
+                {% if manual_url %}
+                    <a href="{{ manual_url }}/{{ LANGUAGE_CODE }}:quickstart:faq:registration:poll" rel="nofollow noopener noreferrer external" target="_blank" class="info-box__link" aria-label="Learn more about the voting options and rules">{% translate "Learn more about voting options." %}</a>
+                {% endif %}
+            </div>
+        </div>
+    </aside>
+{% endif %}
