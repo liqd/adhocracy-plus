@@ -1,0 +1,21 @@
+.info-box {
+    background-color: $brand-primary-tint;
+    padding: $spacer;
+    margin: $spacer 0;
+    display: flex;
+    flex-direction: column;
+
+    &__content {
+        display: flex;
+        align-items: first baseline;
+        gap: $spacer; // Space between icon and text
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    &__text {
+        flex-grow: 1;
+    }
+}
