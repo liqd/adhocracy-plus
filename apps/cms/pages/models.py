@@ -10,7 +10,7 @@ from wagtail.admin.panels import ObjectList
 from wagtail.admin.panels import PageChooserPanel
 from wagtail.admin.panels import TabbedInterface
 from wagtail.admin.panels import TitleFieldPanel
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.blocks import ImageBlock
 from wagtail.models import Page
 
 from apps.cms import blocks as cms_blocks
@@ -199,7 +199,7 @@ class SimplePage(Page):
         [
             ("html", blocks.RawHTMLBlock()),
             ("richtext", blocks.RichTextBlock()),
-            ("image", ImageChooserBlock()),
+            ("image", ImageBlock()),
             ("faq", cms_blocks.AccordeonListBlock()),
             ("image_cta", cms_blocks.ImageCTABlock()),
             ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
@@ -212,7 +212,7 @@ class SimplePage(Page):
         [
             ("html", blocks.RawHTMLBlock()),
             ("richtext", blocks.RichTextBlock()),
-            ("image", ImageChooserBlock()),
+            ("image", ImageBlock()),
             ("faq", cms_blocks.AccordeonListBlock()),
             ("image_cta", cms_blocks.ImageCTABlock()),
             ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
@@ -227,7 +227,7 @@ class SimplePage(Page):
         [
             ("html", blocks.RawHTMLBlock()),
             ("richtext", blocks.RichTextBlock()),
-            ("image", ImageChooserBlock()),
+            ("image", ImageBlock()),
             ("faq", cms_blocks.AccordeonListBlock()),
             ("image_cta", cms_blocks.ImageCTABlock()),
             ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
@@ -242,7 +242,7 @@ class SimplePage(Page):
         [
             ("html", blocks.RawHTMLBlock()),
             ("richtext", blocks.RichTextBlock()),
-            ("image", ImageChooserBlock()),
+            ("image", ImageBlock()),
             ("faq", cms_blocks.AccordeonListBlock()),
             ("image_cta", cms_blocks.ImageCTABlock()),
             ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
@@ -257,7 +257,7 @@ class SimplePage(Page):
         [
             ("html", blocks.RawHTMLBlock()),
             ("richtext", blocks.RichTextBlock()),
-            ("image", ImageChooserBlock()),
+            ("image", ImageBlock()),
             ("faq", cms_blocks.AccordeonListBlock()),
             ("image_cta", cms_blocks.ImageCTABlock()),
             ("col_list_image_cta_block", cms_blocks.ColumnsImageCTABlock()),
