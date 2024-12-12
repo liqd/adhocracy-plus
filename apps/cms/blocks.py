@@ -1,6 +1,6 @@
 from wagtail import blocks
 from wagtail.documents.blocks import DocumentChooserBlock
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.blocks import ImageBlock
 
 
 class CallToActionBlock(blocks.StructBlock):
@@ -14,7 +14,7 @@ class CallToActionBlock(blocks.StructBlock):
 
 
 class ImageCTABlock(blocks.StructBlock):
-    image = ImageChooserBlock(required=False)
+    image = ImageBlock(required=False)
     body = blocks.RichTextBlock(required=False)
     link = blocks.CharBlock(required=False)
     link_text = blocks.CharBlock(required=False, max_length=50, label="Link Text")
@@ -109,7 +109,7 @@ class QuoteBlock(blocks.StructBlock):
     color = blocks.ChoiceBlock(
         choices=[("turquoise", "turquoise"), ("blue", "dark blue")], default=1
     )
-    image = ImageChooserBlock()
+    image = ImageBlock()
     quote = blocks.TextBlock()
     quote_author = blocks.CharBlock(required=False)
     link = blocks.URLBlock(required=False)
