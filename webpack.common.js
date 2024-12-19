@@ -224,7 +224,6 @@ module.exports = {
       bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',
       'file-saver': 'file-saver/dist/FileSaver.min.js',
       jquery$: 'jquery/dist/jquery.min.js',
-      shpjs$: 'shpjs/dist/shp.min.js',
       'slick-carousel$': 'slick-carousel/slick/slick.min.js'
     },
     // when using `npm link` for a4 dev env, dependencies are resolved against the linked
