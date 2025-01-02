@@ -444,6 +444,9 @@ WAGTAILIMAGES_IMAGE_MODEL = "a4_candy_cms_images.CustomImage"
 
 A4_ORGANISATIONS_MODEL = "a4_candy_organisations.Organisation"
 
+# Set to False to disable the option to allow unregistered users in polls
+A4_POLL_ENABLE_UNREGISTERED_USERS = True
+
 A4_RATEABLES = (
     ("a4comments", "comment"),
     ("a4_candy_ideas", "idea"),
