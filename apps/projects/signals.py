@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from adhocracy4.comments.models import Comment
 from adhocracy4.polls.models import Answer
 from adhocracy4.polls.models import Vote
+from adhocracy4.polls.signals import poll_voted
 from adhocracy4.projects.models import Project
 from adhocracy4.ratings.models import Rating
 from apps.budgeting.models import Proposal
@@ -93,5 +94,14 @@ def increase_poll_answers_count(sender, instance, created, **kwargs):
 
         insight, _ = ProjectInsight.objects.get_or_create(project=project)
         insight.poll_answers += 1
-        insight.active_participants.add(instance.creator.id)
         insight.save()
+
+
+@receiver(poll_voted)
+def increase_poll_participant_count(sender, poll, creator, content_id, **kwargs):
+    insight, _ = ProjectInsight.objects.get_or_create(project=poll.module.project)
+    if creator:
+        insight.active_participants.add(creator.id)
+    else:
+        insight.unregistered_participants += 1
+    insight.save()

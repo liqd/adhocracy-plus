@@ -79,3 +79,36 @@ def test_user_can_change_account_settings(apiclient, user):
         assert user._avatar
         assert user._avatar.name.endswith(img_name)
         assert user.username == "changed name"
+
+
+@pytest.mark.django_db
+def test_jwt_login_success(apiclient, user):
+    login_data = {
+        "username": user.email,
+        "password": "password",
+    }
+
+    # Perform the login request
+    response = apiclient.post(reverse("token_obtain_jwt"), login_data, format="json")
+
+    # Assert that the request was successful
+    print(response.data)
+    assert response.status_code == 200
+    assert "access" in response.data
+    assert "refresh" in response.data
+
+
+@pytest.mark.django_db
+def test_jwt_login_failure(apiclient, user):
+    login_data = {
+        "username": "wronguser",
+        "password": "wrongpassword",
+    }
+
+    # Perform the login request
+    response = apiclient.post(reverse("token_obtain_jwt"), login_data, format="json")
+
+    # Assert that the request failed
+    assert response.status_code == 401
+    assert "access" not in response.data
+    assert "refresh" not in response.data

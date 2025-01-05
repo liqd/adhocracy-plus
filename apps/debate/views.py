@@ -96,7 +96,7 @@ class SubjectUpdateView(
 class SubjectDeleteView(
     mixins.DashboardBaseMixin,
     mixins.DashboardComponentMixin,
-    mixins.DashboardComponentDeleteSignalMixin,
+    mixins.DashboardComponentFormSignalMixin,
     idea_views.AbstractIdeaDeleteView,
 ):
     model = models.Subject

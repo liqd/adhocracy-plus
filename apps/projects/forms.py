@@ -1,8 +1,12 @@
 from django import forms
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.dashboard.forms import ProjectDashboardForm
+from adhocracy4.maps import widgets as maps_widgets
+from adhocracy4.projects.models import Project
 from apps.users import fields as user_fields
 
 from .models import ModeratorInvite
@@ -64,3 +68,13 @@ class InviteUsersFromEmailForm(forms.Form):
         if not self.errors and not add_users and not add_users_upload:
             raise ValidationError(_("Please enter email addresses or upload a file"))
         return cleaned_data
+
+
+class PointForm(ProjectDashboardForm):
+    class Meta:
+        model = Project
+        fields = ["administrative_district", "point"]
+        required_for_project_publish = []
+        widgets = {
+            "point": maps_widgets.MapChoosePointWidget(polygon=settings.BERLIN_POLYGON),
+        }

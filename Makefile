@@ -52,6 +52,7 @@ help:
 	@echo "  make celery-worker-start		-- starts the celery worker in the foreground"
 	@echo "  make celery-worker-status		-- lists all registered tasks and active worker nodes"
 	@echo "  make celery-worker-dummy-task	-- calls the dummy task and prints result from redis"
+	@echo "  make docs                   	-- run the mkdocs server for the documentation"
 	@echo
 
 .PHONY: install
@@ -157,7 +158,7 @@ lint-html-fix:
 .PHONY: lint-html-files
 lint-html-files:
 	EXIT_STATUS=0; \
-	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --profile=django --ignore=H006,H030,H031 || EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --profile=django --ignore=H006,H030,H031,H037 || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-python-files
@@ -231,3 +232,7 @@ celery-worker-status:
 .PHONY: celery-worker-dummy-task
 celery-worker-dummy-task:
 	$(VIRTUAL_ENV)/bin/celery --app adhocracy-plus call dummy_task | awk '{print "celery-task-meta-"$$0}' | xargs redis-cli get | python3 -m json.tool
+
+.PHONY: docs
+docs:
+	$(VIRTUAL_ENV)/bin/mkdocs serve

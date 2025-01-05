@@ -12,6 +12,9 @@ from django.views.i18n import JavaScriptCatalog
 from django_ckeditor_5 import views as ckeditor5_views
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenRefreshView
+from rest_framework_simplejwt.views import TokenVerifyView
 from wagtail.contrib.sitemaps.views import sitemap as wagtail_sitemap
 from wagtail.documents import urls as wagtaildocs_urls
 
@@ -107,8 +110,12 @@ urlpatterns = [
     path("api/", include(comment_router.urls)),
     path("api/", include(moderation_router.urls)),
     path("api/", include(router.urls)),
-    re_path(r"^api/login", obtain_auth_token, name="api-login"),
     re_path(r"^api/account/", AccountViewSet.as_view(), name="api-account"),
+    # API JWT authentication
+    re_path(r"^api/login", obtain_auth_token, name="api-login"),
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_jwt"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     path(
         "ckeditor5/image_upload/",
         user_is_project_admin(ckeditor5_views.upload_file),

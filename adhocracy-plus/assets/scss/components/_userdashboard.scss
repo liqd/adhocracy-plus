@@ -64,13 +64,17 @@
 .userdashboard-mod-feedback {
     border-top: 1px solid $gray-lightest;
     margin: $spacer (1.5 * -$spacer) 0 (1.5 * -$spacer);
-    padding: (1.5 * $spacer) (1.5 * $spacer) 0 (1.5 * $spacer);
+    padding: (1.5 * $spacer) (1.5 * $spacer) 0;
 }
 
 .userdashboard-mod-feedback__header {
     font-weight: $demi-bold;
     display: flex;
     align-items: center;
+}
+
+.userdashboard-mod-feedback__text {
+    overflow-wrap: anywhere;
 }
 
 .userdashboard-mod-notification__btn {

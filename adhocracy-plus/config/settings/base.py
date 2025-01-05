@@ -2,6 +2,7 @@
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from datetime import timedelta
 
 from django.conf import locale
 from django.utils.translation import gettext_lazy as _
@@ -33,6 +34,8 @@ INSTALLED_APPS = (
     "widget_tweaks",
     "rest_framework",
     "rest_framework.authtoken",
+    # JWT authentication
+    "rest_framework_simplejwt.token_blacklist",
     "django_filters",
     "allauth",
     "allauth.account",
@@ -308,23 +311,36 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
 BLEACH_LIST = {
     "default": {
         "tags": [
+            "a",
+            "div",
+            "em",
+            "i",
+            "iframe",
+            "img",
+            "li",
+            "ol",
             "p",
             "strong",
-            "em",
             "u",
-            "ol",
-            "li",
             "ul",
-            "a",
-            "img",
-            "iframe",
-            "div",
         ],
         "attributes": {
             "a": ["href", "rel", "target"],
@@ -339,6 +355,7 @@ BLEACH_LIST = {
             "em",
             "figcaption",
             "figure",
+            "i",
             "img",
             "li",
             "ol",
@@ -375,6 +392,7 @@ BLEACH_LIST = {
             "em",
             "figcaption",
             "figure",
+            "i",
             "iframe",
             "img",
             "li",
@@ -426,6 +444,9 @@ WAGTAILIMAGES_IMAGE_MODEL = "a4_candy_cms_images.CustomImage"
 # adhocracy4
 
 A4_ORGANISATIONS_MODEL = "a4_candy_organisations.Organisation"
+
+# Set to False to disable the option to allow unregistered users in polls
+A4_POLL_ENABLE_UNREGISTERED_USERS = True
 
 A4_RATEABLES = (
     ("a4comments", "comment"),

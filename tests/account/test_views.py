@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 from django.contrib.auth import get_user_model
 from django.core import mail
@@ -110,6 +112,7 @@ def test_account_deletion_invalid_password(client, user, password):
 @pytest.mark.django_db
 def test_account_deletion(client, user):
     User = get_user_model()
+
     client.login(email=user.email, password="password")
     url = reverse("account_deletion")
 
@@ -132,3 +135,24 @@ def test_account_deletion(client, user):
     )
     # assert that user is redirected to homepage
     assert redirect_target(response) == "wagtail_serve"
+
+
+@pytest.mark.django_db
+def test_account_image_deletion(client, user_factory, small_image):
+    User = get_user_model()
+    user = user_factory(_avatar=small_image)
+    image_path = Path(user._avatar.path)
+
+    assert "users/images/" in user._avatar.path
+
+    client.login(email=user.email, password="password")
+    url = reverse("account_deletion")
+
+    client.post(
+        url,
+        {
+            "password": "password",
+        },
+    )
+    assert User.objects.count() == 0
+    assert not image_path.exists()

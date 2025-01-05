@@ -7,8 +7,6 @@ from django.conf import settings
 from django.db import migrations
 from django.db import models
 
-import adhocracy4.ckeditor.fields
-
 
 class Migration(migrations.Migration):
 
@@ -70,7 +68,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "information",
-                    adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(
+                    models.TextField(
                         blank=True,
                         help_text='You can provide general information about your participation platform to your visitors. It’s also helpful to name a general person of contact for inquiries. The information will be shown on a separate "About" page that can be reached via the main menu.',
                         verbose_name="Information about your organisation",

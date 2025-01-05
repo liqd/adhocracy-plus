@@ -93,6 +93,7 @@ class ProjectInsight(base.TimeStampedModel):
         Project, related_name="insight", on_delete=models.CASCADE
     )
     active_participants = models.ManyToManyField(settings.AUTH_USER_MODEL)
+    unregistered_participants = models.PositiveIntegerField(default=0)
     comments = models.PositiveIntegerField(default=0)
     ratings = models.PositiveIntegerField(default=0)
     written_ideas = models.PositiveIntegerField(default=0)
@@ -134,7 +135,10 @@ def create_insight_context(insight: ProjectInsight) -> dict:
     show_ideas = bool(blueprint_types.intersection({"BS", "IC", "MBS", "MIC", "PB"}))
 
     counts = [
-        (_("active participants"), insight.active_participants.count()),
+        (
+            _("active participants"),
+            insight.active_participants.count() + insight.unregistered_participants,
+        ),
         (_("comments"), insight.comments),
         (_("ratings"), insight.ratings),
     ]

@@ -40,6 +40,7 @@ RUN npm install
 # Set up the database
 RUN /bin/bash -c "source /adhocracy-plus/venv/bin/activate && make install && make fixtures"
 
+RUN ls /adhocracy-plus
 # Expose the application port
 EXPOSE 8004
 

@@ -38,16 +38,8 @@
     {% if project.is_draft %}
     <div class="u-bg-light py-5">
         <div class="container container--shadow">
-            <div class="row">
-              <div class="col">
-                <ul class="messages">
-                    <li class="alert alert--warning" role="alert">
-                        <div class="container">
-                            {% translate 'This project is in not published yet.' %}
-                        </div>
-                    </li>
-                </ul>
-                </div>
+            <div class="alert alert--info" role="status" tabindex="0">
+                {% translate 'This project is in not published yet.' %}
             </div>
         </div>
     </div>
@@ -107,14 +99,9 @@
                         </li>
                     </ul>
                 </nav>
-                {% block module_description %}
-                    {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
-                    <h1 class="project-header__title">{{ module.name }}</h1>
-                    <p class="project-header__description">{{ module.description }}</p>
-                    {% endif %}
-                {% endblock %}
             </div>
         </div>
+        {% include "a4modules/includes/module_description.html" %}
         {% block phase_info %}
             {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
                 {% if not module.active_phase %}

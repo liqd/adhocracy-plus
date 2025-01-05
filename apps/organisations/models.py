@@ -164,6 +164,10 @@ class Organisation(TranslatableModel):
             "for donations is not displayed on their pages."
         ),
     )
+    enable_geolocation = models.BooleanField(
+        default=False,
+        verbose_name=_("enable geolocation for projects"),
+    )
     language = models.CharField(
         verbose_name=_("Default language for e-mails"),
         choices=settings.LANGUAGES,
@@ -213,7 +217,7 @@ class Organisation(TranslatableModel):
             projects.annotate(project_start=min_module_start)
             .annotate(project_end=max_module_end)
             .filter(project_end__lt=now)
-            .order_by("project_start")
+            .order_by("-project_end")
         )
 
         return sorted_active_projects, sorted_future_projects, sorted_past_projects

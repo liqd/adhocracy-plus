@@ -2,24 +2,52 @@ import pytest
 from django.urls import reverse
 
 from adhocracy4.api.dates import get_date_display
+from adhocracy4.projects.enums import Access
 from adhocracy4.test import helpers
 
 
 @pytest.mark.django_db
-def test_app_project_api(user, project_factory, apiclient):
-    project_1 = project_factory(is_app_accessible=True)
-    project_2 = project_factory(is_app_accessible=True)
-    project_3 = project_factory(is_app_accessible=True)
-    project_4 = project_factory(is_app_accessible=False)
-    project_5 = project_factory(is_app_accessible=True, is_draft=True)
-    project_6 = project_factory(is_app_accessible=True, is_archived=True)
-
+def test_app_project_api(
+    user,
+    module_factory,
+    organisation_factory,
+    phase_factory,
+    project_factory,
+    apiclient,
+):
     url = reverse("app-projects-list")
-    response = apiclient.get(url, format="json")
+
+    organisation = organisation_factory(enable_geolocation=True)
+    # Project factory by default has access assigned to Public
+    project_1 = project_factory(organisation=organisation)
+    project_2 = project_factory(access=Access.SEMIPUBLIC, organisation=organisation)
+    project_3 = project_factory(
+        access=Access.PUBLIC, is_draft=True, organisation=organisation
+    )
+    project_4 = project_factory(
+        access=Access.PUBLIC, is_archived=True, organisation=organisation
+    )
+    project_5 = project_factory(access=Access.PRIVATE, organisation=organisation)
+
+    module_1 = module_factory(project=project_1)
+    module_2 = module_factory(project=project_2)
+    module_3 = module_factory(project=project_3)
+    module_4 = module_factory(project=project_4)
+    module_5 = module_factory(project=project_5)
+
+    phase_factory(module=module_1)
+    phase_factory(module=module_2)
+    phase_factory(module=module_3)
+    phase_factory(module=module_4)
+    phase = phase_factory(module=module_5)
+
+    with helpers.freeze_phase(phase):
+        response = apiclient.get(url, format="json")
     assert response.status_code == 401
 
     apiclient.login(username=user.email, password="password")
-    response = apiclient.get(url, format="json")
+    with helpers.freeze_phase(phase):
+        response = apiclient.get(url, format="json")
     assert response.status_code == 200
 
     assert any(
@@ -36,7 +64,7 @@ def test_app_project_api(user, project_factory, apiclient):
             if ("pk" in dict and dict["pk"] == project_2.pk)
         ]
     )
-    assert any(
+    assert not any(
         [
             True
             for dict in response.data
@@ -57,21 +85,93 @@ def test_app_project_api(user, project_factory, apiclient):
             if ("pk" in dict and dict["pk"] == project_5.pk)
         ]
     )
+
+
+@pytest.mark.django_db
+def test_app_project_api_not_show_past_projects(
+    user,
+    module_factory,
+    organisation_factory,
+    phase_factory,
+    project_factory,
+    apiclient,
+):
+    organisation = organisation_factory(enable_geolocation=True)
+    # Project factory by default has access assigned to Public
+    project_1 = project_factory(organisation=organisation)
+    project_2 = project_factory(access=Access.SEMIPUBLIC, organisation=organisation)
+
+    module = module_factory(project=project_1)
+    phase = phase_factory(module=module)
+
+    module = module_factory(project=project_2)
+    phase = phase_factory(module=module)
+
+    url = reverse("app-projects-list")
+    apiclient.login(username=user.email, password="password")
+    response = apiclient.get(url, format="json")
+    assert response.status_code == 200
+
+    with helpers.freeze_phase(phase):
+        response = apiclient.get(url, format="json")
+    assert any(
+        [
+            True
+            for dict in response.data
+            if ("pk" in dict and dict["pk"] == project_1.pk)
+        ]
+    )
+    assert any(
+        [
+            True
+            for dict in response.data
+            if ("pk" in dict and dict["pk"] == project_2.pk)
+        ]
+    )
+    with helpers.freeze_post_phase(phase):
+        response = apiclient.get(url, format="json")
+
     assert not any(
         [
             True
             for dict in response.data
-            if ("pk" in dict and dict["pk"] == project_6.pk)
+            if ("pk" in dict and dict["pk"] == project_1.pk)
+        ]
+    )
+    assert not any(
+        [
+            True
+            for dict in response.data
+            if ("pk" in dict and dict["pk"] == project_2.pk)
+        ]
+    )
+
+    with helpers.freeze_pre_phase(phase):
+        response = apiclient.get(url, format="json")
+
+    assert any(
+        [
+            True
+            for dict in response.data
+            if ("pk" in dict and dict["pk"] == project_1.pk)
+        ]
+    )
+    assert any(
+        [
+            True
+            for dict in response.data
+            if ("pk" in dict and dict["pk"] == project_2.pk)
         ]
     )
 
 
 @pytest.mark.django_db
 def test_app_project_api_single_idea_collection_module(
-    user, client, apiclient, project_factory
+    user, client, apiclient, organisation_factory, phase_factory, project_factory
 ):
-    project = project_factory(is_app_accessible=True)
-    organisation = project.organisation
+    organisation = organisation_factory(enable_geolocation=True)
+    # Project factory by default has access assigned to Public
+    project = project_factory(organisation=organisation)
     initiator = organisation.initiators.first()
     url = reverse(
         "a4dashboard:module-create",
@@ -87,10 +187,12 @@ def test_app_project_api_single_idea_collection_module(
     module = project.modules[0]
     module.is_draft = False
     module.save()
+    phase = phase_factory(module=module)
 
     url = reverse("app-projects-list")
-    apiclient.login(username=user.email, password="password")
-    response = apiclient.get(url, format="json")
+    with helpers.freeze_phase(phase):
+        apiclient.login(username=user.email, password="password")
+        response = apiclient.get(url, format="json")
 
     assert response.status_code == 200
     assert response.data[0]["single_idea_collection_module"] == module.pk
@@ -98,8 +200,13 @@ def test_app_project_api_single_idea_collection_module(
 
 
 @pytest.mark.django_db
-def test_app_project_api_single_poll_module(user, client, apiclient, project_factory):
-    project = project_factory(is_app_accessible=True)
+def test_app_project_api_single_poll_module(
+    user, client, apiclient, organisation_factory, phase_factory, project_factory
+):
+    organisation = organisation_factory(enable_geolocation=True)
+
+    # Project factory by default has access assigned to Public
+    project = project_factory(organisation=organisation)
     organisation = project.organisation
     initiator = organisation.initiators.first()
     url = reverse(
@@ -116,10 +223,12 @@ def test_app_project_api_single_poll_module(user, client, apiclient, project_fac
     module = project.modules[0]
     module.is_draft = False
     module.save()
+    phase = phase_factory(module=module)
 
     url = reverse("app-projects-list")
-    apiclient.login(username=user.email, password="password")
-    response = apiclient.get(url, format="json")
+    with helpers.freeze_phase(phase):
+        apiclient.login(username=user.email, password="password")
+        response = apiclient.get(url, format="json")
 
     assert response.status_code == 200
     assert response.data[0]["single_idea_collection_module"] is False
@@ -128,12 +237,21 @@ def test_app_project_api_single_poll_module(user, client, apiclient, project_fac
 
 @pytest.mark.django_db
 def test_app_project_serializer(
-    user, project_factory, module_factory, phase_factory, apiclient
+    user,
+    project_factory,
+    module_factory,
+    organisation_factory,
+    phase_factory,
+    apiclient,
 ):
+    organisation = organisation_factory(enable_geolocation=True)
+
     html_whitespace = "    <p>text with a <strong>bold</strong> bit</p>    "
     html_no_whitespace = "<p>text with a <strong>bold</strong> bit</p>"
+
+    # Project factory by default has access assigned to Public
     project = project_factory(
-        is_app_accessible=True,
+        organisation=organisation,
         information=html_whitespace,
         contact_name="Name Name",
         result=html_whitespace,
@@ -150,6 +268,7 @@ def test_app_project_serializer(
     assert response.status_code == 200
     assert response.data[0]["information"] == html_no_whitespace
     assert response.data[0]["result"] == html_no_whitespace
+    assert response.data[0]["url"]
     assert response.data[0]["published_modules"] == [module.pk]
     assert response.data[0]["organisation"] == project.organisation.name
     assert response.data[0]["access"] == "PUBLIC"
@@ -163,6 +282,7 @@ def test_app_project_serializer(
 
     with helpers.freeze_pre_phase(phase):
         response = apiclient.get(url, format="json")
+    # Future projects are not shown in the projects list
     assert response.data[0][
         "participation_time_display"
     ] == "Participation: from " + get_date_display(phase.start_date)
@@ -170,8 +290,100 @@ def test_app_project_serializer(
 
     with helpers.freeze_post_phase(phase):
         response = apiclient.get(url, format="json")
-    assert (
-        response.data[0]["participation_time_display"]
-        == "Participation ended. Read result."
+    # Past projects are not shown in the projects list
+    assert response.data == []
+
+
+@pytest.mark.django_db
+def test_app_project_api_with_jwt_auth(
+    user,
+    module_factory,
+    organisation_factory,
+    phase_factory,
+    project_factory,
+    apiclient,
+):
+    organisation = organisation_factory(enable_geolocation=True)
+
+    # Project factory by default has access assigned to Public
+    project_1 = project_factory(organisation=organisation)
+    project_2 = project_factory(organisation=organisation)
+
+    module_1 = module_factory(project=project_1)
+    module_2 = module_factory(project=project_2)
+    phase_factory(module=module_1)
+    phase = phase_factory(module=module_2)
+
+    url = reverse("app-projects-list")
+
+    with helpers.freeze_phase(phase):
+        response = apiclient.get(url, format="json")
+    assert response.status_code == 401
+
+    # Perform the login request
+    login_data = {
+        "username": user.email,
+        "password": "password",
+    }
+
+    with helpers.freeze_phase(phase):
+        response = apiclient.post(
+            reverse("token_obtain_jwt"), login_data, format="json"
+        )
+        access_token = response.data["access"]
+        apiclient.credentials(HTTP_AUTHORIZATION=f"Bearer {access_token}")
+        response = apiclient.get(url, format="json")
+
+    assert response.status_code == 200
+
+    assert any(
+        [
+            True
+            for dict in response.data
+            if ("pk" in dict and dict["pk"] == project_1.pk)
+        ]
     )
-    assert not response.data[0]["module_running_progress"]
+    assert any(
+        [
+            True
+            for dict in response.data
+            if ("pk" in dict and dict["pk"] == project_2.pk)
+        ]
+    )
+
+
+@pytest.mark.django_db
+def test_retrieve_project_with_jwt_auth(
+    apiclient,
+    user,
+    module_factory,
+    organisation_factory,
+    phase_factory,
+    project_factory,
+):
+    organisation = organisation_factory(enable_geolocation=True)
+
+    # Project factory by default has access assigned to Public
+    project = project_factory(organisation=organisation)
+    module = module_factory(project=project)
+    phase = phase_factory(module=module)
+    url = reverse("app-projects-detail", args=[project.slug])
+
+    with helpers.freeze_phase(phase):
+        response = apiclient.get(url)
+    assert response.status_code == 401
+
+    # Perform the login request
+    login_data = {
+        "username": user.email,
+        "password": "password",
+    }
+
+    with helpers.freeze_phase(phase):
+        response = apiclient.post(
+            reverse("token_obtain_jwt"), login_data, format="json"
+        )
+        access_token = response.data["access"]
+        apiclient.credentials(HTTP_AUTHORIZATION=f"Bearer {access_token}")
+        response = apiclient.get(url)
+    assert response.status_code == 200

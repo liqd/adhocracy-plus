@@ -125,7 +125,6 @@ class UseCasePage(Page):
             ("html", blocks.RawHTMLBlock()),
             ("examples", ExampleBlock()),
         ],
-        use_json_field=True,
         blank=True,
     )
 
@@ -135,7 +134,6 @@ class UseCasePage(Page):
             ("html", blocks.RawHTMLBlock()),
             ("examples", ExampleBlock()),
         ],
-        use_json_field=True,
         blank=True,
     )
 

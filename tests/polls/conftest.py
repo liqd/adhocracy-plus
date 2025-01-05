@@ -5,5 +5,7 @@ from tests.projects.factories import ProjectInsightFactory
 
 register(factories.AnswerFactory)
 register(factories.OpenQuestionFactory, "open_question")
+register(factories.QuestionFactory)
+register(factories.ChoiceFactory)
 register(factories.PollFactory)
 register(ProjectInsightFactory)
