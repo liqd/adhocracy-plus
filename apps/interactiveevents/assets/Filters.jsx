@@ -142,7 +142,7 @@ export default class Filter extends React.Component {
                   onChange={this.props.toggleOrdering} // eslint-disable-line react/jsx-handler-names
                 />
                 <span className="checkbox-btn__text--colour">
-                  <i className="fa fa-chevron-up" aria-hidden="true" /> likes
+                  <i className="fa fa-thumbs-up" aria-hidden="true" /> likes
                 </span>
               </label>
             </div>

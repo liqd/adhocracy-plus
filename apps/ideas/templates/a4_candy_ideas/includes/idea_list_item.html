@@ -6,11 +6,11 @@
         {% if object|has_feature:"rate" %}
             <span class="rating">
                 <span class="rating-button rating-up is-read-only" title="{% translate 'Positive Ratings' %}">
-                    <i class="fa fa-chevron-up" aria-label="{% translate 'Positive Ratings' %}"></i>
+                    <i class="fa fa-thumbs-up" aria-label="{% translate 'Positive Ratings' %}"></i>
                     {{ object.positive_rating_count }}
                 </span>
                 <span class="rating-button rating-down is-read-only" title="{% translate 'Negative Ratings' %}">
-                    <i class="fa fa-chevron-down" aria-label="{% translate 'Negative Ratings' %}"></i>
+                    <i class="fa fa-thumbs-down" aria-label="{% translate 'Negative Ratings' %}"></i>
                     {{ object.negative_rating_count }}
                 </span>
             </span>
