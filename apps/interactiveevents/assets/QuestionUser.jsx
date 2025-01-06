@@ -79,14 +79,14 @@ export default class QuestionUser extends React.Component {
                   >
                     <span>{this.state.likes} </span>
                     <span className="visually-hidden">{likesText}</span>
-                    <i className="fa fa-chevron-up" aria-hidden="true" />
+                    <i className="fa fa-thumbs-up" aria-hidden="true" />
                   </button>
                   )
                 : (
                   <div className="float-right">
                     <span className="text-muted">{this.state.likes}</span>
                     <span className="visually-hidden">{likesText}</span>
-                    <i className="fa fa-chevron-up text-muted ms-1" aria-hidden="true" />
+                    <i className="fa fa-thumbs-up text-muted ms-1" aria-hidden="true" />
                   </div>
                   )}
             </div>
