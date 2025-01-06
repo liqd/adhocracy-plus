@@ -5,6 +5,62 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2501.1
+### Changed
+
+- change sorting of past projects on organisation detail page from oldest ->
+  newest to newest -> oldest (end date).
+- debate delete view, replace depricated a4 DashboardComponentDeleteSignalMixin with DashboardComponentFormSignalMixin
+- offlineevent delete view, replace depricated a4 DashboardComponentDeleteSignalMixin with DashboardComponentFormSignalMixin
+- topicrio delete view, replace depricated a4 DashboardComponentDeleteSignalMixin with DashboardComponentFormSignalMixin
+- image upload for ideas, proposals,mapideas and projects organised by date
+- small css overwrites to adapt to a4 changes-  Update README with some notes and new commands for the installation of the a+ repository locally. - queryset filter for AppProjectsViewSet to include all current and future projects, and only those with enabled geolocation
+- replaced the old datepicker with flatpickr
+- make flatpickr instances aware of each other (e.g. for start and end phase of
+  a module, you can't choose an end date which is earlier than the start date)- add a check for the creator field in the Answer/Vote signal for the poll to
+accommodate the new feature to vote without registration
+- update wagtail to 6.0.x
+- update wagtail to 6.1.x
+- update wagtail to 6.2.x
+- update wagtail to 6.3 LTS
+  - replace ImageChooserBlock with ImageBlock for pages and blocks
+- replace chevron icon with thumbs for ratings to be consistent with changes in
+  a4
+
+### Added
+
+- tests for image uploads and deletions for projects, organisations, interactiveevents, accounts, budgeting
+- image deletion and saving docs to mkdocs index
+- documentation for image saving and deletions in docs/
+- AppProjectSerializer now includes the project url (#2771)
+- create project dashboard component for editing location
+- enable geolocation for projects from the admin in organisations
+- display location item in dashboard only if enable in the organisation
+- test for geolocation field and serialiser in projects
+- django rest framework simplejwt for API authentication with jwt token
+- translations
+- add a new field `unregistered_participants` to `ProjectInsights` to allow
+tracking unregistered participants in polls.
+- add a signal handler for the new `poll_voted` signal which increases the
+unregistered participants count in the project insights.
+- docs for new open poll
+- added a new make command `docs` to run the mkdocs server to read (and see live
+changes to) the documentation
+- info-box on poll for unregistered users
+- module_description snippet with fixed semantics
+### Fixed
+
+- fix moderator feedback on comments not breaking long words/urls (#2709)
+- fix moderator feedback on ideas/proposals not breaking long words/urls (#2709)
+- added missing css for font sizes in ckeditor (#2765)
+- added missing italic tag to bleach config (#2766)
+- fix other answers in the poll-slider overlapping on long text.
+
+### Removed
+
+- removed the deprecated django-ckeditor fields from older migrations
+- removed no longer required `use_json_field` from wagtail pages
+
 ## v2406.4
 ### Changed
 
