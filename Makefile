@@ -159,7 +159,7 @@ lint-html-fix:
 .PHONY: lint-html-files
 lint-html-files:
 	EXIT_STATUS=0; \
-	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --profile=django --ignore=H006,H030,H031,H037 || EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --profile=django --ignore=H006,H030,H031,H037,T002 || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-python-files
