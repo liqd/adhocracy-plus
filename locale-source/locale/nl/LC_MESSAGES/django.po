@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 14:53+0200\n"
+"POT-Creation-Date: 2025-01-07 14:23+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
@@ -245,7 +245,7 @@ msgstr "privé"
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:114
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
-#: apps/projects/templates/a4_candy_projects/project_detail.html:117
+#: apps/projects/templates/a4_candy_projects/project_detail.html:111
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:19
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:50
 msgid "Edit"
@@ -493,7 +493,7 @@ msgid "unknown user"
 msgstr "onbekende gebruiker"
 
 #: adhocracy4/comments_async/api.py:149
-#: adhocracy4/polls/api.py:115
+#: adhocracy4/polls/api.py:160
 msgid "Please agree to the organisation's terms of use."
 msgstr "U dient akkoord te gaan met de gebruiksvoorwaarden van de organisatie."
 
@@ -520,7 +520,7 @@ msgstr "Bewerk de basisinstellingen"
 #: adhocracy4/dashboard/dashboard.py:23
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:15
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:30
-#: apps/projects/templates/a4_candy_projects/project_detail.html:87
+#: apps/projects/templates/a4_candy_projects/project_detail.html:81
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:24
 msgid "Information"
 msgstr "Informatie"
@@ -531,7 +531,7 @@ msgstr "Bewerk projectinformatie"
 
 #: adhocracy4/dashboard/dashboard.py:33
 #: apps/projects/dashboard.py:87
-#: apps/projects/templates/a4_candy_projects/project_detail.html:107
+#: apps/projects/templates/a4_candy_projects/project_detail.html:101
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:44
 msgid "Result"
 msgstr "Resultaat"
@@ -601,7 +601,7 @@ msgid "Only invited users can participate (private)."
 msgstr "Alleen uitgenodigde gebruikers kunnen deelnemen (privé)."
 
 #: adhocracy4/dashboard/forms.py:91
-#: apps/projects/templates/a4_candy_projects/project_detail.html:136
+#: apps/projects/templates/a4_candy_projects/project_detail.html:130
 msgid "Contact for questions"
 msgstr "Contactpersoon voor vragen"
 
@@ -714,7 +714,7 @@ msgid "Creator"
 msgstr "Creator"
 
 #: adhocracy4/exports/mixins/general.py:17
-#: adhocracy4/models/base.py:9
+#: adhocracy4/models/base.py:12
 #: adhocracy4/polls/exports.py:40
 #: apps/budgeting/exports.py:79 apps/debate/exports.py:69
 #: apps/documents/exports.py:42 apps/ideas/exports.py:78
@@ -934,7 +934,7 @@ msgstr "Teken een veelhoek op de kaart"
 msgid "Please draw an area on the map."
 msgstr "Teken een gebied op de kaart."
 
-#: adhocracy4/models/base.py:14
+#: adhocracy4/models/base.py:17
 msgid "Modified"
 msgstr "Gewijzigd"
 
@@ -1052,23 +1052,35 @@ msgstr "De einddatum kan niet eerder zijn dan de startdatum."
 msgid "Either both or no date has to be set."
 msgstr "Of beide of geen datum moet worden ingesteld."
 
-#: adhocracy4/polls/api.py:155
+#: adhocracy4/polls/api.py:124
+#: adhocracy4/polls/api.py:142
+#: apps/captcha/fields.py:44
+msgid "Your answer to the captcha was wrong."
+msgstr "Je antwoord op de captcha was verkeerd."
+
+#: adhocracy4/polls/api.py:129
+#: adhocracy4/polls/api.py:138
+#: apps/captcha/fields.py:33 apps/captcha/fields.py:40
+msgid "Something about the answer to the captcha was wrong."
+msgstr "Iets aan het antwoord op de captcha was onjuist."
+
+#: adhocracy4/polls/api.py:223
 msgid "Please specify your answer."
 msgstr "Geef uw antwoord."
 
-#: adhocracy4/polls/api.py:169
+#: adhocracy4/polls/api.py:237
 msgid "Key error for {}"
 msgstr "Key error for {}"
 
-#: adhocracy4/polls/api.py:171
+#: adhocracy4/polls/api.py:239
 msgid "Choice not found."
 msgstr "Keuze niet gevonden."
 
-#: adhocracy4/polls/api.py:190
+#: adhocracy4/polls/api.py:260
 msgid "Duplicate choices detected."
 msgstr "Dubbele keuzes gevonden."
 
-#: adhocracy4/polls/api.py:193
+#: adhocracy4/polls/api.py:263
 msgid "Multiple choice disabled for question."
 msgstr "Meerkeuze uitgeschakeld voor vraag."
 
@@ -1091,15 +1103,15 @@ msgstr "Excel exporteren"
 msgid "ID"
 msgstr "ID"
 
-#: adhocracy4/polls/models.py:41
+#: adhocracy4/polls/models.py:50
 msgid "Explanation"
 msgstr "Uitleg"
 
-#: adhocracy4/polls/models.py:68
+#: adhocracy4/polls/models.py:77
 msgid "Questions with open answers cannot have multiple choices."
 msgstr "Vragen met open antwoorden kunnen geen meerkeuzevragen bevatten."
 
-#: adhocracy4/polls/models.py:77
+#: adhocracy4/polls/models.py:86
 msgid ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
@@ -1107,37 +1119,37 @@ msgstr ""
 "Vraag met keuzemogelijkheden kan geen open vraag worden. Verwijder keuzes of "
 "voeg nieuwe open vraag toe."
 
-#: adhocracy4/polls/models.py:140
-#: adhocracy4/polls/models.py:258
+#: adhocracy4/polls/models.py:147
+#: adhocracy4/polls/models.py:267
 msgid "Answer"
 msgstr "Antwoord"
 
-#: adhocracy4/polls/models.py:151
+#: adhocracy4/polls/models.py:158
 msgid "Only open questions can have answers."
 msgstr "Alleen open vragen kunnen antwoorden hebben."
 
-#: adhocracy4/polls/models.py:187
+#: adhocracy4/polls/models.py:194
 msgid "Open questions cannot have choices."
 msgstr "Open vragen kunnen geen keuzes hebben."
 
-#: adhocracy4/polls/models.py:193
+#: adhocracy4/polls/models.py:200
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
 "\"Andere\" kan niet de enige keuze zijn. Gebruik een open vraag of voeg meer "
 "keuzes toe."
 
-#: adhocracy4/polls/models.py:204
+#: adhocracy4/polls/models.py:211
 msgid "Question already has \"other\" choice."
 msgstr "Vraag heeft al \"andere\" keuze."
 
-#: adhocracy4/polls/models.py:265
+#: adhocracy4/polls/models.py:274
 msgid "Other vote can only be created for vote on \"other\" choice."
 msgstr ""
 "Een andere stem kan alleen worden uitgebracht voor een stem op een "
 "\"andere\" keuze."
 
-#: adhocracy4/polls/models.py:287
+#: adhocracy4/polls/models.py:296
 msgid "other"
 msgstr "andere"
 
@@ -1168,7 +1180,7 @@ msgstr "De vraag moet horen bij de poll die in de URL staat."
 msgid "Choice has to belong to the question set in the url."
 msgstr "Keuze moet bij de vraagstelling in de url horen."
 
-#: adhocracy4/polls/validators.py:57
+#: adhocracy4/polls/validators.py:62
 msgid "Only one vote per choice is allowed per user."
 msgstr "Per gebruiker is slechts één stem per keuze toegestaan."
 
@@ -1224,7 +1236,7 @@ msgstr "Postadres"
 
 #: adhocracy4/projects/models.py:73
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
-#: apps/projects/templates/a4_candy_projects/project_detail.html:148
+#: apps/projects/templates/a4_candy_projects/project_detail.html:142
 msgid "Email"
 msgstr "E-mail"
 
@@ -1237,7 +1249,7 @@ msgid "Phone"
 msgstr "Telefoon"
 
 #: adhocracy4/projects/models.py:83
-#: apps/projects/templates/a4_candy_projects/project_detail.html:153
+#: apps/projects/templates/a4_candy_projects/project_detail.html:147
 msgid "Website"
 msgstr "Website"
 
@@ -1672,7 +1684,7 @@ msgid "Post ideas with budget proposals, comment on them and rate them."
 msgstr ""
 "Plaats ideeën met begrotingsvoorstellen, becommentarieer ze en beoordeel ze."
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:535
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:538
 msgid "participatory budgeting"
 msgstr "participatieve budgettering"
 
@@ -1729,7 +1741,7 @@ msgstr "Maak een nieuw voorstel"
 #: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:7
 #: adhocracy-plus/templates/a4dashboard/blueprint_list.html:11
 #: adhocracy-plus/templates/a4dashboard/project_create_form.html:9
-#: adhocracy-plus/templates/a4modules/module_detail.html:100
+#: adhocracy-plus/templates/a4modules/module_detail.html:92
 msgid "breadcrumbs"
 msgstr "breadcrumbs"
 
@@ -1841,14 +1853,6 @@ msgstr "Meest besproken"
 #: apps/budgeting/views.py:86
 msgid "Your budget request has been deleted"
 msgstr "Uw budgetaanvraag is verwijderd"
-
-#: apps/captcha/fields.py:33 apps/captcha/fields.py:40
-msgid "Something about the answer to the captcha was wrong."
-msgstr "Iets aan het antwoord op de captcha was onjuist."
-
-#: apps/captcha/fields.py:44
-msgid "Your answer to the captcha was wrong."
-msgstr "Je antwoord op de captcha was verkeerd."
 
 #: apps/cms/contacts/models.py:35 apps/users/forms.py:49
 msgid "I am not a robot"
@@ -3868,31 +3872,31 @@ msgstr "Upload een csv-bestand met e-mailadressen."
 msgid "Please enter email addresses or upload a file"
 msgstr "Voer e-mailadressen in of upload een bestand"
 
-#: apps/projects/models.py:137
+#: apps/projects/models.py:139
 msgid "active participants"
 msgstr ""
 
-#: apps/projects/models.py:138
+#: apps/projects/models.py:142
 msgid "comments"
 msgstr ""
 
-#: apps/projects/models.py:139
+#: apps/projects/models.py:143
 msgid "ratings"
 msgstr ""
 
-#: apps/projects/models.py:143
+#: apps/projects/models.py:147
 msgid "written ideas"
 msgstr ""
 
-#: apps/projects/models.py:146
+#: apps/projects/models.py:150
 msgid "poll answers"
 msgstr ""
 
-#: apps/projects/models.py:149
+#: apps/projects/models.py:153
 msgid "interactive event questions"
 msgstr ""
 
-#: apps/projects/models.py:153
+#: apps/projects/models.py:157
 msgid ""
 "This section provides an overview of the participation\n"
 "            activities in this project."
@@ -4065,7 +4069,7 @@ msgstr ""
 "heeft geaccepteerd."
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:18
-#: apps/projects/templates/a4_candy_projects/project_detail.html:62
+#: apps/projects/templates/a4_candy_projects/project_detail.html:56
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:13
 msgid "Here you can find a decorative picture."
 msgstr ""
@@ -4252,54 +4256,54 @@ msgstr ""
 "afslaat is de link niet meer geldig.\n"
 "                    "
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:47
+#: apps/projects/templates/a4_candy_projects/project_detail.html:44
 msgid "This project is not yet published."
 msgstr "Dit project is nog niet gepubliceerd."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:97
+#: apps/projects/templates/a4_candy_projects/project_detail.html:91
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:34
 msgid "Participation"
 msgstr "Deelname"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:144
+#: apps/projects/templates/a4_candy_projects/project_detail.html:138
 msgid "Telephone"
 msgstr "Telefoon"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:172
+#: apps/projects/templates/a4_candy_projects/project_detail.html:166
 msgid "Online participation"
 msgstr "Online deelname"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:214
-#: adhocracy-plus/templates/a4modules/module_detail.html:124
+#: apps/projects/templates/a4_candy_projects/project_detail.html:199
+#: adhocracy-plus/templates/a4modules/module_detail.html:111
 msgid "Participation is not possible at the moment."
 msgstr "Deelname is op dit moment niet mogelijk."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:217
-#: adhocracy-plus/templates/a4modules/module_detail.html:127
+#: apps/projects/templates/a4_candy_projects/project_detail.html:202
+#: adhocracy-plus/templates/a4modules/module_detail.html:114
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "Het begint op %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:220
-#: adhocracy-plus/templates/a4modules/module_detail.html:130
+#: apps/projects/templates/a4_candy_projects/project_detail.html:205
+#: adhocracy-plus/templates/a4modules/module_detail.html:117
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "Het gaat verder op %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:223
-#: adhocracy-plus/templates/a4modules/module_detail.html:133
+#: apps/projects/templates/a4_candy_projects/project_detail.html:208
+#: adhocracy-plus/templates/a4modules/module_detail.html:120
 #, python-format
 msgid "It ended on %(date)s."
 msgstr "Het eindigde op %(date)s."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:238
+#: apps/projects/templates/a4_candy_projects/project_detail.html:223
 #: apps/users/models.py:51
-#: adhocracy-plus/templates/a4modules/module_detail.html:148
+#: adhocracy-plus/templates/a4modules/module_detail.html:135
 msgid "active"
 msgstr "actief"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:264
-#: adhocracy-plus/templates/a4modules/module_detail.html:172
+#: apps/projects/templates/a4_candy_projects/project_detail.html:249
+#: adhocracy-plus/templates/a4modules/module_detail.html:159
 msgid ""
 "This project is not publicly visible. Only invited users can see content and "
 "actively participate."
@@ -4307,20 +4311,20 @@ msgstr ""
 "Dit project is niet publiekelijk zichtbaar. Alleen uitgenodigde gebruikers "
 "kunnen de inhoud zien en actief deelnemen."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:268
-#: adhocracy-plus/templates/a4modules/module_detail.html:178
+#: apps/projects/templates/a4_candy_projects/project_detail.html:253
+#: adhocracy-plus/templates/a4modules/module_detail.html:165
 msgid ""
 "This project is publicly visible. Invited users can actively participate."
 msgstr ""
 "Dit project is publiekelijk zichtbaar. Uitgenodigde gebruikers kunnen actief "
 "deelnemen."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:291
+#: apps/projects/templates/a4_candy_projects/project_detail.html:276
 #: adhocracy-plus/templates/a4dashboard/includes/project_result_form.html:4
 msgid "Insights"
 msgstr ""
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:314
+#: apps/projects/templates/a4_candy_projects/project_detail.html:299
 msgid "No results yet."
 msgstr "Nog geen resultaten."
 
@@ -4865,111 +4869,111 @@ msgstr "Kirgizisch"
 msgid "Russian"
 msgstr "Russisch"
 
-#: adhocracy-plus/config/settings/base.py:468
+#: adhocracy-plus/config/settings/base.py:471
 msgid "suggestion"
 msgstr "suggestie"
 
-#: adhocracy-plus/config/settings/base.py:469
+#: adhocracy-plus/config/settings/base.py:472
 msgid "note"
 msgstr "notitie"
 
-#: adhocracy-plus/config/settings/base.py:470
+#: adhocracy-plus/config/settings/base.py:473
 msgid "question"
 msgstr "vraag"
 
-#: adhocracy-plus/config/settings/base.py:511
+#: adhocracy-plus/config/settings/base.py:514
 msgid "Pin without icon"
 msgstr "Markeer zonder icoon"
 
-#: adhocracy-plus/config/settings/base.py:512
+#: adhocracy-plus/config/settings/base.py:515
 msgid "Diamond"
 msgstr "Diamant"
 
-#: adhocracy-plus/config/settings/base.py:513
+#: adhocracy-plus/config/settings/base.py:516
 msgid "Triangle up"
 msgstr "Driehoek naar boven"
 
-#: adhocracy-plus/config/settings/base.py:514
+#: adhocracy-plus/config/settings/base.py:517
 msgid "Triangle down"
 msgstr "Driehoek naar beneden"
 
-#: adhocracy-plus/config/settings/base.py:515
+#: adhocracy-plus/config/settings/base.py:518
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: adhocracy-plus/config/settings/base.py:516
+#: adhocracy-plus/config/settings/base.py:519
 msgid "Semi circle"
 msgstr "Halve cirkel"
 
-#: adhocracy-plus/config/settings/base.py:517
+#: adhocracy-plus/config/settings/base.py:520
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: adhocracy-plus/config/settings/base.py:518
+#: adhocracy-plus/config/settings/base.py:521
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: adhocracy-plus/config/settings/base.py:519
+#: adhocracy-plus/config/settings/base.py:522
 msgid "Star"
 msgstr "Ster"
 
-#: adhocracy-plus/config/settings/base.py:520
+#: adhocracy-plus/config/settings/base.py:523
 msgid "Square"
 msgstr "Vierkant"
 
-#: adhocracy-plus/config/settings/base.py:521
+#: adhocracy-plus/config/settings/base.py:524
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: adhocracy-plus/config/settings/base.py:522
+#: adhocracy-plus/config/settings/base.py:525
 msgid "Rectangle"
 msgstr "Rechthoek"
 
-#: adhocracy-plus/config/settings/base.py:523
+#: adhocracy-plus/config/settings/base.py:526
 msgid "Circle"
 msgstr "Cirkel"
 
-#: adhocracy-plus/config/settings/base.py:524
+#: adhocracy-plus/config/settings/base.py:527
 msgid "Right triangle"
 msgstr "Rechter driehoek"
 
-#: adhocracy-plus/config/settings/base.py:525
+#: adhocracy-plus/config/settings/base.py:528
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: adhocracy-plus/config/settings/base.py:529
+#: adhocracy-plus/config/settings/base.py:532
 msgid "brainstorming"
 msgstr "Brainstorm"
 
-#: adhocracy-plus/config/settings/base.py:530
+#: adhocracy-plus/config/settings/base.py:533
 msgid "spatial brainstorming"
 msgstr "Ruimtelijke brainstorm"
 
-#: adhocracy-plus/config/settings/base.py:531
+#: adhocracy-plus/config/settings/base.py:534
 msgid "idea challenge"
 msgstr "Ideeënuitdaging"
 
-#: adhocracy-plus/config/settings/base.py:532
+#: adhocracy-plus/config/settings/base.py:535
 msgid "spatial idea challenge"
 msgstr "Ruimtelijke ideeënuitdaging"
 
-#: adhocracy-plus/config/settings/base.py:533
+#: adhocracy-plus/config/settings/base.py:536
 msgid "text review"
 msgstr "Tekstherziening"
 
-#: adhocracy-plus/config/settings/base.py:534
+#: adhocracy-plus/config/settings/base.py:537
 msgid "poll"
 msgstr "Poll"
 
-#: adhocracy-plus/config/settings/base.py:536
+#: adhocracy-plus/config/settings/base.py:539
 msgid "interactive event"
 msgstr "Interactief evenement"
 
-#: adhocracy-plus/config/settings/base.py:537
+#: adhocracy-plus/config/settings/base.py:540
 msgid "prioritization"
 msgstr "Prioriteitstelling"
 
-#: adhocracy-plus/config/settings/base.py:538
+#: adhocracy-plus/config/settings/base.py:541
 msgid "debate"
 msgstr "Debat"
 
@@ -5179,25 +5183,43 @@ msgstr ""
 "Uw afbeelding wordt geüpload/verwijderd zodra u uw wijzigingen aan het einde "
 "van deze pagina opslaat."
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:46
+#: adhocracy-plus/templates/a4modules/module_detail.html:42
 msgid "This project is in not published yet."
 msgstr "Dit project is nog niet gepubliceerd."
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:86
+#: adhocracy-plus/templates/a4modules/module_detail.html:78
 msgid "Previous"
 msgstr "Vorige"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:89
+#: adhocracy-plus/templates/a4modules/module_detail.html:81
 msgid "of"
 msgstr "van"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:92
+#: adhocracy-plus/templates/a4modules/module_detail.html:84
 msgid "Next"
 msgstr "Volgende"
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:195
+#: adhocracy-plus/templates/a4modules/module_detail.html:182
 msgid "More questions from this online participation"
 msgstr "Meer vragen uit deze online participatie"
+
+#: adhocracy-plus/templates/a4polls/includes/unregistered-users-info-box.html:6
+msgid "Poll Participation Info"
+msgstr ""
+
+#: adhocracy-plus/templates/a4polls/includes/unregistered-users-info-box.html:10
+msgid ""
+"\n"
+"                    <p>You can now participate in this poll even if you're "
+"not logged in.</p>\n"
+"                    <p><strong>Unregistered users can't edit their votes "
+"once submitted.</strong></p>\n"
+"                "
+msgstr ""
+
+#: adhocracy-plus/templates/a4polls/includes/unregistered-users-info-box.html:15
+msgid "Learn more about voting options."
+msgstr ""
 
 #: adhocracy-plus/templates/a4reports/emails/report_moderators.en.email:4
 #, python-format
