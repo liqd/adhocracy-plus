@@ -18,7 +18,9 @@ from wagtail.fields import RichTextField
 
 from apps.captcha.fields import CaptcheckCaptchaField
 from apps.cms.emails import AnswerToContactFormEmail
+from apps.cms.settings import helpers
 from apps.contrib.translations import TranslatedField
+from apps.users.forms import CAPTCHA_HELP
 
 
 class FormField(AbstractFormField):
@@ -33,9 +35,7 @@ class WagtailCaptchaFormBuilder(FormBuilder):
         if hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL:
             fields["captcha"] = CaptcheckCaptchaField(
                 label=_("I am not a robot"),
-                help_text=_(
-                    "If you are having difficulty please contact" "us, details adjacent"
-                ),
+                help_text=helpers.add_email_link_to_helptext("", CAPTCHA_HELP),
             )
 
         return fields
