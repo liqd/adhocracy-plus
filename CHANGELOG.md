@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2501.3
+
+### Changed
+
+- change captcha helptext on contact form to be identical to the sign up form captcha
+- remove the broken <br> tag from the captcha helptext and replace it with <strong>
+- update translations
+- update dependency stylelint-declaration-strict-value to v1.10.7
+- update a4 to aplus-v2501.1.2
+- update dependency glob to v11.0.1
+- update dependency @babel/eslint-parser to v7.26.5
+- update dependency stylelint to v16.13.0
+- update dependency ignore to v7.0.3
+- update dependency stylelint to v16.13.1
+- update dependency sass to v1.83.4
+- update dependency postcss to v8.5.0
+- update dependency django to v4.2.18
+- update dependency postcss to v8.5.1
+- update dependency stylelint to v16.13.2
+
+
+
 ## v2501.2
 ### Changed
 - update translations
