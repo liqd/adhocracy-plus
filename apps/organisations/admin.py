@@ -38,7 +38,7 @@ class OrganisationAdmin(TranslatableAdmin):
         MemberInline,
     ]
     fieldsets = (
-        (None, {"fields": ("name", "initiators", "title")}),
+        (None, {"fields": ("name", "initiators", "title", "slug")}),
         (
             "Translations",
             {

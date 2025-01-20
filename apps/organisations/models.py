@@ -18,7 +18,7 @@ from apps.projects import query
 
 
 class Organisation(TranslatableModel):
-    slug = AutoSlugField(populate_from="name", unique=True)
+    slug = AutoSlugField(populate_from="name", unique=True, editable=True)
     name = models.CharField(max_length=512)
     initiators = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
     title = models.CharField(
