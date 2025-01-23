@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2501.4
+
+### Added
+
+- admin users can edit slug in the organisation admin
+
 ## v2501.3
 
 ### Changed
