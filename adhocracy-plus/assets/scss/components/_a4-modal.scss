@@ -1,0 +1,58 @@
+.a4-modal {
+    border: none;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.15);
+    padding: 2em 1.125em;
+
+    &::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    @media (min-width: $breakpoint) {
+        min-width: 500px;
+        max-width: 685px;
+    }
+}
+
+.a4-modal__toggle {
+    padding: 0.3em 0.6em;
+}
+
+.a4-modal__close {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    padding: 0;
+}
+
+.a4-modal__title {
+    margin: unset;
+    line-height: 1.5;
+}
+
+.a4-modal__description {
+    margin-bottom: 1em;
+}
+
+.a4-modal__footer {
+    padding-top: 1em;
+    display: flex;
+    justify-content: end;
+}
+
+.a4-modal__submit,
+.a4-url-modal__button {
+    @extend .btn;
+    @extend .btn--default; 
+}
+
+.a4-modal__cancel {
+    @extend .btn;
+    @extend .btn--light; 
+    margin-right: 1.5em !important;
+}
+
+.a4-modal__toggle-wrapper--no-icon {
+    button i {
+        display: none!important;
+    }
+}
