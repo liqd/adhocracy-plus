@@ -14,11 +14,14 @@ adhocracy+ is designed to make online participation easy and accessible to every
 ### Requirements
 
  * nodejs (+ npm) 
- * python 3.x (+ venv + pip)
+ * python>=3.11,<3.13
+    * We recommend using pyenv or similar to run a supported python version.
+    * The latest supported version is listed in `.python-version`, which pyenv will automatically follow.
  * libpq (only if postgres should be used)
  * sqlite3 [with JSON1 enabled](https://code.djangoproject.com/wiki/JSON1Extension)
  * redis (in production, not needed for development)
  * pillow-heif (required for macOS M1 Monterey and newer versions)
+ * libmagic (macOS users will need to install, for example with `brew install libmagic`)
 
 ### Installation
 
