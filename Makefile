@@ -2,6 +2,8 @@ VIRTUAL_ENV ?= venv
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = adhocracy-plus apps tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
+PYTHON_MIN_VERSION = 3.11
+PYTHON_MAX_VERSION = 3.13
 
 # for mac os gsed is needed (brew install gnu-sed and brew install gsed)
 SED = sed
@@ -57,9 +59,16 @@ help:
 
 .PHONY: install
 install:
+	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
+	@python_version=`$(VIRTUAL_ENV)/bin/python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))'`; \
+	if echo "$$python_version" | awk -F. -v min="$(PYTHON_MIN_VERSION)" -v max="$(PYTHON_MAX_VERSION)" \
+		'{ if ($$1 == 3 && $$2 >= min && $$2 < max) print "yes" }' | grep -q yes; then \
+		echo "Python version $$python_version is compatible"; \
+	else \
+		echo "Warning: Python version $$python_version detected. This project requires Python >= $(PYTHON_MIN_VERSION) and < $(PYTHON_MAX_VERSION)"; \
+	fi
 	npm install --no-save
 	npm run build
-	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
 	$(VIRTUAL_ENV)/bin/python -m pip install --upgrade -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python manage.py migrate
 
