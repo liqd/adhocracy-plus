@@ -188,7 +188,8 @@ div.cke_focus {
     .filter-bar__spaced {
         margin-bottom: 0.5 * $spacer;
         display: flex;
-
+        flex-wrap: nowrap;
+        
         div,
         .dropdown > button {
             min-width: revert;
