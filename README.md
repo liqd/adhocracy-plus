@@ -16,11 +16,43 @@ adhocracy+ is designed to make online participation easy and accessible to every
  * nodejs (+ npm) 
  * python 3.x (+ venv + pip)
  * libpq (only if postgres should be used)
- * sqlite3 [with JSON1 enabled](https://code.djangoproject.com/wiki/JSON1Extension)
- * redis (in production, not needed for development)
  * pillow-heif (required for macOS M1 Monterey and newer versions)
+ * libpq (only if PostgreSQL is used)
+ * GDAL
+ * SpatiaLite [with JSON1 enabled](https://code.djangoproject.com/wiki/JSON1Extension) (only if SpatiaLite is used for local development)
+ * Redis (required in production, optional for development)
 
-### Installation
+### Installing SpatiaLite
+
+#### Ubuntu/Debian
+
+```
+sudo apt update && sudo apt install -y libsqlite3-mod-spatialite
+```
+
+#### macOS (with Homebrew)
+
+```
+brew update
+brew install spatialite-tools
+brew install gdal
+```
+
+For GeoDjango to be able to find the SpatiaLite library, add the following to your local.py:
+
+```
+SPATIALITE_LIBRARY_PATH = "/usr/local/lib/mod_spatialite.dylib"
+```
+
+#### Pyenv
+
+If you are using pyenv, you need to create your venv with the following command:
+
+```
+PYTHON_CONFIGURE_OPTS="--enable-loadable-sqlite-extensions" pyenv install 3.12.9 (with your version)
+```
+
+### Adhocracy-plus software Installation
 
     git clone https://github.com/liqd/adhocracy-plus.git
     cd adhocracy-plus

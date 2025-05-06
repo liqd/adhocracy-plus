@@ -9,13 +9,14 @@ from adhocracy4.api.dates import get_date_display
 from adhocracy4.api.dates import get_datetime_display
 from adhocracy4.categories.models import Category
 from adhocracy4.labels.models import Label
+from adhocracy4.maps.mixins import PointSerializerMixin
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
 from apps.projects import helpers
 
 
-class AppProjectSerializer(serializers.ModelSerializer):
+class AppProjectSerializer(PointSerializerMixin, serializers.ModelSerializer):
     information = serializers.SerializerMethodField()
     result = serializers.SerializerMethodField()
     # todo: remove many=True once AppProjects are restricted to single module
@@ -29,7 +30,11 @@ class AppProjectSerializer(serializers.ModelSerializer):
     has_contact_info = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
 
+    def get_geojson_properties(self):
+        return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
+
     class Meta:
+        geo_field = "point"
         model = Project
         fields = (
             "pk",
@@ -56,6 +61,7 @@ class AppProjectSerializer(serializers.ModelSerializer):
             "contact_email",
             "contact_url",
         )
+        read_only_fields = ["point", "published_modules"]
 
     def get_url(self, project: Project) -> str:
         return project.get_absolute_url()
