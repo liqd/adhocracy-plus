@@ -25,6 +25,7 @@ INSTALLED_APPS = (
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
+    "django.contrib.gis",
     "django.contrib.sessions",
     "django.contrib.sitemaps",
     "django.contrib.messages",
@@ -34,6 +35,7 @@ INSTALLED_APPS = (
     "widget_tweaks",
     "rest_framework",
     "rest_framework.authtoken",
+    "rest_framework_gis",
     # JWT authentication
     "rest_framework_simplejwt.token_blacklist",
     "django_filters",
@@ -171,7 +173,7 @@ WSGI_APPLICATION = "adhocracy-plus.config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
+        "ENGINE": "django.contrib.gis.db.backends.spatialite",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         "TEST": {
             "NAME": os.path.join(BASE_DIR, "test_db.sqlite3"),

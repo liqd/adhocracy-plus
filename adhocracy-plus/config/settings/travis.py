@@ -2,7 +2,7 @@ from .test import *
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
         "USER": "postgres",
         "NAME": "django",
         "TEST": {"NAME": "django_test"},

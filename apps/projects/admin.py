@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.gis.admin import GISModelAdmin
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.projects import models
@@ -15,14 +16,20 @@ def set_is_archived_false(modeladmin, request, queryset):
     queryset.update(is_archived=False)
 
 
-class ProjectAdmin(admin.ModelAdmin):
+class ProjectAdmin(GISModelAdmin):
     form = ProjectAdminForm
     list_display = ("__str__", "organisation", "is_draft", "is_archived", "created")
     list_filter = ("is_draft", "is_archived", "organisation", "is_app_accessible")
     search_fields = ("name",)
     raw_id_fields = ("moderators", "participants")
     date_hierarchy = "created"
-
+    gis_widget_kwargs = {
+        "attrs": {
+            "default_zoom": 12,  # Configure zoom level
+            "default_lon": 13.404954,
+            "default_lat": 52.520008,
+        }
+    }
     actions = [
         set_is_archived_true,
         set_is_archived_false,

@@ -3,6 +3,7 @@ from io import BytesIO
 import factory
 import pytest
 from celery import Celery
+from django.contrib.gis.geos import Point
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
 from PIL import Image
@@ -93,3 +94,35 @@ def image_factory():
         return SimpleUploadedFile("image.JPG", image.getvalue())
 
     return _get_image_data
+
+
+@pytest.fixture
+def geos_point():
+    return Point(13.397788148643649, 52.52958586909979)
+
+
+def get_geojson_point():
+    return {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [13.397788148643649, 52.52958586909979],
+        },
+    }
+
+
+@pytest.fixture
+def geojson_point():
+    return {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [13.397788148643649, 52.52958586909979],
+        },
+        "properties": {"strname": None, "hsnr": None, "plz": None},
+    }
+
+
+@pytest.fixture
+def geojson_point_str():
+    return '{"type": "Feature","geometry": {"type": "Point", "coordinates": [13.397788148643649, 52.52958586909979]}}'

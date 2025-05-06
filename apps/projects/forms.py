@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard.forms import ProjectDashboardForm
 from adhocracy4.maps import widgets as maps_widgets
+from adhocracy4.maps.mixins import PointFormMixin
 from adhocracy4.projects.models import Project
 from apps.users import fields as user_fields
 
@@ -70,11 +71,21 @@ class InviteUsersFromEmailForm(forms.Form):
         return cleaned_data
 
 
-class PointForm(ProjectDashboardForm):
+class PointForm(PointFormMixin, ProjectDashboardForm):
     class Meta:
         model = Project
-        fields = ["administrative_district", "point"]
+        geo_field = "point"
+        fields = [
+            "administrative_district",
+            "point",
+            "street_name",
+            "house_number",
+            "zip_code",
+        ]
         required_for_project_publish = []
         widgets = {
             "point": maps_widgets.MapChoosePointWidget(polygon=settings.BERLIN_POLYGON),
         }
+
+        def get_geojson_properties(self):
+            return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
