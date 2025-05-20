@@ -18,6 +18,7 @@ adhocracy+ is designed to make online participation easy and accessible to every
  * libpq (only if postgres should be used)
  * pillow-heif (required for macOS M1 Monterey and newer versions)
  * libpq (only if PostgreSQL is used)
+ * libmagic (macOS)
  * GDAL
  * SpatiaLite [with JSON1 enabled](https://code.djangoproject.com/wiki/JSON1Extension) (only if SpatiaLite is used for local development)
  * Redis (required in production, optional for development)
@@ -50,6 +51,14 @@ If you are using pyenv, you need to create your venv with the following command:
 
 ```
 PYTHON_CONFIGURE_OPTS="--enable-loadable-sqlite-extensions" pyenv install 3.12.9 (with your version)
+```
+
+#### Libmagic (macOS)
+
+In macOS, the dependency libmagic needs to be installed
+
+```
+brew install libmagic
 ```
 
 ### Adhocracy-plus software Installation
