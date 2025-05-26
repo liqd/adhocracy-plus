@@ -1,8 +1,8 @@
 import django from 'django'
 import flatpickr from 'flatpickr'
 import { German } from 'flatpickr/dist/l10n/de.js'
-import { Russian } from 'flatpickr/dist/l10n/ru.js'
-import { Dutch } from 'flatpickr/dist/l10n/nl.js'
+// import { Russian } from 'flatpickr/dist/l10n/ru.js'
+// import { Dutch } from 'flatpickr/dist/l10n/nl.js'
 import English from 'flatpickr/dist/l10n/default.js'
 
 // Helper to link start and end date pickers
@@ -52,7 +52,8 @@ function linkDatePickers (flatpickrsMap) {
 
 // Returns the appropriate language object based on the document language
 function getLanguage () {
-  const languages = { de: German, nl: Dutch, ru: Russian }
+  // const languages = { de: German, nl: Dutch, ru: Russian }
+  const languages = { de: German }
   return languages[document.documentElement.lang] || English
 }
 

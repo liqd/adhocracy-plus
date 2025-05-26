@@ -293,9 +293,9 @@ class SimplePage(Page):
             ObjectList(common_panels, heading="Common"),
             ObjectList(en_content_panels, heading="English"),
             ObjectList(de_content_panels, heading="German"),
-            ObjectList(nl_content_panels, heading="Dutch"),
-            ObjectList(ky_content_panels, heading="Kyrgyz"),
-            ObjectList(ru_content_panels, heading="Russian"),
+            # ObjectList(nl_content_panels, heading="Dutch"),
+            # ObjectList(ky_content_panels, heading="Kyrgyz"),
+            # ObjectList(ru_content_panels, heading="Russian"),
         ]
     )
 
