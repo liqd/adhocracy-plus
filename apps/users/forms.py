@@ -25,6 +25,20 @@ CAPTCHA_HELP = _(
 )
 
 
+class TermsAndCaptchaMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if "terms_of_use" not in self.fields:
+            self.fields["terms_of_use"] = forms.BooleanField(label=_("Terms of use"))
+
+        if getattr(settings, "CAPTCHA_URL", None):
+            self.fields["captcha"] = CaptcheckCaptchaField(label=_("I am not a robot"))
+            self.fields["captcha"].help_text = helpers.add_email_link_to_helptext(
+                self.fields["captcha"].help_text, CAPTCHA_HELP
+            )
+
+
 class DefaultLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -36,7 +50,7 @@ class DefaultLoginForm(LoginForm):
         self.fields["password"].widget.attrs["autocomplete"] = "current-password"
 
 
-class DefaultSignupForm(SignupForm):
+class DefaultSignupForm(TermsAndCaptchaMixin, SignupForm):
     terms_of_use = forms.BooleanField(label=_("Terms of use"))
     get_newsletters = forms.BooleanField(
         label=_("I would like to receive further information"),
@@ -46,7 +60,6 @@ class DefaultSignupForm(SignupForm):
         ),
         required=False,
     )
-    captcha = CaptcheckCaptchaField(label=_("I am not a robot"))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -61,12 +74,6 @@ class DefaultSignupForm(SignupForm):
         self.fields["email"].widget.attrs["autocomplete"] = "username"
         self.fields["password1"].widget.attrs["autocomplete"] = "new-password"
         self.fields["password2"].widget.attrs["autocomplete"] = "new-password"
-        if not (hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL):
-            del self.fields["captcha"]
-        else:
-            self.fields["captcha"].help_text = helpers.add_email_link_to_helptext(
-                self.fields["captcha"].help_text, CAPTCHA_HELP
-            )
 
     def save(self, request):
         user = super().save(request)
@@ -190,8 +197,7 @@ class IgbceSignupForm(DefaultSignupForm):
         return user
 
 
-class SocialTermsSignupForm(SocialSignupForm):
-    terms_of_use = forms.BooleanField(label=_("Terms of use"))
+class SocialTermsSignupForm(TermsAndCaptchaMixin, SocialSignupForm):
     get_newsletters = forms.BooleanField(
         label=_("I would like to receive further information"),
         help_text=_(
