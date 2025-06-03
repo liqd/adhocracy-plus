@@ -45,6 +45,18 @@ For GeoDjango to be able to find the SpatiaLite library, add the following to yo
 SPATIALITE_LIBRARY_PATH = "/usr/local/lib/mod_spatialite.dylib"
 ```
 
+If installing with homebrew, the path may need to instead be 
+
+```
+SPATIALITE_LIBRARY_PATH = '/opt/homebrew/lib/mod_spatialite.dylib'
+```
+
+You can find the exact location by running this command:
+
+```
+$ find /opt/homebrew -name "mod_spatialite*"
+```
+
 #### Pyenv
 
 If you are using pyenv, you need to create your venv with the following command:
