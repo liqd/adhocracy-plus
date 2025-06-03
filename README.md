@@ -39,7 +39,7 @@ brew install spatialite-tools
 brew install gdal
 ```
 
-For GeoDjango to be able to find the SpatiaLite library, add the following to your local.py:
+For GeoDjango to be able to find the SpatiaLite library, add the following to a file you create at `adhocracy-plus/config/settings/local.py`:
 
 ```
 SPATIALITE_LIBRARY_PATH = "/usr/local/lib/mod_spatialite.dylib"
