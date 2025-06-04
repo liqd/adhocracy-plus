@@ -2,7 +2,7 @@
 {% get_settings use_default_site=True %}
 
 <footer class="footer pt-3 pt-sm-4{% if not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer__margin-for-banner{% endif %}{% endif %}">
-    {%  with pages=settings.a4_candy_cms_settings.ImportantPages %}
+    {% with pages=settings.a4_candy_cms_settings.ImportantPages %}
     <div class="container">
         <div class="row mt-3 mb-2 justify-content-lg-center">
             <div class="col-lg-6">
@@ -60,7 +60,7 @@
                         {% endif %}
                         {% if pages.manual_link %}
                         <li class="navi__item footer__link">
-                            <a href="{{ pages.manual_link }}" class="navi__link">{% translate 'Manual' %}</a>
+                            <a href="{{ pages.manual_link }}" class="navi__link">{% translate 'Help Center' %}</a>
                         </li>
                         {% endif %}
                     </ul>
