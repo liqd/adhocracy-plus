@@ -4,9 +4,9 @@
 
 {% block title %}
     {% translate 'Your user profile' %}
-    &mdash;
+    —
     {{ block.super }}
-{% endblock %}
+{% endblock title %}
 {% block dashboard_content %}
     <div class="my-5 my-md-0">
         <h1 class="mt-0">{% translate 'Delete account' %}</h1>
@@ -22,7 +22,7 @@
             <button class="d-none" type="submit" disabled aria-hidden="true"></button>
         </form>
         <div class="d-flex justify-content-end">
-            <button class="btn btn--primary" data-bs-toggle="modal" data-bs-target="#account-delete-modal">Delete account</button>
+            <button class="btn btn--primary" data-bs-toggle="modal" data-bs-target="#account-delete-modal">{% translate 'Delete account' %}</button>
         </div>
     </div>
 
