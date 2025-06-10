@@ -12,6 +12,7 @@
 
 <form id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
         {{ form.non_field_errors }}
+        {{ form.media }}
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
                 {{ hidden }}
