@@ -14,6 +14,11 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # General settings
 CONTACT_EMAIL = "contact@domain"
 
+# Deprecated: Link to a dokuwiki instance containing a manual for aplus
+#             Unused - Replaced by manual_link which is set inside Wagtail
+#
+# APLUS_MANUAL_URL = ""
+
 # Application definition
 
 INSTALLED_APPS = (
