@@ -14,8 +14,13 @@
                     <a 
                         title="{{ brand.name }}"
                         class="socialaccount-provider {{ provider.id }} {{ brand.id }}"
-                        href="{% provider_login_url provider.id openid=brand.openid_url process=process %}
-                            {% if provider.id == 'github' %}?next=/accounts/3rdparty/signup/{% endif %}"
+                        href="
+                            {% if provider.id == 'github' %}
+                                {% provider_login_url provider.id openid=brand.openid_url process=process next='/accounts/3rdparty/signup/' %}
+                            {% else %}
+                                {% provider_login_url provider.id openid=brand.openid_url process=process %}
+                            {% endif %}
+                        "
                     >
                         {{ brand.id }}
                     </a>
