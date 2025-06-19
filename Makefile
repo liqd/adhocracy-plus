@@ -196,23 +196,26 @@ release:
 
 .PHONY: postgres-start
 postgres-start:
-	sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/pg_ctl start
+	sudo systemctl start postgresql
 
 .PHONY: postgres-stop
 postgres-stop:
-	sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/pg_ctl stop
+	sudo systemctl stop postgresql
 
 .PHONY: postgres-create
 postgres-create:
-	if [ -d "pgsql" ]; then \
-		echo "postgresql has already been initialized"; \
-	else \
-		sudo install -d -m 774 -o postgres -g $(USER) pgsql; \
-		sudo -u postgres /usr/lib/postgresql/12/bin/initdb pgsql; \
-		sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/pg_ctl start; \
-		sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/createuser -s django; \
-		sudo -u postgres PGDATA=pgsql PGPORT=5556 /usr/lib/postgresql/12/bin/createdb -O django django; \
+	@if ! command -v psql > /dev/null 2>&1; then \
+		echo "PostgreSQL is not installed. Please install it with 'sudo apt install postgresql'"; \
+		exit 1; \
 	fi
+	@if ! sudo systemctl is-active --quiet postgresql; then \
+		echo "PostgreSQL service is not running. Starting it..."; \
+		sudo systemctl start postgresql; \
+		sleep 2; \
+	fi
+	sudo -u postgres createuser --createdb --no-createrole --no-superuser django || true
+	sudo -u postgres createdb --owner=django --encoding=UTF8 django || true
+	sudo -u postgres psql -U postgres -d django -c "CREATE EXTENSION postgis;" || true
 
 .PHONY: local-a4
 local-a4:
