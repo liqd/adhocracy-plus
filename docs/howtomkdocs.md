@@ -5,3 +5,8 @@
 * `mkdocs serve` - Start the live-reloading docs server.
 * `mkdocs build` - Build the documentation site.
 * `mkdocs -h` - Print help message and exit.
+
+## Deploy the docs
+* Open a PR with the docs changes
+* Once the PR is merged, pull latest main 
+* run `mkdocs gh-deploy`
