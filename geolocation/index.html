@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>geolocation - Adhocracy+</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "geolocation";
+        var mkdocs_page_input_path = "geolocation.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Adhocracy+
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">HOWTO</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../installation_dev/">install for development</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../django_shell_basics/">django basics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../management_commands/">management commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../languages_and_translations/">translations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrades/">software upgrades</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../howtomkdocs/">create documentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../installation_prod/">install on production</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Diagrams</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../diagrams_modules/">participation modules</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/">code reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanations</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../authentication/">authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../celery/">celery</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ckeditor/">ckeditor</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">geolocation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-development-how-to">1. Development how-to</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-migration-steps">2. Migration Steps</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#step-1-add-the-new-pointfield">Step 1: Add the New PointField</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-2-create-and-apply-schema-migration">Step 2: Create and Apply Schema Migration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-3-data-migration-to-populate-new-field">Step 3: Data Migration to Populate New Field</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-4-remove-the-old-map_fieldspointfield">Step 4: Remove the Old map_fields.PointField</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-5-add-new-pointfield">Step 5: Add new PointField</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-6-copy-data-from-coordinates-to-new-pointfield-with-a-custom-migration">Step 6: Copy data from coordinates to New PointField with a custom Migration:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-7-remove-the-coordinates-pointfield">Step 7: Remove the coordinates PointField</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-important-notes">3. Important Notes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-summary-table">4. Summary Table</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-references">5. References</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../img_saving_and_deletion/">images</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../poll/">polls</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../postgresql/">postgresql</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../project_insights/">project insights</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../img_saving_and_deletion/">images</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../software_architecture/">architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tests/">tests</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Repository</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://github.com/liqd/adhocracy-plus">source code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing/">contribute</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Adhocracy+</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Explanations</li>
+      <li class="breadcrumb-item active">geolocation</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="migration-guide-converting-legacy-map_fieldspointfield-to-django-gis-pointfield">Migration Guide: Converting Legacy <code>map_fields.PointField</code> to Django GIS <code>PointField</code></h2>
+<p>This documentation explains how to migrate from the custom and legacy point field (<code>map_fields.PointField</code>) to Django’s standard GeoDjango <code>PointField</code>, based on the latest changes in the branch and the example from <a href="https://github.com/liqd/a4-meinberlin/pull/6023/files">PR #6023</a>.</p>
+<p>So far we have migrated the projects app, for which migration field and data is happening in the adhocracy4. See relevant migrations <a href="https://github.com/liqd/adhocracy4/blob/main/adhocracy4/projects/migrations/0048_project_geos_point_project_house_number_and_more.py">0048</a> and <a href="https://github.com/liqd/adhocracy4/blob/main/adhocracy4/projects/migrations/0049_migrate_data_from_point_to_geos_point.py">0049</a>.  </p>
+<p>Adhocracy+ apps that need to migrate in the future:
+- mapideas
+- budgeting</p>
+<hr />
+<h3 id="1-development-how-to">1. Development how-to</h3>
+<p>In the following example, we outline the steps required for changing the mapideas module.</p>
+<p>Previously, the project used a custom <code>PointField</code> from <code>adhocracy4.maps.fields</code>:</p>
+<pre><code class="language-python"># Before (legacy field)
+from adhocracy4.maps import fields as map_fields
+
+class AbstractMapIdea(models.Model):
+    point = map_fields.PointField()
+</code></pre>
+<p>This field will be now <strong>removed</strong> in favor of Django’s built-in GIS field:</p>
+<pre><code class="language-python">from django.contrib.gis.db import models as gis_models
+
+class AbstractMapIdea(models.Model):
+    coordinates = gis_models.PointField(null=True, blank=True)
+</code></pre>
+<hr />
+<h3 id="2-migration-steps">2. Migration Steps</h3>
+<h4 id="step-1-add-the-new-pointfield">Step 1: Add the New <code>PointField</code></h4>
+<ul>
+<li>Add the new GeoDjango <code>PointField</code> (<code>coordinates</code>) to your model.</li>
+<li>Set <code>null=True</code> and <code>blank=True</code> to allow a uninterrupted migration and make the field optional.</li>
+</ul>
+<pre><code class="language-python">from django.contrib.gis.db import models as gis_models
+
+class AbstractMapIdea(models.Model):
+    coordinates = gis_models.PointField(null=True, blank=True)
+    street_name = models.CharField(null=True, blank=True, max_length=200)
+    house_number = models.CharField(null=True, blank=True, max_length=10)
+    zip_code = models.CharField(null=True, blank=True, max_length=20)
+</code></pre>
+<ul>
+<li>Keep the old <code>point = map_fields.PointField()</code> field temporarily during migration.</li>
+</ul>
+<h4 id="step-2-create-and-apply-schema-migration">Step 2: Create and Apply Schema Migration</h4>
+<ul>
+<li>Run migrations to add the new field <code>coordnites</code>:</li>
+</ul>
+<pre><code class="language-bash">python manage.py makemigrations
+python manage.py migrate
+</code></pre>
+<h4 id="step-3-data-migration-to-populate-new-field">Step 3: Data Migration to Populate New Field</h4>
+<ul>
+<li>Create a <strong>data migration</strong> to copy data from the old <code>point</code> field to the new <code>coordinates</code> field.</li>
+</ul>
+<p>Example migration snippet:</p>
+<pre><code class="language-python">import json
+import logging
+
+from django.contrib.gis.geos import GEOSGeometry
+from django.db import migrations
+from django.contrib.gis.geos import Point
+
+logger = logging.getLogger(__name__)
+
+
+def migrate_point_to_coordinates(apps, schema_editor):
+    MapIdea = apps.get_model('a4_candy_mapideas', 'MapIdea')
+    for idea in MapIdea.objects.exclude(point__isnull=True):
+        try:
+        # Handle case where point is already parsed (dict) or still a string
+        point_data = idea.point
+        if isinstance(point_data, str):
+                point_data = json.loads(point_data)
+                point_data = dict(point_data)
+
+        # Extract geometry and properties
+        geometry = point_data.get(&quot;geometry&quot;, {})
+        properties = point_data.get(&quot;properties&quot;, {})
+        if not geometry:
+        logger.warning(
+            &quot;error migrating point of idea &quot; + idea.name + &quot;: &quot; + str(point_data)
+        )
+        continue
+
+        # Create GEOSGeometry from coordinates
+        if geometry.get(&quot;type&quot;) == &quot;Point&quot; and &quot;coordinates&quot; in geometry:
+        geojson = {&quot;type&quot;: &quot;Point&quot;, &quot;coordinates&quot;: geometry[&quot;coordinates&quot;]}
+        point = GEOSGeometry(json.dumps(geojson), srid=4326)
+        # Update all fields
+        MapIdea.objects.filter(id=idea.id).update(
+            coordinates=point,
+            street_name=properties.get(&quot;strname&quot;, &quot;&quot;),
+            house_number=properties.get(&quot;hsnr&quot;, &quot;&quot;),
+            zip_code=properties.get(&quot;plz&quot;, &quot;&quot;),
+        )
+
+    except (ValueError, TypeError, KeyError, json.JSONDecodeError) as e:
+        logger.warning(f&quot;Skipping {project.id} {project.name}: {str(e)}&quot;)
+
+
+class Migration(migrations.Migration):
+    dependencies = [
+        ('a4_candy_mapideas', 'previous_migration'),
+    ]
+
+    operations = [
+        migrations.RunPython(migrate_point_to_coordinates),
+    ]
+</code></pre>
+<ul>
+<li>Run the migration:</li>
+</ul>
+<pre><code class="language-bash">python manage.py migrate
+</code></pre>
+<h4 id="step-4-remove-the-old-map_fieldspointfield">Step 4: Remove the Old <code>map_fields.PointField</code></h4>
+<ul>
+<li>
+<p>After verifying the new field is populated and working correctly, remove the old <code>point</code> field from the model.</p>
+</li>
+<li>
+<p>Create and apply a migration to drop the old field with <code>python manage.py makemigrations</code> and <code>python manage.py migrate</code></p>
+</li>
+</ul>
+<h4 id="step-5-add-new-pointfield">Step 5: Add new PointField</h4>
+<ul>
+<li>If all data is migrated, add a new Geo GIS field named point and copy data from coordinates. We need to do this because a simple renaming a GeoDjango PointField (or any GIS field) directly via migrations often fails due to spatial database complexities and Django's migration detection limitations. E.g: GIS fields like PointField require special database metadata (e.g., PostGIS geometry_columns table). A simple column rename won’t update these registries, leading to broken spatial queries.</li>
+</ul>
+<pre><code class="language-python"># Before
+coordinates = gis_models.PointField(null=True, blank=True)
+
+# After (add a new `point` field)
+coordinates = gis_models.PointField(null=True, blank=True)
+point = gis_models.PointField(null=True, blank=True)
+</code></pre>
+<ul>
+<li>Create and apply the migration to add the field running the python and migration commands as above.</li>
+</ul>
+<h4 id="step-6-copy-data-from-coordinates-to-new-pointfield-with-a-custom-migration">Step 6: Copy data from <code>coordinates</code> to New PointField with a custom Migration:</h4>
+<pre><code class="language-python">from django.db import migrations
+
+
+def migrate_geos_point_field(apps, schema_editor):
+    MapIdea = apps.get_model(&quot;a4_candy_mapideas&quot;, &quot;MapIdea&quot;)
+    for idea in MapIdea.objects.exclude(coordinates__isnull=True)():
+        idea.point = idea.coordinates
+        idea.save()
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        (&quot;a4_candy_mapideas&quot;, &quot;previous_numbered_migration&quot;),
+    ]
+
+    operations = [
+        migrations.RunPython(
+            migrate_geos_point_field, reverse_code=migrations.RunPython.noop
+        ),
+    ]
+</code></pre>
+<ul>
+<li>Run the migration:</li>
+</ul>
+<pre><code class="language-bash">python manage.py migrate
+</code></pre>
+<h4 id="step-7-remove-the-coordinates-pointfield">Step 7: Remove the coordinates PointField</h4>
+<ul>
+<li>
+<p>After verifying the new field <code>point</code> is populated and working correctly, remove the <code>coordinates</code> field from the model.</p>
+</li>
+<li>
+<p>Create and apply a migration to drop the coordinates field.</p>
+</li>
+</ul>
+<p>The final version of the model will look like this:
+```python</p>
+<p>class AbstractMapIdea(models.Model):
+    point = gis_models.PointField(null=True, blank=True)
+    street_name = models.CharField(null=True, blank=True, max_length=200)
+    house_number = models.CharField(null=True, blank=True, max_length=10)
+    zip_code = models.CharField(null=True, blank=True, max_length=20)</p>
+<hr />
+<h3 id="3-important-notes">3. Important Notes</h3>
+<ul>
+<li><strong>Coordinate Order</strong>: GeoDjango expects <code>Point(longitude, latitude)</code>.</li>
+<li><strong>Default Values</strong>: When setting defaults for <code>PointField</code>, use a <code>Point</code> instance, <em>not</em> a tuple or list.</li>
+<li><strong>Database Setup</strong>: Ensure PostGIS extension is enabled in your postgres database or use spatialite3 if working with sqlite.</li>
+<li><strong>Indexing</strong>: Consider adding a spatial index on the new field for efficient spatial queries.</li>
+</ul>
+<hr />
+<h3 id="4-summary-table">4. Summary Table</h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Action</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Add new <code>coordinates</code> PointField</td>
+<td>Keep old <code>point</code> field temporarily</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Apply schema migration</td>
+<td>Adds new GIS field to DB</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Data migration to copy data</td>
+<td>Run the django command migrate</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Remove old <code>point</code> field</td>
+<td>After data verification</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Add new PointField <code>point</code></td>
+<td>Run makemigrations and migrate</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Copy data from <code>coordinates</code> to <code>point</code></td>
+<td>With a custom migration</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Remove <code>coordinates</code> field</td>
+<td>CRun makemigrations and migrate</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="5-references">5. References</h3>
+<ul>
+<li><a href="https://docs.djangoproject.com/en/stable/ref/contrib/gis/model-api/#pointfield">Django GeoDjango PointField docs</a></li>
+<li><a href="https://docs.djangoproject.com/en/stable/topics/migrations/#data-migrations">How to write data migrations</a></li>
+<li><a href="https://postgis.net/docs/manual-3.1/postgis_installation.html">PostGIS setup and spatial indexing</a></li>
+</ul>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ckeditor/" class="btn btn-neutral float-left" title="ckeditor"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../img_saving_and_deletion/" class="btn btn-neutral float-right" title="images">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ckeditor/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../img_saving_and_deletion/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

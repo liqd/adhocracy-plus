@@ -50,6 +50,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../languages_and_translations/">translations</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrades/">software upgrades</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../howtomkdocs/">create documentation</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../installation_prod/">install on production</a>
@@ -73,7 +75,13 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../ckeditor/">ckeditor</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../geolocation/">geolocation</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../img_saving_and_deletion/">images</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../poll/">polls</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../postgresql/">postgresql</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">project insights</a>
     <ul class="current">
@@ -165,11 +173,24 @@
 <p>Finally, we decided that we want to add a custom migration that initializes the insights table for all existing projects. The idea here was that our software is open source and people updating our software should be able to see the insights data without running management or deployment commands. The custom migration, on the other hand, is applied while installing or updating the software.</p>
 <p>The custom migration (0006_initialize_insights.py) was hard to write because of the limited query manager access in custom migrations (Django's fake migration models). In particular, the generic relations on ratings and comments forced us to migrate by "looping and counting".</p>
 <p>Finally, we added a management command ("reset_insights_table") to refresh the insights table. This code makes use of regular models (instead of Django's fake migration models) and can therefore be tested and keeps our options open for future background tasks and bug fixes.</p>
+<h2 id="updates">Updates</h2>
+<ul>
+<li>With the new feature of the poll module optionally allowing unregistered users
+  to vote, we had to find a way for the number of participants to include
+unregistered users, as currently they are tied to the user as part of a m2m
+relation. We introduced a new base model <code>GeneratedContent</code> which has an
+optional field <code>creator</code> which is used if a registered user participated and an optional field
+<code>content_id</code> for unregistered users. In case of a poll submission from an
+unregistered user a unique uuid4 is created and
+stored in <code>content_id</code> to allow counting the amount of unregistered users which
+participated in the poll. We extended the <code>ProjectInsight</code> model with a
+<code>unregistered_participants</code> field which stores this number.</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../img_saving_and_deletion/" class="btn btn-neutral float-left" title="images"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../postgresql/" class="btn btn-neutral float-left" title="postgresql"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../img_saving_and_deletion/" class="btn btn-neutral float-right" title="images">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -193,7 +214,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../img_saving_and_deletion/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../postgresql/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../img_saving_and_deletion/" style="color: #fcfcfc">Next &raquo;</a></span>

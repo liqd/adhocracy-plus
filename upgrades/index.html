@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>install for development - Adhocracy+</title>
+    <title>software upgrades - Adhocracy+</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "install for development";
-        var mkdocs_page_input_path = "installation_dev.md";
+        var mkdocs_page_name = "software upgrades";
+        var mkdocs_page_input_path = "upgrades.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -42,23 +42,7 @@
               </ul>
               <p class="caption"><span class="caption-text">HOWTO</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">install for development</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#start-virtual-environment">Start virtual environment</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#check-if-tests-work">Check if tests work</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#start-a-local-server">Start a local server</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#use-postgresql-database-for-testing">Use postgresql database for testing</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#use-celery-for-task-queues">Use Celery for task queues</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../installation_dev/">install for development</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../django_shell_basics/">django basics</a>
                   </li>
@@ -66,7 +50,13 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../languages_and_translations/">translations</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../upgrades/">software upgrades</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">software upgrades</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#django">Django</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#wagtail">Wagtail</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../howtomkdocs/">create documentation</a>
                   </li>
@@ -130,7 +120,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">HOWTO</li>
-      <li class="breadcrumb-item active">install for development</li>
+      <li class="breadcrumb-item active">software upgrades</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -139,65 +129,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="installation-for-development">Installation for development</h2>
-<h3 id="requirements">Requirements</h3>
+                <h1 id="upgrades-for-our-software-django-and-wagtail">Upgrades for our software -- Django and Wagtail.</h1>
+<p>Before scheduling upgrades, we need to check version support across Django and Wagtail. For example we may need to upgrade up to a certain version of Django in order to support latest Wagtail, which it supports the latest Django release. Moreover, sometimes we would need to wait for an upgrade due to other dependencies that are not supporting latest releases.</p>
+<h2 id="django">Django</h2>
+<p>For Django upgrades, we follow the recommended steps from <a href="https://docs.djangoproject.com/en/5.2/howto/upgrade-version/">Django's official documentation</a>. 
+Before starting upgrade, we run the tests with <code>py.test tests --reuse-db</code> or <code>make tests</code> and we try to fix all deprecation warnings that are related to our code base, and not those related to external installed packages and libraries.
+The most thorough step is to look at the release notes of the <code>final</code> release from the one after our current Django version, up to and including the version to which we plan to upgrade. E.g if our current version is 4.2.x, we upgrade first to the latest version of this release (that is 4.2.22) and then incrementally to the last release of the next feature release. E.g the next and final feature release of 4.2.x is 5.0.14. We read the release notes of each version we are updating to, and ensure that deprecated and removed coding blocks and features are updated in our code accordingly. </p>
+<p>For each version upgrade we run the tests to check if they pass. 
+We then apply the migrations that will affect the Database schema by running the migrate command with <code>python manage.py migrate</code>.
+If in the process of upgrading we have changed our models, e.g by how the index is declared, or the field, or any change, we need to run <code>python manage.py makemigrations</code> and if new migrations files are generated we need to run the migrate command as above. 
+We commit each version upgrade separately with a message that includes <code>django upgrade</code> + version. This way and in case something went wrong on the live servers, we can revoke back to a previous version more easily.</p>
 <ul>
-<li>nodejs (+ npm)</li>
-<li>python 3.x (+ venv + pip)</li>
-<li>libpq (only if postgres should be used)</li>
-<li>sqlite3 <a href="https://code.djangoproject.com/wiki/JSON1Extension">with JSON1 enabled</a></li>
-<li>redis (in production, not needed for development)</li>
+<li>All release notes are found <a href="https://docs.djangoproject.com/en/5.2/releases/">here</a>.</li>
+<li>Helpfull tool for upgrading</li>
+<li>Example of a previous <a href="https://github.com/liqd/adhocracy4/pull/1504/commits">Django upgrade</a>. In this PR we see the different commits for each upgrade, and also for each package that needs upgrade before we jump to a higher version that requires said package.</li>
 </ul>
-<h3 id="installation">Installation</h3>
-<pre><code>git clone https://github.com/liqd/adhocracy-plus.git
-cd adhocracy-plus
-make install
-make fixtures
-</code></pre>
-<h3 id="start-virtual-environment">Start virtual environment</h3>
-<pre><code>source venv/bin/activate
-</code></pre>
-<h3 id="check-if-tests-work">Check if tests work</h3>
-<pre><code>make test
-</code></pre>
-<h3 id="start-a-local-server">Start a local server</h3>
-<pre><code>make watch
-</code></pre>
-<h3 id="use-postgresql-database-for-testing">Use postgresql database for testing</h3>
-<p>run the following command once:</p>
-<pre><code>make postgres-create
-</code></pre>
-<p>to start the test server with postgresql, run:</p>
-<pre><code>export DATABASE=postgresql
-make postgres-start
-make watch
-</code></pre>
-<p>Go to http://localhost:8004/ and login with admin@liqd.net | password</p>
-<h3 id="use-celery-for-task-queues">Use Celery for task queues</h3>
-<p>For a celery worker to pick up tasks you need to make sure that:
-- the redis server is running
-- the celery config parameter "always eager" is disabled (add <code>CELERY_TASK_ALWAYS_EAGER = False</code> to your <code>local.py</code>)</p>
-<p>To start a celery worker node in the foreground, call:</p>
-<pre><code>make celery-worker-start
-</code></pre>
-<p>To inspect all registered tasks, list the running worker nodes, call:</p>
-<pre><code>make celery-worker-status
-</code></pre>
-<p>To send a dummy task to the queue and report the result, call:</p>
-<pre><code>make celery-worker-dummy-task
-</code></pre>
-<h2 id="installation-on-a-production-system">Installation on a production system</h2>
-<p>You like adhocracy+ and want to run your own version? An installation guide for production systems can be found <a href="../installation_prod/">here</a>.</p>
-<h2 id="contributing-or-maintaining-your-own-fork">Contributing or maintaining your own fork</h2>
-<p>If you found an issue, want to contribute, or would like to add your own features to your own version of adhocracy+, check out <a href="../contributing/">contributing</a>.</p>
-<h2 id="security">Security</h2>
-<p>We care about security. So, if you find any issues concerning security, please send us an email at info [at] liqd [dot] net.</p>
+<h2 id="wagtail">Wagtail</h2>
+<p>The process is similar to Django, that we upgrade one feature release at a time, even if our current wagtail version is several versions behind the current one. For example, instead of going from 6.0 directly to 6.3, upgrade to 6.1 and 6.2 first rather than skipping directly to the newest release. For each upgrade, we read though the release notes for feature removals/deprecations, and migrations we need to run similar to the Django upgrade process.</p>
+<ul>
+<li>Official Wagtail upgrade release notes and howto, see <a href="https://docs.wagtail.org/en/stable/releases/upgrading.html">here</a>.</li>
+<li>Example of a previous <a href="https://github.com/liqd/adhocracy-plus/pull/2868/commits">Wagtail upgrade</a>.</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../django_shell_basics/" class="btn btn-neutral float-right" title="django basics">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../languages_and_translations/" class="btn btn-neutral float-left" title="translations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../howtomkdocs/" class="btn btn-neutral float-right" title="create documentation">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -220,10 +178,10 @@ make watch
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../languages_and_translations/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../django_shell_basics/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../howtomkdocs/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

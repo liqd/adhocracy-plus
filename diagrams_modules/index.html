@@ -50,6 +50,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../languages_and_translations/">translations</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrades/">software upgrades</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../howtomkdocs/">create documentation</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../installation_prod/">install on production</a>
@@ -59,13 +61,13 @@
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">participation modules</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#poll-module-aka-survey">Poll module -- aka Survey</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#idea-module">Idea module</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#topic-module">Topic module</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#text-discussion-module">Text Discussion module</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#survey-module">Survey module</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#interactive-event-module">Interactive Event module</a>
     </li>
@@ -89,7 +91,13 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../ckeditor/">ckeditor</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../geolocation/">geolocation</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../img_saving_and_deletion/">images</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../poll/">polls</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../postgresql/">postgresql</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../project_insights/">project insights</a>
                   </li>
@@ -133,14 +141,14 @@
               
                 <h1 id="modules-inheritance">Modules inheritance</h1>
 <p>Most of a+ participation modules (Idea, Interactive Events, Debate, Documents, Polls, Topics) are inhereted from adhocracy4 <a href="https://github.com/liqd/adhocracy4/blob/main/adhocracy4/modules/models.py#L418">Item model</a> and the <a href="https://github.com/liqd/adhocracy-plus/blob/main/apps/moderatorfeedback/models.py#L31">Moderateable model</a>.</p>
+<h2 id="poll-module-aka-survey">Poll module -- aka Survey</h2>
+<p><img alt="Poll model" src="../assets/poll-inheritance.png" /></p>
 <h2 id="idea-module">Idea module</h2>
 <p><img alt="Idea model" src="../assets/idea.png" /></p>
 <h2 id="topic-module">Topic module</h2>
 <p><img alt="Topic model" src="../assets/topic.png" /></p>
 <h2 id="text-discussion-module">Text Discussion module</h2>
 <p><img alt="Chapter model" src="../assets/chapter.png" /></p>
-<h2 id="survey-module">Survey module</h2>
-<p><img alt="Poll model" src="../assets/polls.png" /></p>
 <h2 id="interactive-event-module">Interactive Event module</h2>
 <p><img alt="Interactive event model" src="../assets/interactive-events.png" /></p>
 <h2 id="budgeting-module">Budgeting module</h2>

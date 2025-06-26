@@ -50,6 +50,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../languages_and_translations/">translations</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrades/">software upgrades</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../howtomkdocs/">create documentation</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../installation_prod/">install on production</a>
@@ -64,7 +66,7 @@
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">code reference</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#user-dashboard-module">User Dashboard module</a>
+    <li class="toctree-l2"><a class="reference internal" href="#user-dashboard-api">User Dashboard API</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#serializers">serializers</a>
     </li>
@@ -102,6 +104,20 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#users-and-permissions">users and permissions</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#projects-api">Projects API</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#serializers_1">serializers</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apps.projects.serializers">serializers</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#views_1">views</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apps.projects.api">api</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#idea-api">Idea API</a>
     </li>
     </ul>
@@ -115,7 +131,13 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../ckeditor/">ckeditor</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../geolocation/">geolocation</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../img_saving_and_deletion/">images</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../poll/">polls</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../postgresql/">postgresql</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../project_insights/">project insights</a>
                   </li>
@@ -158,7 +180,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="api">API</h1>
-<h2 id="user-dashboard-module">User Dashboard module</h2>
+<h2 id="user-dashboard-api">User Dashboard API</h2>
 <h3 id="serializers">serializers</h3>
 
 
@@ -167,9 +189,14 @@
 
 
 <a id="apps.userdashboard.serializers"></a>
-  <div class="doc doc-contents first">
+    <div class="doc doc-contents first">
 
-  
+
+
+
+
+
+
 
   <div class="doc doc-children">
 
@@ -185,20 +212,25 @@
 
 
 <h2 id="apps.userdashboard.serializers.ModerationCommentSerializer" class="doc doc-heading">
-          <code>ModerationCommentSerializer</code>
+            <code>ModerationCommentSerializer</code>
 
 
 </h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="rest_framework.serializers.ModelSerializer">ModelSerializer</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="rest_framework.serializers.ModelSerializer">ModelSerializer</span></code></p>
 
 
-            <details class="quote">
-              <summary>Source code in <code>apps/userdashboard/serializers.py</code></summary>
-              <pre class="highlight"><code class="language-python">class ModerationCommentSerializer(serializers.ModelSerializer):
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>apps/userdashboard/serializers.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ModerationCommentSerializer(serializers.ModelSerializer):
     comment_url = serializers.SerializerMethodField()
     is_unread = serializers.SerializerMethodField()
     is_modified = serializers.SerializerMethodField()
@@ -319,9 +351,9 @@
             field.set(value)
 
         return instance</code></pre>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -333,24 +365,22 @@
 
 
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="apps.userdashboard.serializers.ModerationCommentSerializer.get_user_image" class="doc doc-heading">
-          <code class="highlight language-python">get_user_image(comment)</code>
+            <code class="highlight language-python">get_user_image(comment)</code>
 
 </h3>
 
 
-  <div class="doc doc-contents ">
-  
-      <p>Load small thumbnail images for user images.</p>
+    <div class="doc doc-contents ">
 
-          <details class="quote">
-            <summary>Source code in <code>apps/userdashboard/serializers.py</code></summary>
-            <pre class="highlight"><code class="language-python">def get_user_image(self, comment):
+        <p>Load small thumbnail images for user images.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>apps/userdashboard/serializers.py</code></summary>
+              <pre class="highlight"><code class="language-python">def get_user_image(self, comment):
     """Load small thumbnail images for user images."""
     if comment.is_censored or comment.is_removed:
         return None
@@ -361,29 +391,27 @@
     except AttributeError:
         pass
     return self.get_user_image_fallback(comment)</code></pre>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="apps.userdashboard.serializers.ModerationCommentSerializer.get_user_image_fallback" class="doc doc-heading">
-          <code class="highlight language-python">get_user_image_fallback(comment)</code>
+            <code class="highlight language-python">get_user_image_fallback(comment)</code>
 
 </h3>
 
 
-  <div class="doc doc-contents ">
-  
-      <p>Load small thumbnail images for default user images.</p>
+    <div class="doc doc-contents ">
 
-          <details class="quote">
-            <summary>Source code in <code>apps/userdashboard/serializers.py</code></summary>
-            <pre class="highlight"><code class="language-python">def get_user_image_fallback(self, comment):
+        <p>Load small thumbnail images for default user images.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>apps/userdashboard/serializers.py</code></summary>
+              <pre class="highlight"><code class="language-python">def get_user_image_fallback(self, comment):
     """Load small thumbnail images for default user images."""
     if comment.is_censored or comment.is_removed:
         return None
@@ -393,34 +421,32 @@
     except AttributeError:
         pass
     return None</code></pre>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="apps.userdashboard.serializers.ModerationCommentSerializer.update" class="doc doc-heading">
-          <code class="highlight language-python">update(instance, validated_data)</code>
+            <code class="highlight language-python">update(instance, validated_data)</code>
 
 </h3>
 
 
-  <div class="doc doc-contents ">
-  
-      <p>Update comment instance without changing comment.modified.</p>
+    <div class="doc doc-contents ">
+
+        <p>Update comment instance without changing comment.modified.</p>
 <p>This is essentially copied from
 rest_framework.serializers.ModelSerializer.update(),
 only difference is ignore_modified=true when saving the instance.
 See also here:
 https://github.com/encode/django-rest-framework/blob/master/rest_framework/serializers.py#L991-L1015</p>
 
-          <details class="quote">
-            <summary>Source code in <code>apps/userdashboard/serializers.py</code></summary>
-            <pre class="highlight"><code class="language-python">def update(self, instance, validated_data):
+            <details class="quote">
+              <summary>Source code in <code>apps/userdashboard/serializers.py</code></summary>
+              <pre class="highlight"><code class="language-python">def update(self, instance, validated_data):
     """Update comment instance without changing comment.modified.
 
     This is essentially copied from
@@ -453,8 +479,8 @@ https://github.com/encode/django-rest-framework/blob/master/rest_framework/seria
         field.set(value)
 
     return instance</code></pre>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -462,8 +488,7 @@ https://github.com/encode/django-rest-framework/blob/master/rest_framework/seria
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -472,7 +497,7 @@ https://github.com/encode/django-rest-framework/blob/master/rest_framework/seria
 
   </div>
 
-  </div>
+    </div>
 
 </div><h3 id="views">views</h3>
 
@@ -482,9 +507,14 @@ https://github.com/encode/django-rest-framework/blob/master/rest_framework/seria
 
 
 <a id="apps.userdashboard.views"></a>
-  <div class="doc doc-contents first">
+    <div class="doc doc-contents first">
 
-  
+
+
+
+
+
+
 
   <div class="doc doc-children">
 
@@ -500,20 +530,25 @@ https://github.com/encode/django-rest-framework/blob/master/rest_framework/seria
 
 
 <h2 id="apps.userdashboard.views.UserDashboardActivitiesView" class="doc doc-heading">
-          <code>UserDashboardActivitiesView</code>
+            <code>UserDashboardActivitiesView</code>
 
 
 </h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="apps.userdashboard.views.UserDashboardBaseMixin" href="#apps.userdashboard.views.UserDashboardBaseMixin">UserDashboardBaseMixin</a></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="apps.userdashboard.views.UserDashboardBaseMixin" href="#apps.userdashboard.views.UserDashboardBaseMixin">UserDashboardBaseMixin</a></code></p>
 
 
-            <details class="quote">
-              <summary>Source code in <code>apps/userdashboard/views.py</code></summary>
-              <pre class="highlight"><code class="language-python">class UserDashboardActivitiesView(UserDashboardBaseMixin):
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>apps/userdashboard/views.py</code></summary>
+                <pre class="highlight"><code class="language-python">class UserDashboardActivitiesView(UserDashboardBaseMixin):
     template_name = "a4_candy_userdashboard/userdashboard_activities.html"
     menu_item = "overview"
 
@@ -565,9 +600,9 @@ https://github.com/encode/django-rest-framework/blob/master/rest_framework/seria
             key=lambda action: action.timestamp,
             reverse=True,
         )</code></pre>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -582,8 +617,8 @@ https://github.com/encode/django-rest-framework/blob/master/rest_framework/seria
 
 
 <h3 id="apps.userdashboard.views.UserDashboardActivitiesView.actions" class="doc doc-heading">
-          <code class="highlight language-python">actions</code>
-  
+            <code class="highlight language-python">actions</code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -591,12 +626,12 @@ https://github.com/encode/django-rest-framework/blob/master/rest_framework/seria
 </h3>
 
 
-  <div class="doc doc-contents ">
-  
-      <p>Return comment/feedback actions that are  on content the user created.</p>
+    <div class="doc doc-contents ">
+
+        <p>Return comment/feedback actions that are  on content the user created.</p>
 <p>Do not return actions on comments for polls and documents to not spam
 initiators.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -606,8 +641,7 @@ initiators.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -616,23 +650,28 @@ initiators.</p>
 
 
 <h2 id="apps.userdashboard.views.UserDashboardBaseMixin" class="doc doc-heading">
-          <code>UserDashboardBaseMixin</code>
+            <code>UserDashboardBaseMixin</code>
 
 
 </h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="django.contrib.auth.mixins.LoginRequiredMixin">LoginRequiredMixin</span></code>, <code><span title="django.views.generic.base.ContextMixin">ContextMixin</span></code>, <code><span title="django.views.generic.base.TemplateResponseMixin">TemplateResponseMixin</span></code>, <code><span title="django.views.generic.base.View">View</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="django.contrib.auth.mixins.LoginRequiredMixin">LoginRequiredMixin</span></code>, <code><span title="django.views.generic.base.ContextMixin">ContextMixin</span></code>, <code><span title="django.views.generic.base.TemplateResponseMixin">TemplateResponseMixin</span></code>, <code><span title="django.views.generic.base.View">View</span></code></p>
 
-  
-      <p>Adds followed projects and organisations as properties.</p>
+
+        <p>Adds followed projects and organisations as properties.</p>
 <p>To be used in the user dashboard views, as they all need this info.</p>
 
-            <details class="quote">
-              <summary>Source code in <code>apps/userdashboard/views.py</code></summary>
-              <pre class="highlight"><code class="language-python">class UserDashboardBaseMixin(
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>apps/userdashboard/views.py</code></summary>
+                <pre class="highlight"><code class="language-python">class UserDashboardBaseMixin(
     LoginRequiredMixin,
     generic.base.ContextMixin,
     generic.base.TemplateResponseMixin,
@@ -662,9 +701,9 @@ initiators.</p>
             follow__creator=self.request.user, follow__enabled=True
         )
         return projects</code></pre>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -680,8 +719,7 @@ initiators.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -690,20 +728,25 @@ initiators.</p>
 
 
 <h2 id="apps.userdashboard.views.UserDashboardOverviewView" class="doc doc-heading">
-          <code>UserDashboardOverviewView</code>
+            <code>UserDashboardOverviewView</code>
 
 
 </h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="apps.userdashboard.views.UserDashboardBaseMixin" href="#apps.userdashboard.views.UserDashboardBaseMixin">UserDashboardBaseMixin</a></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="apps.userdashboard.views.UserDashboardBaseMixin" href="#apps.userdashboard.views.UserDashboardBaseMixin">UserDashboardBaseMixin</a></code></p>
 
 
-            <details class="quote">
-              <summary>Source code in <code>apps/userdashboard/views.py</code></summary>
-              <pre class="highlight"><code class="language-python">class UserDashboardOverviewView(UserDashboardBaseMixin):
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>apps/userdashboard/views.py</code></summary>
+                <pre class="highlight"><code class="language-python">class UserDashboardOverviewView(UserDashboardBaseMixin):
     template_name = "a4_candy_userdashboard/userdashboard_overview.html"
     menu_item = "overview"
 
@@ -767,9 +810,9 @@ initiators.</p>
         )[:8]
 
         return projects</code></pre>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -784,8 +827,8 @@ initiators.</p>
 
 
 <h3 id="apps.userdashboard.views.UserDashboardOverviewView.actions" class="doc doc-heading">
-          <code class="highlight language-python">actions</code>
-  
+            <code class="highlight language-python">actions</code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -793,12 +836,12 @@ initiators.</p>
 </h3>
 
 
-  <div class="doc doc-contents ">
-  
-      <p>Return comment/feedback actions that are  on content the user created.</p>
+    <div class="doc doc-contents ">
+
+        <p>Return comment/feedback actions that are  on content the user created.</p>
 <p>Do not return actions on comments for polls and documents to not spam
 initiators.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -808,8 +851,7 @@ initiators.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -818,7 +860,7 @@ initiators.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div><h2 id="users-and-permissions">users and permissions</h2>
 <p>We enabled token authentification in a+. So to use the APIs,
@@ -826,6 +868,79 @@ the user token has to be given instead of name and password.</p>
 <p>To generate or get the token in the terminal:
 <code>curl -X POST http://localhost:8004/api/login/ -H 'Accept: application/json;' -d 'username=$username&amp;password=$password'</code>
 <code>{"token":"$some_quite_long_token"}</code></p>
+<h2 id="projects-api">Projects API</h2>
+<h3 id="serializers_1">serializers</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="apps.projects.serializers"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h3 id="views_1">views</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="apps.projects.api"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div><p>We can access a list of the projects with an API endpoint.
+Projects that are returned are public or semi-public, are currently running, or scheduled for future, and are not draft nor archived, and have geolocation enabled by their organisation.
+The query filtering of the projects happens inside the <code>projects/api.py</code> and are customised according to our external partner WeChange. We may consider to implement a seperate django filter later.</p>
+<p>E.g testing via the terminal with:</p>
+<pre><code>curl -X GET http://localhost:8004/api/app-projects/ -H 'Authorization: Token $some_quite_long_token'
+</code></pre>
 <h2 id="idea-api">Idea API</h2>
 <p>To create, update and delete ideas from the app, we added an API for ideas.</p>
 <p>To use it to add an idea:

@@ -50,6 +50,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../languages_and_translations/">translations</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../upgrades/">software upgrades</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../howtomkdocs/">create documentation</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../installation_prod/">install on production</a>
@@ -73,7 +75,13 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../ckeditor/">ckeditor</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../geolocation/">geolocation</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../img_saving_and_deletion/">images</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../poll/">polls</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../postgresql/">postgresql</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../project_insights/">project insights</a>
                   </li>
@@ -125,12 +133,16 @@ reference for the technical implementation of the
 
 
 <a id="apps.projects.models"></a>
-  <div class="doc doc-contents first">
+    <div class="doc doc-contents first">
 
-  
+
+
+
+
+
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -143,16 +155,15 @@ reference for the technical implementation of the
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="apps.projects.models.create_insight_context" class="doc doc-heading">
-          <code class="highlight language-python">create_insight_context(insight)</code>
+            <code class="highlight language-python">create_insight_context(insight)</code>
 
 </h2>
 
 
-  <div class="doc doc-contents ">
-  
-      <p>("BS", <em>("brainstorming")),
+    <div class="doc doc-contents ">
+
+        <p>("BS", <em>("brainstorming")),
 ("MBS", </em>("spatial brainstorming")),
 ("IC", <em>("idea challenge")),
 ("MIC", </em>("spatial idea challenge")),
@@ -163,9 +174,9 @@ reference for the technical implementation of the
 ("TP", <em>("prioritization")),
 ("DB", </em>("debate")),</p>
 
-          <details class="quote">
-            <summary>Source code in <code>apps/projects/models.py</code></summary>
-            <pre class="highlight"><code class="language-python">def create_insight_context(insight: ProjectInsight) -&gt; dict:
+            <details class="quote">
+              <summary>Source code in <code>apps/projects/models.py</code></summary>
+              <pre class="highlight"><code class="language-python">def create_insight_context(insight: ProjectInsight) -&gt; dict:
     """
     ("BS", _("brainstorming")),
     ("MBS", _("spatial brainstorming")),
@@ -188,7 +199,10 @@ reference for the technical implementation of the
     show_ideas = bool(blueprint_types.intersection({"BS", "IC", "MBS", "MIC", "PB"}))
 
     counts = [
-        (_("active participants"), insight.active_participants.count()),
+        (
+            _("active participants"),
+            insight.active_participants.count() + insight.unregistered_participants,
+        ),
         (_("comments"), insight.comments),
         (_("ratings"), insight.ratings),
     ]
@@ -209,8 +223,8 @@ reference for the technical implementation of the
         ),
         counts=counts,
     )</code></pre>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -218,7 +232,7 @@ reference for the technical implementation of the
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -227,9 +241,14 @@ reference for the technical implementation of the
 
 
 <a id="apps.projects.views"></a>
-  <div class="doc doc-contents first">
+    <div class="doc doc-contents first">
 
-  
+
+
+
+
+
+
 
   <div class="doc doc-children">
 
@@ -245,20 +264,25 @@ reference for the technical implementation of the
 
 
 <h2 id="apps.projects.views.ModuleDetailView" class="doc doc-heading">
-          <code>ModuleDetailView</code>
+            <code>ModuleDetailView</code>
 
 
 </h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="rules.contrib.views.PermissionRequiredMixin">PermissionRequiredMixin</span></code>, <code><span title="adhocracy4.projects.mixins.PhaseDispatchMixin">PhaseDispatchMixin</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="rules.contrib.views.PermissionRequiredMixin">PermissionRequiredMixin</span></code>, <code><span title="adhocracy4.projects.mixins.PhaseDispatchMixin">PhaseDispatchMixin</span></code></p>
 
 
-            <details class="quote">
-              <summary>Source code in <code>apps/projects/views.py</code></summary>
-              <pre class="highlight"><code class="language-python">class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>apps/projects/views.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
     model = module_models.Module
     permission_required = "a4projects.view_project"
     slug_url_kwarg = "module_slug"
@@ -281,12 +305,11 @@ reference for the technical implementation of the
         if "module" not in kwargs:
             kwargs["module"] = self.module
         return super().get_context_data(**kwargs)</code></pre>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -299,28 +322,27 @@ reference for the technical implementation of the
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="apps.projects.views.ModuleDetailView.get_context_data" class="doc doc-heading">
-          <code class="highlight language-python">get_context_data(**kwargs)</code>
+            <code class="highlight language-python">get_context_data(**kwargs)</code>
 
 </h3>
 
 
-  <div class="doc doc-contents ">
-  
-      <p>Append project and module to the template context.</p>
+    <div class="doc doc-contents ">
 
-          <details class="quote">
-            <summary>Source code in <code>apps/projects/views.py</code></summary>
-            <pre class="highlight"><code class="language-python">def get_context_data(self, **kwargs):
+        <p>Append project and module to the template context.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>apps/projects/views.py</code></summary>
+              <pre class="highlight"><code class="language-python">def get_context_data(self, **kwargs):
     """Append project and module to the template context."""
     if "project" not in kwargs:
         kwargs["project"] = self.project
     if "module" not in kwargs:
         kwargs["module"] = self.module
     return super().get_context_data(**kwargs)</code></pre>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -328,8 +350,7 @@ reference for the technical implementation of the
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -338,7 +359,7 @@ reference for the technical implementation of the
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -347,9 +368,14 @@ reference for the technical implementation of the
 
 
 <a id="apps.projects.forms"></a>
-  <div class="doc doc-contents first">
+    <div class="doc doc-contents first">
 
-  
+
+
+
+
+
+
 
   <div class="doc doc-children">
 
@@ -365,7 +391,7 @@ reference for the technical implementation of the
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -374,9 +400,14 @@ reference for the technical implementation of the
 
 
 <a id="apps.projects.tasks"></a>
-  <div class="doc doc-contents first">
+    <div class="doc doc-contents first">
 
-  
+
+
+
+
+
+
 
   <div class="doc doc-children">
 
@@ -392,7 +423,7 @@ reference for the technical implementation of the
 
   </div>
 
-  </div>
+    </div>
 
 </div>
               
