@@ -42,7 +42,7 @@
                 </div>
                 <ul class="dashboard-nav__pages collapse{% if not project.id in closed_accordions.0 %} show{% endif %}" id="dashboardCollapseProj" aria-hidden="false">
                     {% for item in dashboard_menu.project %}
-                        {% if item.label != "Location" or project.organisation.enable_geolocation %}
+                        {% if item.identifier != "location" or project.organisation.enable_geolocation %}
                             <li class="dashboard-nav__page">
                                 <a href="{{ item.url }}"
                                     class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
@@ -50,6 +50,7 @@
                                     <i class="fa fa-exclamation-circle text-danger" title="{% translate "Missing fields for publication" %}" aria-label="{% translate "Missing fields for publication" %}"></i>
                                 {% endif %}
                                     {{ item.label }}
+                                    {{ item.identifier }}
                                 </a>
                             </li>
                         {% endif %}
