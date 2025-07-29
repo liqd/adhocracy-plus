@@ -4,6 +4,11 @@
 
 .flatpickr-calendar {
     // overwrite style from _form.scss
+
+    // Prevents erroneously selecting entire page on incidental click + drag
+    // because of high z-index of the date picker.
+    user-select: none;
+
     select {
         display: unset;
     }

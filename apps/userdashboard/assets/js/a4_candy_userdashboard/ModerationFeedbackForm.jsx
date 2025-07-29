@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import django from 'django'
 
+const MODERATOR_FEEDBACK_MAX_LENGTH = 500
+
 export const ModerationFeedbackForm = (props) => {
   const [feedback, setFeedback] =
     useState((props.editing && props.initialFeedback.feedback_text) || '')
@@ -28,10 +30,11 @@ export const ModerationFeedbackForm = (props) => {
         placeholder={translated.placeholder}
         onChange={(e) => setFeedback(e.target.value)}
         value={feedback}
+        maxLength={MODERATOR_FEEDBACK_MAX_LENGTH}
       />
       <div className="row">
         <label htmlFor="id-comment-form" className="col-6 a4-comments__char-count">
-          {feedback.length}/500{translated.charCount}
+          {feedback.length}/{MODERATOR_FEEDBACK_MAX_LENGTH}{translated.charCount}
         </label>
         <div className="a4-comments__submit d-flex col-6">
           <button
