@@ -68,7 +68,11 @@ function initDatePicker () {
   // Initialize date pickers
   document.querySelectorAll('.datepicker').forEach((element) => {
     element.classList.add('form-control')
-    const datePicker = flatpickr(element, { dateFormat, locale: lang })
+    const datePicker = flatpickr(element, {
+      disableMobile: true,
+      dateFormat,
+      locale: lang
+    })
     flatpickrsMap.set(element.id, datePicker)
   })
 
