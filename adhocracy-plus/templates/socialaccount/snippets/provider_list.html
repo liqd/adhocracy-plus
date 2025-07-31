@@ -17,6 +17,8 @@
                         href="
                             {% if provider.id == 'github' %}
                                 {% provider_login_url provider.id openid=brand.openid_url process=process next='/accounts/3rdparty/signup/' %}
+                            {% elif provider.id == 'apple' %}
+                                {% provider_login_url provider.id openid=brand.openid_url process=process next='/accounts/apple/callback/' %}
                             {% else %}
                                 {% provider_login_url provider.id openid=brand.openid_url process=process %}
                             {% endif %}
