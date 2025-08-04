@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2507.1
+
+### Changed
+
+- Change labels of links to manual, 'Help Center', and direct to new a+ manual
+- phase date selection: use flatpickr's ui on mobile instead of native- Disabled languages other than English and German
+- Update make postgresql-create|start|stop for linux OS
+- Update README with manual setup of postgreSQL
+- Deps: Upgraded Django to Version 5.1- **BREAKING CHANGE** A database with geospatial support is now required (e.g spatialite, postgresql with postgis)
+- Use the new `PointSerializerMixin` Project Serializer
+- project admin model to GIS admin model to render the map in the django-admin dashboard
+- Updated dependencies to Django 5.0- MapFilterAndSort: Change Map / List buttons to toggler- poll module diagrams
+- poll documentation
+- Update README.md to include libmagic installation step for MacOS
+
+### Removed
+
+- Removed env variable MANUAL_URL - no longer used- API url `api/login` as it is not in used anymore, we use `api/token` instead. See [docs](https://github.com/liqd/adhocracy-plus/blob/main/docs/authentication.md)
+
+### Added
+
+- captcha required for all SSO social signups- docs for upgrades
+- wiki diagrams links for the modules technical diagrams
+- Added moderator feedback form textarea character limit of 500- postgresql documentation
+- poll, question, answer, vote relation diagram
+
+### Fixed
+
+- Conditional display of dashboard project module menu's "Location" uses identifier instead of label, so translation doesn't break it
+- dashboard/phases: Prevent accidental selection of entire page when using date picker
+
+
+
 ## v2501.4
 
 ### Added
