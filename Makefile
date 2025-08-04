@@ -58,7 +58,6 @@ help:
 .PHONY: install
 install:
 	npm install --no-save
-	npm run build
 	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
 	$(VIRTUAL_ENV)/bin/python -m pip install --upgrade -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python manage.py migrate
@@ -83,7 +82,7 @@ server:
 watch:
 	trap 'kill %1' KILL; \
 	npm run watch & \
-	$(VIRTUAL_ENV)/bin/python manage.py runserver 8004
+	$(VIRTUAL_ENV)/bin/python manage.py runserver 0.0.0.0:8004
 
 .PHONY: background
 background:
