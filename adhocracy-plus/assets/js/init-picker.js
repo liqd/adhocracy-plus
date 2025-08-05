@@ -88,7 +88,8 @@ function initDatePicker () {
       enableTime: true,
       noCalendar: true,
       time_24hr: true,
-      locale: lang
+      locale: lang,
+      disableMobile: true
     })
     flatpickrsMap.set(element.id, timePicker)
   })
