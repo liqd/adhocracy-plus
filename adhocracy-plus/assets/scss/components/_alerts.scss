@@ -11,6 +11,7 @@ $messages-margin-bottom: 25px;
 }
 
 .alert {
+    position: relative;
     margin: 0;
     padding: (1.2 * $padding) $padding;
     background-color: $brand-primary-tint;
@@ -18,6 +19,32 @@ $messages-margin-bottom: 25px;
     text-align: center;
     border-radius: 0;
     flex: 1 1 auto;
+}
+
+.alert__content {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-right: 2.5rem;
+}
+
+.alert__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    
+    &:hover {
+        opacity: 0.8;
+    }
+    
+    .fa-times {
+        font-size: 1.2rem;
+    }
 }
 
 .alert--success {
@@ -36,12 +63,6 @@ $messages-margin-bottom: 25px;
     color: $text-color;
 }
 
-.alert__close {
-    float: right;
-    color: inherit;
-    margin-right: $spacer;
-}
-
 .alert--small {
     padding: 0.5em;
 }
@@ -52,3 +73,4 @@ $messages-margin-bottom: 25px;
         margin-top: -$messages-margin-bottom;
     }
 }
+
