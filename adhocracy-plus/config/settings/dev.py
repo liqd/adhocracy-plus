@@ -22,7 +22,6 @@ else:
     INTERNAL_IPS = ("127.0.0.1", "localhost")
 
 WAGTAILADMIN_BASE_URL = "http://localhost:8004"
-CAPTCHA_URL = "https://captcheck.netsyms.com/api.php"
 SITE_ID = 1
 
 if os.getenv("DATABASE") == "postgresql":

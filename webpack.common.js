@@ -31,6 +31,13 @@ module.exports = {
       // shares dependency so not loaded repeatedly
       dependOn: 'adhocracy4'
     },
+    prosopo: {
+      import: [
+        './apps/captcha/assets/prosopo.js'
+      ],
+      // shares dependency so not loaded repeatedly
+      dependOn: 'adhocracy4'
+    },
     datepicker: {
       import: [
         './adhocracy-plus/assets/js/init-picker.js',

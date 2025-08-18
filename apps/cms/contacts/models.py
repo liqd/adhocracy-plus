@@ -16,11 +16,11 @@ from wagtail.contrib.forms.models import AbstractFormField
 from wagtail.contrib.forms.models import AbstractFormSubmission
 from wagtail.fields import RichTextField
 
-from apps.captcha.fields import CaptcheckCaptchaField
+from apps.captcha.fields import ProsopoCaptchaField
 from apps.cms.emails import AnswerToContactFormEmail
 from apps.cms.settings import helpers
 from apps.contrib.translations import TranslatedField
-from apps.users.forms import CAPTCHA_HELP
+from apps.users.forms import PROSOPO_CAPTCHA_HELP
 
 
 class FormField(AbstractFormField):
@@ -31,11 +31,16 @@ class WagtailCaptchaFormBuilder(FormBuilder):
     @property
     def formfields(self):
         fields = super().formfields
-        # Add captcha to formfields property if the URL exists in settings
-        if hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL:
-            fields["captcha"] = CaptcheckCaptchaField(
+        # Add captcha to formfields property if Prosopo is configured
+        if (
+            hasattr(settings, "PROSOPO_SITE_KEY")
+            and settings.PROSOPO_SITE_KEY
+            and hasattr(settings, "PROSOPO_SECRET_KEY")
+            and settings.PROSOPO_SECRET_KEY
+        ):
+            fields["captcha"] = ProsopoCaptchaField(
                 label=_("I am not a robot"),
-                help_text=helpers.add_email_link_to_helptext("", CAPTCHA_HELP),
+                help_text=helpers.add_email_link_to_helptext("", PROSOPO_CAPTCHA_HELP),
             )
 
         return fields
