@@ -567,10 +567,6 @@ SITE_ID = 1  # overwrite this in local.py if needed
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
-# Add a Captcheck captcha URL in the production server's local.py to use it
-# Captcha software we use: https://source.netsyms.com/Netsyms/Captcheck
-CAPTCHA_URL = ""
-
 # Add insights for project if insight model exists
 INSIGHT_MODEL = "a4_candy_projects.ProjectInsight"
 
