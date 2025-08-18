@@ -63,6 +63,7 @@ def test_logout_with_next(user, client, logout_url):
     assert "_auth_user_id" not in client.session
 
 
+@override_settings(CAPTCHA=False)
 @pytest.mark.django_db
 def test_register(client, signup_url):
     assert EmailAddress.objects.count() == 0
@@ -75,7 +76,6 @@ def test_register(client, signup_url):
             "password1": "password",
             "password2": "password",
             "terms_of_use": "on",
-            "captcha": "testpass:0",
             "get_newsletters": "on",
         },
     )
@@ -95,6 +95,7 @@ def test_register(client, signup_url):
     assert User.objects.get(email=email).get_newsletters is True
 
 
+@override_settings(CAPTCHA=False)
 @pytest.mark.django_db
 def test_register_with_next(client, signup_url):
     assert EmailAddress.objects.count() == 0
@@ -107,7 +108,6 @@ def test_register_with_next(client, signup_url):
             "password1": "password",
             "password2": "password",
             "terms_of_use": "on",
-            "captcha": "testpass:0",
             "next": "/en/projects/pppp/",
         },
     )
@@ -126,6 +126,7 @@ def test_register_with_next(client, signup_url):
     assert EmailAddress.objects.filter(email=email, verified=True).count() == 1
 
 
+@override_settings(CAPTCHA=False)
 @pytest.mark.django_db
 def test_reregister_same_username(client, signup_url):
     assert EmailAddress.objects.count() == 0
@@ -135,7 +136,6 @@ def test_reregister_same_username(client, signup_url):
         "password1": "password",
         "password2": "password",
         "terms_of_use": "on",
-        "captcha": "testpass:0",
     }
     response = client.post(signup_url, data)
     assert response.status_code == 302
@@ -146,6 +146,7 @@ def test_reregister_same_username(client, signup_url):
     assert EmailAddress.objects.count() == 1
 
 
+@override_settings(CAPTCHA=False)
 @pytest.mark.django_db
 def test_register_invalid_no_matching_passwords(client, signup_url):
     username = "testuser2"
@@ -157,31 +158,13 @@ def test_register_invalid_no_matching_passwords(client, signup_url):
             "password1": "password",
             "password2": "wrong_password",
             "terms_of_use": "on",
-            "captcha": "testpass:0",
         },
     )
     assert response.status_code == 200
     assert models.User.objects.filter(username=username).count() == 0
 
 
-@pytest.mark.django_db
-def test_register_invalid_no_captcha(client, signup_url):
-    username = "testuser2"
-    response = client.post(
-        signup_url + "?next=/",
-        {
-            "username": username,
-            "email": "testuser@liqd.net",
-            "password1": "password",
-            "password2": "password",
-            "terms_of_use": "on",
-            "captcha": 0,
-        },
-    )
-    assert response.status_code == 200
-    assert models.User.objects.filter(username=username).count() == 0
-
-
+@override_settings(CAPTCHA=True)
 @pytest.mark.django_db
 def test_register_invalid_wrong_captcha(client, signup_url):
     username = "testuser2"
@@ -193,7 +176,6 @@ def test_register_invalid_wrong_captcha(client, signup_url):
             "password1": "password",
             "password2": "password",
             "terms_of_use": "on",
-            "captcha": "testfail",
         },
     )
     assert response.status_code == 200
