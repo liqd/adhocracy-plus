@@ -1,20 +1,24 @@
 from django.conf import settings
 from django.forms import widgets
 from django.template import loader
+from django.utils.translation import get_language
 
 
-class CaptcheckCaptchaWidget(widgets.HiddenInput):
+class ProsopoCaptchaWidget(widgets.HiddenInput):
     class Media:
-        js = ("captcheck.js",)
+        js = ("captcha/prosopo.js",)
 
     def render(self, name, value, attrs, renderer=None):
+        site_key = getattr(settings, "PROSOPO_SITE_KEY", "")
+        widget_id = attrs.get("id", f"id_{name}")
 
         context = {
             "name": name,
-            "id": attrs.get("id"),
-            "captcha_api_url": settings.CAPTCHA_URL,
+            "id": widget_id,
+            "site_key": site_key,
+            "LANGUAGE_CODE": get_language(),
         }
 
         return loader.render_to_string(
-            "a4_candy_captcha/captcheck_captcha_widget.html", context
+            "a4_candy_captcha/prosopo_captcha_widget.html", context
         )
