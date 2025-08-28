@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load i18n static %}
+
+{% block title %}{% translate 'Your user profile' %} — {{ block.super }}{% endblock title %}
+
+{% block content %}
+  <h1>{% translate "Notification settings" %}</h1>
+  <div id="notification-settings-react"
+       data-initial-notifications="{{ data }}"
+       data-show-restricted="{% if show_restricted %}true{% else %}false{% endif %}"
+       data-api-url="{{ api_url }}"
+  ></div>
+{% endblock content %}
+
+{% block extra_js_deferred %}
+  <script src="{% static 'account_notification_settings.js' %}"></script>
+{% endblock extra_js_deferred %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load i18n static %}
+
+{% block title %}{% translate 'Notifications' %} — {{ block.super }}{% endblock title %}
+
+{% block content %}
+  {% url "notifications" as notifications_url %}
+  {% url "notification_settings" as notification_settings_url %}
+
+  <div class="notifications">
+    <h1>{% translate 'Notifications' %}</h1>
+    {% if user.is_authenticated %}
+      <p>
+        {% blocktranslate with url=notification_settings_url %}
+          Notifications are where you'll find all the important news in one place: reactions to your posts, results from your saved searches, and news from the interests you follow. Here you can <a href="{{ url }}">change the settings</a>.
+        {% endblocktranslate %}
+      </p>
+      <div id="notifications-react"
+          data-notifications-api-url="{{ notifications_api_url }}"
+          data-interactions-api-url="{{ interactions_api_url }}"
+          data-search-profiles-api-url="{{ search_profiles_api_url }}"
+          data-followed-projects-api-url="{{ followed_projects_api_url }}"
+          data-plan-list-url="{{ plan_list_url }}"
+      ></div>
+    {% else %}
+      <p>{% translate "In the notifications you will see news about projects and activities that are relevant to you. Register or log in to always be up to date." %}</p>
+      <div>
+        <a class="button" href="{% url 'account_login' %}?next={{ notifications_url }}">{% translate "Log in or register" %}</a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock content %}
+
+{% block extra_js_deferred %}
+  <script src="{% static 'account_notifications.js' %}"></script>
+{% endblock extra_js_deferred %}

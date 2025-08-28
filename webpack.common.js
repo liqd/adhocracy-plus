@@ -146,6 +146,16 @@ module.exports = {
         'adhocracy4/adhocracy4/categories/assets/select_dropdown_init.js'
       ],
       dependOn: 'adhocracy4'
+    },
+    account_notifications: {
+      import: [
+        './apps/account/assets/react_notifications.jsx'
+      ]
+    },
+    account_notification_settings: {
+      import: [
+        './apps/account/assets/react_notification_settings.jsx'
+      ]
     }
   },
   output: {
