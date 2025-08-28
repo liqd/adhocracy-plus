@@ -10,6 +10,8 @@ from django.views.defaults import server_error
 from django.views.generic import TemplateView
 from django.views.i18n import JavaScriptCatalog
 from django_ckeditor_5 import views as ckeditor5_views
+from drf_spectacular.views import SpectacularAPIView
+from drf_spectacular.views import SpectacularSwaggerView
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.views import TokenRefreshView
@@ -34,6 +36,8 @@ from apps.interactiveevents.routers import LikesDefaultRouter
 from apps.moderatorfeedback.api import CommentWithFeedbackViewSet
 from apps.moderatorfeedback.api import ModeratorCommentFeedbackViewSet
 from apps.moderatorremark.api import ModeratorRemarkViewSet
+from apps.notifications.api import NotificationSettingsViewSet
+from apps.notifications.api import NotificationViewSet
 from apps.organisations.sitemaps import organisations_sitemap_index
 from apps.projects.api import AppModuleViewSet
 from apps.projects.api import AppProjectsViewSet
@@ -45,6 +49,16 @@ from apps.users.decorators import user_is_project_admin
 from apps.users.views import set_language_overwrite
 
 router = routers.DefaultRouter()
+
+router.register(r"notifications", NotificationViewSet, basename="notifications")
+router.register(
+    r"notification-settings",
+    NotificationSettingsViewSet,
+    basename="notification-settings",
+)
+router.register(r"interactions", NotificationViewSet, basename="interactions")
+router.register(r"followed-projects", NotificationViewSet, basename="followed-projects")
+
 router.register(r"follows", FollowViewSet, basename="follows")
 router.register(r"reports", ReportViewSet, basename="reports")
 router.register(r"polls", PollViewSet, basename="polls")
@@ -114,6 +128,12 @@ urlpatterns = [
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_jwt"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
     path(
         "ckeditor5/image_upload/",
         user_is_project_admin(ckeditor5_views.upload_file),

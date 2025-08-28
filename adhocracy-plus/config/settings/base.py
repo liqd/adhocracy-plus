@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     "rules.apps.AutodiscoverRulesConfig",
     "easy_thumbnails",
     "parler",
+    "drf_spectacular",
     # Wagtail cms components
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -91,6 +92,7 @@ INSTALLED_APPS = (
     "adhocracy4.ratings",
     "adhocracy4.reports",
     "adhocracy4.rules",
+    "adhocracy4.notifications",
     # General components that define models or helpers
     "apps.actions",
     "apps.captcha",
@@ -270,7 +272,6 @@ THUMBNAIL_ALIASES = {
 
 ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
 
-
 # Authentication
 
 AUTH_USER_MODEL = "a4_candy_users.User"
@@ -318,6 +319,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 SIMPLE_JWT = {
