@@ -1,0 +1,19 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n %}
+
+{% block subject %}{% blocktranslate with project_name=project %}{{ project_name }} has completed.{% endblocktranslate %}{% endblock %}
+
+{% block sub-headline %}{{ project }}{% endblock %}
+
+{% block greeting %}{% blocktranslate with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktranslate %}{% endblock %}
+
+{% block content %}
+<p>
+{% blocktranslate %}Online participation for the above project has finished.{% endblocktranslate %}
+</p>
+{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_detail_url }}{% endblock %}
+{% block cta_label %}{% blocktranslate %}Join now{% endblocktranslate %}{% endblock %}
+
+{% block reason %}{% blocktranslate with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. You have received the e-mail because you are following the above project.{% endblocktranslate %} {{ project_link | safe }} {{ account_link | safe }}{% endblock %}

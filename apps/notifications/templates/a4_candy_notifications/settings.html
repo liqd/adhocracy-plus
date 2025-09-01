@@ -1,0 +1,215 @@
+{% extends "a4_candy_account/account_dashboard.html" %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}{% trans 'Notification Settings' %}{% endblock title %}
+
+{% block dashboard_content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="row">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>{% trans 'Notification Settings' %}</h1>
+            </div>
+
+            {% if user.is_staff %}
+                <div class="mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">{% trans 'Trigger all notification tasks (for testing)' %}</p>
+                            <ul>
+                                <li>send_recently_started_project_notifications</li>
+                                <li>send_recently_completed_project_notifications</li>
+                                <li>send_upcoming_event_notifications</li>
+                            </ul>
+                            <form method="post" action="{% url 'trigger_all_notification_tasks' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-warning">
+                                    {% trans 'Run All Notification Tasks' %}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                {# Project Related Notifications #}
+                <div>
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom">
+                        <h4 class="h2 mb-0 mt-1">
+                            {% trans "Project-related Notifications" %}
+                        </h4>
+                        <div class="form-check form-switch mb-0">
+                            <input class="form-check-input category-toggle" type="checkbox" 
+                                    style="width: 2em !important; margin-left: 0 !important;"
+                                    id="project-related-toggle" 
+                                    data-category="project-related" checked>
+                            <label class="form-check-label" for="project-related-toggle"></label>
+                        </div>
+                    </div>
+                    
+                    <div data-category="project-related">
+                        {# Newsletter #}
+                        <div class="mb-4 u-bottom-divider">
+                            <h5 class="h6 mb-2">{% trans "Email Newsletter" %}</h5>
+                            <p class="text-muted small mb-3">
+                                {% trans "Receive email newsletters with updates and news from the projects you follow." %}
+                            </p>
+                            <div class="form-check form-switch">
+                                {{ form.email_newsletter|add_class:"project-related-switch" }}
+                                <label class="form-check-label" for="{{ form.email_newsletter.id_for_label }}">
+                                    {% trans "Email newsletter" %}
+                                </label>
+                            </div>
+                        </div>
+                        {# Project Updates #} 
+                        <div class="mb-4 u-bottom-divider">
+                            <h5 class="h6 mb-2">{% trans "Participation Status" %}</h5>
+                            <p class="text-muted small mb-3">
+                                {% trans "Receive notifications about projects you follow." %}
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.email_project_updates|add_class:"project-related-switch" }}
+                                        <label class="form-check-label fw-bold" for="{{ form.email_project_updates.id_for_label }}">
+                                            Email
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.notify_project_updates|add_class:"project-related-switch" }}
+                                        <label class="form-check-label fw-bold" for="{{ form.notify_project_updates.id_for_label }}">
+                                            In-App
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {# Project Events #}
+                        <div class="u-bottom-divider mb-3">
+                            <h5 class="h6 mb-2">{% trans "Events" %}</h5>
+                            <p class="text-muted small mb-3">
+                                {% trans "Receive notifications about upcoming events in projects you follow." %}
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.email_project_events|add_class:"project-related-switch" }}
+                                        <label class="form-check-label fw-bold" for="{{ form.email_project_events.id_for_label }}">
+                                            Email
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.notify_project_events|add_class:"project-related-switch" }}
+                                        <label class="form-check-label fw-bold" for="{{ form.notify_project_events.id_for_label }}">
+                                            In-App
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {# User Interactions #}
+                <div class="mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom">
+                        <h4 class="h4 mb-0 mt-1">
+                            {% trans "Interactions with other users" %}
+                        </h4>
+                        <div class="form-check form-switch mb-0">
+                            <input class="form-check-input category-toggle" type="checkbox" 
+                                    style="width: 2em !important; margin-left: 0 !important;"
+                                    id="interaction-related-toggle" 
+                                    data-category="interaction-related" checked>
+                            <label class="form-check-label" for="interaction-related-toggle"></label>
+                        </div>
+                    </div>
+                    
+                    <div data-category="interaction-related">
+                        {# User Engagement #}
+                        <div class="mb-4">
+                            <h5 class="h6 mb-2">{% trans "Reactions from other users to your posts" %}</h5>
+                            <p class="text-muted small mb-3">
+                                {% trans "Receive a notification when someone rates or comments on your post." %}
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.email_user_engagement|add_class:"interaction-related-switch" }}
+                                        <label class="form-check-label fw-bold" for="{{ form.email_user_engagement.id_for_label }}">
+                                            Email
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.notify_user_engagement|add_class:"interaction-related-switch" }}
+                                        <label class="form-check-label fw-bold" for="{{ form.notify_user_engagement.id_for_label }}">
+                                            In-App
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="u-align-right">
+                    <button type="submit" class="btn btn--default px-3">
+                        {% trans 'Save' %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock dashboard_content %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function setupCategoryToggle(toggleId, switchClass) {
+        const toggle = document.getElementById(toggleId);
+        const switches = document.querySelectorAll(switchClass);
+        
+        if (!toggle || switches.length === 0) return;
+        
+        function updateToggle() {
+            const allChecked = Array.from(switches).every(switchEl => switchEl.checked);
+            const anyChecked = Array.from(switches).some(switchEl => switchEl.checked);
+            
+            toggle.checked = allChecked;
+            toggle.indeterminate = anyChecked && !allChecked;
+        }
+        
+        // Handle toggle click
+        toggle.addEventListener('click', function() {
+            const newState = this.checked;
+            switches.forEach(switchEl => {
+                switchEl.checked = newState;
+            });
+        });
+        
+        // Handle individual switch changes
+        switches.forEach(switchEl => {
+            switchEl.addEventListener('change', updateToggle);
+        });
+        
+        updateToggle();
+    }
+    
+    setupCategoryToggle('project-related-toggle', '.project-related-switch');
+    setupCategoryToggle('interaction-related-toggle', '.interaction-related-switch');
+});
+</script>
+{% endblock extra_js %}
