@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n humanize notification_tags %}
+
+{% block title %}{% trans 'Notifications Dashboard' %}{% endblock title %}
+
+{% block content %}
+    {% unread_notifications_count as unread_count %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h2>Notifications ({{ unread_count }})</h2>
+                <!-- todo: link in description -->
+                <p>{{ dashboard_description }}</p>
+                {% include "a4_candy_notifications/_notification_card.html" with section_id="interactions" unread_count=interactions_unread_count title=interactions_title description=interactions_description notifications_list=interactions_page.object_list empty_icon="fa-comments" empty_message=interactions_empty pagination_required=interactions_page.has_other_pages page_obj=interactions_page param_name="interactions_page" %} 
+                {% include "a4_candy_notifications/_notification_card.html" with section_id="projects" unread_count=projects_unread_count title=projects_title description=projects_description notifications_list=projects_page.object_list empty_icon="fa-comments" empty_message=projects_empty pagination_required=projects_page.has_other_pages page_obj=projects_page param_name="projects_page" %} 
+            </div>
+        </div>
+    </div>
+{% endblock content %}
