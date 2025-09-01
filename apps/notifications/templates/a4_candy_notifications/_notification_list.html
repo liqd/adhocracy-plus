@@ -1,0 +1,36 @@
+{% load i18n notification_tags %}
+
+{% if notifications %}
+            
+    <ul class="list-group list-group-flush">
+        {% for notification in notifications %}
+        <li class="list-group-item border-0 py-3 {% if notification.read %}read-notification{% endif %}">
+            <div class="d-flex justify-content-between align-items-start">
+                <div class="notification-icon-box position-relative d-flex align-items-center justify-content-center" aria-label="Notification">
+                    <i class="fas fa-comment"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <p class="mb-1 {% if not notification.read %}fw-medium{% else %}text-muted{% endif %}">
+                        - {{ notification|render_notification_with_links }}
+                    </p>
+                    <small class="text-muted">{{ notification.created|date:"d.m.Y" }}</small>
+                </div>
+                {% if not notification.read %}
+                    <form method="post" action="{% url 'mark_notification_as_read' notification.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-primary" title="{% trans 'Mark as read' %}">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </form>
+                    <span class="badge bg-primary ms-2">{% trans 'New' %}</span>
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <div class="text-center py-5">
+        <i class="fas {{ empty_icon }} fa-2x text-muted mb-3"></i>
+        <p class="text-muted">{% translate empty_message %}</p>
+    </div>
+{% endif %}

@@ -3,7 +3,9 @@ from django.apps import AppConfig
 
 class Config(AppConfig):
     name = "apps.notifications"
-    label = "a4_candy_notifications"
+    label = "notifications"
 
     def ready(self):
-        import apps.notifications.signals  # noqa:F401
+        from .strategies import CommentReplyStrategy, ProjectCommentStrategy, OfflineEventReminderStrategy, OfflineEventUpdateStrategy, PhaseEndedStrategy
+
+        from . import signals
