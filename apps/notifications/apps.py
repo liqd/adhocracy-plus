@@ -1,9 +1,16 @@
 from django.apps import AppConfig
 
-
-class Config(AppConfig):
-    name = "apps.notifications"
-    label = "a4_candy_notifications"
-
+class NotificationsConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'apps.notifications'
+    
     def ready(self):
-        import apps.notifications.signals  # noqa:F401
+        # Import and initialize services
+        from .services import NotificationService
+        from .strategies import (
+            UserEngagementStrategy, 
+            ProjectUpdatesStrategy,
+            ProjectEventsStrategy
+        )
+        
+        self.notification_service = NotificationService()

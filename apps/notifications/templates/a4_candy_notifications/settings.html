@@ -1,0 +1,57 @@
+{% extends "a4_candy_account/account_dashboard.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Notification Settings' %}{% endblock title %}
+
+{% block dashboard_content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>{% trans 'Notification Settings' %}</h1>
+                <a href="{% url 'account' %}" class="btn btn-outline-secondary">
+                    {% trans 'Back to Account' %}
+                </a>
+            </div>
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                {% for group_key, group_data in form.get_field_groups.items %}
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h2 class="h5 mb-0">{{ group_data.title }}</h2>
+                    </div>
+                    <div class="card-body">
+                        {% for field, field_label, field_help in group_data.fields %}
+                        <div class="mb-3">
+                            {% if field_label %}
+                            <label class="form-label fw-bold">{{ field_label }}</label>
+                            {% endif %}
+                            
+                            {% if field_help %}
+                            <p class="text-muted small mb-2">{{ field_help }}</p>
+                            {% endif %}
+                            
+                            <div class="form-check form-switch">
+                                {{ field }}
+                                <label class="form-check-label" for="{{ field.id_for_label }}">
+                                    {% if "email_" in field.name %}Email{% else %}In-App{% endif %}
+                                </label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        {% trans 'Save Notification Settings' %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock dashboard_content %}

@@ -1,56 +1,47 @@
-from django.contrib.auth import get_user_model
+from django.db import transaction
 from django.db.models import signals
 from django.dispatch import receiver
+import logging
 
 from adhocracy4.actions.models import Action
-from adhocracy4.actions.verbs import Verbs
-from adhocracy4.dashboard import signals as dashboard_signals
 from adhocracy4.follows.models import Follow
 from adhocracy4.projects.models import Project
-from apps.moderatorfeedback.models import ModeratorCommentFeedback
 
-from . import emails
+from adhocracy4.dashboard import signals as dashboard_signals
 
-User = get_user_model()
+from .services import NotificationService
+from .strategies import (
+    PublishNotificationStrategy,
+    ProjectEventsStrategy,
+    ModeratorFeedbackStrategy,
+    ProjectCreationStrategy,
+    CommentNotificationStrategy
+)
 
+# Initialize service with strategies
+notification_service = NotificationService([
+    PublishNotificationStrategy(),
+    ProjectEventsStrategy(),
+    ModeratorFeedbackStrategy(),
+    ProjectCreationStrategy(),
+    CommentNotificationStrategy() 
+])
 
 @receiver(signals.post_save, sender=Action)
-def send_notifications(instance, created, **kwargs):
+@transaction.atomic
+def handle_action_notifications(instance, created, **kwargs):
+    """Unified handler for all action-based notifications"""
+    if not created:  # Only handle new actions
+        return
+    
     action = instance
-    verb = Verbs(action.verb)
-
-    if action.type in ("item", "comment") and verb in (Verbs.CREATE, Verbs.ADD):
-        emails.NotifyCreatorEmail.send(action)
-
-        if action.project:
-            emails.NotifyModeratorsEmail.send(action)
-
-    elif action.type == "phase":
-        if verb == Verbs.START:
-            emails.NotifyFollowersOnPhaseStartedEmail.send(action)
-        elif verb == Verbs.SCHEDULE:
-            emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
-
-    elif action.type == "offlineevent" and verb == Verbs.START:
-        emails.NotifyFollowersOnUpcommingEventEmail.send(action)
-
+    notification_service.handle_action(action)
 
 @receiver(dashboard_signals.project_created)
-def send_project_created_notifications(**kwargs):
+def handle_project_creation(**kwargs):
     project = kwargs.get("project")
     creator = kwargs.get("user")
-    emails.NotifyInitiatorsOnProjectCreatedEmail.send(project, creator_pk=creator.pk)
-
-
-@receiver(signals.post_delete, sender=Project)
-def send_project_deleted_notifications(sender, instance, **kwargs):
-    emails.NotifyInitiatorsOnProjectDeletedEmail.send_no_object(instance)
-
-
-@receiver(signals.post_save, sender=ModeratorCommentFeedback)
-def send_moderator_comment_feedback_notification(instance, **kwargs):
-    emails.NotifyCreatorOnModeratorCommentFeedback.send(instance)
-
+    notification_service.handle_project_creation(project, creator)
 
 @receiver(signals.m2m_changed, sender=Project.moderators.through)
 def autofollow_project_moderators(instance, action, pk_set, reverse, **kwargs):
@@ -59,19 +50,28 @@ def autofollow_project_moderators(instance, action, pk_set, reverse, **kwargs):
 
 
 def autofollow_project(instance, pk_set, reverse):
-    if not reverse:
-        project = instance
-        users_pks = pk_set
+    """Auto-follow project when added as moderator"""
+    try:
+        if not reverse:
+            project = instance
+            users_pks = pk_set
 
-        for user_pk in users_pks:
-            Follow.objects.update_or_create(
-                project=project, creator_id=user_pk, defaults={"enabled": True}
-            )
-    else:
-        user = instance
-        project_pks = pk_set
+            for user_pk in users_pks:
+                Follow.objects.update_or_create(
+                    project=project, 
+                    creator_id=user_pk, 
+                    defaults={"enabled": True}
+                )
+        else:
+            user = instance
+            project_pks = pk_set
 
-        for project_pk in project_pks:
-            Follow.objects.update_or_create(
-                project_id=project_pk, creator=user, defaults={"enabled": True}
-            )
+            for project_pk in project_pks:
+                Follow.objects.update_or_create(
+                    project_id=project_pk, 
+                    creator=user, 
+                    defaults={"enabled": True}
+                )
+    except Exception as e:
+        logger = logging.getLogger(__name__)
+        logger.error(f"Error in autofollow_project: {e}")
