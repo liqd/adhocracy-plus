@@ -1,6 +1,6 @@
 {% load static notification_tags %}
 {% unread_notifications_count as unread_count %}
-<a href="{% url 'account_notifications' %}" class="btn btn-default position-relative rounded-circle notifications_btn d-flex align-items-center justify-content-center" aria-label="Notifications">
+<a href="{% url 'userdashboard-notifications' %}" class="btn btn-default position-relative rounded-circle notifications_btn d-flex align-items-center justify-content-center" aria-label="Notifications">
     <i class="fas fa-bell"></i>
     {% if user.is_authenticated and unread_count > 0 %}
         <span class="position-absolute top-0 end-0 p-1 bg-danger border border-light rounded-circle">
