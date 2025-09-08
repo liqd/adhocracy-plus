@@ -179,9 +179,11 @@ class NotificationType(models.TextChoices):
     MESSAGE_RECEIVED = 'message_received', _('Message Received')
     PROJECT_INVITATION = 'project_invitation', _('Project Invitation')
     COMMENT_REPLY = 'comment_reply', _('Comment Reply')
+    COMMENT_ON_POST = 'comment_on_post', _('Comment on Post')
     CONTENT_REACTION = 'content_reaction', _('Content Reaction')
     
     # Moderation actions
+    MODERATOR_HIGHLIGHT= 'moderator_highlight', _('Moderator Highlight')
     MODERATOR_FEEDBACK = 'moderator_feedback', _('Moderator Feedback')
     MODERATOR_ACTION = 'moderator_action', _('Moderator Action')
     CONTENT_APPROVED = 'content_approved', _('Content Approved')
