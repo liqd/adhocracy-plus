@@ -47,7 +47,7 @@ def _map_notification_type_to_email_class(notification_type):
         'project_update': emails.NotifyFollowersOnPhaseStartedEmail,
         'project_event': emails.NotifyFollowersOnUpcommingEventEmail,
         'comment_reply': emails.NotifyCommentReplyEmail,
-        'project_comment': emails.NotifyProjectCommentEmail,
+        'comment_on_project': emails.NotifyProjectCommentEmail,
         'offline_event': emails.NotifyOfflineEventEmail
     }
     return email_map.get(notification_type)
