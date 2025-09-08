@@ -97,7 +97,6 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("account/", include("apps.account.urls")),
     path("profile/", include("apps.users.urls")),
-    path("notifications/", include("apps.notifications.urls")),
     path("userdashboard/", include("apps.userdashboard.urls")),
     # this needs to be above i18n/ to make the overwrite work
     path("i18n/setlang/", set_language_overwrite, name="set_language"),
