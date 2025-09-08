@@ -6,6 +6,6 @@ class Config(AppConfig):
     label = "notifications"
 
     def ready(self):
-        from .strategies import CommentReplyStrategy, ProjectCommentStrategy, OfflineEventReminderStrategy, OfflineEventUpdateStrategy, PhaseEndedStrategy
+        from .strategies import CommentReplyStrategy, ProjectCommentStrategy, OfflineEventDeletedStrategy, OfflineEventReminderStrategy, OfflineEventUpdateStrategy, PhaseStartedStrategy, PhaseEndedStrategy
 
         from . import signals
