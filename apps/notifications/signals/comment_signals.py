@@ -10,12 +10,12 @@ def handle_comment_notifications(sender, instance, created, **kwargs):
     if not created:
         return
     
-    # Handle comment replies (existing functionality)
+    # Handle comment replies
     if instance.parent_comment.exists():
         strategy = CommentReplyStrategy()
         _create_notifications(instance, strategy, 'comment_reply')
     
-    # Handle project comments (new functionality)
+    # Handle project comments
     elif instance.project and instance.content_object != instance.project:
         strategy = ProjectCommentStrategy()
         _create_notifications(instance, strategy, 'project_comment')
