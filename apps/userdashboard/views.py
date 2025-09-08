@@ -177,7 +177,8 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
             Q(notification_type=NotificationType.COMMENT_REPLY) |
             Q(notification_type=NotificationType.MODERATOR_FEEDBACK) |
             Q(notification_type=NotificationType.COMMENT_ON_POST) |
-            Q(notification_type=NotificationType.MODERATOR_HIGHLIGHT)
+            Q(notification_type=NotificationType.MODERATOR_HIGHLIGHT) |
+            Q(notification_type=NotificationType.MODERATOR_IDEA_FEEDBACK)
         )
 
         # PROJECTS: Project-related notifications
