@@ -1,14 +1,14 @@
 from ..base import BaseNotificationStrategy
 from ...models import NotificationType
-class ProjectCommentStrategy(BaseNotificationStrategy):
+class CommentHighlightedStrategy(BaseNotificationStrategy):
     """Strategy for notifications when someone comments on a project"""
     
     def get_in_app_recipients(self, comment):
         """Get recipients for in-app notifications (project author)"""
         recipients = set()
-        if comment.content_object and hasattr(comment.content_object, 'creator'):
-            # TODO: Check user preferences
-            recipients.add(comment.content_object.creator)
+        print("getting recipients for comment on idea")
+        if comment.creator and hasattr(comment, 'creator'):
+            recipients.add(comment.creator)
         
         return recipients
     
@@ -20,12 +20,12 @@ class ProjectCommentStrategy(BaseNotificationStrategy):
         """Create notification data for project comments"""
         from django.utils.translation import gettext_lazy as _
         return {
-            'notification_type': NotificationType.COMMENT_ON_POST,
-            'message_template': _("{user} commented on your post {post}"),
+            'notification_type': NotificationType.MODERATOR_HIGHLIGHT,
+            'message_template': _("A moderator highlighted your comment '{comment}' in project {project}"),
             'context': {
-                'user': comment.creator.username,
-                'user_url': comment.creator.get_absolute_url() if hasattr(comment.creator, 'get_absolute_url') else '',
-                'post_url': comment.content_object.get_absolute_url(),
-                'post': comment.content_object.name,
+                'project': comment.project.name if comment.project else '',
+                'project_url': comment.project.get_absolute_url() if comment.project else '#',
+                'comment': comment.comment,
+                'comment_url': comment.get_absolute_url(),
             }
         }
