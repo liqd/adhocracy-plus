@@ -6,6 +6,7 @@ from .events.project_event_updated import OfflineEventUpdateStrategy
 from .events.project_event_deleted import OfflineEventDeletedStrategy
 from .events.project_event_starts_soon import OfflineEventReminderStrategy
 from .moderation.feedback_given import ModeratorFeedbackStrategy
+from .moderation.idea_feedback import IdeaFeedbackStrategy
 from .phases.phase_started import PhaseStartedStrategy
 from .phases.phase_ended import PhaseEndedStrategy
 from .project import ProjectCompletedStrategy
@@ -23,4 +24,5 @@ __all__ = [
     'PhaseEndedStrategy',
     'ProjectCompletedStrategy',
     'ModeratorFeedbackStrategy'
+    'IdeaFeedbackStrategy'
 ]
