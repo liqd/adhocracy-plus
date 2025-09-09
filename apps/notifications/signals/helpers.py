@@ -1,6 +1,6 @@
 from django.apps import apps
 
-def _create_notifications(obj, strategy, notification_type):
+def _create_notifications(obj, strategy):
     """Helper function to create notifications"""
     Notification = apps.get_model('notifications', 'Notification')
     
@@ -24,7 +24,6 @@ def _create_notifications(obj, strategy, notification_type):
     for recipient in email_recipients:
         _send_email_notification(recipient, obj, strategy, notification_data)
     
-    print(f"{notification_type} notifications created: {len(notifications)}")
 
 def _send_email_notification(recipient, obj, strategy, notification_data):
     """Send email notification"""
