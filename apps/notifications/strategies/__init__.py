@@ -10,7 +10,8 @@ from .moderation.idea_feedback import IdeaFeedbackStrategy
 from .moderation.comment_blocked import CommentBlockedStrategy
 from .phases.phase_started import PhaseStartedStrategy
 from .phases.phase_ended import PhaseEndedStrategy
-from .project import ProjectCompletedStrategy
+from .projects.project_ended import ProjectEndedStrategy
+from .projects.project_started import ProjectStartedStrategy
 
 
 __all__ = [
@@ -23,7 +24,8 @@ __all__ = [
     'OfflineEventReminderStrategy',
     'PhaseStartedStrategy',
     'PhaseEndedStrategy',
-    'ProjectCompletedStrategy',
+    'ProjectStartedStrategy',
+    'ProjectEndedStrategy',
     'ModeratorFeedbackStrategy'
     'IdeaFeedbackStrategy',
     'CommentBlockedStrategy'

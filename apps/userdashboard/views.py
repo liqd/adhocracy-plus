@@ -187,6 +187,7 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
             Q(notification_type=NotificationType.PROJECT_UPDATE) |
             Q(notification_type=NotificationType.PROJECT_EVENT) |
             Q(notification_type=NotificationType.PROJECT_STARTED) |
+            Q(notification_type=NotificationType.PROJECT_COMPLETED) |
             Q(notification_type=NotificationType.PHASE_STARTED) |
             Q(notification_type=NotificationType.PHASE_ENDED) |
             Q(notification_type=NotificationType.PROJECT_STATUS_CHANGE) |
