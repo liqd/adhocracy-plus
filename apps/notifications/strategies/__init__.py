@@ -12,6 +12,7 @@ from .phases.phase_started import PhaseStartedStrategy
 from .phases.phase_ended import PhaseEndedStrategy
 from .projects.project_ended import ProjectEndedStrategy
 from .projects.project_started import ProjectStartedStrategy
+from .projects.project_invitation_received import ProjectInvitationReceivedStrategy
 
 
 __all__ = [
@@ -26,6 +27,7 @@ __all__ = [
     'PhaseEndedStrategy',
     'ProjectStartedStrategy',
     'ProjectEndedStrategy',
+    'ProjectInvitationReceivedStrategy',
     'ModeratorFeedbackStrategy'
     'IdeaFeedbackStrategy',
     'CommentBlockedStrategy'

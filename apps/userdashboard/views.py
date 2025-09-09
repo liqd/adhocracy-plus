@@ -185,6 +185,7 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
         # PROJECTS: Project-related notifications
         followed_projects = notifications.filter(
             Q(notification_type=NotificationType.PROJECT_UPDATE) |
+            Q(notification_type=NotificationType.PROJECT_INVITATION) |
             Q(notification_type=NotificationType.PROJECT_EVENT) |
             Q(notification_type=NotificationType.PROJECT_STARTED) |
             Q(notification_type=NotificationType.PROJECT_COMPLETED) |
