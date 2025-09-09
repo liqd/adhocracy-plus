@@ -12,11 +12,13 @@ from .signals.helpers import _create_notifications
 from .strategies import OfflineEventReminderStrategy
 from .strategies import PhaseEndedStrategy
 from .strategies import PhaseStartedStrategy
+from .strategies import ProjectStartedStrategy
+from .strategies import ProjectEndedStrategy
 
 
 # TODO: Run daily (?) via celery
 @shared_task
-def send_recently_started_phase_notifications():
+def send_recently_started_project_notifications():
     """
     Send notifications to project followers for project completed
     """
@@ -27,15 +29,27 @@ def send_recently_started_phase_notifications():
         Q(start_date__gte=last_check, start_date__lte=now)
     )
 
-    strategy = PhaseStartedStrategy()
-    for phase in started_phases:
-        _create_notifications(phase, strategy)
+    started_projects = [p.module.project for p in started_phases if p.starts_first_of_project]
+
+    strategy = ProjectStartedStrategy()
+    for project in started_projects:
+        _create_notifications(project, strategy)
 
     return
 
 
+# TODO: Add this as prop in a4
+def is_last_phase_in_project(phase):
+    project = phase.module.project
+    phases = project.phases.filter(module__is_draft=False).order_by(
+        ("-end_date")
+    )
+    is_last_phase = phase == phases[0]
+    return is_last_phase
+
+
 @shared_task
-def send_recently_completed_phase_notifications():
+def send_recently_completed_project_notifications():
     """
     Send notifications to project followers for project completed
     """
@@ -46,9 +60,10 @@ def send_recently_completed_phase_notifications():
         Q(end_date__gte=last_check, end_date__lte=now)
     )
 
-    strategy = PhaseEndedStrategy()
-    for phase in completed_phases:
-        _create_notifications(phase, strategy)
+    ended_projects = [p.module.project for p in completed_phases if is_last_phase_in_project(p)]
+    strategy = ProjectEndedStrategy()
+    for project in ended_projects:
+        _create_notifications(project, strategy)
 
     return
 
