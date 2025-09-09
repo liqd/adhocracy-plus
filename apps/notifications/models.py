@@ -185,6 +185,7 @@ class NotificationType(models.TextChoices):
     # Moderation actions
     MODERATOR_HIGHLIGHT= 'moderator_highlight', _('Moderator Highlight')
     MODERATOR_FEEDBACK = 'moderator_feedback', _('Moderator Feedback')
+    MODERATOR_BLOCKED_COMMENT = 'moderator_blocked_comment', _('Moderator Blocked Comment')
     MODERATOR_IDEA_FEEDBACK = 'moderator_idea_feedback', _('Moderator Idea Feedback')
     MODERATOR_ACTION = 'moderator_action', _('Moderator Action')
     CONTENT_APPROVED = 'content_approved', _('Content Approved')
