@@ -2,9 +2,10 @@ from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 from apps.ideas.models import Idea
 from adhocracy4.comments.models import Comment
+from apps.budgeting.models import Proposal
 from apps.offlineevents.models import OfflineEvent
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
-from ..strategies import ModeratorFeedbackStrategy, IdeaFeedbackStrategy, CommentBlockedStrategy
+from ..strategies import ModeratorFeedbackStrategy, IdeaFeedbackStrategy, ProposalFeedbackStrategy, CommentBlockedStrategy
 from .helpers import _create_notifications
 from ..models import NotificationType
 
@@ -12,6 +13,20 @@ from ..models import NotificationType
 def handle_comment_moderator_feedback(sender, instance, **kwargs):
     strategy = ModeratorFeedbackStrategy()
     _create_notifications(instance, strategy)
+
+@receiver(pre_save, sender=Proposal)
+def handle_proposal_moderator_feedback(sender, instance, **kwargs):
+    previous = Idea.objects.get(id=instance.id)
+
+    old_mod_status = previous.moderator_status 
+    old_feedback_text = previous.moderator_feedback_text
+
+    new_mod_status = instance.moderator_status 
+    new_feedback_text = instance.moderator_feedback_text
+
+    if old_mod_status != new_mod_status or old_feedback_text != new_feedback_text:
+        strategy = ProposalFeedbackStrategy()
+        _create_notifications(instance, strategy)
 
 @receiver(pre_save, sender=Idea)
 def handle_idea_moderator_feedback(sender, instance, **kwargs):
