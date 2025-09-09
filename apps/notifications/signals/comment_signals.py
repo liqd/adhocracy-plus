@@ -14,17 +14,17 @@ def handle_comment_notifications(sender, instance, created, **kwargs):
     # Handle comment replies
     if instance.parent_comment.exists():
         strategy = CommentReplyStrategy()
-        _create_notifications(instance, strategy, NotificationType.COMMENT_REPLY)
+        _create_notifications(instance, strategy)
     
     # Handle project comments
     elif instance.project and instance.content_object != instance.project:
         strategy = ProjectCommentStrategy()
-        _create_notifications(instance, strategy, NotificationType.COMMENT_ON_POST)
+        _create_notifications(instance, strategy)
 
 
 @receiver(pre_save, sender=Comment)
 def handle_comment_highlighted(sender, instance, **kwargs):
-    """Handle event update/reschedule notifications"""
+    """Handle comment being highlighted y auth"""
     if instance.id is None:
         return  # Only handle updates, not creations
     
@@ -35,4 +35,5 @@ def handle_comment_highlighted(sender, instance, **kwargs):
     # Check if important fields changed
     if not was_previously_marked and is_now_marked:
         strategy = CommentHighlightedStrategy()
-        _create_notifications(instance, strategy, 'event_update')
+        _create_notifications(instance, strategy)
+        return

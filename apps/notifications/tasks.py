@@ -29,7 +29,7 @@ def send_recently_started_phase_notifications():
 
     strategy = PhaseStartedStrategy()
     for phase in started_phases:
-        _create_notifications(phase, strategy, NotificationType.PHASE_STARTED)
+        _create_notifications(phase, strategy)
 
     return
 
@@ -48,7 +48,7 @@ def send_recently_completed_phase_notifications():
 
     strategy = PhaseEndedStrategy()
     for phase in completed_phases:
-        _create_notifications(phase, strategy, NotificationType.PHASE_ENDED)
+        _create_notifications(phase, strategy)
 
     return
 
@@ -73,6 +73,6 @@ def send_upcoming_event_notification():
         if not event.project:
             continue
 
-        _create_notifications(event, strategy, NotificationType.EVENT_SOON)
+        _create_notifications(event, strategy)
 
     return

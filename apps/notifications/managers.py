@@ -14,4 +14,4 @@ class NotificationManager(models.Manager):
     
     def unread_count_for_user(self, user):
         return self.unread_for_user(user).count()
-    
+        
