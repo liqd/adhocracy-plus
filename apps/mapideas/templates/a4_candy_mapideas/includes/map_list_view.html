@@ -1,0 +1,99 @@
+{% load i18n discovery_tags static maps_tags module_tags %}
+<style>
+    .view-toogle {
+        display: block;
+    }
+    .desktop-controls {
+        display: none;
+    }
+    .mobile-hide {
+        display: none;
+    }
+    @media (min-width: 768px) {
+        .view-toogle {
+            display: none;
+        }
+        .desktop-controls {
+            display: block;
+        }
+        .map-list.desktop-hide {
+            display: none;
+        }
+    }
+</style>
+
+
+<div class="view-toogle l-top-overlap" id="index">
+    <div class="row">
+        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+            {% include "a4_candy_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
+        </div>
+    </div>
+</div>
+
+<div class="desktop-controls" id="desktop-controls">
+    <button class="btn btn-sm" data-toggle="list">Karte ein/aus</button>
+</div>
+
+<div class="map-list" id="map-view">
+    <div class="map-list__controls">
+        <div class="container">
+            <div class="leaflet-control-zoom leaflet-bar leaflet-control mt-4 mt-md-0">
+                <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% translate 'Zoom in' %}">+</a>
+                <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% translate 'Zoom out' %}">-</a>
+            </div>
+        </div>
+    </div>
+    {% if object_list %}
+      {% if object_list.0|has_feature:"rate" %}
+        {% map_display_points object_list module.settings_instance.polygon %}
+      {% else %}
+        {% map_display_points object_list module.settings_instance.polygon 'true' %}
+      {% endif %}
+    {% else %}
+      {% map_display_points object_list module.settings_instance.polygon %}
+    {% endif %}
+</div>
+
+<div class="bg--light list-view" id="list-view">
+    <div class="row">
+        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+            <ul class="u-list-reset">
+                {% for object in object_list %}
+                    {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
+                {% empty %}
+                    {% translate "Nothing to show" %}
+                {% endfor %}
+            </ul>
+
+            {% include "a4_candy_contrib/includes/pagination.html" %}
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const isDesktop = window.innerWidth >= 768;
+    const mapView = document.getElementById('map-view');
+    const listView = document.getElementById('list-view');
+    
+    // Mobile Toggle
+    document.querySelectorAll('[data-view]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const view = this.dataset.view;
+            if (view === 'map') {
+                mapView.classList.remove('mobile-hide');
+                listView.classList.add('mobile-hide');
+            } else {
+                mapView.classList.add('mobile-hide');
+                listView.classList.remove('mobile-hide');
+            }        
+        });
+    });
+    
+    // Desktop Toggle
+    document.querySelector('[data-toggle="list"]').addEventListener('click', function() {
+        mapView.classList.toggle('desktop-hide');
+    });
+});
+</script>
