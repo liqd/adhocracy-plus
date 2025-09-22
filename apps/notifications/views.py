@@ -3,14 +3,11 @@ from urllib.parse import urlparse
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
-from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 from django.views.generic import View
 
@@ -23,6 +20,7 @@ from .models import NotificationType
 def is_safe_url(url):
     parsed = urlparse(url)
     return not parsed.netloc or parsed.netloc in settings.ALLOWED_HOSTS
+
 
 class NotificationSettingsView(LoginRequiredMixin, UpdateView):
     """View for users to update their notification settings."""
@@ -48,10 +46,12 @@ class NotificationSettingsView(LoginRequiredMixin, UpdateView):
 
 class MarkNotificationAsReadView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        notification = get_object_or_404(Notification, id=kwargs['pk'], recipient=request.user)
+        notification = get_object_or_404(
+            Notification, id=kwargs["pk"], recipient=request.user
+        )
         notification.mark_as_read()
-        
-        redirect_to = request.GET.get('redirect_to')
+
+        redirect_to = request.GET.get("redirect_to")
         if redirect_to and is_safe_url(redirect_to):
             return redirect(redirect_to)
 
@@ -68,14 +68,30 @@ class MarkAllNotificationsAsReadView(LoginRequiredMixin, View):
             if section == "projects":
                 notifications = notifications.filter(
                     Q(notification_type=NotificationType.PROJECT_UPDATE)
+                    | Q(notification_type=NotificationType.PROJECT_INVITATION)
                     | Q(notification_type=NotificationType.PROJECT_EVENT)
+                    | Q(notification_type=NotificationType.PROJECT_STARTED)
+                    | Q(notification_type=NotificationType.PROJECT_COMPLETED)
+                    | Q(notification_type=NotificationType.PHASE_STARTED)
+                    | Q(notification_type=NotificationType.PHASE_ENDED)
+                    | Q(notification_type=NotificationType.PROJECT_STATUS_CHANGE)
+                    | Q(notification_type=NotificationType.EVENT_ADDED)
+                    | Q(notification_type=NotificationType.EVENT_SOON)
+                    | Q(notification_type=NotificationType.EVENT_UPDATE)
+                    | Q(notification_type=NotificationType.EVENT_CANCELLED)
                     | Q(notification_type=NotificationType.NEWSLETTER)
                 )
             elif section == "interactions":
                 notifications = notifications.filter(
                     Q(notification_type=NotificationType.USER_ENGAGEMENT)
+                    | Q(notification_type=NotificationType.MESSAGE_RECEIVED)
+                    | Q(notification_type=NotificationType.PROJECT_INVITATION)
+                    | Q(notification_type=NotificationType.COMMENT_REPLY)
                     | Q(notification_type=NotificationType.MODERATOR_FEEDBACK)
-                    | Q(notification_type=NotificationType.SYSTEM)
+                    | Q(notification_type=NotificationType.COMMENT_ON_POST)
+                    | Q(notification_type=NotificationType.MODERATOR_HIGHLIGHT)
+                    | Q(notification_type=NotificationType.MODERATOR_IDEA_FEEDBACK)
+                    | Q(notification_type=NotificationType.MODERATOR_BLOCKED_COMMENT)
                 )
             pass
 
