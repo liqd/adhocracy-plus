@@ -1,3 +1,6 @@
+from urllib.parse import urlparse
+
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
@@ -11,13 +14,11 @@ from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 from django.views.generic import View
 
-from django.conf import settings
-from urllib.parse import urlparse
-
 from .forms import NotificationSettingsForm
 from .models import Notification
 from .models import NotificationSettings
 from .models import NotificationType
+
 
 def is_safe_url(url):
     parsed = urlparse(url)
