@@ -152,7 +152,6 @@ class NotificationSettings(models.Model):
 
         email_field, notify_field = mapping.get(notification_type, (None, None))
         return True
-        print("checking if it should get", notify_field)
         if channel == 'email':
             return getattr(self, email_field, True) if email_field else True
         else:  # in_app
