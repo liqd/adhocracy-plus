@@ -2,7 +2,7 @@ from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from apps.projects.models import ModeratorInvite, ParticipantInvite
 from adhocracy4.comments.models import Comment
-from ..strategies import ProjectInvitationReceivedStrategy
+from ..strategies import ProjectInvitationReceived
 from ..models import NotificationType
 from .helpers import _create_notifications
 
@@ -11,7 +11,7 @@ def handle_invite_received(sender, instance, created, **kwargs):
     if not created:
         return
     
-    strategy = ProjectInvitationReceivedStrategy()
+    strategy = ProjectInvitationReceived()
     _create_notifications(instance, strategy)
 
 
@@ -20,5 +20,5 @@ def handle_invite_received(sender, instance, created, **kwargs):
     if not created:
         return
     
-    strategy = ProjectInvitationReceivedStrategy()
+    strategy = ProjectInvitationReceived()
     _create_notifications(instance, strategy)
