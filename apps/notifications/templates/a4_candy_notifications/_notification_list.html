@@ -6,18 +6,20 @@
         {% for notification in notifications %}
         <li class="list-group-item border-0 py-3 {% if notification.read %}read-notification{% endif %}">
             <div class="d-flex justify-content-between align-items-start">
-                <div class="notification-icon-box position-relative d-flex align-items-center justify-content-center" aria-label="Notification">
+                <div class="notification-icon-box position-relative d-flex align-items-center justify-content-center u-bg-light" aria-label="Notification">
                     <i class="fas fa-comment"></i>
+                    {% if not notification.read %}
+                        <span class="position-absolute top-0 end-0 p-1 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">Unread notifications</span>
+                        </span>
+                    {% endif %}
                 </div>
-                <div class="flex-grow-1">
+                <div class="flex-grow-1 px-2">
                     <p class="mb-1 {% if not notification.read %}fw-medium{% else %}text-muted{% endif %}">
                         {{ notification|render_notification_with_links }}
                     </p>
                     <small class="text-muted">{{ notification.created|date:"d.m.Y" }}</small>
                 </div>
-                {% if not notification.read %}
-                    <span class="badge bg-primary ms-2">{% trans 'New' %}</span>
-                {% endif %}
             </div>
         </li>
         {% endfor %}
