@@ -1,7 +1,7 @@
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from adhocracy4.comments.models import Comment
-from ..strategies import CommentReplyStrategy, ProjectCommentStrategy, CommentHighlightedStrategy
+from ..strategies import CommentReply, ProjectComment, CommentHighlighted
 from ..models import NotificationType
 from .helpers import _create_notifications
 
@@ -13,12 +13,12 @@ def handle_comment_notifications(sender, instance, created, **kwargs):
     
     # Handle comment replies
     if instance.parent_comment.exists():
-        strategy = CommentReplyStrategy()
+        strategy = CommentReply()
         _create_notifications(instance, strategy)
     
     # Handle project comments
     elif instance.project and instance.content_object != instance.project:
-        strategy = ProjectCommentStrategy()
+        strategy = ProjectComment()
         _create_notifications(instance, strategy)
 
 
@@ -34,6 +34,6 @@ def handle_comment_highlighted(sender, instance, **kwargs):
     is_now_marked = instance.is_moderator_marked
     # Check if important fields changed
     if not was_previously_marked and is_now_marked:
-        strategy = CommentHighlightedStrategy()
+        strategy = CommentHighlighted()
         _create_notifications(instance, strategy)
         return
