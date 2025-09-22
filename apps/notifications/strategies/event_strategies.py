@@ -19,7 +19,6 @@ class OfflineEventCreated(ProjectNotificationStrategy):
         
         return {
             'notification_type': NotificationType.EVENT_ADDED,
-            'title': _("New event in {}").format(offline_event.project.name),
             'message_template': _("A new event '{event}' has been added to the project {project}"),
             'context': {
                 'project': offline_event.project.name,
