@@ -1,0 +1,162 @@
+from django.db.models.signals import pre_save, post_save, post_delete
+from django.dispatch import receiver
+from adhocracy4.comments.models import Comment
+from apps.ideas.models import Idea
+from .strategies import CommentReply, ProjectInvitationReceived, ProjectComment, CommentHighlighted, ModeratorFeedback, IdeaFeedback, ProposalFeedback, CommentBlocked, OfflineEventCreated, OfflineEventDeleted,  OfflineEventUpdate
+from .models import NotificationType
+from apps.projects.models import ModeratorInvite, ParticipantInvite
+from .helpers import _create_notifications
+from apps.budgeting.models import Proposal
+from apps.offlineevents.models import OfflineEvent
+from apps.moderatorfeedback.models import ModeratorCommentFeedback
+
+from apps.users.models import User
+
+### Comment Signals
+
+@receiver(post_save, sender=Comment)
+def handle_comment_notifications(sender, instance, created, **kwargs):
+    """Handle all comment-related notifications"""
+    if not created:
+        return
+    
+    # Handle comment replies
+    if instance.parent_comment.exists():
+        strategy = CommentReply()
+        _create_notifications(instance, strategy)
+    
+    # Handle project comments
+    elif instance.project and instance.content_object != instance.project:
+        strategy = ProjectComment()
+        _create_notifications(instance, strategy)
+
+
+@receiver(pre_save, sender=Comment)
+def handle_comment_highlighted(sender, instance, **kwargs):
+    """Handle comment being highlighted y auth"""
+    if instance.id is None:
+        return  # Only handle updates, not creations
+    
+    previous = Comment.objects.get(id=instance.id)
+
+    was_previously_marked = previous.is_moderator_marked
+    is_now_marked = instance.is_moderator_marked
+    # Check if important fields changed
+    if not was_previously_marked and is_now_marked:
+        strategy = CommentHighlighted()
+        _create_notifications(instance, strategy)
+        return
+
+### Moderation Signals
+
+
+
+@receiver(post_save, sender=ModeratorCommentFeedback)
+def handle_comment_moderator_feedback(sender, instance, **kwargs):
+    strategy = ModeratorFeedback()
+    _create_notifications(instance, strategy)
+
+@receiver(pre_save, sender=Proposal)
+def handle_proposal_moderator_feedback(sender, instance, **kwargs):
+    previous = Idea.objects.get(id=instance.id)
+
+    old_mod_status = previous.moderator_status 
+    old_feedback_text = previous.moderator_feedback_text
+
+    new_mod_status = instance.moderator_status 
+    new_feedback_text = instance.moderator_feedback_text
+
+    if old_mod_status != new_mod_status or old_feedback_text != new_feedback_text:
+        strategy = ProposalFeedback()
+        _create_notifications(instance, strategy)
+
+@receiver(pre_save, sender=Idea)
+def handle_idea_moderator_feedback(sender, instance, **kwargs):
+    previous = Idea.objects.get(id=instance.id)
+
+    old_mod_status = previous.moderator_status 
+    old_feedback_text = previous.moderator_feedback_text
+
+    new_mod_status = instance.moderator_status 
+    new_feedback_text = instance.moderator_feedback_text
+
+    if old_mod_status != new_mod_status or old_feedback_text != new_feedback_text:
+        strategy = IdeaFeedback()
+        _create_notifications(instance, strategy)
+
+@receiver(pre_save, sender=Comment)
+def handle_comment_moderator_feedback(sender, instance, **kwargs):
+    """Handle comment being blocked by a moderator"""
+    if instance.id is None:
+        return  # Only handle updates, not creations
+    
+    previous = Comment.objects.get(id=instance.id)
+
+    was_previously_blocked = previous.is_blocked
+    is_now_blocked = instance.is_blocked
+
+    if not was_previously_blocked and is_now_blocked:
+        strategy = CommentBlocked()
+        _create_notifications(instance, strategy)
+        return
+
+## Event Signals
+
+@receiver(post_delete, sender=OfflineEvent)
+def handle_offline_event_deleted_notifications(sender, instance, **kwargs):
+    strategy = OfflineEventDeleted()
+    _create_notifications(instance, strategy)
+
+
+@receiver(pre_save, sender=OfflineEvent)
+def handle_event_update_notifications(sender, instance, **kwargs):
+    """Handle event update/reschedule notifications"""
+    if instance.id is None:
+        return  # Only handle updates, not creations
+    
+    strategy = OfflineEventUpdate()
+    previous = OfflineEvent.objects.get(id=instance.id)
+    # Check if important fields changed
+    if previous and previous.date != instance.date:
+        _create_notifications(instance, strategy)
+
+@receiver(post_save, sender=OfflineEvent)
+def handle_offline_event_notifications(sender, instance, created, **kwargs):
+    """Handle offline event notifications"""
+    if created and instance.project:
+        strategy = OfflineEventCreated()
+        _create_notifications(instance, strategy)
+
+
+### Project Signals
+
+
+@receiver(post_save, sender=ParticipantInvite)
+def handle_invite_received(sender, instance, created, **kwargs):
+    if not created:
+        return
+    
+    strategy = ProjectInvitationReceived()
+    _create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=ModeratorInvite)
+def handle_invite_received(sender, instance, created, **kwargs):
+    if not created:
+        return
+    
+    strategy = ProjectInvitationReceived()
+    _create_notifications(instance, strategy)
+
+
+### User Signals
+
+@receiver(pre_save, sender=User)
+def create_user_notification_settings(sender, instance, **kwargs):
+    NotificationSettings.objects.get_or_create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_notification_settings(sender, instance, **kwargs):
+    """Save notification settings when user is saved"""
+    if instance.notification_settings:
+        instance.notification_settings.save()

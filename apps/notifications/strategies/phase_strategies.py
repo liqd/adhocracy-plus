@@ -2,18 +2,19 @@ from .project_strategies import ProjectNotificationStrategy
 from ..models import NotificationType
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
+from typing import List
 
 User = get_user_model()
 
 class PhaseStarted(ProjectNotificationStrategy):
-    def get_in_app_recipients(self, phase):
+    def get_in_app_recipients(self, phase) -> List[User]:
         return self._get_phase_recipients(phase, NotificationType.PHASE_STARTED, 'in_app')
         
-    def get_email_recipients(self, phase):
+    def get_email_recipients(self, phase) -> List[User]:
         return self._get_phase_recipients(phase, NotificationType.PHASE_STARTED, 'email')
 
     # TODO: Check if phases have urls, or which url is best to use
-    def create_notification_data(self, phase,) -> dict:
+    def create_notification_data(self, phase) -> dict:
         project = phase.module.project
         return {
             'notification_type':  NotificationType.PHASE_STARTED,
@@ -27,10 +28,10 @@ class PhaseStarted(ProjectNotificationStrategy):
         }
 
 class PhaseEnded(ProjectNotificationStrategy):
-    def get_in_app_recipients(self, phase):
+    def get_in_app_recipients(self, phase) -> List[User]:
         return self._get_phase_recipients(phase, NotificationType.PHASE_ENDED, 'in_app')
         
-    def get_email_recipients(self, phase):
+    def get_email_recipients(self, phase) -> List[User]:
         return self._get_phase_recipients(phase, NotificationType.PHASE_ENDED, 'email')
 
     # TODO: Check message, phase URL 

@@ -8,7 +8,7 @@ from adhocracy4.phases.models import Phase
 from apps.offlineevents.models import OfflineEvent
 
 from .models import NotificationType
-from .signals.helpers import _create_notifications
+from .helpers import _create_notifications
 from .strategies import OfflineEventReminder
 from .strategies import PhaseEnded
 from .strategies import PhaseStarted
@@ -32,6 +32,7 @@ def send_recently_started_project_notifications():
     started_projects = [p.module.project for p in started_phases if p.starts_first_of_project]
 
     strategy = ProjectStarted()
+    # TODO: Double check this - should we send project or phase?
     for project in started_projects:
         _create_notifications(project, strategy)
 
