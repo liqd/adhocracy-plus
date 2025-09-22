@@ -1,36 +1,25 @@
-from .comments.comment_reply import CommentReplyStrategy
-from .comments.comment_on_project import ProjectCommentStrategy
-from .comments.comment_highlighted import CommentHighlightedStrategy
-from .events.project_event_created import OfflineEventCreatedStrategy
-from .events.project_event_updated import OfflineEventUpdateStrategy
-from .events.project_event_deleted import OfflineEventDeletedStrategy
-from .events.project_event_starts_soon import OfflineEventReminderStrategy
-from .moderation.feedback_given import ModeratorFeedbackStrategy
-from .moderation.idea_feedback import IdeaFeedbackStrategy
-from .moderation.proposal_feedback import ProposalFeedbackStrategy
-from .moderation.comment_blocked import CommentBlockedStrategy
-from .phases.phase_started import PhaseStartedStrategy
-from .phases.phase_ended import PhaseEndedStrategy
-from .projects.project_ended import ProjectEndedStrategy
-from .projects.project_started import ProjectStartedStrategy
-from .projects.project_invitation_received import ProjectInvitationReceivedStrategy
+from .comment_strategies import CommentHighlighted, CommentReply, ProjectComment
+from .event_strategies import OfflineEventCreated, OfflineEventDeleted, OfflineEventReminder, OfflineEventUpdate
+from .moderation_strategies import CommentBlocked, IdeaFeedback, ModeratorFeedback, ProposalFeedback
+from .phase_strategies import PhaseEnded, PhaseStarted
+from .project_strategies import ProjectEnded, ProjectInvitationReceived, ProjectStarted
 
 
 __all__ = [
-    'CommentReplyStrategy',
-    'ProjectCommentStrategy',
-    'CommentHighlightedStrategy',
-    'OfflineEventCreatedStrategy',
-    'OfflineEventUpdateStrategy',
-    'OfflineEventDeletedStrategy',
-    'OfflineEventReminderStrategy',
-    'PhaseStartedStrategy',
-    'PhaseEndedStrategy',
-    'ProjectStartedStrategy',
-    'ProjectEndedStrategy',
-    'ProjectInvitationReceivedStrategy',
-    'ModeratorFeedbackStrategy'
-    'IdeaFeedbackStrategy',
-    'ProposalFeedbackStrategy',
-    'CommentBlockedStrategy'
+    'CommentReply',
+    'ProjectComment',
+    'CommentHighlighted',
+    'OfflineEventCreated',
+    'OfflineEventUpdate',
+    'OfflineEventDeleted',
+    'OfflineEventReminder',
+    'PhaseStarted',
+    'PhaseEnded',
+    'ProjectStarted',
+    'ProjectEnded',
+    'ProjectInvitationReceived',
+    'ModeratorFeedback'
+    'IdeaFeedback',
+    'ProposalFeedback',
+    'CommentBlocked'
 ]
