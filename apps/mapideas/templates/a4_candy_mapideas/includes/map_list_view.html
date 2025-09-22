@@ -16,9 +16,6 @@
         .desktop-controls {
             display: block;
         }
-        .map-list.desktop-hide {
-            display: none;
-        }
     }
 </style>
 
@@ -29,10 +26,6 @@
             {% include "a4_candy_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
         </div>
     </div>
-</div>
-
-<div class="desktop-controls" id="desktop-controls">
-    <button class="btn btn-sm" data-toggle="list">Karte ein/aus</button>
 </div>
 
 <div class="map-list" id="map-view">
@@ -55,7 +48,7 @@
     {% endif %}
 </div>
 
-<div class="bg--light list-view" id="list-view">
+<div class="bg--light list-view mobile-hide" id="list-view">
     <div class="row">
         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
             <ul class="u-list-reset">
@@ -73,15 +66,25 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const isDesktop = window.innerWidth >= 768;
     const mapView = document.getElementById('map-view');
     const listView = document.getElementById('list-view');
+    const listBtn = document.querySelector('[data-view="list"]');
+    const mapBtn = document.querySelector('[data-view="map"]');
+
     
     // Mobile Toggle
     document.querySelectorAll('[data-view]').forEach(btn => {
         btn.addEventListener('click', function() {
             const view = this.dataset.view;
+
+            const url = new URL(window.location);
+            url.searchParams.set('mode', view);
+            window.history.pushState({}, '', url);
+
             if (view === 'map') {
+                listBtn.classList.remove('btn--dark');
+                mapBtn.classList.remove('btn--light');
+                mapBtn.classList.add('btn--default');
                 mapView.classList.remove('mobile-hide');
                 listView.classList.add('mobile-hide');
             } else {
@@ -89,11 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 listView.classList.remove('mobile-hide');
             }        
         });
-    });
-    
-    // Desktop Toggle
-    document.querySelector('[data-toggle="list"]').addEventListener('click', function() {
-        mapView.classList.toggle('desktop-hide');
     });
 });
 </script>
