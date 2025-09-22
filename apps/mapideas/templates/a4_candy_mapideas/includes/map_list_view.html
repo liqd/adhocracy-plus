@@ -7,7 +7,8 @@
         display: none;
     }
     .mobile-hide {
-        display: none;
+        visibility: hidden;
+        height: 0;
     }
     @media (min-width: 768px) {
         .view-toogle {
@@ -16,9 +17,12 @@
         .desktop-controls {
             display: block;
         }
+        .mobile-hide {
+            visibility: visible;
+            height: auto;
+        }
     }
 </style>
-
 
 <div class="view-toogle l-top-overlap" id="index">
     <div class="row">
@@ -28,7 +32,7 @@
     </div>
 </div>
 
-<div class="map-list" id="map-view">
+<div class="map-list list-view {% if view.mode == 'list' %}mobile-hide{% endif %}" id="map-view">
     <div class="map-list__controls">
         <div class="container">
             <div class="leaflet-control-zoom leaflet-bar leaflet-control mt-4 mt-md-0">
@@ -48,7 +52,7 @@
     {% endif %}
 </div>
 
-<div class="bg--light list-view mobile-hide" id="list-view">
+<div class="bg--light list-view {% if view.mode != 'list' %}mobile-hide{% endif %}" id="list-view">
     <div class="row">
         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
             <ul class="u-list-reset">
@@ -71,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const listBtn = document.querySelector('[data-view="list"]');
     const mapBtn = document.querySelector('[data-view="map"]');
 
-    
     // Mobile Toggle
     document.querySelectorAll('[data-view]').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -82,16 +85,36 @@ document.addEventListener('DOMContentLoaded', function() {
             window.history.pushState({}, '', url);
 
             if (view === 'map') {
-                listBtn.classList.remove('btn--dark');
-                mapBtn.classList.remove('btn--light');
-                mapBtn.classList.add('btn--default');
-                mapView.classList.remove('mobile-hide');
-                listView.classList.add('mobile-hide');
+                toggleButtons(mapBtn, listBtn);
+                // Ensure map is initialized before showing
+                if (mapView && !mapView.dataset.initialized) {
+                    if (typeof window.initializeMapPointsForElement === 'function') {
+                        window.initializeMapPointsForElement(mapView);
+                        mapView.dataset.initialized = 'true';
+                    } else {
+                        console.error("initializeMapPointsForElement function not found.");
+                    }
+                }
+                toggleViews(listView, mapView);
             } else {
-                mapView.classList.add('mobile-hide');
-                listView.classList.remove('mobile-hide');
-            }        
+                toggleButtons(listBtn, mapBtn);
+                toggleViews(mapView, listView);
+            }
         });
     });
 });
+
+function toggleButtons(become_default, become_light) {
+    become_default.classList.replace('btn--light', 'btn--default');
+    become_light.classList.replace('btn--default', 'btn--light');
+}
+function toggleViews(mobile_hide, mobile_show) {
+    mobile_hide.classList.add('mobile-hide');
+    mobile_show.classList.remove('mobile-hide');
+    if (mobile_show.id === 'map-view') {
+        // Dispatch a custom event when the map view is shown
+        const event = new Event('mapViewShown');
+        mobile_show.dispatchEvent(event);
+    }
+}
 </script>
