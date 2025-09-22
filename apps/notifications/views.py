@@ -11,10 +11,17 @@ from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 from django.views.generic import View
 
+from django.conf import settings
+from urllib.parse import urlparse
+
 from .forms import NotificationSettingsForm
 from .models import Notification
 from .models import NotificationSettings
 from .models import NotificationType
+
+def is_safe_url(url):
+    parsed = urlparse(url)
+    return not parsed.netloc or parsed.netloc in settings.ALLOWED_HOSTS
 
 class NotificationSettingsView(LoginRequiredMixin, UpdateView):
     """View for users to update their notification settings."""
@@ -39,9 +46,14 @@ class NotificationSettingsView(LoginRequiredMixin, UpdateView):
 
 
 class MarkNotificationAsReadView(LoginRequiredMixin, View):
-    def post(self, request, pk):
-        notification = get_object_or_404(Notification, pk=pk, recipient=request.user)
+    def get(self, request, *args, **kwargs):
+        notification = get_object_or_404(Notification, id=kwargs['pk'], recipient=request.user)
         notification.mark_as_read()
+        
+        redirect_to = request.GET.get('redirect_to')
+        if redirect_to and is_safe_url(redirect_to):
+            return redirect(redirect_to)
+
         messages.success(request, "Notification marked as read")
         return redirect(request.META.get("HTTP_REFERER", "home"))
 

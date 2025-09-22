@@ -6,7 +6,6 @@ class CommentHighlightedStrategy(BaseNotificationStrategy):
     def get_in_app_recipients(self, comment):
         """Get recipients for in-app notifications (project author)"""
         recipients = set()
-        print("getting recipients for comment on idea")
         if comment.creator and hasattr(comment, 'creator'):
             recipients.add(comment.creator)
         
