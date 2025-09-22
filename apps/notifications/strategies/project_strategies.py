@@ -13,8 +13,6 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
     
     def _get_project_followers(self, project):
         """Get followers for a project - with optional caching"""
-        # Consider whether caching is appropriate here
-        # User preferences might change frequently
         return User.objects.filter(
             follow__project=project,
             follow__enabled=True,
