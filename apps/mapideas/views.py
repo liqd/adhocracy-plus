@@ -41,6 +41,10 @@ class MapIdeaListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMix
         self.mode = request.GET.get("mode", "map")
         if self.mode == "map":
             self.paginate_by = 0
+        else:
+            page_size = int(request.GET.get("page_size", 20))
+            page_size = 0 if page_size < 0 else page_size
+            self.paginate_by = page_size
         return super().dispatch(request, **kwargs)
 
 
