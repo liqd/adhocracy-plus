@@ -3,16 +3,16 @@
 <div class="filter-bar__spaced">
    <div class="btn-group me-1 mt-2" role="group" aria-label="{% translate 'View mode toggle' %}">
     {% combined_url_parameter request.GET mode='list' as list_url %}
-    <a class="btn btn--{% if mode != 'map' %}default{% else %}light{% endif %}" href="{{ list_url }}#index" aria-label="{% translate 'View as list' %}">
+    <button class="btn btn--default"  aria-label="{% translate 'View as list' %}" data-view="list">
         <i class="fa fa-list" aria-hidden="true"></i>
         {% translate 'List' %}
-    </a>
+    </button>
     
     {% combined_url_parameter request.GET mode='map' as map_url %}
-    <a class="btn btn--{% if mode == 'map' %}default{% else %}light{% endif %}" href="{{ map_url }}#index" aria-label="{% translate 'View as map' %}">
+    <button class="btn btn--light" aria-label="{% translate 'View as map' %}" data-view="map">
         <i class="fa fa-map" aria-hidden="true"></i>
         {% translate 'Map' %}
-    </a>
+    </button>
 </div>
 
     {% for field in filter.form %}
