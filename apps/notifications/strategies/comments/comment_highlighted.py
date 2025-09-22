@@ -1,5 +1,7 @@
-from ..base import BaseNotificationStrategy
 from ...models import NotificationType
+from ..base import BaseNotificationStrategy
+
+
 class CommentHighlightedStrategy(BaseNotificationStrategy):
     """Strategy for notifications when someone comments on a project"""
     
