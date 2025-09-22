@@ -2,7 +2,7 @@ from django.apps import apps
 
 def _create_notifications(obj, strategy):
     """Helper function to create notifications"""
-    Notification = apps.get_model('notifications', 'Notification')
+    Notification = apps.get_model('a4_candy_notifications', 'Notification')
     
     # Get recipients
     in_app_recipients = strategy.get_in_app_recipients(obj)

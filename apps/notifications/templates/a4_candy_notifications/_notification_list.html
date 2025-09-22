@@ -11,17 +11,11 @@
                 </div>
                 <div class="flex-grow-1">
                     <p class="mb-1 {% if not notification.read %}fw-medium{% else %}text-muted{% endif %}">
-                        - {{ notification|render_notification_with_links }}
+                        {{ notification|render_notification_with_links }}
                     </p>
                     <small class="text-muted">{{ notification.created|date:"d.m.Y" }}</small>
                 </div>
                 {% if not notification.read %}
-                    <form method="post" action="{% url 'mark_notification_as_read' notification.id %}" class="d-inline">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-sm btn-outline-primary" title="{% trans 'Mark as read' %}">
-                            <i class="fas fa-check"></i>
-                        </button>
-                    </form>
                     <span class="badge bg-primary ms-2">{% trans 'New' %}</span>
                 {% endif %}
             </div>

@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django import template
 from apps.notifications.models import Notification
 from django.utils.safestring import mark_safe
@@ -21,7 +22,9 @@ def render_notification_with_links(notification):
             key, rest = part.split('}', 1)
             if key in context:
                 if f"{key}_url" in context:
-                    result.append(f'<a href="{context[f"{key}_url"]}">{context[key]}</a>')
+                    mark_read_url = reverse('mark_notification_as_read', args=[notification.id])
+                    redirect_url = context[f"{key}_url"]
+                    result.append(f'<a href="{mark_read_url}?redirect_to={redirect_url}">{context[key]}</a>')
                 else:
                     result.append(context[key])
             result.append(rest)
