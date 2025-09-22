@@ -5,13 +5,13 @@ from adhocracy4.comments.models import Comment
 from apps.budgeting.models import Proposal
 from apps.offlineevents.models import OfflineEvent
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
-from ..strategies import ModeratorFeedbackStrategy, IdeaFeedbackStrategy, ProposalFeedbackStrategy, CommentBlockedStrategy
+from ..strategies import ModeratorFeedback, IdeaFeedback, ProposalFeedback, CommentBlocked
 from .helpers import _create_notifications
 from ..models import NotificationType
 
 @receiver(post_save, sender=ModeratorCommentFeedback)
 def handle_comment_moderator_feedback(sender, instance, **kwargs):
-    strategy = ModeratorFeedbackStrategy()
+    strategy = ModeratorFeedback()
     _create_notifications(instance, strategy)
 
 @receiver(pre_save, sender=Proposal)
@@ -25,7 +25,7 @@ def handle_proposal_moderator_feedback(sender, instance, **kwargs):
     new_feedback_text = instance.moderator_feedback_text
 
     if old_mod_status != new_mod_status or old_feedback_text != new_feedback_text:
-        strategy = ProposalFeedbackStrategy()
+        strategy = ProposalFeedback()
         _create_notifications(instance, strategy)
 
 @receiver(pre_save, sender=Idea)
@@ -39,7 +39,7 @@ def handle_idea_moderator_feedback(sender, instance, **kwargs):
     new_feedback_text = instance.moderator_feedback_text
 
     if old_mod_status != new_mod_status or old_feedback_text != new_feedback_text:
-        strategy = IdeaFeedbackStrategy()
+        strategy = IdeaFeedback()
         _create_notifications(instance, strategy)
 
 @receiver(pre_save, sender=Comment)
@@ -54,7 +54,7 @@ def handle_comment_moderator_feedback(sender, instance, **kwargs):
     is_now_blocked = instance.is_blocked
 
     if not was_previously_blocked and is_now_blocked:
-        strategy = CommentBlockedStrategy()
+        strategy = CommentBlocked()
         _create_notifications(instance, strategy)
         return
 

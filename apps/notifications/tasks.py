@@ -9,11 +9,11 @@ from apps.offlineevents.models import OfflineEvent
 
 from .models import NotificationType
 from .signals.helpers import _create_notifications
-from .strategies import OfflineEventReminderStrategy
-from .strategies import PhaseEndedStrategy
-from .strategies import PhaseStartedStrategy
-from .strategies import ProjectStartedStrategy
-from .strategies import ProjectEndedStrategy
+from .strategies import OfflineEventReminder
+from .strategies import PhaseEnded
+from .strategies import PhaseStarted
+from .strategies import ProjectStarted
+from .strategies import ProjectEnded
 
 
 # TODO: Run daily (?) via celery
@@ -31,7 +31,7 @@ def send_recently_started_project_notifications():
 
     started_projects = [p.module.project for p in started_phases if p.starts_first_of_project]
 
-    strategy = ProjectStartedStrategy()
+    strategy = ProjectStarted()
     for project in started_projects:
         _create_notifications(project, strategy)
 
@@ -61,7 +61,7 @@ def send_recently_completed_project_notifications():
     )
 
     ended_projects = [p.module.project for p in completed_phases if is_last_phase_in_project(p)]
-    strategy = ProjectEndedStrategy()
+    strategy = ProjectEnded()
     for project in ended_projects:
         _create_notifications(project, strategy)
 
@@ -82,7 +82,7 @@ def send_upcoming_event_notification():
         Q(date__gte=now, date__lte=tomorrow)
     ).select_related("project")
 
-    strategy = OfflineEventReminderStrategy()
+    strategy = OfflineEventReminder()
 
     for event in upcoming_events:
         if not event.project:
