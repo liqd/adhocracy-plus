@@ -36,19 +36,19 @@ def create_notification_data(self, offline_event):
 ```
 ##### /comments:
 
-- CommentReplyStrategy: `apps/notifications/strategies/comments/comment_reply.py`
-- ProjectCommentStrategy: `apps/notifications/strategies/comments/comment_on_project.py`
+- CommentReply: `apps/notifications/strategies/comments/comment_reply.py`
+- ProjectComment: `apps/notifications/strategies/comments/comment_on_project.py`
 
 ##### /events
 
-- OfflineEventCreatedStrategy: `apps/notifications/strategies/events/project_event_created.py`
-- OfflineEventDeletedStrategy: `apps/notifications/strategies/events/project_event_deleted.py`
-- OfflineEventReminderStrategy: `apps/notifications/strategies/events/project_event_reminder.py`
+- OfflineEventCreated: `apps/notifications/strategies/events/project_event_created.py`
+- OfflineEventDeleted: `apps/notifications/strategies/events/project_event_deleted.py`
+- OfflineEventReminder: `apps/notifications/strategies/events/project_event_reminder.py`
 
 ##### /events
 
-- PhaseStartedStrategy: `apps/notifications/strategies/phases/phase_started.py`
-- PhaseEndedStrategy: `apps/notifications/strategies/phases/phase_ended.py`
+- PhaseStarted: `apps/notifications/strategies/phases/phase_started.py`
+- PhaseEnded: `apps/notifications/strategies/phases/phase_ended.py`
 
 ### Signals 
 
