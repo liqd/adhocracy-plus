@@ -1,7 +1,9 @@
-from django.urls import reverse
 from django import template
-from apps.notifications.models import Notification
+from django.urls import reverse
 from django.utils.safestring import mark_safe
+
+from apps.notifications.models import Notification
+
 register = template.Library()
 
 @register.simple_tag(takes_context=True)
