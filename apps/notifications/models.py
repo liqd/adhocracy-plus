@@ -24,6 +24,112 @@ class PhaseChangeNotification(models.Model):
 
 User = get_user_model()
 
+class NotificationType(models.TextChoices):
+    # Project notifications
+    PHASE_STARTED = 'phase_started', _('Phase Started')
+    PHASE_ENDED = 'phase_ended', _('Phase Ended')
+    PROJECT_STARTED = 'project_started', _('Project Started')
+    PROJECT_COMPLETED = 'project_completed', _('Project Completed')
+    PROJECT_STATUS_CHANGE = 'project_status_change', _('Project Status Change')
+    PROJECT_UPDATE = 'project_update', _('Project Update')
+    PROJECT_EVENT = 'project_event', _('Project Event')
+    EVENT_ADDED = 'event_added', _('Event Added')
+    EVENT_SOON = 'event_soon', _('Event Starting Soon')
+    EVENT_UPDATE = 'event_update', _('Event Update')
+    EVENT_CANCELLED = 'event_cancelled', _('Event Cancelled')
+    NEWSLETTER = 'newsletter', _('Newsletter')
+    
+    # User interactions
+    USER_ENGAGEMENT = 'user_engagement', _('User Engagement')
+    MESSAGE_RECEIVED = 'message_received', _('Message Received')
+    PROJECT_INVITATION = 'project_invitation', _('Project Invitation')
+    COMMENT_REPLY = 'comment_reply', _('Comment Reply')
+    COMMENT_ON_POST = 'comment_on_post', _('Comment on Post')
+    CONTENT_REACTION = 'content_reaction', _('Content Reaction')
+    
+    # Moderation actions
+    MODERATOR_HIGHLIGHT= 'moderator_highlight', _('Moderator Highlight')
+    MODERATOR_FEEDBACK = 'moderator_feedback', _('Moderator Feedback')
+    MODERATOR_BLOCKED_COMMENT = 'moderator_blocked_comment', _('Moderator Blocked Comment')
+    MODERATOR_IDEA_FEEDBACK = 'moderator_idea_feedback', _('Moderator Idea Feedback')
+    MODERATOR_ACTION = 'moderator_action', _('Moderator Action')
+    CONTENT_APPROVED = 'content_approved', _('Content Approved')
+    CONTENT_REJECTED = 'content_rejected', _('Content Rejected')
+    USER_WARNING = 'user_warning', _('User Warning')
+    CONTENT_FLAGGED = 'content_flagged', _('Content Flagged')
+    
+    # System
+    SYSTEM = 'system', _('System Notification')
+
+
+class NotificationChannel:
+    EMAIL = 'email'
+    IN_APP = 'in_app'
+
+class NotificationCategory:
+    PROJECT_UPDATES = 'project_updates'
+    PROJECT_EVENTS = 'project_events'
+    USER_ENGAGEMENT = 'user_engagement'
+    MESSAGES = 'messages'
+    INVITATIONS = 'invitations'
+    MODERATION = 'moderation'
+    WARNINGS = 'warnings'
+
+NOTIFICATION_TYPE_MAPPING = {
+    # Project notifications
+    NotificationType.PHASE_STARTED: NotificationCategory.PROJECT_UPDATES,
+    NotificationType.PHASE_ENDED: NotificationCategory.PROJECT_UPDATES,
+    NotificationType.PROJECT_STARTED: NotificationCategory.PROJECT_UPDATES,
+    NotificationType.PROJECT_COMPLETED: NotificationCategory.PROJECT_UPDATES,
+    NotificationType.PROJECT_STATUS_CHANGE: NotificationCategory.PROJECT_UPDATES,
+    NotificationType.PROJECT_UPDATE: NotificationCategory.PROJECT_UPDATES,
+    
+    # Project events
+    NotificationType.PROJECT_EVENT: NotificationCategory.PROJECT_EVENTS,
+    NotificationType.EVENT_ADDED: NotificationCategory.PROJECT_EVENTS,
+    NotificationType.EVENT_SOON: NotificationCategory.PROJECT_EVENTS,
+    NotificationType.EVENT_UPDATE: NotificationCategory.PROJECT_EVENTS,
+    NotificationType.EVENT_CANCELLED: NotificationCategory.PROJECT_EVENTS,
+    
+    # User interactions
+    NotificationType.USER_ENGAGEMENT: NotificationCategory.USER_ENGAGEMENT,
+    NotificationType.COMMENT_REPLY: NotificationCategory.USER_ENGAGEMENT,
+    NotificationType.COMMENT_ON_POST: NotificationCategory.USER_ENGAGEMENT,
+    NotificationType.CONTENT_REACTION: NotificationCategory.USER_ENGAGEMENT,
+    
+    # Messages & Invitations
+    NotificationType.MESSAGE_RECEIVED: NotificationCategory.MESSAGES,
+    NotificationType.PROJECT_INVITATION: NotificationCategory.INVITATIONS,
+    
+    # Moderation
+    NotificationType.MODERATOR_HIGHLIGHT: NotificationCategory.MODERATION,
+    NotificationType.MODERATOR_FEEDBACK: NotificationCategory.MODERATION,
+    NotificationType.MODERATOR_BLOCKED_COMMENT: NotificationCategory.MODERATION,
+    NotificationType.MODERATOR_IDEA_FEEDBACK: NotificationCategory.MODERATION,
+    NotificationType.MODERATOR_ACTION: NotificationCategory.MODERATION,
+    NotificationType.CONTENT_APPROVED: NotificationCategory.MODERATION,
+    NotificationType.CONTENT_REJECTED: NotificationCategory.MODERATION,
+    NotificationType.CONTENT_FLAGGED: NotificationCategory.MODERATION,
+    NotificationType.USER_WARNING: NotificationCategory.WARNINGS,
+    
+    # Special cases
+    NotificationType.NEWSLETTER: 'newsletter',  # Email only
+    NotificationType.SYSTEM: 'system',  # Always on
+}
+
+# Field mapping
+CATEGORY_TO_FIELDS = {
+    NotificationCategory.PROJECT_UPDATES: ('email_project_updates', 'notify_project_updates'),
+    NotificationCategory.PROJECT_EVENTS: ('email_project_events', 'notify_project_events'),
+    NotificationCategory.USER_ENGAGEMENT: ('email_user_engagement', 'notify_user_engagement'),
+    NotificationCategory.MESSAGES: ('email_messages', 'notify_messages'),
+    NotificationCategory.INVITATIONS: ('email_invitations', 'notify_invitations'),
+    NotificationCategory.MODERATION: ('email_moderation', 'notify_moderation'),
+    NotificationCategory.WARNINGS: ('email_warnings', 'notify_warnings'),
+    'newsletter': ('email_newsletter', None),  # No in-app for newsletter
+    'system': (None, None),  # Always deliver system notifications
+}
+
 class NotificationSettings(models.Model):
     
     user = models.OneToOneField(
@@ -117,83 +223,19 @@ class NotificationSettings(models.Model):
         self.save()
 
     def should_receive_notification(self, notification_type, channel):
-        mapping = {
-            # Project notifications
-            'project_started': ('email_project_updates', 'notify_project_updates'),
-            'project_completed': ('email_project_updates', 'notify_project_updates'),
-            'project_status_change': ('email_project_updates', 'notify_project_updates'),
-            'project_update': ('email_project_updates', 'notify_project_updates'),
-            'project_event': ('email_project_events', 'notify_project_events'),
-            'event_added': ('email_project_events', 'notify_project_events'),
-            'event_soon': ('email_project_events', 'notify_project_events'),
-            'event_cancelled': ('email_project_events', 'notify_project_events'),
-            'newsletter': ('email_newsletter', None),  # Newsletter typically only email
-            
-            # User interactions
-            'comment_reply': ('email_user_engagement', 'notify_user_engagement'),
-            'content_reaction': ('email_user_engagement', 'notify_user_engagement'),
-            'user_engagement': ('email_user_engagement', 'notify_user_engagement'),
-            'message_received': ('email_messages', 'notify_messages'),
-            'project_invitation': ('email_invitations', 'notify_invitations'),
-            
-            # Moderation actions
-            'moderator_feedback': ('email_moderation', 'notify_moderation'),
-            'moderator_action': ('email_moderation', 'notify_moderation'),
-            'content_approved': ('email_moderation', 'notify_moderation'),
-            'content_rejected': ('email_moderation', 'notify_moderation'),
-            'user_warning': ('email_warnings', 'notify_warnings'),
-            'content_flagged': ('email_moderation', 'notify_moderation'),
-
-            'phase': ('email_moderation', 'notify_moderation'),
-            
-            # System (default to most permissive or create specific settings)
-            'system': (None, None),  # System notifications might always go through
-        }
-
-        email_field, notify_field = mapping.get(notification_type, (None, None))
-        return True
-        if channel == 'email':
-            return getattr(self, email_field, True) if email_field else True
+        category = NOTIFICATION_TYPE_MAPPING.get(notification_type)
+        if not category:
+            return False 
+        
+        if category == 'system':
+            return True
+        
+        email_field, notify_field = CATEGORY_TO_FIELDS.get(category, (None, None))
+        
+        if channel == NotificationChannel.EMAIL:
+            return getattr(self, email_field, False) if email_field else False
         else:  # in_app
-            return getattr(self, notify_field, True) if notify_field else True
-
-
-class NotificationType(models.TextChoices):
-    # Project notifications
-    PHASE_STARTED = 'phase_started', _('Phase Started')
-    PHASE_ENDED = 'phase_ended', _('Phase Ended')
-    PROJECT_STARTED = 'project_started', _('Project Started')
-    PROJECT_COMPLETED = 'project_completed', _('Project Completed')
-    PROJECT_STATUS_CHANGE = 'project_status_change', _('Project Status Change')
-    PROJECT_UPDATE = 'project_update', _('Project Update')
-    PROJECT_EVENT = 'project_event', _('Project Event')
-    EVENT_ADDED = 'event_added', _('Event Added')
-    EVENT_SOON = 'event_soon', _('Event Starting Soon')
-    EVENT_UPDATE = 'event_update', _('Event Update')
-    EVENT_CANCELLED = 'event_cancelled', _('Event Cancelled')
-    NEWSLETTER = 'newsletter', _('Newsletter')
-    
-    # User interactions
-    USER_ENGAGEMENT = 'user_engagement', _('User Engagement')
-    MESSAGE_RECEIVED = 'message_received', _('Message Received')
-    PROJECT_INVITATION = 'project_invitation', _('Project Invitation')
-    COMMENT_REPLY = 'comment_reply', _('Comment Reply')
-    COMMENT_ON_POST = 'comment_on_post', _('Comment on Post')
-    CONTENT_REACTION = 'content_reaction', _('Content Reaction')
-    
-    # Moderation actions
-    MODERATOR_HIGHLIGHT= 'moderator_highlight', _('Moderator Highlight')
-    MODERATOR_FEEDBACK = 'moderator_feedback', _('Moderator Feedback')
-    MODERATOR_BLOCKED_COMMENT = 'moderator_blocked_comment', _('Moderator Blocked Comment')
-    MODERATOR_IDEA_FEEDBACK = 'moderator_idea_feedback', _('Moderator Idea Feedback')
-    MODERATOR_ACTION = 'moderator_action', _('Moderator Action')
-    CONTENT_APPROVED = 'content_approved', _('Content Approved')
-    CONTENT_REJECTED = 'content_rejected', _('Content Rejected')
-    USER_WARNING = 'user_warning', _('User Warning')
-    CONTENT_FLAGGED = 'content_flagged', _('Content Flagged')
-    
-    # System
-    SYSTEM = 'system', _('System Notification')
+            return getattr(self, notify_field, False) if notify_field else False
 
 class Notification(models.Model):
     objects = NotificationManager()
@@ -217,8 +259,6 @@ class Notification(models.Model):
         choices=NotificationType.choices,
         verbose_name=_("Notification Type")
     )
-    title = models.CharField(max_length=200, verbose_name=_("Title"))
-    message = models.TextField(verbose_name=_("Message"))
     read = models.BooleanField(default=False)
     read_at = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)

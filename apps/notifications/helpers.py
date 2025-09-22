@@ -28,7 +28,7 @@ def _create_notifications(obj, strategy):
 
 def _send_email_notification(recipient, obj, strategy, notification_data):
     """Send email notification"""
-    from .. import emails
+    from . import emails
     
     email_class = _map_notification_type_to_email_class(
         notification_data['notification_type']
@@ -40,7 +40,7 @@ def _send_email_notification(recipient, obj, strategy, notification_data):
 
 def _map_notification_type_to_email_class(notification_type):
     """Map notification type to email class"""
-    from .. import emails
+    from . import emails
     
     email_map = {
         'user_engagement': emails.NotifyCreatorEmail,

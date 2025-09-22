@@ -49,8 +49,6 @@ def handle_comment_highlighted(sender, instance, **kwargs):
 
 ### Moderation Signals
 
-
-
 @receiver(post_save, sender=ModeratorCommentFeedback)
 def handle_comment_moderator_feedback(sender, instance, **kwargs):
     strategy = ModeratorFeedback()
