@@ -66,8 +66,8 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
             "All your important updates, all in one place — from reactions to your posts, to results from your saved searches, to the latest news from projects you follow. You can fine-tune what you get in Notification Settings in your account."
         )
 
-        context["all_notifications_title"] =_("Notifications")
-        
+        context["all_notifications_title"] = _("Notifications")
+
         # Interactions section
         context["interactions_title"] = _("Interactions")
         context["interactions_description"] = _(
@@ -109,7 +109,7 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
         page_number = self.request.GET.get(page_param, 1)
         page_obj = paginator.get_page(page_number)
         return page_obj
-    
+
     @property
     def projects_carousel(self):
         (
@@ -137,7 +137,7 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
         context["dashboard_description"] = _(
             "All your important updates, all in one place — from reactions to your posts, to results from your saved searches, to the latest news from projects you follow. You can fine-tune what you get in Notification Settings in your account."
         )
-        
+
         # Interactions section
         context["interactions_title"] = _("Interactions")
         context["interactions_description"] = _(
@@ -234,6 +234,8 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
         page_number = self.request.GET.get(page_param, 1)
         page_obj = paginator.get_page(page_number)
         return page_obj
+
+
 class UserDashboardActivitiesView(UserDashboardBaseMixin):
     template_name = "a4_candy_userdashboard/userdashboard_activities.html"
     menu_item = "overview"
