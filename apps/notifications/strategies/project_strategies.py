@@ -32,14 +32,24 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
     def _get_project_recipients(
         self, project, notification_type, channel
     ) -> List[User]:
+        from apps.notifications.models import NotificationSettings
+
         followers = self._get_project_followers(project)
-        return [
-            user
-            for user in followers
-            if user.notification_settings.should_receive_notification(
-                notification_type, channel
-            )
-        ]
+        recipients = []
+
+        for user in followers:
+            try:
+                settings = NotificationSettings.get_for_user(user)
+                if settings.should_receive_notification(notification_type, channel):
+                    recipients.append(user)
+            except Exception as e:
+                # Log the error but don't break the entire process
+                logger.warning(
+                    f"Could not check notification settings for user {user.id}: {e}"
+                )
+                continue
+
+        return recipients
 
     def _get_event_recipients(self, event, notification_type, channel) -> List[User]:
         if not event.project:

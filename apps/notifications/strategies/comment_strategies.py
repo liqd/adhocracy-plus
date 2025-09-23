@@ -3,6 +3,7 @@ from typing import List
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
+from ..models import NotificationSettings
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
 
@@ -83,28 +84,25 @@ class ProjectComment(BaseNotificationStrategy):
 class CommentReply(BaseNotificationStrategy):
     """Handles notifications when someone replies to a user's comment"""
 
+    def _should_receive_comment_reply(self, user, channel):
+        """Helper method to check if user should receive comment reply notifications"""
+        settings = NotificationSettings.get_for_user(user)
+        return settings.should_receive_notification(
+            NotificationType.COMMENT_REPLY, channel
+        )
+
     def get_in_app_recipients(self, comment) -> List[User]:
         parent_comment = self._get_parent_comment(comment)
         if parent_comment and parent_comment.creator:
-            return (
-                [parent_comment.creator]
-                if parent_comment.creator.notification_settings.should_receive_notification(
-                    NotificationType.COMMENT_REPLY, "in_app"
-                )
-                else []
-            )
+            if self._should_receive_comment_reply(parent_comment.creator, "in_app"):
+                return [parent_comment.creator]
         return []
 
     def get_email_recipients(self, comment) -> List[User]:
         parent_comment = self._get_parent_comment(comment)
         if parent_comment and parent_comment.creator:
-            return (
-                [parent_comment.creator]
-                if parent_comment.creator.notification_settings.should_receive_notification(
-                    NotificationType.COMMENT_REPLY, "email"
-                )
-                else []
-            )
+            if self._should_receive_comment_reply(parent_comment.creator, "email"):
+                return [parent_comment.creator]
         return []
 
     def _get_parent_comment(self, comment):
