@@ -6,7 +6,7 @@ from .event_strategies import OfflineEventDeleted
 from .event_strategies import OfflineEventReminder
 from .event_strategies import OfflineEventUpdate
 
-# from .moderation_strategies import IdeaFeedback
+from .moderation_strategies import IdeaFeedback
 # from .moderation_strategies import ModeratorFeedback
 from .moderation_strategies import CommentBlocked
 from .moderation_strategies import ProposalFeedback
@@ -29,7 +29,8 @@ __all__ = [
     "ProjectStarted",
     "ProjectEnded",
     "ProjectInvitationReceived",
-    "ModeratorFeedback" "IdeaFeedback",
+    # "ModeratorFeedback",
+    "IdeaFeedback",
     "ProposalFeedback",
     "CommentBlocked",
 ]

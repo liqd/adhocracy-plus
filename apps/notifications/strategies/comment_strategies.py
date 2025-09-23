@@ -47,7 +47,6 @@ class CommentHighlighted(BaseNotificationStrategy):
 
 class ProjectComment(BaseNotificationStrategy):
     """Strategy for notifications when someone comments on a project"""
-
     def get_in_app_recipients(self, comment) -> List[User]:
         """Get recipients for in-app notifications (project author)"""
         recipients = set()
@@ -60,6 +59,8 @@ class ProjectComment(BaseNotificationStrategy):
     def get_email_recipients(self, comment) -> List[User]:
         """Get recipients for email notifications (project author)"""
         return self.get_in_app_recipients(comment)
+
+    # TODO: Check if content type can be added to message
 
     def create_notification_data(self, comment) -> dict:
         """Create notification data for project comments"""

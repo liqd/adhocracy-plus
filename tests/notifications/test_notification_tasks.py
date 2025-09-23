@@ -5,6 +5,7 @@ from django.utils import timezone
 
 from adhocracy4.follows.models import Follow
 from apps.notifications.models import Notification
+from apps.notifications.models import NotificationType
 from apps.notifications.tasks import send_recently_completed_project_notifications
 from apps.notifications.tasks import send_recently_started_project_notifications
 from apps.notifications.tasks import send_upcoming_event_notifications
@@ -37,13 +38,17 @@ def test_send_recently_started_project_notifications(
 
     created_notifications = Notification.objects.filter(recipient=user2)
     assert created_notifications.count() == 1
+    assert (
+        created_notifications.first().notification_type
+        == NotificationType.PROJECT_STARTED
+    )
 
 
 @pytest.mark.django_db
 def test_send_recently_completed_project_notifications(
     phase_factory, project_factory, user2
 ):
-    """Check if notifications are sent for recently compleed projects."""
+    """Check if notifications are sent for recently completed projects."""
     project = project_factory()
 
     # Create only one phase for this project so it's the first
@@ -66,6 +71,10 @@ def test_send_recently_completed_project_notifications(
 
     created_notifications = Notification.objects.filter(recipient=user2)
     assert created_notifications.count() == 1
+    assert (
+        created_notifications.first().notification_type
+        == NotificationType.PROJECT_COMPLETED
+    )
 
 
 @pytest.mark.django_db
@@ -91,3 +100,6 @@ def test_send_upcoming_event_notifications(
 
     created_notifications = Notification.objects.filter(recipient=user2)
     assert created_notifications.count() == 1
+    assert (
+        created_notifications.first().notification_type == NotificationType.EVENT_SOON
+    )
