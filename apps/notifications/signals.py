@@ -71,7 +71,13 @@ def handle_comment_highlighted(sender, instance, **kwargs):
 
 @receiver(pre_save, sender=Proposal)
 def handle_proposal_moderator_feedback(sender, instance, **kwargs):
-    previous = Idea.objects.get(id=instance.id)
+    if instance.id is None:
+        return
+
+    try:
+        previous = Proposal.objects.get(id=instance.id)
+    except Proposal.DoesNotExist:
+        return
 
     old_mod_status = previous.moderator_status
     old_feedback_text = previous.moderator_feedback_text
@@ -86,7 +92,14 @@ def handle_proposal_moderator_feedback(sender, instance, **kwargs):
 
 @receiver(pre_save, sender=Idea)
 def handle_idea_moderator_feedback(sender, instance, **kwargs):
-    previous = Idea.objects.get(id=instance.id)
+    """Handle idea moderator feedback notifications"""
+    if instance.id is None:
+        return
+
+    try:
+        previous = Idea.objects.get(id=instance.id)
+    except Idea.DoesNotExist:
+        return
 
     old_mod_status = previous.moderator_status
     old_feedback_text = previous.moderator_feedback_text
@@ -102,10 +115,14 @@ def handle_idea_moderator_feedback(sender, instance, **kwargs):
 @receiver(pre_save, sender=Comment)
 def handle_comment_moderator_feedback(sender, instance, **kwargs):
     """Handle comment being blocked by a moderator"""
-    if instance.id is None:
-        return  # Only handle updates, not creations
 
-    previous = Comment.objects.get(id=instance.id)
+    if instance.id is None:
+        return
+
+    try:
+        previous = Comment.objects.get(id=instance.id)
+    except Comment.DoesNotExist:
+        return
 
     was_previously_blocked = previous.is_blocked
     is_now_blocked = instance.is_blocked
@@ -156,18 +173,3 @@ def handle_invite_received(sender, instance, created, **kwargs):
 
     strategy = ProjectInvitationReceived()
     _create_notifications(instance, strategy)
-
-
-# User Signals
-
-
-@receiver(pre_save, sender=User)
-def create_user_notification_settings(sender, instance, **kwargs):
-    NotificationSettings.objects.get_or_create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_notification_settings(sender, instance, **kwargs):
-    """Save notification settings when user is saved"""
-    if instance.notification_settings:
-        instance.notification_settings.save()
