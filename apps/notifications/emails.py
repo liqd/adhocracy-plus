@@ -273,6 +273,7 @@ class NotifyCommentReplyEmail(Email):
         receivers = _exclude_notifications_disabled(receivers)
         return receivers
 
+
 # TODO: Make this real
 class NotifyProjectCommentEmail(Email):
     template_name = "a4_candy_notifications/emails" "/notify_followers_event_upcomming"
@@ -288,7 +289,8 @@ class NotifyProjectCommentEmail(Email):
         )
         receivers = _exclude_notifications_disabled(receivers)
         return receivers
-        
+
+
 # TODO: Make this real
 class NotifyOfflineEventEmail(Email):
     template_name = "a4_candy_notifications/emails" "/notify_followers_event_upcomming"
@@ -305,11 +307,15 @@ class NotifyOfflineEventEmail(Email):
         receivers = _exclude_notifications_disabled(receivers)
         return receivers
 
+
 # TODO: Make this real
+
 
 class NotifyOfflineEventStartsSoonEmail(Email):
     """Email notification for event reminders"""
-    template_name = 'notifications/emails/event_reminder.html'
+
+    template_name = "notifications/emails/event_reminder.html"
+
     def get_organisation(self):
         return self.object.project.organisation
 

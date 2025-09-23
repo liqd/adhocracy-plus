@@ -1,6 +1,6 @@
 from django.urls import path
 from django.urls import re_path
-from apps.notifications.views import NotificationSettingsView, MarkAllNotificationsAsReadView, MarkNotificationAsReadView
+from apps.notifications.views import MarkAllNotificationsAsReadView, MarkNotificationAsReadView
 
 from . import views
 
