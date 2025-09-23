@@ -154,6 +154,15 @@ CATEGORY_TO_FIELDS = {
 
 class NotificationSettings(models.Model):
 
+    @classmethod
+    def get_for_user(cls, user):
+        """Safe method to get notification settings for a user"""
+        try:
+            return user.notification_settings
+        except cls.DoesNotExist:
+            # Create if missing (safety net)
+            return cls.objects.create(user=user)
+
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
