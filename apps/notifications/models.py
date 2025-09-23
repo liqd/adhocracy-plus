@@ -282,6 +282,8 @@ class Notification(models.Model):
     recipient = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="notifications"
     )
+
+    # TODO: Remove when email notifications updated
     action = models.ForeignKey(
         "a4actions.Action",
         on_delete=models.CASCADE,

@@ -261,7 +261,7 @@ def test_handle_offline_event_created_notification(
         defaults={"enabled": True},
     )
 
-    # Create an offline event (this should trigger the signal)
+    # Create an offline event
     offline_event = offline_event_factory(project=project)
 
     # Check that a notification was created for the attendee
@@ -291,7 +291,6 @@ def test_handle_event_update_notification(
         defaults={"enabled": True},
     )
 
-    # Save the event initially (should not trigger update notification)
     offline_event.save()
 
     # Update the event date to trigger the signal

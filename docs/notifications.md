@@ -1,13 +1,17 @@
 # Notifications System Documentation
 
+Important file: `apps/notifications/helpers.py`
+
 ### Models
 
 - contained in  `apps/notifications/models`
 - Notification Model with attributes such as:
-    -
+    - message_template
+    - notification_type
+    - recipient
 - NotificationChannel (in-app vs email)
 - NotificationCategory
-- NotificationSettings model - user preferences for which notifications they should receive)
+- NotificationSettings model - user preferences for which notifications they should receive
 
 ### Strategy Pattern Implementation
 
