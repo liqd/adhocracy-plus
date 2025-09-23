@@ -7,13 +7,10 @@ from django.utils import timezone
 from adhocracy4.phases.models import Phase
 from apps.offlineevents.models import OfflineEvent
 
-from .models import NotificationType
 from .helpers import _create_notifications
 from .strategies import OfflineEventReminder
-from .strategies import PhaseEnded
-from .strategies import PhaseStarted
-from .strategies import ProjectStarted
 from .strategies import ProjectEnded
+from .strategies import ProjectStarted
 
 
 # TODO: Run daily (?) via celery
@@ -29,7 +26,9 @@ def send_recently_started_project_notifications():
         Q(start_date__gte=last_check, start_date__lte=now)
     )
 
-    started_projects = [p.module.project for p in started_phases if p.starts_first_of_project]
+    started_projects = [
+        p.module.project for p in started_phases if p.starts_first_of_project
+    ]
 
     strategy = ProjectStarted()
     # TODO: Double check this - should we send project or phase?
@@ -42,9 +41,7 @@ def send_recently_started_project_notifications():
 # TODO: Add this as prop in a4
 def is_last_phase_in_project(phase):
     project = phase.module.project
-    phases = project.phases.filter(module__is_draft=False).order_by(
-        ("-end_date")
-    )
+    phases = project.phases.filter(module__is_draft=False).order_by(("-end_date"))
     is_last_phase = phase == phases[0]
     return is_last_phase
 
@@ -61,7 +58,9 @@ def send_recently_completed_project_notifications():
         Q(end_date__gte=last_check, end_date__lte=now)
     )
 
-    ended_projects = [p.module.project for p in completed_phases if is_last_phase_in_project(p)]
+    ended_projects = [
+        p.module.project for p in completed_phases if is_last_phase_in_project(p)
+    ]
     strategy = ProjectEnded()
     for project in ended_projects:
         _create_notifications(project, strategy)
