@@ -23,7 +23,6 @@ from .strategies import ProposalFeedback
 
 # Comment Signals
 
-
 @receiver(post_save, sender=Comment)
 def handle_comment_notifications(sender, instance, created, **kwargs):
     """Handle all comment-related notifications"""
