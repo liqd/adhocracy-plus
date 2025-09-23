@@ -73,7 +73,11 @@ class OfflineEventReminder(ProjectNotificationStrategy):
 
     def create_notification_data(self, offline_event):
         time_format = "%B %d, %Y at %H:%M" if offline_event.date else "%B %d, %Y"
-        str_time = event_time.strftime(time_format) if event_time else _("soon")
+        str_time = (
+            offline_event.date.strftime(time_format)
+            if offline_event.date
+            else _("soon")
+        )
         return {
             "notification_type": NotificationType.EVENT_SOON,
             "message_template": _(
