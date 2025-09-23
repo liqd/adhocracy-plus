@@ -2,10 +2,15 @@
 
 ### Models
 
-- Introduced a Notification Model as well as NotificationType model, in `apps/notifications/models`
-- NotificationSettings model added
+- contained in  `apps/notifications/models`
+- Notification Model with attributes such as:
+    -
+- NotificationChannel (in-app vs email)
+- NotificationCategory
+- NotificationSettings model - user preferences for which notifications they should receive)
 
 ### Strategy Pattern Implementation
+
 The system uses a strategy pattern to handle different notification types.
 
 A strategy contains the following functions
@@ -16,7 +21,7 @@ A strategy contains the following functions
 
 The BaseNotification class is found at `apps/notifications/strategies/base.py`
 
-`apps/notifications/strategies` contains files for each strategy, sorted into directories.
+`apps/notifications/strategies` contains files for each category of strategies, for example `comment_strategies`
 
 #### Example notification data:
 ```
@@ -34,30 +39,11 @@ def create_notification_data(self, offline_event):
         }
     }
 ```
-##### /comments:
 
-- CommentReply: `apps/notifications/strategies/comments/comment_reply.py`
-- ProjectComment: `apps/notifications/strategies/comments/comment_on_project.py`
-
-##### /events
-
-- OfflineEventCreated: `apps/notifications/strategies/events/project_event_created.py`
-- OfflineEventDeleted: `apps/notifications/strategies/events/project_event_deleted.py`
-- OfflineEventReminder: `apps/notifications/strategies/events/project_event_reminder.py`
-
-##### /events
-
-- PhaseStarted: `apps/notifications/strategies/phases/phase_started.py`
-- PhaseEnded: `apps/notifications/strategies/phases/phase_ended.py`
 
 ### Signals 
 
-`apps/notifications/signals` contains signals which catch various pre_save and post_save signals, and creates relevant notifications.
-
-- Comments: `apps/notifications/signals/comment_signals.py`
-- Events: `apps/notifications/signals/offline_event_signals.py`
-- Users: `apps/notifications/signals/user_signals.py`
-
+`apps/notifications/signals.py` contains signals which catch various pre_save and post_save signals, and creates relevant notifications.
 
 ### Celery Tasks
 
