@@ -51,7 +51,7 @@ Tasks (in `notifications/tasks.py`) are run via celery once per day to check for
 
 - `send_recently_started_phase_notifications`
 - `send_recently_completed_phase_notifications`
-- `send_upcoming_event_notification`
+- `send_upcoming_event_notifications`
 
 ### Views
 
