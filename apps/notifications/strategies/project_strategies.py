@@ -3,6 +3,8 @@ from typing import List
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
+from apps import logger
+
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
 
@@ -36,14 +38,12 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
 
         followers = self._get_project_followers(project)
         recipients = []
-
         for user in followers:
             try:
                 settings = NotificationSettings.get_for_user(user)
                 if settings.should_receive_notification(notification_type, channel):
                     recipients.append(user)
             except Exception as e:
-                # Log the error but don't break the entire process
                 logger.warning(
                     f"Could not check notification settings for user {user.id}: {e}"
                 )
@@ -67,18 +67,17 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
 
 
 class ProjectStarted(ProjectNotificationStrategy):
-    def get_in_app_recipients(self, phase) -> List[User]:
-        return self._get_phase_recipients(
-            phase, NotificationType.PROJECT_STARTED, "in_app"
+    def get_in_app_recipients(self, project) -> List[User]:
+        return self._get_project_recipients(
+            project, NotificationType.PROJECT_STARTED, "in_app"
         )
 
-    def get_email_recipients(self, phase) -> List[User]:
-        return self._get_phase_recipients(
-            phase, NotificationType.PROJECT_STARTED, "email"
+    def get_email_recipients(self, project) -> List[User]:
+        return self._get_project_recipients(
+            project, NotificationType.PROJECT_STARTED, "email"
         )
 
-    def create_notification_data(self, phase) -> dict:
-        project = phase.module.project
+    def create_notification_data(self, project) -> dict:
         return {
             "notification_type": NotificationType.PROJECT_STARTED,
             "message_template": _("The project {project} has begun."),

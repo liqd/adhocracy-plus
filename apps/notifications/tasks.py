@@ -70,7 +70,7 @@ def send_recently_completed_project_notifications():
 
 # TODO: Run daily (?) via celery
 @shared_task
-def send_upcoming_event_notification():
+def send_upcoming_event_notifications():
     """
     Send notifications to project followers for events starting within 24 hours
     """

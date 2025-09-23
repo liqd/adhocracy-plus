@@ -8,10 +8,8 @@ from apps.budgeting.models import Proposal
 from apps.ideas.models import Idea
 from apps.offlineevents.models import OfflineEvent
 from apps.projects.models import ModeratorInvite
-from apps.users.models import User
 
 from .helpers import _create_notifications
-from .models import NotificationSettings
 from .strategies import CommentBlocked
 from .strategies import CommentHighlighted
 from .strategies import CommentReply
