@@ -37,10 +37,32 @@ class AbstractMapIdea(models.Model):
 
 ### 2. Migration Steps
 
+During deployment of replacing the old PointField with the Django Gis model, is recommended to deploy in phases. Meaning that first the new field is added, together with the data migration that copies and converts the old format to the new spatial GIS format, steps 1 to 3 below. Once that is deployed, the next phase shall be the removal of the old field, and the rename of the new field, see below steps 4 to 7.
+
 #### Step 1: Add the New `PointField`
 
 - Add the new GeoDjango `PointField` (`coordinates`) to your model.
 - Set `null=True` and `blank=True` to allow a uninterrupted migration and make the field optional.
+- Add the extra fields for street, house number and zip code to map any properties fromthe old PointField.
+the old format of the PointField is:
+```
+{
+    "type": "Feature",
+    "properties": {
+	    "strname": "",
+	    get("hsnr": "",
+	    "plz": "",
+		},
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+            13.258667,
+            52.558821
+        ]
+    }
+}
+```
+
 
 ```python
 from django.contrib.gis.db import models as gis_models
