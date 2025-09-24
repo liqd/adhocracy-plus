@@ -4,6 +4,8 @@ To avoid potential conflicts, we recommend choosing a different name for your da
 
 See howto install [PostgreSQL for your Operating System](https://www.postgresql.org/download)
 
+Install the [Postgis Extension](https://www.postgis.net/documentation/getting_started#installing-postgis)
+
 Assuming you have postgresql installed and running; switch to postgres user from the command line with `sudo su postgres`.
 
 In the commands below, be sure to replace `database_name` and `user_name` with your preferred names set in your local.py.
@@ -26,6 +28,8 @@ ALTER DATABASE
 
 postgres=# GRANT ALL PRIVILEGES ON DATABASE database_name to user_name;
 GRANT
+
+postgres=# ALTER USER user_name WITH PASSWORD 'your_new_password';
 
 postgres=# \c database_name;
 You are now connected to database "database_name" as user "postgres".
