@@ -94,6 +94,69 @@ def test_can_create_insight_for_empty_project(
 
 @pytest.mark.django_db
 @pytest.mark.parametrize("insight_provider", [create_insight, get_insight])
+def test_recreate_insight_saved_unregistered_users(
+    apiclient,
+    user_factory,
+    phase_factory,
+    poll_factory,
+    choice_factory,
+    question_factory,
+    insight_provider,
+):
+    phase, module, project, _ = setup_phase(
+        phase_factory, poll_factory, phases.VotingPhase
+    )
+
+    poll = Poll.objects.first()
+    poll.allow_unregistered_users = True
+    poll.save()
+    question = question_factory(poll=poll)
+    choice1 = choice_factory(question=question)
+    choice_factory(question=question)
+    open_question = question_factory(poll=poll, is_open=True)
+
+    assert Vote.objects.count() == 0
+
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
+
+    n_unregistered_users = 4
+    with freeze_phase(phase):
+        for i in range(n_unregistered_users):
+            data = {
+                "votes": {
+                    question.pk: {
+                        "choices": [choice1.pk],
+                        "other_choice_answer": "",
+                        "open_answer": "",
+                    },
+                    open_question.pk: {
+                        "choices": [],
+                        "other_choice_answer": "",
+                        "open_answer": "an open answer",
+                    },
+                },
+                "agreed_terms_of_use": True,
+                "captcha": "testpass:1",
+            }
+            response = apiclient.post(url, data, format="json")
+            assert response.status_code == status.HTTP_201_CREATED
+
+    insight, _ = ProjectInsight.objects.get_or_create(project=poll.module.project)
+    assert insight.unregistered_participants == n_unregistered_users
+
+    insight.unregistered_participants = 0
+    insight.save()
+    assert insight.unregistered_participants == 0
+
+    insight = create_insight(project=project)
+    assert insight.unregistered_participants == n_unregistered_users
+
+    insight.refresh_from_db()
+    assert insight.unregistered_participants == n_unregistered_users
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("insight_provider", [create_insight, get_insight])
 def test_comments_of_comments_are_counted(
     module_factory,
     comment_factory,
