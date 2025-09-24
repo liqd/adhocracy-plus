@@ -1,0 +1,28 @@
+{% extends "a4_candy_userdashboard/base_userdashboard.html" %}
+{% load i18n notification_tags %}
+
+{% block dashboard_content %}
+    <a class="btn btn--none px-0" href="{% url 'userdashboard-overview' %}">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+
+        <span>{% trans 'Back to overview' %}</span>
+    </a>
+
+    <h1 class="visually-hidden">
+        {% trans 'Your Notifications' %}
+    </h1>
+
+     {% unread_notifications_count as unread_count %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h2>Notifications ({{ unread_count }})</h2>
+                <!-- todo: link in description -->
+                <p>{{ dashboard_description }}</p>
+                {% include "a4_candy_notifications/_notification_card.html" with section_id="interactions" unread_count=interactions_unread_count title=interactions_title description=interactions_description notifications_list=interactions_page.object_list empty_icon="fa-comments" empty_message=interactions_empty pagination_required=interactions_page.has_other_pages page_obj=interactions_page param_name="interactions_page" %} 
+                {% include "a4_candy_notifications/_notification_card.html" with section_id="projects" unread_count=projects_unread_count title=projects_title description=projects_description notifications_list=projects_page.object_list empty_icon="fa-comments" empty_message=projects_empty pagination_required=projects_page.has_other_pages page_obj=projects_page param_name="projects_page" %} 
+            </div>
+        </div>
+    </div>
+
+{% endblock dashboard_content %}

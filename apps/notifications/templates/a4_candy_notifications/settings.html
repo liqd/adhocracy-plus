@@ -1,0 +1,152 @@
+{% extends "a4_candy_account/account_dashboard.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Notification Settings' %}{% endblock title %}
+
+{% block dashboard_content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="row">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>{% trans 'Notification Settings' %}</h1>
+                <a href="{% url 'account' %}" class="btn btn-outline-secondary">
+                    {% trans 'Back to Account' %}
+                </a>
+            </div>
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                {# Project Related Notifications #}
+                <div class="mb-5">
+                    <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                        <div class="form-check form-switch mb-0">
+                            <input class="form-check-input category-toggle" type="checkbox" id="project-toggle" 
+                                   data-category="project-related" checked>
+                            <label class="form-check-label fw-bold h5 mb-0" for="project-toggle">
+                                {% trans "Project Related Notifications" %}
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="ps-3">
+                        {# Newsletter #}
+                        <div class="mb-4">
+                            <h4 class="h6 mb-2">{% trans "Newsletter" %}</h4>
+                            <p class="text-muted small mb-3">
+                                {% trans "General updates and news from the platform" %}
+                            </p>
+                            <div class="form-check form-switch">
+                                {{ form.email_newsletter }}
+                                <label class="form-check-label" for="{{ form.email_newsletter.id_for_label }}">
+                                    {% trans "Email newsletter" %}
+                                </label>
+                            </div>
+                        </div>
+                        
+                        {# Project Updates #}
+                        <div class="mb-4">
+                            <h4 class="h6 mb-2">{% trans "Project Updates" %}</h4>
+                            <p class="text-muted small mb-3">
+                                {% trans "Notifications about projects you follow" %}
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.email_project_updates }}
+                                        <label class="form-check-label fw-bold" for="{{ form.email_project_updates.id_for_label }}">
+                                            Email
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.notify_project_updates }}
+                                        <label class="form-check-label fw-bold" for="{{ form.notify_project_updates.id_for_label }}">
+                                            In-App
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {# Project Events #}
+                        <div class="mb-4">
+                            <h4 class="h6 mb-2">{% trans "Project Events" %}</h4>
+                            <p class="text-muted small mb-3">
+                                {% trans "Notifications about events in projects you follow" %}
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.email_project_events }}
+                                        <label class="form-check-label fw-bold" for="{{ form.email_project_events.id_for_label }}">
+                                            Email
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.notify_project_events }}
+                                        <label class="form-check-label fw-bold" for="{{ form.notify_project_events.id_for_label }}">
+                                            In-App
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {# User Interactions #}
+                <div class="mb-5">
+                    <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                        <div class="form-check form-switch mb-0">
+                            <input class="form-check-input category-toggle" type="checkbox" id="interaction-toggle" 
+                                   data-category="interaction-related" checked>
+                            <label class="form-check-label fw-bold h5 mb-0" for="interaction-toggle">
+                                {% trans "Interactions with other users" %}
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="ps-3">
+                        {# User Engagement #}
+                        <div class="mb-4">
+                            <h4 class="h6 mb-2">{% trans "Reactions from other users" %}</h4>
+                            <p class="text-muted small mb-3">
+                                {% trans "Notifications when others interact with your content" %}
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.email_user_engagement }}
+                                        <label class="form-check-label fw-bold" for="{{ form.email_user_engagement.id_for_label }}">
+                                            Email
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch mb-2">
+                                        {{ form.notify_user_engagement }}
+                                        <label class="form-check-label fw-bold" for="{{ form.notify_user_engagement.id_for_label }}">
+                                            In-App
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        {% trans 'Save Notification Settings' %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock dashboard_content %}
