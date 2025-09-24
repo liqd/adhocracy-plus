@@ -1,5 +1,6 @@
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.exports.views import DashboardExportView
@@ -36,16 +37,32 @@ class MapIdeaFilterSet(a4_filters.DefaultsFilterSet):
 class MapIdeaListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMixin):
     model = models.MapIdea
     filter_set = MapIdeaFilterSet
+    paginate_by = 0 # Maps need all ideas, pagination is handled get_context_data
 
     def dispatch(self, request, **kwargs):
-        self.mode = request.GET.get("mode", "map")
-        if self.mode == "map":
-            self.paginate_by = 0
-        else:
-            page_size = int(request.GET.get("page_size", 20))
-            page_size = 0 if page_size < 0 else page_size
-            self.paginate_by = page_size
         return super().dispatch(request, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        page_size = int(self.request.GET.get("page_size", 2))
+        mode = self.request.GET.get("mode", "map")
+        object_list = context.get("object_list", [])
+        print(object_list)
+        
+        if page_size > 0:
+            paginator = Paginator(object_list, page_size)
+            page = int(self.request.GET.get("page", 1))
+            try:
+                paginated_list = paginator.page(page)
+            except EmptyPage:
+                paginated_list = paginator.page(paginator.num_pages)
+        else:
+            paginated_list = object_list
+        context["paginated_list"] = paginated_list
+        context["page_obj"] = paginated_list  # page_obj ist die paginierte Liste selbst
+        #context["is_paginated"] = paginator.num_pages > 1 if page_size > 0 else False
+
+        return context
 
 
 class MapIdeaDetailView(idea_views.AbstractIdeaDetailView):
