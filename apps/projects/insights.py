@@ -72,7 +72,6 @@ def create_insight(project: Project) -> ProjectInsight:
     insight.written_ideas = sum(x.count() for x in idea_objects)
     insight.poll_answers = votes.count() + answers.count()
     insight.live_questions = live_questions.count()
-    insight.save()
 
     insight.active_participants.clear()
     unregistered_participants = set()
@@ -97,6 +96,7 @@ def create_insight(project: Project) -> ProjectInsight:
             unregistered_participants = unregistered_participants.union(content_ids)
 
     insight.unregistered_participants = len(unregistered_participants)
+    insight.save()
     return insight
 
 
