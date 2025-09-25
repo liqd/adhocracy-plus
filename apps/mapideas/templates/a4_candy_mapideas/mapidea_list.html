@@ -20,5 +20,5 @@
 {% endblock project_action %}
 
 {% block phase_content %}
-    {% include "a4_candy_mapideas/includes/map_list_view.html" %}
+    {% include "a4_candy_mapideas/includes/map_list_view.html" with view=view filter=view.filter %}
 {% endblock phase_content %}

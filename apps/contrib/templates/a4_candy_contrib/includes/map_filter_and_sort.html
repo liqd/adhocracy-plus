@@ -13,19 +13,6 @@
         <i class="fa fa-map" aria-hidden="true"></i>
         {% translate 'Map' %}
     </button>
-</div>
+    </div>
 
-    {% for field in filter.form %}
-        {% if field.name != 'ordering' %}
-          <div class="me-1 mt-2">
-            {{ field }}
-          </div>
-        {% endif %}
-    {% endfor %}
-
-    {% if mode != 'map' %}
-        <div class="ms-sm-auto mt-2">
-            {{ filter.form.ordering }}
-        </div>
-    {% endif %}
 </div>

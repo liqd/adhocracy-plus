@@ -1,6 +1,9 @@
+import re
+
+from django.core.paginator import EmptyPage
+from django.core.paginator import Paginator
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.exports.views import DashboardExportView
@@ -37,18 +40,16 @@ class MapIdeaFilterSet(a4_filters.DefaultsFilterSet):
 class MapIdeaListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMixin):
     model = models.MapIdea
     filter_set = MapIdeaFilterSet
-    paginate_by = 0 # Maps need all ideas, pagination is handled get_context_data
-
-    def dispatch(self, request, **kwargs):
-        return super().dispatch(request, **kwargs)
+    paginate_by = 0  # Maps need all ideas, pagination is handled get_context_data
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        page_size = int(self.request.GET.get("page_size", 2))
-        mode = self.request.GET.get("mode", "map")
+        ua = self.request.headers.get("User-Agent", "")
+        is_mobile = bool(re.search(r"Mobi|Android|iPhone|iPod|Windows Phone", ua, re.I))
+        page_size = int(self.request.GET.get("page_size", 2 if is_mobile else 4))
+        self.mode = self.request.GET.get("mode", "map")
         object_list = context.get("object_list", [])
-        print(object_list)
-        
+
         if page_size > 0:
             paginator = Paginator(object_list, page_size)
             page = int(self.request.GET.get("page", 1))
@@ -60,8 +61,8 @@ class MapIdeaListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMix
             paginated_list = object_list
         context["paginated_list"] = paginated_list
         context["page_obj"] = paginated_list  # page_obj ist die paginierte Liste selbst
-        #context["is_paginated"] = paginator.num_pages > 1 if page_size > 0 else False
-
+        # context["is_paginated"] = paginator.num_pages > 1 if page_size > 0 else False
+        print(context)
         return context
 
 

@@ -1,4 +1,4 @@
-{% load i18n discovery_tags static maps_tags module_tags %}
+{% load i18n discovery_tags static maps_tags module_tags contrib_tags %}
 <style>
     .view-toogle {
         display: block;
@@ -20,6 +20,9 @@
         .mobile-hide {
             visibility: visible;
             height: auto;
+        }
+        .map-list {
+            margin-top: 48px;
         }
     }
 </style>
@@ -52,9 +55,23 @@
     {% endif %}
 </div>
 
-<div class="bg--light list-view {% if view.mode != 'list' %}mobile-hide{% endif %}" id="list-view">
+<div class="list-view {% if view.mode != 'list' %}mobile-hide{% endif %}" id="list-view">
     <div class="row">
         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+            <div class="filter-bar__spaced">
+                {% for field in filter.form %}
+                {% if field.name != 'ordering' %}
+                <div class="me-1 mt-2">
+                    {{ field }}
+                </div>
+                {% endif %}
+                {% endfor %}
+        
+                <div class="ms-sm-auto mt-2">
+                    {{ filter.form.ordering }}
+                </div>
+            </div>
+        
             <ul class="u-list-reset">
                 {% for object in paginated_list %}
                     {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
