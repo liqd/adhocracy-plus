@@ -98,6 +98,7 @@ urlpatterns = [
     path("account/", include("apps.account.urls")),
     path("profile/", include("apps.users.urls")),
     path("userdashboard/", include("apps.userdashboard.urls")),
+    # Captcha URLs removed - no longer needed
     # this needs to be above i18n/ to make the overwrite work
     path("i18n/setlang/", set_language_overwrite, name="set_language"),
     path("i18n/", include(i18n)),

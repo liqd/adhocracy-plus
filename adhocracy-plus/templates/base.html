@@ -6,13 +6,13 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{% block title %}{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}{% endblock %}</title>
+    <title>{% block title %}{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}{% endblock title %}</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
-    {% endblock %}
+    {% endblock extra_css %}
 
     {% block social_meta %}
     <meta name="twitter:card" content="summary">
@@ -20,7 +20,7 @@
     <meta name="linkedin:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta property="og:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}{% if ORGANISATION %}/{{ ORGANISATION.name }}{% endif %}">
-    {% endblock %}
+    {% endblock social_meta %}
 
     {% block social_meta_image %}
     {% if settings.a4_candy_cms_settings.SocialMedia.fallback_image %}
@@ -31,7 +31,7 @@
     <meta property="og:image:width" content="{{ fallback_image.width }}">
     <meta property="og:image:height" content="{{ fallback_image.height }}">
     {% endif %}
-    {% endblock %}
+    {% endblock social_meta_image %}
 
     {% block social_meta_description %}
     {% if settings.a4_candy_cms_settings.SocialMedia.fallback_description %}
@@ -40,26 +40,26 @@
     <meta name="linkedin:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
     <meta property="og:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
     {% endif %}
-    {% endblock %}
+    {% endblock social_meta_description %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>
     <meta name="viewport" content="width=device-width" />
-
+    
     {% block extra_js %}
         {# Override this in templates to add extra javascript #}
-    {% endblock %}
+    {% endblock extra_js %}
     {% matomo_enabled as matomo %}
     {% if matomo %} {% matomo_tracking_code %} {% endif %}
 </head>
 <body>
     {% wagtailuserbar %}
-        <a href="#main" class="visually-hidden-focusable">{% translate "Skip to content "%}</a>
+        <a href="#main" class="visually-hidden-focusable">{% translate "Skip to content" %}</a>
 
         {% block header %}
         {% include 'header.html' %}
-        {% endblock %}
+        {% endblock header %}
         <div class="min-height__wrapper d-flex flex-column">
         <main id="main" class="flex-fill">
             {% if messages %}
@@ -78,17 +78,17 @@
             </div>
             {% endif %}
 
-            {% block extra_messages %}{% endblock %}
+            {% block extra_messages %}{% endblock extra_messages %}
 
             {% block super_content %}
-                {% block content %}{% endblock %}
-            {% endblock %}
+                {% block content %}{% endblock content %}
+            {% endblock super_content %}
         </main>
 
-        {% block before_footer %}{% endblock %}
+        {% block before_footer %}{% endblock before_footer %}
         {% block footer %}
         {% include 'footer.html' %}
-        {% endblock %}
+        {% endblock footer %}
 
         {% block donation_banner %}
         {% if not ORGANISATION.is_supporting %}
@@ -107,7 +107,7 @@
         </div>
         {% endif %}
         {% endif %}
-        {% endblock %}
+        {% endblock donation_banner %}
     </div>
 </body>
 </html>
