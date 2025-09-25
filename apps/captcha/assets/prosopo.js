@@ -1,49 +1,26 @@
-// Prosopo Captcha Integration using explicit rendering
+import { renderProcaptcha } from '@prosopo/procaptcha-wrapper'
+
 document.addEventListener('DOMContentLoaded', function () {
-  // Wait for the procaptcha script to load
-  const procaptchaScript = document.getElementById('procaptcha-script')
-
-  if (!procaptchaScript) {
-    return
-  }
-
-  // Add load event listener to the script tag
-  procaptchaScript.addEventListener('load', function () {
-    renderAllCaptchas()
-  })
-
-  // If script is already loaded, render immediately
-  if (procaptchaScript.complete || procaptchaScript.readyState === 'complete') {
-    renderAllCaptchas()
-  }
+  renderAllCaptchas()
 
   function renderAllCaptchas () {
     const captchaContainers = document.querySelectorAll('.prosopo-captcha-container')
 
-    captchaContainers.forEach(function (container, index) {
+    captchaContainers.forEach(function (container) {
       const siteKey = container.getAttribute('data-site-key')
-      const language = container.getAttribute('data-language')
+      const language = container.getAttribute('data-language') // optional, falls unterstützt
       const hiddenInput = container.previousElementSibling
 
-      if (!siteKey || siteKey === '') {
-        return
-      }
+      if (!siteKey) return
 
       try {
-        // Clear the container and render the captcha
         container.innerHTML = ''
 
-        // Render the CAPTCHA explicitly on the container
-        window.procaptcha.render(container, {
+        renderProcaptcha(container, {
           siteKey,
           language,
-          callback: function (output) {
-            // Extract the token from the output
-            if (output && output.token) {
-              hiddenInput.value = output.token
-            } else {
-              hiddenInput.value = output
-            }
+          callback: function (token) {
+            hiddenInput.value = token
           },
           'expired-callback': function () {
             hiddenInput.value = ''
