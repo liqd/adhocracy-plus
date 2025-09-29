@@ -24,9 +24,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
+        id: setup-python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -49,36 +53,48 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: Cache pip packages
+      - name: Cache uv packages
         uses: actions/cache@v4
         env:
-          cache-name: cache-pip-packages
+          cache-name: cache-uv-packages
         with:
-          path: ~/.cache/pip
+          path: ~/.cache/uv
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/requirements/dev.txt') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Cache testmon data
+        id: cache-testmon
         uses: actions/cache@v4
         with:
-          path: .testmon
-          key: ${{ runner.os }}-testmon-${{ hashFiles('**/*.py') }}
+          path: .testmondata
+          key: ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/requirements/dev.txt') }}
           restore-keys: |
-            ${{ runner.os }}-testmon-
+            ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-
+      - name: Show testmon cache status
+        run: |
+          echo "testmon cache hit: ${{ steps.cache-testmon.outputs.cache-hit }}"
+          ls -la .testmondata || true
       - name: check a4 hashes equal
         run: |
           ./scripts/a4-check.sh
-      - name: Install Dependencies
+      - name: Install OS Dependencies
         run: |
-          sudo apt update
-          sudo apt install -y gdal-bin
-          sudo apt install libsqlite3-mod-spatialite
+          sudo apt-get update -yqq
+          sudo apt-get install -yqq --no-install-recommends \
+            gdal-bin \
+            libsqlite3-mod-spatialite \
+
+      - name: Install NPM Dependencies
+        run: |
           npm install
           npm run build
-          pip install -r requirements/dev.txt
-          pip install coveralls
+
+      - name: Install Python Dependencies
+        run: |
+          ~/.local/bin/uv pip install -r requirements/dev.txt --system
+          ~/.local/bin/uv pip install coveralls --system
       - name: Run Tests
         env:
           PGPASSWORD: postgres
