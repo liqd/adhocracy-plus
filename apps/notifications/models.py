@@ -5,8 +5,6 @@ from django.utils import timezone
 from django.utils.functional import Promise
 from django.utils.translation import gettext_lazy as _
 
-from adhocracy4.phases.models import Phase
-
 from .managers import NotificationManager
 
 
@@ -17,21 +15,6 @@ class LazyEncoder(DjangoJSONEncoder):
         if isinstance(obj, Promise):  # This catches __proxy__ objects
             return str(obj)  # Convert to string
         return super().default(obj)
-
-
-class PhaseChangeNotification(models.Model):
-    phase = models.ForeignKey(
-        Phase, on_delete=models.CASCADE, related_name="advance_notifications"
-    )
-    notification_type = models.CharField(
-        max_length=20,
-        choices=[("start_24h", "24h Before Start"), ("end_24h", "24h Before End")],
-    )
-    notified_at = models.DateTimeField(null=True, blank=True)
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ["phase", "notification_type"]
 
 
 User = get_user_model()
