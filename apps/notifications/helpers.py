@@ -42,13 +42,13 @@ def _map_notification_type_to_email_class(notification_type):
     from . import emails
 
     email_map = {
-        NotificationType.USER_ENGAGEMENT: emails.NotifyCreatorEmail,
         NotificationType.MODERATOR_IDEA_FEEDBACK: emails.NotifyCreatorOnModeratorFeedback,
         NotificationType.MODERATOR_BLOCKED_COMMENT: emails.NotifyCreatorOnModeratorBlocked,
         NotificationType.EVENT_SOON: emails.NotifyFollowersOnUpcomingEventEmail,
+        NotificationType.PHASE_STARTED: emails.NotifyFollowersOnPhaseStartedEmail,
+        NotificationType.COMMENT_ON_POST: emails.NotifyCreatorEmail,
         # TODO: Add missing mappings:
         # NotificationType.COMMENT_REPLY: emails.???‚,
-        # NotificationType.COMMENT_ON_POST: emails.???,
         # NotificationType.MODERATOR_HIGHLIGHT: emails.???,
         # NotificationType.EVENT_CANCELLED: emails.???,
         # NotificationType.EVENT_ADDED: emails.???,
