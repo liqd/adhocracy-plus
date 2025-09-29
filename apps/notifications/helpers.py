@@ -41,10 +41,18 @@ def _map_notification_type_to_email_class(notification_type):
 
     email_map = {
         "user_engagement": emails.NotifyCreatorEmail,
-        "project_update": emails.NotifyFollowersOnPhaseStartedEmail,
-        "project_event": emails.NotifyFollowersOnUpcommingEventEmail,
+        "project_event": emails.NotifyFollowersOnUpcomingEventEmail,
         "comment_reply": emails.NotifyCommentReplyEmail,
-        "comment_on_project": emails.NotifyProjectCommentEmail,
-        "offline_event": emails.NotifyOfflineEventEmail,
+        "moderator_idea_feedback": emails.NotifyCreatorOnModeratorFeedback,
+        "moderator_blocked_comment": emails.NotifyCreatorOnModeratorBlocked,
+        "event_soon": emails.NotifyFollowersOnUpcomingEventEmail,
+        # missing:
+        #     comment_on_post - a user commented on your post
+        #     moderator_highlight - a moderator highlighted your comment
+        #     event_cancelled
+        #     event_added
+        #     event_update
+        #     project_started
+        #     project_completed
     }
     return email_map.get(notification_type)
