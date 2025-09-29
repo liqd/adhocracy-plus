@@ -67,25 +67,19 @@ class MarkAllNotificationsAsReadView(LoginRequiredMixin, View):
         if section:
             if section == "projects":
                 notifications = notifications.filter(
-                    Q(notification_type=NotificationType.PROJECT_UPDATE)
-                    | Q(notification_type=NotificationType.PROJECT_INVITATION)
-                    | Q(notification_type=NotificationType.PROJECT_EVENT)
+                    Q(notification_type=NotificationType.PROJECT_INVITATION)
                     | Q(notification_type=NotificationType.PROJECT_STARTED)
                     | Q(notification_type=NotificationType.PROJECT_COMPLETED)
                     | Q(notification_type=NotificationType.PHASE_STARTED)
                     | Q(notification_type=NotificationType.PHASE_ENDED)
-                    | Q(notification_type=NotificationType.PROJECT_STATUS_CHANGE)
                     | Q(notification_type=NotificationType.EVENT_ADDED)
                     | Q(notification_type=NotificationType.EVENT_SOON)
                     | Q(notification_type=NotificationType.EVENT_UPDATE)
                     | Q(notification_type=NotificationType.EVENT_CANCELLED)
-                    | Q(notification_type=NotificationType.NEWSLETTER)
                 )
             elif section == "interactions":
                 notifications = notifications.filter(
-                    Q(notification_type=NotificationType.USER_ENGAGEMENT)
-                    | Q(notification_type=NotificationType.MESSAGE_RECEIVED)
-                    | Q(notification_type=NotificationType.PROJECT_INVITATION)
+                    Q(notification_type=NotificationType.PROJECT_INVITATION)
                     | Q(notification_type=NotificationType.COMMENT_REPLY)
                     | Q(notification_type=NotificationType.MODERATOR_FEEDBACK)
                     | Q(notification_type=NotificationType.COMMENT_ON_POST)
