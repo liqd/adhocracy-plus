@@ -46,7 +46,7 @@ class MapIdeaListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMix
         context = super().get_context_data(**kwargs)
         ua = self.request.headers.get("User-Agent", "")
         is_mobile = bool(re.search(r"Mobi|Android|iPhone|iPod|Windows Phone", ua, re.I))
-        page_size = int(self.request.GET.get("page_size", 2 if is_mobile else 4))
+        page_size = int(self.request.GET.get("page_size", 15 if is_mobile else 8))
         self.mode = self.request.GET.get("mode", "map")
         object_list = context.get("object_list", [])
 
@@ -61,8 +61,7 @@ class MapIdeaListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMix
             paginated_list = object_list
         context["paginated_list"] = paginated_list
         context["page_obj"] = paginated_list  # page_obj ist die paginierte Liste selbst
-        # context["is_paginated"] = paginator.num_pages > 1 if page_size > 0 else False
-        print(context)
+        context["is_paginated"] = paginator.num_pages > 1 if page_size > 0 else False
         return context
 
 

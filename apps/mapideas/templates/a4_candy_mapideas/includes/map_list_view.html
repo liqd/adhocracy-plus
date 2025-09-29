@@ -1,137 +1,61 @@
 {% load i18n discovery_tags static maps_tags module_tags contrib_tags %}
-<style>
-    .view-toogle {
-        display: block;
-    }
-    .desktop-controls {
-        display: none;
-    }
-    .mobile-hide {
-        visibility: hidden;
-        height: 0;
-    }
-    @media (min-width: 768px) {
-        .view-toogle {
-            display: none;
-        }
-        .desktop-controls {
-            display: block;
-        }
-        .mobile-hide {
-            visibility: visible;
-            height: auto;
-        }
-        .map-list {
-            margin-top: 48px;
-        }
-    }
-</style>
-
-<div class="view-toogle l-top-overlap" id="index">
-    <div class="row">
-        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-            {% include "a4_candy_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
-        </div>
-    </div>
-</div>
-
-<div class="map-list list-view {% if view.mode == 'list' %}mobile-hide{% endif %}" id="map-view">
-    <div class="map-list__controls">
-        <div class="container">
-            <div class="leaflet-control-zoom leaflet-bar leaflet-control mt-4 mt-md-0">
-                <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% translate 'Zoom in' %}">+</a>
-                <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% translate 'Zoom out' %}">-</a>
+<span class="map-list-view">
+    <div class="view-toggle l-top-overlap" id="index">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                {% include "a4_candy_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
             </div>
         </div>
     </div>
-    {% if object_list %}
-      {% if object_list.0|has_feature:"rate" %}
+
+    <div class="map-list list-view {% if view.mode == 'list' %}mobile-hide{% endif %}" id="map-view">
+        <div class="map-list__controls">
+            <div class="container">
+                <div class="leaflet-control-zoom leaflet-bar leaflet-control mt-4 mt-md-0">
+                    <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% translate 'Zoom in' %}">+</a>
+                    <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% translate 'Zoom out' %}">-</a>
+                </div>
+            </div>
+        </div>
+        {% if object_list %}
+        {% if object_list.0|has_feature:"rate" %}
+            {% map_display_points object_list module.settings_instance.polygon %}
+        {% else %}
+            {% map_display_points object_list module.settings_instance.polygon 'true' %}
+        {% endif %}
+        {% else %}
         {% map_display_points object_list module.settings_instance.polygon %}
-      {% else %}
-        {% map_display_points object_list module.settings_instance.polygon 'true' %}
-      {% endif %}
-    {% else %}
-      {% map_display_points object_list module.settings_instance.polygon %}
-    {% endif %}
-</div>
+        {% endif %}
+    </div>
 
-<div class="list-view {% if view.mode != 'list' %}mobile-hide{% endif %}" id="list-view">
-    <div class="row">
-        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-            <div class="filter-bar__spaced">
-                {% for field in filter.form %}
-                {% if field.name != 'ordering' %}
-                <div class="me-1 mt-2">
-                    {{ field }}
+    <div class="list-view {% if view.mode != 'list' %}mobile-hide{% endif %}" id="list-view">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                <div class="filter-bar__spaced">
+                    {% for field in filter.form %}
+                    {% if field.name != 'ordering' %}
+                    <div class="me-1 mt-2">
+                        {{ field }}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+            
+                    <div class="ms-sm-auto mt-2">
+                        {{ filter.form.ordering }}
+                    </div>
                 </div>
-                {% endif %}
-                {% endfor %}
-        
-                <div class="ms-sm-auto mt-2">
-                    {{ filter.form.ordering }}
-                </div>
+            
+                <ul class="u-list-reset">
+                    {% for object in paginated_list %}
+                        {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
+                    {% empty %}
+                        {% translate "Nothing to show" %}
+                    {% endfor %}
+                </ul>
+
+                {% include "a4_candy_contrib/includes/pagination.html" %}
             </div>
-        
-            <ul class="u-list-reset">
-                {% for object in paginated_list %}
-                    {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
-                {% empty %}
-                    {% translate "Nothing to show" %}
-                {% endfor %}
-            </ul>
-
-            {% include "a4_candy_contrib/includes/pagination.html" %}
         </div>
     </div>
-</div>
+</span>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const mapView = document.getElementById('map-view');
-    const listView = document.getElementById('list-view');
-    const listBtn = document.querySelector('[data-view="list"]');
-    const mapBtn = document.querySelector('[data-view="map"]');
-
-    // Mobile Toggle
-    document.querySelectorAll('[data-view]').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const view = this.dataset.view;
-
-            const url = new URL(window.location);
-            url.searchParams.set('mode', view);
-            window.history.pushState({}, '', url);
-
-            if (view === 'map') {
-                toggleButtons(mapBtn, listBtn);
-                // Ensure map is initialized before showing
-                if (mapView && !mapView.dataset.initialized) {
-                    if (typeof window.initializeMapPointsForElement === 'function') {
-                        window.initializeMapPointsForElement(mapView);
-                        mapView.dataset.initialized = 'true';
-                    } else {
-                        console.error("initializeMapPointsForElement function not found.");
-                    }
-                }
-                toggleViews(listView, mapView);
-            } else {
-                toggleButtons(listBtn, mapBtn);
-                toggleViews(mapView, listView);
-            }
-        });
-    });
-});
-
-function toggleButtons(become_default, become_light) {
-    become_default.classList.replace('btn--light', 'btn--default');
-    become_light.classList.replace('btn--default', 'btn--light');
-}
-function toggleViews(mobile_hide, mobile_show) {
-    mobile_hide.classList.add('mobile-hide');
-    mobile_show.classList.remove('mobile-hide');
-    if (mobile_show.id === 'map-view') {
-        // Dispatch a custom event when the map view is shown
-        const event = new Event('mapViewShown');
-        mobile_show.dispatchEvent(event);
-    }
-}
-</script>

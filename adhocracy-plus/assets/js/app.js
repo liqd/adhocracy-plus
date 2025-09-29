@@ -8,6 +8,7 @@ import '../../../apps/dashboard/assets/ajax_modal.js'
 import '../../../apps/maps/assets/map-address.js'
 import '../../../apps/moderatorremark/assets/idea_remarks.js'
 import '../../../apps/newsletters/assets/dynamic_fields.js'
+import '../../../apps/mapideas/assets/js/map_list_view.js'
 
 // expose react components
 import {
