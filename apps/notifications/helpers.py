@@ -1,5 +1,7 @@
 from django.apps import apps
 
+from .models import NotificationType
+
 
 def _create_notifications(obj, strategy):
     """Helper function to create notifications"""
@@ -40,19 +42,18 @@ def _map_notification_type_to_email_class(notification_type):
     from . import emails
 
     email_map = {
-        "user_engagement": emails.NotifyCreatorEmail,
-        "project_event": emails.NotifyFollowersOnUpcomingEventEmail,
-        "comment_reply": emails.NotifyCommentReplyEmail,
-        "moderator_idea_feedback": emails.NotifyCreatorOnModeratorFeedback,
-        "moderator_blocked_comment": emails.NotifyCreatorOnModeratorBlocked,
-        "event_soon": emails.NotifyFollowersOnUpcomingEventEmail,
-        # missing:
-        #     comment_on_post - a user commented on your post
-        #     moderator_highlight - a moderator highlighted your comment
-        #     event_cancelled
-        #     event_added
-        #     event_update
-        #     project_started
-        #     project_completed
+        NotificationType.USER_ENGAGEMENT: emails.NotifyCreatorEmail,
+        NotificationType.COMMENT_REPLY: emails.NotifyCommentReplyEmail,
+        NotificationType.MODERATOR_IDEA_FEEDBACK: emails.NotifyCreatorOnModeratorFeedback,
+        NotificationType.MODERATOR_BLOCKED_COMMENT: emails.NotifyCreatorOnModeratorBlocked,
+        NotificationType.EVENT_SOON: emails.NotifyFollowersOnUpcomingEventEmail,
+        # TODO: Add missing mappings:
+        # NotificationType.COMMENT_ON_POST: emails.???,
+        # NotificationType.MODERATOR_HIGHLIGHT: emails.???,
+        # NotificationType.EVENT_CANCELLED: emails.???,
+        # NotificationType.EVENT_ADDED: emails.???,
+        # NotificationType.EVENT_UPDATE: emails.???,
+        # NotificationType.PROJECT_STARTED: emails.???,
+        # NotificationType.PROJECT_COMPLETED: emails.???,
     }
     return email_map.get(notification_type)
