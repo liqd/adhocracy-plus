@@ -24,9 +24,9 @@ module.exports = {
         type: 'this'
       }
     },
-    captcheck: {
+    prosopo: {
       import: [
-        './apps/captcha/assets/captcheck.js'
+        './apps/captcha/assets/prosopo.js'
       ],
       // shares dependency so not loaded repeatedly
       dependOn: 'adhocracy4'
