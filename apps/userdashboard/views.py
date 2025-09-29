@@ -1,11 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.contenttypes.models import ContentType
-from django.shortcuts import get_object_or_404
-from django.urls import reverse
-from django.views import generic
-from django.utils.translation import gettext_lazy as _
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+from django.views import generic
 
 from adhocracy4.actions.models import Action
 from adhocracy4.comments.models import Comment
@@ -14,8 +14,8 @@ from adhocracy4.projects.models import Project
 from adhocracy4.rules import mixins as rules_mixins
 from apps.documents.models import Chapter
 from apps.documents.models import Paragraph
-from apps.notifications.models import NotificationType
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
+from apps.notifications.models import NotificationType
 from apps.organisations.models import Organisation
 from apps.users.models import User
 
@@ -171,43 +171,42 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
 
         # INTERACTIONS: User engagement notifications
         interactions = notifications.filter(
-            Q(notification_type=NotificationType.USER_ENGAGEMENT) |
-            Q(notification_type=NotificationType.MESSAGE_RECEIVED) |
-            Q(notification_type=NotificationType.PROJECT_INVITATION) |
-            Q(notification_type=NotificationType.COMMENT_REPLY) |
-            Q(notification_type=NotificationType.MODERATOR_FEEDBACK) |
-            Q(notification_type=NotificationType.COMMENT_ON_POST) |
-            Q(notification_type=NotificationType.MODERATOR_HIGHLIGHT) |
-            Q(notification_type=NotificationType.MODERATOR_IDEA_FEEDBACK) |
-            Q(notification_type=NotificationType.MODERATOR_BLOCKED_COMMENT)
+            Q(notification_type=NotificationType.MESSAGE_RECEIVED)
+            | Q(notification_type=NotificationType.PROJECT_INVITATION)
+            | Q(notification_type=NotificationType.COMMENT_REPLY)
+            | Q(notification_type=NotificationType.MODERATOR_FEEDBACK)
+            | Q(notification_type=NotificationType.COMMENT_ON_POST)
+            | Q(notification_type=NotificationType.MODERATOR_HIGHLIGHT)
+            | Q(notification_type=NotificationType.MODERATOR_IDEA_FEEDBACK)
+            | Q(notification_type=NotificationType.MODERATOR_BLOCKED_COMMENT)
         )
 
         # PROJECTS: Project-related notifications
         followed_projects = notifications.filter(
-            Q(notification_type=NotificationType.PROJECT_UPDATE) |
-            Q(notification_type=NotificationType.PROJECT_INVITATION) |
-            Q(notification_type=NotificationType.PROJECT_EVENT) |
-            Q(notification_type=NotificationType.PROJECT_STARTED) |
-            Q(notification_type=NotificationType.PROJECT_COMPLETED) |
-            Q(notification_type=NotificationType.PHASE_STARTED) |
-            Q(notification_type=NotificationType.PHASE_ENDED) |
-            Q(notification_type=NotificationType.PROJECT_STATUS_CHANGE) |
-            Q(notification_type=NotificationType.EVENT_ADDED) |
-            Q(notification_type=NotificationType.EVENT_SOON) |
-            Q(notification_type=NotificationType.EVENT_UPDATE) |
-            Q(notification_type=NotificationType.EVENT_CANCELLED) |
-            Q(notification_type=NotificationType.NEWSLETTER)
+            Q(notification_type=NotificationType.PROJECT_UPDATE)
+            | Q(notification_type=NotificationType.PROJECT_INVITATION)
+            | Q(notification_type=NotificationType.PROJECT_EVENT)
+            | Q(notification_type=NotificationType.PROJECT_STARTED)
+            | Q(notification_type=NotificationType.PROJECT_COMPLETED)
+            | Q(notification_type=NotificationType.PHASE_STARTED)
+            | Q(notification_type=NotificationType.PHASE_ENDED)
+            | Q(notification_type=NotificationType.PROJECT_STATUS_CHANGE)
+            | Q(notification_type=NotificationType.EVENT_ADDED)
+            | Q(notification_type=NotificationType.EVENT_SOON)
+            | Q(notification_type=NotificationType.EVENT_UPDATE)
+            | Q(notification_type=NotificationType.EVENT_CANCELLED)
+            | Q(notification_type=NotificationType.NEWSLETTER)
         )
 
         # MODERATION: Moderation and system notifications
         moderation = notifications.filter(
-            Q(notification_type=NotificationType.MODERATOR_FEEDBACK) |
-            Q(notification_type=NotificationType.MODERATOR_ACTION) |
-            Q(notification_type=NotificationType.CONTENT_APPROVED) |
-            Q(notification_type=NotificationType.CONTENT_REJECTED) |
-            Q(notification_type=NotificationType.USER_WARNING) |
-            Q(notification_type=NotificationType.CONTENT_FLAGGED) |
-            Q(notification_type=NotificationType.SYSTEM)
+            Q(notification_type=NotificationType.MODERATOR_FEEDBACK)
+            | Q(notification_type=NotificationType.MODERATOR_ACTION)
+            | Q(notification_type=NotificationType.CONTENT_APPROVED)
+            | Q(notification_type=NotificationType.CONTENT_REJECTED)
+            | Q(notification_type=NotificationType.USER_WARNING)
+            | Q(notification_type=NotificationType.CONTENT_FLAGGED)
+            | Q(notification_type=NotificationType.SYSTEM)
         )
 
         # Unread counts
