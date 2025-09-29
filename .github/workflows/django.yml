@@ -60,6 +60,13 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - name: Cache testmon data
+        uses: actions/cache@v4
+        with:
+          path: .testmon
+          key: ${{ runner.os }}-testmon-${{ hashFiles('**/*.py') }}
+          restore-keys: |
+            ${{ runner.os }}-testmon-
       - name: check a4 hashes equal
         run: |
           ./scripts/a4-check.sh
@@ -78,7 +85,7 @@ jobs:
           PGHOSTADDR: 127.0.0.1
         run: |
           python manage.py collectstatic > /dev/null
-          DJANGO_SETTINGS_MODULE='adhocracy-plus.config.settings.travis' py.test --cov
+          DJANGO_SETTINGS_MODULE='adhocracy-plus.config.settings.travis' py.test --testmon --cov
           isort --diff -c adhocracy-plus tests
           python manage.py makemigrations --dry-run --check --noinput
           flake8 adhocracy-plus tests --exclude migrations,settings
