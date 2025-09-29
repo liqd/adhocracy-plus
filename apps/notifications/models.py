@@ -43,22 +43,15 @@ class NotificationType(models.TextChoices):
     PHASE_ENDED = "phase_ended", _("Phase Ended")
     PROJECT_STARTED = "project_started", _("Project Started")
     PROJECT_COMPLETED = "project_completed", _("Project Completed")
-    PROJECT_STATUS_CHANGE = "project_status_change", _("Project Status Change")
-    PROJECT_UPDATE = "project_update", _("Project Update")
-    PROJECT_EVENT = "project_event", _("Project Event")
     EVENT_ADDED = "event_added", _("Event Added")
     EVENT_SOON = "event_soon", _("Event Starting Soon")
     EVENT_UPDATE = "event_update", _("Event Update")
     EVENT_CANCELLED = "event_cancelled", _("Event Cancelled")
-    NEWSLETTER = "newsletter", _("Newsletter")
 
     # User interactions
-    USER_ENGAGEMENT = "user_engagement", _("User Engagement")
-    MESSAGE_RECEIVED = "message_received", _("Message Received")
     PROJECT_INVITATION = "project_invitation", _("Project Invitation")
     COMMENT_REPLY = "comment_reply", _("Comment Reply")
     COMMENT_ON_POST = "comment_on_post", _("Comment on Post")
-    CONTENT_REACTION = "content_reaction", _("Content Reaction")
 
     # Moderation actions
     MODERATOR_HIGHLIGHT = "moderator_highlight", _("Moderator Highlight")
@@ -67,11 +60,6 @@ class NotificationType(models.TextChoices):
         "Moderator Blocked Comment"
     )
     MODERATOR_IDEA_FEEDBACK = "moderator_idea_feedback", _("Moderator Idea Feedback")
-    MODERATOR_ACTION = "moderator_action", _("Moderator Action")
-    CONTENT_APPROVED = "content_approved", _("Content Approved")
-    CONTENT_REJECTED = "content_rejected", _("Content Rejected")
-    USER_WARNING = "user_warning", _("User Warning")
-    CONTENT_FLAGGED = "content_flagged", _("Content Flagged")
 
     # System
     SYSTEM = "system", _("System Notification")
@@ -98,35 +86,21 @@ NOTIFICATION_TYPE_MAPPING = {
     NotificationType.PHASE_ENDED: NotificationCategory.PROJECT_UPDATES,
     NotificationType.PROJECT_STARTED: NotificationCategory.PROJECT_UPDATES,
     NotificationType.PROJECT_COMPLETED: NotificationCategory.PROJECT_UPDATES,
-    NotificationType.PROJECT_STATUS_CHANGE: NotificationCategory.PROJECT_UPDATES,
-    NotificationType.PROJECT_UPDATE: NotificationCategory.PROJECT_UPDATES,
     # Project events
-    NotificationType.PROJECT_EVENT: NotificationCategory.PROJECT_EVENTS,
     NotificationType.EVENT_ADDED: NotificationCategory.PROJECT_EVENTS,
     NotificationType.EVENT_SOON: NotificationCategory.PROJECT_EVENTS,
     NotificationType.EVENT_UPDATE: NotificationCategory.PROJECT_EVENTS,
     NotificationType.EVENT_CANCELLED: NotificationCategory.PROJECT_EVENTS,
     # User interactions
-    NotificationType.USER_ENGAGEMENT: NotificationCategory.USER_ENGAGEMENT,
     NotificationType.COMMENT_REPLY: NotificationCategory.USER_ENGAGEMENT,
     NotificationType.COMMENT_ON_POST: NotificationCategory.USER_ENGAGEMENT,
-    NotificationType.CONTENT_REACTION: NotificationCategory.USER_ENGAGEMENT,
     # Messages & Invitations
-    NotificationType.MESSAGE_RECEIVED: NotificationCategory.MESSAGES,
     NotificationType.PROJECT_INVITATION: NotificationCategory.INVITATIONS,
     # Moderation
     NotificationType.MODERATOR_HIGHLIGHT: NotificationCategory.MODERATION,
     NotificationType.MODERATOR_FEEDBACK: NotificationCategory.MODERATION,
     NotificationType.MODERATOR_BLOCKED_COMMENT: NotificationCategory.MODERATION,
     NotificationType.MODERATOR_IDEA_FEEDBACK: NotificationCategory.MODERATION,
-    NotificationType.MODERATOR_ACTION: NotificationCategory.MODERATION,
-    NotificationType.CONTENT_APPROVED: NotificationCategory.MODERATION,
-    NotificationType.CONTENT_REJECTED: NotificationCategory.MODERATION,
-    NotificationType.CONTENT_FLAGGED: NotificationCategory.MODERATION,
-    NotificationType.USER_WARNING: NotificationCategory.WARNINGS,
-    # Special cases
-    NotificationType.NEWSLETTER: "newsletter",  # Email only
-    NotificationType.SYSTEM: "system",  # Always on
 }
 
 # Field mapping
