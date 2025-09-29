@@ -19,4 +19,3 @@ class ProsopoCaptchaField(forms.CharField):
             raise forms.ValidationError(
                 _("Captcha verification failed. Please try again.")
             )
-        return value
