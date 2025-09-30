@@ -1,6 +1,9 @@
 name: Django CI
 
 on:
+  workflow_run:
+    workflows: ["Build and Push CI Base Image"]
+    types: [completed]
   push:
     branches: [ main ]
   pull_request:
@@ -9,39 +12,33 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    services:
-      postgres:
-        image: postgis/postgis:16-3.5
-        env:
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    # Use your self-built image as container for the entire job
+    container: ghcr.io/${{ github.repository }}/ci-base:latest
     steps:
       - uses: actions/checkout@v4
+      - name: Start PostgreSQL
+        run: |
+          sudo service postgresql start
+      
+      - name: Test Postgres
+        env:
+          PGPASSWORD: postgres
+          PGHOSTADDR: 127.0.0.1
+
+        run: |
+          # Test postgres user
+          psql -h localhost -U postgres -d django -c "SELECT version();"
+          psql -h localhost -U postgres -d django_test -c "SELECT 1;"
+          # Test PostGIS extension
+          psql -h localhost -U postgres -d django -c "SELECT PostGIS_version();"
+          psql -h localhost -U postgres -d django_test -c "SELECT PostGIS_version();"
+
+
       - name: Set up Python ${{ matrix.python-version }}
         id: setup-python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install uv
-        run: |
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-      - name: Install Bun
-        run: |
-          curl -fsSL https://bun.sh/install | bash
-          echo "$HOME/.bun/bin" >> $GITHUB_PATH
-      - name: Setup Postgres
-        env:
-          PGPASSWORD: postgres
-          PGHOSTADDR: 127.0.0.1
-        run: |
-          psql -c 'create database django;' -U postgres
-          psql -c 'create database django_test;' -U postgres
       - name: Cache Bun packages
         uses: actions/cache@v4
         env:
@@ -81,15 +78,10 @@ jobs:
         run: |
           ./scripts/a4-check.sh
 
-      - name: Install OS Dependencies (cached)
-        uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: gdal-bin libsqlite3-mod-spatialite libblas3
-          execute_install_scripts: true
-          version: 1.0
-
-      - name: Update dynamic linker cache
-        run: sudo ldconfig
+      - name: Install Python Dependencies
+        run: |
+          uv pip install -r requirements/dev.txt --system
+          uv pip install coveralls --system
 
       - name: Install Bun Dependencies
         run: |
@@ -98,10 +90,6 @@ jobs:
           bun install
           bun run build
 
-      - name: Install Python Dependencies
-        run: |
-          ~/.local/bin/uv pip install -r requirements/dev.txt --system
-          ~/.local/bin/uv pip install coveralls --system
       - name: Run Tests
         env:
           PGPASSWORD: postgres
@@ -112,6 +100,13 @@ jobs:
           isort --diff -c adhocracy-plus tests
           python manage.py makemigrations --dry-run --check --noinput
           flake8 adhocracy-plus tests --exclude migrations,settings
+      
+      - name: Configure Git for Coveralls
+        run: |
+          git config --global --add safe.directory /__w/adhocracy-plus/adhocracy-plus
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+      
       - name: Coveralls
         env:
           GITHUB_TOKEN: ${{ secrets.COV }}
