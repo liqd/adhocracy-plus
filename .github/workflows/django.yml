@@ -81,11 +81,15 @@ jobs:
         run: |
           ./scripts/a4-check.sh
 
-      - name: Install OS Dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y gdal-bin
-          sudo apt install libsqlite3-mod-spatialite
+      - name: Install OS Dependencies (cached)
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: gdal-bin libsqlite3-mod-spatialite libblas3
+          execute_install_scripts: true
+          version: 1.0
+
+      - name: Update dynamic linker cache
+        run: sudo ldconfig
 
       - name: Install Bun Dependencies
         run: |
