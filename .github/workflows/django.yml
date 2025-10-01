@@ -1,6 +1,9 @@
 name: Django CI
 
 on:
+  workflow_run:
+    workflows: ["Build and Push CI Base Image"]
+    types: [completed]
   push:
     branches: [ main ]
   pull_request:
@@ -9,79 +12,101 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    services:
-      postgres:
-        image: postgis/postgis:16-3.5
-        env:
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    # Use your self-built image as container for the entire job
+    container: ghcr.io/${{ github.repository }}/ci-base:latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - name: Setup Postgres
+      - name: Start PostgreSQL
+        run: |
+          sudo service postgresql start
+      
+      - name: Test Postgres
         env:
           PGPASSWORD: postgres
           PGHOSTADDR: 127.0.0.1
+
         run: |
-          psql -c 'create database django;' -U postgres
-          psql -c 'create database django_test;' -U postgres
-      - name: Cache node modules
+          # Test postgres user
+          psql -h localhost -U postgres -d django -c "SELECT version();"
+          psql -h localhost -U postgres -d django_test -c "SELECT 1;"
+          # Test PostGIS extension
+          psql -h localhost -U postgres -d django -c "SELECT PostGIS_version();"
+          psql -h localhost -U postgres -d django_test -c "SELECT PostGIS_version();"
+
+
+      - name: Set up Python ${{ matrix.python-version }}
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Cache Bun packages
         uses: actions/cache@v4
         env:
-          cache-name: cache-node-modules
+          cache-name: cache-bun-packages
         with:
-          path: ~/.npm
+          path: ~/.bun/install/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: Cache pip packages
+      - name: Cache uv packages
         uses: actions/cache@v4
         env:
-          cache-name: cache-pip-packages
+          cache-name: cache-uv-packages
         with:
-          path: ~/.cache/pip
+          path: ~/.cache/uv
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/requirements/dev.txt') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - name: Cache testmon data
+        id: cache-testmon
+        uses: actions/cache@v4
+        with:
+          path: .testmondata
+          key: ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/requirements/dev.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-
+
+      - name: Show testmon cache status
+        run: |
+          echo "testmon cache hit: ${{ steps.cache-testmon.outputs.cache-hit }}"
+          ls -la .testmondata || true
       - name: check a4 hashes equal
         run: |
           ./scripts/a4-check.sh
-      - name: Install Dependencies
+
+      - name: Install Python Dependencies
         run: |
-          sudo apt update
-          sudo apt install -y gdal-bin
-          sudo apt install libsqlite3-mod-spatialite
-          npm install
-          npm run build
-          pip install -r requirements/dev.txt
-          pip install coveralls
+          uv pip install -r requirements/dev.txt --system
+          uv pip install coveralls --system
+
+      - name: Install Bun Dependencies
+        run: |
+          # Installiere Git-Dependencies mit npm (Bun-Fallback)
+          npm install --package-lock-only --ignore-scripts
+          bun install
+          bun run build
+
       - name: Run Tests
         env:
           PGPASSWORD: postgres
           PGHOSTADDR: 127.0.0.1
         run: |
           python manage.py collectstatic > /dev/null
-          DJANGO_SETTINGS_MODULE='adhocracy-plus.config.settings.travis' py.test --cov
+          DJANGO_SETTINGS_MODULE='adhocracy-plus.config.settings.travis' py.test --testmon --cov
           isort --diff -c adhocracy-plus tests
           python manage.py makemigrations --dry-run --check --noinput
           flake8 adhocracy-plus tests --exclude migrations,settings
+      
+      - name: Configure Git for Coveralls
+        run: |
+          git config --global --add safe.directory /__w/adhocracy-plus/adhocracy-plus
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+      
       - name: Coveralls
         env:
           GITHUB_TOKEN: ${{ secrets.COV }}
