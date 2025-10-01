@@ -5,7 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 from apps import logger
 
-from ..models import NotificationType, NotificationSettings
+from ..models import NotificationSettings
+from ..models import NotificationType
 from .base import BaseNotificationStrategy
 
 User = get_user_model()
@@ -31,9 +32,7 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
             project, NotificationType.PROJECT_STARTED, "email"
         )
 
-    def _get_project_initiators(
-        self, project
-    ) -> List[User]:
+    def _get_project_initiators(self, project) -> List[User]:
         return project.organisation.initiators.all()
 
     def _get_project_recipients(
@@ -154,6 +153,7 @@ class ProjectCreated(ProjectNotificationStrategy):
                 "project_url": project.get_absolute_url(),
             },
         }
+
 
 class ProjectDeleted(ProjectNotificationStrategy):
     def get_in_app_recipients(self, project) -> List[User]:
