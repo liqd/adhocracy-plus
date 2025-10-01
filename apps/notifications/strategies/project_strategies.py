@@ -138,6 +138,23 @@ class ProjectInvitationReceived(ProjectNotificationStrategy):
         }
 
 
+class ProjectCreated(ProjectNotificationStrategy):
+    def get_in_app_recipients(self, project) -> List[User]:
+        return self._get_project_initiators(project)
+
+    def get_email_recipients(self, project) -> List[User]:
+        return self._get_project_initiators(project)
+
+    def create_notification_data(self, project) -> dict:
+        return {
+            "notification_type": NotificationType.PROJECT_CREATED,
+            "message_template": _("A new project {project} has been created."),
+            "context": {
+                "project": project.name,
+                "project_url": project.get_absolute_url(),
+            },
+        }
+
 class ProjectDeleted(ProjectNotificationStrategy):
     def get_in_app_recipients(self, project) -> List[User]:
         return self._get_project_initiators(project)
