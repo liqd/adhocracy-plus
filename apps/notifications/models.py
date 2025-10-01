@@ -26,6 +26,7 @@ class NotificationType(models.TextChoices):
     PHASE_ENDED = "phase_ended", _("Phase Ended")
     PROJECT_STARTED = "project_started", _("Project Started")
     PROJECT_COMPLETED = "project_completed", _("Project Completed")
+    PROJECT_CREATED = "project_created", _("Project Created")
     PROJECT_DELETED = "project_deleted", _("Project Deleted")
 
     EVENT_ADDED = "event_added", _("Event Added")
