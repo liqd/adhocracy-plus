@@ -1,6 +1,7 @@
 import pytest
 from django.urls import reverse
 
+
 @pytest.mark.django_db
 def test_mark_notification_as_read_view(client, user_factory, notification_factory):
     # Create a user and log them in
