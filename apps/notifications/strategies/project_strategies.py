@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from apps import logger
 
-from ..models import NotificationType
+from ..models import NotificationType, NotificationSettings
 from .base import BaseNotificationStrategy
 
 User = get_user_model()
@@ -31,10 +31,14 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
             project, NotificationType.PROJECT_STARTED, "email"
         )
 
+    def _get_project_initiators(
+        self, project
+    ) -> List[User]:
+        return project.organisation.initiators.all()
+
     def _get_project_recipients(
         self, project, notification_type, channel
     ) -> List[User]:
-        from apps.notifications.models import NotificationSettings
 
         followers = self._get_project_followers(project)
         recipients = []
@@ -127,6 +131,24 @@ class ProjectInvitationReceived(ProjectNotificationStrategy):
         return {
             "notification_type": NotificationType.PROJECT_INVITATION,
             "message_template": _("You have been invited to project {project}"),
+            "context": {
+                "project": project.name,
+                "project_url": project.get_absolute_url(),
+            },
+        }
+
+
+class ProjectDeleted(ProjectNotificationStrategy):
+    def get_in_app_recipients(self, project) -> List[User]:
+        return self._get_project_initiators(project)
+
+    def get_email_recipients(self, project) -> List[User]:
+        return self._get_project_initiators(project)
+
+    def create_notification_data(self, project) -> dict:
+        return {
+            "notification_type": NotificationType.PROJECT_DELETED,
+            "message_template": _("The project {project} has been deleted."),
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),

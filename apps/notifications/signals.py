@@ -7,7 +7,7 @@ from adhocracy4.comments.models import Comment
 from apps.budgeting.models import Proposal
 from apps.ideas.models import Idea
 from apps.offlineevents.models import OfflineEvent
-from apps.projects.models import ModeratorInvite
+from apps.projects.models import ModeratorInvite, Project
 
 from .helpers import _create_notifications
 from .strategies import CommentBlocked
@@ -18,6 +18,7 @@ from .strategies import OfflineEventCreated
 from .strategies import OfflineEventDeleted
 from .strategies import OfflineEventUpdate
 from .strategies import ProjectComment
+from .strategies import ProjectDeleted
 from .strategies import ProjectInvitationReceived
 from .strategies import ProposalFeedback
 
@@ -169,4 +170,9 @@ def handle_invite_received(sender, instance, created, **kwargs):
         return
 
     strategy = ProjectInvitationReceived()
+    _create_notifications(instance, strategy)
+
+@receiver(post_delete, sender=Project)
+def handle_project_deleted(sender, instance, **kwargs):
+    strategy = ProjectDeleted()
     _create_notifications(instance, strategy)

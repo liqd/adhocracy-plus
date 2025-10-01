@@ -326,3 +326,26 @@ def test_handle_moderator_invite_notification(
         invitation_notifications.first().notification_type
         == NotificationType.PROJECT_INVITATION
     )
+
+
+@pytest.mark.django_db
+def test_handle_project_deleted(project_factory, organisation_factory, user_factory):
+    initiator = user_factory()
+
+    # Create organisation with this initiator
+    organisation = organisation_factory()
+    organisation.initiators.add(initiator)
+
+    # Create project in this organisation
+    project = project_factory(organisation=organisation)
+
+    # Delete the project to trigger the signal
+    project.delete()
+
+    # Check that a notification was created for the initiator
+    deletion_notifications = Notification.objects.filter(recipient=initiator)
+    assert deletion_notifications.count() == 1
+    assert (
+        deletion_notifications.first().notification_type
+        == NotificationType.PROJECT_DELETED
+    )
