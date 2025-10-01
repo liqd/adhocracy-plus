@@ -18,6 +18,7 @@ from .strategies import OfflineEventCreated
 from .strategies import OfflineEventDeleted
 from .strategies import OfflineEventUpdate
 from .strategies import ProjectComment
+from .strategies import ProjectCreated
 from .strategies import ProjectDeleted
 from .strategies import ProjectInvitationReceived
 from .strategies import ProposalFeedback
@@ -170,6 +171,15 @@ def handle_invite_received(sender, instance, created, **kwargs):
         return
 
     strategy = ProjectInvitationReceived()
+    _create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=Project)
+def handle_comment_notifications(sender, instance, created, **kwargs):
+    if not created:
+        return
+
+    strategy = ProjectCreated()
     _create_notifications(instance, strategy)
 
 @receiver(post_delete, sender=Project)
