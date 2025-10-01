@@ -47,6 +47,8 @@ def _map_notification_type_to_email_class(notification_type):
         NotificationType.EVENT_SOON: emails.NotifyFollowersOnUpcomingEventEmail,
         NotificationType.PHASE_STARTED: emails.NotifyFollowersOnPhaseStartedEmail,
         NotificationType.COMMENT_ON_POST: emails.NotifyCreatorEmail,
+        NotificationType.PROJECT_CREATED: emails.NotifyInitiatorsOnProjectCreatedEmail,
+        NotificationType.PROJECT_DELETED: emails.NotifyInitiatorsOnProjectDeletedEmail,
         # TODO: Add missing mappings:
         # NotificationType.COMMENT_REPLY: emails.???‚,
         # NotificationType.MODERATOR_HIGHLIGHT: emails.???,
