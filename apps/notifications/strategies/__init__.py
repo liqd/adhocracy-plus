@@ -15,10 +15,12 @@ from .phase_strategies import PhaseStarted
 from .project_strategies import ProjectEnded
 from .project_strategies import ProjectInvitationReceived
 from .project_strategies import ProjectStarted
+from .project_strategies import ProjectDeleted
 
 __all__ = [
     "CommentReply",
     "ProjectComment",
+    "ProjectDeleted",
     "CommentHighlighted",
     "OfflineEventCreated",
     "OfflineEventUpdate",
