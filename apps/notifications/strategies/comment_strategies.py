@@ -47,6 +47,7 @@ class CommentHighlighted(BaseNotificationStrategy):
 
 class ProjectComment(BaseNotificationStrategy):
     """Strategy for notifications when someone comments on a project"""
+
     def get_in_app_recipients(self, comment) -> List[User]:
         """Get recipients for in-app notifications (project author)"""
         recipients = set()
