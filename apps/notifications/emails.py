@@ -241,7 +241,7 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
         return receivers
 
 
-class NotifyFollowersOnUpcommingEventEmail(Email):
+class NotifyFollowersOnUpcomingEventEmail(Email):
     template_name = "a4_candy_notifications/emails" "/notify_followers_event_upcomming"
 
     def get_organisation(self):
