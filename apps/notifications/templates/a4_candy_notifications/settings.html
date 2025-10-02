@@ -1,4 +1,5 @@
 {% extends "a4_candy_account/account_dashboard.html" %}
+{% load widget_tweaks %}
 {% load i18n %}
 
 {% block title %}{% trans 'Notification Settings' %}{% endblock title %}
@@ -21,15 +22,16 @@
                 <div class="mb-5">
                     <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
                         <div class="form-check form-switch mb-0">
-                            <input class="form-check-input category-toggle" type="checkbox" id="project-toggle" 
+                            <input class="form-check-input category-toggle" type="checkbox" 
+                                   id="project-related-toggle" 
                                    data-category="project-related" checked>
-                            <label class="form-check-label fw-bold h5 mb-0" for="project-toggle">
+                            <label class="form-check-label fw-bold h5 mb-0" for="project-related-toggle">
                                 {% trans "Project Related Notifications" %}
                             </label>
                         </div>
                     </div>
                     
-                    <div class="ps-3">
+                    <div class="ps-3" data-category="project-related">
                         {# Newsletter #}
                         <div class="mb-4">
                             <h4 class="h6 mb-2">{% trans "Newsletter" %}</h4>
@@ -37,7 +39,7 @@
                                 {% trans "General updates and news from the platform" %}
                             </p>
                             <div class="form-check form-switch">
-                                {{ form.email_newsletter }}
+                                {{ form.email_newsletter|add_class:"project-related-switch" }}
                                 <label class="form-check-label" for="{{ form.email_newsletter.id_for_label }}">
                                     {% trans "Email newsletter" %}
                                 </label>
@@ -53,7 +55,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-check form-switch mb-2">
-                                        {{ form.email_project_updates }}
+                                        {{ form.email_project_updates|add_class:"project-related-switch" }}
                                         <label class="form-check-label fw-bold" for="{{ form.email_project_updates.id_for_label }}">
                                             Email
                                         </label>
@@ -61,7 +63,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check form-switch mb-2">
-                                        {{ form.notify_project_updates }}
+                                        {{ form.notify_project_updates|add_class:"project-related-switch" }}
                                         <label class="form-check-label fw-bold" for="{{ form.notify_project_updates.id_for_label }}">
                                             In-App
                                         </label>
@@ -79,7 +81,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-check form-switch mb-2">
-                                        {{ form.email_project_events }}
+                                        {{ form.email_project_events|add_class:"project-related-switch" }}
                                         <label class="form-check-label fw-bold" for="{{ form.email_project_events.id_for_label }}">
                                             Email
                                         </label>
@@ -87,7 +89,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check form-switch mb-2">
-                                        {{ form.notify_project_events }}
+                                        {{ form.notify_project_events|add_class:"project-related-switch" }}
                                         <label class="form-check-label fw-bold" for="{{ form.notify_project_events.id_for_label }}">
                                             In-App
                                         </label>
@@ -102,15 +104,16 @@
                 <div class="mb-5">
                     <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
                         <div class="form-check form-switch mb-0">
-                            <input class="form-check-input category-toggle" type="checkbox" id="interaction-toggle" 
+                            <input class="form-check-input category-toggle" type="checkbox" 
+                                   id="interaction-related-toggle" 
                                    data-category="interaction-related" checked>
-                            <label class="form-check-label fw-bold h5 mb-0" for="interaction-toggle">
+                            <label class="form-check-label fw-bold h5 mb-0" for="interaction-related-toggle">
                                 {% trans "Interactions with other users" %}
                             </label>
                         </div>
                     </div>
                     
-                    <div class="ps-3">
+                    <div class="ps-3" data-category="interaction-related">
                         {# User Engagement #}
                         <div class="mb-4">
                             <h4 class="h6 mb-2">{% trans "Reactions from other users" %}</h4>
@@ -120,7 +123,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-check form-switch mb-2">
-                                        {{ form.email_user_engagement }}
+                                        {{ form.email_user_engagement|add_class:"interaction-related-switch" }}
                                         <label class="form-check-label fw-bold" for="{{ form.email_user_engagement.id_for_label }}">
                                             Email
                                         </label>
@@ -128,7 +131,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check form-switch mb-2">
-                                        {{ form.notify_user_engagement }}
+                                        {{ form.notify_user_engagement|add_class:"interaction-related-switch" }}
                                         <label class="form-check-label fw-bold" for="{{ form.notify_user_engagement.id_for_label }}">
                                             In-App
                                         </label>
@@ -150,3 +153,42 @@
 </div>
 
 {% endblock dashboard_content %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function setupCategoryToggle(toggleId, switchClass) {
+        const toggle = document.getElementById(toggleId);
+        const switches = document.querySelectorAll(switchClass);
+        
+        if (!toggle || switches.length === 0) return;
+        
+        function updateToggle() {
+            const allChecked = Array.from(switches).every(switchEl => switchEl.checked);
+            const anyChecked = Array.from(switches).some(switchEl => switchEl.checked);
+            
+            toggle.checked = allChecked;
+            toggle.indeterminate = anyChecked && !allChecked;
+        }
+        
+        // Handle toggle click
+        toggle.addEventListener('click', function() {
+            const newState = this.checked;
+            switches.forEach(switchEl => {
+                switchEl.checked = newState;
+            });
+        });
+        
+        // Handle individual switch changes
+        switches.forEach(switchEl => {
+            switchEl.addEventListener('change', updateToggle);
+        });
+        
+        updateToggle();
+    }
+    
+    setupCategoryToggle('project-related-toggle', '.project-related-switch');
+    setupCategoryToggle('interaction-related-toggle', '.interaction-related-switch');
+});
+</script>
+{% endblock extra_js %}
