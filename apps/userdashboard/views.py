@@ -171,8 +171,7 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
 
         # INTERACTIONS: User engagement notifications
         interactions = notifications.filter(
-            Q(notification_type=NotificationType.PROJECT_INVITATION)
-            | Q(notification_type=NotificationType.COMMENT_REPLY)
+            Q(notification_type=NotificationType.COMMENT_REPLY)
             | Q(notification_type=NotificationType.MODERATOR_FEEDBACK)
             | Q(notification_type=NotificationType.COMMENT_ON_POST)
             | Q(notification_type=NotificationType.MODERATOR_HIGHLIGHT)
@@ -183,6 +182,7 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
         # PROJECTS: Project-related notifications
         followed_projects = notifications.filter(
             Q(notification_type=NotificationType.PROJECT_INVITATION)
+            | Q(notification_type=NotificationType.PROJECT_DELETED)
             | Q(notification_type=NotificationType.PROJECT_STARTED)
             | Q(notification_type=NotificationType.PROJECT_COMPLETED)
             | Q(notification_type=NotificationType.PHASE_STARTED)
@@ -193,16 +193,9 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
             | Q(notification_type=NotificationType.EVENT_CANCELLED)
         )
 
-        # MODERATION: Moderation and system notifications
-        moderation = notifications.filter(
-            Q(notification_type=NotificationType.MODERATOR_FEEDBACK)
-            | Q(notification_type=NotificationType.SYSTEM)
-        )
-
         # Unread counts
         context["interactions_unread_count"] = interactions.filter(read=False).count()
         context["projects_unread_count"] = followed_projects.filter(read=False).count()
-        context["moderation_unread_count"] = moderation.filter(read=False).count()
 
         # Pagination
         context["interactions_page"] = self._paginate_queryset(
@@ -210,9 +203,6 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
         )
         context["projects_page"] = self._paginate_queryset(
             followed_projects, page_param="projects_page"
-        )
-        context["moderation_page"] = self._paginate_queryset(
-            moderation, page_param="moderation_page"
         )
 
         return context
