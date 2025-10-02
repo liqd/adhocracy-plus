@@ -58,6 +58,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     date_joined = models.DateTimeField(editable=False, default=timezone.now)
 
+    # todo: remove, this is now unused
     get_notifications = models.BooleanField(
         verbose_name=_("Send me email notifications"),
         default=True,
