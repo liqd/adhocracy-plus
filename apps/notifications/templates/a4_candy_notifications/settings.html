@@ -14,6 +14,27 @@
                     {% trans 'Back to Account' %}
                 </a>
             </div>
+
+            {% if user.is_staff %}
+                <div class="mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">{% trans 'Trigger all notification tasks (for testing)' %}</p>
+                            <ul>
+                                <li>send_recently_started_project_notifications</li>
+                                <li>send_recently_completed_project_notifications</li>
+                                <li>send_upcoming_event_notifications</li>
+                            </ul>
+                            <form method="post" action="{% url 'trigger_all_notification_tasks' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-warning">
+                                    {% trans 'Run All Notification Tasks' %}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
             
             <form method="post">
                 {% csrf_token %}

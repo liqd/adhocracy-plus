@@ -15,6 +15,9 @@ from .forms import NotificationSettingsForm
 from .models import Notification
 from .models import NotificationSettings
 from .models import NotificationType
+from .tasks import send_recently_completed_project_notifications
+from .tasks import send_recently_started_project_notifications
+from .tasks import send_upcoming_event_notifications
 
 
 def is_safe_url(url):
@@ -42,6 +45,22 @@ class NotificationSettingsView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse("account_notification_settings")
+
+
+class TriggerAllNotificationTasksView(LoginRequiredMixin, View):
+    """View to trigger all notification tasks (staff only)"""
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+    def post(self, request):
+        # Run all tasks
+        send_recently_started_project_notifications.delay()
+        send_recently_completed_project_notifications.delay()
+        send_upcoming_event_notifications.delay()
+
+        messages.success(request, "All notification tasks have been queued")
+        return redirect("account_notification_settings")
 
 
 class MarkNotificationAsReadView(LoginRequiredMixin, View):
