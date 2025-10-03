@@ -1,0 +1,36 @@
+// Map List View Styles
+// Responsive view toggle and map/list display controls
+
+.map-list-view {
+    .view-toggle {
+        display: block;
+    }
+    
+    .desktop-controls {
+        display: none;
+    }
+    
+    .mobile-hide {
+        visibility: hidden;
+        height: 0;
+    }
+    
+    @media (width >= 768px) {
+        .view-toggle {
+            display: none;
+        }
+        
+        .desktop-controls {
+            display: block;
+        }
+        
+        .mobile-hide {
+            visibility: visible;
+            height: auto;
+        }
+        
+        .map-list {
+            margin-top: 48px;
+        }
+    }
+}
