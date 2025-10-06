@@ -1,6 +1,45 @@
 from django.apps import apps
+from django.db.models import Q
 
 from .models import NotificationType
+
+# Define notification sections
+NOTIFICATION_SECTIONS = {
+    "projects": [
+        NotificationType.PROJECT_STARTED,
+        NotificationType.PROJECT_COMPLETED,
+        NotificationType.PROJECT_CREATED,
+        NotificationType.PROJECT_DELETED,
+        NotificationType.PHASE_STARTED,
+        NotificationType.PHASE_ENDED,
+        NotificationType.EVENT_ADDED,
+        NotificationType.EVENT_SOON,
+        NotificationType.EVENT_UPDATE,
+        NotificationType.EVENT_CANCELLED,
+    ],
+    "interactions": [
+        NotificationType.PROJECT_INVITATION,
+        NotificationType.COMMENT_REPLY,
+        NotificationType.COMMENT_ON_POST,
+        NotificationType.MODERATOR_FEEDBACK,
+        NotificationType.MODERATOR_HIGHLIGHT,
+        NotificationType.MODERATOR_IDEA_FEEDBACK,
+        NotificationType.MODERATOR_BLOCKED_COMMENT,
+    ],
+}
+
+
+# Helper function to get notifications by section
+def get_notifications_by_section(notifications, section):
+    if section not in NOTIFICATION_SECTIONS:
+        return notifications.none()
+
+    section_types = NOTIFICATION_SECTIONS[section]
+    q_objects = Q()
+    for notification_type in section_types:
+        q_objects |= Q(notification_type=notification_type)
+
+    return notifications.filter(q_objects)
 
 
 def _create_notifications(obj, strategy):
