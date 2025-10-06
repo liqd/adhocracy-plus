@@ -3,7 +3,6 @@ from urllib.parse import urlparse
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -12,9 +11,9 @@ from django.views.generic import UpdateView
 from django.views.generic import View
 
 from .forms import NotificationSettingsForm
+from .helpers import get_notifications_by_section
 from .models import Notification
 from .models import NotificationSettings
-from .models import NotificationType
 from .tasks import send_recently_completed_project_notifications
 from .tasks import send_recently_started_project_notifications
 from .tasks import send_upcoming_event_notifications
@@ -84,30 +83,7 @@ class MarkAllNotificationsAsReadView(LoginRequiredMixin, View):
         notifications = Notification.objects.filter(recipient=request.user, read=False)
 
         if section:
-            if section == "projects":
-                notifications = notifications.filter(
-                    Q(notification_type=NotificationType.PROJECT_INVITATION)
-                    | Q(notification_type=NotificationType.PROJECT_STARTED)
-                    | Q(notification_type=NotificationType.PROJECT_COMPLETED)
-                    | Q(notification_type=NotificationType.PHASE_STARTED)
-                    | Q(notification_type=NotificationType.PHASE_ENDED)
-                    | Q(notification_type=NotificationType.EVENT_ADDED)
-                    | Q(notification_type=NotificationType.EVENT_SOON)
-                    | Q(notification_type=NotificationType.EVENT_UPDATE)
-                    | Q(notification_type=NotificationType.EVENT_CANCELLED)
-                )
-            elif section == "interactions":
-                notifications = notifications.filter(
-                    Q(notification_type=NotificationType.PROJECT_INVITATION)
-                    | Q(notification_type=NotificationType.COMMENT_REPLY)
-                    | Q(notification_type=NotificationType.MODERATOR_FEEDBACK)
-                    | Q(notification_type=NotificationType.COMMENT_ON_POST)
-                    | Q(notification_type=NotificationType.MODERATOR_HIGHLIGHT)
-                    | Q(notification_type=NotificationType.MODERATOR_IDEA_FEEDBACK)
-                    | Q(notification_type=NotificationType.MODERATOR_BLOCKED_COMMENT)
-                )
-            pass
-
+            notifications = get_notifications_by_section(notifications, section)
             notifications.update(read=True, read_at=timezone.now())
             messages.success(request, "All notifications marked as read")
         return redirect(request.META.get("HTTP_REFERER", "home"))
