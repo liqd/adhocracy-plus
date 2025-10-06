@@ -16,6 +16,7 @@ from apps.documents.models import Chapter
 from apps.documents.models import Paragraph
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
 from apps.notifications.models import NotificationType
+from apps.notifications.helpers import get_notifications_by_section
 from apps.organisations.models import Organisation
 from apps.users.models import User
 
@@ -170,28 +171,10 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
         notifications = self.request.user.notifications.all().order_by("-created")
 
         # INTERACTIONS: User engagement notifications
-        interactions = notifications.filter(
-            Q(notification_type=NotificationType.COMMENT_REPLY)
-            | Q(notification_type=NotificationType.MODERATOR_FEEDBACK)
-            | Q(notification_type=NotificationType.COMMENT_ON_POST)
-            | Q(notification_type=NotificationType.MODERATOR_HIGHLIGHT)
-            | Q(notification_type=NotificationType.MODERATOR_IDEA_FEEDBACK)
-            | Q(notification_type=NotificationType.MODERATOR_BLOCKED_COMMENT)
-        )
+        interactions = get_notifications_by_section(notifications, "interactions")
 
         # PROJECTS: Project-related notifications
-        followed_projects = notifications.filter(
-            Q(notification_type=NotificationType.PROJECT_INVITATION)
-            | Q(notification_type=NotificationType.PROJECT_DELETED)
-            | Q(notification_type=NotificationType.PROJECT_STARTED)
-            | Q(notification_type=NotificationType.PROJECT_COMPLETED)
-            | Q(notification_type=NotificationType.PHASE_STARTED)
-            | Q(notification_type=NotificationType.PHASE_ENDED)
-            | Q(notification_type=NotificationType.EVENT_ADDED)
-            | Q(notification_type=NotificationType.EVENT_SOON)
-            | Q(notification_type=NotificationType.EVENT_UPDATE)
-            | Q(notification_type=NotificationType.EVENT_CANCELLED)
-        )
+        followed_projects = get_notifications_by_section(notifications, "projects")
 
         # Unread counts
         context["interactions_unread_count"] = interactions.filter(read=False).count()
