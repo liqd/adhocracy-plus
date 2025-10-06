@@ -3,7 +3,7 @@
 <a href="{% url 'userdashboard-notifications' %}" class="btn btn-default position-relative rounded-circle notifications_btn d-flex align-items-center justify-content-center" aria-label="Notifications">
     <i class="fas fa-bell"></i>
     {% if user.is_authenticated and unread_count > 0 %}
-        <span class="position-absolute top-0 end-0 p-1 bg-danger border border-danger rounded-circle">
+        <span class="position-absolute top-0 end-0 p-1 bg-danger border border-white rounded-circle">
             <span class="visually-hidden">Unread notifications</span>
         </span>
     {% endif %}
