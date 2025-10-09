@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
-from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -15,7 +14,6 @@ from adhocracy4.rules import mixins as rules_mixins
 from apps.documents.models import Chapter
 from apps.documents.models import Paragraph
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
-from apps.notifications.models import NotificationType
 from apps.notifications.helpers import get_notifications_by_section
 from apps.organisations.models import Organisation
 from apps.users.models import User
@@ -79,7 +77,7 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
         )
 
         # Projects section
-        context["projects_title"] = _("Followed Projects")
+        context["projects_title"] = _("Projects")
         context["projects_description"] = _(
             "Stay up to date with everything happening in the projects you follow — all the latest updates, right here."
         )
@@ -149,7 +147,7 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
         )
 
         # Projects section
-        context["projects_title"] = _("Followed Projects")
+        context["projects_title"] = _("Projects")
         context["projects_description"] = _(
             "Stay up to date with everything happening in the projects you follow — all the latest updates, right here."
         )
