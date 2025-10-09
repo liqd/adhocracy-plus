@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from adhocracy4.comments.models import Comment
 from apps.budgeting.models import Proposal
 from apps.ideas.models import Idea
+from apps.moderatorfeedback.models import ModeratorCommentFeedback
 from apps.offlineevents.models import OfflineEvent
 from apps.projects.models import ModeratorInvite
 from apps.projects.models import Project
@@ -15,6 +16,7 @@ from .strategies import CommentBlocked
 from .strategies import CommentHighlighted
 from .strategies import CommentReply
 from .strategies import IdeaFeedback
+from .strategies import ModeratorFeedback
 from .strategies import OfflineEventCreated
 from .strategies import OfflineEventDeleted
 from .strategies import OfflineEventUpdate
@@ -63,11 +65,11 @@ def handle_comment_highlighted(sender, instance, **kwargs):
 
 # Moderation Signals
 
-# (remove?)
-# @receiver(post_save, sender=ModeratorCommentFeedback)
-# def handle_comment_moderator_feedback(sender, instance, **kwargs):
-#     strategy = ModeratorFeedback()
-#     _create_notifications(instance, strategy)
+
+@receiver(post_save, sender=ModeratorCommentFeedback)
+def handle_comment_moderator_feedback(sender, instance, **kwargs):
+    strategy = ModeratorFeedback()
+    _create_notifications(instance, strategy)
 
 
 @receiver(pre_save, sender=Proposal)
@@ -114,9 +116,7 @@ def handle_idea_moderator_feedback(sender, instance, **kwargs):
 
 
 @receiver(pre_save, sender=Comment)
-def handle_comment_moderator_feedback(sender, instance, **kwargs):
-    """Handle comment being blocked by a moderator"""
-
+def handle_comment_blocked_by_moderator(sender, instance, **kwargs):
     if instance.id is None:
         return
 
@@ -177,7 +177,7 @@ def handle_invite_received(sender, instance, created, **kwargs):
 
 
 @receiver(post_save, sender=Project)
-def handle_project_crated(sender, instance, created, **kwargs):
+def handle_project_created(sender, instance, created, **kwargs):
     if not created:
         return
 
