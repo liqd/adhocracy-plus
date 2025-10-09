@@ -76,10 +76,10 @@ def send_upcoming_event_notifications():
     """
 
     now = timezone.now()
-    tomorrow = now + timedelta(hours=72)
+    future = now + timedelta(hours=72)
 
     upcoming_events = OfflineEvent.objects.filter(
-        Q(date__gte=now, date__lte=tomorrow)
+        Q(date__gte=now, date__lte=future)
     ).select_related("project")
 
     strategy = OfflineEventReminder()

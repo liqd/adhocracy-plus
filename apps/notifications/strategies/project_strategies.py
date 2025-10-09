@@ -58,6 +58,7 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
         if not event.project:
             return []
         project = event.project
+        # TODO: Get initiators as well as followers
         recipients = self._get_project_recipients(project, notification_type, channel)
         return recipients
 
