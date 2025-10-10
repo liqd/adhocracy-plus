@@ -168,6 +168,7 @@ def handle_offline_event_notifications(sender, instance, created, **kwargs):
 
 # Project Signals
 
+
 @receiver(post_save, sender=ParticipantInvite)
 def handle_invite_received(sender, instance, created, **kwargs):
     if not created:

@@ -22,7 +22,6 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
             follow__enabled=True,
         ).prefetch_related("notification_settings")
 
-    
     def get_in_app_recipients(self, project) -> List[User]:
         return self._get_project_recipients(
             project, NotificationType.PROJECT_STARTED, "in_app"
@@ -40,7 +39,7 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
         self, project, notification_type, channel
     ) -> List[User]:
         recipients_set = set()
-        
+
         # Process followers
         followers = self._get_project_followers(project)
         for user in followers:
@@ -49,11 +48,13 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
                 if settings.should_receive_notification(notification_type, channel):
                     recipients_set.add(user.id)
             except Exception as e:
-                logger.warning(f"Could not check notification settings for user {user.id}: {e}")
+                logger.warning(
+                    f"Could not check notification settings for user {user.id}: {e}"
+                )
                 continue
 
         # Process initiators
-        if hasattr(project, 'organisation') and project.organisation:
+        if hasattr(project, "organisation") and project.organisation:
             initiators = project.organisation.initiators.all()
             for user in initiators:
                 try:
@@ -61,7 +62,9 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
                     if settings.should_receive_notification(notification_type, channel):
                         recipients_set.add(user.id)
                 except Exception as e:
-                    logger.warning(f"Could not check notification settings for initiator {user.id}: {e}")
+                    logger.warning(
+                        f"Could not check notification settings for initiator {user.id}: {e}"
+                    )
                     continue
 
         # Convert back to User objects
