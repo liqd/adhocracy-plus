@@ -52,9 +52,9 @@
                     <div class="ps-3" data-category="project-related">
                         {# Newsletter #}
                         <div class="mb-4">
-                            <h4 class="h6 mb-2">{% trans "Newsletter" %}</h4>
+                            <h4 class="h6 mb-2">{% trans "Email Newsletter" %}</h4>
                             <p class="text-muted small mb-3">
-                                {% trans "General updates and news from the platform" %}
+                                {% trans "Receive email newsletters with updates and news from the projects you follow" %}
                             </p>
                             <div class="form-check form-switch">
                                 {{ form.email_newsletter|add_class:"project-related-switch" }}
@@ -63,8 +63,8 @@
                                 </label>
                             </div>
                         </div>
-                        
-                        {# Project Updates #}
+                        <!-- TODO: CHECK wording -->
+                        {# Project Updates #} 
                         <div class="mb-4">
                             <h4 class="h6 mb-2">{% trans "Project Updates" %}</h4>
                             <p class="text-muted small mb-3">
@@ -92,9 +92,9 @@
                         
                         {# Project Events #}
                         <div class="mb-4">
-                            <h4 class="h6 mb-2">{% trans "Project Events" %}</h4>
+                            <h4 class="h6 mb-2">{% trans "Events" %}</h4>
                             <p class="text-muted small mb-3">
-                                {% trans "Notifications about events in projects you follow" %}
+                                {% trans "Receive notifications about upcoming events in projects you follow" %}
                             </p>
                             <div class="row">
                                 <div class="col-md-6">
@@ -134,9 +134,9 @@
                     <div class="ps-3" data-category="interaction-related">
                         {# User Engagement #}
                         <div class="mb-4">
-                            <h4 class="h6 mb-2">{% trans "Reactions from other users" %}</h4>
+                            <h4 class="h6 mb-2">{% trans "Reactions from other users to your posts" %}</h4>
                             <p class="text-muted small mb-3">
-                                {% trans "Notifications when others interact with your content" %}
+                                {% trans "Receive a notification when someone rates or comments on your post" %}
                             </p>
                             <div class="row">
                                 <div class="col-md-6">
