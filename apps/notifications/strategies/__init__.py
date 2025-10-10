@@ -15,6 +15,7 @@ from .project_strategies import ProjectCreated
 from .project_strategies import ProjectDeleted
 from .project_strategies import ProjectEnded
 from .project_strategies import ProjectInvitationReceived
+from .project_strategies import ProjectModerationInvitationReceived
 from .project_strategies import ProjectStarted
 
 __all__ = [
@@ -31,6 +32,7 @@ __all__ = [
     "ProjectStarted",
     "ProjectCreated",
     "ProjectEnded",
+    "ProjectModerationInvitationReceived",
     "ProjectInvitationReceived",
     "ModeratorFeedback",
     "IdeaFeedback",

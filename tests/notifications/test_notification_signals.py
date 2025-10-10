@@ -304,6 +304,28 @@ def test_handle_event_update_notification(
         updated_notifications.last().notification_type == NotificationType.EVENT_UPDATE
     )
 
+@pytest.mark.django_db
+def test_handle_invite_notification(
+    project_factory, participant_invite_factory, user_factory
+):
+    project = project_factory()
+
+    # Create a user who will receive the invitation
+    invited_user = user_factory()
+
+    # Create a moderator invitation for the user
+    moderator_invite = participant_invite_factory(
+        project=project, email=invited_user.email
+    )
+
+    # Check that a notification was created for the invited user
+    invitation_notifications = Notification.objects.filter(recipient=invited_user)
+    assert invitation_notifications.count() == 1
+    assert (
+        invitation_notifications.first().notification_type
+        == NotificationType.PROJECT_INVITATION
+    )
+
 
 @pytest.mark.django_db
 def test_handle_moderator_invite_notification(
@@ -324,7 +346,7 @@ def test_handle_moderator_invite_notification(
     assert invitation_notifications.count() == 1
     assert (
         invitation_notifications.first().notification_type
-        == NotificationType.PROJECT_INVITATION
+        == NotificationType.PROJECT_MODERATION_INVITATION
     )
 
 @pytest.mark.django_db

@@ -18,6 +18,7 @@ NOTIFICATION_SECTIONS = {
         NotificationType.EVENT_CANCELLED,
     ],
     "interactions": [
+        NotificationType.PROJECT_MODERATION_INVITATION,
         NotificationType.PROJECT_INVITATION,
         NotificationType.COMMENT_REPLY,
         NotificationType.COMMENT_ON_POST,

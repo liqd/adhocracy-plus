@@ -6,6 +6,7 @@ from tests.factories import CommentFactory
 from tests.factories import ModeratorFeedbackFactory
 from tests.ideas.factories import IdeaFactory
 from tests.offlineevents.factories import OfflineEventFactory
+from tests.projects.factories import ParticipantInviteFactory
 from tests.projects.factories import ModeratorInviteFactory
 
 from .factories import NotificationFactory
@@ -16,5 +17,6 @@ register(OfflineEventFactory)
 register(a4_factories.PhaseFactory)
 register(CommentFactory)
 register(ModeratorFeedbackFactory)
+register(ParticipantInviteFactory)
 register(ModeratorInviteFactory)
 register(NotificationFactory)
