@@ -25,6 +25,7 @@ from .strategies import ProjectComment
 from .strategies import ProjectCreated
 from .strategies import ProjectDeleted
 from .strategies import ProjectInvitationReceived
+from .strategies import ProjectModerationInvitationReceived
 from .strategies import ProposalFeedback
 
 # Comment Signals
@@ -167,8 +168,8 @@ def handle_offline_event_notifications(sender, instance, created, **kwargs):
 
 # Project Signals
 
-# TODO: fix ModeratorInvite
 # Initiator of idea should get moderator feedback
+
 
 @receiver(post_save, sender=ParticipantInvite)
 def handle_invite_received(sender, instance, created, **kwargs):
@@ -176,6 +177,15 @@ def handle_invite_received(sender, instance, created, **kwargs):
         return
 
     strategy = ProjectInvitationReceived()
+    _create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=ModeratorInvite)
+def handle_moderator_invite_received(sender, instance, created, **kwargs):
+    if not created:
+        return
+
+    strategy = ProjectModerationInvitationReceived()
     _create_notifications(instance, strategy)
 
 

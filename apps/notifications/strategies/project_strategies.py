@@ -138,6 +138,33 @@ class ProjectInvitationReceived(ProjectNotificationStrategy):
         }
 
 
+# Invitation to be a moderator
+class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
+    def get_in_app_recipients(self, invitation) -> List[User]:
+        user_email = invitation.email
+        try:
+            user = User.objects.get(email=user_email)
+            return [user]
+        except User.DoesNotExist:
+            return []
+
+    def get_email_recipients(self, invitation) -> List[User]:
+        return []
+
+    def create_notification_data(self, invitation) -> dict:
+        project = invitation.project
+        return {
+            "notification_type": NotificationType.PROJECT_MODERATION_INVITATION,
+            "message_template": _(
+                "You have been invited to be a moderator of project {project}"
+            ),
+            "context": {
+                "project": project.name,
+                "project_url": project.get_absolute_url(),
+            },
+        }
+
+
 class ProjectCreated(ProjectNotificationStrategy):
     def get_in_app_recipients(self, project) -> List[User]:
         return self._get_project_initiators(project)
