@@ -9,6 +9,7 @@ from apps.ideas.models import Idea
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
 from apps.offlineevents.models import OfflineEvent
 from apps.projects.models import ModeratorInvite
+from apps.projects.models import ParticipantInvite
 from apps.projects.models import Project
 
 from .helpers import _create_notifications
@@ -166,8 +167,10 @@ def handle_offline_event_notifications(sender, instance, created, **kwargs):
 
 # Project Signals
 
+# TODO: fix ModeratorInvite
+# Initiator of idea should get moderator feedback
 
-@receiver(post_save, sender=ModeratorInvite)
+@receiver(post_save, sender=ParticipantInvite)
 def handle_invite_received(sender, instance, created, **kwargs):
     if not created:
         return
