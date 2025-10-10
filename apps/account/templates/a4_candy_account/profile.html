@@ -15,9 +15,6 @@
             {% endif %}
         {% endfor %}
 
-        {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
-        {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
-
         <div class="d-flex justify-content-end mb-3">
             <button type="submit" class="btn btn--primary">{% translate 'Save changes'%}</button>
         </div>
