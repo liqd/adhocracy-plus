@@ -4,6 +4,7 @@ import apps.notifications.models
 import django.db.models.deletion
 from django.conf import settings
 from django.db import migrations, models
+from django.contrib.auth import get_user_model
 
 
 def create_notification_settings_for_existing_users(apps, schema_editor):
