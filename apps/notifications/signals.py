@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from adhocracy4.comments.models import Comment
 from apps.budgeting.models import Proposal
 from apps.ideas.models import Idea
+from apps.mapideas.models import MapIdea
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
 from apps.offlineevents.models import OfflineEvent
 from apps.projects.models import ModeratorInvite
@@ -74,47 +75,49 @@ def handle_comment_moderator_feedback(sender, instance, **kwargs):
     _create_notifications(instance, strategy)
 
 
+def _handle_moderator_feedback_notification(instance, previous, strategy_class):
+    """Common logic for handling moderator feedback notifications"""
+    old_mod_status = previous.moderator_status
+    old_feedback_text = previous.moderator_feedback_text
+    new_mod_status = instance.moderator_status
+    new_feedback_text = instance.moderator_feedback_text
+
+    if old_mod_status != new_mod_status or old_feedback_text != new_feedback_text:
+        strategy = strategy_class()
+        _create_notifications(instance, strategy)
+
+
 @receiver(pre_save, sender=Proposal)
 def handle_proposal_moderator_feedback(sender, instance, **kwargs):
     if instance.id is None:
         return
-
     try:
         previous = Proposal.objects.get(id=instance.id)
+        _handle_moderator_feedback_notification(instance, previous, ProposalFeedback)
     except Proposal.DoesNotExist:
         return
 
-    old_mod_status = previous.moderator_status
-    old_feedback_text = previous.moderator_feedback_text
 
-    new_mod_status = instance.moderator_status
-    new_feedback_text = instance.moderator_feedback_text
-
-    if old_mod_status != new_mod_status or old_feedback_text != new_feedback_text:
-        strategy = ProposalFeedback()
-        _create_notifications(instance, strategy)
+@receiver(pre_save, sender=MapIdea)
+def handle_mapidea_moderator_feedback(sender, instance, **kwargs):
+    if instance.id is None:
+        return
+    try:
+        previous = MapIdea.objects.get(id=instance.id)
+        _handle_moderator_feedback_notification(instance, previous, IdeaFeedback)
+    except MapIdea.DoesNotExist:
+        return
 
 
 @receiver(pre_save, sender=Idea)
 def handle_idea_moderator_feedback(sender, instance, **kwargs):
-    """Handle idea moderator feedback notifications"""
     if instance.id is None:
         return
-
     try:
         previous = Idea.objects.get(id=instance.id)
+        _handle_moderator_feedback_notification(instance, previous, IdeaFeedback)
     except Idea.DoesNotExist:
         return
-
-    old_mod_status = previous.moderator_status
-    old_feedback_text = previous.moderator_feedback_text
-
-    new_mod_status = instance.moderator_status
-    new_feedback_text = instance.moderator_feedback_text
-
-    if old_mod_status != new_mod_status or old_feedback_text != new_feedback_text:
-        strategy = IdeaFeedback()
-        _create_notifications(instance, strategy)
 
 
 @receiver(pre_save, sender=Comment)
