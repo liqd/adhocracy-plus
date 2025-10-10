@@ -35,6 +35,9 @@ class NotificationType(models.TextChoices):
     EVENT_CANCELLED = "event_cancelled", _("Event Cancelled")
 
     # User interactions
+    PROJECT_MODERATION_INVITATION = "project_moderation_invitation", _(
+        "Project Moderation Invitation"
+    )
     PROJECT_INVITATION = "project_invitation", _("Project Invitation")
     COMMENT_REPLY = "comment_reply", _("Comment Reply")
     COMMENT_ON_POST = "comment_on_post", _("Comment on Post")
@@ -81,6 +84,7 @@ NOTIFICATION_TYPE_MAPPING = {
     NotificationType.COMMENT_REPLY: NotificationCategory.USER_ENGAGEMENT,
     NotificationType.COMMENT_ON_POST: NotificationCategory.USER_ENGAGEMENT,
     # Messages & Invitations
+    NotificationType.PROJECT_MODERATION_INVITATION: NotificationCategory.INVITATIONS,
     NotificationType.PROJECT_INVITATION: NotificationCategory.INVITATIONS,
     # Moderation
     NotificationType.MODERATOR_HIGHLIGHT: NotificationCategory.MODERATION,
