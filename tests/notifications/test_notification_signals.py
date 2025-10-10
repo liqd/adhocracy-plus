@@ -313,7 +313,7 @@ def test_handle_invite_notification(
     # Create a user who will receive the invitation
     invited_user = user_factory()
 
-    # Create a moderator invitation for the user
+    # Create a project invitation for the user
     moderator_invite = participant_invite_factory(
         project=project, email=invited_user.email
     )
