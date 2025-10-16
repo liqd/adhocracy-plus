@@ -162,7 +162,7 @@ class NotifyInitiatorsOnProjectCreatedEmail(Email):
 
     def get_receivers(self):
         project = self.object
-        creator = User.objects.get(pk=self.kwargs["creator_pk"])
+        creator = project.creator
         receivers = project.organisation.initiators.all()
         receivers = _exclude_actor(receivers, creator)
         receivers = _exclude_notifications_disabled(receivers)
@@ -241,7 +241,7 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
         return receivers
 
 
-class NotifyFollowersOnUpcommingEventEmail(Email):
+class NotifyFollowersOnUpcomingEventEmail(Email):
     template_name = "a4_candy_notifications/emails" "/notify_followers_event_upcomming"
 
     def get_organisation(self):
