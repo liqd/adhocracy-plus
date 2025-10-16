@@ -4,7 +4,7 @@
             
     <ul class="list-group list-group-flush">
         {% for notification in notifications %}
-        <li class="list-group-item border-0 py-3 {% if notification.read %}read-notification{% endif %}">
+        <li class="list-group-item border-0 py-3 {% if notification.read %}read-notification{% endif %} p-0">
             <div class="d-flex justify-content-between align-items-start">
                 <div class="notification-icon-box position-relative d-flex align-items-center justify-content-center u-bg-light" aria-label="Notification">
                     <i class="fas fa-comment"></i>
