@@ -140,7 +140,7 @@ class ProjectInvitationReceived(ProjectNotificationStrategy):
             return []
 
     def get_email_recipients(self, invitation) -> List[User]:
-        return []
+        return self.get_in_app_recipients(invitation)
 
     def create_notification_data(self, invitation) -> dict:
         project = invitation.project
@@ -165,7 +165,7 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
             return []
 
     def get_email_recipients(self, invitation) -> List[User]:
-        return []
+        return self.get_in_app_recipients(invitation)
 
     def create_notification_data(self, invitation) -> dict:
         project = invitation.project
