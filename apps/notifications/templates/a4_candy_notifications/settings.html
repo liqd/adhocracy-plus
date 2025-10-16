@@ -37,11 +37,11 @@
                 {% csrf_token %}
                 
                 {# Project Related Notifications #}
-                <div class="mb-5">
+                <div>
                     <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom">
-                        <span class="fw-bold h5 mb-0">
-                            {% trans "Project Related Notifications" %}
-                        </span>
+                        <h4 class="h2 mb-0 mt-1">
+                            {% trans "Project-related Notifications" %}
+                        </h4>
                         <div class="form-check form-switch mb-0">
                             <input class="form-check-input category-toggle" type="checkbox" 
                                     style="width: 2em !important; margin-left: 0 !important;"
@@ -51,10 +51,10 @@
                         </div>
                     </div>
                     
-                    <div class="ps-3" data-category="project-related">
+                    <div data-category="project-related">
                         {# Newsletter #}
-                        <div class="mb-4">
-                            <h4 class="h6 mb-2">{% trans "Email Newsletter" %}</h4>
+                        <div class="mb-4 u-bottom-divider">
+                            <h5 class="h6 mb-2">{% trans "Email Newsletter" %}</h5>
                             <p class="text-muted small mb-3">
                                 {% trans "Receive email newsletters with updates and news from the projects you follow." %}
                             </p>
@@ -66,8 +66,8 @@
                             </div>
                         </div>
                         {# Project Updates #} 
-                        <div class="mb-4">
-                            <h4 class="h6 mb-2">{% trans "Participation Status" %}</h4>
+                        <div class="mb-4 u-bottom-divider">
+                            <h5 class="h6 mb-2">{% trans "Participation Status" %}</h5>
                             <p class="text-muted small mb-3">
                                 {% trans "Receive notifications about projects you follow." %}
                             </p>
@@ -92,8 +92,8 @@
                         </div>
                         
                         {# Project Events #}
-                        <div class="mb-4">
-                            <h4 class="h6 mb-2">{% trans "Events" %}</h4>
+                        <div class="u-bottom-divider mb-3">
+                            <h5 class="h6 mb-2">{% trans "Events" %}</h5>
                             <p class="text-muted small mb-3">
                                 {% trans "Receive notifications about upcoming events in projects you follow." %}
                             </p>
@@ -122,9 +122,9 @@
                 {# User Interactions #}
                 <div class="mb-5">
                     <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom">
-                        <span class="fw-bold h5 mb-0">
+                        <h4 class="h4 mb-0 mt-1">
                             {% trans "Interactions with other users" %}
-                        </span>
+                        </h4>
                         <div class="form-check form-switch mb-0">
                             <input class="form-check-input category-toggle" type="checkbox" 
                                     style="width: 2em !important; margin-left: 0 !important;"
@@ -134,10 +134,10 @@
                         </div>
                     </div>
                     
-                    <div class="ps-3" data-category="interaction-related">
+                    <div data-category="interaction-related">
                         {# User Engagement #}
                         <div class="mb-4">
-                            <h4 class="h6 mb-2">{% trans "Reactions from other users to your posts" %}</h4>
+                            <h5 class="h6 mb-2">{% trans "Reactions from other users to your posts" %}</h5>
                             <p class="text-muted small mb-3">
                                 {% trans "Receive a notification when someone rates or comments on your post." %}
                             </p>
@@ -163,9 +163,9 @@
                     </div>
                 </div>
                 
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">
-                        {% trans 'Save Notification Settings' %}
+                <div class="u-align-right">
+                    <button type="submit" class="btn btn--default px-3">
+                        {% trans 'Save' %}
                     </button>
                 </div>
             </form>
