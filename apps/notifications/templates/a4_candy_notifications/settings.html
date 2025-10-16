@@ -38,14 +38,16 @@
                 
                 {# Project Related Notifications #}
                 <div class="mb-5">
-                    <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom">
+                        <span class="fw-bold h5 mb-0">
+                            {% trans "Project Related Notifications" %}
+                        </span>
                         <div class="form-check form-switch mb-0">
                             <input class="form-check-input category-toggle" type="checkbox" 
-                                   id="project-related-toggle" 
-                                   data-category="project-related" checked>
-                            <label class="form-check-label fw-bold h5 mb-0" for="project-related-toggle">
-                                {% trans "Project Related Notifications" %}
-                            </label>
+                                    style="width: 2em !important; margin-left: 0 !important;"
+                                    id="project-related-toggle" 
+                                    data-category="project-related" checked>
+                            <label class="form-check-label" for="project-related-toggle"></label>
                         </div>
                     </div>
                     
@@ -54,7 +56,7 @@
                         <div class="mb-4">
                             <h4 class="h6 mb-2">{% trans "Email Newsletter" %}</h4>
                             <p class="text-muted small mb-3">
-                                {% trans "Receive email newsletters with updates and news from the projects you follow" %}
+                                {% trans "Receive email newsletters with updates and news from the projects you follow." %}
                             </p>
                             <div class="form-check form-switch">
                                 {{ form.email_newsletter|add_class:"project-related-switch" }}
@@ -63,12 +65,11 @@
                                 </label>
                             </div>
                         </div>
-                        <!-- TODO: CHECK wording -->
                         {# Project Updates #} 
                         <div class="mb-4">
-                            <h4 class="h6 mb-2">{% trans "Project Updates" %}</h4>
+                            <h4 class="h6 mb-2">{% trans "Participation Status" %}</h4>
                             <p class="text-muted small mb-3">
-                                {% trans "Notifications about projects you follow" %}
+                                {% trans "Receive notifications about projects you follow." %}
                             </p>
                             <div class="row">
                                 <div class="col-md-6">
@@ -94,7 +95,7 @@
                         <div class="mb-4">
                             <h4 class="h6 mb-2">{% trans "Events" %}</h4>
                             <p class="text-muted small mb-3">
-                                {% trans "Receive notifications about upcoming events in projects you follow" %}
+                                {% trans "Receive notifications about upcoming events in projects you follow." %}
                             </p>
                             <div class="row">
                                 <div class="col-md-6">
@@ -120,14 +121,16 @@
                 
                 {# User Interactions #}
                 <div class="mb-5">
-                    <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom">
+                        <span class="fw-bold h5 mb-0">
+                            {% trans "Interactions with other users" %}
+                        </span>
                         <div class="form-check form-switch mb-0">
                             <input class="form-check-input category-toggle" type="checkbox" 
-                                   id="interaction-related-toggle" 
-                                   data-category="interaction-related" checked>
-                            <label class="form-check-label fw-bold h5 mb-0" for="interaction-related-toggle">
-                                {% trans "Interactions with other users" %}
-                            </label>
+                                    style="width: 2em !important; margin-left: 0 !important;"
+                                    id="interaction-related-toggle" 
+                                    data-category="interaction-related" checked>
+                            <label class="form-check-label" for="interaction-related-toggle"></label>
                         </div>
                     </div>
                     
@@ -136,7 +139,7 @@
                         <div class="mb-4">
                             <h4 class="h6 mb-2">{% trans "Reactions from other users to your posts" %}</h4>
                             <p class="text-muted small mb-3">
-                                {% trans "Receive a notification when someone rates or comments on your post" %}
+                                {% trans "Receive a notification when someone rates or comments on your post." %}
                             </p>
                             <div class="row">
                                 <div class="col-md-6">
