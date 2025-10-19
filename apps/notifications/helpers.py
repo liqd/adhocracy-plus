@@ -60,21 +60,33 @@ def _create_notifications(obj, strategy):
     if notifications:
         Notification.objects.bulk_create(notifications)
 
-    # Send emails
-    for recipient in email_recipients:
-        _send_email_notification(recipient, obj, strategy, notification_data)
+    # Send emails - ALL at once
+    if email_recipients:
+        print(
+            f"Sending emails to {len(email_recipients)} recipients for {notification_data['notification_type']}"
+        )
+        _send_email_notifications(email_recipients, obj, strategy, notification_data)
 
 
-def _send_email_notification(recipient, obj, strategy, notification_data):
-    """Send email notification"""
+def _send_email_notifications(recipients, obj, strategy, notification_data):
+    print(
+        f"DEBUG: {len(recipients)} recipients, obj={obj}, type={notification_data['notification_type']}"
+    )
 
     email_class = _map_notification_type_to_email_class(
         notification_data["notification_type"]
     )
 
+    print(f"DEBUG: email_class={email_class}")
+
     if email_class:
-        # Pass object ID instead of object to avoid serialization issues
-        email_class.send(recipient, obj.id, notification_data)
+        print("DEBUG: Attempting to send batch email...")
+        recipient_ids = [
+            recipient.id if hasattr(recipient, "id") else recipient
+            for recipient in recipients
+        ]
+        email_class.send(obj, strategy_recipient_ids=recipient_ids)
+        print("DEBUG: Batch send method called")
 
 
 def _map_notification_type_to_email_class(notification_type):
@@ -89,8 +101,8 @@ def _map_notification_type_to_email_class(notification_type):
         NotificationType.COMMENT_ON_POST: emails.NotifyCreatorEmail,
         NotificationType.PROJECT_CREATED: emails.NotifyInitiatorsOnProjectCreatedEmail,
         NotificationType.PROJECT_DELETED: emails.NotifyInitiatorsOnProjectDeletedEmail,
+        NotificationType.COMMENT_REPLY: emails.NotifyCreatorEmail,
         # TODO: Add missing mappings:
-        # NotificationType.COMMENT_REPLY: emails.???‚,
         # NotificationType.MODERATOR_HIGHLIGHT: emails.???,
         # NotificationType.EVENT_CANCELLED: emails.???,
         # NotificationType.EVENT_ADDED: emails.???,
