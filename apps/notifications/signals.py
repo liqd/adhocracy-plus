@@ -15,10 +15,10 @@ from apps.projects.models import Project
 
 from .helpers import _create_notifications
 from .strategies import CommentBlocked
+from .strategies import CommentFeedback
 from .strategies import CommentHighlighted
 from .strategies import CommentReply
 from .strategies import IdeaFeedback
-from .strategies import ModeratorFeedback
 from .strategies import OfflineEventCreated
 from .strategies import OfflineEventDeleted
 from .strategies import OfflineEventUpdate
@@ -71,7 +71,7 @@ def handle_comment_highlighted(sender, instance, **kwargs):
 
 @receiver(post_save, sender=ModeratorCommentFeedback)
 def handle_comment_moderator_feedback(sender, instance, **kwargs):
-    strategy = ModeratorFeedback()
+    strategy = CommentFeedback()
     _create_notifications(instance, strategy)
 
 

@@ -2,6 +2,7 @@ from django.contrib import auth
 from django.urls import reverse
 from wagtail.models import Site
 
+from adhocracy4.emails.mixins import SyncEmailMixin
 from apps.cms.settings.models import ImportantPages
 from apps.organisations.models import Organisation
 from apps.projects import tasks
@@ -39,33 +40,38 @@ def _exclude_notifications_disabled(receivers):
     return [user for user in receivers if user.get_notifications]
 
 
-class StrategyBasedEmail(Email):
-    def __init__(self, *args, **kwargs):
-        self._strategy_recipient_ids = kwargs.pop("strategy_recipient_ids", None)
-        super().__init__(*args, **kwargs)
-
+class StrategyBasedEmail(SyncEmailMixin, Email):
     def get_receivers(self):
-        if self._strategy_recipient_ids:
+        recipient_ids = self.kwargs.get("strategy_recipient_ids")
+
+        if recipient_ids:
             from django.contrib.auth import get_user_model
 
             User = get_user_model()
-            # Convert IDs back to User objects
-            return User.objects.filter(id__in=self._strategy_recipient_ids)
+            users = User.objects.filter(id__in=recipient_ids)
+            return users
+
         return super().get_receivers()
+
+    def get_organisation(self):
+        if hasattr(self.object, "project") and self.object.project:
+            return self.object.project.organisation
+        return self.object.organisation
+
+    def get_context(self):
+        context = super().get_context()
+
+        notification_data = self.kwargs.get("notification_data", {})
+        notification_context = notification_data.get("context", {})
+        return notification_context
 
 
 class NotifyCreatorEmail(StrategyBasedEmail):
     template_name = "a4_candy_notifications/emails/notify_creator"
 
-    def get_organisation(self):
-        return self.object.project.organisation
-
 
 class NotifyCreatorOnModeratorFeedback(StrategyBasedEmail):
     template_name = "a4_candy_notifications/emails/notify_creator_on_moderator_feedback"
-
-    def get_organisation(self):
-        return self.object.project.organisation
 
     def get_context(self):
         context = super().get_context()
@@ -143,13 +149,6 @@ class NotifyInitiatorsOnProjectCreatedEmail(StrategyBasedEmail):
     def get_organisation(self):
         return self.object.organisation
 
-    def get_context(self):
-        context = super().get_context()
-        creator = User.objects.get(pk=self.kwargs["creator_pk"])
-        context["creator"] = creator
-        context["project"] = self.object
-        return context
-
 
 class NotifyInitiatorsOnProjectDeletedEmail(StrategyBasedEmail):
     template_name = "a4_candy_notifications/emails/notify_initiators_project_deleted"
@@ -188,15 +187,23 @@ class NotifyFollowersOnPhaseStartedEmail(StrategyBasedEmail):
         return self.object.project.organisation
 
 
+class NotifyFollowersOnProjectStartedEmail(StrategyBasedEmail):
+    template_name = "a4_candy_notifications/emails" "/notify_followers_project_started"
+
+
+class NotifyFollowersOnProjectCompletedEmail(StrategyBasedEmail):
+    template_name = (
+        "a4_candy_notifications/emails" "/notify_followers_project_completed"
+    )
+
+
 class NotifyFollowersOnPhaseIsOverSoonEmail(StrategyBasedEmail):
     template_name = "a4_candy_notifications/emails" "/notify_followers_phase_over_soon"
 
-    def get_organisation(self):
-        return self.object.project.organisation
+
+class NotifyFollowersOnEventAddedEmail(StrategyBasedEmail):
+    template_name = "a4_candy_notifications/emails" "/notify_followers_event_added"
 
 
 class NotifyFollowersOnUpcomingEventEmail(StrategyBasedEmail):
     template_name = "a4_candy_notifications/emails" "/notify_followers_event_upcomming"
-
-    def get_organisation(self):
-        return self.object.project.organisation
