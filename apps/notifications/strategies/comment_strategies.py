@@ -3,31 +3,48 @@ from typing import List
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from ..models import NotificationSettings
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
+from .project_strategies import ProjectNotificationStrategy
 
 User = get_user_model()
 
 
 class CommentHighlighted(BaseNotificationStrategy):
-    """Strategy for notifications when someone comments on a project"""
+    """Strategy for notifications when a comment is highlighted"""
 
-    def get_in_app_recipients(self, comment) -> List[User]:
-        """Get recipients for in-app notifications (project author)"""
-        recipients = set()
-        if comment.creator and hasattr(comment, "creator"):
-            recipients.add(comment.creator)
+    def get_recipients(self, comment) -> List[User]:
+        """Get the comment creator as potential recipient"""
+        if comment.creator:
+            return [comment.creator]
+        return []
 
-        return list(recipients)
-
-    def get_email_recipients(self, comment) -> List[User]:
-        """Get recipients for email notifications (project author)"""
-        return self.get_in_app_recipients(comment)
+    def get_organisation(self, comment):
+        return comment.project.organisation
 
     def create_notification_data(self, comment) -> dict:
-        """Create notification data for project comments"""
-        from django.utils.translation import gettext_lazy as _
+        # Determine if there's a specific post URL or just project URL
+        post_url = getattr(comment.content_object, "get_absolute_url", lambda: None)()
+        cta_url = post_url if post_url else comment.project.get_absolute_url()
+        cta_label = _("View post") if post_url else _("Visit the project")
+
+        email_context = {
+            "subject": _("A moderator highlighted your comment"),
+            "headline": _("Project {project_name}").format(
+                project_name=comment.project.name
+            ),
+            "cta_url": cta_url,
+            "cta_label": cta_label,
+            "reason": _(
+                "This email was sent to {receiver_email}. You have received the e-mail because your contribution to the above project was highlighted by a moderator."
+            ),
+            # Content template
+            "content_template": "a4_candy_notifications/emails/content/moderator_highlighted_comment.en.email",
+            # Template variables
+            "project": comment.project.name,
+            "project_url": comment.project.get_absolute_url(),
+            "post_url": post_url,
+        }
 
         return {
             "notification_type": NotificationType.MODERATOR_HIGHLIGHT,
@@ -35,102 +52,127 @@ class CommentHighlighted(BaseNotificationStrategy):
                 "A moderator highlighted your comment '{comment}' in project {project}"
             ),
             "context": {
-                "project": comment.project.name if comment.project else "",
-                "project_url": (
-                    comment.project.get_absolute_url() if comment.project else "#"
-                ),
+                "project": comment.project.name,
+                "project_url": comment.project.get_absolute_url(),
                 "comment": comment.comment,
                 "comment_url": comment.get_absolute_url(),
             },
+            "email_context": email_context,
         }
 
 
-class ProjectComment(BaseNotificationStrategy):
-    """Strategy for notifications when someone comments on a project"""
+class ProjectComment(ProjectNotificationStrategy):
+    """Strategy for notifications when someone comments on project content"""
 
-    def get_in_app_recipients(self, comment) -> List[User]:
-        """Get recipients for in-app notifications (project author)"""
+    def get_organisation(self, comment):
+        return comment.project.organisation
+
+    def get_recipients(self, comment) -> List[User]:
+        """Get moderators and content creator as potential recipients"""
         recipients = set()
+
+        # Add content creator if not the commenter
         if comment.content_object and hasattr(comment.content_object, "creator"):
-            # TODO: Check user preferences
-            recipients.add(comment.content_object.creator)
+            content_creator = comment.content_object.creator
+            if content_creator != comment.creator:
+                recipients.add(content_creator)
 
         return list(recipients)
 
-    def get_email_recipients(self, comment) -> List[User]:
-        """Get recipients for email notifications (project author)"""
-        return self.get_in_app_recipients(comment)
-
-    # TODO: Check if content type can be added to message
-
     def create_notification_data(self, comment) -> dict:
-        """Create notification data for project comments"""
-        from django.utils.translation import gettext_lazy as _
+        post_name = getattr(comment.content_object, "name", _("post"))
+
+        email_context = {
+            "subject": _("{commenter} commented on your post {post}").format(
+                commenter=comment.creator.username, post=post_name
+            ),
+            "headline": _("New comment on your post"),
+            "subheadline": comment.project.name,
+            "cta_url": comment.content_object.get_absolute_url(),
+            "cta_label": _("View post"),
+            "reason": _(
+                "This email was sent to {receiver_email} because someone commented on your content."
+            ),
+            # Content template
+            "content_template": "a4_candy_notifications/emails/content/comment_on_post.en.email",
+            # Template variables
+            "project_name": comment.project.name,
+            "commenter_name": comment.creator.username,
+            "post_name": post_name,
+            "comment_text": comment.comment,
+            "content_see_said": _("See what they said and join the discussion."),
+        }
 
         return {
             "notification_type": NotificationType.COMMENT_ON_POST,
             "message_template": _("{user} commented on your post {post}"),
             "context": {
                 "user": comment.creator.username,
-                "user_url": (
-                    comment.creator.get_absolute_url()
-                    if hasattr(comment.creator, "get_absolute_url")
-                    else ""
-                ),
+                "user_url": getattr(comment.creator, "get_absolute_url", lambda: "")(),
                 "comment": comment.comment,
                 "post_url": comment.content_object.get_absolute_url(),
-                "post": comment.content_object.name,
+                "post": post_name,
                 "project": comment.project.name,
                 "project_url": comment.project.get_absolute_url(),
             },
+            "email_context": email_context,
         }
 
 
 class CommentReply(BaseNotificationStrategy):
     """Handles notifications when someone replies to a user's comment"""
 
-    def _should_receive_comment_reply(self, user, channel):
-        """Helper method to check if user should receive comment reply notifications"""
-        settings = NotificationSettings.get_for_user(user)
-        return settings.should_receive_notification(
-            NotificationType.COMMENT_REPLY, channel
-        )
-
-    def get_in_app_recipients(self, comment) -> List[User]:
+    def get_recipients(self, comment) -> List[User]:
+        """Get parent comment creator as potential recipient"""
         parent_comment = self._get_parent_comment(comment)
         if parent_comment and parent_comment.creator:
-            if self._should_receive_comment_reply(parent_comment.creator, "in_app"):
-                return [parent_comment.creator]
-        return []
-
-    def get_email_recipients(self, comment) -> List[User]:
-        parent_comment = self._get_parent_comment(comment)
-        if parent_comment and parent_comment.creator:
-            if self._should_receive_comment_reply(parent_comment.creator, "email"):
+            # Exclude the actor (comment creator) if they're replying to themselves
+            if parent_comment.creator != comment.creator:
                 return [parent_comment.creator]
         return []
 
     def _get_parent_comment(self, comment):
         """Get the parent comment if this is a reply"""
-        parent_comments = comment.parent_comment.all()
-        return parent_comments.first() if parent_comments.exists() else None
+        return comment.parent_comment.first()
+
+    def get_organisation(self, comment):
+        return comment.project.organisation
 
     def create_notification_data(self, comment) -> dict:
-        comment_url = (
-            comment.get_absolute_url() if hasattr(comment, "get_absolute_url") else ""
-        )
+        parent_comment = self._get_parent_comment(comment)
+
+        email_context = {
+            "subject": _("{commenter} replied to your comment").format(
+                commenter=comment.creator.username
+            ),
+            "headline": _("New reply to your comment"),
+            "subheadline": comment.project.name,
+            "cta_url": comment.get_absolute_url(),
+            "cta_label": _("View conversation"),
+            "reason": _(
+                "This email was sent to {receiver_email} because someone replied to your comment."
+            ),
+            # Content template
+            "content_template": "a4_candy_notifications/emails/content/comment_reply.en.email",
+            # Template variables
+            "commenter_name": comment.creator.username,
+            "comment_text": comment.comment,
+            "parent_comment_text": parent_comment.comment if parent_comment else "",
+            "content_join_conversation": _(
+                "Join the conversation and continue the discussion."
+            ),
+        }
 
         return {
             "notification_type": NotificationType.COMMENT_REPLY,
             "message_template": _("{user} replied to your {comment}"),
             "context": {
                 "user": comment.creator.username,
-                "user_url": (
-                    comment.creator.get_absolute_url()
-                    if hasattr(comment.creator, "get_absolute_url")
-                    else ""
-                ),
-                "comment": _("comment"),
-                "comment_url": comment_url,
+                "user_url": comment.creator.get_absolute_url(),
+                "comment": "comment",
+                "comment_url": comment.get_absolute_url(),
+                "project": comment.project.name,
+                "project_url": comment.project.get_absolute_url(),
             },
+            "email_context": email_context,
         }

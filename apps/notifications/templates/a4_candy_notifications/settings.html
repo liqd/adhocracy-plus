@@ -43,8 +43,7 @@
                             {% trans "Project-related Notifications" %}
                         </h4>
                         <div class="form-check form-switch mb-0">
-                            <input class="form-check-input category-toggle" type="checkbox" 
-                                    style="width: 2em !important; margin-left: 0 !important;"
+                            <input class="form-check-input category-toggle" type="checkbox"
                                     id="project-related-toggle" 
                                     data-category="project-related" checked>
                             <label class="form-check-label" for="project-related-toggle"></label>
@@ -55,65 +54,65 @@
                         {# Newsletter #}
                         <div class="mb-4 u-bottom-divider">
                             <h5 class="h6 mb-2">{% trans "Email Newsletter" %}</h5>
-                            <p class="text-muted small mb-3">
+                            <p class="small mb-3">
                                 {% trans "Receive email newsletters with updates and news from the projects you follow." %}
                             </p>
                             <div class="form-check form-switch">
                                 {{ form.email_newsletter|add_class:"project-related-switch" }}
                                 <label class="form-check-label" for="{{ form.email_newsletter.id_for_label }}">
-                                    {% trans "Email newsletter" %}
+                                    {% trans "Email" %}
                                 </label>
                             </div>
                         </div>
                         {# Project Updates #} 
                         <div class="mb-4 u-bottom-divider">
                             <h5 class="h6 mb-2">{% trans "Participation Status" %}</h5>
-                            <p class="text-muted small mb-3">
+                            <p class="small mb-3">
                                 {% trans "Receive notifications about projects you follow." %}
                             </p>
-                            <div class="row">
-                                <div class="col-md-6">
+                            <div class="d-flex gap-3">
+                                <span>
                                     <div class="form-check form-switch mb-2">
                                         {{ form.email_project_updates|add_class:"project-related-switch" }}
-                                        <label class="form-check-label fw-bold" for="{{ form.email_project_updates.id_for_label }}">
+                                        <label class="form-check-label" for="{{ form.email_project_updates.id_for_label }}">
                                             Email
                                         </label>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
+                                </span>
+                                <span>
                                     <div class="form-check form-switch mb-2">
                                         {{ form.notify_project_updates|add_class:"project-related-switch" }}
-                                        <label class="form-check-label fw-bold" for="{{ form.notify_project_updates.id_for_label }}">
+                                        <label class="form-check-label" for="{{ form.notify_project_updates.id_for_label }}">
                                             In-App
                                         </label>
                                     </div>
-                                </div>
+                                </span>
                             </div>
                         </div>
                         
                         {# Project Events #}
                         <div class="u-bottom-divider mb-3">
                             <h5 class="h6 mb-2">{% trans "Events" %}</h5>
-                            <p class="text-muted small mb-3">
+                            <p class="small mb-3">
                                 {% trans "Receive notifications about upcoming events in projects you follow." %}
                             </p>
-                            <div class="row">
-                                <div class="col-md-6">
+                            <div class="d-flex gap-3">
+                                <span>
                                     <div class="form-check form-switch mb-2">
                                         {{ form.email_project_events|add_class:"project-related-switch" }}
-                                        <label class="form-check-label fw-bold" for="{{ form.email_project_events.id_for_label }}">
+                                        <label class="form-check-label" for="{{ form.email_project_events.id_for_label }}">
                                             Email
                                         </label>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
+                                </span>
+                                <span>
                                     <div class="form-check form-switch mb-2">
                                         {{ form.notify_project_events|add_class:"project-related-switch" }}
-                                        <label class="form-check-label fw-bold" for="{{ form.notify_project_events.id_for_label }}">
+                                        <label class="form-check-label" for="{{ form.notify_project_events.id_for_label }}">
                                             In-App
                                         </label>
                                     </div>
-                                </div>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -127,7 +126,6 @@
                         </h4>
                         <div class="form-check form-switch mb-0">
                             <input class="form-check-input category-toggle" type="checkbox" 
-                                    style="width: 2em !important; margin-left: 0 !important;"
                                     id="interaction-related-toggle" 
                                     data-category="interaction-related" checked>
                             <label class="form-check-label" for="interaction-related-toggle"></label>
@@ -138,33 +136,33 @@
                         {# User Engagement #}
                         <div class="mb-4">
                             <h5 class="h6 mb-2">{% trans "Reactions from other users to your posts" %}</h5>
-                            <p class="text-muted small mb-3">
+                            <p class="small mb-3">
                                 {% trans "Receive a notification when someone rates or comments on your post." %}
                             </p>
-                            <div class="row">
-                                <div class="col-md-6">
+                            <div class="d-flex gap-3">
+                                <span>
                                     <div class="form-check form-switch mb-2">
                                         {{ form.email_user_engagement|add_class:"interaction-related-switch" }}
-                                        <label class="form-check-label fw-bold" for="{{ form.email_user_engagement.id_for_label }}">
+                                        <label class="form-check-label" for="{{ form.email_user_engagement.id_for_label }}">
                                             Email
                                         </label>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
+                                </span>
+                                <span>
                                     <div class="form-check form-switch mb-2">
                                         {{ form.notify_user_engagement|add_class:"interaction-related-switch" }}
-                                        <label class="form-check-label fw-bold" for="{{ form.notify_user_engagement.id_for_label }}">
+                                        <label class="form-check-label" for="{{ form.notify_user_engagement.id_for_label }}">
                                             In-App
                                         </label>
                                     </div>
-                                </div>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="u-align-right">
-                    <button type="submit" class="btn btn--default px-3">
+                    <button type="submit" class="btn btn--mobile-full-width btn--default btn--wide px-3">
                         {% trans 'Save' %}
                     </button>
                 </div>

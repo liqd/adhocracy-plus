@@ -1,5 +1,5 @@
 import factory
-from dateutil.parser import parse
+from django.utils import timezone
 
 from adhocracy4.test import factories as a4_factories
 from apps.offlineevents import models
@@ -12,4 +12,4 @@ class OfflineEventFactory(factory.django.DjangoModelFactory):
     name = factory.Faker("sentence")
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     project = factory.SubFactory(a4_factories.ProjectFactory)
-    date = parse("2013-01-02 00:00:00 UTC")
+    date = factory.LazyFunction(lambda: timezone.now() + timezone.timedelta(days=1))
