@@ -273,7 +273,7 @@ def test_handle_offline_event_created_notification(
 
 
 @pytest.mark.django_db
-def test_handle_event_update_notification(
+def test_handle_event_update_notifications(
     project_factory, offline_event_factory, user_factory
 ):
     project = project_factory()
