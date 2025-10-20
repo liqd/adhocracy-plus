@@ -1,8 +1,10 @@
 import pytest
+from django.core import mail
 
 from adhocracy4.follows.models import Follow
 from apps.notifications.models import Notification
 from apps.notifications.models import NotificationType
+from tests.helpers import get_emails_for_address
 
 
 @pytest.mark.django_db
@@ -36,6 +38,10 @@ def test_handle_comment_notifications(
         module_comment_notifications.first().notification_type
         == NotificationType.COMMENT_ON_POST
     )
+    # Check that email notification was sent to the idea author
+    idea_author_mails = get_emails_for_address(idea_author.email)
+    assert len(idea_author_mails) == 1
+    assert idea_author_mails[0].subject.startswith("Reaction to your contribution")
 
     # Create a reply to the parent comment
     reply_comment = comment_factory(
@@ -49,6 +55,10 @@ def test_handle_comment_notifications(
     notifications = Notification.objects.filter(recipient=author)
     assert notifications.count() == 1
     assert notifications.first().notification_type == NotificationType.COMMENT_REPLY
+    # Check that email notification was sent to the parent comment author
+    parent_commenter_mails = get_emails_for_address(author.email)
+    assert len(parent_commenter_mails) == 1
+    assert parent_commenter_mails[0].subject.startswith("Reaction to your contribution")
 
 
 @pytest.mark.django_db
