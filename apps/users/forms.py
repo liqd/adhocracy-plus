@@ -55,7 +55,7 @@ class DefaultLoginForm(LoginForm):
         self.fields["password"].help_text = ""
         self.fields["login"].widget.attrs["autocomplete"] = "username"
         self.fields["password"].widget.attrs["autocomplete"] = "current-password"
-
+        self.fields["password"].widget.attrs["class"] = "password-toggle"
 
 class DefaultSignupForm(TermsAndCaptchaMixin, SignupForm):
     terms_of_use = forms.BooleanField(label=_("Terms of use"))
@@ -81,6 +81,8 @@ class DefaultSignupForm(TermsAndCaptchaMixin, SignupForm):
         self.fields["email"].widget.attrs["autocomplete"] = "username"
         self.fields["password1"].widget.attrs["autocomplete"] = "new-password"
         self.fields["password2"].widget.attrs["autocomplete"] = "new-password"
+        self.fields["password1"].widget.attrs["class"] = "password-toggle"
+        self.fields["password2"].widget.attrs["class"] = "password-toggle"
 
     def save(self, request):
         user = super().save(request)

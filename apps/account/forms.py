@@ -49,7 +49,7 @@ class AccountDeletionForm(forms.Form):
     password = forms.CharField(
         label=_("Password"),
         strip=False,
-        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "class": "password-toggle"}),
     )
 
 
