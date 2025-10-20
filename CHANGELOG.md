@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - Hide profile pages for inactive accounts (ST-1088)
+- Add visibility toggle to password fields [ST1153]
 
 ## v2508.2
 
