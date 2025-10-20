@@ -1,107 +1,121 @@
 {% extends "base.html" %}
 {% load rules i18n thumbnail contrib_tags %}
 
-{% block title %}{{ user.username }} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{{ user.username }} — {{ block.super }}{% endblock title %}
 
 {% block content %}
-    <div class="container mb-4">
-        <div class="row pt-4">
-            <h1 class="visually-hidden">
-                {% trans 'User profile of ' %}{{ user.username }}
-              </h1>
-            <nav class="col-md-3" aria-label="{% trans 'Profile' %}">
-                <div class="userdashboard-profile__user">
-                    {% if request.user.id == user.id %}
-                    <div class="dropdown text-end">
-                        <button
-                            title="{% trans 'My user settings' %}"
-                            type="button"
-                            class="dropdown-toggle btn btn--none btn--small"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            id="account-settings"
-                        >
-                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="account-settings">
-                            <a class="dropdown-item" href="{% url 'account' %}">{% trans 'Account Settings' %}</a>
+    {% if user.is_active %}
+        <div class="container mb-4">
+            <div class="row pt-4">
+                <h1 class="visually-hidden">
+                    {% trans 'User profile of ' %}{{ user.username }}
+                </h1>
+                <nav class="col-md-3" aria-label="{% trans 'Profile' %}">
+                    <div class="userdashboard-profile__user">
+                        {% if request.user.id == user.id %}
+                        <div class="dropdown text-end">
+                            <button
+                                title="{% trans 'My user settings' %}"
+                                type="button"
+                                class="dropdown-toggle btn btn--none btn--small"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                id="account-settings"
+                            >
+                                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="account-settings">
+                                <a class="dropdown-item" href="{% url 'account' %}">{% trans 'Account Settings' %}</a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="mt-5">
+                        </div>
+                        {% endif %}
+                        <a href="{% url 'profile' user.username %}" aria-label="{% trans 'Link to profile:' %}{{ user.username }}">
+                            {% if user.avatar %}
+                                <img class="userdashboard-profile__avatar mb-2" src="{% thumbnail user.avatar '170x170' crop %}" alt="" />
+                            {% else %}
+                                <img class="userdashboard-profile__avatar mb-2" src="{{ user.avatar_fallback }}" width="170" height="170" alt="" />
+                            {% endif %}
+                            <h4 class="mt-0 u-overflow-word">
+                            {{ user.username }}
+                            </h4>
+                        </a>
+                        <div>
+                            {% trans 'Since' %} {% html_date user.date_joined 'd M Y' %}
                         </div>
                     </div>
-                    {% else %}
-                    <div class="mt-5">
+                    <div class="mt-3">
+                    {% if user.bio %}<p>{{ user.bio }}</p>{% endif %}
                     </div>
-                    {% endif %}
-                    <a href="{% url 'profile' user.username %}" aria-label="{% trans 'Link to profile:' %}{{ user.username }}">
-                        {% if user.avatar %}
-                            <img class="userdashboard-profile__avatar mb-2" src="{% thumbnail user.avatar '170x170' crop %}" alt="" />
-                        {% else %}
-                            <img class="userdashboard-profile__avatar mb-2" src="{{ user.avatar_fallback }}" width="170" height="170" alt="" />
+                    <ul class="u-list-reset">
+                        {% if user.homepage %}
+                            <li>
+                                <i class="fas fa-link" aria-label="{% trans 'Homepage' %}" title="{% trans 'Homepage' %}"></i>
+                                <a href="{{ user.homepage }}">{{ user.homepage }}</a>
+                            </li>
                         {% endif %}
-                        <h4 class="mt-0 u-overflow-word">
-                        {{ user.username }}
-                        </h4>
-                    </a>
-                    <div>
-                        {% trans 'Since' %} {% html_date user.date_joined 'd M Y' %}
-                    </div>
+                        {% if user.facebook_handle %}
+                            <li>
+                                <i class="fab fa-facebook-square" aria-label="{% trans 'Facebook' %}" title="{% trans 'Facebook' %}"></i>
+                                <a href="https://www.facebook.com/{{ user.facebook_handle }}">{{ user.facebook_handle }}</a>
+                            </li>
+                        {% endif %}
+                        {% if user.twitter_handle %}
+                            <li>
+                                <i class="fab fa-twitter" aria-label="{% trans 'Twitter' %}" title="{% trans 'Twitter' %}"></i>
+                                <a href="https://twitter.com/{{ user.twitter_handle }}">{{ user.twitter_handle }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                <div class="col-md-9">
+                    <section aria-labelledby="sr-following-header">
+                        <h2 class="mt-0 pb-2">
+                            <span id="sr-following-header" class="visually-hidden">{% trans 'Selection of projects the are following' %}</span>
+                            {% trans 'Following' %}
+                        </h2>
+                        {% if view.projects_carousel %}
+                        <div class="project-tile-carousel">
+                            {% for project in view.projects_carousel %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project.get_absolute_url %}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class="mb-5">
+                            {% trans 'This user is not active in any projects yet.' %}
+                        </div>
+                        {% endif %}
+                    </section>
+                    <section aria-labelledby="sr-activities-header">
+                        <h2 class="mt-0" id="sr-activities-header">
+                            <span id="sr-activities-header" class="visually-hidden">{% trans 'List of last activities on their account' %}</span>
+                            {% trans 'Activities' %}
+                        </h2>
+                        <div>
+                            {% for action in view.actions|slice:":10" %}
+                                {% include 'a4_candy_actions/includes/action.html' with action=action %}
+                            {% empty %}
+                                {% trans 'No activity yet.' %}
+                            {% endfor %}
+                        </div>
+                    </section>
                 </div>
-                <div class="mt-3">
-                {% if user.bio %}<p>{{ user.bio }}</p>{% endif %}
-                </div>
-                <ul class="u-list-reset">
-                    {% if user.homepage %}
-                        <li>
-                            <i class="fas fa-link" aria-label="{% trans 'Homepage' %}" title="{% trans 'Homepage' %}"></i>
-                            <a href="{{ user.homepage }}">{{ user.homepage }}</a>
-                        </li>
-                    {% endif %}
-                    {% if user.facebook_handle %}
-                        <li>
-                            <i class="fab fa-facebook-square" aria-label="{% trans 'Facebook' %}" title="{% trans 'Facebook' %}"></i>
-                            <a href="https://www.facebook.com/{{ user.facebook_handle }}">{{ user.facebook_handle }}</a>
-                        </li>
-                    {% endif %}
-                    {% if user.twitter_handle %}
-                        <li>
-                            <i class="fab fa-twitter" aria-label="{% trans 'Twitter' %}" title="{% trans 'Twitter' %}"></i>
-                            <a href="https://twitter.com/{{ user.twitter_handle }}">{{ user.twitter_handle }}</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </nav>
-            <div class="col-md-9">
-                <section aria-labelledby="sr-following-header">
-                    <h2 class="mt-0 pb-2">
-                        <span id="sr-following-header" class="visually-hidden">{% trans 'Selection of projects the are following' %}</span>
-                        {% trans 'Following' %}
-                    </h2>
-                    {% if view.projects_carousel %}
-                    <div class="project-tile-carousel">
-                        {% for project in view.projects_carousel %}
-                            {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project.get_absolute_url %}
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    <div class="mb-5">
-                        {% trans 'This user is not active in any projects yet.' %}
-                    </div>
-                    {% endif %}
-                </section>
-                <section aria-labelledby="sr-activities-header">
-                    <h2 class="mt-0" id="sr-activities-header">
-                        <span id="sr-activities-header" class="visually-hidden">{% trans 'List of last activities on their account' %}</span>
-                        {% trans 'Activities' %}
-                    </h2>
-                    <div>
-                        {% for action in view.actions|slice:":10" %}
-                            {% include 'a4_candy_actions/includes/action.html' with action=action %}
-                        {% empty %}
-                            {% trans 'No activity yet. '%}
-                        {% endfor %}
-                    </div>
-                </section>
             </div>
         </div>
-    </div>
-{% endblock %}
+    {% else %}
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="alert alert-warning text-center">
+                        <i class="fas fa-exclamation-triangle fa-2x mb-3"></i>
+                        <h3>{% trans "Account Inactive" %}</h3>
+                        <p>{% trans "This user account is no longer active." %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}
