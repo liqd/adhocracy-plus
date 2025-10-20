@@ -69,24 +69,23 @@ def _create_notifications(obj, strategy):
 
 
 def _send_email_notifications(recipients, obj, strategy, notification_data):
-    print(
-        f"DEBUG: {len(recipients)} recipients, obj={obj}, type={notification_data['notification_type']}"
-    )
 
     email_class = _map_notification_type_to_email_class(
         notification_data["notification_type"]
     )
 
-    print(f"DEBUG: email_class={email_class}")
-
     if email_class:
-        print("DEBUG: Attempting to send batch email...")
         recipient_ids = [
             recipient.id if hasattr(recipient, "id") else recipient
             for recipient in recipients
         ]
-        email_class.send(obj, strategy_recipient_ids=recipient_ids)
-        print("DEBUG: Batch send method called")
+
+        # Pass the recipient_ids as kwargs to the send method
+        email_class.send(
+            obj,
+            strategy_recipient_ids=recipient_ids,
+            notification_data=notification_data,
+        )
 
 
 def _map_notification_type_to_email_class(notification_type):
@@ -94,20 +93,20 @@ def _map_notification_type_to_email_class(notification_type):
     from . import emails
 
     email_map = {
+        NotificationType.MODERATOR_FEEDBACK: emails.NotifyCreatorOnModeratorFeedback,
         NotificationType.MODERATOR_IDEA_FEEDBACK: emails.NotifyCreatorOnModeratorFeedback,
         NotificationType.MODERATOR_BLOCKED_COMMENT: emails.NotifyCreatorOnModeratorBlocked,
         NotificationType.EVENT_SOON: emails.NotifyFollowersOnUpcomingEventEmail,
-        NotificationType.PHASE_STARTED: emails.NotifyFollowersOnPhaseStartedEmail,
+        NotificationType.PROJECT_STARTED: emails.NotifyFollowersOnProjectStartedEmail,
+        NotificationType.PROJECT_COMPLETED: emails.NotifyFollowersOnProjectCompletedEmail,
         NotificationType.COMMENT_ON_POST: emails.NotifyCreatorEmail,
         NotificationType.PROJECT_CREATED: emails.NotifyInitiatorsOnProjectCreatedEmail,
         NotificationType.PROJECT_DELETED: emails.NotifyInitiatorsOnProjectDeletedEmail,
         NotificationType.COMMENT_REPLY: emails.NotifyCreatorEmail,
+        NotificationType.EVENT_ADDED: emails.NotifyFollowersOnEventAddedEmail,
         # TODO: Add missing mappings:
         # NotificationType.MODERATOR_HIGHLIGHT: emails.???,
         # NotificationType.EVENT_CANCELLED: emails.???,
-        # NotificationType.EVENT_ADDED: emails.???,
         # NotificationType.EVENT_UPDATE: emails.???,
-        # NotificationType.PROJECT_STARTED: emails.???,
-        # NotificationType.PROJECT_COMPLETED: emails.???,
     }
     return email_map.get(notification_type)

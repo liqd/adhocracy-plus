@@ -44,6 +44,7 @@ class NotificationType(models.TextChoices):
 
     # Moderation actions
     MODERATOR_HIGHLIGHT = "moderator_highlight", _("Moderator Highlight")
+    # TODO: Rename MODERATOR_FEEDBACK to MODERATOR_COMMENT_FEEDBACK
     MODERATOR_FEEDBACK = "moderator_feedback", _("Moderator Feedback")
     MODERATOR_BLOCKED_COMMENT = "moderator_blocked_comment", _(
         "Moderator Blocked Comment"

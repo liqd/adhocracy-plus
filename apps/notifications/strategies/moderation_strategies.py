@@ -9,9 +9,7 @@ from .base import BaseNotificationStrategy
 User = get_user_model()
 
 
-class ModeratorFeedback(BaseNotificationStrategy):
-    """Handles notifications when someone replies to a user's comment"""
-
+class CommentFeedback(BaseNotificationStrategy):
     def get_in_app_recipients(self, feedback) -> List[User]:
         user_comment = feedback.comment
         if user_comment and user_comment.creator:
@@ -26,10 +24,12 @@ class ModeratorFeedback(BaseNotificationStrategy):
 
     def create_notification_data(self, feedback) -> dict:
         user_comment = feedback.comment
+        print(feedback)
         return {
             "notification_type": NotificationType.MODERATOR_FEEDBACK,
             "message_template": _("A moderator gave feedback on your {comment}"),
             "context": {
+                "moderator_feedback": feedback.feedback_text,
                 "comment": _("comment"),
                 "comment_url": user_comment.get_absolute_url(),
             },
@@ -81,7 +81,7 @@ class ProposalFeedback(BaseNotificationStrategy):
             ),
             "context": {
                 "proposal_url": proposal.get_absolute_url(),
-                "proposal": proposal.name,  # Fixed typo: ideproposal -> proposal
+                "proposal": proposal.name,
             },
         }
 
