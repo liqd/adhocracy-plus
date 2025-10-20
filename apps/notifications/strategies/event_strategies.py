@@ -18,6 +18,12 @@ class OfflineEventCreated(ProjectNotificationStrategy):
 
     def create_notification_data(self, offline_event):
         """Create notification data for offline events"""
+        time_format = "%B %d, %Y at %H:%M" if offline_event.date else "%B %d, %Y"
+        str_time = (
+            offline_event.date.strftime(time_format)
+            if offline_event.date
+            else _("soon")
+        )
 
         return {
             "notification_type": NotificationType.EVENT_ADDED,
@@ -27,8 +33,10 @@ class OfflineEventCreated(ProjectNotificationStrategy):
             "context": {
                 "project": offline_event.project.name,
                 "project_url": offline_event.project.get_absolute_url(),
+                "organisation": offline_event.project.organisation.name,
                 "event": offline_event.name,
                 "event_url": offline_event.get_absolute_url(),
+                "event_date": str_time,
             },
         }
 
@@ -86,8 +94,10 @@ class OfflineEventReminder(ProjectNotificationStrategy):
             "context": {
                 "project": offline_event.project.name,
                 "project_url": offline_event.project.get_absolute_url(),
+                "organisation": offline_event.project.organisation.name,
                 "event": offline_event.name,
                 "event_url": offline_event.get_absolute_url(),
+                "event_date": str_time,
             },
         }
 

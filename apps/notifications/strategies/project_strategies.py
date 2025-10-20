@@ -104,6 +104,9 @@ class ProjectStarted(ProjectNotificationStrategy):
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
+                "end_date": project.phases.filter(module__is_draft=False)
+                .order_by(("end_date"))[0]
+                .end_date,
             },
         }
 
@@ -195,6 +198,7 @@ class ProjectCreated(ProjectNotificationStrategy):
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
+                "organisation": project.organisation.name,
             },
         }
 
