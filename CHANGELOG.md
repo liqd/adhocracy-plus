@@ -9,7 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
-- Hide profile pages for inactive accounts
+- Hide profile pages for inactive accounts (ST-1088)
 
 ## v2508.2
 
