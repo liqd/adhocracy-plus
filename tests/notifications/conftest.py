@@ -6,8 +6,8 @@ from tests.factories import CommentFactory
 from tests.factories import ModeratorFeedbackFactory
 from tests.ideas.factories import IdeaFactory
 from tests.offlineevents.factories import OfflineEventFactory
-from tests.projects.factories import ParticipantInviteFactory
 from tests.projects.factories import ModeratorInviteFactory
+from tests.projects.factories import ParticipantInviteFactory
 
 from .factories import NotificationFactory
 

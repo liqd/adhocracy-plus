@@ -1,0 +1,4 @@
+{% load i18n %}
+<p>
+{% blocktranslate with site_name=site.name %}The project "{{ project }}" on the participation platform {{ site_name }} was deleted.{% endblocktranslate %}
+</p>

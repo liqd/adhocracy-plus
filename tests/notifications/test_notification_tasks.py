@@ -9,6 +9,7 @@ from apps.notifications.models import NotificationType
 from apps.notifications.tasks import send_recently_completed_project_notifications
 from apps.notifications.tasks import send_recently_started_project_notifications
 from apps.notifications.tasks import send_upcoming_event_notifications
+from tests.helpers import get_emails_for_address
 
 
 @pytest.mark.django_db
@@ -19,7 +20,7 @@ def test_send_recently_started_project_notifications(
     project = project_factory()
 
     # Create only one phase for this project so it's the first
-    phase = phase_factory(
+    phase_factory(
         module__project=project,
         start_date=timezone.now() - timedelta(hours=12),
         end_date=timezone.now() + timedelta(days=7),
@@ -43,6 +44,10 @@ def test_send_recently_started_project_notifications(
         == NotificationType.PROJECT_STARTED
     )
 
+    follower_emails = get_emails_for_address(user2.email)
+    assert len(follower_emails) == 1
+    assert "starts now!" in follower_emails[0].subject.lower()
+
 
 @pytest.mark.django_db
 def test_send_recently_completed_project_notifications(
@@ -52,7 +57,7 @@ def test_send_recently_completed_project_notifications(
     project = project_factory()
 
     # Create only one phase for this project so it's the first
-    phase = phase_factory(
+    phase_factory(
         module__project=project,
         start_date=timezone.now() - timedelta(days=7),
         end_date=timezone.now() - timedelta(hours=12),
@@ -76,13 +81,17 @@ def test_send_recently_completed_project_notifications(
         == NotificationType.PROJECT_COMPLETED
     )
 
+    follower_emails = get_emails_for_address(user2.email)
+    assert len(follower_emails) == 1
+    assert "has completed" in follower_emails[0].subject.lower()
+
 
 @pytest.mark.django_db
 def test_send_upcoming_event_notifications(
     project_factory, offline_event_factory, user2
 ):
     project = project_factory()
-    offline_event = offline_event_factory(
+    offline_event_factory(
         project=project,
         date=timezone.now() + timedelta(hours=12),
     )
@@ -103,3 +112,7 @@ def test_send_upcoming_event_notifications(
     assert (
         created_notifications.first().notification_type == NotificationType.EVENT_SOON
     )
+
+    follower_emails = get_emails_for_address(user2.email)
+    assert len(follower_emails) == 1
+    assert "event in project" in follower_emails[0].subject.lower()

@@ -9,14 +9,16 @@ User = get_user_model()
 class BaseNotificationStrategy(ABC):
     """Abstract base class for all notification strategies"""
 
-    @abstractmethod
-    def get_in_app_recipients(self, obj) -> list[User]:
-        """Get users who should receive in-app notifications"""
+    def get_organisation(self, obj):
+        if hasattr(obj, "organisation"):
+            return obj.organisation
+        elif hasattr(obj, "project"):
+            return obj.project.organisation
         pass
 
     @abstractmethod
-    def get_email_recipients(self, obj) -> list[User]:
-        """Get users who should receive email notifications"""
+    def get_recipients(self, obj) -> list[User]:
+        """Get all potential recipients (before preference filtering)"""
         pass
 
     @abstractmethod

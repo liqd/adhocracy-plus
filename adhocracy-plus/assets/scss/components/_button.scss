@@ -99,6 +99,14 @@
     }
 }
 
+.btn.btn--transparent-border {
+    border-color: transparent;
+
+    &:hover {
+        border-color: transparent;
+    }
+}
+
 .btn.btn--none {
     background-color: transparent;
     border: none;
@@ -308,7 +316,7 @@
     }
 
     input[type="checkbox"]:checked + .checkbox-btn__text--icon:before {
-        font-family: "Font Awesome\ 5 Free", sans-serif;
+        font-family: "Font Awesome\ 7 Free", sans-serif;
         font-weight: 900;
         content: "\f00c"; // tick
         padding-right: 0.5 * $spacer;
@@ -329,5 +337,16 @@
 .btn--icon {
     i {
         padding-right: 0.5rem;
+    }
+}
+
+.btn--wide {
+    padding-left: 3em !important;
+    padding-right: 3em !important;
+}
+
+.btn--mobile-full-width {
+    @media (max-width: $breakpoint-md) {
+        width: 100%;
     }
 }
