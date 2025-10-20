@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Account Inactive" %} - {{ block.super }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+            <h1>{% trans "Account Inactive" %}</h1>
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle fa-2x mb-3"></i>
+                <p>{% blocktranslate %}This account has been blocked due to the platform's safety measures.{% endblocktranslate %}</p>
+                <p class="align-left">{% blocktranslate with "start@liqd.net" as email %}If you believe you have been incorrectly blocked, please send an email to {{ email }}. We will unblock your account as quickly as possible. {% endblocktranslate %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
