@@ -19,11 +19,14 @@ class OfflineEventCreated(ProjectNotificationStrategy):
     def create_notification_data(self, offline_event):
         """Create notification data for offline events"""
         time_format = "%B %d, %Y at %H:%M" if offline_event.date else "%B %d, %Y"
-        str_time = (
-            offline_event.date.strftime(time_format)
-            if offline_event.date
-            else _("soon")
-        )
+        try:
+            str_time = (
+                offline_event.date.strftime(time_format)
+                if offline_event.date
+                else _("soon")
+            )
+        except AttributeError:
+            str_time = offline_event.date if offline_event.date else _("soon")
 
         return {
             "notification_type": NotificationType.EVENT_ADDED,
