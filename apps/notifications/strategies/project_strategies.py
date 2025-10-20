@@ -217,5 +217,6 @@ class ProjectDeleted(ProjectNotificationStrategy):
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
+                "site_name": "aplus",  # TODO: use get_current_site or similar
             },
         }

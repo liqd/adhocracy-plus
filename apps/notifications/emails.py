@@ -4,8 +4,6 @@ from wagtail.models import Site
 
 from adhocracy4.emails.mixins import SyncEmailMixin
 from apps.cms.settings.models import ImportantPages
-from apps.organisations.models import Organisation
-from apps.projects import tasks
 from apps.users.emails import EmailAplus as Email
 
 User = auth.get_user_model()
@@ -59,8 +57,6 @@ class StrategyBasedEmail(SyncEmailMixin, Email):
         return self.object.organisation
 
     def get_context(self):
-        context = super().get_context()
-
         notification_data = self.kwargs.get("notification_data", {})
         notification_context = notification_data.get("context", {})
         return notification_context
@@ -152,32 +148,6 @@ class NotifyInitiatorsOnProjectCreatedEmail(StrategyBasedEmail):
 
 class NotifyInitiatorsOnProjectDeletedEmail(StrategyBasedEmail):
     template_name = "a4_candy_notifications/emails/notify_initiators_project_deleted"
-
-    @classmethod
-    def send_no_object(cls, object, *args, **kwargs):
-        organisation = object.organisation
-        object_dict = {
-            "name": object.name,
-            "initiators": list(
-                organisation.initiators.all().distinct().values_list("email", flat=True)
-            ),
-            "organisation_id": organisation.id,
-        }
-        tasks.send_async_no_object.delay(
-            cls.__module__, cls.__name__, object_dict, args, kwargs
-        )
-        return []
-
-    def get_organisation(self):
-        try:
-            return Organisation.objects.get(id=self.object["organisation_id"])
-        except Organisation.DoesNotExist:
-            pass
-
-    def get_context(self):
-        context = super().get_context()
-        context["name"] = self.object["name"]
-        return context
 
 
 class NotifyFollowersOnPhaseStartedEmail(StrategyBasedEmail):
