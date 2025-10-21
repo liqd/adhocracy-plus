@@ -79,7 +79,11 @@ class ProjectComment(BaseNotificationStrategy):
                 ),
                 "comment": comment.comment,
                 "post_url": comment.content_object.get_absolute_url(),
-                "post": comment.content_object.name,
+                "post": (
+                    comment.content_object.name
+                    if hasattr(comment.content_object, "name")
+                    else ""
+                ),  # TODO: Check how to handle this (Polls)
                 "project": comment.project.name,
                 "project_url": comment.project.get_absolute_url(),
             },
