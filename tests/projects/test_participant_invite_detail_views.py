@@ -1,9 +1,9 @@
 import pytest
-from django.core import mail
 from django.urls import reverse
 
 from adhocracy4.test.helpers import redirect_target
 from apps.projects.models import ParticipantInvite
+from tests.helpers import get_emails_for_address
 
 
 @pytest.mark.django_db
@@ -40,7 +40,8 @@ def test_user_can_accept(client, participant_invite, user):
     response = client.post(url, data)
     assert response.status_code == 302
     assert redirect_target(response) == "project-detail"
-    assert len(mail.outbox) == 1
+    user_mails = get_emails_for_address(user.email)
+    assert len(user_mails) == 1
     assert ParticipantInvite.objects.all().count() == 0
 
 
@@ -61,5 +62,6 @@ def test_user_can_reject(client, participant_invite, user):
     response = client.post(url, data)
     assert response.status_code == 302
     assert redirect_target(response) == "wagtail_serve"
-    assert len(mail.outbox) == 0
+    user_mails = get_emails_for_address(user.email)
+    assert len(user_mails) == 0
     assert ParticipantInvite.objects.all().count() == 0
