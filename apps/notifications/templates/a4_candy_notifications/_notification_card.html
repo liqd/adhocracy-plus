@@ -10,8 +10,8 @@
                 <p class="card-text text-muted small mb-0">{% translate description %}</p>
             </div>
             {% if is_preview_list %}
-                <a href="{% url 'userdashboard-notifications' %}" class="btn btn--default">
-                    {% translate 'See all' %}
+                <a href="{% url 'userdashboard-notifications' %}" class="btn btn--transparent btn--transparent-border">
+                    {% translate 'View all' %}
                 </a>
             {% endif %}
             {% if notifications_list and unread_count > 0 %}
@@ -19,7 +19,7 @@
                 <form method="post" action="{% url 'mark_all_notifications_as_read' %}" class="m-0">
                     {% csrf_token %}
                     <input type="hidden" name="section" value="{{ section_id }}">
-                    <button type="submit" class="btn btn-sm btn--transparent" style="border: 0px;">
+                    <button type="submit" class="btn btn-sm btn--transparent btn--transparent-border">
                         <i class="fas fa-check-double me-1"></i>
                         {% trans "Mark all as read" %}
                     </button>
