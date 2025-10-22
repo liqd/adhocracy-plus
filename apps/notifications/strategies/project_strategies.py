@@ -245,7 +245,7 @@ class UserContentCreated(ProjectNotificationStrategy):
         return {
             "notification_type": NotificationType.USER_CONTENT_CREATED,
             "message_template": _(
-                f"A new {content_type} has been created in project {obj.project.name}."
+                'A new {content_type} "{content}" has been created in project {project}.'
             ),
             "context": {
                 "project": obj.project.name,
@@ -253,7 +253,7 @@ class UserContentCreated(ProjectNotificationStrategy):
                 "organisation": obj.project.organisation.name,
                 "content_type": content_type.lower(),  # "idea", "mapidea", "proposal"
                 "content_type_display": content_type,  # "Idea", "MapIdea", "Proposal"
-                "content_name": obj.name,
+                "content": obj.name,
                 "content_url": obj.get_absolute_url(),
                 "creator_name": obj.creator.username,
             },
