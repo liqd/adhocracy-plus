@@ -55,8 +55,9 @@ class ProjectComment(ProjectNotificationStrategy):
         moderators = self._get_project_moderators(comment.project)
         recipients.update(moderators)
         if comment.content_object and hasattr(comment.content_object, "creator"):
-            # TODO: Check user preferences
-            recipients.add(comment.content_object.creator)
+            if comment.content_object.creator.id != comment.creator.id:
+                # TODO: Check user preferences
+                recipients.add(comment.content_object.creator)
 
         return list(recipients)
 
