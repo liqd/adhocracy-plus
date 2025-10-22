@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from ..models import NotificationSettings
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
+from .project_strategies import ProjectNotificationStrategy
 
 User = get_user_model()
 
@@ -45,12 +46,14 @@ class CommentHighlighted(BaseNotificationStrategy):
         }
 
 
-class ProjectComment(BaseNotificationStrategy):
+class ProjectComment(ProjectNotificationStrategy):
     """Strategy for notifications when someone comments on a project"""
 
     def get_in_app_recipients(self, comment) -> List[User]:
         """Get recipients for in-app notifications (project author)"""
         recipients = set()
+        moderators = self._get_project_moderators(comment.project)
+        recipients.update(moderators)
         if comment.content_object and hasattr(comment.content_object, "creator"):
             # TODO: Check user preferences
             recipients.add(comment.content_object.creator)

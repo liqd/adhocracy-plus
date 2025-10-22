@@ -17,6 +17,7 @@ from .project_strategies import ProjectEnded
 from .project_strategies import ProjectInvitationReceived
 from .project_strategies import ProjectModerationInvitationReceived
 from .project_strategies import ProjectStarted
+from .project_strategies import UserContentCreated
 
 __all__ = [
     "CommentReply",
@@ -36,6 +37,7 @@ __all__ = [
     "ProjectInvitationReceived",
     "CommentFeedback",
     "IdeaFeedback",
+    "UserContentCreated",
     "ProposalFeedback",
     "CommentBlocked",
 ]

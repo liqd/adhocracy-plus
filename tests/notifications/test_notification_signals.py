@@ -1,5 +1,4 @@
 import pytest
-from django.core import mail
 
 from adhocracy4.follows.models import Follow
 from apps.notifications.models import Notification
@@ -399,4 +398,43 @@ def test_handle_project_deleted(project_factory, organisation_factory, user_fact
     assert (
         deletion_notifications.first().notification_type
         == NotificationType.PROJECT_DELETED
+    )
+
+@pytest.mark.django_db
+def test_handle_idea_created(
+    project_factory, module_factory, user_factory, idea_factory
+):
+    project = project_factory()
+
+    module = module_factory(project=project)
+
+    idea_author = user_factory()
+    idea = idea_factory(module=module, creator=idea_author)
+    moderator = idea.project.moderators.first()
+    # Check that a notification was created for the moderator
+    invitation_notifications = Notification.objects.filter(recipient=moderator)
+    assert invitation_notifications.count() == 1
+    assert (
+        invitation_notifications.first().notification_type
+        == NotificationType.USER_CONTENT_CREATED
+    )
+
+
+@pytest.mark.django_db
+def test_handle_proposal_created(
+    project_factory, module_factory, user_factory, proposal_factory
+):
+    project = project_factory()
+    module = module_factory(project=project)
+    
+    proposal_author = user_factory()
+    proposal = proposal_factory(module=module, creator=proposal_author)
+    moderator = proposal.project.moderators.first()
+    
+    # Check that a notification was created for the moderator
+    notifications = Notification.objects.filter(recipient=moderator)
+    assert notifications.count() == 1
+    assert (
+        notifications.first().notification_type
+        == NotificationType.USER_CONTENT_CREATED
     )

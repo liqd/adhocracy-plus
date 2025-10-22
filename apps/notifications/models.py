@@ -29,6 +29,7 @@ class NotificationType(models.TextChoices):
     PROJECT_CREATED = "project_created", _("Project Created")
     PROJECT_DELETED = "project_deleted", _("Project Deleted")
 
+    USER_CONTENT_CREATED = "user_content_created", _("User Content created")
     EVENT_ADDED = "event_added", _("Event Added")
     EVENT_SOON = "event_soon", _("Event Starting Soon")
     EVENT_UPDATE = "event_update", _("Event Update")
@@ -44,7 +45,6 @@ class NotificationType(models.TextChoices):
 
     # Moderation actions
     MODERATOR_HIGHLIGHT = "moderator_highlight", _("Moderator Highlight")
-    # TODO: Rename MODERATOR_FEEDBACK to MODERATOR_COMMENT_FEEDBACK
     MODERATOR_COMMENT_FEEDBACK = "moderator_comment_feedback", _(
         "Moderator Comment Feedback"
     )

@@ -1,66 +1,32 @@
 {% extends 'email_base.'|add:part_type %}
-{% load class_name i18n %}
+{% load i18n %}
 
 {% block subject %}
-{% with type=action.obj|class_name project_name=action.project.name %}
-{% if type == 'Comment' %}
-{% blocktranslate %}A comment was added to the project {{ project_name }}{% endblocktranslate %}
-{% elif type == 'Idea' or type == 'MapIdea' %}
-{% blocktranslate %}An idea was added to the project {{ project_name }}{% endblocktranslate %}
-{% elif type == 'Proposal'%}
-{% blocktranslate %}A proposal was added to the project {{ project_name }}{% endblocktranslate %}
-{% else %}
-{% blocktranslate %}A contribution was added to the project {{ project_name }}{% endblocktranslate %}
-{% endif %}
-{% endwith %}
+{% blocktranslate with content_type=content_type_display project=project %}A {{ content_type }} was added to the project {{ project }}{% endblocktranslate %}
 {% endblock %}
 
 {% block headline %}
-{% with actor_name=action.actor.username type=action.obj|class_name project_name=action.project.name %}
-{% if type == 'Comment' %}
-{% blocktranslate %}{{ actor_name }} created a comment on the project {{ project_name }}{% endblocktranslate %}
-{% elif type == 'Idea' or type == 'MapIdea' %}
-{% blocktranslate %}{{ actor_name }} created an idea on the project {{ project_name }}{% endblocktranslate %}
-{% elif type == 'Proposal'%}
-{% blocktranslate %}{{ actor_name }} created a proposal on the project {{ project_name }}{% endblocktranslate %}
-{% else %}
-{% blocktranslate %}{{ actor_name }} created a contribution on the project {{ project_name }}{% endblocktranslate %}
-{% endif %}
-{% endwith %}
+{% blocktranslate with creator_name=creator_name content_type=content_type_display project=project %}{{ creator_name }} created a {{ content_type }} on the project {{ project }}{% endblocktranslate %}
 {% endblock  %}
 
 {% block content %}
 <p>
-{% with actor_name=action.actor.username type=action.obj|class_name project_name=action.project.name site_name=site.name %}
-{% if type == 'Comment' %}
-{% blocktranslate %}on the project {{ project_name }} a comment was added by {{ actor_name }}.{% endblocktranslate %} {% if part_type == 'txt' %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktranslate %}{% else %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktranslate %}{% endif %}
-{% elif type == 'Idea' or type == 'MapIdea' %}
-{% blocktranslate %}on the project {{ project_name }} an idea was added by {{ actor_name }}.{% endblocktranslate %} {% if part_type == 'txt' %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktranslate %}{% else %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktranslate %}{% endif %}
-{% elif type == 'Proposal'%}
-{% blocktranslate %}on the project {{ project_name }} a proposal was added by {{ actor_name }}.{% endblocktranslate %} {% if part_type == 'txt' %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktranslate %}{% else %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktranslate %}{% endif %}
+{% blocktranslate with creator_name=creator_name content_type=content_type project=project site_name=site.name %}on the project {{ project }} a {{ content_type }} was added by {{ creator_name }}.{% endblocktranslate %} 
+
+{% if part_type == 'txt' %}
+{% blocktranslate with project=project site_name=site.name %}Checkout what happened on the project {{ project }} on {{ site_name }} by clicking the link below.{% endblocktranslate %}
 {% else %}
-{% blocktranslate %}on the project {{ project_name }} a contribution was added by {{ actor_name }}.{% endblocktranslate %} {% if part_type == 'txt' %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the link below.{% endblocktranslate %}{% else %}{% blocktranslate %}Checkout what happend on the project {{ project_name }} on {{ site_name }} by clicking the button below.{% endblocktranslate %}{% endif %}
+{% blocktranslate with project=project site_name=site.name %}Checkout what happened on the project {{ project }} on {{ site_name }} by clicking the button below.{% endblocktranslate %}
 {% endif %}
-{% endwith %}
 </p>
 {% endblock %}
 
 {% block cta_url %}
-{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}
+{% if content_url %}{{ email.get_host }}{{ content_url }}{% else %}{{ email.get_host }}{{ project_url }}{% endif %}
 {% endblock %}
 
 {% block cta_label %}
-{% with type=action.obj|class_name %}
-{% if type == 'Comment' %}
-{% if action.obj.get_absolute_url %}{% blocktranslate %}Check the comment{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}
-{% elif type == 'Idea' or type == 'MapIdea' %}
-{% if action.obj.get_absolute_url %}{% blocktranslate %}Check the idea{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}
-{% elif type == 'Proposal'%}
-{% if action.obj.get_absolute_url %}{% blocktranslate %}Check the proposal{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}
-{% else %}
-{% if action.obj.get_absolute_url %}{% blocktranslate %}Check the contribution{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}
-{% endif %}
-{% endwith %}
+{% if content_url %}{% blocktranslate with content_type=content_type_display %}Check the {{ content_type }}{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}
 {% endblock %}
 
 {% block reason %}
