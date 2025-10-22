@@ -16,6 +16,7 @@ NOTIFICATION_SECTIONS = {
         NotificationType.EVENT_SOON,
         NotificationType.EVENT_UPDATE,
         NotificationType.EVENT_CANCELLED,
+        NotificationType.USER_CONTENT_CREATED,
     ],
     "interactions": [
         NotificationType.PROJECT_MODERATION_INVITATION,
@@ -104,6 +105,7 @@ def _map_notification_type_to_email_class(notification_type):
         NotificationType.PROJECT_DELETED: emails.NotifyInitiatorsOnProjectDeletedEmail,
         NotificationType.COMMENT_REPLY: emails.NotifyCreatorEmail,
         NotificationType.EVENT_ADDED: emails.NotifyFollowersOnEventAddedEmail,
+        NotificationType.USER_CONTENT_CREATED: emails.NotifyModeratorsEmail,
         # TODO: Add missing mappings:
         # NotificationType.MODERATOR_HIGHLIGHT: emails.???,
         # NotificationType.EVENT_CANCELLED: emails.???,
