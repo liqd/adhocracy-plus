@@ -4,6 +4,7 @@
 .map-list-view {
     .view-toggle {
         display: block;
+        padding-bottom: 10px;
     }
     
     .desktop-controls {
@@ -32,5 +33,15 @@
         .map-list {
             margin-top: 48px;
         }
+    }
+    
+    .list-view {
+        .list-item {
+            border-top: 1px solid #D8D8D8;
+        }
+        
+        .list-item:last-child {
+            border-bottom: 1px solid #D8D8D8;
+          }
     }
 }
