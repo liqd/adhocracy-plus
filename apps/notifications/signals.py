@@ -28,6 +28,7 @@ from .strategies import ProjectDeleted
 from .strategies import ProjectInvitationReceived
 from .strategies import ProjectModerationInvitationReceived
 from .strategies import ProposalFeedback
+from .strategies import UserContentCreated
 
 # Comment Signals
 
@@ -203,3 +204,24 @@ def handle_project_created(sender, instance, created, **kwargs):
 def handle_project_deleted(sender, instance, **kwargs):
     strategy = ProjectDeleted()
     _create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=Idea)
+def handle_idea_created(sender, instance, created, **kwargs):
+    if created and instance.project:
+        strategy = UserContentCreated("Idea")
+        _create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=MapIdea)
+def handle_mapidea_created(sender, instance, created, **kwargs):
+    if created and instance.project:
+        strategy = UserContentCreated("MapIdea")
+        _create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=Proposal)
+def handle_proposal_created(sender, instance, created, **kwargs):
+    if created and instance.project:
+        strategy = UserContentCreated("Proposal")
+        _create_notifications(instance, strategy)

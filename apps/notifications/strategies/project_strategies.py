@@ -35,6 +35,9 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
     def _get_project_initiators(self, project) -> List[User]:
         return project.organisation.initiators.all()
 
+    def _get_project_moderators(self, project) -> List[User]:
+        return project.moderators.all()
+
     def _get_project_recipients(
         self, project, notification_type, channel
     ) -> List[User]:
@@ -218,5 +221,40 @@ class ProjectDeleted(ProjectNotificationStrategy):
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
                 "site_name": "aplus",  # TODO: use get_current_site or similar
+            },
+        }
+
+
+class UserContentCreated(ProjectNotificationStrategy):
+    """Handle notifying moderators when a new Idea/MapIdea/Proposal posted on project"""
+
+    def __init__(self, content_type=None):
+        self.content_type = content_type
+        super().__init__()
+
+    def get_in_app_recipients(self, obj) -> List[User]:
+        return self._get_project_moderators(obj.project)
+
+    def get_email_recipients(self, obj) -> List[User]:
+        return self._get_project_moderators(obj.project)
+
+    def create_notification_data(self, obj) -> dict:
+        # Auto-detect content type from object class if not provided
+        content_type = self.content_type or obj.__class__.__name__
+
+        return {
+            "notification_type": NotificationType.USER_CONTENT_CREATED,
+            "message_template": _(
+                f"A new {content_type} has been created in project {obj.project.name}."
+            ),
+            "context": {
+                "project": obj.project.name,
+                "project_url": obj.project.get_absolute_url(),
+                "organisation": obj.project.organisation.name,
+                "content_type": content_type.lower(),  # "idea", "mapidea", "proposal"
+                "content_type_display": content_type,  # "Idea", "MapIdea", "Proposal"
+                "content_name": obj.name,
+                "content_url": obj.get_absolute_url(),
+                "creator_name": obj.creator.username,
             },
         }
