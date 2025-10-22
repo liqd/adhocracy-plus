@@ -22,7 +22,7 @@ NOTIFICATION_SECTIONS = {
         NotificationType.PROJECT_INVITATION,
         NotificationType.COMMENT_REPLY,
         NotificationType.COMMENT_ON_POST,
-        NotificationType.MODERATOR_FEEDBACK,
+        NotificationType.MODERATOR_COMMENT_FEEDBACK,
         NotificationType.MODERATOR_HIGHLIGHT,
         NotificationType.MODERATOR_IDEA_FEEDBACK,
         NotificationType.MODERATOR_BLOCKED_COMMENT,
@@ -93,7 +93,7 @@ def _map_notification_type_to_email_class(notification_type):
     from . import emails
 
     email_map = {
-        NotificationType.MODERATOR_FEEDBACK: emails.NotifyCreatorOnModeratorFeedback,
+        NotificationType.MODERATOR_COMMENT_FEEDBACK: emails.NotifyCreatorOnModeratorFeedback,
         NotificationType.MODERATOR_IDEA_FEEDBACK: emails.NotifyCreatorOnModeratorFeedback,
         NotificationType.MODERATOR_BLOCKED_COMMENT: emails.NotifyCreatorOnModeratorBlocked,
         NotificationType.EVENT_SOON: emails.NotifyFollowersOnUpcomingEventEmail,

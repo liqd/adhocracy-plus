@@ -26,7 +26,7 @@ class CommentFeedback(BaseNotificationStrategy):
         user_comment = feedback.comment
         print(feedback)
         return {
-            "notification_type": NotificationType.MODERATOR_FEEDBACK,
+            "notification_type": NotificationType.MODERATOR_COMMENT_FEEDBACK,
             "message_template": _("A moderator gave feedback on your {comment}"),
             "context": {
                 "moderator_feedback": feedback.feedback_text,
