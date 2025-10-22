@@ -1,4 +1,5 @@
 $border-color: transparent;
+$light-blue: "#DFF6FF";
 
 .notifications_btn {
     margin-right: 0.5em;
@@ -27,3 +28,20 @@ $border-color: transparent;
     height: 13px;
 }
 
+.read-notification {
+    opacity: 0.8;
+}
+
+.notification-icon-box {
+    display: flex;
+    height: 40px;
+    width: 40px;
+    background-color: $light-blue;
+    vertical-align: middle;
+    color: $brand-primary;
+}
+
+.unread-notification__single {
+    margin-right: -4px;
+    margin-top: -4px;
+}

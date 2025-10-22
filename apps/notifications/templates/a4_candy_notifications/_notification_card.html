@@ -2,30 +2,30 @@
 
 <div class="mb-4" id="{{ section_id }}">
     <div class="card-header bg-white py-3 position-relative">
-        <div class="d-flex justify-content-between align-items-start">
-            <div class="flex-grow-1">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+            <div class="flex-grow-1 w-100 w-md-auto">
                 <h2 class="card-title text-decoration-underline mb-1 mt-0">
                     {% translate title %}
                 </h2>
-                <p class="card-text text-muted small mb-0">{% translate description %}</p>
+                <p class="card-text small mb-0">{% translate description %}</p>
             </div>
-            {% if is_preview_list %}
-                <a href="{% url 'userdashboard-notifications' %}" class="btn btn--transparent btn--transparent-border">
-                    {% translate 'View all' %}
-                </a>
-            {% endif %}
-            {% if notifications_list and unread_count > 0 %}
-            <div class="ms-3 flex-shrink-0">
-                <form method="post" action="{% url 'mark_all_notifications_as_read' %}" class="m-0">
-                    {% csrf_token %}
-                    <input type="hidden" name="section" value="{{ section_id }}">
-                    <button type="submit" class="btn btn-sm btn--transparent btn--transparent-border">
-                        <i class="fas fa-check-double me-1"></i>
-                        {% trans "Mark all as read" %}
-                    </button>
-                </form>
+            <div class="d-flex flex-wrap gap-2 mt-2 mt-md-0 ms-md-3 flex-shrink-0">
+                {% if is_preview_list %}
+                    <a href="{% url 'userdashboard-notifications' %}" class="btn btn--transparent btn--transparent-border">
+                        {% translate 'View all' %}
+                    </a>
+                {% endif %}
+                {% if notifications_list and unread_count > 0 %}
+                    <form method="post" action="{% url 'mark_all_notifications_as_read' %}" class="m-0">
+                        {% csrf_token %}
+                        <input type="hidden" name="section" value="{{ section_id }}">
+                        <button type="submit" class="btn btn-sm btn--transparent btn--transparent-border">
+                            <i class="fas fa-check-double me-1"></i>
+                            {% trans "Mark all as read" %}
+                        </button>
+                    </form>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
     </div>
     
@@ -34,28 +34,8 @@
     </div>
     
     {% if pagination_required %}
-        <div class="card-footer bg-white">
+        <div class="card-footer">
             {% include "a4_candy_notifications/_pagination.html" with page_obj=page_obj param_name=param_name %}
         </div>
     {% endif %}
 </div>
-
-<style>
-    .read-notification {
-        opacity: 0.8;
-    }
-
-    .notification-icon-box {
-        display: flex;
-        height: 40px;
-        width: 40px;
-        background-color: "#DFF6FF";
-        vertical-align: middle;
-        color: '#2D40CC';
-    }
-
-    .unread-notification__single {
-        margin-right: -4px;
-        margin-top: -4px;
-    }
-</style>
