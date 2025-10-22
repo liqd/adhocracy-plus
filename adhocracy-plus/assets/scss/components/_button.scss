@@ -339,3 +339,14 @@
         padding-right: 0.5rem;
     }
 }
+
+.btn--wide {
+    padding-left: 3em !important;
+    padding-right: 3em !important;
+}
+
+.btn--mobile-full-width {
+    @media (max-width: $breakpoint-md) {
+        width: 100%;
+    }
+}
