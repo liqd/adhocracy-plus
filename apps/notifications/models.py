@@ -45,7 +45,9 @@ class NotificationType(models.TextChoices):
     # Moderation actions
     MODERATOR_HIGHLIGHT = "moderator_highlight", _("Moderator Highlight")
     # TODO: Rename MODERATOR_FEEDBACK to MODERATOR_COMMENT_FEEDBACK
-    MODERATOR_FEEDBACK = "moderator_feedback", _("Moderator Feedback")
+    MODERATOR_COMMENT_FEEDBACK = "moderator_comment_feedback", _(
+        "Moderator Comment Feedback"
+    )
     MODERATOR_BLOCKED_COMMENT = "moderator_blocked_comment", _(
         "Moderator Blocked Comment"
     )
@@ -89,7 +91,7 @@ NOTIFICATION_TYPE_MAPPING = {
     NotificationType.PROJECT_INVITATION: NotificationCategory.INVITATIONS,
     # Moderation
     NotificationType.MODERATOR_HIGHLIGHT: NotificationCategory.MODERATION,
-    NotificationType.MODERATOR_FEEDBACK: NotificationCategory.MODERATION,
+    NotificationType.MODERATOR_COMMENT_FEEDBACK: NotificationCategory.MODERATION,
     NotificationType.MODERATOR_BLOCKED_COMMENT: NotificationCategory.MODERATION,
     NotificationType.MODERATOR_IDEA_FEEDBACK: NotificationCategory.MODERATION,
 }
