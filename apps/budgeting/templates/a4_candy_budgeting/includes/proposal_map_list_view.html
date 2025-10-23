@@ -16,10 +16,9 @@
 {% block list_content %}
 <ul class="u-list-reset">
     {% for object in paginated_list %}
-        {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
+        {% include "a4_candy_budgeting/includes/proposal_list_item.html" with object=object %}
     {% empty %}
         {% translate "Nothing to show" %}
     {% endfor %}
 </ul>
 {% endblock list_content %}
-

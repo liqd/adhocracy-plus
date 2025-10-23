@@ -1,4 +1,8 @@
+import re
+
 import django_filters
+from django.core.paginator import EmptyPage
+from django.core.paginator import Paginator
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -51,12 +55,29 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
 class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMixin):
     model = models.Proposal
     filter_set = ProposalFilterSet
+    paginate_by = 0  # Maps need all ideas, pagination is handled in get_context_data
 
-    def dispatch(self, request, **kwargs):
-        self.mode = request.GET.get("mode", "map")
-        if self.mode == "map":
-            self.paginate_by = 0
-        return super().dispatch(request, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ua = self.request.headers.get("User-Agent", "")
+        is_mobile = bool(re.search(r"Mobi|Android|iPhone|iPod|Windows Phone", ua, re.I))
+        page_size = int(self.request.GET.get("page_size", 15 if is_mobile else 8))
+        self.mode = self.request.GET.get("mode", "map")
+        object_list = context.get("object_list", [])
+
+        if page_size > 0:
+            paginator = Paginator(object_list, page_size)
+            page = int(self.request.GET.get("page", 1))
+            try:
+                paginated_list = paginator.page(page)
+            except EmptyPage:
+                paginated_list = paginator.page(paginator.num_pages)
+        else:
+            paginated_list = object_list
+        context["paginated_list"] = paginated_list
+        context["page_obj"] = paginated_list  # page_obj ist die paginierte Liste selbst
+        context["is_paginated"] = paginator.num_pages > 1 if page_size > 0 else False
+        return context
 
 
 class ProposalDetailView(idea_views.AbstractIdeaDetailView):
