@@ -6,8 +6,7 @@ from apps.moderatorfeedback.models import ModeratorCommentFeedback
 
 @pytest.mark.django_db
 def test_anonymous_cannot_add_feedback(apiclient, idea, comment_factory):
-    comment = comment_factory(pk=1, content_object=idea)
-
+    comment = comment_factory(content_object=idea)
     assert ModeratorCommentFeedback.objects.all().count() == 0
     url = reverse("moderatorfeedback-list", kwargs={"comment_pk": comment.pk})
     data = {"feedback_text": "a statement"}
@@ -18,7 +17,7 @@ def test_anonymous_cannot_add_feedback(apiclient, idea, comment_factory):
 
 @pytest.mark.django_db
 def test_user_cannot_add_feedback(apiclient, idea, user, comment_factory):
-    comment = comment_factory(pk=1, content_object=idea)
+    comment = comment_factory(content_object=idea)
 
     assert ModeratorCommentFeedback.objects.all().count() == 0
     url = reverse("moderatorfeedback-list", kwargs={"comment_pk": comment.pk})
@@ -31,7 +30,7 @@ def test_user_cannot_add_feedback(apiclient, idea, user, comment_factory):
 
 @pytest.mark.django_db
 def test_moderator_can_add_feedback(apiclient, idea, user, comment_factory):
-    comment = comment_factory(pk=1, content_object=idea)
+    comment = comment_factory(content_object=idea)
     idea.project.moderators.add(user)
 
     assert ModeratorCommentFeedback.objects.all().count() == 0
@@ -45,7 +44,7 @@ def test_moderator_can_add_feedback(apiclient, idea, user, comment_factory):
 
 @pytest.mark.django_db
 def test_initiator_can_add_feedback(apiclient, idea, user, comment_factory):
-    comment = comment_factory(pk=1, content_object=idea)
+    comment = comment_factory(content_object=idea)
     idea.project.organisation.initiators.add(user)
 
     assert ModeratorCommentFeedback.objects.all().count() == 0
@@ -59,7 +58,7 @@ def test_initiator_can_add_feedback(apiclient, idea, user, comment_factory):
 
 @pytest.mark.django_db
 def test_admin_can_add_feedback(admin, apiclient, idea, comment_factory):
-    comment = comment_factory(pk=1, content_object=idea)
+    comment = comment_factory(content_object=idea)
 
     assert ModeratorCommentFeedback.objects.all().count() == 0
     url = reverse("moderatorfeedback-list", kwargs={"comment_pk": comment.pk})

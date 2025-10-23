@@ -1,0 +1,19 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+{% for strategy in strategies %}
+<div style="border: 1px solid #ddd; margin: 20px 0; padding: 20px; background-color: #007cba; color: white;">
+    <h2>{{ strategy.notification_type }}</h2>
+    <p><strong>Email Class:</strong> {{ strategy.email_class }}</p>
+    <p><strong>Template:</strong> {{ strategy.template_name }}.en.email</p>
+    
+    {% if strategy.rendered %}
+        <div style="border: 1px solid #007cba; padding: 20px; margin-top: 10px;">
+            {{ strategy.rendered|safe }}
+        </div>
+    {% endif %}
+</div>
+{% endfor %}
+{% endblock %}

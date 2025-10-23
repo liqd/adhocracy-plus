@@ -1,19 +1,19 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktranslate with project_name=action.project.name %}Event in project {{ project_name }}{% endblocktranslate %}{% endblock %}
+{% block subject %}{% blocktranslate %}Event in project {{ project }}{% endblocktranslate %}{% endblock %}
 
 {% block headline %}{% blocktranslate %}Event{% endblocktranslate %}{% endblock %}
-{% block sub-headline %}{{ action.project.name }}{% endblock %}
+{% block sub-headline %}{{ event }}{% endblock %}
 
 {% block greeting %}{% blocktranslate with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktranslate %}{% endblock %}
 
 {% block content %}
 <p>
-{% blocktranslate with date=action.obj.date %}The following event takes place on {{ date }}:{% endblocktranslate %}
+{% blocktranslate with date=event_date %}The following event takes place on {{ date }}:{% endblocktranslate %}
 </p>
 <p>
-<b>{{ action.obj.name }}</b>
+<b>{{ event }}</b>
 </p>
 <p>
 {% blocktranslate %}Further information about the event can be found in the project.{% endblocktranslate %}
