@@ -21,6 +21,7 @@
     margin-right: 0.5 * $spacer;
     margin-top: -0.5em;
     margin-bottom: 0.5em;
+
     .dropdown-menu.show {
         top: 100% !important; // overwriting the general dropdown overwrite
     }
@@ -36,6 +37,7 @@
 
 .header-upper__nav {
     flex-direction: row;
+
     // bootstrap overwrites
     .dropdown-menu {
         position: absolute;
@@ -54,7 +56,7 @@
 
 .header-upper__mobile-toggle:after {
     z-index: 5;
-    font-family: "Font Awesome 5 Free", sans-serif;
+    font-family: "Font Awesome 7 Free", sans-serif;
     font-style: normal;
     font-weight: 900;
     content: "\f0c9";
