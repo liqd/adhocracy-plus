@@ -16,17 +16,26 @@
 }
 
 .header-upper__lang {
-    margin-right: 2 * $spacer;
-    margin-top: 0.5 * $spacer;
-
+    display: flex;
+    align-items: center;
+    margin-right: 0.5 * $spacer;
+    margin-top: -0.5em;
+    margin-bottom: 0.5em;
     .dropdown-menu.show {
         top: 100% !important; // overwriting the general dropdown overwrite
     }
 }
 
+.header-upper__notification_button {
+    display: flex;
+    margin-top: -0.5em;
+    margin-right: 0.5 * $spacer;
+    margin-bottom: 0.5em;
+    align-items: center;
+}
+
 .header-upper__nav {
     flex-direction: row;
-
     // bootstrap overwrites
     .dropdown-menu {
         position: absolute;
