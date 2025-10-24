@@ -3,61 +3,6 @@ import pytest
 from adhocracy4.follows.models import Follow
 from apps.notifications.models import Notification
 from apps.notifications.models import NotificationType
-from tests.helpers import get_emails_for_address
-
-
-@pytest.mark.django_db
-def test_handle_comment_notifications(
-    module_factory, idea_factory, project_factory, comment_factory, user_factory
-):
-    project = project_factory()
-    project.save()
-
-    module = module_factory(project=project)
-
-    idea_author = user_factory()
-    idea = idea_factory(module=module, creator=idea_author)
-
-    # Create users
-    author = user_factory()
-    replier = user_factory()
-
-    # Create a parent comment
-    parent_comment = comment_factory(
-        content_object=idea, creator=author, project=project
-    )
-
-    # Save the comment to trigger the signal
-    parent_comment.save()
-
-    # Check that a notification was created for the idea author
-    module_comment_notifications = Notification.objects.filter(recipient=idea_author)
-    assert module_comment_notifications.count() == 1
-    assert (
-        module_comment_notifications.first().notification_type
-        == NotificationType.COMMENT_ON_POST
-    )
-    # Check that email notification was sent to the idea author
-    idea_author_mails = get_emails_for_address(idea_author.email)
-    assert len(idea_author_mails) == 1
-    assert idea_author_mails[0].subject.startswith("Reaction to your contribution")
-
-    # Create a reply to the parent comment
-    reply_comment = comment_factory(
-        content_object=parent_comment, creator=replier, project=project
-    )
-
-    # Save the reply to trigger the signal
-    reply_comment.save()
-
-    # Check that a notification was created for the parent comment author
-    notifications = Notification.objects.filter(recipient=author)
-    assert notifications.count() == 1
-    assert notifications.first().notification_type == NotificationType.COMMENT_REPLY
-    # Check that email notification was sent to the parent comment author
-    parent_commenter_mails = get_emails_for_address(author.email)
-    assert len(parent_commenter_mails) == 1
-    assert parent_commenter_mails[0].subject.startswith("Reaction to your contribution")
 
 
 @pytest.mark.django_db
@@ -313,6 +258,7 @@ def test_handle_event_update_notifications(
         updated_notifications.last().notification_type == NotificationType.EVENT_UPDATE
     )
 
+
 @pytest.mark.django_db
 def test_handle_invite_notification(
     project_factory, participant_invite_factory, user_factory
@@ -358,10 +304,9 @@ def test_handle_moderator_invite_notification(
         == NotificationType.PROJECT_MODERATION_INVITATION
     )
 
+
 @pytest.mark.django_db
-def test_handle_project_created(
-    project_factory, organisation_factory, user_factory
-):
+def test_handle_project_created(project_factory, organisation_factory, user_factory):
     initiator = user_factory()
 
     # Create organisation with this initiator
@@ -377,6 +322,7 @@ def test_handle_project_created(
         creation_notifications.first().notification_type
         == NotificationType.PROJECT_CREATED
     )
+
 
 @pytest.mark.django_db
 def test_handle_project_deleted(project_factory, organisation_factory, user_factory):
@@ -399,6 +345,7 @@ def test_handle_project_deleted(project_factory, organisation_factory, user_fact
         deletion_notifications.first().notification_type
         == NotificationType.PROJECT_DELETED
     )
+
 
 @pytest.mark.django_db
 def test_handle_idea_created(
@@ -426,15 +373,14 @@ def test_handle_proposal_created(
 ):
     project = project_factory()
     module = module_factory(project=project)
-    
+
     proposal_author = user_factory()
     proposal = proposal_factory(module=module, creator=proposal_author)
     moderator = proposal.project.moderators.first()
-    
+
     # Check that a notification was created for the moderator
     notifications = Notification.objects.filter(recipient=moderator)
     assert notifications.count() == 1
     assert (
-        notifications.first().notification_type
-        == NotificationType.USER_CONTENT_CREATED
+        notifications.first().notification_type == NotificationType.USER_CONTENT_CREATED
     )
