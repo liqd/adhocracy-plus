@@ -128,7 +128,7 @@ class ProjectEnded(ProjectNotificationStrategy):
     def create_notification_data(self, project) -> dict:
         return {
             "notification_type": NotificationType.PROJECT_COMPLETED,
-            "message_template": _("The project {project} has completed."),
+            "message_template": _("The project {project} has been completed."),
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
