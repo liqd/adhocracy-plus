@@ -53,23 +53,53 @@ class ProjectComment(ProjectNotificationStrategy):
         """Get recipients for in-app notifications (project author)"""
         recipients = set()
         moderators = self._get_project_moderators(comment.project)
-        recipients.update(moderators)
+
+        # Add moderators who want in-app notifications
+        for moderator in moderators:
+            if self._should_receive_comment_notification(moderator, "in_app"):
+                recipients.add(moderator)
+
+        # Add content creator if they're not the commenter and want notifications
         if comment.content_object and hasattr(comment.content_object, "creator"):
-            if comment.content_object.creator.id != comment.creator.id:
-                # TODO: Check user preferences
-                recipients.add(comment.content_object.creator)
+            content_creator = comment.content_object.creator
+            if (
+                content_creator != comment.creator
+                and self._should_receive_comment_notification(content_creator, "in_app")
+            ):
+                recipients.add(content_creator)
 
         return list(recipients)
 
     def get_email_recipients(self, comment) -> List[User]:
         """Get recipients for email notifications (project author)"""
-        return self.get_in_app_recipients(comment)
+        recipients = set()
+        moderators = self._get_project_moderators(comment.project)
 
-    # TODO: Check if content type can be added to message
+        # Add moderators who want email notifications
+        for moderator in moderators:
+            if self._should_receive_comment_notification(moderator, "email"):
+                recipients.add(moderator)
+
+        # Add content creator if they're not the commenter and want notifications
+        if comment.content_object and hasattr(comment.content_object, "creator"):
+            content_creator = comment.content_object.creator
+            if (
+                content_creator != comment.creator
+                and self._should_receive_comment_notification(content_creator, "email")
+            ):
+                recipients.add(content_creator)
+
+        return list(recipients)
+
+    def _should_receive_comment_notification(self, user, channel):
+        """Helper method to check if user should receive comment notifications"""
+        settings = NotificationSettings.get_for_user(user)
+        return settings.should_receive_notification(
+            NotificationType.COMMENT_ON_POST, channel
+        )
 
     def create_notification_data(self, comment) -> dict:
         """Create notification data for project comments"""
-        from django.utils.translation import gettext_lazy as _
 
         return {
             "notification_type": NotificationType.COMMENT_ON_POST,
@@ -86,8 +116,8 @@ class ProjectComment(ProjectNotificationStrategy):
                 "post": (
                     comment.content_object.name
                     if hasattr(comment.content_object, "name")
-                    else ""
-                ),  # TODO: Check how to handle this (Polls)
+                    else _("post")
+                ),
                 "project": comment.project.name,
                 "project_url": comment.project.get_absolute_url(),
             },
@@ -107,14 +137,22 @@ class CommentReply(BaseNotificationStrategy):
     def get_in_app_recipients(self, comment) -> List[User]:
         parent_comment = self._get_parent_comment(comment)
         if parent_comment and parent_comment.creator:
-            if self._should_receive_comment_reply(parent_comment.creator, "in_app"):
+            # Exclude the actor (comment creator) if they're replying to themselves
+            if (
+                parent_comment.creator != comment.creator
+                and self._should_receive_comment_reply(parent_comment.creator, "in_app")
+            ):
                 return [parent_comment.creator]
         return []
 
     def get_email_recipients(self, comment) -> List[User]:
         parent_comment = self._get_parent_comment(comment)
         if parent_comment and parent_comment.creator:
-            if self._should_receive_comment_reply(parent_comment.creator, "email"):
+            # Exclude the actor (comment creator) if they're replying to themselves
+            if (
+                parent_comment.creator != comment.creator
+                and self._should_receive_comment_reply(parent_comment.creator, "email")
+            ):
                 return [parent_comment.creator]
         return []
 
