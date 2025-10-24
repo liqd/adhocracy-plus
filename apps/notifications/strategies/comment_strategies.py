@@ -140,5 +140,7 @@ class CommentReply(BaseNotificationStrategy):
                 ),
                 "comment": _("comment"),
                 "comment_url": comment_url,
+                "project": comment.project.name,
+                "project_url": comment.project.get_absolute_url(),
             },
         }
