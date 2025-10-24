@@ -57,9 +57,15 @@ class StrategyBasedEmail(SyncEmailMixin, Email):
         return self.object.organisation
 
     def get_context(self):
+        context = super().get_context()
         notification_data = self.kwargs.get("notification_data", {})
         notification_context = notification_data.get("context", {})
-        return notification_context
+
+        context.update(notification_context)
+
+        context["object"] = self.object
+
+        return context
 
 
 class NotifyCreatorEmail(StrategyBasedEmail):
