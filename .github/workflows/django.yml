@@ -39,12 +39,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Cache Bun packages
+      - name: Cache node packages
         uses: actions/cache@v4
         env:
-          cache-name: cache-bun-packages
+          cache-name: cache-node-packages
         with:
-          path: ~/.bun/install/cache
+          path: ~/.npm
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
@@ -66,7 +66,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .testmondata
-          key: ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/requirements/dev.txt') }}
+          key: ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/requirements/dev.txt', 'adhocracy-plus/config/settings/*.py', 'pytest.ini') }}
           restore-keys: |
             ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-
 
@@ -83,20 +83,14 @@ jobs:
           uv pip install -r requirements/dev.txt --system
           uv pip install coveralls --system
 
-      - name: Install Bun Dependencies
-        run: |
-          # Installiere Git-Dependencies mit npm (Bun-Fallback)
-          npm install --package-lock-only --ignore-scripts
-          bun install
-          bun run build
-
       - name: Run Tests
         env:
           PGPASSWORD: postgres
           PGHOSTADDR: 127.0.0.1
         run: |
           python manage.py collectstatic > /dev/null
-          DJANGO_SETTINGS_MODULE='adhocracy-plus.config.settings.travis' py.test --testmon --cov
+          # Einmalig Cache löschen, um Settings-Mismatch auszuschließen
+          py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov
           isort --diff -c adhocracy-plus tests
           python manage.py makemigrations --dry-run --check --noinput
           flake8 adhocracy-plus tests --exclude migrations,settings
@@ -109,9 +103,16 @@ jobs:
       
       - name: Coveralls
         env:
+          COVERALLS_SERVICE_NAME: github-actions
           GITHUB_TOKEN: ${{ secrets.COV }}
         run: |
           coveralls
+
+      - name: Install NPM Dependencies
+        run: |
+          npm install
+          npm run build
+
       - name: Run Frontend Tests
         run: |
           npm test
