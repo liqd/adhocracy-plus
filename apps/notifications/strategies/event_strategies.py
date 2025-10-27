@@ -10,11 +10,8 @@ User = get_user_model()
 class OfflineEventCreated(ProjectNotificationStrategy):
     """Strategy for notifications when an offline event is added to a project"""
 
-    def get_in_app_recipients(self, event) -> list[User]:
-        return self._get_event_recipients(event, NotificationType.EVENT_ADDED, "in_app")
-
-    def get_email_recipients(self, event) -> list[User]:
-        return self._get_event_recipients(event, NotificationType.EVENT_ADDED, "email")
+    def get_recipients(self, event) -> list[User]:
+        return self._get_event_recipients(event)
 
     def create_notification_data(self, offline_event):
         """Create notification data for offline events"""
@@ -47,20 +44,12 @@ class OfflineEventCreated(ProjectNotificationStrategy):
 class OfflineEventDeleted(ProjectNotificationStrategy):
     """Strategy for event reminder notifications"""
 
-    def get_in_app_recipients(self, event) -> list[User]:
-        return self._get_event_recipients(
-            event, NotificationType.EVENT_CANCELLED, "in_app"
-        )
-
-    def get_email_recipients(self, event) -> list[User]:
-        return self._get_event_recipients(
-            event, NotificationType.EVENT_CANCELLED, "email"
-        )
+    def get_recipients(self, event) -> list[User]:
+        return self._get_event_recipients(event)
 
     def create_notification_data(self, offline_event):
         return {
             "notification_type": NotificationType.EVENT_CANCELLED,
-            # TODO: Check text here and remove event link, doen't make sense due to carousel
             "message_template": _(
                 "The event '{event}' in project {project} has been cancelled"
             ),
@@ -76,11 +65,8 @@ class OfflineEventDeleted(ProjectNotificationStrategy):
 class OfflineEventReminder(ProjectNotificationStrategy):
     """Strategy for event reminder notifications"""
 
-    def get_in_app_recipients(self, event) -> list[User]:
-        return self._get_event_recipients(event, NotificationType.EVENT_SOON, "in_app")
-
-    def get_email_recipients(self, event) -> list[User]:
-        return self._get_event_recipients(event, NotificationType.EVENT_SOON, "email")
+    def get_recipients(self, event) -> list[User]:
+        return self._get_event_recipients(event)
 
     def create_notification_data(self, offline_event):
         time_format = "%B %d, %Y at %H:%M" if offline_event.date else "%B %d, %Y"
@@ -106,34 +92,19 @@ class OfflineEventReminder(ProjectNotificationStrategy):
 
 
 class OfflineEventUpdate(ProjectNotificationStrategy):
-    def get_in_app_recipients(self, event) -> list[User]:
-        return self._get_event_recipients(
-            event, NotificationType.EVENT_UPDATE, "in_app"
-        )
+    def get_recipients(self, event) -> list[User]:
+        return self._get_event_recipients(event)
 
-    def get_email_recipients(self, event) -> list[User]:
-        return self._get_event_recipients(event, NotificationType.EVENT_UPDATE, "email")
-
-    def create_notification_data(
-        self, offline_event, update_type="rescheduled", old_data=None
-    ):
+    def create_notification_data(self, offline_event):
         return {
             "notification_type": NotificationType.EVENT_UPDATE,
             "message_template": _(
                 "The event {event} in project {project} has been updated"
             ),
             "context": {
-                "project": offline_event.project.name if offline_event.project else "",
-                "project_url": (
-                    offline_event.project.get_absolute_url()
-                    if offline_event.project
-                    else "#"
-                ),
+                "project": offline_event.project.name,
+                "project_url": offline_event.project.get_absolute_url(),
                 "event": offline_event.name,
-                "event_url": (
-                    offline_event.get_absolute_url()
-                    if hasattr(offline_event, "get_absolute_url")
-                    else "#"
-                ),
+                "event_url": offline_event.get_absolute_url(),
             },
         }

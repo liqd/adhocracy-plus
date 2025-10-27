@@ -76,6 +76,8 @@ NOTIFICATION_TYPE_MAPPING = {
     # Project notifications
     NotificationType.PHASE_STARTED: NotificationCategory.PROJECT_UPDATES,
     NotificationType.PHASE_ENDED: NotificationCategory.PROJECT_UPDATES,
+    NotificationType.PROJECT_CREATED: NotificationCategory.PROJECT_UPDATES,
+    NotificationType.PROJECT_DELETED: NotificationCategory.PROJECT_UPDATES,
     NotificationType.PROJECT_STARTED: NotificationCategory.PROJECT_UPDATES,
     NotificationType.PROJECT_COMPLETED: NotificationCategory.PROJECT_UPDATES,
     # Project events
@@ -86,6 +88,7 @@ NOTIFICATION_TYPE_MAPPING = {
     # User interactions
     NotificationType.COMMENT_REPLY: NotificationCategory.USER_ENGAGEMENT,
     NotificationType.COMMENT_ON_POST: NotificationCategory.USER_ENGAGEMENT,
+    NotificationType.USER_CONTENT_CREATED: NotificationCategory.USER_ENGAGEMENT,
     # Messages & Invitations
     NotificationType.PROJECT_MODERATION_INVITATION: NotificationCategory.INVITATIONS,
     NotificationType.PROJECT_INVITATION: NotificationCategory.INVITATIONS,
@@ -199,7 +202,31 @@ class NotificationSettings(models.Model):
         verbose_name_plural = _("Notification Settings")
 
     def __str__(self):
-        return f"Notification settings for {self.user}"
+        enabled_emails = []
+        enabled_notifications = []
+
+        # Check email preferences
+        for field in self.get_email_fields():
+            if getattr(self, field, False):
+                enabled_emails.append(field.replace("email_", ""))
+
+        # Check notification preferences
+        for field in self.get_notification_fields():
+            if getattr(self, field, False):
+                enabled_notifications.append(field.replace("notify_", ""))
+
+        email_status = (
+            f"emails:[{', '.join(enabled_emails)}]"
+            if enabled_emails
+            else "emails:[none]"
+        )
+        notify_status = (
+            f"notifs:[{', '.join(enabled_notifications)}]"
+            if enabled_notifications
+            else "notifs:[none]"
+        )
+
+        return f"NotificationSettings(user={self.user.username}, {email_status}, {notify_status})"
 
     def get_email_fields(self):
         """Return all email preference fields"""
@@ -234,11 +261,10 @@ class NotificationSettings(models.Model):
             return True
 
         email_field, notify_field = CATEGORY_TO_FIELDS.get(category, (None, None))
+        field = email_field if channel == NotificationChannel.EMAIL else notify_field
+        result = getattr(self, field, False) if field else False
 
-        if channel == NotificationChannel.EMAIL:
-            return getattr(self, email_field, False) if email_field else False
-        else:  # in_app
-            return getattr(self, notify_field, False) if notify_field else False
+        return result
 
 
 class Notification(models.Model):
