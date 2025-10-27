@@ -10,13 +10,8 @@ class BaseNotificationStrategy(ABC):
     """Abstract base class for all notification strategies"""
 
     @abstractmethod
-    def get_in_app_recipients(self, obj) -> list[User]:
-        """Get users who should receive in-app notifications"""
-        pass
-
-    @abstractmethod
-    def get_email_recipients(self, obj) -> list[User]:
-        """Get users who should receive email notifications"""
+    def get_recipients(self, obj) -> list[User]:
+        """Get all potential recipients (before preference filtering)"""
         pass
 
     @abstractmethod

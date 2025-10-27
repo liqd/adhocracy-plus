@@ -3,9 +3,6 @@ from typing import List
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from apps import logger
-
-from ..models import NotificationSettings
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
 
@@ -20,16 +17,6 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
         return User.objects.filter(
             follow__project=project,
             follow__enabled=True,
-        ).prefetch_related("notification_settings")
-
-    def get_in_app_recipients(self, project) -> List[User]:
-        return self._get_project_recipients(
-            project, NotificationType.PROJECT_STARTED, "in_app"
-        )
-
-    def get_email_recipients(self, project) -> List[User]:
-        return self._get_project_recipients(
-            project, NotificationType.PROJECT_STARTED, "email"
         )
 
     def _get_project_initiators(self, project) -> List[User]:
@@ -38,67 +25,35 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
     def _get_project_moderators(self, project) -> List[User]:
         return project.moderators.all()
 
-    def _get_project_recipients(
-        self, project, notification_type, channel
-    ) -> List[User]:
+    def _get_project_recipients(self, project) -> List[User]:
+        """Get all potential recipients for project notifications"""
         recipients_set = set()
 
         # Process followers
         followers = self._get_project_followers(project)
-        for user in followers:
-            try:
-                settings = NotificationSettings.get_for_user(user)
-                if settings.should_receive_notification(notification_type, channel):
-                    recipients_set.add(user.id)
-            except Exception as e:
-                logger.warning(
-                    f"Could not check notification settings for user {user.id}: {e}"
-                )
-                continue
+        recipients_set.update(followers)
 
         # Process initiators
         if hasattr(project, "organisation") and project.organisation:
-            initiators = project.organisation.initiators.all()
-            for user in initiators:
-                try:
-                    settings = NotificationSettings.get_for_user(user)
-                    if settings.should_receive_notification(notification_type, channel):
-                        recipients_set.add(user.id)
-                except Exception as e:
-                    logger.warning(
-                        f"Could not check notification settings for initiator {user.id}: {e}"
-                    )
-                    continue
+            initiators = self._get_project_initiators(project)
+            recipients_set.update(initiators)
 
-        # Convert back to User objects
-        return User.objects.filter(id__in=recipients_set)
+        return list(recipients_set)
 
-    def _get_event_recipients(self, event, notification_type, channel) -> List[User]:
+    def _get_event_recipients(self, event) -> List[User]:
         if not event.project:
             return []
-        project = event.project
-        # TODO: Get initiators as well as followers
-        recipients = self._get_project_recipients(project, notification_type, channel)
-        return recipients
+        return self._get_project_recipients(event.project)
 
-    def _get_phase_recipients(self, phase, notification_type, channel) -> List[User]:
+    def _get_phase_recipients(self, phase) -> List[User]:
         if not phase.module.project:
             return []
-        project = phase.module.project
-        recipients = self._get_project_recipients(project, notification_type, channel)
-        return recipients
+        return self._get_project_recipients(phase.module.project)
 
 
 class ProjectStarted(ProjectNotificationStrategy):
-    def get_in_app_recipients(self, project) -> List[User]:
-        return self._get_project_recipients(
-            project, NotificationType.PROJECT_STARTED, "in_app"
-        )
-
-    def get_email_recipients(self, project) -> List[User]:
-        return self._get_project_recipients(
-            project, NotificationType.PROJECT_STARTED, "email"
-        )
+    def get_recipients(self, project) -> List[User]:
+        return self._get_project_recipients(project)
 
     def create_notification_data(self, project) -> dict:
         return {
@@ -108,22 +63,16 @@ class ProjectStarted(ProjectNotificationStrategy):
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
                 "end_date": project.phases.filter(module__is_draft=False)
-                .order_by(("end_date"))[0]
+                .order_by(("end_date"))
+                .first()
                 .end_date,
             },
         }
 
 
 class ProjectEnded(ProjectNotificationStrategy):
-    def get_in_app_recipients(self, project) -> List[User]:
-        return self._get_project_recipients(
-            project, NotificationType.PROJECT_COMPLETED, "in_app"
-        )
-
-    def get_email_recipients(self, project) -> List[User]:
-        return self._get_project_recipients(
-            project, NotificationType.PROJECT_COMPLETED, "email"
-        )
+    def get_recipients(self, project) -> List[User]:
+        return self._get_project_recipients(project)
 
     def create_notification_data(self, project) -> dict:
         return {
@@ -137,16 +86,13 @@ class ProjectEnded(ProjectNotificationStrategy):
 
 
 class ProjectInvitationReceived(ProjectNotificationStrategy):
-    def get_in_app_recipients(self, invitation) -> List[User]:
+    def get_recipients(self, invitation) -> List[User]:
         user_email = invitation.email
         try:
             user = User.objects.get(email=user_email)
             return [user]
         except User.DoesNotExist:
             return []
-
-    def get_email_recipients(self, invitation) -> List[User]:
-        return self.get_in_app_recipients(invitation)
 
     def create_notification_data(self, invitation) -> dict:
         project = invitation.project
@@ -160,18 +106,14 @@ class ProjectInvitationReceived(ProjectNotificationStrategy):
         }
 
 
-# Invitation to be a moderator
 class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
-    def get_in_app_recipients(self, invitation) -> List[User]:
+    def get_recipients(self, invitation) -> List[User]:
         user_email = invitation.email
         try:
             user = User.objects.get(email=user_email)
             return [user]
         except User.DoesNotExist:
             return []
-
-    def get_email_recipients(self, invitation) -> List[User]:
-        return self.get_in_app_recipients(invitation)
 
     def create_notification_data(self, invitation) -> dict:
         project = invitation.project
@@ -188,11 +130,11 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
 
 
 class ProjectCreated(ProjectNotificationStrategy):
-    def get_in_app_recipients(self, project) -> List[User]:
-        return self._get_project_initiators(project)
-
-    def get_email_recipients(self, project) -> List[User]:
-        return self._get_project_initiators(project)
+    def get_recipients(self, project) -> List[User]:
+        print("getting recipients for project")
+        recips = self._get_project_initiators(project)
+        print(len(recips))
+        return recips
 
     def create_notification_data(self, project) -> dict:
         return {
@@ -207,10 +149,7 @@ class ProjectCreated(ProjectNotificationStrategy):
 
 
 class ProjectDeleted(ProjectNotificationStrategy):
-    def get_in_app_recipients(self, project) -> List[User]:
-        return self._get_project_initiators(project)
-
-    def get_email_recipients(self, project) -> List[User]:
+    def get_recipients(self, project) -> List[User]:
         return self._get_project_initiators(project)
 
     def create_notification_data(self, project) -> dict:
@@ -232,13 +171,11 @@ class UserContentCreated(ProjectNotificationStrategy):
         self.content_type = content_type
         super().__init__()
 
-    def get_in_app_recipients(self, obj) -> List[User]:
-        return self._get_project_moderators(obj.project)
-
-    def get_email_recipients(self, obj) -> List[User]:
+    def get_recipients(self, obj) -> List[User]:
         return self._get_project_moderators(obj.project)
 
     def create_notification_data(self, obj) -> dict:
+        print("CREATING A NOTIFICATION --------->>>>")
         # Auto-detect content type from object class if not provided
         content_type = self.content_type or obj.__class__.__name__
 

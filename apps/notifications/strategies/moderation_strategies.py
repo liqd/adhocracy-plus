@@ -10,13 +10,7 @@ User = get_user_model()
 
 
 class CommentFeedback(BaseNotificationStrategy):
-    def get_in_app_recipients(self, feedback) -> List[User]:
-        user_comment = feedback.comment
-        if user_comment and user_comment.creator:
-            return [user_comment.creator]
-        return []
-
-    def get_email_recipients(self, feedback) -> List[User]:
+    def get_recipients(self, feedback) -> List[User]:
         user_comment = feedback.comment
         if user_comment and user_comment.creator:
             return [user_comment.creator]
@@ -24,7 +18,6 @@ class CommentFeedback(BaseNotificationStrategy):
 
     def create_notification_data(self, feedback) -> dict:
         user_comment = feedback.comment
-        print(feedback)
         return {
             "notification_type": NotificationType.MODERATOR_COMMENT_FEEDBACK,
             "message_template": _("A moderator gave feedback on your {comment}"),
@@ -37,17 +30,10 @@ class CommentFeedback(BaseNotificationStrategy):
 
 
 class IdeaFeedback(BaseNotificationStrategy):
-
-    def get_in_app_recipients(self, idea) -> List[User]:
-        recipients = set()
+    def get_recipients(self, idea) -> List[User]:
         if idea.creator:
-            # TODO: Check user preferences
-            recipients.add(idea.creator)
-
-        return list(recipients)
-
-    def get_email_recipients(self, idea) -> List[User]:
-        return self.get_in_app_recipients(idea)
+            return [idea.creator]
+        return []
 
     def create_notification_data(self, idea) -> dict:
         return {
@@ -61,17 +47,10 @@ class IdeaFeedback(BaseNotificationStrategy):
 
 
 class ProposalFeedback(BaseNotificationStrategy):
-
-    def get_in_app_recipients(self, proposal) -> List[User]:
-        recipients = set()
+    def get_recipients(self, proposal) -> List[User]:
         if proposal.creator:
-            # TODO: Check user preferences
-            recipients.add(proposal.creator)
-
-        return list(recipients)
-
-    def get_email_recipients(self, proposal) -> List[User]:
-        return self.get_in_app_recipients(proposal)
+            return [proposal.creator]
+        return []
 
     def create_notification_data(self, proposal) -> dict:
         return {
@@ -89,15 +68,10 @@ class ProposalFeedback(BaseNotificationStrategy):
 class CommentBlocked(BaseNotificationStrategy):
     """Strategy for notifications when a comment is blocked by a moderator"""
 
-    def get_in_app_recipients(self, comment) -> List[User]:
-        recipients = set()
-        if comment.creator and hasattr(comment, "creator"):
-            recipients.add(comment.creator)
-
-        return list(recipients)
-
-    def get_email_recipients(self, comment) -> List[User]:
-        return self.get_in_app_recipients(comment)
+    def get_recipients(self, comment) -> List[User]:
+        if comment.creator:
+            return [comment.creator]
+        return []
 
     def create_notification_data(self, comment) -> dict:
         return {
@@ -106,10 +80,8 @@ class CommentBlocked(BaseNotificationStrategy):
                 "A moderator blocked your comment '{comment}' in project {project}"
             ),
             "context": {
-                "project": comment.project.name if comment.project else "",
-                "project_url": (
-                    comment.project.get_absolute_url() if comment.project else "#"
-                ),
+                "project": comment.project.name,
+                "project_url": comment.project.get_absolute_url(),
                 "comment": comment.comment,
                 "comment_url": comment.get_absolute_url(),
             },
