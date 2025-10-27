@@ -307,44 +307,45 @@ def test_handle_moderator_invite_notification(
 
 @pytest.mark.django_db
 def test_handle_project_created(project_factory, organisation_factory, user_factory):
-    initiator = user_factory()
 
-    # Create organisation with this initiator
     organisation = organisation_factory()
-    organisation.initiators.add(initiator)
+    assert organisation.initiators.count() == 1
+    initiator = organisation.initiators.first()
 
     project = project_factory(organisation=organisation)
 
-    # Check that a notification was created for the initiator
-    creation_notifications = Notification.objects.filter(recipient=initiator)
-    assert creation_notifications.count() == 1
-    assert (
-        creation_notifications.first().notification_type
-        == NotificationType.PROJECT_CREATED
+    creation_notifications = Notification.objects.filter(
+        notification_type=NotificationType.PROJECT_CREATED
     )
+    assert creation_notifications.count() == 1
+
+    notification = creation_notifications.first()
+    assert notification.notification_type == NotificationType.PROJECT_CREATED
+    assert notification.recipient == initiator
+    assert "has been created" in notification.message_template
 
 
 @pytest.mark.django_db
 def test_handle_project_deleted(project_factory, organisation_factory, user_factory):
-    initiator = user_factory()
 
-    # Create organisation with this initiator
     organisation = organisation_factory()
-    organisation.initiators.add(initiator)
-
-    # Create project in this organisation
+    initiator = organisation.initiators.first()
     project = project_factory(organisation=organisation)
+
+    Notification.objects.all().delete()
 
     # Delete the project to trigger the signal
     project.delete()
 
-    # Check that a notification was created for the initiator
-    deletion_notifications = Notification.objects.filter(recipient=initiator)
-    assert deletion_notifications.count() == 2
-    assert (
-        deletion_notifications.first().notification_type
-        == NotificationType.PROJECT_DELETED
+    deletion_notifications = Notification.objects.filter(
+        notification_type=NotificationType.PROJECT_DELETED
     )
+    assert deletion_notifications.count() == 1
+
+    notification = deletion_notifications.first()
+    assert notification.notification_type == NotificationType.PROJECT_DELETED
+    assert notification.recipient == initiator
+    assert "has been deleted" in notification.message_template
 
 
 @pytest.mark.django_db

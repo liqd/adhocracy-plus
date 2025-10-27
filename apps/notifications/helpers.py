@@ -1,6 +1,7 @@
 from django.apps import apps
 from django.db.models import Q
 
+from .models import NotificationSettings
 from .models import NotificationType
 
 # Define notification sections
@@ -47,26 +48,41 @@ def get_notifications_by_section(notifications, section):
 def _create_notifications(obj, strategy):
     """Helper function to create notifications"""
     Notification = apps.get_model("a4_candy_notifications", "Notification")
+    notification_data = strategy.create_notification_data(obj)
+    notification_type = notification_data["notification_type"]
 
-    # Get recipients
-    in_app_recipients = strategy.get_in_app_recipients(obj)
-    email_recipients = strategy.get_email_recipients(obj)
+    # Get ALL potential recipients (no preference filtering)
+    all_recipients = strategy.get_recipients(obj)
+    # Filter by notification preferences per channel
+    in_app_recipients = _filter_recipients_by_preferences(
+        all_recipients, notification_type, "in_app"
+    )
+
+    email_recipients = _filter_recipients_by_preferences(
+        all_recipients, notification_type, "email"
+    )
 
     # Create notifications
     notifications = []
     for recipient in in_app_recipients:
-        notification_data = strategy.create_notification_data(obj)
         notifications.append(Notification(recipient=recipient, **notification_data))
 
     if notifications:
         Notification.objects.bulk_create(notifications)
 
-    # Send emails - ALL at once
+    # Send emails
     if email_recipients:
-        print(
-            f"Sending emails to {len(email_recipients)} recipients for {notification_data['notification_type']}"
-        )
         _send_email_notifications(email_recipients, obj, strategy, notification_data)
+
+
+def _filter_recipients_by_preferences(recipients, notification_type, channel):
+    """Filter recipients based on their notification preferences"""
+    filtered = []
+    for recipient in recipients:
+        settings = NotificationSettings.get_for_user(recipient)
+        if settings.should_receive_notification(notification_type, channel):
+            filtered.append(recipient)
+    return filtered
 
 
 def _send_email_notifications(recipients, obj, strategy, notification_data):
