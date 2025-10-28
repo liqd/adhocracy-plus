@@ -1,28 +1,26 @@
-mermaid```
-    graph LR
-        A[Signals & Tasks] --> B[NotificationService]
+graph LR
+    A[Signals & Tasks] --> B[NotificationService]
+    
+    subgraph "NotificationService"
+        B --> C[Strategy Interface]
+    end
+    
+    subgraph "Strategy Interface" 
+        C --> D[get_recipients]
+        C --> E[create_notification_data]
+    end
+    
+    D --> B[Potential Recipients]
+    E --> B[Notification Context]
+    
+    subgraph "NotificationService"
+        B --> F{Filter by Preferences}
+        F --> G[In-App Recipients]
+        F --> H[Email Recipients]
         
-        subgraph "NotificationService"
-            B --> C[Strategy Interface]
-        end
-        
-        subgraph "Strategy Interface" 
-            C --> D[get_recipients]
-            C --> E[create_notification_data]
-        end
-        
-        D --> B[Potential Recipients]
-        E --> B[Notification Context]
-        
-        subgraph "NotificationService"
-            B --> F{Filter by Preferences}
-            F --> G[In-App Recipients]
-            F --> H[Email Recipients]
-            
-            G --> I[Create Notifications]
-            H --> J[Send Emails]
-        end
-        
-        I --> K[Notification Model]
-        J --> L[Email Classes]
-```
+        G --> I[Create Notifications]
+        H --> J[Send Emails]
+    end
+    
+    I --> K[Notification Model]
+    J --> L[Email Classes]
