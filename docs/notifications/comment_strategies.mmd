@@ -1,0 +1,38 @@
+graph TD
+    A[Comment Saved] --> B{Signal Handler}
+    
+    B --> C{Is Reply?}
+    C -->|Yes| D[CommentReply Strategy]
+    C -->|No| E[ProjectComment Strategy]
+    
+    
+    D --> H[get_recipients]
+    E --> H[get_recipients]
+    
+    H --> J[Parent Comment Creator]
+    H --> K[Content Creator]
+    
+    J --> L{Replying to self?}
+    K --> L{Replying to self?}
+
+    L -->|Yes| N[No Recipients]
+    L -->|No| O[Single Recipient]
+
+    
+    O --> P[_create_notifications]
+    
+    P --> Q[Create Notification Data]
+    P --> R[Get All Recipients]
+    
+    R --> S[_filter_recipients_by_preferences]
+    
+    S --> T{Check User Preferences}
+    T -->|Allowed| U[In-app Recipients]
+    T -->|Allowed| V[Email Recipients]
+    T -->|Blocked| W[Filtered Out]
+    
+    U --> X[Create Notifications]
+    V --> Y[Send Emails]
+    
+    X --> Z[Notification.objects.bulk_create]
+    Y --> AA[_send_email_notifications]
