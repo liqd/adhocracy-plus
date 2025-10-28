@@ -37,10 +37,12 @@ def notification_strategies_overview(request):
                 )
                 template_content = _get_template_source(template_name)
                 template_path = _get_template_path(template_name)
+                context_variables = _get_context_variables(strategy_class, request.user)
             except Exception as e:
                 rendered = f"Error: {str(e)}"
                 template_content = f"Error: {str(e)}"
                 template_path = None
+                context_variables = []
 
             strategies_data.append(
                 {
@@ -51,6 +53,7 @@ def notification_strategies_overview(request):
                     'rendered': rendered,
                     'template_content': template_content,
                     'template_path': template_path,
+                    'context_variables': context_variables,
                 }
             )
 
@@ -63,7 +66,44 @@ def notification_strategies_overview(request):
         },
     )
 
-
+def _get_context_variables(strategy_class, current_user):
+    """Get available context variables from the strategy"""
+    try:
+        # Create strategy instance
+        strategy_instance = strategy_class()
+        
+        # Get real project from database for mock data
+        real_project = Project.objects.first()
+        if not real_project:
+            return ["No projects found - cannot generate context variables"]
+        
+        # Create mock object
+        mock_object = _create_mock_object(
+            strategy_class.__name__, real_project, current_user
+        )
+        
+        # Get notification data
+        notification_data = strategy_instance.create_notification_data(mock_object)
+        context = notification_data.get("context", {})
+        
+        # Format context variables for display
+        context_vars = []
+        for key, value in context.items():
+            var_type = type(value).__name__
+            var_preview = str(value)
+            if len(var_preview) > 50:
+                var_preview = var_preview[:50] + "..."
+            context_vars.append({
+                'name': key,
+                'type': var_type,
+                'preview': var_preview
+            })
+        
+        return context_vars
+        
+    except Exception as e:
+        return [f"Error getting context: {str(e)}"]
+        
 def _handle_template_save(request):
     """Handle template saving with Django messages"""
     template_name = request.POST.get('template_name')
