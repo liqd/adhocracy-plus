@@ -36,6 +36,7 @@ EMAIL_CLASS_MAPPING = {
     NotificationType.EVENT_CANCELLED: emails.NotifyFollowersOnEventDeletedEmail,
     NotificationType.EVENT_UPDATE: emails.NotifyFollowersOnEventUpdatedEmail,
     NotificationType.PROJECT_STARTED: emails.NotifyFollowersOnProjectStartedEmail,
+    NotificationType.PROJECT_INVITATION: emails.NotifyFollowersOnProjectCompletedEmail,
     NotificationType.PROJECT_COMPLETED: emails.NotifyFollowersOnProjectCompletedEmail,
     NotificationType.COMMENT_ON_POST: emails.NotifyCreatorEmail,
     NotificationType.PROJECT_CREATED: emails.NotifyInitiatorsOnProjectCreatedEmail,
