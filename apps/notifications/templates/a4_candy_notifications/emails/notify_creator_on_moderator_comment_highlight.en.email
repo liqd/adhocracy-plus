@@ -1,0 +1,19 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n %}
+
+{% block subject %}{% blocktranslate with project_name=project %}A moderator highlighted your comment{% endblocktranslate %}{% endblock %}
+
+{% block headline %}{% blocktranslate %}Project {{ project_name }}{% endblocktranslate %}{% endblock %}
+
+{% block greeting %}{% blocktranslate with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktranslate %}{% endblock %}
+
+{% block content %}
+<p>
+{% blocktranslate with actor_name=user %}A moderator highlighted your comment in the project {% endblocktranslate %}
+</p>
+{% endblock %}
+
+{% block cta_url %}{% if post_url %}{{ email.get_host }}{{ post_url }}{% else %}{{ email.get_host }}{{ project_url }}{% endif %}{% endblock %}
+{% block cta_label %}{% if post_url %}{% blocktranslate %}View Post{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}{% endblock %}
+
+{% block reason %}{% blocktranslate with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. You have received the e-mail because you added a contribution to the above project.{% endblocktranslate %} {{ account_link | safe }}{% endblock %}

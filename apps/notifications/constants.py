@@ -28,12 +28,13 @@ NOTIFICATION_SECTIONS = {
 }
 
 EMAIL_CLASS_MAPPING = {
-    NotificationType.MODERATOR_HIGHLIGHT: emails.NotifyCreatorOnModeratorFeedback,
+    NotificationType.MODERATOR_HIGHLIGHT: emails.NotifyCreatorOnModeratorCommentHighlight,
     NotificationType.MODERATOR_COMMENT_FEEDBACK: emails.NotifyCreatorOnModeratorFeedback,
     NotificationType.MODERATOR_IDEA_FEEDBACK: emails.NotifyCreatorOnModeratorFeedback,
     NotificationType.MODERATOR_BLOCKED_COMMENT: emails.NotifyCreatorOnModeratorBlocked,
     NotificationType.EVENT_SOON: emails.NotifyFollowersOnUpcomingEventEmail,
     NotificationType.EVENT_CANCELLED: emails.NotifyFollowersOnEventDeletedEmail,
+    NotificationType.EVENT_UPDATE: emails.NotifyFollowersOnEventUpdatedEmail,
     NotificationType.PROJECT_STARTED: emails.NotifyFollowersOnProjectStartedEmail,
     NotificationType.PROJECT_COMPLETED: emails.NotifyFollowersOnProjectCompletedEmail,
     NotificationType.COMMENT_ON_POST: emails.NotifyCreatorEmail,
