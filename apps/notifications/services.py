@@ -3,6 +3,8 @@ from typing import List
 from django.apps import apps
 
 from .constants import EMAIL_CLASS_MAPPING
+from .models import NOTIFICATION_TYPE_MAPPING
+from .models import NotificationCategory
 from .models import NotificationSettings
 
 
@@ -25,13 +27,23 @@ class NotificationService:
         # Get ALL potential recipients (no preference filtering)
         all_recipients = strategy.get_recipients(obj)
 
-        # Filter by notification preferences per channel
-        in_app_recipients = NotificationService._filter_recipients_by_preferences(
-            all_recipients, notification_type, "in_app"
+        should_check_preferences = (
+            NOTIFICATION_TYPE_MAPPING[notification_type]
+            != NotificationCategory.MODERATION
         )
-        email_recipients = NotificationService._filter_recipients_by_preferences(
-            all_recipients, notification_type, "email"
-        )
+
+        if should_check_preferences:
+            # Filter by notification preferences per channel
+            in_app_recipients = NotificationService._filter_recipients_by_preferences(
+                all_recipients, notification_type, "in_app"
+            )
+            email_recipients = NotificationService._filter_recipients_by_preferences(
+                all_recipients, notification_type, "email"
+            )
+        else:
+            in_app_recipients = all_recipients
+            email_recipients = all_recipients
+        print("email recipients", len(email_recipients))
 
         # Create in-app notifications
         notifications = []
@@ -77,19 +89,37 @@ class NotificationService:
             )
 
             if email_class:
-                recipient_ids = [
-                    recipient.id if hasattr(recipient, "id") else recipient
-                    for recipient in recipients
-                ]
-                email_class.send(
-                    obj,
-                    strategy_recipient_ids=recipient_ids,
-                    notification_data=notification_data,
-                )
+                for recipient in recipients:
+                    # Enhance notification data with recipient information
+                    enhanced_data = (
+                        NotificationService._enhance_notification_data_for_recipient(
+                            notification_data, recipient
+                        )
+                    )
+
+                    email_class.send(
+                        obj,
+                        strategy_recipient_ids=[recipient.id],
+                        notification_data=enhanced_data,
+                    )
 
         except ValueError as e:
             # Log the error but don't crash the entire notification process
             print(f"Failed to send email notification: {e}")
+
+    @staticmethod
+    def _enhance_notification_data_for_recipient(notification_data, recipient):
+        """
+        Add recipient-specific information to notification data
+        """
+        enhanced_data = notification_data.copy()
+        enhanced_data["context"] = notification_data.get("context", {}).copy()
+
+        enhanced_data["context"]["receiver"] = recipient
+        enhanced_data["context"]["username"] = getattr(recipient, "username", "")
+        enhanced_data["context"]["user_email"] = getattr(recipient, "email", "")
+
+        return enhanced_data
 
     @staticmethod
     def _map_notification_type_to_email_class(notification_type: str):
