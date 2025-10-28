@@ -134,9 +134,7 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
 
 class ProjectCreated(ProjectNotificationStrategy):
     def get_recipients(self, project) -> List[User]:
-        print("getting recipients for project")
         recips = self._get_project_initiators(project)
-        print(len(recips))
         return recips
 
     def create_notification_data(self, project) -> dict:
@@ -178,7 +176,6 @@ class UserContentCreated(ProjectNotificationStrategy):
         return self._get_project_moderators(obj.project)
 
     def create_notification_data(self, obj) -> dict:
-        print("CREATING A NOTIFICATION --------->>>>")
         # Auto-detect content type from object class if not provided
         content_type = self.content_type or obj.__class__.__name__
 

@@ -7,7 +7,7 @@ from django.utils import timezone
 from adhocracy4.phases.models import Phase
 from apps.offlineevents.models import OfflineEvent
 
-from .helpers import _create_notifications
+from .services import NotificationService
 from .strategies import OfflineEventReminder
 from .strategies import ProjectEnded
 from .strategies import ProjectStarted
@@ -31,9 +31,8 @@ def send_recently_started_project_notifications():
     ]
 
     strategy = ProjectStarted()
-    # TODO: Double check this - should we send project or phase?
     for project in started_projects:
-        _create_notifications(project, strategy)
+        NotificationService.create_notifications(project, strategy)
 
     return
 
@@ -63,7 +62,7 @@ def send_recently_completed_project_notifications():
     ]
     strategy = ProjectEnded()
     for project in ended_projects:
-        _create_notifications(project, strategy)
+        NotificationService.create_notifications(project, strategy)
 
     return
 
@@ -88,6 +87,6 @@ def send_upcoming_event_notifications():
         if not event.project:
             continue
 
-        _create_notifications(event, strategy)
+        NotificationService.create_notifications(event, strategy)
 
     return

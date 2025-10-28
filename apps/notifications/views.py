@@ -11,12 +11,12 @@ from django.views.generic import UpdateView
 from django.views.generic import View
 
 from .forms import NotificationSettingsForm
-from .helpers import get_notifications_by_section
 from .models import Notification
 from .models import NotificationSettings
 from .tasks import send_recently_completed_project_notifications
 from .tasks import send_recently_started_project_notifications
 from .tasks import send_upcoming_event_notifications
+from .utils import get_notifications_by_section
 
 
 def is_safe_url(url):
