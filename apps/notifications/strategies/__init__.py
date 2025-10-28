@@ -14,7 +14,7 @@ from .phase_strategies import PhaseStarted
 from .project_strategies import ProjectCreated
 from .project_strategies import ProjectDeleted
 from .project_strategies import ProjectEnded
-from .project_strategies import ProjectInvitationReceived
+from .project_strategies import ProjectInvitationCreated
 from .project_strategies import ProjectModerationInvitationReceived
 from .project_strategies import ProjectStarted
 from .project_strategies import UserContentCreated
@@ -34,7 +34,7 @@ __all__ = [
     "ProjectCreated",
     "ProjectEnded",
     "ProjectModerationInvitationReceived",
-    "ProjectInvitationReceived",
+    "ProjectInvitationCreated",
     "CommentFeedback",
     "IdeaFeedback",
     "UserContentCreated",
