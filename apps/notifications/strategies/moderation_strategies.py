@@ -66,23 +66,28 @@ class ProposalFeedback(BaseNotificationStrategy):
 
 
 class CommentBlocked(BaseNotificationStrategy):
-    """Strategy for notifications when a comment is blocked by a moderator"""
+    """
+    Strategy for notifications when a comment is blocked by a moderator.
+    Provides context variables aligned with email template expectations.
+    """
 
     def get_recipients(self, comment) -> List[User]:
-        if comment.creator:
+        """Notify the comment creator if they exist."""
+        if comment.creator and comment.creator.get_notifications:
+            print("PREPARING ----->", comment.creator)
             return [comment.creator]
         return []
 
     def create_notification_data(self, comment) -> dict:
+        project = comment.project
         return {
             "notification_type": NotificationType.MODERATOR_BLOCKED_COMMENT,
-            "message_template": _(
-                "A moderator blocked your comment '{comment}' in project {project}"
-            ),
+            "message_template": "Your comment was moderated in project {project_name}",
             "context": {
-                "project": comment.project.name,
-                "project_url": comment.project.get_absolute_url(),
-                "comment": comment.comment,
+                "project_name": project.name,
+                "project_url": project.get_absolute_url(),
+                "comment_text": comment.comment,
                 "comment_url": comment.get_absolute_url(),
+                "module_name": getattr(comment.module, "name", ""),
             },
         }
