@@ -17,15 +17,17 @@ class OfflineEventCreated(ProjectNotificationStrategy):
 
     def create_notification_data(self, offline_event):
         """Create notification data for offline events"""
-        time_format = "%B %d, %Y at %H:%M" if offline_event.date else "%B %d, %Y"
-        try:
-            str_time = (
-                offline_event.date.strftime(time_format)
-                if offline_event.date
-                else _("soon")
-            )
-        except AttributeError:
-            str_time = offline_event.date if offline_event.date else _("soon")
+        if offline_event.date:
+            if offline_event.date.time() == timezone.datetime.min.time():
+                # Date only (no specific time)
+                str_time = date_format(offline_event.date, "DATE_FORMAT")
+            else:
+                # Date with time - convert to local timezone
+                str_time = date_format(
+                    timezone.localtime(offline_event.date), "DATETIME_FORMAT"
+                )
+        else:
+            str_time = _("soon")
 
         return {
             "notification_type": NotificationType.EVENT_ADDED,
