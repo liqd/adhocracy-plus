@@ -187,3 +187,13 @@ class NotifyFollowersOnUpcomingEventEmail(StrategyBasedEmail):
 
 class NotifyFollowersOnEventDeletedEmail(StrategyBasedEmail):
     template_name = "a4_candy_notifications/emails" "/notify_followers_event_deleted"
+
+
+class NotifyFollowersOnEventUpdatedEmail(StrategyBasedEmail):
+    template_name = "a4_candy_notifications/emails" "/notify_followers_event_updated"
+
+
+class NotifyCreatorOnModeratorCommentHighlight(StrategyBasedEmail):
+    template_name = (
+        "a4_candy_notifications/emails" "/notify_creator_on_moderator_comment_highlight"
+    )
