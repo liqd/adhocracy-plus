@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.utils import timezone
+from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _
 
 from ..models import NotificationType
@@ -69,16 +71,23 @@ class OfflineEventReminder(ProjectNotificationStrategy):
         return self._get_event_recipients(event)
 
     def create_notification_data(self, offline_event):
-        time_format = "%B %d, %Y at %H:%M" if offline_event.date else "%B %d, %Y"
-        str_time = (
-            offline_event.date.strftime(time_format)
-            if offline_event.date
-            else _("soon")
-        )
+        if offline_event.date:
+            # Use Django's timezone-aware formatting
+            if offline_event.date.time() == timezone.datetime.min.time():
+                # Date only (no specific time)
+                str_time = date_format(offline_event.date, "DATE_FORMAT")
+            else:
+                # Date with time
+                str_time = date_format(
+                    timezone.localtime(offline_event.date), "DATETIME_FORMAT"
+                )
+        else:
+            str_time = _("soon")
+
         return {
             "notification_type": NotificationType.EVENT_SOON,
             "message_template": _(
-                "The event '{event}' in project {project} is starting on " + str_time
+                "The event '{event}' in project {project} is starting on {date}"
             ),
             "context": {
                 "project": offline_event.project.name,
