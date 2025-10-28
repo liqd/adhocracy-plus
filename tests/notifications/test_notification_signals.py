@@ -231,32 +231,31 @@ def test_handle_event_update_notifications(
     project_factory, offline_event_factory, user_factory
 ):
     project = project_factory()
-
-    # Create event attendees/followers
     attendee = user_factory()
 
-    # Create an offline event with initial date
-    offline_event = offline_event_factory(project=project, date="2024-01-01 12:00:00")
+    # Use proper datetime objects
+    from django.utils import timezone
+    import datetime
+    
+    initial_date = timezone.make_aware(datetime.datetime(2024, 1, 1, 12, 0, 0))
+    updated_date = timezone.make_aware(datetime.datetime(2024, 1, 2, 14, 0, 0))
 
-    # Make user a follower of the project
+    # Create an offline event with initial date as datetime
+    offline_event = offline_event_factory(project=project, date=initial_date)
+
     Follow.objects.get_or_create(
         project=project,
         creator=attendee,
         defaults={"enabled": True},
     )
-
-    offline_event.save()
-
+    
     # Update the event date to trigger the signal
-    offline_event.date = "2024-01-02 14:00:00"
+    offline_event.date = updated_date
     offline_event.save()
 
-    # Check that a notification was created for the attendee
     updated_notifications = Notification.objects.filter(recipient=attendee)
-    assert updated_notifications.count() == 2
-    assert (
-        updated_notifications.last().notification_type == NotificationType.EVENT_UPDATE
-    )
+    assert updated_notifications.count() == 1
+    assert updated_notifications.last().notification_type == NotificationType.EVENT_UPDATE
 
 
 @pytest.mark.django_db
