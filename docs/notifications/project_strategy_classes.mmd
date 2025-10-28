@@ -9,35 +9,66 @@ classDiagram
         +_get_phase_recipients(phase) List~User~
     }
     
-    class OfflineEventCreated {
-        +get_recipients(event) List~User~
-        +create_notification_data(offline_event) dict
-        +notification_type: EVENT_ADDED
-        +message_template: "A new event _event_ has been added to the project _project_"
+    class ProjectStarted {
+        +get_recipients(project) List~User~
+        +create_notification_data(project) dict
+        +notification_type: PROJECT_STARTED
+        +message_template: "The project _project_ has begun."
+        +recipients: project_followers + initiators
     }
     
-    class OfflineEventDeleted {
-        +get_recipients(event) List~User~
-        +create_notification_data(offline_event) dict
-        +notification_type: EVENT_CANCELLED
-        +message_template: "The event _event_ in project _project_ has been cancelled"
+    class ProjectEnded {
+        +get_recipients(project) List~User~
+        +create_notification_data(project) dict
+        +notification_type: PROJECT_COMPLETED
+        +message_template: "The project _project_ has been completed."
+        +recipients: project_followers + initiators
     }
     
-    class OfflineEventReminder {
-        +get_recipients(event) List~User~
-        +create_notification_data(offline_event) dict
-        +notification_type: EVENT_SOON
-        +message_template: "The event _event_ in project _project_ is starting on _date_"
+    class ProjectInvitationCreated {
+        +get_recipients(invitation) List~User~
+        +create_notification_data(invitation) dict
+        +notification_type: PROJECT_INVITATION
+        +message_template: "You have been invited to project _project_."
+        +recipients: invited_user
     }
     
-    class OfflineEventUpdate {
-        +get_recipients(event) List~User~
-        +create_notification_data(offline_event) dict
-        +notification_type: EVENT_UPDATE
-        +message_template: "The event _event_ in project _project_ has been updated"
+    class ProjectModerationInvitationReceived {
+        +get_recipients(invitation) List~User~
+        +create_notification_data(invitation) dict
+        +notification_type: PROJECT_MODERATION_INVITATION
+        +message_template: "You have been invited to be a moderator of project _project_"
+        +recipients: invited_user
     }
     
-    ProjectNotificationStrategy <|-- OfflineEventCreated
-    ProjectNotificationStrategy <|-- OfflineEventDeleted
-    ProjectNotificationStrategy <|-- OfflineEventReminder
-    ProjectNotificationStrategy <|-- OfflineEventUpdate
+    class ProjectCreated {
+        +get_recipients(project) List~User~
+        +create_notification_data(project) dict
+        +notification_type: PROJECT_CREATED
+        +message_template: "A new project _project_ has been created."
+        +recipients: organisation_initiators
+    }
+    
+    class ProjectDeleted {
+        +get_recipients(project) List~User~
+        +create_notification_data(project) dict
+        +notification_type: PROJECT_DELETED
+        +message_template: "The project _project_ has been deleted."
+        +recipients: organisation_initiators
+    }
+    
+    class UserContentCreated {
+        +get_recipients(obj) List~User~
+        +create_notification_data(obj) dict
+        +notification_type: USER_CONTENT_CREATED
+        +message_template: "A new content_type content has been created in project _project_."
+        +recipients: project_moderators
+    }
+    
+    ProjectNotificationStrategy <|-- ProjectStarted
+    ProjectNotificationStrategy <|-- ProjectEnded
+    ProjectNotificationStrategy <|-- ProjectInvitationCreated
+    ProjectNotificationStrategy <|-- ProjectModerationInvitationReceived
+    ProjectNotificationStrategy <|-- ProjectCreated
+    ProjectNotificationStrategy <|-- ProjectDeleted
+    ProjectNotificationStrategy <|-- UserContentCreated

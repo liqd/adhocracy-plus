@@ -1,0 +1,43 @@
+classDiagram
+    class ProjectNotificationStrategy {
+        <<Abstract>>
+        +_get_project_followers(project)
+        +_get_project_initiators(project) List~User~
+        +_get_project_moderators(project) List~User~
+        +_get_project_recipients(project) List~User~
+        +_get_event_recipients(event) List~User~
+        +_get_phase_recipients(phase) List~User~
+    }
+    
+    class OfflineEventCreated {
+        +get_recipients(event) List~User~
+        +create_notification_data(offline_event) dict
+        +notification_type: EVENT_ADDED
+        +message_template: "A new event _event_ has been added to the project _project_"
+    }
+    
+    class OfflineEventDeleted {
+        +get_recipients(event) List~User~
+        +create_notification_data(offline_event) dict
+        +notification_type: EVENT_CANCELLED
+        +message_template: "The event _event_ in project _project_ has been cancelled"
+    }
+    
+    class OfflineEventReminder {
+        +get_recipients(event) List~User~
+        +create_notification_data(offline_event) dict
+        +notification_type: EVENT_SOON
+        +message_template: "The event _event_ in project _project_ is starting on _date_"
+    }
+    
+    class OfflineEventUpdate {
+        +get_recipients(event) List~User~
+        +create_notification_data(offline_event) dict
+        +notification_type: EVENT_UPDATE
+        +message_template: "The event _event_ in project _project_ has been updated"
+    }
+    
+    ProjectNotificationStrategy <|-- OfflineEventCreated
+    ProjectNotificationStrategy <|-- OfflineEventDeleted
+    ProjectNotificationStrategy <|-- OfflineEventReminder
+    ProjectNotificationStrategy <|-- OfflineEventUpdate
