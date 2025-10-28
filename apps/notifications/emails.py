@@ -1,9 +1,6 @@
 from django.contrib import auth
-from django.urls import reverse
-from wagtail.models import Site
 
 from adhocracy4.emails.mixins import SyncEmailMixin
-from apps.cms.settings.models import ImportantPages
 from apps.users.emails import EmailAplus as Email
 
 User = auth.get_user_model()
@@ -41,14 +38,12 @@ def _exclude_notifications_disabled(receivers):
 class StrategyBasedEmail(SyncEmailMixin, Email):
     def get_receivers(self):
         recipient_ids = self.kwargs.get("strategy_recipient_ids")
-
         if recipient_ids:
             from django.contrib.auth import get_user_model
 
             User = get_user_model()
             users = User.objects.filter(id__in=recipient_ids)
             return users
-
         return super().get_receivers()
 
     def get_organisation(self):
@@ -61,8 +56,11 @@ class StrategyBasedEmail(SyncEmailMixin, Email):
         notification_data = self.kwargs.get("notification_data", {})
         notification_context = notification_data.get("context", {})
 
-        context.update(notification_context)
+        # Ensure receiver is in context for link generation
+        if "receiver" not in context and "receiver" in notification_context:
+            context["receiver"] = notification_context["receiver"]
 
+        context.update(notification_context)
         context["object"] = self.object
 
         return context
@@ -82,42 +80,16 @@ class NotifyCreatorOnModeratorFeedback(StrategyBasedEmail):
 
 
 class NotifyCreatorOnModeratorBlocked(StrategyBasedEmail):
+    """Email notification when a user's comment is blocked by a moderator."""
+
     template_name = "a4_candy_notifications/emails/notify_creator_on_moderator_blocked"
 
     def get_organisation(self):
         return self.object.project.organisation
 
-    def get_netiquette_url(self):
-        organisation = self.get_organisation()
-        site = Site.objects.filter(is_default_site=True).first()
-        important_pages = ImportantPages.for_site(site)
-        if organisation.netiquette:
-            return reverse(
-                "organisation-netiquette",
-                kwargs={"organisation_slug": organisation.slug},
-            )
-        elif (
-            getattr(important_pages, "netiquette")
-            and getattr(important_pages, "netiquette").live
-        ):
-            return getattr(important_pages, "netiquette").url
-        else:
-            return ""
-
-    def get_discussion_url(self):
-        if self.object.parent_comment.exists():
-            return self.object.parent_comment.first().content_object.get_absolute_url()
-        elif self.object.content_object.get_absolute_url():
-            return self.object.content_object.get_absolute_url()
-        else:
-            return self.object.module.get_detail_url
-
     def get_context(self):
         context = super().get_context()
-        context["module"] = self.object.module
-        context["project"] = self.object.project
-        context["netiquette_url"] = self.get_netiquette_url()
-        context["discussion_url"] = self.get_discussion_url()
+        # TODO: netiquette links
         return context
 
 
