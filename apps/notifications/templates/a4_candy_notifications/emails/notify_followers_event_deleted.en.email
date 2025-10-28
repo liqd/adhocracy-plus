@@ -1,0 +1,23 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n %}
+
+{% block subject %}{% blocktranslate %}Event {{ event }} in project {{ project }} cancelled{% endblocktranslate %}{% endblock %}
+
+{% block headline %}{% blocktranslate %}Event{% endblocktranslate %}{% endblock %}
+{% block sub-headline %}{{ event }}{% endblock %}
+
+{% block greeting %}{% blocktranslate with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktranslate %}{% endblock %}
+
+{% block content %}
+<p>
+{% blocktranslate with date=event_date %}Unfortunately, {{ event }} on {{ date }} below has been cancelled :{% endblocktranslate %}
+</p>
+<p>
+<b>{{ event }}</b>
+</p>
+<p>
+{% blocktranslate %}Please contact the organisation for further information{% endblocktranslate %}
+</p>
+{% endblock %}
+
+{% block reason %}{% blocktranslate with receiver_mail=receiver.email host=email.get_host project_url=action.project.get_absolute_url%}This email was sent to {{ receiver_mail }}. You have received the e-mail because you are following the above project.{% endblocktranslate %} {{ project_link | safe }} {{ account_link | safe }}{% endblock %}
