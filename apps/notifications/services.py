@@ -107,8 +107,9 @@ class NotificationService:
         """
         email_class = EMAIL_CLASS_MAPPING.get(notification_type)
         if not email_class:
-            raise ValueError(
-                f"No email class mapped for notification type: {notification_type}"
-            )
+            print(f"No email class mapped for notification type: {notification_type}")
+            # raise ValueError(
+            #     f"No email class mapped for notification type: {notification_type}"
+            # )
 
         return email_class
