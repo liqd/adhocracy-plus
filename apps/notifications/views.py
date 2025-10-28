@@ -25,22 +25,13 @@ def is_safe_url(url):
 
 
 class NotificationSettingsView(LoginRequiredMixin, UpdateView):
-    """View for users to update their notification settings."""
-
     model = NotificationSettings
     form_class = NotificationSettingsForm
     template_name = "a4_candy_notifications/settings.html"
 
     def get_object(self):
         """Get or create notification settings for the current user."""
-        obj, created = NotificationSettings.objects.get_or_create(
-            user=self.request.user
-        )
-        return obj
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+        return NotificationSettings.get_for_user(self.request.user)
 
     def get_success_url(self):
         return reverse("account_notification_settings")
