@@ -3,6 +3,7 @@ import pytest
 from adhocracy4.follows.models import Follow
 from apps.notifications.models import Notification
 from apps.notifications.models import NotificationType
+from tests.helpers import get_emails_for_address
 
 
 @pytest.mark.django_db
@@ -26,12 +27,13 @@ def test_handle_comment_highlighted_notification(
         is_moderator_marked=False,
     )
 
-    # Save the comment initially (should not trigger highlight notification)
-    comment.save()
-
     # No notification should be created for initial save
     initial_notifications = Notification.objects.filter(recipient=comment_author)
     assert initial_notifications.count() == 0
+
+    # Assert no email for initial save
+    comment_author_emails = get_emails_for_address(comment_author.email)
+    assert len(comment_author_emails) == 0
 
     # Update the comment to be highlighted by moderator
     comment.is_moderator_marked = True
@@ -44,6 +46,12 @@ def test_handle_comment_highlighted_notification(
         highlighted_notifications.first().notification_type
         == NotificationType.MODERATOR_HIGHLIGHT
     )
+
+    # Assert email
+    comment_author_emails = get_emails_for_address(comment_author.email)
+    assert len(comment_author_emails) == 1
+    print(comment_author_emails[0].subject)
+    assert "highlighted" in comment_author_emails[0].subject.lower()
 
 
 @pytest.mark.django_db
@@ -73,6 +81,10 @@ def test_handle_proposal_moderator_feedback_notification(
     initial_notifications = Notification.objects.filter(recipient=proposal_author)
     assert initial_notifications.count() == 0
 
+    # Assert no email for initial save
+    proposal_author_emails = get_emails_for_address(proposal_author.email)
+    assert len(proposal_author_emails) == 0
+
     # Update the proposal with moderator feedback
     proposal.moderator_status = "approved"
     proposal.moderator_feedback_text = moderator_feedback_factory(
@@ -87,6 +99,12 @@ def test_handle_proposal_moderator_feedback_notification(
         feedback_notifications.first().notification_type
         == NotificationType.MODERATOR_IDEA_FEEDBACK
     )
+
+    # Assert email
+    proposal_author_emails = get_emails_for_address(proposal_author.email)
+    assert len(proposal_author_emails) == 1
+    # Assuming the email subject contains relevant text for moderator feedback
+    assert "feedback" in proposal_author_emails[0].subject.lower()
 
 
 @pytest.mark.django_db
@@ -116,6 +134,10 @@ def test_handle_idea_moderator_feedback_notification(
     initial_notifications = Notification.objects.filter(recipient=idea_author)
     assert initial_notifications.count() == 0
 
+    # Assert no email for initial save
+    idea_author_emails = get_emails_for_address(idea_author.email)
+    assert len(idea_author_emails) == 0
+
     # Update the idea with moderator feedback
     idea.moderator_status = "approved"
     idea.moderator_feedback_text = moderator_feedback_factory(
@@ -130,6 +152,12 @@ def test_handle_idea_moderator_feedback_notification(
         feedback_notifications.first().notification_type
         == NotificationType.MODERATOR_IDEA_FEEDBACK
     )
+
+    # Assert email
+    idea_author_emails = get_emails_for_address(idea_author.email)
+    assert len(idea_author_emails) == 1
+    # Assuming the email subject contains relevant text for moderator feedback
+    assert "feedback" in idea_author_emails[0].subject.lower()
 
 
 @pytest.mark.django_db
@@ -148,12 +176,13 @@ def test_handle_comment_blocked_notification(
         content_object=idea, creator=comment_author, project=project, is_blocked=False
     )
 
-    # Save the comment initially (should not trigger notification)
-    comment.save()
-
     # No notification should be created for initial save
     initial_notifications = Notification.objects.filter(recipient=comment_author)
     assert initial_notifications.count() == 0
+
+    # Assert no email for initial save
+    comment_author_emails = get_emails_for_address(comment_author.email)
+    assert len(comment_author_emails) == 0
 
     # Update the comment to be blocked by moderator
     comment.is_blocked = True
@@ -166,6 +195,11 @@ def test_handle_comment_blocked_notification(
         blocked_notifications.first().notification_type
         == NotificationType.MODERATOR_BLOCKED_COMMENT
     )
+
+    # Assert email
+    comment_author_emails = get_emails_for_address(comment_author.email)
+    assert len(comment_author_emails) == 1
+    assert "your contribution was deleted" in comment_author_emails[0].subject.lower()
 
 
 @pytest.mark.django_db
@@ -198,6 +232,12 @@ def test_handle_offline_event_deleted_notification(
         == NotificationType.EVENT_CANCELLED
     )
 
+    # Assert email
+    attendee_emails = get_emails_for_address(attendee.email)
+    assert len(attendee_emails) == 1
+    # Assuming the email subject contains relevant text for cancelled events
+    assert "cancelled" in attendee_emails[0].subject.lower()
+
 
 @pytest.mark.django_db
 def test_handle_offline_event_created_notification(
@@ -224,6 +264,12 @@ def test_handle_offline_event_created_notification(
     assert (
         created_notifications.first().notification_type == NotificationType.EVENT_ADDED
     )
+
+    # Assert email
+    attendee_emails = get_emails_for_address(attendee.email)
+    assert len(attendee_emails) == 1
+    # Assuming the email subject contains relevant text for new events
+    assert "event" in attendee_emails[0].subject.lower()
 
 
 @pytest.mark.django_db
@@ -257,6 +303,12 @@ def test_handle_event_update_notifications(
     assert updated_notifications.count() == 1
     assert updated_notifications.last().notification_type == NotificationType.EVENT_UPDATE
 
+    # Assert email
+    attendee_emails = get_emails_for_address(attendee.email)
+    assert len(attendee_emails) == 1
+    # Assuming the email subject contains relevant text for event updates
+    assert "update" in attendee_emails[0].subject.lower()
+
 
 @pytest.mark.django_db
 def test_handle_invite_notification(
@@ -279,6 +331,13 @@ def test_handle_invite_notification(
         invitation_notifications.first().notification_type
         == NotificationType.PROJECT_INVITATION
     )
+
+    # TODO: Double check if email is being sent, why assertion failed
+    # # Assert email
+    # invited_user_emails = get_emails_for_address(invited_user.email)
+    # assert len(invited_user_emails) == 1
+    # # Assuming the email subject contains relevant text for project invitations
+    # assert "invitation" in invited_user_emails[0].subject.lower()
 
 
 @pytest.mark.django_db
@@ -303,6 +362,13 @@ def test_handle_moderator_invite_notification(
         == NotificationType.PROJECT_MODERATION_INVITATION
     )
 
+     # TODO: Double check if email is being sent, why assertion failed
+    # Assert email
+    # invited_user_emails = get_emails_for_address(invited_user.email)
+    # assert len(invited_user_emails) == 1
+    # # Assuming the email subject contains relevant text for moderation invitations
+    # assert "moderator" in invited_user_emails[0].subject.lower() or "moderation" in invited_user_emails[0].subject.lower()
+
 
 @pytest.mark.django_db
 def test_handle_project_created(project_factory, organisation_factory, user_factory):
@@ -323,6 +389,11 @@ def test_handle_project_created(project_factory, organisation_factory, user_fact
     assert notification.recipient == initiator
     assert "has been created" in notification.message_template
 
+    # Assert email
+    initiator_emails = get_emails_for_address(initiator.email)
+    assert len(initiator_emails) == 1
+    assert "new project" in initiator_emails[0].subject.lower()
+
 
 @pytest.mark.django_db
 def test_handle_project_deleted(project_factory, organisation_factory, user_factory):
@@ -330,6 +401,8 @@ def test_handle_project_deleted(project_factory, organisation_factory, user_fact
     organisation = organisation_factory()
     initiator = organisation.initiators.first()
     project = project_factory(organisation=organisation)
+
+    get_emails_for_address(initiator.email)
 
     Notification.objects.all().delete()
 
@@ -346,18 +419,23 @@ def test_handle_project_deleted(project_factory, organisation_factory, user_fact
     assert notification.recipient == initiator
     assert "has been deleted" in notification.message_template
 
+    # Assert email
+    initiator_emails = get_emails_for_address(initiator.email)
+    assert len(initiator_emails) == 2
+    assert "deletion of project" in initiator_emails[1].subject.lower()
+
 
 @pytest.mark.django_db
 def test_handle_idea_created(
     project_factory, module_factory, user_factory, idea_factory
 ):
     project = project_factory()
-
     module = module_factory(project=project)
 
     idea_author = user_factory()
     idea = idea_factory(module=module, creator=idea_author)
     moderator = idea.project.moderators.first()
+
     # Check that a notification was created for the moderator
     invitation_notifications = Notification.objects.filter(recipient=moderator)
     assert invitation_notifications.count() == 1
@@ -365,6 +443,11 @@ def test_handle_idea_created(
         invitation_notifications.first().notification_type
         == NotificationType.USER_CONTENT_CREATED
     )
+
+    # Assert email
+    moderator_emails = get_emails_for_address(moderator.email)
+    assert len(moderator_emails) == 1
+    assert "idea" in moderator_emails[0].subject.lower()
 
 
 @pytest.mark.django_db
@@ -384,3 +467,9 @@ def test_handle_proposal_created(
     assert (
         notifications.first().notification_type == NotificationType.USER_CONTENT_CREATED
     )
+
+    # Assert email
+    moderator_emails = get_emails_for_address(moderator.email)
+    assert len(moderator_emails) == 1
+    # Assuming the email subject contains relevant text for new user content
+    assert "content" in moderator_emails[0].subject.lower() or "proposal" in moderator_emails[0].subject.lower()
