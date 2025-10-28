@@ -1,9 +1,8 @@
 from django.contrib.auth import get_user_model
-from django.utils import timezone
-from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _
 
 from ..models import NotificationType
+from ..utils import format_event_date
 from .project_strategies import ProjectNotificationStrategy
 
 User = get_user_model()
@@ -16,19 +15,6 @@ class OfflineEventCreated(ProjectNotificationStrategy):
         return self._get_event_recipients(event)
 
     def create_notification_data(self, offline_event):
-        """Create notification data for offline events"""
-        if offline_event.date:
-            if offline_event.date.time() == timezone.datetime.min.time():
-                # Date only (no specific time)
-                str_time = date_format(offline_event.date, "DATE_FORMAT")
-            else:
-                # Date with time - convert to local timezone
-                str_time = date_format(
-                    timezone.localtime(offline_event.date), "DATETIME_FORMAT"
-                )
-        else:
-            str_time = _("soon")
-
         return {
             "notification_type": NotificationType.EVENT_ADDED,
             "message_template": _(
@@ -40,7 +26,7 @@ class OfflineEventCreated(ProjectNotificationStrategy):
                 "organisation": offline_event.project.organisation.name,
                 "event": offline_event.name,
                 "event_url": offline_event.get_absolute_url(),
-                "event_date": str_time,
+                "event_date": format_event_date(offline_event.date),
             },
         }
 
@@ -73,19 +59,6 @@ class OfflineEventReminder(ProjectNotificationStrategy):
         return self._get_event_recipients(event)
 
     def create_notification_data(self, offline_event):
-        if offline_event.date:
-            # Use Django's timezone-aware formatting
-            if offline_event.date.time() == timezone.datetime.min.time():
-                # Date only (no specific time)
-                str_time = date_format(offline_event.date, "DATE_FORMAT")
-            else:
-                # Date with time
-                str_time = date_format(
-                    timezone.localtime(offline_event.date), "DATETIME_FORMAT"
-                )
-        else:
-            str_time = _("soon")
-
         return {
             "notification_type": NotificationType.EVENT_SOON,
             "message_template": _(
@@ -97,7 +70,7 @@ class OfflineEventReminder(ProjectNotificationStrategy):
                 "organisation": offline_event.project.organisation.name,
                 "event": offline_event.name,
                 "event_url": offline_event.get_absolute_url(),
-                "event_date": str_time,
+                "event_date": format_event_date(offline_event.date),
             },
         }
 

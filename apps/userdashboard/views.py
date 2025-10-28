@@ -14,7 +14,7 @@ from adhocracy4.rules import mixins as rules_mixins
 from apps.documents.models import Chapter
 from apps.documents.models import Paragraph
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
-from apps.notifications.helpers import get_notifications_by_section
+from apps.notifications.utils import get_notifications_by_section
 from apps.organisations.models import Organisation
 from apps.users.models import User
 

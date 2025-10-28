@@ -5,8 +5,8 @@ from django.shortcuts import render
 from django.urls import path
 
 from apps.notifications import strategies
-from apps.notifications.helpers import _map_notification_type_to_email_class
 from apps.notifications.models import NotificationType
+from apps.notifications.services import NotificationService
 from apps.projects.models import Project
 
 User = get_user_model()
@@ -17,7 +17,9 @@ def notification_strategies_overview(request):
     strategies_data = []
 
     for notification_type in NotificationType:
-        email_class = _map_notification_type_to_email_class(notification_type)
+        email_class = NotificationService._map_notification_type_to_email_class(
+            notification_type
+        )
         strategy_class = _get_strategy_for_type(notification_type)
 
         if email_class and strategy_class:

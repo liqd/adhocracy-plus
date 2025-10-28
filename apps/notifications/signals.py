@@ -13,7 +13,7 @@ from apps.projects.models import ModeratorInvite
 from apps.projects.models import ParticipantInvite
 from apps.projects.models import Project
 
-from .helpers import _create_notifications
+from .services import NotificationService
 from .strategies import CommentBlocked
 from .strategies import CommentFeedback
 from .strategies import CommentHighlighted
@@ -42,12 +42,12 @@ def handle_comment_notifications(sender, instance, created, **kwargs):
     # Handle comment replies
     if instance.parent_comment.exists():
         strategy = CommentReply()
-        _create_notifications(instance, strategy)
+        NotificationService.create_notifications(instance, strategy)
 
     # Handle project comments
     elif instance.project and instance.content_object != instance.project:
         strategy = ProjectComment()
-        _create_notifications(instance, strategy)
+        NotificationService.create_notifications(instance, strategy)
 
 
 @receiver(pre_save, sender=Comment)
@@ -63,7 +63,7 @@ def handle_comment_highlighted(sender, instance, **kwargs):
     # Check if important fields changed
     if not was_previously_marked and is_now_marked:
         strategy = CommentHighlighted()
-        _create_notifications(instance, strategy)
+        NotificationService.create_notifications(instance, strategy)
         return
 
 
@@ -73,7 +73,7 @@ def handle_comment_highlighted(sender, instance, **kwargs):
 @receiver(post_save, sender=ModeratorCommentFeedback)
 def handle_comment_moderator_feedback(sender, instance, **kwargs):
     strategy = CommentFeedback()
-    _create_notifications(instance, strategy)
+    NotificationService.create_notifications(instance, strategy)
 
 
 def _handle_moderator_feedback_notification(instance, previous, strategy_class):
@@ -85,7 +85,7 @@ def _handle_moderator_feedback_notification(instance, previous, strategy_class):
 
     if old_mod_status != new_mod_status or old_feedback_text != new_feedback_text:
         strategy = strategy_class()
-        _create_notifications(instance, strategy)
+        NotificationService.create_notifications(instance, strategy)
 
 
 @receiver(pre_save, sender=Proposal)
@@ -136,7 +136,7 @@ def handle_comment_blocked_by_moderator(sender, instance, **kwargs):
 
     if not was_previously_blocked and is_now_blocked:
         strategy = CommentBlocked()
-        _create_notifications(instance, strategy)
+        NotificationService.create_notifications(instance, strategy)
         return
 
 
@@ -146,7 +146,7 @@ def handle_comment_blocked_by_moderator(sender, instance, **kwargs):
 @receiver(post_delete, sender=OfflineEvent)
 def handle_offline_event_deleted_notifications(sender, instance, **kwargs):
     strategy = OfflineEventDeleted()
-    _create_notifications(instance, strategy)
+    NotificationService.create_notifications(instance, strategy)
 
 
 @receiver(pre_save, sender=OfflineEvent)
@@ -159,7 +159,7 @@ def handle_event_update_notifications(sender, instance, **kwargs):
     previous = OfflineEvent.objects.get(id=instance.id)
     # Check if important fields changed
     if previous and previous.date != instance.date:
-        _create_notifications(instance, strategy)
+        NotificationService.create_notifications(instance, strategy)
 
 
 @receiver(post_save, sender=OfflineEvent)
@@ -167,7 +167,7 @@ def handle_offline_event_notifications(sender, instance, created, **kwargs):
     """Handle offline event notifications"""
     if created and instance.project:
         strategy = OfflineEventCreated()
-        _create_notifications(instance, strategy)
+        NotificationService.create_notifications(instance, strategy)
 
 
 # Project Signals
@@ -179,7 +179,7 @@ def handle_invite_received(sender, instance, created, **kwargs):
         return
 
     strategy = ProjectInvitationCreated()
-    _create_notifications(instance, strategy)
+    NotificationService.create_notifications(instance, strategy)
 
 
 @receiver(post_save, sender=ModeratorInvite)
@@ -188,7 +188,7 @@ def handle_moderator_invite_received(sender, instance, created, **kwargs):
         return
 
     strategy = ProjectModerationInvitationReceived()
-    _create_notifications(instance, strategy)
+    NotificationService.create_notifications(instance, strategy)
 
 
 @receiver(post_save, sender=Project)
@@ -197,31 +197,31 @@ def handle_project_created(sender, instance, created, **kwargs):
         return
 
     strategy = ProjectCreated()
-    _create_notifications(instance, strategy)
+    NotificationService.create_notifications(instance, strategy)
 
 
 @receiver(post_delete, sender=Project)
 def handle_project_deleted(sender, instance, **kwargs):
     strategy = ProjectDeleted()
-    _create_notifications(instance, strategy)
+    NotificationService.create_notifications(instance, strategy)
 
 
 @receiver(post_save, sender=Idea)
 def handle_idea_created(sender, instance, created, **kwargs):
     if created and instance.project:
         strategy = UserContentCreated("Idea")
-        _create_notifications(instance, strategy)
+        NotificationService.create_notifications(instance, strategy)
 
 
 @receiver(post_save, sender=MapIdea)
 def handle_mapidea_created(sender, instance, created, **kwargs):
     if created and instance.project:
         strategy = UserContentCreated("MapIdea")
-        _create_notifications(instance, strategy)
+        NotificationService.create_notifications(instance, strategy)
 
 
 @receiver(post_save, sender=Proposal)
 def handle_proposal_created(sender, instance, created, **kwargs):
     if created and instance.project:
         strategy = UserContentCreated("Proposal")
-        _create_notifications(instance, strategy)
+        NotificationService.create_notifications(instance, strategy)
