@@ -85,7 +85,7 @@ class ProjectEnded(ProjectNotificationStrategy):
         }
 
 
-class ProjectInvitationReceived(ProjectNotificationStrategy):
+class ProjectInvitationCreated(ProjectNotificationStrategy):
     def get_recipients(self, invitation) -> List[User]:
         user_email = invitation.email
         try:
@@ -96,9 +96,12 @@ class ProjectInvitationReceived(ProjectNotificationStrategy):
 
     def create_notification_data(self, invitation) -> dict:
         project = invitation.project
+        project_name = project.name
         return {
             "notification_type": NotificationType.PROJECT_INVITATION,
-            "message_template": _("You have been invited to project {project}"),
+            "message_template": _(
+                f"You have been invited to project {project_name}. Please check your email to accept."
+            ),
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
