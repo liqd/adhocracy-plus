@@ -12,7 +12,7 @@
 {% endif %}
 
 {% for strategy in strategies %}
-<div style="margin-bottom: 3rem; padding: 1rem; border: 1px solid #ddd; background: black; color: lightgrey">
+<div style="margin-bottom: 3rem; padding: 1rem; border: 1px solid #ddd; background: white;">
     <h2 style="background: #f8f9fa; padding: 0.75rem; margin: -1rem -1rem 1rem -1rem; border-bottom: 1px solid #ddd;">
         {{ strategy.notification_type }}
     </h2>
@@ -22,6 +22,32 @@
         <strong>Path:</strong> <code>{{ strategy.template_path }}</code><br>
         <strong>Email Class:</strong> <code>{{ strategy.email_class }}</code><br>
         <strong>Strategy Class:</strong> <code>{{ strategy.strategy_class }}</code>
+    </div>
+
+    <h3>Available Context Variables:</h3>
+    <div style="border: 1px solid #ccc; padding: 1rem; background: #f9f9f9; margin-bottom: 1rem;">
+        {% if strategy.context_variables %}
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="border-bottom: 1px solid #ccc;">
+                        <th style="text-align: left; padding: 0.5rem;">Variable</th>
+                        <th style="text-align: left; padding: 0.5rem;">Type</th>
+                        <th style="text-align: left; padding: 0.5rem;">Preview</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for var in strategy.context_variables %}
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 0.5rem;"><code>{{ var.name }}</code></td>
+                        <td style="padding: 0.5rem;"><em>{{ var.type }}</em></td>
+                        <td style="padding: 0.5rem;">{{ var.preview }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No context variables available or error loading context.</p>
+        {% endif %}
     </div>
 
     <h3>Preview:</h3>
