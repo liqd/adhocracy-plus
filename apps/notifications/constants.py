@@ -1,5 +1,3 @@
-from django.utils.translation import gettext_lazy as _
-
 from . import emails
 from .models import NotificationType
 
@@ -47,45 +45,3 @@ EMAIL_CLASS_MAPPING = {
     NotificationType.EVENT_ADDED: emails.NotifyFollowersOnEventAddedEmail,
     NotificationType.USER_CONTENT_CREATED: emails.NotifyModeratorsEmail,
 }
-
-
-class EmailStrings:
-    # CTA Labels
-    CTA_VIEW_CONVERSATION = _("View conversation")
-    CTA_VIEW_POST = _("View post")
-    CTA_CHECK_CONTRIBUTION = _("Check your contribution")
-    CTA_VISIT_PROJECT = _("Visit the project")
-    CTA_SHOW_PROJECT = _("Show project")
-    CTA_SHOW_EVENT = _("Show Event")
-    CTA_JOIN_NOW = _("Join now")
-
-    # Headlines
-    HEADLINE_NEW_REPLY = _("New reply to your comment")
-    HEADLINE_NEW_COMMENT = _("New comment on your post")
-    HEADLINE_REACTION = _("Reaction to your contribution")
-    HEADLINE_FEEDBACK = _("Feedback for your contribution")
-    HEADLINE_EVENT = _("Event")
-    HEADLINE_PARTICIPATION_ENDS = _("Participation ends soon!")
-    HEADLINE_PROJECT_STARTS = _("Here we go!")
-
-    # Content phrases
-    CONTENT_JOIN_CONVERSATION = _("Join the conversation and continue the discussion.")
-    CONTENT_SEE_SAID = _("See what they said and join the discussion.")
-    CONTENT_ANSWER_PROMPT = _("Would you like to answer?")
-    CONTENT_DO_ANSWER = _("Do you want to answer?")
-    CONTENT_FURTHER_INFO = _("Further information can be found in the project.")
-
-
-class SubjectStrings:
-    SUBJECT_COMMENT_REPLY = _("{commenter} replied to your comment")
-    SUBJECT_COMMENT_ON_POST = _("{commenter} commented on your post {post}")
-    SUBJECT_REACTION = _("Reaction to your contribution in project {project_name}")
-    SUBJECT_FEEDBACK = _("Feedback for your contribution on {site_name}")
-    SUBJECT_MODERATED = _("Your comment was moderated")
-    SUBJECT_HIGHLIGHTED = _("A moderator highlighted your comment")
-    SUBJECT_NEW_EVENT = _("Event added to project {project}")
-    SUBJECT_EVENT_CANCELLED = _("Event {event} in project {project} cancelled")
-    SUBJECT_PARTICIPATION_ENDS = _("Participation ends soon for {project_name}")
-    SUBJECT_PROJECT_STARTS = _("Here we go: {project_name} starts now!")
-    SUBJECT_PROJECT_COMPLETED = _("{project_name} has completed.")
-    SUBJECT_NEW_PROJECT = _("New project {project_name} on {site_name}")

@@ -25,7 +25,6 @@ class NotificationEmail(SyncEmailMixin, Email):
         return self._organisation
 
     def get_receivers(self):
-        print("SENDING TO X RECEIVERS", len(self._recipients))
         return self._recipients
 
     def render(self, template_name, context):
