@@ -50,6 +50,18 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node_modules-
+      - name: Show node_modules cache status
+        run: |
+          echo "node_modules cache hit: ${{ steps.cache-node-modules.outputs.cache-hit }}"
+          ls -la node_modules 2>/dev/null || echo "node_modules directory does not exist"
       - name: Cache uv packages
         uses: actions/cache@v4
         env:
@@ -110,7 +122,12 @@ jobs:
 
       - name: Install NPM Dependencies
         run: |
-          npm ci
+          if [ -d node_modules ] && [ -f package-lock.json ]; then
+            echo "node_modules cache hit - skipping npm ci"
+          else
+            echo "node_modules cache miss - running npm ci"
+            npm ci --prefer-offline --no-audit --no-fund
+          fi
 
       - name: Build NPM 
         run: |
