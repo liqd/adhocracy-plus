@@ -3,6 +3,9 @@ from typing import List
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
+from ..constants import EmailStrings
+from ..constants import ReasonStrings
+from ..constants import SubjectStrings
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
 from .project_strategies import ProjectNotificationStrategy
@@ -37,6 +40,9 @@ class CommentHighlighted(BaseNotificationStrategy):
 class ProjectComment(ProjectNotificationStrategy):
     """Strategy for notifications when someone comments on project content"""
 
+    def get_organisation(self, comment):
+        return comment.project.organisation
+
     def get_recipients(self, comment) -> List[User]:
         """Get moderators and content creator as potential recipients"""
         recipients = set()
@@ -50,6 +56,8 @@ class ProjectComment(ProjectNotificationStrategy):
         return list(recipients)
 
     def create_notification_data(self, comment) -> dict:
+        post_name = getattr(comment.content_object, "name", _("post"))
+
         return {
             "notification_type": NotificationType.COMMENT_ON_POST,
             "message_template": _("{user} commented on your post {post}"),
@@ -58,11 +66,45 @@ class ProjectComment(ProjectNotificationStrategy):
                 "user_url": getattr(comment.creator, "get_absolute_url", lambda: "")(),
                 "comment": comment.comment,
                 "post_url": comment.content_object.get_absolute_url(),
-                "post": getattr(comment.content_object, "name", _("post")),
+                "post": post_name,
                 "project": comment.project.name,
                 "project_url": comment.project.get_absolute_url(),
             },
+            "email_context": {
+                "email_subject": SubjectStrings.SUBJECT_COMMENT_ON_POST.format(
+                    commenter=comment.creator.username, post=post_name
+                ),
+                "email_headline": EmailStrings.HEADLINE_NEW_COMMENT,
+                "email_subheadline": comment.project.name,
+                "email_greeting": EmailStrings.GREETING,
+                "email_content": self._get_email_content(comment, post_name),
+                "email_cta_url": comment.content_object.get_absolute_url(),
+                "email_cta_label": EmailStrings.CTA_VIEW_POST,
+                "email_reason": ReasonStrings.REASON_COMMENT_ON_POST,
+                "project_name": comment.project.name,
+                "commenter_name": comment.creator.username,
+                "post_name": post_name,
+                "comment_text": comment.comment,
+                "post_url": comment.content_object.get_absolute_url(),
+            },
         }
+
+    def _get_email_content(self, comment, post_name):
+        """Generate the HTML content for the email"""
+        return f"""
+<p>
+<strong>{comment.creator.username}</strong> commented on your post "<strong>{post_name}</strong>".
+</p>
+
+<strong>Their comment:</strong>
+<div style="margin: 0.5em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #2d40cc;">
+    {comment.comment}
+</div>
+
+<p>
+{EmailStrings.CONTENT_SEE_SAID}
+</p>
+"""
 
 
 class CommentReply(BaseNotificationStrategy):
@@ -81,7 +123,12 @@ class CommentReply(BaseNotificationStrategy):
         """Get the parent comment if this is a reply"""
         return comment.parent_comment.first()
 
+    def get_organisation(self, comment):
+        return comment.project.organisation
+
     def create_notification_data(self, comment) -> dict:
+        parent_comment = self._get_parent_comment(comment)
+
         return {
             "notification_type": NotificationType.COMMENT_REPLY,
             "message_template": _("{user} replied to your {comment}"),
@@ -93,4 +140,42 @@ class CommentReply(BaseNotificationStrategy):
                 "project": comment.project.name,
                 "project_url": comment.project.get_absolute_url(),
             },
+            "email_context": {
+                "email_subject": SubjectStrings.SUBJECT_COMMENT_REPLY.format(
+                    commenter=comment.creator.username
+                ),
+                "email_headline": EmailStrings.HEADLINE_NEW_REPLY,
+                "email_subheadline": comment.project.name,
+                "email_greeting": EmailStrings.GREETING,
+                "email_content": self._get_email_content(comment, parent_comment),
+                "email_cta_url": getattr(comment, "get_absolute_url", lambda: "")(),
+                "email_cta_label": EmailStrings.CTA_VIEW_CONVERSATION,
+                "email_reason": ReasonStrings.REASON_COMMENT_REPLY,
+                "project_name": comment.project.name,
+                "commenter_name": comment.creator.username,
+                "comment_text": comment.comment,
+                "parent_comment_text": parent_comment.comment if parent_comment else "",
+            },
         }
+
+    def _get_email_content(self, comment, parent_comment):
+        """Generate the HTML content for the email"""
+        return f"""
+<p>
+<strong>{comment.creator.username}</strong> replied to your comment in the project.
+</p>
+
+<strong>Your original comment:</strong>
+<div style="margin: 0.5em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #417690;">
+    {parent_comment.comment if parent_comment else ''}
+</div>
+
+<strong>Reply from {comment.creator.username}:</strong>
+<div style="margin: 0.5em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #2d40cc;">
+    {comment.comment}
+</div>
+
+<p>
+{EmailStrings.CONTENT_JOIN_CONVERSATION}
+</p>
+"""

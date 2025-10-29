@@ -62,7 +62,7 @@ class OfflineEventReminder(ProjectNotificationStrategy):
         return {
             "notification_type": NotificationType.EVENT_SOON,
             "message_template": _(
-                "The event '{event}' in project {project} is starting on {date}"
+                "The event '{event}' in project {project} is starting on {event_date}"
             ),
             "context": {
                 "project": offline_event.project.name,

@@ -12,6 +12,9 @@ User = get_user_model()
 class ProjectNotificationStrategy(BaseNotificationStrategy):
     """Base class for project-related notifications"""
 
+    def get_organisation(self, project):
+        return project.organisation
+
     def _get_project_followers(self, project):
         """Get followers for a project - with optional caching"""
         return User.objects.filter(
@@ -171,6 +174,9 @@ class UserContentCreated(ProjectNotificationStrategy):
     def __init__(self, content_type=None):
         self.content_type = content_type
         super().__init__()
+
+    def get_organisation(self, obj):
+        return obj.project.organisation
 
     def get_recipients(self, obj) -> List[User]:
         return self._get_project_moderators(obj.project)
