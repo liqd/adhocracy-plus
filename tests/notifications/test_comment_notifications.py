@@ -31,7 +31,7 @@ def test_handle_comment_notifications(
     # Assert email
     idea_author_emails = get_emails_for_address(idea_author.email)
     assert len(idea_author_emails) == 1
-    assert "Reaction to your contribution" in idea_author_emails[0].subject
+    assert "commented on your post" in idea_author_emails[0].subject
 
     # Test reply to comment
     reply_comment = comment_factory(
@@ -48,7 +48,7 @@ def test_handle_comment_notifications(
     # Assert email
     author_emails = get_emails_for_address(author.email)
     assert len(author_emails) == 1
-    assert "Reaction to your contribution" in author_emails[0].subject
+    assert "replied to your comment" in author_emails[0].subject
 
 
 @pytest.mark.django_db

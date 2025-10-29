@@ -1,11 +1,13 @@
+import os
+
+from django.conf import settings
 from django.contrib import admin
+from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import get_user_model
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
+from django.shortcuts import render
 from django.urls import path
-from django.contrib import messages
-import os
-from django.conf import settings
 
 from apps.notifications import strategies
 from apps.notifications.models import NotificationType
@@ -17,9 +19,9 @@ User = get_user_model()
 
 @staff_member_required
 def notification_strategies_overview(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         return _handle_template_save(request)
-    
+
     strategies_data = []
 
     for notification_type in NotificationType:
@@ -46,46 +48,47 @@ def notification_strategies_overview(request):
 
             strategies_data.append(
                 {
-                    'notification_type': notification_type.label,
-                    'email_class': email_class.__name__,
-                    'strategy_class': strategy_class.__name__,
-                    'template_name': template_name,
-                    'rendered': rendered,
-                    'template_content': template_content,
-                    'template_path': template_path,
-                    'context_variables': context_variables,
+                    "notification_type": notification_type.label,
+                    "email_class": email_class.__name__,
+                    "strategy_class": strategy_class.__name__,
+                    "template_name": template_name,
+                    "rendered": rendered,
+                    "template_content": template_content,
+                    "template_path": template_path,
+                    "context_variables": context_variables,
                 }
             )
 
     return render(
         request,
-        'admin/notification_strategies_overview.html',
+        "admin/notification_strategies_overview.html",
         {
-            'title': 'Email Templates',
-            'strategies': strategies_data,
+            "title": "Email Templates",
+            "strategies": strategies_data,
         },
     )
+
 
 def _get_context_variables(strategy_class, current_user):
     """Get available context variables from the strategy"""
     try:
         # Create strategy instance
         strategy_instance = strategy_class()
-        
+
         # Get real project from database for mock data
         real_project = Project.objects.first()
         if not real_project:
             return ["No projects found - cannot generate context variables"]
-        
+
         # Create mock object
         mock_object = _create_mock_object(
             strategy_class.__name__, real_project, current_user
         )
-        
+
         # Get notification data
         notification_data = strategy_instance.create_notification_data(mock_object)
         context = notification_data.get("context", {})
-        
+
         # Format context variables for display
         context_vars = []
         for key, value in context.items():
@@ -93,106 +96,107 @@ def _get_context_variables(strategy_class, current_user):
             var_preview = str(value)
             if len(var_preview) > 50:
                 var_preview = var_preview[:50] + "..."
-            context_vars.append({
-                'name': key,
-                'type': var_type,
-                'preview': var_preview
-            })
-        
+            context_vars.append({"name": key, "type": var_type, "preview": var_preview})
+
         return context_vars
-        
+
     except Exception as e:
         return [f"Error getting context: {str(e)}"]
-        
+
+
 def _handle_template_save(request):
     """Handle template saving with Django messages"""
-    template_name = request.POST.get('template_name')
-    content = request.POST.get('content')
-    
+    template_name = request.POST.get("template_name")
+    content = request.POST.get("content")
+
     if not template_name or content is None:
-        messages.error(request, 'Missing template name or content')
-        return redirect('notification_strategies')
-    
+        messages.error(request, "Missing template name or content")
+        return redirect("notification_strategies")
+
     try:
         template_path = _get_template_path(template_name)
-        
+
         if not template_path:
-            messages.error(request, f'Could not determine path for template: {template_name}')
-            return redirect('notification_strategies')
-        
+            messages.error(
+                request, f"Could not determine path for template: {template_name}"
+            )
+            return redirect("notification_strategies")
+
         # Ensure the directory exists
         os.makedirs(os.path.dirname(template_path), exist_ok=True)
-        
+
         # Write the content to file
-        with open(template_path, 'w', encoding='utf-8') as f:
+        with open(template_path, "w", encoding="utf-8") as f:
             f.write(content)
-        
-        messages.success(request, f'Template {template_name} saved successfully!')
-        
+
+        messages.success(request, f"Template {template_name} saved successfully!")
+
     except Exception as e:
-        messages.error(request, f'Error saving template: {str(e)}')
-    
-    return redirect('notification_strategies')
+        messages.error(request, f"Error saving template: {str(e)}")
+
+    return redirect("notification_strategies")
 
 
 def _get_template_path(template_name):
     """Get the full filesystem path for a template"""
     if not template_name:
         return None
-    
+
     # The template_name already includes the full path, just add the extension
     template_filename = f"{template_name}.en.email"
-    
+
     # Look for template in template directories
-    for template_dir in settings.TEMPLATES[0]['DIRS']:
+    for template_dir in settings.TEMPLATES[0]["DIRS"]:
         template_path = os.path.join(template_dir, template_filename)
         if os.path.exists(template_path):
             return template_path
-    
+
     # If not found in template dirs, check in app templates
     for app in settings.INSTALLED_APPS:
         try:
             app_module = __import__(app)
             app_path = app_module.__path__[0]
             # Look for template in app's templates directory
-            template_path = os.path.join(app_path, 'notifications/templates', template_filename)
+            template_path = os.path.join(
+                app_path, "notifications/templates", template_filename
+            )
             if os.path.exists(template_path):
                 return template_path
         except (ImportError, AttributeError, IndexError):
             continue
-    
+
     # If template doesn't exist anywhere, return the path where it should be created
     # Look in all installed apps for the most appropriate location
     for app in settings.INSTALLED_APPS:
-        if 'notifications' in app:
+        if "notifications" in app:
             try:
                 app_module = __import__(app)
                 app_path = app_module.__path__[0]
-                return os.path.join(app_path, 'templates', template_filename)
+                return os.path.join(app_path, "templates", template_filename)
             except (ImportError, AttributeError, IndexError):
                 continue
-    
+
     # Fallback: use the first template directory
-    if settings.TEMPLATES[0]['DIRS']:
-        return os.path.join(settings.TEMPLATES[0]['DIRS'][0], template_filename)
+    if settings.TEMPLATES[0]["DIRS"]:
+        return os.path.join(settings.TEMPLATES[0]["DIRS"][0], template_filename)
     else:
         # Final fallback to base directory templates
-        return os.path.join(settings.BASE_DIR, 'templates', template_filename)
+        return os.path.join(settings.BASE_DIR, "templates", template_filename)
 
 
 def _get_template_source(template_name):
     """Get the template source code"""
     if not template_name:
         return "No template name available"
-    
+
     template_path = _get_template_path(template_name)
-    
+
     if not template_path:
         return f"# Could not find template path for: {template_name}"
-    
+
     try:
         if os.path.exists(template_path):
-            with open(template_path, 'r', encoding='utf-8') as f:
+            with open(template_path, "r", encoding="utf-8") as f:
                 return f.read()
         else:
             return f"# Template file not found at: {template_path}\n# This template will be created when you save it\n\n# Add your template content here"
@@ -230,7 +234,7 @@ def _render_email_template(email_class, strategy_class, template_name, current_u
             return "No template name available"
 
         template_path = f"{template_name}.en.email"
-        
+
         # Check if template exists before trying to render
         if not _get_template_path(template_name):
             return f"Template not found: {template_path}"
@@ -289,6 +293,7 @@ def _create_mock_object(strategy_class_name, real_project, current_user):
     """Create mock object using real data from database"""
     if "Comment" in strategy_class_name:
         from adhocracy4.comments.models import Comment
+
         real_comment = Comment.objects.filter(project=real_project).first()
         if real_comment:
             return real_comment
@@ -306,6 +311,7 @@ def _create_mock_object(strategy_class_name, real_project, current_user):
 
     elif "Idea" in strategy_class_name:
         from apps.ideas.models import Idea
+
         real_idea = Idea.objects.filter(project=real_project).first()
         if real_idea:
             return real_idea
@@ -323,6 +329,7 @@ def _create_mock_object(strategy_class_name, real_project, current_user):
 
     elif "Proposal" in strategy_class_name:
         from apps.budgeting.models import Proposal
+
         real_proposal = Proposal.objects.filter(project=real_project).first()
         if real_proposal:
             return real_proposal
@@ -343,6 +350,7 @@ def _create_mock_object(strategy_class_name, real_project, current_user):
 
     elif "Event" in strategy_class_name:
         from apps.offlineevents.models import OfflineEvent
+
         real_event = OfflineEvent.objects.filter(project=real_project).first()
         if real_event:
             return real_event
@@ -368,4 +376,3 @@ def _create_mock_object(strategy_class_name, real_project, current_user):
                 "get_absolute_url": lambda: "/objects/1",
             },
         )()
-
