@@ -1,0 +1,11 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n %}
+
+{% block subject %}{{ subject }}{% endblock %}
+{% block headline %}{{ headline }}{% endblock %}
+{% block sub-headline %}{{ subheadline }}{% endblock %}
+{% block greeting %}{{ greeting|safe }}{% endblock %}
+{% block content %}{{ content|safe }}{% endblock %}
+{% block cta_url %}{{ cta_url }}{% endblock %}
+{% block cta_label %}{{ cta_label }}{% endblock %}
+{% block reason %}{{ reason }} {{ account_link|safe }}{% endblock %}
