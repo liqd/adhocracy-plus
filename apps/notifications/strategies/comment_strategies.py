@@ -3,8 +3,6 @@ from typing import List
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from ..constants import EmailStrings
-from ..constants import SubjectStrings
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
 from .project_strategies import ProjectNotificationStrategy
@@ -28,21 +26,17 @@ class CommentHighlighted(BaseNotificationStrategy):
         # Determine if there's a specific post URL or just project URL
         post_url = getattr(comment.content_object, "get_absolute_url", lambda: None)()
         cta_url = post_url if post_url else comment.project.get_absolute_url()
-        cta_label = (
-            EmailStrings.CTA_VIEW_POST if post_url else EmailStrings.CTA_VISIT_PROJECT
-        )
+        cta_label = _("View post") if post_url else _("Visit the project")
 
         email_context = {
-            "subject": SubjectStrings.SUBJECT_HIGHLIGHTED.format(
-                project_name=comment.project.name
-            ),
+            "subject": _("A moderator highlighted your comment"),
             "headline": _("Project {project_name}").format(
                 project_name=comment.project.name
             ),
             "cta_url": cta_url,
             "cta_label": cta_label,
             "reason": _(
-                "This email was sent to {receiver_email}. You have received the e-mail because you added a contribution to the above project."
+                "This email was sent to {receiver_email}. You have received the e-mail because your contribution to the above project was highlighted by a moderator."
             ),
             # Content template
             "content_template": "a4_candy_notifications/emails/content/moderator_highlighted_comment.en.email",
@@ -89,13 +83,13 @@ class ProjectComment(ProjectNotificationStrategy):
         post_name = getattr(comment.content_object, "name", _("post"))
 
         email_context = {
-            "subject": SubjectStrings.SUBJECT_COMMENT_ON_POST.format(
+            "subject": _("{commenter} commented on your post {post}").format(
                 commenter=comment.creator.username, post=post_name
             ),
-            "headline": EmailStrings.HEADLINE_NEW_COMMENT,
+            "headline": _("New comment on your post"),
             "subheadline": comment.project.name,
             "cta_url": comment.content_object.get_absolute_url(),
-            "cta_label": EmailStrings.CTA_VIEW_POST,
+            "cta_label": _("View post"),
             "reason": _(
                 "This email was sent to {receiver_email} because someone commented on your content."
             ),
@@ -106,7 +100,7 @@ class ProjectComment(ProjectNotificationStrategy):
             "commenter_name": comment.creator.username,
             "post_name": post_name,
             "comment_text": comment.comment,
-            "content_see_said": EmailStrings.CONTENT_SEE_SAID,
+            "content_see_said": _("See what they said and join the discussion."),
         }
 
         return {
@@ -148,13 +142,13 @@ class CommentReply(BaseNotificationStrategy):
         parent_comment = self._get_parent_comment(comment)
 
         email_context = {
-            "subject": SubjectStrings.SUBJECT_COMMENT_REPLY.format(
+            "subject": _("{commenter} replied to your comment").format(
                 commenter=comment.creator.username
             ),
-            "headline": EmailStrings.HEADLINE_NEW_REPLY,
+            "headline": _("New reply to your comment"),
             "subheadline": comment.project.name,
             "cta_url": comment.get_absolute_url(),
-            "cta_label": EmailStrings.CTA_VIEW_CONVERSATION,
+            "cta_label": _("View conversation"),
             "reason": _(
                 "This email was sent to {receiver_email} because someone replied to your comment."
             ),
@@ -164,7 +158,9 @@ class CommentReply(BaseNotificationStrategy):
             "commenter_name": comment.creator.username,
             "comment_text": comment.comment,
             "parent_comment_text": parent_comment.comment if parent_comment else "",
-            "content_join_conversation": EmailStrings.CONTENT_JOIN_CONVERSATION,
+            "content_join_conversation": _(
+                "Join the conversation and continue the discussion."
+            ),
         }
 
         return {
