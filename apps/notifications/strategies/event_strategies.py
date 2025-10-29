@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from ..constants import EmailStrings
 from ..models import NotificationType
 from ..utils import format_event_date
 from .project_strategies import ProjectNotificationStrategy
@@ -25,7 +24,6 @@ class OfflineEventCreated(ProjectNotificationStrategy):
             ),
             "headline": _("Event"),
             "subheadline": offline_event.name,
-            "greeting": EmailStrings.GREETING,
             "cta_url": offline_event.get_absolute_url(),
             "cta_label": _("Show Event"),
             "reason": _(
@@ -73,7 +71,6 @@ class OfflineEventDeleted(ProjectNotificationStrategy):
             ),
             "headline": _("Event"),
             "subheadline": offline_event.name,
-            "greeting": EmailStrings.GREETING,
             "reason": _(
                 "This email was sent to {receiver_email}. You have received the e-mail because you are following the above project."
             ),
@@ -118,7 +115,6 @@ class OfflineEventReminder(ProjectNotificationStrategy):
             ),
             "headline": _("Event"),
             "subheadline": offline_event.name,
-            "greeting": EmailStrings.GREETING,
             "cta_url": offline_event.get_absolute_url(),
             "cta_label": _("Show Event"),
             "reason": _(
@@ -164,7 +160,6 @@ class OfflineEventUpdate(ProjectNotificationStrategy):
             ),
             "headline": _("Event"),
             "subheadline": offline_event.name,
-            "greeting": EmailStrings.GREETING,
             "reason": _(
                 "This email was sent to {receiver_email}. You have received the e-mail because you are following the above project."
             ),

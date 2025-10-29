@@ -3,7 +3,6 @@ from typing import List
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from ..constants import EmailStrings
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
 
@@ -41,7 +40,6 @@ class IdeaFeedback(BaseNotificationStrategy):
             "subject": _("Feedback for your contribution on {site_name}"),
             "headline": _("Feedback for your contribution"),
             "subheadline": idea.project.name,
-            "greeting": EmailStrings.GREETING,
             "cta_url": idea.get_absolute_url(),
             "cta_label": _("Check your contribution"),
             "reason": _(
@@ -92,7 +90,6 @@ class ProposalFeedback(BaseNotificationStrategy):
             "subject": _("Feedback for your contribution on {site_name}"),
             "headline": _("Feedback for your contribution"),
             "subheadline": proposal.project.name,
-            "greeting": EmailStrings.GREETING,
             "cta_url": proposal.get_absolute_url(),
             "cta_label": _("Check your contribution"),
             "reason": _(

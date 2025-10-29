@@ -3,7 +3,6 @@ from typing import List
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from ..constants import EmailStrings
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
 
@@ -73,7 +72,6 @@ class ProjectStarted(ProjectNotificationStrategy):
             ),
             "headline": _("Here we go!"),
             "subheadline": project.name,
-            "greeting": EmailStrings.GREETING,
             "cta_url": project.get_absolute_url(),
             "cta_label": _("Join now"),
             "reason": _(
@@ -106,7 +104,6 @@ class ProjectEnded(ProjectNotificationStrategy):
                 project_name=project.name
             ),
             "subheadline": project.name,
-            "greeting": EmailStrings.GREETING,
             "cta_url": project.get_absolute_url(),
             "cta_label": _("Join now"),
             "reason": _(
@@ -147,7 +144,6 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
                 project_name=project.name
             ),
             "headline": _("Project Invitation"),
-            "greeting": EmailStrings.GREETING,
             "cta_url": project.get_absolute_url(),
             "cta_label": _("View Project"),
             "reason": _("This email was sent to {receiver_email}."),
@@ -189,7 +185,6 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
                 project_name=project.name
             ),
             "headline": _("Moderator Invitation"),
-            "greeting": EmailStrings.GREETING,
             "cta_url": project.get_absolute_url(),
             "cta_label": _("View Project"),
             "reason": _("This email was sent to {receiver_email}."),
@@ -223,7 +218,6 @@ class ProjectCreated(ProjectNotificationStrategy):
             ).format(
                 project_name=project.name, organisation_name=project.organisation.name
             ),
-            "greeting": EmailStrings.GREETING,
             "cta_url": project.get_absolute_url(),
             "cta_label": _("Show project"),
             "reason": _(
@@ -258,7 +252,6 @@ class ProjectDeleted(ProjectNotificationStrategy):
             "headline": _("The project {project} was deleted.").format(
                 project=project.name
             ),
-            "greeting": EmailStrings.GREETING,
             "reason": _(
                 "This email was sent to {receiver_email}. This email was sent to you because you are an initiator of the organisation '{organisation_name}', in which a project was deleted."
             ),
@@ -311,7 +304,6 @@ class UserContentCreated(ProjectNotificationStrategy):
                 content_type=content_type_display,
                 project=obj.project.name,
             ),
-            "greeting": EmailStrings.GREETING,
             "cta_url": obj.get_absolute_url(),
             "cta_label": _("Check the {content_type}").format(
                 content_type=content_type_display
