@@ -110,7 +110,10 @@ jobs:
 
       - name: Install NPM Dependencies
         run: |
-          npm install
+          npm ci
+
+      - name: Build NPM 
+        run: |
           npm run build
 
       - name: Run Frontend Tests
