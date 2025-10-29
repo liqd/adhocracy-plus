@@ -2,10 +2,35 @@ from typing import List
 
 from django.apps import apps
 
+from adhocracy4.emails.mixins import SyncEmailMixin
+from apps.users.emails import EmailAplus as Email
+
 from .constants import EMAIL_CLASS_MAPPING
 from .models import NOTIFICATION_TYPE_MAPPING
 from .models import NotificationCategory
 from .models import NotificationSettings
+
+
+class NotificationEmail(SyncEmailMixin, Email):
+    """Email class for notification emails"""
+
+    template_name = "a4_candy_notifications/emails/strategy_email_base"
+
+    def __init__(self, notification_object, email_context, organisation):
+        self.object = notification_object
+        self.email_context = email_context
+        self._organisation = organisation
+
+    def get_organisation(self):
+        return self._organisation
+
+    def get_receivers(self):
+        return self.email_context.get("recipients", [])
+
+    def get_context(self):
+        context = super().get_context()
+        context.update(self.email_context)
+        return context
 
 
 class NotificationService:
@@ -43,7 +68,15 @@ class NotificationService:
         else:
             in_app_recipients = all_recipients
             email_recipients = all_recipients
-        print("email recipients", len(email_recipients))
+
+        #    Send emails
+        if email_recipients:
+            NotificationService._send_email_notifications(
+                email_recipients, obj, strategy, notification_data
+            )
+
+        # remove email_context from notification
+        notification_data.pop("email_context", None)
 
         # Create in-app notifications
         notifications = []
@@ -52,12 +85,6 @@ class NotificationService:
 
         if notifications:
             Notification.objects.bulk_create(notifications)
-
-        # Send emails
-        if email_recipients:
-            NotificationService._send_email_notifications(
-                email_recipients, obj, strategy, notification_data
-            )
 
     @staticmethod
     def _filter_recipients_by_preferences(
@@ -83,43 +110,19 @@ class NotificationService:
 
     @staticmethod
     def _send_email_notifications(recipients, obj, strategy, notification_data):
-        try:
-            email_class = NotificationService._map_notification_type_to_email_class(
-                notification_data["notification_type"]
-            )
-
-            if email_class:
-                for recipient in recipients:
-                    # Enhance notification data with recipient information
-                    enhanced_data = (
-                        NotificationService._enhance_notification_data_for_recipient(
-                            notification_data, recipient
-                        )
-                    )
-
-                    email_class.send(
-                        obj,
-                        strategy_recipient_ids=[recipient.id],
-                        notification_data=enhanced_data,
-                    )
-
-        except ValueError as e:
-            # Log the error but don't crash the entire notification process
-            print(f"Failed to send email notification: {e}")
-
-    @staticmethod
-    def _enhance_notification_data_for_recipient(notification_data, recipient):
         """
-        Add recipient-specific information to notification data
+        Send email notifications to recipients
         """
-        enhanced_data = notification_data.copy()
-        enhanced_data["context"] = notification_data.get("context", {}).copy()
+        # Get email context from strategy
+        email_context = NotificationService.get_email_context(notification_data)
+        email_context["recipients"] = recipients
 
-        enhanced_data["context"]["receiver"] = recipient
-        enhanced_data["context"]["username"] = getattr(recipient, "username", "")
-        enhanced_data["context"]["user_email"] = getattr(recipient, "email", "")
+        # Get organisation from strategy
+        organisation = strategy.get_organisation(obj)
 
-        return enhanced_data
+        # Create and send email using the existing pattern
+        email = NotificationEmail(obj, email_context, organisation)
+        email.dispatch(obj)
 
     @staticmethod
     def _map_notification_type_to_email_class(notification_type: str):
@@ -143,3 +146,25 @@ class NotificationService:
             # )
 
         return email_class
+
+    def get_email_context(notification_data):
+        """Extract email template variables from notification email_context"""
+        email_context = notification_data.get("email_context", {})
+
+        # Map email_* keys to the template variable names
+        return {
+            "subject": email_context.get("email_subject", ""),
+            "headline": email_context.get("email_headline", ""),
+            "subheadline": email_context.get("email_subheadline", ""),
+            "greeting": email_context.get("email_greeting", ""),
+            "content": email_context.get("email_content", ""),
+            "cta_url": email_context.get("email_cta_url", ""),
+            "cta_label": email_context.get("email_cta_label", ""),
+            "reason": email_context.get("email_reason", ""),
+            # Additional context
+            "project_name": email_context.get("project_name", ""),
+            "commenter_name": email_context.get("commenter_name", ""),
+            "comment_text": email_context.get("comment_text", ""),
+            "parent_comment_text": email_context.get("parent_comment_text", ""),
+            "comment_url": email_context.get("email_cta_url", ""),
+        }
