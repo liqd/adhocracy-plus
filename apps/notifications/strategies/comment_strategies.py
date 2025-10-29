@@ -22,7 +22,17 @@ class CommentHighlighted(BaseNotificationStrategy):
             return [comment.creator]
         return []
 
+    def get_organisation(self, comment):
+        return comment.project.organisation
+
     def create_notification_data(self, comment) -> dict:
+        # Determine if there's a specific post URL or just project URL
+        post_url = getattr(comment.content_object, "get_absolute_url", lambda: None)()
+        cta_url = post_url if post_url else comment.project.get_absolute_url()
+        cta_label = (
+            EmailStrings.CTA_VIEW_POST if post_url else EmailStrings.CTA_VISIT_PROJECT
+        )
+
         return {
             "notification_type": NotificationType.MODERATOR_HIGHLIGHT,
             "message_template": _(
@@ -34,7 +44,35 @@ class CommentHighlighted(BaseNotificationStrategy):
                 "comment": comment.comment,
                 "comment_url": comment.get_absolute_url(),
             },
+            "email_context": {
+                "email_subject": SubjectStrings.SUBJECT_HIGHLIGHTED.format(
+                    project_name=comment.project.name
+                ),
+                "email_headline": _("Project {project_name}").format(
+                    project_name=comment.project.name
+                ),
+                "email_greeting": EmailStrings.GREETING.format(
+                    receiver_name=comment.creator.username
+                ),
+                "email_content": self._get_email_content(comment),
+                "email_cta_url": cta_url,
+                "email_cta_label": cta_label,
+                "email_reason": ReasonStrings.REASON_CONTRIBUTION_ADDED.format(
+                    receiver_email=comment.creator.email
+                ),
+                "project": comment.project.name,
+                "project_url": comment.project.get_absolute_url(),
+                "post_url": post_url,
+            },
         }
+
+    def _get_email_content(self, comment):
+        """Generate the HTML content for the email"""
+        """
+<p>
+A moderator highlighted your comment in the project.
+</p>
+"""
 
 
 class ProjectComment(ProjectNotificationStrategy):
@@ -76,11 +114,15 @@ class ProjectComment(ProjectNotificationStrategy):
                 ),
                 "email_headline": EmailStrings.HEADLINE_NEW_COMMENT,
                 "email_subheadline": comment.project.name,
-                "email_greeting": EmailStrings.GREETING,
+                "email_greeting": EmailStrings.GREETING.format(
+                    receiver_name=comment.creator.username
+                ),
                 "email_content": self._get_email_content(comment, post_name),
                 "email_cta_url": comment.content_object.get_absolute_url(),
                 "email_cta_label": EmailStrings.CTA_VIEW_POST,
-                "email_reason": ReasonStrings.REASON_COMMENT_ON_POST,
+                "email_reason": ReasonStrings.REASON_COMMENT_ON_POST.format(
+                    receiver_email=comment.creator.email
+                ),
                 "project_name": comment.project.name,
                 "commenter_name": comment.creator.username,
                 "post_name": post_name,
@@ -146,11 +188,15 @@ class CommentReply(BaseNotificationStrategy):
                 ),
                 "email_headline": EmailStrings.HEADLINE_NEW_REPLY,
                 "email_subheadline": comment.project.name,
-                "email_greeting": EmailStrings.GREETING,
+                "email_greeting": EmailStrings.GREETING.format(
+                    receiver_name=comment.creator.username
+                ),
                 "email_content": self._get_email_content(comment, parent_comment),
                 "email_cta_url": getattr(comment, "get_absolute_url", lambda: "")(),
                 "email_cta_label": EmailStrings.CTA_VIEW_CONVERSATION,
-                "email_reason": ReasonStrings.REASON_COMMENT_REPLY,
+                "email_reason": ReasonStrings.REASON_COMMENT_REPLY.format(
+                    receiver_email=comment.creator.email
+                ),
                 "project_name": comment.project.name,
                 "commenter_name": comment.creator.username,
                 "comment_text": comment.comment,
