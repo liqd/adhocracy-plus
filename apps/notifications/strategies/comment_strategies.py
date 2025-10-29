@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 from ..constants import EmailStrings
-from ..constants import ReasonStrings
 from ..constants import SubjectStrings
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
@@ -40,10 +39,11 @@ class CommentHighlighted(BaseNotificationStrategy):
             "headline": _("Project {project_name}").format(
                 project_name=comment.project.name
             ),
-            "greeting": EmailStrings.GREETING,
             "cta_url": cta_url,
             "cta_label": cta_label,
-            "reason": ReasonStrings.REASON_CONTRIBUTION_ADDED,
+            "reason": _(
+                "This email was sent to {receiver_email}. You have received the e-mail because you added a contribution to the above project."
+            ),
             # Content template
             "content_template": "a4_candy_notifications/emails/content/moderator_highlighted_comment.en.email",
             # Template variables
@@ -94,10 +94,11 @@ class ProjectComment(ProjectNotificationStrategy):
             ),
             "headline": EmailStrings.HEADLINE_NEW_COMMENT,
             "subheadline": comment.project.name,
-            "greeting": EmailStrings.GREETING,
             "cta_url": comment.content_object.get_absolute_url(),
             "cta_label": EmailStrings.CTA_VIEW_POST,
-            "reason": ReasonStrings.REASON_COMMENT_ON_POST,
+            "reason": _(
+                "This email was sent to {receiver_email} because someone commented on your content."
+            ),
             # Content template
             "content_template": "a4_candy_notifications/emails/content/comment_on_post.en.email",
             # Template variables
@@ -152,10 +153,11 @@ class CommentReply(BaseNotificationStrategy):
             ),
             "headline": EmailStrings.HEADLINE_NEW_REPLY,
             "subheadline": comment.project.name,
-            "greeting": EmailStrings.GREETING,
             "cta_url": comment.get_absolute_url(),
             "cta_label": EmailStrings.CTA_VIEW_CONVERSATION,
-            "reason": ReasonStrings.REASON_COMMENT_REPLY,
+            "reason": _(
+                "This email was sent to {receiver_email} because someone replied to your comment."
+            ),
             # Content template
             "content_template": "a4_candy_notifications/emails/content/comment_reply.en.email",
             # Template variables

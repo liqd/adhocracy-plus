@@ -50,9 +50,6 @@ EMAIL_CLASS_MAPPING = {
 
 
 class EmailStrings:
-    # Greetings
-    GREETING = _("Hello {receiver_name},")
-
     # CTA Labels
     CTA_VIEW_CONVERSATION = _("View conversation")
     CTA_VIEW_POST = _("View post")
@@ -77,32 +74,6 @@ class EmailStrings:
     CONTENT_ANSWER_PROMPT = _("Would you like to answer?")
     CONTENT_DO_ANSWER = _("Do you want to answer?")
     CONTENT_FURTHER_INFO = _("Further information can be found in the project.")
-
-
-class ReasonStrings:
-    # Comment/contribution related
-    REASON_COMMENT_REPLY = _(
-        "This email was sent to {receiver_email} because someone replied to your comment."
-    )
-    REASON_COMMENT_ON_POST = _(
-        "This email was sent to {receiver_email} because someone commented on your content."
-    )
-    REASON_CONTRIBUTION_ADDED = _(
-        "This email was sent to {receiver_email}. You have received the e-mail because you added a contribution to the above project."
-    )
-
-    # Project following related
-    REASON_PROJECT_FOLLOWING = _(
-        "This email was sent to {receiver_email}. You have received the e-mail because you are following the above project."
-    )
-
-    # Moderator/initiator related
-    REASON_MODERATOR = _(
-        "This email was sent to {receiver_email}. This email was sent to you because you are a moderator in the project."
-    )
-    REASON_INITIATOR = _(
-        "This email was sent to {receiver_email}. This email was sent to you because you are an initiator of {organisation_name}."
-    )
 
 
 class SubjectStrings:

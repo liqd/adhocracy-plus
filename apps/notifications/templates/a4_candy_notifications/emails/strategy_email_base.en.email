@@ -4,7 +4,9 @@
 {% block subject %}{{ subject }}{% endblock %}
 {% block headline %}{{ headline }}{% endblock %}
 {% block sub-headline %}{{ subheadline }}{% endblock %}
-{% block greeting %}{{ greeting|safe }}{% endblock %}
+{% block greeting %}
+    {% blocktranslate with receiver_name=receiver.username %}Hello {{receiver_name}},{% endblocktranslate %}
+{% endblock %}
 {% block content %}{{ content|safe }}{% endblock %}
 {% block cta_url %}{{ cta_url }}{% endblock %}
 {% block cta_label %}{{ cta_label }}{% endblock %}
