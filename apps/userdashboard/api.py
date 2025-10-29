@@ -15,7 +15,6 @@ from adhocracy4.api.permissions import ViewSetRulesPermission
 from adhocracy4.filters.rest_filters import DefaultsRestFilterSet
 from adhocracy4.filters.rest_filters import DistinctOrderingFilter
 from adhocracy4.projects.models import Project
-from apps.notifications.emails import NotifyCreatorOnModeratorBlocked
 from apps.projects import helpers
 
 from . import serializers
@@ -71,8 +70,8 @@ class ModerationCommentViewSet(
         )
 
     def update(self, request, *args, **kwargs):
-        if "is_blocked" in self.request.data and request.data["is_blocked"]:
-            NotifyCreatorOnModeratorBlocked.send(self.get_object())
+        # if "is_blocked" in self.request.data and request.data["is_blocked"]:
+        # NotifyCreatorOnModeratorBlocked.send(self.get_object())
         return super().update(request, *args, **kwargs)
 
     @action(detail=True)
