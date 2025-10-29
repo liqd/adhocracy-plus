@@ -1,0 +1,12 @@
+{% load i18n %}
+<p>
+{% blocktranslate with creator_name=creator_name content_type=content_type_display project=project %}
+A new {{ content_type }} was added to the project {{ project }} by {{ creator_name }}.
+{% endblocktranslate %}
+</p>
+
+<p>
+{% blocktranslate with project=project site_name=site.name %}
+Checkout what happened on the project {{ project }} on {{ site_name }}.
+{% endblocktranslate %}
+</p>
