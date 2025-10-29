@@ -1,9 +1,6 @@
 name: Django CI
 
 on:
-  workflow_run:
-    workflows: ["Build and Push CI Base Image"]
-    types: [completed]
   push:
     branches: [ main ]
   pull_request:
@@ -20,25 +17,12 @@ jobs:
         run: |
           sudo service postgresql start
       
-      - name: Test Postgres
-        env:
-          PGPASSWORD: postgres
-          PGHOSTADDR: 127.0.0.1
-
-        run: |
-          # Test postgres user
-          psql -h localhost -U postgres -d django -c "SELECT version();"
-          psql -h localhost -U postgres -d django_test -c "SELECT 1;"
-          # Test PostGIS extension
-          psql -h localhost -U postgres -d django -c "SELECT PostGIS_version();"
-          psql -h localhost -U postgres -d django_test -c "SELECT PostGIS_version();"
-
-
       - name: Set up Python ${{ matrix.python-version }}
         id: setup-python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
       - name: Cache node packages
         uses: actions/cache@v4
         env:
@@ -50,7 +34,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: Cache node_modules
+      - name: Cache node Modules
         id: cache-node-modules
         uses: actions/cache@v4
         with:
@@ -58,10 +42,7 @@ jobs:
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node_modules-
-      - name: Show node_modules cache status
-        run: |
-          echo "node_modules cache hit: ${{ steps.cache-node-modules.outputs.cache-hit }}"
-          ls -la node_modules 2>/dev/null || echo "node_modules directory does not exist"
+
       - name: Cache uv packages
         uses: actions/cache@v4
         env:
@@ -73,6 +54,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
       - name: Cache testmon data
         id: cache-testmon
         uses: actions/cache@v4
@@ -82,12 +64,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-testmon-${{ steps.setup-python.outputs.python-version }}-
 
-      - name: Show testmon cache status
+      - name: Checks
         run: |
+          echo "node_modules cache hit: ${{ steps.cache-node-modules.outputs.cache-hit }}"
+          ls -la node_modules 2>/dev/null || echo "node_modules directory does not exist"
           echo "testmon cache hit: ${{ steps.cache-testmon.outputs.cache-hit }}"
           ls -la .testmondata || true
-      - name: check a4 hashes equal
-        run: |
           ./scripts/a4-check.sh
 
       - name: Install Python Dependencies
@@ -102,22 +84,24 @@ jobs:
         run: |
           python manage.py collectstatic > /dev/null
           # Einmalig Cache löschen, um Settings-Mismatch auszuschließen
-          py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov
           isort --diff -c adhocracy-plus tests
           python manage.py makemigrations --dry-run --check --noinput
           flake8 adhocracy-plus tests --exclude migrations,settings
-      
-      - name: Configure Git for Coveralls
-        run: |
-          git config --global --add safe.directory /__w/adhocracy-plus/adhocracy-plus
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-      
+          
+          if [ "${{ github.ref }}" == "refs/heads/main" ] && [ "${{ github.event_name }}" == "push" ]; then
+            py.test --ds=adhocracy-plus.config.settings.travis --cov
+          elif [ "${{ github.event_name }}" == "pull_request" ]; then
+            py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov
+          fi
+
       - name: Coveralls
         env:
           COVERALLS_SERVICE_NAME: github-actions
           GITHUB_TOKEN: ${{ secrets.COV }}
         run: |
+          git config --global --add safe.directory /__w/adhocracy-plus/adhocracy-plus
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
           coveralls
 
       - name: Install NPM Dependencies
@@ -137,6 +121,7 @@ jobs:
         run: |
           npm test
           npm run lint
+
       - name: Deploy
         if: github.ref == 'refs/heads/main'
         env:
