@@ -1,0 +1,68 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n %}
+
+{% with receiver_name=receiver.username %}
+{% with receiver_email=receiver.email %}
+{% with project_name=project_name %}
+{% with commenter_name=commenter_name %}
+{% with comment_text=comment_text %}
+{% with parent_comment_text=parent_comment_text %}
+
+{% block subject %}
+{% blocktranslate with commenter=commenter_name %}{{ commenter }} replied to your comment{% endblocktranslate %}
+{% endblock %}
+
+{% block headline %}
+{% blocktranslate %}New reply to your comment{% endblocktranslate %}
+{% endblock %}
+
+{% block sub-headline %}
+{{ project_name }}
+{% endblock %}
+
+{% block greeting %}
+{% blocktranslate %}Hello {{ receiver_name }},{% endblocktranslate %}
+{% endblock %}
+
+{% block content %}
+<p>
+{% blocktranslate with commenter=commenter_name %}
+<strong>{{ commenter }}</strong> replied to your comment in the project.
+{% endblocktranslate %}
+</p>
+
+<strong>{% blocktranslate %}Your original comment:{% endblocktranslate %}</strong>
+<div style="margin: 0.5em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #417690;">
+    {{ parent_comment_text }}
+</div>
+
+<strong>{% blocktranslate %}Reply from {{ commenter_name }}:{% endblocktranslate %}</strong>
+<div style="margin: 0.5em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #2d40cc;">
+    {{ comment_text }}
+</div>
+
+<p>
+{% blocktranslate %}Join the conversation and continue the discussion.{% endblocktranslate %}
+</p>
+{% endblock %}
+
+{% block cta_url %}
+{{ email.get_host }}{{ comment_url }}
+{% endblock %}
+
+{% block cta_label %}
+{% blocktranslate %}View conversation{% endblocktranslate %}
+{% endblock %}
+
+{% block reason %}
+{% blocktranslate %}This email was sent to {{ receiver_email }} because someone replied to your comment.{% endblocktranslate %}
+{{ account_link|safe }}
+{{ project_link|safe }}
+{% endblock %}
+
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
