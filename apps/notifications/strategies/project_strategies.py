@@ -3,6 +3,7 @@ from typing import List
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
+from ..constants import EmailStrings
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
 
@@ -59,17 +60,39 @@ class ProjectStarted(ProjectNotificationStrategy):
         return self._get_project_recipients(project)
 
     def create_notification_data(self, project) -> dict:
+        end_date = (
+            project.phases.filter(module__is_draft=False)
+            .order_by("end_date")
+            .first()
+            .end_date
+        )
+
+        email_context = {
+            "subject": _("Here we go: {project_name} starts now!").format(
+                project_name=project.name
+            ),
+            "headline": _("Here we go!"),
+            "subheadline": project.name,
+            "greeting": EmailStrings.GREETING,
+            "cta_url": project.get_absolute_url(),
+            "cta_label": _("Join now"),
+            "reason": _(
+                "This email was sent to {receiver_email}. You have received the e-mail because you are following the above project."
+            ),
+            "content_template": "a4_candy_notifications/emails/content/project_started.en.email",
+            "project_name": project.name,
+            "end_date": end_date,
+        }
+
         return {
             "notification_type": NotificationType.PROJECT_STARTED,
             "message_template": _("The project {project} has begun."),
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
-                "end_date": project.phases.filter(module__is_draft=False)
-                .order_by(("end_date"))
-                .first()
-                .end_date,
+                "end_date": end_date,
             },
+            "email_context": email_context,
         }
 
 
@@ -78,6 +101,21 @@ class ProjectEnded(ProjectNotificationStrategy):
         return self._get_project_recipients(project)
 
     def create_notification_data(self, project) -> dict:
+        email_context = {
+            "subject": _("{project_name} has completed.").format(
+                project_name=project.name
+            ),
+            "subheadline": project.name,
+            "greeting": EmailStrings.GREETING,
+            "cta_url": project.get_absolute_url(),
+            "cta_label": _("Join now"),
+            "reason": _(
+                "This email was sent to {receiver_email}. You have received the e-mail because you are following the above project."
+            ),
+            "content_template": "a4_candy_notifications/emails/content/project_ended.en.email",
+            "project": project.name,
+        }
+
         return {
             "notification_type": NotificationType.PROJECT_COMPLETED,
             "message_template": _("The project {project} has been completed."),
@@ -85,10 +123,14 @@ class ProjectEnded(ProjectNotificationStrategy):
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
             },
+            "email_context": email_context,
         }
 
 
 class ProjectInvitationCreated(ProjectNotificationStrategy):
+    def get_organisation(self, invitation):
+        return invitation.project.organisation
+
     def get_recipients(self, invitation) -> List[User]:
         user_email = invitation.email
         try:
@@ -99,20 +141,38 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
 
     def create_notification_data(self, invitation) -> dict:
         project = invitation.project
-        project_name = project.name
+
+        email_context = {
+            "subject": _("You have been invited to project {project_name}").format(
+                project_name=project.name
+            ),
+            "headline": _("Project Invitation"),
+            "greeting": EmailStrings.GREETING,
+            "cta_url": project.get_absolute_url(),
+            "cta_label": _("View Project"),
+            "reason": _("This email was sent to {receiver_email}."),
+            "content_template": "a4_candy_notifications/emails/content/project_invitation.en.email",
+            "project_name": project.name,
+        }
+
         return {
             "notification_type": NotificationType.PROJECT_INVITATION,
             "message_template": _(
-                f"You have been invited to project {project_name}. Please check your email to accept."
+                "You have been invited to project {project}. Please check your email to accept."
             ),
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
             },
+            "email_context": email_context,
         }
 
 
 class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
+
+    def get_organisation(self, invitation):
+        return invitation.project.organisation
+
     def get_recipients(self, invitation) -> List[User]:
         user_email = invitation.email
         try:
@@ -123,6 +183,20 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
 
     def create_notification_data(self, invitation) -> dict:
         project = invitation.project
+
+        email_context = {
+            "subject": _("Moderator invitation for project {project_name}").format(
+                project_name=project.name
+            ),
+            "headline": _("Moderator Invitation"),
+            "greeting": EmailStrings.GREETING,
+            "cta_url": project.get_absolute_url(),
+            "cta_label": _("View Project"),
+            "reason": _("This email was sent to {receiver_email}."),
+            "content_template": "a4_candy_notifications/emails/content/project_moderation_invitation.en.email",
+            "project_name": project.name,
+        }
+
         return {
             "notification_type": NotificationType.PROJECT_MODERATION_INVITATION,
             "message_template": _(
@@ -132,15 +206,36 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
             },
+            "email_context": email_context,
         }
 
 
+# TODO: CHECK creator_name for emails
 class ProjectCreated(ProjectNotificationStrategy):
     def get_recipients(self, project) -> List[User]:
-        recips = self._get_project_initiators(project)
-        return recips
+        return self._get_project_initiators(project)
 
     def create_notification_data(self, project) -> dict:
+        email_context = {
+            "subject": _("New project {project_name} on {site_name}"),
+            "headline": _(
+                "The new project {project_name} was created for {organisation_name}"
+            ).format(
+                project_name=project.name, organisation_name=project.organisation.name
+            ),
+            "greeting": EmailStrings.GREETING,
+            "cta_url": project.get_absolute_url(),
+            "cta_label": _("Show project"),
+            "reason": _(
+                "This email was sent to {receiver_email}. This email was sent to you because you are an initiator of {organisation_name}."
+            ),
+            # Content template
+            "content_template": "a4_candy_notifications/emails/content/project_created.en.email",
+            # Template variables
+            "project_name": project.name,
+            "organisation_name": project.organisation.name,
+        }
+
         return {
             "notification_type": NotificationType.PROJECT_CREATED,
             "message_template": _("A new project {project} has been created."),
@@ -149,6 +244,7 @@ class ProjectCreated(ProjectNotificationStrategy):
                 "project_url": project.get_absolute_url(),
                 "organisation": project.organisation.name,
             },
+            "email_context": email_context,
         }
 
 
@@ -157,14 +253,32 @@ class ProjectDeleted(ProjectNotificationStrategy):
         return self._get_project_initiators(project)
 
     def create_notification_data(self, project) -> dict:
+        email_context = {
+            "subject": _("Deletion of project"),
+            "headline": _("The project {project} was deleted.").format(
+                project=project.name
+            ),
+            "greeting": EmailStrings.GREETING,
+            "reason": _(
+                "This email was sent to {receiver_email}. This email was sent to you because you are an initiator of the organisation '{organisation_name}', in which a project was deleted."
+            ),
+            # Content template
+            "content_template": "a4_candy_notifications/emails/content/project_deleted.en.email",
+            # Template variables
+            "project": project.name,
+            "organisation": project.organisation.name,
+            "site": project.organisation.site,
+        }
+
         return {
             "notification_type": NotificationType.PROJECT_DELETED,
             "message_template": _("The project {project} has been deleted."),
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
-                "site_name": "aplus",  # TODO: use get_current_site or similar
+                "organisation": project.organisation.name,
             },
+            "email_context": email_context,
         }
 
 
@@ -184,6 +298,37 @@ class UserContentCreated(ProjectNotificationStrategy):
     def create_notification_data(self, obj) -> dict:
         # Auto-detect content type from object class if not provided
         content_type = self.content_type or obj.__class__.__name__
+        content_type_display = content_type  # Could add display mapping if needed
+
+        email_context = {
+            "subject": _("A {content_type} was added to the project {project}").format(
+                content_type=content_type_display, project=obj.project.name
+            ),
+            "headline": _(
+                "{creator_name} created a {content_type} on the project {project}"
+            ).format(
+                creator_name=obj.creator.username,
+                content_type=content_type_display,
+                project=obj.project.name,
+            ),
+            "greeting": EmailStrings.GREETING,
+            "cta_url": obj.get_absolute_url(),
+            "cta_label": _("Check the {content_type}").format(
+                content_type=content_type_display
+            ),
+            "reason": _(
+                "This email was sent to {receiver_email}. This email was sent to you because you are a moderator in the project."
+            ),
+            # Content template
+            "content_template": "a4_candy_notifications/emails/content/user_content_created.en.email",
+            # Template variables
+            "project": obj.project.name,
+            "creator_name": obj.creator.username,
+            "content_type": content_type.lower(),
+            "content_type_display": content_type_display,
+            "content_url": obj.get_absolute_url(),
+            "site": obj.project.organisation.site,
+        }
 
         return {
             "notification_type": NotificationType.USER_CONTENT_CREATED,
@@ -194,10 +339,11 @@ class UserContentCreated(ProjectNotificationStrategy):
                 "project": obj.project.name,
                 "project_url": obj.project.get_absolute_url(),
                 "organisation": obj.project.organisation.name,
-                "content_type": content_type.lower(),  # "idea", "mapidea", "proposal"
-                "content_type_display": content_type,  # "Idea", "MapIdea", "Proposal"
+                "content_type": content_type.lower(),
+                "content_type_display": content_type_display,
                 "content": obj.name,
                 "content_url": obj.get_absolute_url(),
                 "creator_name": obj.creator.username,
             },
+            "email_context": email_context,
         }

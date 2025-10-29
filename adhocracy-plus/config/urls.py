@@ -43,7 +43,6 @@ from apps.userdashboard.routers import ModerationDetailDefaultRouter
 from apps.users.api import UserViewSet
 from apps.users.decorators import user_is_project_admin
 from apps.users.views import set_language_overwrite
-from apps.notifications.admin import notification_strategies_overview
 
 router = routers.DefaultRouter()
 router.register(r"follows", FollowViewSet, basename="follows")
@@ -91,7 +90,6 @@ comment_router.register(
 )
 
 urlpatterns = [
-    path("django-admin/notification-strategies/", notification_strategies_overview, name="notification_strategies"),
     # General platform urls
     re_path(r"^django-admin/", admin.site.urls),
     path("admin/", include("wagtail.admin.urls")),

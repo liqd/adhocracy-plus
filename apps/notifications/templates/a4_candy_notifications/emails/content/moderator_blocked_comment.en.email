@@ -1,0 +1,14 @@
+{% load i18n %}
+{% blocktranslate %}Your comment in the project <strong>"{{ project_name }}"</strong> was moderated by our team.{% endblocktranslate %}
+
+{% blocktranslate %}Please ensure your contributions align with our community guidelines to maintain a constructive discussion environment.{% endblocktranslate %}
+
+<strong>{% blocktranslate %}Your comment:{% endblocktranslate %}</strong>
+
+<div style="margin: 1em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #dc3545;">
+    {{ comment_text }}
+</div>
+
+<div>
+    {% blocktranslate %}Please review our <a href="{{ netiquette_url }}">netiquette guidelines</a> for community participation.{% endblocktranslate %}
+</div>
