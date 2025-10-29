@@ -3,7 +3,7 @@ name: Build and Push CI Base Image
 on:
   push:
     paths:
-      - '.github/ci_base/**'
+      - 'changelog/**'
 
 jobs:
   build-and-push:
