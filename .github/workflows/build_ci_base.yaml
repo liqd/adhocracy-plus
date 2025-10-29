@@ -27,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository }}/ci-base # Dein Image-Name
+          images: ghcr.io/${{ github.repository }}/ci-base # Our Image-Name
           tags: |
             type=raw,value=latest
             type=sha,format=short,prefix=

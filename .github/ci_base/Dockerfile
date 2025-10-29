@@ -18,7 +18,6 @@ RUN apt update && \
         npm \
         git \
         python3 \
-        python3-pip \
         python3-venv \
         libmagic1 \
         libmagic-dev && \

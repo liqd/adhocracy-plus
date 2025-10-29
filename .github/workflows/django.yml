@@ -83,7 +83,6 @@ jobs:
           PGHOSTADDR: 127.0.0.1
         run: |
           python manage.py collectstatic > /dev/null
-          # Einmalig Cache löschen, um Settings-Mismatch auszuschließen
           isort --diff -c adhocracy-plus tests
           python manage.py makemigrations --dry-run --check --noinput
           flake8 adhocracy-plus tests --exclude migrations,settings
