@@ -1,4 +1,3 @@
-from . import emails
 from .models import NotificationType
 
 NOTIFICATION_SECTIONS = {
@@ -25,23 +24,4 @@ NOTIFICATION_SECTIONS = {
         NotificationType.MODERATOR_IDEA_FEEDBACK,
         NotificationType.MODERATOR_BLOCKED_COMMENT,
     ],
-}
-
-EMAIL_CLASS_MAPPING = {
-    NotificationType.MODERATOR_HIGHLIGHT: emails.NotifyCreatorOnModeratorCommentHighlight,
-    NotificationType.MODERATOR_COMMENT_FEEDBACK: emails.NotifyCreatorOnModeratorFeedback,
-    NotificationType.MODERATOR_IDEA_FEEDBACK: emails.NotifyCreatorOnModeratorFeedback,
-    NotificationType.MODERATOR_BLOCKED_COMMENT: emails.NotifyModeratorsEmail,
-    NotificationType.EVENT_SOON: emails.NotifyFollowersOnUpcomingEventEmail,
-    NotificationType.EVENT_CANCELLED: emails.NotifyFollowersOnEventDeletedEmail,
-    NotificationType.EVENT_UPDATE: emails.NotifyFollowersOnEventUpdatedEmail,
-    NotificationType.PROJECT_STARTED: emails.NotifyFollowersOnProjectStartedEmail,
-    NotificationType.PROJECT_INVITATION: emails.NotifyFollowersOnProjectCompletedEmail,
-    NotificationType.PROJECT_COMPLETED: emails.NotifyFollowersOnProjectCompletedEmail,
-    NotificationType.COMMENT_ON_POST: emails.NotifyCreatorEmail,
-    NotificationType.PROJECT_CREATED: emails.NotifyInitiatorsOnProjectCreatedEmail,
-    NotificationType.PROJECT_DELETED: emails.NotifyInitiatorsOnProjectDeletedEmail,
-    NotificationType.COMMENT_REPLY: emails.NotifyCreatorEmail,
-    NotificationType.EVENT_ADDED: emails.NotifyFollowersOnEventAddedEmail,
-    NotificationType.USER_CONTENT_CREATED: emails.NotifyModeratorsEmail,
 }
