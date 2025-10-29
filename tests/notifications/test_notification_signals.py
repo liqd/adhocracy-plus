@@ -103,8 +103,8 @@ def test_handle_proposal_moderator_feedback_notification(
     # Assert email
     proposal_author_emails = get_emails_for_address(proposal_author.email)
     assert len(proposal_author_emails) == 1
-    # Assuming the email subject contains relevant text for moderator feedback
     assert "feedback" in proposal_author_emails[0].subject.lower()
+    assert proposal_author.username in proposal_author_emails[0].body.lower()
 
 
 @pytest.mark.django_db
@@ -156,8 +156,8 @@ def test_handle_idea_moderator_feedback_notification(
     # Assert email
     idea_author_emails = get_emails_for_address(idea_author.email)
     assert len(idea_author_emails) == 1
-    # Assuming the email subject contains relevant text for moderator feedback
     assert "feedback" in idea_author_emails[0].subject.lower()
+    assert idea_author.username in idea_author_emails[0].body.lower()
 
 
 @pytest.mark.django_db
@@ -199,7 +199,7 @@ def test_handle_comment_blocked_notification(
     # Assert email
     comment_author_emails = get_emails_for_address(comment_author.email)
     assert len(comment_author_emails) == 1
-    assert "your contribution was deleted" in comment_author_emails[0].subject.lower()
+    assert "your comment was moderated" in comment_author_emails[0].subject.lower()
 
 
 @pytest.mark.django_db
@@ -235,8 +235,8 @@ def test_handle_offline_event_deleted_notification(
     # Assert email
     attendee_emails = get_emails_for_address(attendee.email)
     assert len(attendee_emails) == 1
-    # Assuming the email subject contains relevant text for cancelled events
     assert "cancelled" in attendee_emails[0].subject.lower()
+    assert attendee.username in attendee_emails[0].body.lower()
 
 
 @pytest.mark.django_db
@@ -268,8 +268,8 @@ def test_handle_offline_event_created_notification(
     # Assert email
     attendee_emails = get_emails_for_address(attendee.email)
     assert len(attendee_emails) == 1
-    # Assuming the email subject contains relevant text for new events
     assert "event" in attendee_emails[0].subject.lower()
+    assert attendee.username in attendee_emails[0].body.lower()
 
 
 @pytest.mark.django_db
@@ -280,9 +280,10 @@ def test_handle_event_update_notifications(
     attendee = user_factory()
 
     # Use proper datetime objects
-    from django.utils import timezone
     import datetime
-    
+
+    from django.utils import timezone
+
     initial_date = timezone.make_aware(datetime.datetime(2024, 1, 1, 12, 0, 0))
     updated_date = timezone.make_aware(datetime.datetime(2024, 1, 2, 14, 0, 0))
 
@@ -294,19 +295,20 @@ def test_handle_event_update_notifications(
         creator=attendee,
         defaults={"enabled": True},
     )
-    
+
     # Update the event date to trigger the signal
     offline_event.date = updated_date
     offline_event.save()
 
     updated_notifications = Notification.objects.filter(recipient=attendee)
     assert updated_notifications.count() == 1
-    assert updated_notifications.last().notification_type == NotificationType.EVENT_UPDATE
+    assert (
+        updated_notifications.last().notification_type == NotificationType.EVENT_UPDATE
+    )
 
     # Assert email
     attendee_emails = get_emails_for_address(attendee.email)
     assert len(attendee_emails) == 1
-    # Assuming the email subject contains relevant text for event updates
     assert "update" in attendee_emails[0].subject.lower()
 
 
@@ -332,12 +334,10 @@ def test_handle_invite_notification(
         == NotificationType.PROJECT_INVITATION
     )
 
-    # TODO: Double check if email is being sent, why assertion failed
     # # Assert email
-    # invited_user_emails = get_emails_for_address(invited_user.email)
-    # assert len(invited_user_emails) == 1
-    # # Assuming the email subject contains relevant text for project invitations
-    # assert "invitation" in invited_user_emails[0].subject.lower()
+    invited_user_emails = get_emails_for_address(invited_user.email)
+    assert len(invited_user_emails) == 1
+    assert "you have been invited" in invited_user_emails[0].subject.lower()
 
 
 @pytest.mark.django_db
@@ -362,14 +362,14 @@ def test_handle_moderator_invite_notification(
         == NotificationType.PROJECT_MODERATION_INVITATION
     )
 
-     # TODO: Double check if email is being sent, why assertion failed
+    # TODO: Double check if email is being sent, why assertion failed
     # Assert email
     # invited_user_emails = get_emails_for_address(invited_user.email)
     # assert len(invited_user_emails) == 1
-    # # Assuming the email subject contains relevant text for moderation invitations
     # assert "moderator" in invited_user_emails[0].subject.lower() or "moderation" in invited_user_emails[0].subject.lower()
 
 
+# TODO: Check project creator_name in email
 @pytest.mark.django_db
 def test_handle_project_created(project_factory, organisation_factory, user_factory):
 
@@ -393,6 +393,8 @@ def test_handle_project_created(project_factory, organisation_factory, user_fact
     initiator_emails = get_emails_for_address(initiator.email)
     assert len(initiator_emails) == 1
     assert "new project" in initiator_emails[0].subject.lower()
+    assert initiator.username in initiator_emails[0].body.lower()
+    assert project.name.lower() in initiator_emails[0].body.lower()
 
 
 @pytest.mark.django_db
@@ -423,6 +425,7 @@ def test_handle_project_deleted(project_factory, organisation_factory, user_fact
     initiator_emails = get_emails_for_address(initiator.email)
     assert len(initiator_emails) == 2
     assert "deletion of project" in initiator_emails[1].subject.lower()
+    assert initiator.username in initiator_emails[1].body.lower()
 
 
 @pytest.mark.django_db
@@ -448,6 +451,7 @@ def test_handle_idea_created(
     moderator_emails = get_emails_for_address(moderator.email)
     assert len(moderator_emails) == 1
     assert "idea" in moderator_emails[0].subject.lower()
+    assert moderator.username in moderator_emails[0].body.lower()
 
 
 @pytest.mark.django_db
@@ -471,5 +475,4 @@ def test_handle_proposal_created(
     # Assert email
     moderator_emails = get_emails_for_address(moderator.email)
     assert len(moderator_emails) == 1
-    # Assuming the email subject contains relevant text for new user content
-    assert "content" in moderator_emails[0].subject.lower() or "proposal" in moderator_emails[0].subject.lower()
+    assert "proposal" in moderator_emails[0].subject.lower()

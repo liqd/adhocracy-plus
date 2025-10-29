@@ -33,6 +33,25 @@ class CommentHighlighted(BaseNotificationStrategy):
             EmailStrings.CTA_VIEW_POST if post_url else EmailStrings.CTA_VISIT_PROJECT
         )
 
+        email_context = {
+            "subject": SubjectStrings.SUBJECT_HIGHLIGHTED.format(
+                project_name=comment.project.name
+            ),
+            "headline": _("Project {project_name}").format(
+                project_name=comment.project.name
+            ),
+            "greeting": EmailStrings.GREETING,
+            "cta_url": cta_url,
+            "cta_label": cta_label,
+            "reason": ReasonStrings.REASON_CONTRIBUTION_ADDED,
+            # Content template
+            "content_template": "a4_candy_notifications/emails/content/moderator_highlighted_comment.en.email",
+            # Template variables
+            "project": comment.project.name,
+            "project_url": comment.project.get_absolute_url(),
+            "post_url": post_url,
+        }
+
         return {
             "notification_type": NotificationType.MODERATOR_HIGHLIGHT,
             "message_template": _(
@@ -44,35 +63,8 @@ class CommentHighlighted(BaseNotificationStrategy):
                 "comment": comment.comment,
                 "comment_url": comment.get_absolute_url(),
             },
-            "email_context": {
-                "email_subject": SubjectStrings.SUBJECT_HIGHLIGHTED.format(
-                    project_name=comment.project.name
-                ),
-                "email_headline": _("Project {project_name}").format(
-                    project_name=comment.project.name
-                ),
-                "email_greeting": EmailStrings.GREETING.format(
-                    receiver_name=comment.creator.username
-                ),
-                "email_content": self._get_email_content(comment),
-                "email_cta_url": cta_url,
-                "email_cta_label": cta_label,
-                "email_reason": ReasonStrings.REASON_CONTRIBUTION_ADDED.format(
-                    receiver_email=comment.creator.email
-                ),
-                "project": comment.project.name,
-                "project_url": comment.project.get_absolute_url(),
-                "post_url": post_url,
-            },
+            "email_context": email_context,
         }
-
-    def _get_email_content(self, comment):
-        """Generate the HTML content for the email"""
-        """
-<p>
-A moderator highlighted your comment in the project.
-</p>
-"""
 
 
 class ProjectComment(ProjectNotificationStrategy):
@@ -96,6 +88,26 @@ class ProjectComment(ProjectNotificationStrategy):
     def create_notification_data(self, comment) -> dict:
         post_name = getattr(comment.content_object, "name", _("post"))
 
+        email_context = {
+            "subject": SubjectStrings.SUBJECT_COMMENT_ON_POST.format(
+                commenter=comment.creator.username, post=post_name
+            ),
+            "headline": EmailStrings.HEADLINE_NEW_COMMENT,
+            "subheadline": comment.project.name,
+            "greeting": EmailStrings.GREETING,
+            "cta_url": comment.content_object.get_absolute_url(),
+            "cta_label": EmailStrings.CTA_VIEW_POST,
+            "reason": ReasonStrings.REASON_COMMENT_ON_POST,
+            # Content template
+            "content_template": "a4_candy_notifications/emails/content/comment_on_post.en.email",
+            # Template variables
+            "project_name": comment.project.name,
+            "commenter_name": comment.creator.username,
+            "post_name": post_name,
+            "comment_text": comment.comment,
+            "content_see_said": EmailStrings.CONTENT_SEE_SAID,
+        }
+
         return {
             "notification_type": NotificationType.COMMENT_ON_POST,
             "message_template": _("{user} commented on your post {post}"),
@@ -108,45 +120,8 @@ class ProjectComment(ProjectNotificationStrategy):
                 "project": comment.project.name,
                 "project_url": comment.project.get_absolute_url(),
             },
-            "email_context": {
-                "email_subject": SubjectStrings.SUBJECT_COMMENT_ON_POST.format(
-                    commenter=comment.creator.username, post=post_name
-                ),
-                "email_headline": EmailStrings.HEADLINE_NEW_COMMENT,
-                "email_subheadline": comment.project.name,
-                "email_greeting": EmailStrings.GREETING.format(
-                    receiver_name=comment.creator.username
-                ),
-                "email_content": self._get_email_content(comment, post_name),
-                "email_cta_url": comment.content_object.get_absolute_url(),
-                "email_cta_label": EmailStrings.CTA_VIEW_POST,
-                "email_reason": ReasonStrings.REASON_COMMENT_ON_POST.format(
-                    receiver_email=comment.creator.email
-                ),
-                "project_name": comment.project.name,
-                "commenter_name": comment.creator.username,
-                "post_name": post_name,
-                "comment_text": comment.comment,
-                "post_url": comment.content_object.get_absolute_url(),
-            },
+            "email_context": email_context,
         }
-
-    def _get_email_content(self, comment, post_name):
-        """Generate the HTML content for the email"""
-        return f"""
-<p>
-<strong>{comment.creator.username}</strong> commented on your post "<strong>{post_name}</strong>".
-</p>
-
-<strong>Their comment:</strong>
-<div style="margin: 0.5em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #2d40cc;">
-    {comment.comment}
-</div>
-
-<p>
-{EmailStrings.CONTENT_SEE_SAID}
-</p>
-"""
 
 
 class CommentReply(BaseNotificationStrategy):
@@ -171,57 +146,35 @@ class CommentReply(BaseNotificationStrategy):
     def create_notification_data(self, comment) -> dict:
         parent_comment = self._get_parent_comment(comment)
 
+        email_context = {
+            "subject": SubjectStrings.SUBJECT_COMMENT_REPLY.format(
+                commenter=comment.creator.username
+            ),
+            "headline": EmailStrings.HEADLINE_NEW_REPLY,
+            "subheadline": comment.project.name,
+            "greeting": EmailStrings.GREETING,
+            "cta_url": comment.get_absolute_url(),
+            "cta_label": EmailStrings.CTA_VIEW_CONVERSATION,
+            "reason": ReasonStrings.REASON_COMMENT_REPLY,
+            # Content template
+            "content_template": "a4_candy_notifications/emails/content/comment_reply.en.email",
+            # Template variables
+            "commenter_name": comment.creator.username,
+            "comment_text": comment.comment,
+            "parent_comment_text": parent_comment.comment if parent_comment else "",
+            "content_join_conversation": EmailStrings.CONTENT_JOIN_CONVERSATION,
+        }
+
         return {
             "notification_type": NotificationType.COMMENT_REPLY,
             "message_template": _("{user} replied to your {comment}"),
             "context": {
                 "user": comment.creator.username,
-                "user_url": getattr(comment.creator, "get_absolute_url", lambda: "")(),
+                "user_url": comment.creator.get_absolute_url(),
                 "comment": _("comment"),
-                "comment_url": getattr(comment, "get_absolute_url", lambda: "")(),
+                "comment_url": comment.get_absolute_url(),
                 "project": comment.project.name,
                 "project_url": comment.project.get_absolute_url(),
             },
-            "email_context": {
-                "email_subject": SubjectStrings.SUBJECT_COMMENT_REPLY.format(
-                    commenter=comment.creator.username
-                ),
-                "email_headline": EmailStrings.HEADLINE_NEW_REPLY,
-                "email_subheadline": comment.project.name,
-                "email_greeting": EmailStrings.GREETING.format(
-                    receiver_name=comment.creator.username
-                ),
-                "email_content": self._get_email_content(comment, parent_comment),
-                "email_cta_url": getattr(comment, "get_absolute_url", lambda: "")(),
-                "email_cta_label": EmailStrings.CTA_VIEW_CONVERSATION,
-                "email_reason": ReasonStrings.REASON_COMMENT_REPLY.format(
-                    receiver_email=comment.creator.email
-                ),
-                "project_name": comment.project.name,
-                "commenter_name": comment.creator.username,
-                "comment_text": comment.comment,
-                "parent_comment_text": parent_comment.comment if parent_comment else "",
-            },
+            "email_context": email_context,
         }
-
-    def _get_email_content(self, comment, parent_comment):
-        """Generate the HTML content for the email"""
-        return f"""
-<p>
-<strong>{comment.creator.username}</strong> replied to your comment in the project.
-</p>
-
-<strong>Your original comment:</strong>
-<div style="margin: 0.5em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #417690;">
-    {parent_comment.comment if parent_comment else ''}
-</div>
-
-<strong>Reply from {comment.creator.username}:</strong>
-<div style="margin: 0.5em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #2d40cc;">
-    {comment.comment}
-</div>
-
-<p>
-{EmailStrings.CONTENT_JOIN_CONVERSATION}
-</p>
-"""

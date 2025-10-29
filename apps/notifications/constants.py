@@ -105,10 +105,6 @@ class ReasonStrings:
     )
 
 
-# subjects.py
-from django.utils.translation import gettext_lazy as _
-
-
 class SubjectStrings:
     SUBJECT_COMMENT_REPLY = _("{commenter} replied to your comment")
     SUBJECT_COMMENT_ON_POST = _("{commenter} commented on your post {post}")
