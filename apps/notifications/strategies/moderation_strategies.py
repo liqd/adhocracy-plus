@@ -98,6 +98,7 @@ class IdeaFeedback(BaseNotificationStrategy):
                 "approved": _("approved"),
                 "rejected": _("rejected"),
                 "reviewed": _("reviewed"),
+                "CONSIDERATION": _("under consideration"),
             }
             return status_map.get(status, status)
         return ""
