@@ -7,11 +7,11 @@
 {% with netiquette_url=netiquette_url}
 
 {% block subject %}
-{% blocktranslate %}Your comment was moderated{% endblocktranslate %}
+{% blocktranslate %}Your comment was blocked{% endblocktranslate %}
 {% endblock %}
 
 {% block headline %}
-{% blocktranslate %}Your comment was moderated{% endblocktranslate %}
+{% blocktranslate %}Your comment was blocked{% endblocktranslate %}
 {% endblock %}
 
 {% block sub-headline %}
@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block content %}
-{% blocktranslate %}Your comment in the project <strong>"{{ project_name }}"</strong> was moderated by our team.{% endblocktranslate %}
+{% blocktranslate %}Your comment in the project <strong>"{{ project_name }}"</strong> was blocked by our team.{% endblocktranslate %}
 
 {% blocktranslate %}Please ensure your contributions align with our community guidelines to maintain a constructive discussion environment.{% endblocktranslate %}
 

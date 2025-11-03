@@ -199,7 +199,7 @@ def test_handle_comment_blocked_notification(
     # Assert email
     comment_author_emails = get_emails_for_address(comment_author.email)
     assert len(comment_author_emails) == 1
-    assert "your comment was moderated" in comment_author_emails[0].subject.lower()
+    assert "your comment was blocked" in comment_author_emails[0].subject.lower()
 
 
 @pytest.mark.django_db
