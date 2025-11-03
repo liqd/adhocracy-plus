@@ -1,0 +1,17 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n %}
+
+{% block subject %}{% if participantinvite.project.is_semipublic %}{% blocktranslate with project_name=participantinvite.project.name %}Invitation to the semi-public project: "{{ project_name }}"{% endblocktranslate %}{% else %}{% blocktranslate with project_name=participantinvite.project.name %}Invitation to the private project: "{{ project_name }}"{% endblocktranslate %}{% endif %}{% endblock %}
+
+{% block headline %}{% if participantinvite.project.is_semipublic %}{% blocktranslate with project_name=participantinvite.project.name %}Invitation to the semi-public project: "{{ project_name }}"{% endblocktranslate %}{% else %}{% blocktranslate with project_name=participantinvite.project.name %}Invitation to the private project: "{{ project_name }}"{% endblocktranslate %}{% endif %}{% endblock  %}
+
+{% block content %}
+<p>
+{% if participantinvite.project.is_semipublic %}{% blocktranslate with project_name=participantinvite.project.name site_name=participantinvite.site %}you are invited to participate in the semi-public project "{{ project_name }}" on the participation platform  {{ site_name }}. To participate click on "Accept invitation".{% endblocktranslate %}{% else %}{% blocktranslate with project_name=participantinvite.project.name site_name=participantinvite.site %}you are invited to participate in the private project "{{ project_name }}" on the participation platform  {{ site_name }}. To participate click on "Accept invitation".{% endblocktranslate %}{% endif %}
+</p>
+{% endblock %}
+
+{% block cta_url %}https://{{ participantinvite.site }}{{ participantinvite.get_absolute_url }}{% endblock %}
+{% block cta_label %}{% blocktranslate %}Accept invitation{% endblocktranslate %}{% endblock %}
+
+{% block reason %}{% blocktranslate with receiver_mail=participantinvite.email %}This email was sent to {{ receiver_mail }}. This email was sent to you because you are invited to participate in a private project.{% endblocktranslate %}{% endblock %}
