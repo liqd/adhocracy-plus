@@ -150,7 +150,7 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
             "reason": _(
                 "This email was sent to {receiver_email}. This email was sent to you because you are invited to participate in a {project_type} project."
             ),
-            "content_template": "a4_candy_notifications/emails/project_invitation_content.html",
+            "content_template": "a4_candy_notifications/emails/project_invitation_content.en.email",
             "participantinvite": invitation,
             "project": project,
             "project_name": project.name,

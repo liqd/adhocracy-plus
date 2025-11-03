@@ -18,6 +18,27 @@ class CommentFeedback(BaseNotificationStrategy):
 
     def create_notification_data(self, feedback) -> dict:
         user_comment = feedback.comment
+        project = user_comment.project
+
+        email_context = {
+            "subject": _("Feedback for your contribution on {site_name}").format(
+                site_name=project.organisation.site.name
+            ),
+            "headline": _("Feedback for your contribution"),
+            "subheadline": project.name,
+            "cta_url": user_comment.get_absolute_url(),
+            "cta_label": _("Check your contribution"),
+            "reason": _(
+                "This email was sent to {receiver_email}. You have received the e-mail because you added a contribution to the above project."
+            ),
+            "content_template": "a4_candy_notifications/emails/content/moderator_feedback_on_comment.en.email",
+            # Template variables
+            "project": project,
+            "organisation": project.organisation.name,
+            "organisation_name": project.organisation.name,
+            "moderator_feedback": feedback.feedback_text,
+        }
+
         return {
             "notification_type": NotificationType.MODERATOR_COMMENT_FEEDBACK,
             "message_template": _("A moderator gave feedback on your {comment}"),
@@ -25,7 +46,10 @@ class CommentFeedback(BaseNotificationStrategy):
                 "moderator_feedback": feedback.feedback_text,
                 "comment": _("comment"),
                 "comment_url": user_comment.get_absolute_url(),
+                "project": project.name,
+                "organisation": project.organisation.name,
             },
+            "email_context": email_context,
         }
 
 
