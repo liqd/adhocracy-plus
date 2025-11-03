@@ -150,8 +150,8 @@ class CommentBlocked(BaseNotificationStrategy):
         project = comment.project
 
         email_context = {
-            "subject": _("Your comment was moderated"),
-            "headline": _("Your comment was moderated"),
+            "subject": _("Your comment was blocked"),
+            "headline": _("Your comment was blocked"),
             "subheadline": project.name,
             "greeting": _("Hello <strong>{receiver_name}</strong>,"),
             "cta_url": project.get_absolute_url(),
@@ -168,7 +168,7 @@ class CommentBlocked(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.MODERATOR_BLOCKED_COMMENT,
-            "message_template": "Your comment was moderated in project {project_name}",
+            "message_template": "Your comment was blocked in project {project_name}",
             "context": {
                 "project_name": project.name,
                 "project_url": project.get_absolute_url(),
