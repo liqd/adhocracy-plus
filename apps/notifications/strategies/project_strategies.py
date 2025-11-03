@@ -125,9 +125,6 @@ class ProjectEnded(ProjectNotificationStrategy):
 
 
 class ProjectInvitationCreated(ProjectNotificationStrategy):
-    def get_organisation(self, invitation):
-        return invitation.project.organisation
-
     def get_recipients(self, invitation) -> List[User]:
         user_email = invitation.email
         try:
@@ -138,17 +135,27 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
 
     def create_notification_data(self, invitation) -> dict:
         project = invitation.project
+        is_semipublic = getattr(project, "is_semipublic", False)
+        project_type = "semi-public" if is_semipublic else "private"
 
         email_context = {
-            "subject": _("You have been invited to project {project_name}").format(
-                project_name=project.name
+            "subject": _(
+                'Invitation to the {project_type} project: "{project_name}"'
+            ).format(project_type=project_type, project_name=project.name),
+            "headline": _(
+                'Invitation to the {project_type} project: "{project_name}"'
+            ).format(project_type=project_type, project_name=project.name),
+            "cta_url": f"https://{invitation.site}{invitation.get_absolute_url()}",
+            "cta_label": _("Accept invitation"),
+            "reason": _(
+                "This email was sent to {receiver_email}. This email was sent to you because you are invited to participate in a {project_type} project."
             ),
-            "headline": _("Project Invitation"),
-            "cta_url": project.get_absolute_url(),
-            "cta_label": _("View Project"),
-            "reason": _("This email was sent to {receiver_email}."),
-            "content_template": "a4_candy_notifications/emails/content/project_invitation.en.email",
+            "content_template": "a4_candy_notifications/emails/project_invitation_content.html",
+            "participantinvite": invitation,
+            "project": project,
             "project_name": project.name,
+            "project_type": project_type,
+            "site": invitation.site,
         }
 
         return {
@@ -159,6 +166,7 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
+                "project_type": project_type,
             },
             "email_context": email_context,
         }
