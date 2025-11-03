@@ -14,9 +14,9 @@
 {% blocktranslate with creator_name=creator_name content_type=content_type project=project site_name=site.name %}on the project {{ project }} a {{ content_type }} was added by {{ creator_name }}.{% endblocktranslate %} 
 
 {% if part_type == 'txt' %}
-{% blocktranslate with project=project site_name=site.name %}Checkout what happened on the project {{ project }} on {{ site_name }} by clicking the link below.{% endblocktranslate %}
+{% blocktranslate with project=project site_name=site.name %}Checkout what happened on the project {{ project }} by clicking the link below.{% endblocktranslate %}
 {% else %}
-{% blocktranslate with project=project site_name=site.name %}Checkout what happened on the project {{ project }} on {{ site_name }} by clicking the button below.{% endblocktranslate %}
+{% blocktranslate with project=project site_name=site.name %}Checkout what happened on the project {{ project }} by clicking the button below.{% endblocktranslate %}
 {% endif %}
 </p>
 {% endblock %}
