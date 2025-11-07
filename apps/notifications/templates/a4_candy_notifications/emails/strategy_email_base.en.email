@@ -8,6 +8,6 @@
     {% blocktranslate with receiver_name=receiver.username %}Hello {{receiver_name}},{% endblocktranslate %}
 {% endblock %}
 {% block content %}{{ content|safe }}{% endblock %}
-{% block cta_url %}{{ cta_url }}{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ cta_url }}{% endblock %}
 {% block cta_label %}{{ cta_label }}{% endblock %}
 {% block reason %}{{ reason }} {{ account_link|safe }}{% endblock %}
