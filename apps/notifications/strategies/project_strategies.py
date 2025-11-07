@@ -105,7 +105,7 @@ class ProjectEnded(ProjectNotificationStrategy):
             ),
             "subheadline": project.name,
             "cta_url": project.get_absolute_url(),
-            "cta_label": _("Join now"),
+            "cta_label": _("View now"),
             "reason": _(
                 "This email was sent to {receiver_email}. You have received the e-mail because you are following the above project."
             ),
