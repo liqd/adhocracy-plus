@@ -1,4 +1,3 @@
-{% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
 {% block subject %}{% if participantinvite.project.is_semipublic %}{% blocktranslate with project_name=participantinvite.project.name %}Invitation to the semi-public project: "{{ project_name }}"{% endblocktranslate %}{% else %}{% blocktranslate with project_name=participantinvite.project.name %}Invitation to the private project: "{{ project_name }}"{% endblocktranslate %}{% endif %}{% endblock %}
