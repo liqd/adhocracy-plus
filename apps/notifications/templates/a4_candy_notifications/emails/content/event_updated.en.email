@@ -1,6 +1,6 @@
 {% load i18n %}
 <p>
-{% blocktranslate with date=event_date %}Unfortunately, {{ event }} below has been updated :{% endblocktranslate %}
+{% blocktranslate with date=event_date %}{{ event }} below has been updated.{% endblocktranslate %}
 </p>
 <p>
 <b>{{ event }}</b>
