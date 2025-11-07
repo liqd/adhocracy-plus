@@ -337,7 +337,7 @@ def test_handle_invite_notification(
     # # Assert email
     invited_user_emails = get_emails_for_address(invited_user.email)
     assert len(invited_user_emails) == 1
-    assert "you have been invited" in invited_user_emails[0].subject.lower()
+    assert "invitation to the private project:" in invited_user_emails[0].subject.lower()
 
 
 @pytest.mark.django_db
