@@ -2,6 +2,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from polymorphic.managers import PolymorphicManager
 
 from adhocracy4.comments import models as comment_models
 from adhocracy4.maps import fields as map_fields
@@ -40,6 +41,8 @@ class MapIdea(AbstractMapIdea):
         related_query_name="mapidea",
         object_id_field="object_pk",
     )
+
+    objects = PolymorphicManager.from_queryset(idea_models.IdeaQuerySet)()
 
     def get_absolute_url(self):
         return reverse(

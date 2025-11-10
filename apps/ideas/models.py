@@ -5,6 +5,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
+from polymorphic.managers import PolymorphicManager
+from polymorphic.query import PolymorphicQuerySet
 
 from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
@@ -18,7 +20,9 @@ from apps.moderatorfeedback.models import Moderateable
 from apps.moderatorremark import models as remark_models
 
 
-class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
+class IdeaQuerySet(
+    query.RateableQuerySet, query.CommentableQuerySet, PolymorphicQuerySet
+):
     pass
 
 
@@ -47,7 +51,7 @@ class AbstractIdea(module_models.Item, Moderateable):
         related_name=("%(app_label)s_" "%(class)s_label"),
     )
 
-    objects = IdeaQuerySet.as_manager()
+    objects = PolymorphicManager.from_queryset(IdeaQuerySet)()
 
     @property
     def reference_number(self):

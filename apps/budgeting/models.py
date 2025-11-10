@@ -2,9 +2,11 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from polymorphic.managers import PolymorphicManager
 
 from adhocracy4.comments import models as comment_models
 from adhocracy4.ratings import models as rating_models
+from apps.ideas import models as idea_models
 from apps.mapideas import models as mapidea_models
 
 
@@ -20,6 +22,8 @@ class Proposal(mapidea_models.AbstractMapIdea):
         object_id_field="object_pk",
     )
     budget = models.PositiveIntegerField(default=0, help_text=_("Required Budget"))
+
+    objects = PolymorphicManager.from_queryset(idea_models.IdeaQuerySet)()
 
     is_archived = models.BooleanField(
         default=False,
