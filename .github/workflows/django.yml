@@ -87,9 +87,9 @@ jobs:
           python manage.py makemigrations --dry-run --check --noinput
           flake8 adhocracy-plus tests --exclude migrations,settings
           
-          if [ "${{ github.ref }}" == "refs/heads/main" ] && [ "${{ github.event_name }}" == "push" ]; then
+          if [ "${{ github.ref }}" = "refs/heads/main" ] && [ "${{ github.event_name }}" = "push" ]; then
             py.test --ds=adhocracy-plus.config.settings.travis --cov
-          elif [ "${{ github.event_name }}" == "pull_request" ]; then
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
             py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov
           fi
 
