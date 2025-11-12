@@ -1,0 +1,43 @@
+name: Build and Push CI Base Image
+
+on:
+  push:
+    paths:
+      - '.github/ci_base/**'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write 
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/ci-base # Our Image-Name
+          tags: |
+            type=raw,value=latest
+            type=sha,format=short,prefix=
+            # Optional: type=ref,event=branch # Für Branch-Namen als Tags
+
+      - name: Build and Push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          # The overall context. If you nedd to do more then just build the Dockerfile use another context and use file: pathToDockerfile for the Dockerfile.
+          context: .github/ci_base/
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
