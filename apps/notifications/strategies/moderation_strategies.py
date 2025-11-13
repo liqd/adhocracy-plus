@@ -20,9 +20,14 @@ class CommentFeedback(BaseNotificationStrategy):
         user_comment = feedback.comment
         project = user_comment.project
 
+        if hasattr(project.organisation.site, "name"):
+            site_name=project.organisation.site.name
+        else:
+            site_name=""
+        
         email_context = {
             "subject": _("Feedback for your contribution on {site_name}").format(
-                site_name=project.organisation.site.name
+                site_name=site_name
             ),
             "headline": _("Feedback for your contribution"),
             "subheadline": project.name,
