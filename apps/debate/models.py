@@ -4,13 +4,15 @@ from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
+from polymorphic.managers import PolymorphicManager
+from polymorphic.query import PolymorphicQuerySet
 
 from adhocracy4.comments import models as comment_models
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 
 
-class SubjectQuerySet(query.CommentableQuerySet):
+class SubjectQuerySet(query.CommentableQuerySet, PolymorphicQuerySet):
     pass
 
 
@@ -36,7 +38,7 @@ class Subject(module_models.Item):
         object_id_field="object_pk",
     )
 
-    objects = SubjectQuerySet.as_manager()
+    objects = PolymorphicManager.from_queryset(SubjectQuerySet)()
 
     class Meta:
         ordering = ["-created"]

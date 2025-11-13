@@ -4,6 +4,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
+from polymorphic.managers import PolymorphicManager
+from polymorphic.query import PolymorphicQuerySet
 
 from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
@@ -16,7 +18,9 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
 
 
-class TopicQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
+class TopicQuerySet(
+    query.RateableQuerySet, query.CommentableQuerySet, PolymorphicQuerySet
+):
     pass
 
 
@@ -54,7 +58,7 @@ class Topic(module_models.Item):
         related_name=("%(app_label)s_" "%(class)s_label"),
     )
 
-    objects = TopicQuerySet.as_manager()
+    objects = PolymorphicManager.from_queryset(TopicQuerySet)()
 
     class Meta:
         ordering = ["-created"]
