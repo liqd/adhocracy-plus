@@ -1,3 +1,4 @@
+{% load i18n %}
 {% block content %}
 <p>
 {% blocktranslate with organisation_name=organisation %}{{ organisation_name }} reacted on your contribution.{% endblocktranslate %}

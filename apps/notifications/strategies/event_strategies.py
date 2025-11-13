@@ -163,6 +163,8 @@ class OfflineEventUpdate(ProjectNotificationStrategy):
             "reason": _(
                 "This email was sent to {receiver_email}. You have received the e-mail because you are following the above project."
             ),
+            "cta_url": offline_event.get_absolute_url(),
+            "cta_label": _("Show Event"),
             # Content template
             "content_template": "a4_candy_notifications/emails/content/event_updated.en.email",
             # Template variables
