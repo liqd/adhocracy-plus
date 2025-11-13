@@ -1,0 +1,20 @@
+{% load i18n %}
+<p>
+{% blocktranslate with commenter=commenter_name %}
+<strong>{{ commenter }}</strong> replied to your comment in the project.
+{% endblocktranslate %}
+</p>
+
+<strong>{% blocktranslate %}Your original comment:{% endblocktranslate %}</strong>
+<div style="margin: 0.5em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #417690;">
+    {{ parent_comment_text }}
+</div>
+
+<strong>{% blocktranslate with commenter=commenter_name %}Reply from {{ commenter }}:{% endblocktranslate %}</strong>
+<div style="margin: 0.5em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #2d40cc;">
+    {{ comment_text }}
+</div>
+
+<p>
+{{ content_join_conversation }}
+</p>
