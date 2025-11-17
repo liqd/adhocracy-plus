@@ -18,8 +18,9 @@ class UserFactory(factory.django.DjangoModelFactory):
     def notification_settings(self, create, extracted, **kwargs):
         if not create:
             return
-        
+
         from apps.notifications.models import NotificationSettings
+
         NotificationSettings.objects.get_or_create(user=self)
 
 
