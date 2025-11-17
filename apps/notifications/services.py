@@ -2,6 +2,7 @@ from typing import List
 
 from django.apps import apps
 from django.template.loader import render_to_string
+from django.utils import translation
 
 from adhocracy4.emails.mixins import SyncEmailMixin
 from apps.users.emails import EmailAplus as Email
@@ -28,37 +29,38 @@ class NotificationEmail(SyncEmailMixin, Email):
         return self._recipients
 
     def render(self, template_name, context):
+        language = self.get_receiver_language(context["receiver"])
         # Add our email context
         context.update(self._email_context)
+        with translation.override(language):
+            if "content_template" in context:
+                content_template = context.pop("content_template")
+                context["content"] = render_to_string(content_template, context)
 
-        if "content_template" in context:
-            content_template = context.pop("content_template")
-            context["content"] = render_to_string(content_template, context)
+            # Interpolate receiver variables
+            receiver = context.get("receiver")
+            if receiver:
+                if "subject" in context:
+                    context["subject"] = context["subject"].format(
+                        site_name=(
+                            context.get("site", "").name if context.get("site") else ""
+                        ),
+                        project_name=context.get("project"),
+                    )
+                if "greeting" in context:
+                    context["greeting"] = context["greeting"].format(
+                        receiver_name=receiver.username
+                    )
+                if "reason" in context:
+                    context["reason"] = context["reason"].format(
+                        receiver_email=receiver.email,
+                        organisation_name=context.get("organisation_name", ""),
+                        site_name=(
+                            context.get("site", "").name if context.get("site") else ""
+                        ),
+                    )
 
-        # Interpolate receiver variables
-        receiver = context.get("receiver")
-        if receiver:
-            if "subject" in context:
-                context["subject"] = context["subject"].format(
-                    site_name=(
-                        context.get("site", "").name if context.get("site") else ""
-                    ),
-                    project_name=context.get("project"),
-                )
-            if "greeting" in context:
-                context["greeting"] = context["greeting"].format(
-                    receiver_name=receiver.username
-                )
-            if "reason" in context:
-                context["reason"] = context["reason"].format(
-                    receiver_email=receiver.email,
-                    organisation_name=context.get("organisation_name", ""),
-                    site_name=(
-                        context.get("site", "").name if context.get("site") else ""
-                    ),
-                )
-
-        return super().render(template_name, context)
+            return super().render(template_name, context)
 
 
 class NotificationService:
