@@ -20,7 +20,7 @@ def test_send_recently_started_project_notifications(
     project = project_factory()
 
     # Create only one phase for this project so it's the first
-    phase = phase_factory(
+    phase_factory(
         module__project=project,
         start_date=timezone.now() - timedelta(hours=12),
         end_date=timezone.now() + timedelta(days=7),
@@ -57,7 +57,7 @@ def test_send_recently_completed_project_notifications(
     project = project_factory()
 
     # Create only one phase for this project so it's the first
-    phase = phase_factory(
+    phase_factory(
         module__project=project,
         start_date=timezone.now() - timedelta(days=7),
         end_date=timezone.now() - timedelta(hours=12),
@@ -91,7 +91,7 @@ def test_send_upcoming_event_notifications(
     project_factory, offline_event_factory, user2
 ):
     project = project_factory()
-    offline_event = offline_event_factory(
+    offline_event_factory(
         project=project,
         date=timezone.now() + timedelta(hours=12),
     )

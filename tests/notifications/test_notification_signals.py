@@ -256,7 +256,7 @@ def test_handle_offline_event_created_notification(
     )
 
     # Create an offline event
-    offline_event = offline_event_factory(project=project)
+    offline_event_factory(project=project)
 
     # Check that a notification was created for the attendee
     created_notifications = Notification.objects.filter(recipient=attendee)
@@ -324,9 +324,7 @@ def test_handle_invite_notification(
     invited_user = user_factory()
 
     # Create a project invitation for the user
-    moderator_invite = participant_invite_factory(
-        project=project, email=invited_user.email
-    )
+    participant_invite_factory(project=project, email=invited_user.email)
 
     # Check that a notification was created for the invited user
     invitation_notifications = Notification.objects.filter(recipient=invited_user)
@@ -339,7 +337,9 @@ def test_handle_invite_notification(
     # # Assert email
     invited_user_emails = get_emails_for_address(invited_user.email)
     assert len(invited_user_emails) == 1
-    assert "invitation to the private project:" in invited_user_emails[0].subject.lower()
+    assert (
+        "invitation to the private project:" in invited_user_emails[0].subject.lower()
+    )
 
 
 @pytest.mark.django_db
@@ -352,9 +352,7 @@ def test_handle_moderator_invite_notification(
     invited_user = user_factory()
 
     # Create a moderator invitation for the user
-    moderator_invite = moderator_invite_factory(
-        project=project, email=invited_user.email
-    )
+    moderator_invite_factory(project=project, email=invited_user.email)
 
     # Check that a notification was created for the invited user
     invitation_notifications = Notification.objects.filter(recipient=invited_user)
