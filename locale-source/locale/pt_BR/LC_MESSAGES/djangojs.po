@@ -4,9 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Katharina Lindenlaub, 2023
-# Joop Laan <joop@interconnecting.systems>, 2023
-# Luca Thüer, 2023
+# Leonardo Herkenhoff <leonardoherkenhoff@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
@@ -14,35 +12,37 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-15 11:50+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Luca Thüer, 2023\n"
-"Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
+"Last-Translator: Leonardo Herkenhoff <leonardoherkenhoff@gmail.com>, 2025\n"
+"Language-Team: Portuguese (Brazil) (https://app.transifex.com/liqd/teams/109316/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:22
 #, javascript-format
 msgid "hide one reply"
 msgid_plural "hide %s replies"
-msgstr[0] "één reactie verbergen"
-msgstr[1] "%s reacties verbergen"
+msgstr[0] "ocultar uma resposta"
+msgstr[1] "ocultar %s respostas"
+msgstr[2] "ocultar %s respostas"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:24
 #, javascript-format
 msgid "view one reply"
 msgid_plural "view %s replies"
-msgstr[0] "één reactie bekijken"
-msgstr[1] "%s reacties bekijken"
+msgstr[0] "visualizar uma resposta"
+msgstr[1] "visualizar %s respostas"
+msgstr[2] "visualizar %s respostas"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:29
 msgid "Answer"
-msgstr "Antwoorden"
+msgstr "Responder"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:30
 msgid "Your reply here"
-msgstr "Uw reactie hier"
+msgstr "Sua resposta aqui"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:17
@@ -52,34 +52,34 @@ msgid ""
 "moderation. The moderation will look at the reported content. The content "
 "will be deleted if it does not meet our discussion rules (netiquette)."
 msgstr ""
-"U wilt deze inhoud rapporteren? Uw bericht wordt naar de moderator gestuurd."
-" De moderator zal kijken naar de gerapporteerde inhoud. De inhoud zal worden"
-" verwijderd als deze niet voldoet aan onze discussieregels (netiquette)."
+"Você quer denunciar este conteúdo? Sua mensagem será enviada para a "
+"moderação. A moderação analisará o conteúdo denunciado. O conteúdo será "
+"excluído se não atender às nossas regras de discussão (netiqueta)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:35
 msgid "Moderator"
-msgstr "Moderator"
+msgstr "Moderador"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 msgid "Latest edit on"
-msgstr "Laatste bewerking op"
+msgstr "Última edição em"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:110
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:31
 msgid "Deleted by creator on"
-msgstr "Verwijderd door de auteur op"
+msgstr "Excluído pelo criador em"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:112
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:32
 msgid "Deleted by moderator on"
-msgstr "Verwijderd door moderator op"
+msgstr "Excluído pelo moderador em"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:153
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:27
 msgid "Do you really want to delete this comment?"
-msgstr "Wilt u deze opmerking echt verwijderen?"
+msgstr "Você realmente deseja excluir este comentário?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:154
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
@@ -93,60 +93,61 @@ msgstr "Wilt u deze opmerking echt verwijderen?"
 #: apps/documents/assets/ChapterNavItem.jsx:62
 #: apps/documents/assets/ParagraphForm.jsx:11
 msgid "Delete"
-msgstr "Verwijderen"
+msgstr "Excluir"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:155
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 #: adhocracy4/static/Modal.jsx:6
 msgid "Abort"
-msgstr "Afbreken"
+msgstr "Abortar"
 
 #: adhocracy4/comments/static/comments/CommentBox.jsx:164
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
 msgid "Your comment here"
-msgstr "Uw reactie hier"
+msgstr "Seu comentário aqui"
 
 #: adhocracy4/comments/static/comments/CommentBox.jsx:167
 msgid "comment"
 msgid_plural "comments"
-msgstr[0] "reactie"
-msgstr[1] "reacties"
+msgstr[0] "comentário"
+msgstr[1] "comentários"
+msgstr[2] "comentários"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:34
 msgid "save changes"
-msgstr "bewaar wijzigingen"
+msgstr "salvar mudanças"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:35
 msgid "cancel"
-msgstr "annuleren"
+msgstr "cancelar"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:39
 msgid "post"
-msgstr "post"
+msgstr "publicar"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:40
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:18
 msgid "Please login to comment"
-msgstr "Log in om een reactie te geven"
+msgstr "Por favor, faça login para comentar"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:41
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:20
 msgid "The currently active phase doesn't allow to comment."
-msgstr "In de huidige actieve fase is het niet mogelijk om reactie te geven."
+msgstr "A fase atualmente ativa não permite comentários."
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:42
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:19
 msgid "Only invited users can actively participate."
-msgstr "Alleen uitgenodigde gebruikers kunnen actief deelnemen."
+msgstr "Somente usuários convidados podem participar ativamente."
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:5
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:5
 msgid "Edit"
-msgstr "Bewerken"
+msgstr "Editar"
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
 msgid "Report"
-msgstr "Rapporteer"
+msgstr "Denunciar"
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:6
 msgctxt "defakts"
@@ -209,99 +210,100 @@ msgstr ""
 
 #: adhocracy4/comments_async/static/comments_async/category_list.jsx:5
 msgid "Choose categories for your comment"
-msgstr "Kies categorieën voor uw reactie"
+msgstr "Escolha categorias para seu comentário"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:18
 msgid "Share link"
-msgstr "Link delen"
+msgstr "Compartilhar link"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:19
 msgid "Categories: "
-msgstr "Categorieën: "
+msgstr "Categorias: "
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:20
 msgid "Entry successfully created"
-msgstr "Bijdrage succesvol gemaakt"
+msgstr "Entrada criada com sucesso"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:21
 msgid "Read more..."
-msgstr "Lees meer…"
+msgstr "Ler mais..."
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:22
 msgid "Read less"
-msgstr "Lees minder"
+msgstr "Ler menos"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:23
 msgid "Share"
-msgstr "Delen"
+msgstr "Compartilhar"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:24
 msgid " Report"
-msgstr " Rapporteer"
+msgstr "Denunciar"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:25
 msgid "Show moderator's feedback"
-msgstr "Toon feedback van moderator"
+msgstr "Exibir feedback do moderador"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:26
 msgid "Hide moderator's feedback"
-msgstr "Verberg moderator's feedback"
+msgstr "Ocultar feedback do moderador"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 msgid "Delete comment"
-msgstr "Reactie verwijderen"
+msgstr "Excluir comentário"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 msgid "Blocked by moderator"
-msgstr "Geblokkeerd door moderator"
+msgstr "Bloqueado pelo moderador"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 msgid "hide replies"
-msgstr "reacties verbergen"
+msgstr "ocultar respostas"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:37
 msgctxt "verb"
 msgid "Reply"
-msgstr "Reageer"
+msgstr "Responder"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:38
 msgid "Click to view rest of comment text."
-msgstr ""
+msgstr "Clique para visualizar o resto do texto do comentário."
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:39
 msgid "Click to hide expanded text."
-msgstr ""
+msgstr "Clique para ocultar o texto expandido."
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:48
 #, javascript-format
 msgid "1 reply"
 msgid_plural "%s replies"
-msgstr[0] "1 reactie"
-msgstr[1] "%sreacties"
+msgstr[0] "1 resposta"
+msgstr[1] "%s respostas"
+msgstr[2] "%s respostas"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:14
 msgid "Newest"
-msgstr "Nieuwste"
+msgstr "Mais novo"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 msgid "Most up votes"
-msgstr "Meeste up stemmen"
+msgstr "Mais votos positivos"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:16
 msgid "Most down votes"
-msgstr "Meeste down stemmen"
+msgstr "Mais votos negativos"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:17
 msgid "Most answers"
-msgstr "Meeste antwoorden"
+msgstr "Mais respostas"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:18
 msgid "Last discussed"
-msgstr "Laatst besproken"
+msgstr "Discussões recentes"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:22
 msgid "Discussion"
-msgstr ""
+msgstr "Discussão"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:289
@@ -309,138 +311,141 @@ msgstr ""
 #: apps/interactiveevents/assets/Filters.jsx:32
 #: apps/interactiveevents/assets/QuestionBox.jsx:57
 msgid "all"
-msgstr "allen"
+msgstr "todos"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:62
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:14
 msgid "Highlighted"
-msgstr "Uitgelicht"
+msgstr "Destacado"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
 msgid "Show more"
-msgstr ""
+msgstr "Exibir mais"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
 msgid "Show less"
-msgstr ""
+msgstr "Exibir menos"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
 msgid "Ordering"
-msgstr ""
+msgstr "Ordenar por"
 
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
 msgid "Filters"
-msgstr "Filters"
+msgstr "Filtros"
 
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:21
 msgid "entry"
 msgid_plural "entries"
-msgstr[0] "item"
-msgstr[1] "items"
+msgstr[0] "entrada"
+msgstr[1] "entradas"
+msgstr[2] "entradas"
 
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:25
 msgid "entry found for "
 msgid_plural "entries found for "
-msgstr[0] "item gevonden voor "
-msgstr[1] "items gevonden voor "
+msgstr[0] "entrada encontrada para "
+msgstr[1] "entradas encontradas para "
+msgstr[2] "entradas encontradas para "
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
 msgid "Join the discussion"
-msgstr ""
+msgstr "Participe da discussão"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 msgid "Your comment"
-msgstr "Uw reactie"
+msgstr "Seu comentário"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:13
 msgid "Please add a comment."
-msgstr ""
+msgstr "Por favor, adicione um comentário."
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:14
 msgid "Something seems to have gone wrong, please try again."
-msgstr ""
+msgstr "Parece que algo deu errado. Tente novamente."
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:15
 msgid "Your reply"
-msgstr "Uw antwoord"
+msgstr "Sua resposta"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:16
 #: apps/interactiveevents/assets/QuestionForm.jsx:79
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationFeedbackForm.jsx:10
 msgid " characters"
-msgstr " karakters"
+msgstr "caracteres"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:17
 msgid "Post"
-msgstr ""
+msgstr "Publicar"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
 #: apps/maps/assets/map_choose_polygon_with_preset.js:108
 msgid "Cancel"
-msgstr "Annuleren"
+msgstr "Cancelar"
 
 #: adhocracy4/comments_async/static/comments_async/filter_category.jsx:5
 msgid "display: "
-msgstr "weergave: "
+msgstr "exibir:"
 
 #: adhocracy4/comments_async/static/comments_async/filter_search.jsx:5
 msgid "Search contributions"
-msgstr "Bijdragen zoeken"
+msgstr "Buscar contribuições"
 
 #: adhocracy4/comments_async/static/comments_async/filter_search.jsx:6
 msgid "Clear search"
-msgstr "Zoek wissen"
+msgstr "Limpar busca"
 
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
 msgid "Copy"
-msgstr "Kopieëren"
+msgstr "Copiar"
 
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:9
 msgid "Copied"
-msgstr "Gekopiëerd"
+msgstr "Copiado"
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:10
 msgid "Click to be updated about this project via email."
-msgstr ""
+msgstr "Clique para ser atualizado sobre este projeto por e-mail."
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:13
 msgid "Click to no longer be updated about this project via email."
 msgstr ""
+"Clique para não receber mais atualizações sobre este projeto por e-mail."
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:15
 msgid "You will be updated via email."
-msgstr "U wordt via e-mail op de hoogte gehouden."
+msgstr "Você será atualizado por e-mail."
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:16
 msgid "You will no longer be updated via email."
-msgstr "U wordt niet meer geüpdatet via e-mail."
+msgstr "Você não será mais atualizado por e-mail."
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:17
 msgid "Follow"
-msgstr "Volgen"
+msgstr "Seguir"
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:18
 msgid "Following"
-msgstr "Volgend"
+msgstr "Seguindo"
 
 #: adhocracy4/maps/static/a4maps/a4maps_address.js:87
 #: apps/maps/assets/map-address.js:87
 msgid "No matches found within the project area"
-msgstr "Geen overeenkomsten gevonden binnen het projectgebied"
+msgstr "Nenhuma correspondência encontrada na área do projeto"
 
 #: adhocracy4/maps/static/a4maps/a4maps_address.js:90
 #: apps/maps/assets/map-address.js:90
 msgid "Did you mean:"
-msgstr "Bedoelt u:"
+msgstr "Você quis dizer:"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:70
 #: apps/maps/assets/map_choose_polygon_with_preset.js:68
 msgid "Export polygon as GeoJSON"
-msgstr "Exporteer veelhoek als GeoJSON"
+msgstr "Exportar polígono como GeoJSON"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:71
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:81
@@ -449,154 +454,159 @@ msgstr "Exporteer veelhoek als GeoJSON"
 #: apps/maps/assets/map_choose_polygon_with_preset.js:79
 #: apps/maps/assets/map_choose_polygon_with_preset.js:92
 msgid "Import polygon via file upload"
-msgstr "Importeer veelhoek via bestandsupload"
+msgstr "Importar polígono via upload de arquivo"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
 #: adhocracy4/static/Alert.jsx:6 apps/dashboard/assets/ajax_modal.js:12
 #: apps/maps/assets/map_choose_polygon_with_preset.js:87
 msgid "Close"
-msgstr "Sluiten"
+msgstr "Fechar"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:95
 #: apps/maps/assets/map_choose_polygon_with_preset.js:94
 msgid ""
 "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
 msgstr ""
-"Upload een polygoon van een GeoJSON (.geojson) of een gecomprimeerd "
-"Shapefile (.zip)."
+"Carregue um polígono de um GeoJSON (.geojson) ou de um Shapefile compactado "
+"(.zip)."
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:96
 #: apps/maps/assets/map_choose_polygon_with_preset.js:95
 msgid ""
 "Note that uploading Shapefiles is not supported with Internet Explorer 10"
 msgstr ""
-"Het uploaden van Shapefiles niet wordt ondersteund met Internet Explorer 10"
+"Observe que o upload de Shapefiles não é compatível com o Internet Explorer "
+"10"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:97
 #: apps/maps/assets/map_choose_polygon_with_preset.js:96
 msgid "Attention importing a file will delete the existing polygons."
-msgstr ""
-"Let op: bij het importeren van een bestand worden de bestaande polygonen "
-"verwijderd."
+msgstr "Atenção: importar um arquivo excluirá os polígonos existentes."
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:102
 #: apps/maps/assets/map_choose_polygon_with_preset.js:101
 msgid "Upload"
-msgstr "Uploaden"
+msgstr "Fazer Upload"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:148
 #: apps/maps/assets/map_choose_polygon_with_preset.js:143
 #: apps/maps/assets/map_choose_polygon_with_preset.js:145
 msgid "The uploaded file is not a valid shapefile."
-msgstr "Het geüploade bestand is geen geldig shapefile."
+msgstr "O arquivo enviado não é um shapefile válido."
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:150
 #: apps/maps/assets/map_choose_polygon_with_preset.js:147
 msgid "The uploaded file could not be imported."
-msgstr "Het geüploade bestand kon niet worden geïmporteerd."
+msgstr "O arquivo carregado não pôde ser importado."
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:164
 #: apps/maps/assets/map_choose_polygon_with_preset.js:162
 msgid "The uploaded file is not a valid geojson file."
-msgstr "Het geüploade bestand is geen geldig geojson-bestand."
+msgstr "O arquivo enviado não é um arquivo geojson válido."
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:169
 #: apps/maps/assets/map_choose_polygon_with_preset.js:167
 msgid "Invalid file format."
-msgstr "Ongeldig bestandsformaat."
+msgstr "Formato de arquivo inválido."
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:286
 #: apps/maps/assets/map_choose_polygon_with_preset.js:286
 msgid "Do you want to load this preset and delete all the existing polygons?"
-msgstr "Wilt u deze preset laden en alle bestaande polygonen verwijderen?"
+msgstr ""
+"Deseja carregar esta predefinição e excluir todos os polígonos existentes?"
 
 #: adhocracy4/maps/static/a4maps/a4maps_display_points.js:101
 msgid "person supports this proposal."
 msgid_plural "persons support this proposal."
-msgstr[0] "persoon ondersteunt dit voorstel."
-msgstr[1] "personen steunen dit voorstel."
+msgstr[0] "pessoa apoia esta proposta."
+msgstr[1] "pessoas apoiam esta proposta."
+msgstr[2] "pessoas apoiam esta proposta."
 
 #: adhocracy4/maps/static/a4maps/a4maps_display_points.js:114
 msgid "person voted for this proposal."
 msgid_plural "persons voted for this proposal."
-msgstr[0] "persoon heeft voor dit voorstel gestemd."
-msgstr[1] "personen hebben voor dit voorstel gestemd."
+msgstr[0] "pessoa votou a favor desta proposta."
+msgstr[1] "pessoas votaram a favor desta proposta."
+msgstr[2] "pessoas votaram a favor desta proposta."
 
 #: adhocracy4/maps/static/a4maps/a4maps_display_points.js:127
 msgid "person commented on this proposal."
 msgid_plural "persons commented on this proposal."
-msgstr[0] "persoon reageerde op dit voorstel."
-msgstr[1] "personen reageerden op dit voorstel."
+msgstr[0] "pessoa comentou sobre esta proposta."
+msgstr[1] "pessoas comentaram sobre esta proposta."
+msgstr[2] "pessoas comentaram sobre esta proposta."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
 msgctxt "noun"
 msgid "Answer"
-msgstr "Antwoord"
+msgstr "Responder"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:29
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:35
 msgid "remove"
-msgstr "verwijderen"
+msgstr "excluir"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:5
 msgid " New Question"
-msgstr "Nieuwe vraag"
+msgstr "Nova Pergunta"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:6
 msgid "Multiple Choice question"
-msgstr "Meerkeuzevraag"
+msgstr "Pergunta de múltipla escolha"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:7
 msgid "Open question"
-msgstr "Open vraag"
+msgstr "Pergunta aberta"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:17
 msgid "Voting Options"
-msgstr ""
+msgstr "Opções de Voto"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:18
 msgid "Allow unregistered users to vote"
-msgstr ""
+msgstr "Permitir que usuários não registrados votem"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:19
 msgid ""
 "Enable this option to allow users who are not registered to participate in "
 "the voting process."
 msgstr ""
+"Habilite esta opção para permitir que usuários não registrados participem do"
+" processo de votação."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:20
 msgid "Add and Edit Questions"
-msgstr ""
+msgstr "Adicionar e Editar Perguntas"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:188
 msgid "The poll has been updated."
-msgstr "De poll is bijgewerkt."
+msgstr "A enquete foi atualizada."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:203
 msgid ""
 "The poll could not be updated. Please check the data you entered again."
 msgstr ""
-"De poll kon niet worden bijgewerkt. Controleer de ingevoerde gegevens "
-"opnieuw."
+"A enquete não pôde ser atualizada. Por favor, verifique os dados que você "
+"inseriu novamente."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:287
 #: apps/documents/assets/DocumentManagement.jsx:327
 msgid "Save"
-msgstr "Bewaren"
+msgstr "Salvar"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:17
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:19
 #: apps/interactiveevents/assets/QuestionForm.jsx:67
 msgid "Question"
-msgstr "Vraag"
+msgstr "Pergunta"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:39
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:120
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
 msgid "Explanation"
-msgstr "Uitleg"
+msgstr "Explicação"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
@@ -606,7 +616,7 @@ msgstr "Uitleg"
 #: apps/documents/assets/ChapterNavItem.jsx:38
 #: apps/documents/assets/ParagraphForm.jsx:9
 msgid "Move up"
-msgstr "Omhoog plaatsten"
+msgstr "Mover para cima"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
@@ -616,255 +626,265 @@ msgstr "Omhoog plaatsten"
 #: apps/documents/assets/ChapterNavItem.jsx:50
 #: apps/documents/assets/ParagraphForm.jsx:10
 msgid "Move down"
-msgstr "Omlaag plaatsen"
+msgstr "Mover para baixo"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 msgid "Participants can vote for more than one option (multiple choice)"
-msgstr "Deelnemers kunnen op meer dan één optie stemmen (meerkeuze)"
+msgstr "Os participantes podem votar em mais de uma opção (múltipla escolha)"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:62
 msgid "Participants can add their own answer"
-msgstr "Deelnemers kunnen hun eigen antwoord toevoegen"
+msgstr "Os participantes podem adicionar suas próprias respostas"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:95
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:96
 msgid "Other"
-msgstr "Andere"
+msgstr "Outra"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:113
 msgid "New answer"
-msgstr "Nieuw antwoord"
+msgstr "Nova resposta"
 
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 msgid "characters"
-msgstr ""
+msgstr "caracteres"
 
 #: adhocracy4/polls/static/PollDetail/ChoiceRow.jsx:6
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:110
 msgid "other"
-msgstr "andere"
+msgstr "outra"
 
 #: adhocracy4/polls/static/PollDetail/PollChoice.jsx:6
 msgid "Multiple answers are possible."
-msgstr "Meerdere antwoorden zijn mogelijk."
+msgstr "São possíveis múltiplas respostas."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:17
 msgid "Your answer has been saved."
-msgstr "Uw antwoord is bewaard."
+msgstr "Sua resposta foi salva."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:24
 msgid ""
 "Your answer could not be saved. Please check the data you entered again."
 msgstr ""
-"Uw antwoord kon niet worden opgeslagen. Controleer de ingevoerde gegevens."
+"Sua resposta não pôde ser salva. Por favor, verifique os dados que você "
+"inseriu novamente."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:31
 msgid "Your answer is invalid or empty. Please try again."
-msgstr "Het antwoord is ongeldig of leeg. Probeer het opnieuw."
+msgstr "Sua resposta é inválida ou vazia. Por favor, tente novamente."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:62
 msgid "To poll"
-msgstr "Stemmen"
+msgstr "Para a enquete"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:75
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:175
 msgid "Change answer"
-msgstr "Wijzig antwoord"
+msgstr "Mudar resposta"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:176
 msgid "Submit answer"
-msgstr "Antwoord indienen"
+msgstr "Enviar resposta"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:185
 msgid "Please login to answer"
-msgstr "Log in om te antwoorden"
+msgstr "Por favor, faça login para responder"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
 msgid "Show results"
-msgstr "Toon resultaten"
+msgstr "Exibir resultados"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:195
 msgid "Show preliminary results"
-msgstr "Toon voorlopige resultaten"
+msgstr "Exibir resultados preliminares"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:218
 msgid "Please enter your answer in this field."
-msgstr "Vul uw antwoord in dit veld in."
+msgstr "Por favor, insira sua resposta neste campo."
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:44
 msgid "Hide other answers"
-msgstr "Andere antwoorden verbergen"
+msgstr "Ocultar outras respoastas"
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:46
 msgid "Show other answers"
-msgstr "Andere antwoorden weergeven"
+msgstr "Exibir outras respostas"
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:60
 #, javascript-format
 msgid "%s participant gave 1 answer."
-msgstr "%s deelnemer gaf 1 antwoord."
+msgstr "%s participante deu 1 resposta."
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:62
 #, javascript-format
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
-msgstr[0] "%s deelnemer gaf %s antwoorden."
-msgstr[1] "%s deelnemers gaven %s antwoorden."
+msgstr[0] "%s participante deu %s respostas."
+msgstr[1] "%s participantes deram %s respostas."
+msgstr[2] "%s participantes deram %s respostas."
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:64
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
-msgstr "Bij meerkeuzevragen kunnen de percentages oplopen tot meer dan 100%."
+msgstr ""
+" Para questões de múltipla escolha, as porcentagens podem somar mais de "
+"100%."
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:66
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:75
 #, javascript-format
 msgid "1 person has answered."
 msgid_plural "%s people have answered."
-msgstr[0] "1 persoon heeft geantwoord."
-msgstr[1] "%s mensen hebben geantwoord."
+msgstr[0] "1 pessoa respondeu."
+msgstr[1] "%s pessoas responderam."
+msgstr[2] "%s pessoas responderam."
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:77
 msgid "no one has answered this question"
-msgstr "niemand heeft deze vraag beantwoord"
+msgstr "ninguém respondeu a esta pergunta"
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:107
 msgid "Your choice"
-msgstr "Uw keuze"
+msgstr "Sua escolha"
 
 #: adhocracy4/polls/static/PollDetail/TextareaWithCounter.jsx:7
 msgid "Please specify:"
-msgstr ""
+msgstr "Por favor especifique:"
 
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:9
 msgid "Likes"
-msgstr ""
+msgstr "Curtidas"
 
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:10
 msgid "Dislikes"
-msgstr ""
+msgstr "Descurtidas"
 
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:5
 msgid "Click to like"
-msgstr ""
+msgstr "Clique para curtir"
 
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:6
 msgid "Click to dislike"
-msgstr ""
+msgstr "Clique para descurtir"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
 msgid "Report sent"
-msgstr "Rapport verzonden"
+msgstr "Denúncia enviada"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:8
 msgid "Thank you! We are taking care of it."
-msgstr "Dank u wel! We zorgen ervoor."
+msgstr "Obrigado! Estamos cuidando disso."
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:9
 msgid "Your message"
-msgstr "Uw bericht"
+msgstr "Sua mensagem"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:10
 msgid "Send Report"
-msgstr "Raport versturen"
+msgstr "Enviar Denúncia"
 
 #: adhocracy4/static/Captcha.jsx:5 apps/captcha/assets/captcheck.js:29
 msgid "Click for image-based question"
-msgstr ""
+msgstr "Clique para pergunta baseada em imagem"
 
 #: adhocracy4/static/Captcha.jsx:6 apps/captcha/assets/captcheck.js:30
 msgid "Click for text-based question"
-msgstr ""
+msgstr "Clique para pergunta baseada em texto"
 
 #: adhocracy4/static/Captcha.jsx:7 apps/captcha/assets/captcheck.js:31
 msgid "Image mode"
-msgstr "Beeldmodus"
+msgstr "Modo de imagem"
 
 #: adhocracy4/static/Captcha.jsx:8 apps/captcha/assets/captcheck.js:32
 msgid "Text mode"
-msgstr "Tekstmodus"
+msgstr "Modo de texto"
 
 #: adhocracy4/static/Captcha.jsx:9
 msgid "I am not a robot"
-msgstr ""
+msgstr "Eu  não sou um robô"
 
 #: adhocracy4/static/Captcha.jsx:11
 msgid ""
 "Solve the math problem and click on the correct result. <strong>If you are "
 "having difficulty please contact us by {}email{}.</strong>"
 msgstr ""
+"Resolva o problema matemático e clique no resultado correto.  <strong>Se "
+"você estiver com dificuldades, entre em contato conosco por "
+"{}email{}.</strong>"
 
 #: adhocracy4/static/Captcha.jsx:13
 msgid "There was a problem loading the CAPTCHA."
-msgstr ""
+msgstr "Ocorreu um problema ao carregar o CAPTCHA."
 
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
 msgid ""
 "Yes, I have read and agree to this organisation's %(linkStart)s terms of use"
 " %(linkEnd)s."
 msgstr ""
-"Ja, ik heb %(linkStart)sde gebruiksvoorwaarden van deze organisatie "
-"gelezen%(linkEnd)s en ga ermee akkoord."
+"Sim, li e concordo com os %(linkStart)s termos de uso %(linkEnd)s desta "
+"organização."
 
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:6
 msgid "You can still manage all your preferences on User Agreements."
-msgstr "U kunt uw voorkeuren beheren van Gebruikersovereenkomsten."
+msgstr ""
+"Você ainda pode gerenciar todas as suas preferências nos Contratos de "
+"Usuário."
 
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
 msgid "Search"
-msgstr ""
+msgstr "Pesquisa"
 
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
 msgid "Start search"
-msgstr ""
+msgstr "Iniciar pesquisa"
 
 #: apps/documents/assets/ChapterForm.jsx:13
 msgid "Chapter title"
-msgstr "Hoofdstuktitel"
+msgstr "Título do capítulo"
 
 #: apps/documents/assets/ChapterForm.jsx:60
 msgid "Add a new paragraph"
-msgstr "Nieuwe paragraaf toevoegen"
+msgstr "Adicionar um novo parágrafo"
 
 #: apps/documents/assets/ChapterNav.jsx:9
 msgid "Chapter navigation"
-msgstr "Hoofdstuk navigatie"
+msgstr "Navegação de capítulos"
 
 #: apps/documents/assets/ChapterNav.jsx:38
 msgid "Add a new chapter"
-msgstr "Hoofdstuk toevoegen"
+msgstr "Adicionar um novo capítulo"
 
 #: apps/documents/assets/DocumentManagement.jsx:18
 msgid "first chapter"
-msgstr "eerste hoofstuk"
+msgstr "primeiro capítulo"
 
 #: apps/documents/assets/DocumentManagement.jsx:98
 msgid "new chapter"
-msgstr "nieuw hoofdstuk"
+msgstr "novo capítulo"
 
 #: apps/documents/assets/DocumentManagement.jsx:261
 msgid "The document has been updated."
-msgstr "Het document is bijgewerkt."
+msgstr "O documento foi atualizado."
 
 #: apps/documents/assets/DocumentManagement.jsx:279
 msgid "The document could not be updated."
-msgstr "Het document kon niet worden bijgewerkt."
+msgstr "O documento não pô ser atualizado."
 
 #: apps/documents/assets/DocumentManagement.jsx:295
 msgid "Contents"
-msgstr "Inhoud"
+msgstr "Conteúdo"
 
 #: apps/documents/assets/DocumentManagement.jsx:307
 msgid "Edit chapter"
-msgstr "Hoofdstuk bewerken"
+msgstr "Editar capítulo"
 
 #: apps/documents/assets/ParagraphForm.jsx:7
 msgid "Headline"
-msgstr "Kop"
+msgstr "Título"
 
 #: apps/documents/assets/ParagraphForm.jsx:8
 msgid "Paragraph"
-msgstr "Paragraaf"
+msgstr "Parágrafo"
 
 #: apps/documents/assets/ParagraphForm.jsx:13
 msgid ""
@@ -873,419 +893,421 @@ msgid ""
 "Describe the image in approx. 80 characters. Example: A busy square with "
 "people in summer."
 msgstr ""
+"Se você adicionar uma imagem, forneça um texto alternativo. Ele serve como "
+"uma descrição textual do conteúdo da imagem e é lido por leitores de tela. "
+"Descreva a imagem em aproximadamente 80 caracteres. Exemplo: Uma praça "
+"movimentada com pessoas no verão."
 
 #: apps/interactiveevents/assets/CategorySelect.jsx:10
 msgid "Affiliation"
-msgstr "Groepering"
+msgstr "Afiliação"
 
 #: apps/interactiveevents/assets/CategorySelect.jsx:11
 msgid ""
 "Answered questions will be displayed in the statistics according to the "
 "chosen affiliation."
 msgstr ""
-"Beantwoorde vragen worden in de statistieken weergegeven op basis van de "
-"gekozen groepering."
+"As perguntas respondidas serão exibidas nas estatísticas de acordo com a "
+"afiliação escolhida."
 
 #: apps/interactiveevents/assets/Filters.jsx:27
 msgid " Filters"
-msgstr " Filters"
+msgstr "Filtros"
 
 #: apps/interactiveevents/assets/Filters.jsx:28
 msgid "Click to view filters"
-msgstr "Klik om filters te zien"
+msgstr "Clique para ver os filtros"
 
 #: apps/interactiveevents/assets/Filters.jsx:29
 msgid "Click to only display marked questions"
-msgstr "Klik om alleen gemarkeerde vragen weer te geven"
+msgstr "Clique para exibir apenas as perguntas marcadas"
 
 #: apps/interactiveevents/assets/Filters.jsx:30
 msgid "Click to only display questions which are not hidden"
-msgstr "Klik om alleen vragen weer te geven die niet verborgen zijn"
+msgstr "Clique para exibir apenas as perguntas que não estão ocultas"
 
 #: apps/interactiveevents/assets/Filters.jsx:31
 msgid "Click to order list by likes"
-msgstr "Klik om de lijst te rangschikken op vind-ik-leuks"
+msgstr "Clique para ordenar a lista por curtidas"
 
 #: apps/interactiveevents/assets/InfoBox.jsx:4
 msgid "Info"
-msgstr "Info"
+msgstr "Informações"
 
 #: apps/interactiveevents/assets/InfoBox.jsx:5
 msgid "display question on screen"
-msgstr "geef vraag op het scherm weer"
+msgstr "exibir pergunta na tela"
 
 #: apps/interactiveevents/assets/InfoBox.jsx:6
 msgid "add question to shortlist"
-msgstr "vraag toevoegen aan de shortlist"
+msgstr "adicionar pergunta à lista de finalistas"
 
 #: apps/interactiveevents/assets/InfoBox.jsx:7
 msgid "hide question from audience"
-msgstr "verberg vraag voor publiek"
+msgstr "ocultar pergunta do público"
 
 #: apps/interactiveevents/assets/InfoBox.jsx:8
 msgid "mark question as answered"
-msgstr "markeer vraag als beantwoord"
+msgstr "marcar pergunta como respondida"
 
 #: apps/interactiveevents/assets/InfoBox.jsx:9
 msgid "is shown in front of a question? It has been marked by the moderation."
-msgstr "wordt getoond vóór een vraag? Het is gemarkeerd door de moderatie."
+msgstr "é mostrado na frente de uma pergunta? Foi marcado pela moderação."
 
 #: apps/interactiveevents/assets/InfoBox.jsx:10
 msgid "Close information"
-msgstr "Informatie sluiten"
+msgstr "Fechar informação"
 
 #: apps/interactiveevents/assets/InfoBox.jsx:11
 msgid "Open information"
-msgstr "Informatie openen"
+msgstr "Abrir informação"
 
 #: apps/interactiveevents/assets/QuestionBox.jsx:10
 msgid "Statistics"
-msgstr "Statistieken"
+msgstr "Estatísticas"
 
 #: apps/interactiveevents/assets/QuestionBox.jsx:11
 msgid "Entries"
-msgstr "Items"
+msgstr "Entradas"
 
 #: apps/interactiveevents/assets/QuestionBox.jsx:12
 msgid "Click to view statistics of answered questions"
-msgstr "Klik om de statistieken van beantwoorde vragen te bekijken"
+msgstr "Clique para ver estatísticas de perguntas respondidas"
 
 #: apps/interactiveevents/assets/QuestionBox.jsx:13
 msgid "display on screen"
-msgstr "weergave op het scherm"
+msgstr "exibir na tela"
 
 #: apps/interactiveevents/assets/QuestionBox.jsx:14
 msgid "Click to view list of marked questions screen"
-msgstr "Klik om de lijst van gemarkeerde vragen te bekijken"
+msgstr "Clique para visualizar a tela da lista de perguntas marcadas"
 
 #: apps/interactiveevents/assets/QuestionBox.jsx:27
 msgid "select affiliation"
-msgstr "Groepering selecteren"
+msgstr "selecionar afiliação"
 
 #: apps/interactiveevents/assets/QuestionForm.jsx:61
 msgid "Here you can ask your question"
-msgstr "Hier kunt u uw vraag stellen"
+msgstr "Aqui você pode fazer sua pergunta"
 
 #: apps/interactiveevents/assets/QuestionForm.jsx:69
 #: apps/interactiveevents/assets/QuestionForm.jsx:88
 msgid "Add Question"
-msgstr "Vraag toevoegen"
+msgstr "Adicionar Pergunta"
 
 #: apps/interactiveevents/assets/QuestionModerator.jsx:97
 msgid "mark as hidden"
-msgstr "markeer als verborgen"
+msgstr "marcar como oculto"
 
 #: apps/interactiveevents/assets/QuestionModerator.jsx:98
 msgid "undo mark as hidden"
-msgstr "markering als verborgen ongedaan maken"
+msgstr "desfazer marcar como oculto"
 
 #: apps/interactiveevents/assets/QuestionModerator.jsx:99
 msgid "mark as done"
-msgstr "markeren als gedaan"
+msgstr "marcar como feito"
 
 #: apps/interactiveevents/assets/QuestionModerator.jsx:100
 msgid "add to live list"
-msgstr "toevoegen aan live lijst"
+msgstr "adicionar à lista ao vivo"
 
 #: apps/interactiveevents/assets/QuestionModerator.jsx:101
 msgid "remove from live list"
-msgstr "van de live-lijst verwijderen"
+msgstr "remover da lista ao vivo"
 
 #: apps/interactiveevents/assets/QuestionModerator.jsx:102
 msgid "add to shortlist"
-msgstr "toevoegen aan shortlist"
+msgstr "adicionar à lista de finalistas"
 
 #: apps/interactiveevents/assets/QuestionModerator.jsx:103
 msgid "remove from shortlist"
-msgstr "van de shortlist verwijderen"
+msgstr "remover da lista de finalistas"
 
 #: apps/interactiveevents/assets/QuestionPresent.jsx:29
 #: apps/interactiveevents/assets/QuestionUser.jsx:52
 msgid "likes"
-msgstr "vind ik leuks"
+msgstr "curtidas"
 
 #: apps/interactiveevents/assets/QuestionUser.jsx:51
 msgid "on shortlist"
-msgstr "op de shortlist"
+msgstr "na lista de finalistas"
 
 #: apps/interactiveevents/assets/QuestionUser.jsx:53
 msgid "add like"
-msgstr "vind ik leuk"
+msgstr "adicionar curtida"
 
 #: apps/interactiveevents/assets/QuestionUser.jsx:54
 msgid "undo like"
-msgstr "vind ik leuk ongedaan maken"
+msgstr "desfazer curtida"
 
 #: apps/interactiveevents/assets/StatisticsBox.jsx:46
 msgid "Questions Answered"
-msgstr "Beantwoorde vragen"
+msgstr "Respostas Respondidas"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationFeedback.jsx:8
 msgid "delete"
-msgstr "verwijder"
+msgstr "excluir"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationFeedback.jsx:9
 msgid "edit"
-msgstr "bewerken"
+msgstr "editar"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationFeedback.jsx:10
 msgid "Moderator's feedback"
-msgstr "Feedback van de moderator"
+msgstr "Feedback do moderador"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationFeedback.jsx:11
 msgid "Last edit was on "
-msgstr "Laatste bewerking was op "
+msgstr "Editado por último em "
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationFeedbackForm.jsx:9
 msgid "Write feedback"
-msgstr "Geef feedback"
+msgstr "Escrever feedback"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationFeedbackForm.jsx:11
 msgid "submit feedback"
-msgstr "feedback sturen"
+msgstr "enviar feedback"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationFeedbackForm.jsx:12
 msgid "update feedback"
-msgstr "feedback bijwerken"
+msgstr "atualizar feedback"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:12
 msgid "Your feedback was successfully delivered."
-msgstr "Je feedback is succesvol afgeleverd."
+msgstr "Seu feedback foi entregue com sucesso."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:13
 msgid "Your feedback was successfully updated."
-msgstr "Je feedback is succesvol bijgewerkt."
+msgstr "Seu feedback foi atualizado com sucesso."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:14
 msgid "Your feedback was successfully deleted."
-msgstr "Je feedback is succesvol verwijderd."
+msgstr "Seu feedback foi excluído com sucesso."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:15
 msgid ""
 "The comment has already been moderated. Your feedback could not be saved."
-msgstr ""
-"De opmerking is al gemodereerd. Je feedback kon niet worden opgeslagen."
+msgstr "O comentário já foi moderado. Seu feedback não pôde ser salvo."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:16
 msgid "Go to discussion"
-msgstr "Ga naar discussie"
+msgstr "Ir para discussão"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:17
 msgid "Comment blocked successfully."
-msgstr "De reactie is succesvol geblokkeerd."
+msgstr "Comentário bloqueado com sucesso."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:18
 msgid "Comment unblocked successfully."
-msgstr "Reactie succesvol gedeblokkeerd."
+msgstr "Comentário desbloqueado com sucesso."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:19
 msgid "Comment highlighted successfully."
-msgstr "Reactie succesvol gemarkeerd."
+msgstr "Comentário destacado com sucesso."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:20
 msgid "Comment unhighlighted successfully."
-msgstr "Reactie is succesvol uitgelicht."
+msgstr "Comentário removido do destaque com sucesso."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:21
 msgid "Notification successfully marked as read."
-msgstr "Kennisgeving succesvol gemarkeerd als gelezen."
+msgstr "Notificação marcada como lida com sucesso."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:22
 msgid "Notification successfully marked as unread."
-msgstr "Kennisgeving succesvol gemarkeerd als ongelezen."
+msgstr "Notificação marcada como não lida com sucesso."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:23
 msgid "AI"
-msgstr "Allen"
+msgstr "IA"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:24
 msgid "posted a {}comment{}"
-msgstr "een commentaar {}geplaatst{}"
+msgstr "postou um {}comentário{}"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:221
 #, javascript-format
 msgid "This {}comment{} has been reported 1 time since it's creation"
 msgid_plural "This {}comment{} has been reported %s times since it's creation"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Este {}comentário{} foi denunciado 1 vez desde sua criação"
+msgstr[1] "Este {}comentário{} foi denunciado %s vezes desde sua criação"
+msgstr[2] "Este {}comentário{} foi denunciado %s vezes desde sua criação"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:240
 msgid "Mark as read"
-msgstr "Markeer als gelezen"
+msgstr "Marcar como lido"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:241
 msgid "Mark as unread"
-msgstr "Markeer als ongelezen"
+msgstr "Marcar como não lido"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:253
 msgid "Last edited on "
-msgstr "Laatst aangepast op"
+msgstr "Última edição em "
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.jsx:255
 msgid "Created on "
-msgstr "Aangemaakt op"
+msgstr "Criado em "
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:7
 msgid "Block"
-msgstr "Blokkeer"
+msgstr "Bloquear"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:8
 msgid "Unblock"
-msgstr "Deblokkeer"
+msgstr "Desbloquear"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:9
 msgid "Blocked"
-msgstr "Geblokkeerd"
+msgstr "Bloqueado"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:10
 msgid "Add feedback"
-msgstr "Feedback geven"
+msgstr "Adicionar feedback"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:11
 msgid "This comment was blocked"
-msgstr "Deze reactie werd geblokkeerd"
+msgstr "Este comentário foi bloqueado"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:12
 msgid "Highlight"
-msgstr "Markeer"
+msgstr "Destacar"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:13
 msgid "Unhighlight"
-msgstr "Markering weghalen"
+msgstr "Remover destaque"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:15
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:11
 msgid "Unread"
-msgstr "Ongelezen"
+msgstr "Não lido"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:16
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:10
 msgid "Read"
-msgstr "Lezen"
+msgstr "Lido"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:17
 msgid "Edit feedback"
-msgstr "Feedback aanpassen"
+msgstr "Editar feedback"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:12
 msgid "View all"
-msgstr "Alle bekijken"
+msgstr "Visualizar tudo"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:16
 msgid "Reported"
-msgstr "Gerapporteerd"
+msgstr "Denunciado"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:17
 msgid "All comments"
-msgstr "Alle reacties"
+msgstr "Todos os comentários"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:21
 msgid "Most reported"
-msgstr "Meest gerapporteerd"
+msgstr "Mais denunciado"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:22
 msgid "Oldest"
-msgstr "Oudste"
+msgstr "Mais antigo"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:23
 msgid "Most recent"
-msgstr "Meest recent"
+msgstr "Mais recente"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:172
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:74
 msgid "By "
-msgstr "Door"
+msgstr "Por"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:173
 msgid "Load more"
-msgstr "Meer laden"
+msgstr "Carregar mais"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:174
 msgid "Go to top"
-msgstr "Naar de top"
+msgstr "Ir para o topo"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:175
 msgid "Notifications of comments from project"
-msgstr "Kennisgevingen reacties van het project"
+msgstr "Notificações de comentários do projeto"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:176
 msgid "Notification filters and sorting"
-msgstr "Meldingsfilters en sorteren"
+msgstr "Filtros e classificação de notificações"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:177
 msgid "Moderation project"
-msgstr "Project moderatie"
+msgstr "Projeto de moderação"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:204
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:213
 msgid "Filter"
-msgstr "Filter"
+msgstr "Filtro"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.jsx:222
 msgid "Sorting"
-msgstr "Sorteren"
+msgstr "Ordenação"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:48
 msgid "Over 1 year left"
-msgstr "Nog ruim 1 jaar"
+msgstr "Falta mais de 1 ano"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:52
 msgid "left"
-msgstr "over"
+msgstr "faltando"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:62
 msgid "1 year"
-msgstr "1 jaar"
+msgstr "1 ano"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:73
 msgid "Loading..."
-msgstr "Laden..."
+msgstr "Carregando..."
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:75
 msgid " comments"
-msgstr "reacties"
+msgstr "comentários"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:76
 msgid " reports"
-msgstr "rapportages"
+msgstr "denúncias"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:77
 msgid "public"
-msgstr "publiek"
+msgstr "público"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:78
 msgid "private"
-msgstr "privé"
+msgstr "privado"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:79
 msgid "semi-public"
-msgstr "semi-privé"
+msgstr "semipúblico"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:80
 msgid "Notifications has unread comments"
-msgstr "Notificaties heeft ongelezen reacties"
+msgstr "Notificações tem comentários não lidos"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:81
 msgid "Moderation dashboard overview"
-msgstr "Moderatie dashboard overzicht"
+msgstr "Visão geral do painel de moderação"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:82
 msgid "Projects"
-msgstr "Projecten"
+msgstr "Projetos"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.jsx:83
 msgid "Projects I am moderating"
-msgstr "Projecten die ik modereer"
+msgstr "Projetos que estou moderando"
 
 #: adhocracy-plus/assets/js/unload_warning.js:20
 msgid "If you leave this page changes you made will not be saved."
-msgstr ""
-"Als u deze pagina verlaat, worden de door u aangebrachte wijzigingen niet "
-"opgeslagen."
+msgstr "Se você sair desta página, as alterações feitas não serão salvas."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:11
 msgid "External Video"
-msgstr "Externe video"
+msgstr "Vídeo Externo"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:12
 msgid ""
@@ -1293,27 +1315,29 @@ msgid ""
 "content will only be loaded after you give your consent. Only then will "
 "YouTube set Cookies that collect information on user behaviour."
 msgstr ""
-"Hier vindt u een video van Google (YouTube). Om uw privacy te beschermen "
-"wordt de inhoud pas geladen nadat u daarvoor toestemming heeft gegeven. "
-"Alleen dan stelt YouTube cookies in die informatie over het gebruikersgedrag"
-" verzamelen."
+"Aqui você pode encontrar um vídeo do Google (YouTube). Para proteger seus "
+"dados, o conteúdo só será carregado após você dar seu consentimento. Só "
+"então o YouTube definirá Cookies que coletam informações sobre o "
+"comportamento do usuário."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:13
 msgid "More information can be found in the privacy policy of Google under: "
-msgstr "Meer informatie kunt u vinden in het privacybeleid van Google onder: "
+msgstr ""
+"Mais informações podem ser encontradas na política de privacidade do Google "
+"em: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "Link to video: "
-msgstr ""
+msgstr "Link para o vídeo: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "Play video"
-msgstr "Video afspelen"
+msgstr "Reproduzir vídeo"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:16
 msgid "External video"
-msgstr ""
+msgstr "Vídeo externo"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""
@@ -1321,11 +1345,16 @@ msgid ""
 "only be loaded after you give your consent. Only then will Vimeo set cookies"
 " that collect information on user behaviour."
 msgstr ""
+"Aqui você pode encontrar um vídeo do Vimeo. Para proteger seus dados, o "
+"conteúdo só será carregado após você dar seu consentimento. Só então o Vimeo"
+" definirá cookies que coletam informações sobre o comportamento do usuário."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "More information can be found in the privacy policy of Vimeo under: "
-msgstr "Meer informatie is te vinden in het privacybeleid van Vimeo onder: "
+msgstr ""
+"Mais informações podem ser encontradas na política de privacidade do Vimeo "
+"em: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"
-msgstr ""
+msgstr "reproduzir vídeo"
