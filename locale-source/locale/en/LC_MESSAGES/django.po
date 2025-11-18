@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-17 09:28+0100\n"
+"POT-Creation-Date: 2025-11-18 15:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3159,11 +3159,6 @@ msgstr "Join the conversation and continue the discussion."
 msgid "{user} replied to your {comment}"
 msgstr "{user} replied to your {comment}"
 
-#: apps/notifications/strategies/comment_strategies.py:172
-#: apps/notifications/strategies/moderation_strategies.py:52
-msgid "comment"
-msgstr "comment"
-
 #: apps/notifications/strategies/event_strategies.py:22
 #, python-brace-format
 msgid "Event added to project {project}"
@@ -3273,6 +3268,10 @@ msgstr ""
 #, python-brace-format
 msgid "A moderator gave feedback on your {comment}"
 msgstr "A moderator gave feedback on your {comment}"
+
+#: apps/notifications/strategies/moderation_strategies.py:52
+msgid "comment"
+msgstr "comment"
 
 #: apps/notifications/strategies/moderation_strategies.py:89
 #, python-brace-format
