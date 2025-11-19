@@ -277,6 +277,7 @@ def test_handle_event_update_notifications(
     project_factory, offline_event_factory, user_factory
 ):
     project = project_factory()
+    project.organisation.language = "en"
     attendee = user_factory()
 
     # Use proper datetime objects
@@ -403,6 +404,7 @@ def test_handle_project_deleted(project_factory, organisation_factory, user_fact
     organisation = organisation_factory()
     initiator = organisation.initiators.first()
     project = project_factory(organisation=organisation)
+    project.organisation.language = "en"
 
     get_emails_for_address(initiator.email)
 

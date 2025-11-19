@@ -32,6 +32,7 @@ def test_notify_on_project_created(client, organisation, user):
 def test_notify_on_project_deleted(client, project):
     """Check if initiator gets email on project delete."""
     organisation = project.organisation
+    organisation.language = "en"
     initiator = organisation.initiators.first()
     project.delete()
 

@@ -20,8 +20,7 @@
                     method="post" 
                     action="{% url 'mark_all_notifications_as_read' %}"
                     hx-post="{% url 'mark_all_notifications_as_read' %}"
-                    hx-target="#notifications-container"
-                    hx-swap="innerHTML">
+                    hx-target="#notifications-container">
                     {% csrf_token %}
                     <input type="hidden" name="section" value="{{ section_id }}">
                     <button type="submit" class="btn btn-sm btn--transparent btn--transparent-border">

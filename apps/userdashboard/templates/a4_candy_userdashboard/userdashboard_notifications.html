@@ -16,8 +16,7 @@
             <div class="col-lg-10 mx-auto" 
                  id="notifications-container"
                  hx-get="{% url 'userdashboard-notifications-partial' %}"
-                 hx-trigger="load, every 10s, updateNotifications from:body"
-                 hx-swap="innerHTML">
+                 hx-trigger="load, every 10s, updateNotifications from:body">
                  
                 <div class="text-center py-4">
                     <i class="fas fa-spinner fa-spin"></i>
