@@ -1,0 +1,58 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div id="content-main">
+    <h1>{{ title }}</h1>
+    
+    <div class="module">
+        <div style="margin-bottom: 20px;">
+            <strong>Template Path:</strong> <code>{{ template_path }}</code><br>
+            <strong>Strategy:</strong> {{ strategy_name }}<br>
+            <strong>Type:</strong> {{ template_type|upper }}
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <!-- Rendered Preview -->
+            <div>
+                <h3>Rendered Preview</h3>
+                <div style="border: 1px solid #ccc; padding: 15px; background: white; min-height: 300px;">
+                    {% if template_type == 'html' %}
+                        {{ rendered_content|safe }}
+                    {% else %}
+                        <pre style="white-space: pre-wrap; font-family: monospace;">{{ rendered_content }}</pre>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Source Code -->
+            <div>
+                <h3>Source Code</h3>
+                <div style="border: 1px solid #ccc; padding: 15px; background: #f8f9fa; min-height: 300px; overflow: auto;">
+                    <pre style="white-space: pre-wrap; font-family: monospace;"><code>{{ source_code }}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Context Variables -->
+        <div style="margin-top: 20px;">
+            <h3>Context Variables Used</h3>
+            <div style="border: 1px solid #ccc; padding: 15px; background: #f8f9fa; max-height: 200px; overflow-y: auto;">
+                <table style="width: 100%; font-size: 0.9em;">
+                    {% for key, value in context_used.items %}
+                    <tr>
+                        <td style="padding: 4px; vertical-align: top;"><strong>{{ key }}</strong></td>
+                        <td style="padding: 4px; vertical-align: top;">
+                            {% if value|length > 100 %}
+                                {{ value|truncatechars:100 }}
+                            {% else %}
+                                {{ value }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

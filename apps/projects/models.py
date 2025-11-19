@@ -8,8 +8,6 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.models import base
 from adhocracy4.projects.models import Project
 
-from . import emails
-
 
 class Invite(base.TimeStampedModel):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -33,7 +31,8 @@ class ParticipantInviteManager(models.Manager):
         invite = super().create(
             project=project, creator=creator, email=email, site=site
         )
-        emails.InviteParticipantEmail.send(invite)
+        # Replaced by notification email
+        # emails.InviteParticipantEmail.send(invite)
         return invite
 
 
@@ -63,7 +62,8 @@ class ModeratorInviteManager(models.Manager):
         invite = super().create(
             project=project, creator=creator, email=email, site=site
         )
-        emails.InviteModeratorEmail.send(invite)
+        # Replaced by notification email
+        # emails.InviteModeratorEmail.send(invite)
         return invite
 
 

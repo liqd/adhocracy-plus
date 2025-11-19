@@ -3,12 +3,12 @@
 
 {% block subject %}{% blocktranslate %}Deletion of project{% endblocktranslate %}{% endblock %}
 
-{% block headline %}{% blocktranslate %}The project {{ name }} was deleted.{% endblocktranslate %}{% endblock  %}
+{% block headline %}{% blocktranslate %}The project {{ project }} was deleted.{% endblocktranslate %}{% endblock  %}
 
 {% block content %}
 <p>
-{% blocktranslate with site_name=site.name %}The project "{{ name }}" on the participation platform {{ site_name }} was deleted.{% endblocktranslate %}
+{% blocktranslate with site_name=site.name %}The project "{{ project }}" on the participation platform {{ site_name }} was deleted.{% endblocktranslate %}
 </p>
 {% endblock  %}
 
-{% block reason %}{% blocktranslate with organisation_name=organisation.name %}This email was sent to {{ receiver }}. This email was sent to you because you are an initiator of the organisation '{{ organisation_name }}', in which a project was deleted.{% endblocktranslate %}{% endblock %}
+{% block reason %}{% blocktranslate with organisation_name=organisation %}This email was sent to {{ receiver }}. This email was sent to you because you are an initiator of the organisation '{{ organisation_name }}', in which a project was deleted.{% endblocktranslate %}{% endblock %}

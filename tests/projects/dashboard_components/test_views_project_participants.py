@@ -50,8 +50,6 @@ def test_initiator_can_edit(client, phase_factory):
     assert redirect_target(response) == "dashboard-{}-edit".format(component.identifier)
     assert ParticipantInvite.objects.get(email="test1@foo.bar")
     assert ParticipantInvite.objects.get(email="test2@foo.bar")
-    assert len(mail.outbox) == 2
-    assert mail.outbox[0].subject.startswith("Einladung zum privaten Projekt:")
 
 
 @pytest.mark.django_db

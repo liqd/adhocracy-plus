@@ -1,0 +1,71 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+{% if messages %}
+<ul class="messagelist">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% for strategy in strategies %}
+<div style="margin-bottom: 3rem; padding: 1rem; border: 1px solid #ddd; background: white;">
+    <h2 style="background: #f8f9fa; padding: 0.75rem; margin: -1rem -1rem 1rem -1rem; border-bottom: 1px solid #ddd;">
+        {{ strategy.notification_type }}
+    </h2>
+    
+    <div style="background: #f0f0f0; padding: 0.5rem; margin-bottom: 1rem; font-size: 0.9rem;">
+        <strong>Template:</strong> <code>{{ strategy.template_name }}.en.email</code><br>
+        <strong>Path:</strong> <code>{{ strategy.template_path }}</code><br>
+        <strong>Email Class:</strong> <code>{{ strategy.email_class }}</code><br>
+        <strong>Strategy Class:</strong> <code>{{ strategy.strategy_class }}</code>
+    </div>
+
+    <h3>Available Context Variables:</h3>
+    <div style="border: 1px solid #ccc; padding: 1rem; background: #f9f9f9; margin-bottom: 1rem;">
+        {% if strategy.context_variables %}
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="border-bottom: 1px solid #ccc;">
+                        <th style="text-align: left; padding: 0.5rem;">Variable</th>
+                        <th style="text-align: left; padding: 0.5rem;">Type</th>
+                        <th style="text-align: left; padding: 0.5rem;">Preview</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for var in strategy.context_variables %}
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 0.5rem;"><code>{{ var.name }}</code></td>
+                        <td style="padding: 0.5rem;"><em>{{ var.type }}</em></td>
+                        <td style="padding: 0.5rem;">{{ var.preview }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No context variables available or error loading context.</p>
+        {% endif %}
+    </div>
+
+    <h3>Preview:</h3>
+    <div style="border: 1px solid #ccc; padding: 1rem; background: white; margin-bottom: 1rem; max-height: 400px; overflow: auto;">
+        {{ strategy.rendered|safe }}
+    </div>
+
+    <h3>Edit Template:</h3>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="template_name" value="{{ strategy.template_name }}">
+        <textarea name="content" 
+                  style="width: 100%; height: 300px; font-family: monospace; font-size: 14px; padding: 0.5rem; border: 1px solid #ccc;"
+                  spellcheck="false">{{ strategy.template_content }}</textarea>
+        <div style="margin-top: 0.5rem;">
+            <input type="submit" value="Save Template" style="padding: 0.5rem 1rem; background: #417690; color: white; border: none; cursor: pointer;">
+        </div>
+    </form>
+</div>
+{% endfor %}
+{% endblock %}

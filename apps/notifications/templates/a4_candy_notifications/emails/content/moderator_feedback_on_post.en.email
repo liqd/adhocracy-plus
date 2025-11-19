@@ -1,0 +1,20 @@
+{% load i18n %}
+<p>
+{% blocktranslate with organisation_name=organisation_name %}{{ organisation_name }} reacted on your contribution.{% endblocktranslate %}
+</p>
+
+{% if moderator_status %}
+<p>
+{% blocktranslate with status=moderator_status_display %}Your contribution is {{ status }}.{% endblocktranslate %}
+</p>
+{% endif %}
+
+{% if moderator_feedback %}
+<p>
+{% blocktranslate with feedback=moderator_feedback %}Official feedback: {{ feedback }}{% endblocktranslate %}
+</p>
+{% endif %}
+
+<p>
+{% blocktranslate %}Do you want to answer?{% endblocktranslate %}
+</p>

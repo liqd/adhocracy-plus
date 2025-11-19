@@ -1,0 +1,43 @@
+classDiagram
+    class BaseNotificationStrategy {
+        <<Abstract>>
+        +get_recipients(obj) List~User~
+        +create_notification_data(obj) dict
+    }
+    
+    class CommentFeedback {
+        +get_recipients(feedback) List~User~
+        +create_notification_data(feedback) dict
+        +notification_type: MODERATOR_COMMENT_FEEDBACK
+        +message_template: "A moderator gave feedback on your comment"
+        +recipient: comment.creator
+    }
+    
+    class IdeaFeedback {
+        +get_recipients(idea) List~User~
+        +create_notification_data(idea) dict
+        +notification_type: MODERATOR_IDEA_FEEDBACK
+        +message_template: "A moderator gave feedback on your idea idea"
+        +recipient: idea.creator
+    }
+    
+    class ProposalFeedback {
+        +get_recipients(proposal) List~User~
+        +create_notification_data(proposal) dict
+        +notification_type: MODERATOR_IDEA_FEEDBACK
+        +message_template: "A moderator gave feedback on your proposal proposal"
+        +recipient: proposal.creator
+    }
+    
+    class CommentBlocked {
+        +get_recipients(comment) List~User~
+        +create_notification_data(comment) dict
+        +notification_type: MODERATOR_BLOCKED_COMMENT
+        +message_template: "A moderator blocked your comment comment in project project"
+        +recipient: comment.creator
+    }
+    
+    BaseNotificationStrategy <|-- CommentFeedback
+    BaseNotificationStrategy <|-- IdeaFeedback
+    BaseNotificationStrategy <|-- ProposalFeedback
+    BaseNotificationStrategy <|-- CommentBlocked
