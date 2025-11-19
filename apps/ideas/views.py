@@ -18,8 +18,6 @@ from apps.contrib.widgets import AplusOrderingWidget
 from apps.contrib.widgets import FreeTextFilterWidget
 from apps.moderatorfeedback.forms import ModeratorFeedbackForm
 from apps.moderatorfeedback.models import ModeratorFeedback
-
-# from apps.notifications.emails import NotifyCreatorOnModeratorFeedback
 from apps.organisations.mixins import UserFormViewMixin
 
 from . import forms
@@ -197,7 +195,6 @@ class AbstractIdeaModerateView(
             feedback_text.save()
             moderateable.moderator_feedback_text = feedback_text
             moderateable.save()
-            # NotifyCreatorOnModeratorFeedback.send(self.object)
         return objects
 
     def get_instance(self, name):

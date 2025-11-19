@@ -13,8 +13,7 @@ from .strategies import ProjectEnded
 from .strategies import ProjectStarted
 
 
-# TODO: Run daily (?) via celery
-@shared_task
+@shared_task(name="send_recently_started_project_notifications")
 def send_recently_started_project_notifications():
     """
     Send notifications to project followers for project completed
@@ -45,7 +44,7 @@ def is_last_phase_in_project(phase):
     return is_last_phase
 
 
-@shared_task
+@shared_task(name="send_recently_completed_project_notifications")
 def send_recently_completed_project_notifications():
     """
     Send notifications to project followers for project completed
@@ -67,8 +66,7 @@ def send_recently_completed_project_notifications():
     return
 
 
-# TODO: Run daily (?) via celery
-@shared_task
+@shared_task(name="send_upcoming_event_notifications")
 def send_upcoming_event_notifications():
     """
     Send notifications to project followers for events starting within 24 hours

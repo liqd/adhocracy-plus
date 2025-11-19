@@ -178,7 +178,6 @@ class CommentBlocked(BaseNotificationStrategy):
 
     def create_notification_data(self, comment) -> dict:
         project = comment.project
-
         email_context = {
             "subject": _("Your comment was blocked"),
             "headline": _("Your comment was blocked"),
@@ -192,7 +191,8 @@ class CommentBlocked(BaseNotificationStrategy):
             # Template variables
             "project_name": project.name,
             "comment_text": comment.comment,
-            "netiquette_url": "/netiquette",  # You may want to make this configurable
+            # TODO: Check netiquette_url logic
+            "netiquette_url": project.organisation.slug,
             "organisation": project.organisation.name,
         }
 

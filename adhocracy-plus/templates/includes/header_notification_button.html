@@ -6,8 +6,7 @@
    aria-label="Notifications"
    hx-get="{% url 'notification-count-partial' %}"
    hx-trigger="updateNotificationCount from:body, every 15s"
-   hx-target=".notification-badge-container"
-   hx-swap="innerHTML">
+   hx-target=".notification-badge-container">
    
     <i class="fas fa-bell"></i>
     <span class="notification-badge-container">

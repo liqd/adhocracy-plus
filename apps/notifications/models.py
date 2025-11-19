@@ -276,14 +276,6 @@ class Notification(models.Model):
         User, on_delete=models.CASCADE, related_name="notifications"
     )
 
-    # TODO: Remove when email notifications updated
-    action = models.ForeignKey(
-        "a4actions.Action",
-        on_delete=models.CASCADE,
-        related_name="+",
-        null=True,
-        blank=True,
-    )
     notification_type = models.CharField(
         max_length=30,
         choices=NotificationType.choices,

@@ -1,9 +1,11 @@
+from django.db.models.signals import m2m_changed
 from django.db.models.signals import post_delete
 from django.db.models.signals import post_save
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
 from adhocracy4.comments.models import Comment
+from adhocracy4.follows.models import Follow
 from apps.budgeting.models import Proposal
 from apps.ideas.models import Idea
 from apps.mapideas.models import MapIdea
@@ -29,6 +31,34 @@ from .strategies import ProjectInvitationCreated
 from .strategies import ProjectModerationInvitationReceived
 from .strategies import ProposalFeedback
 from .strategies import UserContentCreated
+
+
+def autofollow_project(instance, pk_set, reverse):
+    if not reverse:
+        project = instance
+        users_pks = pk_set
+
+        for user_pk in users_pks:
+            Follow.objects.update_or_create(
+                project=project, creator_id=user_pk, defaults={"enabled": True}
+            )
+    else:
+        user = instance
+        project_pks = pk_set
+        for project_pk in project_pks:
+            Follow.objects.update_or_create(
+                project_id=project_pk, creator=user, defaults={"enabled": True}
+            )
+
+
+#  Autofollow signals
+
+
+@receiver(m2m_changed, sender=Project.moderators.through)
+def autofollow_project_moderators(instance, action, pk_set, reverse, **kwargs):
+    if action == "post_add":
+        autofollow_project(instance, pk_set, reverse)
+
 
 # Comment Signals
 

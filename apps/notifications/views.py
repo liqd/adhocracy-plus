@@ -72,8 +72,6 @@ class MarkAllNotificationsAsReadView(UserDashboardNotificationsBaseView):
             response = render(
                 request, "a4_candy_notifications/_notifications_partial.html", context
             )
-            print("RESPOONDING WITH TRIGGER")
-            # Add HTMX trigger header to update the button
             response["HX-Trigger"] = "updateNotificationCount"
             return response
         else:

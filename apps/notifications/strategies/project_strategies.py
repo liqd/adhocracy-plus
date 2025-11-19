@@ -143,12 +143,12 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
 
         email_context = {
             "subject": _(
-                'Invitation to the {project_type} project: "{project_name}"'
+                "Invitation to the {project_type} project: {project_name}"
             ).format(project_type=project_type, project_name=project.name),
             "headline": _(
                 'Invitation to the {project_type} project: "{project_name}"'
             ).format(project_type=project_type, project_name=project.name),
-            "cta_url": f"https://{invitation.site}{invitation.get_absolute_url()}",
+            "cta_url": f"{invitation.get_absolute_url()}",
             "cta_label": _("Accept invitation"),
             "reason": _("This email was sent to {receiver_email}."),
             "content_template": "a4_candy_notifications/emails/content/project_invitation.en.email",
@@ -298,17 +298,23 @@ class UserContentCreated(ProjectNotificationStrategy):
         return self._get_project_moderators(obj.project)
 
     def create_notification_data(self, obj) -> dict:
-        # Auto-detect content type from object class if not provided
         content_type = self.content_type or obj.__class__.__name__
-        content_type_display = content_type  # Could add display mapping if needed
-
+        content_type_display = content_type
+        content_type_article = "A"
+        if content_type_display[0].lower() in ["a", "e", "i", "o", "u"]:
+            content_type_article = "An"
         email_context = {
-            "subject": _("A {content_type} was added to the project {project}").format(
-                content_type=content_type_display, project=obj.project.name
+            "subject": _(
+                "{article} {content_type} was added to the project {project}"
+            ).format(
+                article=content_type_article,
+                content_type=content_type_display,
+                project=obj.project.name,
             ),
             "headline": _(
-                "{creator_name} created a {content_type} on the project {project}"
+                "{creator_name} created {article} {content_type} on the project {project}"
             ).format(
+                article=content_type_article.lower(),
                 creator_name=obj.creator.username,
                 content_type=content_type_display,
                 project=obj.project.name,
