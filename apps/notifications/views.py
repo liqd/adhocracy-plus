@@ -5,10 +5,13 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import UpdateView
 from django.views.generic import View
+
+from apps.userdashboard.views import UserDashboardNotificationsBaseView
 
 from .forms import NotificationSettingsForm
 from .models import Notification
@@ -53,6 +56,30 @@ class TriggerAllNotificationTasksView(LoginRequiredMixin, View):
         return redirect("account_notification_settings")
 
 
+class MarkAllNotificationsAsReadView(UserDashboardNotificationsBaseView):
+    """Mark all notifications as read with HTMX support"""
+
+    def post(self, request, *args, **kwargs):
+        section = request.POST.get("section", "")
+        notifications = Notification.objects.filter(recipient=request.user, read=False)
+
+        if section:
+            notifications = get_notifications_by_section(notifications, section)
+            notifications.update(read=True, read_at=timezone.now())
+
+        if request.headers.get("HX-Request"):
+            context = self._get_notifications_context()
+            response = render(
+                request, "a4_candy_notifications/_notifications_partial.html", context
+            )
+            print("RESPOONDING WITH TRIGGER")
+            # Add HTMX trigger header to update the button
+            response["HX-Trigger"] = "updateNotificationCount"
+            return response
+        else:
+            return redirect("userdashboard-notifications")
+
+
 class MarkNotificationAsReadView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         notification = get_object_or_404(
@@ -68,13 +95,16 @@ class MarkNotificationAsReadView(LoginRequiredMixin, View):
         return redirect(request.META.get("HTTP_REFERER", "home"))
 
 
-class MarkAllNotificationsAsReadView(LoginRequiredMixin, View):
-    def post(self, request):
-        section = request.POST.get("section", "")
-        notifications = Notification.objects.filter(recipient=request.user, read=False)
+class NotificationCountPartialView(UserDashboardNotificationsBaseView):
+    """HTMX partial for just the notification badge"""
 
-        if section:
-            notifications = get_notifications_by_section(notifications, section)
-            notifications.update(read=True, read_at=timezone.now())
-            messages.success(request, "All notifications marked as read")
-        return redirect(request.META.get("HTTP_REFERER", "home"))
+    def get(self, request, *args, **kwargs):
+        unread_count = 0
+        if request.user.is_authenticated:
+            unread_count = Notification.objects.unread_count_for_user(request.user)
+
+        return render(
+            request,
+            "a4_candy_notifications/_notifications_button_partial.html",
+            {"user": request.user, "unread_count": unread_count},
+        )

@@ -127,7 +127,7 @@ class ProjectEnded(ProjectNotificationStrategy):
 class ProjectInvitationCreated(ProjectNotificationStrategy):
     def get_organisation(self, invitation):
         return invitation.project.organisation
-    
+
     def get_recipients(self, invitation) -> List[User]:
         user_email = invitation.email
         try:
@@ -150,9 +150,7 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
             ).format(project_type=project_type, project_name=project.name),
             "cta_url": f"https://{invitation.site}{invitation.get_absolute_url()}",
             "cta_label": _("Accept invitation"),
-            "reason": _(
-                "This email was sent to {receiver_email}."
-            ),
+            "reason": _("This email was sent to {receiver_email}."),
             "content_template": "a4_candy_notifications/emails/content/project_invitation.en.email",
             "participantinvite": invitation,
             "project": project,

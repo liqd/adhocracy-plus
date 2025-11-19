@@ -15,7 +15,13 @@
                 </a>
             {% endif %}
             {% if notifications_list and unread_count > 0 %}
-                <form method="post" action="{% url 'mark_all_notifications_as_read' %}" class="m-0">
+                <form 
+                    class="m-0"
+                    method="post" 
+                    action="{% url 'mark_all_notifications_as_read' %}"
+                    hx-post="{% url 'mark_all_notifications_as_read' %}"
+                    hx-target="#notifications-container"
+                    hx-swap="innerHTML">
                     {% csrf_token %}
                     <input type="hidden" name="section" value="{{ section_id }}">
                     <button type="submit" class="btn btn-sm btn--transparent btn--transparent-border">
