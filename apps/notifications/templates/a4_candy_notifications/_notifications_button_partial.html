@@ -1,0 +1,5 @@
+{% if user.is_authenticated and unread_count > 0 %}
+    <span class="position-absolute top-0 end-0 p-1 bg-danger border border-white rounded-circle notification-badge">
+        <span class="visually-hidden">Unread notifications</span>
+    </span>
+{% endif %}

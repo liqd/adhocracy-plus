@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
@@ -125,12 +126,14 @@ class UserDashboardOverviewView(UserDashboardBaseMixin):
         return projects
 
 
-class UserDashboardNotificationsView(UserDashboardBaseMixin):
-    template_name = "a4_candy_userdashboard/userdashboard_notifications.html"
+class UserDashboardNotificationsBaseView(UserDashboardBaseMixin):
+    """Base view with all shared notification logic"""
+
     paginate_by = 10
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def _get_notifications_context(self):
+        """Shared context logic used by both full and partial views"""
+        context = {}
 
         # Translated strings
         context["dashboard_description"] = _(
@@ -152,18 +155,6 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
             "Stay up to date with everything happening in the projects you follow — all the latest updates, right here."
         )
         context["projects_empty"] = _("No project updates yet")
-        context["no_followed_projects"] = _(
-            "You're not following any projects yet. Find projects that inspire you and click \"Follow\" on the project's header picture to see updates here."
-        )
-
-        # Moderation section
-        context["moderation_title"] = _("Moderation & System")
-        context["moderation_description"] = _(
-            "Important notifications about content moderation, warnings, and system updates."
-        )
-        context["moderation_empty"] = _(
-            "No moderation or system notifications at this time."
-        )
 
         # Get all user notifications
         notifications = self.request.user.notifications.all().order_by("-created")
@@ -192,8 +183,28 @@ class UserDashboardNotificationsView(UserDashboardBaseMixin):
         """Helper method to paginate querysets."""
         paginator = Paginator(queryset, self.paginate_by)
         page_number = self.request.GET.get(page_param, 1)
-        page_obj = paginator.get_page(page_number)
-        return page_obj
+        return paginator.get_page(page_number)
+
+
+class UserDashboardNotificationsView(UserDashboardNotificationsBaseView):
+    """Main notifications page"""
+
+    template_name = "a4_candy_userdashboard/userdashboard_notifications.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(self._get_notifications_context())
+        return context
+
+
+class UserDashboardNotificationsPartialView(UserDashboardNotificationsBaseView):
+    """HTMX partial for notifications content"""
+
+    template_name = "a4_candy_notifications/_notifications_partial.html"
+
+    def get(self, request, *args, **kwargs):
+        context = self._get_notifications_context()
+        return render(request, self.template_name, context)
 
 
 class UserDashboardActivitiesView(UserDashboardBaseMixin):
