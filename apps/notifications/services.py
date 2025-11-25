@@ -4,7 +4,6 @@ from django.apps import apps
 from django.template.loader import render_to_string
 from django.utils import translation
 
-from adhocracy4.emails.mixins import SyncEmailMixin
 from apps.users.emails import EmailAplus as Email
 
 from .models import NOTIFICATION_TYPE_MAPPING
@@ -12,7 +11,7 @@ from .models import NotificationCategory
 from .models import NotificationSettings
 
 
-class NotificationEmail(SyncEmailMixin, Email):
+class NotificationEmail(Email):
     """Email class for notification emails"""
 
     template_name = "a4_candy_notifications/emails/strategy_email_base"
