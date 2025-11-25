@@ -1,4 +1,4 @@
 {% load i18n %}
 <p>
-{% blocktranslate with creator_name=creator_name project_name=project_name organisation_name=organisation_name %}{{ creator_name }} has created the project {{ project_name }} for {{ organisation_name }}.{% endblocktranslate %}
+{% blocktranslate with project_name=project_name organisation_name=organisation_name %}The new project {{ project_name }} was created for {{ organisation_name }}.{% endblocktranslate %}
 </p>
