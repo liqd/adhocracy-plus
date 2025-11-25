@@ -1,61 +1,36 @@
-from django.contrib.auth import get_user_model
-from django.db.models import signals
+from django.db.models.signals import m2m_changed
+from django.db.models.signals import post_delete
+from django.db.models.signals import post_save
+from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
-from adhocracy4.actions.models import Action
-from adhocracy4.actions.verbs import Verbs
-from adhocracy4.dashboard import signals as dashboard_signals
+from adhocracy4.comments.models import Comment
 from adhocracy4.follows.models import Follow
-from adhocracy4.projects.models import Project
+from apps.budgeting.models import Proposal
+from apps.ideas.models import Idea
+from apps.mapideas.models import MapIdea
 from apps.moderatorfeedback.models import ModeratorCommentFeedback
+from apps.offlineevents.models import OfflineEvent
+from apps.projects.models import ModeratorInvite
+from apps.projects.models import ParticipantInvite
+from apps.projects.models import Project
 
-from . import emails
-
-User = get_user_model()
-
-
-@receiver(signals.post_save, sender=Action)
-def send_notifications(instance, created, **kwargs):
-    action = instance
-    verb = Verbs(action.verb)
-
-    if action.type in ("item", "comment") and verb in (Verbs.CREATE, Verbs.ADD):
-        emails.NotifyCreatorEmail.send(action)
-
-        if action.project:
-            emails.NotifyModeratorsEmail.send(action)
-
-    elif action.type == "phase":
-        if verb == Verbs.START:
-            emails.NotifyFollowersOnPhaseStartedEmail.send(action)
-        elif verb == Verbs.SCHEDULE:
-            emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
-
-    elif action.type == "offlineevent" and verb == Verbs.START:
-        emails.NotifyFollowersOnUpcommingEventEmail.send(action)
-
-
-@receiver(dashboard_signals.project_created)
-def send_project_created_notifications(**kwargs):
-    project = kwargs.get("project")
-    creator = kwargs.get("user")
-    emails.NotifyInitiatorsOnProjectCreatedEmail.send(project, creator_pk=creator.pk)
-
-
-@receiver(signals.post_delete, sender=Project)
-def send_project_deleted_notifications(sender, instance, **kwargs):
-    emails.NotifyInitiatorsOnProjectDeletedEmail.send_no_object(instance)
-
-
-@receiver(signals.post_save, sender=ModeratorCommentFeedback)
-def send_moderator_comment_feedback_notification(instance, **kwargs):
-    emails.NotifyCreatorOnModeratorCommentFeedback.send(instance)
-
-
-@receiver(signals.m2m_changed, sender=Project.moderators.through)
-def autofollow_project_moderators(instance, action, pk_set, reverse, **kwargs):
-    if action == "post_add":
-        autofollow_project(instance, pk_set, reverse)
+from .services import NotificationService
+from .strategies import CommentBlocked
+from .strategies import CommentFeedback
+from .strategies import CommentHighlighted
+from .strategies import CommentReply
+from .strategies import IdeaFeedback
+from .strategies import OfflineEventCreated
+from .strategies import OfflineEventDeleted
+from .strategies import OfflineEventUpdate
+from .strategies import ProjectComment
+from .strategies import ProjectCreated
+from .strategies import ProjectDeleted
+from .strategies import ProjectInvitationCreated
+from .strategies import ProjectModerationInvitationReceived
+from .strategies import ProposalFeedback
+from .strategies import UserContentCreated
 
 
 def autofollow_project(instance, pk_set, reverse):
@@ -70,8 +45,213 @@ def autofollow_project(instance, pk_set, reverse):
     else:
         user = instance
         project_pks = pk_set
-
         for project_pk in project_pks:
             Follow.objects.update_or_create(
                 project_id=project_pk, creator=user, defaults={"enabled": True}
             )
+
+
+#  Autofollow signals
+
+
+@receiver(m2m_changed, sender=Project.moderators.through)
+def autofollow_project_moderators(instance, action, pk_set, reverse, **kwargs):
+    if action == "post_add":
+        autofollow_project(instance, pk_set, reverse)
+
+
+# Comment Signals
+
+
+@receiver(post_save, sender=Comment)
+def handle_comment_notifications(sender, instance, created, **kwargs):
+    """Handle all comment-related notifications"""
+    if not created:
+        return
+
+    # Handle comment replies
+    if instance.parent_comment.exists():
+        strategy = CommentReply()
+        NotificationService.create_notifications(instance, strategy)
+
+    # Handle project comments
+    elif instance.project and instance.content_object != instance.project:
+        strategy = ProjectComment()
+        NotificationService.create_notifications(instance, strategy)
+
+
+@receiver(pre_save, sender=Comment)
+def handle_comment_highlighted(sender, instance, **kwargs):
+    """Handle comment being highlighted y auth"""
+    if instance.id is None:
+        return  # Only handle updates, not creations
+
+    previous = Comment.objects.get(id=instance.id)
+
+    was_previously_marked = previous.is_moderator_marked
+    is_now_marked = instance.is_moderator_marked
+    # Check if important fields changed
+    if not was_previously_marked and is_now_marked:
+        strategy = CommentHighlighted()
+        NotificationService.create_notifications(instance, strategy)
+        return
+
+
+# Moderation Signals
+
+
+@receiver(post_save, sender=ModeratorCommentFeedback)
+def handle_comment_moderator_feedback(sender, instance, **kwargs):
+    strategy = CommentFeedback()
+    NotificationService.create_notifications(instance, strategy)
+
+
+def _handle_moderator_feedback_notification(instance, previous, strategy_class):
+    """Common logic for handling moderator feedback notifications"""
+    old_mod_status = previous.moderator_status
+    old_feedback_text = previous.moderator_feedback_text
+    new_mod_status = instance.moderator_status
+    new_feedback_text = instance.moderator_feedback_text
+
+    if old_mod_status != new_mod_status or old_feedback_text != new_feedback_text:
+        strategy = strategy_class()
+        NotificationService.create_notifications(instance, strategy)
+
+
+@receiver(pre_save, sender=Proposal)
+def handle_proposal_moderator_feedback(sender, instance, **kwargs):
+    if instance.id is None:
+        return
+    try:
+        previous = Proposal.objects.get(id=instance.id)
+        _handle_moderator_feedback_notification(instance, previous, ProposalFeedback)
+    except Proposal.DoesNotExist:
+        return
+
+
+@receiver(pre_save, sender=MapIdea)
+def handle_mapidea_moderator_feedback(sender, instance, **kwargs):
+    if instance.id is None:
+        return
+    try:
+        previous = MapIdea.objects.get(id=instance.id)
+        _handle_moderator_feedback_notification(instance, previous, IdeaFeedback)
+    except MapIdea.DoesNotExist:
+        return
+
+
+@receiver(pre_save, sender=Idea)
+def handle_idea_moderator_feedback(sender, instance, **kwargs):
+    if instance.id is None:
+        return
+    try:
+        previous = Idea.objects.get(id=instance.id)
+        _handle_moderator_feedback_notification(instance, previous, IdeaFeedback)
+    except Idea.DoesNotExist:
+        return
+
+
+@receiver(pre_save, sender=Comment)
+def handle_comment_blocked_by_moderator(sender, instance, **kwargs):
+    if instance.id is None:
+        return
+
+    try:
+        previous = Comment.objects.get(id=instance.id)
+    except Comment.DoesNotExist:
+        return
+
+    was_previously_blocked = previous.is_blocked
+    is_now_blocked = instance.is_blocked
+
+    if not was_previously_blocked and is_now_blocked:
+        strategy = CommentBlocked()
+        NotificationService.create_notifications(instance, strategy)
+        return
+
+
+# Event Signals
+
+
+@receiver(post_delete, sender=OfflineEvent)
+def handle_offline_event_deleted_notifications(sender, instance, **kwargs):
+    strategy = OfflineEventDeleted()
+    NotificationService.create_notifications(instance, strategy)
+
+
+@receiver(pre_save, sender=OfflineEvent)
+def handle_event_update_notifications(sender, instance, **kwargs):
+    """Handle event update/reschedule notifications"""
+    if instance.id is None:
+        return  # Only handle updates, not creations
+
+    strategy = OfflineEventUpdate()
+    previous = OfflineEvent.objects.get(id=instance.id)
+    # Check if important fields changed
+    if previous and previous.date != instance.date:
+        NotificationService.create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=OfflineEvent)
+def handle_offline_event_notifications(sender, instance, created, **kwargs):
+    """Handle offline event notifications"""
+    if created and instance.project:
+        strategy = OfflineEventCreated()
+        NotificationService.create_notifications(instance, strategy)
+
+
+# Project Signals
+
+
+@receiver(post_save, sender=ParticipantInvite)
+def handle_invite_received(sender, instance, created, **kwargs):
+    if not created:
+        return
+
+    strategy = ProjectInvitationCreated()
+    NotificationService.create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=ModeratorInvite)
+def handle_moderator_invite_received(sender, instance, created, **kwargs):
+    if not created:
+        return
+
+    strategy = ProjectModerationInvitationReceived()
+    NotificationService.create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=Project)
+def handle_project_created(sender, instance, created, **kwargs):
+    if not created:
+        return
+
+    strategy = ProjectCreated()
+    NotificationService.create_notifications(instance, strategy)
+
+
+@receiver(post_delete, sender=Project)
+def handle_project_deleted(sender, instance, **kwargs):
+    strategy = ProjectDeleted()
+    NotificationService.create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=Idea)
+def handle_idea_created(sender, instance, created, **kwargs):
+    if created and instance.project:
+        strategy = UserContentCreated("Idea")
+        NotificationService.create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=MapIdea)
+def handle_mapidea_created(sender, instance, created, **kwargs):
+    if created and instance.project:
+        strategy = UserContentCreated("MapIdea")
+        NotificationService.create_notifications(instance, strategy)
+
+
+@receiver(post_save, sender=Proposal)
+def handle_proposal_created(sender, instance, created, **kwargs):
+    if created and instance.project:
+        strategy = UserContentCreated("Proposal")
+        NotificationService.create_notifications(instance, strategy)

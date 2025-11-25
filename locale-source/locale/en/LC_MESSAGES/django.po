@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-20 15:29+0100\n"
+"POT-Creation-Date: 2025-11-18 15:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,6 +62,7 @@ msgstr "Missing fields for publication"
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:30
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:43
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:27
+#: apps/notifications/templates/a4_candy_notifications/settings.html:166
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:15
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_form.html:22
 #: adhocracy-plus/templates/a4dashboard/base_form_module.html:23
@@ -101,8 +102,6 @@ msgstr "Preview"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
-#: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:8
-#: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:14
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:14
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:15
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:14
@@ -154,6 +153,7 @@ msgstr "Create draft"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: apps/account/templates/a4_candy_account/account_deletion.html:48
+#: apps/account/templates/a4_candy_account/notifications.html:54
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:31
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:14
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
@@ -179,6 +179,7 @@ msgstr "Cancel"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
 #: apps/projects/templates/a4_candy_projects/project_list.html:4
+#: apps/userdashboard/views.py:80 apps/userdashboard/views.py:150
 #: adhocracy-plus/templates/a4dashboard/base_project_list.html:16
 #: adhocracy-plus/templates/a4dashboard/project_list.html:4
 #: adhocracy-plus/templates/a4dashboard/project_list.html:9
@@ -267,7 +268,7 @@ msgstr "Search"
 #: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
 #: adhocracy-plus/templates/account/signup.html:33
 #: adhocracy-plus/templates/account/signup.html:44
-#: adhocracy-plus/templates/socialaccount/signup.html:31
+#: adhocracy-plus/templates/socialaccount/signup.html:34
 msgid "This field is required"
 msgstr "This field is required"
 
@@ -394,7 +395,7 @@ msgstr ""
 "displayed to the participants as help text when they have to assign their "
 "ideas. The character limit is max. 300 characters (with spaces)."
 
-#: adhocracy4/comments/models.py:54 adhocracy4/polls/exports.py:39
+#: adhocracy4/comments/models.py:54 adhocracy4/polls/exports.py:42
 #: apps/budgeting/exports.py:78 apps/debate/exports.py:68
 #: apps/documents/exports.py:41 apps/ideas/exports.py:77
 #: apps/mapideas/exports.py:78 apps/topicprio/exports.py:75
@@ -440,15 +441,15 @@ msgstr "The project has been updated."
 msgid "The module has been updated."
 msgstr "The module has been updated."
 
-#: adhocracy4/dashboard/dashboard.py:13
+#: adhocracy4/dashboard/dashboard.py:14
 msgid "Basic settings"
 msgstr "Basic settings"
 
-#: adhocracy4/dashboard/dashboard.py:15
+#: adhocracy4/dashboard/dashboard.py:16
 msgid "Edit basic settings"
 msgstr "Edit basic settings"
 
-#: adhocracy4/dashboard/dashboard.py:23
+#: adhocracy4/dashboard/dashboard.py:24
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:15
 #: apps/organisations/templates/a4_candy_organisations/organisation_information.html:30
 #: apps/projects/templates/a4_candy_projects/project_detail.html:81
@@ -456,60 +457,60 @@ msgstr "Edit basic settings"
 msgid "Information"
 msgstr "Information"
 
-#: adhocracy4/dashboard/dashboard.py:25
+#: adhocracy4/dashboard/dashboard.py:26
 msgid "Edit project information"
 msgstr "Edit project information"
 
-#: adhocracy4/dashboard/dashboard.py:33 apps/projects/dashboard.py:87
+#: adhocracy4/dashboard/dashboard.py:34 apps/projects/dashboard.py:87
 #: apps/projects/templates/a4_candy_projects/project_detail.html:101
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:44
 msgid "Result"
 msgstr "Result"
 
-#: adhocracy4/dashboard/dashboard.py:35 apps/projects/dashboard.py:89
+#: adhocracy4/dashboard/dashboard.py:36 apps/projects/dashboard.py:89
 msgid "Edit project result"
 msgstr "Edit project result"
 
-#: adhocracy4/dashboard/dashboard.py:43
+#: adhocracy4/dashboard/dashboard.py:44
 msgid "Basic information"
 msgstr "Basic information"
 
-#: adhocracy4/dashboard/dashboard.py:45
+#: adhocracy4/dashboard/dashboard.py:46
 msgid "Edit basic module information"
 msgstr "Edit basic module information"
 
-#: adhocracy4/dashboard/dashboard.py:53
+#: adhocracy4/dashboard/dashboard.py:58
 msgid "Phases"
 msgstr "Phases"
 
-#: adhocracy4/dashboard/dashboard.py:55
+#: adhocracy4/dashboard/dashboard.py:60
 msgid "Edit phases information"
 msgstr "Edit phases information"
 
-#: adhocracy4/dashboard/dashboard.py:64
+#: adhocracy4/dashboard/dashboard.py:73
 msgid "Area settings"
 msgstr "Area settings"
 
-#: adhocracy4/dashboard/dashboard.py:65
+#: adhocracy4/dashboard/dashboard.py:74
 msgid "Edit area settings"
 msgstr "Edit area settings"
 
-#: adhocracy4/dashboard/filter.py:15 apps/budgeting/views.py:27
+#: adhocracy4/dashboard/filter.py:15 apps/budgeting/views.py:31
 msgid "Archived"
 msgstr "Archived"
 
 #: adhocracy4/dashboard/filter.py:19 adhocracy4/filters/widgets.py:33
-#: apps/budgeting/views.py:31
+#: apps/budgeting/views.py:35
 msgid "All"
 msgstr "All"
 
-#: adhocracy4/dashboard/filter.py:20 apps/budgeting/views.py:32
+#: adhocracy4/dashboard/filter.py:20 apps/budgeting/views.py:36
 msgid "No"
 msgstr "No"
 
 #: adhocracy4/dashboard/filter.py:21
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:15
-#: apps/budgeting/views.py:33
+#: apps/budgeting/views.py:37
 #: apps/debate/templates/a4_candy_debate/subject_confirm_delete.html:16
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:15
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:15
@@ -646,7 +647,7 @@ msgid "Creator"
 msgstr "Creator"
 
 #: adhocracy4/exports/mixins/general.py:17 adhocracy4/models/base.py:12
-#: adhocracy4/polls/exports.py:40 apps/budgeting/exports.py:79
+#: adhocracy4/polls/exports.py:43 apps/budgeting/exports.py:79
 #: apps/debate/exports.py:69 apps/documents/exports.py:42
 #: apps/ideas/exports.py:78 apps/mapideas/exports.py:79
 #: apps/topicprio/exports.py:76
@@ -670,7 +671,7 @@ msgid "Location label"
 msgstr "Location label"
 
 #: adhocracy4/exports/mixins/items.py:43 adhocracy4/labels/dashboard.py:13
-#: apps/ideas/models.py:46 apps/topicprio/models.py:53
+#: apps/ideas/models.py:50 apps/topicprio/models.py:57
 msgid "Labels"
 msgstr "Labels"
 
@@ -763,6 +764,7 @@ msgid "Please add an alternative text for this image"
 msgstr "Please add an alternative text for this image"
 
 #: adhocracy4/images/validators.py:28
+#, python-brace-format
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Unsupported file format. Supported formats are {}."
 
@@ -863,15 +865,19 @@ msgstr "Please draw a Polygon on the map"
 msgid "Please draw an area on the map."
 msgstr "Please draw an area on the map."
 
+#: adhocracy4/maps/validators.py:12
+msgid "Point is not inside the specified area"
+msgstr "Point is not inside the specified area"
+
 #: adhocracy4/models/base.py:17
 msgid "Modified"
 msgstr "Modified"
 
-#: adhocracy4/modules/models.py:73
+#: adhocracy4/modules/models.py:75
 msgid "Title of the module"
 msgstr "Title of the module"
 
-#: adhocracy4/modules/models.py:75
+#: adhocracy4/modules/models.py:77
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
@@ -879,11 +885,11 @@ msgstr ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
 
-#: adhocracy4/modules/models.py:84
+#: adhocracy4/modules/models.py:86
 msgid "Short description of the module"
 msgstr "Short description of the module"
 
-#: adhocracy4/modules/models.py:86
+#: adhocracy4/modules/models.py:88
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
@@ -893,54 +899,54 @@ msgstr ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 
-#: adhocracy4/modules/models.py:223
+#: adhocracy4/modules/models.py:225
 msgid "day"
 msgstr "day"
 
-#: adhocracy4/modules/models.py:223 adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:225 adhocracy4/modules/models.py:232
 msgid "days"
 msgstr "days"
 
-#: adhocracy4/modules/models.py:224
+#: adhocracy4/modules/models.py:226
 msgid "hour"
 msgstr "hour"
 
-#: adhocracy4/modules/models.py:224 adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:226 adhocracy4/modules/models.py:233
 msgid "hours"
 msgstr "hours"
 
-#: adhocracy4/modules/models.py:225
+#: adhocracy4/modules/models.py:227
 msgid "minute"
 msgstr "minute"
 
-#: adhocracy4/modules/models.py:225 adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:227 adhocracy4/modules/models.py:234
 msgid "minutes"
 msgstr "minutes"
 
-#: adhocracy4/modules/models.py:226
+#: adhocracy4/modules/models.py:228
 msgid "second"
 msgstr "second"
 
-#: adhocracy4/modules/models.py:226 adhocracy4/modules/models.py:233
+#: adhocracy4/modules/models.py:228 adhocracy4/modules/models.py:235
 msgid "seconds"
 msgstr "seconds"
 
-#: adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:232
 msgctxt "abbreviation for day(s)"
 msgid "D"
 msgstr "D"
 
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:233
 msgctxt "abbreviation for hour(s)"
 msgid "H"
 msgstr "H"
 
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:234
 msgctxt "abbreviation for minute(s)"
 msgid "M"
 msgstr "M"
 
-#: adhocracy4/modules/models.py:233
+#: adhocracy4/modules/models.py:235
 msgctxt "abbreviation for second(s)"
 msgid "S"
 msgstr "S"
@@ -959,9 +965,9 @@ msgid "Name"
 msgstr "Name"
 
 #: adhocracy4/phases/models.py:60 apps/activities/models.py:22
-#: apps/debate/models.py:25 apps/ideas/models.py:34
+#: apps/debate/models.py:27 apps/ideas/models.py:38
 #: apps/offlineevents/models.py:33 apps/organisations/forms.py:317
-#: apps/topicprio/forms.py:23 apps/topicprio/models.py:34
+#: apps/topicprio/forms.py:23 apps/topicprio/models.py:38
 msgid "Description"
 msgstr "Description"
 
@@ -974,12 +980,10 @@ msgid "Either both or no date has to be set."
 msgstr "Either both or no date has to be set."
 
 #: adhocracy4/polls/api.py:124 adhocracy4/polls/api.py:142
-#: apps/captcha/fields.py:44
 msgid "Your answer to the captcha was wrong."
 msgstr "Your answer to the captcha was wrong."
 
 #: adhocracy4/polls/api.py:129 adhocracy4/polls/api.py:138
-#: apps/captcha/fields.py:33 apps/captcha/fields.py:40
 msgid "Something about the answer to the captcha was wrong."
 msgstr "Something about the answer to the captcha was wrong."
 
@@ -988,6 +992,7 @@ msgid "Please specify your answer."
 msgstr "Please specify your answer."
 
 #: adhocracy4/polls/api.py:237
+#, python-brace-format
 msgid "Key error for {}"
 msgstr "Key error for {}"
 
@@ -1014,12 +1019,16 @@ msgstr "Poll"
 msgid "Export Excel"
 msgstr "Export Excel"
 
-#: adhocracy4/polls/exports.py:38 apps/budgeting/exports.py:77
+#: adhocracy4/polls/exports.py:41 apps/budgeting/exports.py:77
 #: apps/debate/exports.py:67 apps/documents/exports.py:40
 #: apps/ideas/exports.py:76 apps/mapideas/exports.py:77
 #: apps/topicprio/exports.py:74
 msgid "ID"
 msgstr "ID"
+
+#: adhocracy4/polls/exports.py:151
+msgid "Voter ID"
+msgstr "Voter ID"
 
 #: adhocracy4/polls/models.py:50
 msgid "Explanation"
@@ -1098,28 +1107,28 @@ msgstr "Choice has to belong to the question set in the url."
 msgid "Only one vote per choice is allowed per user."
 msgstr "Only one vote per choice is allowed per user."
 
-#: adhocracy4/projects/admin.py:10 apps/newsletters/forms.py:48
+#: adhocracy4/projects/admin.py:11 apps/newsletters/forms.py:48
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:12
 msgid "Project"
 msgstr "Project"
 
-#: adhocracy4/projects/admin.py:63 apps/projects/admin.py:34
+#: adhocracy4/projects/admin.py:69 apps/projects/admin.py:41
 msgid "Information and result"
 msgstr "Information and result"
 
-#: adhocracy4/projects/admin.py:69
+#: adhocracy4/projects/admin.py:75
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:4
-#: apps/projects/admin.py:40
+#: apps/projects/admin.py:47
 msgid "Settings"
 msgstr "Settings"
 
-#: adhocracy4/projects/admin.py:81 apps/projects/admin.py:54
+#: adhocracy4/projects/admin.py:87 apps/projects/admin.py:61
 msgid "Images"
 msgstr "Images"
 
-#: adhocracy4/projects/admin.py:93 apps/projects/admin.py:66
+#: adhocracy4/projects/admin.py:99 apps/projects/admin.py:73
 #: adhocracy-plus/templates/email_base.html:112
 #: adhocracy-plus/templates/footer.html:58
 msgid "Contact"
@@ -1146,6 +1155,7 @@ msgid "Postal address"
 msgstr "Postal address"
 
 #: adhocracy4/projects/models.py:73
+#: apps/notifications/templates/a4_candy_notifications/settings.html:63
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
 #: apps/projects/templates/a4_candy_projects/project_detail.html:142
 msgid "Email"
@@ -1164,11 +1174,11 @@ msgstr "Phone"
 msgid "Website"
 msgstr "Website"
 
-#: adhocracy4/projects/models.py:93
+#: adhocracy4/projects/models.py:104
 msgid "Can your project be located on the map?"
 msgstr "Can your project be located on the map?"
 
-#: adhocracy4/projects/models.py:95
+#: adhocracy4/projects/models.py:106
 msgid ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
@@ -1176,15 +1186,15 @@ msgstr ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
 
-#: adhocracy4/projects/models.py:107
+#: adhocracy4/projects/models.py:122
 msgid "Administrative district"
 msgstr "Administrative district"
 
-#: adhocracy4/projects/models.py:195
+#: adhocracy4/projects/models.py:210
 msgid "Title of your project"
 msgstr "Title of your project"
 
-#: adhocracy4/projects/models.py:197
+#: adhocracy4/projects/models.py:212
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -1192,11 +1202,11 @@ msgstr ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
 
-#: adhocracy4/projects/models.py:210
+#: adhocracy4/projects/models.py:225
 msgid "Short description of your project"
 msgstr "Short description of your project"
 
-#: adhocracy4/projects/models.py:212
+#: adhocracy4/projects/models.py:227
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -1204,41 +1214,41 @@ msgstr ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
 
-#: adhocracy4/projects/models.py:221
+#: adhocracy4/projects/models.py:236
 msgid "Description of your project"
 msgstr "Description of your project"
 
-#: adhocracy4/projects/models.py:227
+#: adhocracy4/projects/models.py:242
 msgid "Results of your project"
 msgstr "Results of your project"
 
-#: adhocracy4/projects/models.py:231
+#: adhocracy4/projects/models.py:246
 msgid "Access to the project"
 msgstr "Access to the project"
 
-#: adhocracy4/projects/models.py:236 adhocracy4/projects/models.py:242
-#: adhocracy4/projects/models.py:243 apps/organisations/models.py:96
+#: adhocracy4/projects/models.py:251 adhocracy4/projects/models.py:257
+#: adhocracy4/projects/models.py:258 apps/organisations/models.py:96
 msgid "Header image"
 msgstr "Header image"
 
-#: adhocracy4/projects/models.py:237 apps/organisations/models.py:97
+#: adhocracy4/projects/models.py:252 apps/organisations/models.py:97
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
-#: adhocracy4/projects/models.py:246 adhocracy4/projects/models.py:252
-#: adhocracy4/projects/models.py:253
+#: adhocracy4/projects/models.py:261 adhocracy4/projects/models.py:267
+#: adhocracy4/projects/models.py:268
 msgid "Tile image"
 msgstr "Tile image"
 
-#: adhocracy4/projects/models.py:247
+#: adhocracy4/projects/models.py:262
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
 
-#: adhocracy4/projects/models.py:266
+#: adhocracy4/projects/models.py:281
 msgid "Project is archived"
 msgstr "Project is archived"
 
-#: adhocracy4/projects/models.py:268
+#: adhocracy4/projects/models.py:283
 msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
@@ -1247,6 +1257,7 @@ msgstr ""
 "initiators they are still visible in the dashboard."
 
 #: adhocracy4/projects/utils.py:46
+#, python-brace-format
 msgid "{}. Online Participation"
 msgstr "{}. Online Participation"
 
@@ -1267,6 +1278,7 @@ msgid "Password"
 msgstr "Password"
 
 #: apps/account/forms.py:71 apps/organisations/mixins.py:58
+#, python-brace-format
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr "Yes, I have read and agree to this organisation's {}terms of use{}."
 
@@ -1279,7 +1291,7 @@ msgid "User Dashboard navigation"
 msgstr "User Dashboard navigation"
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:22
-#: apps/users/templates/a4_candy_users/user_detail.html:12
+#: apps/users/templates/a4_candy_users/user_detail.html:13
 msgid "Profile"
 msgstr "Profile"
 
@@ -1290,20 +1302,24 @@ msgid "Change password"
 msgstr "Change password"
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:36
+msgid "Notification Options"
+msgstr "Notification Options"
+
+#: apps/account/templates/a4_candy_account/account_dashboard.html:43
 msgid "Email addresses"
 msgstr "Email addresses"
 
-#: apps/account/templates/a4_candy_account/account_dashboard.html:43
+#: apps/account/templates/a4_candy_account/account_dashboard.html:50
 msgid "Account Connections"
 msgstr "Account Connections"
 
-#: apps/account/templates/a4_candy_account/account_dashboard.html:50
+#: apps/account/templates/a4_candy_account/account_dashboard.html:57
 #: apps/account/templates/a4_candy_account/user_agreements.html:5
 #: apps/account/templates/a4_candy_account/user_agreements.html:7
 msgid "User Agreements"
 msgstr "User Agreements"
 
-#: apps/account/templates/a4_candy_account/account_dashboard.html:57
+#: apps/account/templates/a4_candy_account/account_dashboard.html:64
 #: apps/account/templates/a4_candy_account/account_deletion.html:12
 #: apps/account/templates/a4_candy_account/account_deletion.html:36
 msgid "Delete account"
@@ -1401,11 +1417,23 @@ msgstr ""
 "This email was sent to %(receiver)s. If you have any further questions, "
 "please contact us via %(contact_email)s"
 
+#: apps/account/templates/a4_candy_account/notifications.html:4
+#: apps/account/templates/a4_candy_account/notifications.html:10
+#: apps/notifications/models.py:201 apps/notifications/models.py:202
+#: apps/notifications/templates/a4_candy_notifications/settings.html:5
+#: apps/notifications/templates/a4_candy_notifications/settings.html:12
+msgid "Notification Settings"
+msgstr "Notification Settings"
+
+#: apps/account/templates/a4_candy_account/notifications.html:53
+msgid "Save Settings"
+msgstr "Save Settings"
+
 #: apps/account/templates/a4_candy_account/profile.html:7
 msgid "Your profile"
 msgstr "Your profile"
 
-#: apps/account/templates/a4_candy_account/profile.html:22
+#: apps/account/templates/a4_candy_account/profile.html:19
 #: apps/account/templates/a4_candy_account/user_agreements.html:36
 #: apps/organisations/templates/a4_candy_organisations/organisation_form.html:47
 #: apps/organisations/templates/a4_candy_organisations/organisation_form_legal_info.html:19
@@ -1540,9 +1568,9 @@ msgstr ""
 msgid "Face-to-Face Information"
 msgstr "Face-to-Face Information"
 
-#: apps/activities/models.py:12 apps/debate/models.py:20
-#: apps/ideas/models.py:33 apps/offlineevents/models.py:25
-#: apps/organisations/forms.py:308 apps/topicprio/models.py:31
+#: apps/activities/models.py:12 apps/debate/models.py:22
+#: apps/ideas/models.py:37 apps/offlineevents/models.py:25
+#: apps/organisations/forms.py:308 apps/topicprio/models.py:35
 msgid "Title"
 msgstr "Title"
 
@@ -1574,15 +1602,15 @@ msgstr "facetoface"
 msgid "Edit face to face participation information"
 msgstr "Edit face to face participation information"
 
-#: apps/budgeting/models.py:22
+#: apps/budgeting/models.py:24
 msgid "Required Budget"
 msgstr "Required Budget"
 
-#: apps/budgeting/models.py:26
+#: apps/budgeting/models.py:30
 msgid "Proposal is archived"
 msgstr "Proposal is archived"
 
-#: apps/budgeting/models.py:28
+#: apps/budgeting/models.py:32
 msgid ""
 "Exclude this proposal from all listings by default. You can still access "
 "this proposal by using filters."
@@ -1598,7 +1626,7 @@ msgstr "Request phase"
 msgid "Post ideas with budget proposals, comment on them and rate them."
 msgstr "Post ideas with budget proposals, comment on them and rate them."
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:538
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:540
 msgid "participatory budgeting"
 msgstr "participatory budgeting"
 
@@ -1623,6 +1651,17 @@ msgstr "Positive Ratings"
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_list_item.html:14
 msgid "Negative Ratings"
 msgstr "Negative Ratings"
+
+#: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_map_list_view.html:21
+#: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:23
+#: apps/debate/templates/a4_candy_debate/subject_list.html:19
+#: apps/ideas/templates/a4_candy_ideas/idea_list.html:28
+#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:21
+#: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:24
+#: apps/topicprio/templates/a4_candy_topicprio/topic_dashboard_list.html:23
+#: apps/topicprio/templates/a4_candy_topicprio/topic_list.html:19
+msgid "Nothing to show"
+msgstr "Nothing to show"
 
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:4
 msgid "Confirm Proposal Deletion"
@@ -1702,27 +1741,6 @@ msgstr ""
 msgid "Submit proposal"
 msgstr "Submit proposal"
 
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_list.html:35
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_list.html:35
-msgid "Zoom in"
-msgstr "Zoom in"
-
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_list.html:36
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_list.html:36
-msgid "Zoom out"
-msgstr "Zoom out"
-
-#: apps/budgeting/templates/a4_candy_budgeting/proposal_list.html:58
-#: apps/debate/templates/a4_candy_debate/subject_dashboard_list.html:23
-#: apps/debate/templates/a4_candy_debate/subject_list.html:19
-#: apps/ideas/templates/a4_candy_ideas/idea_list.html:28
-#: apps/mapideas/templates/a4_candy_mapideas/mapidea_list.html:58
-#: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:24
-#: apps/topicprio/templates/a4_candy_topicprio/topic_dashboard_list.html:23
-#: apps/topicprio/templates/a4_candy_topicprio/topic_list.html:19
-msgid "Nothing to show"
-msgstr "Nothing to show"
-
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:4
 msgid "Moderate"
 msgstr "Moderate"
@@ -1750,45 +1768,53 @@ msgstr "Edit %(title)s"
 msgid "Edit proposal"
 msgstr "Edit proposal"
 
-#: apps/budgeting/views.py:19 apps/ideas/views.py:29 apps/mapideas/views.py:17
+#: apps/budgeting/views.py:23 apps/ideas/views.py:30 apps/mapideas/views.py:21
 msgid "Most recent"
 msgstr "Most recent"
 
-#: apps/budgeting/views.py:21 apps/ideas/views.py:31 apps/mapideas/views.py:19
+#: apps/budgeting/views.py:25 apps/ideas/views.py:32 apps/mapideas/views.py:23
 #: apps/topicprio/views.py:30
 msgid "Most popular"
 msgstr "Most popular"
 
-#: apps/budgeting/views.py:22 apps/debate/filters.py:19 apps/ideas/views.py:32
-#: apps/mapideas/views.py:20 apps/topicprio/views.py:31
+#: apps/budgeting/views.py:26 apps/debate/filters.py:19 apps/ideas/views.py:33
+#: apps/mapideas/views.py:24 apps/topicprio/views.py:31
 msgid "Most commented"
 msgstr "Most commented"
 
-#: apps/budgeting/views.py:86
+#: apps/budgeting/views.py:107
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
 
-#: apps/cms/contacts/models.py:37 apps/users/forms.py:49
+#: apps/captcha/fields.py:15
+msgid "Please complete the captcha."
+msgstr "Please complete the captcha."
+
+#: apps/captcha/fields.py:20
+msgid "Captcha verification failed. Please try again."
+msgstr "Captcha verification failed. Please try again."
+
+#: apps/cms/contacts/models.py:42 apps/users/forms.py:39
 msgid "I am not a robot"
 msgstr "I am not a robot"
 
-#: apps/cms/contacts/models.py:136
+#: apps/cms/contacts/models.py:141
 msgid "I want to receive a copy of my message"
 msgstr "I want to receive a copy of my message"
 
-#: apps/cms/contacts/models.py:146
+#: apps/cms/contacts/models.py:151
 msgid "Your message"
 msgstr "Your message"
 
-#: apps/cms/contacts/models.py:157
+#: apps/cms/contacts/models.py:162
 msgid "Your email address"
 msgstr "Your email address"
 
-#: apps/cms/contacts/models.py:168
+#: apps/cms/contacts/models.py:173
 msgid "Your telephone number"
 msgstr "Your telephone number"
 
-#: apps/cms/contacts/models.py:179
+#: apps/cms/contacts/models.py:184
 msgid "Your name"
 msgstr "Your name"
 
@@ -1858,6 +1884,7 @@ msgstr "display more"
 #: apps/cms/news/templates/a4_candy_cms_news/news_page.html:78
 #: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_activities.html:8
 #: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_following.html:8
+#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_notifications.html:8
 msgid "Back to overview"
 msgstr "Back to overview"
 
@@ -1871,6 +1898,7 @@ msgid "Header image: "
 msgstr "Header image: "
 
 #: apps/cms/settings/helpers.py:8
+#, python-brace-format
 msgid "Please look {}here{} for more information."
 msgstr "Please look {}here{} for more information."
 
@@ -2029,13 +2057,33 @@ msgstr ""
 msgid "Filter bar "
 msgstr "Filter bar "
 
+#: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:4
+msgid "View mode toggle"
+msgstr "View mode toggle"
+
 #: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:6
 msgid "View as list"
 msgstr "View as list"
 
+#: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:8
+msgid "List"
+msgstr "List"
+
 #: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:12
 msgid "View as map"
 msgstr "View as map"
+
+#: apps/contrib/templates/a4_candy_contrib/includes/map_filter_and_sort.html:14
+msgid "Map"
+msgstr "Map"
+
+#: apps/contrib/templates/a4_candy_contrib/includes/map_list_view_base.html:15
+msgid "Zoom in"
+msgstr "Zoom in"
+
+#: apps/contrib/templates/a4_candy_contrib/includes/map_list_view_base.html:16
+msgid "Zoom out"
+msgstr "Zoom out"
 
 #: apps/contrib/templates/a4_candy_contrib/includes/pagination.html:4
 msgid "Page navigation"
@@ -2309,11 +2357,11 @@ msgstr "Subjects"
 msgid "Alphabetical"
 msgstr "Alphabetical"
 
-#: apps/debate/models.py:20
+#: apps/debate/models.py:22
 msgid "max 120 characters"
 msgstr "max 120 characters"
 
-#: apps/debate/models.py:27
+#: apps/debate/models.py:29
 msgid ""
 "In addition to the title, you can insert an optional explanatory text (max. "
 "350 char.). This field is only shown in the participation if it is filled "
@@ -2433,11 +2481,11 @@ msgstr "back to chapter"
 msgid "Document has no chapters defined."
 msgstr "Document has no chapters defined."
 
-#: apps/ideas/models.py:37 apps/topicprio/models.py:39
+#: apps/ideas/models.py:41 apps/topicprio/models.py:43
 msgid "Add image"
 msgstr "Add image"
 
-#: apps/ideas/models.py:40
+#: apps/ideas/models.py:44
 msgid "Visualize your idea."
 msgstr "Visualize your idea."
 
@@ -2524,7 +2572,7 @@ msgstr "Feedback on this idea"
 msgid "Edit idea"
 msgstr "Edit idea"
 
-#: apps/ideas/views.py:154 apps/mapideas/views.py:71
+#: apps/ideas/views.py:155 apps/mapideas/views.py:92
 msgid "Your Idea has been deleted"
 msgstr "Your Idea has been deleted"
 
@@ -2589,6 +2637,7 @@ msgid "Add affiliation"
 msgstr "Add affiliation"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/livequestion_form.html:18
+#: apps/notifications/strategies/comment_strategies.py:83
 msgid "post"
 msgstr "post"
 
@@ -2645,6 +2694,7 @@ msgid "Ask a question yourself!"
 msgstr "Ask a question yourself!"
 
 #: apps/interactiveevents/templatetags/react_interactiveevents.py:28
+#, python-brace-format
 msgid ""
 "I confirm that I have read and accepted the {}terms of use{} and the {}data "
 "protection policy{}."
@@ -2656,11 +2706,11 @@ msgstr ""
 msgid "Please locate your proposal on the map."
 msgstr "Please locate your proposal on the map."
 
-#: apps/mapideas/models.py:14
+#: apps/mapideas/models.py:15
 msgid "Where can your idea be located on a map?"
 msgstr "Where can your idea be located on a map?"
 
-#: apps/mapideas/models.py:16
+#: apps/mapideas/models.py:17
 msgid ""
 "Click inside the marked area to set the marker. A set marker can be dragged "
 "when pressed."
@@ -2668,11 +2718,11 @@ msgstr ""
 "Click inside the marked area to set the marker. A set marker can be dragged "
 "when pressed."
 
-#: apps/mapideas/models.py:26
+#: apps/mapideas/models.py:27
 msgid "Label of the ideas location"
 msgstr "Label of the ideas location"
 
-#: apps/mapideas/models.py:27
+#: apps/mapideas/models.py:28
 msgid "This could be an address or the name of a landmark."
 msgstr "This could be an address or the name of a landmark."
 
@@ -2851,6 +2901,870 @@ msgstr "Create Newsletter"
 msgid "Newsletter has been saved and will be sent to the recipients."
 msgstr "Newsletter has been saved and will be sent to the recipients."
 
+#: apps/notifications/models.py:25
+msgid "Phase Started"
+msgstr "Phase Started"
+
+#: apps/notifications/models.py:26
+msgid "Phase Ended"
+msgstr "Phase Ended"
+
+#: apps/notifications/models.py:27
+msgid "Project Started"
+msgstr "Project Started"
+
+#: apps/notifications/models.py:28
+msgid "Project Completed"
+msgstr "Project Completed"
+
+#: apps/notifications/models.py:29
+msgid "Project Created"
+msgstr "Project Created"
+
+#: apps/notifications/models.py:30
+msgid "Project Deleted"
+msgstr "Project Deleted"
+
+#: apps/notifications/models.py:32
+msgid "User Content created"
+msgstr "User Content created"
+
+#: apps/notifications/models.py:33
+msgid "Event Added"
+msgstr "Event Added"
+
+#: apps/notifications/models.py:34
+msgid "Event Starting Soon"
+msgstr "Event Starting Soon"
+
+#: apps/notifications/models.py:35
+msgid "Event Update"
+msgstr "Event Update"
+
+#: apps/notifications/models.py:36
+msgid "Event Cancelled"
+msgstr "Event Cancelled"
+
+#: apps/notifications/models.py:40
+msgid "Project Moderation Invitation"
+msgstr "Project Moderation Invitation"
+
+#: apps/notifications/models.py:42
+msgid "Project Invitation"
+msgstr "Project Invitation"
+
+#: apps/notifications/models.py:43
+msgid "Comment Reply"
+msgstr "Comment Reply"
+
+#: apps/notifications/models.py:44
+msgid "Comment on Post"
+msgstr "Comment on Post"
+
+#: apps/notifications/models.py:47
+msgid "Moderator Highlight"
+msgstr "Moderator Highlight"
+
+#: apps/notifications/models.py:49
+msgid "Moderator Comment Feedback"
+msgstr "Moderator Comment Feedback"
+
+#: apps/notifications/models.py:52
+msgid "Moderator Blocked Comment"
+msgstr "Moderator Blocked Comment"
+
+#: apps/notifications/models.py:54
+msgid "Moderator Idea Feedback"
+msgstr "Moderator Idea Feedback"
+
+#: apps/notifications/models.py:57
+msgid "System Notification"
+msgstr "System Notification"
+
+#: apps/notifications/models.py:144
+msgid "Email newsletter"
+msgstr "Email newsletter"
+
+#: apps/notifications/models.py:149
+msgid "Email project updates"
+msgstr "Email project updates"
+
+#: apps/notifications/models.py:152
+msgid "In-app project updates"
+msgstr "In-app project updates"
+
+#: apps/notifications/models.py:157
+msgid "Email project events"
+msgstr "Email project events"
+
+#: apps/notifications/models.py:160
+msgid "In-app project events"
+msgstr "In-app project events"
+
+#: apps/notifications/models.py:165
+msgid "Email user interactions"
+msgstr "Email user interactions"
+
+#: apps/notifications/models.py:168
+msgid "In-app user interactions"
+msgstr "In-app user interactions"
+
+#: apps/notifications/models.py:171
+msgid "Email messages"
+msgstr "Email messages"
+
+#: apps/notifications/models.py:173
+msgid "In-app messages"
+msgstr "In-app messages"
+
+#: apps/notifications/models.py:177
+msgid "Email invitations"
+msgstr "Email invitations"
+
+#: apps/notifications/models.py:180
+msgid "In-app invitations"
+msgstr "In-app invitations"
+
+#: apps/notifications/models.py:184
+msgid "Email moderation actions"
+msgstr "Email moderation actions"
+
+#: apps/notifications/models.py:187
+msgid "In-app moderation actions"
+msgstr "In-app moderation actions"
+
+#: apps/notifications/models.py:190
+msgid "Email warnings"
+msgstr "Email warnings"
+
+#: apps/notifications/models.py:192
+msgid "In-app warnings"
+msgstr "In-app warnings"
+
+#: apps/notifications/models.py:290
+msgid "Notification Type"
+msgstr "Notification Type"
+
+#: apps/notifications/models.py:297
+msgid "Target URL"
+msgstr "Target URL"
+
+#: apps/notifications/models.py:301
+msgid "Notification"
+msgstr "Notification"
+
+#: apps/notifications/models.py:302 apps/userdashboard/views.py:68
+msgid "Notifications"
+msgstr "Notifications"
+
+#: apps/notifications/strategies/comment_strategies.py:29
+#: apps/notifications/strategies/comment_strategies.py:92
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:49
+msgid "View post"
+msgstr "View post"
+
+#: apps/notifications/strategies/comment_strategies.py:29
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:26
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:17
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:31
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:29
+msgid "Visit the project"
+msgstr "Visit the project"
+
+#: apps/notifications/strategies/comment_strategies.py:32
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:4
+msgid "A moderator highlighted your comment"
+msgstr "A moderator highlighted your comment"
+
+#: apps/notifications/strategies/comment_strategies.py:33
+#, python-brace-format
+msgid "Project {project_name}"
+msgstr "Project {project_name}"
+
+#: apps/notifications/strategies/comment_strategies.py:39
+#, python-brace-format
+msgid ""
+"This email was sent to {receiver_email}. You have received the e-mail "
+"because your contribution to the above project was highlighted by a "
+"moderator."
+msgstr ""
+"This email was sent to {receiver_email}. You have received the e-mail "
+"because your contribution to the above project was highlighted by a "
+"moderator."
+
+#: apps/notifications/strategies/comment_strategies.py:52
+#, python-brace-format
+msgid "A moderator highlighted your comment '{comment}' in project {project}"
+msgstr "A moderator highlighted your comment '{comment}' in project {project}"
+
+#: apps/notifications/strategies/comment_strategies.py:86
+#, python-brace-format
+msgid "{commenter} commented on your post {post}"
+msgstr "{commenter} commented on your post {post}"
+
+#: apps/notifications/strategies/comment_strategies.py:89
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:16
+msgid "New comment on your post"
+msgstr "New comment on your post"
+
+#: apps/notifications/strategies/comment_strategies.py:94
+#, python-brace-format
+msgid ""
+"This email was sent to {receiver_email} because someone commented on your "
+"content."
+msgstr ""
+"This email was sent to {receiver_email} because someone commented on your "
+"content."
+
+#: apps/notifications/strategies/comment_strategies.py:103
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:40
+msgid "See what they said and join the discussion."
+msgstr "See what they said and join the discussion."
+
+#: apps/notifications/strategies/comment_strategies.py:108
+#, python-brace-format
+msgid "{user} commented on your post {post}"
+msgstr "{user} commented on your post {post}"
+
+#: apps/notifications/strategies/comment_strategies.py:145
+#, python-brace-format
+msgid "{commenter} replied to your comment"
+msgstr "{commenter} replied to your comment"
+
+#: apps/notifications/strategies/comment_strategies.py:148
+msgid "New reply to your comment"
+msgstr "New reply to your comment"
+
+#: apps/notifications/strategies/comment_strategies.py:151
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:54
+msgid "View conversation"
+msgstr "View conversation"
+
+#: apps/notifications/strategies/comment_strategies.py:153
+#, python-brace-format
+msgid ""
+"This email was sent to {receiver_email} because someone replied to your "
+"comment."
+msgstr ""
+"This email was sent to {receiver_email} because someone replied to your "
+"comment."
+
+#: apps/notifications/strategies/comment_strategies.py:162
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:45
+msgid "Join the conversation and continue the discussion."
+msgstr "Join the conversation and continue the discussion."
+
+#: apps/notifications/strategies/comment_strategies.py:168
+#, python-brace-format
+msgid "{user} replied to your {comment}"
+msgstr "{user} replied to your {comment}"
+
+#: apps/notifications/strategies/event_strategies.py:22
+#, python-brace-format
+msgid "Event added to project {project}"
+msgstr "Event added to project {project}"
+
+#: apps/notifications/strategies/event_strategies.py:25
+#: apps/notifications/strategies/event_strategies.py:72
+#: apps/notifications/strategies/event_strategies.py:116
+#: apps/notifications/strategies/event_strategies.py:161
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:6
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:6
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:6
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_updated.en.email:6
+msgid "Event"
+msgstr "Event"
+
+#: apps/notifications/strategies/event_strategies.py:28
+#: apps/notifications/strategies/event_strategies.py:119
+#: apps/notifications/strategies/event_strategies.py:167
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:24
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:24
+msgid "Show Event"
+msgstr "Show Event"
+
+#: apps/notifications/strategies/event_strategies.py:30
+#: apps/notifications/strategies/event_strategies.py:75
+#: apps/notifications/strategies/event_strategies.py:121
+#: apps/notifications/strategies/event_strategies.py:164
+#: apps/notifications/strategies/project_strategies.py:78
+#: apps/notifications/strategies/project_strategies.py:110
+#, python-brace-format
+msgid ""
+"This email was sent to {receiver_email}. You have received the e-mail "
+"because you are following the above project."
+msgstr ""
+"This email was sent to {receiver_email}. You have received the e-mail "
+"because you are following the above project."
+
+#: apps/notifications/strategies/event_strategies.py:44
+#, python-brace-format
+msgid "A new event '{event}' has been added to the project {project}"
+msgstr "A new event '{event}' has been added to the project {project}"
+
+#: apps/notifications/strategies/event_strategies.py:69
+#, python-brace-format
+msgid "Event {event} in project {project} cancelled"
+msgstr "Event {event} in project {project} cancelled"
+
+#: apps/notifications/strategies/event_strategies.py:89
+#, python-brace-format
+msgid "The event '{event}' in project {project} has been cancelled"
+msgstr "The event '{event}' in project {project} has been cancelled"
+
+#: apps/notifications/strategies/event_strategies.py:113
+#, python-brace-format
+msgid "Event in project {project}"
+msgstr "Event in project {project}"
+
+#: apps/notifications/strategies/event_strategies.py:135
+#, python-brace-format
+msgid "The event '{event}' in project {project} is starting on {event_date}"
+msgstr "The event '{event}' in project {project} is starting on {event_date}"
+
+#: apps/notifications/strategies/event_strategies.py:158
+#, python-brace-format
+msgid "Event {event} in project {project} updated"
+msgstr "Event {event} in project {project} updated"
+
+#: apps/notifications/strategies/event_strategies.py:180
+#, python-brace-format
+msgid "The event {event} in project {project} has been updated"
+msgstr "The event {event} in project {project} has been updated"
+
+#: apps/notifications/strategies/moderation_strategies.py:29
+#: apps/notifications/strategies/moderation_strategies.py:69
+#: apps/notifications/strategies/moderation_strategies.py:120
+#, python-brace-format
+msgid "Feedback for your contribution on {site_name}"
+msgstr "Feedback for your contribution on {site_name}"
+
+#: apps/notifications/strategies/moderation_strategies.py:32
+#: apps/notifications/strategies/moderation_strategies.py:70
+#: apps/notifications/strategies/moderation_strategies.py:121
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:6
+msgid "Feedback for your contribution"
+msgstr "Feedback for your contribution"
+
+#: apps/notifications/strategies/moderation_strategies.py:35
+#: apps/notifications/strategies/moderation_strategies.py:73
+#: apps/notifications/strategies/moderation_strategies.py:124
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:31
+msgid "Check your contribution"
+msgstr "Check your contribution"
+
+#: apps/notifications/strategies/moderation_strategies.py:37
+#: apps/notifications/strategies/moderation_strategies.py:75
+#: apps/notifications/strategies/moderation_strategies.py:126
+#, python-brace-format
+msgid ""
+"This email was sent to {receiver_email}. You have received the e-mail "
+"because you added a contribution to the above project."
+msgstr ""
+"This email was sent to {receiver_email}. You have received the e-mail "
+"because you added a contribution to the above project."
+
+#: apps/notifications/strategies/moderation_strategies.py:49
+#, python-brace-format
+msgid "A moderator gave feedback on your {comment}"
+msgstr "A moderator gave feedback on your {comment}"
+
+#: apps/notifications/strategies/moderation_strategies.py:52
+msgid "comment"
+msgstr "comment"
+
+#: apps/notifications/strategies/moderation_strategies.py:89
+#, python-brace-format
+msgid "A moderator gave feedback on your idea {idea}"
+msgstr "A moderator gave feedback on your idea {idea}"
+
+#: apps/notifications/strategies/moderation_strategies.py:103
+#: apps/notifications/strategies/moderation_strategies.py:156
+msgid "approved"
+msgstr "approved"
+
+#: apps/notifications/strategies/moderation_strategies.py:104
+#: apps/notifications/strategies/moderation_strategies.py:157
+msgid "rejected"
+msgstr "rejected"
+
+#: apps/notifications/strategies/moderation_strategies.py:105
+#: apps/notifications/strategies/moderation_strategies.py:158
+msgid "reviewed"
+msgstr "reviewed"
+
+#: apps/notifications/strategies/moderation_strategies.py:106
+msgid "under consideration"
+msgstr "under consideration"
+
+#: apps/notifications/strategies/moderation_strategies.py:141
+#, python-brace-format
+msgid "A moderator gave feedback on your proposal {proposal}"
+msgstr "A moderator gave feedback on your proposal {proposal}"
+
+#: apps/notifications/strategies/moderation_strategies.py:183
+#: apps/notifications/strategies/moderation_strategies.py:184
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:10
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:14
+msgid "Your comment was blocked"
+msgstr "Your comment was blocked"
+
+#: apps/notifications/strategies/moderation_strategies.py:186
+#, python-brace-format
+msgid "Hello <strong>{receiver_name}</strong>,"
+msgstr "Hello <strong>{receiver_name}</strong>,"
+
+#: apps/notifications/strategies/moderation_strategies.py:188
+#: apps/notifications/strategies/project_strategies.py:200
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:46
+msgid "View Project"
+msgstr "View Project"
+
+#: apps/notifications/strategies/moderation_strategies.py:189
+#: apps/notifications/strategies/project_strategies.py:154
+#: apps/notifications/strategies/project_strategies.py:201
+#, python-brace-format
+msgid "This email was sent to {receiver_email}."
+msgstr "This email was sent to {receiver_email}."
+
+#: apps/notifications/strategies/phase_strategies.py:28
+#, python-brace-format
+msgid "The phase '{phase}' in {project} has begun."
+msgstr "The phase '{phase}' in {project} has begun."
+
+#: apps/notifications/strategies/phase_strategies.py:55
+#, python-brace-format
+msgid "The phase '{phase}' in {project} has been completed"
+msgstr "The phase '{phase}' in {project} has been completed"
+
+#: apps/notifications/strategies/project_strategies.py:70
+#, python-brace-format
+msgid "Here we go: {project_name} starts now!"
+msgstr "Here we go: {project_name} starts now!"
+
+#: apps/notifications/strategies/project_strategies.py:73
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:6
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:11
+msgid "Here we go!"
+msgstr "Here we go!"
+
+#: apps/notifications/strategies/project_strategies.py:76
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:21
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:21
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:17
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:26
+msgid "Join now"
+msgstr "Join now"
+
+#: apps/notifications/strategies/project_strategies.py:87
+#, python-brace-format
+msgid "The project {project} has begun."
+msgstr "The project {project} has begun."
+
+#: apps/notifications/strategies/project_strategies.py:103
+#, python-brace-format
+msgid "{project_name} has completed."
+msgstr "{project_name} has completed."
+
+#: apps/notifications/strategies/project_strategies.py:108
+msgid "View now"
+msgstr "View now"
+
+#: apps/notifications/strategies/project_strategies.py:118
+#, python-brace-format
+msgid "The project {project} has been completed."
+msgstr "The project {project} has been completed."
+
+#: apps/notifications/strategies/project_strategies.py:146
+#: apps/notifications/strategies/project_strategies.py:149
+#, python-brace-format
+msgid "Invitation to the {project_type} project: \"{project_name}\""
+msgstr "Invitation to the {project_type} project: \"{project_name}\""
+
+#: apps/notifications/strategies/project_strategies.py:152
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_invitation.en.email:14
+#: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:15
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:15
+msgid "Accept invitation"
+msgstr "Accept invitation"
+
+#: apps/notifications/strategies/project_strategies.py:167
+#, python-brace-format
+msgid ""
+"You have been invited to project {project}. Please check your email to "
+"accept."
+msgstr ""
+"You have been invited to project {project}. Please check your email to "
+"accept."
+
+#: apps/notifications/strategies/project_strategies.py:195
+#, python-brace-format
+msgid "Moderator invitation for project {project_name}"
+msgstr "Moderator invitation for project {project_name}"
+
+#: apps/notifications/strategies/project_strategies.py:198
+msgid "Moderator Invitation"
+msgstr "Moderator Invitation"
+
+#: apps/notifications/strategies/project_strategies.py:209
+#, python-brace-format
+msgid "You have been invited to be a moderator of project {project}"
+msgstr "You have been invited to be a moderator of project {project}"
+
+#: apps/notifications/strategies/project_strategies.py:226
+#, python-brace-format
+msgid "New project {project_name} on {site_name}"
+msgstr "New project {project_name} on {site_name}"
+
+#: apps/notifications/strategies/project_strategies.py:228
+#, python-brace-format
+msgid "The new project {project_name} was created for {organisation_name}"
+msgstr "The new project {project_name} was created for {organisation_name}"
+
+#: apps/notifications/strategies/project_strategies.py:233
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:15
+msgid "Show project"
+msgstr "Show project"
+
+#: apps/notifications/strategies/project_strategies.py:235
+#, python-brace-format
+msgid ""
+"This email was sent to {receiver_email}. This email was sent to you because "
+"you are an initiator of {organisation_name}."
+msgstr ""
+"This email was sent to {receiver_email}. This email was sent to you because "
+"you are an initiator of {organisation_name}."
+
+#: apps/notifications/strategies/project_strategies.py:246
+#, python-brace-format
+msgid "A new project {project} has been created."
+msgstr "A new project {project} has been created."
+
+#: apps/notifications/strategies/project_strategies.py:262
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:4
+msgid "Deletion of project"
+msgstr "Deletion of project"
+
+#: apps/notifications/strategies/project_strategies.py:263
+#, python-brace-format
+msgid "The project {project} was deleted."
+msgstr "The project {project} was deleted."
+
+#: apps/notifications/strategies/project_strategies.py:267
+#, python-brace-format
+msgid ""
+"This email was sent to {receiver_email}. This email was sent to you because "
+"you are an initiator of the organisation '{organisation_name}', in which a "
+"project was deleted."
+msgstr ""
+"This email was sent to {receiver_email}. This email was sent to you because "
+"you are an initiator of the organisation '{organisation_name}', in which a "
+"project was deleted."
+
+#: apps/notifications/strategies/project_strategies.py:279
+#, python-brace-format
+msgid "The project {project} has been deleted."
+msgstr "The project {project} has been deleted."
+
+#: apps/notifications/strategies/project_strategies.py:308
+#, python-brace-format
+msgid "A {content_type} was added to the project {project}"
+msgstr "A {content_type} was added to the project {project}"
+
+#: apps/notifications/strategies/project_strategies.py:312
+#, python-brace-format
+msgid "{creator_name} created a {content_type} on the project {project}"
+msgstr "{creator_name} created a {content_type} on the project {project}"
+
+#: apps/notifications/strategies/project_strategies.py:319
+#, python-brace-format
+msgid "Check the {content_type}"
+msgstr "Check the {content_type}"
+
+#: apps/notifications/strategies/project_strategies.py:323
+#, python-brace-format
+msgid ""
+"This email was sent to {receiver_email}. This email was sent to you because "
+"you are a moderator in the project."
+msgstr ""
+"This email was sent to {receiver_email}. This email was sent to you because "
+"you are a moderator in the project."
+
+#: apps/notifications/strategies/project_strategies.py:339
+#, python-brace-format
+msgid ""
+"A new {content_type} \"{content}\" has been created in project {project}."
+msgstr ""
+"A new {content_type} \"{content}\" has been created in project {project}."
+
+#: apps/notifications/templates/a4_candy_notifications/_notification_card.html:14
+#: apps/notifications/templates/a4_candy_notifications/_notification_card.html:36
+msgid "View all"
+msgstr "View all"
+
+#: apps/notifications/templates/a4_candy_notifications/_notification_card.html:23
+#: apps/notifications/templates/a4_candy_notifications/_notification_card.html:45
+msgid "Mark all as read"
+msgstr "Mark all as read"
+
+#: apps/notifications/templates/a4_candy_notifications/_pagination.html:9
+#: adhocracy-plus/templates/a4modules/module_detail.html:78
+msgid "Previous"
+msgstr "Previous"
+
+#: apps/notifications/templates/a4_candy_notifications/_pagination.html:25
+#: adhocracy-plus/templates/a4modules/module_detail.html:84
+msgid "Next"
+msgstr "Next"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/comment_on_post.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:29
+#, python-format
+msgid ""
+"\n"
+"<strong>%(commenter)s</strong> commented on your post \"<strong>%(post)s</"
+"strong>\".\n"
+msgstr ""
+"\n"
+"<strong>%(commenter)s</strong> commented on your post \"<strong>%(post)s</"
+"strong>\".\n"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/comment_on_post.en.email:8
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:34
+msgid "Their comment:"
+msgstr "Their comment:"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/comment_reply.de.email:3
+msgid ""
+"\n"
+"<strong>GUTEN TAG</strong>\n"
+msgstr ""
+"\n"
+"<strong>GUTEN TAG</strong>\n"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/comment_reply.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:29
+#, python-format
+msgid ""
+"\n"
+"<strong>%(commenter)s</strong> replied to your comment in the project.\n"
+msgstr ""
+"\n"
+"<strong>%(commenter)s</strong> replied to your comment in the project.\n"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/comment_reply.en.email:8
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:34
+msgid "Your original comment:"
+msgstr "Your original comment:"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/comment_reply.en.email:13
+#, python-format
+msgid "Reply from %(commenter)s:"
+msgstr "Reply from %(commenter)s:"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/event_added.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/content/event_soon.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:13
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:13
+#, python-format
+msgid "The following event takes place on %(date)s:"
+msgstr "The following event takes place on %(date)s:"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/event_added.en.email:9
+#: apps/notifications/templates/a4_candy_notifications/emails/content/event_soon.en.email:9
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:19
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:19
+msgid "Further information about the event can be found in the project."
+msgstr "Further information about the event can be found in the project."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/event_deleted.en.email:3
+#, python-format
+msgid "Unfortunately, %(event)s on %(date)s below has been cancelled:"
+msgstr "Unfortunately, %(event)s on %(date)s below has been cancelled:"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/event_deleted.en.email:9
+msgid "Please contact the organisation for further information"
+msgstr "Please contact the organisation for further information"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/event_updated.en.email:3
+#, python-format
+msgid "%(event)s below has been updated."
+msgstr "%(event)s below has been updated."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_blocked_comment.en.email:2
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:26
+#, python-format
+msgid ""
+"Your comment in the project <strong>\"%(project_name)s\"</strong> was "
+"blocked by our team."
+msgstr ""
+"Your comment in the project <strong>\"%(project_name)s\"</strong> was "
+"blocked by our team."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_blocked_comment.en.email:4
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:28
+msgid ""
+"Please ensure your contributions align with our community guidelines to "
+"maintain a constructive discussion environment."
+msgstr ""
+"Please ensure your contributions align with our community guidelines to "
+"maintain a constructive discussion environment."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_blocked_comment.en.email:6
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:30
+msgid "Your comment:"
+msgstr "Your comment:"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_blocked_comment.en.email:13
+#, python-format
+msgid ""
+"Please review our <a href=\"%(netiquette_url)s\">netiquette guidelines</a> "
+"for community participation."
+msgstr ""
+"Please review our <a href=\"%(netiquette_url)s\">netiquette guidelines</a> "
+"for community participation."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_comment.en.email:4
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_post.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:13
+#, python-format
+msgid "%(organisation_name)s reacted on your contribution."
+msgstr "%(organisation_name)s reacted on your contribution."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_comment.en.email:8
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_post.en.email:14
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:7
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:22
+#, python-format
+msgid "Official feedback: %(feedback)s"
+msgstr "Official feedback: %(feedback)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_comment.en.email:12
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_post.en.email:19
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:11
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:26
+msgid "Do you want to answer?"
+msgstr "Do you want to answer?"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_post.en.email:8
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:17
+#, python-format
+msgid "Your contribution is %(status)s."
+msgstr "Your contribution is %(status)s."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_highlighted_comment.en.email:3
+msgid "A moderator highlighted your comment in the project."
+msgstr "A moderator highlighted your comment in the project."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_created.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:10
+#, python-format
+msgid ""
+"%(creator_name)s has created the project %(project_name)s for "
+"%(organisation_name)s."
+msgstr ""
+"%(creator_name)s has created the project %(project_name)s for "
+"%(organisation_name)s."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_deleted.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:10
+#, python-format
+msgid ""
+"The project \"%(project)s\" on the participation platform %(site_name)s was "
+"deleted."
+msgstr ""
+"The project \"%(project)s\" on the participation platform %(site_name)s was "
+"deleted."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_ended.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:12
+msgid "Online participation for the above project has finished."
+msgstr "Online participation for the above project has finished."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_invitation.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_invitation.en.email:5
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:4
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:6
+#, python-format
+msgid "Invitation to the semi-public project: \"%(project_name)s\""
+msgstr "Invitation to the semi-public project: \"%(project_name)s\""
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_invitation.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_invitation.en.email:5
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:4
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:6
+#, python-format
+msgid "Invitation to the private project: \"%(project_name)s\""
+msgstr "Invitation to the private project: \"%(project_name)s\""
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_invitation.en.email:9
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:10
+#, python-format
+msgid ""
+"you are invited to participate in the semi-public project "
+"\"%(project_name)s\" on the participation platform  %(site_name)s. To "
+"participate click on \"Accept invitation\"."
+msgstr ""
+"you are invited to participate in the semi-public project "
+"\"%(project_name)s\" on the participation platform  %(site_name)s. To "
+"participate click on \"Accept invitation\"."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_invitation.en.email:9
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:10
+#, python-format
+msgid ""
+"you are invited to participate in the private project \"%(project_name)s\" "
+"on the participation platform  %(site_name)s. To participate click on "
+"\"Accept invitation\"."
+msgstr ""
+"you are invited to participate in the private project \"%(project_name)s\" "
+"on the participation platform  %(site_name)s. To participate click on "
+"\"Accept invitation\"."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_invitation.en.email:16
+#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:17
+#, python-format
+msgid ""
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are invited to participate in a private project."
+msgstr ""
+"This email was sent to %(receiver_mail)s. This email was sent to you because "
+"you are invited to participate in a private project."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_started.en.email:3
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:13
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:18
+msgid "Online participation for the above project has started."
+msgstr "Online participation for the above project has started."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/project_started.en.email:6
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:16
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:21
+#, python-format
+msgid "You can participate until %(end_date)s."
+msgstr "You can participate until %(end_date)s."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/user_content_created.en.email:3
+#, python-format
+msgid ""
+"\n"
+"A new %(content_type)s was added to the project %(project)s by "
+"%(creator_name)s.\n"
+msgstr ""
+"\n"
+"A new %(content_type)s was added to the project %(project)s by "
+"%(creator_name)s.\n"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/content/user_content_created.en.email:9
+#, python-format
+msgid ""
+"\n"
+"Checkout what happened on the project %(project)s.\n"
+msgstr ""
+"\n"
+"Checkout what happened on the project %(project)s.\n"
+
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:4
 #, python-format
 msgid "Reaction to your contribution in project %(project_name)s"
@@ -2861,11 +3775,20 @@ msgid "Reaction to your contribution"
 msgstr "Reaction to your contribution"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:9
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:17
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:24
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:24
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:8
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:9
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:9
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:9
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:9
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_updated.en.email:9
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:9
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:9
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:8
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:14
+#: apps/notifications/templates/a4_candy_notifications/emails/strategy_email_base.de.email:8
+#: apps/notifications/templates/a4_candy_notifications/emails/strategy_email_base.en.email:8
 #, python-format
 msgid "Hello %(receiver_name)s,"
 msgstr "Hello %(receiver_name)s,"
@@ -2880,19 +3803,12 @@ msgid "Would you like to answer?"
 msgstr "Would you like to answer?"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:26
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:17
 msgid "View Post"
 msgstr "View Post"
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:26
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:31
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:55
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:57
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:59
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:61
-msgid "Visit the project"
-msgstr "Visit the project"
-
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:28
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:19
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:33
 #, python-format
 msgid ""
@@ -2902,136 +3818,75 @@ msgstr ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you added a contribution to the above project."
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:5
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:9
-msgid "Your contribution was deleted"
-msgstr "Your contribution was deleted"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:18
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:12
 #, python-format
-msgid "Hello <strong>%(receiver_name)s</strong>,"
-msgstr "Hello <strong>%(receiver_name)s</strong>,"
+msgid "%(commenter)s commented on your %(post)s"
+msgstr "%(commenter)s commented on your %(post)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:53
+#, python-format
+msgid ""
+"This email was sent to %(receiver_email)s because someone commented on your "
+"content."
+msgstr ""
+"This email was sent to %(receiver_email)s because someone commented on your "
+"content."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:12
+#, python-format
+msgid "%(commenter)s replied to your comment"
+msgstr "%(commenter)s replied to your comment"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:16
+msgid "xxxdead New reply to your comment"
+msgstr "xxxdead New reply to your comment"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:39
+#, python-format
+msgid "Reply from %(commenter_name)s:"
+msgstr "Reply from %(commenter_name)s:"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:58
+#, python-format
+msgid ""
+"This email was sent to %(receiver_email)s because someone replied to your "
+"comment."
+msgstr ""
+"This email was sent to %(receiver_email)s because someone replied to your "
+"comment."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:22
 #, python-format
-msgid ""
-"Your contribution in the project <strong>\"%(project_name)s\"</strong> was "
-"deleted by the moderator."
-msgstr ""
-"Your contribution in the project <strong>\"%(project_name)s\"</strong> was "
-"deleted by the moderator."
+msgid "Hello <strong>%(username)s</strong>,"
+msgstr "Hello <strong>%(username)s</strong>,"
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:22
-msgid ""
-"Please pay attention to the basic rules when writing contributions. In this "
-"way we create a pleasant atmosphere for an open exchange and achieve good "
-"results."
-msgstr ""
-"Please pay attention to the basic rules when writing contributions. In this "
-"way we create a pleasant atmosphere for an open exchange and achieve good "
-"results."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:24
-msgid "Thank you very much!"
-msgstr "Thank you very much!"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:27
-msgid "Your contribution:"
-msgstr "Your contribution:"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:40
-msgid "Show discussion"
-msgstr "Show discussion"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:44
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:34
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:6
 #, python-format
-msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"of your participation in the project."
-msgstr ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"of your participation in the project."
+msgid "Project %(project_name)s"
+msgstr "Project %(project_name)s"
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:5
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:9
-msgid "Feedback of the moderation"
-msgstr "Feedback of the moderation"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:20
-#, python-format
-msgid ""
-"the moderator %(moderator_name)s of the project %(project_name)s gave "
-"feedback on your contribution:"
-msgstr ""
-"the moderator %(moderator_name)s of the project %(project_name)s gave "
-"feedback on your contribution:"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:24
-msgid "Here you can find your contribution:"
-msgstr "Here you can find your contribution:"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:30
-msgid "Show contribution"
-msgstr "Show contribution"
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:12
+msgid "A moderator highlighted your comment in the project "
+msgstr "A moderator highlighted your comment in the project "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:4
 #, python-format
 msgid "Feedback for your contribution on %(site_name)s"
 msgstr "Feedback for your contribution on %(site_name)s"
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:6
-msgid "Feedback for your contribution"
-msgstr "Feedback for your contribution"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:13
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:4
 #, python-format
-msgid "%(organisation_name)s reacted on your contribution."
-msgstr "%(organisation_name)s reacted on your contribution."
+msgid "Event added to project %(project)s"
+msgstr "Event added to project %(project)s"
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:17
-#, python-format
-msgid "Your contribution is %(status)s."
-msgstr "Your contribution is %(status)s."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:22
-#, python-format
-msgid "Official feedback: %(feedback)s"
-msgstr "Official feedback: %(feedback)s"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:26
-msgid "Do you want to answer?"
-msgstr "Do you want to answer?"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:31
-msgid "Check your contribution"
-msgstr "Check your contribution"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:4
-#, python-format
-msgid "Event in project %(project_name)s"
-msgstr "Event in project %(project_name)s"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:6
-msgid "Event"
-msgstr "Event"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:13
-#, python-format
-msgid "The following event takes place on %(date)s:"
-msgstr "The following event takes place on %(date)s:"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:19
-msgid "Further information about the event can be found in the project."
-msgstr "Further information about the event can be found in the project."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:24
-msgid "Show Event"
-msgstr "Show Event"
-
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:26
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:23
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:26
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_updated.en.email:20
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:23
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:23
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:19
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:28
 #, python-format
 msgid ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
@@ -3039,6 +3894,35 @@ msgid ""
 msgstr ""
 "This email was sent to %(receiver_mail)s. You have received the e-mail "
 "because you are following the above project."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:4
+#, python-format
+msgid "Event %(event)s in project %(project)s cancelled"
+msgstr "Event %(event)s in project %(project)s cancelled"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:13
+#, python-format
+msgid "Unfortunately, %(event)s on %(date)s below has been cancelled :"
+msgstr "Unfortunately, %(event)s on %(date)s below has been cancelled :"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:19
+msgid "Please contact the organisation for further information."
+msgstr "Please contact the organisation for further information."
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:4
+#, python-format
+msgid "Event in project %(project)s"
+msgstr "Event in project %(project)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_updated.en.email:4
+#, python-format
+msgid "Event %(event)s in project %(project)s updated"
+msgstr "Event %(event)s in project %(project)s updated"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_updated.en.email:13
+#, python-format
+msgid "Unfortunately, %(event)s below has been updated :"
+msgstr "Unfortunately, %(event)s below has been updated :"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:4
 #, python-format
@@ -3058,28 +3942,16 @@ msgstr "the online participation in the above mentioned project will end soon."
 msgid "You can still participate until %(end_date)s."
 msgstr "You can still participate until %(end_date)s."
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:21
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:21
-msgid "Join now"
-msgstr "Join now"
-
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:4
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:9
 #, python-format
 msgid "Here we go: %(project_name)s starts now!"
 msgstr "Here we go: %(project_name)s starts now!"
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:6
-msgid "Here we go!"
-msgstr "Here we go!"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:13
-msgid "Online participation for the above project has started."
-msgstr "Online participation for the above project has started."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:16
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:4
 #, python-format
-msgid "You can participate until %(end_date)s."
-msgstr "You can participate until %(end_date)s."
+msgid "%(project_name)s has completed."
+msgstr "%(project_name)s has completed."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:4
 #, python-format
@@ -3091,19 +3963,6 @@ msgstr "New project %(project_name)s on %(site_name)s"
 msgid "The new project %(project_name)s was created for %(organisation_name)s"
 msgstr "The new project %(project_name)s was created for %(organisation_name)s"
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:10
-#, python-format
-msgid ""
-"%(creator_name)s has created the project %(project_name)s for "
-"%(organisation_name)s."
-msgstr ""
-"%(creator_name)s has created the project %(project_name)s for "
-"%(organisation_name)s."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:15
-msgid "Show project"
-msgstr "Show project"
-
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:17
 #, python-format
 msgid ""
@@ -3113,23 +3972,10 @@ msgstr ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are an intiator of %(organisation_name)s."
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:4
-msgid "Deletion of project"
-msgstr "Deletion of project"
-
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:6
 #, python-format
-msgid "The project %(name)s was deleted."
-msgstr "The project %(name)s was deleted."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:10
-#, python-format
-msgid ""
-"The project \"%(name)s\" on the participation platform %(site_name)s was "
-"deleted."
-msgstr ""
-"The project \"%(name)s\" on the participation platform %(site_name)s was "
-"deleted."
+msgid "The project %(project)s was deleted."
+msgstr "The project %(project)s was deleted."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:14
 #, python-format
@@ -3142,110 +3988,45 @@ msgstr ""
 "are an initiator of the organisation '%(organisation_name)s', in which a "
 "project was deleted."
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:7
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:5
 #, python-format
-msgid "A comment was added to the project %(project_name)s"
-msgstr "A comment was added to the project %(project_name)s"
+msgid "A %(content_type)s was added to the project %(project)s"
+msgstr "A %(content_type)s was added to the project %(project)s"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:9
 #, python-format
-msgid "An idea was added to the project %(project_name)s"
-msgstr "An idea was added to the project %(project_name)s"
+msgid "%(creator_name)s created a %(content_type)s on the project %(project)s"
+msgstr "%(creator_name)s created a %(content_type)s on the project %(project)s"
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:11
-#, python-format
-msgid "A proposal was added to the project %(project_name)s"
-msgstr "A proposal was added to the project %(project_name)s"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:13
-#, python-format
-msgid "A contribution was added to the project %(project_name)s"
-msgstr "A contribution was added to the project %(project_name)s"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:21
-#, python-format
-msgid "%(actor_name)s created a comment on the project %(project_name)s"
-msgstr "%(actor_name)s created a comment on the project %(project_name)s"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:23
-#, python-format
-msgid "%(actor_name)s created an idea on the project %(project_name)s"
-msgstr "%(actor_name)s created an idea on the project %(project_name)s"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:25
-#, python-format
-msgid "%(actor_name)s created a proposal on the project %(project_name)s"
-msgstr "%(actor_name)s created a proposal on the project %(project_name)s"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:27
-#, python-format
-msgid "%(actor_name)s created a contribution on the project %(project_name)s"
-msgstr "%(actor_name)s created a contribution on the project %(project_name)s"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:36
-#, python-format
-msgid "on the project %(project_name)s a comment was added by %(actor_name)s."
-msgstr "on the project %(project_name)s a comment was added by %(actor_name)s."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:36
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:38
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:40
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:42
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:14
 #, python-format
 msgid ""
-"Checkout what happend on the project %(project_name)s on %(site_name)s by "
-"clicking the link below."
+"on the project %(project)s a %(content_type)s was added by %(creator_name)s."
 msgstr ""
-"Checkout what happend on the project %(project_name)s on %(site_name)s by "
-"clicking the link below."
+"on the project %(project)s a %(content_type)s was added by %(creator_name)s."
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:36
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:38
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:40
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:42
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:17
 #, python-format
 msgid ""
-"Checkout what happend on the project %(project_name)s on %(site_name)s by "
-"clicking the button below."
+"Checkout what happened on the project %(project)s by clicking the link below."
 msgstr ""
-"Checkout what happend on the project %(project_name)s on %(site_name)s by "
-"clicking the button below."
+"Checkout what happened on the project %(project)s by clicking the link below."
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:38
-#, python-format
-msgid "on the project %(project_name)s an idea was added by %(actor_name)s."
-msgstr "on the project %(project_name)s an idea was added by %(actor_name)s."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:40
-#, python-format
-msgid "on the project %(project_name)s a proposal was added by %(actor_name)s."
-msgstr ""
-"on the project %(project_name)s a proposal was added by %(actor_name)s."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:42
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:19
 #, python-format
 msgid ""
-"on the project %(project_name)s a contribution was added by %(actor_name)s."
+"Checkout what happened on the project %(project)s by clicking the button "
+"below."
 msgstr ""
-"on the project %(project_name)s a contribution was added by %(actor_name)s."
+"Checkout what happened on the project %(project)s by clicking the button "
+"below."
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:55
-msgid "Check the comment"
-msgstr "Check the comment"
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:29
+#, python-format
+msgid "Check the %(content_type)s"
+msgstr "Check the %(content_type)s"
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:57
-msgid "Check the idea"
-msgstr "Check the idea"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:59
-msgid "Check the proposal"
-msgstr "Check the proposal"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:61
-msgid "Check the contribution"
-msgstr "Check the contribution"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:67
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:33
 #, python-format
 msgid ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
@@ -3253,6 +4034,60 @@ msgid ""
 msgstr ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are a moderator in the project."
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:19
+msgid "Trigger all notification tasks (for testing)"
+msgstr "Trigger all notification tasks (for testing)"
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:28
+msgid "Run All Notification Tasks"
+msgstr "Run All Notification Tasks"
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:43
+msgid "Project-related Notifications"
+msgstr "Project-related Notifications"
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:56
+msgid "Email Newsletter"
+msgstr "Email Newsletter"
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:58
+msgid ""
+"Receive email newsletters with updates and news from the projects you follow."
+msgstr ""
+"Receive email newsletters with updates and news from the projects you follow."
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:69
+msgid "Participation Status"
+msgstr "Participation Status"
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:71
+msgid "Receive notifications about projects you follow."
+msgstr "Receive notifications about projects you follow."
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:95
+msgid "Events"
+msgstr "Events"
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:97
+msgid "Receive notifications about upcoming events in projects you follow."
+msgstr "Receive notifications about upcoming events in projects you follow."
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:125
+msgid "Interactions with other users"
+msgstr "Interactions with other users"
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:138
+msgid "Reactions from other users to your posts"
+msgstr "Reactions from other users to your posts"
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:140
+msgid "Receive a notification when someone rates or comments on your post."
+msgstr "Receive a notification when someone rates or comments on your post."
+
+#: apps/notifications/utils.py:20
+msgid "soon"
+msgstr "soon"
 
 #: apps/offlineevents/dashboard.py:13
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_list.html:9
@@ -3333,18 +4168,22 @@ msgid "The offline event has been deleted"
 msgstr "The offline event has been deleted"
 
 #: apps/organisations/forms.py:16
+#, python-brace-format
 msgid "Here you can find an example of an {}imprint{}."
 msgstr "Here you can find an example of an {}imprint{}."
 
 #: apps/organisations/forms.py:17
+#, python-brace-format
 msgid "Here you can find an example of {}terms of use{}."
 msgstr "Here you can find an example of {}terms of use{}."
 
 #: apps/organisations/forms.py:19
+#, python-brace-format
 msgid "Here you can find an example of a {}data protection policy{}."
 msgstr "Here you can find an example of a {}data protection policy{}."
 
 #: apps/organisations/forms.py:21
+#, python-brace-format
 msgid "Here you can find an example of a {}netiquette{}."
 msgstr "Here you can find an example of a {}netiquette{}."
 
@@ -3386,6 +4225,7 @@ msgid "Please select a project of your organisation and click select."
 msgstr "Please select a project of your organisation and click select."
 
 #: apps/organisations/forms.py:311
+#, python-brace-format
 msgid ""
 "This title will be displayed as a header. It should be max. {} characters "
 "long."
@@ -3394,6 +4234,7 @@ msgstr ""
 "long."
 
 #: apps/organisations/forms.py:320
+#, python-brace-format
 msgid ""
 "This description will be displayed below the title. It should briefly state "
 "the goal of the project in max. {} chars."
@@ -3406,6 +4247,7 @@ msgid "Picture Upload"
 msgstr "Picture Upload"
 
 #: apps/organisations/forms.py:331
+#, python-brace-format
 msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
@@ -3528,7 +4370,7 @@ msgstr ""
 #: apps/organisations/models.py:132
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:40 apps/users/forms.py:194
+#: apps/users/forms.py:33 apps/users/forms.py:61
 #: adhocracy-plus/templates/email_base.html:79
 #: adhocracy-plus/templates/email_base.html:109
 #: adhocracy-plus/templates/footer.html:43
@@ -3719,11 +4561,11 @@ msgstr "Organisation information successfully updated."
 msgid "Legal information successfully updated."
 msgstr "Legal information successfully updated."
 
-#: apps/projects/admin.py:8
+#: apps/projects/admin.py:9
 msgid "archive"
 msgstr "archive"
 
-#: apps/projects/admin.py:13
+#: apps/projects/admin.py:14
 msgid "dearchive"
 msgstr "dearchive"
 
@@ -3755,19 +4597,19 @@ msgstr "Location"
 msgid "Edit location"
 msgstr "Edit location"
 
-#: apps/projects/forms.py:47 apps/projects/views.py:246
+#: apps/projects/forms.py:48 apps/projects/views.py:246
 msgid "Invite users via email"
 msgstr "Invite users via email"
 
-#: apps/projects/forms.py:52 apps/projects/views.py:247
+#: apps/projects/forms.py:53 apps/projects/views.py:247
 msgid "Invite users via file upload"
 msgstr "Invite users via file upload"
 
-#: apps/projects/forms.py:53
+#: apps/projects/forms.py:54
 msgid "Upload a csv file containing email addresses."
 msgstr "Upload a csv file containing email addresses."
 
-#: apps/projects/forms.py:69
+#: apps/projects/forms.py:70
 msgid "Please enter email addresses or upload a file"
 msgstr "Please enter email addresses or upload a file"
 
@@ -3803,39 +4645,40 @@ msgstr ""
 "This section provides an overview of the participation\n"
 "            activities in this project."
 
-#: apps/projects/serializers.py:102
+#: apps/projects/serializers.py:108
 #, python-format
 msgid "%(time_left)s remaining"
 msgstr "%(time_left)s remaining"
 
-#: apps/projects/serializers.py:106
+#: apps/projects/serializers.py:112
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:72
 msgid "more than 1 year remaining"
 msgstr "more than 1 year remaining"
 
-#: apps/projects/serializers.py:108
+#: apps/projects/serializers.py:114
 #, python-format
 msgid "Participation: from %(project_start)s"
 msgstr "Participation: from %(project_start)s"
 
-#: apps/projects/serializers.py:114
+#: apps/projects/serializers.py:120
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:105
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: apps/projects/serializers.py:244
+#: apps/projects/serializers.py:250
 msgid "running"
 msgstr "running"
 
-#: apps/projects/serializers.py:249
+#: apps/projects/serializers.py:255
+#, python-brace-format
 msgid "starts on {}"
 msgstr "starts on {}"
 
-#: apps/projects/serializers.py:257
+#: apps/projects/serializers.py:263
 msgid "starts in the future"
 msgstr "starts in the future"
 
-#: apps/projects/serializers.py:259
+#: apps/projects/serializers.py:265
 msgid "completed"
 msgstr "completed"
 
@@ -3860,11 +4703,6 @@ msgstr ""
 "participation platform %(site_name)s. To be able to moderate and change the "
 "project click on \"Accept invitation\"."
 
-#: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:15
-#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:15
-msgid "Accept invitation"
-msgstr "Accept invitation"
-
 #: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:17
 #, python-format
 msgid ""
@@ -3873,49 +4711,6 @@ msgid ""
 msgstr ""
 "This email was sent to %(receiver_mail)s. This email was sent to you because "
 "you are invited to moderate a project."
-
-#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:4
-#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:6
-#, python-format
-msgid "Invitation to the semi-public project: \"%(project_name)s\""
-msgstr "Invitation to the semi-public project: \"%(project_name)s\""
-
-#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:4
-#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:6
-#, python-format
-msgid "Invitation to the private project: \"%(project_name)s\""
-msgstr "Invitation to the private project: \"%(project_name)s\""
-
-#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:10
-#, python-format
-msgid ""
-"you are invited to participate in the semi-public project "
-"\"%(project_name)s\" on the participation platform  %(site_name)s. To "
-"participate click on \"Accept invitation\"."
-msgstr ""
-"you are invited to participate in the semi-public project "
-"\"%(project_name)s\" on the participation platform  %(site_name)s. To "
-"participate click on \"Accept invitation\"."
-
-#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:10
-#, python-format
-msgid ""
-"you are invited to participate in the private project \"%(project_name)s\" "
-"on the participation platform  %(site_name)s. To participate click on "
-"\"Accept invitation\"."
-msgstr ""
-"you are invited to participate in the private project \"%(project_name)s\" "
-"on the participation platform  %(site_name)s. To participate click on "
-"\"Accept invitation\"."
-
-#: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:17
-#, python-format
-msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"you are invited to participate in a private project."
-msgstr ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"you are invited to participate in a private project."
 
 #: apps/projects/templates/a4_candy_projects/emails/welcome_participant.en.email:4
 #, python-format
@@ -4086,12 +4881,12 @@ msgstr "Proceed to login"
 
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:15
-#: apps/users/templates/a4_candy_users/indicator.html:62
+#: apps/users/templates/a4_candy_users/indicator.html:63
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:24
 #: adhocracy-plus/templates/account/signup.html:4
 #: adhocracy-plus/templates/account/signup.html:7
 #: adhocracy-plus/templates/account/signup.html:70
-#: adhocracy-plus/templates/socialaccount/signup.html:49
+#: adhocracy-plus/templates/socialaccount/signup.html:57
 msgid "Register"
 msgstr "Register"
 
@@ -4197,7 +4992,7 @@ msgid "It ended on %(date)s."
 msgstr "It ended on %(date)s."
 
 #: apps/projects/templates/a4_candy_projects/project_detail.html:223
-#: apps/users/models.py:51
+#: apps/users/models.py:53
 #: adhocracy-plus/templates/a4modules/module_detail.html:135
 msgid "active"
 msgstr "active"
@@ -4265,10 +5060,12 @@ msgid "Invite moderators via file upload"
 msgstr "Invite moderators via file upload"
 
 #: apps/projects/views.py:229
+#, python-brace-format
 msgid "{} moderator invited."
 msgstr "{} moderator invited."
 
 #: apps/projects/views.py:229
+#, python-brace-format
 msgid "{} moderators invited."
 msgstr "{} moderators invited."
 
@@ -4277,10 +5074,12 @@ msgid "Moderator successfully removed."
 msgstr "Moderator successfully removed."
 
 #: apps/projects/views.py:248
+#, python-brace-format
 msgid "{} participant invited."
 msgstr "{} participant invited."
 
 #: apps/projects/views.py:248
+#, python-brace-format
 msgid "{} participants invited."
 msgstr "{} participants invited."
 
@@ -4363,23 +5162,22 @@ msgstr "My user Settings"
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/base_userdashboard.html:48
 #: apps/users/templates/a4_candy_users/indicator.html:36
-#: apps/users/templates/a4_candy_users/user_detail.html:28
+#: apps/users/templates/a4_candy_users/user_detail.html:29
 msgid "Account Settings"
 msgstr "Account Settings"
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/base_userdashboard.html:52
-#: apps/users/templates/a4_candy_users/user_detail.html:35
+#: apps/users/templates/a4_candy_users/user_detail.html:36
 msgid "Link to profile:"
 msgstr "Link to profile:"
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/base_userdashboard.html:63
-#: apps/users/templates/a4_candy_users/user_detail.html:46
+#: apps/users/templates/a4_candy_users/user_detail.html:47
 msgid "Since"
 msgstr "Since"
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/base_userdashboard.html:69
 #: adhocracy-plus/templates/a4dashboard/base_project_list.html:27
-#: adhocracy-plus/templates/footer.html:63
 msgid "Manual"
 msgstr "Manual"
 
@@ -4419,7 +5217,6 @@ msgid "My activity feed"
 msgstr "My activity feed"
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_activities.html:16
-#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:41
 msgid "My Feed"
 msgstr "My Feed"
 
@@ -4428,8 +5225,8 @@ msgid "Projects I am following"
 msgstr "Projects I am following"
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_following.html:16
-#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:12
-#: apps/users/templates/a4_candy_users/user_detail.html:77
+#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:11
+#: apps/users/templates/a4_candy_users/user_detail.html:78
 msgid "Following"
 msgstr "Following"
 
@@ -4437,35 +5234,85 @@ msgstr "Following"
 msgid "Back"
 msgstr "Back"
 
-#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:11
+#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_notifications.html:12
+msgid "Your Notifications"
+msgstr "Your Notifications"
+
+#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:10
 msgid "Selection of projects I am following"
 msgstr "Selection of projects I am following"
 
-#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:19
-msgid "Projects I am following page"
-msgstr "Projects I am following page"
-
 #: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:21
-#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:52
-msgid "View more"
-msgstr "View more"
-
-#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:33
 msgid "You are not active in any projects yet."
 msgstr "You are not active in any projects yet."
 
-#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:40
-msgid "Last few activities on my account"
-msgstr "Last few activities on my account"
+#: apps/userdashboard/views.py:65 apps/userdashboard/views.py:137
+msgid ""
+"All your important updates, all in one place — from reactions to your posts, "
+"to results from your saved searches, to the latest news from projects you "
+"follow. You can fine-tune what you get in Notification Settings in your "
+"account."
+msgstr ""
+"All your important updates, all in one place — from reactions to your posts, "
+"to results from your saved searches, to the latest news from projects you "
+"follow. You can fine-tune what you get in Notification Settings in your "
+"account."
 
-#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:47
-#: apps/users/templates/a4_candy_users/user_detail.html:100
-msgid "No activity yet. "
-msgstr "No activity yet. "
+#: apps/userdashboard/views.py:71 apps/userdashboard/views.py:141
+msgid "Interactions"
+msgstr "Interactions"
 
-#: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:52
-msgid "Account activity page"
-msgstr "Account activity page"
+#: apps/userdashboard/views.py:73 apps/userdashboard/views.py:143
+msgid ""
+"See all the ways you've connected and engaged with other members of the "
+"platform."
+msgstr ""
+"See all the ways you've connected and engaged with other members of the "
+"platform."
+
+#: apps/userdashboard/views.py:76 apps/userdashboard/views.py:146
+msgid ""
+"You haven't interacted with anyone yet. Start exploring and connect with "
+"other members!"
+msgstr ""
+"You haven't interacted with anyone yet. Start exploring and connect with "
+"other members!"
+
+#: apps/userdashboard/views.py:82 apps/userdashboard/views.py:152
+msgid ""
+"Stay up to date with everything happening in the projects you follow — all "
+"the latest updates, right here."
+msgstr ""
+"Stay up to date with everything happening in the projects you follow — all "
+"the latest updates, right here."
+
+#: apps/userdashboard/views.py:84 apps/userdashboard/views.py:154
+msgid "No project updates yet"
+msgstr "No project updates yet"
+
+#: apps/userdashboard/views.py:86 apps/userdashboard/views.py:156
+msgid ""
+"You're not following any projects yet. Find projects that inspire you and "
+"click \"Follow\" on the project's header picture to see updates here."
+msgstr ""
+"You're not following any projects yet. Find projects that inspire you and "
+"click \"Follow\" on the project's header picture to see updates here."
+
+#: apps/userdashboard/views.py:90 apps/userdashboard/views.py:160
+msgid "Moderation & System"
+msgstr "Moderation & System"
+
+#: apps/userdashboard/views.py:92 apps/userdashboard/views.py:162
+msgid ""
+"Important notifications about content moderation, warnings, and system "
+"updates."
+msgstr ""
+"Important notifications about content moderation, warnings, and system "
+"updates."
+
+#: apps/userdashboard/views.py:95 apps/userdashboard/views.py:165
+msgid "No moderation or system notifications at this time."
+msgstr "No moderation or system notifications at this time."
 
 #: apps/users/__init__.py:6
 msgid ""
@@ -4484,6 +5331,7 @@ msgid "Important dates"
 msgstr "Important dates"
 
 #: apps/users/emails.py:16
+#, python-brace-format
 msgid ""
 "If you no longer want to receive any notifications, change the settings for "
 "your {}account{}."
@@ -4492,6 +5340,7 @@ msgstr ""
 "your {}account{}."
 
 #: apps/users/emails.py:20
+#, python-brace-format
 msgid ""
 "If you no longer want to receive notifications about this project, "
 "unsubscribe from the {}project{}."
@@ -4504,36 +5353,37 @@ msgid "Please enter correct email addresses, separated by commas."
 msgstr "Please enter correct email addresses, separated by commas."
 
 #: apps/users/forms.py:23
+#, python-brace-format
 msgid ""
-"Solve the math problem and click on the correct result.<strong>If you are "
-"having difficulty please contact us  by {}email{}.</strong>"
+"Please complete the captcha verification.<strong>If you are having "
+"difficulty please contact us by {}email{}.</strong>"
 msgstr ""
-"Solve the math problem and click on the correct result.<strong>If you are "
-"having difficulty please contact us  by {}email{}.</strong>"
+"Please complete the captcha verification.<strong>If you are having "
+"difficulty please contact us by {}email{}.</strong>"
 
-#: apps/users/forms.py:31
+#: apps/users/forms.py:52
 msgid "Username/e-mail"
 msgstr "Username/e-mail"
 
-#: apps/users/forms.py:42 apps/users/forms.py:196 apps/users/models.py:71
+#: apps/users/forms.py:63 apps/users/forms.py:211 apps/users/models.py:74
 msgid "I would like to receive further information"
 msgstr "I would like to receive further information"
 
-#: apps/users/forms.py:44 apps/users/forms.py:198 apps/users/models.py:74
+#: apps/users/forms.py:65 apps/users/forms.py:213 apps/users/models.py:77
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
 "Projects you are following can send you additional information via email."
 
-#: apps/users/forms.py:54 apps/users/forms.py:209
+#: apps/users/forms.py:74 apps/users/forms.py:224
 msgid "Your username will appear publicly next to your posts."
 msgstr "Your username will appear publicly next to your posts."
 
-#: apps/users/forms.py:82
+#: apps/users/forms.py:98
 msgid "Membership number of IG BCE"
 msgstr "Membership number of IG BCE"
 
-#: apps/users/forms.py:84
+#: apps/users/forms.py:100
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
@@ -4541,11 +5391,11 @@ msgstr ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
 
-#: apps/users/forms.py:91
+#: apps/users/forms.py:107
 msgid "Date of birth"
 msgstr "Date of birth"
 
-#: apps/users/forms.py:93
+#: apps/users/forms.py:109
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
@@ -4553,7 +5403,7 @@ msgstr ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
 
-#: apps/users/forms.py:100
+#: apps/users/forms.py:116
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
@@ -4561,11 +5411,11 @@ msgstr ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
 
-#: apps/users/forms.py:112 apps/users/forms.py:152
+#: apps/users/forms.py:128 apps/users/forms.py:168
 msgid "Something is wrong with the setup - please try again later"
 msgstr "Something is wrong with the setup - please try again later"
 
-#: apps/users/forms.py:118
+#: apps/users/forms.py:134
 msgid ""
 "There is already a participant with this membership number. Please check "
 "your entry. If this is your membership number, please send an email to "
@@ -4575,7 +5425,7 @@ msgstr ""
 "your entry. If this is your membership number, please send an email to "
 "\"zukunftsgewerkschaft@igbce.de\"."
 
-#: apps/users/forms.py:158
+#: apps/users/forms.py:174
 msgid ""
 "Unfortunately, the member number and / or date of birth could not be linked "
 "to an active member account. Please check your input and try again. If you "
@@ -4585,37 +5435,37 @@ msgstr ""
 "to an active member account. Please check your input and try again. If you "
 "still have problems, please contact \"zukunftsgewerkschaft@igbce.de\"."
 
-#: apps/users/models.py:22
+#: apps/users/models.py:24
 msgid "username"
 msgstr "username"
 
-#: apps/users/models.py:26
+#: apps/users/models.py:28
 msgid ""
 "Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
 msgstr ""
 "Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
 
-#: apps/users/models.py:35
+#: apps/users/models.py:37
 msgid "A user with that username already exists."
 msgstr "A user with that username already exists."
 
-#: apps/users/models.py:36
+#: apps/users/models.py:38
 msgid "This username is invalid."
 msgstr "This username is invalid."
 
-#: apps/users/models.py:41
+#: apps/users/models.py:43
 msgid "Email address"
 msgstr "Email address"
 
-#: apps/users/models.py:45
+#: apps/users/models.py:47
 msgid "staff status"
 msgstr "staff status"
 
-#: apps/users/models.py:47
+#: apps/users/models.py:49
 msgid "Designates whether the user can log into this admin site."
 msgstr "Designates whether the user can log into this admin site."
 
-#: apps/users/models.py:54
+#: apps/users/models.py:56
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -4623,11 +5473,11 @@ msgstr ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 
-#: apps/users/models.py:62
+#: apps/users/models.py:65
 msgid "Send me email notifications"
 msgstr "Send me email notifications"
 
-#: apps/users/models.py:65
+#: apps/users/models.py:68
 msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
@@ -4635,42 +5485,42 @@ msgstr ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
 
-#: apps/users/models.py:82
+#: apps/users/models.py:85
 msgid "Biography"
 msgstr "Biography"
 
-#: apps/users/models.py:83
+#: apps/users/models.py:86
 msgid "Tell us about yourself in 255 characters!"
 msgstr "Tell us about yourself in 255 characters!"
 
-#: apps/users/models.py:89
+#: apps/users/models.py:92
 msgid "Twitter handle"
 msgstr "Twitter handle"
 
-#: apps/users/models.py:95
+#: apps/users/models.py:98
 msgid "Facebook name"
 msgstr "Facebook name"
 
-#: apps/users/models.py:97
+#: apps/users/models.py:100
 msgid ""
 "Your facebook name is the last part of the URL, when you access your profile."
 msgstr ""
 "Your facebook name is the last part of the URL, when you access your profile."
 
-#: apps/users/models.py:105
-#: apps/users/templates/a4_candy_users/user_detail.html:55
+#: apps/users/models.py:108
+#: apps/users/templates/a4_candy_users/user_detail.html:56
 msgid "Homepage"
 msgstr "Homepage"
 
-#: apps/users/models.py:112
+#: apps/users/models.py:115
 msgid "Avatar picture"
 msgstr "Avatar picture"
 
-#: apps/users/models.py:116
+#: apps/users/models.py:119
 msgid "Your preferred language"
 msgstr "Your preferred language"
 
-#: apps/users/models.py:121
+#: apps/users/models.py:124
 msgid ""
 "Specify your preferred language for the user interface and the notifications "
 "of the platform."
@@ -4699,15 +5549,16 @@ msgid "My Overview"
 msgstr "My Overview"
 
 #: apps/users/templates/a4_candy_users/indicator.html:47
-msgid "Help"
-msgstr "Help"
+#: adhocracy-plus/templates/footer.html:63
+msgid "Help Center"
+msgstr "Help Center"
 
-#: apps/users/templates/a4_candy_users/indicator.html:52
-#: apps/users/templates/a4_candy_users/indicator.html:55
+#: apps/users/templates/a4_candy_users/indicator.html:53
+#: apps/users/templates/a4_candy_users/indicator.html:56
 msgid "Logout"
 msgstr "Logout"
 
-#: apps/users/templates/a4_candy_users/indicator.html:60
+#: apps/users/templates/a4_candy_users/indicator.html:61
 #: adhocracy-plus/templates/account/login.html:4
 #: adhocracy-plus/templates/account/login.html:7
 #: adhocracy-plus/templates/account/login.html:27
@@ -4715,163 +5566,161 @@ msgstr "Logout"
 msgid "Login"
 msgstr "Login"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:10
+#: apps/users/templates/a4_candy_users/user_detail.html:11
 msgid "User profile of "
 msgstr "User profile of "
 
-#: apps/users/templates/a4_candy_users/user_detail.html:17
+#: apps/users/templates/a4_candy_users/user_detail.html:18
 msgid "My user settings"
 msgstr "My user settings"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:61
+#: apps/users/templates/a4_candy_users/user_detail.html:62
 msgid "Facebook"
 msgstr "Facebook"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:67
+#: apps/users/templates/a4_candy_users/user_detail.html:68
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:76
+#: apps/users/templates/a4_candy_users/user_detail.html:77
 msgid "Selection of projects the are following"
 msgstr "Selection of projects the are following"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:87
+#: apps/users/templates/a4_candy_users/user_detail.html:88
 msgid "This user is not active in any projects yet."
 msgstr "This user is not active in any projects yet."
 
-#: apps/users/templates/a4_candy_users/user_detail.html:93
+#: apps/users/templates/a4_candy_users/user_detail.html:94
 msgid "List of last activities on their account"
 msgstr "List of last activities on their account"
 
-#: apps/users/templates/a4_candy_users/user_detail.html:94
+#: apps/users/templates/a4_candy_users/user_detail.html:95
 msgid "Activities"
 msgstr "Activities"
 
-#: adhocracy-plus/config/settings/base.py:197
+#: apps/users/templates/a4_candy_users/user_detail.html:101
+msgid "No activity yet."
+msgstr "No activity yet."
+
+#: apps/users/templates/a4_candy_users/user_detail.html:114
+#: adhocracy-plus/templates/account/account_inactive.html:4
+#: adhocracy-plus/templates/account/account_inactive.html:10
+msgid "Account Inactive"
+msgstr "Account Inactive"
+
+#: adhocracy-plus/config/settings/base.py:200
 msgid "English"
 msgstr "English"
 
-#: adhocracy-plus/config/settings/base.py:198
+#: adhocracy-plus/config/settings/base.py:201
 msgid "German"
 msgstr "German"
 
-#: adhocracy-plus/config/settings/base.py:199
-msgid "Dutch"
-msgstr "Dutch"
-
-#: adhocracy-plus/config/settings/base.py:200
-msgid "Kyrgyz"
-msgstr "Kyrgyz"
-
-#: adhocracy-plus/config/settings/base.py:201
-msgid "Russian"
-msgstr "Russian"
-
-#: adhocracy-plus/config/settings/base.py:471
+#: adhocracy-plus/config/settings/base.py:473
 msgid "suggestion"
 msgstr "suggestion"
 
-#: adhocracy-plus/config/settings/base.py:472
+#: adhocracy-plus/config/settings/base.py:474
 msgid "note"
 msgstr "note"
 
-#: adhocracy-plus/config/settings/base.py:473
+#: adhocracy-plus/config/settings/base.py:475
 msgid "question"
 msgstr "question"
 
-#: adhocracy-plus/config/settings/base.py:514
+#: adhocracy-plus/config/settings/base.py:516
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: adhocracy-plus/config/settings/base.py:515
+#: adhocracy-plus/config/settings/base.py:517
 msgid "Diamond"
 msgstr "Diamond"
 
-#: adhocracy-plus/config/settings/base.py:516
+#: adhocracy-plus/config/settings/base.py:518
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: adhocracy-plus/config/settings/base.py:517
+#: adhocracy-plus/config/settings/base.py:519
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: adhocracy-plus/config/settings/base.py:518
+#: adhocracy-plus/config/settings/base.py:520
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: adhocracy-plus/config/settings/base.py:519
+#: adhocracy-plus/config/settings/base.py:521
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: adhocracy-plus/config/settings/base.py:520
+#: adhocracy-plus/config/settings/base.py:522
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: adhocracy-plus/config/settings/base.py:521
+#: adhocracy-plus/config/settings/base.py:523
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: adhocracy-plus/config/settings/base.py:522
+#: adhocracy-plus/config/settings/base.py:524
 msgid "Star"
 msgstr "Star"
 
-#: adhocracy-plus/config/settings/base.py:523
+#: adhocracy-plus/config/settings/base.py:525
 msgid "Square"
 msgstr "Square"
 
-#: adhocracy-plus/config/settings/base.py:524
+#: adhocracy-plus/config/settings/base.py:526
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: adhocracy-plus/config/settings/base.py:525
+#: adhocracy-plus/config/settings/base.py:527
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: adhocracy-plus/config/settings/base.py:526
+#: adhocracy-plus/config/settings/base.py:528
 msgid "Circle"
 msgstr "Circle"
 
-#: adhocracy-plus/config/settings/base.py:527
+#: adhocracy-plus/config/settings/base.py:529
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: adhocracy-plus/config/settings/base.py:528
+#: adhocracy-plus/config/settings/base.py:530
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: adhocracy-plus/config/settings/base.py:532
+#: adhocracy-plus/config/settings/base.py:534
 msgid "brainstorming"
 msgstr "brainstorming"
 
-#: adhocracy-plus/config/settings/base.py:533
+#: adhocracy-plus/config/settings/base.py:535
 msgid "spatial brainstorming"
 msgstr "spatial brainstorming"
 
-#: adhocracy-plus/config/settings/base.py:534
+#: adhocracy-plus/config/settings/base.py:536
 msgid "idea challenge"
 msgstr "idea challenge"
 
-#: adhocracy-plus/config/settings/base.py:535
+#: adhocracy-plus/config/settings/base.py:537
 msgid "spatial idea challenge"
 msgstr "spatial idea challenge"
 
-#: adhocracy-plus/config/settings/base.py:536
+#: adhocracy-plus/config/settings/base.py:538
 msgid "text review"
 msgstr "text review"
 
-#: adhocracy-plus/config/settings/base.py:537
+#: adhocracy-plus/config/settings/base.py:539
 msgid "poll"
 msgstr "poll"
 
-#: adhocracy-plus/config/settings/base.py:539
+#: adhocracy-plus/config/settings/base.py:541
 msgid "interactive event"
 msgstr "interactive event"
 
-#: adhocracy-plus/config/settings/base.py:540
+#: adhocracy-plus/config/settings/base.py:542
 msgid "prioritization"
 msgstr "prioritization"
 
-#: adhocracy-plus/config/settings/base.py:541
+#: adhocracy-plus/config/settings/base.py:543
 msgid "debate"
 msgstr "debate"
 
@@ -5084,27 +5933,19 @@ msgstr ""
 msgid "This project is in not published yet."
 msgstr "This project is in not published yet."
 
-#: adhocracy-plus/templates/a4modules/module_detail.html:78
-msgid "Previous"
-msgstr "Previous"
-
 #: adhocracy-plus/templates/a4modules/module_detail.html:81
 msgid "of"
 msgstr "of"
-
-#: adhocracy-plus/templates/a4modules/module_detail.html:84
-msgid "Next"
-msgstr "Next"
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:182
 msgid "More questions from this online participation"
 msgstr "More questions from this online participation"
 
-#: adhocracy-plus/templates/a4polls/includes/unregistered-users-info-box.html:6
+#: adhocracy-plus/templates/a4polls/includes/unregistered-users-info-box.html:5
 msgid "Poll Participation Info"
 msgstr "Poll Participation Info"
 
-#: adhocracy-plus/templates/a4polls/includes/unregistered-users-info-box.html:10
+#: adhocracy-plus/templates/a4polls/includes/unregistered-users-info-box.html:9
 msgid ""
 "\n"
 "                    <p>You can now participate in this poll even if you're "
@@ -5157,6 +5998,19 @@ msgid ""
 msgstr ""
 "This email has been sent to %(receiver_mail)s. The email was sent to you as "
 "you are the moderator of the project."
+
+#: adhocracy-plus/templates/account/account_inactive.html:13
+msgid "This account has been blocked due to the platform's safety measures."
+msgstr "This account has been blocked due to the platform's safety measures."
+
+#: adhocracy-plus/templates/account/account_inactive.html:14
+#, python-format
+msgid ""
+"If you believe you have been incorrectly blocked, please send an email to "
+"%(email)s. We will unblock your account as quickly as possible. "
+msgstr ""
+"If you believe you have been incorrectly blocked, please send an email to "
+"%(email)s. We will unblock your account as quickly as possible. "
 
 #: adhocracy-plus/templates/account/email.html:6
 #: adhocracy-plus/templates/account/email.html:9
@@ -5508,7 +6362,7 @@ msgstr ""
 "        <a href=\"%(login_url)s\">login</a>."
 
 #: adhocracy-plus/templates/account/signup.html:29
-#: adhocracy-plus/templates/socialaccount/signup.html:28
+#: adhocracy-plus/templates/socialaccount/signup.html:31
 #, python-format
 msgid ""
 "\n"
@@ -5538,8 +6392,8 @@ msgstr ""
 "receive the verification e-mail within a few minutes."
 
 #: adhocracy-plus/templates/base.html:58
-msgid "Skip to content "
-msgstr "Skip to content "
+msgid "Skip to content"
+msgstr "Skip to content"
 
 #: adhocracy-plus/templates/base.html:99
 #, python-format

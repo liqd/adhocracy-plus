@@ -1,6 +1,5 @@
 import pytest
 from django.contrib.auth import get_user_model
-from django.core import mail
 from django.urls import reverse
 
 from adhocracy4.follows import models as follow_models
@@ -8,6 +7,7 @@ from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from apps.newsletters import models as newsletter_models
+from tests.helpers import get_emails_for_address
 
 User = get_user_model()
 
@@ -48,9 +48,9 @@ def test_send_project(
     assert redirect_target(response) == "newsletter-create"
     assert newsletter_models.Newsletter.objects.count() == 1
 
-    assert len(mail.outbox) == 1
-    assert mail.outbox[0].to == [user1.email]
-    assert mail.outbox[0].subject == "Testsubject"
+    user_emails = get_emails_for_address(user1.email)
+    assert len(user_emails) == 1
+    assert user_emails[0].subject == "Testsubject"
 
 
 @pytest.mark.django_db
@@ -127,7 +127,8 @@ def test_skip_opt_out(
     assert redirect_target(response) == "newsletter-create"
     assert newsletter_models.Newsletter.objects.count() == 1
 
-    assert len(mail.outbox) == 0
+    user_emails = get_emails_for_address(user1.email)
+    assert len(user_emails) == 0
 
 
 @pytest.mark.django_db
@@ -164,7 +165,8 @@ def test_distinct_receivers(
     assert redirect_target(response) == "newsletter-create"
     assert newsletter_models.Newsletter.objects.count() == 1
 
-    assert len(mail.outbox) == 1
+    user_emails = get_emails_for_address(user1.email)
+    assert len(user_emails) == 1
 
 
 @pytest.mark.django_db
@@ -198,7 +200,8 @@ def test_skip_inactive(
     assert redirect_target(response) == "newsletter-create"
     assert newsletter_models.Newsletter.objects.count() == 1
 
-    assert len(mail.outbox) == 0
+    user_emails = get_emails_for_address(user1.email)
+    assert len(user_emails) == 0
 
 
 @pytest.mark.django_db
@@ -319,6 +322,6 @@ def test_send_organisation_with_alt_text(
     client.login(username=admin.email, password="password")
     client.post(url, data)
     assert newsletter_models.Newsletter.objects.count() == 1
-    assert len(mail.outbox) == 1
-    assert mail.outbox[0].to == [user1.email]
-    assert mail.outbox[0].subject == "Testsubject"
+    user_emails = get_emails_for_address(user1.email)
+    assert len(user_emails) == 1
+    assert user_emails[0].subject == "Testsubject"

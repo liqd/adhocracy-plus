@@ -9,7 +9,6 @@ def test_clean_username(user_factory):
     user = user_factory(username="username")
     data = {
         "username": "UserName",
-        "get_notifications": "on",
         "get_newsletters": "on",
         "bio": "This is me!",
         "twitter_handle": "Birdybird",
@@ -23,7 +22,6 @@ def test_clean_username(user_factory):
 
     data = {
         "username": user.email,
-        "get_notifications": "on",
         "get_newsletters": "on",
         "bio": "This is me!",
         "twitter_handle": "Birdybird",

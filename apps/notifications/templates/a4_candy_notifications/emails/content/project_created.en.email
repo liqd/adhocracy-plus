@@ -1,0 +1,4 @@
+{% load i18n %}
+<p>
+{% blocktranslate with project_name=project_name organisation_name=organisation_name %}The new project {{ project_name }} was created for {{ organisation_name }}.{% endblocktranslate %}
+</p>

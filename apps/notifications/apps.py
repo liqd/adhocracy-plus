@@ -6,4 +6,4 @@ class Config(AppConfig):
     label = "a4_candy_notifications"
 
     def ready(self):
-        import apps.notifications.signals  # noqa:F401
+        from . import signals  # noqa:F401

@@ -1,0 +1,28 @@
+{% extends "a4_candy_userdashboard/base_userdashboard.html" %}
+{% load i18n notification_tags %}
+
+{% block dashboard_content %}
+    <a class="btn btn--none px-0" href="{% url 'userdashboard-overview' %}">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        <span>{% trans 'Back to overview' %}</span>
+    </a>
+
+    <h1 class="visually-hidden">
+        {% trans 'Your Notifications' %}
+    </h1>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-10 mx-auto" 
+                 id="notifications-container"
+                 hx-get="{% url 'userdashboard-notifications-partial' %}"
+                 hx-trigger="load, every 10s, updateNotifications from:body">
+                 
+                <div class="text-center py-4">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    {% trans 'Loading notifications...' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock dashboard_content %}

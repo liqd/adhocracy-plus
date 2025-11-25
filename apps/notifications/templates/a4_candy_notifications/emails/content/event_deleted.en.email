@@ -1,0 +1,10 @@
+{% load i18n %}
+<p>
+{% blocktranslate with event=event date=event_date %}Unfortunately, {{ event }} on {{ date }} below has been cancelled:{% endblocktranslate %}
+</p>
+<p>
+<b>{{ event }}</b>
+</p>
+<p>
+{% blocktranslate %}Please contact the organisation for further information{% endblocktranslate %}
+</p>

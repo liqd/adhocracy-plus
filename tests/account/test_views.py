@@ -17,7 +17,6 @@ def test_profile_edit(client, user):
         url,
         {
             "username": user.username,
-            "get_notifications": "on",
             "get_newsletters": "on",
             "bio": "This is me!",
             "twitter_handle": "Birdybird",

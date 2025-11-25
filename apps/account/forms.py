@@ -17,7 +17,6 @@ class ProfileForm(forms.ModelForm):
             "homepage",
             "facebook_handle",
             "twitter_handle",
-            "get_notifications",
             "get_newsletters",
             "language",
         ]
@@ -49,7 +48,9 @@ class AccountDeletionForm(forms.Form):
     password = forms.CharField(
         label=_("Password"),
         strip=False,
-        widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "class": "password-toggle"}),
+        widget=forms.PasswordInput(
+            attrs={"autocomplete": "new-password", "class": "password-toggle"}
+        ),
     )
 
 

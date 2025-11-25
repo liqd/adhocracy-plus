@@ -1,20 +1,20 @@
 {% extends 'email_base.'|add:part_type %}
 {% load i18n %}
 
-{% block subject %}{% blocktranslate with project_name=action.project.name %}Reaction to your contribution in project {{ project_name }}{% endblocktranslate %}{% endblock %}
+{% block subject %}{% blocktranslate with project_name=project %}Reaction to your contribution in project {{ project_name }}{% endblocktranslate %}{% endblock %}
 
 {% block headline %}{% blocktranslate %}Reaction to your contribution{% endblocktranslate %}{% endblock %}
-{% block sub-headline %}{{ action.project.name }}{% endblock  %}
+{% block sub-headline %}{{ project }}{% endblock  %}
 
 {% block greeting %}{% blocktranslate with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktranslate %}{% endblock %}
 
 {% block content %}
 <p>
-{% blocktranslate with actor_name=action.actor.username %}{{ actor_name }} commented on your post:{% endblocktranslate %}
+{% blocktranslate with actor_name=user %}{{ actor_name }} commented on your post:{% endblocktranslate %}
 </p>
-{% if action.obj.comment %}
+{% if comment %}
 <p>
-<i>"{{ action.obj.comment|truncatewords:75 }}"</i>
+<i>"{{ comment|truncatewords:75 }}"</i>
 </p>
 {% endif %}
 <p>
@@ -22,7 +22,7 @@
 </p>
 {% endblock %}
 
-{% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
-{% block cta_label %}{% if action.obj.get_absolute_url %}{% blocktranslate %}View Post{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}{% endblock %}
+{% block cta_url %}{% if post_url %}{{ email.get_host }}{{ post_url }}{% else %}{{ email.get_host }}{{ project_url }}{% endif %}{% endblock %}
+{% block cta_label %}{% if post_url %}{% blocktranslate %}View Post{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}{% endblock %}
 
 {% block reason %}{% blocktranslate with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. You have received the e-mail because you added a contribution to the above project.{% endblocktranslate %} {{ account_link | safe }}{% endblock %}

@@ -1,5 +1,4 @@
 import pytest
-from django.core import mail
 from django.urls import reverse
 
 from adhocracy4.test.helpers import redirect_target
@@ -38,7 +37,6 @@ def test_user_can_accept(client, moderator_invite, user):
     response = client.post(url, data)
     assert response.status_code == 302
     assert redirect_target(response) == "project-detail"
-    assert len(mail.outbox) == 0
     assert ModeratorInvite.objects.all().count() == 0
 
 
@@ -59,5 +57,4 @@ def test_user_can_reject(client, moderator_invite, user):
     response = client.post(url, data)
     assert response.status_code == 302
     assert redirect_target(response) == "wagtail_serve"
-    assert len(mail.outbox) == 0
     assert ModeratorInvite.objects.all().count() == 0
