@@ -10,7 +10,20 @@ $light-blue: "#DFF6FF";
     text-decoration: none;
     transition: all 0.2s ease;
     position: relative;
+
+    @media (max-width: $breakpoint-md) {
+        padding: 1em;
+        width: 2.5em;
+        height: 2.5em;
+
+        > i {
+            font-size: 1em !important;
+        }
+    }
+
 }
+
+
 
 .notifications_btn:hover {
     background-color: $text-color-gray;
