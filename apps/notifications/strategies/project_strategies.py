@@ -214,7 +214,6 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
         }
 
 
-# TODO: CHECK creator_name for emails
 class ProjectCreated(ProjectNotificationStrategy):
     def get_recipients(self, project) -> List[User]:
         return self._get_project_initiators(project)
