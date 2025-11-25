@@ -1,4 +1,4 @@
-from celery.schedules import crontab
+from datetime import timedelta
 
 from .base import *
 
@@ -37,14 +37,14 @@ except NameError:
 CELERY_BEAT_SCHEDULE = {
     "send-recently-started-project-notifications": {
         "task": "send_recently_started_project_notifications",
-        "schedule": crontab.from_string("0 0 */3 * *"),
+        "schedule": timedelta(days=3),
     },
     "send-recently-completed-project-notifications": {
         "task": "send_recently_completed_project_notifications",
-        "schedule": crontab.from_string("0 0 */3 * *"),
+        "schedule": timedelta(days=3),
     },
     "send_upcoming-event-notifications": {
         "task": "send_upcoming_event_notifications",
-        "schedule": crontab.from_string("0 0 */3 * *"),
+        "schedule": timedelta(days=3),
     },
 }
