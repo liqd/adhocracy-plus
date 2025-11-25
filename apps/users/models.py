@@ -60,16 +60,6 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     date_joined = models.DateTimeField(editable=False, default=timezone.now)
 
-    # todo: remove, this is now unused
-    get_notifications = models.BooleanField(
-        verbose_name=_("Send me email notifications"),
-        default=True,
-        help_text=_(
-            "Designates whether you want to receive notifications. "
-            "Unselect if you do not want to receive notifications."
-        ),
-    )
-
     get_newsletters = models.BooleanField(
         verbose_name=_("I would like to receive further information"),
         default=False,
