@@ -172,7 +172,7 @@ class CommentBlocked(BaseNotificationStrategy):
 
     def get_recipients(self, comment) -> List[User]:
         """Notify the comment creator if they exist."""
-        if comment.creator and comment.creator.get_notifications:
+        if comment.creator:
             return [comment.creator]
         return []
 
