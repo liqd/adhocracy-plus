@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "csp",
     "django_ckeditor_5",
     "widget_tweaks",
     "rest_framework",
@@ -156,7 +157,6 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
-                "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
@@ -558,9 +558,20 @@ A4_ACTIONS_PHASE_ENDS_HOURS = 48
 
 A4_USE_ORGANISATION_TERMS_OF_USE = True
 
-# Disable CSP by default
-CSP_REPORT_ONLY = True
-CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", "data:", "blob:", "*"]
+# Content Security Policy (CSP) - django-csp 4.0 format
+CONTENT_SECURITY_POLICY = {
+    "REPORT_ONLY": True,
+    "DIRECTIVES": {
+        "default-src": [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            "data:",
+            "blob:",
+            "*",
+        ],
+    },
+}
 
 SITE_ID = 1  # overwrite this in local.py if needed
 
