@@ -11,6 +11,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Hide profile pages for inactive accounts (ST-1088)
 - Add visibility toggle to password fields [ST1153]
+- Updated to Django 5.2
 
 ### Fixed
 
