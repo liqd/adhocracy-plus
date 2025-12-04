@@ -1,0 +1,62 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n %}
+
+{% with receiver_name=receiver.username %}
+{% with receiver_email=receiver.email %}
+{% with project_name=project_name %}
+{% with commenter_name=commenter_name %}
+{% with post_name=post_name %}
+{% with comment_text=comment_text %}
+
+{% block subject %}
+{% blocktranslate with commenter=commenter_name post=post_name %}{{ commenter }} commented on your {{ post }}{% endblocktranslate %}
+{% endblock %}
+
+{% block headline %}
+{% blocktranslate %}New comment on your post{% endblocktranslate %}
+{% endblock %}
+
+{% block sub-headline %}
+{{ project_name }}
+{% endblock %}
+
+{% block greeting %}
+{% blocktranslate %}Hello {{ receiver_name }},{% endblocktranslate %}
+{% endblock %}
+
+{% block content %}
+<p>
+{% blocktranslate with commenter=commenter_name post=post_name %}
+<strong>{{ commenter }}</strong> commented on your post "<strong>{{ post }}</strong>".
+{% endblocktranslate %}
+</p>
+
+<strong>{% blocktranslate %}Their comment:{% endblocktranslate %}</strong>
+<div style="margin: 0.5em 0; padding: 1em; background: #f8f9fa; border-left: 4px solid #2d40cc;">
+    {{ comment_text }}
+</div>
+
+<p>
+{% blocktranslate %}See what they said and join the discussion.{% endblocktranslate %}
+</p>
+{% endblock %}
+
+{% block cta_url %}
+{{ email.get_host }}{{ post_url }}
+{% endblock %}
+
+{% block cta_label %}
+{% blocktranslate %}View post{% endblocktranslate %}
+{% endblock %}
+
+{% block reason %}
+{% blocktranslate %}This email was sent to {{ receiver_email }} because someone commented on your content.{% endblocktranslate %}
+{{ account_link|safe }}
+{% endblock %}
+
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}

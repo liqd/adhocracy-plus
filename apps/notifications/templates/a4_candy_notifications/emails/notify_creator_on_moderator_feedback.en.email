@@ -4,22 +4,22 @@
 {% block subject %}{% blocktranslate with site_name=site.name %}Feedback for your contribution on {{ site_name }}{% endblocktranslate %}{% endblock %}
 
 {% block headline %}{% blocktranslate %}Feedback for your contribution{% endblocktranslate %}{% endblock  %}
-{% block sub-headline %}{{ object.project.name }}{% endblock  %}
+{% block sub-headline %}{{ project.name }}{% endblock  %}
 
 {% block greeting %}{% blocktranslate with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktranslate %}{% endblock %}
 
 {% block content %}
 <p>
-{% blocktranslate with organisation_name=object.module.project.organisation.name %}{{ organisation_name }} reacted on your contribution.{% endblocktranslate %}
+{% blocktranslate with organisation_name=project.organisation.name %}{{ organisation_name }} reacted on your contribution.{% endblocktranslate %}
 </p>
-{% if object.moderator_status %}
+{% if moderator_status %}
 <p>
-{% blocktranslate with status=object.get_moderator_status_display %}Your contribution is {{ status }}.{% endblocktranslate %}
+{% blocktranslate with status=moderator_status_display %}Your contribution is {{ status }}.{% endblocktranslate %}
 </p>
 {% endif %}
-{% if object.moderator_feedback_text.feedback_text %}
+{% if moderator_feedback %}
 <p>
-{% blocktranslate with feedback=object.moderator_feedback_text.feedback_text|safe %}Official feedback: {{ feedback }}{% endblocktranslate %}
+{% blocktranslate with feedback=moderator_feedback|safe %}Official feedback: {{ feedback }}{% endblocktranslate %}
 </p>
 {% endif %}
 <p>
@@ -27,7 +27,7 @@
 </p>
 {% endblock %}
 
-{% block cta_url %}{% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}
-{% block cta_label %}{% if object.get_absolute_url %}{% blocktranslate %}Check your contribution{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}{% endblock %}
+{% block cta_url %}{% if comment_url %}{{ email.get_host }}{{ comment_url }}{% else %}{{ email.get_host }}{{ project.get_absolute_url }}{% endif %}{% endblock %}
+{% block cta_label %}{% if comment_url %}{% blocktranslate %}Check your contribution{% endblocktranslate %}{% else %}{% blocktranslate %}Visit the project{% endblocktranslate %}{% endif %}{% endblock %}
 
 {% block reason %}{% blocktranslate with receiver_mail=receiver.email %}This email was sent to {{ receiver_mail }}. You have received the e-mail because you added a contribution to the above project.{% endblocktranslate %} {{ account_link | safe }}{% endblock %}

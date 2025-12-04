@@ -1,0 +1,31 @@
+{% load i18n %}
+
+<div class="card-footer">
+    <nav aria-label="Pagination">
+        <ul class="pagination pagination-sm justify-content-center mb-0 rounded-0">
+            {% if page_obj.has_previous %}
+                <li class="page-item rounded-0">
+                    <a class="page-link rounded-0" href="?{{ param_name }}={{ page_obj.previous_page_number }}#{{ param_name|cut:'_page' }}">
+                        {% trans 'Previous' %}
+                    </a>
+                </li>
+            {% endif %}
+            
+            {% for num in page_obj.paginator.page_range %}
+                <li class="page-item rounded-0 {% if page_obj.number == num %}active{% endif %}">
+                    <a class="page-link rounded-0" href="?{{ param_name }}={{ num }}#{{ param_name|cut:'_page' }}">
+                        {{ num }}
+                    </a>
+                </li>
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+                <li class="page-item rounded-0">
+                    <a class="page-link rounded-0" href="?{{ param_name }}={{ page_obj.next_page_number }}#{{ param_name|cut:'_page' }}">
+                        {% trans 'Next' %}
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>

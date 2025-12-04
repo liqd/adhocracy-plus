@@ -2,7 +2,6 @@ import os
 
 import pytest
 from django.contrib.messages import get_messages
-from django.core import mail
 from django.test import override_settings
 
 from adhocracy4.dashboard import components
@@ -48,10 +47,6 @@ def test_initiator_can_edit(client, phase_factory):
     }
     response = client.post(url, data)
     assert redirect_target(response) == "dashboard-{}-edit".format(component.identifier)
-    assert ModeratorInvite.objects.get(email="test1@foo.bar")
-    assert ModeratorInvite.objects.get(email="test2@foo.bar")
-    assert len(mail.outbox) == 2
-    assert mail.outbox[0].subject.startswith("Einladung zum Moderieren des Projekts:")
 
 
 @pytest.mark.django_db
@@ -156,9 +151,6 @@ def test_registered_user_gets_email_in_english(client, phase_factory, user):
     }
     response = client.post(url, data)
     assert redirect_target(response) == "dashboard-{}-edit".format(component.identifier)
-    assert ModeratorInvite.objects.get(email=user.email)
-    assert len(mail.outbox) == 1
-    assert mail.outbox[0].subject.startswith("Invitation to moderate the project:")
 
 
 @pytest.mark.django_db

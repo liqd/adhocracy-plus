@@ -14,6 +14,15 @@ class UserFactory(factory.django.DjangoModelFactory):
     password = make_password("password")
     language = "en"
 
+    @factory.post_generation
+    def notification_settings(self, create, extracted, **kwargs):
+        if not create:
+            return
+
+        from apps.notifications.models import NotificationSettings
+
+        NotificationSettings.objects.get_or_create(user=self)
+
 
 class AdminFactory(factory.django.DjangoModelFactory):
     class Meta:

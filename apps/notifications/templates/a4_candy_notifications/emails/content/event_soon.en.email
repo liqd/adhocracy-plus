@@ -1,0 +1,10 @@
+{% load i18n %}
+<p>
+{% blocktranslate with date=event_date %}The following event takes place on {{ date }}:{% endblocktranslate %}
+</p>
+<p>
+<b>{{ event }}</b>
+</p>
+<p>
+{% blocktranslate %}Further information about the event can be found in the project.{% endblocktranslate %}
+</p>

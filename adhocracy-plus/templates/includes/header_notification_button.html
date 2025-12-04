@@ -1,0 +1,19 @@
+{% load static notification_tags %}
+{% unread_notifications_count as unread_count %}
+
+<a href="{% url 'userdashboard-notifications' %}" 
+   class="btn btn-default position-relative rounded-circle notifications_btn d-flex align-items-center justify-content-center" 
+   aria-label="Notifications"
+   hx-get="{% url 'notification-count-partial' %}"
+   hx-trigger="updateNotificationCount from:body, every 15s"
+   hx-target=".notification-badge-container">
+   
+    <i class="fas fa-bell"></i>
+    <span class="notification-badge-container">
+        {% if user.is_authenticated and unread_count > 0 %}
+            <span class="position-absolute top-0 end-0 p-1 bg-danger border border-white rounded-circle notification-badge">
+                <span class="visually-hidden">Unread notifications</span>
+            </span>
+        {% endif %}
+    </span>
+</a>
