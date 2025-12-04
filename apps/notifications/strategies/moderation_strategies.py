@@ -1,6 +1,7 @@
 from typing import List
 
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from ..models import NotificationType
@@ -178,6 +179,11 @@ class CommentBlocked(BaseNotificationStrategy):
 
     def create_notification_data(self, comment) -> dict:
         project = comment.project
+        organisation = project.organisation
+        netiquette_url = reverse(
+            "organisation-netiquette", kwargs={"organisation_slug": organisation.slug}
+        )
+
         email_context = {
             "subject": _("Your comment was blocked"),
             "headline": _("Your comment was blocked"),
@@ -191,9 +197,8 @@ class CommentBlocked(BaseNotificationStrategy):
             # Template variables
             "project_name": project.name,
             "comment_text": comment.comment,
-            # TODO: Check netiquette_url logic
-            "netiquette_url": project.organisation.slug,
-            "organisation": project.organisation.name,
+            "netiquette_url": netiquette_url,
+            "organisation": organisation.name,
         }
 
         return {
@@ -205,7 +210,7 @@ class CommentBlocked(BaseNotificationStrategy):
                 "comment_text": comment.comment,
                 "comment_url": comment.get_absolute_url(),
                 "module_name": getattr(comment.module, "name", ""),
-                "organisation": project.organisation.name,
+                "organisation": organisation.name,
             },
             "email_context": email_context,
         }
