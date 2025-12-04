@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Added
+
+- Notification System
+
 ### Changed
 
 - Hide profile pages for inactive accounts (ST-1088)
