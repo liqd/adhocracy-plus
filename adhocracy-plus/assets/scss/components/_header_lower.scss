@@ -2,6 +2,9 @@
     position: absolute;
     bottom: 0;
     width: 100%;
+
+    // Fixes bug where this el stops clicks on follow button (small screens)
+    pointer-events: none;
 }
 
 .header-lower__nav {
@@ -15,10 +18,12 @@
     padding: 0.5 * $padding;
     position: relative;
     bottom: -3 * $spacer;
-
     background-color: $body-bg;
     z-index: 3;
     box-shadow: 0 0 8px 0 $shadow;
+    
+    // Other half of bugfix for follow button (see above)
+    pointer-events: auto;
 }
 
 .header-lower__position--right {
