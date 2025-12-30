@@ -4,9 +4,11 @@
 <a href="{% url 'userdashboard-notifications' %}" 
    class="btn btn-default position-relative rounded-circle notifications_btn d-flex align-items-center justify-content-center" 
    aria-label="Notifications"
-   hx-get="{% url 'notification-count-partial' %}"
-   hx-trigger="updateNotificationCount from:body, every 15s"
-   hx-target=".notification-badge-container">
+   {% if user.is_authenticated %}
+        hx-get="{% url 'notification-count-partial' %}"
+        hx-trigger="updateNotificationCount from:body, every 15s"
+        hx-target=".notification-badge-container">
+   {% endif %}>
    
     <i class="fas fa-bell"></i>
     <span class="notification-badge-container">
