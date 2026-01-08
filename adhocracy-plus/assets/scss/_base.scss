@@ -193,3 +193,12 @@ abbr {
 .min-height__wrapper {
     min-height: 100vh;
 }
+
+// Title-3 class to match h3 browser default styles for accessibility
+.title-3 {
+    font-size: 1.0625em; // 17px at 16px base (browser default for h3)
+    font-weight: 700; // bold (browser default for h3)
+    line-height: 1.35; // ~23px at 17px font-size (browser default for h3)
+    margin-top: 1em; // 17px at 17px font-size (browser default for h3)
+    margin-bottom: 0.4em; // ~6.8px at 17px font-size (browser default for h3)
+}
