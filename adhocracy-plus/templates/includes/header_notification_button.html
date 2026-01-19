@@ -7,9 +7,9 @@
    {% if user.is_authenticated %}
         hx-get="{% url 'notification-count-partial' %}"
         hx-trigger="updateNotificationCount from:body, every 15s"
-        hx-target=".notification-badge-container">
-   {% endif %}>
-   
+        hx-target=".notification-badge-container"
+    {% endif %}
+   >
     <i class="fas fa-bell"></i>
     <span class="notification-badge-container">
         {% if user.is_authenticated and unread_count > 0 %}
