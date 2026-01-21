@@ -1,5 +1,3 @@
-from urllib.parse import quote
-
 from django.conf import settings
 from django.contrib.auth import models as auth_models
 from django.core import validators
@@ -179,8 +177,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         return full_name.strip()
 
     def get_absolute_url(self):
-        encoded_username = quote(self.username)
-        return reverse("profile", args=[encoded_username])
+        return reverse("profile", args=[self.username])
 
     def has_agreed_on_org_terms(self, organisation):
         return OrganisationTermsOfUse.objects.filter(
