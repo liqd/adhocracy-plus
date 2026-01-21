@@ -5,7 +5,13 @@
         <ul class="pagination pagination-sm justify-content-center mb-0 rounded-0">
             {% if page_obj.has_previous %}
                 <li class="page-item rounded-0">
-                    <a class="page-link rounded-0" href="?{{ param_name }}={{ page_obj.previous_page_number }}#{{ param_name|cut:'_page' }}">
+                    <a class="page-link rounded-0" 
+                       href="?{{ param_name }}={{ page_obj.previous_page_number }}#{{ param_name|cut:'_page' }}"
+                       hx-get="{% url 'userdashboard-notifications-partial' %}?{{ param_name }}={{ page_obj.previous_page_number }}"
+                       hx-target="#{{ section_id }}"
+                       hx-swap="outerHTML"
+                       hx-select="#{{ section_id }}"
+                       hx-push-url="true">
                         {% trans 'Previous' %}
                     </a>
                 </li>
@@ -13,7 +19,13 @@
             
             {% for num in page_obj.paginator.page_range %}
                 <li class="page-item rounded-0 {% if page_obj.number == num %}active{% endif %}">
-                    <a class="page-link rounded-0" href="?{{ param_name }}={{ num }}#{{ param_name|cut:'_page' }}">
+                    <a class="page-link rounded-0" 
+                       href="?{{ param_name }}={{ num }}#{{ param_name|cut:'_page' }}"
+                       hx-get="{% url 'userdashboard-notifications-partial' %}?{{ param_name }}={{ num }}"
+                       hx-target="#{{ section_id }}"
+                       hx-swap="outerHTML"
+                       hx-select="#{{ section_id }}"
+                       hx-push-url="true">
                         {{ num }}
                     </a>
                 </li>
@@ -21,7 +33,13 @@
             
             {% if page_obj.has_next %}
                 <li class="page-item rounded-0">
-                    <a class="page-link rounded-0" href="?{{ param_name }}={{ page_obj.next_page_number }}#{{ param_name|cut:'_page' }}">
+                    <a class="page-link rounded-0" 
+                       href="?{{ param_name }}={{ page_obj.next_page_number }}#{{ param_name|cut:'_page' }}"
+                       hx-get="{% url 'userdashboard-notifications-partial' %}?{{ param_name }}={{ page_obj.next_page_number }}"
+                       hx-target="#{{ section_id }}"
+                       hx-swap="outerHTML"
+                       hx-select="#{{ section_id }}"
+                       hx-push-url="true">
                         {% trans 'Next' %}
                     </a>
                 </li>
