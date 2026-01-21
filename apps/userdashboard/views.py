@@ -191,10 +191,18 @@ class UserDashboardNotificationsView(UserDashboardNotificationsBaseView):
 
     template_name = "a4_candy_userdashboard/userdashboard_notifications.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context.update(self._get_notifications_context())
-        return context
+    def get(self, request, *args, **kwargs):
+        context = self._get_notifications_context()
+
+        # Check if there's a pagination parameter in the URL
+        # (e.g., ?projects_page=2 from a shared/bookmarked URL)
+        if "projects_page" in request.GET or "interactions_page" in request.GET:
+            # The pagination is already handled in _get_notifications_context()
+            # Just render the full page
+            return render(request, self.template_name, context)
+
+        # No pagination parameters = first page
+        return render(request, self.template_name, context)
 
 
 # class UserDashboardNotificationsPartialView(UserDashboardNotificationsBaseView):
