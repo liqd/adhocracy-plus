@@ -197,6 +197,16 @@ class UserDashboardNotificationsView(UserDashboardNotificationsBaseView):
         return context
 
 
+# class UserDashboardNotificationsPartialView(UserDashboardNotificationsBaseView):
+#     """HTMX partial for notifications content"""
+
+#     template_name = "a4_candy_notifications/_notifications_partial.html"
+
+#     def get(self, request, *args, **kwargs):
+#         context = self._get_notifications_context()
+#         return render(request, self.template_name, context)
+
+
 class UserDashboardNotificationsPartialView(UserDashboardNotificationsBaseView):
     """HTMX partial for notifications content"""
 
@@ -204,7 +214,63 @@ class UserDashboardNotificationsPartialView(UserDashboardNotificationsBaseView):
 
     def get(self, request, *args, **kwargs):
         context = self._get_notifications_context()
-        return render(request, self.template_name, context)
+
+        # Check if a specific card was requested
+        requested_card = request.GET.get("card")
+
+        if requested_card == "interactions":
+            # Return ONLY the interactions card
+            return render(
+                request,
+                "a4_candy_notifications/_notification_card.html",
+                self._get_interactions_context(context),
+            )
+
+        elif requested_card == "projects":
+            # Return ONLY the projects card
+            return render(
+                request,
+                "a4_candy_notifications/_notification_card.html",
+                self._get_projects_context(context),
+            )
+
+        else:
+            # No card specified = return full partial (both cards)
+            return render(request, self.template_name, context)
+
+    def _get_interactions_context(self, full_context):
+        """Extract only interactions card context"""
+        return {
+            "section_id": "interactions",
+            "title": full_context.get("interactions_title"),
+            "description": full_context.get("interactions_description"),
+            "unread_count": full_context.get("interactions_unread_count"),
+            "notifications_list": full_context.get("interactions_page").object_list,
+            "page_obj": full_context.get("interactions_page"),
+            "param_name": "interactions_page",
+            "pagination_required": full_context.get(
+                "interactions_page"
+            ).has_other_pages(),
+            "is_preview_list": False,
+            "empty_message": full_context.get("interactions_empty"),
+            "empty_icon": "fa-comments",
+        }
+
+    def _get_projects_context(self, full_context):
+        """Extract only projects card context"""
+        return {
+            "section_id": "projects",
+            "title": full_context.get("projects_title"),
+            "description": full_context.get("projects_description"),
+            "unread_count": full_context.get("projects_unread_count"),
+            "notifications_list": full_context.get("projects_page").object_list,
+            "page_obj": full_context.get("projects_page"),
+            "param_name": "projects_page",
+            "pagination_required": full_context.get("projects_page").has_other_pages(),
+            "is_preview_list": False,
+            "empty_message": full_context.get("projects_empty"),
+            "empty_icon": "fa-comments",
+        }
 
 
 class UserDashboardActivitiesView(UserDashboardBaseMixin):
