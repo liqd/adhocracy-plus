@@ -5,23 +5,30 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## v2601.1
 
 ### Added
 
 - Notification System
+- Use django-polymorphic via adhocracy4
+- Map-based participation modules have a split mode to display ideas next to the map
+- Alert when following project telling user to check email notification settings
 
 ### Changed
 
+- Captcha using Prosopo
 - Hide profile pages for inactive accounts (ST-1088)
 - Add visibility toggle to password fields [ST1153]
 - Updated to Django 5.2
 - Improve comment icons styling in SCSS
 - Update translation files for all languages
+- Make title-3 class consistent with h3 browser defaults for improved accessibility
 
 ### Fixed
 
-- Update Items to DjangoPoymorphic compatibility
+- Follow project button not working on small screens
+- Rotated icons for reporting or sharing comments
+- Pagination button styles
 
 ## v2508.2
 
