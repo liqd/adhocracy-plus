@@ -9,16 +9,16 @@
 # Katharina Lindenlaub, 2023
 # JOster, 2023
 # Luca Thüer, 2023
-# Tietje, 2025
+# Tietje, 2026
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-22 16:09+0100\n"
+"POT-Creation-Date: 2026-01-22 16:27+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
-"Last-Translator: Tietje, 2025\n"
+"Last-Translator: Tietje, 2026\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -3518,7 +3518,7 @@ msgstr "Das Projekt {project} wurde beendet."
 #: apps/notifications/strategies/project_strategies.py:146
 #, python-brace-format
 msgid "Invitation to the {project_type} project: {project_name}"
-msgstr ""
+msgstr "Einladung zu{project_type}: {project_name}"
 
 #: apps/notifications/strategies/project_strategies.py:149
 #, python-brace-format
@@ -3613,13 +3613,14 @@ msgstr "Das Projekt {project} wurde gelöscht. "
 #: apps/notifications/strategies/project_strategies.py:307
 #, python-brace-format
 msgid "{article} {content_type} was added to the project {project}"
-msgstr ""
+msgstr "{article}{content_type} wurde zum Projekt {project} hinzugefügt. "
 
 #: apps/notifications/strategies/project_strategies.py:314
 #, python-brace-format
 msgid ""
 "{creator_name} created {article} {content_type} on the project {project}"
 msgstr ""
+"{creator_name} hat {article} {content_type} im Projekt {project} erstellt"
 
 #: apps/notifications/strategies/project_strategies.py:322
 #, python-brace-format
@@ -3798,6 +3799,7 @@ msgstr "Die Moderation hat Ihr Kommentar hervorgehoben. "
 #, python-format
 msgid "The new project %(project_name)s was created for %(organisation_name)s."
 msgstr ""
+"Das neue Projekt %(project_name)s wurde für %(organisation_name)s erstellt. "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/project_deleted.en.email:3
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:10
@@ -5391,7 +5393,7 @@ msgstr "Ihre Benachrichtigungen "
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_notifications.html:23
 msgid "Loading notifications..."
-msgstr ""
+msgstr "Lade Benachrichtigungen..."
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/userdashboard_overview.html:10
 msgid "Selection of projects I am following"
