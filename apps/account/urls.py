@@ -19,7 +19,7 @@ urlpatterns = [
         name="user_agreements",
     ),
     path(
-        "notifications-settings/",
+        "notification-settings/",
         NotificationSettingsView.as_view(),
         name="account_notification_settings",
     ),
