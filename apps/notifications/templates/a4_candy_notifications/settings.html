@@ -5,11 +5,11 @@
 {% block title %}{% trans 'Notification Settings' %}{% endblock title %}
 
 {% block dashboard_content %}
-<div class="container py-5">
+<div class="container pb-5 px-0">
     <div class="row justify-content-center">
-        <div class="row">
+        <div class="row px-0" >
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1>{% trans 'Notification Settings' %}</h1>
+                <h1 class="mt-0">{% trans 'Notification Settings' %}</h1>
             </div>
 
             {% if user.is_staff %}
