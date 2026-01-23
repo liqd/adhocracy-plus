@@ -203,7 +203,7 @@ class CommentBlocked(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.MODERATOR_BLOCKED_COMMENT,
-            "message_template": "Your comment was blocked in project {project_name}",
+            "message_template": _("Your comment was blocked in project {project_name}"),
             "context": {
                 "project_name": project.name,
                 "project_url": project.get_absolute_url(),
