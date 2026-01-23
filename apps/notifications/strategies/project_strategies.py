@@ -188,14 +188,13 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
 
     def create_notification_data(self, invitation) -> dict:
         project = invitation.project
-
         email_context = {
             "subject": _("Moderator invitation for project {project_name}").format(
                 project_name=project.name
             ),
             "headline": _("Moderator Invitation"),
-            "cta_url": project.get_absolute_url(),
-            "cta_label": _("View Project"),
+            "cta_url": invitation.get_absolute_url(),
+            "cta_label": _("View Invitation"),
             "reason": _("This email was sent to {receiver_email}."),
             "content_template": "a4_candy_notifications/emails/content/project_moderation_invitation.en.email",
             "project_name": project.name,
@@ -204,11 +203,12 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
         return {
             "notification_type": NotificationType.PROJECT_MODERATION_INVITATION,
             "message_template": _(
-                "You have been invited to be a moderator of project {project}"
-            ),
+                "You have been invited to be a moderator of project %(project_name)s. View {invitation}"
+            )
+            % {"project_name": project.name},
             "context": {
-                "project": project.name,
-                "project_url": project.get_absolute_url(),
+                "invitation": _("invitation"),
+                "invitation_url": invitation.get_absolute_url(),
             },
             "email_context": email_context,
         }
