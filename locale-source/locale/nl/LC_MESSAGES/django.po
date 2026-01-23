@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-22 16:27+0100\n"
+"POT-Creation-Date: 2026-01-23 11:43+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
@@ -186,6 +186,7 @@ msgstr "Aanmaken"
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: apps/account/templates/a4_candy_account/account_deletion.html:48
+#: apps/account/templates/a4_candy_account/notifications.html:54
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_form.html:31
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_confirm_delete.html:14
 #: apps/budgeting/templates/a4_candy_budgeting/proposal_moderate_form.html:38
@@ -834,6 +835,7 @@ msgid "Please add an alternative text for this image"
 msgstr ""
 
 #: adhocracy4/images/validators.py:28
+#, python-brace-format
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Niet-ondersteunde bestandsformaat. Ondersteunde formaten zijn {}."
 
@@ -1071,6 +1073,7 @@ msgid "Please specify your answer."
 msgstr "Geef uw antwoord."
 
 #: adhocracy4/polls/api.py:237
+#, python-brace-format
 msgid "Key error for {}"
 msgstr "Key error for {}"
 
@@ -1349,6 +1352,7 @@ msgstr ""
 "projectinitiatiefnemers zijn ze nog wel zichtbaar in het dashboard."
 
 #: adhocracy4/projects/utils.py:46
+#, python-brace-format
 msgid "{}. Online Participation"
 msgstr "{}. Online deelname"
 
@@ -1369,6 +1373,7 @@ msgid "Password"
 msgstr "Wachtwoord"
 
 #: apps/account/forms.py:72 apps/organisations/mixins.py:58
+#, python-brace-format
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr ""
 "Ja, ik heb de {}terms of use{} van deze organisatie gelezen en ga ermee "
@@ -1495,6 +1500,18 @@ msgid ""
 msgstr ""
 "Deze e-mail werd verstuurd naar %(receiver)s. Als u nog vragen heeft, neem "
 "dan contact met ons op via %(contact_email)s"
+
+#: apps/account/templates/a4_candy_account/notifications.html:4
+#: apps/account/templates/a4_candy_account/notifications.html:10
+#: apps/notifications/models.py:201 apps/notifications/models.py:202
+#: apps/notifications/templates/a4_candy_notifications/settings.html:5
+#: apps/notifications/templates/a4_candy_notifications/settings.html:12
+msgid "Notification Settings"
+msgstr ""
+
+#: apps/account/templates/a4_candy_account/notifications.html:53
+msgid "Save Settings"
+msgstr ""
 
 #: apps/account/templates/a4_candy_account/profile.html:7
 msgid "Your profile"
@@ -1968,6 +1985,7 @@ msgid "Header image: "
 msgstr "Kopplaatje: "
 
 #: apps/cms/settings/helpers.py:8
+#, python-brace-format
 msgid "Please look {}here{} for more information."
 msgstr "Kijk {}here{} voor meer informatie."
 
@@ -2773,6 +2791,7 @@ msgid "Ask a question yourself!"
 msgstr "Stel zelf een vraag!"
 
 #: apps/interactiveevents/templatetags/react_interactiveevents.py:28
+#, python-brace-format
 msgid ""
 "I confirm that I have read and accepted the {}terms of use{} and the {}data "
 "protection policy{}."
@@ -3115,12 +3134,6 @@ msgstr ""
 msgid "In-app warnings"
 msgstr ""
 
-#: apps/notifications/models.py:201 apps/notifications/models.py:202
-#: apps/notifications/templates/a4_candy_notifications/settings.html:5
-#: apps/notifications/templates/a4_candy_notifications/settings.html:12
-msgid "Notification Settings"
-msgstr ""
-
 #: apps/notifications/models.py:282
 msgid "Notification Type"
 msgstr ""
@@ -3384,16 +3397,20 @@ msgid "Hello <strong>{receiver_name}</strong>,"
 msgstr ""
 
 #: apps/notifications/strategies/moderation_strategies.py:193
-#: apps/notifications/strategies/project_strategies.py:198
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:46
 msgid "View Project"
 msgstr ""
 
 #: apps/notifications/strategies/moderation_strategies.py:194
 #: apps/notifications/strategies/project_strategies.py:153
-#: apps/notifications/strategies/project_strategies.py:199
+#: apps/notifications/strategies/project_strategies.py:198
 #, python-brace-format
 msgid "This email was sent to {receiver_email}."
+msgstr ""
+
+#: apps/notifications/strategies/moderation_strategies.py:206
+#, python-brace-format
+msgid "Your comment was blocked in project {project_name}"
 msgstr ""
 
 #: apps/notifications/strategies/project_strategies.py:70
@@ -3458,18 +3475,28 @@ msgid ""
 "accept."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:193
+#: apps/notifications/strategies/project_strategies.py:192
 #, python-brace-format
 msgid "Moderator invitation for project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:196
+#: apps/notifications/strategies/project_strategies.py:195
 msgid "Moderator Invitation"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:207
-#, python-brace-format
-msgid "You have been invited to be a moderator of project {project}"
+#: apps/notifications/strategies/project_strategies.py:197
+msgid "View Invitation"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:206
+#, python-format, python-brace-format
+msgid ""
+"You have been invited to be a moderator of project %(project_name)s. View "
+"{invitation}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:210
+msgid "invitation"
 msgstr ""
 
 #: apps/notifications/strategies/project_strategies.py:223
@@ -4185,18 +4212,22 @@ msgid "The offline event has been deleted"
 msgstr "Het offline evenement is verwijderd"
 
 #: apps/organisations/forms.py:16
+#, python-brace-format
 msgid "Here you can find an example of an {}imprint{}."
 msgstr "Hier vindt u een voorbeeld van een {}imprint{}."
 
 #: apps/organisations/forms.py:17
+#, python-brace-format
 msgid "Here you can find an example of {}terms of use{}."
 msgstr "Hier vindt u een voorbeeld van {}terms of use{}."
 
 #: apps/organisations/forms.py:19
+#, python-brace-format
 msgid "Here you can find an example of a {}data protection policy{}."
 msgstr "Hier vindt u een voorbeeld van een {}data protection policy{}."
 
 #: apps/organisations/forms.py:21
+#, python-brace-format
 msgid "Here you can find an example of a {}netiquette{}."
 msgstr "Hier vindt u een voorbeeld van een {}netiquette{}."
 
@@ -4239,6 +4270,7 @@ msgid "Please select a project of your organisation and click select."
 msgstr "Selecteer een project van uw organisatie en klik op selecteren."
 
 #: apps/organisations/forms.py:311
+#, python-brace-format
 msgid ""
 "This title will be displayed as a header. It should be max. {} characters "
 "long."
@@ -4246,6 +4278,7 @@ msgstr ""
 "De titel wordt weergegeven als kopregel. Hij kan max. {} tekens lang zijn."
 
 #: apps/organisations/forms.py:320
+#, python-brace-format
 msgid ""
 "This description will be displayed below the title. It should briefly state "
 "the goal of the project in max. {} chars."
@@ -4258,6 +4291,7 @@ msgid "Picture Upload"
 msgstr "Afbeelding uploaden"
 
 #: apps/organisations/forms.py:331
+#, python-brace-format
 msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
 "and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
@@ -4679,6 +4713,7 @@ msgid "running"
 msgstr "lopende"
 
 #: apps/projects/serializers.py:255
+#, python-brace-format
 msgid "starts on {}"
 msgstr "begint op {}"
 
@@ -5070,10 +5105,12 @@ msgid "Invite moderators via file upload"
 msgstr "Moderatoren uitnodigen via bestandsupload"
 
 #: apps/projects/views.py:229
+#, python-brace-format
 msgid "{} moderator invited."
 msgstr "{} moderator uitgenodigd."
 
 #: apps/projects/views.py:229
+#, python-brace-format
 msgid "{} moderators invited."
 msgstr "{} moderatoren uitgenodigd."
 
@@ -5082,10 +5119,12 @@ msgid "Moderator successfully removed."
 msgstr "Moderator succesvol verwijderd."
 
 #: apps/projects/views.py:248
+#, python-brace-format
 msgid "{} participant invited."
 msgstr "{} deelnemer uitgenodigd."
 
 #: apps/projects/views.py:248
+#, python-brace-format
 msgid "{} participants invited."
 msgstr "{} deelnemers uitgenodigd."
 
@@ -5328,6 +5367,7 @@ msgid "Important dates"
 msgstr "Belangrijke datums"
 
 #: apps/users/emails.py:16
+#, python-brace-format
 msgid ""
 "If you no longer want to receive any notifications, change the settings for "
 "your {}account{}."
@@ -5336,6 +5376,7 @@ msgstr ""
 "{}account{}."
 
 #: apps/users/emails.py:20
+#, python-brace-format
 msgid ""
 "If you no longer want to receive notifications about this project, "
 "unsubscribe from the {}project{}."
@@ -5348,6 +5389,7 @@ msgid "Please enter correct email addresses, separated by commas."
 msgstr "Voer correcte e-mailadressen in, gescheiden door komma’s."
 
 #: apps/users/forms.py:23
+#, python-brace-format
 msgid ""
 "Please complete the captcha verification.<strong>If you are having "
 "difficulty please contact us by {}email{}.</strong>"
