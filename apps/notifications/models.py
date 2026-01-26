@@ -271,6 +271,7 @@ class Notification(models.Model):
     objects = NotificationManager()
 
     message_template = models.CharField(max_length=255, default="")
+    message_key = models.CharField(max_length=500, default="", blank=True)
     context = models.JSONField(default=dict, encoder=LazyEncoder)
     recipient = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="notifications"
