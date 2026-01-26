@@ -29,6 +29,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Follow project button not working on small screens
 - Rotated icons for reporting or sharing comments
 - Pagination button styles
+- Notification text for ModerationFeedback notifications
 
 ## v2508.2
 

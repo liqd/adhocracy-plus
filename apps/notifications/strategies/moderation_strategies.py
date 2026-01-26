@@ -97,18 +97,6 @@ class IdeaFeedback(BaseNotificationStrategy):
             "email_context": email_context,
         }
 
-    def _get_moderator_status_display(self, idea):
-        status = getattr(idea, "moderator_status", None)
-        if status:
-            status_map = {
-                "approved": _("approved"),
-                "rejected": _("rejected"),
-                "reviewed": _("reviewed"),
-                "CONSIDERATION": _("under consideration"),
-            }
-            return status_map.get(status, status)
-        return ""
-
 
 class ProposalFeedback(BaseNotificationStrategy):
     def get_recipients(self, proposal) -> List[User]:
@@ -149,17 +137,6 @@ class ProposalFeedback(BaseNotificationStrategy):
             },
             "email_context": email_context,
         }
-
-    def _get_moderator_status_display(self, idea):
-        status = getattr(idea, "moderator_status", None)
-        if status:
-            status_map = {
-                "approved": _("approved"),
-                "rejected": _("rejected"),
-                "reviewed": _("reviewed"),
-            }
-            return status_map.get(status, status)
-        return ""
 
 
 class CommentBlocked(BaseNotificationStrategy):
