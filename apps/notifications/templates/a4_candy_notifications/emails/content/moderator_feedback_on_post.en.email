@@ -5,7 +5,7 @@
 
 {% if moderator_status %}
 <p>
-{% blocktranslate with status=moderator_status_display %}Your contribution is {{ status }}.{% endblocktranslate %}
+{% blocktranslate with status=moderator_status_display %}{{ status }}.{% endblocktranslate %}
 </p>
 {% endif %}
 

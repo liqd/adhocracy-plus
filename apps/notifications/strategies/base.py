@@ -2,6 +2,7 @@ from abc import ABC
 from abc import abstractmethod
 
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
@@ -25,3 +26,16 @@ class BaseNotificationStrategy(ABC):
     def create_notification_data(self, obj) -> dict:
         """Create notification data for a specific recipient"""
         pass
+
+    def _get_moderator_status_display(self, obj):
+        """Shared method for all moderator status displays."""
+        status = getattr(obj, "moderator_status", None)
+        if status:
+            status_map = {
+                "approved": _("Your submission was approved"),
+                "rejected": _("Your submission was rejectedrejected"),
+                "reviewed": _("Your submission was reviewed"),
+                "CONSIDERATION": _("Your submission is under consideration"),
+            }
+            return status_map.get(status, status)
+        return ""
