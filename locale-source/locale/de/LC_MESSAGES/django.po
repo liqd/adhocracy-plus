@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-23 11:57+0100\n"
+"POT-Creation-Date: 2026-01-26 10:45+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Tietje, 2026\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
@@ -3212,6 +3212,26 @@ msgstr "Benachrichtigung"
 msgid "Notifications"
 msgstr "Benachrichtigungen"
 
+#: apps/notifications/strategies/base.py:36
+msgid "Your submission was accepted"
+msgstr ""
+
+#: apps/notifications/strategies/base.py:37
+msgid "Your submission was approved"
+msgstr ""
+
+#: apps/notifications/strategies/base.py:38
+msgid "Your submission was rejected"
+msgstr ""
+
+#: apps/notifications/strategies/base.py:39
+msgid "Your submission was reviewed"
+msgstr ""
+
+#: apps/notifications/strategies/base.py:40
+msgid "Your submission is under consideration"
+msgstr ""
+
 #: apps/notifications/strategies/comment_strategies.py:29
 #: apps/notifications/strategies/comment_strategies.py:92
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:49
@@ -3397,28 +3417,28 @@ msgstr "Die Veranstaltung {event} im Projekt {project} wurde aktualisiert"
 
 #: apps/notifications/strategies/moderation_strategies.py:30
 #: apps/notifications/strategies/moderation_strategies.py:70
-#: apps/notifications/strategies/moderation_strategies.py:121
+#: apps/notifications/strategies/moderation_strategies.py:109
 #, python-brace-format
 msgid "Feedback for your contribution on {site_name}"
 msgstr "Ihrem Beitrag auf {site_name} wurde Feedback gegeben"
 
 #: apps/notifications/strategies/moderation_strategies.py:33
 #: apps/notifications/strategies/moderation_strategies.py:71
-#: apps/notifications/strategies/moderation_strategies.py:122
+#: apps/notifications/strategies/moderation_strategies.py:110
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:6
 msgid "Feedback for your contribution"
 msgstr "Rückmeldung zu Ihrem Beitrag"
 
 #: apps/notifications/strategies/moderation_strategies.py:36
 #: apps/notifications/strategies/moderation_strategies.py:74
-#: apps/notifications/strategies/moderation_strategies.py:125
+#: apps/notifications/strategies/moderation_strategies.py:113
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:31
 msgid "Check your contribution"
 msgstr "Beitrag anzeigen"
 
 #: apps/notifications/strategies/moderation_strategies.py:38
 #: apps/notifications/strategies/moderation_strategies.py:76
-#: apps/notifications/strategies/moderation_strategies.py:127
+#: apps/notifications/strategies/moderation_strategies.py:115
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. You have received the e-mail "
@@ -3441,55 +3461,36 @@ msgstr "Kommentar"
 msgid "A moderator gave feedback on your idea {idea}"
 msgstr "Die Moderation hat Feedback zu Ihrer Idee {idea} gegeben"
 
-#: apps/notifications/strategies/moderation_strategies.py:104
-#: apps/notifications/strategies/moderation_strategies.py:157
-msgid "approved"
-msgstr "wird umgesetzt"
-
-#: apps/notifications/strategies/moderation_strategies.py:105
-#: apps/notifications/strategies/moderation_strategies.py:158
-msgid "rejected"
-msgstr "wird nicht umgesetzt"
-
-#: apps/notifications/strategies/moderation_strategies.py:106
-#: apps/notifications/strategies/moderation_strategies.py:159
-msgid "reviewed"
-msgstr "überprüft"
-
-#: apps/notifications/strategies/moderation_strategies.py:107
-msgid "under consideration"
-msgstr "wird geprüft"
-
-#: apps/notifications/strategies/moderation_strategies.py:142
+#: apps/notifications/strategies/moderation_strategies.py:130
 #, python-brace-format
 msgid "A moderator gave feedback on your proposal {proposal}"
 msgstr "Die Moderation hat Feedback zu Ihrem Vorschlag {proposal} gegeben"
 
-#: apps/notifications/strategies/moderation_strategies.py:188
-#: apps/notifications/strategies/moderation_strategies.py:189
+#: apps/notifications/strategies/moderation_strategies.py:165
+#: apps/notifications/strategies/moderation_strategies.py:166
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:10
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:14
 msgid "Your comment was blocked"
 msgstr "Ihr Kommentar wurde blockiert"
 
-#: apps/notifications/strategies/moderation_strategies.py:191
+#: apps/notifications/strategies/moderation_strategies.py:168
 #, python-brace-format
 msgid "Hello <strong>{receiver_name}</strong>,"
 msgstr "Hallo <strong>{receiver_name}</strong>,"
 
-#: apps/notifications/strategies/moderation_strategies.py:193
+#: apps/notifications/strategies/moderation_strategies.py:170
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:46
 msgid "View Project"
 msgstr "Projekt ansehen"
 
-#: apps/notifications/strategies/moderation_strategies.py:194
+#: apps/notifications/strategies/moderation_strategies.py:171
 #: apps/notifications/strategies/project_strategies.py:153
 #: apps/notifications/strategies/project_strategies.py:198
 #, python-brace-format
 msgid "This email was sent to {receiver_email}."
 msgstr "Diese E-Mail wurde an {receiver_email} gesendet. "
 
-#: apps/notifications/strategies/moderation_strategies.py:206
+#: apps/notifications/strategies/moderation_strategies.py:183
 #, python-brace-format
 msgid "Your comment was blocked in project {project_name}"
 msgstr "Ihr Kommentar im Projekt {project_name} von der Moderation blockiert"
@@ -3815,10 +3816,9 @@ msgid "Do you want to answer?"
 msgstr "Möchten Sie antworten?"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_post.en.email:8
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:17
 #, python-format
-msgid "Your contribution is %(status)s."
-msgstr "Ihr Beitrag %(status)s."
+msgid "%(status)s."
+msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_highlighted_comment.en.email:3
 msgid "A moderator highlighted your comment in the project."
@@ -4032,6 +4032,11 @@ msgstr "Die Moderation hat Ihr Kommentar im Projekt hervorgehoben "
 #, python-format
 msgid "Feedback for your contribution on %(site_name)s"
 msgstr "Rückmeldung zu Ihrem Beitrag auf %(site_name)s"
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:17
+#, python-format
+msgid "Your contribution is %(status)s."
+msgstr "Ihr Beitrag %(status)s."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:4
 #, python-format
