@@ -31,11 +31,13 @@ class BaseNotificationStrategy(ABC):
         """Shared method for all moderator status displays."""
         status = getattr(obj, "moderator_status", None)
         if status:
+            status = status.lower()
             status_map = {
+                "accepted": _("Your submission was accepted"),
                 "approved": _("Your submission was approved"),
-                "rejected": _("Your submission was rejectedrejected"),
+                "rejected": _("Your submission was rejected"),
                 "reviewed": _("Your submission was reviewed"),
-                "CONSIDERATION": _("Your submission is under consideration"),
+                "consideration": _("Your submission is under consideration"),
             }
             return status_map.get(status, status)
         return ""
