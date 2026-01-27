@@ -75,7 +75,7 @@ class NotificationService:
         notification_type = notification_data["notification_type"]
 
         # Get ALL potential recipients
-        all_recipients = strategy.get_recipients(obj)
+        all_recipients = list(set(strategy.get_recipients(obj)))
 
         # Filter recipients by preferences
         in_app_recipients, email_recipients = (
@@ -112,19 +112,21 @@ class NotificationService:
         """
         Get filtered recipients for both channels
         """
+
+        unique_recipients = list(set(all_recipients))
         should_check_preferences = (
             NOTIFICATION_TYPE_MAPPING[notification_type]
             != NotificationCategory.MODERATION
         )
 
         if not should_check_preferences:
-            return all_recipients, all_recipients
+            return unique_recipients, unique_recipients
 
         in_app_recipients = NotificationService._filter_recipients_by_preferences(
-            all_recipients, notification_type, "in_app"
+            unique_recipients, notification_type, "in_app"
         )
         email_recipients = NotificationService._filter_recipients_by_preferences(
-            all_recipients, notification_type, "email"
+            unique_recipients, notification_type, "email"
         )
 
         return in_app_recipients, email_recipients

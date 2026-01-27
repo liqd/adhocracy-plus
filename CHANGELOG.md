@@ -12,6 +12,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Notification message_templates stored in English, translated at runtime
 
+### Fixed
+
+- Fix duplicate notifications bug
+
 ## v2601.2
 
 ### Fixed
