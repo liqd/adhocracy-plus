@@ -48,9 +48,7 @@ class CommentHighlighted(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.MODERATOR_HIGHLIGHT,
-            "message_template": _(
-                "A moderator highlighted your comment '{comment}' in project {project}"
-            ),
+            "message_template": "A moderator highlighted your comment '{comment}' in project {project}",
             "context": {
                 "project": comment.project.name,
                 "project_url": comment.project.get_absolute_url(),
@@ -105,7 +103,7 @@ class ProjectComment(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.COMMENT_ON_POST,
-            "message_template": _("{user} commented on your post {post}"),
+            "message_template": "{user} commented on your post {post}",
             "context": {
                 "user": comment.creator.username,
                 "user_url": getattr(comment.creator, "get_absolute_url", lambda: "")(),
@@ -165,7 +163,7 @@ class CommentReply(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.COMMENT_REPLY,
-            "message_template": _("{user} replied to your {comment}"),
+            "message_template": "{user} replied to your {comment}",
             "context": {
                 "user": comment.creator.username,
                 "user_url": comment.creator.get_absolute_url(),

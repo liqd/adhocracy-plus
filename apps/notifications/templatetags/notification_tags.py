@@ -1,6 +1,7 @@
 from django import template
 from django.urls import reverse
 from django.utils.safestring import mark_safe
+from django.utils.translation import gettext as _
 
 from apps.notifications.models import Notification
 
@@ -17,8 +18,10 @@ def unread_notifications_count(context):
 
 @register.filter
 def render_notification_with_links(notification):
+    translated_template = _(notification.message_template)  # Translate at render time
     context = notification.context
-    template_parts = notification.message_template.split("{")
+
+    template_parts = translated_template.split("{")
 
     result = []
     for part in template_parts:

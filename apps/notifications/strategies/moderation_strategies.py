@@ -47,7 +47,7 @@ class CommentFeedback(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.MODERATOR_COMMENT_FEEDBACK,
-            "message_template": _("A moderator gave feedback on your {comment}"),
+            "message_template": "A moderator gave feedback on your {comment}",
             "context": {
                 "moderator_feedback": feedback.feedback_text,
                 "comment": _("comment"),
@@ -87,7 +87,7 @@ class IdeaFeedback(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.MODERATOR_IDEA_FEEDBACK,
-            "message_template": _("A moderator gave feedback on your idea {idea}"),
+            "message_template": "A moderator gave feedback on your idea {idea}",
             "context": {
                 "idea_url": idea.get_absolute_url(),
                 "idea": idea.name,
@@ -126,9 +126,7 @@ class ProposalFeedback(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.MODERATOR_IDEA_FEEDBACK,
-            "message_template": _(
-                "A moderator gave feedback on your proposal {proposal}"
-            ),
+            "message_template": "A moderator gave feedback on your proposal {proposal}",
             "context": {
                 "proposal_url": proposal.get_absolute_url(),
                 "proposal": proposal.name,
@@ -180,7 +178,7 @@ class CommentBlocked(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.MODERATOR_BLOCKED_COMMENT,
-            "message_template": _("Your comment was blocked in project {project_name}"),
+            "message_template": "Your comment was blocked in project {project_name}",
             "context": {
                 "project_name": project.name,
                 "project_url": project.get_absolute_url(),
