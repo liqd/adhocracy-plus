@@ -12,6 +12,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Notification message_templates stored in English, translated at runtime
 
+### Fixed
+
+- Interpolation and translation for ModeratorInvite notification
+
 ## v2601.2
 
 ### Fixed

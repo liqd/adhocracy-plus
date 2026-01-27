@@ -200,11 +200,12 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.PROJECT_MODERATION_INVITATION,
-            "message_template": "You have been invited to be a moderator of project %(project_name)s. View {invitation}"
-            % {"project_name": project.name},
+            "message_template": "You have been invited to be a moderator of project {project_name}. View {invitation}",
             "context": {
-                "invitation": _("invitation"),
+                "project_name": invitation.project.name,  # Already filled
+                "invitation": "invitation",
                 "invitation_url": invitation.get_absolute_url(),
+                "project_url": None,  # Explicitly no project link
             },
             "email_context": email_context,
         }
