@@ -1,6 +1,5 @@
 from django.db.models import Q
 from django.utils import timezone
-from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _
 
 from .constants import NOTIFICATION_SECTIONS
@@ -8,23 +7,17 @@ from .constants import NOTIFICATION_SECTIONS
 
 def format_event_date(event_date):
     """
-    Format event date for notifications with timezone awareness
-
-    Args:
-        event_date: DateTime object
-
-    Returns:
-        Formatted date string or "soon" if no date
+    Format event date as DD.MM.YYYY
     """
     if not event_date:
         return _("soon")
 
-    if event_date.time() == timezone.datetime.min.time():
-        # Date only (no specific time)
-        return date_format(event_date, "DATE_FORMAT")
-    else:
-        # Date with time - convert to local timezone
-        return date_format(timezone.localtime(event_date), "DATETIME_FORMAT")
+    # Convert to local timezone if it has time
+    if event_date.time() != timezone.datetime.min.time():
+        event_date = timezone.localtime(event_date)
+
+    # Always return DD.MM.YYYY
+    return event_date.strftime("%d.%m.%Y")
 
 
 def get_notifications_by_section(notifications, section):
