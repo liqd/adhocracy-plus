@@ -115,7 +115,7 @@ class ProjectEnded(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.PROJECT_COMPLETED,
-            "message_template": "The project {project} has been completed.",
+            "message_template": _("The project {project} has been completed."),
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
