@@ -40,9 +40,7 @@ class OfflineEventCreated(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.EVENT_ADDED,
-            "message_template": _(
-                "A new event '{event}' has been added to the project {project}"
-            ),
+            "message_template": "A new event '{event}' has been added to the project {project}",
             "context": {
                 "project": offline_event.project.name,
                 "project_url": offline_event.project.get_absolute_url(),
@@ -85,9 +83,7 @@ class OfflineEventDeleted(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.EVENT_CANCELLED,
-            "message_template": _(
-                "The event '{event}' in project {project} has been cancelled"
-            ),
+            "message_template": "The event '{event}' in project {project} has been cancelled",
             "context": {
                 "project": offline_event.project.name,
                 "project_url": offline_event.project.get_absolute_url(),
@@ -131,9 +127,7 @@ class OfflineEventReminder(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.EVENT_SOON,
-            "message_template": _(
-                "The event '{event}' in project {project} is starting on {event_date}"
-            ),
+            "message_template": "The event '{event}' in project {project} is starting on {event_date}",
             "context": {
                 "project": offline_event.project.name,
                 "project_url": offline_event.project.get_absolute_url(),
@@ -176,9 +170,7 @@ class OfflineEventUpdate(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.EVENT_UPDATE,
-            "message_template": _(
-                "The event {event} in project {project} has been updated"
-            ),
+            "message_template": "The event {event} in project {project} has been updated",
             "context": {
                 "project": offline_event.project.name,
                 "project_url": offline_event.project.get_absolute_url(),
