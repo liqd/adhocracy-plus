@@ -197,7 +197,7 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/project_moderation_invitation.en.email",
             "project_name": project.name,
         }
-
+        translated = _("You have been invited to be a moderator of project {project_name}. View {invitation}")
         return {
             "notification_type": NotificationType.PROJECT_MODERATION_INVITATION,
             "message_template": "You have been invited to be a moderator of project {project_name}. View {invitation}",
