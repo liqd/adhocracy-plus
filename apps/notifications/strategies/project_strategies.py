@@ -202,7 +202,7 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
             "notification_type": NotificationType.PROJECT_MODERATION_INVITATION,
             "message_template": "You have been invited to be a moderator of project {project_name}. View {invitation}",
             "context": {
-                "project_name": invitation.project.name,  # Already filled
+                "project_name": invitation.project.name,
                 "invitation": "invitation",
                 "invitation_url": invitation.get_absolute_url(),
                 "project_url": None,  # Explicitly no project link
