@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-26 10:59+0100\n"
+"POT-Creation-Date: 2026-01-27 15:47+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Tietje, 2026\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
@@ -513,6 +513,10 @@ msgstr "Bitte stimmen Sie den Nutzungsbedingungen der Organisation zu."
 #: adhocracy4/comments_async/serializers.py:15
 msgid "Please choose one or more categories."
 msgstr "Bitte wählen Sie eine oder mehrere Kategorien aus."
+
+#: adhocracy4/dashboard/components/forms/forms.py:49
+msgid "Description must be at most 170 characters"
+msgstr ""
 
 #: adhocracy4/dashboard/components/forms/views.py:24
 msgid "The project has been updated."
@@ -1337,10 +1341,8 @@ msgstr "Kurzbeschreibung Ihres Projekts"
 #: adhocracy4/projects/models.py:227
 msgid ""
 "This short description will appear on the header of the project and in the "
-"teaser. It should briefly state the goal of the project in max. 250 chars."
+"teaser. It should briefly state the goal of the project in max. 170 chars."
 msgstr ""
-"Die Kurzbeschreibung wird in Kacheln und im Kopf der Projektseite angezeigt "
-"werden. Sie sollte das Ziel des Projekts in maximal 250 Zeichen beschreiben."
 
 #: adhocracy4/projects/models.py:236
 msgid "Description of your project"
@@ -2788,7 +2790,7 @@ msgid "Add affiliation"
 msgstr "Zugehörigkeit hinzufügen"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/livequestion_form.html:18
-#: apps/notifications/strategies/comment_strategies.py:83
+#: apps/notifications/strategies/comment_strategies.py:81
 msgid "post"
 msgstr "abschicken"
 
@@ -3233,7 +3235,7 @@ msgid "Your submission is under consideration"
 msgstr "Ihr Beitrag wird überprüft."
 
 #: apps/notifications/strategies/comment_strategies.py:29
-#: apps/notifications/strategies/comment_strategies.py:92
+#: apps/notifications/strategies/comment_strategies.py:90
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:49
 msgid "View post"
 msgstr "Beitrag ansehen"
@@ -3267,24 +3269,17 @@ msgstr ""
 "erhalten, weil die Moderation Ihren Beitrag zu dem oben genannten Projekt "
 "hervorgehoben hat."
 
-#: apps/notifications/strategies/comment_strategies.py:52
-#, python-brace-format
-msgid "A moderator highlighted your comment '{comment}' in project {project}"
-msgstr ""
-"Die Moderation hat Ihr Kommentar {comment} im Projekt {project} "
-"hervorgehoben."
-
-#: apps/notifications/strategies/comment_strategies.py:86
+#: apps/notifications/strategies/comment_strategies.py:84
 #, python-brace-format
 msgid "{commenter} commented on your post {post}"
 msgstr "{commenter}hat Ihren Beitrag {post} kommentiert."
 
-#: apps/notifications/strategies/comment_strategies.py:89
+#: apps/notifications/strategies/comment_strategies.py:87
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:16
 msgid "New comment on your post"
 msgstr "Neuer Kommentar auf Ihrem Beitrag"
 
-#: apps/notifications/strategies/comment_strategies.py:94
+#: apps/notifications/strategies/comment_strategies.py:92
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email} because someone commented on your "
@@ -3293,33 +3288,28 @@ msgstr ""
 "Diese E-Mail wurde an {receiver_email} gesendet, weil jemand Ihren Beitrag "
 "kommentiert hat. "
 
-#: apps/notifications/strategies/comment_strategies.py:103
+#: apps/notifications/strategies/comment_strategies.py:101
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:40
 msgid "See what they said and join the discussion."
 msgstr ""
 "Sehen Sie sich an, was gesagt wurde, und beteiligen Sie sich an der "
 "Diskussion."
 
-#: apps/notifications/strategies/comment_strategies.py:108
-#, python-brace-format
-msgid "{user} commented on your post {post}"
-msgstr "{user} hat Ihren Beitrag {post} kommentiert "
-
-#: apps/notifications/strategies/comment_strategies.py:145
+#: apps/notifications/strategies/comment_strategies.py:143
 #, python-brace-format
 msgid "{commenter} replied to your comment"
 msgstr "{commenter} hat auf Ihr Kommentar geantwortet"
 
-#: apps/notifications/strategies/comment_strategies.py:148
+#: apps/notifications/strategies/comment_strategies.py:146
 msgid "New reply to your comment"
 msgstr "Neue Antwort auf Ihr Kommentar"
 
-#: apps/notifications/strategies/comment_strategies.py:151
+#: apps/notifications/strategies/comment_strategies.py:149
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:54
 msgid "View conversation"
 msgstr "Unterhaltung anzeigen"
 
-#: apps/notifications/strategies/comment_strategies.py:153
+#: apps/notifications/strategies/comment_strategies.py:151
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email} because someone replied to your "
@@ -3328,16 +3318,11 @@ msgstr ""
 "Diese E-Mail wurde an {receiver_email} gesendet, weil jemand auf Ihr "
 "Kommentar geantwortet hat. "
 
-#: apps/notifications/strategies/comment_strategies.py:162
+#: apps/notifications/strategies/comment_strategies.py:160
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:45
 msgid "Join the conversation and continue the discussion."
 msgstr ""
 "Beteiligen Sie sich an der Unterhaltung und führen Sie das Gespräch fort."
-
-#: apps/notifications/strategies/comment_strategies.py:168
-#, python-brace-format
-msgid "{user} replied to your {comment}"
-msgstr "{user} hat auf {comment} geantwortet"
 
 #: apps/notifications/strategies/event_strategies.py:22
 #, python-brace-format
@@ -3345,9 +3330,9 @@ msgid "Event added to project {project}"
 msgstr "Eine Veranstaltung wurde zu {project} hinzugefügt"
 
 #: apps/notifications/strategies/event_strategies.py:25
-#: apps/notifications/strategies/event_strategies.py:72
-#: apps/notifications/strategies/event_strategies.py:116
-#: apps/notifications/strategies/event_strategies.py:161
+#: apps/notifications/strategies/event_strategies.py:70
+#: apps/notifications/strategies/event_strategies.py:112
+#: apps/notifications/strategies/event_strategies.py:155
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:6
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:6
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:6
@@ -3356,17 +3341,17 @@ msgid "Event"
 msgstr "Veranstaltung"
 
 #: apps/notifications/strategies/event_strategies.py:28
-#: apps/notifications/strategies/event_strategies.py:119
-#: apps/notifications/strategies/event_strategies.py:167
+#: apps/notifications/strategies/event_strategies.py:115
+#: apps/notifications/strategies/event_strategies.py:161
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:24
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:24
 msgid "Show Event"
 msgstr "Veranstaltung anzeigen"
 
 #: apps/notifications/strategies/event_strategies.py:30
-#: apps/notifications/strategies/event_strategies.py:75
-#: apps/notifications/strategies/event_strategies.py:121
-#: apps/notifications/strategies/event_strategies.py:164
+#: apps/notifications/strategies/event_strategies.py:73
+#: apps/notifications/strategies/event_strategies.py:117
+#: apps/notifications/strategies/event_strategies.py:158
 #: apps/notifications/strategies/project_strategies.py:78
 #: apps/notifications/strategies/project_strategies.py:110
 #, python-brace-format
@@ -3377,42 +3362,19 @@ msgstr ""
 "Diese E-Mail wurde an {receiver_email} gesendet. Sie erhalten diese E-Mail, "
 "weil Sie dem oben genannten Projekt folgen. "
 
-#: apps/notifications/strategies/event_strategies.py:44
-#, python-brace-format
-msgid "A new event '{event}' has been added to the project {project}"
-msgstr ""
-"Eine neue Veranstaltung \"{event}\" wurde dem Projekt {project} "
-"hinzugefügt.  "
-
-#: apps/notifications/strategies/event_strategies.py:69
+#: apps/notifications/strategies/event_strategies.py:67
 #, python-brace-format
 msgid "Event {event} in project {project} cancelled"
 msgstr "Die Veranstaltung {event} im Projekt {project} wurde abgesagt. "
 
-#: apps/notifications/strategies/event_strategies.py:89
-#, python-brace-format
-msgid "The event '{event}' in project {project} has been cancelled"
-msgstr "Die Veranstaltung \"{event}\" im Projekt {project} wurde abgesagt. "
-
-#: apps/notifications/strategies/event_strategies.py:113
+#: apps/notifications/strategies/event_strategies.py:109
 #, python-brace-format
 msgid "Event in project {project}"
 msgstr "Veranstaltung im Projekt {project}"
 
-#: apps/notifications/strategies/event_strategies.py:135
-#, python-brace-format
-msgid "The event '{event}' in project {project} is starting on {event_date}"
-msgstr ""
-"Die Veranstaltung \"{event}\" im Projekt {project} startet am {event_date}"
-
-#: apps/notifications/strategies/event_strategies.py:158
+#: apps/notifications/strategies/event_strategies.py:152
 #, python-brace-format
 msgid "Event {event} in project {project} updated"
-msgstr "Die Veranstaltung {event} im Projekt {project} wurde aktualisiert"
-
-#: apps/notifications/strategies/event_strategies.py:180
-#, python-brace-format
-msgid "The event {event} in project {project} has been updated"
 msgstr "Die Veranstaltung {event} im Projekt {project} wurde aktualisiert"
 
 #: apps/notifications/strategies/moderation_strategies.py:30
@@ -3447,53 +3409,33 @@ msgstr ""
 "Diese E-Mail wurde an {receiver_email} gesendet. Sie erhalten diese E-Mail, "
 "weil Sie einen Beitrag zum dem oben genannten Projekt hinzugefügt haben."
 
-#: apps/notifications/strategies/moderation_strategies.py:50
-#, python-brace-format
-msgid "A moderator gave feedback on your {comment}"
-msgstr "Die Moderation hat Feedback zu {comment} gegeben"
-
 #: apps/notifications/strategies/moderation_strategies.py:53
 msgid "comment"
 msgstr "Kommentar"
 
-#: apps/notifications/strategies/moderation_strategies.py:90
-#, python-brace-format
-msgid "A moderator gave feedback on your idea {idea}"
-msgstr "Die Moderation hat Feedback zu Ihrer Idee {idea} gegeben"
-
-#: apps/notifications/strategies/moderation_strategies.py:130
-#, python-brace-format
-msgid "A moderator gave feedback on your proposal {proposal}"
-msgstr "Die Moderation hat Feedback zu Ihrem Vorschlag {proposal} gegeben"
-
-#: apps/notifications/strategies/moderation_strategies.py:165
-#: apps/notifications/strategies/moderation_strategies.py:166
+#: apps/notifications/strategies/moderation_strategies.py:163
+#: apps/notifications/strategies/moderation_strategies.py:164
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:10
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:14
 msgid "Your comment was blocked"
 msgstr "Ihr Kommentar wurde blockiert"
 
-#: apps/notifications/strategies/moderation_strategies.py:168
+#: apps/notifications/strategies/moderation_strategies.py:166
 #, python-brace-format
 msgid "Hello <strong>{receiver_name}</strong>,"
 msgstr "Hallo <strong>{receiver_name}</strong>,"
 
-#: apps/notifications/strategies/moderation_strategies.py:170
+#: apps/notifications/strategies/moderation_strategies.py:168
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:46
 msgid "View Project"
 msgstr "Projekt ansehen"
 
-#: apps/notifications/strategies/moderation_strategies.py:171
+#: apps/notifications/strategies/moderation_strategies.py:169
 #: apps/notifications/strategies/project_strategies.py:153
-#: apps/notifications/strategies/project_strategies.py:198
+#: apps/notifications/strategies/project_strategies.py:196
 #, python-brace-format
 msgid "This email was sent to {receiver_email}."
 msgstr "Diese E-Mail wurde an {receiver_email} gesendet. "
-
-#: apps/notifications/strategies/moderation_strategies.py:183
-#, python-brace-format
-msgid "Your comment was blocked in project {project_name}"
-msgstr "Ihr Kommentar im Projekt {project_name} von der Moderation blockiert"
 
 #: apps/notifications/strategies/project_strategies.py:70
 #, python-brace-format
@@ -3514,11 +3456,6 @@ msgstr "Los geht’s!"
 msgid "Join now"
 msgstr "Jetzt mitmachen"
 
-#: apps/notifications/strategies/project_strategies.py:87
-#, python-brace-format
-msgid "The project {project} has begun."
-msgstr "Das Projekt {project} hat begonnen."
-
 #: apps/notifications/strategies/project_strategies.py:103
 #, python-brace-format
 msgid "{project_name} has completed."
@@ -3527,11 +3464,6 @@ msgstr "{project_name} ist beendet."
 #: apps/notifications/strategies/project_strategies.py:108
 msgid "View now"
 msgstr "Jetzt ansehen"
-
-#: apps/notifications/strategies/project_strategies.py:118
-#, python-brace-format
-msgid "The project {project} has been completed."
-msgstr "Das Projekt {project} wurde beendet."
 
 #: apps/notifications/strategies/project_strategies.py:146
 #, python-brace-format
@@ -3550,57 +3482,35 @@ msgstr "Einladung zum {project_type} Projekt: \"{project_name}\""
 msgid "Accept invitation"
 msgstr "Einladung annehmen"
 
-#: apps/notifications/strategies/project_strategies.py:165
-#, python-brace-format
-msgid ""
-"You have been invited to project {project}. Please check your email to "
-"accept."
-msgstr ""
-"Sie wurden zum Projekt {project} eingeladen. Bitte überprüfen Sie ihre E-"
-"Mails, um die Einladung anzunehmen."
-
-#: apps/notifications/strategies/project_strategies.py:192
+#: apps/notifications/strategies/project_strategies.py:190
 #, python-brace-format
 msgid "Moderator invitation for project {project_name}"
 msgstr "Einladung zur Moderation im Projekt {project_name}"
 
-#: apps/notifications/strategies/project_strategies.py:195
+#: apps/notifications/strategies/project_strategies.py:193
 msgid "Moderator Invitation"
 msgstr "Einladung zur Moderation"
 
-#: apps/notifications/strategies/project_strategies.py:197
+#: apps/notifications/strategies/project_strategies.py:195
 msgid "View Invitation"
 msgstr "Einladung ansehen"
 
-#: apps/notifications/strategies/project_strategies.py:206
-#, python-format, python-brace-format
-msgid ""
-"You have been invited to be a moderator of project %(project_name)s. View "
-"{invitation}"
-msgstr ""
-"Sie habe eine Einladung zur Moderation im Projekt %(project_name)s erhalten. "
-"{invitation} ansehen"
-
-#: apps/notifications/strategies/project_strategies.py:210
-msgid "invitation"
-msgstr "Einladung"
-
-#: apps/notifications/strategies/project_strategies.py:223
+#: apps/notifications/strategies/project_strategies.py:220
 #, python-brace-format
 msgid "New project {project_name} on {site_name}"
 msgstr "Neues Projekt {project_name} auf {site_name}"
 
-#: apps/notifications/strategies/project_strategies.py:225
+#: apps/notifications/strategies/project_strategies.py:222
 #, python-brace-format
 msgid "The new project {project_name} was created for {organisation_name}"
 msgstr "Neues Projekt {project_name} wurde für {organisation_name} erstellt"
 
-#: apps/notifications/strategies/project_strategies.py:230
+#: apps/notifications/strategies/project_strategies.py:227
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:15
 msgid "Show project"
 msgstr "Projekt anzeigen"
 
-#: apps/notifications/strategies/project_strategies.py:232
+#: apps/notifications/strategies/project_strategies.py:229
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
@@ -3609,22 +3519,17 @@ msgstr ""
 "Diese E-Mail wurde an {receiver_email} gesendet. Diese E-Mail wurde an Sie "
 "gesendet, weil Sie Initiator:in für {organisation_name} sind."
 
-#: apps/notifications/strategies/project_strategies.py:243
-#, python-brace-format
-msgid "A new project {project} has been created."
-msgstr "Neues Projekt {project} wurde erstellt. "
-
-#: apps/notifications/strategies/project_strategies.py:259
+#: apps/notifications/strategies/project_strategies.py:256
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:4
 msgid "Deletion of project"
 msgstr "Löschung eines Projekts"
 
-#: apps/notifications/strategies/project_strategies.py:260
+#: apps/notifications/strategies/project_strategies.py:257
 #, python-brace-format
 msgid "The project {project} was deleted."
 msgstr "Das Projekt {project} wurde gelöscht. "
 
-#: apps/notifications/strategies/project_strategies.py:264
+#: apps/notifications/strategies/project_strategies.py:261
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
@@ -3635,29 +3540,24 @@ msgstr ""
 "weil Sie Initiator:in der Organisation '{organisation_name}' sind, in "
 "welcher soeben ein Projekt gelöscht wurde. "
 
-#: apps/notifications/strategies/project_strategies.py:276
-#, python-brace-format
-msgid "The project {project} has been deleted."
-msgstr "Das Projekt {project} wurde gelöscht. "
-
-#: apps/notifications/strategies/project_strategies.py:307
+#: apps/notifications/strategies/project_strategies.py:304
 #, python-brace-format
 msgid "{article} {content_type} was added to the project {project}"
 msgstr "{article}{content_type} wurde zum Projekt {project} hinzugefügt. "
 
-#: apps/notifications/strategies/project_strategies.py:314
+#: apps/notifications/strategies/project_strategies.py:311
 #, python-brace-format
 msgid ""
 "{creator_name} created {article} {content_type} on the project {project}"
 msgstr ""
 "{creator_name} hat {article} {content_type} im Projekt {project} erstellt"
 
-#: apps/notifications/strategies/project_strategies.py:322
+#: apps/notifications/strategies/project_strategies.py:319
 #, python-brace-format
 msgid "Check the {content_type}"
 msgstr "Überprüfen Sie {content_type}"
 
-#: apps/notifications/strategies/project_strategies.py:326
+#: apps/notifications/strategies/project_strategies.py:323
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
@@ -3665,12 +3565,6 @@ msgid ""
 msgstr ""
 "Diese E-Mail wurde an {receiver_email} gesendet. Sie erhalten diese E-Mail, "
 "weil Sie Moderator:in im Projekt sind."
-
-#: apps/notifications/strategies/project_strategies.py:342
-#, python-brace-format
-msgid ""
-"A new {content_type} \"{content}\" has been created in project {project}."
-msgstr "{content_type} \"{content}\" wurde im Projekt {project} erstellt. "
 
 #: apps/notifications/templates/a4_candy_notifications/_notification_card.html:14
 #: apps/notifications/templates/a4_candy_notifications/_notification_card.html:41
