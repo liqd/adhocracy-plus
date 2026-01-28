@@ -3,6 +3,7 @@ from typing import List
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
+from ..constants import NOTIFICATION_MESSAGE_TEMPLATES
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
 
@@ -84,7 +85,7 @@ class ProjectStarted(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.PROJECT_STARTED,
-            "message_template": "The project {project} has begun.",
+            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.PROJECT_STARTED,
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
@@ -115,7 +116,7 @@ class ProjectEnded(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.PROJECT_COMPLETED,
-            "message_template": _("The project {project} has been completed."),
+            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.PROJECT_COMPLETED,
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
@@ -161,7 +162,7 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.PROJECT_INVITATION,
-            "message_template": "You have been invited to project {project}. Please check your email to accept.",
+            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.PROJECT_INVITATION,
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
@@ -202,7 +203,7 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
         )
         return {
             "notification_type": NotificationType.PROJECT_MODERATION_INVITATION,
-            "message_template": "You have been invited to be a moderator of project {project_name}. View {invitation}",
+            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.PROJECT_MODERATION_INVITATION,
             "context": {
                 "project_name": project.name,
                 "invitation": "invitation",
@@ -240,7 +241,7 @@ class ProjectCreated(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.PROJECT_CREATED,
-            "message_template": "A new project {project} has been created.",
+            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.PROJECT_CREATED,
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
@@ -273,7 +274,7 @@ class ProjectDeleted(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.PROJECT_DELETED,
-            "message_template": "The project {project} has been deleted.",
+            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.PROJECT_DELETED,
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
@@ -338,7 +339,7 @@ class UserContentCreated(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.USER_CONTENT_CREATED,
-            "message_template": 'A new {content_type} "{content}" has been created in project {project}.',
+            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.USER_CONTENT_CREATED,
             "context": {
                 "project": obj.project.name,
                 "project_url": obj.project.get_absolute_url(),
