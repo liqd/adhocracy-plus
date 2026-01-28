@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from ..constants import NOTIFICATION_MESSAGE_TEMPLATES
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
 
@@ -48,7 +47,7 @@ class CommentFeedback(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.MODERATOR_COMMENT_FEEDBACK,
-            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.MODERATOR_COMMENT_FEEDBACK,
+            "message_template": "A moderator gave feedback on your {comment}",
             "context": {
                 "moderator_feedback": feedback.feedback_text,
                 "comment": _("comment"),
@@ -88,7 +87,7 @@ class IdeaFeedback(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.MODERATOR_IDEA_FEEDBACK,
-            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.MODERATOR_IDEA_FEEDBACK,
+            "message_template": "A moderator gave feedback on your idea {idea}",
             "context": {
                 "idea_url": idea.get_absolute_url(),
                 "idea": idea.name,
@@ -127,7 +126,7 @@ class ProposalFeedback(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.MODERATOR_IDEA_FEEDBACK,
-            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.MODERATOR_PROPOSAL_FEEDBACK,
+            "message_template": "A moderator gave feedback on your proposal {proposal}",
             "context": {
                 "proposal_url": proposal.get_absolute_url(),
                 "proposal": proposal.name,
@@ -179,7 +178,7 @@ class CommentBlocked(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.MODERATOR_BLOCKED_COMMENT,
-            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.MODERATOR_BLOCKED_COMMENT,
+            "message_template": "Your comment was blocked in project {project_name}",
             "context": {
                 "project_name": project.name,
                 "project_url": project.get_absolute_url(),
