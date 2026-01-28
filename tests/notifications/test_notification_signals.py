@@ -311,6 +311,7 @@ def test_handle_event_update_notifications(
     attendee_emails = get_emails_for_address(attendee.email)
     assert len(attendee_emails) == 1
     assert "update" in attendee_emails[0].subject.lower()
+    assert offline_event.name.lower() in attendee_emails[0].subject.lower()
     assert "show event" in attendee_emails[0].body.lower()
     assert offline_event.get_absolute_url() in attendee_emails[0].body.lower()
 

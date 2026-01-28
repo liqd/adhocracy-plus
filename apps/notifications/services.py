@@ -44,6 +44,7 @@ class NotificationEmail(Email):
                         site_name=(
                             context.get("site", "").name if context.get("site") else ""
                         ),
+                        event_name=context.get("event_name"),
                         project_name=context.get("project_name"),
                         project_type=context.get("project_type"),
                         article=context.get("article", ""),
