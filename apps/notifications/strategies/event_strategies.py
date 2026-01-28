@@ -19,9 +19,7 @@ class OfflineEventCreated(ProjectNotificationStrategy):
 
     def create_notification_data(self, offline_event):
         email_context = {
-            "subject": _("Event added to project {project}").format(
-                project=offline_event.project.name
-            ),
+            "subject": _("Event added to project {project_name}"),
             "headline": _("Event"),
             "subheadline": offline_event.name,
             "cta_url": offline_event.get_absolute_url(),
@@ -33,6 +31,7 @@ class OfflineEventCreated(ProjectNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/event_added.en.email",
             # Template variables
             "project": offline_event.project.name,
+            "project_name": offline_event.project.name,
             "event": offline_event.name,
             "event_date": format_event_date(offline_event.date),
             "organisation": offline_event.project.organisation.name,
@@ -67,9 +66,7 @@ class OfflineEventDeleted(ProjectNotificationStrategy):
 
     def create_notification_data(self, offline_event):
         email_context = {
-            "subject": _("Event {event} in project {project} cancelled").format(
-                event=offline_event.name, project=offline_event.project.name
-            ),
+            "subject": _("Event {event_name} in project {project_name} cancelled"),
             "headline": _("Event"),
             "subheadline": offline_event.name,
             "reason": _(
@@ -79,7 +76,9 @@ class OfflineEventDeleted(ProjectNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/event_deleted.en.email",
             # Template variables
             "project": offline_event.project.name,
+            "project_name": offline_event.project.name,
             "event": offline_event.name,
+            "event_name": offline_event.name,
             "event_date": format_event_date(offline_event.date),
             "organisation": offline_event.project.organisation.name,
         }
@@ -112,9 +111,7 @@ class OfflineEventReminder(ProjectNotificationStrategy):
 
     def create_notification_data(self, offline_event):
         email_context = {
-            "subject": _("Event in project {project}").format(
-                project=offline_event.project.name
-            ),
+            "subject": _("Event in project {project_name}"),
             "headline": _("Event"),
             "subheadline": offline_event.name,
             "cta_url": offline_event.get_absolute_url(),
@@ -126,6 +123,7 @@ class OfflineEventReminder(ProjectNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/event_soon.en.email",
             # Template variables
             "project": offline_event.project.name,
+            "project_name": offline_event.project.name,
             "event": offline_event.name,
             "event_date": format_event_date(offline_event.date),
             "organisation": offline_event.project.organisation.name,
@@ -158,9 +156,7 @@ class OfflineEventUpdate(ProjectNotificationStrategy):
 
     def create_notification_data(self, offline_event):
         email_context = {
-            "subject": _("Event {event} in project {project} updated").format(
-                event=offline_event.name, project=offline_event.project.name
-            ),
+            "subject": _("Event {event_name} in project {project_name} updated"),
             "headline": _("Event"),
             "subheadline": offline_event.name,
             "reason": _(
@@ -172,7 +168,9 @@ class OfflineEventUpdate(ProjectNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/event_updated.en.email",
             # Template variables
             "project": offline_event.project.name,
+            "project_name": offline_event.project.name,
             "event": offline_event.name,
+            "event_name": offline_event.name,
             "event_date": format_event_date(offline_event.date),
             "organisation": offline_event.project.organisation.name,
         }

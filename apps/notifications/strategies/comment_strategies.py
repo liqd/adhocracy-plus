@@ -30,9 +30,7 @@ class CommentHighlighted(BaseNotificationStrategy):
 
         email_context = {
             "subject": _("A moderator highlighted your comment"),
-            "headline": _("Project {project_name}").format(
-                project_name=comment.project.name
-            ),
+            "headline": _("Project {project_name}"),
             "cta_url": cta_url,
             "cta_label": cta_label,
             "reason": _(
@@ -42,6 +40,7 @@ class CommentHighlighted(BaseNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/moderator_highlighted_comment.en.email",
             # Template variables
             "project": comment.project.name,
+            "project_name": comment.project.name,
             "project_url": comment.project.get_absolute_url(),
             "post_url": post_url,
         }
@@ -84,9 +83,7 @@ class ProjectComment(ProjectNotificationStrategy):
         post_name = getattr(comment.content_object, "name", _("post"))
 
         email_context = {
-            "subject": _("{commenter} commented on your post {post}").format(
-                commenter=comment.creator.username, post=post_name
-            ),
+            "subject": _("{commenter_name} commented on your post {post_name}"),
             "headline": _("New comment on your post"),
             "subheadline": comment.project.name,
             "cta_url": comment.content_object.get_absolute_url(),
@@ -144,9 +141,7 @@ class CommentReply(BaseNotificationStrategy):
         parent_comment = self._get_parent_comment(comment)
 
         email_context = {
-            "subject": _("{commenter} replied to your comment").format(
-                commenter=comment.creator.username
-            ),
+            "subject": _("{commenter_name} replied to your comment"),
             "headline": _("New reply to your comment"),
             "subheadline": comment.project.name,
             "cta_url": comment.get_absolute_url(),
