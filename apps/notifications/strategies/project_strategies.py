@@ -99,9 +99,7 @@ class ProjectEnded(ProjectNotificationStrategy):
 
     def create_notification_data(self, project) -> dict:
         email_context = {
-            "subject": _("{project_name} has completed.").format(
-                project_name=project.name
-            ),
+            "subject": _("{project_name} has completed."),
             "subheadline": project.name,
             "cta_url": project.get_absolute_url(),
             "cta_label": _("View now"),
@@ -109,7 +107,7 @@ class ProjectEnded(ProjectNotificationStrategy):
                 "This email was sent to {receiver_email}. You have received the e-mail because you are following the above project."
             ),
             "content_template": "a4_candy_notifications/emails/content/project_ended.en.email",
-            "project": project.name,
+            "project_name": project.name,
         }
 
         return {
