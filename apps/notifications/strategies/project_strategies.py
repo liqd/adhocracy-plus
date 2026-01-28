@@ -262,7 +262,7 @@ class ProjectDeleted(ProjectNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/project_deleted.en.email",
             # Template variables
             "project": project.name,
-            "project_namecl": project.name,
+            "project_name": project.name,
             "organisation": project.organisation.name,
             "site": project.organisation.site,
         }
