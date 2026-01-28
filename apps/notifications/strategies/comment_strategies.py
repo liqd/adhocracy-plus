@@ -83,9 +83,7 @@ class ProjectComment(ProjectNotificationStrategy):
         post_name = getattr(comment.content_object, "name", _("post"))
 
         email_context = {
-            "subject": _("{commenter} commented on your post {post}").format(
-                commenter=comment.creator.username, post=post_name
-            ),
+            "subject": _("{commenter_name} commented on your post {post_name}"),
             "headline": _("New comment on your post"),
             "subheadline": comment.project.name,
             "cta_url": comment.content_object.get_absolute_url(),
