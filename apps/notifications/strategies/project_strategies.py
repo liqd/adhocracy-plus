@@ -142,12 +142,8 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
         project_type = "semi-public" if is_semipublic else "private"
 
         email_context = {
-            "subject": _(
-                "Invitation to the {project_type} project: {project_name}"
-            ).format(project_type=project_type, project_name=project.name),
-            "headline": _(
-                'Invitation to the {project_type} project: "{project_name}"'
-            ).format(project_type=project_type, project_name=project.name),
+            "subject": _("Invitation to the {project_type} project: {project_name}"),
+            "headline": _('Invitation to the {project_type} project: "{project_name}"'),
             "cta_url": f"{invitation.get_absolute_url()}",
             "cta_label": _("Accept invitation"),
             "reason": _("This email was sent to {receiver_email}."),

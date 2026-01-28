@@ -338,8 +338,16 @@ def test_handle_invite_notification(
     # # Assert email
     invited_user_emails = get_emails_for_address(invited_user.email)
     assert len(invited_user_emails) == 1
+    email = invited_user_emails[0]
+    assert "invitation to the private project:" in email.subject.lower()
+    # Test subject
+    assert project.name.lower() in email.subject.lower()
+
+    # Test headline (check email body)
+    # Assuming headline is in email body HTML
     assert (
-        "invitation to the private project:" in invited_user_emails[0].subject.lower()
+        f'"{project.name}"' in email.body
+        or f'"{project.name}"' in email.alternatives[0][0]
     )
 
 
