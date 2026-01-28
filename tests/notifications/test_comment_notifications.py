@@ -48,6 +48,7 @@ def test_handle_comment_notifications(
     # Assert email
     author_emails = get_emails_for_address(author.email)
     assert len(author_emails) == 1
+    assert replier.username in author_emails[0].subject
     assert "replied to your comment" in author_emails[0].subject
 
 

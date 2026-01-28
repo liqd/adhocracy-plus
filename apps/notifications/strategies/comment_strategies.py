@@ -141,9 +141,7 @@ class CommentReply(BaseNotificationStrategy):
         parent_comment = self._get_parent_comment(comment)
 
         email_context = {
-            "subject": _("{commenter} replied to your comment").format(
-                commenter=comment.creator.username
-            ),
+            "subject": _("{commenter_name} replied to your comment"),
             "headline": _("New reply to your comment"),
             "subheadline": comment.project.name,
             "cta_url": comment.get_absolute_url(),
