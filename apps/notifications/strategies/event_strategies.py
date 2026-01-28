@@ -112,9 +112,7 @@ class OfflineEventReminder(ProjectNotificationStrategy):
 
     def create_notification_data(self, offline_event):
         email_context = {
-            "subject": _("Event in project {project}").format(
-                project=offline_event.project.name
-            ),
+            "subject": _("Event in project {project_name}"),
             "headline": _("Event"),
             "subheadline": offline_event.name,
             "cta_url": offline_event.get_absolute_url(),
@@ -126,6 +124,7 @@ class OfflineEventReminder(ProjectNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/event_soon.en.email",
             # Template variables
             "project": offline_event.project.name,
+            "project_name": offline_event.project.name,
             "event": offline_event.name,
             "event_date": format_event_date(offline_event.date),
             "organisation": offline_event.project.organisation.name,

@@ -182,3 +182,4 @@ def test_send_upcoming_event_notifications(
     follower_emails = get_emails_for_address(user2.email)
     assert len(follower_emails) == 1
     assert "event in project" in follower_emails[0].subject.lower()
+    assert project.name.lower() in follower_emails[0].subject.lower()
