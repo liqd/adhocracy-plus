@@ -66,9 +66,7 @@ class OfflineEventDeleted(ProjectNotificationStrategy):
 
     def create_notification_data(self, offline_event):
         email_context = {
-            "subject": _("Event {event} in project {project} cancelled").format(
-                event=offline_event.name, project=offline_event.project.name
-            ),
+            "subject": _("Event {event_name} in project {project_name} cancelled"),
             "headline": _("Event"),
             "subheadline": offline_event.name,
             "reason": _(
@@ -78,7 +76,9 @@ class OfflineEventDeleted(ProjectNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/event_deleted.en.email",
             # Template variables
             "project": offline_event.project.name,
+            "project_name": offline_event.project.name,
             "event": offline_event.name,
+            "event_name": offline_event.name,
             "event_date": format_event_date(offline_event.date),
             "organisation": offline_event.project.organisation.name,
         }

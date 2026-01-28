@@ -235,6 +235,7 @@ def test_handle_offline_event_deleted_notification(
     # Assert email
     attendee_emails = get_emails_for_address(attendee.email)
     assert len(attendee_emails) == 1
+    assert project.name.lower() in attendee_emails[0].subject.lower()
     assert "cancelled" in attendee_emails[0].subject.lower()
     assert attendee.username in attendee_emails[0].body.lower()
 
