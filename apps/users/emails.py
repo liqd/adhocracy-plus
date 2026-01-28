@@ -26,8 +26,18 @@ class EmailAplus(Email):
     def get_languages(self, receiver):
         languages = super().get_languages(receiver)
         organisation = self.get_organisation()
-        if User.objects.filter(email=receiver).exists():
-            languages.insert(0, User.objects.get(email=receiver).language)
+
+        # Handle User object
+        if isinstance(receiver, User):
+            user_lang = receiver.language
+        # Handle email string
+        elif isinstance(receiver, str) and User.objects.filter(email=receiver).exists():
+            user_lang = User.objects.get(email=receiver).language
+        else:
+            user_lang = None
+
+        if user_lang:
+            languages.insert(0, user_lang)
         elif organisation is not None:
             languages.insert(0, organisation.language)
         elif hasattr(settings, "DEFAULT_USER_LANGUAGE_CODE"):
