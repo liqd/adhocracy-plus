@@ -27,9 +27,7 @@ class CommentFeedback(BaseNotificationStrategy):
             site_name = ""
 
         email_context = {
-            "subject": _("Feedback for your contribution on {site_name}").format(
-                site_name=site_name
-            ),
+            "subject": _("Feedback for your contribution on {site_name}"),
             "headline": _("Feedback for your contribution"),
             "subheadline": project.name,
             "cta_url": user_comment.get_absolute_url(),
@@ -40,6 +38,7 @@ class CommentFeedback(BaseNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/moderator_feedback_on_comment.en.email",
             # Template variables
             "project": project,
+            "site_name": site_name,
             "organisation": project.organisation.name,
             "organisation_name": project.organisation.name,
             "moderator_feedback": feedback.feedback_text,
