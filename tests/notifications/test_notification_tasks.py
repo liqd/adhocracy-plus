@@ -46,7 +46,7 @@ def test_send_recently_started_project_notifications(
 
     follower_emails = get_emails_for_address(user2.email)
     assert len(follower_emails) == 1
-    assert "starts now!" in follower_emails[0].subject.lower()
+    assert project.name.lower() in follower_emails[0].subject.lower()
 
 
 @pytest.mark.django_db

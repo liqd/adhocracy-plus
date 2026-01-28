@@ -67,9 +67,7 @@ class ProjectStarted(ProjectNotificationStrategy):
         )
 
         email_context = {
-            "subject": _("Here we go: {project_name} starts now!").format(
-                project_name=project.name
-            ),
+            "subject": _("Here we go: {project_name} starts now!"),
             "headline": _("Here we go!"),
             "subheadline": project.name,
             "cta_url": project.get_absolute_url(),
