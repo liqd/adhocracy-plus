@@ -53,6 +53,7 @@ class NotificationEmail(Email):
                             "project_name", context.get("project_name", "")
                         ),
                         project_type=context.get("project_type", ""),
+                        organisation_name=context.get("organisation_name", ""),
                     )
                 if "greeting" in context:
                     context["greeting"] = context["greeting"].format(

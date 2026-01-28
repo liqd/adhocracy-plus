@@ -404,9 +404,10 @@ def test_handle_project_created(project_factory, organisation_factory, user_fact
     # Assert email
     initiator_emails = get_emails_for_address(initiator.email)
     assert len(initiator_emails) == 1
-    assert "new project" in initiator_emails[0].subject.lower()
+    assert project.name.lower() in initiator_emails[0].body.lower()
     assert initiator.username in initiator_emails[0].body.lower()
     assert project.name.lower() in initiator_emails[0].body.lower()
+    assert organisation.name.lower() in initiator_emails[0].body.lower()
 
 
 @pytest.mark.django_db

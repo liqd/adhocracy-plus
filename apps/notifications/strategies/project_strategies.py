@@ -219,8 +219,6 @@ class ProjectCreated(ProjectNotificationStrategy):
             "subject": _("New project {project_name} on {site_name}"),
             "headline": _(
                 "The new project {project_name} was created for {organisation_name}"
-            ).format(
-                project_name=project.name, organisation_name=project.organisation.name
             ),
             "cta_url": project.get_absolute_url(),
             "cta_label": _("Show project"),
