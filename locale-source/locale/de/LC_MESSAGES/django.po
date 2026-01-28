@@ -9,6 +9,7 @@
 # Katharina Lindenlaub, 2023
 # JOster, 2023
 # Luca Thüer, 2023
+# shane obrien, 2026
 # Tietje, 2026
 #
 #, fuzzy
@@ -16,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-28 10:29+0100\n"
+"POT-Creation-Date: 2026-01-28 10:52+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Tietje, 2026\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
@@ -516,7 +517,7 @@ msgstr "Bitte wählen Sie eine oder mehrere Kategorien aus."
 
 #: adhocracy4/dashboard/components/forms/forms.py:49
 msgid "Description must be at most 170 characters"
-msgstr ""
+msgstr "Die Beschreibung darf maximal 170 Zeichen lang sein"
 
 #: adhocracy4/dashboard/components/forms/views.py:24
 msgid "The project has been updated."
@@ -1343,6 +1344,8 @@ msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 170 chars."
 msgstr ""
+"Diese Kurzbeschreibung erscheint im Projekt-Header und im Teaser. Sie soll "
+"das Ziel des Projekts in maximal 170 Zeichen zusammenfassen."
 
 #: adhocracy4/projects/models.py:236
 msgid "Description of your project"
@@ -3273,6 +3276,8 @@ msgstr ""
 #, python-brace-format
 msgid "A moderator highlighted your comment '{comment}' in project {project}"
 msgstr ""
+"Die Moderation hat Ihr Kommentar {comment} im Projekt {project} "
+"hervorgehoben."
 
 #: apps/notifications/strategies/comment_strategies.py:87
 #, python-brace-format
@@ -3303,7 +3308,7 @@ msgstr ""
 #: apps/notifications/strategies/comment_strategies.py:110
 #, python-brace-format
 msgid "{user} commented on your post {post}"
-msgstr ""
+msgstr "{user} hat Ihren Beitrag \"{post}\" kommentiert "
 
 #: apps/notifications/strategies/comment_strategies.py:147
 #, python-brace-format
@@ -3337,7 +3342,7 @@ msgstr ""
 #: apps/notifications/strategies/comment_strategies.py:171
 #, python-brace-format
 msgid "{user} replied to your {comment}"
-msgstr ""
+msgstr "{user} hat auf \"{comment}\" geantwortet"
 
 #: apps/notifications/strategies/event_strategies.py:22
 #, python-brace-format
@@ -3381,6 +3386,8 @@ msgstr ""
 #, python-brace-format
 msgid "A new event '{event}' has been added to the project {project}"
 msgstr ""
+"Eine neue Veranstaltung \"{event}\" wurde dem Projekt {project} "
+"hinzugefügt.  "
 
 #: apps/notifications/strategies/event_strategies.py:70
 #, python-brace-format
@@ -3390,7 +3397,7 @@ msgstr "Die Veranstaltung {event} im Projekt {project} wurde abgesagt. "
 #: apps/notifications/strategies/event_strategies.py:91
 #, python-brace-format
 msgid "The event '{event}' in project {project} has been cancelled"
-msgstr ""
+msgstr "Die Veranstaltung \"{event}\" im Projekt {project} wurde abgesagt. "
 
 #: apps/notifications/strategies/event_strategies.py:115
 #, python-brace-format
@@ -3401,6 +3408,7 @@ msgstr "Veranstaltung im Projekt {project}"
 #, python-brace-format
 msgid "The event '{event}' in project {project} is starting on {event_date}"
 msgstr ""
+"Die Veranstaltung \"{event}\" im Projekt {project} startet am {event_date}"
 
 #: apps/notifications/strategies/event_strategies.py:161
 #, python-brace-format
@@ -3410,7 +3418,7 @@ msgstr "Die Veranstaltung {event} im Projekt {project} wurde aktualisiert"
 #: apps/notifications/strategies/event_strategies.py:184
 #, python-brace-format
 msgid "The event {event} in project {project} has been updated"
-msgstr ""
+msgstr "Die Veranstaltung \"{event}\" im Projekt {project} wurde aktualisiert"
 
 #: apps/notifications/strategies/moderation_strategies.py:30
 #: apps/notifications/strategies/moderation_strategies.py:73
@@ -3447,7 +3455,7 @@ msgstr ""
 #: apps/notifications/strategies/moderation_strategies.py:52
 #, python-brace-format
 msgid "A moderator gave feedback on your {comment}"
-msgstr ""
+msgstr "Die Moderation hat Feedback zu \"{comment}\" gegeben"
 
 #: apps/notifications/strategies/moderation_strategies.py:56
 msgid "comment"
@@ -3456,12 +3464,12 @@ msgstr "Kommentar"
 #: apps/notifications/strategies/moderation_strategies.py:95
 #, python-brace-format
 msgid "A moderator gave feedback on your idea {idea}"
-msgstr ""
+msgstr "Die Moderation hat Feedback zu Ihrer Idee \"{idea}\" gegeben"
 
 #: apps/notifications/strategies/moderation_strategies.py:137
 #, python-brace-format
 msgid "A moderator gave feedback on your proposal {proposal}"
-msgstr ""
+msgstr "Die Moderation hat Feedback zu Ihrem Vorschlag \"{proposal}\" gegeben"
 
 #: apps/notifications/strategies/moderation_strategies.py:172
 #: apps/notifications/strategies/moderation_strategies.py:173
@@ -3491,6 +3499,7 @@ msgstr "Diese E-Mail wurde an {receiver_email} gesendet. "
 #, python-brace-format
 msgid "Your comment was blocked in project {project_name}"
 msgstr ""
+"Ihr Kommentar im Projekt {project_name} wurde von der Moderation blockiert"
 
 #: apps/notifications/strategies/project_strategies.py:70
 #, python-brace-format
@@ -3514,7 +3523,7 @@ msgstr "Jetzt mitmachen"
 #: apps/notifications/strategies/project_strategies.py:88
 #, python-brace-format
 msgid "The project {project} has begun."
-msgstr ""
+msgstr "Das Projekt {project} hat begonnen"
 
 #: apps/notifications/strategies/project_strategies.py:104
 #, python-brace-format
@@ -3528,7 +3537,7 @@ msgstr "Jetzt ansehen"
 #: apps/notifications/strategies/project_strategies.py:121
 #, python-brace-format
 msgid "The project {project} has been completed."
-msgstr ""
+msgstr "Das Projekt {project} wurde beendet"
 
 #: apps/notifications/strategies/project_strategies.py:150
 #, python-brace-format
@@ -3553,6 +3562,8 @@ msgid ""
 "You have been invited to project {project}. Please check your email to "
 "accept."
 msgstr ""
+"Sie wurden zum Projekt {project} eingeladen. Bitte überprüfen Sie ihre E-"
+"Mails, um die Einladung anzunehmen."
 
 #: apps/notifications/strategies/project_strategies.py:197
 #, python-brace-format
@@ -3604,7 +3615,7 @@ msgstr ""
 #: apps/notifications/strategies/project_strategies.py:255
 #, python-brace-format
 msgid "A new project {project} has been created."
-msgstr ""
+msgstr "Neues Projekt {project} wurde erstellt"
 
 #: apps/notifications/strategies/project_strategies.py:272
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:4
@@ -3630,7 +3641,7 @@ msgstr ""
 #: apps/notifications/strategies/project_strategies.py:290
 #, python-brace-format
 msgid "The project {project} has been deleted."
-msgstr ""
+msgstr "Das Projekt {project} wurde gelöscht"
 
 #: apps/notifications/strategies/project_strategies.py:321
 #, python-brace-format
@@ -3662,7 +3673,7 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "A new {content_type} \"{content}\" has been created in project {project}."
-msgstr ""
+msgstr "{content_type} \"{content}\" wurde im Projekt {project} erstellt. "
 
 #: apps/notifications/templates/a4_candy_notifications/_notification_card.html:14
 #: apps/notifications/templates/a4_candy_notifications/_notification_card.html:41
