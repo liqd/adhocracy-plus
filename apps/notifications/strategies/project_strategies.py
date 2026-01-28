@@ -304,7 +304,7 @@ class UserContentCreated(ProjectNotificationStrategy):
                 "{article} {content_type_display} was added to the project {project_name}"
             ),
             "headline": _(
-                "{creator_name} created {article} {content_type_display} on the project {project_name}"
+                "{creator_name} created {article_lower} {content_type_display} on the project {project_name}"
             ),
             "cta_url": obj.get_absolute_url(),
             "cta_label": _("Check the {content_type_display}"),
@@ -314,7 +314,8 @@ class UserContentCreated(ProjectNotificationStrategy):
             # Content template
             "content_template": "a4_candy_notifications/emails/content/user_content_created.en.email",
             # Template variables
-            "article": content_type_article.lower(),
+            "article": content_type_article,
+            "article_lower": content_type_article.lower(),
             "project_name": obj.project.name,
             "project": obj.project.name,
             "creator_name": obj.creator.username,

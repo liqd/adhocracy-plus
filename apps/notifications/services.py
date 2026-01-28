@@ -60,6 +60,7 @@ class NotificationEmail(Email):
                         project_type=context.get("project_type", ""),
                         organisation_name=context.get("organisation_name", ""),
                         article=context.get("article", ""),
+                        article_lower=context.get("article_lower", ""),
                         content_type=context.get("content_type", ""),
                         content_type_display=context.get("content_type_display", ""),
                         creator_name=context.get("creator_name", ""),
