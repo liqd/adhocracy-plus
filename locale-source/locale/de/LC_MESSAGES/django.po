@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-28 15:44+0100\n"
+"POT-Creation-Date: 2026-01-28 15:50+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Tietje, 2026\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
@@ -3282,7 +3282,7 @@ msgstr ""
 #: apps/notifications/strategies/comment_strategies.py:86
 #, python-brace-format
 msgid "{commenter_name} commented on your post {post_name}"
-msgstr ""
+msgstr "{commenter_name} hat Ihren Beitrag \"{post_name}\" kommentiert "
 
 #: apps/notifications/strategies/comment_strategies.py:87
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:16
@@ -3313,7 +3313,7 @@ msgstr "{user} hat Ihren Beitrag \"{post}\" kommentiert "
 #: apps/notifications/strategies/comment_strategies.py:144
 #, python-brace-format
 msgid "{commenter_name} replied to your comment"
-msgstr ""
+msgstr "{commenter_name} antwortete auf Ihr Kommentar"
 
 #: apps/notifications/strategies/comment_strategies.py:145
 msgid "New reply to your comment"
@@ -3347,7 +3347,7 @@ msgstr "{user} hat auf \"{comment}\" geantwortet"
 #: apps/notifications/strategies/event_strategies.py:22
 #, python-brace-format
 msgid "Event added to project {project_name}"
-msgstr ""
+msgstr "Veranstaltung im Projekt {project_name} hinzugefügt"
 
 #: apps/notifications/strategies/event_strategies.py:23
 #: apps/notifications/strategies/event_strategies.py:70
@@ -3392,7 +3392,7 @@ msgstr ""
 #: apps/notifications/strategies/event_strategies.py:69
 #, python-brace-format
 msgid "Event {event_name} in project {project_name} cancelled"
-msgstr ""
+msgstr "Veranstaltung {event_name} im Projekt {project_name} abgesagt"
 
 #: apps/notifications/strategies/event_strategies.py:90
 #, python-brace-format
@@ -3402,7 +3402,7 @@ msgstr "Die Veranstaltung \"{event}\" im Projekt {project} wurde abgesagt. "
 #: apps/notifications/strategies/event_strategies.py:114
 #, python-brace-format
 msgid "Event in project {project_name}"
-msgstr ""
+msgstr "Veranstaltung im Projekt {project_name}"
 
 #: apps/notifications/strategies/event_strategies.py:136
 #, python-brace-format
@@ -3414,6 +3414,7 @@ msgstr ""
 #, python-brace-format
 msgid "Event {event_name} in project {project_name} updated"
 msgstr ""
+"Veranstaltung {event_name} im Projekt {project_name} wurde aktualisiert"
 
 #: apps/notifications/strategies/event_strategies.py:182
 #, python-brace-format
@@ -3624,7 +3625,7 @@ msgstr "Löschung eines Projekts"
 #: apps/notifications/strategies/project_strategies.py:257
 #, python-brace-format
 msgid "The project {project_name} was deleted."
-msgstr ""
+msgstr "Das Projekt {project_name} wurde gelöscht. "
 
 #: apps/notifications/strategies/project_strategies.py:259
 #, python-brace-format
@@ -3647,6 +3648,8 @@ msgstr "Das Projekt {project} wurde gelöscht"
 msgid ""
 "{article} {content_type_display} was added to the project {project_name}"
 msgstr ""
+"{article}{content_type_display} wurde zum Projekt {project_name} "
+"hinzugefügt. "
 
 #: apps/notifications/strategies/project_strategies.py:307
 #, python-brace-format
@@ -3654,11 +3657,13 @@ msgid ""
 "{creator_name} created {article_lower} {content_type_display} on the project "
 "{project_name}"
 msgstr ""
+"{creator_name} hat {article_lower} {content_type_display} im Projekt "
+"{project_name} erstellt"
 
 #: apps/notifications/strategies/project_strategies.py:310
 #, python-brace-format
 msgid "Check the {content_type_display}"
-msgstr ""
+msgstr "Überprüfen Sie {content_type_display}"
 
 #: apps/notifications/strategies/project_strategies.py:312
 #, python-brace-format
