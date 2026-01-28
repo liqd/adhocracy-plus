@@ -254,9 +254,7 @@ class ProjectDeleted(ProjectNotificationStrategy):
     def create_notification_data(self, project) -> dict:
         email_context = {
             "subject": _("Deletion of project"),
-            "headline": _("The project {project} was deleted.").format(
-                project=project.name
-            ),
+            "headline": _("The project {project_name} was deleted."),
             "reason": _(
                 "This email was sent to {receiver_email}. This email was sent to you because you are an initiator of the organisation '{organisation_name}', in which a project was deleted."
             ),
@@ -264,6 +262,7 @@ class ProjectDeleted(ProjectNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/project_deleted.en.email",
             # Template variables
             "project": project.name,
+            "project_name": project.name,
             "organisation": project.organisation.name,
             "site": project.organisation.site,
         }
