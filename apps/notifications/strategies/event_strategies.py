@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
+from ..constants import NOTIFICATION_MESSAGE_TEMPLATES
 from ..models import NotificationType
 from ..utils import format_event_date
 from .project_strategies import ProjectNotificationStrategy
@@ -40,7 +41,7 @@ class OfflineEventCreated(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.EVENT_ADDED,
-            "message_template": "A new event '{event}' has been added to the project {project}",
+            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.EVENT_ADDED,
             "context": {
                 "project": offline_event.project.name,
                 "project_url": offline_event.project.get_absolute_url(),
@@ -83,7 +84,7 @@ class OfflineEventDeleted(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.EVENT_CANCELLED,
-            "message_template": "The event '{event}' in project {project} has been cancelled",
+            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.EVENT_CANCELLED,
             "context": {
                 "project": offline_event.project.name,
                 "project_url": offline_event.project.get_absolute_url(),
@@ -127,7 +128,7 @@ class OfflineEventReminder(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.EVENT_SOON,
-            "message_template": "The event '{event}' in project {project} is starting on {event_date}",
+            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.EVENT_SOON,
             "context": {
                 "project": offline_event.project.name,
                 "project_url": offline_event.project.get_absolute_url(),
@@ -170,7 +171,7 @@ class OfflineEventUpdate(ProjectNotificationStrategy):
 
         return {
             "notification_type": NotificationType.EVENT_UPDATE,
-            "message_template": "The event {event} in project {project} has been updated",
+            "message_template": NOTIFICATION_MESSAGE_TEMPLATES.EVENT_UPDATE,
             "context": {
                 "project": offline_event.project.name,
                 "project_url": offline_event.project.get_absolute_url(),

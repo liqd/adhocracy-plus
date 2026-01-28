@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Notification message_templates saved in constants.py
 - Notification message_templates stored in English, translated at runtime
 - Notification date format always returns DD.MM.YYYY without time
 
