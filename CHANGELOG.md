@@ -16,7 +16,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Fix duplicate notifications bug
-- Fix translation of ProjectCompleted email subject
+- Fix email variable interpolation
 
 ### Fixed
 
