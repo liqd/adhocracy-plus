@@ -51,6 +51,7 @@ def test_handle_comment_highlighted_notification(
     comment_author_emails = get_emails_for_address(comment_author.email)
     assert len(comment_author_emails) == 1
     print(comment_author_emails[0].subject)
+    assert project.name.lower() in comment_author_emails[0].body.lower()
     assert "highlighted" in comment_author_emails[0].subject.lower()
 
 

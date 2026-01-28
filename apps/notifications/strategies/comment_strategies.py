@@ -30,9 +30,7 @@ class CommentHighlighted(BaseNotificationStrategy):
 
         email_context = {
             "subject": _("A moderator highlighted your comment"),
-            "headline": _("Project {project_name}").format(
-                project_name=comment.project.name
-            ),
+            "headline": _("Project {project_name}"),
             "cta_url": cta_url,
             "cta_label": cta_label,
             "reason": _(
@@ -42,6 +40,7 @@ class CommentHighlighted(BaseNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/moderator_highlighted_comment.en.email",
             # Template variables
             "project": comment.project.name,
+            "project_name": comment.project.name,
             "project_url": comment.project.get_absolute_url(),
             "post_url": post_url,
         }
