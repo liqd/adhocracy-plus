@@ -44,13 +44,13 @@ class NotificationEmail(Email):
                         site_name=(
                             context.get("site", "").name if context.get("site") else ""
                         ),
-                        project_name=context.get("project"),
+                        project_name=context.get("project_name"),
                         project_type=context.get("project_type"),
                     )
                 if "headline" in context:
                     context["headline"] = context["headline"].format(
                         project_name=context.get(
-                            "project_name", context.get("project", "")
+                            "project_name", context.get("project_name", "")
                         ),
                         project_type=context.get("project_type", ""),
                     )

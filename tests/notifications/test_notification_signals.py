@@ -371,11 +371,14 @@ def test_handle_moderator_invite_notification(
         == NotificationType.PROJECT_MODERATION_INVITATION
     )
 
-    # TODO: Double check if email is being sent, why assertion failed
     # Assert email
-    # invited_user_emails = get_emails_for_address(invited_user.email)
-    # assert len(invited_user_emails) == 1
-    # assert "moderator" in invited_user_emails[0].subject.lower() or "moderation" in invited_user_emails[0].subject.lower()
+    invited_user_emails = get_emails_for_address(invited_user.email)
+    assert len(invited_user_emails) == 1
+    assert (
+        "moderator" in invited_user_emails[0].subject.lower()
+        or "moderation" in invited_user_emails[0].subject.lower()
+    )
+    assert project.name.lower() in invited_user_emails[0].subject.lower()
 
 
 # TODO: Check project creator_name in email
