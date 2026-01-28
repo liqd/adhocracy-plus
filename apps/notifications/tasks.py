@@ -13,6 +13,7 @@ from .strategies import ProjectEnded
 from .strategies import ProjectStarted
 
 
+@shared_task(name="send_recently_started_project_notifications")
 def send_recently_started_project_notifications():
     """
     Send notifications to project followers for project started
