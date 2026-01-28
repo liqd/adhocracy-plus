@@ -97,6 +97,7 @@ class NotificationService:
             email.dispatch(obj)
         # Remove email_context before creating notifications
         notification_data.pop("email_context", None)
+        notification_data.pop("translated_message_template", None)
 
         # Create in-app notifications
         notifications = [

@@ -16,7 +16,7 @@ from .strategies import ProjectStarted
 @shared_task(name="send_recently_started_project_notifications")
 def send_recently_started_project_notifications():
     """
-    Send notifications to project followers for project completed
+    Send notifications to project followers for project started
     """
     now = timezone.now()
     last_check = now - timedelta(hours=24)
@@ -25,15 +25,22 @@ def send_recently_started_project_notifications():
         Q(start_date__gte=last_check, start_date__lte=now)
     )
 
-    started_projects = [
-        p.module.project for p in started_phases if p.starts_first_of_project
-    ]
+    # Ensure no duplicates
+    seen_projects = set()
+    started_projects = []
+
+    for phase in started_phases:
+        if phase.starts_first_of_project and phase.module.project:
+            project = phase.module.project
+            if project.id not in seen_projects:
+                seen_projects.add(project.id)
+                started_projects.append(project)
 
     strategy = ProjectStarted()
     for project in started_projects:
         NotificationService.create_notifications(project, strategy)
 
-    return
+    return len(started_projects)
 
 
 # TODO: Add this as prop in a4
