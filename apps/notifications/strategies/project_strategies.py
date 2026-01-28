@@ -262,7 +262,7 @@ class ProjectDeleted(ProjectNotificationStrategy):
             "content_template": "a4_candy_notifications/emails/content/project_deleted.en.email",
             # Template variables
             "project": project.name,
-            "project_name": project.name,
+            "project_namecl": project.name,
             "organisation": project.organisation.name,
             "site": project.organisation.site,
         }
@@ -301,30 +301,21 @@ class UserContentCreated(ProjectNotificationStrategy):
             content_type_article = "An"
         email_context = {
             "subject": _(
-                "{article} {content_type} was added to the project {project}"
-            ).format(
-                article=content_type_article,
-                content_type=content_type_display,
-                project=obj.project.name,
+                "{article} {content_type_display} was added to the project {project_name}"
             ),
             "headline": _(
-                "{creator_name} created {article} {content_type} on the project {project}"
-            ).format(
-                article=content_type_article.lower(),
-                creator_name=obj.creator.username,
-                content_type=content_type_display,
-                project=obj.project.name,
+                "{creator_name} created {article} {content_type_display} on the project {project_name}"
             ),
             "cta_url": obj.get_absolute_url(),
-            "cta_label": _("Check the {content_type}").format(
-                content_type=content_type_display
-            ),
+            "cta_label": _("Check the {content_type_display}"),
             "reason": _(
                 "This email was sent to {receiver_email}. This email was sent to you because you are a moderator in the project."
             ),
             # Content template
             "content_template": "a4_candy_notifications/emails/content/user_content_created.en.email",
             # Template variables
+            "article": content_type_article.lower(),
+            "project_name": obj.project.name,
             "project": obj.project.name,
             "creator_name": obj.creator.username,
             "content_type": content_type.lower(),
