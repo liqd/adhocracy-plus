@@ -20,7 +20,6 @@ def unread_notifications_count(context):
 def render_notification_with_links(notification):
     translated_template = _(notification.message_template)  # Translate at render time
     context = notification.context
-
     template_parts = translated_template.split("{")
 
     result = []
