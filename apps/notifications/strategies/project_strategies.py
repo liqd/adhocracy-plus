@@ -296,16 +296,39 @@ class UserContentCreated(ProjectNotificationStrategy):
     def create_notification_data(self, obj) -> dict:
         content_type = self.content_type or obj.__class__.__name__
         content_type_display = content_type
-        content_type_article = "A"
-        if content_type_display[0].lower() in ["a", "e", "i", "o", "u"]:
-            content_type_article = "An"
+        first_letter = str(content_type_display)[0].lower()
+        content_type_article = _("An") if first_letter in "aeiou" else _("A")
+        subject_translations = {
+            "Idea": _("An idea was added to the project {project_name}"),
+            "Proposal": _("A proposal was added to the project {project_name}"),
+            "MapIdea": _("A map idea was added to the project {project_name}"),
+        }
+
+        headline_translations = {
+            "Idea": _("{creator_name} created an idea on the project {project_name}"),
+            "Proposal": _(
+                "{creator_name} created a proposal on the project {project_name}"
+            ),
+            "MapIdea": _(
+                "{creator_name} created a map idea on the project {project_name}"
+            ),
+        }
+
+        content_type = self.content_type or obj.__class__.__name__
+        subject_template = subject_translations.get(
+            content_type,
+            _("{article} {content_type} was added to the project {project_name}"),
+        )
+        headline_template = headline_translations.get(
+            content_type,
+            _(
+                "{creator_name} created {article_lower} {content_type} on the project {project_name}"
+            ),
+        )
+
         email_context = {
-            "subject": _(
-                "{article} {content_type_display} was added to the project {project_name}"
-            ),
-            "headline": _(
-                "{creator_name} created {article_lower} {content_type_display} on the project {project_name}"
-            ),
+            "subject": subject_template,
+            "headline": headline_template,
             "cta_url": obj.get_absolute_url(),
             "cta_label": _("Check the {content_type_display}"),
             "reason": _(
