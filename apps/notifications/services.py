@@ -65,6 +65,10 @@ class NotificationEmail(Email):
                         content_type_display=context.get("content_type_display", ""),
                         creator_name=context.get("creator_name", ""),
                     )
+                if "cta_label" in context:
+                    context["cta_label"] = context["cta_label"].format(
+                        content_type_display=context.get("content_type_display", ""),
+                    )
                 if "greeting" in context:
                     context["greeting"] = context["greeting"].format(
                         receiver_name=receiver.username

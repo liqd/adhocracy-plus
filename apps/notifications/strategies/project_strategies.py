@@ -298,10 +298,16 @@ class UserContentCreated(ProjectNotificationStrategy):
         content_type_display = content_type
         first_letter = str(content_type_display)[0].lower()
         content_type_article = _("An") if first_letter in "aeiou" else _("A")
+        content_type_translations = {
+            "idea": _("idea"),
+            "proposal": _("proposal"),
+            "mapidea": _("mapidea"),
+        }
         subject_translations = {
             "Idea": _("An idea was added to the project {project_name}"),
             "Proposal": _("A proposal was added to the project {project_name}"),
             "MapIdea": _("A map idea was added to the project {project_name}"),
+            "content": content_type_translations,
         }
 
         headline_translations = {
@@ -325,7 +331,6 @@ class UserContentCreated(ProjectNotificationStrategy):
                 "{creator_name} created {article_lower} {content_type} on the project {project_name}"
             ),
         )
-
         email_context = {
             "subject": subject_template,
             "headline": headline_template,
@@ -359,7 +364,7 @@ class UserContentCreated(ProjectNotificationStrategy):
                 "project_url": obj.project.get_absolute_url(),
                 "organisation": obj.project.organisation.name,
                 "content_type": content_type.lower(),
-                "content_type_display": content_type_display,
+                "content_type_display": content_type_display,  # e.g "A new proposal"
                 "content": obj.name,
                 "content_url": obj.get_absolute_url(),
                 "creator_name": obj.creator.username,
