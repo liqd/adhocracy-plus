@@ -202,7 +202,7 @@ class ProjectModerationInvitationReceived(ProjectNotificationStrategy):
             ),
             "context": {
                 "project_name": project.name,
-                "invitation": "invitation",
+                "invitation": _("invitation"),
                 "invitation_url": invitation.get_absolute_url(),
                 "project_url": None,  # Explicitly no project link
             },
