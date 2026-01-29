@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 14:39+0100\n"
+"POT-Creation-Date: 2026-01-29 17:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3492,41 +3492,53 @@ msgid "A"
 msgstr "A"
 
 #: apps/notifications/strategies/project_strategies.py:302
+msgid "idea"
+msgstr "idea"
+
+#: apps/notifications/strategies/project_strategies.py:303
+msgid "proposal"
+msgstr "proposal"
+
+#: apps/notifications/strategies/project_strategies.py:304
+msgid "mapidea"
+msgstr "mapidea"
+
+#: apps/notifications/strategies/project_strategies.py:307
 #, python-brace-format
 msgid "An idea was added to the project {project_name}"
 msgstr "An idea was added to the project {project_name}"
 
-#: apps/notifications/strategies/project_strategies.py:303
+#: apps/notifications/strategies/project_strategies.py:308
 #, python-brace-format
 msgid "A proposal was added to the project {project_name}"
 msgstr "A proposal was added to the project {project_name}"
 
-#: apps/notifications/strategies/project_strategies.py:304
+#: apps/notifications/strategies/project_strategies.py:309
 #, python-brace-format
 msgid "A map idea was added to the project {project_name}"
 msgstr "A map idea was added to the project {project_name}"
 
-#: apps/notifications/strategies/project_strategies.py:308
+#: apps/notifications/strategies/project_strategies.py:314
 #, python-brace-format
 msgid "{creator_name} created an idea on the project {project_name}"
 msgstr "{creator_name} created an idea on the project {project_name}"
 
-#: apps/notifications/strategies/project_strategies.py:310
+#: apps/notifications/strategies/project_strategies.py:316
 #, python-brace-format
 msgid "{creator_name} created a proposal on the project {project_name}"
 msgstr "{creator_name} created a proposal on the project {project_name}"
 
-#: apps/notifications/strategies/project_strategies.py:313
+#: apps/notifications/strategies/project_strategies.py:319
 #, python-brace-format
 msgid "{creator_name} created a map idea on the project {project_name}"
 msgstr "{creator_name} created a map idea on the project {project_name}"
 
-#: apps/notifications/strategies/project_strategies.py:320
+#: apps/notifications/strategies/project_strategies.py:326
 #, python-brace-format
 msgid "{article} {content_type} was added to the project {project_name}"
 msgstr "{article} {content_type} was added to the project {project_name}"
 
-#: apps/notifications/strategies/project_strategies.py:325
+#: apps/notifications/strategies/project_strategies.py:331
 #, python-brace-format
 msgid ""
 "{creator_name} created {article_lower} {content_type} on the project "
@@ -3535,12 +3547,12 @@ msgstr ""
 "{creator_name} created {article_lower} {content_type} on the project "
 "{project_name}"
 
-#: apps/notifications/strategies/project_strategies.py:333
+#: apps/notifications/strategies/project_strategies.py:338
 #, python-brace-format
 msgid "Check the {content_type_display}"
 msgstr "Check the {content_type_display}"
 
-#: apps/notifications/strategies/project_strategies.py:335
+#: apps/notifications/strategies/project_strategies.py:340
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
@@ -3549,7 +3561,7 @@ msgstr ""
 "This email was sent to {receiver_email}. This email was sent to you because "
 "you are a moderator in the project."
 
-#: apps/notifications/strategies/project_strategies.py:355
+#: apps/notifications/strategies/project_strategies.py:360
 #, python-brace-format
 msgid ""
 "A new {content_type} \"{content}\" has been created in project {project}."

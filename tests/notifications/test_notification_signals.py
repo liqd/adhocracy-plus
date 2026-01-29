@@ -492,3 +492,4 @@ def test_handle_proposal_created(
     moderator_emails = get_emails_for_address(moderator.email)
     assert len(moderator_emails) == 1
     assert "proposal" in moderator_emails[0].subject.lower()
+    assert "content_type_display" not in moderator_emails[0].body
