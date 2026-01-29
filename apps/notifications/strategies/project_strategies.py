@@ -346,8 +346,8 @@ class UserContentCreated(ProjectNotificationStrategy):
             "project_name": obj.project.name,
             "project": obj.project.name,
             "creator_name": obj.creator.username,
-            "content_type": content_type.lower(),
-            "content_type_display": content_type_display,
+            "content_type": content_type_translations[content_type.lower()],
+            "content_type_display": content_type_translations[content_type.lower()],
             "content_url": obj.get_absolute_url(),
             "site": obj.project.organisation.site,
         }
