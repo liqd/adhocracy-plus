@@ -1,7 +1,7 @@
 {% load i18n notification_tags %}
 
 {% unread_notifications_count as unread_count %}
-<h2>Notifications ({{ unread_count }})</h2>
+<h2>{% trans 'Notifications' %} ({{ unread_count }})</h2>
 <p>{{ dashboard_description }}</p>
 
 {% include "a4_candy_notifications/_notification_card.html" with section_id="interactions" unread_count=interactions_unread_count title=interactions_title description=interactions_description notifications_list=interactions_page.object_list empty_icon="fa-comments" empty_message=interactions_empty pagination_required=interactions_page.has_other_pages page_obj=interactions_page param_name="interactions_page" %} 

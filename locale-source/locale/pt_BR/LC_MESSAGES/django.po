@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-28 15:50+0100\n"
+"POT-Creation-Date: 2026-01-29 13:55+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Leonardo Herkenhoff <leonardoherkenhoff@gmail.com>, 2025\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/liqd/teams/"
@@ -3188,7 +3188,9 @@ msgstr ""
 msgid "Notification"
 msgstr ""
 
-#: apps/notifications/models.py:294 apps/userdashboard/views.py:69
+#: apps/notifications/models.py:294
+#: apps/notifications/templates/a4_candy_notifications/_notifications_partial.html:4
+#: apps/userdashboard/views.py:69
 msgid "Notifications"
 msgstr ""
 
@@ -3538,6 +3540,10 @@ msgid ""
 "{invitation}"
 msgstr ""
 
+#: apps/notifications/strategies/project_strategies.py:205
+msgid "invitation"
+msgstr ""
+
 #: apps/notifications/strategies/project_strategies.py:219
 #, python-brace-format
 msgid "New project {project_name} on {site_name}"
@@ -3588,32 +3594,69 @@ msgstr ""
 msgid "The project {project} has been deleted."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:304
-#, python-brace-format
-msgid ""
-"{article} {content_type_display} was added to the project {project_name}"
+#: apps/notifications/strategies/project_strategies.py:300
+msgid "An"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:307
+#: apps/notifications/strategies/project_strategies.py:300
+msgid "A"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:302
 #, python-brace-format
-msgid ""
-"{creator_name} created {article_lower} {content_type_display} on the project "
-"{project_name}"
+msgid "An idea was added to the project {project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:303
+#, python-brace-format
+msgid "A proposal was added to the project {project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:304
+#, python-brace-format
+msgid "A map idea was added to the project {project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:308
+#, python-brace-format
+msgid "{creator_name} created an idea on the project {project_name}"
 msgstr ""
 
 #: apps/notifications/strategies/project_strategies.py:310
 #, python-brace-format
+msgid "{creator_name} created a proposal on the project {project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:313
+#, python-brace-format
+msgid "{creator_name} created a map idea on the project {project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:320
+#, python-brace-format
+msgid "{article} {content_type} was added to the project {project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:325
+#, python-brace-format
+msgid ""
+"{creator_name} created {article_lower} {content_type} on the project "
+"{project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:333
+#, python-brace-format
 msgid "Check the {content_type_display}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:312
+#: apps/notifications/strategies/project_strategies.py:335
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
 "you are a moderator in the project."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:332
+#: apps/notifications/strategies/project_strategies.py:355
 #, python-brace-format
 msgid ""
 "A new {content_type} \"{content}\" has been created in project {project}."
@@ -5421,7 +5464,7 @@ msgstr "Permissões"
 msgid "Important dates"
 msgstr "Datas importantes"
 
-#: apps/users/emails.py:16
+#: apps/users/emails.py:17
 #, python-brace-format
 msgid ""
 "If you no longer want to receive any notifications, change the settings for "
@@ -5430,7 +5473,7 @@ msgstr ""
 "Se você não quiser mais receber notificações, altere as configurações da sua "
 "{}conta{}."
 
-#: apps/users/emails.py:20
+#: apps/users/emails.py:21
 #, python-brace-format
 msgid ""
 "If you no longer want to receive notifications about this project, "
