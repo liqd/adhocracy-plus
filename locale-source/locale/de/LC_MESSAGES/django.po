@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-28 15:50+0100\n"
+"POT-Creation-Date: 2026-01-29 13:55+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Tietje, 2026\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
@@ -3213,7 +3213,9 @@ msgstr "Ziel-URL"
 msgid "Notification"
 msgstr "Benachrichtigung"
 
-#: apps/notifications/models.py:294 apps/userdashboard/views.py:69
+#: apps/notifications/models.py:294
+#: apps/notifications/templates/a4_candy_notifications/_notifications_partial.html:4
+#: apps/userdashboard/views.py:69
 msgid "Notifications"
 msgstr "Benachrichtigungen"
 
@@ -3588,6 +3590,10 @@ msgstr ""
 "Sie habe eine Einladung zur Moderation im Projekt {project_name} erhalten. "
 "{invitation} ansehen"
 
+#: apps/notifications/strategies/project_strategies.py:205
+msgid "invitation"
+msgstr ""
+
 #: apps/notifications/strategies/project_strategies.py:219
 #, python-brace-format
 msgid "New project {project_name} on {site_name}"
@@ -3643,29 +3649,62 @@ msgstr ""
 msgid "The project {project} has been deleted."
 msgstr "Das Projekt {project} wurde gelöscht"
 
+#: apps/notifications/strategies/project_strategies.py:300
+msgid "An"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:300
+msgid "A"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:302
+#, python-brace-format
+msgid "An idea was added to the project {project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:303
+#, python-brace-format
+msgid "A proposal was added to the project {project_name}"
+msgstr ""
+
 #: apps/notifications/strategies/project_strategies.py:304
 #, python-brace-format
-msgid ""
-"{article} {content_type_display} was added to the project {project_name}"
+msgid "A map idea was added to the project {project_name}"
 msgstr ""
-"{article}{content_type_display} wurde zum Projekt {project_name} "
-"hinzugefügt. "
 
-#: apps/notifications/strategies/project_strategies.py:307
+#: apps/notifications/strategies/project_strategies.py:308
 #, python-brace-format
-msgid ""
-"{creator_name} created {article_lower} {content_type_display} on the project "
-"{project_name}"
+msgid "{creator_name} created an idea on the project {project_name}"
 msgstr ""
-"{creator_name} hat {article_lower} {content_type_display} im Projekt "
-"{project_name} erstellt"
 
 #: apps/notifications/strategies/project_strategies.py:310
+#, python-brace-format
+msgid "{creator_name} created a proposal on the project {project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:313
+#, python-brace-format
+msgid "{creator_name} created a map idea on the project {project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:320
+#, python-brace-format
+msgid "{article} {content_type} was added to the project {project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:325
+#, python-brace-format
+msgid ""
+"{creator_name} created {article_lower} {content_type} on the project "
+"{project_name}"
+msgstr ""
+
+#: apps/notifications/strategies/project_strategies.py:333
 #, python-brace-format
 msgid "Check the {content_type_display}"
 msgstr "Überprüfen Sie {content_type_display}"
 
-#: apps/notifications/strategies/project_strategies.py:312
+#: apps/notifications/strategies/project_strategies.py:335
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
@@ -3674,7 +3713,7 @@ msgstr ""
 "Diese E-Mail wurde an {receiver_email} gesendet. Sie erhalten diese E-Mail, "
 "weil Sie Moderator:in im Projekt sind."
 
-#: apps/notifications/strategies/project_strategies.py:332
+#: apps/notifications/strategies/project_strategies.py:355
 #, python-brace-format
 msgid ""
 "A new {content_type} \"{content}\" has been created in project {project}."
@@ -5543,7 +5582,7 @@ msgstr "Rechte"
 msgid "Important dates"
 msgstr "Wichtige Daten"
 
-#: apps/users/emails.py:16
+#: apps/users/emails.py:17
 #, python-brace-format
 msgid ""
 "If you no longer want to receive any notifications, change the settings for "
@@ -5552,7 +5591,7 @@ msgstr ""
 "Wenn Sie allgemein keine Benachrichtigungen mehr erhalten möchten, ändern "
 "Sie die Einstellungen zu Ihrem {}Account{}."
 
-#: apps/users/emails.py:20
+#: apps/users/emails.py:21
 #, python-brace-format
 msgid ""
 "If you no longer want to receive notifications about this project, "
