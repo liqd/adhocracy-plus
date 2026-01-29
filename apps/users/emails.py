@@ -5,6 +5,7 @@ from django.conf import settings
 from django.template.loader import get_template
 from django.urls import reverse
 from django.utils import translation
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from sentry_sdk import capture_message
 
@@ -95,6 +96,9 @@ class EmailAplus(Email):
                     context["project_link"] = self.get_html_link(
                         PROJECT_LINK_TEXT, project.get_absolute_url()
                     )
+
+            if "subject" in context:
+                context["subject"] = mark_safe(context["subject"])
 
             parts = []
             for part_type in ("subject", "txt", "html"):
