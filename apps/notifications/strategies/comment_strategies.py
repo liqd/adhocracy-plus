@@ -167,7 +167,7 @@ class CommentReply(BaseNotificationStrategy):
             "context": {
                 "user": comment.creator.username,
                 "user_url": comment.creator.get_absolute_url(),
-                "replied": "replied",
+                "replied": _("replied"),
                 "replied_url": comment.get_absolute_url(),
                 "project": comment.project.name,
                 "project_url": comment.project.get_absolute_url(),
