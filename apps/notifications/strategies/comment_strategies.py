@@ -162,13 +162,13 @@ class CommentReply(BaseNotificationStrategy):
 
         return {
             "notification_type": NotificationType.COMMENT_REPLY,
-            "message_template": "{user} replied to your {comment}",
-            "translated_message_template": _("{user} replied to your {comment}"),
+            "message_template": "{user} {replied} to your comment",
+            "translated_message_template": _("{user} {replied} to your comment"),
             "context": {
                 "user": comment.creator.username,
                 "user_url": comment.creator.get_absolute_url(),
-                "comment": "comment",
-                "comment_url": comment.get_absolute_url(),
+                "replied": "replied",
+                "replied_url": comment.get_absolute_url(),
                 "project": comment.project.name,
                 "project_url": comment.project.get_absolute_url(),
             },
