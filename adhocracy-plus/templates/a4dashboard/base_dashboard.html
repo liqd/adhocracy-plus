@@ -52,19 +52,31 @@
             {% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug as newsletter_create %}
             {% url 'a4dashboard:organisation-settings' organisation_slug=view.organisation.slug as organisation_settings %}
 
-            <nav class="d-none d-sm-inline-block" aria-label="{% translate 'Dashboard' %}">
+            <nav class="d-none d-sm-inline-block dashboard-tabs" aria-label="{% translate 'Dashboard' %}" role="tablist">
                 <a href="{{ project_list }}"
-                   class="tab {% if view.menu_item == 'project' %}active{% endif %}">
+                   class="tab {% if view.menu_item == 'project' %}active{% endif %}"
+                   role="tab"
+                   aria-controls="container"
+                   aria-selected="{% if view.menu_item == 'project' %}true{% else %}false{% endif %}"
+                   tabindex="{% if view.menu_item == 'project' %}0{% else %}-1{% endif %}">
                     {% translate 'Participation projects' %}
                 </a>
                 <a href="{{ newsletter_create }}"
-                   class="tab {% if view.menu_item == 'communication' %}active{% endif %}">
+                   class="tab {% if view.menu_item == 'communication' %}active{% endif %}"
+                   role="tab"
+                   aria-controls="container"
+                   aria-selected="{% if view.menu_item == 'communication' %}true{% else %}false{% endif %}"
+                   tabindex="{% if view.menu_item == 'communication' %}0{% else %}-1{% endif %}">
                     {% translate 'Communication' %}
                 </a>
                 {% has_perm 'a4_candy_organisations.change_organisation' request.user view.organisation as user_may_change_organisation %}
                 {% if user_may_change_organisation %}
                 <a href="{{ organisation_settings }}"
-                   class="tab {% if view.menu_item == 'organisation' %}active{% endif %}">
+                   class="tab {% if view.menu_item == 'organisation' %}active{% endif %}"
+                   role="tab"
+                   aria-controls="container"
+                   aria-selected="{% if view.menu_item == 'organisation' %}true{% else %}false{% endif %}"
+                   tabindex="{% if view.menu_item == 'organisation' %}0{% else %}-1{% endif %}">
                     {% translate 'Organisation settings' %}
                 </a>
                 {% endif %}
@@ -80,7 +92,7 @@
                       role="button"
                       aria-expanded="false"
                       data-bs-toggle="tab">
-                      {% if request.path ==  project_list %}
+                      {% if request.path == project_list %}
                         {% translate 'Participation projects' %}
                       {% elif request.path == newsletter_create %}
                         {% translate 'Communication' %}
@@ -112,11 +124,10 @@
                 </li>
             </ul>
 
-
         </div>
     </div>
     {% endblock %}
-    <div class="container">
+    <div class="container" role="tabpanel">
         {% block dashboard_content %}{% endblock %}
     </div>
 {% endblock %}
@@ -124,4 +135,5 @@
 {% block extra_js %}
     <script src="{% static 'unload_warning.js' %}"></script>
     <script src="{% static 'init_dashboard_accordion.js' %}"></script>
+    <script src="{% static 'dashboard_tabs.js' %}"></script>
 {% endblock %}
