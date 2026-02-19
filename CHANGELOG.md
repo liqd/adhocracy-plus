@@ -9,6 +9,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added 
 
+- apps/projects: export_utils for exporting project data
+
 ### Changed
 
 ### Fixed
