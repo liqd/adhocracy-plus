@@ -94,6 +94,7 @@ jobs:
           fi
 
       - name: Coveralls
+        continue-on-error: true
         env:
           COVERALLS_SERVICE_NAME: github-actions
           GITHUB_TOKEN: ${{ secrets.COV }}
