@@ -14,6 +14,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+## v2602.3
+
+### Changed
+
+- apps/projects: export_utils updated
+
 ## v2602.2
 
 ### Added 
