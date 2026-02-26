@@ -420,6 +420,7 @@ def export_polls_full(project):
         polls_data.append(
             {
                 "id": poll.id,
+                "module_id": poll.module.id,
                 "active_status": get_module_status(poll.module),
                 "module_start": str(poll.module.module_start),
                 "module_end": str(poll.module.module_end),
