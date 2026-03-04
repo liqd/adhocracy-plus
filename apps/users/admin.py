@@ -11,7 +11,7 @@ class UserAdmin(auth.admin.UserAdmin):
     add_form = forms.AddUserAdminForm
     fieldsets = (
         (None, {"fields": ("username", "email", "language", "password")}),
-        (_("Permissions"), {"fields": ("is_staff", "is_superuser")}),
+        (_("Permissions"), {"fields": ("is_staff", "is_superuser", "is_active")}),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
     add_fieldsets = (
