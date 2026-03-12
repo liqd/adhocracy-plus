@@ -80,18 +80,12 @@ def extract_ratings(queryset):
     """
     Extract ratings from any model with a 'ratings' GenericRelation.
 
-    Args:
-        queryset: Rating queryset (e.g., obj.ratings.all())
-
-    Returns:
-        List of rating dictionaries
+    Returns a dictionary with value:count format.
+    Example: {1: 5, -1: 2} meaning 5 positive, 2 negative
     """
-    ratings_list = []
+    ratings_count = {}
     for rating in queryset:
-        ratings_list.append(
-            {
-                "id": rating.id,
-                "value": rating.value,
-            }
-        )
-    return ratings_list
+        value = rating.value
+        ratings_count[value] = ratings_count.get(value, 0) + 1
+
+    return ratings_count
