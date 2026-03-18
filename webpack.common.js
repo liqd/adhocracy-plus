@@ -137,7 +137,7 @@ module.exports = {
     },
     polls: {
       import: [
-        'adhocracy4/adhocracy4/polls/static/react_polls.jsx'
+        './apps/polls/assets/react_polls.jsx'
       ],
       dependOn: 'adhocracy4'
     },

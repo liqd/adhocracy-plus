@@ -1,4 +1,5 @@
 import pytest
+from django.test import override_settings
 from django.urls import reverse
 from rest_framework import status
 
@@ -94,6 +95,7 @@ def test_normal_user_vote_is_added_as_participant(
 
 
 @pytest.mark.django_db
+@override_settings(CAPTCHA=False)
 def test_unregistered_user_vote_is_added_as_participant(
     user, apiclient, poll_factory, phase_factory, question_factory, choice_factory
 ):

@@ -1,4 +1,5 @@
 import pytest
+from django.test import override_settings
 from django.urls import reverse
 from rest_framework import status
 
@@ -93,6 +94,7 @@ def test_can_create_insight_for_empty_project(
 
 
 @pytest.mark.django_db
+@override_settings(CAPTCHA=False)
 @pytest.mark.parametrize("insight_provider", [create_insight, get_insight])
 def test_recreate_insight_saved_unregistered_users(
     apiclient,
@@ -334,6 +336,7 @@ def test_create_insight_for_ideas(
 
 
 @pytest.mark.django_db
+@override_settings(CAPTCHA=False)
 @pytest.mark.parametrize("insight_provider", [create_insight, get_insight])
 def test_create_insight_contexts_combines_unregistered_users_and_registered_users(
     apiclient,
