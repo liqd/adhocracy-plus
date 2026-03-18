@@ -12,6 +12,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- polls: Prosopo captcha works for anonymous users in React polls
 ### Fixed
 
 ## v2602.3
