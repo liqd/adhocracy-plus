@@ -5,6 +5,9 @@
 
 {% block subject %}{{ newsletter.subject }}{% endblock %}
 
+{# Override default greeting from email_base so that newsletters can define their own salutation inside the body if desired. #}
+{% block greeting %}{% endblock %}
+
 {% block content %}{{ newsletter.body_with_absolute_urls|safe }}{% endblock %}
 
 {% block reason %}{% blocktranslate with receiver_mail=receiver.email site_name=site.name %}This email was sent to {{ receiver_mail }}. This email was sent to you because you are registered on {{ site_name }}. If you don't want to receive newsletters anymore, you may disable them in your user account settings.{% endblocktranslate %}{% endblock %}

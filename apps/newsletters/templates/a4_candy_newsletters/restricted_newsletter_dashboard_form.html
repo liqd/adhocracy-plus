@@ -1,7 +1,7 @@
 {% extends "a4dashboard/communication_form_base.html" %}
 {% load i18n %}
 
-{% block title %}{% translate "Newsletter" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "Newsletter" %} – {{ block.super }}{% endblock title %}
 
 {% block communication_form %}
 <div class="col-md-9">
@@ -23,13 +23,13 @@
         {% include 'a4_candy_contrib/includes/form_field.html' with field=form.body %}
 
         {{ form.receivers }}
-        <input type="hidden" id="{{ form.organisation.id_for_label}}" name="{{form.organisation.html_name}}" value="{{view.organisation.id}}" />
+        <input type="hidden" id="{{ form.organisation.id_for_label }}" name="{{ form.organisation.html_name }}" value="{{ view.organisation.id }}" />
 
         <div class="d-flex justify-content-end mb-3">
-            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--secondary me-2">{% translate 'Cancel'%}</a>
-            <button type="submit" class="btn btn--primary" name="send">{% translate 'Send'%}</button>
+            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--secondary me-2">{% translate 'Cancel' %}</a>
+            <button type="submit" class="btn btn--primary" name="send">{% translate 'Send' %}</button>
         </div>
     </form>
     {{ form.media }}
 </div>
-{% endblock %}
+{% endblock communication_form %}
