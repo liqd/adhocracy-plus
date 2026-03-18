@@ -8,7 +8,7 @@ from apps.captcha.utils import verify_token
 
 class PollViewSet(BasePollViewSet):
     def check_captcha(self):
-        # Wenn CAPTCHA global deaktiviert ist, keine Prüfung erzwingen.
+        # If CAPTCHA is globally disabled, do not enforce a check.
         if not getattr(settings, "CAPTCHA", False):
             return
 
@@ -16,6 +16,6 @@ class PollViewSet(BasePollViewSet):
         if not token:
             raise ValidationError(_("Please complete the captcha."))
 
-        # Prosopo-Token direkt prüfen (kein Legacy-Captcheck mehr).
+        # Verify Prosopo token directly (no legacy Captcheck).
         if not verify_token(token):
             raise ValidationError(_("Captcha verification failed. Please try again."))

@@ -21,7 +21,7 @@ def test_poll_detail_shows_captcha_for_unregistered_users(
         phase_factory, poll_factory, phases.VotingPhase
     )
 
-    # Seite wie im Browser des Users aufrufen:
+    # Load the page like a browser would:
     # /<organisation_slug>/projects/module/poll/
     url = reverse(
         "module-detail",
@@ -33,11 +33,11 @@ def test_poll_detail_shows_captcha_for_unregistered_users(
 
     response = client.get(url)
 
-    # Seite rendert Poll-Detail-Template
+    # The poll detail template is rendered.
     assert "a4polls/poll_detail.html" in response.template_name
 
-    # Captcha ist in Polls ein React-Widget: wir prüfen serverseitig, ob die
-    # Prosopo-Konfiguration (SiteKey) an das Widget übergeben wird.
+    # In polls, the captcha is part of a React widget. Server-side we verify that
+    # the Prosopo config (site key) is passed into the widget markup.
     content = response.content.decode("utf-8")
     assert 'data-a4-widget="polls"' in content
     assert "prosopoSiteKey" in content
