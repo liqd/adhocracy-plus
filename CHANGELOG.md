@@ -5,17 +5,19 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
 ## Unreleased
 
-### Added 
+## v2603.3
 
 ### Changed
 
-- polls: Prosopo captcha works for anonymous users in React polls
+- Allow User (re)activation in Django Backend
+
 ### Fixed
 
-- Center logo in email template header container for newsletters and all platform emails
+- polls: Prosopo captcha works for anonymous users in React polls
+- Show Logo in Email templates and other Ui improvements
+- Delete local Image after leaving Form
 
 ## v2602.3
 
