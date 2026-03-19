@@ -478,6 +478,7 @@ class PollQuestions extends React.Component {
 
                       {showProsopoCaptcha && (
                         <ProsopoCaptcha
+                          key={this.state.refreshCaptcha}
                           siteKey={this.props.prosopoSiteKey}
                           language={document.documentElement.lang || 'de'}
                           onChange={(val) => this.setState({ captcha: val })}
