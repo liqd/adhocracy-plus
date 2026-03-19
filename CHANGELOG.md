@@ -15,6 +15,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - polls: Prosopo captcha works for anonymous users in React polls
 ### Fixed
 
+- Center logo in email template header container for newsletters and all platform emails
+
 ## v2602.3
 
 ### Changed

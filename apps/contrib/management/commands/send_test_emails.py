@@ -143,7 +143,7 @@ class Command(BaseCommand):
     def _send_report_mails(self):
         report = Report.objects.first()
         if not report:
-            self.stderr.write("At least on report is required")
+            self.stderr.write("Skipping report moderator email: no report in database.")
             return
 
         TestEmail.send(
@@ -155,7 +155,7 @@ class Command(BaseCommand):
     def _send_form_mail(self):
         formpage = FormPage.objects.first()
         if not formpage:
-            self.stderr.write("At least one emailformpage obj is required")
+            self.stderr.write("Skipping contact form email: no FormPage in database.")
             return
 
         form_data = {

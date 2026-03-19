@@ -59,6 +59,8 @@ class EmailAplus(Email):
 
         organisation = self.get_organisation()
         if organisation and organisation.logo:
+            # Replace the default inline logo with the organisation-specific logo,
+            # but keep the Content-ID consistent with the base template (cid:logo).
             logo = None
             with open(organisation.logo.path, "rb") as f:
                 data = f.read()
@@ -75,11 +77,14 @@ class EmailAplus(Email):
                     mime_type = magic.from_buffer(data, mime=True)
                     logo = MIMEImage(data, _subtype=mime_type)
             if logo:
-                logo.add_header("Content-ID", "<{}>".format("organisation_logo"))
+                # remove any existing logo attachment first to avoid duplicates
+                attachments = [
+                    a for a in attachments if a.get("Content-Id") != "<logo>"
+                ]
+                # attach organisation logo using the standard Content-ID expected
+                # by the email templates (cid:logo)
+                logo.add_header("Content-ID", "<logo>")
                 attachments += [logo]
-            # need to remove standard email logo bc some email clients
-            # display all attachments, even if not used
-            attachments = [a for a in attachments if a["Content-Id"] != "<logo>"]
 
         return attachments
 
