@@ -1,0 +1,41 @@
+{% load i18n static %}
+<div>
+    {% include "section_header.html" with header=_("Why adhocracy+?") subheader=_("Seamless & No-Cost Digital Participation") %}
+    <div class="lp-blocks">
+        <div class="lp-block">
+            <img src="{% static 'images/no-cost-participation.webp' %}" alt="person on bicycle">
+            <!-- <img src="{% static 'images/hero-image-resized.webp' %}" alt="woman"> -->
+            
+            <h3>{% trans "No-Cost Participation" %}</h3>
+            <p>{% trans "Accessible platforms like Adhocracy+ enable participation without financial barriers." %}</p>
+            <i class="fa-regular fa-handshake"></i>
+            <span>{% trans "Read More" %} <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="lp-block">
+            <img src="{% static 'images/usp-effortless.webp' %}" alt="person on bicycle">
+            <h3>{% trans "Effortless Civic Engagement" %}</h3>
+            <p>{% trans "Intuitive interfaces and modular designs make participation accessible to all users." %}</p>
+            <i class="fa fa-puzzle-piece"></i>
+            <span>{% trans "Read More" %} <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <div class="lp-text-blocks">
+            <div class="lp-text-block">
+                <i class="fa fa-arrow-right lp-text-block__arrow"></i>
+                <i class="fa fa-file-shield"></i>
+                <div class="lp-text-block__bottom">
+                    <p class="lp-text-block__bottom-header">{% trans "Robust Data Security" %}</p>
+                    <p>{% trans "Secure, transparent systems ensure user data protection and trust in digital democratic processes." %}</p>
+                </div>
+            </div>
+            <div class="lp-text-block">
+                <i class="fa fa-arrow-right lp-text-block__arrow"></i>
+                <i class="fa fa-code"></i>
+                <div class="lp-text-block__bottom">
+                    <p class="lp-text-block__bottom-header">{% trans "Non-profit & Open Source" %}</p>
+                    <p>{% trans "Community-driven platforms foster transparency and collaboration without commercial constraints." %}</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

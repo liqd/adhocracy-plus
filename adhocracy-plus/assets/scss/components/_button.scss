@@ -72,6 +72,10 @@
     min-width: 10 * $spacer;
 }
 
+.btn.btn--black {
+    @include button-bg($print-black, $print-black, $body-bg, 15%);
+}
+
 .btn.btn--secondary {
     @include button($text-color-gray, $text-color, $text-color, 55%);
     min-width: 10 * $spacer;
