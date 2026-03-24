@@ -1,6 +1,10 @@
+$lp-green: green;
+$lp-red: red;
+$lp-blue: blue;
+
 .lp-statistics {
-    background-color: black;
-    color: white;
+    background-color: $black;
+    color: $white;
     width: 90%;
     margin: auto;
     position: relative;
@@ -13,18 +17,18 @@
         padding-bottom: 1rem;
         
         // Fade from header into scroller
-        &::after {
+        &:after {
             content: '';
             position: absolute;
             bottom: -40px;
             left: 0;
             right: 0;
             height: 60px;
-            background: linear-gradient(to bottom, black, transparent);
+            background: linear-gradient(to bottom, $black, transparent);
             pointer-events: none;
         }
 
-        >p {
+        > p {
             max-width: 80%;
             margin: auto;
             padding-bottom: 1rem;
@@ -38,12 +42,11 @@
         gap: 2em;
         max-height: 400px;
         overflow: hidden;
-        position: relative;
-        cursor: pointer;
-        transition: all 0.3s ease;
         margin-top: -20px; // Pull it up under the fade
         position: relative;
         z-index: 1;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 }
 
@@ -60,8 +63,8 @@
 }
 
 .lp-statistics__stat {
-    color: black;
-    background-color: green;
+    color: $black;
+    background-color: $lp-green;
     border-radius: 20px;
     aspect-ratio: 1 / 1;
     width: 90%;
@@ -74,8 +77,8 @@
 }
 
 .lp-statistics__quote {
-    color: black;
-    background-color: red;
+    color: $black;
+    background-color: $lp-red;
     border-radius: 20px;
     aspect-ratio: 1 / 1;
     width: 90%;
@@ -94,8 +97,8 @@
 }
 
 .lp-statistics__image {
-    color: black;
-    background-color: blue; // or whatever
+    color: $black;
+    background-color: $lp-blue;
     border-radius: 20px;
     aspect-ratio: 1 / 1;
     width: 90%;

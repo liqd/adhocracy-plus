@@ -1,3 +1,7 @@
+$lp-blue: #1D6FE2;
+$border-color: #ccc;
+$breakpoint-md: 768px;
+
 .lp-modules {
     margin: 2rem 5%;
 }
@@ -13,45 +17,10 @@
     width: 100%;
     padding: 12px;
     margin-bottom: 1em;
-    border: 1px solid #ccc;
+    border: 1px solid $border-color;
     border-radius: 4px;
     font-size: 16px;
-    background-color: white;
-}
-
-.lp-modules__selectors {
-    display:flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 1em;
-
-    > button {
-        color: black !important;
-        display: inline-flex;
-        width: auto;
-        > img {
-            display: inline;
-            width: 20px;
-            margin-right: .3rem;
-        }
-    }
-}
-
-.lp-modules__preview {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: 1fr 1fr;
-}
-
-.explore-btn{
-    color: black !important;
-}
-
-/* Active button state */
-.lp-modules__selectors .btn--transparent.active {
-    background-color: #1D6FE2 !important;
-    color: white !important;
-    border-color: #1D6FE2 !important;
+    background-color: $white;
 }
 
 /* Hide all images/content by default, show only active */
@@ -65,8 +34,45 @@
     display: block;
 }
 
+
+.lp-modules__selectors {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1em;
+
+    > button {
+        color: $black !important;
+        display: inline-flex;
+        width: auto;
+
+        > img {
+            display: inline;
+            width: 20px;
+            margin-right: 0.3rem;
+        }
+    }
+}
+
+.lp-modules__preview {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+.explore-btn {
+    color: $black !important;
+}
+
+/* Active button state */
+.lp-modules__selectors .btn--transparent.active {
+    background-color: $lp-blue !important;
+    color: $white !important;
+    border-color: $lp-blue !important;
+}
+
 /* Mobile styles */
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-md) {
     .lp-modules__dropdown {
         display: block;
     }
@@ -97,7 +103,7 @@
         }
     }
 
-    .explore-btn{
+    .explore-btn {
         display: block;
         margin: auto;
     }
