@@ -1,0 +1,86 @@
+{% load i18n static %}
+<div class="lp-modules">
+    {% include "section_header.html" with header=_("Our Modules") subheader=_("Empowering Your Digital Initiatives") %}
+    
+    <!-- Mobile Dropdown -->
+    <select class="lp-modules__dropdown mobile-only">
+        <option value="poll">{% trans "Poll" %}</option>
+        <option value="brainstorming">{% trans "Brainstorming" %}</option>
+        <option value="spatial">{% trans "Spatial Brainstorming" %}</option>
+    </select>
+    
+    <!-- Desktop Buttons -->
+    <div class="lp-modules__selectors desktop-only">
+        <button class="btn btn--transparent active" data-module="poll"><img src="{% static 'images/poll-transparent.svg' %}" alt="woman">{% trans "Poll" %}</button>
+        <button class="btn btn--transparent" data-module="brainstorming"><img src="{% static 'images/brainstorming-transparent.svg' %}" alt="woman">{% trans "Brainstorming" %}</button>
+        <button class="btn btn--transparent" data-module="spatial"><img src="{% static 'images/spatial-brainstorming-transparent.svg' %}" alt="woman">{% trans "Spatial Brainstorming" %}</button>
+    </div>
+    
+    <div class="lp-modules__preview">
+        <div class="lp-modules__preview-image">
+            <img src="{% static 'images/poll.svg' %}" alt="Poll preview image" class="active" data-module="poll">
+            <img src="{% static 'images/brainstorming.svg' %}" alt="Brainstorming preview image" data-module="brainstorming">
+            <img src="{% static 'images/map-brainstorming.svg' %}" alt="Spatial brainstorming preview image" data-module="spatial">
+        </div>
+        <div class="lp-modules__preview-details">
+            <div class="module-content active" data-module="poll">
+                <h3>{% trans "Poll" %}</h3>
+                <p>{% trans "Poll module allows participants create polls and gather answers." %}</p>
+                <button class="explore-btn btn btn--transparent">{% trans "Explore All Modules" %}</button>
+            </div>
+            <div class="module-content" data-module="brainstorming">
+                <h3>{% trans "Brainstorming" %}</h3>
+                <p>{% trans "Brainstorming module allows participants to submit their own ideas and discuss others' contributions in a collaborative online environment." %}</p>
+                <button class="explore-btn btn btn--transparent">{% trans "Explore All Modules" %}</button>
+            </div>
+            <div class="module-content" data-module="spatial">
+                <h3>{% trans "Spatial Brainstorming" %}</h3>
+                <p>{% trans "Spatial brainstorming module description here." %}</p>
+                <button class="explore-btn btn btn--transparent">{% trans "Explore All Modules" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.lp-modules__selectors button');
+        const dropdown = document.querySelector('.lp-modules__dropdown');
+        const images = document.querySelectorAll('.lp-modules__preview-image img');
+        const contents = document.querySelectorAll('.module-content');
+        
+        function showModule(module) {
+            // Remove active class from all buttons
+            buttons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to corresponding button
+            document.querySelector(`.lp-modules__selectors button[data-module="${module}"]`)?.classList.add('active');
+            
+            // Set dropdown value
+            if (dropdown) dropdown.value = module;
+            
+            // Hide all images and contents
+            images.forEach(img => img.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Show selected module image and content
+            document.querySelector(`.lp-modules__preview-image img[data-module="${module}"]`)?.classList.add('active');
+            document.querySelector(`.module-content[data-module="${module}"]`)?.classList.add('active');
+        }
+        
+        // Desktop button clicks
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const module = this.getAttribute('data-module');
+                showModule(module);
+            });
+        });
+        
+        // Mobile dropdown change
+        if (dropdown) {
+            dropdown.addEventListener('change', function() {
+                const module = this.value;
+                showModule(module);
+            });
+        }
+    });
+</script>

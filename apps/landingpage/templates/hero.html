@@ -1,0 +1,26 @@
+{% load i18n wagtailcore_tags wagtailimages_tags static %}
+
+<section class="lp-hero">
+    <div class="lp-hero-text">
+        <h1>
+            {% trans 'Transform Participation, Boost Impact Effortlessly' %}
+        </h1>
+        <p>
+            {% trans 'Launch initiatives with ease in minutes, no costs, no obstacles, designed for organisations, municipalities, parliamentarians and beyond.' %}
+        </p>
+        <div class="lp-hero-buttons">
+            <button class="btn btn--black">
+                <a href="{% url 'account_signup' %}">{% trans 'Start Now' %}</a>
+            </button>
+            <button class="btn btn--transparent">
+                {% url 'account_login' as account_login_url %}
+                <a href="{{ account_login_url }}">{% trans 'Login' %}</a>
+            </button>
+        </div>
+    </div>
+    <div class="lp-hero-img">
+        <span class="lp-floating-noti"><i class="fa fa-thumbs-up"></i><strong>Shane</strong> {% trans 'liked your idea!' %}</span>
+        <img src="{% static 'images/hero-image-resized.webp' %}" alt="woman">
+        <span class="lp-floating-noti"><i class="fas fa-check-circle"></i>{% trans 'Your' %}<strong> {% trans 'project' %}</strong> {% trans 'has been published' %}</span>
+    </div>
+</section>

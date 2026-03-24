@@ -122,6 +122,7 @@ urlpatterns = [
     ),
     path("components/", contrib_views.ComponentLibraryView.as_view()),
     path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
+    path("landingpage/", include("apps.landingpage.urls")),
     re_path(
         r"^(?P<organisation_slug>[-\w_]+)/",
         include(
