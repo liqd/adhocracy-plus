@@ -1359,11 +1359,12 @@
                                 </li>
                                 <li class="nav-item header-upper__user">
                                     <div class="dropdown userindicator__dropdown">
-                                        <button class="d-md-none dropdown-toggle btn btn--primary-filled  btn--attached-top header-upper__mobile-toggle" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
+                                        <button class="d-md-none dropdown-toggle btn btn--none userindicator__toggle-btn btn--attached-top header-upper__mobile-toggle" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
                                           id="user-actions">
                                             <span class="d-none d-sm-inline-block pe-1">Menü</span>
+                                            {% include 'a4_candy_users/includes/userindicator_toggle_icons.html' %}
                                         </button>
-                                        <button class="d-none d-md-inline-block dropdown-toggle btn btn--primary-filled btn--attached-top  btn--align-left header-upper__toggle" data-bs-toggle="dropdown" data-flip="false"
+                                        <button class="d-none d-md-inline-block dropdown-toggle btn btn--none userindicator__toggle-btn btn--attached-top  btn--align-left header-upper__toggle" data-bs-toggle="dropdown" data-flip="false"
                                           aria-haspopup="true" aria-expanded="false" id="user-actions">
                                             <div class="userindicator__btn-img" style="background-image:   url(/static/images/avatar-01.svg) "></div>
                                             <div class="userindicator__btn-text text-start">
@@ -1371,17 +1372,45 @@
                                                 <br>
                                                 <div class="u-overflow-ellipsis">User Name</div>
                                             </div>
-                                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                            {% include 'a4_candy_users/includes/userindicator_toggle_icons.html' %}
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu" aria-labelledby="user-actions">
-                                            <a class="dropdown-item" href="/django-admin/">Admin</a>
-                                            <a class="dropdown-item" href="/userdashboard/overview/">My Overview</a>
-                                            <a class="dropdown-item" href="/account/">My Settings</a>
-                                            <a class="dropdown-item" href="/liqd-orga/dashboard/organisations/projects/">
-                                                liqd-orga
+                                            <div class="userindicator__dropdown-profile">
+                                                <div class="userindicator__dropdown-profile-main">
+                                                    <div class="userindicator__btn-img" style="background-image: url(/static/images/avatar-01.svg)"></div>
+                                                    <div class="userindicator__btn-text userindicator__dropdown-profile-text text-start">
+                                                        <span class="userindicator__hello">Hello</span>
+                                                        <a class="userindicator__profile-link" href="#">User Name</a>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="userindicator__dropdown-close btn btn--none" aria-label="Menü schließen">
+                                                    <i class="fa-solid fa-times userindicator__dropdown-close-icon" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                            <a class="dropdown-item userindicator__dropdown-item" href="/django-admin/">
+                                                <i class="fa-solid fa-screwdriver-wrench userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                                                <span>Admin</span>
+                                            </a>
+                                            <a class="dropdown-item userindicator__dropdown-item" href="/account/">
+                                                <i class="fa-solid fa-gear userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                                                <span>Account Settings</span>
+                                            </a>
+                                            <div class="userindicator__dropdown-org-block" role="group" aria-label="Organisations">
+                                                <div class="userindicator__dropdown-label">
+                                                    <i class="fa-solid fa-building userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                                                    <span>Organisations</span>
+                                                </div>
+                                                <a class="dropdown-item userindicator__dropdown-item userindicator__dropdown-item--nested" href="/liqd-orga/dashboard/organisations/projects/">liqd-orga</a>
+                                            </div>
+                                            <a class="dropdown-item userindicator__dropdown-item" href="https://example.com/manual" target="_blank" rel="noopener noreferrer">
+                                                <i class="fa-solid fa-circle-info userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                                                <span>Help Center</span>
                                             </a>
                                             <form class="form--inline" aria-label="Logout">
-                                                <button type="submit" class="dropdown-item">Logout</button>
+                                                <button type="submit" class="dropdown-item userindicator__dropdown-item">
+                                                    <i class="fa-solid fa-right-from-bracket userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                                                    <span>Logout</span>
+                                                </button>
                                             </form>
                                         </div>
                                     </div>
@@ -1424,18 +1453,48 @@
                                 </li>
                                 <li class="nav-item header-upper__user">
                                     <div class="dropdown dropdown-menu-end userindicator__dropdown">
-                                        <button class="dropdown-toggle btn btn--primary-filled  btn--attached-top header-upper__mobile-toggle" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
+                                        <button class="dropdown-toggle btn btn--none userindicator__toggle-btn btn--attached-top header-upper__mobile-toggle" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false"
                                           id="user-actions">
                                             <span class="d-none d-sm-inline-block pe-1">Menü</span>
+                                            {% include 'a4_candy_users/includes/userindicator_toggle_icons.html' %}
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu" aria-labelledby="user-actions">
-                                            <a class="dropdown-item" href="">Admin</a>
-                                            <a class="dropdown-item" href="/account/">Nutzerkonto Einstellungen</a <a class="dropdown-item" href="/profile/Philli%20Admin%20Morland/">Dein Profil</a>
-                                            <a class="dropdown-item" href="/teststadt/dashboard/organisations/projects/">
-                                                Teststadt
+                                            <div class="userindicator__dropdown-profile">
+                                                <div class="userindicator__dropdown-profile-main">
+                                                    <div class="userindicator__btn-img" style="background-image: url(/static/images/avatar-01.svg)"></div>
+                                                    <div class="userindicator__btn-text userindicator__dropdown-profile-text text-start">
+                                                        <span class="userindicator__hello">Hello</span>
+                                                        <a class="userindicator__profile-link" href="#">User Name</a>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="userindicator__dropdown-close btn btn--none" aria-label="Menü schließen">
+                                                    <i class="fa-solid fa-times userindicator__dropdown-close-icon" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                            <a class="dropdown-item userindicator__dropdown-item" href="">
+                                                <i class="fa-solid fa-screwdriver-wrench userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                                                <span>Admin</span>
+                                            </a>
+                                            <a class="dropdown-item userindicator__dropdown-item" href="/account/">
+                                                <i class="fa-solid fa-gear userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                                                <span>Nutzerkonto Einstellungen</span>
+                                            </a>
+                                            <div class="userindicator__dropdown-org-block" role="group" aria-label="Organisationen">
+                                                <div class="userindicator__dropdown-label">
+                                                    <i class="fa-solid fa-building userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                                                    <span>Organisationen</span>
+                                                </div>
+                                                <a class="dropdown-item userindicator__dropdown-item userindicator__dropdown-item--nested" href="/teststadt/dashboard/organisations/projects/">Teststadt</a>
+                                            </div>
+                                            <a class="dropdown-item userindicator__dropdown-item" href="https://example.com/manual" target="_blank" rel="noopener noreferrer">
+                                                <i class="fa-solid fa-circle-info userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                                                <span>Hilfe</span>
                                             </a>
                                             <form class="form--inline" action="/accounts/logout/" method="post" aria-label="Abmelden">
-                                                <button type="submit" class="dropdown-item">Abmelden</button>
+                                                <button type="submit" class="dropdown-item userindicator__dropdown-item">
+                                                    <i class="fa-solid fa-right-from-bracket userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                                                    <span>Abmelden</span>
+                                                </button>
                                             </form>
                                         </div>
                                     </div>

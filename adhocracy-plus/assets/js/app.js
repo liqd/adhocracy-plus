@@ -1,4 +1,5 @@
 import 'bootstrap' // load bootstrap components
+import { Dropdown } from 'bootstrap'
 import 'django'
 import 'select2' // used to skin select element used in livequestions
 import 'slick-carousel' // for project timeline
@@ -71,6 +72,20 @@ function init () {
 }
 
 document.addEventListener('DOMContentLoaded', init, false)
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.userindicator__dropdown-close').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const root = btn.closest('.userindicator__dropdown')
+      if (!root) {
+        return
+      }
+      const toggle = root.querySelector('.dropdown-toggle.show')
+      if (toggle) {
+        Dropdown.getOrCreateInstance(toggle).hide()
+      }
+    })
+  })
+})
 document.addEventListener('DOMContentLoaded', function () {
   // Add toggle buttons to password fields
   document.querySelectorAll('.password-toggle').forEach(function (passwordField) {

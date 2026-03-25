@@ -1,5 +1,13 @@
 $ribbon-margin: 10px;
 
+// Figma „Adhocracy-“ Global-components (Nodes 1614:9012–9016): Icons 16px, gap 8px, Zeile py-12 px-16; Org-Unterzeilen py-12 px-48
+$userindicator-icon-col: 16px;
+$userindicator-gap: 8px;
+$userindicator-row-pad-y: 12px;
+$userindicator-row-pad-x: 16px;
+$userindicator-nested-pad-x: 48px;
+$userindicator-profile-line-height: 20px;
+
 .userindicator__dropdown {
     position: unset; // For mobile full width menu
 
@@ -11,11 +19,75 @@ $ribbon-margin: 10px;
         padding: 0.5em 1em;
     }
 
-    i {
-        margin-left: 0.5 * $padding;
-        display: inline-block;
-        vertical-align: middle;
+    // Custom burger/close icons instead of Bootstrap caret
+    .dropdown-toggle::after {
+        display: none;
     }
+
+}
+
+// Header: kein farbiger Button-Hintergrund (wie Design)
+.userindicator__toggle-btn.btn--none {
+    color: $text-color;
+    font-weight: 400;
+    font-synthesis: none;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.show {
+        background-color: transparent;
+        color: $text-color;
+        box-shadow: none;
+    }
+}
+
+// _header_upper: .header-upper__mobile-toggle { font-weight: bold } — nur User-Menü wieder Regular
+.userindicator__dropdown .userindicator__toggle-btn.header-upper__mobile-toggle {
+    font-weight: 400;
+    font-synthesis: none;
+}
+
+.userindicator__toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: 0.5 * $padding;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    vertical-align: middle;
+}
+
+.userindicator__toggle-icon-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+// Kontext-Spezifität schlägt u. a. Font Awesomes .fa { display: … }
+.userindicator__dropdown .userindicator__toggle-icon i.userindicator__toggle-icon--close {
+    display: none;
+    margin-left: 0;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    line-height: 16px;
+    align-items: center;
+    justify-content: center;
+}
+
+.userindicator__dropdown .dropdown-toggle.show .userindicator__toggle-icon-img--burger {
+    display: none;
+}
+
+.userindicator__dropdown .dropdown-toggle.show .userindicator__toggle-icon i.userindicator__toggle-icon--close {
+    display: inline-flex;
 }
 
 .userindicator__btn-img {
@@ -38,41 +110,264 @@ $ribbon-margin: 10px;
     max-width: 180px;
 }
 
-.userindicator__hello {
-    font-weight: normal;
+// Desktop-Header: globales max-width 180px verursacht gequetschten „Guten Tag …“-Block
+@media screen and (min-width: $breakpoint) {
+    .header-upper__toggle .userindicator__btn-text {
+        max-width: none;
+        min-width: 0;
+    }
 }
 
-.userindicator__dropdown-menu {
+.userindicator__hello {
+    font-weight: 400;
+    font-synthesis: none;
+}
+
+.userindicator__dropdown-profile {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    // Figma: gleiche horizontale Einrückung wie Menüzeilen (px-16)
+    padding: 12px 16px;
+    border-bottom: 1px solid $border-color;
+    overflow: visible;
+
+    .userindicator__btn-img {
+        flex-shrink: 0;
+        align-self: flex-start;
+        border-color: $border-color;
+        // Abstand nur über gap in .userindicator__dropdown-profile-main
+        margin-right: 0;
+    }
+
+    .userindicator__dropdown-profile-main {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: $userindicator-gap;
+        min-width: 0;
+        flex: 1;
+        overflow: visible;
+    }
+
+    // Kompakte zweizeilige Spalte (kein <br> + Menü-line-height 24px)
+    .userindicator__btn-text.userindicator__dropdown-profile-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: flex-start;
+        gap: 2px;
+        min-width: 0;
+        max-width: none;
+        flex: 1;
+        overflow: visible;
+        font-size: inherit;
+        line-height: $userindicator-profile-line-height;
+    }
+
+    // eine Zeile für Gruß, eine für Namen — kein mitten-in-Wort-Umbruch
+    .userindicator__hello {
+        display: block;
+        white-space: nowrap;
+        overflow: visible;
+        text-overflow: clip;
+        font-size: inherit;
+        line-height: $userindicator-profile-line-height;
+        font-weight: 400;
+        color: #000;
+    }
+
+    .userindicator__profile-link {
+        line-height: $userindicator-profile-line-height;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.userindicator__dropdown-close {
+    flex-shrink: 0;
+    align-self: flex-start;
+    padding: 0.125rem;
+    margin-top: 2px;
+    margin: 0;
+    line-height: 1;
+    color: #000;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: transparent;
+        color: #000;
+    }
+}
+
+.userindicator__dropdown-close-icon {
+    display: block;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+}
+
+.userindicator__dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: $userindicator-gap;
+    white-space: normal;
+
+    .userindicator__dropdown-item-icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $userindicator-icon-col;
+        min-width: $userindicator-icon-col;
+        font-size: 1rem;
+        line-height: 1;
+        text-align: center;
+    }
+}
+
+.userindicator__dropdown-label {
+    display: flex;
+    align-items: center;
+    gap: $userindicator-gap;
+    padding: $userindicator-row-pad-y $userindicator-row-pad-x;
+    margin: 0;
+    font-weight: 400;
+    border-bottom: none;
+    color: #000;
+    cursor: default;
+
+    .userindicator__dropdown-item-icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $userindicator-icon-col;
+        min-width: $userindicator-icon-col;
+        font-size: 1rem;
+        line-height: 1;
+        text-align: center;
+    }
+}
+
+.userindicator__profile-link {
+    display: block;
+    max-width: none;
+    font-weight: 400;
+    font-size: inherit;
+    line-height: inherit;
+    text-decoration: underline;
+    color: #000;
+    overflow: visible;
+    white-space: nowrap;
+    text-overflow: clip;
+}
+
+// Beide Klassen am gleichen Element → höhere Spezifität als globales .dropdown-menu / .dropdown-menu a
+.dropdown-menu.userindicator__dropdown-menu {
     position: absolute;
     top: $ribbon-margin;
     min-width: 100%;
 
     margin: 0;
-    background-color: $brand-secondary;
-    color: contrast-color($body-bg);
-    border: 1px solid $body-bg;
+    background-color: $body-bg;
+    // Absatztext (Design): klar Regular, nicht „fett“ wirkend
+    color: #000;
+    font-family: $font-family-base;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    // überschreibt globales .dropdown-menu (1px $text-color)
+    border: 1px solid $border-color;
+    border-radius: 0;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    overflow: visible;
+
+    form.form--inline {
+        margin: 0;
+    }
 
     a,
     button {
-        border-bottom: 1px solid $body-bg;
-        font-weight: bold;
+        border-bottom: none;
+        font-weight: 400;
+        font-size: inherit;
+        line-height: inherit;
+        color: #000;
 
         &:hover,
         &:focus {
-            color: $brand-primary;
+            color: #000;
+            background-color: $bg-tertiary;
         }
     }
 
+    // Font-Awesome-Glyphen nicht mit Source Sans überschreiben
+    i.fa-solid,
+    i.fa {
+        font-family: "Font Awesome 7 Free", sans-serif;
+        font-style: normal;
+        font-weight: 900;
+    }
+
+    // Schlägt Bootstrap .dropdown-item { display: block } und components/_dropdown .dropdown-menu a { display: block }
+    a.userindicator__dropdown-item:not(.userindicator__dropdown-item--nested),
+    button.userindicator__dropdown-item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding: $userindicator-row-pad-y $userindicator-row-pad-x;
+        white-space: normal;
+
+        > span {
+            flex: 1 1 auto;
+            min-width: 0;
+            text-align: left;
+            white-space: nowrap;
+        }
+    }
+
+    // Figma: nur Text, starker Einzug (px-48)
+    a.userindicator__dropdown-item.userindicator__dropdown-item--nested {
+        display: block;
+        padding: $userindicator-row-pad-y $userindicator-nested-pad-x;
+        font-weight: 400;
+        white-space: nowrap;
+    }
+
+    // Iconbreite aus globaler .dropdown-menu i { width: 1.5em } neutralisieren
+    a i.userindicator__dropdown-item-icon,
+    button i.userindicator__dropdown-item-icon {
+        width: $userindicator-icon-col;
+        min-width: $userindicator-icon-col;
+        margin-right: 0;
+    }
+
     &.show {
-        top: -$ribbon-margin !important; // overwriting the general dropdown overwrite
+        top: -$ribbon-margin;
         left: 0;
         right: 0;
     }
 
     @media screen and (min-width: $breakpoint) {
         &.show {
-            top: calc(100% - 10px) !important; // overwriting the general dropdown overwrite
+            top: calc(100% - 10px);
             left: auto;
+            right: 0;
+            min-width: 22rem;
+            width: max-content;
+            max-width: min(26rem, calc(100vw - 2rem));
         }
     }
 }

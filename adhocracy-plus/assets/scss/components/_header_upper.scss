@@ -54,20 +54,6 @@
     background: transparent;
 }
 
-.header-upper__mobile-toggle:after {
-    z-index: 5;
-    font-family: "Font Awesome 7 Free", sans-serif;
-    font-style: normal;
-    font-weight: 900;
-    content: "\f0c9";
-    background-color: inherit;
-    font-size: $font-size-md;
-}
-
-.header-upper__mobile-toggle.show:after {
-    content: "\f00d";
-}
-
 @media screen and (min-width: $breakpoint) {
     .header-upper__brand-img {
         height: 2.5rem;
