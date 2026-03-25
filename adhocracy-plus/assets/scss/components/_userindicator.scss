@@ -1,5 +1,3 @@
-$ribbon-margin: 10px;
-
 // Figma „Adhocracy-“ Global-components (Nodes 1614:9012–9016): Icons 16px, gap 8px, Zeile py-12 px-16; Org-Unterzeilen py-12 px-48
 $userindicator-icon-col: 16px;
 $userindicator-gap: 8px;
@@ -7,6 +5,7 @@ $userindicator-row-pad-y: 12px;
 $userindicator-row-pad-x: 16px;
 $userindicator-nested-pad-x: 48px;
 $userindicator-profile-line-height: 20px;
+$userindicator-menu-width: 262px;
 
 .userindicator__dropdown {
     position: unset; // For mobile full width menu
@@ -123,22 +122,21 @@ $userindicator-profile-line-height: 20px;
     font-synthesis: none;
 }
 
+$userindicator-profile-close-col: 40px;
+
+// Grid: linke Spalte flexibel + Ellipsis, rechte Spalte nur Schließen (zuverlässiger als position:absolute)
 .userindicator__dropdown-profile {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 8px;
-    // Figma: gleiche horizontale Einrückung wie Menüzeilen (px-16)
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) #{$userindicator-profile-close-col};
+    align-items: start;
+    column-gap: $userindicator-gap;
     padding: 12px 16px;
-    border-bottom: 1px solid $border-color;
     overflow: visible;
 
     .userindicator__btn-img {
         flex-shrink: 0;
         align-self: flex-start;
         border-color: $border-color;
-        // Abstand nur über gap in .userindicator__dropdown-profile-main
         margin-right: 0;
     }
 
@@ -148,11 +146,10 @@ $userindicator-profile-line-height: 20px;
         align-items: flex-start;
         gap: $userindicator-gap;
         min-width: 0;
-        flex: 1;
-        overflow: visible;
+        overflow: hidden;
+        grid-column: 1;
     }
 
-    // Kompakte zweizeilige Spalte (kein <br> + Menü-line-height 24px)
     .userindicator__btn-text.userindicator__dropdown-profile-text {
         display: flex;
         flex-direction: column;
@@ -160,19 +157,19 @@ $userindicator-profile-line-height: 20px;
         align-self: flex-start;
         gap: 2px;
         min-width: 0;
-        max-width: none;
-        flex: 1;
-        overflow: visible;
+        max-width: 100%;
+        flex: 1 1 auto;
+        overflow: hidden;
         font-size: inherit;
         line-height: $userindicator-profile-line-height;
     }
 
-    // eine Zeile für Gruß, eine für Namen — kein mitten-in-Wort-Umbruch
     .userindicator__hello {
         display: block;
+        max-width: 100%;
         white-space: nowrap;
-        overflow: visible;
-        text-overflow: clip;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-size: inherit;
         line-height: $userindicator-profile-line-height;
         font-weight: 400;
@@ -180,18 +177,31 @@ $userindicator-profile-line-height: 20px;
     }
 
     .userindicator__profile-link {
+        display: block;
+        max-width: 100%;
         line-height: $userindicator-profile-line-height;
         margin: 0;
         padding: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
-.userindicator__dropdown-close {
+.userindicator__dropdown-close.btn {
+    grid-column: 2;
+    justify-self: end;
+    align-self: start;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $userindicator-profile-close-col;
+    height: $userindicator-profile-close-col;
+    min-width: $userindicator-profile-close-col;
     flex-shrink: 0;
-    align-self: flex-start;
-    padding: 0.125rem;
-    margin-top: 2px;
+    padding: 0;
     margin: 0;
+    border: none;
     line-height: 1;
     color: #000;
 
@@ -268,13 +278,25 @@ $userindicator-profile-line-height: 20px;
     text-overflow: clip;
 }
 
-// Beide Klassen am gleichen Element → höhere Spezifität als globales .dropdown-menu / .dropdown-menu a
-.dropdown-menu.userindicator__dropdown-menu {
-    position: absolute;
-    top: $ribbon-margin;
-    min-width: 100%;
-
+// Spezifität > Bootstrap .navbar-expand-* .navbar-nav .dropdown-menu { position: absolute | static }
+// Viewport: oben rechts bündig; data-bs-display="static" am Toggle verhindert Popper-Inline-Styles
+.navbar-nav .dropdown-menu.userindicator__dropdown-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    inset-inline-end: 0;
+    inset-inline-start: auto;
+    z-index: 1050;
     margin: 0;
+    transform: none;
+    width: min($userindicator-menu-width, 100vw);
+    min-width: 0;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-color: $body-bg;
     // Absatztext (Design): klar Regular, nicht „fett“ wirkend
     color: #000;
@@ -291,7 +313,6 @@ $userindicator-profile-line-height: 20px;
     border-radius: 0;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
     padding: 0;
-    overflow: visible;
 
     form.form--inline {
         margin: 0;
@@ -304,11 +325,26 @@ $userindicator-profile-line-height: 20px;
         font-size: inherit;
         line-height: inherit;
         color: #000;
+    }
 
+    // Menüzeilen: Hover-Hintergrund — ohne Headerzeile (Profil-Link, Schließen-Button)
+    a:not(.userindicator__profile-link),
+    button:not(.userindicator__dropdown-close) {
         &:hover,
         &:focus {
             color: #000;
             background-color: $bg-tertiary;
+        }
+    }
+
+    .userindicator__profile-link,
+    .userindicator__dropdown-close {
+        &:hover,
+        &:focus,
+        &:focus-visible {
+            background-color: transparent;
+            background-image: none;
+            color: #000;
         }
     }
 
@@ -352,22 +388,5 @@ $userindicator-profile-line-height: 20px;
         width: $userindicator-icon-col;
         min-width: $userindicator-icon-col;
         margin-right: 0;
-    }
-
-    &.show {
-        top: -$ribbon-margin;
-        left: 0;
-        right: 0;
-    }
-
-    @media screen and (min-width: $breakpoint) {
-        &.show {
-            top: calc(100% - 10px);
-            left: auto;
-            right: 0;
-            min-width: 22rem;
-            width: max-content;
-            max-width: min(26rem, calc(100vw - 2rem));
-        }
     }
 }
