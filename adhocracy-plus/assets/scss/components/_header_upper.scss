@@ -1,29 +1,27 @@
-// Viewport: Logo 72px vom linken Rand, rechter Block (Sprache / Login) 8px vom rechten Rand
-$header-upper-padding-inline-start: 72px;
-$header-upper-padding-inline-end: 8px;
+// Zusätzliche Einrückung von Logo/Login innerhalb der Hero-Breite (wie früher am Viewport).
+$header-upper-content-inset-inline-start: 72px;
+$header-upper-content-inset-inline-end: 8px;
 
+// Header (Ribbon + Fläche) bleibt volle Viewport-Breite; Logo + Login folgen der gleichen
+// horizontalen Begrenzung wie das Hero-Bild (`.homepage__wrapper` in _homepage.scss):
+// seitlicher Abstand `$r-spacer`, ab `$breakpoint-xxl` max. Breite + zentriert — darauf kommen die Insets.
 .header-upper {
     min-height: 100px;
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.02), 0 2px 27px 0 rgba(0, 0, 0, 0.05);
 
-    // Abstände am Viewport: Navbar (Bootstrap: padding-Kurzform — vertikal über CSS-Variablen)
     > .navbar {
-        padding-top: var(--bs-navbar-padding-y);
-        padding-bottom: var(--bs-navbar-padding-y);
-        padding-left: $header-upper-padding-inline-start;
-        padding-right: $header-upper-padding-inline-end;
+        padding: var(--bs-navbar-padding-y) $r-spacer;
     }
 
-    // Spezifität > .container / .navbar > .container (volle Breite, kein zusätzliches Innenpadding)
     > .navbar > .container {
-        // Bootstrap @media .container { max-width: … } — ohne !important verliert man je nach Reihenfolge
-        max-width: none !important;
+        max-width: $breakpoint-xxl !important;
         width: 100%;
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: 0;
-        margin-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: $header-upper-content-inset-inline-start;
+        padding-right: $header-upper-content-inset-inline-end;
+
         --bs-gutter-x: 0;
     }
 }
