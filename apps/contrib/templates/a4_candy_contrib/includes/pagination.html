@@ -1,25 +1,58 @@
-{% load contrib_tags i18n %}
+{% load i18n %}
 
-{% if page_obj.has_previous or page_obj.has_next %}
+{% if show_pagination %}
 <nav aria-label="{% translate 'Page navigation' %}">
-    <ul class="pagination d-flex flex-row justify-content-between">
-        <li class="pagination-item">
-            {% if page_obj.has_previous %}
-            {% combined_url_parameter request.GET page=page_obj.previous_page_number as url_par %}
-            <a class="d-none d-sm-block" href="{{ url_par }}#index">{% translate 'Previous page' %}</a>
-            <a aria-label="{% translate 'Previous page' %}" class="d-block d-sm-none" href="{{ url_par }}"><i class="fas fa-angle-left" aria-hidden="true"></i></a>
-            {% endif %}
+    <ul class="pagination justify-content-center">
+        {# Previous button #}
+        {% if has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="{{ previous_url }}" 
+               aria-label="{% translate 'Previous page' %}"
+               title="{% translate 'Previous page' %}">
+                <i class="fas fa-angle-left" aria-hidden="true"></i>
+            </a>
         </li>
-        <li class="pagination-item">
-            <div class="pagination-text">{{ page_obj.number }}{% translate ' of ' %}{{ page_obj.paginator.num_pages }}</div>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link" aria-disabled="true">
+                <i class="fas fa-angle-left" aria-hidden="true"></i>
+            </span>
         </li>
-        <li class="pagination-item">
-        {% if page_obj.has_next %}
-            {% combined_url_parameter request.GET page=page_obj.next_page_number as url_par %}
-            <a class="d-none d-sm-block" href="{{ url_par }}#index">{% translate 'Next page' %}</a>
-            <a aria-label="{% translate 'Next page' %}" class="d-block d-sm-none" href="{{ url_par }}"><i class="fas fa-angle-right" aria-hidden="true"></i></a>
         {% endif %}
+
+        {# Page numbers and ellipsis #}
+        {% for item in pages %}
+            {% if item == '...' %}
+                <li class="page-item disabled">
+                    <span class="page-link" aria-hidden="true">…</span>
+                </li>
+            {% else %}
+                <li class="page-item {% if item == current %}active{% endif %}">
+                    <a class="page-link {% if item == current %}active{% endif %}" 
+                       href="?{{ param_name }}={{ item }}{% for key, value in request.GET.items %}{% if key != param_name %}&{{ key }}={{ value }}{% endif %}{% endfor %}#index"
+                       {% if item == current %}aria-current="page"{% endif %}>
+                        {{ item }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {# Next button #}
+        {% if has_next %}
+        <li class="page-item">
+            <a class="page-link" href="{{ next_url }}" 
+               aria-label="{% translate 'Next page' %}"
+               title="{% translate 'Next page' %}">
+                <i class="fas fa-angle-right" aria-hidden="true"></i>
+            </a>
         </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link" aria-disabled="true">
+                <i class="fas fa-angle-right" aria-hidden="true"></i>
+            </span>
+        </li>
+        {% endif %}
     </ul>
 </nav>
 {% endif %}

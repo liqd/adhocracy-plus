@@ -1,5 +1,5 @@
 {% extends "a4_candy_contrib/includes/map_list_view_base.html" %}
-{% load i18n discovery_tags static maps_tags module_tags contrib_tags %}
+{% load i18n discovery_tags static maps_tags module_tags contrib_tags pagination %}
 
 {% block map_content %}
 {% if object_list %}
@@ -21,4 +21,10 @@
         {% translate "Nothing to show" %}
     {% endfor %}
 </ul>
+
+{% if paginated_list.paginator.num_pages > 1 %}
+    <div class="mt-4">
+        {% pagination paginated_list %}
+    </div>
+{% endif %}
 {% endblock list_content %}
