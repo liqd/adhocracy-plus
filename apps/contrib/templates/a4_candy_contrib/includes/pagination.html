@@ -2,7 +2,7 @@
 
 {% if show_pagination %}
 <nav aria-label="{% translate 'Page navigation' %}">
-    <ul class="pagination justify-content-center">
+    <ul class="pagination justify-content-center {% if total > 4 %}pagination-mobile-simplify{% endif %}">
         {# Previous button #}
         {% if has_previous %}
         <li class="page-item">

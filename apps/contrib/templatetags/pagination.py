@@ -1,4 +1,5 @@
 from django import template
+from urllib.parse import urlencode
 
 register = template.Library()
 
@@ -7,6 +8,7 @@ def pagination(context, page_obj, param_name='page'):
     """
     Berlin Design System pagination.
     Shows all pages if total <= 6, otherwise shows first, last, current with neighbors, and ellipsis.
+    Only shows ellipsis when there are at least 2 pages hidden between sections.
     
     Usage:
         {% pagination page_obj %}
@@ -19,44 +21,66 @@ def pagination(context, page_obj, param_name='page'):
     if total <= 1:
         return {'show_pagination': False}
 
-    # Build list of page numbers/ellipsis to display
     pages = []
+    
+    # Show all pages if total is 6 or less
     if total <= 6:
-        # Show all pages
         pages = list(range(1, total + 1))
     else:
         # Always show first page
         pages.append(1)
-
-        # Calculate range around current page
-        left = max(2, current - 1)
-        right = min(total - 1, current + 1)
-
-        # Add left ellipsis if needed (current page is beyond page 3)
-        if left > 2:
-            pages.append('...')
-
-        # Add pages around current
-        for i in range(left, right + 1):
-            if i not in pages:
-                pages.append(i)
-
-        # Add right ellipsis if needed (current page is before last 2 pages)
-        if right < total - 1:
-            pages.append('...')
-
+        
+        # Determine pages around current (show 1 on each side)
+        left_page = current - 1
+        right_page = current + 1
+        
+        # Handle left side
+        if left_page > 2:
+            # If there are 2 or more pages hidden between 1 and left_page, show ellipsis
+            if left_page > 3:
+                pages.append('...')
+            else:
+                # Only page 2 is hidden, show it
+                pages.append(2)
+        elif left_page == 2:
+            pages.append(2)
+        
+        # Add left neighbor if it exists and not already added
+        if left_page > 1 and left_page not in pages:
+            pages.append(left_page)
+        
+        # Add current page
+        pages.append(current)
+        
+        # Add right neighbor if it exists
+        if right_page < total and right_page not in pages:
+            pages.append(right_page)
+        
+        # Handle right side
+        if right_page < total - 1:
+            # If there are 2 or more pages hidden between right_page and last, show ellipsis
+            if right_page < total - 2:
+                pages.append('...')
+            else:
+                # Only the page before last is hidden, show it
+                if total - 1 not in pages:
+                    pages.append(total - 1)
+        
         # Always show last page
-        pages.append(total)
-
-    # URL builder preserving GET parameters
+        if total not in pages:
+            pages.append(total)
+    
+    # URL builder that preserves ALL GET parameters
     def get_page_url(page_num):
         params = request.GET.copy()
         params[param_name] = page_num
         return f"?{params.urlencode()}#index"
-
-    # Determine if previous/next should be disabled
+    
     has_previous = page_obj.has_previous()
     has_next = page_obj.has_next()
+    
+    previous_url = get_page_url(current - 1) if has_previous else '#'
+    next_url = get_page_url(current + 1) if has_next else '#'
 
     return {
         'show_pagination': True,
@@ -65,8 +89,7 @@ def pagination(context, page_obj, param_name='page'):
         'total': total,
         'has_previous': has_previous,
         'has_next': has_next,
-        'previous_url': get_page_url(current - 1) if has_previous else '#',
-        'next_url': get_page_url(current + 1) if has_next else '#',
-        'get_page_url': get_page_url,
+        'previous_url': previous_url,
+        'next_url': next_url,
         'param_name': param_name,
     }
