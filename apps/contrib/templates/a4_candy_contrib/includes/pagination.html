@@ -6,17 +6,25 @@
         {# Previous button #}
         {% if has_previous %}
         <li class="page-item">
-            <a class="page-link" 
-               href="{{ previous_url }}"
-               hx-get="{{ previous_htmx_url }}"
-               hx-target="{{ hx_target }}"
-               hx-swap="outerHTML show:top"
-               hx-select="{{ hx_target }}"
-               hx-push-url="false"
-               aria-label="{% translate 'Previous page' %}"
-               title="{% translate 'Previous page' %}">
-                <i class="fas fa-angle-left" aria-hidden="true"></i>
-            </a>
+            {% if is_htmx %}
+                <a class="page-link" 
+                   href="{{ previous_url }}"
+                   hx-get="{{ previous_htmx_url }}"
+                   hx-target="{{ hx_target }}"
+                   hx-swap="outerHTML"
+                   hx-select="{{ hx_target }}"
+                   hx-push-url="false"
+                   aria-label="{% translate 'Previous page' %}"
+                   title="{% translate 'Previous page' %}">
+                    <i class="fas fa-angle-left" aria-hidden="true"></i>
+                </a>
+            {% else %}
+                <a class="page-link" href="{{ previous_url }}" 
+                   aria-label="{% translate 'Previous page' %}"
+                   title="{% translate 'Previous page' %}">
+                    <i class="fas fa-angle-left" aria-hidden="true"></i>
+                </a>
+            {% endif %}
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -34,16 +42,24 @@
                 </li>
             {% else %}
                 <li class="page-item {% if item == current %}active{% endif %}">
-                    <a class="page-link {% if item == current %}active{% endif %}" 
-                       href="{{ page_urls|get_item:item }}"
-                       hx-get="{{ page_htmx_urls|get_item:item }}"
-                       hx-target="{{ hx_target }}"
-                       hx-swap="outerHTML show:top"
-                       hx-select="{{ hx_target }}"
-                       hx-push-url="false"
-                       {% if item == current %}aria-current="page"{% endif %}>
-                        {{ item }}
-                    </a>
+                    {% if is_htmx %}
+                        <a class="page-link {% if item == current %}active{% endif %}" 
+                           href="{{ page_urls|get_item:item }}"
+                           hx-get="{{ page_htmx_urls|get_item:item }}"
+                           hx-target="{{ hx_target }}"
+                           hx-swap="outerHTML"
+                           hx-select="{{ hx_target }}"
+                           hx-push-url="false"
+                           {% if item == current %}aria-current="page"{% endif %}>
+                            {{ item }}
+                        </a>
+                    {% else %}
+                        <a class="page-link {% if item == current %}active{% endif %}" 
+                           href="{{ page_urls|get_item:item }}"
+                           {% if item == current %}aria-current="page"{% endif %}>
+                            {{ item }}
+                        </a>
+                    {% endif %}
                 </li>
             {% endif %}
         {% endfor %}
@@ -51,17 +67,25 @@
         {# Next button #}
         {% if has_next %}
         <li class="page-item">
-            <a class="page-link" 
-               href="{{ next_url }}"
-               hx-get="{{ next_htmx_url }}"
-               hx-target="{{ hx_target }}"
-               hx-swap="outerHTML show:top"
-               hx-select="{{ hx_target }}"
-               hx-push-url="false"
-               aria-label="{% translate 'Next page' %}"
-               title="{% translate 'Next page' %}">
-                <i class="fas fa-angle-right" aria-hidden="true"></i>
-            </a>
+            {% if is_htmx %}
+                <a class="page-link" 
+                   href="{{ next_url }}"
+                   hx-get="{{ next_htmx_url }}"
+                   hx-target="{{ hx_target }}"
+                   hx-swap="outerHTML"
+                   hx-select="{{ hx_target }}"
+                   hx-push-url="false"
+                   aria-label="{% translate 'Next page' %}"
+                   title="{% translate 'Next page' %}">
+                    <i class="fas fa-angle-right" aria-hidden="true"></i>
+                </a>
+            {% else %}
+                <a class="page-link" href="{{ next_url }}" 
+                   aria-label="{% translate 'Next page' %}"
+                   title="{% translate 'Next page' %}">
+                    <i class="fas fa-angle-right" aria-hidden="true"></i>
+                </a>
+            {% endif %}
         </li>
         {% else %}
         <li class="page-item disabled">
