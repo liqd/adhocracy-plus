@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Changed
+
+- Header: ribbon–navbar spacing, top-aligned logo row, tighter user-menu toggles; user-indicator SCSS lint fixes
+
 ## v2603.3
 
 ### Changed
