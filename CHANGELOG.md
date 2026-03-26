@@ -9,7 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
-- Header: ribbon–navbar spacing, top-aligned logo row, tighter user-menu toggles; user-indicator SCSS lint fixes
+- Header: Changed to Burger Menu style on Desktop.
 
 ## v2603.3
 

@@ -13,6 +13,12 @@ $header-upper-ribbon-gap: 12px;
 
     > .navbar {
         padding: #{$header-upper-ribbon-gap} $r-spacer var(--bs-navbar-padding-y);
+
+        // Mobile: same horizontal inset as `.homepage__wrapper` (Figma 24px gutter)
+        @media screen and (max-width: $breakpoint-down) {
+            padding-left: $layout-gutter-x-mobile;
+            padding-right: $layout-gutter-x-mobile;
+        }
     }
 
     > .navbar > .container {
@@ -23,8 +29,21 @@ $header-upper-ribbon-gap: 12px;
         padding-left: $header-upper-content-inset-inline-start;
         padding-right: $header-upper-content-inset-inline-end;
 
+        // Horizontal inset comes from `.navbar` on mobile (same as hero); keep content flush inside
+        @media screen and (max-width: $breakpoint-down) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
         --bs-gutter-x: 0;
-        align-items: flex-start; // override Bootstrap `center`; top-align brand + nav row
+
+        // Mobile: keep one vertically centered row (logo, lang, notifications, menu)
+        align-items: center;
+
+        @media screen and (min-width: $breakpoint) {
+            // Desktop: top-align brand + nav (taller user block)
+            align-items: flex-start;
+        }
     }
 }
 
@@ -58,6 +77,13 @@ $header-upper-ribbon-gap: 12px;
     margin-right: $spacer;
 }
 
+// Extra 8px on the mobile menu button (navbar already uses `$r-spacer` on the right)
+@media screen and (max-width: $breakpoint-down) {
+    .header-upper__user .userindicator__dropdown > .userindicator__toggle-btn.header-upper__mobile-toggle {
+        padding-right: $header-upper-content-inset-inline-end;
+    }
+}
+
 .header-upper__nav {
     flex-direction: row;
 
@@ -80,4 +106,10 @@ $header-upper-ribbon-gap: 12px;
     .header-upper__brand-img {
         height: 2.5rem;
     }
+}
+
+// Above `body:has(.dropdown-toggle.show):after` backdrop (1040) so logo / controls stay visible when menu is open
+body:has(.userindicator__dropdown .dropdown-toggle.show) .header-upper {
+    position: relative;
+    z-index: 1055;
 }

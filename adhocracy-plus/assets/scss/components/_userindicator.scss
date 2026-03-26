@@ -7,6 +7,11 @@ $userindicator-nested-pad-x: 48px;
 $userindicator-profile-line-height: 20px;
 $userindicator-menu-width: 262px;
 
+// Figma „Not Logged – Expanded“ (4258:16440 / 4314:15024): nur bei `.dropdown-menu--guest.show`
+$userindicator-guest-expanded-gap: 1.5rem; // 24px: Logo-Zeile → CTA-Block
+$userindicator-guest-expanded-cta-stack: 6.5rem; // 48 + 8 + 48 px
+$userindicator-guest-expanded-pad-bottom: 1.5rem; // Luft unter dem unteren Button
+
 // Menu chrome uses pure black (matches design); use variable for stylelint scale rule
 $userindicator-menu-fg: $print-black;
 
@@ -17,13 +22,13 @@ $userindicator-menu-fg: $print-black;
         position: relative;
     }
 
-    .btn {
-        padding: 0.5em 1em;
-    }
-
     // Header toggles: no vertical padding (row aligns with logo / notifications)
     > .userindicator__toggle-btn.btn {
         padding: 0 1em;
+
+        @media screen and (max-width: $breakpoint-down) {
+            padding-inline: 0;
+        }
     }
 
     // Custom burger/close icons instead of Bootstrap caret
@@ -72,7 +77,8 @@ $userindicator-menu-fg: $print-black;
 .userindicator__guest-btn--cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 6px; // Figma Buttons: gap between label and arrow
 
     --bs-btn-color: #{$body-bg};
     --bs-btn-bg: #{$text-color};
@@ -86,7 +92,8 @@ $userindicator-menu-fg: $print-black;
 }
 
 .userindicator__guest-cta-icon {
-    font-size: 0.875em;
+    font-size: 1rem; // Figma 16px icon box
+    line-height: 1;
 }
 
 // Header: transparent toggle (no filled button background)
@@ -116,6 +123,12 @@ $userindicator-menu-fg: $print-black;
     min-width: 32px;
     min-height: 32px;
     vertical-align: middle;
+
+    @media screen and (max-width: $breakpoint-down) {
+        .header-upper & {
+            margin-left: 0;
+        }
+    }
 }
 
 .userindicator__toggle-icon-img {
@@ -204,6 +217,13 @@ $userindicator-profile-close-col: 40px;
     column-gap: $userindicator-gap;
     padding: 12px 16px;
     overflow: visible;
+
+    // Desktop: hide avatar in panel (text + close only)
+    @media screen and (min-width: $breakpoint) {
+        .userindicator__dropdown-profile-main > .userindicator__btn-img {
+            display: none;
+        }
+    }
 
     .userindicator__btn-img {
         flex-shrink: 0;
@@ -298,18 +318,6 @@ $userindicator-profile-close-col: 40px;
     align-items: center;
     gap: $userindicator-gap;
     white-space: normal;
-
-    .userindicator__dropdown-item-icon {
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: $userindicator-icon-col;
-        min-width: $userindicator-icon-col;
-        font-size: 1rem;
-        line-height: 1;
-        text-align: center;
-    }
 }
 
 .userindicator__dropdown-label {
@@ -322,18 +330,19 @@ $userindicator-profile-close-col: 40px;
     border-bottom: none;
     color: $userindicator-menu-fg;
     cursor: default;
+}
 
-    .userindicator__dropdown-item-icon {
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: $userindicator-icon-col;
-        min-width: $userindicator-icon-col;
-        font-size: 1rem;
-        line-height: 1;
-        text-align: center;
-    }
+.userindicator__dropdown-item .userindicator__dropdown-item-icon,
+.userindicator__dropdown-label .userindicator__dropdown-item-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $userindicator-icon-col;
+    min-width: $userindicator-icon-col;
+    font-size: 1rem;
+    line-height: 1;
+    text-align: center;
 }
 
 // Specificity over Bootstrap `.navbar-expand-* .navbar-nav .dropdown-menu { position: absolute | static }`
@@ -341,7 +350,6 @@ $userindicator-profile-close-col: 40px;
 .navbar-nav .dropdown-menu.userindicator__dropdown-menu {
     position: fixed;
     inset: 0 0 auto auto;
-    inset-inline: auto 0;
     z-index: 1050;
     margin: 0;
     transform: none;
@@ -382,8 +390,8 @@ $userindicator-profile-close-col: 40px;
         color: $userindicator-menu-fg;
     }
 
-    // Rows: hover background — exclude header row (profile link, close button)
-    a:not(.userindicator__profile-link),
+    // Rows: hover background — exclude header row (profile link, close button, guest CTAs)
+    a:not(.userindicator__profile-link, .userindicator__guest-btn),
     button:not(.userindicator__dropdown-close) {
         &:hover,
         &:focus {
@@ -447,15 +455,134 @@ $userindicator-profile-close-col: 40px;
     }
 }
 
+// Gast mobil — nur bei geöffnetem Menü (`.show`): CTAs in der weißen Header-Fläche, kein Vollbild-Overlay
+@media screen and (max-width: $breakpoint-down) {
+    .header-upper > .navbar {
+        position: relative;
+    }
+
+    // Anker für `position: absolute` des Menüs unter der Navbar-Zeile (nicht unter `.dropdown`)
+    .userindicator__guest-dropdown.userindicator__dropdown {
+        position: static;
+    }
+
+    .header-upper:has(.userindicator__dropdown-menu--guest.show) {
+        padding-bottom: calc(
+            #{$userindicator-guest-expanded-gap} + #{$userindicator-guest-expanded-cta-stack} + #{$userindicator-guest-expanded-pad-bottom}
+        );
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.navbar-nav .dropdown-menu.userindicator__dropdown-menu.userindicator__dropdown-menu--guest {
+    @media screen and (max-width: $breakpoint-down) {
+        position: absolute;
+        inset: auto;
+        left: 0;
+        right: 0;
+        top: 100%;
+        margin-top: $userindicator-guest-expanded-gap;
+        z-index: 1050;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        height: auto;
+        max-height: none;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        padding: 0 0 $userindicator-guest-expanded-pad-bottom;
+
+        // Wins over `components/_dropdown` `.dropdown-menu.show { margin-top: -2px !important }`
+        &.show {
+            margin-top: $userindicator-guest-expanded-gap !important;
+            margin-bottom: 0 !important;
+        }
+    }
+
+    .userindicator__guest--mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: $userindicator-gap;
+        box-sizing: border-box;
+    }
+
+    a.userindicator__guest-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 100%;
+        height: 48px;
+        padding: 0 1.5rem;
+        line-height: 24px;
+        white-space: normal;
+    }
+
+    // Override generic `.userindicator__dropdown-menu a { color: … }` so `.btn` / `--bs-btn-*` win
+    a.userindicator__guest-btn.userindicator__guest-btn--login {
+        color: var(--bs-btn-color);
+    }
+
+    a.userindicator__guest-btn.userindicator__guest-btn--cta {
+        color: var(--bs-btn-color);
+
+        span {
+            color: inherit;
+        }
+    }
+
+    .userindicator__guest-btn--login {
+        --bs-btn-bg: #{$body-bg};
+        --bs-btn-border-color: #{$print-black};
+        --bs-btn-hover-bg: #{mix($body-bg, $print-black, 94%)};
+        --bs-btn-hover-border-color: #{$print-black};
+        --bs-btn-hover-color: #{$text-color};
+        --bs-btn-active-bg: #{mix($body-bg, $print-black, 90%)};
+
+        border: 1px solid #{$print-black};
+    }
+
+    .userindicator__guest-btn--cta {
+        --bs-btn-bg: #{$print-black};
+        --bs-btn-border-color: #{$print-black};
+        --bs-btn-color: #{$body-bg};
+        --bs-btn-hover-bg: #{lighten($print-black, 6%)};
+        --bs-btn-hover-border-color: #{lighten($print-black, 6%)};
+        --bs-btn-hover-color: #{$body-bg};
+    }
+
+    .userindicator__guest-cta-icon {
+        color: $body-bg;
+    }
+
+    a.userindicator__guest-btn:hover,
+    a.userindicator__guest-btn:focus {
+        background-color: var(--bs-btn-hover-bg);
+        border-color: var(--bs-btn-hover-border-color);
+        color: var(--bs-btn-hover-color);
+
+        span {
+            color: inherit;
+        }
+    }
+}
+
 // Dim the viewport; burger/user controls sit under the overlay.
 // Only the fixed menu panel (`.userindicator__dropdown-menu`, z-index 1050) stays above.
 $userindicator-menu-backdrop: rgba($print-black, 0.22);
 $z-index-userindicator-backdrop: 1040;
 
+// Ausgrauen nur ab Tablet — mobil kein Overlay (Figma Gast expanded ist reiner Header-Block)
 body:has(.userindicator__dropdown .dropdown-toggle.show):after {
     content: '';
     position: fixed;
     inset: 0;
     z-index: $z-index-userindicator-backdrop;
     background-color: $userindicator-menu-backdrop;
+
+    @media screen and (max-width: $breakpoint-down) {
+        display: none;
+    }
 }

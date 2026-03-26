@@ -4,6 +4,11 @@ $spacer-xl: 7.5rem;
     background-color: $bg-light;
     margin: 0 $r-spacer;
 
+    @media screen and (max-width: $breakpoint-down) {
+        margin-left: $layout-gutter-x-mobile;
+        margin-right: $layout-gutter-x-mobile;
+    }
+
     @media screen and (min-width: $breakpoint-xxl) {
         max-width: $breakpoint-xxl;
         margin: auto;

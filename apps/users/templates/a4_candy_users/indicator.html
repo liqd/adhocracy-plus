@@ -100,15 +100,42 @@
         </div>
     </div>
 {% else %}
-    <div class="userindicator__guest">
-        <a href="{% url 'account_login' %}?next={{ redirect_field_value }}"
-           class="btn userindicator__guest-btn userindicator__guest-btn--login">
-            {% translate "Log in" %}
-        </a>
-        <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}"
-           class="btn userindicator__guest-btn userindicator__guest-btn--cta">
-            <span>{% translate "Get Started" %}</span>
-            <i class="fa-solid fa-arrow-right userindicator__guest-cta-icon" aria-hidden="true"></i>
-        </a>
+    <div class="dropdown userindicator__dropdown userindicator__guest-dropdown">
+        <button type="button"
+                title="{% translate 'Menu' %}"
+                class="d-md-none dropdown-toggle btn btn--none userindicator__toggle-btn header-upper__mobile-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                data-flip="false"
+                aria-haspopup="true"
+                aria-expanded="false"
+                id="guest-actions-mobile">
+            {% include 'a4_candy_users/includes/userindicator_toggle_icons.html' %}
+        </button>
+        <div class="d-none d-md-flex userindicator__guest userindicator__guest--desktop">
+            <a href="{% url 'account_login' %}?next={{ redirect_field_value }}"
+               class="btn userindicator__guest-btn userindicator__guest-btn--login">
+                {% translate "Log in" %}
+            </a>
+            <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}"
+               class="btn userindicator__guest-btn userindicator__guest-btn--cta">
+                <span>{% translate "Get Started" %}</span>
+                <i class="fa-solid fa-arrow-right userindicator__guest-cta-icon" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu userindicator__dropdown-menu--guest d-md-none"
+             aria-labelledby="guest-actions-mobile">
+            <div class="userindicator__guest userindicator__guest--mobile">
+                <a href="{% url 'account_login' %}?next={{ redirect_field_value }}"
+                   class="btn userindicator__guest-btn userindicator__guest-btn--login">
+                    {% translate "Log in" %}
+                </a>
+                <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}"
+                   class="btn userindicator__guest-btn userindicator__guest-btn--cta">
+                    <span>{% translate "Get Started" %}</span>
+                    <i class="fa-solid fa-arrow-right userindicator__guest-cta-icon" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
     </div>
 {% endif %}
