@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags %}
+{% load i18n discovery_tags pagination %}
 
 {% block project_action %}
     {% has_or_would_have_perm 'a4_candy_ideas.add_idea' request.user module as propose_allowed %}
@@ -29,7 +29,11 @@
                     {% endfor %}
                 </ul>
 
-                {% include "a4_candy_contrib/includes/pagination.html" %}
+                {% if page_obj.paginator.num_pages > 1 %}
+                    <div class="mt-4">
+                        {% pagination page_obj %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

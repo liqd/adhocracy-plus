@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags pagination %}
 
 {% block title %}
     {{ self.subtitle }} &mdash; {{ block.super }}
@@ -48,8 +48,12 @@
                     </div>
                 {% endfor %}
                 </div>
-                <div class="text-center">
-                {% include "a4_candy_contrib/includes/pagination.html" with page_obj=news %}
+                <div class="text-center">                
+                    {% if news.paginator.num_pages > 1 %}
+                        <div class="mt-4">
+                            {% pagination news %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

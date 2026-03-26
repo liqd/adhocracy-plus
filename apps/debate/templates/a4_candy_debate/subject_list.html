@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n module_tags static maps_tags %}
+{% load i18n module_tags static maps_tags pagination %}
 
 {% block phase_content %}
     <div class="l-top-overlap">
@@ -20,7 +20,11 @@
                     {% endfor %}
                 </ul>
 
-                {% include "a4_candy_contrib/includes/pagination.html" %}
+                {% if page_obj.paginator.num_pages > 1 %}
+                    <div class="mt-4">
+                        {% pagination page_obj %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 {% extends "a4dashboard/base_project_list.html" %}
-{% load i18n %}
+{% load i18n pagination %}
 
 {% block title %}{% translate "Projects" %} &mdash; {{ block.super }}{% endblock%}
 
@@ -27,5 +27,9 @@
         <p>{% translate 'We could not find any projects.' %}</p>
     {% endif %}
 
-    {% include "a4_candy_contrib/includes/pagination.html" %}
+    {% if page_obj.paginator.num_pages > 1 %}
+    <div class="mt-4">
+        {% pagination page_obj %}
+    </div>
+    {% endif %}
 {% endblock %}
