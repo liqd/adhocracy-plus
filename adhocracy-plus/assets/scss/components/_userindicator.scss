@@ -25,6 +25,61 @@ $userindicator-menu-width: 262px;
 
 }
 
+// Ausgeloggt: Outline „Log in“ + gefülltes „Get Started“ mit Pfeil (Header)
+.userindicator__guest {
+    display: flex;
+    align-items: center;
+    gap: $userindicator-gap;
+    flex-shrink: 0;
+}
+
+.userindicator__guest-btn {
+    border-radius: 0;
+    font-weight: 400;
+    font-synthesis: none;
+    padding: 0.5rem 1rem;
+    line-height: 1.5;
+    font-size: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus-visible {
+        text-decoration: none;
+    }
+}
+
+.userindicator__guest-btn--login {
+    --bs-btn-color: #{$text-color};
+    --bs-btn-border-color: #{$text-color};
+    --bs-btn-bg: transparent;
+    --bs-btn-hover-bg: #{mix($body-bg, $text-color, 92%)};
+    --bs-btn-hover-border-color: #{$text-color};
+    --bs-btn-hover-color: #{$text-color};
+    --bs-btn-active-bg: #{mix($body-bg, $text-color, 88%)};
+    --bs-btn-active-border-color: #{$text-color};
+    --bs-btn-active-color: #{$text-color};
+}
+
+.userindicator__guest-btn--cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    --bs-btn-color: #{$body-bg};
+    --bs-btn-bg: #{$text-color};
+    --bs-btn-border-color: #{$text-color};
+    --bs-btn-hover-bg: #{lighten($text-color, 8%)};
+    --bs-btn-hover-border-color: #{lighten($text-color, 8%)};
+    --bs-btn-hover-color: #{$body-bg};
+    --bs-btn-active-bg: #{lighten($text-color, 5%)};
+    --bs-btn-active-border-color: #{lighten($text-color, 5%)};
+    --bs-btn-active-color: #{$body-bg};
+}
+
+.userindicator__guest-cta-icon {
+    font-size: 0.875em;
+}
+
 // Header: kein farbiger Button-Hintergrund (wie Design)
 .userindicator__toggle-btn.btn--none {
     color: $text-color;
@@ -389,4 +444,17 @@ $userindicator-profile-close-col: 40px;
         min-width: $userindicator-icon-col;
         margin-right: 0;
     }
+}
+
+// Abdunkeln des Viewports; Burger/User-Icon liegen unter dem Overlay (mit ausgegraut).
+// Nur das fixierte Menü-Panel (.userindicator__dropdown-menu, z-index 1050) bleibt darüber.
+$userindicator-menu-backdrop: rgba(#000, 0.22);
+$z-index-userindicator-backdrop: 1040;
+
+body:has(.userindicator__dropdown .dropdown-toggle.show):after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: $z-index-userindicator-backdrop;
+    background-color: $userindicator-menu-backdrop;
 }

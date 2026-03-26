@@ -1,6 +1,7 @@
 // Zusätzliche Einrückung von Logo/Login innerhalb der Hero-Breite (wie früher am Viewport).
 $header-upper-content-inset-inline-start: 72px;
 $header-upper-content-inset-inline-end: 8px;
+$header-upper-ribbon-gap: 12px;
 
 // Header (Ribbon + Fläche) bleibt volle Viewport-Breite; Logo + Login folgen der gleichen
 // horizontalen Begrenzung wie das Hero-Bild (`.homepage__wrapper` in _homepage.scss):
@@ -11,7 +12,8 @@ $header-upper-content-inset-inline-end: 8px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.02), 0 2px 27px 0 rgba(0, 0, 0, 0.05);
 
     > .navbar {
-        padding: var(--bs-navbar-padding-y) $r-spacer;
+        // Exakt 12px von der Ribbon-Leiste bis zur Zeile (Logo links, Login rechts) — ohne zusätzliches Padding-Y oben
+        padding: #{$header-upper-ribbon-gap} $r-spacer var(--bs-navbar-padding-y);
     }
 
     > .navbar > .container {
@@ -41,8 +43,6 @@ $header-upper-content-inset-inline-end: 8px;
     display: flex;
     align-items: center;
     margin-right: 0.5 * $spacer;
-    margin-top: -0.5em;
-    margin-bottom: 0.5em;
 
     .dropdown-menu.show {
         top: 100% !important; // overwriting the general dropdown overwrite
@@ -51,9 +51,7 @@ $header-upper-content-inset-inline-end: 8px;
 
 .header-upper__notification_button {
     display: flex;
-    margin-top: -0.5em;
     margin-right: $spacer;
-    margin-bottom: 0.5em;
     align-items: center;
 }
 

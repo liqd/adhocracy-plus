@@ -2,7 +2,7 @@
 {% if request.user.is_authenticated %}
     <div class="dropdown userindicator__dropdown">
         <button title="{% translate 'Menu' %}"
-                class="d-md-none dropdown-toggle btn btn--none userindicator__toggle-btn btn--attached-top header-upper__mobile-toggle"
+                class="d-md-none dropdown-toggle btn btn--none userindicator__toggle-btn header-upper__mobile-toggle"
                 data-bs-toggle="dropdown"
                 data-bs-display="static"
                 data-flip="false"
@@ -13,7 +13,7 @@
             {% include 'a4_candy_users/includes/userindicator_toggle_icons.html' %}
         </button>
         <button title="{% translate 'Menu' %}"
-                class="d-none d-md-inline-block dropdown-toggle btn btn--none userindicator__toggle-btn btn--attached-top  btn--align-left header-upper__toggle"
+                class="d-none d-md-inline-block dropdown-toggle btn btn--none userindicator__toggle-btn btn--align-left header-upper__toggle"
                 data-bs-toggle="dropdown"
                 data-bs-display="static"
                 data-flip="false"
@@ -100,9 +100,15 @@
         </div>
     </div>
 {% else %}
-    <div class="btn btn--secondary-filled btn--huge btn--attached-top">
-        <span class="navi__item"><a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% translate "Login" %}</a></span>
-        <span class="d-none d-md-inline">/</span>
-        <span class="navi__item"><a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% translate "Register" %}</a></span>
+    <div class="userindicator__guest">
+        <a href="{% url 'account_login' %}?next={{ redirect_field_value }}"
+           class="btn userindicator__guest-btn userindicator__guest-btn--login">
+            {% translate "Log in" %}
+        </a>
+        <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}"
+           class="btn userindicator__guest-btn userindicator__guest-btn--cta">
+            <span>{% translate "Get Started" %}</span>
+            <i class="fa-solid fa-arrow-right userindicator__guest-cta-icon" aria-hidden="true"></i>
+        </a>
     </div>
 {% endif %}
