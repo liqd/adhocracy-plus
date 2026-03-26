@@ -1,4 +1,4 @@
-// Figma „Adhocracy-“ Global-components (Nodes 1614:9012–9016): Icons 16px, gap 8px, Zeile py-12 px-16; Org-Unterzeilen py-12 px-48
+// Figma Adhocracy global components (1614:9012–9016): 16px icons, 8px gap; row py-12 px-16; org rows py-12 px-48
 $userindicator-icon-col: 16px;
 $userindicator-gap: 8px;
 $userindicator-row-pad-y: 12px;
@@ -6,6 +6,9 @@ $userindicator-row-pad-x: 16px;
 $userindicator-nested-pad-x: 48px;
 $userindicator-profile-line-height: 20px;
 $userindicator-menu-width: 262px;
+
+// Menu chrome uses pure black (matches design); use variable for stylelint scale rule
+$userindicator-menu-fg: $print-black;
 
 .userindicator__dropdown {
     position: unset; // For mobile full width menu
@@ -18,14 +21,19 @@ $userindicator-menu-width: 262px;
         padding: 0.5em 1em;
     }
 
+    // Header toggles: no vertical padding (row aligns with logo / notifications)
+    > .userindicator__toggle-btn.btn {
+        padding: 0 1em;
+    }
+
     // Custom burger/close icons instead of Bootstrap caret
-    .dropdown-toggle::after {
+    .dropdown-toggle:after {
         display: none;
     }
 
 }
 
-// Ausgeloggt: Outline „Log in“ + gefülltes „Get Started“ mit Pfeil (Header)
+// Logged-out: outline Log in + filled Get Started (header)
 .userindicator__guest {
     display: flex;
     align-items: center;
@@ -65,6 +73,7 @@ $userindicator-menu-width: 262px;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+
     --bs-btn-color: #{$body-bg};
     --bs-btn-bg: #{$text-color};
     --bs-btn-border-color: #{$text-color};
@@ -80,7 +89,7 @@ $userindicator-menu-width: 262px;
     font-size: 0.875em;
 }
 
-// Header: kein farbiger Button-Hintergrund (wie Design)
+// Header: transparent toggle (no filled button background)
 .userindicator__toggle-btn.btn--none {
     color: $text-color;
     font-weight: 400;
@@ -94,12 +103,6 @@ $userindicator-menu-width: 262px;
         color: $text-color;
         box-shadow: none;
     }
-}
-
-// _header_upper: .header-upper__mobile-toggle { font-weight: bold } — nur User-Menü wieder Regular
-.userindicator__dropdown .userindicator__toggle-btn.header-upper__mobile-toggle {
-    font-weight: 400;
-    font-synthesis: none;
 }
 
 .userindicator__toggle-icon {
@@ -122,7 +125,7 @@ $userindicator-menu-width: 262px;
     object-fit: contain;
 }
 
-// Kontext-Spezifität schlägt u. a. Font Awesomes .fa { display: … }
+// Higher specificity than Font Awesome `.fa { display: … }`
 .userindicator__dropdown .userindicator__toggle-icon i.userindicator__toggle-icon--close {
     display: none;
     margin-left: 0;
@@ -164,7 +167,7 @@ $userindicator-menu-width: 262px;
     max-width: 180px;
 }
 
-// Desktop-Header: globales max-width 180px verursacht gequetschten „Guten Tag …“-Block
+// Desktop header: global max-width 180px squeezes the “Hello …” block
 @media screen and (min-width: $breakpoint) {
     .header-upper__toggle .userindicator__btn-text {
         max-width: none;
@@ -179,7 +182,21 @@ $userindicator-menu-width: 262px;
 
 $userindicator-profile-close-col: 40px;
 
-// Grid: linke Spalte flexibel + Ellipsis, rechte Spalte nur Schließen (zuverlässiger als position:absolute)
+// Base profile link (nested rules in `.userindicator__dropdown-profile` add overrides)
+.userindicator__profile-link {
+    display: block;
+    max-width: none;
+    font-weight: 400;
+    font-size: inherit;
+    line-height: inherit;
+    text-decoration: underline;
+    color: $userindicator-menu-fg;
+    overflow: visible;
+    white-space: nowrap;
+    text-overflow: clip;
+}
+
+// Grid: flexible left + ellipsis; right column is close only (more reliable than position:absolute)
 .userindicator__dropdown-profile {
     display: grid;
     grid-template-columns: minmax(0, 1fr) #{$userindicator-profile-close-col};
@@ -228,7 +245,7 @@ $userindicator-profile-close-col: 40px;
         font-size: inherit;
         line-height: $userindicator-profile-line-height;
         font-weight: 400;
-        color: #000;
+        color: $userindicator-menu-fg;
     }
 
     .userindicator__profile-link {
@@ -244,8 +261,7 @@ $userindicator-profile-close-col: 40px;
 
 .userindicator__dropdown-close.btn {
     grid-column: 2;
-    justify-self: end;
-    align-self: start;
+    place-self: start end;
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
@@ -258,13 +274,13 @@ $userindicator-profile-close-col: 40px;
     margin: 0;
     border: none;
     line-height: 1;
-    color: #000;
+    color: $userindicator-menu-fg;
 
     &:hover,
     &:focus,
     &:active {
         background-color: transparent;
-        color: #000;
+        color: $userindicator-menu-fg;
     }
 }
 
@@ -304,7 +320,7 @@ $userindicator-profile-close-col: 40px;
     margin: 0;
     font-weight: 400;
     border-bottom: none;
-    color: #000;
+    color: $userindicator-menu-fg;
     cursor: default;
 
     .userindicator__dropdown-item-icon {
@@ -320,29 +336,12 @@ $userindicator-profile-close-col: 40px;
     }
 }
 
-.userindicator__profile-link {
-    display: block;
-    max-width: none;
-    font-weight: 400;
-    font-size: inherit;
-    line-height: inherit;
-    text-decoration: underline;
-    color: #000;
-    overflow: visible;
-    white-space: nowrap;
-    text-overflow: clip;
-}
-
-// Spezifität > Bootstrap .navbar-expand-* .navbar-nav .dropdown-menu { position: absolute | static }
-// Viewport: oben rechts bündig; data-bs-display="static" am Toggle verhindert Popper-Inline-Styles
+// Specificity over Bootstrap `.navbar-expand-* .navbar-nav .dropdown-menu { position: absolute | static }`
+// Fixed top-right; `data-bs-display="static"` on toggle avoids Popper inline styles
 .navbar-nav .dropdown-menu.userindicator__dropdown-menu {
     position: fixed;
-    top: 0;
-    right: 0;
-    left: auto;
-    bottom: auto;
-    inset-inline-end: 0;
-    inset-inline-start: auto;
+    inset: 0 0 auto auto;
+    inset-inline: auto 0;
     z-index: 1050;
     margin: 0;
     transform: none;
@@ -350,11 +349,11 @@ $userindicator-profile-close-col: 40px;
     min-width: 0;
     max-width: 100vw;
     max-height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden auto;
     background-color: $body-bg;
-    // Absatztext (Design): klar Regular, nicht „fett“ wirkend
-    color: #000;
+
+    // Body copy (design): regular weight, not bold-looking
+    color: $userindicator-menu-fg;
     font-family: $font-family-base;
     font-size: 16px;
     font-style: normal;
@@ -363,7 +362,8 @@ $userindicator-profile-close-col: 40px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-synthesis: none;
-    // überschreibt globales .dropdown-menu (1px $text-color)
+
+    // Overrides global `.dropdown-menu` (1px $text-color)
     border: 1px solid $border-color;
     border-radius: 0;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
@@ -379,15 +379,15 @@ $userindicator-profile-close-col: 40px;
         font-weight: 400;
         font-size: inherit;
         line-height: inherit;
-        color: #000;
+        color: $userindicator-menu-fg;
     }
 
-    // Menüzeilen: Hover-Hintergrund — ohne Headerzeile (Profil-Link, Schließen-Button)
+    // Rows: hover background — exclude header row (profile link, close button)
     a:not(.userindicator__profile-link),
     button:not(.userindicator__dropdown-close) {
         &:hover,
         &:focus {
-            color: #000;
+            color: $userindicator-menu-fg;
             background-color: $bg-tertiary;
         }
     }
@@ -399,11 +399,11 @@ $userindicator-profile-close-col: 40px;
         &:focus-visible {
             background-color: transparent;
             background-image: none;
-            color: #000;
+            color: $userindicator-menu-fg;
         }
     }
 
-    // Font-Awesome-Glyphen nicht mit Source Sans überschreiben
+    // Do not render FA glyphs with Source Sans
     i.fa-solid,
     i.fa {
         font-family: "Font Awesome 7 Free", sans-serif;
@@ -411,25 +411,26 @@ $userindicator-profile-close-col: 40px;
         font-weight: 900;
     }
 
-    // Schlägt Bootstrap .dropdown-item { display: block } und components/_dropdown .dropdown-menu a { display: block }
+    // Wins over Bootstrap `.dropdown-item { display: block }` and `components/_dropdown` menu links
+    // Child `span` rules first (no-descending-specificity: lower-specificity selector first)
+    button.userindicator__dropdown-item > span,
+    a.userindicator__dropdown-item:not(.userindicator__dropdown-item--nested) > span {
+        flex: 1 1 auto;
+        min-width: 0;
+        text-align: left;
+        white-space: nowrap;
+    }
+
     a.userindicator__dropdown-item:not(.userindicator__dropdown-item--nested),
     button.userindicator__dropdown-item {
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        flex-flow: row nowrap;
         align-items: center;
         padding: $userindicator-row-pad-y $userindicator-row-pad-x;
         white-space: normal;
-
-        > span {
-            flex: 1 1 auto;
-            min-width: 0;
-            text-align: left;
-            white-space: nowrap;
-        }
     }
 
-    // Figma: nur Text, starker Einzug (px-48)
+    // Figma: text only, strong indent (px-48)
     a.userindicator__dropdown-item.userindicator__dropdown-item--nested {
         display: block;
         padding: $userindicator-row-pad-y $userindicator-nested-pad-x;
@@ -437,7 +438,7 @@ $userindicator-profile-close-col: 40px;
         white-space: nowrap;
     }
 
-    // Iconbreite aus globaler .dropdown-menu i { width: 1.5em } neutralisieren
+    // Neutralize global `.dropdown-menu i { width: 1.5em }` icon width
     a i.userindicator__dropdown-item-icon,
     button i.userindicator__dropdown-item-icon {
         width: $userindicator-icon-col;
@@ -446,9 +447,9 @@ $userindicator-profile-close-col: 40px;
     }
 }
 
-// Abdunkeln des Viewports; Burger/User-Icon liegen unter dem Overlay (mit ausgegraut).
-// Nur das fixierte Menü-Panel (.userindicator__dropdown-menu, z-index 1050) bleibt darüber.
-$userindicator-menu-backdrop: rgba(#000, 0.22);
+// Dim the viewport; burger/user controls sit under the overlay.
+// Only the fixed menu panel (`.userindicator__dropdown-menu`, z-index 1050) stays above.
+$userindicator-menu-backdrop: rgba($print-black, 0.22);
 $z-index-userindicator-backdrop: 1040;
 
 body:has(.userindicator__dropdown .dropdown-toggle.show):after {

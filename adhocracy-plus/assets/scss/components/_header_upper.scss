@@ -1,18 +1,17 @@
-// Zusätzliche Einrückung von Logo/Login innerhalb der Hero-Breite (wie früher am Viewport).
+// Inset for logo / controls so they align with hero content (see `.homepage__wrapper` in _homepage.scss).
+// Uses `$r-spacer` horizontally; max width + centering from `$breakpoint-xxl`; plus the insets below.
 $header-upper-content-inset-inline-start: 72px;
 $header-upper-content-inset-inline-end: 8px;
+
+// Vertical gap between ribbon strip and navbar row
 $header-upper-ribbon-gap: 12px;
 
-// Header (Ribbon + Fläche) bleibt volle Viewport-Breite; Logo + Login folgen der gleichen
-// horizontalen Begrenzung wie das Hero-Bild (`.homepage__wrapper` in _homepage.scss):
-// seitlicher Abstand `$r-spacer`, ab `$breakpoint-xxl` max. Breite + zentriert — darauf kommen die Insets.
 .header-upper {
     min-height: 100px;
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.02), 0 2px 27px 0 rgba(0, 0, 0, 0.05);
 
     > .navbar {
-        // Exakt 12px von der Ribbon-Leiste bis zur Zeile (Logo links, Login rechts) — ohne zusätzliches Padding-Y oben
         padding: #{$header-upper-ribbon-gap} $r-spacer var(--bs-navbar-padding-y);
     }
 
@@ -25,12 +24,14 @@ $header-upper-ribbon-gap: 12px;
         padding-right: $header-upper-content-inset-inline-end;
 
         --bs-gutter-x: 0;
+        align-items: flex-start; // override Bootstrap `center`; top-align brand + nav row
     }
 }
 
 .header-upper__brand {
     font-size: $font-size-lg;
     line-height: inherit;
+    padding-block: 0; // drop Bootstrap navbar-brand vertical padding for image alignment
 }
 
 .header-upper__brand-img {
@@ -39,9 +40,13 @@ $header-upper-ribbon-gap: 12px;
     width: auto;
 }
 
-.header-upper__lang {
+.header-upper__lang,
+.header-upper__notification_button {
     display: flex;
     align-items: center;
+}
+
+.header-upper__lang {
     margin-right: 0.5 * $spacer;
 
     .dropdown-menu.show {
@@ -50,25 +55,22 @@ $header-upper-ribbon-gap: 12px;
 }
 
 .header-upper__notification_button {
-    display: flex;
     margin-right: $spacer;
-    align-items: center;
 }
 
 .header-upper__nav {
     flex-direction: row;
 
-    // bootstrap overwrites
     .dropdown-menu {
         position: absolute;
     }
 }
 
-.header-upper__mobile-toggle {
+// Collapse toggler only (user menu uses `.userindicator__toggle-btn` + `.btn--none`, weight 400)
+.header-upper__mobile-toggle:not(.userindicator__toggle-btn) {
     font-weight: bold;
 }
 
-// so it doesn't look misallighned when menu open
 .header-upper__mobile-toggle.show {
     z-index: 1001;
     background: transparent;
