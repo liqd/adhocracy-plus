@@ -1,5 +1,4 @@
 from django import template
-from urllib.parse import urlencode
 
 register = template.Library()
 
@@ -63,7 +62,7 @@ def _build_page_list(current, total):
 @register.inclusion_tag('a4_candy_contrib/includes/pagination.html', takes_context=True)
 def pagination(context, page_obj, param_name='page'):
     """
-    Berlin Design System pagination for regular (non-HTMX) requests.
+    Pagination for regular (non-HTMX) requests.
     
     Usage:
         {% pagination page_obj %}
@@ -121,7 +120,7 @@ def pagination(context, page_obj, param_name='page'):
 @register.inclusion_tag('a4_candy_contrib/includes/pagination.html', takes_context=True)
 def htmx_pagination(context, page_obj, param_name='page', hx_target=None, hx_get_url=None, section_id=None):
     """
-    Berlin Design System pagination for HTMX requests.
+    Pagination for HTMX requests.
     
     Usage:
         {% htmx_pagination page_obj hx_target="section-id" hx_get_url="{% url 'partial-url' %}" %}
