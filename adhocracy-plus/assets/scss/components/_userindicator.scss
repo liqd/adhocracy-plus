@@ -7,10 +7,8 @@ $userindicator-nested-pad-x: 48px;
 $userindicator-profile-line-height: 20px;
 $userindicator-menu-width: 262px;
 
-// Figma „Not Logged – Expanded“ (4258:16440 / 4314:15024): nur bei `.dropdown-menu--guest.show`
-$userindicator-guest-expanded-gap: 1.5rem; // 24px: Logo-Zeile → CTA-Block
-$userindicator-guest-expanded-cta-stack: 6.5rem; // 48 + 8 + 48 px
-$userindicator-guest-expanded-pad-bottom: 1.5rem; // Luft unter dem unteren Button
+// Guest mobile sheet open: reserve space under header (gap + 2×48px buttons + 8px + bottom pad)
+$userindicator-guest-sheet-header-reserve: calc(1.5rem + 6.5rem + 1.5rem);
 
 // Menu chrome uses pure black (matches design); use variable for stylelint scale rule
 $userindicator-menu-fg: $print-black;
@@ -313,38 +311,6 @@ $userindicator-profile-close-col: 40px;
     text-align: center;
 }
 
-.userindicator__dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: $userindicator-gap;
-    white-space: normal;
-}
-
-.userindicator__dropdown-label {
-    display: flex;
-    align-items: center;
-    gap: $userindicator-gap;
-    padding: $userindicator-row-pad-y $userindicator-row-pad-x;
-    margin: 0;
-    font-weight: 400;
-    border-bottom: none;
-    color: $userindicator-menu-fg;
-    cursor: default;
-}
-
-.userindicator__dropdown-item .userindicator__dropdown-item-icon,
-.userindicator__dropdown-label .userindicator__dropdown-item-icon {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: $userindicator-icon-col;
-    min-width: $userindicator-icon-col;
-    font-size: 1rem;
-    line-height: 1;
-    text-align: center;
-}
-
 // Specificity over Bootstrap `.navbar-expand-* .navbar-nav .dropdown-menu { position: absolute | static }`
 // Fixed top-right; `data-bs-display="static"` on toggle avoids Popper inline styles
 .navbar-nav .dropdown-menu.userindicator__dropdown-menu {
@@ -364,7 +330,6 @@ $userindicator-profile-close-col: 40px;
     color: $userindicator-menu-fg;
     font-family: $font-family-base;
     font-size: 16px;
-    font-style: normal;
     font-weight: 400;
     line-height: 24px;
     -webkit-font-smoothing: antialiased;
@@ -390,8 +355,8 @@ $userindicator-profile-close-col: 40px;
         color: $userindicator-menu-fg;
     }
 
-    // Rows: hover background — exclude header row (profile link, close button, guest CTAs)
-    a:not(.userindicator__profile-link, .userindicator__guest-btn),
+    // Rows: hover background — exclude profile header row (profile link, close button)
+    a:not(.userindicator__profile-link),
     button:not(.userindicator__dropdown-close) {
         &:hover,
         &:focus {
@@ -411,12 +376,45 @@ $userindicator-profile-close-col: 40px;
         }
     }
 
-    // Do not render FA glyphs with Source Sans
+    // Do not render FA glyphs with Source Sans (font-style avoids faux italic from parent)
     i.fa-solid,
     i.fa {
         font-family: "Font Awesome 7 Free", sans-serif;
         font-style: normal;
         font-weight: 900;
+    }
+
+    // Menu rows (only used inside this panel; not shared with guest sheet)
+    .userindicator__dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: $userindicator-gap;
+        white-space: normal;
+    }
+
+    .userindicator__dropdown-label {
+        display: flex;
+        align-items: center;
+        gap: $userindicator-gap;
+        padding: $userindicator-row-pad-y $userindicator-row-pad-x;
+        margin: 0;
+        font-weight: 400;
+        border-bottom: none;
+        color: $userindicator-menu-fg;
+        cursor: default;
+    }
+
+    .userindicator__dropdown-item .userindicator__dropdown-item-icon,
+    .userindicator__dropdown-label .userindicator__dropdown-item-icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $userindicator-icon-col;
+        min-width: $userindicator-icon-col;
+        font-size: 1rem;
+        line-height: 1;
+        text-align: center;
     }
 
     // Wins over Bootstrap `.dropdown-item { display: block }` and `components/_dropdown` menu links
@@ -431,14 +429,10 @@ $userindicator-profile-close-col: 40px;
 
     a.userindicator__dropdown-item:not(.userindicator__dropdown-item--nested),
     button.userindicator__dropdown-item {
-        display: flex;
         flex-flow: row nowrap;
-        align-items: center;
         padding: $userindicator-row-pad-y $userindicator-row-pad-x;
-        white-space: normal;
     }
 
-    // Figma: text only, strong indent (px-48)
     a.userindicator__dropdown-item.userindicator__dropdown-item--nested {
         display: block;
         padding: $userindicator-row-pad-y $userindicator-nested-pad-x;
@@ -446,7 +440,6 @@ $userindicator-profile-close-col: 40px;
         white-space: nowrap;
     }
 
-    // Neutralize global `.dropdown-menu i { width: 1.5em }` icon width
     a i.userindicator__dropdown-item-icon,
     button i.userindicator__dropdown-item-icon {
         width: $userindicator-icon-col;
@@ -455,118 +448,92 @@ $userindicator-profile-close-col: 40px;
     }
 }
 
-// Gast mobil — nur bei geöffnetem Menü (`.show`): CTAs in der weißen Header-Fläche, kein Vollbild-Overlay
+// Guest mobile: separate from `.userindicator__dropdown-menu` (no overlay); only Bootstrap `dropdown-menu` + `userindicator__guest-sheet`
 @media screen and (max-width: $breakpoint-down) {
     .header-upper > .navbar {
         position: relative;
     }
 
-    // Anker für `position: absolute` des Menüs unter der Navbar-Zeile (nicht unter `.dropdown`)
     .userindicator__guest-dropdown.userindicator__dropdown {
         position: static;
     }
 
-    .header-upper:has(.userindicator__dropdown-menu--guest.show) {
-        padding-bottom: calc(
-            #{$userindicator-guest-expanded-gap} + #{$userindicator-guest-expanded-cta-stack} + #{$userindicator-guest-expanded-pad-bottom}
-        );
+    .header-upper:has(.userindicator__guest-sheet.show) {
+        padding-bottom: $userindicator-guest-sheet-header-reserve;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-}
 
-.navbar-nav .dropdown-menu.userindicator__dropdown-menu.userindicator__dropdown-menu--guest {
-    min-height: auto;
-
-    @media screen and (max-width: $breakpoint-down) {
+    .navbar-nav .dropdown-menu.userindicator__guest-sheet {
         position: absolute;
-        inset: auto;
-        left: 0;
-        right: 0;
         top: 100%;
-        margin-top: $userindicator-guest-expanded-gap;
+        right: 0;
+        left: 0;
         z-index: 1050;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        height: auto;
-        max-height: none;
-        transform: none;
-        box-shadow: none;
+        margin: 1.5rem 0 0;
+        padding: 0 0 1.5rem;
         border: none;
-        padding: 0 0 $userindicator-guest-expanded-pad-bottom;
+        border-radius: 0;
+        box-shadow: none;
+        transform: none;
+        background-color: $body-bg;
 
-        // Wins over `components/_dropdown` `.dropdown-menu.show { margin-top: -2px !important }`
         &.show {
-            margin-top: $userindicator-guest-expanded-gap !important;
+            margin-top: 1.5rem !important;
             margin-bottom: 0 !important;
         }
-    }
 
-    .userindicator__guest--mobile {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: $userindicator-gap;
-        box-sizing: border-box;
-    }
-
-    a.userindicator__guest-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        width: 100%;
-        height: 48px;
-        padding: 0 1.5rem;
-        line-height: 24px;
-        white-space: normal;
-    }
-
-    // Override generic `.userindicator__dropdown-menu a { color: … }` so `.btn` / `--bs-btn-*` win
-    a.userindicator__guest-btn.userindicator__guest-btn--login {
-        color: var(--bs-btn-color);
-    }
-
-    a.userindicator__guest-btn.userindicator__guest-btn--cta {
-        color: var(--bs-btn-color);
-
-        span {
-            color: inherit;
+        .userindicator__guest--mobile {
+            display: flex;
+            flex-direction: column;
+            gap: $userindicator-gap;
         }
-    }
 
-    .userindicator__guest-btn--login {
-        --bs-btn-bg: #{$body-bg};
-        --bs-btn-border-color: #{$print-black};
-        --bs-btn-hover-bg: #{mix($body-bg, $print-black, 94%)};
-        --bs-btn-hover-border-color: #{$print-black};
-        --bs-btn-hover-color: #{$text-color};
-        --bs-btn-active-bg: #{mix($body-bg, $print-black, 90%)};
+        a.userindicator__guest-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            width: 100%;
+            height: 48px;
+            padding: 0 1.5rem;
+            line-height: 24px;
+            white-space: normal;
+        }
 
-        border: 1px solid #{$print-black};
-    }
+        // Theme overrides; explicit `color` wins over global `.dropdown-menu a { color: inherit }` in `_dropdown.scss`
+        a.userindicator__guest-btn--login {
+            color: var(--bs-btn-color);
+            border: 1px solid #{$print-black};
 
-    .userindicator__guest-btn--cta {
-        --bs-btn-bg: #{$print-black};
-        --bs-btn-border-color: #{$print-black};
-        --bs-btn-color: #{$body-bg};
-        --bs-btn-hover-bg: #{lighten($print-black, 6%)};
-        --bs-btn-hover-border-color: #{lighten($print-black, 6%)};
-        --bs-btn-hover-color: #{$body-bg};
-    }
+            --bs-btn-bg: #{$body-bg};
+            --bs-btn-border-color: #{$print-black};
+            --bs-btn-color: #{$text-color};
+            --bs-btn-hover-bg: #{mix($body-bg, $print-black, 94%)};
+            --bs-btn-hover-border-color: #{$print-black};
+            --bs-btn-hover-color: #{$text-color};
+            --bs-btn-active-bg: #{mix($body-bg, $print-black, 90%)};
+        }
 
-    .userindicator__guest-cta-icon {
-        color: $body-bg;
-    }
+        a.userindicator__guest-btn--cta {
+            color: var(--bs-btn-color);
 
-    a.userindicator__guest-btn:hover,
-    a.userindicator__guest-btn:focus {
-        background-color: var(--bs-btn-hover-bg);
-        border-color: var(--bs-btn-hover-border-color);
-        color: var(--bs-btn-hover-color);
+            --bs-btn-bg: #{$print-black};
+            --bs-btn-border-color: #{$print-black};
+            --bs-btn-color: #{$body-bg};
+            --bs-btn-hover-bg: #{lighten($print-black, 6%)};
+            --bs-btn-hover-border-color: #{lighten($print-black, 6%)};
+            --bs-btn-hover-color: #{$body-bg};
+        }
 
-        span {
-            color: inherit;
+        .userindicator__guest-cta-icon {
+            color: $body-bg;
+        }
+
+        a.userindicator__guest-btn:hover,
+        a.userindicator__guest-btn:focus {
+            background-color: var(--bs-btn-hover-bg);
+            border-color: var(--bs-btn-hover-border-color);
+            color: var(--bs-btn-hover-color);
         }
     }
 }
