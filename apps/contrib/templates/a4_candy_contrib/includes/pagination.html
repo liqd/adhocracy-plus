@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n pagination %}
 
 {% if show_pagination %}
 <nav aria-label="{% translate 'Page navigation' %}">
@@ -6,7 +6,13 @@
         {# Previous button #}
         {% if has_previous %}
         <li class="page-item">
-            <a class="page-link" href="{{ previous_url }}" 
+            <a class="page-link" 
+               href="{{ previous_url }}"
+               hx-get="{{ previous_htmx_url }}"
+               hx-target="{{ hx_target }}"
+               hx-swap="outerHTML show:top"
+               hx-select="{{ hx_target }}"
+               hx-push-url="false"
                aria-label="{% translate 'Previous page' %}"
                title="{% translate 'Previous page' %}">
                 <i class="fas fa-angle-left" aria-hidden="true"></i>
@@ -29,7 +35,12 @@
             {% else %}
                 <li class="page-item {% if item == current %}active{% endif %}">
                     <a class="page-link {% if item == current %}active{% endif %}" 
-                       href="?{{ param_name }}={{ item }}{% for key, value in request.GET.items %}{% if key != param_name %}&{{ key }}={{ value }}{% endif %}{% endfor %}#index"
+                       href="{{ page_urls|get_item:item }}"
+                       hx-get="{{ page_htmx_urls|get_item:item }}"
+                       hx-target="{{ hx_target }}"
+                       hx-swap="outerHTML show:top"
+                       hx-select="{{ hx_target }}"
+                       hx-push-url="false"
                        {% if item == current %}aria-current="page"{% endif %}>
                         {{ item }}
                     </a>
@@ -40,7 +51,13 @@
         {# Next button #}
         {% if has_next %}
         <li class="page-item">
-            <a class="page-link" href="{{ next_url }}" 
+            <a class="page-link" 
+               href="{{ next_url }}"
+               hx-get="{{ next_htmx_url }}"
+               hx-target="{{ hx_target }}"
+               hx-swap="outerHTML show:top"
+               hx-select="{{ hx_target }}"
+               hx-push-url="false"
                aria-label="{% translate 'Next page' %}"
                title="{% translate 'Next page' %}">
                 <i class="fas fa-angle-right" aria-hidden="true"></i>
