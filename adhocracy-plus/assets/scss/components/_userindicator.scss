@@ -356,7 +356,7 @@ $userindicator-profile-close-col: 40px;
     width: min($userindicator-menu-width, 100vw);
     min-width: 0;
     max-width: 100vw;
-    max-height: 100vh;
+    min-height: 100vh;
     overflow: hidden auto;
     background-color: $body-bg;
 
@@ -475,6 +475,8 @@ $userindicator-profile-close-col: 40px;
 }
 
 .navbar-nav .dropdown-menu.userindicator__dropdown-menu.userindicator__dropdown-menu--guest {
+    min-height: auto;
+
     @media screen and (max-width: $breakpoint-down) {
         position: absolute;
         inset: auto;
