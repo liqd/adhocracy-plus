@@ -13,12 +13,6 @@ $header-upper-ribbon-gap: 12px;
 
     > .navbar {
         padding: #{$header-upper-ribbon-gap} $r-spacer var(--bs-navbar-padding-y);
-
-        // Mobile: same horizontal inset as `.homepage__wrapper` (Figma 24px gutter)
-        @media screen and (max-width: $breakpoint-down) {
-            padding-left: $layout-gutter-x-mobile;
-            padding-right: $layout-gutter-x-mobile;
-        }
     }
 
     > .navbar > .container {
