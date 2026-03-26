@@ -63,6 +63,6 @@
     {% if pagination_required %}
     <div class="card-footer">
         {% url 'userdashboard-notifications-partial' as notifications_partial_url %}
-        {% htmx_pagination page_obj param_name=param_name hx_target="#{{ section_id }}" hx_get_url=notifications_partial_url section_id=section_id %}    </div>
+        {% htmx_pagination page_obj param_name=param_name hx_target="#"|add:section_id  hx_get_url=notifications_partial_url section_id=section_id %}    </div>
 {% endif %}
 </div>
