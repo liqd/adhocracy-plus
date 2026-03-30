@@ -12,7 +12,7 @@
             <button class="btn btn--black">
                 <a href="{% url 'account_signup' %}">{% trans 'Start Now' %}</a>
             </button>
-            <button class="btn btn--transparent">
+            <button class="btn btn--transparent btn--text-white">
                 {% url 'account_login' as account_login_url %}
                 <a href="{{ account_login_url }}">{% trans 'Login' %}</a>
             </button>
