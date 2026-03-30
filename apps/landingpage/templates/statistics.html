@@ -31,8 +31,8 @@
                             <p class="lp-statistics__quote-author__job">{{ stat.person_description }}</p>
                         </div>
                     {% elif stat.item_type == 'image' %}
-                        <div class="lp-statistics__stat">
-                            <img src="{{ stat.image.url }}" alt="Statistic image" />
+                        <div class="lp-statistics__image">
+                            <img src="{{ stat.image.url }}" alt="{{ stat.image_alt_text }}" />
                         </div>
                     {% endif %}
                 {% endfor %}
