@@ -17,8 +17,4 @@ def landing_view(request):
     # Alternate directions: down, up, down, up
     directions = ["down", "up", "down", "up"]
 
-    return render(
-        request,
-        "landing.html",
-        {"statistics_columns": zip(columns, directions), "contact_form_page": form_page},
-    )
+    return render(request, "landing.html", {"statistics_columns": zip(columns, directions), "contact_form_page": form_page})

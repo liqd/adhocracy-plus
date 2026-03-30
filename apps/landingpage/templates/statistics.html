@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="lp-statistics__stats-scroller" id="statsScroller">
-        {% for column_items, direction in columns %}
+        {% for column_items, direction in statistics_columns %}
             <div class="lp-statistics__stats-scroller-column" data-direction="{{ direction }}">
                 {% for stat in column_items %}
                     {% if stat.item_type == 'text' %}
