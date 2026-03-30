@@ -16,7 +16,7 @@
                 {% for stat in column_items %}
                     {% if stat.item_type == 'text' %}
                         <div class="lp-statistics__stat">
-                            <h3>{{ stat.header }}</h3>
+                            <p class="lp-statistics__stat-number">{{ stat.header }}</p>
                             <p>{{ stat.subheader }}</p>
                         </div>
                     {% elif stat.item_type == 'testimonial' %}

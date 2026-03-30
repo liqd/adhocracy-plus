@@ -74,6 +74,12 @@ $lp-blue: blue;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 1.2rem;
+}
+
+.lp-statistics__stat-number {
+    font-size: 4rem;
+    margin-bottom: 0;
 }
 
 .lp-statistics__quote {
@@ -93,6 +99,16 @@ $lp-blue: blue;
         border-radius: 50%;
         object-fit: cover;
         margin: 0.5rem 0;
+    }
+}
+
+.lp-statistics__quote-author{
+    &__name {
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+    &__job {
+        font-size: 0.8rem;
     }
 }
 
