@@ -1,41 +1,14 @@
-{% load static %}
+{% load i18n static %}
 
 <div class="lp-statistics">
     <div class="lp-statistics__header">
-        <h3>Free Workshop</h3>
-        <p>Whether you're part of a municipality, a parliamentarian engaging with constituents, or an NGO driving change, Adhocracy+ empowers your participation projects. Join our free monthly workshop to explore the platform and learn how to create impactful, community-driven initiatives with ease.</p>
+        <h3>{% trans 'Free Workshop' %}</h3>
+        <p>{% trans "Whether you're part of a municipality, a parliamentarian engaging with constituents, or an NGO driving change, Adhocracy+ empowers your participation projects. Join our free monthly workshop to explore the platform and learn how to create impactful, community-driven initiatives with ease." %}</p>
     </div>
     <div class="lp-statistics__stats-scroller" id="statsScroller">
-        <div class="lp-statistics__stats-scroller-column" data-direction="down">
-            {% for stat in stats %}
-                {% if forloop.counter0 < 5 %}
-                    {% if stat.item_type == 'text' %}
-                        <div class="lp-statistics__stat">
-                            <h3>{{ stat.header }}</h3>
-                            <p>{{ stat.subheader }}</p>
-                        </div>
-                    {% elif stat.item_type == 'testimonial' %}
-                        <div class="lp-statistics__quote">
-                            <p>“{{ stat.quote }}”</p>
-                            {% if stat.person_image %}
-                                <img src="{{ stat.person_image.url }}" alt="{{ stat.person_name }}" />
-                            {% else %}
-                                <img src="{% static 'images/avatar_00.png' %}" alt="{{ stat.person_name }}" />
-                            {% endif %}
-                            <p class="lp-statistics__quote-author__name">{{ stat.person_name }}</p>
-                            <p class="lp-statistics__quote-author__job">{{ stat.person_description }}</p>
-                        </div>
-                    {% elif stat.item_type == 'image' %}
-                        <div class="lp-statistics__image">
-                            <img src="{{ stat.image.url }}" alt="{{ stat.image_alt_text }}" />
-                        </div>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="lp-statistics__stats-scroller-column" data-direction="up">
-            {% for stat in statistics %}
-                {% if forloop.counter0 >= 5 %}
+        {% for column_items, direction in columns %}
+            <div class="lp-statistics__stats-scroller-column" data-direction="{{ direction }}">
+                {% for stat in column_items %}
                     {% if stat.item_type == 'text' %}
                         <div class="lp-statistics__stat">
                             <h3>{{ stat.header }}</h3>
@@ -57,9 +30,9 @@
                             <img src="{{ stat.image.url }}" alt="Statistic image" />
                         </div>
                     {% endif %}
-                {% endif %}
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
     </div>
 </div>
 
