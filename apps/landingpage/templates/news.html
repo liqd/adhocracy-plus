@@ -1,0 +1,30 @@
+{% load wagtailcore_tags i18n %}
+<div class="container block-news">
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-10">
+            {% include "section_header.html" with header=_("Stories & Strategies") subheader=_("News and Success Insights") %}
+            <div class="row justify-content-start">
+                {% for post in value.latest_news %}
+                    {% if post.live %}
+                        <div class="col-12 col-md-6 cms-news__tile">
+                            <a class="cms__tile-link" href="{% pageurl post %}">
+                                <div class="cms__text">
+                                    {{ post.first_published_at|date }}
+                                </div>
+                                <h3 class="cms__title--bold cms-news__header-margin">{{ post.subtitle }}</h3>
+                                <div class="cms__text">
+                                    {{ post.teaser }}
+                                </div>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-6 col-lg-5">
+                    <a href="{{ value.news_page.url }}" class="btn btn--full btn--transparent btn--text-black">{% translate 'Explore All News' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
