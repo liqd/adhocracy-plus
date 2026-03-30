@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+### Added
+
+- Improvements to pagination
+
 ### Changed
 
 - Header: Changed to Burger Menu style on Desktop.

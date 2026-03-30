@@ -1,4 +1,4 @@
-{% load i18n discovery_tags static maps_tags module_tags contrib_tags %}
+{% load i18n discovery_tags static maps_tags module_tags contrib_tags pagination %}
 <span class="map-list-view">
     <div class="view-toggle l-top-overlap" id="index">
         <div class="row">
@@ -51,7 +51,11 @@
                 {# Überschreiben in konkreten Templates #}
                 {% endblock list_content %}
 
-                {% include "a4_candy_contrib/includes/pagination.html" %}
+                {% if paginated_list.paginator.num_pages > 1 %}
+                    <div class="mt-4">
+                        {% pagination paginated_list %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

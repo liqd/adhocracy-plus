@@ -1,5 +1,5 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
-{% load i18n %}
+{% load i18n pagination %}
 
 {% block title %}{% translate "Topics" %} &mdash; {{ block.super }}{% endblock%}
 
@@ -24,5 +24,9 @@
         {% endfor %}
     </ul>
 
-    {% include "a4_candy_contrib/includes/pagination.html" %}
+    {% if page_obj.paginator.num_pages > 1 %}
+        <div class="mt-4">
+            {% pagination page_obj %}
+        </div>
+    {% endif %}
 {% endblock %}
