@@ -7,5 +7,9 @@
     {% include "why_adhocracy.html" %}
     {% include "organisations_map.html" %}
     {% include "modules_preview.html" %}
+    {% include "statistics.html" %}
+        <div id="form_page">
+            {% include 'a4_candy_cms_contacts/includes/form.html' with page=contact_form_page form=contact_form_page.form %}
+        </div>
     </div>
 {% endblock content %}
