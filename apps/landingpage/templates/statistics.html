@@ -1,0 +1,185 @@
+{% load static %}
+
+<div class="lp-statistics">
+    <div class="lp-statistics__header">
+        <h3>Free Workshop</h3>
+        <p>Whether you're part of a municipality, a parliamentarian engaging with constituents, or an NGO driving change, Adhocracy+ empowers your participation projects. Join our free monthly workshop to explore the platform and learn how to create impactful, community-driven initiatives with ease.</p>
+    </div>
+    <div class="lp-statistics__stats-scroller" id="statsScroller">
+        <div class="lp-statistics__stats-scroller-column" data-direction="down">
+            {% for stat in stats %}
+                {% if forloop.counter0 < 5 %}
+                    {% if stat.item_type == 'text' %}
+                        <div class="lp-statistics__stat">
+                            <h3>{{ stat.header }}</h3>
+                            <p>{{ stat.subheader }}</p>
+                        </div>
+                    {% elif stat.item_type == 'testimonial' %}
+                        <div class="lp-statistics__quote">
+                            <p>“{{ stat.quote }}”</p>
+                            {% if stat.person_image %}
+                                <img src="{{ stat.person_image.url }}" alt="{{ stat.person_name }}" />
+                            {% else %}
+                                <img src="{% static 'images/avatar_00.png' %}" alt="{{ stat.person_name }}" />
+                            {% endif %}
+                            <p class="lp-statistics__quote-author__name">{{ stat.person_name }}</p>
+                            <p class="lp-statistics__quote-author__job">{{ stat.person_description }}</p>
+                        </div>
+                    {% elif stat.item_type == 'image' %}
+                        <div class="lp-statistics__image">
+                            <img src="{{ stat.image.url }}" alt="{{ stat.image_alt_text }}" />
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="lp-statistics__stats-scroller-column" data-direction="up">
+            {% for stat in statistics %}
+                {% if forloop.counter0 >= 5 %}
+                    {% if stat.item_type == 'text' %}
+                        <div class="lp-statistics__stat">
+                            <h3>{{ stat.header }}</h3>
+                            <p>{{ stat.subheader }}</p>
+                        </div>
+                    {% elif stat.item_type == 'testimonial' %}
+                        <div class="lp-statistics__quote">
+                            <p>“{{ stat.quote }}”</p>
+                            {% if stat.person_image %}
+                                <img src="{{ stat.person_image.url }}" alt="{{ stat.person_name }}" />
+                            {% else %}
+                                <img src="{% static 'images/avatar_00.png' %}" alt="{{ stat.person_name }}" />
+                            {% endif %}
+                            <p class="lp-statistics__quote-author__name">{{ stat.person_name }}</p>
+                            <p class="lp-statistics__quote-author__job">{{ stat.person_description }}</p>
+                        </div>
+                    {% elif stat.item_type == 'image' %}
+                        <div class="lp-statistics__stat">
+                            <img src="{{ stat.image.url }}" alt="Statistic image" />
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const colors = [
+            '#E8F4FD', '#F0F8FF', '#F5F5DC', '#F0FFF0', '#FFF0F5',
+            '#F5F5F5', '#E6E6FA', '#FFE4E1', '#F0F8FF', '#FAFAD2',
+        ];
+        
+        const stats = document.querySelectorAll('.lp-statistics__stat');
+        const quotes = document.querySelectorAll('.lp-statistics__quote');
+        const elements = [...stats, ...quotes];
+        
+        elements.forEach(element => {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            element.style.backgroundColor = randomColor;
+        });
+
+        const scroller = document.getElementById('statsScroller');
+        const columns = document.querySelectorAll('.lp-statistics__stats-scroller-column');
+
+        columns.forEach(column => {
+            const direction = column.getAttribute('data-direction');
+            if (direction === 'down') {
+                column.style.transform = 'translateY(-250px)';
+            } else if (direction === 'up') {
+                column.style.transform = 'translateY(50px)';
+            }
+        });
+
+        let isUserScrolling = false;
+        let lastScrollY = window.scrollY;
+        
+        function easeOutQuad(t) {
+            return t * (2 - t);
+        }
+        
+        const bounds = {
+            down: { min: -400, max: 0 },
+            up: { min: -100, max: 0 }
+        };
+        
+        scroller.addEventListener('click', function() {
+            isUserScrolling = !isUserScrolling;
+            scroller.classList.toggle('active', isUserScrolling);
+            
+            if (isUserScrolling) {
+                columns.forEach(column => {
+                    column.style.transition = 'transform 0.5s ease-out';
+                    column.style.transform = 'translateY(0)';
+                });
+                
+                setTimeout(() => {
+                    columns.forEach(column => {
+                        column.style.transition = '';
+                    });
+                }, 500);
+            }
+        });
+        
+        window.addEventListener('scroll', function() {
+            if (isUserScrolling) return;
+            
+            const scrollY = window.scrollY;
+            const scrollDelta = scrollY - lastScrollY;
+            const scrollerRect = scroller.getBoundingClientRect();
+            
+            const elementCenter = scrollerRect.top + (scrollerRect.height / 2);
+            const viewportCenter = window.innerHeight / 2;
+            const distanceFromCenter = Math.abs(viewportCenter - elementCenter);
+            const maxDistance = window.innerHeight * 0.6;
+            
+            if (distanceFromCenter < maxDistance) {
+                const centeredness = 1 - (distanceFromCenter / maxDistance);
+                const baseSpeed = 12;
+                
+                columns.forEach(column => {
+                    const direction = column.getAttribute('data-direction');
+                    const speed = baseSpeed * centeredness;
+                    
+                    const currentTransform = getComputedStyle(column).transform;
+                    let currentY = 0;
+                    
+                    if (currentTransform !== 'none') {
+                        const matrix = new DOMMatrixReadOnly(currentTransform);
+                        currentY = matrix.m42;
+                    }
+                    
+                    let newY = currentY;
+                    if (direction === 'down') {
+                        newY += scrollDelta * speed;
+                        newY = Math.min(newY, bounds.down.max);
+                        newY = Math.max(newY, bounds.down.min);
+                    } else if (direction === 'up') {
+                        newY -= scrollDelta * speed;
+                        newY = Math.max(newY, bounds.up.min);
+                        newY = Math.min(newY, bounds.up.max);
+                    }
+                    
+                    column.style.transition = 'transform 0.1s linear';
+                    column.style.transform = `translateY(${newY}px)`;
+                });
+            }
+            
+            lastScrollY = scrollY;
+        });
+        
+        scroller.addEventListener('wheel', function(e) {
+            if (scroller.classList.contains('active')) {
+                return;
+            } else {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && document.activeElement === scroller) {
+                scroller.click();
+            }
+        });
+    });
+</script>

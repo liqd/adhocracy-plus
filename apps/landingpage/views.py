@@ -6,6 +6,6 @@ from .models import StatisticsItem
 
 
 def landing_view(request):
-    items = list(StatisticsItem.objects.all())
+    items = list(StatisticsItem.objects.all().order_by("order"))
     random.shuffle(items)
     return render(request, "landing.html", {"stats": items})
