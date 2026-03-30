@@ -1,12 +1,50 @@
+// Inset for logo / controls so they align with hero content (see `.homepage__wrapper` in _homepage.scss).
+// Uses `$r-spacer` horizontally; max width + centering from `$breakpoint-xxl`; plus the insets below.
+$header-upper-content-inset-inline-start: 72px;
+$header-upper-content-inset-inline-end: 8px;
+
+// Vertical gap between ribbon strip and navbar row
+$header-upper-ribbon-gap: 12px;
+
 .header-upper {
     min-height: 100px;
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.02), 0 2px 27px 0 rgba(0, 0, 0, 0.05);
+
+    > .navbar {
+        padding: #{$header-upper-ribbon-gap} $r-spacer var(--bs-navbar-padding-y);
+    }
+
+    > .navbar > .container {
+        max-width: $breakpoint-xxl !important;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: $header-upper-content-inset-inline-start;
+        padding-right: $header-upper-content-inset-inline-end;
+
+        // Horizontal inset comes from `.navbar` on mobile (same as hero); keep content flush inside
+        @media screen and (max-width: $breakpoint-down) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        --bs-gutter-x: 0;
+
+        // Mobile: keep one vertically centered row (logo, lang, notifications, menu)
+        align-items: center;
+
+        @media screen and (min-width: $breakpoint) {
+            // Desktop: top-align brand + nav (taller user block)
+            align-items: flex-start;
+        }
+    }
 }
 
 .header-upper__brand {
     font-size: $font-size-lg;
     line-height: inherit;
+    padding-block: 0; // drop Bootstrap navbar-brand vertical padding for image alignment
 }
 
 .header-upper__brand-img {
@@ -15,12 +53,14 @@
     width: auto;
 }
 
-.header-upper__lang {
+.header-upper__lang,
+.header-upper__notification_button {
     display: flex;
     align-items: center;
+}
+
+.header-upper__lang {
     margin-right: 0.5 * $spacer;
-    margin-top: -0.5em;
-    margin-bottom: 0.5em;
 
     .dropdown-menu.show {
         top: 100% !important; // overwriting the general dropdown overwrite
@@ -28,48 +68,42 @@
 }
 
 .header-upper__notification_button {
-    display: flex;
-    margin-top: -0.5em;
     margin-right: $spacer;
-    margin-bottom: 0.5em;
-    align-items: center;
+}
+
+// Extra 8px on the mobile menu button (navbar already uses `$r-spacer` on the right)
+@media screen and (max-width: $breakpoint-down) {
+    .header-upper__user .userindicator__dropdown > .userindicator__toggle-btn.header-upper__mobile-toggle {
+        padding-right: $header-upper-content-inset-inline-end;
+    }
 }
 
 .header-upper__nav {
     flex-direction: row;
 
-    // bootstrap overwrites
     .dropdown-menu {
         position: absolute;
     }
 }
 
-.header-upper__mobile-toggle {
+// Collapse toggler only (user menu uses `.userindicator__toggle-btn` + `.btn--none`, weight 400)
+.header-upper__mobile-toggle:not(.userindicator__toggle-btn) {
     font-weight: bold;
 }
 
-// so it doesn't look misallighned when menu open
 .header-upper__mobile-toggle.show {
     z-index: 1001;
     background: transparent;
-}
-
-.header-upper__mobile-toggle:after {
-    z-index: 5;
-    font-family: "Font Awesome 7 Free", sans-serif;
-    font-style: normal;
-    font-weight: 900;
-    content: "\f0c9";
-    background-color: inherit;
-    font-size: $font-size-md;
-}
-
-.header-upper__mobile-toggle.show:after {
-    content: "\f00d";
 }
 
 @media screen and (min-width: $breakpoint) {
     .header-upper__brand-img {
         height: 2.5rem;
     }
+}
+
+// Above `body:has(.dropdown-toggle.show):after` backdrop (1040) so logo / controls stay visible when menu is open
+body:has(.userindicator__dropdown .dropdown-toggle.show) .header-upper {
+    position: relative;
+    z-index: 1055;
 }

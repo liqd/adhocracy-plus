@@ -6,17 +6,19 @@
 
     <nav class="navbar navbar-expand-md">
         <div class="container position-relative">
-            <a class="navbar-brand header-upper__brand" href="/">
-                <img src="/static/images/logo.svg" alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}" class="header-upper__brand-img" />
+            <a class="navbar-brand header-upper__brand" href="{% url 'wagtail_serve' '' %}">
+                <img src="{% static 'images/logo.svg' %}" alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}" class="header-upper__brand-img" />
             </a>
 
             <ul class="header-upper__nav navbar-nav ms-auto">
                 <li class="nav-item header-upper__lang">
                     {% include 'includes/header_language_switch.html' %}
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item header-upper__notification_button">
                     {% include 'includes/header_notification_button.html' %}
                 </li>
+                {% endif %}
                 <li class="nav-item header-upper__user" >
                     {% userindicator %}
                 </li>

@@ -1,4 +1,17 @@
-$ribbon-margin: 10px;
+// Figma Adhocracy global components (1614:9012–9016): 16px icons, 8px gap; row py-12 px-16; org rows py-12 px-48
+$userindicator-icon-col: 16px;
+$userindicator-gap: 8px;
+$userindicator-row-pad-y: 12px;
+$userindicator-row-pad-x: 16px;
+$userindicator-nested-pad-x: 48px;
+$userindicator-profile-line-height: 20px;
+$userindicator-menu-width: 262px;
+
+// Guest mobile sheet open: reserve space under header (gap + 2×48px buttons + 8px + bottom pad)
+$userindicator-guest-sheet-header-reserve: calc(1.5rem + 6.5rem + 1.5rem);
+
+// Menu chrome uses pure black (matches design); use variable for stylelint scale rule
+$userindicator-menu-fg: $print-black;
 
 .userindicator__dropdown {
     position: unset; // For mobile full width menu
@@ -7,15 +20,142 @@ $ribbon-margin: 10px;
         position: relative;
     }
 
-    .btn {
-        padding: 0.5em 1em;
+    // Header toggles: no vertical padding (row aligns with logo / notifications)
+    > .userindicator__toggle-btn.btn {
+        padding: 0 1em;
+
+        @media screen and (max-width: $breakpoint-down) {
+            padding-inline: 0;
+        }
     }
 
-    i {
-        margin-left: 0.5 * $padding;
-        display: inline-block;
-        vertical-align: middle;
+    // Custom burger/close icons instead of Bootstrap caret
+    .dropdown-toggle:after {
+        display: none;
     }
+
+}
+
+// Logged-out: outline Log in + filled Get Started (header)
+.userindicator__guest {
+    display: flex;
+    align-items: center;
+    gap: $userindicator-gap;
+    flex-shrink: 0;
+}
+
+.userindicator__guest-btn {
+    border-radius: 0;
+    font-weight: 400;
+    font-synthesis: none;
+    padding: 0.5rem 1rem;
+    line-height: 1.5;
+    font-size: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus-visible {
+        text-decoration: none;
+    }
+}
+
+.userindicator__guest-btn--login {
+    --bs-btn-color: #{$text-color};
+    --bs-btn-border-color: #{$text-color};
+    --bs-btn-bg: transparent;
+    --bs-btn-hover-bg: #{mix($body-bg, $text-color, 92%)};
+    --bs-btn-hover-border-color: #{$text-color};
+    --bs-btn-hover-color: #{$text-color};
+    --bs-btn-active-bg: #{mix($body-bg, $text-color, 88%)};
+    --bs-btn-active-border-color: #{$text-color};
+    --bs-btn-active-color: #{$text-color};
+}
+
+.userindicator__guest-btn--cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px; // Figma Buttons: gap between label and arrow
+
+    --bs-btn-color: #{$body-bg};
+    --bs-btn-bg: #{$text-color};
+    --bs-btn-border-color: #{$text-color};
+    --bs-btn-hover-bg: #{lighten($text-color, 8%)};
+    --bs-btn-hover-border-color: #{lighten($text-color, 8%)};
+    --bs-btn-hover-color: #{$body-bg};
+    --bs-btn-active-bg: #{lighten($text-color, 5%)};
+    --bs-btn-active-border-color: #{lighten($text-color, 5%)};
+    --bs-btn-active-color: #{$body-bg};
+}
+
+.userindicator__guest-cta-icon {
+    font-size: 1rem; // Figma 16px icon box
+    line-height: 1;
+}
+
+// Header: transparent toggle (no filled button background)
+.userindicator__toggle-btn.btn--none {
+    color: $text-color;
+    font-weight: 400;
+    font-synthesis: none;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.show {
+        background-color: transparent;
+        color: $text-color;
+        box-shadow: none;
+    }
+}
+
+.userindicator__toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: 0.5 * $padding;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    vertical-align: middle;
+
+    @media screen and (max-width: $breakpoint-down) {
+        .header-upper & {
+            margin-left: 0;
+        }
+    }
+}
+
+.userindicator__toggle-icon-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+// Higher specificity than Font Awesome `.fa { display: … }`
+.userindicator__dropdown .userindicator__toggle-icon i.userindicator__toggle-icon--close {
+    display: none;
+    margin-left: 0;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    line-height: 16px;
+    align-items: center;
+    justify-content: center;
+}
+
+.userindicator__dropdown .dropdown-toggle.show .userindicator__toggle-icon-img--burger {
+    display: none;
+}
+
+.userindicator__dropdown .dropdown-toggle.show .userindicator__toggle-icon i.userindicator__toggle-icon--close {
+    display: inline-flex;
 }
 
 .userindicator__btn-img {
@@ -38,41 +178,380 @@ $ribbon-margin: 10px;
     max-width: 180px;
 }
 
-.userindicator__hello {
-    font-weight: normal;
+// Desktop header: global max-width 180px squeezes the “Hello …” block
+@media screen and (min-width: $breakpoint) {
+    .header-upper__toggle .userindicator__btn-text {
+        max-width: none;
+        min-width: 0;
+    }
 }
 
-.userindicator__dropdown-menu {
-    position: absolute;
-    top: $ribbon-margin;
-    min-width: 100%;
+.userindicator__hello {
+    font-weight: 400;
+    font-synthesis: none;
+}
 
+$userindicator-profile-close-col: 40px;
+
+// Base profile link (nested rules in `.userindicator__dropdown-profile` add overrides)
+.userindicator__profile-link {
+    display: block;
+    max-width: none;
+    font-weight: 400;
+    font-size: inherit;
+    line-height: inherit;
+    text-decoration: underline;
+    color: $userindicator-menu-fg;
+    overflow: visible;
+    white-space: nowrap;
+    text-overflow: clip;
+}
+
+// Grid: flexible left + ellipsis; right column is close only (more reliable than position:absolute)
+.userindicator__dropdown-profile {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) #{$userindicator-profile-close-col};
+    align-items: start;
+    column-gap: $userindicator-gap;
+    padding: 12px 16px;
+    overflow: visible;
+
+    // Desktop: hide avatar in panel (text + close only)
+    @media screen and (min-width: $breakpoint) {
+        .userindicator__dropdown-profile-main > .userindicator__btn-img {
+            display: none;
+        }
+    }
+
+    .userindicator__btn-img {
+        flex-shrink: 0;
+        align-self: flex-start;
+        border-color: $border-color;
+        margin-right: 0;
+    }
+
+    .userindicator__dropdown-profile-main {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: $userindicator-gap;
+        min-width: 0;
+        overflow: hidden;
+        grid-column: 1;
+    }
+
+    .userindicator__btn-text.userindicator__dropdown-profile-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: flex-start;
+        gap: 2px;
+        min-width: 0;
+        max-width: 100%;
+        flex: 1 1 auto;
+        overflow: hidden;
+        font-size: inherit;
+        line-height: $userindicator-profile-line-height;
+    }
+
+    .userindicator__hello {
+        display: block;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: inherit;
+        line-height: $userindicator-profile-line-height;
+        font-weight: 400;
+        color: $userindicator-menu-fg;
+    }
+
+    .userindicator__profile-link {
+        display: block;
+        max-width: 100%;
+        line-height: $userindicator-profile-line-height;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.userindicator__dropdown-close.btn {
+    grid-column: 2;
+    place-self: start end;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $userindicator-profile-close-col;
+    height: $userindicator-profile-close-col;
+    min-width: $userindicator-profile-close-col;
+    flex-shrink: 0;
+    padding: 0;
     margin: 0;
-    background-color: $brand-secondary;
-    color: contrast-color($body-bg);
-    border: 1px solid $body-bg;
+    border: none;
+    line-height: 1;
+    color: $userindicator-menu-fg;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: transparent;
+        color: $userindicator-menu-fg;
+    }
+}
+
+.userindicator__dropdown-close-icon {
+    display: block;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+}
+
+// Specificity over Bootstrap `.navbar-expand-* .navbar-nav .dropdown-menu { position: absolute | static }`
+// Fixed top-right; `data-bs-display="static"` on toggle avoids Popper inline styles
+.navbar-nav .dropdown-menu.userindicator__dropdown-menu {
+    position: fixed;
+    inset: 0 0 auto auto;
+    z-index: 1050;
+    margin: 0;
+    transform: none;
+    width: min($userindicator-menu-width, 100vw);
+    min-width: 0;
+    max-width: 100vw;
+    min-height: 100vh;
+    overflow: hidden auto;
+    background-color: $body-bg;
+
+    // Body copy (design): regular weight, not bold-looking
+    color: $userindicator-menu-fg;
+    font-family: $font-family-base;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+
+    // Overrides global `.dropdown-menu` (1px $text-color)
+    border: 1px solid $border-color;
+    border-radius: 0;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    padding: 0;
+
+    form.form--inline {
+        margin: 0;
+    }
 
     a,
     button {
-        border-bottom: 1px solid $body-bg;
-        font-weight: bold;
+        border-bottom: none;
+        font-weight: 400;
+        font-size: inherit;
+        line-height: inherit;
+        color: $userindicator-menu-fg;
+    }
 
+    // Rows: hover background — exclude profile header row (profile link, close button)
+    a:not(.userindicator__profile-link),
+    button:not(.userindicator__dropdown-close) {
         &:hover,
         &:focus {
-            color: $brand-primary;
+            color: $userindicator-menu-fg;
+            background-color: $bg-tertiary;
         }
     }
 
-    &.show {
-        top: -$ribbon-margin !important; // overwriting the general dropdown overwrite
-        left: 0;
+    .userindicator__profile-link,
+    .userindicator__dropdown-close {
+        &:hover,
+        &:focus,
+        &:focus-visible {
+            background-color: transparent;
+            background-image: none;
+            color: $userindicator-menu-fg;
+        }
+    }
+
+    // Do not render FA glyphs with Source Sans (font-style avoids faux italic from parent)
+    i.fa-solid,
+    i.fa {
+        font-family: "Font Awesome 7 Free", sans-serif;
+        font-style: normal;
+        font-weight: 900;
+    }
+
+    // Menu rows (only used inside this panel; not shared with guest sheet)
+    .userindicator__dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: $userindicator-gap;
+        white-space: normal;
+    }
+
+    .userindicator__dropdown-label {
+        display: flex;
+        align-items: center;
+        gap: $userindicator-gap;
+        padding: $userindicator-row-pad-y $userindicator-row-pad-x;
+        margin: 0;
+        font-weight: 400;
+        border-bottom: none;
+        color: $userindicator-menu-fg;
+        cursor: default;
+    }
+
+    .userindicator__dropdown-item .userindicator__dropdown-item-icon,
+    .userindicator__dropdown-label .userindicator__dropdown-item-icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $userindicator-icon-col;
+        min-width: $userindicator-icon-col;
+        font-size: 1rem;
+        line-height: 1;
+        text-align: center;
+    }
+
+    // Wins over Bootstrap `.dropdown-item { display: block }` and `components/_dropdown` menu links
+    // Child `span` rules first (no-descending-specificity: lower-specificity selector first)
+    button.userindicator__dropdown-item > span,
+    a.userindicator__dropdown-item:not(.userindicator__dropdown-item--nested) > span {
+        flex: 1 1 auto;
+        min-width: 0;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    a.userindicator__dropdown-item:not(.userindicator__dropdown-item--nested),
+    button.userindicator__dropdown-item {
+        flex-flow: row nowrap;
+        padding: $userindicator-row-pad-y $userindicator-row-pad-x;
+    }
+
+    a.userindicator__dropdown-item.userindicator__dropdown-item--nested {
+        display: block;
+        padding: $userindicator-row-pad-y $userindicator-nested-pad-x;
+        font-weight: 400;
+        white-space: nowrap;
+    }
+
+    a i.userindicator__dropdown-item-icon,
+    button i.userindicator__dropdown-item-icon {
+        width: $userindicator-icon-col;
+        min-width: $userindicator-icon-col;
+        margin-right: 0;
+    }
+}
+
+// Guest mobile: separate from `.userindicator__dropdown-menu` (no overlay); only Bootstrap `dropdown-menu` + `userindicator__guest-sheet`
+@media screen and (max-width: $breakpoint-down) {
+    .header-upper > .navbar {
+        position: relative;
+    }
+
+    .userindicator__guest-dropdown.userindicator__dropdown {
+        position: static;
+    }
+
+    .header-upper:has(.userindicator__guest-sheet.show) {
+        padding-bottom: $userindicator-guest-sheet-header-reserve;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-nav .dropdown-menu.userindicator__guest-sheet {
+        position: absolute;
+        top: 100%;
         right: 0;
-    }
+        left: 0;
+        z-index: 1050;
+        margin: 1.5rem 0 0;
+        padding: 0 0 1.5rem;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        transform: none;
+        background-color: $body-bg;
 
-    @media screen and (min-width: $breakpoint) {
         &.show {
-            top: calc(100% - 10px) !important; // overwriting the general dropdown overwrite
-            left: auto;
+            margin-top: 1.5rem !important;
+            margin-bottom: 0 !important;
         }
+
+        .userindicator__guest--mobile {
+            display: flex;
+            flex-direction: column;
+            gap: $userindicator-gap;
+        }
+
+        a.userindicator__guest-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            width: 100%;
+            height: 48px;
+            padding: 0 1.5rem;
+            line-height: 24px;
+            white-space: normal;
+        }
+
+        // Theme overrides; explicit `color` wins over global `.dropdown-menu a { color: inherit }` in `_dropdown.scss`
+        a.userindicator__guest-btn--login {
+            color: var(--bs-btn-color);
+            border: 1px solid #{$print-black};
+
+            --bs-btn-bg: #{$body-bg};
+            --bs-btn-border-color: #{$print-black};
+            --bs-btn-color: #{$text-color};
+            --bs-btn-hover-bg: #{mix($body-bg, $print-black, 94%)};
+            --bs-btn-hover-border-color: #{$print-black};
+            --bs-btn-hover-color: #{$text-color};
+            --bs-btn-active-bg: #{mix($body-bg, $print-black, 90%)};
+        }
+
+        a.userindicator__guest-btn--cta {
+            color: var(--bs-btn-color);
+
+            --bs-btn-bg: #{$print-black};
+            --bs-btn-border-color: #{$print-black};
+            --bs-btn-color: #{$body-bg};
+            --bs-btn-hover-bg: #{lighten($print-black, 6%)};
+            --bs-btn-hover-border-color: #{lighten($print-black, 6%)};
+            --bs-btn-hover-color: #{$body-bg};
+        }
+
+        .userindicator__guest-cta-icon {
+            color: $body-bg;
+        }
+
+        a.userindicator__guest-btn:hover,
+        a.userindicator__guest-btn:focus {
+            background-color: var(--bs-btn-hover-bg);
+            border-color: var(--bs-btn-hover-border-color);
+            color: var(--bs-btn-hover-color);
+        }
+    }
+}
+
+// Dim the viewport; burger/user controls sit under the overlay.
+// Only the fixed menu panel (`.userindicator__dropdown-menu`, z-index 1050) stays above.
+$userindicator-menu-backdrop: rgba($print-black, 0.22);
+$z-index-userindicator-backdrop: 1040;
+
+// Ausgrauen nur ab Tablet — mobil kein Overlay (Figma Gast expanded ist reiner Header-Block)
+body:has(.userindicator__dropdown .dropdown-toggle.show):after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: $z-index-userindicator-backdrop;
+    background-color: $userindicator-menu-backdrop;
+
+    @media screen and (max-width: $breakpoint-down) {
+        display: none;
     }
 }

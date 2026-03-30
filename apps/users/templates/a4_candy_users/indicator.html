@@ -2,17 +2,20 @@
 {% if request.user.is_authenticated %}
     <div class="dropdown userindicator__dropdown">
         <button title="{% translate 'Menu' %}"
-                class="d-md-none dropdown-toggle btn btn--secondary-filled  btn--attached-top header-upper__mobile-toggle"
+                class="d-md-none dropdown-toggle btn btn--none userindicator__toggle-btn header-upper__mobile-toggle"
                 data-bs-toggle="dropdown"
+                data-bs-display="static"
                 data-flip="false"
                 aria-haspopup="true"
                 aria-expanded="false"
                 id="user-actions-mobile">
             <span class="d-none d-sm-inline-block pe-1">{% translate 'Menu' %}</span>
+            {% include 'a4_candy_users/includes/userindicator_toggle_icons.html' %}
         </button>
         <button title="{% translate 'Menu' %}"
-                class="d-none d-md-inline-block dropdown-toggle btn btn--secondary-filled btn--attached-top  btn--align-left header-upper__toggle"
+                class="d-none d-md-inline-block dropdown-toggle btn btn--none userindicator__toggle-btn btn--align-left header-upper__toggle"
                 data-bs-toggle="dropdown"
+                data-bs-display="static"
                 data-flip="false"
                 aria-haspopup="true"
                 aria-expanded="false"
@@ -25,26 +28,62 @@
                 <br>
                 <div class="u-overflow-ellipsis">{{ request.user.username }}</div>
             </div>
-            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            {% include 'a4_candy_users/includes/userindicator_toggle_icons.html' %}
         </button>
         <div class="dropdown-menu dropdown-menu-end userindicator__dropdown-menu"
              aria-labelledby="user-actions user-actions-mobile">
+            <div class="userindicator__dropdown-profile">
+                <div class="userindicator__dropdown-profile-main">
+                    <div class="userindicator__btn-img"
+                         style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar' }}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}">
+                    </div>
+                    <div class="userindicator__btn-text userindicator__dropdown-profile-text text-start">
+                        <span class="userindicator__hello">{% translate "Hello" %}</span>
+                        <a class="userindicator__profile-link"
+                           href="{% url 'profile' request.user.username %}">{{ request.user.username }}</a>
+                    </div>
+                </div>
+                <button type="button"
+                        class="userindicator__dropdown-close btn btn--none"
+                        aria-label="{% translate 'Close menu' %}">
+                    <i class="fa-solid fa-times userindicator__dropdown-close-icon" aria-hidden="true"></i>
+                </button>
+            </div>
             {% if request.user.is_superuser %}
-                <a class="dropdown-item" href="{% url 'admin:index' %}">{% translate "Admin" %}</a>
-            {% endif %}
-            <a class="dropdown-item" href="{% url 'userdashboard-overview' %}">{% translate 'My Overview' %}</a>
-            <a class="dropdown-item" href="{% url 'account' %}">{% translate "Account Settings" %}</a>
-            {% for organisation in request.user.organisations %}
-                <a class="dropdown-item"
-                   href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
-                    {{ organisation.name }}
+                <a class="dropdown-item userindicator__dropdown-item"
+                   href="{% url 'admin:index' %}">
+                    <i class="fa-solid fa-screwdriver-wrench userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                    <span>{% translate "Admin" %}</span>
                 </a>
-            {% endfor %}
+            {% endif %}
+            <a class="dropdown-item userindicator__dropdown-item"
+               href="{% url 'account' %}">
+                <i class="fa-solid fa-gear userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                <span>{% translate "Account Settings" %}</span>
+            </a>
+            {% if request.user.organisations %}
+                <div class="userindicator__dropdown-org-block" role="group" aria-label="{% translate 'Organisations' %}">
+                    <div class="userindicator__dropdown-label">
+                        <i class="fa-solid fa-building userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                        <span>{% translate "Organisations" %}</span>
+                    </div>
+                    {% for organisation in request.user.organisations %}
+                        <a class="dropdown-item userindicator__dropdown-item userindicator__dropdown-item--nested"
+                           href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
+                            {{ organisation.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
             {% with pages=settings.a4_candy_cms_settings.ImportantPages %}
                 {% if pages.manual_link %}
-                    <a  class="dropdown-item"
-                        href="{{ pages.manual_link }}"
-                        target="_blank">{% translate 'Help Center' %}</a>
+                    <a class="dropdown-item userindicator__dropdown-item"
+                       href="{{ pages.manual_link }}"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <i class="fa-solid fa-circle-info userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                        <span>{% translate 'Help Center' %}</span>
+                    </a>
                 {% endif %}
             {% endwith %}
             <form class="form--inline"
@@ -53,14 +92,50 @@
                   aria-label="{% translate 'Logout' %}">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ redirect_field_value }}">
-                <button type="submit" class="dropdown-item">{% translate "Logout" %}</button>
+                <button type="submit" class="dropdown-item userindicator__dropdown-item">
+                    <i class="fa-solid fa-right-from-bracket userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                    <span>{% translate "Logout" %}</span>
+                </button>
             </form>
         </div>
-    {% else %}
-        <div class="btn btn--secondary-filled btn--huge btn--attached-top">
-            <span class="navi__item"><a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% translate "Login" %}</a></span>
-            <span class="d-none d-md-inline">/</span>
-            <span class="navi__item"><a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% translate "Register" %}</a></span>
+    </div>
+{% else %}
+    <div class="dropdown userindicator__dropdown userindicator__guest-dropdown">
+        <button type="button"
+                title="{% translate 'Menu' %}"
+                class="d-md-none dropdown-toggle btn btn--none userindicator__toggle-btn header-upper__mobile-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                data-flip="false"
+                aria-haspopup="true"
+                aria-expanded="false"
+                id="guest-actions-mobile">
+            {% include 'a4_candy_users/includes/userindicator_toggle_icons.html' %}
+        </button>
+        <div class="d-none d-md-flex userindicator__guest userindicator__guest--desktop">
+            <a href="{% url 'account_login' %}?next={{ redirect_field_value }}"
+               class="btn userindicator__guest-btn userindicator__guest-btn--login">
+                {% translate "Log in" %}
+            </a>
+            <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}"
+               class="btn userindicator__guest-btn userindicator__guest-btn--cta">
+                <span>{% translate "Get Started" %}</span>
+                <i class="fa-solid fa-arrow-right userindicator__guest-cta-icon" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="dropdown-menu dropdown-menu-end userindicator__guest-sheet d-md-none"
+             aria-labelledby="guest-actions-mobile">
+            <div class="userindicator__guest userindicator__guest--mobile">
+                <a href="{% url 'account_login' %}?next={{ redirect_field_value }}"
+                   class="btn userindicator__guest-btn userindicator__guest-btn--login">
+                    {% translate "Log in" %}
+                </a>
+                <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}"
+                   class="btn userindicator__guest-btn userindicator__guest-btn--cta">
+                    <span>{% translate "Get Started" %}</span>
+                    <i class="fa-solid fa-arrow-right userindicator__guest-cta-icon" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
     </div>
 {% endif %}
