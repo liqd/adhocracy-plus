@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     captchaContainers.forEach(function (container) {
       const siteKey = container.getAttribute('data-site-key')
-      const language = container.getAttribute('data-language') // optional, falls unterstützt
+      const language = container.getAttribute('data-language') // optional, when supported
       const hiddenInput = container.previousElementSibling
 
       if (!siteKey) return

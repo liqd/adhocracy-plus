@@ -5,13 +5,18 @@ $userindicator-row-pad-y: 12px;
 $userindicator-row-pad-x: 16px;
 $userindicator-nested-pad-x: 48px;
 $userindicator-profile-line-height: 20px;
+
+// Figma frame 1614:9009 + Menu header (4607:17907): outer py-20; header h-72 px-16; avatar–label gap 16px
+$userindicator-menu-outer-pad-y: 20px;
+$userindicator-profile-header-height: 72px;
+$userindicator-profile-header-gap: 16px;
 $userindicator-menu-width: 262px;
 
 // Guest mobile sheet open: reserve space under header (gap + 2×48px buttons + 8px + bottom pad)
 $userindicator-guest-sheet-header-reserve: calc(1.5rem + 6.5rem + 1.5rem);
 
-// Menu chrome uses pure black (matches design); use variable for stylelint scale rule
-$userindicator-menu-fg: $print-black;
+// Figma Text colors/Text black (#1A1A1A) — same as $text-color
+$userindicator-menu-fg: $text-color;
 
 .userindicator__dropdown {
     position: unset; // For mobile full width menu
@@ -211,9 +216,11 @@ $userindicator-profile-close-col: 40px;
 .userindicator__dropdown-profile {
     display: grid;
     grid-template-columns: minmax(0, 1fr) #{$userindicator-profile-close-col};
-    align-items: start;
+    align-items: center;
     column-gap: $userindicator-gap;
-    padding: 12px 16px;
+    box-sizing: border-box;
+    min-height: $userindicator-profile-header-height;
+    padding: 0 $userindicator-row-pad-x;
     overflow: visible;
 
     // Desktop: hide avatar in panel (text + close only)
@@ -225,16 +232,18 @@ $userindicator-profile-close-col: 40px;
 
     .userindicator__btn-img {
         flex-shrink: 0;
-        align-self: flex-start;
+        align-self: center;
         border-color: $border-color;
         margin-right: 0;
+        width: 40px;
+        height: 40px;
     }
 
     .userindicator__dropdown-profile-main {
         display: flex;
         flex-wrap: nowrap;
-        align-items: flex-start;
-        gap: $userindicator-gap;
+        align-items: center;
+        gap: $userindicator-profile-header-gap;
         min-width: 0;
         overflow: hidden;
         grid-column: 1;
@@ -244,7 +253,7 @@ $userindicator-profile-close-col: 40px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        align-self: flex-start;
+        align-self: center;
         gap: 2px;
         min-width: 0;
         max-width: 100%;
@@ -252,6 +261,16 @@ $userindicator-profile-close-col: 40px;
         overflow: hidden;
         font-size: inherit;
         line-height: $userindicator-profile-line-height;
+    }
+
+    // Figma: Source Sans Pro Semibold 20 / 24px; "Menu" + close on one vertical center line
+    .userindicator__dropdown-menu-title {
+        font-weight: 600;
+        font-synthesis: none;
+        font-size: 1.25rem;
+        line-height: 24px;
+        white-space: nowrap;
+        color: $userindicator-menu-fg;
     }
 
     .userindicator__hello {
@@ -279,7 +298,7 @@ $userindicator-profile-close-col: 40px;
 
 .userindicator__dropdown-close.btn {
     grid-column: 2;
-    place-self: start end;
+    place-self: center end;
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
@@ -340,7 +359,7 @@ $userindicator-profile-close-col: 40px;
     border: 1px solid $border-color;
     border-radius: 0;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-    padding: 0;
+    padding: $userindicator-menu-outer-pad-y 0;
 
     form.form--inline {
         margin: 0;
@@ -538,12 +557,12 @@ $userindicator-profile-close-col: 40px;
     }
 }
 
-// Dim the viewport; burger/user controls sit under the overlay.
-// Only the fixed menu panel (`.userindicator__dropdown-menu`, z-index 1050) stays above.
+// Dim the viewport (header ribbon / logo row / bell / toggle included). Only the fixed menu panel
+// (`.userindicator__dropdown-menu`, z-index 1050) stays above this layer.
 $userindicator-menu-backdrop: rgba($print-black, 0.22);
 $z-index-userindicator-backdrop: 1040;
 
-// Ausgrauen nur ab Tablet — mobil kein Overlay (Figma Gast expanded ist reiner Header-Block)
+// Dim overlay from tablet breakpoint up only — no overlay on mobile
 body:has(.userindicator__dropdown .dropdown-toggle.show):after {
     content: '';
     position: fixed;

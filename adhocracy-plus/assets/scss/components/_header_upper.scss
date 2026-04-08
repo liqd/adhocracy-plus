@@ -102,8 +102,5 @@ $header-upper-ribbon-gap: 12px;
     }
 }
 
-// Above `body:has(.dropdown-toggle.show):after` backdrop (1040) so logo / controls stay visible when menu is open
-body:has(.userindicator__dropdown .dropdown-toggle.show) .header-upper {
-    position: relative;
-    z-index: 1055;
-}
+// When the user menu is open, the dimmed backdrop (see `_userindicator.scss`) must sit above the header
+// (ribbon, logo, bell, menu toggle). The open `.userindicator__dropdown-menu` panel stays above the backdrop via its own z-index.
