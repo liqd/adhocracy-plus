@@ -6,8 +6,10 @@ $lp-blue: blue;
     background-color: $black;
     color: $white;
     width: 90%;
-    margin: auto;
+    margin: 0 auto;
     position: relative;
+    padding-left: 2rem;
+    padding-right: 2rem;
 
     &__header {
         text-align: center;
@@ -30,7 +32,7 @@ $lp-blue: blue;
 
         > p {
             max-width: 80%;
-            margin: auto;
+            margin: 0 auto;
             padding-bottom: 1rem;
         }
     }
@@ -38,9 +40,9 @@ $lp-blue: blue;
     &__stats-scroller {
         padding: 1em;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 2em;
-        max-height: 400px;
+        max-height: 1050px;
         overflow: hidden;
         margin-top: -20px; // Pull it up under the fade
         position: relative;
@@ -67,7 +69,7 @@ $lp-blue: blue;
     background-color: $lp-green;
     border-radius: 20px;
     aspect-ratio: 1 / 1;
-    width: 90%;
+    width: 100%;
     text-align: center;
     
     display: flex;
@@ -87,7 +89,7 @@ $lp-blue: blue;
     background-color: $lp-red;
     border-radius: 20px;
     aspect-ratio: 1 / 1;
-    width: 90%;
+    width: 100%;
     padding: 1.5rem;
     
     display: flex;
@@ -118,7 +120,7 @@ $lp-blue: blue;
     background-color: $lp-blue;
     border-radius: 20px;
     aspect-ratio: 1 / 1;
-    width: 90%;
+    width: 100%;
     overflow: hidden;
     
     img {

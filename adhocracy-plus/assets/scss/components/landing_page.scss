@@ -209,7 +209,7 @@ $breakpoint-md: 768px;
     h3,
     p,
     i,
-    span {
+    a {
         position: relative;
         z-index: 3;
     }
@@ -222,11 +222,13 @@ $breakpoint-md: 768px;
         font-size: 1.5rem;
     }
 
-    > span {
+    > a {
         position: absolute;
         bottom: 2rem;
         right: 2rem;
         z-index: 3;
+        color: $white;
+        text-decoration: none;
     }
 
     h3 {
@@ -251,6 +253,14 @@ $breakpoint-md: 768px;
     display: flex;
     flex-direction: column;
 
+    > a {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: $white;
+        text-decoration: none;
+        margin-top: none;
+    }
+
     > i {
         font-size: 2rem;
         margin-bottom: 1.5rem;
@@ -260,7 +270,6 @@ $breakpoint-md: 768px;
         align-self: flex-end;
         font-size: 1.25rem;
         margin-bottom: auto;
-        margin-top: 1rem;
     }
 
     &__bottom {
@@ -299,6 +308,6 @@ $breakpoint-md: 768px;
     }
 
     &__subtext {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 }

@@ -23,6 +23,16 @@ $breakpoint-md: 768px;
     background-color: $white;
 }
 
+.lp-modules__preview-image {
+    text-align: right;
+    
+    > img {
+        max-width: 550px;
+        width: 100%;
+        height: auto;
+    }
+}
+
 /* Hide all images/content by default, show only active */
 .lp-modules__preview-image img,
 .module-content {
@@ -31,7 +41,7 @@ $breakpoint-md: 768px;
 
 .lp-modules__preview-image img.active,
 .module-content.active {
-    display: block;
+    display: inline-block;
 }
 
 
@@ -57,7 +67,8 @@ $breakpoint-md: 768px;
 .lp-modules__preview {
     display: grid;
     gap: 2rem;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 55% 45%;
+    margin-top: 3em;
 }
 
 .explore-btn {
@@ -92,7 +103,8 @@ $breakpoint-md: 768px;
     
     .lp-modules__preview-image img {
         height: auto;
-        margin: auto;
+        max-width: 100%;
+        margin: 0 auto;
     }
 
     .module-content {
