@@ -9,18 +9,20 @@
             <h3>{% trans "No-Cost Participation" %}</h3>
             <p>{% trans "Accessible platforms like Adhocracy+ enable participation without financial barriers." %}</p>
             <i class="fa-regular fa-handshake"></i>
-            <span>{% trans "Read More" %} <i class="fa fa-arrow-right"></i></span>
+            <a href="/info/free"><span>{% trans "Read More" %} <i class="fa fa-arrow-right"></i></span></a> <!-- noqa: D018 -->
+
         </div>
         <div class="lp-block">
             <img src="{% static 'images/usp-effortless.webp' %}" alt="person on bicycle">
             <h3>{% trans "Effortless Civic Engagement" %}</h3>
             <p>{% trans "Intuitive interfaces and modular designs make participation accessible to all users." %}</p>
             <i class="fa fa-puzzle-piece"></i>
-            <span>{% trans "Read More" %} <i class="fa fa-arrow-right"></i></span>
+            <a href="/info/simple"><span>{% trans "Read More" %} <i class="fa fa-arrow-right"></i></span></a> <!-- noqa: D018 -->
         </div>
         <div class="lp-text-blocks">
             <div class="lp-text-block">
-                <i class="fa fa-arrow-right lp-text-block__arrow"></i>
+                <a href="/info/secure" class="lp-text-block__arrow"><i class="fa fa-arrow-right lp-text-block__arrow"></i></a> <!-- noqa: D018 -->
+
                 <i class="fa fa-file-shield"></i>
                 <div class="lp-text-block__bottom">
                     <p class="lp-text-block__bottom-header">{% trans "Robust Data Security" %}</p>
@@ -28,7 +30,7 @@
                 </div>
             </div>
             <div class="lp-text-block">
-                <i class="fa fa-arrow-right lp-text-block__arrow"></i>
+                <a href="/info/opensource" class="lp-text-block__arrow"><i class="fa fa-arrow-right lp-text-block__arrow"></i></a> <!-- noqa: D018 -->
                 <i class="fa fa-code"></i>
                 <div class="lp-text-block__bottom">
                     <p class="lp-text-block__bottom-header">{% trans "Non-profit & Open Source" %}</p>
