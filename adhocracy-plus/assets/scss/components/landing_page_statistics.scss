@@ -5,8 +5,7 @@ $lp-blue: blue;
 .lp-statistics {
     background-color: $black;
     color: $white;
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
     position: relative;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -39,6 +38,8 @@ $lp-blue: blue;
     }
 
     &__stats-scroller {
+        width: 90%;
+        margin: 0 auto;
         padding: 1em;
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
