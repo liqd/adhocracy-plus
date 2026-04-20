@@ -7,6 +7,16 @@ class CallToActionBlock(blocks.StructBlock):
     body = blocks.RichTextBlock(required=False)
     link = blocks.CharBlock(required=False)
     link_text = blocks.CharBlock(required=False, max_length=50, label="Link Text")
+    alignment = blocks.ChoiceBlock(
+        choices=[
+            ("left", "Left"),
+            ("center", "Center"),
+            ("justify", "Justify"),
+        ],
+        default="left",
+        required=True,
+        label="Text Alignment",
+    )
 
     class Meta:
         template = "a4_candy_cms_pages/blocks/cta_block.html"
