@@ -9,13 +9,15 @@
             {% trans 'Launch initiatives with ease in minutes, no costs, no obstacles, designed for organisations, municipalities, parliamentarians and beyond.' %}
         </p>
         <div class="lp-hero-buttons">
-            <button class="btn btn--black">
-                <a href="{% url 'account_signup' %}">{% trans 'Start Now' %}</a>
-            </button>
-            <button class="btn btn--transparent btn--text-white">
+            <a href="{% url 'account_signup' %}" class="btn btn--black">
+                {% trans 'Start Now' %}
+            </a>
+            {% if not user.is_authenticated %}
                 {% url 'account_login' as account_login_url %}
-                <a href="{{ account_login_url }}">{% trans 'Login' %}</a>
-            </button>
+                <a href="{{ account_login_url }}" class="btn btn--transparent btn--text-white">
+                    {% trans 'Login' %}
+                </a>
+            {% endif %}
         </div>
     </div>
     <div class="lp-hero-img">
