@@ -1,5 +1,12 @@
-{% load static %}
-<div class="lp-organisations-map">
+{% load i18n static %}
+<div>
     {% include "section_header.html" with header=_("Organisations Map") subheader=_("Community Connections") %}
-    <img src="{% static 'images/community_map.png' %}"  alt="map of active a+ organisations">
+    <div class="lp-organisations-map">
+        
+        <img src="{% static 'images/community_map.svg' %}"  alt="map of active a+ organisations">
+        <span class="lp-organisations-info-overlay">
+            <i class="fa fa-users"></i>
+            {% trans 'More than' %} <strong>350</strong> {% trans 'Organisations' %}
+        </span>    
+    </div>
 </div>

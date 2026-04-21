@@ -315,3 +315,34 @@ $breakpoint-md: 768px;
         font-size: 2rem;
     }
 }
+
+.lp-organisations-map {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+    > img {
+        max-height: 600px;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    .lp-organisations-info-overlay {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $white;
+        color: $black;
+        padding: 8px 16px; 
+        border-radius: 4px;
+        white-space: nowrap;
+        z-index: 2;
+        box-shadow: 0 16px 32px 0 rgba(22, 34, 51, 0.16);
+
+        > i {
+            margin-right: .75rem;
+            color: $primary-blue;
+        }
+    }
+}
