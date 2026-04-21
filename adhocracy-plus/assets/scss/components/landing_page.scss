@@ -327,6 +327,32 @@ $breakpoint-md: 768px;
         margin: 0 auto;
     }
     
+    // Gradient above the image
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        background: linear-gradient(to bottom, white, transparent);
+        pointer-events: none;
+        z-index: 2;
+    }
+    
+    // Gradient below the image
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        background: linear-gradient(to top, white, transparent);
+        pointer-events: none;
+        z-index: 2;
+    }
+    
     .lp-organisations-info-overlay {
         position: absolute;
         bottom: 20px;
@@ -337,7 +363,7 @@ $breakpoint-md: 768px;
         padding: 8px 16px; 
         border-radius: 4px;
         white-space: nowrap;
-        z-index: 2;
+        z-index: 3;
         box-shadow: 0 16px 32px 0 rgba(22, 34, 51, 0.16);
 
         > i {
