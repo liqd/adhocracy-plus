@@ -55,6 +55,7 @@ $breakpoint-md: 768px;
         color: $black !important;
         display: inline-flex;
         width: auto;
+        gap: .5rem;
 
         > img {
             display: inline;
@@ -69,6 +70,10 @@ $breakpoint-md: 768px;
     gap: 2rem;
     grid-template-columns: 55% 45%;
     margin-top: 3em;
+}
+
+.lp-modules__preview-details {
+    padding-right: 40%;
 }
 
 .explore-btn {
