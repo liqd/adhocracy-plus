@@ -1,10 +1,10 @@
 {% load i18n static wagtailsettings_tags %}
 {% get_settings use_default_site=True %}
 
-<footer class="footer{% if not ORGANISATION or not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer--banner-margin{% endif %}{% endif %}" role="contentinfo" aria-label="{% translate 'Site footer' %}">
+<footer class="footer{% if not ORGANISATION or not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer--banner-margin{% endif %}{% endif %} width-xxl-bxxl" role="contentinfo" aria-label="{% translate 'Site footer' %}">
     <div class="footer__inner">
         <div class="footer__columns">
-            <div class="footer__box footer__box--general">
+            <div class="footer__box footer__box--general w-100 w-xs-auto">
                 <a href="{% url 'wagtail_serve' '' %}" class="footer__logo-link">
                     <img src="{% static 'images/adhocracy-short.svg' %}" alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}" width="58" height="35" class="footer__logo" decoding="async" />
                 </a>
@@ -22,7 +22,7 @@
                 <a class="btn footer__btn-outline" href="https://github.com/liqd/adhocracy-plus">{% translate "Open Source" %}</a>
             </div>
 
-            <nav class="footer__box footer__box--about" aria-labelledby="footer-about-heading">
+            <nav class="footer__box footer__box--about " aria-labelledby="footer-about-heading">
                 <h2 id="footer-about-heading" class="footer__heading">{% translate "About us" %}</h2>
                 <ul class="footer__link-list">
                     <li><a href="{% url 'wagtail_serve' 'info/start/' %}">{% translate "Get started" %}</a></li>
