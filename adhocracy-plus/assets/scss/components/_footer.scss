@@ -1,9 +1,342 @@
+// Site footer: full-width block layout (CSS Grid), no Bootstrap container/row.
+
 .footer {
-    border-top: 2px solid $brand-primary;
+    background-color: $body-bg;
+    border-top: 0;
+    font-family: $font-family-base;
+    font-size: 14px;
+    padding-top: 2.5 * $spacer;
+    padding-bottom: 1.5 * $spacer;
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding-top: 3 * $spacer;
+        padding-bottom: 2 * $spacer;
+    }
 }
 
 .footer--cms {
     background-color: $bg-light;
+}
+
+.footer--banner-margin {
+    margin-bottom: 3.5 * $spacer;
+
+    @media screen and (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
+        margin-bottom: 5.5 * $spacer;
+    }
+}
+
+.footer__inner {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding-left: clamp(1rem, 4vw, 5rem);
+    padding-right: clamp(1rem, 4vw, 5rem);
+}
+
+// Footer columns: <xs two-row grid; xs–md-down first box full width + four columns below; ≥md one flex row.
+.footer__columns {
+    display: grid;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 24px clamp(1rem, 2.5vw, 2.5rem);
+
+    // Below md: extra space under the first block (39px total with 24px row-gap → 15px margin).
+    @media screen and (max-width: $breakpoint-md-down) {
+        .footer__box--general {
+            margin-bottom: calc(39px - 24px);
+        }
+    }
+
+    // Tablet: general full width row 1; four equal columns row 2 (fits viewport width).
+    @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-md-down) {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, auto));
+        justify-content: space-between;
+        grid-template-rows: auto auto;
+        gap: 24px clamp(1rem, 2.5vw, 2.5rem);
+
+        .footer__box--general {
+            grid-column: 1 / -1;
+        }
+    }
+
+    // Phone: two equal columns; flow follows DOM order.
+    @media screen and (max-width: $breakpoint-xs-down) {
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto auto;
+        justify-content: space-between;
+
+        .footer__box--general {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px clamp(1rem, 2.5vw, 2.5rem);
+
+        .footer__box--general {
+            margin-bottom: 0;
+        }
+
+        .footer__box--awards {
+            display: block;
+        }
+    }
+}
+
+.footer__box {
+    min-width: 0;
+
+    @media screen and (min-width: $breakpoint-md) {
+        flex: 0 0 auto;
+        max-width: 100%;
+    }
+}
+
+.footer__heading {
+    // Section titles are <h2>; global h1/h2 use serif — keep footer UI in sans like the rest of the block.
+    font-family: $font-family-base;
+    font-size: 1em;
+    font-weight: $demi-bold;
+    margin: 0 0 $spacer * 0.75;
+    color: $print-black;
+}
+
+.footer__logo-link {
+    display: inline-block;
+    margin-bottom: $spacer;
+
+    &:focus-visible {
+        @include fake-focus-shadow;
+    }
+}
+
+.footer__logo {
+    display: block;
+    height: 2.25rem;
+    width: auto;
+    max-width: 100%;
+}
+
+.footer__intro {
+    font-size: 1em;
+    line-height: 1.5;
+    color: $print-black;
+    margin-bottom: $spacer * 1.25;
+}
+
+.footer__intro-line {
+    margin: 0 0 $spacer * 0.5;
+}
+
+.footer__brand-name {
+    font-weight: $demi-bold;
+}
+
+.footer__text-link {
+    color: $print-black;
+    text-decoration: underline;
+
+    &:hover {
+        color: $print-black;
+    }
+
+    &:focus-visible {
+        @include fake-focus-shadow;
+    }
+}
+
+.footer__link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        margin-bottom: $spacer * 0.4;
+    }
+
+    a {
+        color: $print-black;
+        text-decoration: none;
+        font-size: 1em;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:focus-visible {
+            @include fake-focus-shadow;
+        }
+    }
+}
+
+.footer__btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 10rem;
+    max-width: none;
+    padding: 0.6rem 1.25rem;
+    border: 1px solid $print-black;
+    background-color: transparent;
+    color: $print-black;
+    font-size: 1em;
+    font-weight: normal;
+    text-decoration: none;
+
+    // Full-width control only below `xs` (narrowest phones).
+    @media screen and (max-width: $breakpoint-xs-down) {
+        width: 100%;
+        min-width: 0;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: transparent;
+        color: $print-black;
+        border-color: $print-black;
+        text-decoration: none;
+    }
+
+    &:focus-visible {
+        @include fake-focus-shadow;
+    }
+}
+
+.footer__connect-name {
+    font-size: 1em;
+    margin: 0 0 $spacer * 0.75;
+    color: $print-black;
+}
+
+.footer__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacer * 0.75;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    color: $print-black;
+    font-size: 1.25em;
+    text-decoration: none;
+
+    &:hover {
+        color: $print-black;
+    }
+
+    &:focus-visible {
+        @include fake-focus-shadow;
+    }
+}
+
+.footer__award-link {
+    display: inline-block;
+
+    &:focus-visible {
+        @include fake-focus-shadow;
+    }
+}
+
+.footer__award-img {
+    display: block;
+    width: 5.5rem;
+    height: auto;
+    margin: 0 0 0 auto;
+
+    @media screen and (min-width: $breakpoint-md) {
+        width: 5rem;
+    }
+}
+
+.footer__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2.5 * $spacer;
+    padding-top: 0;
+    font-size: 1em;
+    color: $text-color-gray;
+
+    @media screen and (min-width: $breakpoint-md) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+    }
+}
+
+.footer__copyright {
+    margin: 0 0 $spacer * 0.5;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: $text-color-gray;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin: 0;
+
+        &::after {
+            content: "|";
+            margin: 0 $spacer * 0.5;
+            color: $gray-lightest;
+        }
+    }
+}
+
+.footer__meta-links {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0 $spacer * 0.5;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (min-width: $breakpoint-md) {
+        justify-content: flex-start;
+    }
+
+    li {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    li:not(:last-child)::after {
+        content: "|";
+        margin-left: $spacer * 0.5;
+        color: $gray-lightest;
+        pointer-events: none;
+    }
+
+    a {
+        color: $text-color-gray;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:focus-visible {
+            @include fake-focus-shadow;
+        }
+    }
 }
 
 .footer__link {

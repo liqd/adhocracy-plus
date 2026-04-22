@@ -1,73 +1,85 @@
 {% load i18n static wagtailsettings_tags %}
 {% get_settings use_default_site=True %}
 
-<footer class="footer pt-3 pt-sm-4{% if not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer__margin-for-banner{% endif %}{% endif %}">
-    {% with pages=settings.a4_candy_cms_settings.ImportantPages %}
-    <div class="container">
-        <div class="row mt-3 mb-2 justify-content-lg-center">
-            <div class="col-lg-6">
-                <p class="footer__description">
-                    {% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}<a href="/">{{ platformname }}</a> is a platform provided by <a href="https://liqd.net/de/">Liquid Democracy e.V.</a> in Berlin.{% endblocktranslate %} {% if ORGANISATION %}{% blocktranslate %}Only the respective operator of the offer is responsible for the editorial content.{% endblocktranslate %}{% endif %}
-                </p>
+<footer class="footer{% if not ORGANISATION or not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer--banner-margin{% endif %}{% endif %}" role="contentinfo" aria-label="{% translate 'Site footer' %}">
+    <div class="footer__inner">
+        <div class="footer__columns">
+            <div class="footer__box footer__box--general">
+                <a href="{% url 'wagtail_serve' '' %}" class="footer__logo-link">
+                    <img src="{% static 'images/adhocracy-short.svg' %}" alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}" width="58" height="35" class="footer__logo" decoding="async" />
+                </a>
+                <div class="footer__intro">
+                    <p class="footer__intro-line">
+                        <strong class="footer__brand-name">{% translate "adhocracy.plus" %}</strong>
+                        {% translate "is a digital participation platform provided by" %}
+                        <a href="https://liqd.net/" class="footer__text-link">{% translate "Liquid Democracy" %}</a>.
+                    </p>
+                    <p class="footer__intro-line">
+                        {% translate "Interested in finding out more?" %}
+                        <a href="mailto:start@adhocracy.plus" class="footer__text-link">{% translate "Get in touch!" %}</a>
+                    </p>
+                </div>
+                <a class="btn footer__btn-outline" href="https://github.com/liqd/adhocracy-plus">{% translate "Open Source" %}</a>
             </div>
-            <div class="col-lg-6">
-                <div class="row">
-                {% if pages.open_content_link %}
-                <div class="col-sm-6 d-flex flex-column">
-                    <a class="btn btn--transparent footer__info-btn" href="{{ pages.open_content_link }}">Open Content</a>
-                </div>
-                {% endif %}
-                {% if pages.github_repo_link %}
-                <div class="col-sm-6 d-flex flex-column mt-4 mt-sm-0">
-                    <a class="btn btn--transparent footer__info-btn" href="{{ pages.github_repo_link }}">Open Source</a>
-                </div>
-                {% endif %}
-                </div>
+
+            <nav class="footer__box footer__box--about" aria-labelledby="footer-about-heading">
+                <h2 id="footer-about-heading" class="footer__heading">{% translate "About us" %}</h2>
+                <ul class="footer__link-list">
+                    <li><a href="{% url 'wagtail_serve' 'info/start/' %}">{% translate "Get started" %}</a></li>
+                    <li><a href="{% url 'wagtail_serve' 'info/news/' %}">{% translate "News" %}</a></li>
+                    <li><a href="{% url 'wagtail_serve' 'info/intro-workshops/' %}">{% translate "Workshops" %}</a></li>
+                    <li><a href="{% url 'wagtail_serve' 'info/features/' %}">{% translate "Features" %}</a></li>
+                    <li><a href="{% url 'wagtail_serve' 'info/support/' %}">{% translate "Donate" %}</a></li>
+                </ul>
+            </nav>
+
+            <nav class="footer__box footer__box--legal ms-auto ms-md-0" aria-labelledby="footer-legal-heading">
+                <h2 id="footer-legal-heading" class="footer__heading">{% translate "Legal" %}</h2>
+                <ul class="footer__link-list">
+                    <li><a href="{% url 'wagtail_serve' 'info/datenschutz/' %}">{% translate "Data protection policy" %}</a></li>
+                    <li><a href="{% url 'wagtail_serve' 'info/nutzungsbedingungen/' %}">{% translate "Terms of use" %}</a></li>
+                    <li><a href="{% url 'wagtail_serve' 'info/impressum/' %}">{% translate "Imprint" %}</a></li>
+                </ul>
+            </nav>
+ 
+            <nav class="footer__box footer__box--connect" aria-labelledby="footer-connect-heading">
+                <h2 id="footer-connect-heading" class="footer__heading">{% translate "Connect" %}</h2>
+                <p class="footer__connect-name">{% translate "Liquid Democracy" %}</p>
+                <ul class="footer__social">
+                    <li>
+                        <a href="mailto:start@adhocracy.plus" class="footer__social-link" aria-label="{% translate 'Email Liquid Democracy' %}">
+                            <i class="far fa-envelope" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/liquiddemocracy/" class="footer__social-link" rel="noopener noreferrer" target="_blank" aria-label="{% translate 'Liquid Democracy on Instagram (opens in new tab)' %}">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/company/liquid-democracy/" class="footer__social-link" rel="noopener noreferrer" target="_blank" aria-label="{% translate 'Liquid Democracy on LinkedIn (opens in new tab)' %}">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+ 
+            <div class="footer__box footer__box--awards ms-auto ms-md-0">
+                <a href="https://reform-staat.org/awardees-bvo/adhocracy-plus-digitale-burgerbeteiligung-einfach-kostenlos-und-transparent/" class="footer__award-link" rel="noopener noreferrer" target="_blank" aria-label="{% translate 'Bewährt vor Ort: adhocracy.plus (opens in new tab)' %}">
+                    <img src="{% static 'images/bewaehrt-vor-ort.png' %}" alt="" width="100" height="114" class="footer__award-img" decoding="async" />
+                </a>
             </div>
         </div>
-        <div class="row">
 
-            <div class="col-12 col-md-8 col-xl-10">
-                <nav class="navi p-0">
-                    <ul class="navi__list mb-2 d-sm-flex flex-wrap">
-                        <li class="navi__item footer__link">
-                          2020 Liquid Democracy
-                        </li>
-                        {% if pages.imprint %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.imprint.url }}" class="navi__link">{% translate 'Imprint' %}</a>
-                        </li>
-                        {% endif %}
-                        {% if pages.terms_of_use %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.terms_of_use.url }}" class="navi__link">{% translate 'Terms of use' %}</a>
-                        </li>
-                        {% endif %}
-                        {% if pages.data_protection_policy %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.data_protection_policy.url }}" class="navi__link">{% translate 'Data protection policy' %}</a>
-                        </li>
-                        {% endif %}
-                        {% if pages.netiquette %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.netiquette.url }}" class="navi__link">{% translate 'Netiquette' %}</a>
-                        </li>
-                        {% endif %}
-                        {% if pages.contact %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.contact.url }}" class="navi__link">{% translate 'Contact' %}</a>
-                        </li>
-                        {% endif %}
-                        {% if pages.manual_link %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.manual_link }}" class="navi__link">{% translate 'Help Center' %}</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
+        <div class="footer__meta" aria-label="{% translate 'Copyright and legal links' %}">
+            <p class="footer__copyright">©2020 {% translate "LIQUID DEMOCRACY" %}</p>
+            <ul class="footer__meta-links">
+                <li><a href="{% url 'wagtail_serve' 'info/datenschutz/' %}">{% translate "Data protection policy" %}</a></li>
+                <li><a href="{% url 'wagtail_serve' 'info/nutzungsbedingungen/' %}">{% translate "Terms of use" %}</a></li>
+                <li><a href="{% url 'wagtail_serve' 'info/impressum/' %}">{% translate "Imprint" %}</a></li>
+            </ul>
         </div>
     </div>
-    {% endwith %}
 </footer>
-<div class="u-page-ribbon"></div>
+<div class="u-page-ribbon" aria-hidden="true"></div>

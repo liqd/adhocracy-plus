@@ -10,9 +10,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - Improvements to pagination
+- Footer: redesigned site-wide footer as full-width CSS Grid (five columns on desktop, no container/row), mobile About|Connect row plus Legal|Bewährt-vor-Ort badge side by side, full-width Open Source control on small viewports, LinkedIn social link, and BEM classes under `.footer`.
 
 ### Changed
 
+- Footer: site logo uses `adhocracy-short.svg`, Bewährt-vor-Ort badge uses linked PNG asset (visible on mobile and desktop), copyright block without top border; column layout: phone two-column `1fr` grid below `xs`, `xs`–`md-down` general row plus four `minmax(0,1fr)` columns, `md`+ flex row; grid column order matches footer markup (About, Legal, Connect, Awards); vertical `row-gap` 24px, 39px space below the first block below `md`; Open Source button full width only below `xs`; footer typography base `14px` with child sizes aligned to `em`.
 - Header: Changed to Burger Menu style on Desktop.
 
 ## v2603.3
