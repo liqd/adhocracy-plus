@@ -35,68 +35,44 @@
     padding-right: clamp(1rem, 4vw, 5rem);
 }
 
-// Footer columns: <xs two-row grid; xs–md-down first box full width + four columns below; ≥md one flex row.
+// Footer columns: one mobile-first grid (DOM order). Tracks use `auto` width; from `md`, `justify-content: space-between` spreads extra space.
 .footer__columns {
     display: grid;
-    width: 100%;
     box-sizing: border-box;
+    width: 100%;
     gap: 24px clamp(1rem, 2.5vw, 2.5rem);
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    justify-items: start;
 
-    // Below md: extra space under the first block (39px total with 24px row-gap → 15px margin).
+
     @media screen and (max-width: $breakpoint-md-down) {
         .footer__box--general {
             margin-bottom: calc(39px - 24px);
         }
     }
 
-    // Tablet: general full width row 1; four equal columns row 2 (fits viewport width).
-    @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-md-down) {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, auto));
-        justify-content: space-between;
-        grid-template-rows: auto auto;
-        gap: 24px clamp(1rem, 2.5vw, 2.5rem);
-
-        .footer__box--general {
-            grid-column: 1 / -1;
-        }
-    }
-
-    // Phone: two equal columns; flow follows DOM order.
-    @media screen and (max-width: $breakpoint-xs-down) {
-        grid-template-columns: auto auto;
-        grid-template-rows: auto auto auto;
-        justify-content: space-between;
-
-        .footer__box--general {
-            grid-column: 1 / -1;
-        }
+    @media screen and (min-width: $breakpoint-xs) {
+        grid-template-columns: repeat(4, auto);
     }
 
     @media screen and (min-width: $breakpoint-md) {
-        display: flex;
-        flex-flow: row wrap;
+        grid-template-columns: repeat(5, auto);
         justify-content: space-between;
-        align-items: flex-start;
-        gap: 24px clamp(1rem, 2.5vw, 2.5rem);
+        align-items: start;
+    }
 
-        .footer__box--general {
-            margin-bottom: 0;
-        }
+    .footer__box--general {
+        grid-column: 1 / -1;
 
-        .footer__box--awards {
-            display: block;
+        @media screen and (min-width: $breakpoint-md) {
+            grid-column: auto;
         }
     }
 }
 
 .footer__box {
     min-width: 0;
-
-    @media screen and (min-width: $breakpoint-md) {
-        flex: 0 0 auto;
-        max-width: 100%;
-    }
 }
 
 .footer__heading {
@@ -152,6 +128,14 @@
     }
 }
 
+.footer__link {
+    padding-right: $padding;
+
+    a {
+        font-weight: normal;
+    }
+}
+
 .footer__link-list {
     list-style: none;
     margin: 0;
@@ -166,14 +150,54 @@
         text-decoration: none;
         font-size: 1em;
 
-        &:hover {
-            text-decoration: underline;
+        &:focus-visible {
+            @include fake-focus-shadow;
         }
+    }
+}
+
+.footer__meta-links {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0 $spacer * 0.5;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (min-width: $breakpoint-md) {
+        justify-content: flex-start;
+    }
+
+    li {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    li:not(:last-child):after {
+        content: "|";
+        margin-left: $spacer * 0.5;
+        color: $gray-lightest;
+        pointer-events: none;
+    }
+
+    a {
+        color: $text-color-gray;
+        text-decoration: none;
 
         &:focus-visible {
             @include fake-focus-shadow;
         }
     }
+}
+
+.footer__link-list a:hover {
+    text-decoration: underline;
+}
+
+.footer__meta-links a:hover {
+    text-decoration: underline;
 }
 
 .footer__btn-outline {
@@ -274,8 +298,7 @@
     color: $text-color-gray;
 
     @media screen and (min-width: $breakpoint-md) {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
         align-items: center;
         justify-content: flex-start;
         text-align: left;
@@ -291,59 +314,11 @@
     @media screen and (min-width: $breakpoint-md) {
         margin: 0;
 
-        &::after {
+        &:after {
             content: "|";
             margin: 0 $spacer * 0.5;
             color: $gray-lightest;
         }
-    }
-}
-
-.footer__meta-links {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 0 $spacer * 0.5;
-    align-items: center;
-    justify-content: center;
-
-    @media screen and (min-width: $breakpoint-md) {
-        justify-content: flex-start;
-    }
-
-    li {
-        display: inline-flex;
-        align-items: center;
-    }
-
-    li:not(:last-child)::after {
-        content: "|";
-        margin-left: $spacer * 0.5;
-        color: $gray-lightest;
-        pointer-events: none;
-    }
-
-    a {
-        color: $text-color-gray;
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
-
-        &:focus-visible {
-            @include fake-focus-shadow;
-        }
-    }
-}
-
-.footer__link {
-    padding-right: $padding;
-
-    a {
-        font-weight: normal;
     }
 }
 
