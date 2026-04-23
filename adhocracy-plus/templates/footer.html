@@ -1,73 +1,73 @@
 {% load i18n static wagtailsettings_tags %}
 {% get_settings use_default_site=True %}
-
-<footer class="footer pt-3 pt-sm-4{% if not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer__margin-for-banner{% endif %}{% endif %}">
-    {% with pages=settings.a4_candy_cms_settings.ImportantPages %}
-    <div class="container">
-        <div class="row mt-3 mb-2 justify-content-lg-center">
-            <div class="col-lg-6">
-                <p class="footer__description">
-                    {% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}<a href="/">{{ platformname }}</a> is a platform provided by <a href="https://liqd.net/de/">Liquid Democracy e.V.</a> in Berlin.{% endblocktranslate %} {% if ORGANISATION %}{% blocktranslate %}Only the respective operator of the offer is responsible for the editorial content.{% endblocktranslate %}{% endif %}
-                </p>
+{# djlint:off #}
+<footer class="footer mx-auto xl:_w-xl xxxl:_w-2000 bg-body border-0 small text-body _font-sans _pt-10 _pb-6 lg:_pt-12 lg:_pb-8{% if not ORGANISATION or not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} _mb-14 md:_mb-22{% endif %}{% endif %}" role="contentinfo" aria-label="{% translate 'Site footer' %}">
+    <div class="_box-border w-100 mw-100 m-0 _px-fluid">
+        <div class="d-grid _box-border w-100 justify-content-between _justify-items-start _gap-y-6 _gap-x-fluid _grid-cols-2-auto sm:_grid-cols-4-auto lg:_grid-cols-5-auto align-items-md-start">
+            <div class="min-w-0 w-100 _col-span-full lg:_col-auto max-lg:_mb-stack mb-md-0">
+                <a href="{% url 'wagtail_serve' '' %}" class="d-inline-block mb-3">
+                    <img src="{% static 'images/adhocracy-short.svg' %}" alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}" width="58" height="35" class="d-block _h-9 w-auto mw-100" decoding="async" />
+                </a>
+                <div class="text-dark _leading-normal _mb-5">
+                    <p class="mb-2">
+                        <strong class="fw-semibold">{% translate "adhocracy.plus" %}</strong>
+                        {% translate "is a digital participation platform provided by" %}
+                        <a href="https://liqd.net/" class="text-dark text-decoration-underline">{% translate "Liquid Democracy" %}</a>.
+                    </p>
+                    <p class="mb-0">
+                        {% translate "Interested in finding out more?" %}
+                        <a href="mailto:start@adhocracy.plus" class="text-dark text-decoration-underline">{% translate "Get in touch!" %}</a>
+                    </p>
+                </div>
+                <a class="btn footer__btn-outline" href="https://github.com/liqd/adhocracy-plus">{% translate "Open Source" %}</a>
             </div>
-            <div class="col-lg-6">
-                <div class="row">
-                {% if pages.open_content_link %}
-                <div class="col-sm-6 d-flex flex-column">
-                    <a class="btn btn--transparent footer__info-btn" href="{{ pages.open_content_link }}">Open Content</a>
-                </div>
-                {% endif %}
-                {% if pages.github_repo_link %}
-                <div class="col-sm-6 d-flex flex-column mt-4 mt-sm-0">
-                    <a class="btn btn--transparent footer__info-btn" href="{{ pages.github_repo_link }}">Open Source</a>
-                </div>
-                {% endif %}
-                </div>
+            <nav class="min-w-0" aria-labelledby="footer-about-heading">
+                <h2 id="footer-about-heading" class="fs-6 fw-semibold text-dark mb-3 mt-0 _font-sans">{% translate "About us" %}</h2>
+                <ul class="list-unstyled d-flex flex-column ps-0 mb-0 _row-gap-nav">
+                    <li><a class="link-dark text-decoration-none" href="{% url 'wagtail_serve' 'info/start/' %}">{% translate "Get started" %}</a></li>
+                    <li><a class="link-dark text-decoration-none" href="{% url 'wagtail_serve' 'info/news/' %}">{% translate "News" %}</a></li>
+                    <li><a class="link-dark text-decoration-none" href="{% url 'wagtail_serve' 'info/intro-workshops/' %}">{% translate "Workshops" %}</a></li>
+                    <li><a class="link-dark text-decoration-none" href="{% url 'wagtail_serve' 'info/features/' %}">{% translate "Features" %}</a></li>
+                    <li><a class="link-dark text-decoration-none" href="{% url 'wagtail_serve' 'info/support/' %}">{% translate "Donate" %}</a></li>
+                </ul>
+            </nav>
+            <nav class="min-w-0 ms-auto ms-md-0" aria-labelledby="footer-legal-heading">
+                <h2 id="footer-legal-heading" class="fs-6 fw-semibold text-dark mb-3 mt-0 _font-sans">{% translate "Legal" %}</h2>
+                <ul class="list-unstyled d-flex flex-column ps-0 mb-0 _row-gap-nav">
+                    <li><a class="link-dark text-decoration-none" href="{% url 'wagtail_serve' 'info/datenschutz/' %}">{% translate "Data protection policy" %}</a></li>
+                    <li><a class="link-dark text-decoration-none" href="{% url 'wagtail_serve' 'info/nutzungsbedingungen/' %}">{% translate "Terms of use" %}</a></li>
+                    <li><a class="link-dark text-decoration-none" href="{% url 'wagtail_serve' 'info/impressum/' %}">{% translate "Imprint" %}</a></li>
+                </ul>
+            </nav>
+            <nav class="min-w-0" aria-labelledby="footer-connect-heading">
+                <h2 id="footer-connect-heading" class="fs-6 fw-semibold text-dark mb-3 mt-0 _font-sans">{% translate "Connect" %}</h2>
+                <p class="text-dark mb-3 m-0">{% translate "Liquid Democracy" %}</p>
+                <ul class="list-unstyled d-flex flex-wrap ps-0 mb-0 _gap-3">
+                    <li>
+                        <a href="mailto:start@adhocracy.plus" class="d-inline-flex align-items-center justify-content-center text-dark text-decoration-none _w-9 _h-9 _text-xl" aria-label="{% translate 'Email Liquid Democracy' %}"><i class="far fa-envelope" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/liquiddemocracy/" class="d-inline-flex align-items-center justify-content-center text-dark text-decoration-none _w-9 _h-9 _text-xl" rel="noopener noreferrer" target="_blank" aria-label="{% translate 'Liquid Democracy on Instagram (opens in new tab)' %}"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/company/liquid-democracy/" class="d-inline-flex align-items-center justify-content-center text-dark text-decoration-none _w-9 _h-9 _text-xl" rel="noopener noreferrer" target="_blank" aria-label="{% translate 'Liquid Democracy on LinkedIn (opens in new tab)' %}"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="min-w-0 ms-auto ms-md-0">
+                <a href="https://www.dstgb.de/aktuelles/2025-26/29-loesungen-erhalten-bewaehrt-vor-ort-siegel-fuer-kommunale-innovation-auf-dem-deutschen-kommunalkongress/" class="d-inline-block" rel="noopener noreferrer" target="_blank" aria-label="{% translate 'Bewährt vor Ort: adhocracy.plus (opens in new tab)' %}">
+                    <img src="{% static 'images/bewaehrt-vor-ort.png' %}" alt="" width="100" height="114" class="d-block h-auto ms-auto _w-22 lg:_w-20" decoding="async" />
+                </a>
             </div>
         </div>
-        <div class="row">
-
-            <div class="col-12 col-md-8 col-xl-10">
-                <nav class="navi p-0">
-                    <ul class="navi__list mb-2 d-sm-flex flex-wrap">
-                        <li class="navi__item footer__link">
-                          2020 Liquid Democracy
-                        </li>
-                        {% if pages.imprint %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.imprint.url }}" class="navi__link">{% translate 'Imprint' %}</a>
-                        </li>
-                        {% endif %}
-                        {% if pages.terms_of_use %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.terms_of_use.url }}" class="navi__link">{% translate 'Terms of use' %}</a>
-                        </li>
-                        {% endif %}
-                        {% if pages.data_protection_policy %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.data_protection_policy.url }}" class="navi__link">{% translate 'Data protection policy' %}</a>
-                        </li>
-                        {% endif %}
-                        {% if pages.netiquette %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.netiquette.url }}" class="navi__link">{% translate 'Netiquette' %}</a>
-                        </li>
-                        {% endif %}
-                        {% if pages.contact %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.contact.url }}" class="navi__link">{% translate 'Contact' %}</a>
-                        </li>
-                        {% endif %}
-                        {% if pages.manual_link %}
-                        <li class="navi__item footer__link">
-                            <a href="{{ pages.manual_link }}" class="navi__link">{% translate 'Help Center' %}</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
+        <div class="d-flex flex-column align-items-center flex-md-row flex-md-wrap align-items-md-center justify-content-md-start text-center text-md-start text-muted mt-5 pt-0" aria-label="{% translate 'Copyright and legal links' %}">
+            <p class="text-uppercase _tracking-wide mb-2 mb-md-0">©2020 {% translate "LIQUID DEMOCRACY" %}<span class="d-none d-md-inline text-muted px-1" aria-hidden="true">|</span></p>
+            <ul class="list-unstyled d-flex flex-wrap mb-0 ps-0 justify-content-center justify-content-md-start align-items-center gap-2 footer__pipe-sep">
+                <li><a class="link-secondary text-decoration-none" href="{% url 'wagtail_serve' 'info/datenschutz/' %}">{% translate "Data protection policy" %}</a></li>
+                <li><a class="link-secondary text-decoration-none" href="{% url 'wagtail_serve' 'info/nutzungsbedingungen/' %}">{% translate "Terms of use" %}</a></li>
+                <li><a class="link-secondary text-decoration-none" href="{% url 'wagtail_serve' 'info/impressum/' %}">{% translate "Imprint" %}</a></li>
+            </ul>
         </div>
     </div>
-    {% endwith %}
 </footer>
-<div class="u-page-ribbon"></div>
+<div class="u-page-ribbon" aria-hidden="true"></div>

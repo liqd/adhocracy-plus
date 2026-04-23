@@ -184,3 +184,144 @@
     text-align: center;
     margin: auto;
 }
+
+// Tailwind-style responsive classes: `{breakpoint}:_{utility}` (e.g. HTML `lg:_pt-12` → SCSS `.lg\:_pt-12`).
+// stylelint-disable selector-class-pattern -- ":" / "_" in class names; pattern does not allow them.
+._font-sans {
+    font-family: $font-family-base;
+}
+
+._pt-10 {
+    padding-top: 2.5 * $spacer;
+}
+
+._pb-6 {
+    padding-bottom: 1.5 * $spacer;
+}
+
+._mb-14 {
+    margin-bottom: 3.5 * $spacer;
+}
+
+._mb-5 {
+    margin-bottom: $spacer * 1.25;
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    .lg\:_pt-12 {
+        padding-top: 3 * $spacer;
+    }
+
+    .lg\:_pb-8 {
+        padding-bottom: 2 * $spacer;
+    }
+}
+
+@media screen and (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
+    .md\:_mb-22 {
+        margin-bottom: 5.5 * $spacer;
+    }
+}
+
+._px-fluid {
+    padding-right: clamp(1rem, 4vw, 5rem);
+    padding-left: clamp(1rem, 4vw, 5rem);
+}
+
+._box-border {
+    box-sizing: border-box;
+}
+
+._gap-y-6 {
+    row-gap: 1.5rem;
+}
+
+._gap-x-fluid {
+    column-gap: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+._grid-cols-2-auto {
+    grid-template-columns: repeat(2, auto);
+}
+
+._justify-items-start {
+    justify-items: start;
+}
+
+._col-span-full {
+    grid-column: 1 / -1;
+}
+
+@media screen and (min-width: $breakpoint-xs) {
+    .sm\:_grid-cols-4-auto {
+        grid-template-columns: repeat(4, auto);
+    }
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    .lg\:_grid-cols-5-auto {
+        grid-template-columns: repeat(5, auto);
+    }
+
+    .lg\:_col-auto {
+        grid-column: auto;
+    }
+}
+
+@media screen and (max-width: $breakpoint-md-down) {
+    .max-lg\:_mb-stack {
+        margin-bottom: calc(39px - 24px);
+    }
+}
+
+._h-9 {
+    height: 2.25rem;
+}
+
+._w-9 {
+    width: 2.25rem;
+}
+
+._w-22 {
+    width: 5.5rem;
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    .lg\:_w-20 {
+        width: 5rem;
+    }
+}
+
+._row-gap-nav {
+    row-gap: $spacer * 0.4;
+}
+
+._gap-3 {
+    gap: $spacer * 0.75;
+}
+
+._text-xl {
+    font-size: 1.25em;
+}
+
+._leading-normal {
+    line-height: 1.5;
+}
+
+._tracking-wide {
+    letter-spacing: 0.02em;
+}
+
+@media screen and (min-width: $breakpoint-xl) {
+    .xl\:_w-xl {
+        width: 1440px;
+    }
+}
+
+@media screen and (min-width: $breakpoint-xxl) {
+    .xxxl\:_w-xxxl {
+        width: 2000px;
+    }
+}
+
+// stylelint-enable selector-class-pattern

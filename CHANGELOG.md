@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - Improvements to pagination
+- Footer: New Footer Module 
 
 ### Changed
 

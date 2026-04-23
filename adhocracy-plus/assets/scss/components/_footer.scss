@@ -1,5 +1,27 @@
-.footer {
-    border-top: 2px solid $brand-primary;
+// Site footer: legacy upper/CMS patterns, outline CTA, and layout chrome (pipe meta links, list markers, focus).
+
+// Meta legal row: pipe between items (class `footer__pipe-sep` on ul in footer.html).
+.footer__pipe-sep > li {
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer__pipe-sep > li:not(:last-child):after {
+    content: "|";
+    margin-left: $spacer * 0.5;
+    color: $gray-lightest;
+    pointer-events: none;
+}
+
+// Base `ul` keeps browser markers; flex can still show bullets on `li` in some browsers.
+.footer ul,
+.footer li {
+    list-style: none;
+}
+
+.footer a:focus-visible,
+.footer .footer__btn-outline:focus-visible {
+    @include fake-focus-shadow;
 }
 
 .footer--cms {
@@ -11,6 +33,36 @@
 
     a {
         font-weight: normal;
+    }
+}
+
+.footer__btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 10rem;
+    max-width: none;
+    padding: 0.6rem 1.25rem;
+    border: 1px solid $print-black;
+    background-color: transparent;
+    color: $print-black;
+    font-size: 1em;
+    font-weight: normal;
+    text-decoration: none;
+
+    @media screen and (max-width: $breakpoint-xs-down) {
+        width: 100%;
+        min-width: 0;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: transparent;
+        color: $print-black;
+        border-color: $print-black;
+        text-decoration: none;
     }
 }
 
