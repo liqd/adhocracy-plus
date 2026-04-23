@@ -1,4 +1,5 @@
 {% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
 <div class="lp-modules lp-section">
     {% include "section_header.html" with header=_("Our Modules") subheader=_("Empowering Your Digital Initiatives") %}
     {% include "modules_dropdown.html" %}
@@ -11,15 +12,17 @@
     
     <div class="lp-modules__preview">
         <div class="lp-modules__preview-video">
-            <video class="active" data-module="poll" muted autoplay loop playsinline>
-                <source src="{% static 'images/brainstorming.webm' %}" type="video/webm">
-            </video>
-            <video data-module="brainstorming" muted autoplay loop playsinline>
-                <source src="{% static 'images/brainstorming.webm' %}" type="video/webm">
-            </video>
-            <video data-module="spatial" muted autoplay loop playsinline>
-                <source src="{% static 'images/brainstorming.webm' %}" type="video/webm">
-            </video>
+           {% with lang_suffix=LANGUAGE_CODE %}
+                <video class="active" data-module="poll" muted autoplay loop playsinline>
+                    <source src="{% static 'images/poll_'|add:lang_suffix|add:'.webm' %}" type="video/webm">
+                </video>
+                <video data-module="brainstorming" muted autoplay loop playsinline>
+                    <source src="{% static 'images/brainstorming_'|add:lang_suffix|add:'.webm' %}" type="video/webm">
+                </video>
+                <video data-module="spatial" muted autoplay loop playsinline>
+                    <source src="{% static 'images/spatial_'|add:lang_suffix|add:'.webm' %}" type="video/webm">
+                </video>
+            {% endwith %}
         </div>
         <div class="lp-modules__preview-details">
             <div class="module-content active" data-module="poll">
