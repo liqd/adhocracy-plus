@@ -185,9 +185,159 @@
     margin: auto;
 }
 
+// Atomic utilities (single declaration or one breakpoint block) for footer layout — use with Bootstrap utilities in markup.
+.ff-base {
+    font-family: $font-family-base;
+}
+
+.pt-scale-2p5 {
+    padding-top: 2.5 * $spacer;
+}
+
+.pb-scale-1p5 {
+    padding-bottom: 1.5 * $spacer;
+}
+
+.mb-scale-3p5 {
+    margin-bottom: 3.5 * $spacer;
+}
+
+.mb-scale-1p25 {
+    margin-bottom: $spacer * 1.25;
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    .pt-md-scale-3 {
+        padding-top: 3 * $spacer;
+    }
+
+    .pb-md-scale-2 {
+        padding-bottom: 2 * $spacer;
+    }
+}
+
+@media screen and (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
+    .mb-5p5-screen-md-only {
+        margin-bottom: 5.5 * $spacer;
+    }
+}
+
+.px-clamp-1-4-5 {
+    padding-right: clamp(1rem, 4vw, 5rem);
+    padding-left: clamp(1rem, 4vw, 5rem);
+}
+
+.border-box {
+    box-sizing: border-box;
+}
+
+.gap-row-24 {
+    row-gap: 24px;
+}
+
+.gap-x-fluid-250 {
+    column-gap: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+.grid-cols-repeat-2-auto {
+    grid-template-columns: repeat(2, auto);
+}
+
+.justify-items-start {
+    justify-items: start;
+}
+
+.grid-col-span-full {
+    grid-column: 1 / -1;
+}
+
+@media screen and (min-width: $breakpoint-xs) {
+    .xs-grid-cols-repeat-4-auto {
+        grid-template-columns: repeat(4, auto);
+    }
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    .md-grid-cols-repeat-5-auto {
+        grid-template-columns: repeat(5, auto);
+    }
+
+    .md-grid-col-auto {
+        grid-column: auto;
+    }
+}
+
+@media screen and (max-width: $breakpoint-md-down) {
+    .max-md-mb-15px {
+        margin-bottom: calc(39px - 24px);
+    }
+}
+
+.h-2p25rem {
+    height: 2.25rem;
+}
+
+.w-2p25rem {
+    width: 2.25rem;
+}
+
+.w-5p5rem {
+    width: 5.5rem;
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    .md-w-rem-5 {
+        width: 5rem;
+    }
+}
+
+.row-gap-4-10 {
+    row-gap: $spacer * 0.4;
+}
+
+.gap-0-75 {
+    gap: $spacer * 0.75;
+}
+
+.fs-125em {
+    font-size: 1.25em;
+}
+
+.lh-15 {
+    line-height: 1.5;
+}
+
+.tracking-02 {
+    letter-spacing: 0.02em;
+}
+
+.pipe-sep-li > li {
+    display: inline-flex;
+    align-items: center;
+}
+
+.pipe-sep-li > li:not(:last-child):after {
+    content: "|";
+    margin-left: $spacer * 0.5;
+    color: $gray-lightest;
+    pointer-events: none;
+}
+
+.footer a:focus-visible,
+.footer .footer__btn-outline:focus-visible {
+    @include fake-focus-shadow;
+}
+
 @media screen and (min-width: $breakpoint-xxl) {
     .width-xxl-bxxl {
         width: 2000px;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width: $breakpoint-xl) {
+    .width-xl-bxl {
+        width: 1440px;
         margin: auto;
     }
 }
