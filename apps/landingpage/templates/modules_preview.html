@@ -1,14 +1,8 @@
 {% load i18n static %}
-<div class="lp-modules">
+{% get_current_language as LANGUAGE_CODE %}
+<div class="lp-modules lp-section">
     {% include "section_header.html" with header=_("Our Modules") subheader=_("Empowering Your Digital Initiatives") %}
-    
-    <!-- Mobile Dropdown -->
-    <select class="lp-modules__dropdown mobile-only">
-        <option value="poll">{% trans "Poll" %}</option>
-        <option value="brainstorming">{% trans "Brainstorming" %}</option>
-        <option value="spatial">{% trans "Spatial Brainstorming" %}</option>
-    </select>
-    
+    {% include "modules_dropdown.html" %}
     <!-- Desktop Buttons -->
     <div class="lp-modules__selectors desktop-only">
         <button class="btn btn--transparent active" data-module="poll"><img src="{% static 'images/poll-transparent.svg' %}" alt="woman">{% trans "Poll" %}</button>
@@ -17,10 +11,18 @@
     </div>
     
     <div class="lp-modules__preview">
-        <div class="lp-modules__preview-image">
-            <img src="{% static 'images/poll.svg' %}" alt="Poll preview image" class="active" data-module="poll">
-            <img src="{% static 'images/brainstorming.svg' %}" alt="Brainstorming preview image" data-module="brainstorming">
-            <img src="{% static 'images/map-brainstorming.svg' %}" alt="Spatial brainstorming preview image" data-module="spatial">
+        <div class="lp-modules__preview-video">
+           {% with lang_suffix=LANGUAGE_CODE %}
+                <video class="active" data-module="poll" muted autoplay loop playsinline>
+                    <source src="{% static 'images/poll_'|add:lang_suffix|add:'.webm' %}" type="video/webm">
+                </video>
+                <video data-module="brainstorming" muted autoplay loop playsinline>
+                    <source src="{% static 'images/brainstorming_'|add:lang_suffix|add:'.webm' %}" type="video/webm">
+                </video>
+                <video data-module="spatial" muted autoplay loop playsinline>
+                    <source src="{% static 'images/spatial_'|add:lang_suffix|add:'.webm' %}" type="video/webm">
+                </video>
+            {% endwith %}
         </div>
         <div class="lp-modules__preview-details">
             <div class="module-content active" data-module="poll">
@@ -46,9 +48,9 @@
     document.addEventListener('DOMContentLoaded', function() {
         const buttons = document.querySelectorAll('.lp-modules__selectors button');
         const dropdown = document.querySelector('.lp-modules__dropdown');
-        const images = document.querySelectorAll('.lp-modules__preview-image img');
+        const videos = document.querySelectorAll('.lp-modules__preview-video video');
         const contents = document.querySelectorAll('.module-content');
-        
+
         function showModule(module) {
             // Remove active class from all buttons
             buttons.forEach(btn => btn.classList.remove('active'));
@@ -58,12 +60,19 @@
             // Set dropdown value
             if (dropdown) dropdown.value = module;
             
-            // Hide all images and contents
-            images.forEach(img => img.classList.remove('active'));
+            // Hide all videos and contents
+            videos.forEach(video => {
+                video.classList.remove('active');
+                video.pause(); // Pause the video when not active
+            });
             contents.forEach(content => content.classList.remove('active'));
             
-            // Show selected module image and content
-            document.querySelector(`.lp-modules__preview-image img[data-module="${module}"]`)?.classList.add('active');
+            // Show selected module video and content
+            const activeVideo = document.querySelector(`.lp-modules__preview-video video[data-module="${module}"]`);
+            if (activeVideo) {
+                activeVideo.classList.add('active');
+                activeVideo.play(); // Play the video when active
+            }
             document.querySelector(`.module-content[data-module="${module}"]`)?.classList.add('active');
         }
         
@@ -82,5 +91,18 @@
                 showModule(module);
             });
         }
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                if (!entry.isIntersecting) {
+                    video.pause();
+                } else if (video.classList.contains('active')) {
+                    video.play();
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        videos.forEach(video => observer.observe(video));
     });
 </script>

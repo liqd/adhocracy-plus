@@ -1,10 +1,5 @@
 .accordion {
-    border-top: solid 1px $border-color;
     overflow: hidden;
-
-    &:last-child {
-        border-bottom: solid 1px $border-color;
-    }
 }
 
 .accordion__title {
@@ -12,7 +7,6 @@
     position: relative;
     padding: ($padding / 2) (3 * $padding) ($padding / 2) $padding;
     color: inherit;
-    border-bottom: solid 1px $border-color;
 
     &.collapsed {
         border-bottom: none;
@@ -28,6 +22,10 @@
         transition: transform 0.3s;
     }
 
+    &[aria-expanded="true"] {
+        background-color: $white;
+    }
+
     &[aria-expanded="true"] i {
         transform: rotate(45deg);
     }
@@ -35,6 +33,7 @@
 
 .accordion__body {
     padding: $padding;
+    background-color: $white;
 
     li {
         margin-bottom: 0.2em;
@@ -47,3 +46,5 @@
         margin-right: 0.3em;
     }
 }
+
+

@@ -5,8 +5,7 @@ $lp-blue: blue;
 .lp-statistics {
     background-color: $black;
     color: $white;
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
     position: relative;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -16,16 +15,16 @@ $lp-blue: blue;
         position: relative;
         z-index: 2;
         padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding-bottom: 3rem;
         
         // Fade from header into scroller
         &:after {
             content: '';
             position: absolute;
-            bottom: -40px;
+            bottom: -100px;
             left: 0;
             right: 0;
-            height: 60px;
+            height: 120px;
             background: linear-gradient(to bottom, $black, transparent);
             pointer-events: none;
         }
@@ -34,10 +33,13 @@ $lp-blue: blue;
             max-width: 80%;
             margin: 0 auto;
             padding-bottom: 1rem;
+            margin-bottom: 1em;
         }
     }
 
     &__stats-scroller {
+        width: 90%;
+        margin: 0 auto;
         padding: 1em;
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));

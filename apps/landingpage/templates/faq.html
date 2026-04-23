@@ -1,0 +1,12 @@
+{% load wagtailcore_tags %}
+{% if faq_page %}
+    <div class="lp-faq">
+        {% include "section_header.html" with header=_("Your questions, answered") subheader=_("Frequently Asked Questions") %}
+        
+        {% for block in faq_page.body_streamfield %}
+            {% if block.block_type == 'faq' %}
+                {% include_block block with show_title=False %}  <!-- Hide inner title -->
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
