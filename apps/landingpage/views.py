@@ -3,6 +3,7 @@ import random
 from django.shortcuts import render
 
 from apps.cms.contacts.models import FormPage
+from apps.cms.pages.models import SimplePage
 from apps.cms.news.models import NewsIndexPage
 
 from .models import StatisticsItem
@@ -20,6 +21,8 @@ def landing_view(request):
     latest_news = news_index.news[:3] if news_index else []
     news_block = {"news_page": news_index, "latest_news": latest_news}
 
+    faq_page = SimplePage.objects.live().filter(slug="initiatorguide").first()
+
     # Split statistics into 4 columns
     columns = [items[i::4] for i in range(4)]
     # Alternate directions: down, up, down, up
@@ -32,5 +35,6 @@ def landing_view(request):
             "statistics_columns": zip(columns, directions),
             "contact_form_page": form_page,
             "news": news_block,
+            "faq_page": faq_page,
         },
     )

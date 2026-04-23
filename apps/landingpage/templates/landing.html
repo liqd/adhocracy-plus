@@ -3,6 +3,7 @@
 
 {% block content %}
     <div>
+    
     {% include "hero.html" %}
     {% include "why_adhocracy.html" %}
     {% include "organisations_map.html" %}
@@ -11,8 +12,11 @@
         {% include "news.html" with value=news %}
     {% endif %}
     {% include "statistics.html" %}
-        <div id="form_page">
-            {% include 'a4_candy_cms_contacts/includes/form.html' with page=contact_form_page form=contact_form_page.form %}
-        </div>
+    {% if faq_page %}
+        {% include "faq.html" with faq_page=faq_page %}
+    {% endif %}
+    <div id="form_page">
+        {% include 'a4_candy_cms_contacts/includes/form.html' with page=contact_form_page form=contact_form_page.form %}
+    </div>
     </div>
 {% endblock content %}

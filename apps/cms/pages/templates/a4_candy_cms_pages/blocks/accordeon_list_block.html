@@ -1,6 +1,6 @@
 {% load wagtailcore_tags %}
 
-{% if value.title %}
+{% if value.title and show_title %}
     <h2>{{ value.title }}</h2>
 {% endif %}
 
