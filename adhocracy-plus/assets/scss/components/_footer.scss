@@ -1,4 +1,28 @@
-// Legacy footer / upper patterns and outline CTA (new footer layout uses Bootstrap + utilities in _utility.scss).
+// Site footer: legacy upper/CMS patterns, outline CTA, and layout chrome (pipe meta links, list markers, focus).
+
+// Meta legal row: pipe between items (class `footer__pipe-sep` on ul in footer.html).
+.footer__pipe-sep > li {
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer__pipe-sep > li:not(:last-child):after {
+    content: "|";
+    margin-left: $spacer * 0.5;
+    color: $gray-lightest;
+    pointer-events: none;
+}
+
+// Base `ul` keeps browser markers; flex can still show bullets on `li` in some browsers.
+.footer ul,
+.footer li {
+    list-style: none;
+}
+
+.footer a:focus-visible,
+.footer .footer__btn-outline:focus-visible {
+    @include fake-focus-shadow;
+}
 
 .footer--cms {
     background-color: $bg-light;

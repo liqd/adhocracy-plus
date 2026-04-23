@@ -185,159 +185,143 @@
     margin: auto;
 }
 
-// Atomic utilities (single declaration or one breakpoint block) for footer layout — use with Bootstrap utilities in markup.
-.ff-base {
+// Tailwind-style responsive classes: `{breakpoint}:_{utility}` (e.g. HTML `lg:_pt-12` → SCSS `.lg\:_pt-12`).
+// stylelint-disable selector-class-pattern -- ":" / "_" in class names; pattern does not allow them.
+._font-sans {
     font-family: $font-family-base;
 }
 
-.pt-scale-2p5 {
+._pt-10 {
     padding-top: 2.5 * $spacer;
 }
 
-.pb-scale-1p5 {
+._pb-6 {
     padding-bottom: 1.5 * $spacer;
 }
 
-.mb-scale-3p5 {
+._mb-14 {
     margin-bottom: 3.5 * $spacer;
 }
 
-.mb-scale-1p25 {
+._mb-5 {
     margin-bottom: $spacer * 1.25;
 }
 
 @media screen and (min-width: $breakpoint-md) {
-    .pt-md-scale-3 {
+    .lg\:_pt-12 {
         padding-top: 3 * $spacer;
     }
 
-    .pb-md-scale-2 {
+    .lg\:_pb-8 {
         padding-bottom: 2 * $spacer;
     }
 }
 
 @media screen and (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
-    .mb-5p5-screen-md-only {
+    .md\:_mb-22 {
         margin-bottom: 5.5 * $spacer;
     }
 }
 
-.px-clamp-1-4-5 {
+._px-fluid {
     padding-right: clamp(1rem, 4vw, 5rem);
     padding-left: clamp(1rem, 4vw, 5rem);
 }
 
-.border-box {
+._box-border {
     box-sizing: border-box;
 }
 
-.gap-row-24 {
-    row-gap: 24px;
+._gap-y-6 {
+    row-gap: 1.5rem;
 }
 
-.gap-x-fluid-250 {
+._gap-x-fluid {
     column-gap: clamp(1rem, 2.5vw, 2.5rem);
 }
 
-.grid-cols-repeat-2-auto {
+._grid-cols-2-auto {
     grid-template-columns: repeat(2, auto);
 }
 
-.justify-items-start {
+._justify-items-start {
     justify-items: start;
 }
 
-.grid-col-span-full {
+._col-span-full {
     grid-column: 1 / -1;
 }
 
 @media screen and (min-width: $breakpoint-xs) {
-    .xs-grid-cols-repeat-4-auto {
+    .sm\:_grid-cols-4-auto {
         grid-template-columns: repeat(4, auto);
     }
 }
 
 @media screen and (min-width: $breakpoint-md) {
-    .md-grid-cols-repeat-5-auto {
+    .lg\:_grid-cols-5-auto {
         grid-template-columns: repeat(5, auto);
     }
 
-    .md-grid-col-auto {
+    .lg\:_col-auto {
         grid-column: auto;
     }
 }
 
 @media screen and (max-width: $breakpoint-md-down) {
-    .max-md-mb-15px {
+    .max-lg\:_mb-stack {
         margin-bottom: calc(39px - 24px);
     }
 }
 
-.h-2p25rem {
+._h-9 {
     height: 2.25rem;
 }
 
-.w-2p25rem {
+._w-9 {
     width: 2.25rem;
 }
 
-.w-5p5rem {
+._w-22 {
     width: 5.5rem;
 }
 
 @media screen and (min-width: $breakpoint-md) {
-    .md-w-rem-5 {
+    .lg\:_w-20 {
         width: 5rem;
     }
 }
 
-.row-gap-4-10 {
+._row-gap-nav {
     row-gap: $spacer * 0.4;
 }
 
-.gap-0-75 {
+._gap-3 {
     gap: $spacer * 0.75;
 }
 
-.fs-125em {
+._text-xl {
     font-size: 1.25em;
 }
 
-.lh-15 {
+._leading-normal {
     line-height: 1.5;
 }
 
-.tracking-02 {
+._tracking-wide {
     letter-spacing: 0.02em;
 }
 
-.pipe-sep-li > li {
-    display: inline-flex;
-    align-items: center;
-}
-
-.pipe-sep-li > li:not(:last-child):after {
-    content: "|";
-    margin-left: $spacer * 0.5;
-    color: $gray-lightest;
-    pointer-events: none;
-}
-
-.footer a:focus-visible,
-.footer .footer__btn-outline:focus-visible {
-    @include fake-focus-shadow;
+@media screen and (min-width: $breakpoint-xl) {
+    .xl\:_w-xl {
+        width: 1440px;
+    }
 }
 
 @media screen and (min-width: $breakpoint-xxl) {
-    .width-xxl-bxxl {
+    .xxxl\:_w-xxxl {
         width: 2000px;
-        margin: auto;
     }
 }
 
-@media screen and (min-width: $breakpoint-xl) {
-    .width-xl-bxl {
-        width: 1440px;
-        margin: auto;
-    }
-}
+// stylelint-enable selector-class-pattern
