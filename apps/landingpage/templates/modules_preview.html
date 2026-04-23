@@ -1,14 +1,7 @@
 {% load i18n static %}
 <div class="lp-modules">
     {% include "section_header.html" with header=_("Our Modules") subheader=_("Empowering Your Digital Initiatives") %}
-    
-    <!-- Mobile Dropdown -->
-    <select class="lp-modules__dropdown mobile-only">
-        <option value="poll">{% trans "Poll" %}</option>
-        <option value="brainstorming">{% trans "Brainstorming" %}</option>
-        <option value="spatial">{% trans "Spatial Brainstorming" %}</option>
-    </select>
-    
+    {% include "modules_dropdown.html" %}
     <!-- Desktop Buttons -->
     <div class="lp-modules__selectors desktop-only">
         <button class="btn btn--transparent active" data-module="poll"><img src="{% static 'images/poll-transparent.svg' %}" alt="woman">{% trans "Poll" %}</button>
@@ -54,7 +47,7 @@
         const dropdown = document.querySelector('.lp-modules__dropdown');
         const videos = document.querySelectorAll('.lp-modules__preview-video video');
         const contents = document.querySelectorAll('.module-content');
-        
+
         function showModule(module) {
             // Remove active class from all buttons
             buttons.forEach(btn => btn.classList.remove('active'));

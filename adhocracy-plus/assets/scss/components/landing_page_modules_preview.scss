@@ -155,3 +155,84 @@ $breakpoint-md: 768px;
         margin: auto;
     }
 }
+
+.custom-dropdown {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1em;
+    
+    .dropdown-trigger {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px;
+        border: 1px solid $border-color;
+        background-color: $lp-blue;
+        color: $white;
+        cursor: pointer;
+        
+        img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        span {
+            flex: 1;
+        }
+        
+        .fa-chevron-down {
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        &.open .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+    }
+    
+    .dropdown-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: $white;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        margin-top: 4px;
+        z-index: 10;
+        display: none;
+        max-height: 300px;
+        overflow-y: auto;
+        
+        &.open {
+            display: block;
+        }
+        
+        .dropdown-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            cursor: pointer;
+            
+            img {
+                width: 20px;
+                height: 20px;
+            }
+            
+            &:hover {
+                background-color: #f5f5f5;
+            }
+            
+            &.selected {
+                background-color: $lp-blue;
+                color: $white;
+            }
+        }
+    }
+}
+
+// Hide the native select if you want to replace it completely
+select.lp-modules__dropdown {
+    display: none;
+}

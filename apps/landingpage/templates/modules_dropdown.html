@@ -1,0 +1,104 @@
+{% load i18n static %}
+<div class="custom-dropdown mobile-only" id="moduleDropdown">
+    <div class="dropdown-trigger">
+        <img id="selectedIcon" src="{% static 'images/poll-transparent.svg' %}" alt="poll">
+        <span id="selectedText">{% trans "Poll" %}</span>
+        <i class="fa fa-chevron-down"></i>
+    </div>
+    <div class="dropdown-options" id="dropdownOptions">
+        <div class="dropdown-option" data-value="poll" data-icon="{% static 'images/poll-transparent.svg' %}">
+            <img src="{% static 'images/poll-transparent.svg' %}" alt="poll">
+            <span>{% trans "Poll" %}</span>
+        </div>
+        <div class="dropdown-option" data-value="brainstorming" data-icon="{% static 'images/brainstorming-transparent.svg' %}">
+            <img src="{% static 'images/brainstorming-transparent.svg' %}" alt="brainstorming">
+            <span>{% trans "Brainstorming" %}</span>
+        </div>
+        <div class="dropdown-option" data-value="spatial" data-icon="{% static 'images/spatial-brainstorming-transparent.svg' %}">
+            <img src="{% static 'images/spatial-brainstorming-transparent.svg' %}" alt="spatial">
+            <span>{% trans "Spatial Brainstorming" %}</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Custom dropdown
+    const dropdown = document.getElementById('moduleDropdown');
+    const trigger = dropdown.querySelector('.dropdown-trigger');
+    const optionsContainer = dropdown.querySelector('.dropdown-options');
+    const options = dropdown.querySelectorAll('.dropdown-option');
+    const selectedIcon = document.getElementById('selectedIcon');
+    const selectedText = document.getElementById('selectedText');
+    
+    // Toggle dropdown
+    trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        trigger.classList.toggle('open');
+        optionsContainer.classList.toggle('open');
+    });
+    
+    // Select option
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+            const iconSrc = this.getAttribute('data-icon');
+            const text = this.querySelector('span').textContent;
+            
+            // Update trigger
+            selectedIcon.src = iconSrc;
+            selectedText.textContent = text;
+            
+            // Update selected class
+            options.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            // Close dropdown
+            trigger.classList.remove('open');
+            optionsContainer.classList.remove('open');
+            
+            // Trigger module change - call your existing showModule function
+            if (typeof showModule === 'function') {
+                showModule(value);
+            }
+        });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!dropdown.contains(e.target)) {
+            trigger.classList.remove('open');
+            optionsContainer.classList.remove('open');
+        }
+    });
+    
+    // Your existing showModule function
+    function showModule(module) {
+        // Desktop buttons
+        const buttons = document.querySelectorAll('.lp-modules__selectors button');
+        const videos = document.querySelectorAll('.lp-modules__preview-video video');
+        const contents = document.querySelectorAll('.module-content');
+        
+        // Update buttons
+        buttons.forEach(btn => btn.classList.remove('active'));
+        const activeButton = document.querySelector(`.lp-modules__selectors button[data-module="${module}"]`);
+        if (activeButton) activeButton.classList.add('active');
+        
+        // Update videos
+        videos.forEach(video => {
+            video.classList.remove('active');
+            video.pause();
+        });
+        const activeVideo = document.querySelector(`.lp-modules__preview-video video[data-module="${module}"]`);
+        if (activeVideo) {
+            activeVideo.classList.add('active');
+            activeVideo.play();
+        }
+        
+        // Update content
+        contents.forEach(content => content.classList.remove('active'));
+        const activeContent = document.querySelector(`.module-content[data-module="${module}"]`);
+        if (activeContent) activeContent.classList.add('active');
+    }
+});
+</script>
