@@ -146,6 +146,11 @@ module.exports = {
         'adhocracy4/adhocracy4/categories/assets/select_dropdown_init.js'
       ],
       dependOn: 'adhocracy4'
+    },
+    dashboard_tabs: {
+      import: [
+        './apps/dashboard/assets/dashboard_tabs.js'
+      ]
     }
   },
   output: {
