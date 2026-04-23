@@ -186,7 +186,7 @@ $breakpoint-md: 768px;
     text-decoration: none;
     aspect-ratio: 1/1;
 
-    img {
+    &__bg_image {
         position: absolute;
         top: 0;
         left: 0;
@@ -221,6 +221,14 @@ $breakpoint-md: 768px;
         left: 2rem;
         z-index: 3;
         font-size: 3rem;
+    }
+
+    &__icon {
+        position: absolute;
+        bottom: 2rem;
+        left: 2rem;
+        z-index: 3;
+        height: 3rem;
     }
 
     span {
@@ -266,6 +274,11 @@ $breakpoint-md: 768px;
     > i {
         font-size: 3rem;
         margin-bottom: 1.5rem;
+    }
+
+    &__icon {
+        height: 3rem;
+        align-self: flex-start;
     }
 
     &__arrow {

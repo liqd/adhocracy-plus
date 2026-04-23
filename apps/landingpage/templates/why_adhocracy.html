@@ -3,25 +3,25 @@
     {% include "section_header.html" with header=_("Why adhocracy+?") subheader=_("Seamless & No-Cost Digital Participation") %}
     <div class="lp-blocks">
         <a href="/info/free" class="lp-block"><!-- noqa: D018 -->
-            <img src="{% static 'images/no-cost-participation.webp' %}" alt="person on bicycle">
+            <img class="lp-block__bg_image" src="{% static 'images/no-cost-participation.webp' %}" alt="person on bicycle">
             <h3>{% trans "No-Cost Participation" %}</h3>
             <p>{% trans "Accessible platforms like adhocracy+ enable participation without financial barriers." %}</p>
-            <i class="fa-regular fa-handshake"></i>
+            <img class="lp-block__icon" src="{% static 'images/handshake.svg' %}"  alt="handshake">
             <span>{% trans "Read More" %} <i class="fa fa-arrow-right"></i></span>
         </a>
         
         <a href="/info/simple" class="lp-block"><!-- noqa: D018 -->
-            <img src="{% static 'images/usp-effortless.webp' %}" alt="person on bicycle">
+            <img class="lp-block__bg_image" src="{% static 'images/usp-effortless.webp' %}" alt="person on bicycle">
             <h3>{% trans "Effortless Civic Engagement" %}</h3>
             <p>{% trans "Intuitive interfaces and modular designs make participation accessible to all users." %}</p>
-            <i class="fa fa-puzzle-piece"></i>
+            <img class="lp-block__icon" src="{% static 'images/puzzle.svg' %}"  alt="puzzle piece">
             <span>{% trans "Read More" %} <i class="fa fa-arrow-right"></i></span>
         </a>
         
         <div class="lp-text-blocks">
             <a href="/info/secure" class="lp-text-block"><!-- noqa: D018 -->
                 <i class="fa fa-arrow-right lp-text-block__arrow"></i>
-                <i class="fa fa-file-shield"></i>
+                <img class="lp-text-block__icon" src="{% static 'images/data_security.svg' %}"  alt="open source">
                 <div class="lp-text-block__bottom">
                     <p class="lp-text-block__bottom-header">{% trans "Robust Data Security" %}</p>
                     <p>{% trans "Secure, transparent systems ensure user data protection and trust in digital democratic processes." %}</p>
@@ -30,7 +30,7 @@
             
             <a href="/info/opensource" class="lp-text-block"><!-- noqa: D018 -->
                 <i class="fa fa-arrow-right lp-text-block__arrow"></i>
-                <i class="fa fa-code"></i>
+                <img class="lp-text-block__icon" src="{% static 'images/open_source.svg' %}"  alt="open source">
                 <div class="lp-text-block__bottom">
                     <p class="lp-text-block__bottom-header">{% trans "Non-profit & Open Source" %}</p>
                     <p>{% trans "Community-driven platforms foster transparency and collaboration without commercial constraints." %}</p>
