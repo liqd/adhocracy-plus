@@ -2,6 +2,7 @@ $primary-blue: #1D6FE2;
 $white: white;
 $black: black;
 $breakpoint-md: 768px;
+$faq-bg: #f5f5f5;
 
 .lp-section {
     margin-top: 3rem;
@@ -318,7 +319,6 @@ $breakpoint-md: 768px;
 
 .lp-section-header {
     text-align: center;
-    // margin-top: 3rem;
     padding-top: 1rem;
     margin-bottom: 2rem;
 
@@ -345,7 +345,7 @@ $breakpoint-md: 768px;
     }
     
     // Gradient above the image
-    &::before {
+    &:before {
         content: '';
         position: absolute;
         top: 0;
@@ -358,7 +358,7 @@ $breakpoint-md: 768px;
     }
     
     // Gradient below the image
-    &::after {
+    &:after {
         content: '';
         position: absolute;
         bottom: 0;
@@ -399,5 +399,5 @@ $breakpoint-md: 768px;
 
 .lp-faq {
     padding: 2rem 10%;
-    background-color: #f5f5f5;
+    background-color: $faq-bg;
 }
