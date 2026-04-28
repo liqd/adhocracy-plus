@@ -10,7 +10,7 @@
             </button>
         </div>
     </div>
-    <div class="lp-statistics__stats-scroller" id="statsScroller">
+    <div class="lp-statistics__stats-scroller desktop-view" id="statsScroller">
         {% for column_items, direction in statistics_columns %}
             <div class="lp-statistics__stats-scroller-column" data-direction="{{ direction }}">
                 {% for stat in column_items %}
@@ -39,10 +39,47 @@
             </div>
         {% endfor %}
     </div>
+    <!-- Mobile view: 2 rows -->
+    <div class="lp-statistics__stats-scroller mobile-view">
+        {% for row_items, direction in statistics_rows_mobile %}
+            <div class="lp-statistics__row" data-direction="{{ direction }}">
+                {% for stat in row_items %}
+                    <div class="mobile-stat-card">
+                        {% if stat.item_type == 'text' %}
+                            <div class="lp-statistics__stat">
+                                <p class="lp-statistics__stat-number">{{ stat.header }}</p>
+                                <p>{{ stat.subheader }}</p>
+                            </div>
+                        {% elif stat.item_type == 'testimonial' %}
+                            <div class="lp-statistics__quote">
+                                <p>“{{ stat.quote }}”</p>
+                                {% if stat.person_image %}
+                                    <img src="{{ stat.person_image.url }}" alt="{{ stat.person_name }}" />
+                                {% else %}
+                                    <img src="{% static 'images/avatar_00.png' %}" alt="{{ stat.person_name }}" />
+                                {% endif %}
+                                <p class="lp-statistics__quote-author__name">{{ stat.person_name }}</p>
+                                <p class="lp-statistics__quote-author__job">{{ stat.person_description }}</p>
+                            </div>
+                        {% elif stat.item_type == 'image' %}
+                            <div class="lp-statistics__image">
+                                <img src="{{ stat.image.url }}" alt="{{ stat.image_alt_text }}" />
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+        if (window.innerWidth <= 768) {
+            const rows = document.querySelectorAll('.lp-statistics__row');
+            if (rows[1]) rows[1].scrollLeft = 350;
+        }
         const colors = [
             '#E8F4FD', '#F0F8FF', '#F5F5DC', '#F0FFF0', '#FFF0F5',
             '#F5F5F5', '#E6E6FA', '#FFE4E1', '#F0F8FF', '#FAFAD2',
@@ -159,5 +196,7 @@
                 scroller.click();
             }
         });
+
+        
     });
 </script>

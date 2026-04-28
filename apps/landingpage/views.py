@@ -34,11 +34,17 @@ def landing_view(request):
     columns = [items[i::4] for i in range(4)]
     directions = ["down", "up", "down", "up"]
 
+    mobile_rows = [
+        columns[0] + columns[1],
+        columns[2] + columns[3]
+    ]
+
     return render(
         request,
         "landing.html",
         {
             "statistics_columns": zip(columns, directions),
+            "statistics_rows_mobile": zip(mobile_rows, directions),
             "contact_form_page": form_page,
             "news": news_block,
             "faq_page": faq_page,
