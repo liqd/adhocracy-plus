@@ -63,7 +63,8 @@
             // Hide all videos and contents
             videos.forEach(video => {
                 video.classList.remove('active');
-                video.pause(); // Pause the video when not active
+                video.pause();
+                video.currentTime = 0; // Reset video to beginning when hidden
             });
             contents.forEach(content => content.classList.remove('active'));
             
@@ -71,6 +72,7 @@
             const activeVideo = document.querySelector(`.lp-modules__preview-video video[data-module="${module}"]`);
             if (activeVideo) {
                 activeVideo.classList.add('active');
+                activeVideo.currentTime = 0;
                 activeVideo.play(); // Play the video when active
             }
             document.querySelector(`.module-content[data-module="${module}"]`)?.classList.add('active');
@@ -92,12 +94,14 @@
             });
         }
         
+        // Intersection Observer - reset and play when becoming visible
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const video = entry.target;
                 if (!entry.isIntersecting) {
                     video.pause();
                 } else if (video.classList.contains('active')) {
+                    video.currentTime = 0; // Reset to beginning when becoming visible
                     video.play();
                 }
             });

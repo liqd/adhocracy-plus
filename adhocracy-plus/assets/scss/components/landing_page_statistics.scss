@@ -138,10 +138,6 @@ $lp-blue: blue;
     flex-grow: 1;
 }
 
-.desktop-view {
-    display: block;
-}
-
 .mobile-view {
     display: none;
 }
@@ -171,17 +167,11 @@ $lp-blue: blue;
     .lp-statistics__row {
         display: flex;
         flex-direction: row;
-        overflow-x: auto;
-        overflow-y: hidden;
+        overflow: auto hidden;
         gap: 1em;
-        // scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         
         scrollbar-width: none;
-        
-        &::-webkit-scrollbar {
-            height: 0px;
-        }
 
         &:first-of-type {
             &:before {
