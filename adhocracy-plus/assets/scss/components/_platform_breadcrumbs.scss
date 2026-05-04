@@ -1,0 +1,54 @@
+// Platform hierarchy (Figma: Source Sans Pro Semibold 16px / 24px; text + chevrons black)
+
+.platform-breadcrumbs__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 1rem;
+}
+
+.platform-breadcrumbs__sep {
+    display: inline-flex;
+    color: $print-black;
+    font-size: 1rem;
+    line-height: 1;
+
+    // Chevron must use Font Awesome, not the breadcrumb text face
+    .fa,
+    .fas {
+        font-family: "Font Awesome 7 Free", sans-serif;
+        font-weight: 900;
+        color: inherit;
+    }
+}
+
+.platform-breadcrumbs__segment {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.25em;
+    font-family: $font-family-base;
+    font-size: $font-size-sm;
+    font-weight: $demi-bold;
+    line-height: 1.5rem;
+    color: $print-black;
+}
+
+.platform-breadcrumbs__link {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+        color: $brand-primary;
+        text-decoration: underline;
+    }
+}
+
+.platform-breadcrumbs__current {
+    color: inherit;
+}
+
+.platform-breadcrumbs__name {
+    font-weight: $demi-bold;
+}

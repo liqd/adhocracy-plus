@@ -1,17 +1,17 @@
 {% extends "base.html" %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static platform_breadcrumbs_tags %}
 
-{% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{{ project.name }} — {{ block.super }}{% endblock title %}
 
 {% block social_meta_image %}
 {% if project.image %}
-<meta name="twitter:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
-<meta name="linkedin:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
-<meta property="og:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
+<meta name="twitter:image" content="{{ project.image | thumbnail_url:'heroimage' }}">
+<meta name="linkedin:image" content="{{ project.image | thumbnail_url:'heroimage' }}">
+<meta property="og:image" content="{{ project.image | thumbnail_url:'heroimage' }}">
 <meta property="og:image:width" content="1500">
 <meta property="og:image:height" content="500">
 {% endif %}
-{% endblock %}
+{% endblock social_meta_image %}
 
 {% block social_meta_description %}
 {% if project.description %}
@@ -19,18 +19,18 @@
 <meta name="linkedin:description" content="{{ project.description }}">
 <meta property="og:description" content="{{ project.description }}">
 {% endif %}
-{% endblock %}
+{% endblock social_meta_description %}
 
 <!-- ensure cookie overlay for embedded videos -->
 {% block extra_css %}
   {{ block.super }}
     <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
-{% endblock %}
+{% endblock extra_css %}
 
 {% block extra_js %}
   {{ block.super }}
     <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
-{% endblock %}
+{% endblock extra_js %}
 
 {% block extra_messages %}
 <div class="u-bg-light py-md-5">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             {% endif %}
-        {% endblock %}
+        {% endblock extra_messages %}
 
         {% block content %}
             <div
@@ -107,12 +107,18 @@
             </div>
             {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
             {% if user_may_change %}
-            <div class="u-align-right">
+            <div class="u-align-right mt-1">
                 <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small me-3">{% translate 'Edit' %}</a>
             </div>
-            {% else %}
-            <div class="u-spacer-bottom-4"></div>
             {% endif %}
+
+            <div class="container{% if user_may_change %} mt-2{% else %} mt-5 pt-4{% endif %}">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 mb-3">
+                        {% platform_breadcrumbs project=project current='project' %}
+                    </div>
+                </div>
+            </div>
 
             <div
                 class="tabpanel tabpanel--topnav"
@@ -174,7 +180,7 @@
                             <div class="phase-info__item__subtitle">
                                 {% html_date event.date 'DATETIME_FORMAT' %}
                             </div>
-                            <P>{{ event.description | safe}}</P>
+                            <p>{{ event.description | safe }}</p>
                         </div>
                     </div>
 
@@ -183,7 +189,7 @@
                         <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                             <ul class="l-tiles-3">
                             {% for module in modules %}
-                                {% include "a4_candy_projects/includes/project_list_tile.html" with object=module  project=module.project orientation='vertical' type='module' url=module.get_absolute_url %}
+                                {% include "a4_candy_projects/includes/project_list_tile.html" with object=module project=module.project orientation='vertical' type='module' url=module.get_absolute_url %}
                             {% endfor %}
                             </ul>
                         </div>
@@ -227,7 +233,7 @@
                                         </div>
                                         <div class="phase-info__item__subtitle">
                                             {% html_date phase.start_date 'DATETIME_FORMAT' %}
-                                            &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
+                                            – {% html_date phase.end_date 'DATETIME_FORMAT' %}
                                         </div>
                                         <div class="phase-info__item__description">
                                             {{ phase.description }}
@@ -258,9 +264,9 @@
                 {% endif %}
                 <!-- these blocks are only filled when in phase view -->
                 <div class="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
-                {% block project_action %}{% endblock %}
+                {% block project_action %}{% endblock project_action %}
                 </div>
-                {% block phase_content %}{% endblock %}
+                {% block phase_content %}{% endblock phase_content %}
             </div>
 
             <div
@@ -306,4 +312,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}
