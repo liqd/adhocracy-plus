@@ -1,72 +1,47 @@
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
+
 <div class="lp-modules lp-section">
     {% include "section_header.html" with header=_("Our Modules") subheader=_("Empowering Your Digital Initiatives") %}
     {% include "modules_dropdown.html" %}
+    
     <!-- Desktop Buttons -->
     <div class="lp-modules__selectors desktop-only">
-        <button class="btn btn--transparent active" data-module="poll"><img src="{% static 'images/poll-transparent.svg' %}" alt="woman">{% trans "Poll" %}</button>
-        <button class="btn btn--transparent" data-module="brainstorming"><img src="{% static 'images/brainstorming-transparent.svg' %}" alt="woman">{% trans "Brainstorming" %}</button>
-        <button class="btn btn--transparent" data-module="spatial"><img src="{% static 'images/spatial-brainstorming-transparent.svg' %}" alt="woman">{% trans "Spatial Brainstorming" %}</button>
+        {% for module in modules %}
+            <button class="btn btn--transparent {% if forloop.first %}active{% endif %}" data-module="{{ module.id }}">
+                <img src="{% static module.icon %}" alt="{{ module.name }}">
+                {% trans module.name %}
+            </button>
+        {% endfor %}
     </div>
     
     <div class="lp-modules__preview">
         <div class="lp-modules__preview-video">
-           {% with lang_suffix=LANGUAGE_CODE %}
-                <video class="active" data-module="poll" muted autoplay loop playsinline>
-                    <source src="{% static 'images/poll_'|add:lang_suffix|add:'.webm' %}" type="video/webm">
+            {% for module in modules %}
+                <video data-module="{{ module.id }}" {% if forloop.first %}class="active"{% endif %} muted autoplay loop playsinline>
+                    <source src="{% static module.video_path|add:LANGUAGE_CODE|add:'.webm' %}" type="video/webm">
                 </video>
-                <video data-module="brainstorming" muted autoplay loop playsinline>
-                    <source src="{% static 'images/brainstorming_'|add:lang_suffix|add:'.webm' %}" type="video/webm">
-                </video>
-                <video data-module="spatial" muted autoplay loop playsinline>
-                    <source src="{% static 'images/spatial_'|add:lang_suffix|add:'.webm' %}" type="video/webm">
-                </video>
-            {% endwith %}
+            {% endfor %}
         </div>
         <div class="lp-modules__preview-details">
-            <div class="module-content active" data-module="poll">
-                <h3>{% trans "Poll" %}</h3>
-                <p>{% trans "Participants can answer open and multiple choice questions and comment on the poll." %}</p>
-                <p>
-                    <ul>
-                        <li>{% trans "Gathering opinions and gauging public sentiment" %}</li>
-                        <li>{% trans "Prioritising topics or measures" %}</li>
-                        <li>{% trans "Evaluating concepts or planning proposals" %}</li>
-                        <li>{% trans "Capturing needs and requirements" %}</li>
-                    </ul>
-                </p>
-                <button class="explore-btn btn btn--transparent">{% trans "Explore All Modules" %}</button>
-            </div>
-            <div class="module-content" data-module="brainstorming">
-                <h3>{% trans "Brainstorming" %}</h3>
-                <p>{% trans "Participants can submit their own ideas and discuss the ideas of others." %}</p>
-                <p>
-                    <ul>
-                        <li>{% trans "Open idea generation and creative participation" %}</li>
-                        <li>{% trans "Developing solutions to specific challenges" %}</li>
-                        <li>{% trans "Collecting project ideas or programme proposals" %}</li>
-                        <li>{% trans "Citizen engagement without a spatial reference" %}</li>
-                    </ul>
-                </p>
-                <button class="explore-btn btn btn--transparent">{% trans "Explore All Modules" %}</button>
-            </div>
-            <div class="module-content" data-module="spatial">
-                <h3>{% trans "Spatial Brainstorming" %}</h3>
-                <p>{% trans "Participants can submit their own ideas and locate them on a map. They can also discuss the ideas of others." %}</p>
-                <p>
-                    <ul>
-                        <li>{% trans "Spatial planning and urban development" %}</li>
-                        <li>{% trans "Reporting issues in public spaces" %}</li>
-                        <li>{% trans "Location-based wishes and improvement suggestions" %}</li>
-                        <li>{% trans "Identifying local resources or infrastructure needs" %}</li>
-                    </ul>
-                </p>
-                <button class="explore-btn btn btn--transparent">{% trans "Explore All Modules" %}</button>
-            </div>
+            {% for module in modules %}
+                <div class="module-content {% if forloop.first %}active{% endif %}" data-module="{{ module.id }}">
+                    <h3>{% trans module.name %}</h3>
+                    <p>{% trans module.description %}</p>
+                    <p>
+                        <ul>
+                            {% for feature in module.features %}
+                                <li>{% trans feature %}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                    <button class="explore-btn btn btn--full btn--transparent">{% trans "Explore All Modules" %}</button>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -1,6 +1,7 @@
 import random
 
 from django.shortcuts import render
+from django.utils.translation import gettext_lazy as _
 
 from apps.cms.contacts.models import FormPage
 from apps.cms.news.models import NewsIndexPage
@@ -34,9 +35,55 @@ def landing_view(request):
     columns = [items[i::4] for i in range(4)]
     directions = ["down", "up", "down", "up"]
 
-    mobile_rows = [
-        columns[0] + columns[1],
-        columns[2] + columns[3]
+    mobile_rows = [columns[0] + columns[1], columns[2] + columns[3]]
+
+    # Module data
+    modules = [
+        {
+            "id": "poll",
+            "name": _("Poll"),
+            "icon": "images/poll-transparent.svg",
+            "video_path": "images/poll_",
+            "description": _(
+                "Participants can answer open and multiple choice questions and comment on the poll."
+            ),
+            "features": [
+                _("Gathering opinions and gauging public sentiment"),
+                _("Prioritising topics or measures"),
+                _("Evaluating concepts or planning proposals"),
+                _("Capturing needs and requirements"),
+            ],
+        },
+        {
+            "id": "brainstorming",
+            "name": _("Brainstorming"),
+            "icon": "images/brainstorming-transparent.svg",
+            "video_path": "images/brainstorming_",
+            "description": _(
+                "Participants can submit their own ideas and discuss the ideas of others."
+            ),
+            "features": [
+                _("Open idea generation and creative participation"),
+                _("Developing solutions to specific challenges"),
+                _("Collecting project ideas or programme proposals"),
+                _("Citizen engagement without a spatial reference"),
+            ],
+        },
+        {
+            "id": "spatial",
+            "name": _("Spatial Brainstorming"),
+            "icon": "images/spatial-brainstorming-transparent.svg",
+            "video_path": "images/spatial_",
+            "description": _(
+                "Participants can submit their own ideas and locate them on a map. They can also discuss the ideas of others."
+            ),
+            "features": [
+                _("Spatial planning and urban development"),
+                _("Reporting issues in public spaces"),
+                _("Location-based wishes and improvement suggestions"),
+                _("Identifying local resources or infrastructure needs"),
+            ],
+        },
     ]
 
     return render(
@@ -48,5 +95,6 @@ def landing_view(request):
             "contact_form_page": form_page,
             "news": news_block,
             "faq_page": faq_page,
+            "modules": modules,
         },
     )
