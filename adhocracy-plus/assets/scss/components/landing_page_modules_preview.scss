@@ -191,6 +191,16 @@ $hover-bg: #f5f5f5;
 
 // Mobile styles
 @media (max-width: $breakpoint-md) {
+    .btn--register-workshop {
+        width: 90%;
+        margin: 0 auto;
+    }
+    // on mobile, community map above modules pulls margin up,
+    // therefore extra margin-top needed here
+    .lp-modules {
+        margin-top: 4rem;
+    }
+
     .lp-modules__dropdown {
         display: none;
     }
@@ -219,12 +229,17 @@ $hover-bg: #f5f5f5;
         padding-right: 0;
     }
 
-    .module-content {
+    .module-content ul {
+        text-align: left;
+    }
+
+    .module-content p {
         text-align: center;
     }
 
     .module-content h3 {
         font-size: 2rem;
+        text-align: center;
     }
 
     .explore-btn {

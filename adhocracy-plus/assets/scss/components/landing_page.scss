@@ -107,11 +107,15 @@ $faq-bg: #f5f5f5;
             order: 2;
             max-width: 95%;
             margin: 0 auto;
+            > p {
+                padding-top: 0.25rem;
+                text-align: left;
+            }
         }
 
         &-buttons {
             display: grid;
-            gap: 0.25em;
+            gap: .75em;
 
             > button {
                 min-width: 100%;
@@ -305,6 +309,7 @@ $faq-bg: #f5f5f5;
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
         gap: 2em;
+        margin: 1rem;
     }
 
     .lp-text-blocks {
