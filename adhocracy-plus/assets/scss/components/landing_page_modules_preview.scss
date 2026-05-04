@@ -80,7 +80,7 @@ $hover-bg: #f5f5f5;
 
 .lp-modules__selectors button img {
     display: inline;
-    width: 20px;
+    width: 25px;
     margin-right: 0.3rem;
 }
 
@@ -88,6 +88,10 @@ $hover-bg: #f5f5f5;
     background-color: $lp-blue !important;
     color: $white !important;
     border-color: $lp-blue !important;
+
+    img {
+        filter: brightness(0) invert(1);
+    }
 }
 
 .module-content {
