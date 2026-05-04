@@ -191,6 +191,7 @@ $faq-bg: #f5f5f5;
     text-decoration: none;
     aspect-ratio: 1/1;
     width:100%;
+    max-height: 500px;
 
     &__bg_image {
         position: absolute;
@@ -256,52 +257,46 @@ $faq-bg: #f5f5f5;
     grid-template-rows: 1fr 1fr;
     gap: 2em;
     height: 100%;
+    max-height: 500px;
 }
 
 .lp-text-block {
     text-decoration: none;
     background-color: $primary-blue;
     color: $white;
-    padding: 0 1rem 0 2rem;
+    padding: 1.5rem 1rem 0 1.5rem;
     height: 100%;
     box-sizing: border-box;
     min-height: 0;
     display: flex;
     flex-direction: column;
 
-    > a {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-        color: $white;
-        text-decoration: none;
-        margin-top: none;
-    }
-
-    > i {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
+    &__top-row {
+        display: flex;
+        justify-content: space-between;
     }
 
     &__icon {
         height: 3rem;
-        align-self: flex-start;
+        width: auto;
+        order: 1;
     }
 
     &__arrow {
-        align-self: flex-end;
         font-size: 1.5rem !important;
-        margin-top: 1.5rem;
-        margin-bottom: 0 !important;
+        color: $white;
+        order: 2;
+        margin-left: auto;
     }
 
     &__bottom {
-        margin-top: 1em;
-        margin-bottom: 0.25rem;
+        margin-top: auto;
+        padding-top: 1rem;
     }
 
     &__bottom-header {
         font-size: 1.5rem;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.5rem;
     }
 }
 
