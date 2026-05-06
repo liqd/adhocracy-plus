@@ -1,18 +1,17 @@
 {% extends "base.html" %}
-{% load i18n %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static platform_breadcrumbs_tags %}
 
-{% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{{ project.name }} — {{ block.super }}{% endblock title %}
 
 {% block social_meta_image %}
 {% if project.image %}
-<meta name="twitter:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
-<meta name="linkedin:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
-<meta property="og:image" content="{{ project.image |thumbnail_url:'heroimage'}}">
+<meta name="twitter:image" content="{{ project.image | thumbnail_url:'heroimage' }}">
+<meta name="linkedin:image" content="{{ project.image | thumbnail_url:'heroimage' }}">
+<meta property="og:image" content="{{ project.image | thumbnail_url:'heroimage' }}">
 <meta property="og:image:width" content="1500">
 <meta property="og:image:height" content="500">
 {% endif %}
-{% endblock %}
+{% endblock social_meta_image %}
 
 {% block social_meta_description %}
 {% if module.name %}
@@ -20,18 +19,18 @@
 <meta name="linkedin:description" content="{{ module.name }}">
 <meta property="og:description" content="{{ module.name }}">
 {% endif %}
-{% endblock %}
+{% endblock social_meta_description %}
 
 <!-- ensure cookie overlay for embedded videos -->
 {% block extra_css %}
   {{ block.super }}
     <link rel="stylesheet" href="{% static 'dsgvo_video_embed.css' %}" />
-{% endblock %}
+{% endblock extra_css %}
 
 {% block extra_js %}
   {{ block.super }}
     <script type="text/javascript" src="{% static 'dsgvo_video_embed.js' %}"></script>
-{% endblock %}
+{% endblock extra_js %}
 
 {% block extra_messages %}
     {{ block.super }}
@@ -44,7 +43,7 @@
         </div>
     </div>
     {% endif %}
-{% endblock %}
+{% endblock extra_messages %}
 
 {% block content %}
 <div class="u-bg-light py-5">
@@ -69,9 +68,14 @@
             {% endif %}
             {% include 'header_lower.html' with organisation=project.organisation %}
         </div>
+        <div class="row mt-4 pt-5">
+            <div class="col-md-8 offset-md-2 mb-3">
+                {% platform_breadcrumbs module=module current='module' %}
+            </div>
+        </div>
         {% block module_nav %}
-            {% if module.is_in_module_cluster  %}
-                <div class="my-5 pt-3 pt-sm-0 me-md-3 d-flex justify-content-center justify-content-sm-end">
+            {% if module.is_in_module_cluster %}
+                <div class="mt-2 mb-5 me-md-3 d-flex justify-content-center justify-content-sm-end">
                 {% if module.previous_module_in_cluster %}
                     <a class="btn btn--light text-muted" href="{{ module.previous_module_in_cluster.get_absolute_url }}">
                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -86,21 +90,7 @@
                 {% endif %}
                 </div>
             {% endif %}
-        {% endblock %}
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% translate 'breadcrumbs' %}">
-                    <ul>
-                        <li>
-                            <a href="{{ project.get_absolute_url }}?initialSlide={{ initial_slide }}#timeline-carousel">
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                {{ project.name }}
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        {% endblock module_nav %}
         {% include "a4modules/includes/module_description.html" %}
         {% block phase_info %}
             {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
@@ -139,7 +129,7 @@
                                 </div>
                                 <div class="phase-info__item__subtitle">
                                     {% html_date phase.start_date 'DATETIME_FORMAT' %}
-                                    &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
+                                    – {% html_date phase.end_date 'DATETIME_FORMAT' %}
                                 </div>
                                 <div class="phase-info__item__description">
                                     {{ phase.description }}
@@ -151,7 +141,7 @@
                 </div>
                 {% endwith %}
             {% endif %}
-        {% endblock %}
+        {% endblock phase_info %}
 
         {% if project.is_private %}
         <div class="row">
@@ -170,16 +160,16 @@
         <div>
             <div class="row">
                 <div class="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
-                {% block project_action %}{% endblock %}
+                {% block project_action %}{% endblock project_action %}
                 </div>
             </div>
         </div>
-        {% block phase_content %}{% endblock %}
+        {% block phase_content %}{% endblock phase_content %}
         {% block other_modules %}
             {% if module.is_in_module_cluster %}
                 <div class="row">
                     <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                        <h3 class="tile__list-header">{%  translate 'More questions from this online participation' %}</h3>
+                        <h3 class="tile__list-header">{% translate 'More questions from this online participation' %}</h3>
                         <ul class="l-tiles-3">
                             {% for other_module in module.module_cluster %}
                                 {% if not other_module == module %}
@@ -190,9 +180,9 @@
                     </div>
                 </div>
             {% endif %}
-        {% endblock %}
+        {% endblock other_modules %}
         {% include 'footer_upper.html' with organisation=project.organisation %}
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{% load humanize i18n rules thumbnail a4_candy_project_tags %}
+{% load humanize i18n rules thumbnail a4_candy_project_tags platform_breadcrumbs_tags %}
 
-{% block title %}{{organisation.name}}{% endblock %}
+{% block title %}{{ organisation.name }}{% endblock title %}
 
 {% block social_meta_image %}
 {% if organisation.image %}
@@ -11,7 +11,7 @@
 <meta property="og:image:width" content="1500">
 <meta property="og:image:height" content="610">
 {% endif %}
-{% endblock %}
+{% endblock social_meta_image %}
 
 {% block social_meta_description %}
 {% if organisation.description %}
@@ -19,7 +19,7 @@
 <meta name="linkedin:description" content="{{ organisation.description }}">
 <meta property="og:description" content="{{ organisation.description }}">
 {% endif %}
-{% endblock %}
+{% endblock social_meta_description %}
 
 {% block super_content %}
 <div class="u-bg-light py-5">
@@ -30,6 +30,12 @@
                 <div class="header__copyright copyright">© {{ organisation.image_copyright }}</div>
                 {% endif %}
                 {% include 'header_lower.html' with organisation=organisation %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 pt-3 mb-4">
+                    {% platform_breadcrumbs organisation=organisation current='organisation' %}
+                </div>
             </div>
 
             <div class="organisation-page__header">
@@ -60,7 +66,7 @@
                     {% if object.projects.count == 1 %}
                         {% with object.projects.0 as project %}
                         {% has_perm 'a4projects.view_project' request.user project as can_view_project %}
-                        {% if can_view_project  %}
+                        {% if can_view_project %}
                             {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='horizontal' type='project' url=project|project_url %}
                         {% endif %}
                         {% endwith %}
@@ -68,7 +74,7 @@
                         <ul class="l-tiles-2">
                             {% if active_projects %}
                             {% for project in active_projects %}
-                                {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project  project=project orientation='vertical' type='project' url=project|project_url %}
+                                {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project|project_url %}
                             {% endfor %}
                             {% endif %}
 
@@ -105,4 +111,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock super_content %}

@@ -1,0 +1,24 @@
+{% load i18n %}
+{% if crumbs %}
+<nav class="platform-breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
+    <div class="platform-breadcrumbs__inner">
+        {% for crumb in crumbs %}
+            {% if not forloop.first %}
+            <span class="platform-breadcrumbs__sep" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
+            {% endif %}
+            {% if crumb.url %}
+            <a href="{{ crumb.url }}" class="platform-breadcrumbs__segment platform-breadcrumbs__link" title="{{ crumb.full_name }}" aria-label="{{ crumb.full_name }}">
+                <span class="platform-breadcrumbs__name">{{ crumb.name|truncatechars:35 }}</span>
+            </a>
+            {% else %}
+            <span class="platform-breadcrumbs__segment platform-breadcrumbs__current" aria-current="page" title="{{ crumb.full_name }}">
+                <span class="platform-breadcrumbs__name">{{ crumb.name|truncatechars:35 }}</span>
+            </span>
+            {% endif %}
+        {% endfor %}
+        {% if show_trailing_separator %}
+        <span class="platform-breadcrumbs__sep platform-breadcrumbs__sep--after-current" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
+        {% endif %}
+    </div>
+</nav>
+{% endif %}
