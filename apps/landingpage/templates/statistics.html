@@ -15,12 +15,12 @@
             <div class="lp-statistics__stats-scroller-column" data-direction="{{ direction }}">
                 {% for stat in column_items %}
                     {% if stat.item_type == 'text' %}
-                        <div class="lp-statistics__stat">
+                        <div class="lp-statistics__stat" data-stat-type="{{ stat.item_type }}">
                             <p class="lp-statistics__stat-number">{{ stat.header }}</p>
                             <p>{{ stat.subheader }}</p>
                         </div>
                     {% elif stat.item_type == 'testimonial' %}
-                        <div class="lp-statistics__quote">
+                        <div class="lp-statistics__quote" data-stat-type="{{ stat.item_type }}">
                             <p>“{{ stat.quote }}”</p>
                             {% if stat.person_image %}
                                 <img src="{{ stat.person_image.url }}" alt="{{ stat.person_name }}" />
@@ -81,17 +81,47 @@
             if (rows[1]) rows[1].scrollLeft = 350;
         }
         const colors = [
-            '#E8F4FD', '#F0F8FF', '#F5F5DC', '#F0FFF0', '#FFF0F5',
-            '#F5F5F5', '#E6E6FA', '#FFE4E1', '#F0F8FF', '#FAFAD2',
+            '#1A64CB', '#1ABCCB', '#FF1E38', '#FFBB3E',
+            '#06DCB7', 'white',
         ];
-        
+
         const stats = document.querySelectorAll('.lp-statistics__stat');
         const quotes = document.querySelectorAll('.lp-statistics__quote');
         const elements = [...stats, ...quotes];
-        
-        elements.forEach(element => {
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            element.style.backgroundColor = randomColor;
+
+        // Fisher-Yates shuffle algorithm
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Create a randomized color list, repeated if needed to cover all elements
+        function getColorList(elementCount, colorArray) {
+            const colorList = [];
+            while (colorList.length < elementCount) {
+                // Shuffle a fresh copy of the colors
+                const shuffled = shuffleArray([...colorArray]);
+                colorList.push(...shuffled);
+            }
+            return colorList.slice(0, elementCount);
+        }
+
+        const colorOrder = getColorList(elements.length, colors);
+
+        // Apply colors in order
+        elements.forEach((element, index) => {
+            const color = colorOrder[index];
+            element.style.backgroundColor = color;
+            
+            if (color === 'white') {
+                element.style.color = '#1A64CB';
+            } else {
+                const statType = element.getAttribute('data-stat-type');
+                element.style.color = statType == 'text'  || statType == 'testimonial' ? 'white': 'default';
+            }
         });
 
         const scroller = document.getElementById('statsScroller');
