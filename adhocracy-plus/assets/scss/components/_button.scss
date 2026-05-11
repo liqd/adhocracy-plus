@@ -363,6 +363,18 @@
     }
 }
 
+.btn--gradient-border {
+    border: 2px solid transparent;
+    border-image: linear-gradient(87.8deg, #1DD1E2 -55.03%, #2E1DE2 236.57%);
+    border-image-slice: 1;
+    cursor: pointer;
+
+    a {
+        text-decoration: none;
+        color: $white;
+    }
+}
+
 .btn--text-black {
     color: $print-black !important;
 }
