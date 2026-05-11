@@ -1,0 +1,13 @@
+{% load i18n %}
+<div class="lp-section lp-newsletter">
+    <div>
+        <h4>{% trans 'Your Digital Democracy Update' %}</h4>
+        <p>{% trans "Curious about civic participation and digitalization? Subscribe to the Liquid Democracy newsletter for monthly insights into the world of digital democracy." %}</p>
+    </div>
+    <div>
+        <button class="btn btn--gradient-border btn--wide">
+            {% get_current_language as LANGUAGE_CODE %}
+            <a href="https://liqd.net/{{ LANGUAGE_CODE }}/newsletter/">{% trans 'Subscribe to the newsletter' %}</a> <!-- noqa: D018 -->
+        </button>
+    </div>
+</div>
