@@ -7,6 +7,8 @@
     position: relative;
     padding: ($padding / 2) (3 * $padding) ($padding / 2) $padding;
     color: inherit;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
 
     &.collapsed {
         border-bottom: none;
@@ -19,11 +21,12 @@
         position: absolute;
         top: 1.25 * $padding;
         right: $padding;
-        transition: transform 0.3s;
+        transition: transform 0.3s ease;
     }
 
     &[aria-expanded="true"] {
         background-color: $white;
+        transition: background-color 0.5s ease; 
     }
 
     &[aria-expanded="true"] i {
@@ -34,6 +37,19 @@
 .accordion__body {
     padding: $padding;
     background-color: $white;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.show {
+        max-height: 1000px;
+        padding: $padding;
+    }
+
+    &:not(.show) {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 
     li {
         margin-bottom: 0.2em;
@@ -46,5 +62,3 @@
         margin-right: 0.3em;
     }
 }
-
-
