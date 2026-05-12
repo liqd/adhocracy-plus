@@ -16,7 +16,7 @@
         {% include "faq.html" with faq_page=faq_page %}
     {% endif %}
     <div class="lp-section" id="form_page">
-        {% include 'a4_candy_cms_contacts/includes/form.html' with page=contact_form_page form=contact_form_page.form %}
+        {% include 'a4_candy_cms_contacts/includes/form.html' with page=contact_form_page form=contact_form_page.get_form %}
     </div>
     {% include "newsletter.html" %}
     </div>
