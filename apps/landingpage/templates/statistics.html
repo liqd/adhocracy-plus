@@ -22,13 +22,17 @@
                     {% elif stat.item_type == 'testimonial' %}
                         <div class="lp-statistics__quote" data-stat-type="{{ stat.item_type }}">
                             <p>“{{ stat.quote }}”</p>
-                            {% if stat.person_image %}
-                                <img src="{{ stat.person_image.url }}" alt="{{ stat.person_name }}" />
-                            {% else %}
-                                <img src="{% static 'images/avatar_00.png' %}" alt="{{ stat.person_name }}" />
-                            {% endif %}
-                            <p class="lp-statistics__quote-author__name">{{ stat.person_name }}</p>
-                            <p class="lp-statistics__quote-author__job">{{ stat.person_description }}</p>
+                            <div class="lp-statistics__quote-author">
+                                {% if stat.person_image %}
+                                    <img src="{{ stat.person_image.url }}" alt="{{ stat.person_name }}" />
+                                {% else %}
+                                    <img src="{% static 'images/avatar_00.png' %}" alt="{{ stat.person_name }}" />
+                                {% endif %}
+                                <span>
+                                    <p class="lp-statistics__quote-author__name">{{ stat.person_name }}</p>
+                                    <p class="lp-statistics__quote-author__job">{{ stat.person_description }}</p>
+                                </span>
+                            </div>
                         </div>
                     {% elif stat.item_type == 'image' %}
                         <div class="lp-statistics__image">
