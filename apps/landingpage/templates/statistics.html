@@ -75,11 +75,11 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-
         if (window.innerWidth <= 768) {
             const rows = document.querySelectorAll('.lp-statistics__row');
             if (rows[1]) rows[1].scrollLeft = 350;
         }
+        
         const colors = [
             '#1A64CB', '#1ABCCB', '#FF1E38', '#FFBB3E',
             '#06DCB7', 'white',
@@ -102,7 +102,6 @@
         function getColorList(elementCount, colorArray) {
             const colorList = [];
             while (colorList.length < elementCount) {
-                // Shuffle a fresh copy of the colors
                 const shuffled = shuffleArray([...colorArray]);
                 colorList.push(...shuffled);
             }
@@ -120,7 +119,7 @@
                 element.style.color = '#1A64CB';
             } else {
                 const statType = element.getAttribute('data-stat-type');
-                element.style.color = statType == 'text'  || statType == 'testimonial' ? 'white': 'default';
+                element.style.color = statType == 'text' || statType == 'testimonial' ? 'white' : 'default';
             }
         });
 
@@ -138,10 +137,6 @@
 
         let isUserScrolling = false;
         let lastScrollY = window.scrollY;
-        
-        function easeOutQuad(t) {
-            return t * (2 - t);
-        }
         
         const bounds = {
             down: { min: -400, max: 0 },
@@ -213,20 +208,10 @@
             lastScrollY = scrollY;
         });
         
-        scroller.addEventListener('wheel', function(e) {
-            if (scroller.classList.contains('active')) {
-                return;
-            } else {
-                e.preventDefault();
-            }
-        }, { passive: false });
-        
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' && document.activeElement === scroller) {
                 scroller.click();
             }
         });
-
-        
     });
 </script>
