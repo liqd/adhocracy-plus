@@ -29,7 +29,7 @@ def landing_view(request):
         news_block = None
 
     # FAQ page
-    faq_page = SimplePage.objects.live().filter(slug="initiatorguide").first()
+    faq_page = SimplePage.objects.live().filter(slug="lpfaq").first()
 
     # Split statistics
     columns = [items[i::4] for i in range(4)]
