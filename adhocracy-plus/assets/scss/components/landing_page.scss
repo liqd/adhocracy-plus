@@ -3,6 +3,7 @@ $white: white;
 $black: black;
 $breakpoint-md: 768px;
 $faq-bg: #f5f5f5;
+$text-color: #1A1A1A;
 
 .lp-section {
     margin-top: 3rem;
@@ -97,7 +98,6 @@ $faq-bg: #f5f5f5;
         display: flex;
         flex-direction: column;
         padding: 20px 0;
-        text-align: center;
 
         &-img {
             order: 1;
@@ -110,9 +110,13 @@ $faq-bg: #f5f5f5;
             max-width: 95%;
             margin: 0 auto;
 
+            > h1 {
+                font-size: 1.75rem;
+            }
+
             > p {
                 padding-top: 0.25rem;
-                text-align: left;
+                text-align: center;
             }
         }
 
@@ -164,158 +168,6 @@ $faq-bg: #f5f5f5;
     }
 }
 
-.lp-blocks-header {
-    padding-top: 2rem;
-    text-align: center;
-
-    &__header {
-        color: $primary-blue;
-        text-transform: uppercase;
-        margin-bottom: 0;
-    }
-
-    &__subheader {
-        margin-top: 0;
-        font-weight: normal;
-    }
-}
-
-.lp-blocks {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2em;
-    margin: 0 3em;
-    align-items: center;
-}
-
-.lp-block {
-    position: relative;
-    overflow: hidden;
-    color: $white;
-    padding: 2rem;
-    font-size: 1.25rem;
-    display: block;
-    text-decoration: none;
-    aspect-ratio: 1/1;
-    width:100%;
-    max-height: 500px;
-
-    &__bg_image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 1;
-    }
-
-    &:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 2;
-    }
-
-    h4,
-    p,
-    i,
-    a {
-        position: relative;
-        z-index: 3;
-    }
-
-    > i {
-        position: absolute;
-        bottom: 2rem;
-        left: 2rem;
-        z-index: 3;
-        font-size: 3rem;
-    }
-
-    &__icon {
-        position: absolute;
-        bottom: 2rem;
-        left: 2rem;
-        z-index: 3;
-        height: 3rem;
-    }
-
-    span {
-        position: absolute;
-        bottom: 2rem;
-        right: 2rem;
-        z-index: 3;
-        color: $white;
-        text-decoration: none;
-    }
-
-    h4 {
-        margin-top: 0;
-    }
-}
-
-.lp-text-blocks {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    gap: 2em;
-    height: 100%;
-    max-height: 500px;
-}
-
-.lp-text-block {
-    text-decoration: none;
-    background-color: $primary-blue;
-    color: $white;
-    padding: 1.5rem 1rem 0 1.5rem;
-    height: 100%;
-    box-sizing: border-box;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-
-    &__top-row {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    &__icon {
-        height: 3rem;
-        width: auto;
-        order: 1;
-    }
-
-    &__arrow {
-        font-size: 1.5rem !important;
-        color: $white;
-        order: 2;
-        margin-left: auto;
-    }
-
-    &__bottom {
-        margin-top: auto;
-        padding-top: 1rem;
-    }
-}
-
-@media (max-width: $breakpoint-md) {
-    .lp-blocks {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        gap: 2em;
-        margin: 1rem;
-    }
-
-    .lp-text-blocks {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-    }
-}
-
 .lp-section-header {
     text-align: center;
     padding-top: 1rem;
@@ -341,7 +193,7 @@ $faq-bg: #f5f5f5;
         max-height: 600px;
         display: block;
         margin: 0 auto;
-        padding-left: 2rem;
+        padding-left: 8rem;
     }
     
     // Gradient above the image
@@ -372,7 +224,7 @@ $faq-bg: #f5f5f5;
     
     .lp-organisations-info-overlay {
         position: absolute;
-        bottom: 20px;
+        bottom: 15px;
         left: 50%;
         transform: translateX(-50%);
         background-color: $white;
@@ -391,6 +243,10 @@ $faq-bg: #f5f5f5;
 }
 
 @media (max-width: $breakpoint-md) {
+    .lp-organisations-map > img {
+        padding-left: 1rem
+    }
+
     .lp-organisations-info-overlay {
         padding: 4px 8px !important;
         bottom: -30px !important;
@@ -403,13 +259,17 @@ $faq-bg: #f5f5f5;
 }
 
 .lp-newsletter {
-    background-color: $black;
+    background-color: $text-color;
     color: $white;
     text-align: left;
-    padding: 1rem 5%;
+    padding: .5rem 5%;
     display: grid;
     grid-template-columns: 80% 20%;
     align-items: center;
+
+    > div > h5 {
+        margin-bottom: 0.5rem;
+    } 
 
     // Mobile styles
     @media (max-width: $breakpoint-md) {

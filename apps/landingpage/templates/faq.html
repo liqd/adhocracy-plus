@@ -5,7 +5,7 @@
         
         {% for block in faq_page.body_streamfield %}
             {% if block.block_type == 'faq' %}
-                {% include_block block with show_title=False %}  <!-- Hide inner title -->
+                {% include_block block with hide_title=True %}  <!-- Hide inner title -->
             {% endif %}
         {% endfor %}
     </div>
