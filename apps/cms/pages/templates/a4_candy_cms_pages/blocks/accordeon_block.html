@@ -17,6 +17,8 @@
         id="accordion--body{% if id %}--{{ id }}{% endif %}"
         aria-labelledby="accordion--title"
     >
-        {{ value.content }}
+        <div class="accordion__body-content">
+            {{ value.content }}
+        </div>
     </div>
 </div>
