@@ -7,9 +7,12 @@
     position: relative;
     padding: ($padding / 2) (3 * $padding) ($padding / 2) $padding;
     color: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.2s ease 0.1s;
 
-    &.collapsed {
-        border-bottom: none;
+    h3 {
+        margin: 0;
     }
 
     i {
@@ -17,34 +20,30 @@
         font-weight: 900;
         font-size: 1.7rem;
         position: absolute;
-        top: 1.25 * $padding;
+        top: 50%;
         right: $padding;
-        transition: transform 0.3s;
+        transform: translateY(-50%);
+        transition: transform 0.25s ease;
     }
 
     &[aria-expanded="true"] {
         background-color: $white;
-    }
-
-    &[aria-expanded="true"] i {
-        transform: rotate(45deg);
+        transition: background-color 0.2s ease;
+        
+        i {
+            transform: translateY(-50%) rotate(45deg);
+        }
     }
 }
 
 .accordion__body {
-    padding: $padding;
     background-color: $white;
-
-    li {
-        margin-bottom: 0.2em;
-    }
-
-    a[href^="/documents"]:before {
-        content: "\f016"; // file-o
-        font-family: "Font Awesome 7 Free", sans-serif;
-        font-weight: 900;
-        margin-right: 0.3em;
+    
+    &.collapsing {
+        transition: height 0.3s cubic-bezier(0.33, 1, 0.68, 1);
     }
 }
 
-
+.accordion__body-content {
+    padding: $padding;
+}
