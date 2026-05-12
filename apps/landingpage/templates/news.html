@@ -10,7 +10,7 @@
                             <a class="cms__tile-link" href="{% pageurl post %}">
                                 {% if post.image %}
                                     {% image post.image fill-400x300 as img %}
-                                    <img class="cms-page__hero-" src="{{ img.url }}" alt="{{ post.title }}">
+                                    <img class="cms-page__hero-image" src="{{ img.url }}" alt="{{ post.title }}">
                                 {% endif %}
                                 <div class="cms__text">
                                     {{ post.first_published_at|date }}
