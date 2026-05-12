@@ -1,0 +1,148 @@
+.lp-blocks-header {
+    padding-top: 2rem;
+    text-align: center;
+
+    &__header {
+        color: $primary-blue;
+        text-transform: uppercase;
+        margin-bottom: 0;
+    }
+
+    &__subheader {
+        margin-top: 0;
+        font-weight: normal;
+    }
+}
+
+.lp-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+    margin: 0 3em;
+    align-items: stretch;
+}
+
+.lp-block {
+    position: relative;
+    overflow: hidden;
+    color: $white;
+    padding: 2rem;
+    font-size: 1.25rem;
+    display: block;
+    text-decoration: none;
+    width:100%;
+
+    &__bg_image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+    }
+
+    h4,
+    p,
+    i,
+    a {
+        position: relative;
+        z-index: 3;
+    }
+
+    > i {
+        position: absolute;
+        bottom: 2rem;
+        left: 2rem;
+        z-index: 3;
+        font-size: 3rem;
+    }
+
+    &__icon {
+        position: absolute;
+        bottom: 2rem;
+        left: 2rem;
+        z-index: 3;
+        height: 3rem;
+    }
+
+    span {
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 3;
+        color: $white;
+        text-decoration: none;
+    }
+
+    h4 {
+        margin-top: 0;
+    }
+}
+
+.lp-text-blocks {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 2em;
+    height: 100%;
+}
+
+.lp-text-block {
+    text-decoration: none;
+    background-color: $primary-blue;
+    color: $white;
+    padding: 1.5rem 1rem 0 1.5rem;
+    height: 100%;
+    box-sizing: border-box;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+
+    &__top-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__icon {
+        height: 3rem;
+        width: auto;
+        order: 1;
+    }
+
+    &__arrow {
+        font-size: 1.5rem !important;
+        color: $white;
+        order: 2;
+        margin-left: auto;
+    }
+
+    &__bottom {
+        margin-top: auto;
+        padding-top: 1rem;
+    }
+}
+
+@media (max-width: $breakpoint-md) {
+    .lp-blocks {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 2em;
+        margin: 1rem;
+    }
+
+    .lp-text-blocks {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+}
