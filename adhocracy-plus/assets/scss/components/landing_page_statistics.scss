@@ -107,9 +107,15 @@ $lp-blue: blue;
 
 .lp-statistics__quote-author{
     display: flex;
-
+    align-items: center;
     > img {
         margin-right: 1rem;
+    }
+
+    > span {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     &__name {
@@ -119,6 +125,7 @@ $lp-blue: blue;
 
     &__job {
         font-size: 0.8rem;
+        margin-bottom: 0;
     }
 }
 
