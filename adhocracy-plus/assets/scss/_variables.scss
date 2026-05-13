@@ -1,9 +1,10 @@
 // subset of bootstrap variables
-$brand-primary: #2d40cc; // ultramarine
+$brand-primary: #1A64CB !default;
+$brand-primary-dark: #281ACB !default;
 
-$brand-secondary: #90efe4 !default; // terquoise
+$brand-secondary: #1ABCCB !default;
 
-$brand-tertiary: #008dc5 !default; // prussian blue
+$brand-tertiary: #1E88E5 !default;
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
 $brand-success: #a3ef90 !default;
@@ -27,6 +28,10 @@ $overlay: rgba(#000, 0.5) !default;
 
 $gray: #434343 !default;
 $gray-lightest: #d8d8d8;
+$grey-100: #E5E5E5;
+$grey-300: #878B8C;
+$grey-500: #646767;
+$grey-700: #434545;
 
 $light:         $gray-lightest !default;
 $dark:          $gray !default;
@@ -37,29 +42,41 @@ $blue-light: #d6eff9;
 $purple-light: #ecdbff;
 $green-light: #e0fbe2;
 
+$white: #FFFFFF;
+$text-colour: #1A1A1A;
 $print-black: #000 !default;
 $print-link: #005cb4 !default;
 
-$brand-primary-tint: lighten($brand-primary, 47%) !default;
-$brand-secondary-tint: lighten($brand-secondary, 20%) !default;
-$brand-tertiary-tint: lighten($brand-tertiary, 55%) !default;
+// $brand-primary-light: lighten($brand-primary, 20%);
+$brand-primary-tint: lighten($brand-primary, 20%) !default;
+// $brand-secondary-light: lighten($brand-secondary, 30%);
+$brand-secondary-tint: lighten($brand-secondary, 30%) !default;
+// $brand-tertiary-light: lighten($brand-tertiary, 30%);
+$brand-tertiary-tint: lighten($brand-tertiary, 30%) !default;
 
 $bg-light: #f7f7f7;
-$bg-tertiary: $brand-tertiary-tint !default;
+// $background-tertiary: #DFF6FF;
+$bg-tertiary: #DFF6FF !default;
+$bg-gradient: linear-gradient(90deg, #281ACB 0%, #1ABCCB 94.67%);
 
 $demi-bold: 600;
 $headings-font-weight: $demi-bold !default;
 
+// $link-primary: #1A64CB;
 $link-color: $text-color !default;
-$link-hover-color: darken($link-color, 15%) !default;
+// $link-highlight: #281ACB;
+$link-hover-color: #281ACB !default;
 
 $border-radius: 0 !default;
 $border-color: $gray-lightest !default;
 $input-border-color: $border-color !default;
 
-$feedback-color-accepted: #0a820a !default;
-$feedback-color-rejected: #dc3818 !default;
-$feedback-color-consideration: #ffae00 !default;
+// $feedback-accepted: #06DCB7;
+$feedback-color-accepted: #06DCB7 !default;
+// $alert-dangerous: #FF1E38;
+$feedback-color-rejected: #FF1E38 !default;
+// $alert-warm: #FFBB3E;
+$feedback-color-consideration: #FFBB3E !default;
 
 $font-family-base: "SourceSansPro", sans-serif !default;
 $font-family-serif: "SourceSerifPro", serif !default;
