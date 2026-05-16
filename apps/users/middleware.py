@@ -9,7 +9,7 @@ class SetUserLanguageCookieMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         cookie = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME)
-        if hasattr(request.user, "language"):
+        if hasattr(request, "user") and hasattr(request.user, "language"):
             translation.activate(request.user.language)
             if cookie != request.user.language:
                 response.set_cookie(
