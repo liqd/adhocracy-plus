@@ -5,10 +5,13 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## v2605.1
 
 ### Added
 
+- apps/landingpage: Hero, USP blocks, organisations map, and module previews with animated poll, brainstorming, and spatial brainstorming demos
+- apps/landingpage: Optional news, FAQ, and contact form sections integrated from Wagtail CMS, plus newsletter signup
+- apps/landingpage: Admin-managed statistics and testimonials (multilingual); page loads when optional CMS content is missing
 - Improvements to pagination
 - Footer: New Footer Module
 - Hierarchical platform breadcrumbs 

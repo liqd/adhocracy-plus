@@ -7,6 +7,7 @@ from django.urls import include
 from django.urls import path
 from django.urls import re_path
 from django.views.defaults import server_error
+from django.views.generic import RedirectView
 from django.views.generic import TemplateView
 from django.views.i18n import JavaScriptCatalog
 from django_ckeditor_5 import views as ckeditor5_views
@@ -122,7 +123,10 @@ urlpatterns = [
     ),
     path("components/", contrib_views.ComponentLibraryView.as_view()),
     path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
-    path("landingpage/", include("apps.landingpage.urls")),
+    path(
+        "landingpage/",
+        RedirectView.as_view(pattern_name="landing_page", permanent=True),
+    ),
     re_path(
         r"^(?P<organisation_slug>[-\w_]+)/",
         include(
@@ -222,6 +226,7 @@ if settings.DEBUG:
 
 # generic patterns at the very end
 urlpatterns += [
+    path("", include("apps.landingpage.urls")),
     path("", include("apps.organisations.urls")),
     path("", include("wagtail.urls")),
 ]
