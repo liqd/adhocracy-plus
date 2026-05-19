@@ -5,7 +5,7 @@
             {% include "section_header.html" with header=_("Stories & Strategies") subheader=_("News and Success Insights") %}
             <div class="row justify-content-start">
                 {% for post in value.latest_news %}
-                    {% if post.live %}
+                    {% if post and post.live %}
                         <div class="col-12 col-md-4 cms-news__tile">
                             <a class="cms__tile-link" href="{% pageurl post %}">
                                 {% if post.image %}

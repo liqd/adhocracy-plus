@@ -15,20 +15,19 @@ def landing_view(request):
     items = list(StatisticsItem.objects.all().order_by("order"))
     random.shuffle(items)
 
-    # Contact form (safe)
-    form_page = FormPage.objects.filter(slug="contact").first()
+    contact_form_page = None
+    contact_form = None
+    form_page = FormPage.objects.live().filter(slug="contact").first()
     if form_page:
-        form_page = form_page.specific
+        contact_form_page = form_page.specific
+        contact_form = contact_form_page.get_form()
 
-    # News articles
+    news_block = None
     news_index = NewsIndexPage.objects.live().first()
     if news_index:
-        latest_news = news_index.news[:3]
+        latest_news = list(news_index.news[:3])
         news_block = {"news_page": news_index, "latest_news": latest_news}
-    else:
-        news_block = None
 
-    # FAQ page
     faq_page = SimplePage.objects.live().filter(slug="lpfaq").first()
 
     # Split statistics
@@ -92,7 +91,8 @@ def landing_view(request):
         {
             "statistics_columns": zip(columns, directions),
             "statistics_rows_mobile": zip(mobile_rows, directions),
-            "contact_form_page": form_page,
+            "contact_form_page": contact_form_page,
+            "contact_form": contact_form,
             "news": news_block,
             "faq_page": faq_page,
             "modules": modules,
