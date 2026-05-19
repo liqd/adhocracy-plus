@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-03 17:44+0100\n"
+"POT-Creation-Date: 2026-05-19 14:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,8 +79,6 @@ msgstr "Do you really want to delete this comment?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: apps/documents/assets/ChapterNavItem.jsx:57
@@ -161,6 +159,7 @@ msgstr ""
 "based on certain linguistic characteristics."
 
 #: adhocracy4/comments_async/static/comments_async/ai_report.jsx:8
+#, javascript-format
 msgctxt "defakts"
 msgid ""
 "The AI considers some of the characteristics of disinformation to be "
@@ -622,26 +621,6 @@ msgstr "Question"
 msgid "Explanation"
 msgstr "Explanation"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: apps/documents/assets/ChapterNavItem.jsx:33
-#: apps/documents/assets/ChapterNavItem.jsx:38
-#: apps/documents/assets/ParagraphForm.jsx:9
-msgid "Move up"
-msgstr "Move up"
-
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: apps/documents/assets/ChapterNavItem.jsx:45
-#: apps/documents/assets/ChapterNavItem.jsx:50
-#: apps/documents/assets/ParagraphForm.jsx:10
-msgid "Move down"
-msgstr "Move down"
-
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr "Participants can vote for more than one option (multiple choice)"
@@ -659,6 +638,22 @@ msgstr "Other"
 msgid "New answer"
 msgstr "New answer"
 
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: apps/documents/assets/ChapterNavItem.jsx:33
+#: apps/documents/assets/ChapterNavItem.jsx:38
+#: apps/documents/assets/ParagraphForm.jsx:9
+msgid "Move up"
+msgstr "Move up"
+
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: apps/documents/assets/ChapterNavItem.jsx:45
+#: apps/documents/assets/ChapterNavItem.jsx:50
+#: apps/documents/assets/ParagraphForm.jsx:10
+msgid "Move down"
+msgstr "Move down"
+
 #: adhocracy4/polls/static/PollDetail/CharCounter.jsx:5
 msgid "characters"
 msgstr "characters"
@@ -673,49 +668,61 @@ msgid "Multiple answers are possible."
 msgstr "Multiple answers are possible."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:17
+#: apps/polls/assets/react_polls/PollQuestions.jsx:18
 msgid "Your answer has been saved."
 msgstr "Your answer has been saved."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:21
+#: apps/polls/assets/react_polls/PollQuestions.jsx:22
 msgid "In order to participate please <a href=\"%(url)s\">log in</a>."
 msgstr "In order to participate please <a href=\"%(url)s\">log in</a>."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:42
+#: apps/polls/assets/react_polls/PollQuestions.jsx:43
 msgid ""
 "Your answer could not be saved. Please check the data you entered again."
 msgstr ""
 "Your answer could not be saved. Please check the data you entered again."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
+#: apps/polls/assets/react_polls/PollQuestions.jsx:50
 msgid "Your answer is invalid or empty. Please try again."
 msgstr "Your answer is invalid or empty. Please try again."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:80
+#: apps/polls/assets/react_polls/PollQuestions.jsx:81
 msgid "To poll"
 msgstr "To poll"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:93
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
+#: apps/polls/assets/react_polls/PollQuestions.jsx:94
+#: apps/polls/assets/react_polls/PollQuestions.jsx:194
 msgid "Change answer"
 msgstr "Change answer"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:194
+#: apps/polls/assets/react_polls/PollQuestions.jsx:195
 msgid "Submit answer"
 msgstr "Submit answer"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:203
+#: apps/polls/assets/react_polls/PollQuestions.jsx:204
 msgid "Please login to answer"
 msgstr "Please login to answer"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:211
+#: apps/polls/assets/react_polls/PollQuestions.jsx:212
 msgid "Show results"
 msgstr "Show results"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:213
+#: apps/polls/assets/react_polls/PollQuestions.jsx:214
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:236
+#: apps/polls/assets/react_polls/PollQuestions.jsx:237
 msgid "Please enter your answer in this field."
 msgstr "Please enter your answer in this field."
 
@@ -858,6 +865,7 @@ msgid "Text mode"
 msgstr "Text mode"
 
 #: adhocracy4/static/Captcha.jsx:9
+#: apps/polls/assets/react_polls/ProsopoCaptcha.jsx:6
 msgid "I am not a robot"
 msgstr "I am not a robot"
 
@@ -870,6 +878,7 @@ msgstr ""
 "having difficulty please contact us by {}email{}.</strong>"
 
 #: adhocracy4/static/Captcha.jsx:13
+#: apps/polls/assets/react_polls/ProsopoCaptcha.jsx:7
 msgid "There was a problem loading the CAPTCHA."
 msgstr "There was a problem loading the CAPTCHA."
 

@@ -172,8 +172,8 @@ lint-python-files:
 	$(VIRTUAL_ENV)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
-PO_MAKEMESSAGES_DJANGO = $(VIRTUAL_ENV)/bin/python manage.py makemessages --no-obsolete --no-location -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
-PO_MAKEMESSAGES_DJANGOJS = $(VIRTUAL_ENV)/bin/python manage.py makemessages --no-obsolete --no-location -d djangojs --ignore '$(VIRTUAL_ENV)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
+PO_MAKEMESSAGES_DJANGO = $(VIRTUAL_ENV)/bin/python manage.py makemessages --no-obsolete -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
+PO_MAKEMESSAGES_DJANGOJS = $(VIRTUAL_ENV)/bin/python manage.py makemessages --no-obsolete -d djangojs --ignore '$(VIRTUAL_ENV)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
 PO_DE_EN_FILES = $(wildcard locale-*/locale/de/LC_MESSAGES/django*.po) $(wildcard locale-*/locale/en/LC_MESSAGES/django*.po)
 PO_ALL_FILES = $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po)
 PO_MSGEN_EN = msgen locale-source/locale/en/LC_MESSAGES/django.po -o locale-source/locale/en/LC_MESSAGES/django.po && msgen locale-source/locale/en/LC_MESSAGES/djangojs.po -o locale-source/locale/en/LC_MESSAGES/djangojs.po

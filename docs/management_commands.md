@@ -26,7 +26,7 @@ From the project root directory run: `python manage.py <command> [args]`
 
 **makemessages**
 
-- Extended Django makemessages: includes a4 and adhocracy-plus paths, disables fuzzy matching, and omits `#:` source references by default (stable diffs; use `--add-location=full` if needed).
+- Extended Django makemessages: includes a4 and adhocracy-plus paths, disables fuzzy matching.
 - Use same args as Django's `makemessages` (e.g. `-l de`, `-d djangojs`).
 
 **reset_insights_table** `[--project SLUG]`
