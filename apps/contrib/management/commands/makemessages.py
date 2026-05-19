@@ -13,6 +13,8 @@ class Command(makemessages.Command):
     msgmerge_options = makemessages.Command.msgmerge_options + ["--no-fuzzy-matching"]
 
     def handle(self, *args, **options):
+        # Match locale-source .po files (Transifex / historical workflow): no #: lines.
+        options.setdefault("no_location", True)
         if options["domain"] == "djangojs":
             if options["extensions"] is None:
                 options["extensions"] = ["js", "jsx"]

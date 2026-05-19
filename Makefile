@@ -42,8 +42,10 @@ help:
 	@echo "  make lint-html-fix				-- fix linting for all html files passed as argument"
 	@echo "  make lint-html-files			-- lint for all html files with django profile rules"
 	@echo "  make lint-python-files			-- lint all python files passed as argument"
-	@echo "  make po						-- create new po files from the source"
-	@echo "  make mo						-- create new mo files from the translated po files"
+	@echo "  make po						-- update English and German po files from the source"
+	@echo "  make po_all					-- update po files for all locales"
+	@echo "  make mo						-- compile English and German mo files"
+	@echo "  make mo_all					-- compile mo files for all locales"
 	@echo "  make release					-- build everything required for a release"
 	@echo "  make postgres-start			-- start the local postgres cluster"
 	@echo "  make postgres-stop				-- stops the local postgres cluster"
@@ -170,19 +172,34 @@ lint-python-files:
 	$(VIRTUAL_ENV)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
+PO_MAKEMESSAGES_DJANGO = $(VIRTUAL_ENV)/bin/python manage.py makemessages --no-obsolete --no-location -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
+PO_MAKEMESSAGES_DJANGOJS = $(VIRTUAL_ENV)/bin/python manage.py makemessages --no-obsolete --no-location -d djangojs --ignore '$(VIRTUAL_ENV)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
+PO_DE_EN_FILES = $(wildcard locale-*/locale/de/LC_MESSAGES/django*.po) $(wildcard locale-*/locale/en/LC_MESSAGES/django*.po)
+PO_ALL_FILES = $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po)
+PO_MSGEN_EN = msgen locale-source/locale/en/LC_MESSAGES/django.po -o locale-source/locale/en/LC_MESSAGES/django.po && msgen locale-source/locale/en/LC_MESSAGES/djangojs.po -o locale-source/locale/en/LC_MESSAGES/djangojs.po
+
 .PHONY: po
 po:
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all --no-obsolete -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all --no-obsolete -d djangojs --ignore '$(VIRTUAL_ENV)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
-	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
-		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
-	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
-		$(SED) -i 's%#: .*/dsgvo-video-embed/js%#: dsgvo-video-embed/js%' $(file);)
-	msgen locale-source/locale/en/LC_MESSAGES/django.po -o locale-source/locale/en/LC_MESSAGES/django.po
-	msgen locale-source/locale/en/LC_MESSAGES/djangojs.po -o locale-source/locale/en/LC_MESSAGES/djangojs.po
+	$(PO_MAKEMESSAGES_DJANGO) -l de -l en
+	$(PO_MAKEMESSAGES_DJANGOJS) -l de -l en
+	$(foreach file, $(PO_DE_EN_FILES), $(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
+	$(foreach file, $(PO_DE_EN_FILES), $(SED) -i 's%#: .*/dsgvo-video-embed/js%#: dsgvo-video-embed/js%' $(file);)
+	$(PO_MSGEN_EN)
+
+.PHONY: po_all
+po_all:
+	$(PO_MAKEMESSAGES_DJANGO) --all
+	$(PO_MAKEMESSAGES_DJANGOJS) --all
+	$(foreach file, $(PO_ALL_FILES), $(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
+	$(foreach file, $(PO_ALL_FILES), $(SED) -i 's%#: .*/dsgvo-video-embed/js%#: dsgvo-video-embed/js%' $(file);)
+	$(PO_MSGEN_EN)
 
 .PHONY: mo
 mo:
+	$(VIRTUAL_ENV)/bin/python manage.py compilemessages -l de -l en
+
+.PHONY: mo_all
+mo_all:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
 .PHONY: release
