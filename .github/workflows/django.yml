@@ -87,10 +87,14 @@ jobs:
           python manage.py makemigrations --dry-run --check --noinput
           flake8 adhocracy-plus tests --exclude migrations,settings
           
-          if [ "${{ github.ref }}" = "refs/heads/main" ] && [ "${{ github.event_name }}" = "push" ]; then
-            py.test --ds=adhocracy-plus.config.settings.travis --cov
+          if [ "${{ github.event_name }}" = "push" ]; then
+            # Run all tests and update testmon cache for future PRs
+            # Delete .testmondata to force running all tests, but still update cache
+            rm -f .testmondata
+            py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov -n auto
           elif [ "${{ github.event_name }}" = "pull_request" ]; then
-            py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov
+            # Use testmon to run only changed tests
+            py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov -n auto
           fi
 
       - name: Coveralls
