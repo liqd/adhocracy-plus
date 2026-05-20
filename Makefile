@@ -174,19 +174,13 @@ lint-python-files:
 po:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all --no-obsolete -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all --no-obsolete -d djangojs --ignore '$(VIRTUAL_ENV)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
+# Clean paths
 	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
-		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
-	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
+		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file); \
 		$(SED) -i 's%#: .*/dsgvo-video-embed/js%#: dsgvo-video-embed/js%' $(file);)
-# 	msgen locale-source/locale/en/LC_MESSAGES/django.po -o locale-source/locale/en/LC_MESSAGES/django.po
-# 	msgen locale-source/locale/en/LC_MESSAGES/djangojs.po -o locale-source/locale/en/LC_MESSAGES/djangojs.po
-# # Deduplicate #: lines
+# Deduplicate #: lines
 	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/*.po), \
 		$(SED) -i '/^#: /{N; s/^\(#: .*\)\n\1$$/\1/}' $(file);)
-	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
-		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
-	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
-		$(SED) -i 's%#: .*/dsgvo-video-embed/js%#: dsgvo-video-embed/js%' $(file);)
 .PHONY: mo
 mo:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
