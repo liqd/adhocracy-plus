@@ -3,22 +3,20 @@
 <section class="lp-hero">
     <div class="lp-hero-text">
         <h1>
-            {% trans 'Transform Participation,' %}
-            <br />
-            {% trans 'Boost Impact Effortlessly' %}
+            {% trans 'Your Platform for free' %}
+            <br /> 
+            {% trans 'Digital Participation' %}
         </h1>
         <p>
-            {% trans 'Launch initiatives with ease in minutes, no costs,' %}
+            {% trans 'A non-profit platform for municipalities, NGOs, and initiatives.' %}
             <br />
-            {% trans 'no obstacles, designed for organisations,' %}
-            <br />
-            {% trans 'municipalities, parliamentarians and beyond.' %}
+            {% trans 'Free, transparent, and designed to strengthen democracy.' %}
         </p>
         <div class="lp-hero-buttons">
-            <a href="{% url 'account_signup' %}" class="btn btn--black">
-                {% trans 'Start Now' %}
-            </a>
             {% if not user.is_authenticated %}
+                <a href="{% url 'account_signup' %}" class="btn btn--black">
+                    {% trans 'Start Now' %}
+                </a>
                 {% url 'account_login' as account_login_url %}
                 <a href="{{ account_login_url }}" class="btn btn--transparent btn--text-white">
                     {% trans 'Login' %}
