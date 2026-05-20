@@ -13,13 +13,13 @@ def test_newsletter_email_has_no_default_greeting():
     """Newsletter emails should not render the default email_base greeting."""
     user = UserFactory()
     newsletter = NewsletterFactory(subject="Newsletter Subject", body="Body text")
+    organisation = newsletter.project.organisation
 
-    email = NewsletterEmail()
-    email.object = newsletter
-    email.kwargs = {
-        "organisation": newsletter.project.organisation,
-        "participant_ids": [user.id],
-    }
+    email = NewsletterEmail(
+        newsletter=newsletter,
+        organisation=organisation,
+        participant_ids=[user.id],
+    )
 
     context = email.get_context()
     context["receiver"] = user
@@ -43,12 +43,11 @@ def test_newsletter_email_uses_organisation_logo_as_inline_logo(tmp_path):
         newsletter = NewsletterFactory(project=organisation.projects.first())
         user = UserFactory()
 
-        email = NewsletterEmail()
-        email.object = newsletter
-        email.kwargs = {
-            "organisation": organisation,
-            "participant_ids": [user.id],
-        }
+        email = NewsletterEmail(
+            newsletter=newsletter,
+            organisation=organisation,
+            participant_ids=[user.id],
+        )
 
         attachments = email.get_attachments()
         content_ids = [attachment["Content-Id"] for attachment in attachments]

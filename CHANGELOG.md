@@ -19,6 +19,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Upgrade Wagtail to 7.4 (LTS).
 - Header: Changed to Burger Menu style on Desktop.
 
+### Fixed
+
+- Notification bugs
+
 ## v2603.3
 
 ### Changed
