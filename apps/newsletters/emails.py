@@ -1,39 +1,40 @@
-from django.apps import apps
-from django.conf import settings
-from django.contrib import auth
-
-from adhocracy4.emails.mixins import ReportToAdminEmailMixin
 from apps.users.emails import EmailAplus as Email
-
-Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
-User = auth.get_user_model()
+from apps.users.models import User
 
 
-class NewsletterEmail(ReportToAdminEmailMixin, Email):
+class NewsletterEmail(Email):
+    """Email class for newsletter emails"""
+
     template_name = "a4_candy_newsletters/emails/newsletter_email"
 
-    def dispatch(self, object, *args, **kwargs):
-        organisation_pk = kwargs.pop("organisation_pk", None)
-        organisation = None
-        if organisation_pk:
-            organisation = Organisation.objects.get(pk=organisation_pk)
-        kwargs["organisation"] = organisation
-
-        return super().dispatch(object, *args, **kwargs)
-
-    def get_reply_to(self):
-        return [self.object.sender]
+    def __init__(self, newsletter, organisation, participant_ids):
+        self._newsletter = newsletter
+        self._organisation = organisation
+        self._participant_ids = participant_ids
 
     def get_organisation(self):
-        return self.kwargs["organisation"]
+        return self._organisation
 
     def get_receivers(self):
         return (
-            User.objects.filter(id__in=self.kwargs["participant_ids"])
+            User.objects.filter(id__in=self._participant_ids)
             .filter(get_newsletters=True)
             .filter(is_active=True)
             .distinct()
         )
+
+    def get_reply_to(self):
+        return [self._newsletter.sender]
+
+    def get_context(self):
+        context = super().get_context()
+        context.update(
+            {
+                "newsletter": self._newsletter,
+                "organisation": self._organisation,
+            }
+        )
+        return context
 
 
 class NewsletterEmailAll(NewsletterEmail):

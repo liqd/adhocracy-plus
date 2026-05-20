@@ -1,0 +1,7 @@
+{% load i18n %}
+
+{% blocktranslate with project_name=project_name %}
+<p>
+    You have been invited to be a moderator of project {{ project_name }}
+</p>
+{% endblocktranslate %}

@@ -52,6 +52,7 @@ class EmailAplus(Email):
     def get_context(self):
         context = super().get_context()
         context["organisation"] = self.get_organisation()
+        context["current_site"] = self.get_site()
         return context
 
     def get_attachments(self):

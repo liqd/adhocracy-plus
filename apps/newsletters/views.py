@@ -13,8 +13,8 @@ from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.follows.models import Follow
 from adhocracy4.rules import mixins as rules_mixins
 
-from . import emails
 from . import models
+from .emails import NewsletterEmail
 from .forms import RestrictedNewsletterForm
 
 Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
@@ -33,10 +33,10 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin, generic.CreateV
         if not self._check_permission(organisation, self.request.user):
             raise PermissionDenied
 
-        instance = form.save(commit=False)
-        instance.creator = self.request.user
-        instance.sent = timezone.now()
-        instance.save()
+        newsletter = form.save(commit=False)
+        newsletter.creator = self.request.user
+        newsletter.sent = timezone.now()
+        newsletter.save()
         form.save_m2m()
 
         receivers = int(form.cleaned_data["receivers"])
@@ -49,9 +49,13 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin, generic.CreateV
         else:
             participant_ids = []
 
-        emails.NewsletterEmail.send(
-            instance, participant_ids=list(participant_ids), **self.get_email_kwargs()
+        email = NewsletterEmail(
+            newsletter=newsletter,
+            organisation=organisation,
+            participant_ids=list(participant_ids),
         )
+        email.dispatch(newsletter)
+
         messages.success(
             self.request,
             _("Newsletter has been saved and " "will be sent to the recipients."),
