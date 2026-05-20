@@ -178,9 +178,15 @@ po:
 		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
 	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
 		$(SED) -i 's%#: .*/dsgvo-video-embed/js%#: dsgvo-video-embed/js%' $(file);)
-	msgen locale-source/locale/en/LC_MESSAGES/django.po -o locale-source/locale/en/LC_MESSAGES/django.po
-	msgen locale-source/locale/en/LC_MESSAGES/djangojs.po -o locale-source/locale/en/LC_MESSAGES/djangojs.po
-
+# 	msgen locale-source/locale/en/LC_MESSAGES/django.po -o locale-source/locale/en/LC_MESSAGES/django.po
+# 	msgen locale-source/locale/en/LC_MESSAGES/djangojs.po -o locale-source/locale/en/LC_MESSAGES/djangojs.po
+# # Deduplicate #: lines
+	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/*.po), \
+		$(SED) -i '/^#: /{N; s/^\(#: .*\)\n\1$$/\1/}' $(file);)
+	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
+		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
+	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/django*.po), \
+		$(SED) -i 's%#: .*/dsgvo-video-embed/js%#: dsgvo-video-embed/js%' $(file);)
 .PHONY: mo
 mo:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
