@@ -133,7 +133,7 @@ def test_account_deletion(client, user):
         "Confirmation: Deletion of Your Account on " "adhocracy+"
     )
     # assert that user is redirected to homepage
-    assert redirect_target(response) == "wagtail_serve"
+    assert redirect_target(response) == "landing_page"
 
 
 @pytest.mark.django_db
