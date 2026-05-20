@@ -98,6 +98,7 @@ $text-color: #1A1A1A;
         display: flex;
         flex-direction: column;
         padding: 20px 0;
+        text-align: center;
 
         &-img {
             order: 1;
@@ -117,6 +118,10 @@ $text-color: #1A1A1A;
             > p {
                 padding-top: 0.25rem;
                 text-align: center;
+            }
+
+            > p > br {
+                display: none;
             }
         }
 

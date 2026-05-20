@@ -13,6 +13,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Footer: New Footer Module
 - Hierarchical platform breadcrumbs 
 - Design: Update Colour Pallette
+- Design: New Landing Page
 
 ### Changed
 

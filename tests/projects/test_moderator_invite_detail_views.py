@@ -56,5 +56,5 @@ def test_user_can_reject(client, moderator_invite, user):
 
     response = client.post(url, data)
     assert response.status_code == 302
-    assert redirect_target(response) == "wagtail_serve"
+    assert redirect_target(response) == "landing_page"
     assert ModeratorInvite.objects.all().count() == 0

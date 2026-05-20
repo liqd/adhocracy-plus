@@ -30,6 +30,7 @@ from apps.ideas.api import IdeaViewSet
 from apps.interactiveevents.api import LikesViewSet
 from apps.interactiveevents.api import LiveQuestionViewSet
 from apps.interactiveevents.routers import LikesDefaultRouter
+from apps.landingpage.views import landing_view
 from apps.moderatorfeedback.api import CommentWithFeedbackViewSet
 from apps.moderatorfeedback.api import ModeratorCommentFeedbackViewSet
 from apps.moderatorremark.api import ModeratorRemarkViewSet
@@ -122,7 +123,6 @@ urlpatterns = [
     ),
     path("components/", contrib_views.ComponentLibraryView.as_view()),
     path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
-    path("landingpage/", include("apps.landingpage.urls")),
     re_path(
         r"^(?P<organisation_slug>[-\w_]+)/",
         include(
@@ -222,6 +222,7 @@ if settings.DEBUG:
 
 # generic patterns at the very end
 urlpatterns += [
+    path("", landing_view, name="landing_page"),
     path("", include("apps.organisations.urls")),
     path("", include("wagtail.urls")),
 ]
