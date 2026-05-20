@@ -9,6 +9,14 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+### Changed
+
+### Fixed
+
+## v2605.1
+
+### Added
+
 - Improvements to pagination
 - Footer: New Footer Module
 - Hierarchical platform breadcrumbs 
