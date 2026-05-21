@@ -1,0 +1,24 @@
+{% load i18n %}
+
+{% if project.insight.display and counts %}
+<section class="project-detail__insights" aria-labelledby="project-detail-insights-heading">
+    <h2 class="project-detail__section-title" id="project-detail-insights-heading">
+        {% translate 'Insights' %}
+    </h2>
+    <div class="project-detail__insights-box">
+        <dl class="project-detail__insights-stats">
+            {% for label, value in counts %}
+            <div class="project-detail__insights-stat">
+                <dt class="project-detail__insights-value">{{ value }}</dt>
+                <dd class="project-detail__insights-label">{{ label|title }}</dd>
+            </div>
+            {% endfor %}
+        </dl>
+    </div>
+    <div class="project-detail__insights-actions">
+        <a class="btn btn--black" href="#">
+            {% translate 'Show all results' %}
+        </a>
+    </div>
+</section>
+{% endif %}

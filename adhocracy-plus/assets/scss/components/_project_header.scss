@@ -24,6 +24,13 @@
     }
 }
 
+.project-header--hero {
+    justify-content: flex-end;
+    padding: 0;
+    text-align: left;
+    min-height: 324px;
+}
+
 .project-header__tabs {
     position: absolute;
     left: 0;
@@ -89,6 +96,12 @@
             color: $text-color;
             text-shadow: none;
         }
+    }
+}
+
+.project-header--hero.project-header--image {
+    &:before {
+        content: none;
     }
 }
 

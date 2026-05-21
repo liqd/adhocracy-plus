@@ -1,0 +1,33 @@
+{% load i18n a4_candy_project_tags %}
+
+<div class="project-detail__intro">
+    <div class="project-detail__main" id="project-detail-main">
+        <h1 class="project-detail__title">{{ project.name }}</h1>
+        {% if project.description %}
+        <p class="project-detail__description">{{ project.description }}</p>
+        {% endif %}
+        <div class="project-detail__actions">
+            <a class="btn btn--transparent project-detail__action project-detail__action--info" href="#">
+                {% translate 'More information' %}
+            </a>
+            <div id="project-detail-follow-actions">
+                {% if not request.user.is_authenticated %}
+                <a
+                    class="btn btn--black project-detail__action project-detail__action--follow"
+                    href="{% url 'account_login' %}?next={{ request.path }}">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    {% translate 'Follow' %}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% include "a4_candy_projects/includes/project_detail_sidebar.html" %}
+    {% if request.user.is_authenticated %}
+    {% project_detail_follow_widget_attrs project as project_follow_widget_attrs %}
+    <span
+        class="visually-hidden"
+        data-a4-widget="project-detail-follow"
+        data-attributes="{{ project_follow_widget_attrs|escape }}"></span>
+    {% endif %}
+</div>

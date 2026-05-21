@@ -1,0 +1,51 @@
+{% load i18n thumbnail a4_candy_project_tags %}
+
+{% project_participation_status project as participation_status %}
+{% get_project_follower_count project as follower_count %}
+
+<aside class="project-detail__sidebar" aria-label="{% translate 'Project overview' %}">
+    <ul class="project-detail__meta-list">
+        <li class="project-detail__meta-item">
+            <span
+                class="project-detail__status-dot project-detail__status-dot--{{ participation_status.modifier }}"
+                aria-hidden="true"></span>
+            <span class="project-detail__meta-label">{{ participation_status.label }}</span>
+        </li>
+        {% with event_count=project.events.count module_count=project.published_modules.count %}
+        {% if event_count %}
+        <li class="project-detail__meta-item">
+            <i class="far fa-calendar project-detail__meta-icon" aria-hidden="true"></i>
+            {% blocktranslate count count=event_count %}{{ count }} Event{% plural %}{{ count }} Events{% endblocktranslate %}
+        </li>
+        {% endif %}
+        {% if module_count %}
+        <li class="project-detail__meta-item">
+            <i class="far fa-file-alt project-detail__meta-icon project-detail__meta-icon--file" aria-hidden="true"></i>
+            {% blocktranslate count count=module_count %}{{ count }} Module{% plural %}{{ count }} Modules{% endblocktranslate %}
+        </li>
+        {% endif %}
+        {% endwith %}
+    </ul>
+
+    {% if follower_count or request.user.is_authenticated %}
+    <div class="project-detail__followers">
+        <p class="project-detail__followers-label" id="project-detail-followers-label">
+            {% blocktranslate count count=follower_count %}{{ count }} Following{% plural %}{{ count }} Following{% endblocktranslate %}
+        </p>
+        <div id="project-detail-followers-avatars">
+            {% if not request.user.is_authenticated %}
+            {% get_project_followers project as followers %}
+            <ul class="project-detail__avatars" aria-hidden="true">
+                {% for follower in followers %}
+                <li class="project-detail__avatar">
+                    <span
+                        class="project-detail__avatar-image"
+                        style="background-image: url({% if follower.avatar %}{{ follower.avatar|thumbnail_url:'avatar' }}{% else %}{{ follower.avatar_fallback }}{% endif %});"></span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</aside>

@@ -1,8 +1,8 @@
 {% load userindicator static i18n thumbnail %}
 {% get_current_language as LANGUAGE_CODE %}
 
-<div class="header-lower__position">
-    <div class="col-md-10 offset-md-1 ps-3 ps-md-0">
+<div class="header-lower__position{% if content_inset %} header-lower__position--content-inset{% endif %}">
+    <div class="{% if content_inset %}header-lower__inner{% else %}col-md-10 offset-md-1 ps-3 ps-md-0{% endif %}">
         <nav class="header-lower__nav">
 
             {% if organisation.logo %}

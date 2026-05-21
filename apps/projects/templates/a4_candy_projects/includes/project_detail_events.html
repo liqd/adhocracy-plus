@@ -1,0 +1,24 @@
+{% load i18n %}
+
+{% if project.events.exists %}
+<section class="project-detail__events" aria-labelledby="project-detail-events-heading">
+    <h2 class="project-detail__section-title" id="project-detail-events-heading">
+        {% translate 'Events' %}
+    </h2>
+    <ul class="project-detail__event-list">
+        {% for offline_event in project.events.all %}
+        <li class="project-detail__event-item">
+            <a class="project-detail__event-link" href="{{ offline_event.get_absolute_url }}">
+                <span class="project-detail__event-meta">
+                    {{ offline_event.date|date:"d.m.Y" }}
+                    <span class="project-detail__event-meta-sep" aria-hidden="true">·</span>
+                    {{ offline_event.event_type }}
+                </span>
+                <span class="project-detail__event-title">{{ offline_event.name }}</span>
+                <i class="fas fa-arrow-right project-detail__event-arrow" aria-hidden="true"></i>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}

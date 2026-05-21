@@ -5,6 +5,20 @@
 
     // Fixes bug where this el stops clicks on follow button (small screens)
     pointer-events: none;
+
+    &--content-inset {
+        .header-lower__inner {
+            box-sizing: border-box;
+            width: 100%;
+            padding-left: clamp(1rem, 4vw, 5rem);
+            padding-right: clamp(1rem, 4vw, 5rem);
+        }
+
+        .header-lower__logo-box {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
 }
 
 .header-lower__nav {
@@ -17,7 +31,7 @@
     display: inline-block;
     padding: 0.5 * $padding;
     position: relative;
-    bottom: -3 * $spacer;
+    bottom: -24px;
     background-color: $body-bg;
     z-index: 3;
     box-shadow: 0 0 8px 0 $shadow;
