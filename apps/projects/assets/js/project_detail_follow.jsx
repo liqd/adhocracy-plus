@@ -18,7 +18,7 @@ const translated = {
   ),
   followingAlert: django.gettext('You will no longer be updated via email.'),
   follow: django.gettext('Follow'),
-  following: django.gettext('Following'),
+  following: django.gettext('Following')
 }
 
 const linkParts = {
@@ -29,7 +29,7 @@ const linkParts = {
 
 const fullFollowAlertText = django.interpolate(translated.followAlert, linkParts, true)
 
-function upsertFollower (followers, user) {
+function prependFollower (followers, user) {
   const withoutUser = followers.filter((f) => f.pk !== user.pk)
   return [user, ...withoutUser].slice(0, 4)
 }
@@ -137,7 +137,7 @@ function ProjectDetailFollow ({
       if (isFollowing) {
         const alreadyListed = followers.some((f) => f.pk === user.pk)
         if (!alreadyListed) {
-          setFollowers((current) => upsertFollower(current, user))
+          setFollowers((current) => prependFollower(current, user))
           setFollowerCount((count) => count + 1)
         }
       } else {
