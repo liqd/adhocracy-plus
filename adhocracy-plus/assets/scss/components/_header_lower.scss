@@ -10,8 +10,7 @@
         .header-lower__inner {
             box-sizing: border-box;
             width: 100%;
-            padding-left: clamp(1rem, 4vw, 5rem);
-            padding-right: clamp(1rem, 4vw, 5rem);
+            @include project-detail-page-inset;
         }
 
         .header-lower__logo-box {

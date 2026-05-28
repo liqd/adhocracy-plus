@@ -2,12 +2,12 @@ $project-detail-icon-size: 16px;
 $project-detail-avatar-size: 32px;
 $project-detail-avatar-overlap: 10px;
 $project-detail-action-height: 48px;
-
 $project-detail-card-border: #fafafa;
 $project-detail-card-height: 332px;
+$project-detail-completed: #ff1e38;
 
 .project-detail {
-    padding-top: 2.6 * $spacer;
+    // padding-top: 2.6 * $spacer;
     padding-bottom: 3 * $spacer;
 }
 
@@ -22,8 +22,8 @@ $project-detail-card-height: 332px;
     width: 100%;
     max-width: 100%;
     margin: 0;
-    padding-left: clamp(1rem, 4vw, 5rem);
-    padding-right: clamp(1rem, 4vw, 5rem);
+
+    @include project-detail-page-inset;
 }
 
 .project-detail__breadcrumbs {
@@ -212,7 +212,7 @@ $project-detail-card-height: 332px;
     display: flex;
     align-items: center;
     gap: 0.5 * $spacer;
-    margin-bottom: 0.75 * $spacer;
+    margin-bottom: 1.5 * $spacer;
     font-size: $font-size-sm;
     font-weight: 400;
     line-height: $project-detail-icon-size;
@@ -255,7 +255,7 @@ $project-detail-card-height: 332px;
     }
 
     &--completed {
-        background-color: #ff1e38;
+        background-color: $project-detail-completed;
     }
 }
 
@@ -345,8 +345,6 @@ $project-detail-card-height: 332px;
     list-style: none;
     margin: 0;
     padding: 0;
-    // border-top: 1px solid $project-detail-card-border;
-    // border-bottom: 1px solid $project-detail-card-border;
 }
 
 .project-detail__event-item {
@@ -355,6 +353,13 @@ $project-detail-card-height: 332px;
     &:last-child {
         border-bottom: 1px solid $project-detail-card-border;
     }
+}
+
+.project-detail__event-title {
+    grid-column: 1;
+    font-size: $font-size-md;
+    font-weight: $demi-bold;
+    text-decoration: underline;
 }
 
 .project-detail__event-link {
@@ -385,13 +390,6 @@ $project-detail-card-height: 332px;
 
 .project-detail__event-meta-sep {
     margin: 0 0.25em;
-}
-
-.project-detail__event-title {
-    grid-column: 1;
-    font-size: $font-size-md;
-    font-weight: $demi-bold;
-    text-decoration: underline;
 }
 
 .project-detail__event-arrow {
@@ -495,7 +493,8 @@ $project-detail-card-height: 332px;
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (min-width: $breakpoint-md) {
+    // 3 columns only from xl up; md–lg stays 2-wide so cards are not squeezed
+    @media (min-width: $breakpoint-lg) {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -507,7 +506,8 @@ $project-detail-card-height: 332px;
 }
 
 .project-detail-card__body {
-    display: block;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     height: 100%;
     padding: 24px;
@@ -528,13 +528,26 @@ $project-detail-card-height: 332px;
 
 .project-detail-card__inner {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
+    min-height: 0;
     height: 100%;
+}
+
+.project-detail-card__top {
+    flex: 0 0 auto;
     min-height: 0;
 }
 
-.project-detail-card__title {
+.project-detail-card__footer {
+    display: flex;
     flex: 0 0 auto;
+    flex-direction: column;
+    gap: 0.5 * $spacer;
+    margin-top: auto;
+}
+
+.project-detail-card__title {
     max-height: 72px;
     margin: 0 0 0.5 * $spacer;
     overflow: hidden;
@@ -545,9 +558,8 @@ $project-detail-card-height: 332px;
 }
 
 .project-detail-card__description {
-    flex: 0 0 auto;
     max-height: 120px;
-    margin: 0 0 0.5 * $spacer;
+    margin: 0;
     overflow: hidden;
     font-size: $font-size-sm;
     line-height: 1.5;
@@ -556,10 +568,9 @@ $project-detail-card-height: 332px;
 
 .project-detail-card__meta {
     display: flex;
-    flex: 0 0 auto;
     align-items: center;
     margin: 0;
-    font-size: $font-size-sm;
+    font-size: 0.875rem;
     color: $text-color;
 }
 
@@ -568,17 +579,13 @@ $project-detail-card-height: 332px;
     color: $text-color;
 }
 
-.project-detail-card__spacer {
-    flex: 1 1 auto;
-    min-height: 0;
-}
-
 .project-detail-card__status {
-    flex: 0 0 auto;
     margin: 0;
+    font-size: 0.875rem;
 
     .status-bar__active {
-        background-color: #fafafa;
+        height: 4px;
+        background-color: $project-detail-card-border;
     }
 
     .status-bar__status {

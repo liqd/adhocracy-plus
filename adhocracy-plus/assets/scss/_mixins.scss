@@ -20,6 +20,17 @@
     letter-spacing: 0.5px;
 }
 
+// Project detail page: align with footer on large screens; tighter gutters on tablet / small desktop
+@mixin project-detail-page-inset {
+    padding-left: clamp(1rem, 4vw, 5rem);
+    padding-right: clamp(1rem, 4vw, 5rem);
+
+    @media (min-width: $breakpoint) and (max-width: $breakpoint-lg-down) {
+        padding-left: clamp(1rem, 2vw, 2rem);
+        padding-right: clamp(1rem, 2vw, 2rem);
+    }
+}
+
 // stylelint-disable
 @function contrast-color($color) {
     @if  lightness($color) > 50 {
