@@ -33,6 +33,7 @@
             {% blocktranslate count count=follower_count %}{{ count }} Following{% plural %}{{ count }} Following{% endblocktranslate %}
         </p>
         <div id="project-detail-followers-avatars">
+            {% comment %} Static list if unauthenticated, otherwise injected with React {% endcomment %}
             {% if not request.user.is_authenticated %}
             {% get_project_followers project as followers %}
             <ul class="project-detail__avatars" aria-hidden="true">

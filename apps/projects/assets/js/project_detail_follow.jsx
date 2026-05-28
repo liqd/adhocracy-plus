@@ -103,9 +103,7 @@ function ProjectDetailFollow ({
   }, [project, authenticatedAs])
 
   useEffect(() => {
-    if (!labelTarget) {
-      return
-    }
+    if (!labelTarget) { return }
     const labelEl = document.getElementById(labelTarget)
     if (!labelEl) {
       return
