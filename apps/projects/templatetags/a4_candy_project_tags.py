@@ -99,18 +99,14 @@ def project_detail_follow_widget_attrs(context, project):
         .order_by("-created")[:4]
     ]
 
+    # Portal element ids are fixed in project_detail_intro/sidebar templates;
+    # see apps/projects/assets/js/project_detail_follow.jsx.
     attrs = {
         "project": project.slug,
-        "authenticatedAs": None,
-        "alertTarget": "project-detail-main",
-        "actionsTarget": "project-detail-follow-actions",
-        "avatarsTarget": "project-detail-followers-avatars",
-        "labelTarget": "project-detail-followers-label",
         "initialFollowers": [_follower_avatar_data(u) for u in follower_users],
         "initialFollowerCount": Follow.objects.filter(
             project=project, enabled=True
         ).count(),
-        "user": None,
     }
 
     if request.user.is_authenticated:

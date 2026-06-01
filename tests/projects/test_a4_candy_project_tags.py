@@ -89,12 +89,8 @@ def test_project_detail_follow_widget_attrs_anonymous(project):
     context = Context({"request": request})
     attrs = json.loads(tags.project_detail_follow_widget_attrs(context, project))
     assert attrs["project"] == project.slug
-    assert attrs["authenticatedAs"] is None
-    assert attrs["user"] is None
-    assert attrs["alertTarget"] == "project-detail-main"
-    assert attrs["actionsTarget"] == "project-detail-follow-actions"
-    assert attrs["avatarsTarget"] == "project-detail-followers-avatars"
-    assert attrs["labelTarget"] == "project-detail-followers-label"
+    assert "authenticatedAs" not in attrs
+    assert "user" not in attrs
     assert attrs["initialFollowers"] == []
     assert attrs["initialFollowerCount"] == 0
 

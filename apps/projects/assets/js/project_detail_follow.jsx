@@ -4,6 +4,11 @@ import { createRoot } from 'react-dom/client'
 import django from 'django'
 import { FollowButton, followStrings } from 'adhocracy4'
 
+const ALERT_TARGET = 'project-detail-main'
+const ACTIONS_TARGET = 'project-detail-follow-actions'
+const AVATARS_TARGET = 'project-detail-followers-avatars'
+const LABEL_TARGET = 'project-detail-followers-label'
+
 function prependFollower (followers, user) {
   return [user, ...followers.filter((f) => f.pk !== user.pk)].slice(0, 4)
 }
@@ -47,13 +52,9 @@ function FollowerAvatars ({ followers, following, authenticatedAs, onPlusClick }
 function ProjectDetailFollow ({
   project,
   authenticatedAs,
-  alertTarget,
   user,
   initialFollowers,
-  initialFollowerCount,
-  actionsTarget,
-  avatarsTarget,
-  labelTarget
+  initialFollowerCount
 }) {
   const [followers, setFollowers] = useState(initialFollowers || [])
   const [followerCount, setFollowerCount] = useState(initialFollowerCount || 0)
@@ -82,8 +83,7 @@ function ProjectDetailFollow ({
   )
 
   useEffect(() => {
-    if (!labelTarget) return
-    const labelEl = document.getElementById(labelTarget)
+    const labelEl = document.getElementById(LABEL_TARGET)
     if (!labelEl) return
     const label = django.ngettext(
       '%s Following',
@@ -91,9 +91,9 @@ function ProjectDetailFollow ({
       followerCount
     )
     labelEl.textContent = label.replace('%s', String(followerCount))
-  }, [followerCount, labelTarget])
+  }, [followerCount])
 
-  const avatarsEl = avatarsTarget ? document.getElementById(avatarsTarget) : null
+  const avatarsEl = document.getElementById(AVATARS_TARGET)
 
   const handlePlusClick = useCallback(() => {
     followState.toggleFollow()
@@ -104,8 +104,8 @@ function ProjectDetailFollow ({
       <FollowButton
         project={project}
         authenticatedAs={authenticatedAs}
-        alertTarget={alertTarget}
-        buttonTarget={actionsTarget}
+        alertTarget={ALERT_TARGET}
+        buttonTarget={ACTIONS_TARGET}
         customClasses="project-detail__follow"
         buttonClassName="project-detail__follow-btn"
         descriptionId="project-detail-follow-description"
