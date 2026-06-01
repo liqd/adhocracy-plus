@@ -88,8 +88,7 @@ $project-detail-completed: #ff1e38;
     gap: $spacer;
 
     @media (min-width: $breakpoint) {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;  /* Shorthand for flex-direction and flex-wrap */
         align-items: stretch;
     }
 }
@@ -156,7 +155,8 @@ $project-detail-completed: #ff1e38;
             margin-right: 0.3em;
         }
     }
-
+    
+    /* stylelint-disable-next-line no-descending-specificity */
     &.a4-btn--following {
         background-color: $brand-primary;
         color: $white;

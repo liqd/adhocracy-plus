@@ -1,37 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { createRoot } from 'react-dom/client'
 import django from 'django'
-import Alert from 'adhocracy4/adhocracy4/static/Alert'
-import api from 'adhocracy4/adhocracy4/static/api'
-import config from 'adhocracy4/adhocracy4/static/config'
-
-const translated = {
-  followDescription: django.gettext(
-    'Click to be updated about this project via email.'
-  ),
-  followingDescription: django.gettext(
-    'Click to no longer be updated about this project via email.'
-  ),
-  followAlert: django.gettext(
-    'From now on, we\'ll keep you updated on all changes.<br/>Make sure email notifications are enabled in your %(linkStart)s notification settings%(linkEnd)s'
-  ),
-  followingAlert: django.gettext('You will no longer be updated via email.'),
-  follow: django.gettext('Follow'),
-  following: django.gettext('Following')
-}
-
-const linkParts = {
-  linkStart: '<a href="/account/notification-settings/" target="_blank">',
-  linkEnd:
-    '<i class="fas fa-external-link-alt" role="img" aria-label="Opens in new window"></i></a>'
-}
-
-const fullFollowAlertText = django.interpolate(translated.followAlert, linkParts, true)
+import { FollowButton, followStrings } from 'adhocracy4'
 
 function prependFollower (followers, user) {
-  const withoutUser = followers.filter((f) => f.pk !== user.pk)
-  return [user, ...withoutUser].slice(0, 4)
+  return [user, ...followers.filter((f) => f.pk !== user.pk)].slice(0, 4)
 }
 
 function removeFollower (followers, userPk) {
@@ -58,7 +32,7 @@ function FollowerAvatars ({ followers, following, authenticatedAs, onPlusClick }
             className="project-detail__avatar-button"
             onClick={onPlusClick}
             aria-pressed={following}
-            aria-label={translated.follow}
+            aria-label={followStrings.follow}
           >
             <span className="project-detail__avatar-image project-detail__avatar-image--more">
               <i className="fas fa-plus" aria-hidden="true" />
@@ -81,33 +55,36 @@ function ProjectDetailFollow ({
   avatarsTarget,
   labelTarget
 }) {
-  const [following, setFollowing] = useState(null)
   const [followers, setFollowers] = useState(initialFollowers || [])
   const [followerCount, setFollowerCount] = useState(initialFollowerCount || 0)
-  const [alert, setAlert] = useState(null)
+  const [followState, setFollowState] = useState({
+    following: null,
+    toggleFollow: () => {}
+  })
 
-  useEffect(() => {
-    if (!authenticatedAs) {
-      return
-    }
-    api.follow
-      .get(project)
-      .done((follow) => {
-        setFollowing(follow.enabled)
-      })
-      .fail((response) => {
-        if (response.status === 404) {
-          setFollowing(false)
+  const handleFollowChange = useCallback(
+    (isFollowing) => {
+      if (!user) return
+      setFollowers((current) => {
+        const hasUser = current.some((f) => f.pk === user.pk)
+        if (isFollowing && !hasUser) {
+          setFollowerCount((count) => count + 1)
+          return prependFollower(current, user)
         }
+        if (!isFollowing && hasUser) {
+          setFollowerCount((count) => Math.max(0, count - 1))
+          return removeFollower(current, user.pk)
+        }
+        return current
       })
-  }, [project, authenticatedAs])
+    },
+    [user]
+  )
 
   useEffect(() => {
-    if (!labelTarget) { return }
+    if (!labelTarget) return
     const labelEl = document.getElementById(labelTarget)
-    if (!labelEl) {
-      return
-    }
+    if (!labelEl) return
     const label = django.ngettext(
       '%s Following',
       '%s Following',
@@ -116,83 +93,35 @@ function ProjectDetailFollow ({
     labelEl.textContent = label.replace('%s', String(followerCount))
   }, [followerCount, labelTarget])
 
-  const removeAlert = () => setAlert(null)
+  const avatarsEl = avatarsTarget ? document.getElementById(avatarsTarget) : null
 
-  const toggleFollow = () => {
-    if (!authenticatedAs) {
-      window.location.href = config.getLoginUrl()
-      return
-    }
-
-    api.follow.change({ enabled: !following }, project).done((follow) => {
-      const isFollowing = follow.enabled
-      setFollowing(isFollowing)
-      setAlert({
-        type: isFollowing ? 'success' : 'warning',
-        htmlMessage: isFollowing ? fullFollowAlertText : translated.followingAlert
-      })
-
-      if (isFollowing) {
-        const alreadyListed = followers.some((f) => f.pk === user.pk)
-        if (!alreadyListed) {
-          setFollowers((current) => prependFollower(current, user))
-          setFollowerCount((count) => count + 1)
-        }
-      } else {
-        const hadUser = followers.some((f) => f.pk === user.pk)
-        if (hadUser) {
-          setFollowers((current) => removeFollower(current, user.pk))
-          setFollowerCount((count) => Math.max(0, count - 1))
-        }
-      }
-    })
-  }
-
-  const followBtnText = following ? translated.following : translated.follow
-  const followDescriptionText = following
-    ? translated.followingDescription
-    : translated.followDescription
-  const buttonClasses = following
-    ? 'a4-btn a4-btn--following project-detail__follow-btn'
-    : 'a4-btn a4-btn--follow project-detail__follow-btn'
-
-  const actionsEl = document.getElementById(actionsTarget)
-  const avatarsEl = document.getElementById(avatarsTarget)
-  const alertEl = alertTarget ? document.getElementById(alertTarget) : null
+  const handlePlusClick = useCallback(() => {
+    followState.toggleFollow()
+  }, [followState])
 
   return (
     <>
-      {actionsEl &&
-        createPortal(
-          <span className="project-detail__follow">
-            <button
-              className={buttonClasses}
-              type="button"
-              onClick={toggleFollow}
-              aria-describedby="project-detail-follow-description"
-              aria-pressed={following}
-              disabled={following === null}
-            >
-              <span className="a4-follow__btn--content">{followBtnText}</span>
-              <span className="a4-sr-only" id="project-detail-follow-description">
-                {followDescriptionText}
-              </span>
-            </button>
-          </span>,
-          actionsEl
-        )}
+      <FollowButton
+        project={project}
+        authenticatedAs={authenticatedAs}
+        alertTarget={alertTarget}
+        buttonTarget={actionsTarget}
+        customClasses="project-detail__follow"
+        buttonClassName="project-detail__follow-btn"
+        descriptionId="project-detail-follow-description"
+        onFollowChange={handleFollowChange}
+        onFollowStateChange={setFollowState}
+      />
       {avatarsEl &&
         createPortal(
           <FollowerAvatars
             followers={followers}
-            following={following}
+            following={followState.following}
             authenticatedAs={authenticatedAs}
-            onPlusClick={toggleFollow}
+            onPlusClick={handlePlusClick}
           />,
           avatarsEl
         )}
-      {alert && alertEl &&
-        createPortal(<Alert onClick={removeAlert} {...alert} />, alertEl)}
     </>
   )
 }

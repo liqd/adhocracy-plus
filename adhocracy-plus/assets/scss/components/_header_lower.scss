@@ -1,3 +1,16 @@
+.header-lower__logo-box {
+    display: inline-block;
+    padding: 0.5 * $padding;
+    position: relative;
+    bottom: -24px;
+    background-color: $body-bg;
+    z-index: 3;
+    box-shadow: 0 0 8px 0 $shadow;
+    
+    // Other half of bugfix for follow button (see above)
+    pointer-events: auto;
+}
+
 .header-lower__position {
     position: absolute;
     bottom: 0;
@@ -10,6 +23,7 @@
         .header-lower__inner {
             box-sizing: border-box;
             width: 100%;
+
             @include project-detail-page-inset;
         }
 
@@ -24,19 +38,6 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
-}
-
-.header-lower__logo-box {
-    display: inline-block;
-    padding: 0.5 * $padding;
-    position: relative;
-    bottom: -24px;
-    background-color: $body-bg;
-    z-index: 3;
-    box-shadow: 0 0 8px 0 $shadow;
-    
-    // Other half of bugfix for follow button (see above)
-    pointer-events: auto;
 }
 
 .header-lower__position--right {
