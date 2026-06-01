@@ -21,10 +21,12 @@ import {
 } from 'adhocracy4'
 
 import { renderLanguageChoice } from '../../../apps/organisations/assets/react_language_choice.jsx'
+import { renderProjectDetailFollow } from '../../../apps/projects/assets/js/project_detail_follow.jsx'
 
 function init () {
   ReactWidget.initialise('a4', 'comment_async', ReactCommentsAsync.renderComment)
   ReactWidget.initialise('a4', 'follows', ReactFollows.renderFollow)
+  ReactWidget.initialise('a4', 'project-detail-follow', renderProjectDetailFollow)
   ReactWidget.initialise('a4', 'ratings', ReactRatings.renderRatings)
   ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
 

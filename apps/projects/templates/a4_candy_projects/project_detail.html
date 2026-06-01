@@ -49,130 +49,36 @@
 
         {% block content %}
             <div
-                class="project-header{% if project.image %} project-header--image{% endif %}"
-                {% if view.project.image %}
+                class="project-header project-header--hero{% if project.image %} project-header--image{% endif %}"
+                {% if project.image %}
                     style="background-image: url({{ project.image |thumbnail_url:'heroimage' }});"
                     role="img"
                     aria-label="{% if project.image_alt_text %}{{ project.image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
                 {% endif %}
             >
-                <div class="mb-5 u-z-index--0">
-                    <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-                        <h1 class="project-header__title">{{ project.name }}</h1>
-                        <p class="project-header__description">{{ project.description }}</p>
-                        {% if request.user.is_authenticated %}
-                            {% react_follows project %}
-                        {% endif %}
-                    </div>
-                </div>
                 {% if project.image_copyright %}
                 <div class="header__copyright copyright">© {{ project.image_copyright }}</div>
                 {% endif %}
-                  <div class="tablist project-header__tabs">
-                      <nav class="nav d-none d-md-inline-block" role="tablist">
-                          <a
-                              id="tab-project-{{ project.pk }}-information"
-                              class="tab"
-                              data-bs-toggle="tab"
-                              href="#tabpanel-project-{{ project.pk }}-information"
-                              role="tab"
-                              aria-controls="tabpanel-project-{{ project.pk }}-information"
-                              aria-expanded="false">
-                              {% translate 'Information' %}
-                          </a>
-                          <a
-                              id="tab-project-{{ project.pk }}-participation"
-                              class="tab active"
-                              data-bs-toggle="tab"
-                              href="#tabpanel-project-{{ project.pk }}-participation"
-                              role="tab"
-                              aria-controls="tabpanel-project-{{ project.pk }}-participation"
-                              aria-expanded="true">
-                              {% translate 'Participation' %}
-                          </a>
-                          <a
-                              id="tab-project-{{ project.pk }}-result"
-                              class="tab"
-                              data-bs-toggle="tab"
-                              href="#tabpanel-project-{{ project.pk }}-result"
-                              role="tab"
-                              aria-controls="tabpanel-project-{{ project.pk }}-result"
-                              aria-expanded="false">
-                              {% translate 'Result' %}
-                          </a>
-                      </nav>
-                      {% include 'includes/project_header_mobile_toggle.html' %}
-                  </div>
-                {% include 'header_lower.html' with organisation=project.organisation %}
+                {% include 'header_lower.html' with organisation=project.organisation content_inset=True %}
             </div>
-            {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
-            {% if user_may_change %}
-            <div class="u-align-right mt-1">
-                <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small me-3">{% translate 'Edit' %}</a>
-            </div>
-            {% endif %}
 
-            <div class="container{% if user_may_change %} mt-2{% else %} mt-5 pt-4{% endif %}">
-                <div class="row">
-                    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 mb-3">
+            <div class="project-detail">
+                <div class="project-detail__inner">
+                    {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+                    {% if user_may_change %}
+                    <div class="project-detail__toolbar">
+                        <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small">{% translate 'Edit' %}</a>
+                    </div>
+                    {% endif %}
+                    <div class="project-detail__breadcrumbs">
                         {% platform_breadcrumbs project=project current='project' %}
                     </div>
-                </div>
-            </div>
 
-            <div
-                class="tabpanel tabpanel--topnav"
-                id="tabpanel-project-{{ project.pk }}-information"
-                role="tabpanel"
-                aria-labelledby="tab-project-{{ project.pk }}-information"
-                aria-expanded="false">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                            <div class="ck-content">
-                                {{ project.information | transform_collapsibles | richtext }}
-			    </div>
-                            {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
-                                <h3 class="u-top-divider">{% translate 'Contact for questions' %}</h3>
-                                {% if project.contact_name %}
-                                <p>{{ project.contact_name }}</p>
-                                {% endif %}
-                                {% if project.contact_address_text %}
-                                <p>{{ project.contact_address_text|linebreaks }}</p>
-                                {% endif %}
-                                {% if project.contact_phone %}
-                                <p><strong>{% translate 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
-                                {% endif %}
-                                {% if project.contact_email %}
-                                <a class="btn btn--primary" href="mailto:{{ project.contact_email }}">
-                                    {% translate 'Email' %}
-                                </a>
-                                {% endif %}
-                                {% if project.contact_url %}
-                                <a class="btn btn--primary" target="_blank" href="{{ project.contact_url }}">
-                                    {% translate 'Website' %}
-                                </a>
-                                {% endif %}
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    {% if not module %}
+                    {% include "a4_candy_projects/includes/project_detail_intro.html" %}
+                    {% endif %}
 
-            <div
-                class="tabpanel tabpanel--topnav active"
-                id="tabpanel-project-{{ project.pk }}-participation"
-                role="tabpanel"
-                aria-labelledby="tab-project-{{ project.pk }}-participation"
-                aria-expanded="true">
-                <div class="timeline-carousel__wrapper">
-                {% if project.display_timeline %}
-                    {% include "a4_candy_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
-                {% else %}
-                    <h2 class="visually-hidden">{% translate 'Online participation' %}</h2>
-                {% endif %}
-                </div>
-                <div class="container">
+                    <div class="project-detail__content">
                     {% if event %}
                     <div class="row">
                         <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
@@ -184,16 +90,23 @@
                         </div>
                     </div>
 
-                    {% elif view.is_project_view %}
-                    <div class="row">
-                        <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                            <ul class="l-tiles-3">
-                            {% for module in modules %}
-                                {% include "a4_candy_projects/includes/project_list_tile.html" with object=module project=module.project orientation='vertical' type='module' url=module.get_absolute_url %}
-                            {% endfor %}
-                            </ul>
+                    {% elif not module %}
+                    <section class="project-detail__participation" aria-labelledby="project-detail-participation-heading">
+                        <div class="project-detail__participation-header">
+                            <h2 class="project-detail__participation-title" id="project-detail-participation-heading">
+                                {% translate 'Online participation' %}
+                            </h2>
+                            {% comment %}Grid / timeline view toggle: restore when timeline page is ready.{% endcomment %}
                         </div>
-                    </div>
+                        <ul class="project-detail__grid">
+                            {% for module in project.published_modules %}
+                                {% include "a4_candy_projects/includes/project_module_card.html" with object=module url=module.get_absolute_url %}
+                            {% endfor %}
+                        </ul>
+                    </section>
+
+                    {% include "a4_candy_projects/includes/project_detail_events.html" %}
+                    {% include "a4_candy_projects/includes/project_detail_insights.html" %}
 
                     {% else %} <!-- if just one module and no phase view to dispatch to -->
                     {% include "a4modules/includes/module_description.html" %}
@@ -247,9 +160,9 @@
                     {% endif %}
                     {% endif %}
                 </div>
-                {% if not view.is_project_view and not event %}
-                <div class="container">
-                    <div class="row">
+
+                {% if module and not event %}
+                <div class="row">
                     {% if project.is_private %}
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs my-4">
                             <i class="fas fa-lock pe-2" aria-hidden="true"></i>{% translate 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
@@ -259,53 +172,14 @@
                             <i class="fas fa-eye pe-2" aria-hidden="true"></i>{% translate 'This project is publicly visible. Invited users can actively participate.' %}
                         </div>
                     {% endif %}
-                    </div>
                 </div>
                 {% endif %}
+
                 <!-- these blocks are only filled when in phase view -->
                 <div class="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
                 {% block project_action %}{% endblock project_action %}
                 </div>
                 {% block phase_content %}{% endblock phase_content %}
-            </div>
-
-            <div
-                class="tabpanel tabpanel--topnav"
-                id="tabpanel-project-{{ project.pk }}-result"
-                role="tabpanel"
-                aria-labelledby="tab-project-{{ project.pk }}-result"
-                aria-expanded="false">
-                <div class="container">
-                {% if project.insight.display %}
-                    <div class="row">
-                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                          <h5>{% translate 'Insights' %}</h5>
-                          <p class="form-hint"> {{ insight_label }} </p>
-
-                          <dl class="row">
-                            {% for label, value in counts %}
-                            <div class="col-sm-6 col-lg-4 text-center mb-2">
-                                <dt class="dt--insight">{{ value }}</dt>
-                                <dd>{{ label|title }}</dd>
-                            </div>
-                            {% endfor %}
-                          </dl>
-                        </div>
-                    </div>
-                {% endif %}
-
-                    <div class="row">
-                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                          <h5>{{ result_title|title }}</h5>
-                        </div>
-                        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 ck-content">
-                            {% if project.result %}
-                                {{ project.result | transform_collapsibles | richtext }}
-                            {% else %}
-                                {% translate 'No results yet.' %}
-                            {% endif %}
-                        </div>
-                    </div>
                 </div>
             </div>
             {% include 'footer_upper.html' with organisation=project.organisation %}
