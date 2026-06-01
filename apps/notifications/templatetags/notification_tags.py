@@ -33,7 +33,8 @@ def render_notification_with_links(notification):
                     )
                     redirect_url = context[f"{key}_url"]
                     result.append(
-                        f'<a href="{mark_read_url}?redirect_to={redirect_url}">{context[key]}</a>'
+                        # translate stored raw string
+                        f'<a href="{mark_read_url}?redirect_to={redirect_url}">{_(context[key])}</a>'
                     )
                 else:
                     result.append(context[key])

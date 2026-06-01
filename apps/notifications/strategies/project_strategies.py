@@ -139,11 +139,22 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
     def create_notification_data(self, invitation) -> dict:
         project = invitation.project
         is_semipublic = getattr(project, "is_semipublic", False)
-        project_type = "semi-public" if is_semipublic else "private"
+
+        subject_translations = {
+            "private": _("Invitation to the private project: {project_name}"),
+            "semi-public": _("Invitation to the semi-public project: {project_name}"),
+        }
+
+        headline_translations = {
+            "private": _('Invitation to the private project: "{project_name}"'),
+            "semi-public": _('Invitation to the semi-public project: "{project_name}"'),
+        }
+
+        project_type_raw = "semi-public" if is_semipublic else "private"
 
         email_context = {
-            "subject": _("Invitation to the {project_type} project: {project_name}"),
-            "headline": _('Invitation to the {project_type} project: "{project_name}"'),
+            "subject": subject_translations[project_type_raw],
+            "headline": headline_translations[project_type_raw],
             "cta_url": f"{invitation.get_absolute_url()}",
             "cta_label": _("Accept invitation"),
             "reason": _("This email was sent to {receiver_email}."),
@@ -151,7 +162,6 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
             "participantinvite": invitation,
             "project": project,
             "project_name": project.name,
-            "project_type": project_type,
             "site": invitation.site,
         }
 
@@ -164,7 +174,6 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
             "context": {
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
-                "project_type": project_type,
             },
             "email_context": email_context,
         }

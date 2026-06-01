@@ -139,7 +139,6 @@ class CommentReply(BaseNotificationStrategy):
 
     def create_notification_data(self, comment) -> dict:
         parent_comment = self._get_parent_comment(comment)
-
         email_context = {
             "subject": _("{commenter_name} replied to your comment"),
             "headline": _("New reply to your comment"),
@@ -167,7 +166,7 @@ class CommentReply(BaseNotificationStrategy):
             "context": {
                 "user": comment.creator.username,
                 "user_url": comment.creator.get_absolute_url(),
-                "replied": _("replied"),
+                "replied": "replied",
                 "replied_url": comment.get_absolute_url(),
                 "project": comment.project.name,
                 "project_url": comment.project.get_absolute_url(),
