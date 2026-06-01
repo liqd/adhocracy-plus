@@ -21,7 +21,8 @@ jobs:
         id: setup-python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.12.13'
+          check-latest: false
 
       - name: Cache node packages
         uses: actions/cache@v4
@@ -75,7 +76,6 @@ jobs:
       - name: Install Python Dependencies
         run: |
           uv pip install -r requirements/dev.txt --system
-          uv pip install coveralls --system
 
       - name: Run Tests
         env:
@@ -90,11 +90,14 @@ jobs:
           if [ "${{ github.event_name }}" = "push" ]; then
             # Run all tests and update testmon cache for future PRs
             # Delete .testmondata to force running all tests, but still update cache
-            rm -f .testmondata
+            rm -f .testmondata .testmondata-wal .testmondata-shm
             py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov -n auto
           elif [ "${{ github.event_name }}" = "pull_request" ]; then
             # Use testmon to run only changed tests
             py.test --ds=adhocracy-plus.config.settings.travis --testmon --cov -n auto
+          fi
+          if [ -f .testmondata ]; then
+            python -c "import sqlite3; c=sqlite3.connect('.testmondata'); c.execute('PRAGMA wal_checkpoint(TRUNCATE)'); c.close()"
           fi
 
       - name: Coveralls
