@@ -1,6 +1,7 @@
 from pytest_factoryboy import register
 
 from adhocracy4.test.factories import polls as polls_factory
+from adhocracy4.test.factories.follows import FollowFactory
 from tests.ideas.factories import IdeaFactory
 from tests.interactiveevents import factories as event_factories
 from tests.topicprio.factories import TopicFactory
@@ -20,3 +21,4 @@ register(event_factories.LikeFactory)
 register(invites.ModeratorInviteFactory)
 register(invites.ParticipantInviteFactory)
 register(invites.ProjectInsightFactory)
+register(FollowFactory)
