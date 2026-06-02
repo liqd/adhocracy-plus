@@ -272,6 +272,26 @@ class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
         return super().form_valid(request, *args, **kwargs)
 
 
+class ProjectInformationView(
+    PermissionRequiredMixin,
+    ProjectMixin,
+    generic.DetailView,
+):
+    model = project_models.Project
+    permission_required = "a4projects.view_project"
+    template_name = "a4_candy_projects/project_information.html"
+    slug_url_kwarg = "slug"
+    project_url_kwarg = "slug"
+    get_context_from_object = True
+
+    def get_permission_object(self):
+        return self.project
+
+    @property
+    def raise_exception(self):
+        return self.request.user.is_authenticated
+
+
 class ProjectDetailView(
     PermissionRequiredMixin,
     ProjectModuleDispatchMixin,

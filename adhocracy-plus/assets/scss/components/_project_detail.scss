@@ -596,3 +596,153 @@ $project-detail-completed: #ff1e38;
         }
     }
 }
+
+$project-information-content-max-width: 634px;
+
+.project-information__inner {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: $project-information-content-max-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding: (2 * $spacer) $spacer 0;
+
+    @media (min-width: $breakpoint-md) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.project-information__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2 * $spacer;
+}
+
+.project-information__back {
+    @include secondary-text;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5 * $spacer;
+    color: $text-color;
+    font-size: $font-size-sm;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+        color: $brand-primary;
+        text-decoration: none;
+    }
+}
+
+.project-information__edit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5 * $spacer;
+}
+
+.project-information__content {
+    width: 100%;
+}
+
+.project-information__title {
+    font-family: $font-family-base;
+    font-size: $font-size-xxl;
+    font-weight: $demi-bold;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 2 * $spacer;
+}
+
+.project-information__contact {
+    margin-top: 3 * $spacer;
+    padding-top: 2 * $spacer;
+}
+
+.project-information__contact-heading {
+    font-family: $font-family-base;
+    font-size: $font-size-lg;
+    font-weight: $demi-bold;
+    margin-top: 0;
+    margin-bottom: $spacer;
+}
+
+// Rich text: sans headings (global h2/h3 are serif). Match section titles on project detail.
+.project-information__content .ck-content {
+    h2,
+    h3 {
+        // Leftover font-size spans from the old CKEditor toolbar must not override the heading.
+        .text-tiny,
+        .text-small,
+        .text-big,
+        .text-huge {
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+        }
+    }
+
+    h2 {
+        font-family: $font-family-base;
+        font-size: $font-size-xl;
+        font-weight: $demi-bold;
+        line-height: 1.2;
+        margin-top: 2 * $spacer;
+        margin-bottom: $spacer;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    h3 {
+        font-family: $font-family-base;
+        font-size: $font-size-lg;
+        font-weight: $demi-bold;
+        line-height: 1.2;
+        margin-top: 1.5 * $spacer;
+        margin-bottom: $spacer;
+    }
+
+    // Legacy CKEditor font-size markup (paragraph + span); prefer heading dropdown for new content.
+    p:has(> .text-huge) {
+        margin-top: 2 * $spacer;
+        margin-bottom: $spacer;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        .text-huge {
+            display: block;
+            font-family: $font-family-base;
+            font-size: $font-size-xl;
+            font-weight: $demi-bold;
+            line-height: 1.2;
+        }
+    }
+
+    /* stylelint-disable-next-line no-descending-specificity */
+    p:has(> .text-big) {
+        margin-top: 1.5 * $spacer;
+        margin-bottom: $spacer;
+
+        .text-big {
+            display: block;
+            font-family: $font-family-base;
+            font-size: $font-size-lg;
+            font-weight: $demi-bold;
+            line-height: 1.2;
+        }
+    }
+}
+
+.project-information__contact-item {
+    margin-bottom: 0.5 * $spacer;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

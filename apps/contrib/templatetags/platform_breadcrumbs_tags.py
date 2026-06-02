@@ -1,10 +1,12 @@
 from django import template
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 register = template.Library()
 
 _CURRENT_ORGANISATION = "organisation"
 _CURRENT_PROJECT = "project"
+_CURRENT_INFORMATION = "information"
 _CURRENT_MODULE = "module"
 _CURRENT_ITEM = "item"
 
@@ -60,6 +62,16 @@ def platform_breadcrumbs(
         )
 
     if current == _CURRENT_PROJECT:
+        return {"crumbs": crumbs, "show_trailing_separator": False}
+
+    if current == _CURRENT_INFORMATION:
+        crumbs.append(
+            {
+                "name": _("Information"),
+                "url": None,
+                "full_name": str(_("Information")),
+            }
+        )
         return {"crumbs": crumbs, "show_trailing_separator": False}
 
     if module is not None:

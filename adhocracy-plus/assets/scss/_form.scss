@@ -74,6 +74,52 @@ div.cke_focus {
     margin-top: $spacer;
 }
 
+// CKEditor editable: match published rich-text headings (sans, not global serif h2).
+.ck-editor__editable {
+    h2,
+    h3 {
+        font-family: $font-family-base;
+        font-weight: $demi-bold;
+        line-height: 1.2;
+
+        .text-tiny,
+        .text-small,
+        .text-big,
+        .text-huge {
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+        }
+    }
+
+    h2 {
+        font-size: $font-size-xl;
+    }
+
+    h3 {
+        font-size: $font-size-lg;
+    }
+}
+
+// Font size dropdown: "huge" / "big" apply h2 / h3 — preview that in the list.
+.ck.ck-dropdown {
+    .ck-list__item {
+        .text-huge {
+            font-family: $font-family-base;
+            font-size: $font-size-xl;
+            font-weight: $demi-bold;
+            line-height: 1.2;
+        }
+
+        .text-big {
+            font-family: $font-family-base;
+            font-size: $font-size-lg;
+            font-weight: $demi-bold;
+            line-height: 1.2;
+        }
+    }
+}
+
 .form-check,
 .form-group {
     .ck-editor-container,

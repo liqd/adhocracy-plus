@@ -31,6 +31,11 @@ urlpatterns = [
         name="project-moderator-invite-update",
     ),
     re_path(
+        r"^(?P<slug>[-\w_]+)/information/$",
+        views.ProjectInformationView.as_view(),
+        name="project-information",
+    ),
+    re_path(
         r"^(?P<slug>[-\w_]+)/$",
         views.ProjectDetailView.as_view(),
         name="project-detail",
