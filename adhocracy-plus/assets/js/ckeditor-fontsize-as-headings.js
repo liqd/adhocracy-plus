@@ -5,7 +5,7 @@
 const FONT_SIZE_TO_HEADING = {
   default: 'paragraph',
   big: 'heading3',
-  huge: 'heading2',
+  huge: 'heading2'
 }
 
 const FONT_SIZE_OPTIONS = new Set(Object.keys(FONT_SIZE_TO_HEADING))
