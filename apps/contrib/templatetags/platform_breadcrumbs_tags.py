@@ -7,8 +7,34 @@ register = template.Library()
 _CURRENT_ORGANISATION = "organisation"
 _CURRENT_PROJECT = "project"
 _CURRENT_INFORMATION = "information"
+_CURRENT_RESULTS = "results"
 _CURRENT_MODULE = "module"
 _CURRENT_ITEM = "item"
+
+_PROJECT_SUBPAGE_LABELS = {
+    _CURRENT_INFORMATION: _("Information"),
+    _CURRENT_RESULTS: _("Statistics & Results"),
+}
+
+
+def _resolve_entities(organisation, project, module):
+    if module is not None and project is None:
+        project = module.project
+    if project is not None and organisation is None:
+        organisation = project.organisation
+    return organisation, project, module
+
+
+def _crumb(name, url=None):
+    return {
+        "name": name,
+        "url": url,
+        "full_name": str(name),
+    }
+
+
+def _breadcrumb_context(crumbs, show_trailing_separator=False):
+    return {"crumbs": crumbs, "show_trailing_separator": show_trailing_separator}
 
 
 @register.inclusion_tag("includes/platform_breadcrumbs.html")
@@ -28,71 +54,50 @@ def platform_breadcrumbs(
 
     Resolve organisation/project from module when omitted.
     """
-    if module is not None and project is None:
-        project = module.project
-    if project is not None and organisation is None:
-        organisation = project.organisation
+    organisation, project, module = _resolve_entities(organisation, project, module)
 
     if organisation is None:
-        return {"crumbs": [], "show_trailing_separator": False}
+        return _breadcrumb_context([])
 
-    crumbs = []
     org_url = reverse("organisation", kwargs={"organisation_slug": organisation.slug})
-
-    crumbs.append(
-        {
-            "name": organisation.name,
-            "url": None if current == _CURRENT_ORGANISATION else org_url,
-            "full_name": str(organisation.name),
-        }
-    )
+    crumbs = [
+        _crumb(
+            organisation.name,
+            url=None if current == _CURRENT_ORGANISATION else org_url,
+        )
+    ]
 
     if current == _CURRENT_ORGANISATION:
-        return {"crumbs": crumbs, "show_trailing_separator": True}
+        return _breadcrumb_context(crumbs, show_trailing_separator=True)
 
     if project is not None:
         crumbs.append(
-            {
-                "name": project.name,
-                "url": (
-                    None if current == _CURRENT_PROJECT else project.get_absolute_url()
-                ),
-                "full_name": str(project.name),
-            }
+            _crumb(
+                project.name,
+                url=None if current == _CURRENT_PROJECT else project.get_absolute_url(),
+            )
         )
 
     if current == _CURRENT_PROJECT:
-        return {"crumbs": crumbs, "show_trailing_separator": False}
+        return _breadcrumb_context(crumbs)
 
-    if current == _CURRENT_INFORMATION:
-        crumbs.append(
-            {
-                "name": _("Information"),
-                "url": None,
-                "full_name": str(_("Information")),
-            }
-        )
-        return {"crumbs": crumbs, "show_trailing_separator": False}
+    subpage_label = _PROJECT_SUBPAGE_LABELS.get(current)
+    if subpage_label is not None:
+        crumbs.append(_crumb(subpage_label))
+        return _breadcrumb_context(crumbs)
 
     if module is not None:
         crumbs.append(
-            {
-                "name": module.name,
-                "url": None if current == _CURRENT_MODULE else module.get_detail_url(),
-                "full_name": str(module.name),
-            }
+            _crumb(
+                module.name,
+                url=None if current == _CURRENT_MODULE else module.get_detail_url(),
+            )
         )
 
     if current == _CURRENT_MODULE:
-        return {"crumbs": crumbs, "show_trailing_separator": False}
+        return _breadcrumb_context(crumbs)
 
     if current == _CURRENT_ITEM and item_name:
-        crumbs.append(
-            {
-                "name": item_name,
-                "url": None,
-                "full_name": str(item_name),
-            }
-        )
+        crumbs.append(_crumb(item_name))
 
-    return {"crumbs": crumbs, "show_trailing_separator": False}
+    return _breadcrumb_context(crumbs)

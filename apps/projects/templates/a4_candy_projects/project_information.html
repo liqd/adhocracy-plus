@@ -17,60 +17,62 @@
 <div class="u-bg-light py-md-5">
     <div class="container">
         <div class="col-12 container--shadow">
-            <div class="project-detail project-information">
-                <div class="project-information__inner">
-                    <div class="project-detail__breadcrumbs">
-                        {% platform_breadcrumbs project=project current='information' %}
-                    </div>
-
-                    <div class="project-information__actions">
-                        <a href="{{ project.get_absolute_url }}" class="project-information__back">
-                            <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                            {% translate 'Back' %}
-                        </a>
-                        {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
-                        {% if user_may_change %}
-                        <a href="{% url 'a4dashboard:dashboard-information-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small project-information__edit">
-                            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                            {% translate 'Edit' %}
-                        </a>
-                        {% endif %}
-                    </div>
-
-                    <div class="project-information__content">
-                        <h1 class="project-information__title">{% translate 'Information' %}</h1>
-                        <div class="ck-content">
-                            {{ project.information | transform_collapsibles | richtext }}
+            <div class="project-detail project-subpage">
+                <div class="row">
+                    <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 project-subpage__column">
+                        <div class="project-detail__breadcrumbs">
+                            {% platform_breadcrumbs project=project current='information' %}
                         </div>
 
-                        {% if project.has_contact_details %}
-                        <section class="project-information__contact" aria-labelledby="project-information-contact-heading">
-                            <h2 class="project-information__contact-heading" id="project-information-contact-heading">
-                                {% translate 'Contact' %}
-                            </h2>
-                            {% if project.contact_name %}
-                            <p class="project-information__contact-item">{{ project.contact_name }}</p>
+                        <div class="project-subpage__actions">
+                            <a href="{{ project.get_absolute_url }}" class="project-subpage__back">
+                                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                                {% translate 'Back' %}
+                            </a>
+                            {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+                            {% if user_may_change %}
+                            <a href="{% url 'a4dashboard:dashboard-information-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small project-subpage__edit">
+                                <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                                {% translate 'Edit' %}
+                            </a>
                             {% endif %}
-                            {% if project.contact_address_text %}
-                            <p class="project-information__contact-item">{{ project.contact_address_text|linebreaksbr }}</p>
+                        </div>
+
+                        <div class="project-subpage__content">
+                            <h1 class="project-subpage__title">{% translate 'Information' %}</h1>
+                            <div class="ck-content">
+                                {{ project.information | transform_collapsibles | richtext }}
+                            </div>
+
+                            {% if project.has_contact_details %}
+                            <section class="project-subpage__contact" aria-labelledby="project-information-contact-heading">
+                                <h2 class="project-subpage__contact-heading" id="project-information-contact-heading">
+                                    {% translate 'Contact' %}
+                                </h2>
+                                {% if project.contact_name %}
+                                <p class="project-subpage__contact-item">{{ project.contact_name }}</p>
+                                {% endif %}
+                                {% if project.contact_address_text %}
+                                <p class="project-subpage__contact-item">{{ project.contact_address_text|linebreaksbr }}</p>
+                                {% endif %}
+                                {% if project.contact_phone %}
+                                <p class="project-subpage__contact-item">
+                                    <strong>{% translate 'Telephone' %}:</strong> {{ project.contact_phone }}
+                                </p>
+                                {% endif %}
+                                {% if project.contact_email %}
+                                <p class="project-subpage__contact-item">
+                                    <a href="mailto:{{ project.contact_email }}">{{ project.contact_email }}</a>
+                                </p>
+                                {% endif %}
+                                {% if project.contact_url %}
+                                <p class="project-subpage__contact-item">
+                                    <a href="{{ project.contact_url }}" target="_blank" rel="noopener noreferrer">{{ project.contact_url }}</a>
+                                </p>
+                                {% endif %}
+                            </section>
                             {% endif %}
-                            {% if project.contact_phone %}
-                            <p class="project-information__contact-item">
-                                <strong>{% translate 'Telephone' %}:</strong> {{ project.contact_phone }}
-                            </p>
-                            {% endif %}
-                            {% if project.contact_email %}
-                            <p class="project-information__contact-item">
-                                <a href="mailto:{{ project.contact_email }}">{{ project.contact_email }}</a>
-                            </p>
-                            {% endif %}
-                            {% if project.contact_url %}
-                            <p class="project-information__contact-item">
-                                <a href="{{ project.contact_url }}" target="_blank" rel="noopener noreferrer">{{ project.contact_url }}</a>
-                            </p>
-                            {% endif %}
-                        </section>
-                        {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

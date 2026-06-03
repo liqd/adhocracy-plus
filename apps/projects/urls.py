@@ -36,6 +36,11 @@ urlpatterns = [
         name="project-information",
     ),
     re_path(
+        r"^(?P<slug>[-\w_]+)/results/$",
+        views.ProjectResultsView.as_view(),
+        name="project-results",
+    ),
+    re_path(
         r"^(?P<slug>[-\w_]+)/$",
         views.ProjectDetailView.as_view(),
         name="project-detail",

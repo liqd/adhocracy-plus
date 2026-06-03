@@ -1,0 +1,9 @@
+{% load i18n %}
+<dl class="project-detail__insights-stats">
+    {% for label, value in counts %}
+    <div class="project-detail__insights-stat">
+        <dt class="project-detail__insights-value">{{ value }}</dt>
+        <dd class="project-detail__insights-label">{{ label|title }}</dd>
+    </div>
+    {% endfor %}
+</dl>
