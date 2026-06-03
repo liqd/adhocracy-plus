@@ -3,6 +3,7 @@ import itertools
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -23,6 +24,7 @@ from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
 from apps.projects.models import ProjectInsight
+from apps.projects.utils import project_has_result_content
 
 from . import dashboard
 from . import forms
@@ -270,6 +272,58 @@ class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
         obj = self.get_object()
         messages.success(self.request, self.success_message % obj.__dict__)
         return super().form_valid(request, *args, **kwargs)
+
+
+class ProjectInformationView(
+    PermissionRequiredMixin,
+    ProjectMixin,
+    generic.DetailView,
+):
+    model = project_models.Project
+    permission_required = "a4projects.view_project"
+    template_name = "a4_candy_projects/project_information.html"
+    slug_url_kwarg = "slug"
+    project_url_kwarg = "slug"
+    get_context_from_object = True
+
+    def get_permission_object(self):
+        return self.project
+
+    @property
+    def raise_exception(self):
+        return self.request.user.is_authenticated
+
+
+class ProjectResultsView(
+    PermissionRequiredMixin,
+    ProjectMixin,
+    generic.DetailView,
+):
+    model = project_models.Project
+    permission_required = "a4projects.view_project"
+    template_name = "a4_candy_projects/project_results.html"
+    slug_url_kwarg = "slug"
+    project_url_kwarg = "slug"
+    get_context_from_object = True
+
+    def get_permission_object(self):
+        return self.project
+
+    @property
+    def raise_exception(self):
+        return self.request.user.is_authenticated
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        insight, _ = ProjectInsight.objects.get_or_create(project=self.object)
+        if not insight.display and not project_has_result_content(self.object):
+            return HttpResponseRedirect(self.object.get_absolute_url())
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ProjectInsight.update_context(self.project, context)
+        return context
 
 
 class ProjectDetailView(

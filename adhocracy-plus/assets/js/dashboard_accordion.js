@@ -1,9 +1,6 @@
 import Cookies from 'js-cookie'
 
-document.addEventListener('DOMContentLoaded', initDashboardAccordion, false)
-document.removeEventListener('unload', initDashboardAccordion)
-
-function initDashboardAccordion () {
+export function initDashboardAccordion () {
   const COOKIE_NAME = 'dashboard_projects_closed_accordions'
   const HTML_ATTR = 'aria-expanded'
   const accordionMenus = document.querySelectorAll('div.dashboard-nav__dropdown')

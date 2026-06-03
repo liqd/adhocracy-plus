@@ -84,9 +84,9 @@ class ProjectInsightForm(ModelForm):
 class ProjectResultComponent(ProjectFormComponent):
     identifier = "result"
     weight = 12
-    label = _("Result")
+    label = _("Results")
 
-    form_title = _("Edit project result")
+    form_title = _("Edit project results")
     form_class = ProjectResultForm
     form_template_name = "a4dashboard/includes/project_result_form.html"
 

@@ -12,8 +12,14 @@ from apps.ideas.models import Idea
 from apps.interactiveevents.models import Like
 from apps.interactiveevents.models import LiveQuestion
 from apps.mapideas.models import MapIdea
+from apps.projects.utils import project_has_result_content
 
 register = template.Library()
+
+
+@register.filter
+def has_result_content(project):
+    return project_has_result_content(project)
 
 
 @register.filter

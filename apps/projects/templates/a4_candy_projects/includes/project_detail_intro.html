@@ -7,7 +7,7 @@
         <p class="project-detail__description">{{ project.description }}</p>
         {% endif %}
         <div class="project-detail__actions">
-            <a class="btn btn--transparent project-detail__action project-detail__action--info" href="#">
+            <a class="btn btn--transparent project-detail__action project-detail__action--info" href="{% url 'project-information' organisation_slug=project.organisation.slug slug=project.slug %}">
                 {% translate 'More information' %}
             </a>
             <div id="project-detail-follow-actions">

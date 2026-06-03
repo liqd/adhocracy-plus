@@ -240,3 +240,16 @@
 .ck-content .text-huge {
     font-size: 1.8em;
 }
+
+// Font-size classes inside real headings are legacy markup; inherit from h2/h3.
+.ck-content h2,
+.ck-content h3 {
+    .text-tiny,
+    .text-small,
+    .text-big,
+    .text-huge {
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+    }
+}

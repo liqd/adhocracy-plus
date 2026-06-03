@@ -187,4 +187,4 @@ def test_project_detail_insights_section(
 
     response = client.get(project_detail_url(project_detail_overview))
     assert b"project-detail__insights" in response.content
-    assert b"Insights" in response.content
+    assert "Statistics & Results".encode() in response.content

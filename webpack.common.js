@@ -60,9 +60,9 @@ module.exports = {
         './apps/interactiveevents/assets/react_interactiveevents_present_init.jsx'
       ]
     },
-    init_dashboard_accordion: {
+    init_dashboard: {
       import: [
-        './adhocracy-plus/assets/js/init_dashboard_accordion.js'
+        './adhocracy-plus/assets/js/init_dashboard.js'
       ]
     },
     moderation_projects: {
