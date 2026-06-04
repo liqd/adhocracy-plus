@@ -9,6 +9,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- Contact information fields included in Proposal/Idea/Mapidea Forms
+
 ### Changed
 
 ### Fixed
