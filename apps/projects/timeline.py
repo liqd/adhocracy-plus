@@ -96,7 +96,8 @@ def build_participation_timeline_groups(
 
     groups: list[ParticipationTimelineGroup] = []
     for (group_date, status), modules in sorted(
-        grouped.items(), key=lambda item: (item[0][0], _status_sort_key(item[0][1]))
+        grouped.items(),
+        key=lambda item: (_status_sort_key(item[0][1]), item[0][0]),
     ):
         groups.append(
             ParticipationTimelineGroup(

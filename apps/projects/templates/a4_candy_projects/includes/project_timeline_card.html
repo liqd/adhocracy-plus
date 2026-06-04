@@ -20,18 +20,24 @@
             </div>
             <div class="project-timeline-card__title-row">
                 <h3 class="project-timeline-card__title">
-                    <a href="{{ module.get_absolute_url }}">{{ module.name }}</a>
+                    <span class="project-timeline-card__title-text">
+                        <a href="{{ module.get_absolute_url }}" title="{{ module.name }}">{{ module.name }}</a>
+                    </span>
+                    <span class="project-timeline-card__status">
+                        {{ row_status.label }}
+                    </span>
                 </h3>
-                <span class="project-timeline-card__status badge badge--secondary">
-                    {{ row_status.label }}
-                </span>
             </div>
             {% if module.description %}
             <p class="project-timeline-card__description">{{ module.description }}</p>
             {% endif %}
             <div class="project-timeline-card__footer-meta">
                 <span class="project-timeline-card__contributions">
-                    <i class="fas fa-users" aria-hidden="true"></i>
+                    <img
+                        class="project-timeline-card__contributions-icon"
+                        src="{% static 'images/icon-users-outline.svg' %}"
+                        alt=""
+                        aria-hidden="true" />
                     {% get_num_entries module as num_entries %}
                     {% blocktranslate count num_entries=num_entries %}{{ num_entries }} contribution{% plural %}{{ num_entries }} contributions{% endblocktranslate %}
                 </span>

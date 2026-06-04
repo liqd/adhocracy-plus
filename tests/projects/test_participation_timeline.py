@@ -92,6 +92,34 @@ def test_build_timeline_groups_same_day_and_status(
 
 
 @pytest.mark.django_db
+def test_build_timeline_groups_orders_by_status_before_date(
+    project, module_factory, phase_factory
+):
+    """Running modules appear after all past groups even with an earlier start date."""
+    module_finished = module_factory(project=project, weight=1)
+    module_running = module_factory(project=project, weight=2)
+    phase_factory(
+        module=module_finished,
+        start_date=parse("2013-01-01 10:00:00 UTC"),
+        end_date=parse("2013-03-01 12:00:00 UTC"),
+    )
+    phase_factory(
+        module=module_running,
+        start_date=parse("2013-02-01 10:00:00 UTC"),
+        end_date=parse("2013-12-01 12:00:00 UTC"),
+    )
+
+    with freeze_time(parse("2013-04-15 12:00:00 UTC")):
+        groups = build_participation_timeline_groups(project)
+
+    assert len(groups) == 2
+    assert groups[0].status == STATUS_FINISHED
+    assert groups[0].modules[0] == module_finished
+    assert groups[1].status == STATUS_RUNNING
+    assert groups[1].modules[0] == module_running
+
+
+@pytest.mark.django_db
 def test_build_timeline_groups_same_day_different_status(
     project, module_factory, phase_factory
 ):

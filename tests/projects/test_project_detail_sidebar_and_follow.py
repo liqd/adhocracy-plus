@@ -159,7 +159,7 @@ def test_project_detail_single_module_shows_overview(
     assert_template_response(response, "a4_candy_projects/project_detail.html")
     assert response.context_data.get("module") is None
     assert b"project-detail__participation" in response.content
-    assert b"project-detail__grid" in response.content
+    assert b"project-detail__module-grid" in response.content
 
 
 @pytest.mark.django_db
@@ -170,7 +170,7 @@ def test_project_detail_online_participation_section(client, project_detail_over
     response = client.get(project_detail_url(project_detail_overview))
     assert b"project-detail__participation" in response.content
     assert b"Online participation" in response.content
-    assert b"project-detail__grid" in response.content
+    assert b"project-detail__module-grid" in response.content
     assert b"data-participation-view-btn" in response.content
     assert b"Survey module" in response.content
 

@@ -35,8 +35,10 @@ function init () {
 
   initProjectDetailParticipationView()
 
-  $('.timeline-carousel__item').slick({
-    initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),
+  const $timelineCarousel = $('#timeline-carousel')
+  if ($timelineCarousel.length) {
+    $('.timeline-carousel__item').slick({
+      initialSlide: parseInt($timelineCarousel.attr('data-initial-slide'), 10) || 0,
     focusOnSelect: false,
     centerMode: true,
     dots: false,
@@ -47,7 +49,8 @@ function init () {
     variableWidth: true,
     slidesToShow: 1,
     slidesToScroll: 1
-  })
+    })
+  }
 
   $('.project-tile-carousel').slick({
     initialSlide: 0,

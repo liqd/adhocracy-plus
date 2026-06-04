@@ -481,7 +481,12 @@ $project-detail-completed: #ff1e38;
     }
 }
 
-.project-detail__grid {
+// Module cards: grid layout vs timeline layout (toggle via [hidden] on panels).
+.project-detail__participation [data-participation-view-panel][hidden] {
+    display: none !important;
+}
+
+.project-detail__module-grid:not([hidden]) {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
@@ -497,6 +502,57 @@ $project-detail-completed: #ff1e38;
     @media (min-width: $breakpoint-lg) {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+// Shared by markers (CSS) and rail segments (JS reads --timeline-rail-x).
+$project-detail-timeline-rail-x: 2px;
+$project-detail-timeline-rail-width: 2px;
+$project-detail-timeline-indent: 32px;
+$project-detail-timeline-marker-size: 8px;
+$project-detail-timeline-past-color: #e5e5e5;
+$project-detail-timeline-past-text: #434545;
+$project-detail-timeline-type-pill-bg: #f5f5f5;
+$project-detail-timeline-card-padding: 16px;
+$project-detail-timeline-footer-offset: 20px;
+$project-detail-timeline-pill-radius: 5px;
+
+@mixin project-detail-timeline-pill {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border-radius: $project-detail-timeline-pill-radius;
+    font-size: $font-size-sm;
+    font-weight: 400;
+    line-height: 1.25;
+    text-transform: lowercase;
+    white-space: nowrap;
+}
+
+.project-detail__module-timeline:not([hidden]) {
+    --timeline-rail-x: #{$project-detail-timeline-rail-x};
+    --timeline-indent: #{$project-detail-timeline-indent};
+    --timeline-marker-size: #{$project-detail-timeline-marker-size};
+    --timeline-past-color: #{$project-detail-timeline-past-color};
+    --timeline-past-text: #{$project-detail-timeline-past-text};
+    --timeline-running-color: #{$brand-primary};
+    --timeline-future-color: #{$print-black};
+
+    display: block;
+    position: relative;
+    padding-left: var(--timeline-indent);
+}
+
+.project-detail__timeline-rail {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.project-detail__timeline-rail-segment {
+    position: absolute;
+    width: $project-detail-timeline-rail-width;
+    transform: translateX(-50%);
+    background-color: var(--timeline-past-color);
 }
 
 .project-detail-card {
@@ -597,13 +653,9 @@ $project-detail-completed: #ff1e38;
     }
 }
 
-.project-detail__timeline {
-    position: relative;
-    padding-left: 1.5 * $spacer;
-}
-
 .project-detail__timeline-group {
-    margin-bottom: 2 * $spacer;
+    position: relative;
+    margin-bottom: 2.5 * $spacer;
 
     &:last-child {
         margin-bottom: 0;
@@ -615,33 +667,34 @@ $project-detail-completed: #ff1e38;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5 * $spacer;
-    margin-bottom: $spacer;
+    margin-bottom: 1.25 * $spacer;
     font-size: $font-size-sm;
+    line-height: 1.4;
+}
+
+.project-detail__timeline-group--finished .project-detail__timeline-group-header {
+    color: var(--timeline-past-text, #{$project-detail-timeline-past-text});
 }
 
 .project-detail__timeline-group-date {
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .project-detail__timeline-group-status {
-    padding: 0.15em 0.6em;
-    border-radius: 2px;
-    font-size: $font-size-sm;
-    font-weight: 600;
-    line-height: 1.4;
+    @include project-detail-timeline-pill;
 
     &--finished {
-        background-color: $gray-lightest;
-        color: $text-color;
+        background-color: var(--timeline-past-color, #{$project-detail-timeline-past-color});
+        color: var(--timeline-past-text, #{$project-detail-timeline-past-text});
     }
 
     &--running {
-        background-color: $brand-primary;
+        background-color: var(--timeline-running-color, #{$brand-primary});
         color: $white;
     }
 
     &--upcoming {
-        background-color: $print-black;
+        background-color: var(--timeline-future-color, #{$print-black});
         color: $white;
     }
 }
@@ -650,20 +703,18 @@ $project-detail-completed: #ff1e38;
     flex: 1 1 auto;
     min-width: 3 * $spacer;
     height: 1px;
-    background-color: $border-color;
+    background-color: var(--timeline-past-color, #{$project-detail-timeline-past-color});
 }
 
 .project-detail__timeline-list {
     list-style: none;
     margin: 0;
     padding: 0;
-    border-left: 1px solid $border-color;
 }
 
 .project-timeline-card {
     position: relative;
-    margin: 0 0 $spacer;
-    padding-left: 1.5 * $spacer;
+    margin: 0 0 1.25 * $spacer;
 
     &:last-child {
         margin-bottom: 0;
@@ -672,38 +723,66 @@ $project-detail-completed: #ff1e38;
 
 .project-timeline-card__marker {
     position: absolute;
-    left: -0.35 * $spacer;
-    top: 1.75 * $spacer;
-    width: 8px;
-    height: 8px;
+    left: calc(var(--timeline-rail-x) - var(--timeline-indent));
+    top: 50%;
+    width: var(--timeline-marker-size);
+    height: var(--timeline-marker-size);
     border-radius: 50%;
-    background-color: $print-black;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.project-timeline-card--finished .project-timeline-card__marker {
+    background-color: var(--timeline-past-color, #{$project-detail-timeline-past-color});
+}
+
+.project-timeline-card--running .project-timeline-card__marker {
+    background-color: var(--timeline-running-color, #{$brand-primary});
+}
+
+.project-timeline-card--upcoming .project-timeline-card__marker {
+    background-color: var(--timeline-future-color, #{$print-black});
 }
 
 .project-timeline-card__body {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: $spacer;
-    padding: $spacer;
-    border: 1px solid $project-detail-card-border;
+    gap: 0;
+    box-sizing: border-box;
+    padding: $project-detail-timeline-card-padding;
+    border: 1px solid var(--timeline-past-color, #{$project-detail-timeline-past-color});
     background-color: $body-bg;
+    color: $text-color;
 
     @media (min-width: $breakpoint-md) {
         flex-direction: row;
         align-items: flex-end;
         justify-content: space-between;
+
+        .project-timeline-card__cta {
+            margin-bottom: $project-detail-timeline-footer-offset;
+        }
     }
 }
 
-.project-timeline-card--running {
-    .project-timeline-card__body {
-        border-left: 3px solid $brand-primary;
-    }
+.project-timeline-card--finished .project-timeline-card__body {
+    border-color: var(--timeline-past-color, #{$project-detail-timeline-past-color});
+    color: var(--timeline-past-text, #{$project-detail-timeline-past-text});
+}
+
+.project-timeline-card--running .project-timeline-card__body {
+    border-color: var(--timeline-running-color, #{$brand-primary});
+}
+
+.project-timeline-card--upcoming .project-timeline-card__body {
+    border-color: var(--timeline-future-color, #{$print-black});
 }
 
 .project-timeline-card__main {
+    display: flex;
     flex: 1 1 auto;
+    flex-direction: column;
     min-width: 0;
 }
 
@@ -720,6 +799,11 @@ $project-detail-completed: #ff1e38;
     display: inline-flex;
     align-items: center;
     gap: 0.35 * $spacer;
+    padding: 0.125rem 0.5rem;
+    border-radius: $project-detail-timeline-pill-radius;
+    background-color: $project-detail-timeline-type-pill-bg;
+    font-weight: 400;
+    line-height: 1.25;
 }
 
 .project-timeline-card__type-icon {
@@ -728,24 +812,39 @@ $project-detail-completed: #ff1e38;
 }
 
 .project-timeline-card__dates {
-    color: $text-color;
+    font-weight: 400;
+    color: inherit;
 }
 
 .project-timeline-card__title-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.5 * $spacer;
+    max-width: 100%;
     margin-bottom: 0.5 * $spacer;
 }
 
 .project-timeline-card__title {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.5 * $spacer;
+    max-width: 100%;
     margin: 0;
     font-size: $font-size-md;
     font-weight: 600;
     line-height: 1.3;
+}
+
+.project-timeline-card__title-text {
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     a {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         color: inherit;
         text-decoration: none;
 
@@ -757,11 +856,32 @@ $project-detail-completed: #ff1e38;
 }
 
 .project-timeline-card__status {
-    font-weight: 600;
+    @include project-detail-timeline-pill;
+
+    flex: 0 0 auto;
+}
+
+.project-timeline-card--finished .project-timeline-card__status {
+    background-color: var(--timeline-past-color, #{$project-detail-timeline-past-color});
+    color: var(--timeline-past-text, #{$project-detail-timeline-past-text});
+}
+
+.project-timeline-card--running .project-timeline-card__status {
+    background-color: var(--timeline-running-color, #{$brand-primary});
+    color: $white;
+}
+
+.project-timeline-card--upcoming .project-timeline-card__status {
+    background-color: var(--timeline-future-color, #{$print-black});
+    color: $white;
 }
 
 .project-timeline-card__description {
+    display: -webkit-box;
     margin: 0 0 0.5 * $spacer;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
     font-size: $font-size-sm;
     line-height: 1.5;
 }
@@ -770,12 +890,34 @@ $project-detail-completed: #ff1e38;
     display: flex;
     flex-wrap: wrap;
     gap: 1 * $spacer;
+    margin-top: auto;
+    margin-bottom: $project-detail-timeline-footer-offset;
     font-size: $font-size-sm;
-    color: $text-color;
+    color: inherit;
+}
+
+.project-timeline-card__contributions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35 * $spacer;
+    color: inherit;
+}
+
+.project-timeline-card__contributions-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.project-timeline-card__time-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35 * $spacer;
+    color: inherit;
 
     /* stylelint-disable-next-line no-descending-specificity */
     i {
-        margin-right: 0.25 * $spacer;
+        color: inherit;
     }
 }
 
@@ -784,15 +926,17 @@ $project-detail-completed: #ff1e38;
     flex-shrink: 0;
     align-items: center;
     gap: 0.35 * $spacer;
+    margin-bottom: 0;
     font-weight: 600;
     text-decoration: none;
-    color: $text-color;
+    color: inherit;
     white-space: nowrap;
 
     &:hover,
     &:focus {
-        color: $text-color;
+        color: inherit;
         text-decoration: underline;
     }
 }
+
 

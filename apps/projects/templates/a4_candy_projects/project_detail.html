@@ -123,7 +123,7 @@
                             {% endif %}
                         </div>
                         <ul
-                            class="project-detail__grid"
+                            class="project-detail__module-grid"
                             id="project-detail-participation-grid"
                             data-participation-view-panel="grid">
                             {% for module in participation_grid_modules %}
@@ -131,12 +131,13 @@
                             {% endfor %}
                         </ul>
                         <div
-                            class="project-detail__timeline"
+                            class="project-detail__module-timeline"
                             id="project-detail-participation-timeline"
                             data-participation-view-panel="timeline"
                             hidden>
+                            <div class="project-detail__timeline-rail" aria-hidden="true"></div>
                             {% for group in participation_timeline_groups %}
-                            <section class="project-detail__timeline-group" aria-labelledby="project-detail-timeline-group-{{ forloop.counter }}">
+                            <section class="project-detail__timeline-group project-detail__timeline-group--{{ group.status }}" aria-labelledby="project-detail-timeline-group-{{ forloop.counter }}">
                                 <div class="project-detail__timeline-group-header" id="project-detail-timeline-group-{{ forloop.counter }}">
                                     <span class="project-detail__timeline-group-date">
                                         {% blocktranslate with date=group.group_date|date:"d.m.Y" %}from {{ date }}{% endblocktranslate %}
