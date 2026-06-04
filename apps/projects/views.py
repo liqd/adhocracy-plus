@@ -22,7 +22,6 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
-from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
 from apps.projects.models import ProjectInsight
 from apps.projects.utils import project_has_result_content
 
@@ -328,19 +327,25 @@ class ProjectResultsView(
 
 class ProjectDetailView(
     PermissionRequiredMixin,
-    ProjectModuleDispatchMixin,
     DisplayProjectOrModuleMixin,
+    generic.DetailView,
 ):
+    """Project overview (intro, participation grid, events, insights).
+
+    Participation happens on module-detail URLs; this view does not dispatch
+    into phase views when the project has only one module.
+    """
+
     model = models.Project
     permission_required = "a4projects.view_project"
     template_name = "a4_candy_projects/project_detail.html"
 
+    @cached_property
+    def project(self):
+        return self.get_object()
+
     def get_permission_object(self):
         return self.project
-
-    @cached_property
-    def is_project_view(self):
-        return self.get_current_modules()
 
     @property
     def raise_exception(self):
