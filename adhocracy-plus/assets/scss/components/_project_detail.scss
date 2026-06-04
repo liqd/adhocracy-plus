@@ -5,6 +5,7 @@ $project-detail-action-height: 48px;
 $project-detail-card-border: #fafafa;
 $project-detail-card-height: 332px;
 $project-detail-completed: #ff1e38;
+$project-detail-breadcrumbs-offset-signed-out: 60px;
 
 .project-detail {
     // padding-top: 2.6 * $spacer;
@@ -29,6 +30,10 @@ $project-detail-completed: #ff1e38;
 .project-detail__breadcrumbs {
     margin-bottom: 2 * $spacer;
 
+    &--signed-out {
+        margin-top: $project-detail-breadcrumbs-offset-signed-out;
+    }
+
     .platform-breadcrumbs__link .platform-breadcrumbs__name {
         font-weight: 400;
         text-decoration: underline;
@@ -38,6 +43,10 @@ $project-detail-completed: #ff1e38;
         font-weight: $demi-bold;
         text-decoration: none;
     }
+}
+
+.project-detail:not(.project-subpage) .project-detail__breadcrumbs:not(.project-detail__breadcrumbs--signed-out) {
+    margin-top: 2 * $spacer;
 }
 
 .project-detail__intro {
@@ -404,25 +413,41 @@ $project-detail-completed: #ff1e38;
     padding: 1.5 * $spacer;
 }
 
+$project-detail-insights-stat-gap: 1.5 * $spacer;
+
+// Four stats per row on desktop; partial last rows are centered via flex justify-content.
+$project-detail-insights-stat-column-width: calc(
+    (100% - 3 * #{$project-detail-insights-stat-gap}) / 4
+);
+
 .project-detail__insights-stats {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5 * $spacer;
+    gap: $project-detail-insights-stat-gap;
     margin: 0;
 
     @media (min-width: $breakpoint-md) {
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: $project-detail-insights-stat-gap;
     }
 }
 
 .project-detail__insights-stat {
     text-align: center;
+
+    @media (min-width: $breakpoint-md) {
+        flex: 0 0 $project-detail-insights-stat-column-width;
+        width: $project-detail-insights-stat-column-width;
+        box-sizing: border-box;
+    }
 }
 
 .project-detail__insights-value {
     margin: 0 0 0.25 * $spacer;
     font-size: $font-size-xxxl;
-    font-weight: $demi-bold;
+    font-weight: 400;
     line-height: 1;
     color: $text-color;
 }
@@ -442,20 +467,50 @@ $project-detail-completed: #ff1e38;
 
 .project-detail__view-toggle {
     display: inline-flex;
-    border: 1px solid $border-color;
+    max-width: 100%;
+
+    @media (max-width: $breakpoint-md-down) {
+        display: flex;
+        width: 100%;
+    }
 }
 
 .project-detail__view-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.4 * $spacer;
+    box-sizing: border-box;
     padding: 0.45em 0.9em;
     font-size: $font-size-sm;
     font-weight: 600;
     text-decoration: none;
     color: $text-color;
     background-color: $body-bg;
-    border: none;
+    border: 1px solid $border-color;
+    margin: 0;
+    box-shadow: none;
+    outline: none;
+
+    & + & {
+        border-left-width: 0;
+    }
+
+    @media (max-width: $breakpoint-md-down) {
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 8px 16px;
+        font-size: $font-size-base;
+        font-weight: 400;
+
+        &:first-child {
+            flex: 162 1 0;
+        }
+
+        &:last-child {
+            flex: 167 1 0;
+        }
+    }
 
     i {
         font-size: 0.9em;
@@ -464,7 +519,9 @@ $project-detail-completed: #ff1e38;
     &--active,
     &[aria-current="true"] {
         background-color: $print-black;
+        border-color: $print-black;
         color: $white;
+        z-index: 1;
     }
 
     &:hover,
@@ -473,11 +530,21 @@ $project-detail-completed: #ff1e38;
         text-decoration: none;
     }
 
+    &:focus-visible {
+        outline: 2px solid $brand-primary;
+        outline-offset: -2px;
+    }
+
     &--active:hover,
     &--active:focus,
     &[aria-current="true"]:hover,
     &[aria-current="true"]:focus {
         color: $white;
+    }
+
+    &--active:focus-visible,
+    &[aria-current="true"]:focus-visible {
+        outline-color: $white;
     }
 }
 
@@ -509,6 +576,7 @@ $project-detail-timeline-rail-x: 2px;
 $project-detail-timeline-rail-width: 2px;
 $project-detail-timeline-indent: 32px;
 $project-detail-timeline-marker-size: 8px;
+$project-detail-timeline-marker-gap: 8px;
 $project-detail-timeline-past-color: #e5e5e5;
 $project-detail-timeline-past-text: #434545;
 $project-detail-timeline-type-pill-bg: #f5f5f5;
@@ -531,6 +599,8 @@ $project-detail-timeline-pill-radius: 5px;
     --timeline-rail-x: #{$project-detail-timeline-rail-x};
     --timeline-indent: #{$project-detail-timeline-indent};
     --timeline-marker-size: #{$project-detail-timeline-marker-size};
+    --timeline-marker-gap: #{$project-detail-timeline-marker-gap};
+    --timeline-card-offset: calc(var(--timeline-marker-size) + var(--timeline-marker-gap));
     --timeline-past-color: #{$project-detail-timeline-past-color};
     --timeline-past-text: #{$project-detail-timeline-past-text};
     --timeline-running-color: #{$brand-primary};
@@ -538,6 +608,7 @@ $project-detail-timeline-pill-radius: 5px;
 
     display: block;
     position: relative;
+    width: 100%;
     padding-left: var(--timeline-indent);
 }
 
@@ -571,7 +642,8 @@ $project-detail-timeline-pill-radius: 5px;
     color: $text-color;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
         color: $text-color;
         text-decoration: none;
     }
@@ -591,7 +663,9 @@ $project-detail-timeline-pill-radius: 5px;
 }
 
 .project-detail-card__top {
-    flex: 0 0 auto;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
     min-height: 0;
 }
 
@@ -613,6 +687,12 @@ $project-detail-timeline-pill-radius: 5px;
     color: $text-color;
 }
 
+.project-detail-card__body:hover .project-detail-card__title,
+.project-detail-card__body:focus .project-detail-card__title,
+.project-detail-card__body:active .project-detail-card__title {
+    text-decoration: underline;
+}
+
 .project-detail-card__description {
     max-height: 120px;
     margin: 0;
@@ -625,7 +705,7 @@ $project-detail-timeline-pill-radius: 5px;
 .project-detail-card__meta {
     display: flex;
     align-items: center;
-    margin: 0;
+    margin: 0.5 * $spacer 0 0;
     font-size: 0.875rem;
     color: $text-color;
 }
@@ -655,6 +735,7 @@ $project-detail-timeline-pill-radius: 5px;
 
 .project-detail__timeline-group {
     position: relative;
+    width: 100%;
     margin-bottom: 2.5 * $spacer;
 
     &:last-child {
@@ -668,6 +749,7 @@ $project-detail-timeline-pill-radius: 5px;
     align-items: center;
     gap: 0.5 * $spacer;
     margin-bottom: 1.25 * $spacer;
+    padding-left: var(--timeline-card-offset, calc(#{$project-detail-timeline-marker-size} + #{$project-detail-timeline-marker-gap}));
     font-size: $font-size-sm;
     line-height: 1.4;
 }
@@ -708,12 +790,13 @@ $project-detail-timeline-pill-radius: 5px;
 
 .project-detail__timeline-list {
     list-style: none;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
 
 .project-timeline-card {
-    position: relative;
+    width: 100%;
     margin: 0 0 1.25 * $spacer;
 
     &:last-child {
@@ -721,14 +804,21 @@ $project-detail-timeline-pill-radius: 5px;
     }
 }
 
+.project-timeline-card__layout {
+    display: grid;
+    grid-template-columns: var(--timeline-marker-size) minmax(0, 1fr);
+    column-gap: var(--timeline-marker-gap, #{$project-detail-timeline-marker-gap});
+    align-items: center;
+    width: 100%;
+}
+
 .project-timeline-card__marker {
-    position: absolute;
-    left: calc(var(--timeline-rail-x) - var(--timeline-indent));
-    top: 50%;
+    position: relative;
+    grid-column: 1;
+    justify-self: center;
     width: var(--timeline-marker-size);
     height: var(--timeline-marker-size);
     border-radius: 50%;
-    transform: translate(-50%, -50%);
     z-index: 2;
 }
 
@@ -746,23 +836,36 @@ $project-detail-timeline-pill-radius: 5px;
 
 .project-timeline-card__body {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    display: grid;
+    grid-column: 2;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
     box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
     padding: $project-detail-timeline-card-padding;
     border: 1px solid var(--timeline-past-color, #{$project-detail-timeline-past-color});
     background-color: $body-bg;
     color: $text-color;
+    text-decoration: none;
 
-    @media (min-width: $breakpoint-md) {
-        flex-direction: row;
-        align-items: flex-end;
-        justify-content: space-between;
+    &:hover,
+    &:focus,
+    &:active {
+        color: inherit;
+        text-decoration: none;
+    }
 
-        .project-timeline-card__cta {
-            margin-bottom: $project-detail-timeline-footer-offset;
-        }
+    &:focus-visible {
+        outline: 2px solid $brand-primary;
+        outline-offset: 2px;
+    }
+
+    // Wide desktop only: CTA beside content (not at md/992 — avoids tablet/main shrink bugs).
+    @media (min-width: $breakpoint-lg) {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        column-gap: 1rem;
     }
 }
 
@@ -781,9 +884,13 @@ $project-detail-timeline-pill-radius: 5px;
 
 .project-timeline-card__main {
     display: flex;
-    flex: 1 1 auto;
+    grid-column: 1;
+    grid-row: 1;
     flex-direction: column;
+    gap: 10px;
+    width: 100%;
     min-width: 0;
+    max-width: 100%;
 }
 
 .project-timeline-card__meta-row {
@@ -816,49 +923,41 @@ $project-detail-timeline-pill-radius: 5px;
     color: inherit;
 }
 
+$project-timeline-title-pill-slot: 7.5rem;
+
 .project-timeline-card__title-row {
-    max-width: 100%;
+    width: 100%;
+    min-width: 0;
     margin-bottom: 0.5 * $spacer;
 }
 
 .project-timeline-card__title {
-    display: inline-flex;
-    align-items: center;
+    display: flex;
     flex-wrap: nowrap;
+    align-items: flex-start;
     gap: 0.5 * $spacer;
-    max-width: 100%;
+    width: 100%;
     margin: 0;
     font-size: $font-size-md;
     font-weight: 600;
     line-height: 1.3;
 }
 
+// Short titles: text uses natural width, pill sits directly after.
+// Long titles: text wraps in the remaining row width; pill stays top-right (first line).
 .project-timeline-card__title-text {
     flex: 0 1 auto;
     min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    a {
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: inherit;
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-        }
-    }
+    max-width: calc(100% - #{$project-timeline-title-pill-slot});
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 .project-timeline-card__status {
     @include project-detail-timeline-pill;
 
     flex: 0 0 auto;
+    align-self: flex-start;
 }
 
 .project-timeline-card--finished .project-timeline-card__status {
@@ -896,35 +995,54 @@ $project-detail-timeline-pill-radius: 5px;
     color: inherit;
 }
 
+$project-detail-timeline-meta-icon-size: 16px;
+$project-detail-timeline-meta-icon-gap: 8px;
+
+@mixin project-timeline-card-meta-icon-slot {
+    flex: 0 0 $project-detail-timeline-meta-icon-size;
+    width: $project-detail-timeline-meta-icon-size;
+    height: $project-detail-timeline-meta-icon-size;
+}
+
 .project-timeline-card__contributions {
     display: inline-flex;
     align-items: center;
-    gap: 0.35 * $spacer;
+    gap: $project-detail-timeline-meta-icon-gap;
     color: inherit;
 }
 
 .project-timeline-card__contributions-icon {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
+    @include project-timeline-card-meta-icon-slot;
+
+    display: block;
+    object-fit: contain;
 }
 
 .project-timeline-card__time-left {
     display: inline-flex;
     align-items: center;
-    gap: 0.35 * $spacer;
+    gap: $project-detail-timeline-meta-icon-gap;
     color: inherit;
 
     /* stylelint-disable-next-line no-descending-specificity */
     i {
+        @include project-timeline-card-meta-icon-slot;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $project-detail-timeline-meta-icon-size;
+        line-height: 1;
         color: inherit;
     }
 }
 
 .project-timeline-card__cta {
     display: inline-flex;
-    flex-shrink: 0;
+    grid-column: 1;
+    grid-row: 2;
     align-items: center;
+    justify-self: end;
     gap: 0.35 * $spacer;
     margin-bottom: 0;
     font-weight: 600;
@@ -932,11 +1050,90 @@ $project-detail-timeline-pill-radius: 5px;
     color: inherit;
     white-space: nowrap;
 
-    &:hover,
-    &:focus {
-        color: inherit;
-        text-decoration: underline;
+    @media (min-width: $breakpoint-lg) {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: end;
+        margin-bottom: $project-detail-timeline-footer-offset;
     }
 }
 
+.project-timeline-card__body:hover .project-timeline-card__title-text,
+.project-timeline-card__body:focus .project-timeline-card__title-text,
+.project-timeline-card__body:active .project-timeline-card__title-text,
+.project-timeline-card__body:hover .project-timeline-card__cta,
+.project-timeline-card__body:focus .project-timeline-card__cta,
+.project-timeline-card__body:active .project-timeline-card__cta {
+    text-decoration: underline;
+}
+
+@media (max-width: $breakpoint-md-down) {
+    .project-detail__participation-header {
+        gap: $spacer;
+    }
+
+    .project-detail__participation-title,
+    .project-detail__section-title {
+        font-size: $font-size-lg;
+        line-height: 1.2;
+    }
+
+    .project-detail__participation-title {
+        margin-bottom: 0;
+    }
+
+    .project-detail__insights-actions {
+        justify-content: stretch;
+
+        .btn {
+            width: 100%;
+        }
+    }
+
+    // Page inset already provides horizontal gutters; avoid stacking timeline indent.
+    .project-detail__module-timeline:not([hidden]) {
+        --timeline-indent: 0;
+        padding-left: 0;
+    }
+
+    .project-timeline-card__body {
+        padding: 16px 20px;
+    }
+
+    .project-timeline-card__footer-meta {
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        gap: 0;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: $font-size-base;
+        line-height: 24px;
+    }
+
+    .project-timeline-card__contributions,
+    .project-timeline-card__time-left {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        gap: $project-detail-timeline-meta-icon-gap;
+        line-height: 24px;
+        text-align: left;
+    }
+
+    .project-timeline-card__contributions-icon,
+    .project-timeline-card__time-left i {
+        @include project-timeline-card-meta-icon-slot;
+    }
+
+    .project-timeline-card__cta {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: $font-size-base;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+}
 

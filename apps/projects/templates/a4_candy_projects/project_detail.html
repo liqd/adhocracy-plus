@@ -70,7 +70,7 @@
                         <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small">{% translate 'Edit' %}</a>
                     </div>
                     {% endif %}
-                    <div class="project-detail__breadcrumbs">
+                    <div class="project-detail__breadcrumbs{% if not request.user.is_authenticated %} project-detail__breadcrumbs--signed-out{% endif %}">
                         {% platform_breadcrumbs project=project current='project' %}
                     </div>
 

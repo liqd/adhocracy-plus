@@ -20,12 +20,28 @@
     letter-spacing: 0.5px;
 }
 
-// Project detail page: align with footer on large screens; tighter gutters on tablet / small desktop
+// Project detail page gutters (see also `.container--shadow`, which adds `$spacer` horizontal
+// padding below `$breakpoint` / 768px — do not stack extra inset on phones).
+$project-detail-page-inset-tablet-left: 36px;
+$project-detail-page-inset-tablet-right: 21px;
+
 @mixin project-detail-page-inset {
     padding-left: clamp(1rem, 4vw, 5rem);
     padding-right: clamp(1rem, 4vw, 5rem);
 
-    @media (min-width: $breakpoint) and (max-width: $breakpoint-lg-down) {
+    // Phones: `.container--shadow` already applies 16px; keep inner flush with buttons.
+    @media (max-width: $breakpoint-down) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    // Tablet (Figma mobile frame gutters; shadow wrapper has no side padding here).
+    @media (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
+        padding-left: $project-detail-page-inset-tablet-left;
+        padding-right: $project-detail-page-inset-tablet-right;
+    }
+
+    @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg-down) {
         padding-left: clamp(1rem, 2vw, 2rem);
         padding-right: clamp(1rem, 2vw, 2rem);
     }

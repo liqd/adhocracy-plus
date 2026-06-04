@@ -2,8 +2,12 @@
 
 {% participation_timeline_status_tag module as row_status %}
 <li class="project-timeline-card project-timeline-card--{{ row_status.modifier }}">
-    <div class="project-timeline-card__marker" aria-hidden="true"></div>
-    <article class="project-timeline-card__body">
+    <div class="project-timeline-card__layout">
+        <div class="project-timeline-card__marker" aria-hidden="true"></div>
+        <a
+            class="project-timeline-card__body"
+            href="{{ module.get_absolute_url }}"
+            aria-labelledby="project-timeline-card-title-{{ module.pk }}">
         <div class="project-timeline-card__main">
             <div class="project-timeline-card__meta-row">
                 {% if module.blueprint_type %}
@@ -19,10 +23,8 @@
                 <span class="project-timeline-card__dates">{% module_date_range module %}</span>
             </div>
             <div class="project-timeline-card__title-row">
-                <h3 class="project-timeline-card__title">
-                    <span class="project-timeline-card__title-text">
-                        <a href="{{ module.get_absolute_url }}" title="{{ module.name }}">{{ module.name }}</a>
-                    </span>
+                <h3 class="project-timeline-card__title" id="project-timeline-card-title-{{ module.pk }}">
+                    <span class="project-timeline-card__title-text">{{ module.name }}</span>
                     <span class="project-timeline-card__status">
                         {{ row_status.label }}
                     </span>
@@ -63,9 +65,10 @@
                 {% endif %}
             </div>
         </div>
-        <a class="project-timeline-card__cta" href="{{ module.get_absolute_url }}">
+        <span class="project-timeline-card__cta">
             <span>{% module_cta_label module %}</span>
             <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </span>
         </a>
-    </article>
+    </div>
 </li>
