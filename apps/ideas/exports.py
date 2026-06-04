@@ -21,6 +21,7 @@ class IdeaExportView(
     mixins.ItemExportWithCommentCountMixin,
     mixins.ItemExportWithModeratorFeedback,
     mixins.ItemExportWithModeratorRemark,
+    mixins.CreatorContactExportMixin,
     a4_export_views.BaseItemExportView,
 ):
     model = models.Idea
