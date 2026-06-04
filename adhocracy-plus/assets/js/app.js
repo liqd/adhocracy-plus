@@ -22,6 +22,7 @@ import {
 
 import { renderLanguageChoice } from '../../../apps/organisations/assets/react_language_choice.jsx'
 import { renderProjectDetailFollow } from '../../../apps/projects/assets/js/project_detail_follow.jsx'
+import { initProjectDetailParticipationView } from '../../../apps/projects/assets/js/project_detail_participation_view.js'
 
 function init () {
   ReactWidget.initialise('a4', 'comment_async', ReactCommentsAsync.renderComment)
@@ -31,6 +32,8 @@ function init () {
   ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
 
   ReactWidget.initialise('euth', 'language-choice', renderLanguageChoice)
+
+  initProjectDetailParticipationView()
 
   $('.timeline-carousel__item').slick({
     initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),

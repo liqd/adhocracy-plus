@@ -4,14 +4,13 @@ from django import template
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
 
-from adhocracy4.comments.models import Comment
 from adhocracy4.follows.models import Follow
-from adhocracy4.polls.models import Vote
-from apps.budgeting.models import Proposal as budget_proposal
-from apps.ideas.models import Idea
-from apps.interactiveevents.models import Like
-from apps.interactiveevents.models import LiveQuestion
-from apps.mapideas.models import MapIdea
+from apps.projects.timeline import module_cta_label as get_module_cta_label
+from apps.projects.timeline import module_date_range as get_module_date_range
+from apps.projects.timeline import (
+    module_participation_status as get_module_participation_status,
+)
+from apps.projects.utils import count_module_entries
 from apps.projects.utils import project_has_result_content
 
 register = template.Library()
@@ -35,24 +34,24 @@ def to_class_name(value):
 @register.simple_tag
 def get_num_entries(module):
     """Count all user-generated items."""
-    item_count = (
-        Idea.objects.filter(module=module).count()
-        + MapIdea.objects.filter(module=module).count()
-        + budget_proposal.objects.filter(module=module).count()
-        + Comment.objects.filter(idea__module=module).count()
-        + Comment.objects.filter(mapidea__module=module).count()
-        + Comment.objects.filter(budget_proposal__module=module).count()
-        + Comment.objects.filter(paragraph__chapter__module=module).count()
-        + Comment.objects.filter(chapter__module=module).count()
-        + Comment.objects.filter(poll__module=module).count()
-        + Comment.objects.filter(topic__module=module).count()
-        + Comment.objects.filter(subject__module=module).count()
-        + Vote.objects.filter(choice__question__poll__module=module).count()
-        + LiveQuestion.objects.filter(module=module).count()
-        + Like.objects.filter(livequestion__module=module).count()
-    )
+    return count_module_entries(module)
 
-    return item_count
+
+@register.simple_tag
+def participation_timeline_status_tag(module):
+    """Return label and BEM modifier for a module on the participation timeline."""
+    status, label = get_module_participation_status(module)
+    return {"label": label, "modifier": status}
+
+
+@register.simple_tag
+def module_date_range(module):
+    return get_module_date_range(module)
+
+
+@register.simple_tag
+def module_cta_label(module):
+    return get_module_cta_label(module)
 
 
 @register.simple_tag

@@ -91,18 +91,69 @@
                     </div>
 
                     {% elif not module %}
-                    <section class="project-detail__participation" aria-labelledby="project-detail-participation-heading">
+                    <section
+                        class="project-detail__participation"
+                        aria-labelledby="project-detail-participation-heading"
+                        data-participation-view>
                         <div class="project-detail__participation-header">
                             <h2 class="project-detail__participation-title" id="project-detail-participation-heading">
                                 {% translate 'Online participation' %}
                             </h2>
-                            {% comment %}Grid / timeline view toggle: restore when timeline page is ready.{% endcomment %}
+                            {% if participation_grid_modules or participation_timeline_groups %}
+                            <div class="project-detail__view-toggle" role="group" aria-label="{% translate 'Participation layout' %}">
+                                <button
+                                    type="button"
+                                    class="project-detail__view-btn project-detail__view-btn--active"
+                                    data-participation-view-btn="grid"
+                                    aria-pressed="true"
+                                    aria-controls="project-detail-participation-grid">
+                                    <i class="fas fa-th" aria-hidden="true"></i>
+                                    {% translate 'Grid' %}
+                                </button>
+                                <button
+                                    type="button"
+                                    class="project-detail__view-btn"
+                                    data-participation-view-btn="timeline"
+                                    aria-pressed="false"
+                                    aria-controls="project-detail-participation-timeline">
+                                    <i class="fas fa-stream" aria-hidden="true"></i>
+                                    {% translate 'Timeline' %}
+                                </button>
+                            </div>
+                            {% endif %}
                         </div>
-                        <ul class="project-detail__grid">
-                            {% for module in project.published_modules %}
-                                {% include "a4_candy_projects/includes/project_module_card.html" with object=module url=module.get_absolute_url %}
+                        <ul
+                            class="project-detail__grid"
+                            id="project-detail-participation-grid"
+                            data-participation-view-panel="grid">
+                            {% for module in participation_grid_modules %}
+                                {% include "a4_candy_projects/includes/project_grid_card.html" %}
                             {% endfor %}
                         </ul>
+                        <div
+                            class="project-detail__timeline"
+                            id="project-detail-participation-timeline"
+                            data-participation-view-panel="timeline"
+                            hidden>
+                            {% for group in participation_timeline_groups %}
+                            <section class="project-detail__timeline-group" aria-labelledby="project-detail-timeline-group-{{ forloop.counter }}">
+                                <div class="project-detail__timeline-group-header" id="project-detail-timeline-group-{{ forloop.counter }}">
+                                    <span class="project-detail__timeline-group-date">
+                                        {% blocktranslate with date=group.group_date|date:"d.m.Y" %}from {{ date }}{% endblocktranslate %}
+                                    </span>
+                                    <span class="project-detail__timeline-group-status project-detail__timeline-group-status--{{ group.status }}">
+                                        {{ group.status_label }}
+                                    </span>
+                                    <span class="project-detail__timeline-group-line" aria-hidden="true"></span>
+                                </div>
+                                <ol class="project-detail__timeline-list">
+                                    {% for module in group.modules %}
+                                        {% include "a4_candy_projects/includes/project_timeline_card.html" %}
+                                    {% endfor %}
+                                </ol>
+                            </section>
+                            {% endfor %}
+                        </div>
                     </section>
 
                     {% include "a4_candy_projects/includes/project_detail_events.html" %}

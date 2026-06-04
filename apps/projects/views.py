@@ -28,6 +28,8 @@ from apps.projects.utils import project_has_result_content
 from . import dashboard
 from . import forms
 from . import models
+from .timeline import build_participation_grid_modules
+from .timeline import build_participation_timeline_groups
 
 User = get_user_model()
 
@@ -350,6 +352,16 @@ class ProjectDetailView(
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["participation_grid_modules"] = build_participation_grid_modules(
+            self.project
+        )
+        context["participation_timeline_groups"] = build_participation_timeline_groups(
+            self.project
+        )
+        return context
 
 
 class ProjectResultInsightComponentFormView(ProjectComponentFormView):

@@ -3,40 +3,40 @@
 <li class="project-detail-card">
     <a
         class="project-detail-card__body"
-        href="{{ url }}"
-        aria-labelledby="project-detail-card-title-{{ object.pk }}">
+        href="{{ module.get_absolute_url }}"
+        aria-labelledby="project-grid-card-title-{{ module.pk }}">
         <div class="project-detail-card__inner">
             <div class="project-detail-card__top">
-                <h3 class="project-detail-card__title" id="project-detail-card-title-{{ object.pk }}">{{ object.name }}</h3>
-                {% if object.description %}
-                <p class="project-detail-card__description">{{ object.description }}</p>
+                <h3 class="project-detail-card__title" id="project-grid-card-title-{{ module.pk }}">{{ module.name }}</h3>
+                {% if module.description %}
+                <p class="project-detail-card__description">{{ module.description }}</p>
                 {% endif %}
             </div>
             <div class="project-detail-card__footer">
                 <div class="project-detail-card__meta">
                     <i class="fas fa-pencil project-detail-card__meta-icon" aria-hidden="true"></i>
-                    {% get_num_entries object as num_entries %}
+                    {% get_num_entries module as num_entries %}
                     {% blocktranslate count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktranslate %}
                 </div>
-                {% if object.module_running_time_left %}
+                {% if module.module_running_time_left %}
                 <div class="project-detail-card__status status-item">
                     <div class="status-bar__active">
-                        <span class="status-bar__active-fill" style="width:{{ object.module_running_progress }}%"></span>
+                        <span class="status-bar__active-fill" style="width:{{ module.module_running_progress }}%"></span>
                     </div>
                     <span class="status-bar__status">
                         <i class="far fa-clock" aria-hidden="true"></i>
-                        {% if object.module_running_days_left < 365 %}
-                            {% blocktranslate with time_left=object.module_running_time_left %}{{ time_left }} remaining{% endblocktranslate %}
+                        {% if module.module_running_days_left < 365 %}
+                            {% blocktranslate with time_left=module.module_running_time_left %}{{ time_left }} remaining{% endblocktranslate %}
                         {% else %}
                             {% translate 'more than 1 year remaining' %}
                         {% endif %}
                     </span>
                 </div>
-                {% elif object.module_in_future %}
+                {% elif module.module_in_future %}
                 <div class="project-detail-card__status status-item status__future">
                     <span class="status-bar__status">
                         <i class="far fa-clock" aria-hidden="true"></i>
-                        {% blocktranslate with date=object.module_start|date:"d.m.Y" %}Participation: from {{ date }}{% endblocktranslate %}
+                        {% blocktranslate with date=module.module_start|date:"d.m.Y" %}Participation: from {{ date }}{% endblocktranslate %}
                     </span>
                 </div>
                 {% else %}
