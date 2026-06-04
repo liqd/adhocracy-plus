@@ -124,6 +124,15 @@ $checkbox-size: 20px;
     @extend .btn--default;
 }
 
+.poll--confidential {
+    border-top: 1px solid $gray-lightest;
+}
+
+.poll__confidential-notice {
+    margin-bottom: $spacer;
+    font-size: $font-size-sm;
+}
+
 .poll__help-text {
     color: $text-color-gray;
     margin-bottom: 0.5 * $spacer;
