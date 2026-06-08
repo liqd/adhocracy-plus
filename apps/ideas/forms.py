@@ -1,6 +1,7 @@
 from django import forms
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
+from adhocracy4.forms.fields import CreatorContactFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from apps.contrib.mixins import ImageRightOfUseMixin
 from apps.organisations.mixins import OrganisationTermsOfUseMixin
@@ -12,6 +13,7 @@ class IdeaForm(
     CategorizableFieldMixin,
     LabelsAddableFieldMixin,
     ImageRightOfUseMixin,
+    CreatorContactFieldMixin,
     OrganisationTermsOfUseMixin,
 ):
     class Meta:

@@ -20,9 +20,12 @@
     {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.right_of_use %}
 
     {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.organisation_terms_of_use %}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.creator_email %}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.creator_phone %}
+    {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.creator_contact_consent %}
 
     <div class="d-flex justify-content-end mb-3">
-        <a href="{{ cancel }}" class="btn btn--secondary me-2">{% translate 'Cancel'%}</a>
-        <button type="submit" class="btn btn--primary">{% translate 'Save'%}</button>
+        <a href="{{ cancel }}" class="btn btn--secondary me-2">{% translate 'Cancel' %}</a>
+        <button type="submit" class="btn btn--primary">{% translate 'Save' %}</button>
     </div>
 </form>

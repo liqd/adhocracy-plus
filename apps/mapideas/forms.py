@@ -2,6 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
+from adhocracy4.forms.fields import CreatorContactFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from adhocracy4.maps import widgets as maps_widgets
 from apps.contrib.mixins import ImageRightOfUseMixin
@@ -14,6 +15,7 @@ class MapIdeaForm(
     CategorizableFieldMixin,
     LabelsAddableFieldMixin,
     ImageRightOfUseMixin,
+    CreatorContactFieldMixin,
     OrganisationTermsOfUseMixin,
 ):
     def __init__(self, *args, **kwargs):
