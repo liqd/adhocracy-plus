@@ -332,11 +332,7 @@ class ProjectDetailView(
     DisplayProjectOrModuleMixin,
     generic.DetailView,
 ):
-    """Project overview (intro, participation grid, events, insights).
-
-    Participation happens on module-detail URLs; this view does not dispatch
-    into phase views when the project has only one module.
-    """
+    """Project overview (intro, participation grid, events, insights)."""
 
     model = models.Project
     permission_required = "a4projects.view_project"
