@@ -10,6 +10,9 @@
             aria-labelledby="project-timeline-card-title-{{ module.pk }}">
         <div class="project-timeline-card__main">
             <div class="project-timeline-card__meta-row">
+                <span class="project-timeline-card__status">
+                    {{ row_status.label }}
+                </span>
                 {% if module.blueprint_type %}
                 <span class="project-timeline-card__type">
                     <img
@@ -22,14 +25,9 @@
                 {% endif %}
                 <span class="project-timeline-card__dates">{% module_date_range module %}</span>
             </div>
-            <div class="project-timeline-card__title-row">
-                <h3 class="project-timeline-card__title" id="project-timeline-card-title-{{ module.pk }}">
-                    <span class="project-timeline-card__title-text">{{ module.name }}</span>
-                    <span class="project-timeline-card__status">
-                        {{ row_status.label }}
-                    </span>
-                </h3>
-            </div>
+            <h3 class="project-timeline-card__title" id="project-timeline-card-title-{{ module.pk }}">
+                {{ module.name }}
+            </h3>
             {% if module.description %}
             <p class="project-timeline-card__description">{{ module.description }}</p>
             {% endif %}

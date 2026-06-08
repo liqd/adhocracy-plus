@@ -29,7 +29,7 @@ _STATUS_LABELS = {
 
 @dataclass(frozen=True)
 class ParticipationTimelineGroup:
-    """Modules on the timeline that share a start day and schedule status."""
+    """Modules on the timeline that share a schedule status (one header per status)."""
 
     group_date: date
     status: str
@@ -77,7 +77,7 @@ def build_participation_grid_modules(project: Project) -> list[Module]:
 def build_participation_timeline_groups(
     project: Project,
 ) -> list[ParticipationTimelineGroup]:
-    """Group published modules with phases for the timeline view."""
+    """Group published modules by status for the timeline view (one header each)."""
     participations = (
         project.module_set.filter(is_draft=False)
         .annotate_module_start()
@@ -85,34 +85,30 @@ def build_participation_timeline_groups(
         .order_by("module_start", "weight")
     )
 
-    grouped: dict[tuple[date, str], list[Module]] = defaultdict(list)
+    grouped: dict[str, list[Module]] = defaultdict(list)
 
     for module in participations:
         start, _end = _module_schedule(module)
         if start is None:
             continue
         status, _ = module_participation_status(module)
-        grouped[(timezone.localdate(start), status)].append(module)
+        grouped[status].append(module)
 
     groups: list[ParticipationTimelineGroup] = []
-    for (group_date, status), modules in sorted(
-        grouped.items(),
-        key=lambda item: (_status_sort_key(item[0][1]), item[0][0]),
-    ):
+    for status in (STATUS_FINISHED, STATUS_RUNNING, STATUS_UPCOMING):
+        modules = grouped.get(status)
+        if not modules:
+            continue
+        first_start, _ = _module_schedule(modules[0])
         groups.append(
             ParticipationTimelineGroup(
-                group_date=group_date,
+                group_date=timezone.localdate(first_start),
                 status=status,
                 status_label=_STATUS_LABELS[status],
                 modules=tuple(modules),
             )
         )
     return groups
-
-
-def _status_sort_key(status: str) -> int:
-    order = {STATUS_FINISHED: 0, STATUS_RUNNING: 1, STATUS_UPCOMING: 2}
-    return order.get(status, 3)
 
 
 def _module_schedule(module: Module) -> tuple[datetime | None, datetime | None]:

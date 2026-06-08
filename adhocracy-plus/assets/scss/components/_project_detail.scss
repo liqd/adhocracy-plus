@@ -923,41 +923,18 @@ $project-detail-timeline-pill-radius: 5px;
     color: inherit;
 }
 
-$project-timeline-title-pill-slot: 7.5rem;
-
-.project-timeline-card__title-row {
+.project-timeline-card__title {
     width: 100%;
     min-width: 0;
-    margin-bottom: 0.5 * $spacer;
-}
-
-.project-timeline-card__title {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    gap: 0.5 * $spacer;
-    width: 100%;
-    margin: 0;
+    margin: 0 0 0.5 * $spacer;
+    overflow-wrap: break-word;
     font-size: $font-size-md;
     font-weight: 600;
     line-height: 1.3;
 }
 
-// Short titles: text uses natural width, pill sits directly after.
-// Long titles: text wraps in the remaining row width; pill stays top-right (first line).
-.project-timeline-card__title-text {
-    flex: 0 1 auto;
-    min-width: 0;
-    max-width: calc(100% - #{$project-timeline-title-pill-slot});
-    overflow-wrap: break-word;
-    white-space: normal;
-}
-
 .project-timeline-card__status {
     @include project-detail-timeline-pill;
-
-    flex: 0 0 auto;
-    align-self: flex-start;
 }
 
 .project-timeline-card--finished .project-timeline-card__status {
@@ -1058,9 +1035,9 @@ $project-detail-timeline-meta-icon-gap: 8px;
     }
 }
 
-.project-timeline-card__body:hover .project-timeline-card__title-text,
-.project-timeline-card__body:focus .project-timeline-card__title-text,
-.project-timeline-card__body:active .project-timeline-card__title-text,
+.project-timeline-card__body:hover .project-timeline-card__title,
+.project-timeline-card__body:focus .project-timeline-card__title,
+.project-timeline-card__body:active .project-timeline-card__title,
 .project-timeline-card__body:hover .project-timeline-card__cta,
 .project-timeline-card__body:focus .project-timeline-card__cta,
 .project-timeline-card__body:active .project-timeline-card__cta {
