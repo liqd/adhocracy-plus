@@ -53,6 +53,10 @@ help:
 	@echo "  make celery-worker-status		-- lists all registered tasks and active worker nodes"
 	@echo "  make celery-worker-dummy-task	-- calls the dummy task and prints result from redis"
 	@echo "  make docs                   	-- run the mkdocs server for the documentation"
+	@echo "  make docker-up              	-- build and start the app via docker compose"
+	@echo "  make docker-down            	-- stop docker compose services"
+	@echo "  make docker-logs            	-- follow docker compose logs"
+	@echo "  make docker-fixtures-users  	-- load user dev fixtures in the running web container"
 	@echo
 
 .PHONY: install
@@ -240,3 +244,19 @@ celery-worker-dummy-task:
 .PHONY: docs
 docs:
 	$(VIRTUAL_ENV)/bin/mkdocs serve
+
+.PHONY: docker-up
+docker-up:
+	docker compose up --build
+
+.PHONY: docker-down
+docker-down:
+	docker compose down
+
+.PHONY: docker-logs
+docker-logs:
+	docker compose logs -f
+
+.PHONY: docker-fixtures-users
+docker-fixtures-users:
+	docker compose exec web python manage.py loaddata adhocracy-plus/fixtures/users-dev.json

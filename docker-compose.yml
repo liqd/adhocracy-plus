@@ -1,0 +1,93 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: django
+      POSTGRES_DB: django
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U django -d django"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build: .
+    ports:
+      - "8004:8004"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment: &app_env
+      DJANGO_SETTINGS_MODULE: adhocracy-plus.config.settings.docker
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: django
+      POSTGRES_DB: django
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+      WAGTAILADMIN_BASE_URL: http://localhost:8004
+      RUN_MIGRATIONS: "1"
+      LOAD_FIXTURES: "1"
+      LOAD_USER_FIXTURES: "0"
+    volumes:
+      - media_data:/app/media
+    healthcheck:
+      test: ["CMD-SHELL", "python manage.py migrate --check"]
+      interval: 5s
+      timeout: 10s
+      retries: 60
+      start_period: 300s
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8004"]
+
+  worker:
+    build: .
+    depends_on:
+      redis:
+        condition: service_healthy
+      web:
+        condition: service_healthy
+    environment:
+      <<: *app_env
+      RUN_MIGRATIONS: "0"
+      LOAD_FIXTURES: "0"
+      LOAD_USER_FIXTURES: "0"
+    volumes:
+      - media_data:/app/media
+    command:
+      ["celery", "--app", "adhocracy-plus", "worker", "--loglevel", "INFO"]
+
+  beat:
+    build: .
+    depends_on:
+      redis:
+        condition: service_healthy
+      web:
+        condition: service_healthy
+    environment:
+      <<: *app_env
+      RUN_MIGRATIONS: "0"
+      LOAD_FIXTURES: "0"
+      LOAD_USER_FIXTURES: "0"
+    volumes:
+      - media_data:/app/media
+    command:
+      ["celery", "--app", "adhocracy-plus", "beat", "--loglevel", "INFO"]
+
+volumes:
+  postgres_data:
+  media_data:
