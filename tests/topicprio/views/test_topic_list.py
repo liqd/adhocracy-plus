@@ -1,4 +1,5 @@
 import pytest
+from django.urls import reverse
 
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
@@ -14,7 +15,13 @@ def test_list_view(client, phase_factory, topic_factory):
     phase_2, module_2, project_2, topic_2 = setup_phase(
         phase_factory, topic_factory, phases.PrioritizePhase
     )
-    url = project.get_absolute_url()
+    url = reverse(
+        "module-detail",
+        kwargs={
+            "organisation_slug": project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
 
     with freeze_phase(phase):
         response = client.get(url)

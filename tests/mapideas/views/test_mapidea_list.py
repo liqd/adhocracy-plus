@@ -1,4 +1,5 @@
 import pytest
+from django.urls import reverse
 
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
@@ -11,7 +12,13 @@ def test_list_view_0(client, phase_factory, map_idea_factory, organisation):
     phase, module, project, item = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase
     )
-    url = project.get_absolute_url()
+    url = reverse(
+        "module-detail",
+        kwargs={
+            "organisation_slug": project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(response, "a4_candy_mapideas/mapidea_list.html")
@@ -25,7 +32,13 @@ def test_list_view(client, phase_factory, map_idea_factory, organisation):
     phase_2, module_2, project_2, mapidea_2 = setup_phase(
         phase_factory, map_idea_factory, phases.FeedbackPhase
     )
-    url = project.get_absolute_url()
+    url = reverse(
+        "module-detail",
+        kwargs={
+            "organisation_slug": project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
 
     with freeze_phase(phase):
         response = client.get(url)
