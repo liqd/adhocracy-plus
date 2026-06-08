@@ -11,13 +11,11 @@
                 {% if module.description %}
                 <p class="project-detail-card__description">{{ module.description }}</p>
                 {% endif %}
-                {% if module.blueprint_type != 'IE' %}
                 <div class="project-detail-card__meta">
                     <i class="fas fa-pencil project-detail-card__meta-icon" aria-hidden="true"></i>
                     {% get_num_entries module as num_entries %}
                     {% blocktranslate count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktranslate %}
                 </div>
-                {% endif %}
             </div>
             <div class="project-detail-card__footer">
                 {% if module.module_running_time_left %}
