@@ -12,6 +12,11 @@ from apps.ideas.models import Idea
 from apps.interactiveevents.models import Like
 from apps.interactiveevents.models import LiveQuestion
 from apps.mapideas.models import MapIdea
+from apps.projects.timeline import module_cta_label as get_module_cta_label
+from apps.projects.timeline import module_date_range as get_module_date_range
+from apps.projects.timeline import (
+    module_participation_status as get_module_participation_status,
+)
 from apps.projects.utils import project_has_result_content
 
 register = template.Library()
@@ -35,7 +40,7 @@ def to_class_name(value):
 @register.simple_tag
 def get_num_entries(module):
     """Count all user-generated items."""
-    item_count = (
+    return (
         Idea.objects.filter(module=module).count()
         + MapIdea.objects.filter(module=module).count()
         + budget_proposal.objects.filter(module=module).count()
@@ -52,7 +57,22 @@ def get_num_entries(module):
         + Like.objects.filter(livequestion__module=module).count()
     )
 
-    return item_count
+
+@register.simple_tag
+def participation_timeline_status_tag(module):
+    """Return label and BEM modifier for a module on the participation timeline."""
+    status, label = get_module_participation_status(module)
+    return {"label": label, "modifier": status}
+
+
+@register.simple_tag
+def module_date_range(module):
+    return get_module_date_range(module)
+
+
+@register.simple_tag
+def module_cta_label(module):
+    return get_module_cta_label(module)
 
 
 @register.simple_tag

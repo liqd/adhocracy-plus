@@ -2,7 +2,7 @@ import 'bootstrap' // load bootstrap components
 import { Dropdown } from 'bootstrap'
 import 'django'
 import 'select2' // used to skin select element used in livequestions
-import 'slick-carousel' // for project timeline
+import 'slick-carousel' // for project tile carousel and polls
 
 import '../../../apps/actions/assets/timestamps.js'
 import '../../../apps/dashboard/assets/ajax_modal.js'
@@ -22,6 +22,7 @@ import {
 
 import { renderLanguageChoice } from '../../../apps/organisations/assets/react_language_choice.jsx'
 import { renderProjectDetailFollow } from '../../../apps/projects/assets/js/project_detail_follow.jsx'
+import { initProjectDetailParticipationView } from '../../../apps/projects/assets/js/project_detail_participation_view.js'
 
 function init () {
   ReactWidget.initialise('a4', 'comment_async', ReactCommentsAsync.renderComment)
@@ -32,19 +33,7 @@ function init () {
 
   ReactWidget.initialise('euth', 'language-choice', renderLanguageChoice)
 
-  $('.timeline-carousel__item').slick({
-    initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),
-    focusOnSelect: false,
-    centerMode: true,
-    dots: false,
-    arrows: true,
-    centerPadding: 30,
-    mobileFirst: true,
-    infinite: false,
-    variableWidth: true,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  })
+  initProjectDetailParticipationView()
 
   $('.project-tile-carousel').slick({
     initialSlide: 0,

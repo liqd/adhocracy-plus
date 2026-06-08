@@ -1,4 +1,5 @@
 import pytest
+from django.urls import reverse
 
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
@@ -11,7 +12,13 @@ def test_document_detail_view(client, phase_factory, chapter_factory, organisati
     phase, module, project, item = setup_phase(
         phase_factory, chapter_factory, phases.CommentPhase
     )
-    url = project.get_absolute_url()
+    url = reverse(
+        "module-detail",
+        kwargs={
+            "organisation_slug": project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(response, "a4_candy_documents/chapter_detail.html")

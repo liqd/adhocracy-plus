@@ -22,13 +22,14 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
-from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
 from apps.projects.models import ProjectInsight
 from apps.projects.utils import project_has_result_content
 
 from . import dashboard
 from . import forms
 from . import models
+from .timeline import build_participation_grid_modules
+from .timeline import build_participation_timeline_groups
 
 User = get_user_model()
 
@@ -328,23 +329,35 @@ class ProjectResultsView(
 
 class ProjectDetailView(
     PermissionRequiredMixin,
-    ProjectModuleDispatchMixin,
     DisplayProjectOrModuleMixin,
+    generic.DetailView,
 ):
+    """Project overview (intro, participation grid, events, insights)."""
+
     model = models.Project
     permission_required = "a4projects.view_project"
     template_name = "a4_candy_projects/project_detail.html"
 
+    @cached_property
+    def project(self):
+        return self.get_object()
+
     def get_permission_object(self):
         return self.project
-
-    @cached_property
-    def is_project_view(self):
-        return self.get_current_modules()
 
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["participation_grid_modules"] = build_participation_grid_modules(
+            self.project
+        )
+        context["participation_timeline_groups"] = build_participation_timeline_groups(
+            self.project
+        )
+        return context
 
 
 class ProjectResultInsightComponentFormView(ProjectComponentFormView):

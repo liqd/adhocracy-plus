@@ -21,7 +21,7 @@ def project_detail_url(project):
 
 @pytest.fixture
 def project_detail_overview(project, module_factory, phase_factory):
-    """Project detail overview needs two published modules (no single-module redirect)."""
+    """Project detail overview with multiple published modules."""
     future_start = parse("2013-02-01 17:00:00 UTC")
     future_end = parse("2013-02-01 19:00:00 UTC")
 
@@ -139,6 +139,30 @@ def test_project_detail_authenticated_follow_widget_includes_follower(
 
 
 @pytest.mark.django_db
+def test_project_detail_single_module_shows_overview(
+    client, project, module_factory, phase_factory, poll_factory
+):
+    """Project URL always shows the overview, not inline phase content."""
+    module = module_factory(project=project)
+    poll_factory(module=module)
+    phase_factory(
+        module=module,
+        phase_content=phases.VotingPhase(),
+        start_date=parse("2013-01-01 17:00:00 UTC"),
+        end_date=parse("2013-01-01 19:00:00 UTC"),
+    )
+
+    with freeze_time(parse("2013-01-01 18:00:00 UTC")):
+        response = client.get(project_detail_url(project))
+
+    assert response.status_code == 200
+    assert_template_response(response, "a4_candy_projects/project_detail.html")
+    assert response.context_data.get("module") is None
+    assert b"project-detail__participation" in response.content
+    assert b"project-detail__module-grid" in response.content
+
+
+@pytest.mark.django_db
 def test_project_detail_online_participation_section(client, project_detail_overview):
     module = project_detail_overview.published_modules.first()
     module.name = "Survey module"
@@ -146,7 +170,8 @@ def test_project_detail_online_participation_section(client, project_detail_over
     response = client.get(project_detail_url(project_detail_overview))
     assert b"project-detail__participation" in response.content
     assert b"Online participation" in response.content
-    assert b"project-detail__grid" in response.content
+    assert b"project-detail__module-grid" in response.content
+    assert b"data-participation-view-btn" in response.content
     assert b"Survey module" in response.content
 
 

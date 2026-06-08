@@ -1,0 +1,72 @@
+{% load i18n a4_candy_project_tags static %}
+
+{% participation_timeline_status_tag module as row_status %}
+<li class="project-timeline-card project-timeline-card--{{ row_status.modifier }}">
+    <div class="project-timeline-card__layout">
+        <div class="project-timeline-card__marker" aria-hidden="true"></div>
+        <a
+            class="project-timeline-card__body"
+            href="{{ module.get_absolute_url }}"
+            aria-labelledby="project-timeline-card-title-{{ module.pk }}">
+        <div class="project-timeline-card__main">
+            <div class="project-timeline-card__meta-row">
+                <span class="project-timeline-card__status">
+                    {{ row_status.label }}
+                </span>
+                {% if module.blueprint_type %}
+                <span class="project-timeline-card__type">
+                    <img
+                        class="project-timeline-card__type-icon"
+                        src="{% static 'images/icon-'|add:module.blueprint_type|lower|add:'.svg' %}"
+                        alt=""
+                        aria-hidden="true" />
+                    <span class="u-capitalise">{{ module.get_blueprint_type_display }}</span>
+                </span>
+                {% endif %}
+                <span class="project-timeline-card__dates">{% module_date_range module %}</span>
+            </div>
+            <h3 class="project-timeline-card__title" id="project-timeline-card-title-{{ module.pk }}">
+                {{ module.name }}
+            </h3>
+            {% if module.description %}
+            <p class="project-timeline-card__description">{{ module.description }}</p>
+            {% endif %}
+            <div class="project-timeline-card__footer-meta">
+                <span class="project-timeline-card__contributions">
+                    <img
+                        class="project-timeline-card__contributions-icon"
+                        src="{% static 'images/icon-users-outline.svg' %}"
+                        alt=""
+                        aria-hidden="true" />
+                    {% get_num_entries module as num_entries %}
+                    {% blocktranslate count num_entries=num_entries %}{{ num_entries }} contribution{% plural %}{{ num_entries }} contributions{% endblocktranslate %}
+                </span>
+                {% if module.module_running_time_left %}
+                <span class="project-timeline-card__time-left">
+                    <i class="far fa-clock" aria-hidden="true"></i>
+                    {% if module.module_running_days_left < 365 %}
+                        {% blocktranslate with time_left=module.module_running_time_left %}{{ time_left }} more days left{% endblocktranslate %}
+                    {% else %}
+                        {% translate 'more than 1 year left' %}
+                    {% endif %}
+                </span>
+                {% elif module.module_in_future and module.module_starting_time_left %}
+                <span class="project-timeline-card__time-left">
+                    <i class="far fa-clock" aria-hidden="true"></i>
+                    {% blocktranslate with time_left=module.module_starting_time_left %}starts in {{ time_left }}{% endblocktranslate %}
+                </span>
+                {% elif module.module_in_future %}
+                <span class="project-timeline-card__time-left">
+                    <i class="far fa-clock" aria-hidden="true"></i>
+                    {% blocktranslate with date=module.module_start|date:"d.m.Y" %}starts on {{ date }}{% endblocktranslate %}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+        <span class="project-timeline-card__cta">
+            <span>{% module_cta_label module %}</span>
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </span>
+        </a>
+    </div>
+</li>
