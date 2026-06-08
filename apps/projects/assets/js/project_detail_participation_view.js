@@ -1,3 +1,26 @@
+const PARTICIPATION_VIEW_PARAM = 'participation_view'
+const PARTICIPATION_VIEW_GRID = 'grid'
+const PARTICIPATION_VIEW_TIMELINE = 'timeline'
+const VALID_PARTICIPATION_VIEWS = new Set([
+  PARTICIPATION_VIEW_GRID,
+  PARTICIPATION_VIEW_TIMELINE
+])
+
+function getParticipationViewFromUrl () {
+  const view = new URL(window.location).searchParams.get(PARTICIPATION_VIEW_PARAM)
+  return VALID_PARTICIPATION_VIEWS.has(view) ? view : PARTICIPATION_VIEW_GRID
+}
+
+function setParticipationViewInUrl (viewName) {
+  const url = new URL(window.location)
+  if (viewName === PARTICIPATION_VIEW_GRID) {
+    url.searchParams.delete(PARTICIPATION_VIEW_PARAM)
+  } else {
+    url.searchParams.set(PARTICIPATION_VIEW_PARAM, viewName)
+  }
+  window.history.pushState({}, '', url)
+}
+
 function updateTimelineRail (timeline) {
   if (!timeline || timeline.hidden) {
     return
@@ -55,7 +78,7 @@ function initProjectDetailParticipationView () {
     return
   }
 
-  const showView = (viewName) => {
+  const showView = (viewName, { updateUrl = false } = {}) => {
     buttons.forEach((button) => {
       const isActive = button.dataset.participationViewBtn === viewName
       button.classList.toggle('project-detail__view-btn--active', isActive)
@@ -67,7 +90,11 @@ function initProjectDetailParticipationView () {
       panel.toggleAttribute('hidden', !isActive)
     })
 
-    if (viewName === 'timeline') {
+    if (updateUrl) {
+      setParticipationViewInUrl(viewName)
+    }
+
+    if (viewName === PARTICIPATION_VIEW_TIMELINE) {
       requestAnimationFrame(() => updateTimelineRail(timelinePanel))
     }
   }
@@ -75,7 +102,8 @@ function initProjectDetailParticipationView () {
   buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
       event.preventDefault()
-      showView(button.dataset.participationViewBtn)
+      const viewName = button.dataset.participationViewBtn
+      showView(viewName, { updateUrl: true })
     })
   })
 
@@ -87,7 +115,7 @@ function initProjectDetailParticipationView () {
     }
   }
 
-  showView('grid')
+  showView(getParticipationViewFromUrl())
 }
 
 export { initProjectDetailParticipationView, updateTimelineRail }
