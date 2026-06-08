@@ -79,18 +79,7 @@
                     {% endif %}
 
                     <div class="project-detail__content">
-                    {% if event %}
-                    <div class="row">
-                        <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-                            <h2>{{ event.name }}</h2>
-                            <div class="phase-info__item__subtitle">
-                                {% html_date event.date 'DATETIME_FORMAT' %}
-                            </div>
-                            <p>{{ event.description | safe }}</p>
-                        </div>
-                    </div>
-
-                    {% elif not module %}
+                    {% if not module %}
                     <section
                         class="project-detail__participation"
                         aria-labelledby="project-detail-participation-heading"
@@ -213,7 +202,7 @@
                     {% endif %}
                 </div>
 
-                {% if module and not event %}
+                {% if module %}
                 <div class="row">
                     {% if project.is_private %}
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs my-4">

@@ -33,10 +33,6 @@ class Chapter(module_models.Item):
                 organisation_slug=self.project.organisation.slug, pk=str(self.pk)
             ),
         )
-        if self.project.display_timeline and not self.module.is_in_module_cluster:
-            return "{}?initialSlide={}#timeline-carousel".format(
-                url, self.module.get_timeline_index
-            )
         return url
 
     @cached_property

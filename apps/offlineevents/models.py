@@ -3,7 +3,6 @@ from datetime import timedelta
 from autoslug import AutoSlugField
 from django.db import models
 from django.utils import timezone
-from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 
@@ -49,17 +48,5 @@ class OfflineEvent(UserGeneratedContentModel):
             update_fields = {"description"}.union(update_fields)
         super().save(update_fields=update_fields, *args, **kwargs)
 
-    @cached_property
-    def get_timeline_index(self):
-        if self.project.display_timeline:
-            for count, cluster in enumerate(self.project.participation_dates):
-                if "event_type" in cluster and self.slug == cluster["slug"]:
-                    return count
-        return 0
-
     def get_absolute_url(self):
-        if self.project.display_timeline:
-            return "{}?initialSlide={}#timeline-carousel".format(
-                self.project.get_absolute_url(), self.get_timeline_index
-            )
         return self.project.get_absolute_url()

@@ -9,7 +9,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- New project detail page with both grid and timeline view
+
 ### Changed
+
+- Project detail: remove the legacy participation timeline carousel (template, styles, and slick init); offline events and document chapters link back to the project overview without `initialSlide` query params.
 
 ### Fixed
 

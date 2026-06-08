@@ -2,7 +2,7 @@ import 'bootstrap' // load bootstrap components
 import { Dropdown } from 'bootstrap'
 import 'django'
 import 'select2' // used to skin select element used in livequestions
-import 'slick-carousel' // for project timeline
+import 'slick-carousel' // for project tile carousel and polls
 
 import '../../../apps/actions/assets/timestamps.js'
 import '../../../apps/dashboard/assets/ajax_modal.js'
@@ -34,23 +34,6 @@ function init () {
   ReactWidget.initialise('euth', 'language-choice', renderLanguageChoice)
 
   initProjectDetailParticipationView()
-
-  const $timelineCarousel = $('#timeline-carousel')
-  if ($timelineCarousel.length) {
-    $('.timeline-carousel__item').slick({
-      initialSlide: parseInt($timelineCarousel.attr('data-initial-slide'), 10) || 0,
-    focusOnSelect: false,
-    centerMode: true,
-    dots: false,
-    arrows: true,
-    centerPadding: 30,
-    mobileFirst: true,
-    infinite: false,
-    variableWidth: true,
-    slidesToShow: 1,
-    slidesToScroll: 1
-    })
-  }
 
   $('.project-tile-carousel').slick({
     initialSlide: 0,
