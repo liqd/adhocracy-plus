@@ -15,9 +15,11 @@
     {% if faq_page %}
         {% include "faq.html" with faq_page=faq_page %}
     {% endif %}
-    <div class="lp-section" id="form_page">
-        {% include 'a4_candy_cms_contacts/includes/form.html' with page=contact_form_page form=contact_form_page.get_form %}
-    </div>
+    {% if contact_form_page %}
+        <div class="lp-section" id="form_page">
+            {% include 'a4_candy_cms_contacts/includes/form.html' with page=contact_form_page form=contact_form_page.get_form %}
+        </div>
+    {% endif %}
     {% include "newsletter.html" %}
     </div>
 {% endblock content %}
