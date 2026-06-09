@@ -1,0 +1,37 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n %}
+
+{% block subject %}{% blocktranslate with project_name=project.name|striptags %}Next step: Publish the results of "{{ project_name }}"{% endblocktranslate %}{% endblock %}
+
+{% block headline %}{% translate "Publish project results" %}{% endblock %}
+
+{% block greeting %}{% blocktranslate with receiver_name=receiver.username %}Hello {{ receiver_name }},{% endblocktranslate %}{% endblock %}
+
+{% block content %}
+<p>
+{% blocktranslate with project_name=project.name|striptags %}The active participation phase of your project {{ project_name }} has been successfully completed.{% endblocktranslate %}
+</p>
+<p>
+{% translate "To fully wrap up the participation process, it is important to share the outcomes with your participants. This builds trust in the process and closes the loop with your community." %}
+</p>
+<p>
+{% translate "For a meaningful participation experience, we recommend addressing the following questions:" %}
+</p>
+{% if part_type == "txt" %}
+<p>{% translate "What was the goal of the project?" %}</p>
+<p>{% translate "What insights were gained through the participation process?" %}</p>
+<p>{% translate "What happens next with the results?" %}</p>
+{% else %}
+<p><em>{% translate "What was the goal of the project?" %}</em></p>
+<p><em>{% translate "What insights were gained through the participation process?" %}</em></p>
+<p><em>{% translate "What happens next with the results?" %}</em></p>
+{% endif %}
+<p>
+{% translate "You can also upload relevant documents or images." %}
+</p>
+{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{{ result_edit_url }}{% endblock %}
+{% block cta_label %}{% translate "Add results" %}{% endblock %}
+
+{% block reason %}{% blocktranslate with receiver_email=receiver.email %}This email was sent to {{ receiver_email }}. You have received the e-mail because you are a project initiator in the above mentioned organization.{% endblocktranslate %} {{ account_link | safe }}{% endblock %}

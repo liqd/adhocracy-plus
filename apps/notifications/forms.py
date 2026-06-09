@@ -8,6 +8,7 @@ class NotificationSettingsForm(forms.ModelForm):
         model = NotificationSettings
         fields = [
             # Project related
+            "email_initiator_publish_results",
             "email_newsletter",
             "email_project_updates",
             "notify_project_updates",

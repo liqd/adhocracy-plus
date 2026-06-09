@@ -34,6 +34,13 @@ From the project root directory run: `python manage.py <command> [args]`
 - Resets insights and participation tables.
 - Optional `--project` to reset a single project only.
 
+**send_publish_results_reminder** `<project-slug>` `[--force]`
+
+- Sends the publish-results reminder to every initiator of the project's organisation (one e-mail per initiator).
+- Uses the same eligibility rules as automatic sending (phase end, delay, empty results, etc.).
+- `--force` bypasses all checks and does not update `results_reminder_sent_at` (manual testing only).
+- Django admin → Projects → actions uses the same rules (without `--force`).
+
 **send_test_emails** `<email>`
 
 - Sends a set of test emails (account, notifications, etc.) to a registered user.

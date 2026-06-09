@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - New project detail page with both grid and timeline view
+- Initiator reminder to publish project results.
 
 ### Changed
 - Contact information fields included in Proposal/Idea/Mapidea Forms
