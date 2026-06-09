@@ -14,6 +14,7 @@ from adhocracy4.comments import models as comment_models
 from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.labels import models as labels_models
 from adhocracy4.models import query
+from adhocracy4.models.base import CreatorContactInfoModelMixin
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
 from apps.moderatorfeedback.models import Moderateable
@@ -26,7 +27,7 @@ class IdeaQuerySet(
     pass
 
 
-class AbstractIdea(module_models.Item, Moderateable):
+class AbstractIdea(module_models.Item, Moderateable, CreatorContactInfoModelMixin):
     item_ptr = models.OneToOneField(
         to=module_models.Item,
         parent_link=True,
