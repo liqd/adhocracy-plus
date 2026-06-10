@@ -28,6 +28,7 @@ from apps.projects.utils import project_has_result_content
 from . import dashboard
 from . import forms
 from . import models
+from .participation_carousel import legacy_initial_slide_redirect
 from .timeline import build_participation_grid_modules
 from .timeline import build_participation_timeline_groups
 
@@ -349,6 +350,15 @@ class ProjectDetailView(
     def raise_exception(self):
         return self.request.user.is_authenticated
 
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        redirect_url = legacy_initial_slide_redirect(
+            self.object, request.GET.get("initialSlide")
+        )
+        if redirect_url is not None:
+            return HttpResponseRedirect(redirect_url)
+        return super().get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["participation_grid_modules"] = build_participation_grid_modules(
@@ -357,6 +367,8 @@ class ProjectDetailView(
         context["participation_timeline_groups"] = build_participation_timeline_groups(
             self.project
         )
+        context["event"] = None
+        context["modules"] = None
         return context
 
 
@@ -408,4 +420,8 @@ class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
             kwargs["project"] = self.project
         if "module" not in kwargs:
             kwargs["module"] = self.module
-        return super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+        # Future modules have no active phase, so PhaseDispatchMixin renders this
+        # view directly instead of a phase view with DisplayProjectOrModuleMixin.
+        context["initial_slide"] = self.module.get_timeline_index
+        return context

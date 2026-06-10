@@ -47,12 +47,11 @@ def test_modules(
     assert participants is not None
     context_participants = ("active participants", len(participants))
 
-    response = client.get(url)
     with freeze_time(parse("2013-01-01 18:00:00 UTC")):
-        assert module1 in response.context_data["modules"]
-        assert module2 in response.context_data["modules"]
-        assert module3 == response.context_data["modules"][0]
-        assert module4 in response.context_data["modules"]
+        response = client.get(url)
+        assert response.context_data["modules"] is None
+        grid_modules = response.context_data["participation_grid_modules"]
+        assert grid_modules == [module3, module2, module1, module4]
         assert context_participants in response.context_data["counts"]
         assert "result_title" in response.context_data.keys()
         assert "insight_label" in response.context_data.keys()

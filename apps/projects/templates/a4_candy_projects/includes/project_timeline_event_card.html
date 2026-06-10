@@ -1,0 +1,41 @@
+{% load i18n a4_candy_project_tags %}
+
+{% participation_timeline_offline_event_status_tag offline_event as row_status %}
+<li class="project-timeline-card project-timeline-card--{{ row_status.modifier }}">
+    <div class="project-timeline-card__layout">
+        <div class="project-timeline-card__marker" aria-hidden="true"></div>
+        <a
+            class="project-timeline-card__body"
+            href="{{ offline_event.get_absolute_url }}"
+            aria-labelledby="project-timeline-event-card-title-{{ offline_event.pk }}">
+        <div class="project-timeline-card__main">
+            <div class="project-timeline-card__meta-row">
+                <span class="project-timeline-card__status">
+                    {{ row_status.label }}
+                </span>
+                <span class="project-timeline-card__type">
+                    <span class="u-capitalise">{% translate 'Event' %}</span>
+                </span>
+                <span class="project-timeline-card__dates">{% offline_event_date_label offline_event %}</span>
+            </div>
+            <h3 class="project-timeline-card__title" id="project-timeline-event-card-title-{{ offline_event.pk }}">
+                {{ offline_event.name }}
+            </h3>
+            {% if offline_event.description %}
+            <p class="project-timeline-card__description">{{ offline_event.description|striptags }}</p>
+            {% endif %}
+            {% if offline_event.event_type %}
+            <div class="project-timeline-card__footer-meta">
+                <span class="project-timeline-card__contributions">
+                    {{ offline_event.event_type }}
+                </span>
+            </div>
+            {% endif %}
+        </div>
+        <span class="project-timeline-card__cta">
+            <span>{% offline_event_cta_label offline_event %}</span>
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </span>
+        </a>
+    </div>
+</li>

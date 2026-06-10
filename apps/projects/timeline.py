@@ -15,6 +15,7 @@ from django.utils.translation import gettext_lazy as _
 if TYPE_CHECKING:
     from adhocracy4.modules.models import Module
     from adhocracy4.projects.models import Project
+    from apps.offlineevents.models import OfflineEvent
 
 STATUS_FINISHED = "finished"
 STATUS_RUNNING = "running"
@@ -28,13 +29,30 @@ _STATUS_LABELS = {
 
 
 @dataclass(frozen=True)
+class ParticipationTimelineItem:
+    """One row on the participation timeline (module or offline event)."""
+
+    module: Module | None = None
+    offline_event: OfflineEvent | None = None
+
+    def sort_datetime(self) -> datetime:
+        if self.module is not None:
+            start, _end = _module_schedule(self.module)
+            if start is not None:
+                return start
+        if self.offline_event is not None:
+            return self.offline_event.date
+        return timezone.now()
+
+
+@dataclass(frozen=True)
 class ParticipationTimelineGroup:
-    """Modules on the timeline that share a schedule status (one header per status)."""
+    """Timeline items that share a schedule status (one header per status)."""
 
     group_date: date
     status: str
     status_label: str
-    modules: tuple[Module, ...]
+    items: tuple[ParticipationTimelineItem, ...]
 
 
 def module_participation_status(module: Module) -> tuple[str, str]:
@@ -51,6 +69,13 @@ def module_participation_status(module: Module) -> tuple[str, str]:
 participation_timeline_status = module_participation_status
 
 
+def offline_event_participation_status(event: OfflineEvent) -> tuple[str, str]:
+    """Return (status key, translated label) for one offline event."""
+    if event.date <= timezone.now():
+        return STATUS_FINISHED, _STATUS_LABELS[STATUS_FINISHED]
+    return STATUS_UPCOMING, _STATUS_LABELS[STATUS_UPCOMING]
+
+
 def module_date_range(module: Module) -> str:
     """Formatted module schedule for timeline rows (e.g. 15.02.26 or 15.02.26-01.06.2026)."""
     start, end = _module_schedule(module)
@@ -59,25 +84,48 @@ def module_date_range(module: Module) -> str:
     return _format_date_range(start, end)
 
 
+def offline_event_date_label(event: OfflineEvent) -> str:
+    """Formatted event date for timeline rows."""
+    return _format_date(event.date)
+
+
 def module_cta_label(module: Module) -> str:
     """Primary action label for a module on the participation timeline."""
     status, _label = module_participation_status(module)
     if status == STATUS_FINISHED:
-        return _("Read results")
+        return _("See contributions")
     if status == STATUS_RUNNING:
         return _("Participate")
     return _("Read")
 
 
+def offline_event_cta_label(event: OfflineEvent) -> str:
+    """Primary action label for an offline event on the participation timeline."""
+    status, _label = offline_event_participation_status(event)
+    if status == STATUS_FINISHED:
+        return _("Read")
+    return _("Read")
+
+
 def build_participation_grid_modules(project: Project) -> list[Module]:
-    """Published modules for the grid view (project module ordering)."""
-    return list(project.published_modules)
+    """Published modules for the grid view, ordered like the timeline."""
+    ordered: list[Module] = []
+    scheduled: set[Module] = set()
+    for group in build_participation_timeline_groups(project):
+        for item in group.items:
+            if item.module is not None:
+                ordered.append(item.module)
+                scheduled.add(item.module)
+    for module in project.published_modules:
+        if module not in scheduled:
+            ordered.append(module)
+    return ordered
 
 
 def build_participation_timeline_groups(
     project: Project,
 ) -> list[ParticipationTimelineGroup]:
-    """Group published modules by status for the timeline view (one header each)."""
+    """Group published modules and offline events by status for the timeline view."""
     participations = (
         project.module_set.filter(is_draft=False)
         .annotate_module_start()
@@ -85,27 +133,36 @@ def build_participation_timeline_groups(
         .order_by("module_start", "weight")
     )
 
-    grouped: dict[str, list[Module]] = defaultdict(list)
+    grouped: dict[str, list[ParticipationTimelineItem]] = defaultdict(list)
 
     for module in participations:
         start, _end = _module_schedule(module)
         if start is None:
             continue
         status, _ = module_participation_status(module)
-        grouped[status].append(module)
+        grouped[status].append(
+            ParticipationTimelineItem(module=module, offline_event=None)
+        )
+
+    for event in project.events.all():
+        status, _ = offline_event_participation_status(event)
+        grouped[status].append(
+            ParticipationTimelineItem(module=None, offline_event=event)
+        )
 
     groups: list[ParticipationTimelineGroup] = []
     for status in (STATUS_FINISHED, STATUS_RUNNING, STATUS_UPCOMING):
-        modules = grouped.get(status)
-        if not modules:
+        items = grouped.get(status)
+        if not items:
             continue
-        first_start, _ = _module_schedule(modules[0])
+        items = sorted(items, key=lambda item: item.sort_datetime())
+        first_date = timezone.localdate(items[0].sort_datetime())
         groups.append(
             ParticipationTimelineGroup(
-                group_date=timezone.localdate(first_start),
+                group_date=first_date,
                 status=status,
                 status_label=_STATUS_LABELS[status],
-                modules=tuple(modules),
+                items=tuple(items),
             )
         )
     return groups
