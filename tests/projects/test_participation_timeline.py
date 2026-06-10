@@ -369,7 +369,7 @@ def test_legacy_initial_slide_redirects_to_participation_detail(
         start_date=parse("2013-01-01 17:00:00 UTC"),
         end_date=parse("2013-01-01 19:00:00 UTC"),
     )
-    past_event = OfflineEventFactory(
+    OfflineEventFactory(
         project=project,
         name="Past workshop",
         date=parse("2012-12-01 12:00:00 UTC"),
