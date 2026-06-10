@@ -17,6 +17,15 @@ from apps.projects.timeline import module_date_range as get_module_date_range
 from apps.projects.timeline import (
     module_participation_status as get_module_participation_status,
 )
+from apps.projects.timeline import (
+    offline_event_cta_label as get_offline_event_cta_label,
+)
+from apps.projects.timeline import (
+    offline_event_date_label as get_offline_event_date_label,
+)
+from apps.projects.timeline import (
+    offline_event_participation_status as get_offline_event_participation_status,
+)
 from apps.projects.utils import project_has_result_content
 
 register = template.Library()
@@ -73,6 +82,23 @@ def module_date_range(module):
 @register.simple_tag
 def module_cta_label(module):
     return get_module_cta_label(module)
+
+
+@register.simple_tag
+def participation_timeline_offline_event_status_tag(offline_event):
+    """Return label and BEM modifier for an offline event on the participation timeline."""
+    status, label = get_offline_event_participation_status(offline_event)
+    return {"label": label, "modifier": status}
+
+
+@register.simple_tag
+def offline_event_date_label(offline_event):
+    return get_offline_event_date_label(offline_event)
+
+
+@register.simple_tag
+def offline_event_cta_label(offline_event):
+    return get_offline_event_cta_label(offline_event)
 
 
 @register.simple_tag

@@ -48,5 +48,14 @@ class OfflineEvent(UserGeneratedContentModel):
             update_fields = {"description"}.union(update_fields)
         super().save(update_fields=update_fields, *args, **kwargs)
 
+    def get_timeline_index(self):
+        for idx, entry in enumerate(self.project.participation_dates):
+            if entry.get("slug") == self.slug and "type" not in entry:
+                return idx
+        return 0
+
     def get_absolute_url(self):
-        return self.project.get_absolute_url()
+        url = self.project.get_absolute_url()
+        if self.project.display_timeline:
+            return f"{url}?initialSlide={self.get_timeline_index()}#timeline-carousel"
+        return url

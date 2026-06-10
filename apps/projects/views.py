@@ -357,6 +357,10 @@ class ProjectDetailView(
         context["participation_timeline_groups"] = build_participation_timeline_groups(
             self.project
         )
+        # New project overview replaces the carousel unless a slide is selected.
+        if "initialSlide" not in self.request.GET:
+            context["event"] = None
+            context["modules"] = None
         return context
 
 

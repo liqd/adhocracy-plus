@@ -74,6 +74,7 @@ function initProjectDetailParticipationView () {
   const buttons = root.querySelectorAll('[data-participation-view-btn]')
   const panels = root.querySelectorAll('[data-participation-view-panel]')
   const timelinePanel = root.querySelector('[data-participation-view-panel="timeline"]')
+  const eventsSection = document.querySelector('[data-participation-events]')
   if (!buttons.length || !panels.length) {
     return
   }
@@ -89,6 +90,13 @@ function initProjectDetailParticipationView () {
       const isActive = panel.dataset.participationViewPanel === viewName
       panel.toggleAttribute('hidden', !isActive)
     })
+
+    if (eventsSection) {
+      eventsSection.toggleAttribute(
+        'hidden',
+        viewName === PARTICIPATION_VIEW_TIMELINE
+      )
+    }
 
     if (updateUrl) {
       setParticipationViewInUrl(viewName)

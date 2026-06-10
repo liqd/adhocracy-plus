@@ -2,7 +2,7 @@ $project-detail-icon-size: 16px;
 $project-detail-avatar-size: 32px;
 $project-detail-avatar-overlap: 10px;
 $project-detail-action-height: 48px;
-$project-detail-card-border: #fafafa;
+$project-detail-card-border: $grey-100;
 $project-detail-card-height: 332px;
 $project-detail-completed: #ff1e38;
 $project-detail-breadcrumbs-offset-signed-out: 60px;
@@ -463,6 +463,13 @@ $project-detail-insights-stat-column-width: calc(
     display: flex;
     justify-content: flex-end;
     margin-top: $spacer;
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: $project-detail-action-height;
+    }
 }
 
 .project-detail__view-toggle {
@@ -483,7 +490,7 @@ $project-detail-insights-stat-column-width: calc(
     box-sizing: border-box;
     padding: 0.45em 0.9em;
     font-size: $font-size-sm;
-    font-weight: 600;
+    font-weight: 400;
     text-decoration: none;
     color: $text-color;
     background-color: $body-bg;
@@ -512,8 +519,16 @@ $project-detail-insights-stat-column-width: calc(
         }
     }
 
-    i {
+    i,
+    .project-detail__view-btn-icon {
         font-size: 0.9em;
+    }
+
+    .project-detail__view-btn-icon {
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+        fill: currentcolor;
     }
 
     &--active,
@@ -1022,7 +1037,7 @@ $project-detail-timeline-meta-icon-gap: 8px;
     justify-self: end;
     gap: 0.35 * $spacer;
     margin-bottom: 0;
-    font-weight: 600;
+    font-weight: 400;
     text-decoration: none;
     color: inherit;
     white-space: nowrap;
