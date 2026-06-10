@@ -71,25 +71,19 @@
                     </div>
                     {% endif %}
                     <div class="project-detail__breadcrumbs{% if not request.user.is_authenticated %} project-detail__breadcrumbs--signed-out{% endif %}">
+                        {% block project_detail_breadcrumbs %}
                         {% platform_breadcrumbs project=project current='project' %}
+                        {% endblock %}
                     </div>
 
-                    {% if not module and not event %}
+                    {% if not module and not offline_event %}
                     {% include "a4_candy_projects/includes/project_detail_intro.html" %}
                     {% endif %}
 
-                    {% if module or event %}
-                    <div class="timeline-carousel__wrapper">
-                        {% if project.display_timeline %}
-                            {% include "a4_candy_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
-                        {% else %}
-                            <h2 class="visually-hidden">{% translate 'Online participation' %}</h2>
-                        {% endif %}
-                    </div>
-                    {% endif %}
+                    {% block participation_carousel %}{% endblock %}
 
                     <div class="project-detail__content">
-                    {% if not module and not event %}
+                    {% if not module and not offline_event %}
                     <section
                         class="project-detail__participation"
                         aria-labelledby="project-detail-participation-heading"
@@ -169,19 +163,6 @@
                     {% include "a4_candy_projects/includes/project_detail_events.html" %}
                     {% include "a4_candy_projects/includes/project_detail_insights.html" %}
 
-                    {% elif event %}
-                    <div class="row">
-                        <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-                            <h2>{{ event.name }}</h2>
-                            <div class="phase-info__item__subtitle">
-                                {% html_date event.date 'DATETIME_FORMAT' %}
-                            </div>
-                            <div class="ck-content">
-                                {{ event.description | safe }}
-                            </div>
-                        </div>
-                    </div>
-
                     {% else %} <!-- if just one module and no phase view to dispatch to -->
                     {% include "a4modules/includes/module_description.html" %}
                     {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
@@ -235,7 +216,7 @@
                     {% endif %}
                 </div>
 
-                {% if module and not event %}
+                {% if module %}
                 <div class="row">
                     {% if project.is_private %}
                         <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 u-font-size-xs my-4">

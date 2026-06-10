@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
 from adhocracy4.dashboard import mixins
+from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib.views import CanonicalURLDetailView
@@ -13,11 +14,22 @@ from . import models
 
 
 class OfflineEventDetailView(
-    ProjectMixin, rules_mixins.PermissionRequiredMixin, CanonicalURLDetailView
+    ProjectMixin,
+    DisplayProjectOrModuleMixin,
+    rules_mixins.PermissionRequiredMixin,
+    CanonicalURLDetailView,
 ):
     get_context_from_object = True
     model = models.OfflineEvent
     permission_required = "a4_candy_offlineevents.view_offlineevent"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["offline_event"] = self.object
+        context["initial_slide"] = self.object.get_timeline_index()
+        context["event"] = None
+        context["modules"] = None
+        return context
 
 
 class OfflineEventListView(

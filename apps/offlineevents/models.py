@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from autoslug import AutoSlugField
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
@@ -55,7 +56,10 @@ class OfflineEvent(UserGeneratedContentModel):
         return 0
 
     def get_absolute_url(self):
-        url = self.project.get_absolute_url()
-        if self.project.display_timeline:
-            return f"{url}?initialSlide={self.get_timeline_index()}#timeline-carousel"
-        return url
+        return reverse(
+            "a4_candy_offlineevents:offlineevent-detail",
+            kwargs={
+                "organisation_slug": self.project.organisation.slug,
+                "slug": self.slug,
+            },
+        )

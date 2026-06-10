@@ -9,6 +9,7 @@ _CURRENT_PROJECT = "project"
 _CURRENT_INFORMATION = "information"
 _CURRENT_RESULTS = "results"
 _CURRENT_MODULE = "module"
+_CURRENT_EVENT = "event"
 _CURRENT_ITEM = "item"
 
 _PROJECT_SUBPAGE_LABELS = {
@@ -42,6 +43,7 @@ def platform_breadcrumbs(
     organisation=None,
     project=None,
     module=None,
+    event_name=None,
     item_name=None,
     item_kind_label=None,
     current=_CURRENT_ORGANISATION,
@@ -79,6 +81,10 @@ def platform_breadcrumbs(
         )
 
     if current == _CURRENT_PROJECT:
+        return _breadcrumb_context(crumbs)
+
+    if current == _CURRENT_EVENT and event_name:
+        crumbs.append(_crumb(event_name))
         return _breadcrumb_context(crumbs)
 
     subpage_label = _PROJECT_SUBPAGE_LABELS.get(current)

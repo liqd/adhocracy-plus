@@ -70,9 +70,12 @@
         </div>
         <div class="row mt-4 pt-5">
             <div class="col-md-8 offset-md-2 mb-3">
-                {% platform_breadcrumbs module=module current='module' %}
+                <div class="project-detail__breadcrumbs">
+                    {% platform_breadcrumbs module=module current='module' %}
+                </div>
             </div>
         </div>
+        {% include "a4_candy_projects/includes/participation_timeline_carousel.html" %}
         {% block module_nav %}
             {% if module.is_in_module_cluster %}
                 <div class="mt-2 mb-5 me-md-3 d-flex justify-content-center justify-content-sm-end">

@@ -1,0 +1,5 @@
+{% if project.display_timeline %}
+<div class="timeline-carousel__wrapper">
+    {% include "a4_candy_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
+</div>
+{% endif %}
