@@ -18,6 +18,25 @@ $checkbox-size: 20px;
     }
 }
 
+.poll__question-image {
+  cursor: pointer;
+  margin: 1rem 0;
+  display: inline-block;
+}
+
+.poll__question-image-img {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.poll__question-image--expanded .poll__question-image-img {
+  max-height: 700px;
+  cursor: zoom-out;
+}
+
 .poll__rows {
     display: flex;
     flex-direction: column;
@@ -257,4 +276,74 @@ $checkbox-size: 20px;
         flex-flow: row nowrap;
         align-items: stretch;
     }
+}
+
+.image-upload-container {
+  border: 1px solid $gray-lightest;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image-upload-text {
+  color: $gray;
+}
+
+.image-upload-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.image-upload-preview {
+  height: 40px;
+  width: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.image-upload-upload-btn,
+.image-upload-remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+
+.image-upload-upload-btn {
+  color: $black;
+}
+
+.image-upload-upload-btn:hover {
+  opacity: 0.7;
+}
+
+.image-upload-remove-btn {
+  color: $black;
+}
+
+.image-upload-remove-btn:hover {
+  opacity: 0.7;
+}
+
+.image-upload-hidden-input {
+  display: none;
+}
+
+.image-upload-container.is-invalid {
+  border-color: $feedback-color-rejected;
+  background-color: $white;
+}
+
+.invalid-feedback {
+  color: $feedback-color-rejected;
+  font-size: 0.875em;
+  margin-top: 0.25rem;
 }
