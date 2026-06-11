@@ -21,6 +21,7 @@
                                 <li>send_recently_started_project_notifications</li>
                                 <li>send_recently_completed_project_notifications</li>
                                 <li>send_upcoming_event_notifications</li>
+                                <li>send_publish_results_reminders</li>
                             </ul>
                             <form method="post" action="{% url 'trigger_all_notification_tasks' %}">
                                 {% csrf_token %}
@@ -51,6 +52,19 @@
                     </div>
                     
                     <div data-category="project-related">
+                        {# Initiator reminders #}
+                        <div class="mb-4 u-bottom-divider">
+                            <h5 class="h6 mb-2">{% trans "Publish project results" %}</h5>
+                            <p class="small mb-3">
+                                {% trans "Receive a reminder to publish participation results after the participation phase has ended." %}
+                            </p>
+                            <div class="form-check form-switch">
+                                {{ form.email_initiator_publish_results|add_class:"project-related-switch" }}
+                                <label class="form-check-label" for="{{ form.email_initiator_publish_results.id_for_label }}">
+                                    {% trans "Email" %}
+                                </label>
+                            </div>
+                        </div>
                         {# Newsletter #}
                         <div class="mb-4 u-bottom-divider">
                             <h5 class="h6 mb-2">{% trans "Email Newsletter" %}</h5>

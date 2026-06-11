@@ -20,6 +20,11 @@ CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", "redis://redis:6
 CELERY_TASK_ALWAYS_EAGER = False
 
 CELERY_BEAT_SCHEDULE = {
+    "publish-results-reminders-hourly": {
+        "task": "send_publish_results_reminders",
+        "schedule": timedelta(hours=1),
+        "args": (),
+    },
     "send-recently-started-project-notifications": {
         "task": "send_recently_started_project_notifications",
         "schedule": timedelta(days=3),

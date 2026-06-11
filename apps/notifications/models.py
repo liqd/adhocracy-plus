@@ -144,6 +144,12 @@ class NotificationSettings(models.Model):
         default=True, verbose_name=_("Email newsletter")
     )
 
+    # Initiator-only e-mails
+    email_initiator_publish_results = models.BooleanField(
+        default=True,
+        verbose_name=_("Email reminder to publish project results"),
+    )
+
     # Project related - Project updates
     email_project_updates = models.BooleanField(
         default=True, verbose_name=_("Email project updates")
@@ -231,6 +237,7 @@ class NotificationSettings(models.Model):
     def get_email_fields(self):
         """Return all email preference fields"""
         return [
+            "email_initiator_publish_results",
             "email_project_updates",
             "email_project_events",
             "email_user_engagement",

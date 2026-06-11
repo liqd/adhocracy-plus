@@ -2,7 +2,9 @@
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from datetime import datetime
 from datetime import timedelta
+from zoneinfo import ZoneInfo
 
 from django.conf import locale
 from django.utils.translation import gettext_lazy as _
@@ -13,6 +15,15 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # General settings
 CONTACT_EMAIL = "contact@domain"
+
+# Hours after the last online participation module ends before reminding initiators
+# to publish project results (default one week). Set to 0 for immediate send (e.g. tests).
+RESULTS_PUBLISH_REMINDER_DELAY_HOURS = 168
+
+# Last online participation must end on/after this instant. Override in local.py if needed.
+RESULTS_PUBLISH_REMINDER_MIN_LAST_PARTICIPATION_END = datetime(
+    2026, 6, 1, 0, 0, 0, tzinfo=ZoneInfo("Europe/Berlin")
+)
 
 # Deprecated: Link to a dokuwiki instance containing a manual for aplus
 #             Unused - Replaced by manual_link which is set inside Wagtail

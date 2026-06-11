@@ -1,6 +1,8 @@
 from django.contrib import admin
+from django.contrib import messages
 from django.contrib.gis.admin import GISModelAdmin
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext
 
 from adhocracy4.projects import models
 from adhocracy4.projects.admin import ProjectAdminForm
@@ -14,6 +16,48 @@ def set_is_archived_true(modeladmin, request, queryset):
 @admin.action(description=_("dearchive"))
 def set_is_archived_false(modeladmin, request, queryset):
     queryset.update(is_archived=False)
+
+
+@admin.action(
+    description=_("Send publish-results reminder email to initiators"),
+)
+def send_publish_results_reminder_to_initiators(modeladmin, request, queryset):
+    from apps.projects.publish_results_reminder import send_publish_results_reminder
+
+    sent = 0
+    skipped = 0
+    for project in queryset:
+        if send_publish_results_reminder(project) is None:
+            sent += 1
+        else:
+            skipped += 1
+
+    if sent:
+        modeladmin.message_user(
+            request,
+            ngettext(
+                "Publish-results reminder sent for %(count)d project "
+                "(one e-mail per initiator of the organisation).",
+                "Publish-results reminder sent for %(count)d projects "
+                "(one e-mail per initiator of each organisation).",
+                sent,
+            )
+            % {"count": sent},
+            messages.SUCCESS,
+        )
+    if skipped:
+        modeladmin.message_user(
+            request,
+            ngettext(
+                "Skipped %(count)d project (same eligibility rules as automatic "
+                "sending).",
+                "Skipped %(count)d projects (same eligibility rules as automatic "
+                "sending).",
+                skipped,
+            )
+            % {"count": skipped},
+            messages.WARNING,
+        )
 
 
 class ProjectAdmin(GISModelAdmin):
@@ -33,6 +77,7 @@ class ProjectAdmin(GISModelAdmin):
     actions = [
         set_is_archived_true,
         set_is_archived_false,
+        send_publish_results_reminder_to_initiators,
     ]
 
     fieldsets = (

@@ -92,6 +92,11 @@ class ProjectInsight(base.TimeStampedModel):
     project = models.OneToOneField(
         Project, related_name="insight", on_delete=models.CASCADE
     )
+    results_reminder_sent_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        editable=False,
+    )
     active_participants = models.ManyToManyField(settings.AUTH_USER_MODEL)
     unregistered_participants = models.PositiveIntegerField(default=0)
     comments = models.PositiveIntegerField(default=0)
