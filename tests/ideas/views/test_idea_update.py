@@ -382,3 +382,60 @@ def test_creator_contact_fields_are_not_required_in_update_form(
         assert form.fields["creator_email"].required is False
         assert form.fields["creator_phone"].required is False
         assert form.fields["creator_contact_consent"].required is False
+
+
+@pytest.mark.django_db
+def test_existing_contact_fields_cleared_when_consent_removed_on_update(
+    client, phase_factory, idea_factory
+):
+    """Test that when user unchecks consent during update, email and phone are cleared.
+
+    Business rule: If user had previously provided contact info but then
+    unchecks consent, the email and phone should be cleared from the database.
+    """
+    phase, module, project, idea = setup_phase(
+        phase_factory, idea_factory, phases.IssuePhase
+    )
+
+    # Set initial contact values WITH consent
+    idea.creator_email = "existing@example.com"
+    idea.creator_phone = "+49123456789"
+    idea.creator_contact_consent = True
+    idea.save()
+
+    user = idea.creator
+    url = reverse(
+        "a4_candy_ideas:idea-update",
+        kwargs={
+            "organisation_slug": module.project.organisation.slug,
+            "year": idea.created.year,
+            "pk": idea.pk,
+        },
+    )
+
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+
+        # Update: uncheck consent, but still submit email/phone (they should be ignored)
+        update_data = {
+            "name": idea.name,
+            "description": idea.description,
+            "creator_email": "shouldbeignored@example.com",  # Should be ignored
+            "creator_phone": "+9999999999",  # Should be ignored
+            "creator_contact_consent": False,  # Consent removed
+            "organisation_terms_of_use": True,
+        }
+
+        if idea.category:
+            update_data["category"] = idea.category.pk
+
+        response = client.post(url, update_data)
+        assert response.status_code == 302
+        assert redirect_target(response) == "idea-detail"
+
+        idea.refresh_from_db()
+
+        # Email and phone should be cleared because consent is False
+        assert idea.creator_email == "", "Email should be cleared when consent removed"
+        assert idea.creator_phone == "", "Phone should be cleared when consent removed"
+        assert idea.creator_contact_consent is False, "Consent should be False"
