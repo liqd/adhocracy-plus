@@ -179,3 +179,45 @@ def test_admin_can_create_idea_in_wrong_phase(
         assert redirect_target(response) == "idea-detail"
         count = models.Idea.objects.all().count()
         assert count == 1
+
+
+@pytest.mark.django_db
+def test_user_can_create_idea_with_creator_contact_fields(
+    client, phase_factory, user, category_factory
+):
+    """Test that user can set creator email, phone, and consent when creating an idea."""
+    phase = phase_factory(phase_content=phases.IssuePhase())
+    module = phase.module
+    category = category_factory(module=module)
+    url = reverse(
+        "a4_candy_ideas:idea-create",
+        kwargs={
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
+    with freeze_phase(phase):
+        count = models.Idea.objects.all().count()
+        assert count == 0
+        client.login(username=user.email, password="password")
+
+        idea_data = {
+            "name": "Idea with contact info",
+            "description": "description",
+            "category": category.pk,
+            "organisation_terms_of_use": True,  # ADD THIS - required
+            "creator_email": "creator@example.com",
+            "creator_phone": "+4915123456789",
+            "creator_contact_consent": True,
+        }
+        response = client.post(url, idea_data)
+        assert response.status_code == 302
+        assert redirect_target(response) == "idea-detail"
+
+        count = models.Idea.objects.all().count()
+        assert count == 1
+
+        idea = models.Idea.objects.first()
+        assert idea.creator_email == "creator@example.com"
+        assert idea.creator_phone == "+4915123456789"
+        assert idea.creator_contact_consent is True
