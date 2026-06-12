@@ -13,6 +13,16 @@ class UserFactory(factory.django.DjangoModelFactory):
     email = factory.Sequence(lambda n: "user%d@liqd.net" % n)
     password = make_password("password")
     language = "en"
+    is_staff = False
+    is_superuser = False
+
+    @factory.post_generation
+    def groups(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for group in extracted:
+                self.groups.add(group)
 
     @factory.post_generation
     def notification_settings(self, create, extracted, **kwargs):
@@ -33,6 +43,7 @@ class AdminFactory(factory.django.DjangoModelFactory):
     password = make_password("password")
     is_superuser = True
     language = "en"
+    is_staff = True
 
 
 class OrganisationFactory(factory.django.DjangoModelFactory):

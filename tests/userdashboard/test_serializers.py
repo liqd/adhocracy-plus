@@ -42,6 +42,7 @@ def test_num_reports(apiclient, report_factory, comment_factory, idea):
 
 @pytest.mark.django_db
 def test_last_edit(apiclient, report_factory, comment_factory, idea):
+    apiclient.defaults["HTTP_ACCEPT_LANGUAGE"] = "de"
     comment_1 = comment_factory(content_object=idea)
     report_factory(content_object=comment_1)
     comment_2 = comment_factory(content_object=idea)
@@ -75,6 +76,7 @@ def test_last_edit(apiclient, report_factory, comment_factory, idea):
 def test_fields(
     apiclient, report_factory, comment_factory, idea, moderator_comment_feedback_factory
 ):
+    apiclient.defaults["HTTP_ACCEPT_LANGUAGE"] = "de"
     comment_1 = comment_factory(content_object=idea, is_moderator_marked=True)
     report_factory(content_object=comment_1)
 

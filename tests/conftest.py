@@ -2,6 +2,7 @@ from io import BytesIO
 
 import factory
 import pytest
+from allauth.account.models import EmailAddress
 from celery import Celery
 from django.contrib.gis.geos import Point
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -18,6 +19,7 @@ from . import factories
 register(factories.UserFactory)
 register(factories.UserFactory, "user2")
 register(factories.AdminFactory, "admin")
+register(factories.AdminFactory, "admin_user")
 register(factories.OrganisationFactory)
 register(factories.MemberFactory)
 register(factories.OrganisationTermsOfUseFactory)
@@ -126,3 +128,12 @@ def geojson_point():
 @pytest.fixture
 def geojson_point_str():
     return '{"type": "Feature","geometry": {"type": "Point", "coordinates": [13.397788148643649, 52.52958586909979]}}'
+
+
+@pytest.fixture
+def verified_user(db, user):
+    """Create a user with verified email"""
+    EmailAddress.objects.create(
+        user=user, email=user.email, verified=True, primary=True
+    )
+    return user
