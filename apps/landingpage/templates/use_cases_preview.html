@@ -1,0 +1,30 @@
+{% load i18n static %}
+<div class="lp-use-cases lp-section">
+    {% include "section_header.html" with header=_("Organize. Engage. Impact.") subheader=_("Use cases") %}
+    <div class="lp-use-cases__cards">
+        <a href="{% url 'wagtail_serve' 'info/use-cases/' %}?category=MP" class="lp-use-case-card">
+            <img class="lp-use-case-card__icon" src="{% static 'images/MP-invert.svg' %}" alt="">
+            <div class="lp-use-case-card__footer">
+                <span class="lp-use-case-card__name">{% trans "Municipalities" %}</span>
+                <span class="lp-use-case-card__cta">{% trans "Explore" %} <i class="fa fa-arrow-right"></i></span>
+            </div>
+        </a>
+        <a href="{% url 'wagtail_serve' 'info/use-cases/' %}?category=NG" class="lp-use-case-card">
+            <img class="lp-use-case-card__icon" src="{% static 'images/NG-invert.svg' %}" alt="">
+            <div class="lp-use-case-card__footer">
+                <span class="lp-use-case-card__name">{% trans "Associations & NGOs" %}</span>
+                <span class="lp-use-case-card__cta">{% trans "Explore" %} <i class="fa fa-arrow-right"></i></span>
+            </div>
+        </a>
+        <a href="{% url 'wagtail_serve' 'info/use-cases/' %}?category=PO" class="lp-use-case-card">
+            <img class="lp-use-case-card__icon" src="{% static 'images/PO-megafon-inverted.svg' %}" alt="">
+            <div class="lp-use-case-card__footer">
+                <span class="lp-use-case-card__name">{% trans "Politicians" %}</span>
+                <span class="lp-use-case-card__cta">{% trans "Explore" %} <i class="fa fa-arrow-right"></i></span>
+            </div>
+        </a>
+    </div>
+    <div class="lp-use-cases__explore">
+        <a href="{% url 'wagtail_serve' 'info/use-cases/' %}" class="btn btn--full btn--transparent btn--text-black">{% trans "Explore all use cases" %}</a>
+    </div>
+</div>
