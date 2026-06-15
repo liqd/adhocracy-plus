@@ -217,3 +217,90 @@ def test_admin_can_create_proposal_past_phase(
         assert redirect_target(response) == "proposal-detail"
         count = models.Proposal.objects.all().count()
         assert count == 1
+
+
+@pytest.mark.django_db
+def test_user_can_create_proposal_with_creator_contact_fields(
+    client, phase_factory, user, category_factory, area_settings_factory
+):
+    """Test that user can set creator email, phone, and consent when creating a proposal."""
+    phase = phase_factory(phase_content=phases.RequestPhase())
+    module = phase.module
+    area_settings_factory(module=module)
+    category = category_factory(module=module)
+    url = reverse(
+        "a4_candy_budgeting:proposal-create",
+        kwargs={
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
+    with freeze_phase(phase):
+        count = models.Proposal.objects.all().count()
+        assert count == 0
+        client.login(username=user.email, password="password")
+
+        proposal_data = {
+            "name": "Proposal with contact info",
+            "description": "description",
+            "category": category.pk,
+            "budget": 123,
+            "point": (0, 0),
+            "point_label": "somewhere",
+            "organisation_terms_of_use": True,
+            "creator_email": "creator@example.com",
+            "creator_phone": "+4915123456789",
+            "creator_contact_consent": True,
+        }
+        response = client.post(url, proposal_data)
+        assert response.status_code == 302
+        assert redirect_target(response) == "proposal-detail"
+
+        count = models.Proposal.objects.all().count()
+        assert count == 1
+
+        proposal = models.Proposal.objects.first()
+        assert proposal.creator_email == "creator@example.com"
+        assert proposal.creator_phone == "+4915123456789"
+        assert proposal.creator_contact_consent is True
+
+
+@pytest.mark.django_db
+def test_creator_contact_fields_not_saved_without_consent_on_proposal(
+    client, phase_factory, user, category_factory, area_settings_factory
+):
+    """Test that email and phone are NOT saved when consent is not given."""
+    phase = phase_factory(phase_content=phases.RequestPhase())
+    module = phase.module
+    area_settings_factory(module=module)
+    category = category_factory(module=module)
+    url = reverse(
+        "a4_candy_budgeting:proposal-create",
+        kwargs={
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+
+        proposal_data = {
+            "name": "Proposal with contact info",
+            "description": "description",
+            "category": category.pk,
+            "budget": 123,
+            "point": (0, 0),
+            "point_label": "somewhere",
+            "organisation_terms_of_use": True,
+            "creator_email": "shouldnotsave@example.com",
+            "creator_phone": "+4915123456789",
+            "creator_contact_consent": False,
+        }
+        response = client.post(url, proposal_data)
+        assert response.status_code == 302
+        assert redirect_target(response) == "proposal-detail"
+
+        proposal = models.Proposal.objects.first()
+        assert proposal.creator_email == ""
+        assert proposal.creator_phone == ""
+        assert proposal.creator_contact_consent is False
