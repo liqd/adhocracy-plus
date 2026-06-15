@@ -128,6 +128,15 @@ class IdeaUpdateView(AbstractIdeaUpdateView, UserFormViewMixin):
     permission_required = "a4_candy_ideas.change_idea"
     template_name = "a4_candy_ideas/idea_update_form.html"
 
+    def get_initial(self):
+        """Populate creator contact fields in the form."""
+        initial = super().get_initial()
+        if self.object:
+            initial["creator_email"] = self.object.creator_email
+            initial["creator_phone"] = self.object.creator_phone
+            initial["creator_contact_consent"] = self.object.creator_contact_consent
+        return initial
+
 
 class AbstractIdeaDeleteView(
     ProjectMixin, rules_mixins.PermissionRequiredMixin, generic.DeleteView
