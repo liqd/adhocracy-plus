@@ -121,21 +121,23 @@ class AbstractIdeaUpdateView(
             kwargs["settings_instance"] = instance.module.settings_instance
         return kwargs
 
+    def get_initial(self):
+        initial = super().get_initial()
+        if self.object:
+            if hasattr(self.object, "creator_email"):
+                initial["creator_email"] = self.object.creator_email
+            if hasattr(self.object, "creator_phone"):
+                initial["creator_phone"] = self.object.creator_phone
+            if hasattr(self.object, "creator_contact_consent"):
+                initial["creator_contact_consent"] = self.object.creator_contact_consent
+        return initial
+
 
 class IdeaUpdateView(AbstractIdeaUpdateView, UserFormViewMixin):
     model = models.Idea
     form_class = forms.IdeaForm
     permission_required = "a4_candy_ideas.change_idea"
     template_name = "a4_candy_ideas/idea_update_form.html"
-
-    def get_initial(self):
-        """Populate creator contact fields in the form."""
-        initial = super().get_initial()
-        if self.object:
-            initial["creator_email"] = self.object.creator_email
-            initial["creator_phone"] = self.object.creator_phone
-            initial["creator_contact_consent"] = self.object.creator_contact_consent
-        return initial
 
 
 class AbstractIdeaDeleteView(

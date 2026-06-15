@@ -202,3 +202,82 @@ def test_admin_can_create_mapidea_in_wrong_phase(
         assert redirect_target(response) == "mapidea-detail"
         count = models.MapIdea.objects.all().count()
         assert count == 1
+
+
+@pytest.mark.django_db
+def test_user_can_create_mapidea_with_creator_contact_fields(
+    client, phase_factory, user, category_factory, area_settings_factory, organisation
+):
+    """Test that user can set creator email, phone, and consent when creating a map idea."""
+    phase = phase_factory(phase_content=phases.CollectPhase())
+    module = phase.module
+    area_settings_factory(module=module)
+    category = category_factory(module=module)
+    url = reverse(
+        "a4_candy_mapideas:mapidea-create",
+        kwargs={"organisation_slug": organisation.slug, "module_slug": module.slug},
+    )
+    with freeze_phase(phase):
+        count = models.MapIdea.objects.all().count()
+        assert count == 0
+        client.login(username=user.email, password="password")
+
+        mapidea_data = {
+            "name": "MapIdea with contact info",
+            "description": "description",
+            "category": category.pk,
+            "point": (0, 0),
+            "point_label": "somewhere",
+            "organisation_terms_of_use": True,
+            "creator_email": "creator@example.com",
+            "creator_phone": "+4915123456789",
+            "creator_contact_consent": True,
+        }
+        response = client.post(url, mapidea_data)
+        assert response.status_code == 302
+        assert redirect_target(response) == "mapidea-detail"
+
+        count = models.MapIdea.objects.all().count()
+        assert count == 1
+
+        mapidea = models.MapIdea.objects.first()
+        assert mapidea.creator_email == "creator@example.com"
+        assert mapidea.creator_phone == "+4915123456789"
+        assert mapidea.creator_contact_consent is True
+
+
+@pytest.mark.django_db
+def test_creator_contact_fields_not_saved_without_consent_on_mapidea(
+    client, phase_factory, user, category_factory, area_settings_factory, organisation
+):
+    """Test that email and phone are NOT saved when consent is not given."""
+    phase = phase_factory(phase_content=phases.CollectPhase())
+    module = phase.module
+    area_settings_factory(module=module)
+    category = category_factory(module=module)
+    url = reverse(
+        "a4_candy_mapideas:mapidea-create",
+        kwargs={"organisation_slug": organisation.slug, "module_slug": module.slug},
+    )
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+
+        mapidea_data = {
+            "name": "MapIdea with contact info",
+            "description": "description",
+            "category": category.pk,
+            "point": (0, 0),
+            "point_label": "somewhere",
+            "organisation_terms_of_use": True,
+            "creator_email": "shouldnotsave@example.com",
+            "creator_phone": "+4915123456789",
+            "creator_contact_consent": False,
+        }
+        response = client.post(url, mapidea_data)
+        assert response.status_code == 302
+        assert redirect_target(response) == "mapidea-detail"
+
+        mapidea = models.MapIdea.objects.first()
+        assert mapidea.creator_email == ""
+        assert mapidea.creator_phone == ""
+        assert mapidea.creator_contact_consent is False
