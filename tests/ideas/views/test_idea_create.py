@@ -205,7 +205,7 @@ def test_user_can_create_idea_with_creator_contact_fields(
             "name": "Idea with contact info",
             "description": "description",
             "category": category.pk,
-            "organisation_terms_of_use": True,  # ADD THIS - required
+            "organisation_terms_of_use": True,
             "creator_email": "creator@example.com",
             "creator_phone": "+4915123456789",
             "creator_contact_consent": True,
