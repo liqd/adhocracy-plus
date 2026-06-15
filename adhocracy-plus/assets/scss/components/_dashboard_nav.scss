@@ -139,3 +139,55 @@
     width: $spacer !important;
     border-radius: $spacer !important;
 }
+
+.dashboard-help-card {
+    background-color: $text-color;
+    color: $text-color-inverted;
+    font-family: $font-family-base;
+    margin-top: 1.2 * $spacer;
+    padding: 1.5 * $spacer;
+    text-align: center;
+
+    &__title {
+        font-family: $font-family-base;
+        font-size: $font-size-md;
+        font-weight: $demi-bold;
+        line-height: 1.2;
+        margin-bottom: 0.5 * $spacer;
+        margin-top: 0;
+    }
+
+    &__brand-link {
+        color: inherit;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus {
+            color: inherit;
+        }
+    }
+
+    &__text {
+        font-size: $font-size-sm;
+        line-height: 1.5;
+        margin-bottom: 0.625 * $spacer;
+    }
+
+    &__cta {
+        background-color: $body-bg;
+        border: 0;
+        color: $text-color;
+        display: block;
+        line-height: 1.5;
+        margin-bottom: 0;
+        padding: 0.5 * $spacer 2.2 * $spacer;
+        width: 100%;
+
+        &:hover,
+        &:focus {
+            background-color: $body-bg;
+            border: 0;
+            color: $text-color;
+        }
+    }
+}
