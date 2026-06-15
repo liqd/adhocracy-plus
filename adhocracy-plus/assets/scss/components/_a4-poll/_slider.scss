@@ -1,0 +1,93 @@
+.poll-slider {
+    position: relative;
+    background-color: $brand-primary-100;
+    border: 1px solid $brand-primary;
+    margin-bottom: $spacer;
+
+    .slick-prev {
+        left: auto !important;
+        right: 4 * $spacer !important;
+    }
+
+    .slick-next {
+        right: 1.5 * $spacer !important;
+    }
+
+    .slick-prev,
+    .slick-next {
+        @extend .btn--none;
+        background-color: $brand-tertiary;
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        text-align: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 100%;
+        z-index: 1;
+
+        &:hover {
+            background-color: $brand-tertiary;
+        }
+
+        &:before {
+            color: $brand-tertiary-tint;
+            opacity: 100%;
+            font-family: "Font Awesome 7 Free", sans-serif;
+            font-weight: 900;
+            font-size: $font-size-base;
+            line-height: 1.4rem;
+        }
+    }
+
+    .slick-prev:before {
+        content: "\f060";
+    }
+
+    .slick-next:before {
+        content: "\f061";
+    }
+
+    .slick-disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    .slick-slide {
+        height: auto;
+        position: relative;
+        padding: 0 $spacer 0 (2 * $spacer);
+
+        @media (min-width: $breakpoint) {
+            padding: 0 3 * $spacer;
+        }
+    }
+
+    .slick-track {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: stretch;
+    }
+}
+
+.poll-slider__item {
+    padding-top: $spacer;
+}
+
+.poll-slider__answer {
+    padding-bottom: 1.5 * $spacer;
+    overflow-wrap: break-word;
+
+    i {
+        color: $brand-tertiary;
+        margin-right: 0.5rem;
+    }
+}
+
+.poll-slider__count {
+    font-size: $font-size-sm;
+    color: $text-color-gray;
+    position: absolute;
+    bottom: 0;
+}
