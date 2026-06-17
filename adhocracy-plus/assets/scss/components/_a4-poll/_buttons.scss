@@ -1,0 +1,16 @@
+.poll__btn {
+    border-radius: $choice-border-radius;
+}
+
+.poll__btn--link {
+    @extend .btn--link;
+    margin-right: $spacer;
+}
+
+.poll__btn--light {
+    @extend .btn--light;
+}
+
+.poll__btn--dark {
+    @extend .btn--default;
+}
