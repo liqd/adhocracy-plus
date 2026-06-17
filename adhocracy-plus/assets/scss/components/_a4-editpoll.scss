@@ -40,3 +40,69 @@
         flex-direction: row;
     }
 }
+
+.image-upload {
+    &__container {
+        border: 1px solid $gray-lightest;
+        border-radius: 0;
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &.is-invalid {
+            border-color: $feedback-color-rejected;
+            background-color: $white;
+        }
+    }
+
+    &__text {
+        color: $gray;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    &__preview {
+        height: 40px;
+        width: auto;
+        object-fit: cover;
+        border-radius: 0;
+    }
+
+    &__upload-btn,
+    &__remove-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.2s;
+    }
+
+    &__upload-btn {
+        color: $black;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    &__remove-btn {
+        color: $black;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    &__hidden-input {
+        display: none;
+    }
+}

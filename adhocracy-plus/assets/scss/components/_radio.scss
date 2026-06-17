@@ -2,10 +2,6 @@
     @include visually-hidden;
 }
 
-// use pixels here because otherwise the icon in the :after
-// could not have a smaller fontsize
-$checkbox-size: 20px;
-
 .radio__text {
     display: block;
     padding-left: $checkbox-size + 7px;
@@ -44,7 +40,6 @@ $checkbox-size: 20px;
     }
 }
 
-.poll-row__radio:checked + .radio__text:after,
 .radio__input:checked + .radio__text:after {
     content: "\f00c"; // check
     transform: scale(1);
@@ -60,12 +55,10 @@ $checkbox-size: 20px;
 }
 
 .a4-comments__category__input:focus + .a4-comments__category__text,
-.poll-row__radio:focus + .radio__text:before,
 .radio__input:focus + .radio__text:before {
     @include fake-focus-shadow;
 }
 
-.poll-row__radio:disabled + .radio__text,
 .radio__input:disabled + .radio__text {
     &:before,
     &:after {
