@@ -103,7 +103,7 @@
         </div>
     </div>
 {% else %}
-    <div class="dropdown userindicator__dropdown userindicator__guest-dropdown">
+    <div class="dropdown userindicator__dropdown userindicator__anonymous-dropdown">
         <button type="button"
                 title="{% translate 'Menu' %}"
                 class="d-md-none dropdown-toggle btn btn--none userindicator__toggle-btn header-upper__mobile-toggle"
@@ -115,28 +115,28 @@
                 id="guest-actions-mobile">
             {% include 'a4_candy_users/includes/userindicator_toggle_icons.html' %}
         </button>
-        <div class="d-none d-md-flex userindicator__guest userindicator__guest--desktop">
+        <div class="d-none d-md-flex userindicator__anonymous userindicator__anonymous--desktop">
             <a href="{% url 'account_login' %}?next={{ redirect_field_value }}"
-               class="btn userindicator__guest-btn userindicator__guest-btn--login">
+               class="btn userindicator__anonymous-btn userindicator__anonymous-btn--login">
                 {% translate "Log in" %}
             </a>
             <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}"
-               class="btn userindicator__guest-btn userindicator__guest-btn--cta">
+               class="btn userindicator__anonymous-btn userindicator__anonymous-btn--cta">
                 <span>{% translate "Get Started" %}</span>
-                <i class="fa-solid fa-arrow-right userindicator__guest-cta-icon" aria-hidden="true"></i>
+                <i class="fa-solid fa-arrow-right userindicator__anonymous-cta-icon" aria-hidden="true"></i>
             </a>
         </div>
-        <div class="dropdown-menu dropdown-menu-end userindicator__guest-sheet d-md-none"
+        <div class="dropdown-menu dropdown-menu-end userindicator__anonymous-sheet d-md-none"
              aria-labelledby="guest-actions-mobile">
-            <div class="userindicator__guest userindicator__guest--mobile">
+            <div class="userindicator__anonymous userindicator__anonymous--mobile">
                 <a href="{% url 'account_login' %}?next={{ redirect_field_value }}"
-                   class="btn userindicator__guest-btn userindicator__guest-btn--login">
+                   class="btn userindicator__anonymous-btn userindicator__anonymous-btn--login">
                     {% translate "Log in" %}
                 </a>
                 <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}"
-                   class="btn userindicator__guest-btn userindicator__guest-btn--cta">
+                   class="btn userindicator__anonymous-btn userindicator__anonymous-btn--cta">
                     <span>{% translate "Get Started" %}</span>
-                    <i class="fa-solid fa-arrow-right userindicator__guest-cta-icon" aria-hidden="true"></i>
+                    <i class="fa-solid fa-arrow-right userindicator__anonymous-cta-icon" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
