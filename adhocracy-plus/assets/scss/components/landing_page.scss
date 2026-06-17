@@ -30,11 +30,15 @@ $text-color: #1A1A1A;
     }
 
     &-img {
-        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 400px;
+
+        &__frame {
+            position: relative;
+            height: 100%;
+        }
 
         img {
             height: 100%;
@@ -62,7 +66,7 @@ $text-color: #1A1A1A;
 }
 
 // stylelint-disable-next-line no-duplicate-selectors  
-.lp-hero-img {
+.lp-hero-img__frame {
     .lp-floating-noti {
         &:first-of-type {
             bottom: 10%;
@@ -196,7 +200,7 @@ $text-color: #1A1A1A;
     }
 
 // stylelint-disable-next-line no-duplicate-selectors  
-    .lp-hero-img {
+    .lp-hero-img__frame {
         .lp-floating-noti {
             &:first-of-type {
                 bottom: -5%;
