@@ -1,0 +1,70 @@
+.lp-use-cases {
+    &__cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2em;
+        margin: 0 3em;
+    }
+
+    &__explore {
+        max-width: 196px;
+        margin: 2.5rem auto 0;
+    }
+}
+
+.lp-use-case-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 158px;
+    padding: 16px 24px;
+    background-color: $primary-blue;
+    color: $white;
+    text-decoration: none;
+    box-sizing: border-box;
+
+    &:hover,
+    &:focus {
+        color: $white;
+        text-decoration: none;
+    }
+
+    &__icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    &__name {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    &__cta {
+        flex-shrink: 0;
+        font-size: 1rem;
+        line-height: 1.5;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: $breakpoint-md) {
+    .lp-use-cases {
+        &__cards {
+            grid-template-columns: 1fr;
+            margin: 1rem;
+        }
+
+        &__explore {
+            max-width: none;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+    }
+}
