@@ -25,6 +25,26 @@ PROSOPO_CAPTCHA_HELP = _(
 )
 
 
+class BotTrapMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["accept_marketing_partners"] = forms.BooleanField(
+            label=_("Accept marketing from our partners"),
+            required=False,
+            widget=forms.CheckboxInput(
+                attrs={
+                    "tabindex": "-1",
+                    "autocomplete": "off",
+                }
+            ),
+        )
+
+    def apply_bot_trap(self, user):
+        if user and self.cleaned_data.get("accept_marketing_partners"):
+            user.is_active = False
+        return user
+
+
 class TermsAndCaptchaMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -57,7 +77,8 @@ class DefaultLoginForm(LoginForm):
         self.fields["password"].widget.attrs["autocomplete"] = "current-password"
         self.fields["password"].widget.attrs["class"] = "password-toggle"
 
-class DefaultSignupForm(TermsAndCaptchaMixin, SignupForm):
+
+class DefaultSignupForm(BotTrapMixin, TermsAndCaptchaMixin, SignupForm):
     terms_of_use = forms.BooleanField(label=_("Terms of use"))
     get_newsletters = forms.BooleanField(
         label=_("I would like to receive further information"),
@@ -89,6 +110,7 @@ class DefaultSignupForm(TermsAndCaptchaMixin, SignupForm):
         if user:
             user.get_newsletters = self.cleaned_data["get_newsletters"]
             user.language = get_language()
+            self.apply_bot_trap(user)
             user.save()
             return user
 

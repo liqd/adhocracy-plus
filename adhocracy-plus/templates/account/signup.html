@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block head_title %}
     {% translate "Register" %}
-{% endblock %}
+{% endblock head_title %}
 {% block content %}
     <h1>{% translate "Register" %}</h1>
     {% with page=settings.a4_candy_cms_settings.ImportantPages.registration %}
@@ -18,8 +18,14 @@
         {{ form.non_field_errors }}
         {{ form.media }}
         {% csrf_token %}
+        <div class="form-honeypot" aria-hidden="true">
+            <label class="form-check__label">
+                {{ form.accept_marketing_partners }}
+                {{ form.accept_marketing_partners.label }}
+            </label>
+        </div>
         {% for field in form %}
-            {% if field is not form.terms_of_use and field is not form.terms_of_use_extra and field is not form.get_newsletters and field is not form.captcha %}
+            {% if field is not form.terms_of_use and field is not form.terms_of_use_extra and field is not form.get_newsletters and field is not form.captcha and field is not form.accept_marketing_partners %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
             {% endif %}
         {% endfor %}
@@ -71,4 +77,4 @@
         </div>
     </form>
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-{% endblock %}
+{% endblock content %}
