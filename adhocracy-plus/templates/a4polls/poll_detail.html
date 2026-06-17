@@ -1,7 +1,6 @@
 {% extends extends %}
 {% load static react_comments_async react_polls_prosopo %}
 
-
 {% block phase_content %}
 <div class="row">
     <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
@@ -11,12 +10,14 @@
 
 <div class="row mt-5">
     <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 my-4">
-        {% react_comments_async obj=object no_control_bar=True %}
+        <div class="poll-comments-section">
+            {% react_comments_async obj=object no_control_bar=True %}
+        </div>
     </div>
 </div>
-{% endblock %}
+{% endblock phase_content %}
 
 {% block extra_js %}
   {{ block.super }}
     <script type="text/javascript" src="{% static 'polls.js' %}"></script>
-{% endblock %}
+{% endblock extra_js %}
