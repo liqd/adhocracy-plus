@@ -28,11 +28,12 @@
                 </a>
             {% endif %}
         {% endif %}
+
+        {% include "a4dashboard/includes/initiator_help_card.html" %}
     </nav>
 
-
     <div class="col-md-9">
-        {% block project_list %}{% endblock %}
+        {% block project_list %}{% endblock project_list %}
     </div>
 </div>
-{% endblock %}
+{% endblock dashboard_content %}

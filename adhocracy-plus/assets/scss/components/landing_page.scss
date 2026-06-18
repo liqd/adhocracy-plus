@@ -25,15 +25,20 @@ $text-color: #1A1A1A;
 
     &-buttons {
         display: flex;
-        gap: 1em;
+        flex-wrap: wrap;
+        gap: 18px;
     }
 
     &-img {
-        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 400px;
+
+        &__frame {
+            position: relative;
+            height: 100%;
+        }
 
         img {
             height: 100%;
@@ -61,7 +66,7 @@ $text-color: #1A1A1A;
 }
 
 // stylelint-disable-next-line no-duplicate-selectors  
-.lp-hero-img {
+.lp-hero-img__frame {
     .lp-floating-noti {
         &:first-of-type {
             bottom: 10%;
@@ -75,6 +80,49 @@ $text-color: #1A1A1A;
             transform: translateX(40%);
         }
     }
+}
+
+.lp-hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 48px;
+    padding: 12px 24px;
+    border-radius: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
+
+    i {
+        font-size: 1rem;
+        line-height: 1;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
+}
+
+.lp-hero-btn--outline {
+    background-color: transparent;
+    border: 1px solid $white;
+    color: $white;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: transparent;
+        border-color: $white;
+        color: $white;
+    }
+}
+
+.lp-hero-btn--account {
+    @include button-bg($text-color, $text-color, $white, 8%);
 }
 
 .btn {
@@ -129,8 +177,8 @@ $text-color: #1A1A1A;
             display: grid;
             gap: .75em;
 
-            > button {
-                min-width: 100%;
+            .lp-hero-btn {
+                width: 100%;
             }
         }
     }
@@ -152,7 +200,7 @@ $text-color: #1A1A1A;
     }
 
 // stylelint-disable-next-line no-duplicate-selectors  
-    .lp-hero-img {
+    .lp-hero-img__frame {
         .lp-floating-noti {
             &:first-of-type {
                 bottom: -5%;

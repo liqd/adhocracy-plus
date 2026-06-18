@@ -1,0 +1,18 @@
+{% load i18n %}
+<aside class="dashboard-help-card" aria-label="{% translate 'Additional services' %}">
+    <h2 class="dashboard-help-card__title">
+        {% blocktranslate trimmed %}
+        Get the most out of <a href="https://adhocracy.plus/" class="dashboard-help-card__brand-link" target="_blank" rel="noopener noreferrer">adhocracy.plus</a>
+        {% endblocktranslate %}
+    </h2>
+    <p class="dashboard-help-card__text">
+        {% blocktranslate trimmed %}
+        We can help you with technical and processual services like support packages, organisational trainings, a custom URL, project moderation or access to our data analysis tool
+        {% endblocktranslate %}
+    </p>
+    <!-- djlint:off -->
+    <a href="/info/additional-services/" class="btn dashboard-help-card__cta">
+        {% translate 'Download price list' %}
+    </a>
+    <!-- djlint:on -->
+</aside>
