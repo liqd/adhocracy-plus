@@ -1,9 +1,17 @@
-{% load static %}
+{% load static i18n %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.name %}
 
 <div class="uppy-image-upload-field">
     {% include 'a4dashboard/includes/form_field.html' with field=form.image %}
+    <button
+        type="button"
+        class="btn btn--default upload-wrapper__action uppy-image-upload-field__trigger"
+        data-uppy-trigger
+    >
+        <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+        <span class="visually-hidden">{% translate "Upload a picture" %}</span>
+    </button>
     <div
         data-uppy-image-upload
         data-input-id="{{ form.image.id_for_label }}"
@@ -12,6 +20,7 @@
         data-output-height="500"
         data-min-width="1500"
         data-min-height="500"
+        hidden
     ></div>
 </div>
 <link rel="stylesheet" href="{% static 'uppy_image_upload.css' %}">
