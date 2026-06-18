@@ -1,6 +1,22 @@
+{% load static %}
+
 {% include 'a4dashboard/includes/form_field.html' with field=form.name %}
 
-{% include 'a4dashboard/includes/form_field.html' with field=form.image %}
+<div class="uppy-image-upload-field">
+    {% include 'a4dashboard/includes/form_field.html' with field=form.image %}
+    <div
+        data-uppy-image-upload
+        data-input-id="{{ form.image.id_for_label }}"
+        data-aspect-ratio="3"
+        data-output-width="1500"
+        data-output-height="500"
+        data-min-width="1500"
+        data-min-height="500"
+    ></div>
+</div>
+<link rel="stylesheet" href="{% static 'uppy_image_upload.css' %}">
+<script src="{% static 'uppy_image_upload.js' %}"></script>
+
 {% include 'a4dashboard/includes/form_field.html' with field=form.image_alt_text %}
 {% include 'a4dashboard/includes/form_field.html' with field=form.image_copyright %}
 

@@ -146,6 +146,12 @@ module.exports = {
         'adhocracy4/adhocracy4/categories/assets/select_dropdown_init.js'
       ],
       dependOn: 'adhocracy4'
+    },
+    uppy_image_upload: {
+      import: [
+        './adhocracy-plus/assets/js/uppy_image_upload.js'
+      ],
+      dependOn: 'adhocracy4'
     }
   },
   output: {
