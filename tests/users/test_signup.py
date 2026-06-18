@@ -3,6 +3,8 @@ from django.test import override_settings
 from django.urls import reverse
 
 from apps.users.models import User
+from tests.helpers import GuestUserCreator
+from tests.helpers import get_emails_for_address
 
 
 @override_settings(CAPTCHA=False)
@@ -94,3 +96,32 @@ def test_signup_without_bot_trap_creates_active_user(client):
     assert resp.status_code == 302
     user = User.objects.get(username="realuser")
     assert user.is_active
+
+
+@override_settings(CAPTCHA=False)
+@pytest.mark.django_db
+def test_convert_guest_user(client):
+    guest_user_creator = GuestUserCreator()
+    guest_user = guest_user_creator.create_guest_user()
+    client.force_login(guest_user)
+    guest_email = "mail@example.com"
+
+    response = client.post(
+        reverse("guest_convert"),
+        data={
+            "username": "aguestuser",
+            "email": guest_email,
+            "password1": "password",
+            "password2": "password",
+            "terms_of_use": "on",
+        },
+    )
+
+    assert response.status_code == 302
+
+    user_emails = get_emails_for_address(guest_email)
+    assert len(user_emails) == 1
+    subject = user_emails[0].subject
+    assert subject.startswith(
+        "Please confirm your registration on"
+    ) or subject.startswith("Bitte bestätigen Sie Ihre Registrierung auf")

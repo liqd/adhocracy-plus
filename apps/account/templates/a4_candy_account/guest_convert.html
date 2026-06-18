@@ -1,0 +1,45 @@
+{% extends "a4_candy_account/account_dashboard.html" %}
+
+{% load i18n guest_user %}
+
+{% block title %}
+    {% if not user|is_guest_user %}
+        {% translate "Your user profile" %} — {{ block.super }}
+    {% else %}
+        {% translate "Convert Account" %} — {{ block.super }}
+    {% endif %}
+{% endblock title %}
+
+{% block dashboard_content %}
+    <h1 class="mt-0">{% translate 'Convert to regular account' %}</h1>
+    <p class="u-italic">{% translate 'You can now convert your guest account into a regular user account. This means that all your previous posts, comments and ratings will be kept and assigned to your new user account.' %}</p>
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            {% if not field.name == 'terms_of_use' and not field.name == 'get_newsletters' %}
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
+            {% endif %}
+        {% endfor %}
+
+        <div class="form-check">
+          <label class="form-check__label">
+              {{ form.terms_of_use }}
+              {% blocktranslate with terms_of_use_url=settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url data_protection_policy=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url %}
+              I confirm that I have read and accepted the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{data_protection_policy}}" target="_blank">data protection policy</a>.
+              {% endblocktranslate %}
+              {% if form.terms_of_use.field.required %}
+                  <span role="presentation" title="{% translate 'This field is required' %}">*</span>
+              {% endif %}
+          </label>
+          {{ form.terms_of_use.errors }}
+      </div>
+
+      {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
+
+      <div class="d-flex justify-content-end mb-3">
+          <button type="submit" class="btn btn--primary">{% translate 'Register' %}</button>
+      </div>
+    </form>
+    {{ form.media }}
+{% endblock dashboard_content %}

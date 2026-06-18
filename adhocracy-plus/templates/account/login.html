@@ -1,14 +1,19 @@
 {% extends "account/base.html" %}
-{% load i18n account  %}
+{% load i18n account signup_flow %}
 
-{% block head_title %}{% translate "Login" %}{% endblock %}
+{% block head_title %}{% translate "Login" %}{% endblock head_title %}
 
 {% block content %}
+    {% guest_url as guest_url_value %}
     <h1>{% translate "Login" %}</h1>
 
-    <p>{% blocktranslate %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktranslate %}</p>
+    <p>
+        {% blocktranslate %}Would you like to create an account? Then <a href="{{ signup_url }}">click here</a>.{% endblocktranslate %}
+        </br>
+        {% blocktranslate %}Would you like to proceed as a guest? Then <a href="{{ guest_url_value }}">click here</a>.{% endblocktranslate %}
+    </p>
 
-    <form method="POST" action="{% url 'account_login' %}" class="u-spacer-bottom-double">
+    <form method="post" action="{% url 'account_login' %}" class="account-auth-form u-spacer-bottom-double">
         {{ form.non_field_errors }}
         {% csrf_token %}
 
@@ -24,13 +29,14 @@
 
         <div class="row">
             <div class="col-12 mb-3">
-            <button class="btn btn--primary" type="submit">{% translate "Login" %}</button>
+                <button class="btn btn--primary" type="submit">{% translate "Login" %}</button>
+                <a class="btn btn--secondary proceed-guest-button" href="{{ guest_url_value }}">{% translate "Or proceed as guest" %}</a>
             </div>
             <div class="col-12 mb-3">
-            <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
+                <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
             </div>
         </div>
     </form>
 
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-{% endblock %}
+{% endblock content %}

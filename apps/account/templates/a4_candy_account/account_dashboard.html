@@ -1,13 +1,18 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n guest_user %}
 
-{% block title %}{% translate "User Dashboard" %} &mdash; {{ block.super }}{% endblock title %}
+{% block title %}
+    {% if not user|is_guest_user %}
+        {% translate "User Dashboard" %} — {{ block.super }}
+    {% else %}
+        {% translate "Guest Account Settings" %} — {{ block.super }}
+    {% endif %}
+{% endblock title %}
 
 {% block content %}
-
 <div class="container mt-4">
     <div class="row">
-
+        {% if not user|is_guest_user %}
         <nav class="col-md-3" aria-label="{% translate 'User Dashboard navigation' %}">
             <div class="dashboard-nav">
                 <div class="dropdown dashboard-nav__dropdown u-word-break-all">
@@ -68,6 +73,40 @@
             {% endwith %}
             </div>
         </nav>
+        {% else %}
+        <nav class="col-md-3" aria-label="{% translate 'Guest user settings navigation' %}">
+            <div class="dashboard-nav">
+                <div class="dropdown dashboard-nav__dropdown u-word-break-all">
+                    {% translate "Guest" %}
+                </div>
+            {% with request.resolver_match.url_name as url_name %}
+                <ul class="dashboard-nav__pages">
+                    <li class="dashboard-nav__page">
+                        <a href="{% url 'guest_convert' %}"
+                            class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "guest_convert" %}is-active{% endif %}">
+                            <i class="far fa-user" aria-hidden="true"></i>
+                            {% translate 'Convert Account' %}
+                        </a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="{% url 'guest_user_agreements' %}"
+                            class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "guest_user_agreements" %}is-active{% endif %}">
+                            <i class="far fa-check-square" aria-hidden="true"></i>
+                            {% translate 'User Agreements' %}
+                        </a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="{% url 'guest_account_deletion' %}"
+                            class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "guest_account_deletion" %}is-active{% endif %}">
+                            <i class="fas fa-user-slash" aria-hidden="true"></i>
+                            {% translate 'Delete account' %}
+                        </a>
+                    </li>
+                </ul>
+            {% endwith %}
+            </div>
+        </nav>
+        {% endif %}
 
         <div class="col-md-6">
             {% block dashboard_content %}{% endblock dashboard_content %}
@@ -75,5 +114,4 @@
 
     </div>
 </div>
-
 {% endblock content %}

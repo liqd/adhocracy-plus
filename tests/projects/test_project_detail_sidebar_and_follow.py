@@ -214,3 +214,23 @@ def test_project_detail_insights_section(
     assert b"project-detail__insights" in response.content
     assert b"Results" in response.content
     assert b"Statistics &amp; Results" not in response.content
+
+
+@pytest.mark.django_db
+def test_project_detail_guest_alert_visible_for_anonymous(
+    client, project_detail_overview
+):
+    response = client.get(project_detail_url(project_detail_overview))
+    assert response.status_code == 200
+    assert b"data-guest-alert" in response.content
+    assert b"project-detail__guest-alert" in response.content
+
+
+@pytest.mark.django_db
+def test_project_detail_guest_alert_hidden_for_authenticated_user(
+    client, project_detail_overview, user
+):
+    client.force_login(user)
+    response = client.get(project_detail_url(project_detail_overview))
+    assert response.status_code == 200
+    assert b"data-guest-alert" not in response.content

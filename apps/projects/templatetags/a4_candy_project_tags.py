@@ -3,6 +3,7 @@ import json
 from django import template
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
+from guest_user.functions import is_guest_user
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.follows.models import Follow
@@ -12,6 +13,7 @@ from apps.ideas.models import Idea
 from apps.interactiveevents.models import Like
 from apps.interactiveevents.models import LiveQuestion
 from apps.mapideas.models import MapIdea
+from apps.projects.participation_carousel import participation_carousel_slide_url
 from apps.projects.timeline import module_cta_label as get_module_cta_label
 from apps.projects.timeline import module_date_range as get_module_date_range
 from apps.projects.timeline import (
@@ -26,7 +28,6 @@ from apps.projects.timeline import (
 from apps.projects.timeline import (
     offline_event_participation_status as get_offline_event_participation_status,
 )
-from apps.projects.participation_carousel import participation_carousel_slide_url
 from apps.projects.utils import project_has_result_content
 
 register = template.Library()
@@ -167,7 +168,7 @@ def project_detail_follow_widget_attrs(context, project):
         ).count(),
     }
 
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and not is_guest_user(request.user):
         attrs["authenticatedAs"] = request.user.username
         attrs["user"] = _follower_avatar_data(request.user)
 

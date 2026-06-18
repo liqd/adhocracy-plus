@@ -43,6 +43,7 @@ from apps.userdashboard.api import ModerationCommentViewSet
 from apps.userdashboard.routers import ModerationDetailDefaultRouter
 from apps.users.api import UserViewSet
 from apps.users.decorators import user_is_project_admin
+from apps.users.views import GuestCreateView
 from apps.users.views import set_language_overwrite
 
 router = routers.DefaultRouter()
@@ -95,6 +96,7 @@ urlpatterns = [
     re_path(r"^django-admin/", admin.site.urls),
     path("admin/", include("wagtail.admin.urls")),
     path("documents/", include(wagtaildocs_urls)),
+    path("accounts/guests/login/", GuestCreateView.as_view(), name="guest_create"),
     path("accounts/", include("allauth.urls")),
     path("account/", include("apps.account.urls")),
     path("profile/", include("apps.users.urls")),

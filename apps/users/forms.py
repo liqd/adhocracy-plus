@@ -72,7 +72,6 @@ class DefaultLoginForm(LoginForm):
         self.fields["password"].widget.attrs["autocomplete"] = "current-password"
         self.fields["password"].widget.attrs["class"] = "password-toggle"
 
-
 class DefaultSignupForm(BotTrapMixin, TermsAndCaptchaMixin, SignupForm):
     terms_of_use = forms.BooleanField(label=_("Terms of use"))
     get_newsletters = forms.BooleanField(
@@ -86,6 +85,7 @@ class DefaultSignupForm(BotTrapMixin, TermsAndCaptchaMixin, SignupForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
         self.fields["username"].help_text = _(
             "Your username will appear publicly next to your posts."
         )
@@ -108,6 +108,51 @@ class DefaultSignupForm(BotTrapMixin, TermsAndCaptchaMixin, SignupForm):
             self.apply_bot_trap(user)
             user.save()
             return user
+
+
+class GuestCreateForm(TermsAndCaptchaMixin, forms.Form):
+    pass
+
+
+class GuestConvertForm(DefaultSignupForm):
+
+    get_newsletters = forms.BooleanField(
+        label=_("I would like to receive further information"),
+        help_text=_(
+            "Projects you are following can send you "
+            "additional information via email."
+        ),
+        required=False,
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop("user", None)
+        super().__init__(*args, **kwargs)
+
+        if "captcha" in self.fields:
+            del self.fields["captcha"]
+
+        self.fields["email"].required = True
+        self.fields["username"].required = True
+        self.fields["password1"].required = True
+        self.fields["password2"].required = True
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        users = User.objects.filter(email__iexact=email)
+        if users.exists():
+            raise forms.ValidationError("Email already in use.")
+        return email
+
+    def save(self, request):
+        user = self.user
+        user.email = self.cleaned_data["email"]
+        user.username = self.cleaned_data["username"]
+        user.get_newsletters = self.cleaned_data["get_newsletters"]
+        user.set_password(self.cleaned_data["password1"])
+        user.save()
+
+        return user
 
 
 class IgbceSignupForm(DefaultSignupForm):

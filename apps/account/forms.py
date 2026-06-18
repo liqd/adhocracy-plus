@@ -54,6 +54,11 @@ class AccountDeletionForm(forms.Form):
     )
 
 
+class GuestAccountDeletionForm(forms.Form):
+    # No password field for guest users
+    pass
+
+
 class OrganisationTermsOfUseForm(forms.ModelForm):
     class Meta:
         model = OrganisationTermsOfUse

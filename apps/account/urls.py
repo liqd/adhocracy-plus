@@ -1,3 +1,4 @@
+from django.urls import include
 from django.urls import path
 
 from apps.notifications.views import NotificationSettingsView
@@ -27,5 +28,25 @@ urlpatterns = [
         "trigger-all-tasks/",
         TriggerAllNotificationTasksView.as_view(),
         name="trigger_all_notification_tasks",
+    ),
+    path(
+        "guest/",
+        include(
+            [
+                path(
+                    "convert/", views.GuestConvertView.as_view(), name="guest_convert"
+                ),
+                path(
+                    "account_deletion/",
+                    views.AccountDeletionView.as_view(),
+                    name="guest_account_deletion",
+                ),
+                path(
+                    "agreements/",
+                    views.OrganisationTermsOfUseUpdateView.as_view(),
+                    name="guest_user_agreements",
+                ),
+            ]
+        ),
     ),
 ]

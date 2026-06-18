@@ -117,6 +117,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     objects = auth_models.UserManager()
 
     USERNAME_FIELD = "username"
+    PASSWORD_FIELD = "username"  # for django-guest-user
     REQUIRED_FIELDS = ["email"]
 
     def get_projects_follow_list(self, exclude_private_projects=False):
@@ -161,12 +162,12 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     @cached_property
     def avatar_fallback(self):
-        number = self.pk % 5
+        number = self.pk % 4
         return static("images/avatar-{0:02d}.svg".format(number))
 
     @cached_property
     def avatar_fallback_png(self):
-        number = self.pk % 5
+        number = self.pk % 4
         return static("images/avatar-{0:02d}.png".format(number))
 
     def get_short_name(self):

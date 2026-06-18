@@ -1,4 +1,4 @@
-{% load i18n static thumbnail settings %}
+{% load i18n static thumbnail settings guest_user %}
 {% if request.user.is_authenticated %}
     <div class="dropdown userindicator__dropdown">
         <button title="{% translate 'Menu' %}"
@@ -20,13 +20,19 @@
                 aria-haspopup="true"
                 aria-expanded="false"
                 id="user-actions">
-            <div class="userindicator__btn-img"
-                 style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar' }}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}">
-            </div>
+            {% if not user|is_guest_user %}
+                <div class="userindicator__btn-img"
+                     style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar' }}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}">
+                </div>
+            {% endif %}
             <div class="userindicator__btn-text text-start">
-                <span class="userindicator__hello">{% translate "Hello" %}</span>
-                <br>
-                <div class="u-overflow-ellipsis">{{ request.user.username }}</div>
+                <span class="userindicator__hello">{% translate "Hello" %}, </span>
+                {% if not user|is_guest_user %}
+                    <br>
+                    <div class="u-overflow-ellipsis">{{ request.user.username }}</div>
+                {% else %}
+                    <span>{% translate "Guest" %}</span>
+                {% endif %}
             </div>
             {% include 'a4_candy_users/includes/userindicator_toggle_icons.html' %}
         </button>
@@ -34,11 +40,17 @@
              aria-labelledby="user-actions user-actions-mobile">
             <div class="userindicator__dropdown-profile">
                 <div class="userindicator__dropdown-profile-main">
+                    {% if not user|is_guest_user %}
                     <div class="userindicator__btn-img"
                          style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar' }}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}">
                     </div>
+                    {% endif %}
                     <div class="userindicator__btn-text userindicator__dropdown-profile-text userindicator__dropdown-menu-title text-start">
-                        {% translate 'Menu' %}
+                        {% if user|is_guest_user %}
+                            {% translate "Guest" %}
+                        {% else %}
+                            {% translate 'Menu' %}
+                        {% endif %}
                     </div>
                 </div>
                 <button type="button"
@@ -54,41 +66,60 @@
                     <span>{% translate "Admin" %}</span>
                 </a>
             {% endif %}
-            <a class="dropdown-item userindicator__dropdown-item"
-               href="{% url 'userdashboard-overview' %}">
-                <i class="fa-solid fa-user userindicator__dropdown-item-icon" aria-hidden="true"></i>
-                <span>{% translate "My Overview" %}</span>
-            </a>
-            <a class="dropdown-item userindicator__dropdown-item"
-               href="{% url 'account' %}">
-                <i class="fa-solid fa-gear userindicator__dropdown-item-icon" aria-hidden="true"></i>
-                <span>{% translate "Account Settings" %}</span>
-            </a>
-            {% if request.user.organisations %}
-                <div class="userindicator__dropdown-org-block" role="group" aria-label="{% translate 'Organisations' %}">
-                    <div class="userindicator__dropdown-label">
-                        <i class="fa-solid fa-building userindicator__dropdown-item-icon" aria-hidden="true"></i>
-                        <span>{% translate "Organisations" %}</span>
+            {% if not user|is_guest_user %}
+                <a class="dropdown-item userindicator__dropdown-item"
+                   href="{% url 'userdashboard-overview' %}">
+                    <i class="fa-solid fa-user userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                    <span>{% translate "My Overview" %}</span>
+                </a>
+                <a class="dropdown-item userindicator__dropdown-item"
+                   href="{% url 'account' %}">
+                    <i class="fa-solid fa-gear userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                    <span>{% translate "Account Settings" %}</span>
+                </a>
+                {% if request.user.organisations %}
+                    <div class="userindicator__dropdown-org-block" role="group" aria-label="{% translate 'Organisations' %}">
+                        <div class="userindicator__dropdown-label">
+                            <i class="fa-solid fa-building userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                            <span>{% translate "Organisations" %}</span>
+                        </div>
+                        {% for organisation in request.user.organisations %}
+                            <a class="dropdown-item userindicator__dropdown-item userindicator__dropdown-item--nested"
+                               href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
+                                {{ organisation.name }}
+                            </a>
+                        {% endfor %}
                     </div>
-                    {% for organisation in request.user.organisations %}
-                        <a class="dropdown-item userindicator__dropdown-item userindicator__dropdown-item--nested"
-                           href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
-                            {{ organisation.name }}
-                        </a>
-                    {% endfor %}
-                </div>
-            {% endif %}
-            {% with pages=settings.a4_candy_cms_settings.ImportantPages %}
-                {% if pages.manual_link %}
-                    <a class="dropdown-item userindicator__dropdown-item"
-                       href="{{ pages.manual_link }}"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        <i class="fa-solid fa-circle-info userindicator__dropdown-item-icon" aria-hidden="true"></i>
-                        <span>{% translate 'Help Center' %}</span>
-                    </a>
                 {% endif %}
-            {% endwith %}
+                {% with pages=settings.a4_candy_cms_settings.ImportantPages %}
+                    {% if pages.manual_link %}
+                        <a class="dropdown-item userindicator__dropdown-item"
+                           href="{{ pages.manual_link }}"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fa-solid fa-circle-info userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                            <span>{% translate 'Help Center' %}</span>
+                        </a>
+                    {% endif %}
+                {% endwith %}
+            {% else %}
+                <a class="dropdown-item userindicator__dropdown-item"
+                   href="{% url 'guest_convert' %}">
+                    <i class="fa-solid fa-gear userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                    <span>{% translate 'Guest Account Settings' %}</span>
+                </a>
+                {% with pages=settings.a4_candy_cms_settings.ImportantPages %}
+                    {% if pages.manual_link %}
+                        <a class="dropdown-item userindicator__dropdown-item"
+                           href="{{ pages.manual_link }}"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fa-solid fa-circle-info userindicator__dropdown-item-icon" aria-hidden="true"></i>
+                            <span>{% translate 'Help Center' %}</span>
+                        </a>
+                    {% endif %}
+                {% endwith %}
+            {% endif %}
             <form class="form--inline"
                   action="{% url 'account_logout' %}"
                   method="post"
