@@ -108,7 +108,7 @@ function ProjectDetailFollow ({
         alertTarget={ALERT_TARGET}
         buttonTarget={ACTIONS_TARGET}
         customClasses="project-detail__follow"
-        buttonClassName="project-detail__follow-btn"
+        buttonClassName="btn btn--black project-detail__follow-btn"
         descriptionId="project-detail-follow-description"
         onFollowChange={handleFollowChange}
         onFollowStateChange={setFollowState}
