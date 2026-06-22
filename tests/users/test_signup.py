@@ -57,3 +57,40 @@ def test_signup_user_unchecked_terms_of_use(client):
     assert User.objects.count() == 0
     assert not resp.context["form"].is_valid()
     assert list(resp.context["form"].errors.keys()) == ["terms_of_use"]
+
+
+@override_settings(CAPTCHA=False)
+@pytest.mark.django_db
+def test_signup_bot_trap_deactivates_user(client):
+    resp = client.post(
+        reverse("account_signup"),
+        {
+            "username": "botuser",
+            "email": "bot@example.com",
+            "password1": "password",
+            "password2": "password",
+            "terms_of_use": "on",
+            "accept_marketing_partners": "on",
+        },
+    )
+    assert resp.status_code == 302
+    user = User.objects.get(username="botuser")
+    assert not user.is_active
+
+
+@override_settings(CAPTCHA=False)
+@pytest.mark.django_db
+def test_signup_without_bot_trap_creates_active_user(client):
+    resp = client.post(
+        reverse("account_signup"),
+        {
+            "username": "realuser",
+            "email": "real@example.com",
+            "password1": "password",
+            "password2": "password",
+            "terms_of_use": "on",
+        },
+    )
+    assert resp.status_code == 302
+    user = User.objects.get(username="realuser")
+    assert user.is_active
