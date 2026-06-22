@@ -13,9 +13,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Guest user accounts: anonymous participation with optional conversion to a full account
 - Project detail: guest participation alert for signed-out visitors (dismissible per project per session)
 <<<<<<< HEAD
+<<<<<<< HEAD
 - Guest avatar fallbacks: four Figma-style SVG variants (primary, secondary, grey, inverted)
 =======
 >>>>>>> 3e12bf57 (add guest users)
+=======
+- Guest avatar fallbacks: four Figma-style SVG variants (primary, secondary, grey, inverted)
+>>>>>>> 3d3d87d1 (Add avatars and adjust alert styles)
 - Landing page: use cases section with target group cards linking to category filters
 - New project detail page with both grid and timeline view
 - Initiator reminder to publish project results.
