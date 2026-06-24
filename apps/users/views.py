@@ -1,12 +1,50 @@
+from django.shortcuts import redirect
 from django.utils.translation import check_for_language
+from django.views.generic import FormView
 from django.views.generic.detail import DetailView
 from django.views.i18n import LANGUAGE_QUERY_PARAMETER
 from django.views.i18n import set_language
+from guest_user.functions import maybe_create_guest_user
 
 from adhocracy4.actions.models import Action
 from apps.organisations.models import Organisation
 
 from . import models
+from .forms import GuestCreateForm
+
+
+class GuestCreateView(FormView):
+    form_class = GuestCreateForm
+    template_name = "a4_candy_users/guest_create.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("/")
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        next_url = self.request.POST.get("next")
+
+        if not next_url:
+            next_url = self.request.GET.get("next")
+        if not next_url:
+            next_url = "/"
+
+        return next_url
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["next"] = self.request.GET.get("next", "")
+        return context
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial["next"] = self.request.GET.get("next", "")
+        return initial
+
+    def form_valid(self, form):
+        maybe_create_guest_user(self.request)
+        return super().form_valid(form)
 
 
 class ProfileView(DetailView):

@@ -12,8 +12,8 @@ $userindicator-profile-header-height: 72px;
 $userindicator-profile-header-gap: 16px;
 $userindicator-menu-width: 262px;
 
-// Guest mobile sheet open: reserve space under header (gap + 2×48px buttons + 8px + bottom pad)
-$userindicator-guest-sheet-header-reserve: calc(1.5rem + 6.5rem + 1.5rem);
+// Anonymous mobile sheet open: reserve space under header (gap + 2×48px buttons + 8px + bottom pad)
+$userindicator-anonymous-sheet-header-reserve: calc(1.5rem + 6.5rem + 1.5rem);
 
 // Figma Text colors/Text black (#1A1A1A) — same as $text-color
 $userindicator-menu-fg: $text-color;
@@ -42,14 +42,14 @@ $userindicator-menu-fg: $text-color;
 }
 
 // Logged-out: outline Log in + filled Get Started (header)
-.userindicator__guest {
+.userindicator__anonymous {
     display: flex;
     align-items: center;
     gap: $userindicator-gap;
     flex-shrink: 0;
 }
 
-.userindicator__guest-btn {
+.userindicator__anonymous-btn {
     border-radius: 0;
     font-weight: 400;
     font-synthesis: none;
@@ -65,7 +65,7 @@ $userindicator-menu-fg: $text-color;
     }
 }
 
-.userindicator__guest-btn--login {
+.userindicator__anonymous-btn--login {
     --bs-btn-color: #{$text-color};
     --bs-btn-border-color: #{$text-color};
     --bs-btn-bg: transparent;
@@ -77,7 +77,7 @@ $userindicator-menu-fg: $text-color;
     --bs-btn-active-color: #{$text-color};
 }
 
-.userindicator__guest-btn--cta {
+.userindicator__anonymous-btn--cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -94,7 +94,7 @@ $userindicator-menu-fg: $text-color;
     --bs-btn-active-color: #{$body-bg};
 }
 
-.userindicator__guest-cta-icon {
+.userindicator__anonymous-cta-icon {
     font-size: 1rem; // Figma 16px icon box
     line-height: 1;
 }
@@ -403,7 +403,7 @@ $userindicator-profile-close-col: 40px;
         font-weight: 900;
     }
 
-    // Menu rows (only used inside this panel; not shared with guest sheet)
+    // Menu rows (only used inside this panel; not shared with anonymous sheet)
     .userindicator__dropdown-item {
         display: flex;
         align-items: center;
@@ -467,22 +467,22 @@ $userindicator-profile-close-col: 40px;
     }
 }
 
-// Guest mobile: separate from `.userindicator__dropdown-menu` (no overlay); only Bootstrap `dropdown-menu` + `userindicator__guest-sheet`
+// Anonymous mobile: separate from `.userindicator__dropdown-menu` (no overlay); only Bootstrap `dropdown-menu` + `userindicator__anonymous-sheet`
 @media screen and (max-width: $breakpoint-down) {
     .header-upper > .navbar {
         position: relative;
     }
 
-    .userindicator__guest-dropdown.userindicator__dropdown {
+    .userindicator__anonymous-dropdown.userindicator__dropdown {
         position: static;
     }
 
-    .header-upper:has(.userindicator__guest-sheet.show) {
-        padding-bottom: $userindicator-guest-sheet-header-reserve;
+    .header-upper:has(.userindicator__anonymous-sheet.show) {
+        padding-bottom: $userindicator-anonymous-sheet-header-reserve;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .navbar-nav .dropdown-menu.userindicator__guest-sheet {
+    .navbar-nav .dropdown-menu.userindicator__anonymous-sheet {
         position: absolute;
         top: 100%;
         right: 0;
@@ -501,13 +501,13 @@ $userindicator-profile-close-col: 40px;
             margin-bottom: 0 !important;
         }
 
-        .userindicator__guest--mobile {
+        .userindicator__anonymous--mobile {
             display: flex;
             flex-direction: column;
             gap: $userindicator-gap;
         }
 
-        a.userindicator__guest-btn {
+        a.userindicator__anonymous-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -520,7 +520,7 @@ $userindicator-profile-close-col: 40px;
         }
 
         // Theme overrides; explicit `color` wins over global `.dropdown-menu a { color: inherit }` in `_dropdown.scss`
-        a.userindicator__guest-btn--login {
+        a.userindicator__anonymous-btn--login {
             color: var(--bs-btn-color);
             border: 1px solid #{$print-black};
 
@@ -533,7 +533,7 @@ $userindicator-profile-close-col: 40px;
             --bs-btn-active-bg: #{mix($body-bg, $print-black, 90%)};
         }
 
-        a.userindicator__guest-btn--cta {
+        a.userindicator__anonymous-btn--cta {
             color: var(--bs-btn-color);
 
             --bs-btn-bg: #{$print-black};
@@ -544,12 +544,12 @@ $userindicator-profile-close-col: 40px;
             --bs-btn-hover-color: #{$body-bg};
         }
 
-        .userindicator__guest-cta-icon {
+        .userindicator__anonymous-cta-icon {
             color: $body-bg;
         }
 
-        a.userindicator__guest-btn:hover,
-        a.userindicator__guest-btn:focus {
+        a.userindicator__anonymous-btn:hover,
+        a.userindicator__anonymous-btn:focus {
             background-color: var(--bs-btn-hover-bg);
             border-color: var(--bs-btn-hover-border-color);
             color: var(--bs-btn-hover-color);

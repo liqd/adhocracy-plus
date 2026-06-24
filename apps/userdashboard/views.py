@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
+from guest_user.mixins import RegularUserRequiredMixin
 
 from adhocracy4.actions.models import Action
 from adhocracy4.comments.models import Comment
@@ -22,6 +23,7 @@ from apps.users.models import User
 
 class UserDashboardBaseMixin(
     LoginRequiredMixin,
+    RegularUserRequiredMixin,
     generic.base.ContextMixin,
     generic.base.TemplateResponseMixin,
     generic.base.View,

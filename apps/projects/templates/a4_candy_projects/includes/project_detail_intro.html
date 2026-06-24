@@ -1,4 +1,4 @@
-{% load i18n a4_candy_project_tags %}
+{% load i18n a4_candy_project_tags signup_flow guest_user %}
 
 <div class="project-detail__intro">
     <div class="project-detail__main" id="project-detail-main">
@@ -23,11 +23,29 @@
                 {% endif %}
             </div>
         </div>
+        {% if not request.user.is_authenticated %}
+        {% guest_url as guest_url_value %}
+        <div class="alert project-detail__guest-alert"
+             role="status"
+             data-guest-alert
+             data-project-slug="{{ project.slug }}"
+             hidden>
+            <div class="alert__content">
+                {% blocktranslate %}You can also take part in this participation project as a guest. <a href="{{ guest_url_value }}">Click here</a> to log in as a guest.{% endblocktranslate %}
+            </div>
+            <button type="button"
+                    class="alert__close"
+                    data-guest-alert-dismiss
+                    aria-label="{% translate 'Close' %}">
+                <i class="fa-solid fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+        {% endif %}
     </div>
     {% if not module_page %}
     {% include "a4_candy_projects/includes/project_detail_sidebar.html" %}
     {% endif %}
-    {% if request.user.is_authenticated %}
+    {% if request.user.is_authenticated and not request.user|is_guest_user %}
     {% project_detail_follow_widget_attrs project as project_follow_widget_attrs %}
     <span
         class="visually-hidden"

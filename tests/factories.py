@@ -32,6 +32,7 @@ class AdminFactory(factory.django.DjangoModelFactory):
     email = factory.Sequence(lambda n: "admin%d@liqd.net" % n)
     password = make_password("password")
     is_superuser = True
+    is_staff = True
     language = "en"
 
 
