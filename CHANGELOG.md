@@ -12,19 +12,17 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Django admin: filter users by active status.
 - Guest user accounts: anonymous participation with optional conversion to a full account
 - Project detail: guest participation alert for signed-out visitors (dismissible per project per session)
-<<<<<<< HEAD
-<<<<<<< HEAD
-- Guest avatar fallbacks: four Figma-style SVG variants (primary, secondary, grey, inverted)
-=======
->>>>>>> 3e12bf57 (add guest users)
-=======
-- Guest avatar fallbacks: four Figma-style SVG variants (primary, secondary, grey, inverted)
->>>>>>> 3d3d87d1 (Add avatars and adjust alert styles)
+- Guest avatars: four SVG variants (primary, secondary, grey, inverted) with PNG fallbacks
 - Landing page: use cases section with target group cards linking to category filters
 - New project detail page with both grid and timeline view
 - Initiator reminder to publish project results.
 
+
 ### Changed
+### Changed
+
+- Project initiators can choose per project whether guest users may participate
+  (new "Participants" setting in basic settings).
 
 - Contact information fields included in Proposal/Idea/Mapidea Forms
 - Header indicator: rename anonymous visitor CSS classes from `guest-*` to `anonymous-*`

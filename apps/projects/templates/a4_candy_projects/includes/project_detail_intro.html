@@ -23,7 +23,7 @@
                 {% endif %}
             </div>
         </div>
-        {% if not request.user.is_authenticated %}
+        {% if not request.user.is_authenticated and project.allow_guest_users %}
         {% guest_url as guest_url_value %}
         <div class="alert project-detail__guest-alert"
              role="status"
