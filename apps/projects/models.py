@@ -1,12 +1,17 @@
 import uuid
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.models import base
 from adhocracy4.projects.models import Project
+
+from . import emails
+
+User = get_user_model()
 
 
 class Invite(base.TimeStampedModel):
@@ -31,8 +36,8 @@ class ParticipantInviteManager(models.Manager):
         invite = super().create(
             project=project, creator=creator, email=email, site=site
         )
-        # Replaced by notification email
-        # emails.InviteParticipantEmail.send(invite)
+        if not User.objects.filter(email__iexact=email).exists():
+            emails.InviteParticipantEmail.send(invite)
         return invite
 
 

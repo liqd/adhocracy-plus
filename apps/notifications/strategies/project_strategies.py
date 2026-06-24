@@ -129,12 +129,10 @@ class ProjectInvitationCreated(ProjectNotificationStrategy):
         return invitation.project.organisation
 
     def get_recipients(self, invitation) -> List[User]:
-        user_email = invitation.email
-        try:
-            user = User.objects.get(email=user_email)
+        user = User.objects.filter(email__iexact=invitation.email).first()
+        if user:
             return [user]
-        except User.DoesNotExist:
-            return []
+        return []
 
     def create_notification_data(self, invitation) -> dict:
         project = invitation.project

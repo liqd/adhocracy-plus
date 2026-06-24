@@ -1,5 +1,6 @@
 import itertools
 
+from allauth.account.adapter import get_adapter
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
@@ -48,6 +49,8 @@ class ParticipantInviteDetailView(generic.DetailView):
                 invite_token=invite_token,
             )
         else:
+            invite = self.get_object()
+            get_adapter().stash_verified_email(request, invite.email)
             return super().dispatch(request, *args, **kwargs)
 
 
