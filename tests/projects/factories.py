@@ -11,6 +11,20 @@ class ParticipantInviteFactory(factory.django.DjangoModelFactory):
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     project = factory.SubFactory(a4_factories.ProjectFactory)
     email = factory.Sequence(lambda n: "user%d@liqd.net" % n)
+    site = "example.com"
+
+    @classmethod
+    def _create(cls, model_class, *args, **kwargs):
+        creator = kwargs.pop("creator")
+        project = kwargs.pop("project")
+        email = kwargs.pop("email")
+        site = kwargs.pop("site", "example.com")
+        return model_class.objects.invite(
+            creator=creator,
+            project=project,
+            email=email,
+            site=site,
+        )
 
 
 class ModeratorInviteFactory(factory.django.DjangoModelFactory):

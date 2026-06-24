@@ -13,6 +13,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+## hotfix v2606.1
+
+### Fixed
+- Participant invites should also go to unregistered users
+
 ## v2605.1
 
 ### Added

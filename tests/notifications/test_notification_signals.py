@@ -352,6 +352,43 @@ def test_handle_invite_notification(
 
 
 @pytest.mark.django_db
+def test_handle_invite_notification_unregistered_email(
+    project_factory, participant_invite_factory
+):
+    project = project_factory()
+    invited_email = "new.participant@example.org"
+
+    participant_invite_factory(project=project, email=invited_email)
+
+    assert (
+        Notification.objects.filter(
+            notification_type=NotificationType.PROJECT_INVITATION
+        ).count()
+        == 0
+    )
+    invited_emails = get_emails_for_address(invited_email)
+    assert len(invited_emails) == 1
+    subject = invited_emails[0].subject.lower()
+    assert project.name.lower() in subject
+    assert "invitation" in subject or "einladung" in subject
+
+
+@pytest.mark.django_db
+def test_handle_invite_notification_case_insensitive_email(
+    project_factory, participant_invite_factory, user_factory
+):
+    project = project_factory()
+    invited_user = user_factory(email="Person@Example.ORG")
+
+    participant_invite_factory(project=project, email="person@example.org")
+
+    invitation_notifications = Notification.objects.filter(recipient=invited_user)
+    assert invitation_notifications.count() == 1
+    invited_user_emails = get_emails_for_address(invited_user.email)
+    assert len(invited_user_emails) == 1
+
+
+@pytest.mark.django_db
 def test_handle_moderator_invite_notification(
     project_factory, moderator_invite_factory, user_factory
 ):
