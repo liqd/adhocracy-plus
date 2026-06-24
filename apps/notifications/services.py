@@ -11,6 +11,15 @@ from .models import NotificationCategory
 from .models import NotificationSettings
 
 
+def _site_name_from_context(context):
+    site = context.get("site")
+    if hasattr(site, "name"):
+        return site.name
+    if site:
+        return site
+    return ""
+
+
 class NotificationEmail(Email):
     """Email class for notification emails"""
 
@@ -39,11 +48,10 @@ class NotificationEmail(Email):
             # Interpolate receiver variables
             receiver = context.get("receiver")
             if receiver:
+                site_name = _site_name_from_context(context)
                 if "subject" in context:
                     context["subject"] = context["subject"].format(
-                        site_name=(
-                            context.get("site", "").name if context.get("site") else ""
-                        ),
+                        site_name=site_name,
                         event_name=context.get("event_name"),
                         project_name=context.get("project_name"),
                         project_type=context.get("project_type"),
@@ -77,9 +85,7 @@ class NotificationEmail(Email):
                     context["reason"] = context["reason"].format(
                         receiver_email=receiver.email,
                         organisation_name=context.get("organisation_name", ""),
-                        site_name=(
-                            context.get("site", "").name if context.get("site") else ""
-                        ),
+                        site_name=site_name,
                     )
 
             return super().render(template_name, context)
