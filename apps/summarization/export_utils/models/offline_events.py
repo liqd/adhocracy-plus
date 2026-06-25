@@ -12,6 +12,7 @@ def export_offline_event(event):
         "attachments": extract_attachments(str(event.description)),
         "slug": event.slug,
         "url": event.get_absolute_url(),
+        "timeline_index": event.get_timeline_index(),
         # "created": event.created.isoformat(),
         "modified": event.modified.isoformat() if event.modified else None,
     }

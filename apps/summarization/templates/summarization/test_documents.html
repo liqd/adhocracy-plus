@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Summarization Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+        .error pre.error-detail {
+            margin: 10px 0 0 0;
+            padding: 12px;
+            background: #fff;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: ui-monospace, "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.45;
+            color: #491217;
+        }
+        .document-item {
+            margin-top: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        .document-item h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .document-handle {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 16px;
+        }
+        .document-summary {
+            margin-top: 10px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .file-hint {
+            color: #666;
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        .example {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        .example code {
+            background-color: #f8f9fa;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Document Summarization Test</h1>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <label for="documents">Documents (JSON format):</label>
+            <textarea name="documents" id="documents" rows="10" placeholder='{"doc1": "https://example.com/doc1.pdf", "doc2": "https://example.com/doc2.docx"}'>{{ documents_json|default:'{"doc1": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/00_2103_Pinguin_-_Petermann_Island_%28Antarktische_Halbinsel%29.jpg/500px-00_2103_Pinguin_-_Petermann_Island_%28Antarktische_Halbinsel%29.jpg", "doc2": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Berliner_Fernsehturm%2C_Sicht_vom_Neptunbrunnen_-_Berlin_Mitte.jpg/330px-Berliner_Fernsehturm%2C_Sicht_vom_Neptunbrunnen_-_Berlin_Mitte.jpg", "doc3": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Maduraci%C3%B3n_del_tomate_%28Solanum_lycopersicum%29.jpg/500px-Maduraci%C3%B3n_del_tomate_%28Solanum_lycopersicum%29.jpg", "demokratie_pdf": "https://www.rbb-online.de/schulstunde-wir-gesucht/unterrichtsmaterial/Werte/demokratie_schlau.file.html/1_A_2_Demokratie_4.pdf", "sample_docx": "https://www2.hu-berlin.de/stadtlabor/wp-content/uploads/2021/12/sample3.docx"}' }}</textarea>
+            <small class="file-hint">
+                Provide documents as JSON. Either as a dictionary (handle -> URL) or as a list of objects with handle and url fields.
+            </small>
+            <div class="example">
+                <strong>Example formats:</strong><br>
+                Dictionary: <code>{"doc1": "https://upload.wikimedia.org/...", "demokratie_pdf": "https://www.rbb-online.de/.../1_A_2_Demokratie_4.pdf", "sample_docx": "https://www2.hu-berlin.de/.../sample3.docx"}</code><br>
+                List: <code>[{"handle": "doc1", "url": "https://upload.wikimedia.org/..."}, {"handle": "demokratie_pdf", "url": "https://www.rbb-online.de/.../1_A_2_Demokratie_4.pdf"}, {"handle": "sample_docx", "url": "https://www2.hu-berlin.de/.../sample3.docx"}]</code>
+            </div>
+            
+            <label for="prompt">Custom Prompt (optional):</label>
+            <textarea name="prompt" id="prompt" rows="5" placeholder="Leave empty to use default prompt">{{ prompt|default:"Summarize each document separately. The documents are provided in order with the following handles: \"doc1\", \"doc2\", \"doc3\". Return a list of summaries, one for each document in the same order. Each summary should include the handle and describe the content and most important information of that document." }}</textarea>
+            <small class="file-hint">
+                Optional custom prompt. If empty, a default prompt will be used that includes the image handles. Note: PDF and DOCX documents are processed separately and don't need to be included in the prompt.
+            </small>
+            
+            <label for="provider">Provider:</label>
+            <select name="provider" id="provider">
+                {% for p in providers %}
+                <option value="{{ p.handle }}" {% if provider == p.handle %}selected{% endif %}>{{ p.label }}</option>
+                {% empty %}
+                <option value="">Keine Provider konfiguriert</option>
+                {% endfor %}
+            </select>
+            
+            <button type="submit">Summarize Documents</button>
+        </form>
+        
+        {% if error %}
+        <div class="result error">
+            <strong>Fehlerdetails</strong>
+            <pre class="error-detail">{{ error }}</pre>
+        </div>
+        {% endif %}
+        
+        {% if summary_response %}
+        <div class="result">
+            <h2>Summarization Results</h2>
+            <p><strong>Total documents:</strong> {{ summary_response.documents|length }}</p>
+            
+            {% for doc in summary_response.documents %}
+            <div class="document-item">
+                <h3>
+                    <span class="document-handle">Handle: {{ doc.handle }}</span>
+                </h3>
+                <div class="document-summary">
+                    <strong>Summary:</strong><br>
+                    {{ doc.summary }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
