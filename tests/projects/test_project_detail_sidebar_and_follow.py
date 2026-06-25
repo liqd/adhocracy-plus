@@ -234,3 +234,14 @@ def test_project_detail_guest_alert_hidden_for_authenticated_user(
     response = client.get(project_detail_url(project_detail_overview))
     assert response.status_code == 200
     assert b"data-guest-alert" not in response.content
+
+
+@pytest.mark.django_db
+def test_project_detail_guest_alert_hidden_when_guests_disabled(
+    client, project_detail_overview
+):
+    project_detail_overview.allow_guest_users = False
+    project_detail_overview.save()
+    response = client.get(project_detail_url(project_detail_overview))
+    assert response.status_code == 200
+    assert b"data-guest-alert" not in response.content

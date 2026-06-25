@@ -183,3 +183,32 @@ def test_detail_view_public_visible_guest_user(
         response = client.get(url)
         assert_template_response(response, "a4_candy_topicprio/topic_detail.html")
         assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_detail_view_public_guest_cannot_participate_when_disabled(
+    client, phase_factory, topic_factory
+):
+    phase, module, project, topic = setup_phase(
+        phase_factory, topic_factory, phases.PrioritizePhase
+    )
+    project.allow_guest_users = False
+    project.save()
+
+    guest_user_creator = GuestUserCreator()
+    guest_user = guest_user_creator.create_guest_user()
+    assert is_guest_user(guest_user)
+
+    url = topic.get_absolute_url()
+    with freeze_phase(phase):
+        client.force_login(guest_user)
+        response = client.get(url)
+        assert response.status_code == 200
+
+        topic_ct = ContentType.objects.get_for_model(type(topic))
+        api_url = reverse(
+            "comments-list", kwargs={"content_type": topic_ct.pk, "object_pk": topic.pk}
+        )
+        comment_data = {"comment": "guest comment", "agreed_terms_of_use": True}
+        response = client.post(api_url, comment_data)
+        assert response.status_code == 403
