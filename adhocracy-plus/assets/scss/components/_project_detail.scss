@@ -99,6 +99,13 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
     line-height: 1.2;
 }
 
+@media (min-width: $breakpoint) {
+    .project-detail--module .project-detail__module-intro .project-detail__title {
+        font-size: $font-size-xxl;
+        line-height: 1.2;
+    }
+}
+
 .project-detail--module .project-detail__content {
     // Module phase views still use legacy Bootstrap column wrappers; span the full
     // project-detail grid width (Figma content column ~856px).
@@ -135,6 +142,10 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
 
     .map-list-view .filter-bar__spaced {
         margin-bottom: 1.5 * $spacer;
+    }
+
+    .map-list-view .view-toggle .filter-bar__spaced {
+        margin-bottom: 0.5 * $spacer;
     }
 }
 
@@ -1169,6 +1180,53 @@ $project-detail-timeline-meta-icon-gap: 8px;
 
     .project-detail__participation-title {
         margin-bottom: 0;
+    }
+
+    .project-detail--module {
+        .project-detail__title {
+            font-size: $font-size-lg;
+            line-height: 1.2;
+        }
+
+        .project-detail__intro .project-detail__title {
+            margin-bottom: 0.625rem;
+        }
+
+        .project-detail__description {
+            font-size: $font-size-sm;
+            line-height: 1.5;
+        }
+
+        .project-detail__intro .project-detail__description {
+            margin-bottom: 1.25rem;
+        }
+
+        .project-detail__intro {
+            gap: 1.25rem;
+            margin-bottom: 3.125rem;
+        }
+
+        .project-detail__breadcrumbs {
+            margin-bottom: 1.875rem;
+        }
+
+        .project-detail__content {
+            padding-top: 0;
+        }
+
+        .timeline-carousel {
+            margin-bottom: 0.625rem;
+        }
+
+        .project-detail__module-intro {
+            margin-bottom: 1.25rem;
+
+            .project-detail__title {
+                font-size: $font-size-lg;
+                line-height: 1.2;
+                margin-bottom: 0.625rem;
+            }
+        }
     }
 
     .project-detail__insights-actions {
