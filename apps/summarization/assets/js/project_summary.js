@@ -102,10 +102,7 @@ async function requestProjectSummary (root) {
   }
 
   const response = await fetch(summaryUrl, {
-    method: 'POST',
-    headers: {
-      'X-CSRFToken': getCsrfToken()
-    },
+    method: 'GET',
     credentials: 'same-origin'
   })
   let payload = {}
@@ -114,8 +111,13 @@ async function requestProjectSummary (root) {
   } catch (parseError) {
     payload = {}
   }
-  if (!response.ok || !payload.html) {
+  if (!response.ok) {
     throw new Error(payload.error || 'Summary request failed')
+  }
+  if (!payload.has_summary || !payload.html) {
+    throw new Error(
+      payload.error || 'Summary is not available yet. Please try again later.'
+    )
   }
   content.innerHTML = payload.html
   bindSummaryFeedback(root)

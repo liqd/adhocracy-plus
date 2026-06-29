@@ -1,14 +1,18 @@
 import json
 import logging
 
+from django.contrib import messages
 from django.http import HttpResponseBadRequest
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views import View
 from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.projects.models import Project
+from apps.contrib.mixins import StaffRequiredMixin
 
 from .models import ProjectSummary
 from .project_summary import generate_project_summary
@@ -75,16 +79,21 @@ class ProjectSummaryView(ProjectSummaryMixin, View):
         )
 
     def post(self, request, *args, **kwargs):
+        """Return the cached summary only; regeneration is handled by Celery Beat."""
         try:
-            response, summary_obj = generate_project_summary(self.project)
-        except Exception as exc:
-            logger.exception(
-                "Failed to generate summary for project %s", self.project.pk
+            response, summary_obj = generate_project_summary(
+                self.project,
+                allow_regeneration=False,
             )
+        except Exception:
+            logger.exception("Failed to load summary for project %s", self.project.pk)
             return JsonResponse(
-                {"error": _("Summary generation failed. Please try again later.")},
+                {"error": _("Summary could not be loaded. Please try again later.")},
                 status=500,
             )
+
+        if not summary_obj:
+            return JsonResponse({"has_summary": False})
 
         user_feedback = get_user_feedback(
             summary_obj,
@@ -141,3 +150,49 @@ class ProjectSummaryFeedbackView(ProjectSummaryMixin, View):
             return HttpResponseBadRequest(str(exc))
 
         return JsonResponse({"status": "ok", "feedback": feedback_value})
+
+
+class ProjectSummaryGenerateView(StaffRequiredMixin, View):
+    """
+    Hidden staff-only URL to force-generate a summary for one project.
+
+    Not linked from anywhere in the UI; visit per project, e.g.
+    /{organisation_slug}/projects/{slug}/summary/generate/
+    """
+
+    def get(self, request, organisation_slug, slug):
+        project = get_object_or_404(
+            Project.objects.select_related("organisation"),
+            slug=slug,
+            organisation__slug=organisation_slug,
+        )
+        detail_url = reverse(
+            "project-detail",
+            kwargs={"organisation_slug": organisation_slug, "slug": slug},
+        )
+
+        if not is_ai_summarisation_enabled(project):
+            messages.error(
+                request,
+                _("AI summarisation is not enabled for this organisation."),
+            )
+            return redirect(detail_url)
+
+        try:
+            generate_project_summary(
+                project,
+                allow_regeneration=True,
+                force_regeneration=True,
+            )
+        except Exception:
+            logger.exception(
+                "Failed to force-generate summary for project %s", project.pk
+            )
+            messages.error(
+                request,
+                _("Summary generation failed. Please try again later."),
+            )
+            return redirect(detail_url)
+
+        messages.success(request, _("AI summary generated successfully."))
+        return redirect(detail_url)

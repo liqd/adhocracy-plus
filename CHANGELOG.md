@@ -20,6 +20,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Image upload: modal upload dialog with cropping for project, idea, proposal, map idea, and organisation forms.
 - AI project summarisation: summary section on the project detail page.
 - AI project summarisation: organisation-level feature flag “Enable AI summarisation” in Django admin.
+- AI project summarisation: periodic Celery Beat task `refresh_project_summaries` regenerates summaries for projects in AI-enabled organisations (Roots-style: enqueue when no summary or summary older than max age; hash check on task run); user-facing endpoints only return cached summaries.
+- AI project summarisation: hidden staff-only per-project URL `…/projects/{slug}/summary/generate/` to force-generate a summary (not linked in the UI).
 
 ### Changed
 

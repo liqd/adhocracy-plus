@@ -5,10 +5,10 @@ import pytest
 from django.urls import reverse
 
 from apps.summarization.models import ProjectSummary
+from apps.summarization.project_summary import is_ai_summarisation_enabled
 from apps.summarization.pydantic_models import GeneralInfo
 from apps.summarization.pydantic_models import Phases
 from apps.summarization.pydantic_models import ProjectSummaryResponse
-from apps.summarization.project_summary import is_ai_summarisation_enabled
 from tests.factories import OrganisationFactory
 from tests.factories import UserFactory
 
@@ -36,6 +36,16 @@ def project_summary_url(project):
 def project_summary_feedback_url(project):
     return reverse(
         "project-summary-feedback",
+        kwargs={
+            "slug": project.slug,
+            "organisation_slug": project.organisation.slug,
+        },
+    )
+
+
+def project_summary_generate_url(project):
+    return reverse(
+        "project-summary-generate",
         kwargs={
             "slug": project.slug,
             "organisation_slug": project.organisation.slug,
@@ -111,7 +121,7 @@ def test_project_summary_endpoint_denied_without_org_flag(client, project_factor
 
 @pytest.mark.django_db
 @patch("apps.summarization.project_views.generate_project_summary")
-def test_project_summary_endpoint_generates_summary(
+def test_project_summary_endpoint_returns_cached_summary(
     generate_mock, client, project_factory
 ):
     organisation = OrganisationFactory(enable_ai_summarisation=True)
@@ -137,6 +147,66 @@ def test_project_summary_endpoint_generates_summary(
     assert payload["has_summary"] is True
     assert "Generated overview" in payload["html"]
     assert payload["summary_id"] == summary_obj.pk
+    generate_mock.assert_called_once_with(project, allow_regeneration=False)
+
+
+@pytest.mark.django_db
+@patch("apps.summarization.project_views.generate_project_summary")
+def test_project_summary_endpoint_without_cache_returns_empty(
+    generate_mock, client, project_factory
+):
+    organisation = OrganisationFactory(enable_ai_summarisation=True)
+    project = project_factory(organisation=organisation)
+    generate_mock.return_value = (None, None)
+
+    response = client.post(project_summary_url(project))
+
+    assert response.status_code == 200
+    assert response.json() == {"has_summary": False}
+
+
+@pytest.mark.django_db
+def test_project_summary_generate_requires_staff(client, project_factory):
+    organisation = OrganisationFactory(enable_ai_summarisation=True)
+    project = project_factory(organisation=organisation)
+
+    response = client.get(project_summary_generate_url(project))
+    assert response.status_code == 302
+    assert "/login" in response.url
+
+
+@pytest.mark.django_db
+def test_project_summary_generate_denies_non_staff(client, project_factory):
+    organisation = OrganisationFactory(enable_ai_summarisation=True)
+    project = project_factory(organisation=organisation)
+    user = UserFactory()
+    client.force_login(user)
+
+    response = client.get(project_summary_generate_url(project))
+    assert response.status_code == 403
+
+
+@pytest.mark.django_db
+@patch("apps.summarization.project_views.generate_project_summary")
+def test_project_summary_generate_triggers_for_staff(
+    generate_mock, client, project_factory
+):
+    organisation = OrganisationFactory(enable_ai_summarisation=True)
+    project = project_factory(organisation=organisation)
+    admin = UserFactory(is_staff=True, is_superuser=True)
+    client.force_login(admin)
+
+    response = client.get(project_summary_generate_url(project))
+
+    assert response.status_code == 302
+    assert response.url == project_detail_url(project)
+    generate_mock.assert_called_once()
+    (called_project,) = generate_mock.call_args.args
+    assert called_project.pk == project.pk
+    assert generate_mock.call_args.kwargs == {
+        "allow_regeneration": True,
+        "force_regeneration": True,
+    }
 
 
 @pytest.mark.django_db
