@@ -79,19 +79,21 @@
 
             {% get_project_stats project as stats %}
             <div class="summary__stats">
-                <div class="summary__stats-grid">
-                    <div class="summary__stats-item">
-                        <span class="summary__stats-number">{{ stats.participants|default:"0" }}</span>
-                        <span class="summary__stats-text">{% trans 'Participants' %}</span>
-                    </div>
-                    <div class="summary__stats-item">
-                        <span class="summary__stats-number">{{ stats.contributions|default:"0" }}</span>
-                        <span class="summary__stats-text">{% trans 'Contributions' %}</span>
-                    </div>
-                    <div class="summary__stats-item">
-                        <span class="summary__stats-number">{{ stats.modules|default:"0" }}</span>
-                        <span class="summary__stats-text">{% trans 'Modules' %}</span>
-                    </div>
+                <div class="summary__stats-item">
+                    <span class="summary__stats-number">{{ stats.participants|default:"0" }}</span>
+                    <span class="summary__stats-text">{% trans 'Participants' %}</span>
+                </div>
+                <div class="summary__stats-item">
+                    <span class="summary__stats-number">{{ stats.comments|default:"0" }}</span>
+                    <span class="summary__stats-text">{% trans 'comments' %}</span>
+                </div>
+                <div class="summary__stats-item">
+                    <span class="summary__stats-number">{{ stats.ratings|default:"0" }}</span>
+                    <span class="summary__stats-text">{% trans 'ratings' %}</span>
+                </div>
+                <div class="summary__stats-item">
+                    <span class="summary__stats-number">{{ stats.ideas|default:"0" }}</span>
+                    <span class="summary__stats-text">{% trans 'written ideas' %}</span>
                 </div>
             </div>
 
