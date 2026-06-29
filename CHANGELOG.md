@@ -18,8 +18,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Initiator reminder to publish project results.
 - AI project summarisation: summary section on the project detail page (teaser, loading state, and Roots-style sections for general info, statistics, and past/current/upcoming modules).
 - AI project summarisation: organisation-level feature flag “Enable AI summarisation” in Django admin (`a4_candy_organisations`); only enabled organisations can use the feature on their projects.
+- AI project summarisation: periodic Celery Beat task `refresh_project_summaries` regenerates summaries for projects in AI-enabled organisations (Roots-style: enqueue when no summary or summary older than max age; hash check on task run); user-facing endpoints only return cached summaries.
+- AI project summarisation: hidden staff-only per-project URL `…/projects/{slug}/summary/generate/` to force-generate a summary (not linked in the UI).
 
-### Changed
 ### Changed
 
 - Project initiators can choose per project whether guest users may participate

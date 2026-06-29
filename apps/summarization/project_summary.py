@@ -2,7 +2,9 @@
 
 import json
 import logging
+from datetime import timedelta
 
+from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.formats import date_format
@@ -61,7 +63,9 @@ def get_user_feedback(summary, user, session_key):
     return feedback.feedback if feedback else None
 
 
-def build_summary_render_context(project, response, summary_obj=None, user_feedback=None):
+def build_summary_render_context(
+    project, response, summary_obj=None, user_feedback=None
+):
     """Build template context for `_summary_fragment.html`."""
     timestamp = summary_obj.created_at if summary_obj else timezone.now()
     return {
@@ -109,7 +113,40 @@ def get_summary_prompt() -> str:
     return SummaryRequest.DEFAULT_PROMPT
 
 
-def generate_project_summary(project, *, allow_regeneration: bool = True):
+def get_auto_refresh_max_age_minutes() -> int:
+    """Return max summary age before the periodic Celery job regenerates."""
+    try:
+        return Settings.get_int("project_summary_auto_refresh_max_age_minutes")
+    except (KeyError, TypeError, ValueError):
+        return getattr(settings, "PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES", 720)
+
+
+def get_auto_refresh_max_projects_per_run() -> int:
+    """Return max projects to refresh per beat run (0 = no limit)."""
+    return getattr(settings, "PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN", 0)
+
+
+def project_needs_summary_refresh(project) -> bool:
+    """
+    Return True when Beat should enqueue a summary task for this project.
+
+    Matches Roots: only missing summary or age beyond max_age; hash comparison
+    happens later inside AIService.project_summarize when the task runs.
+    """
+    latest = get_latest_project_summary(project)
+    if not latest:
+        return True
+
+    max_age = timedelta(minutes=get_auto_refresh_max_age_minutes())
+    return timezone.now() - latest.created_at > max_age
+
+
+def generate_project_summary(
+    project,
+    *,
+    allow_regeneration: bool = True,
+    force_regeneration: bool = False,
+):
     """
     Generate or return a cached project summary.
 
@@ -127,7 +164,12 @@ def generate_project_summary(project, *, allow_regeneration: bool = True):
         prompt=prompt,
         result_type=ProjectSummaryResponse,
         allow_regeneration=allow_regeneration,
+        is_rate_limit=not force_regeneration,
+        force_regeneration=force_regeneration,
     )
+    if response is None:
+        return None, None
+
     summary_obj = get_latest_project_summary(project)
     return response, summary_obj
 
