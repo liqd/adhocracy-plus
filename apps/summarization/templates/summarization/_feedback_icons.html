@@ -1,20 +1,25 @@
 {% load i18n %}
-<span class="summary-feedback">
+
+<span class="summary-feedback" data-summary-feedback data-summary-id="{{ summary_id }}">
     <span class="summary-feedback__label">
         {% trans 'Was this summary helpful?' %}
     </span>
     <span class="summary-feedback__buttons">
         <button type="button"
-                disabled
-                class="feedback-btn {% if user_feedback == 'positive' %}active{% endif %}"
-                title="{% trans 'Feedback is available on project pages only' %}">
-            <i class="fa-{% if user_feedback == 'positive' %}solid{% else %}regular{% endif %} fa-thumbs-up"></i>
+                class="feedback-btn summary-feedback__btn{% if user_feedback == 'positive' %} summary-feedback__btn--active{% endif %}"
+                data-summary-feedback-value="positive"
+                aria-pressed="{% if user_feedback == 'positive' %}true{% else %}false{% endif %}"
+                title="{% trans 'Yes, this summary was helpful' %}">
+            <i class="fa-{% if user_feedback == 'positive' %}solid{% else %}regular{% endif %} fa-thumbs-up" aria-hidden="true"></i>
+            <span class="visually-hidden">{% trans 'Yes' %}</span>
         </button>
         <button type="button"
-                disabled
-                class="feedback-btn {% if user_feedback == 'negative' %}active{% endif %}"
-                title="{% trans 'Feedback is available on project pages only' %}">
-            <i class="fa-{% if user_feedback == 'negative' %}solid{% else %}regular{% endif %} fa-thumbs-down"></i>
+                class="feedback-btn summary-feedback__btn{% if user_feedback == 'negative' %} summary-feedback__btn--active{% endif %}"
+                data-summary-feedback-value="negative"
+                aria-pressed="{% if user_feedback == 'negative' %}true{% else %}false{% endif %}"
+                title="{% trans 'No, this summary was not helpful' %}">
+            <i class="fa-{% if user_feedback == 'negative' %}solid{% else %}regular{% endif %} fa-thumbs-down" aria-hidden="true"></i>
+            <span class="visually-hidden">{% trans 'No' %}</span>
         </button>
     </span>
 </span>

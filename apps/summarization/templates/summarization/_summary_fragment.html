@@ -80,15 +80,13 @@
         <div class="summary__results-link">
             <span>
                 {% trans 'To read all the results of this participation' %}
-                <a href="{{ project.get_absolute_url }}#tabpanel-project-{{ project.pk }}-result"
-                    class="small module-summary__link"
-                    target="_blank">
+                <a href="{% url 'project-results' organisation_slug=project.organisation.slug slug=project.slug %}"
+                    class="small module-summary__link">
                         {% trans 'click here' %}
                 </a>
             </span>
-            <a href="{{ project.get_absolute_url }}#tabpanel-project-{{ project.pk }}-result"
-               class="module-summary__link"
-               target="_blank">
+            <a href="{% url 'project-results' organisation_slug=project.organisation.slug slug=project.slug %}"
+               class="module-summary__link">
                 <i class="fa fa-arrow-right"></i>
             </a>
         </div>
@@ -107,18 +105,12 @@
             {% include "summarization/_summary_section.html" with project=project modules=response.phases.upcoming.modules show_debug=show_debug id="upcomingModules" %}
         {% endif %}
 
-        <!-- Feedback preview (disabled until project integration) -->
-        {% if project %}
+        <!-- Feedback -->
+        {% if summary_id %}
         <hr class="my-4 summary__feedback-divider">
         <div class="d-flex justify-content-end align-items-center small">
             {% include "summarization/_feedback_icons.html" with summary_id=summary_id user_feedback=user_feedback %}
         </div>
-        {% endif %}
-
-        {% if summary_created_at %}
-        <script>
-            console.log("Ai Summery created at {{ summary_created_at|date:'c' }}");
-        </script>
         {% endif %}
     </div>
 </div>

@@ -31,6 +31,12 @@ from . import forms
 from . import models
 from .timeline import build_participation_grid_modules
 from .timeline import build_participation_timeline_groups
+from apps.summarization.project_summary import get_latest_project_summary
+from apps.summarization.project_summary import get_user_feedback
+from apps.summarization.project_summary import is_ai_summarisation_enabled
+from apps.summarization.project_summary import render_summary_fragment
+from apps.summarization.pydantic_models import ProjectSummaryResponse
+from apps.summarization.templatetags.summarization_tags import get_project_stats
 
 User = get_user_model()
 
@@ -362,6 +368,31 @@ class ProjectDetailView(
         )
         context["event"] = None
         context["modules"] = None
+        context["ai_summarisation_enabled"] = is_ai_summarisation_enabled(self.project)
+        context["project_summary_html"] = ""
+        context["project_summary_contributions"] = 0
+        context["project_summary_modules"] = 0
+
+        if context["ai_summarisation_enabled"]:
+            stats = get_project_stats(self.project)
+            context["project_summary_contributions"] = stats["contributions"]
+            context["project_summary_modules"] = stats["modules"]
+
+            summary_obj = get_latest_project_summary(self.project)
+            if summary_obj:
+                response = ProjectSummaryResponse(**summary_obj.response_data)
+                user_feedback = get_user_feedback(
+                    summary_obj,
+                    self.request.user,
+                    self.request.session.session_key,
+                )
+                context["project_summary_html"] = render_summary_fragment(
+                    project=self.project,
+                    response=response,
+                    summary_obj=summary_obj,
+                    user_feedback=user_feedback,
+                )
+
         return context
 
 

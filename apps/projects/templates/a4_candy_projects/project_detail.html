@@ -78,7 +78,10 @@
 
                     {% if not module and not offline_event %}
                     {% include "a4_candy_projects/includes/project_detail_intro.html" %}
+                    {% include "summarization/_project_summary_widget.html" %}
                     {% endif %}
+
+                    {% block participation_carousel %}{% endblock participation_carousel %}
 
                     <div class="project-detail__content">
                     {% if not module and not offline_event %}

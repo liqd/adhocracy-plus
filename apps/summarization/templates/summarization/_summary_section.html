@@ -35,7 +35,7 @@
             
             <div class="mb-4" id="{{ id }}">
                 {% for module in modules %}
-                {% with module_obj=project.modules|get_module_by_id:module.module_id %}
+                {% with module_obj=summary_modules|default:project.modules|get_module_by_id:module.module_id %}
                 <div class="module-summary__container">
                     <div id="heading-{{ forloop.counter }}">
                         <div class="module-summary__header">

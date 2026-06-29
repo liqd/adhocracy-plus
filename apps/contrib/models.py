@@ -87,59 +87,36 @@ class Settings(models.Model):
 REGISTRY = {
     "project_summary_prompt": {
         "default": """
-You are a JSON generator. Return ONLY valid JSON. No explanations, no markdown, no code blocks.
+You are a JSON generator. Return ONLY valid JSON.
 
 Schema:
 {
   "title": "Summary of participation",
-  "general_info": {
-    "summary": "A concise overview of the entire project and its participation process",
-    "goals": ["Goal 1", "Goal 2", "Goal 3"]
-  },
+  "general_info": {"summary": "string", "goals": ["string"]},
   "phases": {
-    "past": {
-      "modules": [
-        {
-          "module_name": "Name of the completed module",
-          "status": "past",
-          "final": {
-            "summary": "Summary of what happened in this module, including key outcomes",
-            "bullets": ["Key point 1", "Key point 2", "Key point 3"]
-          }
-        }
-      ]
-    },
-    "current": {
-      "modules": [
-        {
-          "module_name": "Name of the active module",
-          "status": "current",
-          "final": {
-            "summary": "Summary of what's happening in this module now",
-            "bullets": ["Current key point 1", "Current key point 2"]
-          }
-        }
-      ]
-    },
-    "upcoming": {
-      "modules": [
-        {
-          "module_name": "Name of the upcoming module",
-          "status": "upcoming",
-          "final": {
-            "summary": "What will happen in this module",
-            "bullets": ["Planned activity 1", "Planned activity 2"]
-          }
-        }
-      ]
-    }
+    "past": {"modules": [{"module_id": "number", "module_name": "string", "status": "past", "final": {"summary": "string", "bullets": ["string"]}, "debug": {...}}]},
+    "current": {"modules": [{"module_id": "number", "module_name": "string", "status": "current", "final": {"summary": "string", "bullets": ["string"]}, "debug": {...}}]},
+    "upcoming": {"modules": [{"module_id": "number", "module_name": "string", "status": "upcoming", "final": {"summary": "string", "bullets": ["string"]}, "debug": {...}}]}
   }
 }
 
-Extract real data from the project export. Use actual numbers and content.
-For past modules, focus on outcomes and main sentiments.
-For current modules, focus on ongoing activities and early content.
-For upcoming modules, focus on planned activities and goals.
+NOTE: module_id in the output should match the given module_id of the input for each module
+
+Each module MUST include a 'debug' object with:
+- module_type: string
+- signals_snapshot: list of strings
+- draft_before_qa: string
+- claims: list of {claim_text, evidence_type(from_votes|from_ratings|from_open_answers|from_comments|from_base_text|uncertain), action(keep|soften|replace|remove), fix_hint}
+- quantifier_fixes: list of {original_phrase, replacement, reason}
+- anchors: list of strings
+- coverage_gaps: list of strings
+- coverage_patch: optional string
+- patches: list of {patch_type(REPLACE|REMOVE|ADD_SENTENCE), target, replacement}
+- after_qa: string
+- diff_summary: optional string
+- qa_status: PASS|FAIL
+
+Extract real data from the project export.
 Respond with ONLY the JSON object.
 """.strip()
     },
