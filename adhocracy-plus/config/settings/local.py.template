@@ -3,3 +3,63 @@
 CAPTCHA = True #or False
 PROSOPO_SITE_KEY = "your_actual_site_key_here"
 PROSOPO_SECRET_KEY = "your_actual_secret_key_here"
+
+# Summarization service configuration
+# Configure AI providers for text summarization
+AI_PROVIDER = "ovhcloud"  # Default provider to use for text summarization
+AI_DOCUMENT_PROVIDER = "mistral"  # Default provider to use for document summarization
+SYSTEM_PROMPT = (
+    "You are a helpful assistant that summarizes texts concisely. "
+    "Return structured JSON that matches the expected output format. You always answer in German"
+)  # System prompt for the AI agent
+
+AI_PROVIDERS = {
+    "ovhcloud": {
+        "api_key": "your_ovhcloud_api_key_here",
+        "model_name": "gpt-oss-120b",
+        "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
+    },
+    # Vision LLM with images AND doc summarization possebilities
+    "routerlab_k25": {
+        "api_key": "",
+        "model_name": "kimi-k2.5",
+        "base_url": "https://routerlab.ch/v1",
+        # "supports_documents": True, # if you want pdf proceeced by the ai and it supports it
+    },
+    "routerlab_glm5": {
+        "api_key": "",
+        "model_name": "glm-5",
+        "base_url": "https://routerlab.ch/v1",
+    },
+
+    "openrouter": {
+        "api_key": "your_openrouter_api_key_here",
+        "model_name": "deepseek/deepseek-chat",
+        "base_url": "https://openrouter.ai/api/v1",
+    },
+    # Vision LLM with images but without doc summarization possebilities
+    "mistral": {
+        "api_key": "your_mistral_api_key_here",
+        "model_name": "mistral-large-latest",
+        "base_url": "https://api.mistral.ai",
+    }
+}
+
+# Allowed image file extensions for uploads
+SUMMARIZATION_ALLOWED_IMAGE_TYPES = [".png", ".jpg", ".jpeg", ".pdf"]
+# Maximum age in minutes for using cached summary as fallback on error (0 = disabled)
+# If a summary generation fails, a cached version will be used if it's not older than this value
+PROJECT_SUMMARY_FALLBACK_MAX_AGE_MINUTES = 60  # Use cached summary up to 60 minutes old on error
+
+# Periodic auto-refresh: create summary when no summary younger than this exists
+PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES = 12 * 60  # 12 hours
+# Max number of projects to enqueue per 30-min run (0 = no limit)
+PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN = 0
+
+# Celery Beat: periodic project summary refresh (only if you run Celery Beat and want auto-summaries)
+# Uncomment to run refresh_project_summaries every 30 minutes (requires Celery Beat).
+# from datetime import timedelta
+# CELERY_BEAT_SCHEDULE["refresh_project_summaries"] = {
+#     "task": "refresh_project_summaries",
+#     "schedule": timedelta(minutes=30),
+# }

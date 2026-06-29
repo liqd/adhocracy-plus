@@ -124,6 +124,7 @@ urlpatterns = [
         name="ck_editor_5_upload_file",
     ),
     path("components/", contrib_views.ComponentLibraryView.as_view()),
+    path("summarization/", include("apps.summarization.urls")),
     path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
     re_path(
         r"^(?P<organisation_slug>[-\w_]+)/",

@@ -1,5 +1,14 @@
 from django import forms
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.utils.translation import gettext_lazy as _
+
+
+class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+    """Restrict view access to active Django staff users."""
+
+    def test_func(self):
+        return self.request.user.is_active and self.request.user.is_staff
 
 RIGHT_OF_USE_LABEL = _(
     "I hereby confirm that the copyrights for this "

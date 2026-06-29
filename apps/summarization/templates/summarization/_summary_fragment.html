@@ -1,0 +1,124 @@
+{% load i18n summarization_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% if show_debug %}
+<div>
+    { raw }
+</div>
+{% endif %}
+
+<div class="accordion summary__accordion">
+    <div class="d-flex justify-content-between align-items-start">
+        <div class="d-flex align-items-baseline">
+            <a id="summary-header"
+               class="accordion__title summary__header summary__title-link"
+               href="#summary"
+               aria-haspopup="true"
+               aria-expanded="true"
+               data-bs-toggle="collapse">
+                <span class="mb-0 summary__title">{% trans 'Summary of the Participation' %}</span>
+            </a>
+        </div>
+        <a class="accordion__title summary__header summary__arrow-toggle"
+           href="#summary"
+           aria-haspopup="true"
+           aria-expanded="true"
+           data-bs-toggle="collapse">
+            <i class="fas fa-sort-down" aria-hidden="true"></i>
+        </a>
+    </div>
+    {% if summary_timestamp %}
+        <p class="text-muted mb-3 summary__meta-text">
+            {% if LANGUAGE_CODE == 'de' %}
+                {% blocktranslate with date=summary_date_str time=summary_timestamp|date:"H:i" %}
+                    Diese Zusammenfassung wurde am {{ date }} um {{ time }} Uhr mithilfe von KI erstellt und kann Fehler enthalten oder unvollständig sein.
+                {% endblocktranslate %}
+            {% else %}
+                {% blocktranslate with date=summary_date_str time=summary_timestamp|date:"H:i" %}
+                    This summary was created by AI on {{ date }} at {{ time }} and may contain errors or be incomplete.
+                {% endblocktranslate %}
+            {% endif %}
+        </p>
+    {% endif %}
+
+    <div class="accordion__body collapse show" id="summary" aria-labelledby="summary-header">
+        <div>
+
+            <!-- General Info -->
+            <div class="summary__header-text">{% trans 'General info' %}</div>
+            <p>{{ response.general_info.summary }}</p>
+            {% if response.general_info.goals %}
+                <ul>
+                    {% for goal in response.general_info.goals %}
+                    <li>{{ goal }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Stats Card -->
+        {% get_project_stats project as stats %}
+        <div class="summary__stats rounded">
+            <div class="row text-center">
+                <div class="col-4">
+                    <span class="d-block mb-0 summary__stats-number">{{ stats.participants|default:"0" }}</span>
+                    <span class="text-muted summary__stats-text">{% trans 'Participants' %}</span>
+                </div>
+                <div class="col-4">
+                    <span class="d-block mb-0 summary__stats-number">{{ stats.contributions|default:"0" }}</span>
+                    <small class="text-muted summary__stats-text">{% trans 'Contributions' %}</small>
+                </div>
+                <div class="col-4">
+                    <span class="d-block mb-0 summary__stats-number">{{ stats.modules|default:"0" }}</span>
+                    <small class="text-muted summary__stats-text">{% trans 'Modules' %}</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Link -->
+        {% if project.result %}
+        <div class="summary__results-link">
+            <span>
+                {% trans 'To read all the results of this participation' %}
+                <a href="{{ project.get_absolute_url }}#tabpanel-project-{{ project.pk }}-result"
+                    class="small module-summary__link"
+                    target="_blank">
+                        {% trans 'click here' %}
+                </a>
+            </span>
+            <a href="{{ project.get_absolute_url }}#tabpanel-project-{{ project.pk }}-result"
+               class="module-summary__link"
+               target="_blank">
+                <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+        {% endif %}
+
+        <!-- Phase Sections -->
+        {% if response.phases.past.modules %}
+            {% include "summarization/_summary_section.html" with project=project modules=response.phases.past.modules show_debug=show_debug id="pastModules" %}
+        {% endif %}
+
+        {% if response.phases.current.modules %}
+            {% include "summarization/_summary_section.html" with project=project modules=response.phases.current.modules show_debug=show_debug id="currentModules" %}
+        {% endif %}
+
+        {% if response.phases.upcoming.modules %}
+            {% include "summarization/_summary_section.html" with project=project modules=response.phases.upcoming.modules show_debug=show_debug id="upcomingModules" %}
+        {% endif %}
+
+        <!-- Feedback preview (disabled until project integration) -->
+        {% if project %}
+        <hr class="my-4 summary__feedback-divider">
+        <div class="d-flex justify-content-end align-items-center small">
+            {% include "summarization/_feedback_icons.html" with summary_id=summary_id user_feedback=user_feedback %}
+        </div>
+        {% endif %}
+
+        {% if summary_created_at %}
+        <script>
+            console.log("Ai Summery created at {{ summary_created_at|date:'c' }}");
+        </script>
+        {% endif %}
+    </div>
+</div>

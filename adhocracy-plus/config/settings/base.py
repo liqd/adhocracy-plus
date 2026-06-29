@@ -108,6 +108,7 @@ INSTALLED_APPS = (
     "apps.actions",
     "apps.captcha",
     "apps.contrib",
+    "apps.summarization",
     "apps.interactiveevents",
     "apps.maps",
     "apps.moderatorfeedback",

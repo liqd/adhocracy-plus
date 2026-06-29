@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Summarization Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input[type="number"], select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .checkbox-group {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+        .error pre.error-detail {
+            margin: 10px 0 0 0;
+            padding: 12px;
+            background: #fff;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: ui-monospace, "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.45;
+            color: #491217;
+        }
+        .summary {
+            margin-top: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            border-radius: 4px;
+            border-left: 4px solid #28a745;
+        }
+        .stats {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        .key-points {
+            margin-top: 15px;
+        }
+        .key-points ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .key-points li {
+            margin: 5px 0;
+        }
+        .file-hint {
+            color: #666;
+            display: block;
+            margin-top: 5px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Summarization Test</h1>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <label for="prompt">Custom Prompt:</label>
+            <textarea name="prompt" id="prompt" rows="3">{% if prompt %}{{ prompt }}{% else %}{{ default_prompt }}{% endif %}</textarea>
+            <small class="file-hint">
+                Default prompt is pre-filled. You can modify it as needed.
+            </small>
+            
+            <label for="project_id">Projekt (optional):</label>
+            <select name="project_id" id="project_id">
+                <option value="">— Manuell eingeben —</option>
+                {% for p in projects %}
+                <option value="{{ p.id }}" {% if selected_project_id == p.id %}selected{% endif %}>{{ p.organisation.name }}: {{ p.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="button" id="load-export" disabled title="Projekt auswählen, dann klicken">Export laden</button>
+            <small class="file-hint">
+                Projekt wählen und „Export laden“ klicken – oder Textfeld manuell befüllen.
+            </small>
+
+            <label for="text">Text to summarize:</label>
+            <textarea name="text" id="text">{{ text }}</textarea>
+            
+            <label for="provider">Provider:</label>
+            <select name="provider" id="provider">
+                {% for p in providers %}
+                <option value="{{ p.handle }}" {% if provider == p.handle %}selected{% endif %}>{{ p.label }}</option>
+                {% empty %}
+                <option value="">Keine Provider konfiguriert</option>
+                {% endfor %}
+            </select>
+            
+            <button type="submit">Summarize</button>
+        </form>
+        
+        {% if error %}
+        <div class="result error">
+            <strong>Fehlerdetails</strong>
+            <pre class="error-detail">{{ error }}</pre>
+        </div>
+        {% endif %}
+
+        {% if summary_response %}
+            {% include "summarization/_summary_fragment.html" with response=summary_response project=project summary_id=None user_feedback=None show_debug=True raw=raw %}
+        {% endif %}
+    </div>
+    <script>
+    (function() {
+        var projectSelect = document.getElementById('project_id');
+        var loadExportBtn = document.getElementById('load-export');
+        var textArea = document.getElementById('text');
+
+        function getCsrfToken() {
+            var name = 'csrftoken';
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var c = cookies[i].trim();
+                if (c.indexOf(name + '=') === 0) return c.substring(name.length + 1);
+            }
+            return '';
+        }
+
+        function updateLoadExportState() {
+            loadExportBtn.disabled = !projectSelect.value;
+        }
+
+        projectSelect.addEventListener('change', updateLoadExportState);
+        updateLoadExportState();
+
+        loadExportBtn.addEventListener('click', function() {
+            var projectId = projectSelect.value;
+            if (!projectId) return;
+            var base = window.location.pathname.replace(/\/$/, '') + '/';
+            var url = base + 'export/' + projectId + '/';
+            loadExportBtn.disabled = true;
+            fetch(url, {
+                method: 'GET',
+                headers: { 'X-CSRFToken': getCsrfToken() },
+                credentials: 'same-origin'
+            }).then(function(resp) {
+                return resp.text();
+            }).then(function(text) {
+                textArea.value = text;
+            }).catch(function() {
+                textArea.value = '/* Fehler beim Laden des Exports */';
+            }).finally(function() {
+                loadExportBtn.disabled = !projectSelect.value;
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

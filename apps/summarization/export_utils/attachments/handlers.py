@@ -1,5 +1,11 @@
 def _make_absolute_url(attachment_url, request=None, base_url=None):
     """Build absolute URL from attachment_url using request or base_url."""
+    if not attachment_url:
+        return None
+
+    if attachment_url.startswith(("http://", "https://")):
+        return attachment_url
+
     if request is not None:
         return request.build_absolute_uri(attachment_url)
     if base_url:
