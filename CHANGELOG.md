@@ -28,7 +28,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Header indicator: rename anonymous visitor CSS classes from `guest-*` to `anonymous-*`
 - polls: optional confidential questions
 - Project detail: remove the legacy participation timeline carousel (template, styles, and slick init); offline events and document chapters link back to the project overview without `initialSlide` query params.
-- Module pages: move name, description, and button below of hero image.
+- New Module pages: Adapt Modul Page to new Grid and more styling.
 
 ### Fixed
 
