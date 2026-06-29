@@ -1,91 +1,75 @@
 {% load static i18n summarization_tags %}
-{% get_current_language as LANGUAGE_CODE %}
 
-<div class="mb-4 summary__section-container">
-    <div class="p-0" id="{{ id }}-heading">
-        <a href="#{{ id }}-collapse" 
-           class="accordion__title collapsed d-block summary__section-accordion-title" 
+<div class="summary__section">
+    <div id="{{ id }}-heading">
+        <a href="#{{ id }}-collapse"
+           class="summary__section-accordion-title collapsed"
            data-bs-toggle="collapse"
            data-bs-target="#{{ id }}-collapse"
            aria-expanded="false"
            aria-controls="{{ id }}-collapse">
-            <div class="d-flex justify-content-between align-items-center">
-                <span class="summary__section-header">
-                    {% if id == "pastModules" %}
-                        {% trans 'Summary of what has happened so far' %}
-                    {% elif id == "currentModules" %}
-                        {% trans 'Summary of what is currently happening' %}
-                    {% elif id == "upcomingModules" %}
-                        {% trans 'Summary of what will happen' %}
-                    {% endif %}
-                </span>
-                <i class="fas fa-sort-down" aria-hidden="true"></i>
-            </div>
+            <span class="summary__section-header">
+                {% if id == "pastModules" %}
+                    {% trans 'Summary of what has happened so far' %}
+                {% elif id == "currentModules" %}
+                    {% trans 'Summary of what is happening' %}
+                {% elif id == "upcomingModules" %}
+                    {% trans 'Summary of what will happen' %}
+                {% endif %}
+            </span>
+            <i class="fas fa-caret-down" aria-hidden="true"></i>
         </a>
     </div>
     <div id="{{ id }}-collapse" class="collapse" aria-labelledby="{{ id }}-heading">
-        <div>
+        <div class="summary__section-body">
             {% if id == "pastModules" %}
-                <p>{% trans 'The participation phases of the modules in this section are finished. You can no longer contribute. In this section you can find summaries of the modules and the main topics that were discussed.' %}</p>
+                <p class="summary__text">{% trans 'The participation phases of the modules in this section are finished. You can no longer contribute. In this section you can find summaries of the modules and the main topics that were discussed.' %}</p>
             {% elif id == "currentModules" %}
-                <p>{% trans 'The participation phases of the modules in this section are currently ongoing. You can contribute to the modules at this stage. In this section you can find summaries of the modules and the topics that are being discussed.' %}</p>
+                <p class="summary__text">{% trans 'The participation phases of the modules in this section are currently ongoing. You can contribute to the modules at this stage. In this section you can find summaries of the modules and the topics that are being discussed.' %}</p>
             {% elif id == "upcomingModules" %}
-                <p>{% trans 'The participation phases of the modules in this section have not started yet. You cannot contribute to the modules at this stage. In this section you can find summaries of the planned modules and their objectives.' %}</p>
+                <p class="summary__text">{% trans 'The participation phases of the modules in this section have not started yet. You cannot contribute to the modules at this stage. In this section you can find summaries of the planned modules and their objectives.' %}</p>
             {% endif %}
-            
-            <div class="mb-4" id="{{ id }}">
+
+            <div id="{{ id }}">
                 {% for module in modules %}
                 {% with module_obj=summary_modules|default:project.modules|get_module_by_id:module.module_id %}
-                <div class="module-summary__container">
-                    <div id="heading-{{ forloop.counter }}">
-                        <div class="module-summary__header">
-                            <span class="module-summary__header-text">
-                                {% trans 'Module' %}: {{ module.module_name }}
-                                {% if id == "pastModules" %}
-                                    <span class="badge badge--module__completed ml-2">{% trans 'completed' %}</span>
-                                {% elif id == "currentModules" %}
-                                    <span class="badge badge--module__ongoing ml-2">{% trans 'active' %}</span>
-                                {% elif id == "upcomingModules" %}
-                                    <span class="badge badge--module__future ml-2">{% trans 'planned' %}</span>
-                                {% endif %}
-                            </span>
-                        </div>
-                        <div>
-                            <small>
-                                {% if LANGUAGE_CODE == 'de' %}
-                                    {% trans 'Ative Beteiligung' %}: {{ module_obj.module_start|date:"d.m.Y, H:i" }} – {{ module_obj.module_end|date:"d.m.Y, H:i" }} Uhr
-                                {% else %}
-                                    {% trans 'Active participation' %}: {{ module_obj.module_start|date:"j M Y, H:i" }} – {{ module_obj.module_end|date:"j M Y, H:i" }}
-                                {% endif %}
-                            </small>
-                        </div>
+                <div class="module-summary">
+                    <div class="module-summary__header">
+                        <span class="module-summary__header-text">
+                            {% trans 'Module' %}: {{ module.module_name }}
+                        </span>
+                        {% if id == "pastModules" %}
+                            <span class="badge badge--module__completed">{% trans 'Completed' %}</span>
+                        {% elif id == "currentModules" %}
+                            <span class="badge badge--module__ongoing">{% trans 'Ongoing' %}</span>
+                        {% elif id == "upcomingModules" %}
+                            <span class="badge badge--module__future">{% trans 'Future' %}</span>
+                        {% endif %}
                     </div>
-                    <div class="module-summary__goals" id="module-{{ module.module_name|slugify }}">
-                        <div>
-                            <p>{{ module.final.summary }}</p>
-                            
+                    <div class="module-summary__content" id="module-{{ module.module_name|slugify }}">
+                        <div class="module-summary__text">
+                            <p class="summary__text">{{ module.final.summary }}</p>
+
                             {% if module.final.bullets %}
-                            <ul class="small">
+                            <ul class="summary__list">
                                 {% for bullet in module.final.bullets %}
                                 <li>{{ bullet }}</li>
                                 {% endfor %}
                             </ul>
                             {% endif %}
-                            
+
                             {% if show_debug and module.debug %}
             <div class="debug-info small text-muted mt-3 p-3 border rounded">
                 <details>
                     <summary class="fw-bold">🔍 {% trans 'Debug information' %}</summary>
-                    
-                    <!-- Basic Info -->
+
                     <div class="mt-2">
                         <span class="badge bg-secondary me-2">{{ module.debug.module_type }}</span>
                         <span class="badge {% if module.debug.qa_status == 'PASS' %}bg-success{% else %}bg-danger{% endif %}">
                             QA: {{ module.debug.qa_status }}
                         </span>
                     </div>
-                    
-                    <!-- Signals -->
+
                     {% if module.debug.signals_snapshot %}
                     <div class="mt-2">
                         <strong>{% trans 'Signals' %}:</strong>
@@ -96,8 +80,7 @@
                         </div>
                     </div>
                     {% endif %}
-                    
-                    <!-- Draft vs Final -->
+
                     <div class="row mt-2">
                         <div class="col-md-6">
                             <strong>{% trans 'Draft before QA' %}:</strong>
@@ -108,8 +91,7 @@
                             <div class="p-2 bg-light rounded mt-1">{{ module.debug.after_qa|linebreaks }}</div>
                         </div>
                     </div>
-                    
-                    <!-- Claims -->
+
                     {% if module.debug.claims %}
                     <div class="mt-2">
                         <strong>{% trans 'Claims' %}:</strong>
@@ -139,15 +121,14 @@
                         </table>
                     </div>
                     {% endif %}
-                    
-                    <!-- Quantifier Fixes -->
+
                     {% if module.debug.quantifier_fixes %}
                     <div class="mt-2">
                         <strong>{% trans 'Quantifier fixes' %}:</strong>
                         <ul class="list-group mt-1">
                             {% for fix in module.debug.quantifier_fixes %}
                             <li class="list-group-item">
-                                <span class="text-danger">{{ fix.original_phrase }}</span> → 
+                                <span class="text-danger">{{ fix.original_phrase }}</span> →
                                 <span class="text-success">{{ fix.replacement }}</span>
                                 <br><small class="text-muted">{{ fix.reason }}</small>
                             </li>
@@ -155,8 +136,7 @@
                         </ul>
                     </div>
                     {% endif %}
-                    
-                    <!-- Anchors -->
+
                     {% if module.debug.anchors %}
                     <div class="mt-2">
                         <strong>{% trans 'Anchors' %}:</strong>
@@ -167,8 +147,7 @@
                         </div>
                     </div>
                     {% endif %}
-                    
-                    <!-- Coverage Gaps -->
+
                     {% if module.debug.coverage_gaps %}
                     <div class="mt-2">
                         <strong>{% trans 'Coverage gaps' %}:</strong>
@@ -184,8 +163,7 @@
                         {% endif %}
                     </div>
                     {% endif %}
-                    
-                    <!-- Patches -->
+
                     {% if module.debug.patches %}
                     <div class="mt-2">
                         <strong>{% trans 'Patches applied' %}:</strong>
@@ -202,8 +180,7 @@
                         </ul>
                     </div>
                     {% endif %}
-                    
-                    <!-- Diff Summary -->
+
                     {% if module.debug.diff_summary %}
                     <div class="mt-2">
                         <strong>{% trans 'Changes' %}:</strong>
@@ -213,16 +190,35 @@
                 </details>
             </div>
             {% endif %}
-                            <p class="summary__see-more">
-                                <span>
-                                    {% blocktranslate trimmed with module_name=module.module_name %}
-                                        To see what happened in module {{ module_name }},
-                                    {% endblocktranslate %}
-                                    <a href="{{ module_obj.get_absolute_url }}" class="small module-summary__link" target="_blank">{% trans 'click here' %}</a>
-                                </span>
-                                <a href="{{ module_obj.get_absolute_url }}" class="module-summary__link" target="_blank"><i class="fa fa-arrow-right"></i></a>
-                            </p>
                         </div>
+
+                        <a href="{{ module_obj.get_absolute_url }}"
+                           class="summary__module-cta"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <span class="summary__module-cta-inner">
+                                {% if module_obj.blueprint_type %}
+                                <img
+                                    class="summary__module-cta-icon"
+                                    src="{% static 'images/icon-'|add:module_obj.blueprint_type|lower|add:'.svg' %}"
+                                    alt=""
+                                    aria-hidden="true">
+                                {% endif %}
+                                <span class="summary__module-cta-text">
+                                    {% if id == "upcomingModules" %}
+                                        {% blocktranslate trimmed with module_name=module.module_name %}
+                                            To see what will happen in module {{ module_name }},
+                                        {% endblocktranslate %}
+                                    {% else %}
+                                        {% blocktranslate trimmed with module_name=module.module_name %}
+                                            To see what happened in module {{ module_name }},
+                                        {% endblocktranslate %}
+                                    {% endif %}
+                                    <span class="summary__link">{% trans 'click here.' %}</span>
+                                </span>
+                            </span>
+                            {% include "summarization/_summary_arrow_icon.html" with size="lg" extra_class="summary__module-cta-arrow" %}
+                        </a>
                     </div>
                 </div>
                 {% endwith %}
