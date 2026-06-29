@@ -154,7 +154,9 @@
                         {% block project_action %}{% endblock project_action %}
                         </div>
                     </div>
+                    <div class="project-detail__module-phase">
                     {% block phase_content %}{% endblock phase_content %}
+                    </div>
                     {% block other_modules %}
                         {% if module.is_in_module_cluster %}
                             <section class="project-detail__other-modules" aria-labelledby="project-detail-other-modules-heading">

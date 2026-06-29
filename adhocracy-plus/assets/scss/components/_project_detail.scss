@@ -106,22 +106,20 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
     }
 }
 
-.project-detail--module .project-detail__content {
-    // Module phase views still use legacy Bootstrap column wrappers; span the full
-    // project-detail grid width (Figma content column ~856px).
+// Legacy Bootstrap column wrappers in phase views; span the full project-detail
+// grid width (Figma content column ~856px). Scoped to phase_content output only.
+.project-detail__module-phase {
     .row {
         margin-left: 0;
         margin-right: 0;
     }
 
-    .row:not(.project-detail__module-action-row) {
-        [class*='offset-md-'],
-        [class*='offset-lg-'] {
-            margin-left: 0;
-        }
+    [class*='offset-md-'],
+    [class*='offset-lg-'] {
+        margin-left: 0;
     }
 
-    .row:not(.project-detail__module-action-row) > [class*='col-'] {
+    .row > [class*='col-'] {
         flex: 0 0 100%;
         max-width: 100%;
         padding-left: 0;
