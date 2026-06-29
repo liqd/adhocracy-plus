@@ -94,6 +94,33 @@ function showErrorState (root, message) {
   }
 }
 
+async function requestProjectSummary (root) {
+  const content = root.querySelector('[data-project-summary-content]')
+  const summaryUrl = root.dataset.summaryUrl
+  if (!content || !summaryUrl) {
+    return
+  }
+
+  const response = await fetch(summaryUrl, {
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': getCsrfToken()
+    },
+    credentials: 'same-origin'
+  })
+  let payload = {}
+  try {
+    payload = await response.json()
+  } catch (parseError) {
+    payload = {}
+  }
+  if (!response.ok || !payload.html) {
+    throw new Error(payload.error || 'Summary request failed')
+  }
+  content.innerHTML = payload.html
+  bindSummaryFeedback(root)
+}
+
 function initProjectSummary () {
   document.querySelectorAll('[data-project-summary]').forEach((root) => {
     const content = root.querySelector('[data-project-summary-content]')
@@ -104,6 +131,22 @@ function initProjectSummary () {
 
     bindSummaryFeedback(root)
 
+    root.addEventListener('click', async (event) => {
+      const refreshButton = event.target.closest('[data-project-summary-refresh]')
+      if (!refreshButton || !root.contains(refreshButton)) {
+        return
+      }
+
+      refreshButton.disabled = true
+      try {
+        await requestProjectSummary(root)
+      } catch (error) {
+        // Keep the current summary visible when refresh fails.
+      } finally {
+        refreshButton.disabled = false
+      }
+    })
+
     const generateButton = root.querySelector('[data-project-summary-generate]')
     if (generateButton) {
       generateButton.addEventListener('click', async () => {
@@ -111,24 +154,7 @@ function initProjectSummary () {
         generateButton.disabled = true
 
         try {
-          const response = await fetch(summaryUrl, {
-            method: 'POST',
-            headers: {
-              'X-CSRFToken': getCsrfToken()
-            },
-            credentials: 'same-origin'
-          })
-          let payload = {}
-          try {
-            payload = await response.json()
-          } catch (parseError) {
-            payload = {}
-          }
-          if (!response.ok || !payload.html) {
-            throw new Error(payload.error || 'Summary request failed')
-          }
-          content.innerHTML = payload.html
-          bindSummaryFeedback(root)
+          await requestProjectSummary(root)
         } catch (error) {
           showErrorState(
             root,
