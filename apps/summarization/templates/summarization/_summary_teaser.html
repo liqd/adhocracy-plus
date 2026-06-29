@@ -1,0 +1,22 @@
+{% load i18n %}
+
+<div class="project-summary project-summary--teaser" data-project-summary-teaser>
+    <div class="project-summary__inner">
+        <h2 class="project-summary__title">{% trans 'Summary of the participation' %}</h2>
+        <p class="project-summary__description">
+            {% blocktranslate count count=contribution_count %}
+                Automatically generated overview of the key topics, sentiments, and insights from {{ count }} project contribution.
+            {% plural %}
+                Automatically generated overview of the key topics, sentiments, and insights from {{ count }} project contributions.
+            {% endblocktranslate %}
+        </p>
+        <button
+            type="button"
+            class="btn btn--transparent project-summary__generate-btn"
+            data-project-summary-generate>
+            <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+            {% trans 'Summarize with AI' %}
+        </button>
+        <p class="project-summary__error" data-project-summary-error hidden role="alert"></p>
+    </div>
+</div>

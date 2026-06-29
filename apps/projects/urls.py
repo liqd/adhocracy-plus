@@ -1,6 +1,8 @@
 from django.urls import re_path
 
 from adhocracy4.projects.urls import urlpatterns as a4_projects_urls
+from apps.summarization.project_views import ProjectSummaryFeedbackView
+from apps.summarization.project_views import ProjectSummaryView
 
 from . import views
 
@@ -39,6 +41,16 @@ urlpatterns = [
         r"^(?P<slug>[-\w_]+)/results/$",
         views.ProjectResultsView.as_view(),
         name="project-results",
+    ),
+    re_path(
+        r"^(?P<slug>[-\w_]+)/summary/$",
+        ProjectSummaryView.as_view(),
+        name="project-summary",
+    ),
+    re_path(
+        r"^(?P<slug>[-\w_]+)/summary/feedback/$",
+        ProjectSummaryFeedbackView.as_view(),
+        name="project-summary-feedback",
     ),
     re_path(
         r"^(?P<slug>[-\w_]+)/$",

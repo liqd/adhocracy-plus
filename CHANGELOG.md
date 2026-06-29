@@ -16,7 +16,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Landing page: use cases section with target group cards linking to category filters
 - New project detail page with both grid and timeline view
 - Initiator reminder to publish project results.
-
+- AI project summarisation: summary section on the project detail page (teaser, loading state, and Roots-style sections for general info, statistics, and past/current/upcoming modules).
+- AI project summarisation: organisation-level feature flag “Enable AI summarisation” in Django admin (`a4_candy_organisations`); only enabled organisations can use the feature on their projects.
 
 ### Changed
 ### Changed

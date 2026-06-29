@@ -168,6 +168,14 @@ class Organisation(TranslatableModel):
         default=False,
         verbose_name=_("enable geolocation for projects"),
     )
+    enable_ai_summarisation = models.BooleanField(
+        default=False,
+        verbose_name=_("Enable AI summarisation"),
+        help_text=_(
+            "When enabled, projects of this organisation can use AI summarisation "
+            "on the project detail page."
+        ),
+    )
     language = models.CharField(
         verbose_name=_("Default language for e-mails"),
         choices=settings.LANGUAGES,
