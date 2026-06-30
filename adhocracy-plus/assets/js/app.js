@@ -24,7 +24,6 @@ import { renderLanguageChoice } from '../../../apps/organisations/assets/react_l
 import { renderProjectDetailFollow } from '../../../apps/projects/assets/js/project_detail_follow.jsx'
 import { initGuestProjectAlerts } from '../../../apps/projects/assets/js/guest_project_alert.js'
 import { initProjectDetailParticipationView } from '../../../apps/projects/assets/js/project_detail_participation_view.js'
-import { initProjectSummary } from '../../../apps/summarization/assets/js/project_summary.js'
 
 function init () {
   ReactWidget.initialise('a4', 'comment_async', ReactCommentsAsync.renderComment)
@@ -37,7 +36,6 @@ function init () {
 
   initProjectDetailParticipationView()
   initGuestProjectAlerts()
-  initProjectSummary()
 
   $('.project-tile-carousel').slick({
     initialSlide: 0,

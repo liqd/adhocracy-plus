@@ -1,19 +1,30 @@
 import itertools
+import logging
 
 from allauth.account.adapter import get_adapter
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.shortcuts import render
+from django.template.loader import render_to_string
+from django.urls import reverse
 from django.urls import reverse_lazy
+from django.utils import timezone
+from django.utils.decorators import method_decorator
 from django.utils.functional import cached_property
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
+from django.views import View
 from django.views import generic
+from django.views.decorators.csrf import csrf_exempt
 from rules.contrib.views import LoginRequiredMixin
 from rules.contrib.views import PermissionRequiredMixin
+from sentry_sdk import capture_exception
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.dashboard import signals as a4dashboard_signals
@@ -23,22 +34,27 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
+from apps.contrib.mixins import StaffRequiredMixin
 from apps.projects.models import ProjectInsight
-from apps.projects.utils import project_has_result_content
+from apps.summarization.models import ProjectSummary
+from apps.summarization.models import SummaryFeedback
+from apps.summarization.pydantic_models import ProjectSummaryResponse
 
 from . import dashboard
 from . import forms
 from . import models
 from .timeline import build_participation_grid_modules
 from .timeline import build_participation_timeline_groups
-from apps.summarization.project_summary import get_latest_project_summary
-from apps.summarization.project_summary import get_user_feedback
-from apps.summarization.project_summary import is_ai_summarisation_enabled
-from apps.summarization.project_summary import render_summary_fragment
-from apps.summarization.pydantic_models import ProjectSummaryResponse
-from apps.summarization.templatetags.summarization_tags import get_project_stats
+from .utils import generate_project_summary
+from .utils import get_latest_project_summary
+from .utils import get_summary_modules
+from .utils import get_user_feedback
+from .utils import is_ai_summarisation_enabled
+from .utils import project_has_result_content
+from .utils import render_summary_fragment
 
 User = get_user_model()
+logger = logging.getLogger(__name__)
 
 
 class ParticipantInviteDetailView(generic.DetailView):
@@ -370,14 +386,8 @@ class ProjectDetailView(
         context["modules"] = None
         context["ai_summarisation_enabled"] = is_ai_summarisation_enabled(self.project)
         context["project_summary_html"] = ""
-        context["project_summary_contributions"] = 0
-        context["project_summary_modules"] = 0
 
         if context["ai_summarisation_enabled"]:
-            stats = get_project_stats(self.project)
-            context["project_summary_contributions"] = stats["contributions"]
-            context["project_summary_modules"] = stats["modules"]
-
             summary_obj = get_latest_project_summary(self.project)
             if summary_obj:
                 response = ProjectSummaryResponse(**summary_obj.response_data)
@@ -446,3 +456,206 @@ class ModuleDetailView(PermissionRequiredMixin, PhaseDispatchMixin):
             kwargs["module"] = self.module
         context = super().get_context_data(**kwargs)
         return context
+
+
+class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
+    model = models.Project
+    slug_url_kwarg = "slug"
+    permission_required = "a4projects.view_project"
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def _get_user_feedback(self, summary, request):
+        return get_user_feedback(
+            summary,
+            request.user,
+            request.session.session_key,
+        )
+
+    def _format_summary_date(self, timestamp, language_code):
+        if not timestamp:
+            return None
+
+        local_ts = timezone.localtime(timestamp)
+
+        if language_code == "de":
+            return local_ts.strftime("%-d. %B %Y")
+        return local_ts.strftime("%B %-d, %Y")
+
+    def get(self, request, *args, **kwargs):
+        project = self.get_object()
+        if not is_ai_summarisation_enabled(project):
+            return HttpResponse(
+                _("AI summarisation is not enabled for this organisation."),
+                status=403,
+            )
+        logger.info(
+            "ProjectGenerateSummaryView: loading summary for project %s (%s)",
+            project.id,
+            project.slug,
+        )
+        try:
+            response = generate_project_summary(
+                project, request=request, allow_regeneration=False
+            )
+            if response is None:
+                html = render_to_string(
+                    "a4_candy_projects/_summary_error.html", {"project": project}
+                )
+                return HttpResponse(html)
+
+            try:
+                summary = ProjectSummary.objects.filter(project=project).latest(
+                    "created_at"
+                )
+            except ProjectSummary.DoesNotExist:
+                summary = None
+
+            user_feedback = self._get_user_feedback(summary, request)
+            language_code = get_language()
+
+            summary_timestamp = None
+            summary_date_str = None
+            if summary:
+                ts = summary.last_checked_at or summary.created_at
+                summary_timestamp = timezone.localtime(ts)
+                summary_date_str = self._format_summary_date(
+                    summary_timestamp, language_code
+                )
+
+            html = render_to_string(
+                "a4_candy_projects/_summary_fragment.html",
+                {
+                    "response": response,
+                    "project": project,
+                    "summary_modules": get_summary_modules(project),
+                    "summary_id": summary.id if summary else None,
+                    "summary_created_at": summary.created_at if summary else None,
+                    "summary_timestamp": summary_timestamp,
+                    "summary_date_str": summary_date_str,
+                    "user_feedback": user_feedback,
+                    "show_debug": False,
+                },
+            )
+            return HttpResponse(html)
+
+        except Exception as exc:
+            logger.error(
+                "Failed to generate summary for project %s (%s): %s",
+                project.id,
+                project.slug,
+                exc,
+                exc_info=True,
+            )
+            capture_exception(exc)
+            html = render_to_string(
+                "a4_candy_projects/_summary_error.html", {"project": project}
+            )
+            return HttpResponse(html)
+
+
+class ProjectSummaryStaffGenerateView(StaffRequiredMixin, View):
+    """
+    Hidden staff-only URL to force-generate a summary for one project.
+
+    Not linked from the UI; visit per project, e.g.
+    /{organisation_slug}/projects/{slug}/summary/generate/
+    """
+
+    def get(self, request, organisation_slug, slug):
+        project = get_object_or_404(
+            models.Project.objects.select_related("organisation"),
+            slug=slug,
+            organisation__slug=organisation_slug,
+        )
+        detail_url = reverse(
+            "project-detail",
+            kwargs={"organisation_slug": organisation_slug, "slug": slug},
+        )
+
+        if not is_ai_summarisation_enabled(project):
+            messages.error(
+                request,
+                _("AI summarisation is not enabled for this organisation."),
+            )
+            return redirect(detail_url)
+
+        try:
+            generate_project_summary(
+                project,
+                request=request,
+                allow_regeneration=True,
+                force_regeneration=True,
+            )
+        except Exception:
+            logger.exception(
+                "Failed to force-generate summary for project %s", project.pk
+            )
+            messages.error(
+                request,
+                _("Summary generation failed. Please try again later."),
+            )
+            return redirect(detail_url)
+
+        messages.success(request, _("AI summary generated successfully."))
+        return redirect(detail_url)
+
+
+@method_decorator(csrf_exempt, name="dispatch")
+class SummaryFeedbackView(View):
+    def post(self, request, organisation_slug, slug):
+        project = get_object_or_404(models.Project, slug=slug)
+        if not is_ai_summarisation_enabled(project):
+            return HttpResponse(
+                _("AI summarisation is not enabled for this organisation."),
+                status=403,
+            )
+
+        summary_id = request.POST.get("summary_id")
+        feedback = request.POST.get("feedback")
+
+        if feedback not in ["positive", "negative"] or not summary_id:
+            return HttpResponse("Invalid request", status=400)
+
+        summary = get_object_or_404(ProjectSummary, id=summary_id, project=project)
+
+        user = request.user if request.user.is_authenticated else None
+
+        if not request.session.session_key:
+            request.session.save()
+        session_key = request.session.session_key
+
+        if user:
+            existing_qs = SummaryFeedback.objects.filter(summary=summary, user=user)
+        elif session_key:
+            existing_qs = SummaryFeedback.objects.filter(
+                summary=summary, session_key=session_key
+            )
+        else:
+            existing_qs = SummaryFeedback.objects.none()
+
+        existing_fb = existing_qs.first()
+
+        if existing_fb and existing_fb.feedback == feedback:
+            existing_qs.delete()
+            user_feedback = None
+        else:
+            existing_qs.delete()
+            SummaryFeedback.objects.create(
+                summary=summary,
+                user=user,
+                feedback=feedback,
+                session_key=session_key,
+            )
+            user_feedback = feedback
+
+        return render(
+            request,
+            "a4_candy_projects/_feedback_icons.html",
+            {
+                "user_feedback": user_feedback,
+                "summary_id": summary_id,
+                "project": project,
+            },
+        )

@@ -1,11 +1,12 @@
-import json
+from datetime import timedelta
 from unittest.mock import patch
 
 import pytest
 from django.urls import reverse
+from django.utils import timezone
 
+from apps.projects.utils import is_ai_summarisation_enabled
 from apps.summarization.models import ProjectSummary
-from apps.summarization.project_summary import is_ai_summarisation_enabled
 from apps.summarization.pydantic_models import GeneralInfo
 from apps.summarization.pydantic_models import Phases
 from apps.summarization.pydantic_models import ProjectSummaryResponse
@@ -23,9 +24,9 @@ def project_detail_url(project):
     )
 
 
-def project_summary_url(project):
+def project_generate_summary_url(project):
     return reverse(
-        "project-summary",
+        "project-generate-summary",
         kwargs={
             "slug": project.slug,
             "organisation_slug": project.organisation.slug,
@@ -70,7 +71,7 @@ def test_project_detail_hides_summary_without_org_flag(client, project_factory):
 
     assert response.status_code == 200
     content = response.content.decode()
-    assert "data-project-summary" not in content
+    assert "project-detail__summary" not in content
     assert "Summarize with AI" not in content
 
 
@@ -83,7 +84,7 @@ def test_project_detail_shows_summary_teaser_when_enabled(client, project_factor
 
     assert response.status_code == 200
     content = response.content.decode()
-    assert "data-project-summary" in content
+    assert "summary-card" in content
     assert "Summarize with AI" in content
     assert "Summary of the participation" in content
 
@@ -108,22 +109,21 @@ def test_project_detail_shows_cached_summary(client, project_factory):
     assert response.status_code == 200
     content = response.content.decode()
     assert "Cached overview" in content
-    assert "data-project-summary-generate" not in content
+    assert "summary-card" not in content
+    assert "summary__refresh-btn" in content
 
 
 @pytest.mark.django_db
-def test_project_summary_endpoint_denied_without_org_flag(client, project_factory):
+def test_project_generate_summary_denied_without_org_flag(client, project_factory):
     project = project_factory()
-    response = client.post(project_summary_url(project))
+    response = client.get(project_generate_summary_url(project))
 
     assert response.status_code == 403
 
 
 @pytest.mark.django_db
-@patch("apps.summarization.project_views.generate_project_summary")
-def test_project_summary_endpoint_returns_cached_summary(
-    generate_mock, client, project_factory
-):
+@patch("apps.projects.views.generate_project_summary")
+def test_project_generate_summary_returns_html(generate_mock, client, project_factory):
     organisation = OrganisationFactory(enable_ai_summarisation=True)
     project = project_factory(organisation=organisation)
     summary_obj = ProjectSummary.objects.create(
@@ -135,34 +135,69 @@ def test_project_summary_endpoint_returns_cached_summary(
             phases=Phases(),
         ).model_dump(),
     )
-    generate_mock.return_value = (
-        ProjectSummaryResponse(**summary_obj.response_data),
-        summary_obj,
-    )
+    generate_mock.return_value = ProjectSummaryResponse(**summary_obj.response_data)
 
-    response = client.post(project_summary_url(project))
+    response = client.get(project_generate_summary_url(project))
 
     assert response.status_code == 200
-    payload = response.json()
-    assert payload["has_summary"] is True
-    assert "Generated overview" in payload["html"]
-    assert payload["summary_id"] == summary_obj.pk
-    generate_mock.assert_called_once_with(project, allow_regeneration=False)
+    assert "Generated overview" in response.content.decode()
+    generate_mock.assert_called_once_with(
+        project,
+        request=generate_mock.call_args.kwargs["request"],
+        allow_regeneration=False,
+    )
 
 
 @pytest.mark.django_db
-@patch("apps.summarization.project_views.generate_project_summary")
-def test_project_summary_endpoint_without_cache_returns_empty(
+@patch("apps.projects.views.generate_project_summary")
+def test_project_generate_summary_without_cache_shows_error(
     generate_mock, client, project_factory
 ):
     organisation = OrganisationFactory(enable_ai_summarisation=True)
     project = project_factory(organisation=organisation)
-    generate_mock.return_value = (None, None)
+    generate_mock.return_value = None
 
-    response = client.post(project_summary_url(project))
+    response = client.get(project_generate_summary_url(project))
 
     assert response.status_code == 200
-    assert response.json() == {"has_summary": False}
+    assert "Could not generate the summary" in response.content.decode()
+
+
+@pytest.mark.django_db
+@patch("apps.projects.views.generate_project_summary")
+def test_project_generate_summary_refresh_updates_last_checked_at(
+    generate_mock, client, project_factory
+):
+    organisation = OrganisationFactory(enable_ai_summarisation=True)
+    project = project_factory(organisation=organisation)
+    summary_obj = ProjectSummary.objects.create(
+        project=project,
+        prompt="test",
+        input_text_hash="hash",
+        response_data=ProjectSummaryResponse(
+            general_info=GeneralInfo(summary="Cached overview", goals=[]),
+            phases=Phases(),
+        ).model_dump(),
+    )
+    old_checked_at = timezone.now() - timedelta(hours=2)
+    ProjectSummary.objects.filter(pk=summary_obj.pk).update(
+        last_checked_at=old_checked_at
+    )
+    summary_obj.refresh_from_db()
+
+    def refresh_cache(project, request=None, allow_regeneration=False, **kwargs):
+        summary_obj.last_checked_at = timezone.now()
+        summary_obj.save(update_fields=["last_checked_at"])
+        return ProjectSummaryResponse(**summary_obj.response_data)
+
+    generate_mock.side_effect = refresh_cache
+
+    response = client.get(project_generate_summary_url(project))
+
+    assert response.status_code == 200
+    summary_obj.refresh_from_db()
+    assert summary_obj.last_checked_at > old_checked_at
+    assert "Refresh" in response.content.decode()
 
 
 @pytest.mark.django_db
@@ -187,7 +222,7 @@ def test_project_summary_generate_denies_non_staff(client, project_factory):
 
 
 @pytest.mark.django_db
-@patch("apps.summarization.project_views.generate_project_summary")
+@patch("apps.projects.views.generate_project_summary")
 def test_project_summary_generate_triggers_for_staff(
     generate_mock, client, project_factory
 ):
@@ -204,6 +239,7 @@ def test_project_summary_generate_triggers_for_staff(
     (called_project,) = generate_mock.call_args.args
     assert called_project.pk == project.pk
     assert generate_mock.call_args.kwargs == {
+        "request": generate_mock.call_args.kwargs["request"],
         "allow_regeneration": True,
         "force_regeneration": True,
     }
@@ -214,8 +250,7 @@ def test_project_summary_feedback_requires_enabled_org(client, project_factory):
     project = project_factory()
     response = client.post(
         project_summary_feedback_url(project),
-        data=json.dumps({"summary_id": 1, "feedback": "positive"}),
-        content_type="application/json",
+        data={"summary_id": 1, "feedback": "positive"},
     )
 
     assert response.status_code == 403
@@ -239,8 +274,7 @@ def test_project_summary_feedback_stores_vote(client, project_factory):
 
     response = client.post(
         project_summary_feedback_url(project),
-        data=json.dumps({"summary_id": summary.pk, "feedback": "positive"}),
-        content_type="application/json",
+        data={"summary_id": summary.pk, "feedback": "positive"},
     )
 
     assert response.status_code == 200

@@ -5,11 +5,10 @@ import pytest
 from django.test.utils import override_settings
 from django.utils import timezone
 
+from apps.projects.summary_tasks import generate_project_summary_task
+from apps.projects.summary_tasks import refresh_project_summaries
+from apps.projects.utils import project_needs_summary_refresh
 from apps.summarization.models import ProjectSummary
-from apps.summarization.project_summary import project_needs_summary_refresh
-from apps.summarization.tasks import get_projects_due_for_summary_refresh
-from apps.summarization.tasks import refresh_project_summaries
-from apps.summarization.tasks import refresh_project_summary
 from tests.factories import OrganisationFactory
 
 
@@ -73,68 +72,55 @@ def test_project_needs_summary_refresh_when_cache_is_fresh(project_factory):
     PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES=720,
     PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN=0,
 )
-@patch("apps.summarization.project_summary.project_needs_summary_refresh")
-def test_get_projects_due_for_summary_refresh_filters_by_ai_flag(
-    needs_refresh_mock, project_factory
-):
+def test_refresh_project_summaries_only_enqueues_ai_enabled_orgs(project_factory):
     enabled_org = OrganisationFactory(enable_ai_summarisation=True)
     disabled_org = OrganisationFactory(enable_ai_summarisation=False)
     enabled_project = project_factory(organisation=enabled_org)
-    disabled_project = project_factory(organisation=disabled_org)
+    project_factory(organisation=disabled_org)
 
-    def needs_refresh_side_effect(project):
-        return project.pk == enabled_project.pk
+    with patch(
+        "apps.projects.summary_tasks.generate_project_summary_task.delay"
+    ) as delay_mock:
+        refresh_project_summaries()
 
-    needs_refresh_mock.side_effect = needs_refresh_side_effect
-
-    due_projects = get_projects_due_for_summary_refresh()
-
-    assert due_projects == [enabled_project]
-    assert disabled_project not in due_projects
+    delay_mock.assert_called_once_with(enabled_project.id)
 
 
 @pytest.mark.django_db
-@patch("apps.summarization.tasks.generate_project_summary")
-def test_refresh_project_summary_skips_org_without_ai_flag(
+@patch("apps.projects.summary_tasks.generate_project_summary")
+def test_generate_project_summary_task_skips_org_without_ai_flag(
     generate_mock, project_factory
 ):
     project = project_factory()
 
-    refresh_project_summary(project.pk)
+    generate_project_summary_task(project.pk)
 
     generate_mock.assert_not_called()
 
 
 @pytest.mark.django_db
 @override_settings(PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES=720)
-@patch("apps.summarization.tasks.generate_project_summary")
-def test_refresh_project_summary_generates_for_enabled_org(
+@patch("apps.projects.summary_tasks.generate_project_summary")
+def test_generate_project_summary_task_generates_for_enabled_org(
     generate_mock, project_factory
 ):
     organisation = OrganisationFactory(enable_ai_summarisation=True)
     project = project_factory(organisation=organisation)
 
-    refresh_project_summary(project.pk)
+    generate_project_summary_task(project.pk)
 
     generate_mock.assert_called_once()
     (called_project,) = generate_mock.call_args.args
     assert called_project.pk == project.pk
-    assert generate_mock.call_args.kwargs == {"allow_regeneration": True}
+    assert generate_mock.call_args.kwargs["allow_regeneration"] is True
 
 
 @pytest.mark.django_db
-@patch("apps.summarization.tasks.refresh_project_summary.delay")
-@patch(
-    "apps.summarization.tasks.get_projects_due_for_summary_refresh",
-    autospec=True,
-)
-def test_refresh_project_summaries_enqueues_due_projects(
-    due_projects_mock, delay_mock, project_factory
-):
+@patch("apps.projects.summary_tasks.generate_project_summary_task.delay")
+def test_refresh_project_summaries_enqueues_stale_projects(delay_mock, project_factory):
     organisation = OrganisationFactory(enable_ai_summarisation=True)
     project = project_factory(organisation=organisation)
-    due_projects_mock.return_value = [project]
 
     refresh_project_summaries()
 
-    delay_mock.assert_called_once_with(project.pk)
+    delay_mock.assert_called_once_with(project.id)
