@@ -47,6 +47,61 @@ $project-detail-page-inset-tablet-right: 21px;
     }
 }
 
+// Full-bleed module phase panels (e.g. idea list) inside `.project-detail__inner`:
+// cancel inner gutters for the background, then restore them for panel content.
+@mixin project-detail-module-panel-bleed {
+    @media (max-width: $breakpoint-down) {
+        margin-left: -$spacer;
+        margin-right: -$spacer;
+        padding-left: $spacer;
+        padding-right: $spacer;
+    }
+
+    @media (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
+        margin-left: -$project-detail-page-inset-tablet-left;
+        margin-right: -$project-detail-page-inset-tablet-right;
+        padding-left: $project-detail-page-inset-tablet-left;
+        padding-right: $project-detail-page-inset-tablet-right;
+    }
+
+    @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg-down) {
+        margin-left: calc(-1 * clamp(1rem, 2vw, 2rem));
+        margin-right: calc(-1 * clamp(1rem, 2vw, 2rem));
+        padding-left: clamp(1rem, 2vw, 2rem);
+        padding-right: clamp(1rem, 2vw, 2rem);
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        margin-left: calc(-1 * clamp(1rem, 4vw, 5rem));
+        margin-right: calc(-1 * clamp(1rem, 4vw, 5rem));
+        padding-left: clamp(1rem, 4vw, 5rem);
+        padding-right: clamp(1rem, 4vw, 5rem);
+    }
+}
+
+// Full-bleed timeline carousel inside `.project-detail__inner` (margins only).
+@mixin project-detail-timeline-bleed {
+    @media (max-width: $breakpoint-down) {
+        margin-left: -$spacer;
+        margin-right: -$spacer;
+    }
+
+    @media (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
+        margin-left: -$project-detail-page-inset-tablet-left;
+        margin-right: -$project-detail-page-inset-tablet-right;
+    }
+
+    @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg-down) {
+        margin-left: calc(-1 * clamp(1rem, 2vw, 2rem));
+        margin-right: calc(-1 * clamp(1rem, 2vw, 2rem));
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        margin-left: calc(-1 * clamp(1rem, 4vw, 5rem));
+        margin-right: calc(-1 * clamp(1rem, 4vw, 5rem));
+    }
+}
+
 // stylelint-disable
 @function contrast-color($color) {
     @if  lightness($color) > 50 {

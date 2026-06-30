@@ -1,4 +1,11 @@
 $timeline-carousel__top-space: 12px;
+$timeline-carousel__arrow-icon-size: 16px;
+$timeline-carousel__arrow-padding: 4px;
+$timeline-carousel__arrow-margin: 12.75px;
+$timeline-carousel__arrow-border: #fafafa;
+$timeline-carousel__arrow-hit-size: $timeline-carousel__arrow-icon-size + (2 * $timeline-carousel__arrow-padding);
+$timeline-carousel__dot-size: 12px;
+$timeline-carousel__dot-size-active: 22px;
 
 .timeline-carousel__container {
     max-width: 1140px; // same width as widest container
@@ -18,10 +25,10 @@ $timeline-carousel__top-space: 12px;
     padding: 0;
     margin-bottom: 3px;
     border-radius: 50%;
-    height: 12px;
-    width: 12px;
+    height: $timeline-carousel__dot-size;
+    width: $timeline-carousel__dot-size;
     vertical-align: middle;
-    transition: transform 0.2s;
+    transition: transform 0.2s, width 0.2s, height 0.2s, border 0.2s, background-color 0.2s;
     transform-origin: 50% 50%;
 }
 
@@ -34,14 +41,6 @@ $timeline-carousel__top-space: 12px;
     text-align: left;
     transition: transform 0.2s;
     transform-origin: 50% 50%;
-}
-
-.timeline-carousel__line {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: $timeline-carousel__top-space;
-    border-top: 1px dotted $border-color;
 }
 
 .timeline-carousel__title {
@@ -74,7 +73,7 @@ $timeline-carousel__top-space: 12px;
     .slick-slide:hover {
         outline: none;
 
-        .timeline-carousel__dot {
+        .timeline-carousel__dot:not(.initial) {
             transform: scale(1.85);
         }
 
@@ -83,54 +82,57 @@ $timeline-carousel__top-space: 12px;
         }
     }
 
-    // slick overwrites - nested for specificity
-    .slick-prev,
-    .slick-next {
+    // Figma 5405:17573 — 4px padding, 12.75px outer margin, 16px chevron
+    @mixin timeline-carousel-arrow {
         top: $timeline-carousel__top-space;
-        text-align: center;
-        width: 25px;
-        height: 25px;
-        border-radius: 100%;
-        border: 1px solid $border-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $timeline-carousel__arrow-hit-size;
+        height: $timeline-carousel__arrow-hit-size;
+        padding: $timeline-carousel__arrow-padding;
+        box-sizing: border-box;
+        border-radius: 12.5px;
+        border: 1px solid $timeline-carousel__arrow-border;
         background-color: $body-bg;
+        z-index: 1;
 
         @media screen and (min-width: $breakpoint) {
             z-index: 1; // for when tile links overlap - on mobile people swipe
         }
 
         &:hover,
-        :focus {
+        &:focus {
             background-color: $body-bg;
         }
 
         &:before {
-            color: $brand-primary;
+            position: static;
+            display: block;
+            color: $print-black;
             opacity: 100%;
             font-family: "Font Awesome 7 Free", sans-serif;
             font-weight: 900;
-            font-size: $font-size-lg;
-            line-height: 1.3rem;
+            font-size: $timeline-carousel__arrow-icon-size;
+            line-height: 1;
         }
     }
 
-    .slick-prev:before {
-        content: "\f104"; // angle-left
-    }
+    .slick-prev {
+        @include timeline-carousel-arrow;
+        left: $timeline-carousel__arrow-margin !important;
 
-    .slick-next:before {
-        content: "\f105"; // angle-right
-    }
-}
-
-// mobile slick overwrites
-@media screen and (max-width: $breakpoint-xl-down) {
-    .timeline-carousel {
-        .slick-next {
-            right: 0 !important;
+        &:before {
+            content: "\f104"; // angle-left
         }
+    }
 
-        .slick-prev {
-            left: 0 !important;
+    .slick-next {
+        @include timeline-carousel-arrow;
+        right: $timeline-carousel__arrow-margin !important;
+
+        &:before {
+            content: "\f105"; // angle-right
         }
     }
 }
@@ -149,7 +151,11 @@ $timeline-carousel__top-space: 12px;
     }
 
     &.timeline-carousel__dot {
-        transform: scale(1.85);
+        width: $timeline-carousel__dot-size-active;
+        height: $timeline-carousel__dot-size-active;
+        background-color: $body-bg;
+        border: 2px solid $brand-primary;
+        transform: none;
     }
 }
 

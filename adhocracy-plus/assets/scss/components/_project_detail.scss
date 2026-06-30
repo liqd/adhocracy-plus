@@ -99,12 +99,98 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
     line-height: 1.2;
 }
 
+@media (min-width: $breakpoint) {
+    .project-detail--module .project-detail__module-intro .project-detail__title {
+        font-size: $font-size-xxl;
+        line-height: 1.2;
+    }
+}
+
+// Legacy Bootstrap column wrappers in phase views; span the full project-detail
+// grid width (Figma content column ~856px). Scoped to phase_content output only.
+.project-detail__module-phase {
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    [class*='offset-md-'],
+    [class*='offset-lg-'] {
+        margin-left: 0;
+    }
+
+    .row > [class*='col-'] {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    // Grey idea/list panels: full card width, content on inner grid.
+    // 48px grey top band; sort control sits halfway on it (24px overlap, 24px to ideas).
+    .l-top-overlap {
+        bottom: -3 * $spacer;
+    }
+
+    .bg--light {
+        @include project-detail-module-panel-bleed;
+        padding-top: 3 * $spacer;
+        margin-top: $spacer;
+    }
+
+    .map-list-view .filter-bar__spaced {
+        margin-bottom: 1.5 * $spacer;
+    }
+
+    .map-list-view .view-toggle .filter-bar__spaced {
+        margin-bottom: 0.5 * $spacer;
+    }
+}
+
 .project-detail__description {
     font-size: $font-size-base;
     font-weight: 400;
     line-height: 1.5;
     margin-bottom: 1.5 * $spacer;
     color: $text-color;
+}
+
+.project-detail__module-intro {
+    margin-bottom: 2 * $spacer;
+
+    .project-detail__title {
+        margin-bottom: $spacer;
+    }
+
+    .project-detail__description {
+        margin-bottom: 0;
+    }
+}
+
+.project-detail__module-notice,
+.project-detail__module-visibility {
+    margin: 0 0 1.5 * $spacer;
+}
+
+.project-detail__module-phases {
+    width: 100%;
+}
+
+.project-detail__other-modules {
+    margin-top: 3 * $spacer;
+}
+
+.project-detail--module .timeline-carousel__wrapper {
+    @include project-detail-timeline-bleed;
+    width: auto;
+}
+
+.project-detail--module .timeline-carousel,
+.project-detail--module .timeline-carousel__container {
+    max-width: none;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .project-detail__actions {
@@ -359,6 +445,10 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
     font-size: $font-size-xl;
     font-weight: $demi-bold;
     margin: 0 0 1.5 * $spacer;
+}
+
+.project-detail__other-modules .project-detail__section-title {
+    text-align: center;
 }
 
 .project-detail__events,
@@ -1088,6 +1178,53 @@ $project-detail-timeline-meta-icon-gap: 8px;
 
     .project-detail__participation-title {
         margin-bottom: 0;
+    }
+
+    .project-detail--module {
+        .project-detail__title {
+            font-size: $font-size-lg;
+            line-height: 1.2;
+        }
+
+        .project-detail__intro .project-detail__title {
+            margin-bottom: 0.625rem;
+        }
+
+        .project-detail__description {
+            font-size: $font-size-sm;
+            line-height: 1.5;
+        }
+
+        .project-detail__intro .project-detail__description {
+            margin-bottom: 1.25rem;
+        }
+
+        .project-detail__intro {
+            gap: 1.25rem;
+            margin-bottom: 3.125rem;
+        }
+
+        .project-detail__breadcrumbs {
+            margin-bottom: 1.875rem;
+        }
+
+        .project-detail__content {
+            padding-top: 0;
+        }
+
+        .timeline-carousel {
+            margin-bottom: 0.625rem;
+        }
+
+        .project-detail__module-intro {
+            margin-bottom: 1.25rem;
+
+            .project-detail__title {
+                font-size: $font-size-lg;
+                line-height: 1.2;
+                margin-bottom: 0.625rem;
+            }
+        }
     }
 
     .project-detail__insights-actions {
