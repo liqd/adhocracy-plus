@@ -123,6 +123,12 @@ function initContainer (container) {
 
   let suppressFileRemovedHandler = false
 
+  const getImageEditor = () => uppy.getPlugin('ImageEditor')
+
+  const stopImageEditor = () => {
+    getImageEditor()?.stop()
+  }
+
   const uppy = new Uppy({
     autoProceed: false,
     restrictions: {
@@ -153,7 +159,12 @@ function initContainer (container) {
     cropperOptions: {
       viewMode: 1,
       autoCropArea: 1,
-      ...(config.aspectRatio ? { aspectRatio: config.aspectRatio } : {}),
+      ...(config.aspectRatio
+        ? {
+            aspectRatio: config.aspectRatio,
+            initialAspectRatio: config.aspectRatio
+          }
+        : {}),
       croppedCanvasOptions: config.outputWidth && config.outputHeight
         ? {
             width: config.outputWidth,
@@ -178,11 +189,17 @@ function initContainer (container) {
   uppy.use(Compressor, compressorOptions)
 
   uppy.on('file-added', (file) => {
+    // Uppy does not destroy the cropper on editor cancel; stop before the next file.
+    stopImageEditor()
     uppy.getFiles().forEach((existingFile) => {
       if (existingFile.id !== file.id) {
         uppy.removeFile(existingFile.id)
       }
     })
+  })
+
+  uppy.on('file-editor:cancel', () => {
+    stopImageEditor()
   })
 
   uppy.on('file-editor:complete', () => {
@@ -193,7 +210,7 @@ function initContainer (container) {
     const file = result.successful[0] || uppy.getFiles()[0]
     if (file) {
       syncFileToInput(file)
-      uppy.getPlugin('ImageEditor')?.stop()
+      stopImageEditor()
       suppressFileRemovedHandler = true
       uppy.getFiles().forEach((uppyFile) => {
         uppy.removeFile(uppyFile.id)
