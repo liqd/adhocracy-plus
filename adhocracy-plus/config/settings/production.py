@@ -52,8 +52,4 @@ CELERY_BEAT_SCHEDULE = {
         "task": "send_upcoming_event_notifications",
         "schedule": timedelta(days=3),
     },
-    "refresh_project_summaries": {
-        "task": "refresh_project_summaries",
-        "schedule": timedelta(minutes=30),
-    },
 }
