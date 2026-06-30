@@ -108,32 +108,35 @@
                 <a href="{% url 'project-results' organisation_slug=project.organisation.slug slug=project.slug %}"
                    class="summary__results-arrow"
                    aria-label="{% trans 'To read all the results of this participation' %}">
-                    {% include "summarization/_summary_arrow_icon.html" with size="sm" %}
+                    {% include "a4_candy_projects/_summary_arrow_icon.html" with size="sm" %}
                 </a>
             </div>
 
             {% if response.phases.past.modules %}
-                {% include "summarization/_summary_section.html" with project=project modules=response.phases.past.modules show_debug=show_debug id="pastModules" %}
+                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.past.modules show_debug=show_debug id="pastModules" %}
             {% endif %}
 
             {% if response.phases.current.modules %}
-                {% include "summarization/_summary_section.html" with project=project modules=response.phases.current.modules show_debug=show_debug id="currentModules" %}
+                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.current.modules show_debug=show_debug id="currentModules" %}
             {% endif %}
 
             {% if response.phases.upcoming.modules %}
-                {% include "summarization/_summary_section.html" with project=project modules=response.phases.upcoming.modules show_debug=show_debug id="upcomingModules" %}
+                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.upcoming.modules show_debug=show_debug id="upcomingModules" %}
             {% endif %}
 
             {% if summary_id %}
             <div class="summary__footer">
-                <button
-                    type="button"
-                    class="summary__refresh-btn"
-                    data-project-summary-refresh>
+                <button type="button"
+                        class="summary__refresh-btn"
+                        hx-get="{% url 'project-generate-summary' organisation_slug=project.organisation.slug slug=project.slug %}"
+                        hx-target="#summary-content"
+                        hx-swap="innerHTML"
+                        hx-disabled-elt="this"
+                        hx-indicator="this">
                     <i class="fas fa-arrows-rotate" aria-hidden="true"></i>
                     {% trans 'Refresh' %}
                 </button>
-                {% include "summarization/_feedback_icons.html" with summary_id=summary_id user_feedback=user_feedback %}
+                {% include "a4_candy_projects/_feedback_icons.html" with summary_id=summary_id user_feedback=user_feedback project=project %}
             </div>
             {% endif %}
         </div>

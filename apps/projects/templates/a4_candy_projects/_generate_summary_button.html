@@ -1,0 +1,53 @@
+<style>
+.loading-spinner {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+.htmx-request .hide-when-loading {
+    display: none;
+}
+.htmx-request .loading-spinner {
+    display: flex !important;
+}
+</style>
+
+<script>
+    document.body.addEventListener('htmx:afterSwap', function(evt) {
+    if (evt.detail.target.id === 'summary-content') {
+        const summaryContent = document.getElementById('summary-content');
+        const summaryCard = document.getElementById('summary-card');
+
+        if (summaryContent && summaryContent.innerHTML.trim() !== '') {
+            summaryCard.style.display = 'none';
+        }
+    }
+});
+</script>
+{% load i18n %}
+
+<div id="summary-card" class="summary-prompt-card" hx-indicator="this">
+    <div class="hide-when-loading">
+        <div class="summary-text">
+            <strong class="summary-title">{% trans 'Summary of the participation' %}</strong>
+            <p class="summary-description">{% trans 'Automatically generated overview of the key topics, sentiments, and insights from this participation.' %}</p>
+        </div>
+        <div class="summary-button">
+            <button hx-get="{% url 'project-generate-summary' organisation_slug=project.organisation.slug slug=project.slug %}"
+                    hx-target="#summary-content"
+                    class="btn btn--transparent project-summary__generate-btn">
+                <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+                {% trans 'Summarize with AI' %}
+            </button>
+        </div>
+    </div>
+    <div class="htmx-indicator loading-spinner">
+        <div class="project-summary__spinner" role="status" aria-live="polite">
+            <span class="visually-hidden">{% trans 'Generating AI summary' %}</span>
+        </div>
+        <span>{% trans 'Generating AI summary' %}</span>
+    </div>
+</div>
+<div id="summary-content" class="summary__container"></div>
