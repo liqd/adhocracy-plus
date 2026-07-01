@@ -149,6 +149,9 @@ const PollResult = ({ question }) => {
         <h2>{question.label}</h2>
         <QuestionImage imageUrl={question.image_url} alt={question.label} />
         <div className="a4-muted">{getHelpText}</div>
+        <p className="poll__confidential-notice">
+          {django.gettext('Answers to this question will be visible only to the initiators of this project.')}
+        </p>
       </div>
     )
   }
