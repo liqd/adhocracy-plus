@@ -1,4 +1,3 @@
-// apps/polls/assets/react_polls/components/ResultsView.jsx
 import React from 'react'
 import django from 'django'
 import PollResults from './PollResults'
@@ -13,16 +12,18 @@ const ResultsView = ({ results, hasUserVote, alert, onBackToPoll, onChangeAnswer
 
       {alert && <Alert {...alert} />}
 
-      <div className="poll">
+      <div className="poll poll__preliminary-results-buttons">
         {hasUserVote
           ? (
-            <button
-              type="button"
-              className="btn poll__btn--link"
-              onClick={onChangeAnswer}
-            >
-              {django.gettext('Change answer')}
-            </button>
+            <div className="text-end">
+              <button
+                type="button"
+                className="btn btn--transparent"
+                onClick={onChangeAnswer}
+              >
+                {django.gettext('Change my answers')}
+              </button>
+            </div>
             )
           : (
             <button
