@@ -3,7 +3,6 @@ import React, { useReducer, useMemo, useEffect } from 'react'
 import django from 'django'
 
 import Alert from 'adhocracy4/adhocracy4/static/Alert'
-import { TermsOfUseCheckbox } from 'adhocracy4/adhocracy4/static/TermsOfUseCheckbox'
 import ProsopoCaptcha from './ProsopoCaptcha'
 import StartScreen from './components/StartScreen'
 import QuestionFunnel from './components/QuestionFunnel'
@@ -15,12 +14,21 @@ import { pollReducer, initialState } from './reducers/pollReducer'
 import { STATES } from './utils/stateMachine'
 import { getAnsweredCount } from './utils/pollHelpers'
 
-const PollQuestions = ({ pollId, captchaEnabled, prosopoSiteKey }) => {
+const captchaWidgets = {
+  prosopo: ProsopoCaptcha
+}
+
+function getCaptchaWidget (type) {
+  return captchaWidgets[type]
+}
+
+const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, manualLink }) => {
   const [state, dispatch] = useReducer(pollReducer, initialState)
 
   usePollData(pollId, dispatch)
 
   const actions = usePollActions(state, dispatch, pollId)
+  const CaptchaWidget = getCaptchaWidget(captchaType)
 
   const currentQuestion = useMemo(
     () => state.questions[state.currentQuestionIndex],
@@ -37,7 +45,7 @@ const PollQuestions = ({ pollId, captchaEnabled, prosopoSiteKey }) => {
     [state.questions, state.userAnswers]
   )
 
-  const showCaptcha = state.captchaEnabled &&
+  const showCaptcha = captchaEnabled &&
     state.allowUnregisteredUsers &&
     !state.isAuthenticated
 
@@ -65,6 +73,7 @@ const PollQuestions = ({ pollId, captchaEnabled, prosopoSiteKey }) => {
         return (
           <ResultsView
             results={state.results}
+            totalParticipants={state.totalParticipants}
             hasUserVote={state.hasUserVote}
             alert={state.alert}
             onBackToPoll={actions.handleBackToPoll}
@@ -75,10 +84,15 @@ const PollQuestions = ({ pollId, captchaEnabled, prosopoSiteKey }) => {
       case STATES.START_SCREEN:
         return (
           <StartScreen
+            moduleName={state.moduleName}
+            moduleDescription={state.moduleDescription}
             totalQuestions={state.questions.length}
+            totalParticipants={state.totalParticipants}
             isAuthenticated={state.isAuthenticated}
             allowUnregisteredUsers={state.allowUnregisteredUsers}
+            manualLink={manualLink}
             onStart={actions.handleStartPoll}
+            onShowResults={actions.handleShowResults}
           />
         )
 
@@ -101,6 +115,11 @@ const PollQuestions = ({ pollId, captchaEnabled, prosopoSiteKey }) => {
                 onNext={actions.handleNext}
                 onSubmit={actions.handleSubmitAll}
                 isLoading={state.isSubmitting}
+                useTermsOfUse={state.useTermsOfUse}
+                agreedTermsOfUse={state.agreedTermsOfUse}
+                orgTermsUrl={state.orgTermsUrl}
+                checkedTermsOfUse={state.checkedTermsOfUse}
+                onSetCheckedTerms={actions.handleSetCheckedTerms}
               />
             </form>
 
@@ -108,18 +127,8 @@ const PollQuestions = ({ pollId, captchaEnabled, prosopoSiteKey }) => {
               <Alert onClick={actions.handleClearAlert} {...state.alert} />
             )}
 
-            {state.useTermsOfUse && !state.agreedTermsOfUse && (
-              <div className="col-12 mt-4">
-                <TermsOfUseCheckbox
-                  id="terms-of-use"
-                  onChange={actions.handleSetCheckedTerms}
-                  orgTermsUrl={state.orgTermsUrl}
-                />
-              </div>
-            )}
-
             {showCaptcha && (
-              <ProsopoCaptcha
+              <CaptchaWidget
                 key={state.refreshCaptcha}
                 siteKey={prosopoSiteKey}
                 language={document.documentElement.lang || 'de'}

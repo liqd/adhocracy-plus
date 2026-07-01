@@ -7,6 +7,7 @@ const NavigationButtons = ({
   totalQuestions,
   isLastQuestion,
   isLoading,
+  isSubmitDisabled,
   onBack,
   onSkip,
   onNext,
@@ -17,11 +18,11 @@ const NavigationButtons = ({
       <div>
         <button
           type="button"
-          className="btn btn--transparent"
+          className="btn btn--transparent btn--transparent-bordered"
           onClick={onBack}
           disabled={currentIndex === 0}
         >
-          {django.gettext('Back')}
+          {django.gettext('Go Back')}
         </button>
       </div>
       <div>
@@ -48,7 +49,7 @@ const NavigationButtons = ({
               type="button"
               className="btn poll__btn--dark"
               onClick={onSubmit}
-              disabled={isLoading}
+              disabled={isLoading || isSubmitDisabled}
             >
               {isLoading ? django.gettext('Submitting...') : django.gettext('Submit All')}
             </button>

@@ -11,7 +11,7 @@
     border-radius: $choice-border-radius;
     cursor: pointer;
     transition: $choice-transition;
-    margin-bottom: 12px;
+    margin-bottom: 9px;
     position: relative;
     overflow: hidden;
 
@@ -59,9 +59,15 @@
         }
 
         &:hover {
+            background: $white;
+            border: 1px solid $gray-lightest;
+            transform: none;
+            box-shadow: none;
+        }
+
+        &.poll-choice--checked:hover {
             background: $brand-primary-100;
             border: 1px solid $brand-primary;
-            transform: none;
         }
     }
 }
@@ -184,8 +190,7 @@
 }
 
 .poll-choice__percentage {
-    font-weight: 600;
-    color: $brand-primary;
+    color: $text-color-gray;
     flex-shrink: 0;
 }
 

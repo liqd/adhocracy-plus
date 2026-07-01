@@ -3,11 +3,19 @@ export const hasValidAnswer = (question, answer) => {
 
   if (question.is_open) {
     return answer.open_answer && answer.open_answer.trim() !== ''
-  } else {
-    const hasChoice = answer.choices && answer.choices.length > 0
-    const hasOtherAnswer = answer.other_choice_answer && answer.other_choice_answer.trim() !== ''
-    return hasChoice || hasOtherAnswer
   }
+
+  const hasChoice = answer.choices && answer.choices.length > 0
+  const hasOtherAnswer = answer.other_choice_answer && answer.other_choice_answer.trim() !== ''
+
+  if (hasChoice && question.choices) {
+    const otherChoice = question.choices.find(c => c.is_other_choice)
+    if (otherChoice && answer.choices.includes(otherChoice.id)) {
+      return hasOtherAnswer
+    }
+  }
+
+  return hasChoice || hasOtherAnswer
 }
 
 export const buildVoteData = (userAnswers) => {

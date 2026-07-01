@@ -7,13 +7,13 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <form action="{% pageurl page %}" method="POST">
+            <form action="{% pageurl page %}" method="post">
                 <div class="form-group">
                     {% csrf_token %}
                     {% include 'a4_candy_cms_contacts/form_fields.html' with fields=form %}
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn--transparent btn--full" type="submit">{% translate "Send" %}</button>
+                    <button class="btn btn--transparent btn--transparent-bordered btn--full" type="submit">{% translate "Send" %}</button>
                 </div>
             </form>
         </div>

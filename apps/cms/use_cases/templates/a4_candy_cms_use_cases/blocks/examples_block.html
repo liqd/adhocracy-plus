@@ -8,11 +8,11 @@
             {% elif example.body and example.link %}
             {{ example.body }}
             <div class="block-col_cta-content">
-                <a href="{{ example.link }}" class="btn btn--full btn--transparent">{{ example.link_text }}</a>
+                <a href="{{ example.link }}" class="btn btn--full btn--transparent btn--transparent-bordered">{{ example.link_text }}</a>
             </div>
             {% else %}
             <div class="block-col_cta-btn">
-                <a href="{{ example.link }}" class="btn btn--full btn--transparent">{{ example.link_text }}</a>
+                <a href="{{ example.link }}" class="btn btn--full btn--transparent btn--transparent-bordered">{{ example.link_text }}</a>
             </div>
             {% endif %}
         </div>

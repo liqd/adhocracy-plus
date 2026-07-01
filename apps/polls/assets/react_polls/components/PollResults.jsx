@@ -1,47 +1,75 @@
 // PollResult.jsx - Simplified version
-import React, { useState, useCallback, useMemo } from 'react'
+import React, { useState, useCallback, useMemo, useRef } from 'react'
 import Slider from 'react-slick'
 import django from 'django'
 import { ChoiceRow } from './ChoiceRow'
 import QuestionImage from 'adhocracy4/adhocracy4/polls/static/PollDetail/QuestionImage'
 
-const SliderArrow = ({ className, style, onClick, currentSlide, slideCount }) => {
-  const isPrev = className.includes('slick-prev')
-  const disabled = isPrev
-    ? currentSlide === 0
-    : currentSlide === slideCount - 1
+const PollQuestionSlider = ({ answers, isUserAnswer }) => {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const sliderRef = useRef(null)
+  const total = answers.length
 
-  const label = isPrev
-    ? django.gettext('Previous answer')
-    : django.gettext('Next answer')
+  const settings = {
+    arrows: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    infinite: false,
+    centerMode: true,
+    centerPadding: '0px',
+    afterChange: (current) => setCurrentSlide(current)
+  }
 
   return (
-    <button
-      type="button"
-      className={className}
-      style={style}
-      onClick={disabled ? null : onClick}
-      aria-label={label}
-      aria-disabled={disabled}
-      disabled={disabled}
-    />
+    <div className="poll-slider">
+      <Slider ref={sliderRef} {...settings}>
+        {answers.map((slide, index) => (
+          <div
+            className="poll-slider__item"
+            key={slide.id || index}
+            role="group"
+            aria-label={django.interpolate(
+              django.gettext('Answer %(current)s of %(total)s'),
+              { current: index + 1, total },
+              true
+            )}
+          >
+            <div className="poll-slider__answer">
+              {isUserAnswer(slide) && (
+                <i className="fas fa-check-circle" aria-label={django.gettext('Your answer')} />
+              )}
+              <span>{slide.answer}</span>
+            </div>
+          </div>
+        ))}
+      </Slider>
+      <div className="poll-slider__footer">
+        <span className="poll-slider__count">{currentSlide + 1}/{total}</span>
+        <div className="poll-slider__nav">
+          <button
+            type="button"
+            onClick={() => sliderRef.current?.slickPrev()}
+            disabled={currentSlide === 0}
+            aria-label={django.gettext('Previous answer')}
+          >
+            <i className="fa-solid fa-chevron-left" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={() => sliderRef.current?.slickNext()}
+            disabled={currentSlide === total - 1}
+            aria-label={django.gettext('Next answer')}
+          >
+            <i className="fa-solid fa-chevron-right" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }
 
 const OtherAnswersSection = ({ otherAnswers, isUserAnswer, showOtherAnswers, onToggle }) => {
-  const settings = {
-    arrows: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    className: 'poll-slider',
-    infinite: false,
-    centerMode: true,
-    centerPadding: '0px',
-    prevArrow: <SliderArrow />,
-    nextArrow: <SliderArrow />
-  }
-
   if (!otherAnswers?.length) return null
 
   return (
@@ -56,30 +84,7 @@ const OtherAnswersSection = ({ otherAnswers, isUserAnswer, showOtherAnswers, onT
 
       {showOtherAnswers && (
         <div className="poll-result-other-section__slider">
-          <Slider {...settings}>
-            {otherAnswers.map((slide, index) => (
-              <div
-                className="poll-slider__item"
-                key={slide.id || index}
-                role="group"
-                aria-label={django.interpolate(
-                  django.gettext('Answer %(current)s of %(total)s'),
-                  { current: index + 1, total: otherAnswers.length },
-                  true
-                )}
-              >
-                <div className="poll-slider__answer">
-                  {isUserAnswer(slide) && (
-                    <i className="fas fa-check-circle" aria-label={django.gettext('Your answer')} />
-                  )}
-                  <span>{slide.answer}</span>
-                </div>
-                <div className="poll-slider__count">
-                  {index + 1}/{otherAnswers.length}
-                </div>
-              </div>
-            ))}
-          </Slider>
+          <PollQuestionSlider answers={otherAnswers} isUserAnswer={isUserAnswer} />
         </div>
       )}
     </div>
@@ -147,8 +152,12 @@ const PollResult = ({ question }) => {
     return (
       <div className="poll poll--result poll--confidential">
         <h2>{question.label}</h2>
-        <QuestionImage imageUrl={question.image_url} alt={question.label} />
+        {question.image_url && <QuestionImage imageUrl={question.image_url} alt={question.image_alt_text || question.label} />}
         <div className="a4-muted">{getHelpText}</div>
+        <p className="poll__confidential-notice">
+          <i className="fa fa-lock" aria-hidden="true" />{' '}
+          {django.gettext('Answers to this question will be visible only to the initiators of this project.')}
+        </p>
       </div>
     )
   }
@@ -158,7 +167,7 @@ const PollResult = ({ question }) => {
   return (
     <div className="poll poll--result">
       <h2>{question.label}</h2>
-      <QuestionImage imageUrl={question.image_url} alt={question.label} />
+      {question.image_url && <QuestionImage imageUrl={question.image_url} alt={question.image_alt_text || question.label} />}
 
       <div className="poll__rows">
         {/* Non-open questions - reuse ChoiceRow */}
@@ -192,35 +201,7 @@ const PollResult = ({ question }) => {
 
         {/* Open questions */}
         {question.is_open && question.answers?.length > 0 && (
-          <div className="poll-slider__container">
-            <Slider {...{
-              arrows: true,
-              speed: 500,
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              className: 'poll-slider',
-              infinite: false,
-              centerMode: true,
-              centerPadding: '0px',
-              prevArrow: <SliderArrow />,
-              nextArrow: <SliderArrow />
-            }}
-            >
-              {question.answers.map((slide, index) => (
-                <div className="poll-slider__item" key={slide.id || index}>
-                  <div className="poll-slider__answer">
-                    {isUserAnswer(slide) && (
-                      <i className="fas fa-check-circle" aria-label={django.gettext('Your answer')} />
-                    )}
-                    <span>{slide.answer}</span>
-                  </div>
-                  <div className="poll-slider__count">
-                    {index + 1}/{question.answers.length}
-                  </div>
-                </div>
-              ))}
-            </Slider>
-          </div>
+          <PollQuestionSlider answers={question.answers} isUserAnswer={isUserAnswer} />
         )}
 
         {/* Help text */}

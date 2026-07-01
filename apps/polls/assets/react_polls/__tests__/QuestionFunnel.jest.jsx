@@ -44,8 +44,10 @@ describe('QuestionFunnel', () => {
   })
 
   it('renders ProgressBar', () => {
-    render(<QuestionFunnel {...baseProps} answeredCount={1} totalQuestions={3} />)
-    expect(screen.getByText('1 of 3 questions answered')).toBeInTheDocument()
+    render(<QuestionFunnel {...baseProps} currentNumber={3} totalQuestions={5} />)
+    const bar = screen.getByRole('progressbar')
+    expect(bar).toBeInTheDocument()
+    expect(bar).toHaveAttribute('aria-valuenow', '50')
   })
 
   it('renders PollChoice for non-open questions', () => {
@@ -70,7 +72,7 @@ describe('QuestionFunnel', () => {
   it('calls onBack on Back click', () => {
     const fn = jest.fn()
     render(<QuestionFunnel {...baseProps} currentNumber={2} totalQuestions={3} onBack={fn} />)
-    fireEvent.click(screen.getByText('Back'))
+    fireEvent.click(screen.getByText('Go Back'))
     expect(fn).toHaveBeenCalledTimes(1)
   })
 

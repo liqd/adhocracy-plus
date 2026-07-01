@@ -17,12 +17,12 @@ describe('NavigationButtons', () => {
 
   it('disables Back on first question', () => {
     render(<NavigationButtons {...defaults} currentIndex={0} />)
-    expect(screen.getByText('Back')).toBeDisabled()
+    expect(screen.getByText('Go Back')).toBeDisabled()
   })
 
   it('enables Back after first question', () => {
     render(<NavigationButtons {...defaults} currentIndex={1} />)
-    expect(screen.getByText('Back')).not.toBeDisabled()
+    expect(screen.getByText('Go Back')).not.toBeDisabled()
   })
 
   it('shows Skip and Next on non-last question', () => {
@@ -45,7 +45,7 @@ describe('NavigationButtons', () => {
   })
 
   it.each([
-    ['Back', 'onBack', 1],
+    ['Go Back', 'onBack', 1],
     ['Skip', 'onSkip', 0],
     ['Next', 'onNext', 0]
   ])('calls %s handler when %s clicked', (label, handler) => {

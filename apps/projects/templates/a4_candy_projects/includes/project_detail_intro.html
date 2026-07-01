@@ -8,7 +8,7 @@
         {% endif %}
         <div class="project-detail__actions">
             {% if not module_page %}
-            <a class="btn btn--transparent project-detail__action project-detail__action--info" href="{% url 'project-information' organisation_slug=project.organisation.slug slug=project.slug %}">
+            <a class="btn btn--transparent btn--transparent-bordered project-detail__action project-detail__action--info" href="{% url 'project-information' organisation_slug=project.organisation.slug slug=project.slug %}">
                 {% translate 'More information' %}
             </a>
             {% endif %}

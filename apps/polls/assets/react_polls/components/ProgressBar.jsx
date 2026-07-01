@@ -1,26 +1,22 @@
 import React from 'react'
-import django from 'django'
 
-const ProgressBar = ({ answered, total }) => {
-  const percentage = total > 0 ? (answered / total) * 100 : 0
+const ProgressBar = ({ current, total }) => {
+  const getLabel = () => {
+    if (total <= 1) return ''
+    return `${current}/${total}`
+  }
+
+  const getPercentage = () => {
+    if (total <= 1) return 50
+    return 5 + ((current - 1) / (total - 1)) * 90
+  }
+
+  const percentage = getPercentage()
   const rounded = Math.round(percentage)
+  const label = getLabel()
 
   return (
     <div className="poll-progress">
-      <div className="poll-progress__header">
-        <span className="poll-progress__text">
-          {django.interpolate(
-            django.ngettext(
-              '%(answered)s of %(total)s question answered',
-              '%(answered)s of %(total)s questions answered',
-              total
-            ),
-            { answered, total },
-            true
-          )}
-        </span>
-        <span className="poll-progress__percentage">{rounded}%</span>
-      </div>
       <div className="poll-progress__track">
         <div
           className="poll-progress__bar"
@@ -31,6 +27,7 @@ const ProgressBar = ({ answered, total }) => {
           aria-valuemax={100}
         />
       </div>
+      {label && <div className="poll-progress__label">{label}</div>}
     </div>
   )
 }
