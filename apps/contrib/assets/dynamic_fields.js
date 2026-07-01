@@ -1,4 +1,3 @@
-
 const $ = require('jquery')
 $(function () {
   const $idReceivers0 = $('#id_receivers_0')

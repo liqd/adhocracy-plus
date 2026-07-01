@@ -40,3 +40,68 @@
         flex-direction: row;
     }
 }
+
+.image-upload-container {
+    border: 1px solid $gray-lightest;
+    border-radius: 0;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    &.is-invalid {
+        border-color: $feedback-color-rejected;
+        background-color: $white;
+    }
+}
+
+.image-upload-text {
+    color: $gray;
+}
+
+.image-upload-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.image-upload-preview {
+    height: 40px;
+    width: auto;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.image-upload-upload-btn,
+.image-upload-remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+}
+
+.image-upload-upload-btn {
+    color: $black;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.image-upload-remove-btn {
+    color: $black;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.image-upload-hidden-input {
+    display: none;
+}
