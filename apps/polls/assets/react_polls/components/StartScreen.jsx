@@ -29,7 +29,7 @@ const StartScreen = ({ totalQuestions, isAuthenticated, allowUnregisteredUsers, 
 
       <button
         type="button"
-        className="btn poll__btn--dark btn-lg"
+        className="btn poll__btn--dark"
         onClick={onStart}
         disabled={!isAuthenticated && !allowUnregisteredUsers}
       >
