@@ -4,7 +4,17 @@ module.exports = {
   __esModule: true,
 
   // Default export used by default imports (QuestionImage, Alert, api, etc.)
-  default: function () { return null },
+  default: function (props) {
+    if (props && props.imageUrl) {
+      return React.createElement('div', { className: 'mock-question-image', 'data-prop-alt': props.alt || '' },
+        React.createElement('img', { className: 'mock-question-image-img', src: props.imageUrl, alt: props.alt })
+      )
+    }
+    if (props && props.message) {
+      return React.createElement('div', { 'data-testid': 'alert', onClick: props.onClick }, props.message || props.children || null)
+    }
+    return null
+  },
 
   // Named exports used by existing moderation tests
   alert: function () { return 'mock alert' },

@@ -69,4 +69,46 @@ describe('PollChoice', () => {
     render(<PollChoice question={multiQuestion} allowUnregisteredUsers={false} onAnswerChange={jest.fn()} />)
     expect(screen.getByText('Multiple answers are possible.')).toBeInTheDocument()
   })
+
+  describe('image alt text', () => {
+    const questionWithImage = {
+      ...singleQuestion,
+      image_url: 'http://example.com/image.jpg',
+      image_alt_text: 'Descriptive image text'
+    }
+
+    it('does not render QuestionImage when image_url is null', () => {
+      const { container } = render(
+        <PollChoice question={singleQuestion} allowUnregisteredUsers={false} onAnswerChange={jest.fn()} />
+      )
+      expect(container.querySelector('.mock-question-image')).not.toBeInTheDocument()
+    })
+
+    it('renders QuestionImage when image_url is present', () => {
+      const { container } = render(
+        <PollChoice question={questionWithImage} allowUnregisteredUsers={false} onAnswerChange={jest.fn()} />
+      )
+      expect(container.querySelector('.mock-question-image')).toBeInTheDocument()
+    })
+
+    it('uses image_alt_text for the img alt attribute when available', () => {
+      const { container } = render(
+        <PollChoice question={questionWithImage} allowUnregisteredUsers={false} onAnswerChange={jest.fn()} />
+      )
+      const img = container.querySelector('.mock-question-image-img')
+      expect(img).toHaveAttribute('alt', 'Descriptive image text')
+    })
+
+    it('falls back to question label for alt text when image_alt_text is empty', () => {
+      const { container } = render(
+        <PollChoice
+          question={{ ...questionWithImage, image_alt_text: '' }}
+          allowUnregisteredUsers={false}
+          onAnswerChange={jest.fn()}
+        />
+      )
+      const img = container.querySelector('.mock-question-image-img')
+      expect(img).toHaveAttribute('alt', 'Pick one')
+    })
+  })
 })

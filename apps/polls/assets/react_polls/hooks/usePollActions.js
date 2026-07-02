@@ -40,6 +40,10 @@ export const usePollActions = (state, dispatch, pollId) => {
     dispatch({ type: ACTIONS.SKIP_QUESTION })
   }, [dispatch])
 
+  const handleShowResults = useCallback(() => {
+    dispatch({ type: ACTIONS.SHOW_RESULTS })
+  }, [dispatch])
+
   const handleSubmitAll = useCallback(async () => {
     dispatch({ type: ACTIONS.SUBMIT_START })
 
@@ -90,6 +94,7 @@ export const usePollActions = (state, dispatch, pollId) => {
     handleNext,
     handleBack,
     handleSkip,
+    handleShowResults,
     handleSubmitAll,
     handleAnswerChange,
     handleClearAlert,

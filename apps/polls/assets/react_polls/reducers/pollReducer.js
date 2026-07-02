@@ -28,6 +28,9 @@ export const initialState = {
   isLoading: true,
   isSubmitting: false,
 
+  // Participants
+  totalParticipants: 0,
+
   // Captcha
   captcha: '',
   refreshCaptcha: 0,
@@ -47,6 +50,7 @@ const reducers = {
     useTermsOfUse: payload.useTermsOfUse,
     agreedTermsOfUse: payload.agreedTermsOfUse,
     orgTermsUrl: payload.orgTermsUrl,
+    totalParticipants: payload.totalParticipants,
     state: payload.hasUserVote ? STATES.RESULTS : STATES.START_SCREEN,
     isLoading: false
   }),
@@ -85,9 +89,13 @@ const reducers = {
 
   [ACTIONS.SKIP_QUESTION]: (state) => {
     if (state.currentQuestionIndex >= state.questions.length - 1) return state
+    const currentQuestionId = state.questions[state.currentQuestionIndex].id
+    const updatedAnswers = { ...state.userAnswers }
+    delete updatedAnswers[currentQuestionId]
     return {
       ...state,
       currentQuestionIndex: state.currentQuestionIndex + 1,
+      userAnswers: updatedAnswers,
       alert: null
     }
   },
@@ -119,6 +127,7 @@ const reducers = {
     useTermsOfUse: payload.useTermsOfUse,
     agreedTermsOfUse: payload.agreedTermsOfUse,
     orgTermsUrl: payload.orgTermsUrl,
+    totalParticipants: payload.totalParticipants,
     isSubmitting: false,
     alert: payload.alert
   }),
@@ -161,6 +170,11 @@ const reducers = {
     ...state,
     state: STATES.ANSWERING,
     currentQuestionIndex: 0
+  }),
+
+  [ACTIONS.SHOW_RESULTS]: (state) => ({
+    ...state,
+    state: STATES.RESULTS
   })
 }
 
