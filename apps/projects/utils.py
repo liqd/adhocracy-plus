@@ -74,6 +74,11 @@ def is_ai_summarisation_enabled(project) -> bool:
     return bool(getattr(organisation, "enable_ai_summarisation", False))
 
 
+def is_ai_image_summarisation_enabled() -> bool:
+    """Return True when image attachments should be included in AI summarisation."""
+    return Settings.get_value("project_summary_include_images") == "true"
+
+
 def get_summary_modules(project):
     """Modules annotated with start/end dates for summary templates."""
     return (
@@ -209,6 +214,7 @@ def generate_project_summary(
                 document_response = service.request_vision_dict(
                     documents_dict=documents_dict,
                     project=project,
+                    include_images=is_ai_image_summarisation_enabled(),
                 )
                 integrate_document_summaries(
                     export_data,

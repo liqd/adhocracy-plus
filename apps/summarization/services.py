@@ -199,20 +199,28 @@ class AIService:
         documents_dict: dict[str, str],
         prompt: str | None = None,
         project=None,
+        *,
+        include_images: bool = True,
     ) -> DocumentSummaryResponse:
         """Process documents from dictionary format."""
         items = [DocumentInputItem(handle=h, url=u) for h, u in documents_dict.items()]
-        return self.request_vision(items, prompt, project=project)
+        return self.request_vision(
+            items, prompt, project=project, include_images=include_images
+        )
 
     def request_vision(
         self,
         documents: list[DocumentInputItem],
         prompt: str | None = None,
         project=None,
+        *,
+        include_images: bool = True,
     ) -> DocumentSummaryResponse:
         """Process documents and images, return combined summaries."""
         if project is not None:
             set_sentry_project_tags(project)
+        if not include_images:
+            documents = [doc for doc in documents if not doc.is_image()]
         docs, images = self._split_documents(documents)
 
         results = []

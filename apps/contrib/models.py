@@ -125,4 +125,8 @@ Respond with ONLY the JSON object.
         "default": "720",
         "type": "int",
     },
+    "project_summary_include_images": {
+        # Set to "true" to summarise image attachments via vision API (default: "false").
+        "default": "false",
+    },
 }

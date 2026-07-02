@@ -7,6 +7,7 @@ from django.utils import timezone
 
 from apps.projects.utils import is_ai_summarisation_enabled
 from apps.summarization.models import ProjectSummary
+from apps.summarization.pydantic_models import DocumentSummaryResponse
 from apps.summarization.pydantic_models import GeneralInfo
 from apps.summarization.pydantic_models import Phases
 from apps.summarization.pydantic_models import ProjectSummaryResponse
@@ -279,3 +280,65 @@ def test_project_summary_feedback_stores_vote(client, project_factory):
 
     assert response.status_code == 200
     assert summary.feedback.filter(user=user, feedback="positive").exists()
+
+
+@pytest.mark.django_db
+@patch("apps.projects.utils.collect_document_attachments")
+@patch("apps.projects.utils.AIService")
+def test_generate_project_summary_excludes_images_by_default(
+    service_mock, collect_mock, project_factory
+):
+    organisation = OrganisationFactory(enable_ai_summarisation=True)
+    project = project_factory(organisation=organisation)
+    collect_mock.return_value = (
+        {"project_information_attachment_0": "https://example.org/photo.jpg"},
+        {"project_information_attachment_0": "project_information"},
+    )
+    service_mock.return_value.request_vision_dict.return_value = (
+        DocumentSummaryResponse(documents=[])
+    )
+    service_mock.return_value.project_summarize.return_value = ProjectSummaryResponse(
+        general_info=GeneralInfo(summary="Overview", goals=[]),
+        phases=Phases(),
+    )
+
+    from apps.projects.utils import generate_project_summary
+
+    generate_project_summary(project, base_url="https://example.org")
+
+    vision_call = service_mock.return_value.request_vision_dict
+    assert vision_call.call_args.kwargs["include_images"] is False
+
+
+@pytest.mark.django_db
+@patch("apps.projects.utils.collect_document_attachments")
+@patch("apps.projects.utils.AIService")
+def test_generate_project_summary_includes_images_when_global_setting_enabled(
+    service_mock, collect_mock, project_factory
+):
+    organisation = OrganisationFactory(enable_ai_summarisation=True)
+    project = project_factory(organisation=organisation)
+    collect_mock.return_value = (
+        {"project_information_attachment_0": "https://example.org/photo.jpg"},
+        {"project_information_attachment_0": "project_information"},
+    )
+    service_mock.return_value.request_vision_dict.return_value = (
+        DocumentSummaryResponse(documents=[])
+    )
+    service_mock.return_value.project_summarize.return_value = ProjectSummaryResponse(
+        general_info=GeneralInfo(summary="Overview", goals=[]),
+        phases=Phases(),
+    )
+
+    from apps.contrib.models import Settings
+    from apps.projects.utils import generate_project_summary
+
+    Settings.objects.update_or_create(
+        key="project_summary_include_images",
+        defaults={"value": "true"},
+    )
+
+    generate_project_summary(project, base_url="https://example.org")
+
+    vision_call = service_mock.return_value.request_vision_dict
+    assert vision_call.call_args.kwargs["include_images"] is True

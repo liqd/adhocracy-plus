@@ -19,6 +19,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - AI project summarisation: summary section on the project detail page for subscribed organistaions.
 - AI project summarisation: organisation-level feature flag “Enable AI summarisation” in Django admin (`a4_candy_organisations`); only enabled organisations can use the feature on their projects.
 - AI project summarisation: periodic Celery Beat task `refresh_project_summaries` regenerates summaries for projects in AI-enabled organisations
+- AI project summarisation: global Settings flag `project_summary_include_images` (default off) to include image attachments in summaries.
 
 ### Changed
 
