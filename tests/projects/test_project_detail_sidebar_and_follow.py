@@ -220,6 +220,8 @@ def test_project_detail_insights_section(
 def test_project_detail_guest_alert_visible_for_anonymous(
     client, project_detail_overview
 ):
+    project_detail_overview.allow_guest_users = True
+    project_detail_overview.save()
     response = client.get(project_detail_url(project_detail_overview))
     assert response.status_code == 200
     assert b"data-guest-alert" in response.content
