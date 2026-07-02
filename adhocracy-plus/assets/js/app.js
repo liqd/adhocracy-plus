@@ -37,20 +37,6 @@ function init () {
   initProjectDetailParticipationView()
   initGuestProjectAlerts()
 
-  $('.timeline-carousel__item').slick({
-    initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide'), 10) || 0,
-    focusOnSelect: false,
-    centerMode: true,
-    dots: false,
-    arrows: true,
-    centerPadding: 30,
-    mobileFirst: true,
-    infinite: false,
-    variableWidth: true,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  })
-
   $('.project-tile-carousel').slick({
     initialSlide: 0,
     focusOnSelect: false,
