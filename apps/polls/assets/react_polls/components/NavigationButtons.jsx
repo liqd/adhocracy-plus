@@ -21,7 +21,7 @@ const NavigationButtons = ({
           onClick={onBack}
           disabled={currentIndex === 0}
         >
-          {django.gettext('Back')}
+          {django.gettext('Go Back')}
         </button>
       </div>
       <div>

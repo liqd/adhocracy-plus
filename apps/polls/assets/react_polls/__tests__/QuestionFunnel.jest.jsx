@@ -70,7 +70,7 @@ describe('QuestionFunnel', () => {
   it('calls onBack on Back click', () => {
     const fn = jest.fn()
     render(<QuestionFunnel {...baseProps} currentNumber={2} totalQuestions={3} onBack={fn} />)
-    fireEvent.click(screen.getByText('Back'))
+    fireEvent.click(screen.getByText('Go Back'))
     expect(fn).toHaveBeenCalledTimes(1)
   })
 

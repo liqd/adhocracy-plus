@@ -147,7 +147,7 @@ const PollResult = ({ question }) => {
     return (
       <div className="poll poll--result poll--confidential">
         <h2>{question.label}</h2>
-        <QuestionImage imageUrl={question.image_url} alt={question.label} />
+        {question.image_url && <QuestionImage imageUrl={question.image_url} alt={question.image_alt_text || question.label} />}
         <div className="a4-muted">{getHelpText}</div>
         <p className="poll__confidential-notice">
           {django.gettext('Answers to this question will be visible only to the initiators of this project.')}
@@ -161,7 +161,7 @@ const PollResult = ({ question }) => {
   return (
     <div className="poll poll--result">
       <h2>{question.label}</h2>
-      <QuestionImage imageUrl={question.image_url} alt={question.label} />
+      {question.image_url && <QuestionImage imageUrl={question.image_url} alt={question.image_alt_text || question.label} />}
 
       <div className="poll__rows">
         {/* Non-open questions - reuse ChoiceRow */}

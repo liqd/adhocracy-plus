@@ -3,9 +3,21 @@ import django from 'django'
 import PollResults from './PollResults'
 import Alert from 'adhocracy4/adhocracy4/static/Alert'
 
-const ResultsView = ({ results, hasUserVote, alert, onBackToPoll, onChangeAnswer }) => {
+const ResultsView = ({ results, totalParticipants, hasUserVote, alert, onBackToPoll, onChangeAnswer }) => {
   return (
     <div className="poll__preliminary-results">
+      {totalParticipants > 0 && (
+        <p className="poll__total-participants">
+          {django.interpolate(
+            django.ngettext(
+              '%s person has participated.',
+              '%s people have participated.',
+              totalParticipants
+            ),
+            [totalParticipants]
+          )}
+        </p>
+      )}
       {results.map((question, idx) => (
         <PollResults key={`result-${question.id || idx}`} question={question} />
       ))}

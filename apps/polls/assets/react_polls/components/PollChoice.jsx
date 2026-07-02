@@ -65,7 +65,7 @@ export const PollChoice = ({ question, allowUnregisteredUsers, onAnswerChange, e
           <h3>{question.label}</h3>
         </legend>
 
-        <QuestionImage imageUrl={question.image_url} alt={question.label} />
+        <QuestionImage imageUrl={question.image_url} alt={question.image_alt_text || question.label} />
 
         {question.help_text && (
           <div className="poll__help-text">{question.help_text}</div>

@@ -4,7 +4,7 @@ import django from 'django'
 import Alert from 'adhocracy4/adhocracy4/static/Alert'
 import { createUnauthenticatedAlert } from '../utils/alerts'
 
-const StartScreen = ({ totalQuestions, isAuthenticated, allowUnregisteredUsers, onStart }) => {
+const StartScreen = ({ totalQuestions, isAuthenticated, allowUnregisteredUsers, totalParticipants, onStart, onShowResults }) => {
   return (
     <div className="poll-start-screen text-center">
       {!isAuthenticated && (
@@ -27,14 +27,24 @@ const StartScreen = ({ totalQuestions, isAuthenticated, allowUnregisteredUsers, 
         )}
       </p>
 
-      <button
-        type="button"
-        className="btn poll__btn--dark"
-        onClick={onStart}
-        disabled={!isAuthenticated && !allowUnregisteredUsers}
-      >
-        {django.gettext('Start Poll')}
-      </button>
+      <div className="poll-start-screen__buttons">
+        <button
+          type="button"
+          className="btn poll__btn--dark"
+          onClick={onStart}
+          disabled={!isAuthenticated && !allowUnregisteredUsers}
+        >
+          {django.gettext('Start Poll')}
+        </button>
+
+        <button
+          type="button"
+          className="btn btn--transparent"
+          onClick={onShowResults}
+        >
+          {django.gettext('Show results')}
+        </button>
+      </div>
     </div>
   )
 }

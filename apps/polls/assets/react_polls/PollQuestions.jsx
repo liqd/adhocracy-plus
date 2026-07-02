@@ -65,6 +65,7 @@ const PollQuestions = ({ pollId, captchaEnabled, prosopoSiteKey }) => {
         return (
           <ResultsView
             results={state.results}
+            totalParticipants={state.totalParticipants}
             hasUserVote={state.hasUserVote}
             alert={state.alert}
             onBackToPoll={actions.handleBackToPoll}
@@ -76,9 +77,11 @@ const PollQuestions = ({ pollId, captchaEnabled, prosopoSiteKey }) => {
         return (
           <StartScreen
             totalQuestions={state.questions.length}
+            totalParticipants={state.totalParticipants}
             isAuthenticated={state.isAuthenticated}
             allowUnregisteredUsers={state.allowUnregisteredUsers}
             onStart={actions.handleStartPoll}
+            onShowResults={actions.handleShowResults}
           />
         )
 
