@@ -31,6 +31,10 @@ export const initialState = {
   // Participants
   totalParticipants: 0,
 
+  // Module info
+  moduleName: '',
+  moduleDescription: '',
+
   // Captcha
   captcha: '',
   refreshCaptcha: 0,
@@ -51,6 +55,8 @@ const reducers = {
     agreedTermsOfUse: payload.agreedTermsOfUse,
     orgTermsUrl: payload.orgTermsUrl,
     totalParticipants: payload.totalParticipants,
+    moduleName: payload.moduleName,
+    moduleDescription: payload.moduleDescription,
     state: payload.hasUserVote ? STATES.RESULTS : STATES.START_SCREEN,
     isLoading: false
   }),

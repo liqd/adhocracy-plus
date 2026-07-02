@@ -43,7 +43,9 @@ const normalizePollData = (poll) => {
     useTermsOfUse: poll.use_org_terms_of_use,
     agreedTermsOfUse: poll.user_has_agreed,
     orgTermsUrl: poll.org_terms_url,
-    totalParticipants: poll.total_participants || 0
+    totalParticipants: poll.total_participants || 0,
+    moduleName: poll.module_name || '',
+    moduleDescription: poll.module_description || ''
   }
 }
 

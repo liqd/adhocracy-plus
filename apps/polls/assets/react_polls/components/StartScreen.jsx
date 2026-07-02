@@ -4,28 +4,43 @@ import django from 'django'
 import Alert from 'adhocracy4/adhocracy4/static/Alert'
 import { createUnauthenticatedAlert } from '../utils/alerts'
 
-const StartScreen = ({ totalQuestions, isAuthenticated, allowUnregisteredUsers, totalParticipants, onStart, onShowResults }) => {
+const StartScreen = ({ moduleName, moduleDescription, totalQuestions, isAuthenticated, allowUnregisteredUsers, totalParticipants, onStart, onShowResults }) => {
   return (
-    <div className="poll-start-screen text-center">
+    <div className="poll-start-screen">
       {!isAuthenticated && (
         <Alert
           {...createUnauthenticatedAlert(window.adhocracy4.config.getLoginUrl())}
         />
       )}
 
-      <h2>{django.gettext('Poll')}</h2>
+      {moduleName && <h2>{moduleName}</h2>}
 
-      <p className="lead">
-        {django.interpolate(
-          django.ngettext(
-            'This poll has %(count)s question.',
-            'This poll has %(count)s questions.',
-            totalQuestions
-          ),
-          { count: totalQuestions },
-          true
-        )}
-      </p>
+      {moduleDescription && (
+        <p className="lead">{moduleDescription}</p>
+      )}
+
+      <p
+        className="lead"
+        dangerouslySetInnerHTML={{
+          __html: django.interpolate(
+            django.ngettext(
+              'Poll contains <span class="poll-start-screen__count">%(count)s question</span>.',
+              'Poll contains <span class="poll-start-screen__count">%(count)s questions</span>.',
+              totalQuestions
+            ),
+            { count: totalQuestions },
+            true
+          ) + ' ' + django.interpolate(
+            django.ngettext(
+              'So far <span class="poll-start-screen__count">%(count)s person</span> has participated.',
+              'So far <span class="poll-start-screen__count">%(count)s people</span> have participated.',
+              totalParticipants
+            ),
+            { count: totalParticipants },
+            true
+          )
+        }}
+      />
 
       <div className="poll-start-screen__buttons">
         <button

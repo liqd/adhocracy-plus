@@ -42,6 +42,8 @@ class PollViewSet(BasePollViewSet):
         if response.status_code == 200:
             poll = self.get_object()
             response.data["total_participants"] = self._get_total_participants(poll)
+            response.data["module_name"] = poll.module.name
+            response.data["module_description"] = poll.module.description or ""
         return response
 
     @action(detail=True, methods=["post"])
