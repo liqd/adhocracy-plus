@@ -2,8 +2,8 @@
 {% load wagtailcore_tags wagtailimages_tags i18n absolute_url %}
 
 {% block title %}
-    {{ self.subtitle }} &mdash; {{ block.super }}
-{% endblock %}
+    {{ self.subtitle }} — {{ block.super }}
+{% endblock title %}
 
 {% block social_meta %}
 <meta name="twitter:card" content="summary">
@@ -11,7 +11,7 @@
 <meta name="linkedin:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}/{{ page.title }}">
 <meta property="og:url" content="{{ request.build_absolute_uri }}">
 <meta property="og:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}/{{ page.title }}">
-{% endblock %}
+{% endblock social_meta %}
 
 {% block social_meta_image %}
 {% if page.image %}
@@ -30,7 +30,7 @@
 <meta property="og:image:height" content="{{ fallback_image.height }}">
 {% endif %}
 {% endif %}
-{% endblock %}
+{% endblock social_meta_image %}
 
 {% block social_meta_description %}
 {% if page.subtitle %}
@@ -38,8 +38,7 @@
 <meta name="linkedin:description" content="{{ page.subtitle }}">
 <meta property="og:description" content="{{ page.subtitle }}">
 {% endif %}
-{% endblock %}
-
+{% endblock social_meta_description %}
 
 {% block content %}
 <div class="cms__wrapper py-5">
@@ -103,14 +102,14 @@
         <div class="row justify-content-center">
             {% if page.get_parent.specific.demo_link %}
             <div class="col-12 col-sm-6 col-lg-5">
-                <a class="btn btn--full btn--transparent" href="{{ page.get_parent.specific.demo_link }}">{% translate 'Visit Demosite' %}</a>
+                <a class="btn btn--full btn--transparent btn--transparent-bordered" href="{{ page.get_parent.specific.demo_link }}">{% translate 'Visit Demosite' %}</a>
             </div>
             {% endif %}
 
             <div class="col-12 col-sm-6 col-lg-5">
-                <a class="btn btn--full btn--transparent" href="{{ page.get_parent.url }}{% if other_use_cases %}?category={{ page.category }}{% endif %}">{% translate 'View more examples' %}</a>
+                <a class="btn btn--full btn--transparent btn--transparent-bordered" href="{{ page.get_parent.url }}{% if other_use_cases %}?category={{ page.category }}{% endif %}">{% translate 'View more examples' %}</a>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

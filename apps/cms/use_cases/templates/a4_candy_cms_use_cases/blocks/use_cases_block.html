@@ -24,13 +24,13 @@
     <div class="row justify-content-center">
         {% if value.demo_platform %}
             <div class="col-12 col-lg-4 d-flex justify-content-center">
-                <a class="btn btn--full btn--transparent"
+                <a class="btn btn--full btn--transparent btn--transparent-bordered"
                    href="{{ value.demo_platform }}">{% translate "Visit Demosite" %}</a>
             </div>
         {% endif %}
         {% if value.use_case_page %}
             <div class="col-12 col-lg-4 d-flex justify-content-center">
-                <a class="btn btn--full btn--transparent"
+                <a class="btn btn--full btn--transparent btn--transparent-bordered"
                    href="{{ value.use_case_page.url }}">{% translate "View more examples" %}</a>
             </div>
         {% endif %}
