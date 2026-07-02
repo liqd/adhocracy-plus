@@ -13,7 +13,6 @@ from apps.ideas.models import Idea
 from apps.interactiveevents.models import Like
 from apps.interactiveevents.models import LiveQuestion
 from apps.mapideas.models import MapIdea
-from apps.projects.participation_carousel import participation_carousel_slide_url
 from apps.projects.timeline import module_cta_label as get_module_cta_label
 from apps.projects.timeline import module_date_range as get_module_date_range
 from apps.projects.timeline import (
@@ -101,11 +100,6 @@ def offline_event_date_label(offline_event):
 @register.simple_tag
 def offline_event_cta_label(offline_event):
     return get_offline_event_cta_label(offline_event)
-
-
-@register.simple_tag
-def participation_carousel_slide_url_tag(project, date):
-    return participation_carousel_slide_url(project, date)
 
 
 @register.simple_tag

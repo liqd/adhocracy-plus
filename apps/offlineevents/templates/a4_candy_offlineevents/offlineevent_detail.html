@@ -1,15 +1,11 @@
 {% extends 'a4_candy_projects/project_detail.html' %}
 {% load i18n wagtailcore_tags platform_breadcrumbs_tags %}
 
-{% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{{ object.name }} — {{ block.super }}{% endblock title %}
 
 {% block project_detail_breadcrumbs %}
 {% platform_breadcrumbs project=project event_name=object.name current='event' %}
-{% endblock %}
-
-{% block participation_carousel %}
-{% include "a4_candy_projects/includes/participation_timeline_carousel.html" %}
-{% endblock %}
+{% endblock project_detail_breadcrumbs %}
 
 {% block phase_content %}
     <div class="container">
@@ -23,16 +19,15 @@
                         <strong>{{ object.date }}</strong>
                     </div>
 
-
                     <div class="item-detail__content">
-			<div class="ck-content">
+                        <div class="ck-content">
                             {{ object.description | richtext }}
-			</div>
+                        </div>
 
-                        {% block additional_content %}{% endblock %}
+                        {% block additional_content %}{% endblock additional_content %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock phase_content %}

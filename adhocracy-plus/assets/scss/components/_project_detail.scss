@@ -176,19 +176,6 @@ $project-detail-breadcrumbs-offset: 79px;
     margin-top: 3 * $spacer;
 }
 
-.project-detail--module .timeline-carousel__wrapper {
-    @include project-detail-timeline-bleed;
-    width: auto;
-}
-
-.project-detail--module .timeline-carousel,
-.project-detail--module .timeline-carousel__container {
-    max-width: none;
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-}
-
 .project-detail__actions {
     display: flex;
     flex-direction: column;
@@ -1201,10 +1188,6 @@ $project-detail-timeline-meta-icon-gap: 8px;
 
         .project-detail__content {
             padding-top: 0;
-        }
-
-        .timeline-carousel {
-            margin-bottom: 0.625rem;
         }
 
         .project-detail__module-intro {

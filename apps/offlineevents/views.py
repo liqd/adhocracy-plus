@@ -26,7 +26,6 @@ class OfflineEventDetailView(
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["offline_event"] = self.object
-        context["initial_slide"] = self.object.get_timeline_index()
         context["event"] = None
         context["modules"] = None
         return context

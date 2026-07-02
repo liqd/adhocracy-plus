@@ -18,7 +18,6 @@ def test_detail_view(client, offline_event, module_factory, phase_factory):
     )
     assert offline_event.name.encode() in response.content
     assert b"item-detail__title" in response.content
-    assert b"timeline-carousel" in response.content
     assert b"data-participation-view" not in response.content
     assert offline_event.project.get_absolute_url().encode() in response.content
     assert b"platform-breadcrumbs__link" in response.content
