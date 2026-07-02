@@ -41,6 +41,21 @@ urlpatterns = [
         name="project-results",
     ),
     re_path(
+        r"^(?P<slug>[-\w_]+)/generate-summary/$",
+        views.ProjectGenerateSummaryView.as_view(),
+        name="project-generate-summary",
+    ),
+    re_path(
+        r"^(?P<slug>[-\w_]+)/summary-feedback/$",
+        views.SummaryFeedbackView.as_view(),
+        name="project-summary-feedback",
+    ),
+    re_path(
+        r"^(?P<slug>[-\w_]+)/summary/generate/$",
+        views.ProjectSummaryStaffGenerateView.as_view(),
+        name="project-summary-generate",
+    ),
+    re_path(
         r"^(?P<slug>[-\w_]+)/$",
         views.ProjectDetailView.as_view(),
         name="project-detail",

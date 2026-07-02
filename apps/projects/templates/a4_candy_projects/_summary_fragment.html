@@ -1,0 +1,144 @@
+{% load humanize i18n summarization_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% if show_debug %}
+<div>
+    { raw }
+</div>
+{% endif %}
+
+<div class="summary summary__accordion">
+    <div class="summary__header">
+        <div class="summary__header-title-row">
+            <div class="summary__title-group">
+                <span class="summary__title" id="summary-header">
+                    {% trans 'Summary of the participation' %}
+                </span>
+                <button
+                    type="button"
+                    class="summary__info-btn"
+                    title="{% trans 'This summary was automatically generated using AI and may contain errors or be incomplete.' %}"
+                    aria-label="{% trans 'About this AI summary' %}">
+                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="summary__header-actions">
+                {% if summary_timestamp %}
+                    <span class="summary__generated-meta">
+                        <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                        {% if LANGUAGE_CODE == 'de' %}
+                            {% blocktranslate with time=summary_timestamp|timesince trimmed %}
+                                vor {{ time }} generiert
+                            {% endblocktranslate %}
+                        {% else %}
+                            {% blocktranslate with time=summary_timestamp|timesince trimmed %}
+                                generated {{ time }} ago
+                            {% endblocktranslate %}
+                        {% endif %}
+                    </span>
+                {% endif %}
+                <a
+                    class="summary__collapse-toggle"
+                    href="#summary"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                    aria-controls="summary"
+                    data-bs-toggle="collapse">
+                    <i class="fas fa-caret-up" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        {% if summary_timestamp %}
+            <p class="summary__meta-text">
+                {% if LANGUAGE_CODE == 'de' %}
+                    {% blocktranslate with date=summary_date_str time=summary_timestamp|date:"H:i" %}
+                        Diese Zusammenfassung wurde am {{ date }} um {{ time }} Uhr mithilfe von KI erstellt und kann Fehler enthalten oder unvollständig sein.
+                    {% endblocktranslate %}
+                {% else %}
+                    {% blocktranslate with date=summary_date_str time=summary_timestamp|date:"H:i" %}
+                        This summary was created by AI on {{ date }} at {{ time }} and may contain errors or be incomplete.
+                    {% endblocktranslate %}
+                {% endif %}
+            </p>
+        {% endif %}
+    </div>
+
+    <div class="collapse show" id="summary" aria-labelledby="summary-header">
+        <div class="summary__body">
+            <div class="summary__general">
+                <div class="summary__header-text">{% trans 'General information' %}</div>
+                <p class="summary__text">{{ response.general_info.summary }}</p>
+                {% if response.general_info.goals %}
+                    <ul class="summary__list">
+                        {% for goal in response.general_info.goals %}
+                        <li>{{ goal }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            {% get_project_stats project as stats %}
+            <div class="summary__stats">
+                <div class="summary__stats-item">
+                    <span class="summary__stats-number">{{ stats.participants|default:"0" }}</span>
+                    <span class="summary__stats-text">{% trans 'Participants' %}</span>
+                </div>
+                <div class="summary__stats-item">
+                    <span class="summary__stats-number">{{ stats.comments|default:"0" }}</span>
+                    <span class="summary__stats-text">{% trans 'comments' %}</span>
+                </div>
+                <div class="summary__stats-item">
+                    <span class="summary__stats-number">{{ stats.ratings|default:"0" }}</span>
+                    <span class="summary__stats-text">{% trans 'ratings' %}</span>
+                </div>
+                <div class="summary__stats-item">
+                    <span class="summary__stats-number">{{ stats.ideas|default:"0" }}</span>
+                    <span class="summary__stats-text">{% trans 'written ideas' %}</span>
+                </div>
+            </div>
+
+            <div class="summary__results-link">
+                <p class="summary__results-text">
+                    {% trans 'To read all the results of this participation' %}
+                    <a href="{% url 'project-results' organisation_slug=project.organisation.slug slug=project.slug %}"
+                       class="summary__link">
+                        {% trans 'click here' %}
+                    </a>
+                </p>
+                <a href="{% url 'project-results' organisation_slug=project.organisation.slug slug=project.slug %}"
+                   class="summary__results-arrow"
+                   aria-label="{% trans 'To read all the results of this participation' %}">
+                    {% include "a4_candy_projects/_summary_arrow_icon.html" with size="sm" %}
+                </a>
+            </div>
+
+            {% if response.phases.past.modules %}
+                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.past.modules show_debug=show_debug id="pastModules" %}
+            {% endif %}
+
+            {% if response.phases.current.modules %}
+                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.current.modules show_debug=show_debug id="currentModules" %}
+            {% endif %}
+
+            {% if response.phases.upcoming.modules %}
+                {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.upcoming.modules show_debug=show_debug id="upcomingModules" %}
+            {% endif %}
+
+            {% if summary_id %}
+            <div class="summary__footer">
+                <button type="button"
+                        class="summary__refresh-btn"
+                        hx-get="{% url 'project-generate-summary' organisation_slug=project.organisation.slug slug=project.slug %}"
+                        hx-target="#summary-content"
+                        hx-swap="innerHTML"
+                        hx-disabled-elt="this"
+                        hx-indicator="this">
+                    <i class="fas fa-arrows-rotate" aria-hidden="true"></i>
+                    {% trans 'Refresh' %}
+                </button>
+                {% include "a4_candy_projects/_feedback_icons.html" with summary_id=summary_id user_feedback=user_feedback project=project %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

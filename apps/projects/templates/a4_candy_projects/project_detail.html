@@ -73,14 +73,26 @@
                     <div class="project-detail__breadcrumbs{% if not request.user.is_authenticated %} project-detail__breadcrumbs--signed-out{% endif %}">
                         {% block project_detail_breadcrumbs %}
                         {% platform_breadcrumbs project=project current='project' %}
-                        {% endblock %}
+                        {% endblock project_detail_breadcrumbs %}
                     </div>
 
                     {% if not module and not offline_event %}
                     {% include "a4_candy_projects/includes/project_detail_intro.html" %}
+                    {% if ai_summarisation_enabled %}
+                    <section class="project-detail__summary" aria-labelledby="project-detail-summary-heading">
+                        <h2 class="visually-hidden" id="project-detail-summary-heading">
+                            {% translate 'Summary of the participation' %}
+                        </h2>
+                        {% if project_summary_html %}
+                        <div id="summary-content" class="summary__container">{{ project_summary_html|safe }}</div>
+                        {% else %}
+                        {% include "a4_candy_projects/_generate_summary_button.html" with project=project %}
+                        {% endif %}
+                    </section>
+                    {% endif %}
                     {% endif %}
 
-                    {% block participation_carousel %}{% endblock %}
+                    {% block participation_carousel %}{% endblock participation_carousel %}
 
                     <div class="project-detail__content">
                     {% if not module and not offline_event %}

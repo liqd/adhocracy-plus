@@ -7,6 +7,8 @@ from adhocracy4.projects.models import Project
 
 from .publish_results_reminder import get_publish_results_reminder_skip_reason
 from .publish_results_reminder import send_publish_results_reminder
+from .summary_tasks import generate_project_summary_task  # noqa: F401
+from .summary_tasks import refresh_project_summaries  # noqa: F401
 
 
 @shared_task

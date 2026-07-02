@@ -56,10 +56,5 @@ PROJECT_SUMMARY_AUTO_REFRESH_MAX_AGE_MINUTES = 12 * 60  # 12 hours
 # Max number of projects to enqueue per 30-min run (0 = no limit)
 PROJECT_SUMMARY_AUTO_REFRESH_MAX_PROJECTS_PER_RUN = 0
 
-# Celery Beat: periodic project summary refresh (only if you run Celery Beat and want auto-summaries)
-# Uncomment to run refresh_project_summaries every 30 minutes (requires Celery Beat).
-# from datetime import timedelta
-# CELERY_BEAT_SCHEDULE["refresh_project_summaries"] = {
-#     "task": "refresh_project_summaries",
-#     "schedule": timedelta(minutes=30),
-# }
+# Celery Beat: refresh_project_summaries is enabled in docker.py and production.py.
+# For local dev with Celery Beat, add the same entry to your local.py CELERY_BEAT_SCHEDULE.
