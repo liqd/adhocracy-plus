@@ -1,0 +1,23 @@
+{% load i18n %}
+
+<div class="uppy-image-upload-field">
+    {% include form_field_template with field=field %}
+    <button
+        type="button"
+        class="btn btn--default upload-wrapper__action uppy-image-upload-field__trigger"
+        data-uppy-trigger
+    >
+        <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+        <span class="visually-hidden">{% translate "Upload a picture" %}</span>
+    </button>
+    <div
+        data-uppy-image-upload
+        data-input-id="{{ field.id_for_label }}"
+        {% if aspect_ratio %}data-aspect-ratio="{{ aspect_ratio }}"{% endif %}
+        {% if output_width %}data-output-width="{{ output_width }}"{% endif %}
+        {% if output_height %}data-output-height="{{ output_height }}"{% endif %}
+        {% if min_width %}data-min-width="{{ min_width }}"{% endif %}
+        {% if min_height %}data-min-height="{{ min_height }}"{% endif %}
+        hidden
+    ></div>
+</div>
