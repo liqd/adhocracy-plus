@@ -52,17 +52,15 @@ const QuestionFunnel = ({
 
   return (
     <div className="poll-question-funnel">
-      <div className="poll-question-header mb-4">
-        <h3>
-          {django.interpolate(
-            django.gettext('Question %(current)s of %(total)s'),
-            { current: currentNumber, total: totalQuestions },
-            true
-          )}
-        </h3>
-      </div>
+      <ProgressBar current={currentNumber} total={totalQuestions} />
 
-      <ProgressBar answered={answeredCount} total={totalQuestions} />
+      <div className="poll-question-header">
+        {django.interpolate(
+          django.gettext('Question %(current)s of %(total)s'),
+          { current: currentNumber, total: totalQuestions },
+          true
+        )}
+      </div>
 
       <div className="poll-question-content">
         {currentQuestion.is_open

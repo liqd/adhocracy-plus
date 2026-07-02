@@ -8,8 +8,6 @@
 }
 
 .poll {
-    border-top: 1px solid $gray-lightest;
-
     h2 {
         margin-top: 0;
         font-size: $font-size-lg;
@@ -50,4 +48,22 @@
 
 .poll-start-screen__count {
     font-weight: bold;
+}
+
+.poll-question-header h3 {
+    font-size: $font-size-sm;
+    color: $text-color-gray;
+    margin: 0;
+    padding: 0;
+}
+
+.poll__question-label {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    display: block;
+    padding-bottom: 1rem;
+}
+
+.poll__question-legend {
+    padding-left: 0;
 }

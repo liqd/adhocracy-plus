@@ -44,8 +44,10 @@ describe('QuestionFunnel', () => {
   })
 
   it('renders ProgressBar', () => {
-    render(<QuestionFunnel {...baseProps} answeredCount={1} totalQuestions={3} />)
-    expect(screen.getByText('1 of 3 questions answered')).toBeInTheDocument()
+    render(<QuestionFunnel {...baseProps} currentNumber={3} totalQuestions={5} />)
+    const bar = screen.getByRole('progressbar')
+    expect(bar).toBeInTheDocument()
+    expect(bar).toHaveAttribute('aria-valuenow', '40')
   })
 
   it('renders PollChoice for non-open questions', () => {

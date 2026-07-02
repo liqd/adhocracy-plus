@@ -28,7 +28,7 @@ const NavigationButtons = ({
         {!isLastQuestion
           ? <button
               type="button"
-              className="btn btn--transparent btn--transparent-bordered mr-2"
+              className="btn btn--transparent mr-2"
               onClick={onSkip}
             >{django.gettext('Skip')}
           </button>
