@@ -1,8 +1,13 @@
+$header-lower-logo-img-height: 5rem;
+$header-lower-logo-padding: 0.5 * $padding;
+$header-lower-logo-size: $header-lower-logo-img-height + 2 * $header-lower-logo-padding;
+$header-lower-logo-overhang: 0.5 * $header-lower-logo-size;
+
 .header-lower__logo-box {
     display: inline-block;
-    padding: 0.5 * $padding;
+    padding: $header-lower-logo-padding;
     position: relative;
-    bottom: -24px;
+    bottom: -$header-lower-logo-overhang;
     background-color: $body-bg;
     z-index: 3;
     box-shadow: 0 0 8px 0 $shadow;
@@ -25,6 +30,11 @@
             width: 100%;
 
             @include project-detail-page-inset;
+
+            // Hero header cancels `.container--shadow` padding; restore content gutter here.
+            @media (max-width: $breakpoint-down) {
+                padding-left: $spacer;
+            }
         }
 
         .header-lower__logo-box {
@@ -53,7 +63,7 @@
 
 .header-lower__logo-img {
     display: block;
-    height: 5rem;
+    height: $header-lower-logo-img-height;
     width: auto;
 }
 

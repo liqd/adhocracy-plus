@@ -25,6 +25,13 @@
     box-shadow: 2px 4px 27px 0 rgba(0, 0, 0, 0.02), -2px -4px 27px 0 rgba(0, 0, 0, 0.05);
     padding: 0 $spacer;
 
+    @media (max-width: $breakpoint-down) {
+        // Side shadows only: default box-shadow bleeds below the card and visually
+        // merges with the site footer on mobile.
+        margin-bottom: $spacer;
+        box-shadow: 2px 0 27px 0 rgba(0, 0, 0, 0.02), -2px 0 27px 0 rgba(0, 0, 0, 0.05);
+    }
+
     @media (min-width: $breakpoint) {
         padding: 0;
     }
