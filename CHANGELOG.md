@@ -30,7 +30,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Header indicator: rename anonymous visitor CSS classes from `guest-*` to `anonymous-*`
 - polls: optional confidential questions
 - Project detail: remove the participation timeline carousel.
-- Module pages: adapt layout to the new project detail grid styling
+- Module pages: adapt layout to the new project detail grid styling; remove previous/next
+  module cluster navigation.
 
 ### Fixed
 
