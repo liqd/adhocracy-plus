@@ -2,8 +2,8 @@
 {% load static wagtailcore_tags wagtailimages_tags i18n absolute_url %}
 
 {% block title %}
-    {{ self.subtitle }} &mdash; {{ block.super }}
-{% endblock %}
+    {{ self.subtitle }} — {{ block.super }}
+{% endblock title %}
 
 {% block social_meta %}
 <meta name="twitter:card" content="summary">
@@ -11,10 +11,10 @@
 <meta name="linkedin:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}/{{ page.title }}">
 <meta property="og:url" content="{{ request.build_absolute_uri }}">
 <meta property="og:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}/{{ page.title }}">
-{% endblock %}
+{% endblock social_meta %}
 
 {% block social_meta_description %}
-{% if page.subtitle  %}
+{% if page.subtitle %}
 <meta name="twitter:description" content="{{ page.subtitle }}">
 <meta name="linkedin:description" content="{{ page.subtitle }}">
 <meta property="og:description" content="{{ page.subtitle }}">
@@ -25,7 +25,7 @@
 <meta property="og:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
 {% endif %}
 {% endif %}
-{% endblock %}
+{% endblock social_meta_description %}
 
 {% block content %}
 <div class="cms__wrapper">
@@ -72,7 +72,7 @@
         <!-- mobile category chooser -->
             <div class="d-md-none col-12 col-lg-8 mb-5">
                 <div class="dropdown cms-usecase__dropdown">
-                    <a class="btn btn--transparent btn-block dropdown-toggle d-flex justify-content-between" href="?category={{ category.0 }}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn--transparent btn--transparent-bordered btn-block dropdown-toggle d-flex justify-content-between" href="?category={{ category.0 }}" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {% if current_category %}
                           {{ get_current_category_display }}
                         {% else %}
@@ -116,4 +116,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

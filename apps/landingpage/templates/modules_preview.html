@@ -8,7 +8,7 @@
     <!-- Desktop Buttons -->
     <div class="lp-modules__selectors desktop-only">
         {% for module in modules %}
-            <button class="btn btn--transparent {% if forloop.first %}active{% endif %}" data-module="{{ module.id }}">
+            <button class="btn btn--transparent btn--transparent-bordered {% if forloop.first %}active{% endif %}" data-module="{{ module.id }}">
                 <img src="{% static module.icon %}" alt="{{ module.name }}">
                 {% trans module.name %}
             </button>
@@ -35,7 +35,7 @@
                             {% endfor %}
                         </ul>
                     </p>
-                    <a href="/info/features" class="explore-btn btn btn--full btn--transparent">{% trans "Explore All Modules" %}</a><!-- noqa: D018 -->
+                    <a href="{% url 'wagtail_serve' 'info/features/' %}" class="explore-btn btn btn--full btn--transparent btn--transparent-bordered">{% trans "Explore All Modules" %}</a>
                 </div>
             {% endfor %}
         </div>
