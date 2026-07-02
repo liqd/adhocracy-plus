@@ -38,10 +38,19 @@
     "static/"
   ],
   "settings": {
-    "import/core-modules": [ django ],
+    "import/core-modules": [
+      "django",
+      "@uppy/core",
+      "@uppy/dashboard",
+      "@uppy/image-editor",
+      "@uppy/compressor",
+      "@uppy/core/css/style.min.css",
+      "@uppy/dashboard/css/style.min.css",
+      "@uppy/image-editor/css/style.min.css"
+    ],
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx"]
+        "extensions": [".js", ".jsx", ".css"]
       }
     }
   }

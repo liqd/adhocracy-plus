@@ -5,7 +5,9 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import components
 from adhocracy4.dashboard.components.forms import ProjectFormComponent
+from adhocracy4.dashboard.dashboard import ProjectBasicComponent
 from adhocracy4.dashboard.forms import ProjectResultForm
+from apps.dashboard.forms import ProjectBasicForm
 
 from . import forms
 from . import views
@@ -81,6 +83,10 @@ class ProjectInsightForm(ModelForm):
         }
 
 
+class AplusProjectBasicComponent(ProjectBasicComponent):
+    form_class = ProjectBasicForm
+
+
 class ProjectResultComponent(ProjectFormComponent):
     identifier = "result"
     weight = 12
@@ -137,5 +143,6 @@ class ProjectLocationComponent(ProjectFormComponent):
 
 components.register_project(ModeratorsComponent())
 components.register_project(ParticipantsComponent())
+components.replace_project(AplusProjectBasicComponent())
 components.replace_project(ProjectResultComponent())
 components.replace_project(ProjectLocationComponent())

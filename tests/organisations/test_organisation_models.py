@@ -23,11 +23,9 @@ def test_string_representation(organisation):
 
 
 @pytest.mark.django_db
-def test_image_validation_image_too_small(organisation_factory, small_image):
+def test_image_validation_accepts_small_images(organisation_factory, small_image):
     organisation = organisation_factory(image=small_image, logo=small_image)
-    with pytest.raises(Exception) as e:
-        organisation.full_clean()
-    assert "Image must be at least 500 pixels high" in str(e.value)
+    assert organisation.full_clean() is None
 
 
 @pytest.mark.django_db

@@ -1,8 +1,11 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.dashboard.forms import ProjectBasicForm as A4ProjectBasicForm
 from adhocracy4.dashboard.forms import ProjectCreateForm
 from adhocracy4.projects import models as project_models
+from apps.contrib.image_upload_help import IMAGE_UPLOAD_HERO_HELP_TEXT
+from apps.contrib.image_upload_help import IMAGE_UPLOAD_TILE_HELP_TEXT
 from apps.organisations.models import Organisation
 
 
@@ -11,6 +14,13 @@ class OrganisationForm(forms.ModelForm):
         model = Organisation
         fields = ["name", "logo"]
         labels = {"name": _("Organisation name")}
+
+
+class ProjectBasicForm(A4ProjectBasicForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["image"].help_text = IMAGE_UPLOAD_HERO_HELP_TEXT
+        self.fields["tile_image"].help_text = IMAGE_UPLOAD_TILE_HELP_TEXT
 
 
 class DashboardProjectCreateForm(ProjectCreateForm):
