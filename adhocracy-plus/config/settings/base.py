@@ -257,15 +257,15 @@ IMAGE_ALIASES = {
         "max_size": 5 * 10**6,
         "fileformats": ("image/png", "image/jpeg", "image/gif"),
     },
-    "heroimage": {"min_resolution": (1500, 500)},
-    "tileimage": {"min_resolution": (500, 300)},
+    "heroimage": {"min_resolution": (0, 0)},
+    "tileimage": {"min_resolution": (0, 0)},
     "logo": {
-        "min_resolution": (200, 200),
+        "min_resolution": (0, 0),
         "max_resolution": (800, 800),
         "aspect_ratio": (1, 1),
     },
     "avatar": {"min_resolution": (200, 200)},
-    "idea_image": {"min_resolution": (600, 400)},
+    "idea_image": {"min_resolution": (0, 0)},
     "eventimage": {"min_resolution": (500, 600)},
 }
 

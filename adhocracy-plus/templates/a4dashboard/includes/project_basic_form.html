@@ -2,14 +2,14 @@
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.name %}
 
-{% include 'a4images/uppy_image_upload_field.html' with field=form.image form_field_template='a4dashboard/includes/form_field.html' aspect_ratio='3' output_width=1500 output_height=500 min_width=1500 min_height=500 %}
+{% include 'a4images/uppy_image_upload_field.html' with field=form.image form_field_template='a4dashboard/includes/form_field.html' aspect_ratio='3' output_width=1500 output_height=500 %}
 
 {% include 'a4images/uppy_image_upload_assets.html' %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.image_alt_text %}
 {% include 'a4dashboard/includes/form_field.html' with field=form.image_copyright %}
 
-{% include 'a4images/uppy_image_upload_field.html' with field=form.tile_image form_field_template='a4dashboard/includes/form_field.html' aspect_ratio='1.667' output_width=500 output_height=300 min_width=500 min_height=300 %}
+{% include 'a4images/uppy_image_upload_field.html' with field=form.tile_image form_field_template='a4dashboard/includes/form_field.html' aspect_ratio='1.667' output_width=500 output_height=300 %}
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.tile_image_alt_text %}
 {% include 'a4dashboard/includes/form_field.html' with field=form.tile_image_copyright %}

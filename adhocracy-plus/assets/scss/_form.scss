@@ -171,6 +171,10 @@ div.cke_focus {
 
     label {
         @extend .form-check__label;
+
+        // Match Bootstrap's .form-check padding so radios/checkboxes align
+        // with text inputs (see negative margin on .form-check__label input).
+        padding-left: 1.5em;
     }
 }
 

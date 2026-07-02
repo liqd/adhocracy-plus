@@ -1,7 +1,11 @@
+/* global django */
+
 import Uppy from '@uppy/core'
 import Dashboard from '@uppy/dashboard'
 import ImageEditor from '@uppy/image-editor'
 import Compressor from '@uppy/compressor'
+import deDE from '@uppy/locales/lib/de_DE.js'
+import enUS from '@uppy/locales/lib/en_US.js'
 
 import '@uppy/core/css/style.min.css'
 import '@uppy/dashboard/css/style.min.css'
@@ -9,6 +13,27 @@ import '@uppy/image-editor/css/style.min.css'
 import './uppy_image_upload.scss'
 
 const PLACEHOLDER_SRC = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+
+const UPPY_LOCALES = {
+  de: deDE,
+  en: enUS
+}
+
+function getUppyLocale () {
+  const pageLanguage = (document.documentElement.lang || 'en').toLowerCase()
+  if (UPPY_LOCALES[pageLanguage]) {
+    return UPPY_LOCALES[pageLanguage]
+  }
+
+  const languageCode = pageLanguage.split('-')[0]
+  return UPPY_LOCALES[languageCode] || enUS
+}
+
+function getDashboardNote () {
+  return django.gettext(
+    'Images are resized and compressed automatically before you save the form.'
+  )
+}
 
 function getStorageKey (inputId) {
   return 'image_upload_' + window.location.pathname + '_' + inputId
@@ -40,14 +65,18 @@ function clearSessionStorage (inputId) {
 }
 
 function readConfig (container) {
-  const aspectRatio = parseFloat(container.dataset.aspectRatio, 10)
+  const outputWidth = parseInt(container.dataset.outputWidth, 10) || 0
+  const outputHeight = parseInt(container.dataset.outputHeight, 10) || 0
+  const parsedAspectRatio = parseFloat(container.dataset.aspectRatio, 10)
+  const aspectRatio = outputWidth && outputHeight
+    ? outputWidth / outputHeight
+    : (Number.isFinite(parsedAspectRatio) ? parsedAspectRatio : null)
+
   return {
     inputId: container.dataset.inputId,
-    minWidth: parseInt(container.dataset.minWidth, 10) || 0,
-    minHeight: parseInt(container.dataset.minHeight, 10) || 0,
-    outputWidth: parseInt(container.dataset.outputWidth, 10) || 0,
-    outputHeight: parseInt(container.dataset.outputHeight, 10) || 0,
-    aspectRatio: Number.isFinite(aspectRatio) ? aspectRatio : null,
+    outputWidth,
+    outputHeight,
+    aspectRatio,
     maxWidth: parseInt(container.dataset.maxWidth, 10) || 0
   }
 }
@@ -123,19 +152,20 @@ function initContainer (container) {
 
   let suppressFileRemovedHandler = false
 
-  const getImageEditor = () => uppy.getPlugin('ImageEditor')
-
-  const stopImageEditor = () => {
-    getImageEditor()?.stop()
-  }
-
   const uppy = new Uppy({
     autoProceed: false,
+    locale: getUppyLocale(),
     restrictions: {
       maxNumberOfFiles: 1,
       allowedFileTypes: ['image/*']
     }
   })
+
+  const getImageEditor = () => uppy.getPlugin('ImageEditor')
+
+  const stopImageEditor = () => {
+    getImageEditor()?.stop()
+  }
 
   uppy.use(Dashboard, {
     target: document.body,
@@ -144,7 +174,7 @@ function initContainer (container) {
     hideUploadButton: true,
     proudlyDisplayPoweredByUppy: false,
     autoOpen: 'imageEditor',
-    note: 'Images are resized and compressed automatically before you save the form.'
+    note: getDashboardNote()
   })
 
   uppy.use(ImageEditor, {
@@ -167,21 +197,21 @@ function initContainer (container) {
         : {}),
       croppedCanvasOptions: config.outputWidth && config.outputHeight
         ? {
-            width: config.outputWidth,
-            height: config.outputHeight,
+            maxWidth: config.outputWidth,
+            maxHeight: config.outputHeight,
             imageSmoothingQuality: 'high'
           }
-        : {
-            minWidth: config.minWidth,
-            minHeight: config.minHeight
-          }
+        : {}
     }
   })
 
-  const compressorOptions = { quality: 0.8 }
+  const compressorOptions = {
+    quality: 0.8,
+    checkOrientation: false
+  }
   if (config.outputWidth && config.outputHeight) {
-    compressorOptions.width = config.outputWidth
-    compressorOptions.height = config.outputHeight
+    compressorOptions.maxWidth = config.outputWidth
+    compressorOptions.maxHeight = config.outputHeight
   } else if (config.maxWidth) {
     compressorOptions.maxWidth = config.maxWidth
   }
