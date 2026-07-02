@@ -19,18 +19,19 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 
 ### Changed
-### Changed
 
 - Project initiators can choose per project whether guest users may participate
   (new "Participants" setting in basic settings).
-
 - Contact information fields included in Proposal/Idea/Mapidea Forms
 - Header indicator: rename anonymous visitor CSS classes from `guest-*` to `anonymous-*`
 - polls: optional confidential questions
-- Project detail: remove the legacy participation timeline carousel (template, styles, and slick init); offline events and document chapters link back to the project overview without `initialSlide` query params.
-- New Module pages: Adapt Modul Page to new Grid and more styling.
+- Project detail: remove the participation timeline carousel.
+- Module pages: adapt layout to the new project detail grid styling
 
 ### Fixed
+
+- Alert styling
+- Fix Mobile UI of Project and Modulpage Headerimage an logo  
 
 ## hotfix v2606.1
 
