@@ -29,6 +29,13 @@
     padding: 0;
     text-align: left;
     min-height: 324px;
+
+    @media (max-width: $breakpoint-down) {
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+    }
 }
 
 .project-header__tabs {
