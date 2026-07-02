@@ -17,7 +17,7 @@
         {% csrf_token %}
 
         {% for field in form %}
-            {% if not field.name == 'terms_of_use' and not field.name == 'get_newsletters' %}
+            {% if not field.name == 'terms_of_use' and not field.name == 'get_newsletters' and not field.name == 'accept_marketing_partners' %}
             {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
             {% endif %}
         {% endfor %}
@@ -34,6 +34,13 @@
           </label>
           {{ form.terms_of_use.errors }}
       </div>
+
+        <div class="form-check">
+            <label class="form-check__label">
+                {{ form.accept_marketing_partners }}
+                {{ form.accept_marketing_partners.label }}
+            </label>
+        </div>
 
       {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
 

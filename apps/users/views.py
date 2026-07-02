@@ -43,7 +43,8 @@ class GuestCreateView(FormView):
         return initial
 
     def form_valid(self, form):
-        maybe_create_guest_user(self.request)
+        if self.request.user.is_anonymous:
+            maybe_create_guest_user(self.request)
         return super().form_valid(form)
 
 

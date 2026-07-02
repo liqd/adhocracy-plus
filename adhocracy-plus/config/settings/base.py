@@ -293,7 +293,6 @@ AUTHENTICATION_BACKENDS = (
     "rules.permissions.ObjectPermissionBackend",
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
-    "guest_user.backends.GuestBackend",
 )
 
 ACCOUNT_ADAPTER = "apps.users.adapters.AccountAdapter"
