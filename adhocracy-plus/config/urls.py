@@ -1,5 +1,6 @@
 """adhocracy+ URL Configuration."""
 
+from allauth.account import views as allauth_views
 from django.conf import settings
 from django.conf.urls import i18n
 from django.contrib import admin
@@ -10,6 +11,7 @@ from django.views.defaults import server_error
 from django.views.generic import TemplateView
 from django.views.i18n import JavaScriptCatalog
 from django_ckeditor_5 import views as ckeditor5_views
+from guest_user.decorators import regular_user_required
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.views import TokenRefreshView
@@ -97,6 +99,21 @@ urlpatterns = [
     path("admin/", include("wagtail.admin.urls")),
     path("documents/", include(wagtaildocs_urls)),
     path("accounts/guests/login/", GuestCreateView.as_view(), name="guest_create"),
+    path(
+        "accounts/email/",
+        regular_user_required(allauth_views.EmailView.as_view()),
+        name="account_email",
+    ),
+    path(
+        "accounts/password/change/",
+        regular_user_required(allauth_views.PasswordChangeView.as_view()),
+        name="account_change_password",
+    ),
+    path(
+        "accounts/password/set/",
+        regular_user_required(allauth_views.PasswordSetView.as_view()),
+        name="account_set_password",
+    ),
     path("accounts/", include("allauth.urls")),
     path("account/", include("apps.account.urls")),
     path("profile/", include("apps.users.urls")),

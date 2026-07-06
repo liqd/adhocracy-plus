@@ -10,6 +10,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import UpdateView
 from django.views.generic import View
+from guest_user.mixins import RegularUserRequiredMixin
 
 from apps.userdashboard.views import UserDashboardNotificationsBaseView
 
@@ -27,7 +28,9 @@ def is_safe_url(url):
     return not parsed.netloc or parsed.netloc in settings.ALLOWED_HOSTS
 
 
-class NotificationSettingsView(LoginRequiredMixin, UpdateView):
+class NotificationSettingsView(
+    LoginRequiredMixin, RegularUserRequiredMixin, UpdateView
+):
     model = NotificationSettings
     form_class = NotificationSettingsForm
     template_name = "a4_candy_notifications/settings.html"

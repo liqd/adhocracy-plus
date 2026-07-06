@@ -3,6 +3,7 @@ from typing import List
 from django.apps import apps
 from django.template.loader import render_to_string
 from django.utils import translation
+from guest_user.functions import is_guest_user
 
 from apps.users.emails import EmailAplus as Email
 
@@ -170,6 +171,8 @@ class NotificationService:
         """
         filtered = []
         for recipient in recipients:
+            if channel == "email" and is_guest_user(recipient):
+                continue
             settings = NotificationSettings.get_for_user(recipient)
             if settings.should_receive_notification(notification_type, channel):
                 filtered.append(recipient)

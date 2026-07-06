@@ -21,6 +21,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Project guest participation defaults to "Only registered users can participate"
+  for new and existing projects (adhocracy4 migration `0055`).
 - Project initiators can choose per project whether guest users may participate
   (new "Participants" setting in basic settings).
 
