@@ -54,6 +54,12 @@
     }
 }
 
+@media (width <= 992px) {
+    .lp-use-case-card__cta-label {
+        display: none;
+    }
+}
+
 @media (max-width: $breakpoint-md) {
     .lp-use-cases {
         &__cards {
