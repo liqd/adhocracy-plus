@@ -1,0 +1,34 @@
+{% load i18n static %}
+<div class="lp-people-powered lp-section">
+    <div class="lp-people-powered__card">
+        <div class="lp-people-powered__mockup" aria-hidden="true">
+            <img src="{% static 'images/pp_smartphone.webp' %}" alt="" loading="lazy" />
+        </div>
+        <div class="lp-people-powered__content">
+            <div class="lp-people-powered__meta">
+                <img class="lp-people-powered__badge"
+                     src="{% static 'images/people-powered-badge.webp' %}"
+                     alt="People Powered"
+                     width="73"
+                     height="47"
+                     loading="lazy" />
+                <div class="lp-people-powered__score">
+                    <span class="lp-people-powered__stars" aria-hidden="true">★★★★★</span>
+                    <span class="lp-people-powered__score-value">5 / 5</span>
+                </div>
+            </div>
+            <h2 class="lp-people-powered__title">{% trans "Trusted by People Powered" %}</h2>
+            <p class="lp-people-powered__quote">
+                {% blocktrans trimmed %}
+                “Highly rated open source tool, recognized for our comprehensive support, user friendliness, affordability and more..”
+                {% endblocktrans %}
+            </p>
+            <a class="btn btn--transparent btn--text-black lp-people-powered__cta"
+               href="https://www.peoplepowered.org/platform-ratings"
+               target="_blank"
+               rel="noopener noreferrer">
+                {% trans "View full rating" %}
+            </a>
+        </div>
+    </div>
+</div>

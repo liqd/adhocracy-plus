@@ -14,6 +14,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Project detail: guest participation alert for signed-out visitors (dismissible per project per session)
 - Guest avatars: four SVG variants (primary, secondary, grey, inverted) with PNG fallbacks
 - Landing page: use cases section with target group cards linking to category filters
+- Landing page: People Powered rating section with link to full platform ratings
 - New project detail page with both grid and timeline view
 - Initiator reminder to publish project results.
 
