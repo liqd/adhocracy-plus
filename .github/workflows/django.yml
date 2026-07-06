@@ -113,10 +113,10 @@ jobs:
 
       - name: Install NPM Dependencies
         run: |
-          if [ -d node_modules ] && [ -f package-lock.json ]; then
+          if [ "${{ steps.cache-node-modules.outputs.cache-hit }}" = "true" ]; then
             echo "node_modules cache hit - skipping npm ci"
           else
-            echo "node_modules cache miss - running npm ci"
+            echo "node_modules cache miss or partial restore - running npm ci"
             npm ci --prefer-offline --no-audit --no-fund
           fi
 

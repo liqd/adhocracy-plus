@@ -1,0 +1,17 @@
+.uppy-image-upload-field {
+  .upload-wrapper__fields {
+    .form-control-file,
+    .form-control-file-dummy {
+      display: none;
+    }
+  }
+
+  // Hide native upload button, keep Uppy trigger and delete button.
+  .upload-wrapper__action.btn--default:not(.uppy-image-upload-field__trigger) {
+    display: none;
+  }
+
+  &__trigger {
+    flex-shrink: 0;
+  }
+}

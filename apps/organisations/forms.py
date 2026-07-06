@@ -7,6 +7,8 @@ from django_ckeditor_5.widgets import CKEditor5Widget
 
 from adhocracy4 import transforms
 from apps.cms.settings import helpers
+from apps.contrib.image_upload_help import IMAGE_UPLOAD_HERO_HELP_TEXT
+from apps.contrib.image_upload_help import IMAGE_UPLOAD_LOGO_HELP_TEXT
 from apps.contrib.widgets import ImageInputWidgetSimple
 from apps.organisations.models import OrganisationTranslation
 from apps.projects.models import Project
@@ -170,6 +172,8 @@ class OrganisationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["title"].widget.attrs.update({"required": "true"})
+        self.fields["logo"].help_text = IMAGE_UPLOAD_LOGO_HELP_TEXT
+        self.fields["image"].help_text = IMAGE_UPLOAD_HERO_HELP_TEXT
         for lang_code in self.languages:
             for name, field_cls, kwargs in self.translated_fields:
                 self.instance.set_current_language(lang_code)
