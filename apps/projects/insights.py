@@ -106,3 +106,54 @@ def model_field_exists(cls, field):
         return True
     except FieldDoesNotExist:
         return False
+
+
+def user_has_active_contributions(project: Project, user_id: int) -> bool:
+    """Return whether the user still has contributions counted as participation.
+
+    Mirrors the creator_objects logic in create_insight: ideas, map ideas,
+    proposals, comments, poll votes/answers, and positive/negative ratings on
+    project content.
+    """
+    modules = project.modules.all()
+    comments = get_all_comments_project(project=project)
+    polls = Poll.objects.filter(module__in=modules)
+    ideas = Idea.objects.filter(module__in=modules)
+    map_ideas = MapIdea.objects.filter(module__in=modules)
+    topics = Topic.objects.filter(module__in=modules)
+    values = [Rating.POSITIVE, Rating.NEGATIVE]
+
+    existence_checks = (
+        Idea.objects.filter(module__in=modules, creator_id=user_id),
+        MapIdea.objects.filter(module__in=modules, creator_id=user_id),
+        Proposal.objects.filter(module__in=modules, creator_id=user_id),
+        comments.filter(creator_id=user_id),
+        Vote.objects.filter(choice__question__poll__in=polls, creator_id=user_id),
+        Answer.objects.filter(question__poll__in=polls, creator_id=user_id),
+        Rating.objects.filter(creator_id=user_id, idea__in=ideas, value__in=values),
+        Rating.objects.filter(
+            creator_id=user_id, mapidea__in=map_ideas, value__in=values
+        ),
+        Rating.objects.filter(
+            creator_id=user_id, comment__in=comments, value__in=values
+        ),
+        Rating.objects.filter(creator_id=user_id, topic__in=topics, value__in=values),
+    )
+    return any(qs.exists() for qs in existence_checks)
+
+
+def remove_active_participant_if_inactive(
+    insight: ProjectInsight, project: Project, user_id: int
+) -> None:
+    """Remove a user from active_participants when they have no contributions left.
+
+    Called after a contribution is deleted. A user may author many objects, so
+    we only remove them once user_has_active_contributions returns False.
+    """
+    if not user_id:
+        return
+    if not insight.active_participants.filter(pk=user_id).exists():
+        return
+    if user_has_active_contributions(project=project, user_id=user_id):
+        return
+    insight.active_participants.remove(user_id)

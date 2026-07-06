@@ -303,6 +303,34 @@ def test_complex_example(
 
 
 @pytest.mark.django_db
+def test_deleting_idea_decreases_written_ideas_count(
+    module_factory,
+    idea_factory,
+    user_factory,
+):
+    module = module_factory()
+    user = user_factory()
+    ideas = [
+        idea_factory(module=module, creator=user),
+        idea_factory(module=module, creator=user),
+    ]
+
+    insight = ProjectInsight.objects.get(project=module.project)
+    assert insight.written_ideas == len(ideas)
+    assert insight.active_participants.count() == 1
+
+    ideas[0].delete()
+    insight.refresh_from_db()
+    assert insight.written_ideas == 1
+    assert insight.active_participants.count() == 1
+
+    ideas[1].delete()
+    insight.refresh_from_db()
+    assert insight.written_ideas == 0
+    assert insight.active_participants.count() == 0
+
+
+@pytest.mark.django_db
 @pytest.mark.parametrize("insight_provider", [get_insight])
 def test_create_insight_for_ideas(
     module_factory,
