@@ -72,7 +72,6 @@ $project-detail-breadcrumbs-offset: 79px;
 }
 
 .project-detail__guest-alert {
-    padding: 24px;
     background-color: $brand-primary-100;
 
     .alert__content {
@@ -235,37 +234,20 @@ $project-detail-breadcrumbs-offset: 79px;
     &.a4-btn--follow,
     &.a4-btn--following {
         padding: 0 $spacer;
-        border: 1px solid $print-black;
-        background-color: $print-black;
-        color: $white;
+        border: 1px solid $text-color;
+        background-color: $body-bg;
+        color: $text-color;
         font-weight: 400;
-
-        &:hover,
-        &:focus {
-            background-color: lighten($print-black, 15%);
-            color: $white;
-        }
 
         &:before {
             margin-right: 0.3em;
         }
-    }
-    
-    /* stylelint-disable-next-line no-descending-specificity */
-    &.a4-btn--following {
-        background-color: $brand-primary;
-        color: $white;
-        border-color: $brand-primary;
-
-        &:before {
-            color: $white;
-        }
 
         &:hover,
         &:focus {
-            background-color: lighten($brand-primary, 8%);
-            border-color: lighten($brand-primary, 8%);
-            color: $white;
+            background-color: lighten($brand-tertiary, 57%);
+            border-color: $text-color;
+            color: $text-color;
         }
     }
 }

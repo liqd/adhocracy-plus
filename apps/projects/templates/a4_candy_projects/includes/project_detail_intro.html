@@ -15,7 +15,7 @@
             <div id="project-detail-follow-actions">
                 {% if not request.user.is_authenticated %}
                 <a
-                    class="btn btn--black project-detail__action project-detail__action--follow"
+                    class="btn btn--light project-detail__action project-detail__action--follow"
                     href="{% url 'account_login' %}?next={{ request.path }}">
                     <i class="fas fa-plus" aria-hidden="true"></i>
                     {% translate 'Follow' %}
