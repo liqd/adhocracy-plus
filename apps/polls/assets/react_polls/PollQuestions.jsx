@@ -15,12 +15,21 @@ import { pollReducer, initialState } from './reducers/pollReducer'
 import { STATES } from './utils/stateMachine'
 import { getAnsweredCount } from './utils/pollHelpers'
 
-const PollQuestions = ({ pollId, captchaEnabled, prosopoSiteKey }) => {
+const captchaWidgets = {
+  prosopo: ProsopoCaptcha
+}
+
+function getCaptchaWidget (type) {
+  return captchaWidgets[type]
+}
+
+const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey }) => {
   const [state, dispatch] = useReducer(pollReducer, initialState)
 
   usePollData(pollId, dispatch)
 
   const actions = usePollActions(state, dispatch, pollId)
+  const CaptchaWidget = getCaptchaWidget(captchaType)
 
   const currentQuestion = useMemo(
     () => state.questions[state.currentQuestionIndex],
@@ -124,7 +133,7 @@ const PollQuestions = ({ pollId, captchaEnabled, prosopoSiteKey }) => {
             )}
 
             {showCaptcha && (
-              <ProsopoCaptcha
+              <CaptchaWidget
                 key={state.refreshCaptcha}
                 siteKey={prosopoSiteKey}
                 language={document.documentElement.lang || 'de'}

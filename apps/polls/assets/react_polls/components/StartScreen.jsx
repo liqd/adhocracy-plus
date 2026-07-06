@@ -5,11 +5,13 @@ import Alert from 'adhocracy4/adhocracy4/static/Alert'
 import { createUnauthenticatedAlert } from '../utils/alerts'
 
 const StartScreen = ({ moduleName, moduleDescription, totalQuestions, isAuthenticated, allowUnregisteredUsers, totalParticipants, onStart, onShowResults }) => {
+  const loginUrl = window.adhocracy4?.config?.getLoginUrl?.() || '/accounts/login/'
+
   return (
     <div className="poll-start-screen">
       {!isAuthenticated && (
         <Alert
-          {...createUnauthenticatedAlert(window.adhocracy4.config.getLoginUrl())}
+          {...createUnauthenticatedAlert(loginUrl)}
         />
       )}
 
