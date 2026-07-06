@@ -16,9 +16,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Landing page: use cases section with target group cards linking to category filters
 - New project detail page with both grid and timeline view
 - Initiator reminder to publish project results.
+- Image upload: modal upload dialog with cropping for project, idea, proposal, map idea, and organisation forms.
 
 
-### Changed
 ### Changed
 
 - Project initiators can choose per project whether guest users may participate
@@ -31,6 +31,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - New Module pages: Adapt Modul Page to new Grid and more styling.
 
 ### Fixed
+
+- Dashboard forms: align radio button options with text inputs and select fields.
 
 ## hotfix v2606.1
 
