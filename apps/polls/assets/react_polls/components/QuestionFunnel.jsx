@@ -1,6 +1,7 @@
 // apps/polls/assets/react_polls/components/QuestionFunnel.jsx
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import django from 'django'
+import { TermsOfUseCheckbox } from 'adhocracy4/adhocracy4/static/TermsOfUseCheckbox'
 import { PollChoice } from './PollChoice'
 import { PollOpenQuestion } from 'adhocracy4/adhocracy4/polls/static/PollDetail/PollOpenQuestion'
 import ProgressBar from './ProgressBar'
@@ -24,6 +25,11 @@ const QuestionFunnel = ({
   totalQuestions,
   answeredCount,
   allowUnregisteredUsers,
+  useTermsOfUse,
+  agreedTermsOfUse,
+  orgTermsUrl,
+  checkedTermsOfUse,
+  onSetCheckedTerms,
   errors,
   onAnswerChange,
   onBack,
@@ -32,7 +38,17 @@ const QuestionFunnel = ({
   onSubmit,
   isLoading
 }) => {
+  const funnelRef = useRef(null)
+  const headerRef = useRef(null)
+
+  useEffect(() => {
+    const top = funnelRef.current?.getBoundingClientRect().top + window.scrollY - 50
+    window.scrollTo({ top, behavior: 'smooth' })
+    headerRef.current?.focus({ preventScroll: true })
+  }, [currentQuestion.id])
+
   const isLastQuestion = currentNumber === totalQuestions
+  const isSubmitDisabled = isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse
 
   const enrichedQuestion = {
     ...currentQuestion,
@@ -51,10 +67,10 @@ const QuestionFunnel = ({
   }
 
   return (
-    <div className="poll-question-funnel">
+    <div className="poll-question-funnel" ref={funnelRef}>
       <ProgressBar current={currentNumber} total={totalQuestions} />
 
-      <div className="poll-question-header">
+      <div className="poll-question-header" tabIndex={-1} ref={headerRef}>
         {django.interpolate(
           django.gettext('Question %(current)s of %(total)s'),
           { current: currentNumber, total: totalQuestions },
@@ -72,6 +88,7 @@ const QuestionFunnel = ({
               onOpenChange={(questionId, value) =>
                 handleAnswerUpdate(questionId, value, 'open')}
               errors={errors}
+              questionImagesEnabled={!!currentQuestion.image_url}
             />
             )
           : (
@@ -85,6 +102,16 @@ const QuestionFunnel = ({
             )}
       </div>
 
+      {isLastQuestion && useTermsOfUse && !agreedTermsOfUse && (
+        <div className="col-12 mt-4">
+          <TermsOfUseCheckbox
+            id="terms-of-use"
+            onChange={onSetCheckedTerms}
+            orgTermsUrl={orgTermsUrl}
+          />
+        </div>
+      )}
+
       <NavigationButtons
         onBack={onBack}
         onSkip={onSkip}
@@ -92,6 +119,7 @@ const QuestionFunnel = ({
         onSubmit={onSubmit}
         isLoading={isLoading}
         isLastQuestion={isLastQuestion}
+        isSubmitDisabled={isSubmitDisabled}
         currentIndex={currentNumber - 1}
       />
     </div>

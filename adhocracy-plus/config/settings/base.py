@@ -464,6 +464,10 @@ A4_ORGANISATIONS_MODEL = "a4_candy_organisations.Organisation"
 
 # Set to False to disable the option to allow unregistered users in polls
 A4_POLL_ENABLE_UNREGISTERED_USERS = True
+A4_POLL_TEMPLATE_TAG_EXTRA_ATTRIBUTES = (
+    "apps.polls.captcha_backend.poll_extra_attributes"
+)
+A4_CAPTCHA_BACKEND = "apps.polls.captcha_backend.prosopo_captcha_backend"
 A4_ENABLE_GUEST_USERS = True
 
 A4_RATEABLES = (

@@ -15,6 +15,7 @@ export const initialState = {
 
   // Permissions & Settings
   allowUnregisteredUsers: false,
+  guestCanVote: false,
   isAuthenticated: false,
   hasUserVote: false,
   useTermsOfUse: false,
@@ -49,6 +50,7 @@ const reducers = {
     userAnswers: payload.userAnswers,
     results: payload.results,
     allowUnregisteredUsers: payload.allowUnregisteredUsers,
+    guestCanVote: payload.guestCanVote,
     isAuthenticated: payload.isAuthenticated,
     hasUserVote: payload.hasUserVote,
     useTermsOfUse: payload.useTermsOfUse,

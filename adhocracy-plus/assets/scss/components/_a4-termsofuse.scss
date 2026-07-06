@@ -1,9 +1,28 @@
 .a4-termsofuse__checkbox-container {
     margin-top: 1.5 * $spacer;
+    position: relative;
 }
 
 .a4-termsofuse__checkbox {
-    @extend .poll-row__radio;
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    margin: 0;
+    top: 4px;
+    left: 0;
+    z-index: 1;
+}
+
+.a4-termsofuse__checkbox:checked + .a4-termsofuse__checkbox-label:after {
+    content: "\f00c";
+    transform: scale(1);
+    opacity: 100%;
+}
+
+.a4-termsofuse__checkbox:focus + .a4-termsofuse__checkbox-label:before {
+    @include fake-focus-shadow;
 }
 
 .a4-termsofuse__checkbox-label {

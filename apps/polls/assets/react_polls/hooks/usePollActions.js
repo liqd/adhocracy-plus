@@ -2,7 +2,7 @@
 import { useCallback } from 'react'
 import { ACTIONS } from '../utils/stateMachine'
 import { hasValidAnswer, buildVoteData } from '../utils/pollHelpers'
-import { ALERT_INVALID, ALERT_SUCCESS, ALERT_ERROR } from '../utils/alerts'
+import { ALERT_INVALID, ALERT_SUCCESS, ALERT_ERROR, ALERT_INCOMPLETE } from '../utils/alerts'
 import { usePollSubmission } from './usePollSubmission'
 
 export const usePollActions = (state, dispatch, pollId) => {
@@ -45,6 +45,15 @@ export const usePollActions = (state, dispatch, pollId) => {
   }, [dispatch])
 
   const handleSubmitAll = useCallback(async () => {
+    const allValid = state.questions.every(q => {
+      const answer = state.userAnswers[q.id]
+      return !answer || hasValidAnswer(q, answer)
+    })
+    if (!allValid) {
+      dispatch({ type: ACTIONS.SET_ALERT, payload: ALERT_INCOMPLETE })
+      return
+    }
+
     dispatch({ type: ACTIONS.SUBMIT_START })
 
     const voteData = buildVoteData(state.userAnswers)

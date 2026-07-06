@@ -1,7 +1,5 @@
 // apps/polls/assets/react_polls/utils/alerts.js
 import django from 'django'
-import React from 'react'
-
 export const ALERT_SUCCESS = {
   type: 'success',
   message: django.gettext('Your answer has been saved.')
@@ -21,18 +19,3 @@ export const ALERT_INCOMPLETE = {
   type: 'warning',
   message: django.gettext('Please answer all questions before submitting.')
 }
-
-export const createUnauthenticatedAlert = (loginUrl) => ({
-  type: 'warning',
-  message: (
-    <div
-      dangerouslySetInnerHTML={{
-        __html: django.interpolate(
-          django.gettext('In order to participate please <a href="%(url)s">log in</a>.'),
-          { url: loginUrl },
-          true
-        )
-      }}
-    />
-  )
-})
