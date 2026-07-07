@@ -1,5 +1,3 @@
-from django.urls import reverse
-
 from adhocracy4.dashboard import components
 from adhocracy4.polls import dashboard as a4_poll_dashboard
 from adhocracy4.polls import exports as a4_poll_exports
@@ -8,25 +6,19 @@ from . import views
 
 
 class PollComponent(a4_poll_dashboard.PollComponent):
-    def get_base_url(self, module):
-        return reverse(
-            "a4dashboard:poll-dashboard",
-            kwargs={
-                "organisation_slug": module.project.organisation.slug,
-                "module_slug": module.slug,
-            },
-        )
+    def get_base_url_kwargs(self, module):
+        return {
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        }
 
 
 class ExportPollComponent(a4_poll_dashboard.ExportPollComponent):
-    def get_base_url(self, module):
-        return reverse(
-            "a4dashboard:poll-export-module",
-            kwargs={
-                "organisation_slug": module.project.organisation.slug,
-                "module_slug": module.slug,
-            },
-        )
+    def get_base_url_kwargs(self, module):
+        return {
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        }
 
     def get_urls(self):
         return [

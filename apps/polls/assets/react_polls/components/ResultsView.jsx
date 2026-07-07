@@ -18,6 +18,7 @@ const ResultsView = ({ results, totalParticipants, hasUserVote, alert, onBackToP
           )}
         </p>
       )}
+      <p className="lead">{django.gettext('The poll was completed! Here you can see the results.')}</p>
       {results.map((question, idx) => (
         <PollResults key={`result-${question.id || idx}`} question={question} />
       ))}

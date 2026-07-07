@@ -4,7 +4,7 @@ import django from 'django'
 import Alert from 'adhocracy4/adhocracy4/static/Alert'
 import { createUnauthenticatedAlert } from '../utils/alerts'
 
-const StartScreen = ({ moduleName, moduleDescription, totalQuestions, isAuthenticated, allowUnregisteredUsers, totalParticipants, onStart, onShowResults }) => {
+const StartScreen = ({ moduleName, moduleDescription, totalQuestions, isAuthenticated, allowUnregisteredUsers, totalParticipants, manualLink, onStart, onShowResults }) => {
   const loginUrl = window.adhocracy4?.config?.getLoginUrl?.() || '/accounts/login/'
 
   return (
@@ -13,6 +13,22 @@ const StartScreen = ({ moduleName, moduleDescription, totalQuestions, isAuthenti
         <Alert
           {...createUnauthenticatedAlert(loginUrl)}
         />
+      )}
+
+      {!isAuthenticated && allowUnregisteredUsers && (
+        <aside className="info-box" aria-labelledby="info-box-title">
+          <h3 className="visually-hidden" id="info-box-title">{django.gettext('Poll Participation Info')}</h3>
+          <div className="info-box__content">
+            <i className="far fa-lightbulb" aria-hidden="true" />
+            <div className="info-box__text">
+              <p>{django.gettext('You can now participate in this poll even if you\'re not logged in.')}</p>
+              <p><strong>{django.gettext("Unregistered users can't edit their votes once submitted.")}</strong></p>
+              {manualLink && (
+                <a href={manualLink + 'pollmodule'} rel="nofollow noopener noreferrer external" target="_blank" className="info-box__link" aria-label={django.gettext('Learn more about the voting options and rules')}>{django.gettext('Learn more about voting options.')}</a>
+              )}
+            </div>
+          </div>
+        </aside>
       )}
 
       {moduleName && <h2>{moduleName}</h2>}

@@ -23,7 +23,7 @@ function getCaptchaWidget (type) {
   return captchaWidgets[type]
 }
 
-const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey }) => {
+const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, manualLink }) => {
   const [state, dispatch] = useReducer(pollReducer, initialState)
 
   usePollData(pollId, dispatch)
@@ -91,6 +91,7 @@ const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey }) 
             totalParticipants={state.totalParticipants}
             isAuthenticated={state.isAuthenticated}
             allowUnregisteredUsers={state.allowUnregisteredUsers}
+            manualLink={manualLink}
             onStart={actions.handleStartPoll}
             onShowResults={actions.handleShowResults}
           />
