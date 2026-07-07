@@ -72,6 +72,7 @@ const QuestionFunnel = ({
               onOpenChange={(questionId, value) =>
                 handleAnswerUpdate(questionId, value, 'open')}
               errors={errors}
+              questionImagesEnabled={!!currentQuestion.image_url}
             />
             )
           : (

@@ -72,6 +72,19 @@
     cursor: pointer;
     margin: 1rem 0;
     display: inline-block;
+    position: relative;
+}
+
+.poll__question-image-zoom-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: $white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0;
+    pointer-events: none;
+    font-size: $font-size-sm;
 }
 
 .poll__question-image-img {

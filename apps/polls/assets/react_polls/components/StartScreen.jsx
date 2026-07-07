@@ -1,19 +1,10 @@
 // apps/polls/assets/react_polls/components/StartScreen.jsx
 import React from 'react'
 import django from 'django'
-import Alert from 'adhocracy4/adhocracy4/static/Alert'
-import { createUnauthenticatedAlert } from '../utils/alerts'
 
 const StartScreen = ({ moduleName, moduleDescription, totalQuestions, isAuthenticated, allowUnregisteredUsers, totalParticipants, manualLink, onStart, onShowResults }) => {
-  const loginUrl = window.adhocracy4?.config?.getLoginUrl?.() || '/accounts/login/'
-
   return (
     <div className="poll-start-screen">
-      {!isAuthenticated && (
-        <Alert
-          {...createUnauthenticatedAlert(loginUrl)}
-        />
-      )}
 
       {!isAuthenticated && allowUnregisteredUsers && (
         <aside className="info-box" aria-labelledby="info-box-title">
@@ -61,14 +52,24 @@ const StartScreen = ({ moduleName, moduleDescription, totalQuestions, isAuthenti
       />
 
       <div className="poll-start-screen__buttons">
-        <button
-          type="button"
-          className="btn poll__btn--dark"
-          onClick={onStart}
-          disabled={!isAuthenticated && !allowUnregisteredUsers}
-        >
-          {django.gettext('Start Poll')}
-        </button>
+        {isAuthenticated || allowUnregisteredUsers
+          ? (
+            <button
+              type="button"
+              className="btn poll__btn--dark"
+              onClick={onStart}
+            >
+              {django.gettext('Start')}
+            </button>
+            )
+          : (
+            <a
+              href={window.adhocracy4?.config?.getLoginUrl?.() || '/accounts/login/'}
+              className="btn poll__btn--dark"
+            >
+              {django.gettext('Log in to participate')}
+            </a>
+            )}
 
         <button
           type="button"

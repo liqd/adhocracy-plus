@@ -48,7 +48,7 @@ const ResultsView = ({ results, totalParticipants, hasUserVote, alert, onBackToP
               <div className="text-end">
                 <button
                   type="button"
-                  className="btn btn--transparent"
+                  className="btn btn--transparent-bordered"
                   onClick={onChangeAnswer}
                 >
                   {django.gettext('Change my answers')}
