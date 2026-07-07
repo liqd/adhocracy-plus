@@ -7,6 +7,45 @@
     padding-top: $spacer;
 }
 
+.poll__results-content {
+    max-height: 3000px;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+
+    &--collapsed {
+        max-height: 0;
+    }
+}
+
+.poll__results-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    font-size: inherit;
+    font-family: inherit;
+
+    .poll__results-header-text {
+        flex: 1;
+    }
+
+    .fa-chevron-down {
+        margin-left: $spacer;
+        margin-top: 0.25em;
+        transition: transform 0.4s ease;
+        flex-shrink: 0;
+
+        &.open {
+            transform: rotate(180deg);
+        }
+    }
+}
+
 .poll {
     h2 {
         margin-top: 0;
