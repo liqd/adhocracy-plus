@@ -20,6 +20,16 @@ from apps.projects.helpers import get_all_comments_project
 from apps.projects.models import ProjectInsight
 from apps.topicprio.models import Topic
 
+# Project insights are stored as cached counters on ProjectInsight and updated
+# incrementally via signals (apps/projects/signals.py).
+#
+# Helpers in this module define which content counts toward those numbers.
+# create_insight() uses them for full recounts; signals use them to decide
+# whether to increment or decrement on create, update, or delete.
+#
+# Not every row in the database counts: e.g. soft-deleted comments, draft
+# modules, and neutral ratings (value 0) are excluded.
+
 RATING_INSIGHT_VALUES = {Rating.POSITIVE, Rating.NEGATIVE}
 
 INSIGHT_COUNT_FIELDS = (
@@ -33,12 +43,14 @@ INSIGHT_COUNT_FIELDS = (
 
 
 def snapshot_insight_counts(insight: ProjectInsight) -> dict:
+    """Capture current cached counts for comparison before a recount."""
     counts = {field: getattr(insight, field) for field in INSIGHT_COUNT_FIELDS}
     counts["active_participants"] = insight.active_participants.count()
     return counts
 
 
 def insight_count_changes(before: dict, after: dict) -> list[tuple[str, int, int]]:
+    """Return fields that changed between two snapshots (for command output)."""
     changes = []
     for field, old_value in before.items():
         new_value = after[field]
@@ -52,18 +64,34 @@ def create_insights(projects: Iterable[Project]) -> List[ProjectInsight]:
 
 
 def rating_counts_toward_insights(value: Optional[int]) -> bool:
+    """Return whether a rating value should increment the insights ratings counter.
+
+    Users can "remove" a rating by setting value to 0 without deleting the row.
+    Only thumbs up/down (±1) count, matching create_insight() and update_rating_count.
+    """
     return value in RATING_INSIGHT_VALUES
 
 
 def module_counts_toward_insights(module) -> bool:
+    """Return whether content on this module should affect insights.
+
+    Draft modules are hidden from participants; their content is excluded
+    until the module is published (see refresh_insights_on_module_draft_change).
+    """
     return module is not None and not module.is_draft
 
 
 def get_published_modules(project: Project):
+    """Modules whose content is included in insight counts and participant lists."""
     return project.modules.filter(is_draft=False)
 
 
 def get_insight_module(obj) -> Optional[object]:
+    """Resolve the module for a content object (idea, poll, proposal, etc.).
+
+    Used when the object does not carry a module FK directly, e.g. comments
+    attach to many types via GenericForeignKey.
+    """
     if obj is None:
         return None
     if hasattr(obj, "module"):
@@ -74,6 +102,15 @@ def get_insight_module(obj) -> Optional[object]:
 
 
 def comment_counts_toward_insights(comment: Comment) -> bool:
+    """Return whether this comment should count toward insight.comments.
+
+    Comments are soft-deleted (is_removed / is_censored) or blocked rather than
+    removed from the DB, so post_delete never runs. Signals call this on every
+    save to detect when a comment enters or leaves the counted set.
+
+    Also skips comments on draft modules by walking up to the parent content
+    (idea, proposal, poll, or nested comment).
+    """
     if not comment.project_id:
         return False
     if comment.is_removed or comment.is_censored or comment.is_blocked:
@@ -92,6 +129,11 @@ def comment_counts_toward_insights(comment: Comment) -> bool:
 
 
 def get_counted_comments_project(project: Project):
+    """Comments that should contribute to insight.comments for a full recount.
+
+    Wraps get_all_comments_project() and applies comment_counts_toward_insights
+    so create_insight() matches what signals increment/decrement.
+    """
     all_comments = get_all_comments_project(project=project)
     counted_pks = [
         comment.pk
@@ -102,6 +144,11 @@ def get_counted_comments_project(project: Project):
 
 
 def count_unregistered_participants(project: Project) -> int:
+    """Count distinct anonymous voters by content_id on published poll modules.
+
+    Used instead of += 1 on each vote so one browser session is one participant
+    even if they submit multiple Vote/Answer rows.
+    """
     polls = Poll.objects.filter(module__in=get_published_modules(project))
     votes = Vote.objects.filter(
         choice__question__poll__in=polls,
@@ -120,16 +167,31 @@ def count_unregistered_participants(project: Project) -> int:
 
 
 def sync_unregistered_participants(insight: ProjectInsight, project: Project) -> None:
+    """Recompute unregistered_participants from the database.
+
+    Called after anonymous poll votes are created or deleted; the integer field
+    cannot be decremented safely without knowing unique content_ids.
+    """
     insight.unregistered_participants = count_unregistered_participants(project)
     insight.save(update_fields=["unregistered_participants"])
 
 
 def add_active_participant(insight: ProjectInsight, user_id: Optional[int]) -> None:
+    """Add a user to active_participants if they have a creator account.
+
+    No-op for anonymous participation (polls) or missing creator_id.
+    """
     if user_id:
         insight.active_participants.add(user_id)
 
 
 def create_insight(project: Project) -> ProjectInsight:
+    """Rebuild all insight counters for a project from scratch.
+
+    Authoritative when signals may have drifted; used by reset_insights_table.
+    Uses the same inclusion rules as the signal helpers (published modules,
+    visible comments, ±1 ratings, etc.).
+    """
     modules = get_published_modules(project)
 
     ideas = Idea.objects.filter(module__in=modules)

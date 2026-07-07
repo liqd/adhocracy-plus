@@ -72,6 +72,8 @@ def refresh_insights_on_module_draft_change(sender, instance, **kwargs):
 
 
 @receiver(signals.pre_save, sender=Comment)
+# Comment deletes are soft (is_removed etc.); see update_comments_count and
+# comment_counts_toward_insights in insights.py.
 def cache_comment_counted_state(sender, instance, **kwargs):
     if instance.pk:
         previous = Comment.objects.get(pk=instance.pk)
