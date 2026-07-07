@@ -4,6 +4,7 @@ from django.urls import reverse
 from rest_framework import status
 
 from adhocracy4.polls import phases
+from adhocracy4.polls.models import Answer
 from adhocracy4.polls.models import Poll
 from adhocracy4.polls.models import Vote
 from adhocracy4.test.helpers import freeze_phase
@@ -12,6 +13,7 @@ from apps.dashboard.blueprints import blueprints
 from apps.projects.insights import create_insight
 from apps.projects.models import ProjectInsight
 from apps.projects.models import create_insight_context
+from tests.budgeting.factories import ProposalFactory
 
 get_insight = ProjectInsight.objects.get
 
@@ -47,6 +49,9 @@ def test_draft_modules_do_not_trigger_show_results(
     module.is_draft = True
     module.save()
     insight = insight_provider(project=project)
+
+    assert insight.poll_answers == 0
+
     context = create_insight_context(insight=insight)
     labels = [label for label, count in context["counts"]]
 
@@ -439,3 +444,140 @@ def test_create_insight_contexts_combines_unregistered_users_and_registered_user
     assert insight.unregistered_participants == n_unregistered_users
     context = create_insight_context(insight)
     assert context["counts"][0][1] == len(users) + n_unregistered_users
+
+
+@pytest.mark.django_db
+def test_neutral_rating_does_not_increase_rating_count(
+    module_factory,
+    idea_factory,
+    rating_factory,
+):
+    module = module_factory()
+    idea = idea_factory(module=module)
+    rating_factory(content_object=idea, value=0)
+
+    insight = ProjectInsight.objects.get(project=module.project)
+    assert insight.ratings == 0
+
+
+@pytest.mark.django_db
+def test_rating_value_change_updates_rating_count(
+    module_factory,
+    idea_factory,
+    rating_factory,
+):
+    module = module_factory()
+    idea = idea_factory(module=module)
+    rating = rating_factory(content_object=idea, value=0)
+
+    insight = ProjectInsight.objects.get(project=module.project)
+    assert insight.ratings == 0
+
+    rating.value = 1
+    rating.save()
+    insight.refresh_from_db()
+    assert insight.ratings == 1
+
+    rating.value = 0
+    rating.save()
+    insight.refresh_from_db()
+    assert insight.ratings == 0
+
+
+@pytest.mark.django_db
+def test_draft_module_content_not_counted(
+    module_factory,
+    idea_factory,
+):
+    module = module_factory(is_draft=True)
+    idea_factory(module=module)
+
+    insight = create_insight(project=module.project)
+    assert insight.written_ideas == 0
+
+
+@pytest.mark.django_db
+def test_topic_prioritization_shows_written_ideas_label(module_factory, topic_factory):
+    module = module_factory(blueprint_type="TP")
+    topic_factory(module=module)
+
+    insight = create_insight(project=module.project)
+    context = create_insight_context(insight=insight)
+    labels = [label for label, count in context["counts"]]
+
+    assert "written ideas" in labels
+    assert insight.written_ideas == 1
+
+
+@pytest.mark.django_db
+def test_proposal_rating_counted(
+    module_factory,
+    rating_factory,
+    user_factory,
+):
+    module = module_factory(blueprint_type="PB")
+    user = user_factory()
+    proposal = ProposalFactory(module=module, creator=user)
+    rating_factory(content_object=proposal, creator=user, value=1)
+
+    insight = create_insight(project=module.project)
+    assert insight.ratings == 1
+    assert insight.active_participants.filter(pk=user.pk).exists()
+
+
+@pytest.mark.django_db
+@override_settings(CAPTCHA=False)
+def test_deleting_unregistered_poll_vote_syncs_participant_count(
+    apiclient,
+    phase_factory,
+    poll_factory,
+    choice_factory,
+    question_factory,
+):
+    phase, module, project, _ = setup_phase(
+        phase_factory, poll_factory, phases.VotingPhase
+    )
+
+    poll = Poll.objects.first()
+    poll.allow_unregistered_users = True
+    poll.save()
+    question = question_factory(poll=poll)
+    choice1 = choice_factory(question=question)
+    open_question = question_factory(poll=poll, is_open=True)
+
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
+    with freeze_phase(phase):
+        response = apiclient.post(
+            url,
+            {
+                "votes": {
+                    question.pk: {
+                        "choices": [choice1.pk],
+                        "other_choice_answer": "",
+                        "open_answer": "",
+                    },
+                    open_question.pk: {
+                        "choices": [],
+                        "other_choice_answer": "",
+                        "open_answer": "an open answer",
+                    },
+                },
+                "agreed_terms_of_use": True,
+                "captcha": "testpass:1",
+            },
+            format="json",
+        )
+        assert response.status_code == status.HTTP_201_CREATED
+
+    insight = ProjectInsight.objects.get(project=project)
+    assert insight.unregistered_participants == 1
+
+    content_id = (
+        Vote.objects.filter(creator__isnull=True)
+        .values_list("content_id", flat=True)
+        .first()
+    )
+    Vote.objects.filter(content_id=content_id).delete()
+    Answer.objects.filter(content_id=content_id).delete()
+    insight.refresh_from_db()
+    assert insight.unregistered_participants == 0
