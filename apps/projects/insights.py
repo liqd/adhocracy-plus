@@ -76,6 +76,8 @@ def get_insight_module(obj) -> Optional[object]:
 def comment_counts_toward_insights(comment: Comment) -> bool:
     if not comment.project_id:
         return False
+    if comment.is_removed or comment.is_censored or comment.is_blocked:
+        return False
 
     obj = comment.content_object
     while obj is not None:

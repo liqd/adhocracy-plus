@@ -336,6 +336,29 @@ def test_deleting_idea_decreases_written_ideas_count(
 
 
 @pytest.mark.django_db
+def test_soft_deleted_comment_decreases_comment_count(
+    module_factory,
+    comment_factory,
+    user_factory,
+):
+    module = module_factory(blueprint_type="PB")
+    proposal_author = user_factory()
+    comment_author = user_factory()
+    proposal = ProposalFactory(module=module, creator=proposal_author)
+    comment = comment_factory(content_object=proposal, creator=comment_author)
+
+    insight = ProjectInsight.objects.get(project=module.project)
+    assert insight.comments == 1
+    assert insight.active_participants.count() == 2
+
+    comment.is_removed = True
+    comment.save()
+    insight.refresh_from_db()
+    assert insight.comments == 0
+    assert insight.active_participants.count() == 1
+
+
+@pytest.mark.django_db
 @pytest.mark.parametrize("insight_provider", [get_insight])
 def test_create_insight_for_ideas(
     module_factory,

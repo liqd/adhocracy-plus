@@ -71,17 +71,39 @@ def refresh_insights_on_module_draft_change(sender, instance, **kwargs):
         create_insight(project=instance.project)
 
 
+@receiver(signals.pre_save, sender=Comment)
+def cache_comment_counted_state(sender, instance, **kwargs):
+    if instance.pk:
+        previous = Comment.objects.get(pk=instance.pk)
+        instance._was_counted_toward_insights = comment_counts_toward_insights(previous)
+    else:
+        instance._was_counted_toward_insights = False
+
+
 @receiver(signals.post_save, sender=Comment)
-def increase_comments_count(sender, instance, created, **kwargs):
-    if not created or not instance.project:
-        return
-    if not comment_counts_toward_insights(instance):
+def update_comments_count(sender, instance, created, **kwargs):
+    if not instance.project_id:
         return
 
-    insight, _ = ProjectInsight.objects.get_or_create(project=instance.project)
-    insight.comments += 1
-    insight.save()
-    add_active_participant(insight, instance.creator_id)
+    was_counted = getattr(instance, "_was_counted_toward_insights", False)
+    is_counted = comment_counts_toward_insights(instance)
+
+    if was_counted == is_counted:
+        return
+
+    project = instance.project
+    insight, _ = ProjectInsight.objects.get_or_create(project=project)
+
+    if is_counted:
+        insight.comments += 1
+        insight.save()
+        add_active_participant(insight, instance.creator_id)
+    else:
+        insight.comments = max(0, insight.comments - 1)
+        insight.save()
+        remove_active_participant_if_inactive(
+            insight=insight, project=project, user_id=instance.creator_id
+        )
 
 
 @receiver(signals.post_save, sender=Idea)

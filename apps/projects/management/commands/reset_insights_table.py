@@ -53,7 +53,9 @@ class Command(BaseCommand):
                 f"{field} {old_value} -> {new_value}"
                 for field, old_value, new_value in changes
             )
-            self.stdout.write(f"{project.slug}: {formatted}")
+            self.stdout.write(
+                f"{project.slug} (id={project.pk}, name={project.name!r}): {formatted}"
+            )
 
         logger.info(
             "reset insights: "
