@@ -16,18 +16,21 @@ const ResultsView = ({ results, totalParticipants, hasUserVote, alert, onBackToP
       >
         <div className="poll__results-header-text">
           {totalParticipants > 0 && (
-            <p className="poll__total-participants">
-              {django.interpolate(
-                django.ngettext(
-                  '%s person has participated.',
-                  '%s people have participated.',
-                  totalParticipants
-                ),
-                [totalParticipants]
-              )}
-            </p>
+            <p
+              className="poll__total-participants"
+              dangerouslySetInnerHTML={{
+                __html: django.interpolate(
+                  django.ngettext(
+                    '<strong>%s</strong> <strong>person</strong> has participated.',
+                    '<strong>%s</strong> <strong>people</strong> have participated.',
+                    totalParticipants
+                  ),
+                  [totalParticipants]
+                )
+              }}
+            />
           )}
-          <p className="lead">{django.gettext('The poll was completed! Here you can see the results.')}</p>
+          <p className="lead poll__results-subtitle">{django.gettext('The poll was completed! Here you can see the results.')}</p>
         </div>
         <i className={`fas fa-chevron-down${resultsCollapsed ? '' : ' open'}`} aria-hidden="true" />
       </button>
