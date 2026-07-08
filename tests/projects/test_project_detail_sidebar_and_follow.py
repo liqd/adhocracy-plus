@@ -163,7 +163,7 @@ def test_project_detail_single_module_shows_overview(
 
 
 @pytest.mark.django_db
-def test_project_detail_online_participation_section(client, project_detail_overview):
+def test_project_detail_participation_section(client, project_detail_overview):
     module = project_detail_overview.published_modules.first()
     module.name = "Survey module"
     module.save()
