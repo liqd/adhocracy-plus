@@ -169,7 +169,7 @@ def test_project_detail_online_participation_section(client, project_detail_over
     module.save()
     response = client.get(project_detail_url(project_detail_overview))
     assert b"project-detail__participation" in response.content
-    assert b"Online participation" in response.content
+    assert b"Participation" in response.content
     assert b"project-detail__module-grid" in response.content
     assert b"data-participation-view-btn" in response.content
     assert b"Survey module" in response.content

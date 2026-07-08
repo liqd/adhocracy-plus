@@ -14,7 +14,7 @@ _CURRENT_ITEM = "item"
 
 _PROJECT_SUBPAGE_LABELS = {
     _CURRENT_INFORMATION: _("Information"),
-    _CURRENT_RESULTS: _("Statistics & Results"),
+    _CURRENT_RESULTS: _("Results"),
 }
 
 

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n rules ckeditor_tags wagtailcore_tags static platform_breadcrumbs_tags a4_candy_project_tags %}
 
-{% block title %}{% translate 'Statistics & Results' %} — {{ project.name }} — {{ block.super }}{% endblock title %}
+{% block title %}{% translate 'Results' %} — {{ project.name }} — {{ block.super }}{% endblock title %}
 
 {% block extra_css %}
   {{ block.super }}
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="project-subpage__content">
-                            <h1 class="project-subpage__title">{% translate 'Statistics & Results' %}</h1>
+                            <h1 class="project-subpage__title">{% translate 'Results' %}</h1>
 
                             {% if project.insight.display and counts %}
                             <section class="project-subpage__stats" aria-labelledby="project-results-stats-heading">
@@ -51,10 +51,7 @@
                             {% endif %}
 
                             {% if project|has_result_content %}
-                            <section class="project-subpage__results" aria-labelledby="project-results-body-heading">
-                                <h2 class="project-subpage__section-title" id="project-results-body-heading">
-                                    {% translate 'Results' %}
-                                </h2>
+                            <section class="project-subpage__results">
                                 <div class="ck-content">
                                     {{ project.result | transform_collapsibles | richtext }}
                                 </div>
