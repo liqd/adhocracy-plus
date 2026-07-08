@@ -49,10 +49,26 @@ class EmailAplus(Email):
     def get_receiver_language(self, receiver):
         return self.get_languages(receiver)[0]
 
+    def get_platform_name(self):
+        from wagtail.models import Site as WagtailSite
+
+        from apps.cms.settings.models import OrganisationSettings
+
+        wagtail_site = WagtailSite.objects.filter(is_default_site=True).first()
+        if wagtail_site is not None:
+            org_settings = OrganisationSettings.for_site(wagtail_site)
+            if org_settings.platform_name:
+                return org_settings.platform_name
+
+        site = self.get_site()
+        if site is not None:
+            return str(site)
+        return ""
+
     def get_context(self):
         context = super().get_context()
         context["organisation"] = self.get_organisation()
-        context["current_site"] = self.get_site()
+        context["current_site"] = self.get_platform_name()
         return context
 
     def get_attachments(self):
