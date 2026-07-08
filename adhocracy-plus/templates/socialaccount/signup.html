@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block head_title %}{% translate "Signup" %}{% endblock %}
+{% block head_title %}{% translate "Signup" %}{% endblock head_title %}
 
 {% block content %}
     <h1>{% translate "Sign Up" %}</h1>
@@ -10,7 +10,7 @@
 <p>{% blocktranslate with provider_name=account.get_provider.name site_name=current_site %}You are about to use your {{provider_name}} account to login to
 {{site_name}}. As a final step, please complete the following form:{% endblocktranslate %}</p>
 
-<form id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
+<form id="signup_form" method="post" action="{% url 'socialaccount_signup' %}" class="account-auth-form">
         {{ form.non_field_errors }}
         {{ form.media }}
         {% csrf_token %}
@@ -53,9 +53,9 @@
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=form.captcha tabindex=0 %}
             {% endwith %}
         {% endif %}
-        <div class="u-spacer-bottom-double">
-            <button class="btn btn--primary" type="submit">{% translate "Register" %}</button>
+        <div class="account-auth-form__actions account-auth-form__actions--single u-spacer-bottom-double">
+            <button class="btn btn--black" type="submit">{% translate "Register" %}</button>
         </div>
     </form>
 
-{% endblock %}
+{% endblock content %}

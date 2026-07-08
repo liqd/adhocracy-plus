@@ -27,14 +27,12 @@
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
 
-        <div class="row">
-            <div class="col-12 mb-3">
-                <button class="btn btn--primary" type="submit">{% translate "Login" %}</button>
-                <a class="btn btn--secondary proceed-guest-button" href="{{ guest_url_value }}">{% translate "Or proceed as guest" %}</a>
-            </div>
-            <div class="col-12 mb-3">
-                <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
-            </div>
+        <div class="account-auth-form__actions">
+            <button class="btn btn--black" type="submit">{% translate "Login" %}</button>
+            <a class="btn btn--secondary proceed-guest-button" href="{{ guest_url_value }}">{% translate "Or continue as a guest" %}</a>
+        </div>
+        <div class="mb-3">
+            <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
         </div>
     </form>
 

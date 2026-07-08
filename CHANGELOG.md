@@ -32,6 +32,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Project detail: remove the participation timeline carousel.
 - Module pages: adapt layout to the new project detail grid styling; remove previous/next
   module cluster navigation.
+- Accounts: adjust login/signup button styles
 
 ### Fixed
 

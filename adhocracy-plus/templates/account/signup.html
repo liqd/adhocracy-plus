@@ -76,9 +76,9 @@
             {% endwith %}
         {% endif %}
 
-        <div class="u-spacer-bottom-double">
-            <button class="btn btn--primary btn--secondary-filled" type="submit">{% translate "Register" %}</button>
-            <a class="btn btn--secondary proceed-guest-button" href="{{ guest_url_value }}">{% translate "Or proceed as guest" %}</a>
+        <div class="account-auth-form__actions u-spacer-bottom-double">
+            <button class="btn btn--black" type="submit">{% translate "Register" %}</button>
+            <a class="btn btn--secondary proceed-guest-button" href="{{ guest_url_value }}">{% translate "Or continue as a guest" %}</a>
         </div>
     </form>
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
