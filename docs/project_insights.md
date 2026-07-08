@@ -60,8 +60,10 @@ Helpers in `insights.py` define **which content counts**. They are shared by `cr
 Not every database row counts:
 
 - **Draft modules** — content on `is_draft=True` modules is excluded until published. Toggling a module's draft state triggers a full `create_insight()` for that project.
-- **Comments** — soft-deleted (`is_removed`), moderator-deleted (`is_censored`), and blocked (`is_blocked`) comments are excluded. Comment "delete" in the API does not remove the row (no `post_delete`); signals use `comment_counts_toward_insights()` on each save to detect when a comment enters or leaves the counted set.
+- **Comments** — soft-deleted (`is_removed`), moderator-deleted (`is_censored`), and blocked (`is_blocked`) comments are excluded. Comment "delete" in the API does not remove the row (no `post_delete`); signals use `comment_counts_toward_insights()` on each save to detect when a comment enters or leaves the counted set. Hard deletes (e.g. cascade when a parent idea is removed) use a `pre_delete` cache so `post_delete` still knows whether the comment counted.
 - **Ratings** — only thumbs up/down (`value` ±1) count. "Removing" a rating sets `value` to 0 without deleting the row; signals adjust the counter on value change.
+- **Budgeting proposals** — archived proposals (`is_archived=True`) are excluded from `written_ideas`; toggling archive state updates the counter (same `pre_save` / `post_save` pattern as comments).
+- **Live questions** — hidden questions (`is_hidden=True`) are excluded from `live_questions`; toggling visibility updates the counter.
 - **Unregistered voters** — counted by distinct `content_id`, not per Vote/Answer row.
 
 Key helpers:
@@ -69,6 +71,8 @@ Key helpers:
 | Function | Purpose |
 |---|---|
 | `comment_counts_toward_insights()` | Should this comment count toward `insight.comments`? |
+| `written_idea_counts_toward_insights()` | Should this idea/map idea/topic/proposal count toward `written_ideas`? |
+| `live_question_counts_toward_insights()` | Should this live question count toward `live_questions`? |
 | `module_counts_toward_insights()` | Is this module published enough to count? |
 | `rating_counts_toward_insights()` | Does this rating value (±1 vs 0) count? |
 | `get_counted_comments_project()` | Comments included in a full recount |
@@ -83,7 +87,9 @@ Signals are registered in `apps/projects/apps.py` → `apps/projects/signals.py`
 
 **On hard delete** — `post_delete` handlers decrement counters. Where a handler also added a participant, it calls `remove_active_participant_if_inactive()` so users are only removed when they have no remaining contributions.
 
-**On soft state change** — comments and ratings use `pre_save` / `post_save` to detect transitions into or out of the counted set (same pattern as hard delete/increment).
+**Cascade deletes** — when Django removes related rows in one operation (e.g. deleting an idea removes its ratings and comments), foreign keys and generic relations may already be cleared in `post_delete`. Handlers that walk relations (`Rating.module`, `Vote.choice`, `Like.livequestion`, etc.) register `pre_delete` to cache the module or counted state on the instance (`_insight_delete_module`, `_insight_delete_was_counted`) and read that cache in `post_delete`.
+
+**On soft state change** — comments, ratings, archived proposals, and hidden live questions use `pre_save` / `post_save` to detect transitions into or out of the counted set (same pattern as hard delete/increment).
 
 **Poll participation** — split across two mechanisms:
 
@@ -120,9 +126,15 @@ Templates: `project_detail_insights.html`, `project_insight_stats.html`.
 
 ### Known gaps
 
-- **Live questions** hidden via `is_hidden` still count toward `live_questions` (toggle, not delete).
-- **Budgeting proposals** archived via `is_archived` still count toward `written_ideas`.
 - Bulk operations or raw SQL that bypass Django signals can drift until `reset_insights_table` runs.
+
+### Tests
+
+`tests/projects/test_insights.py` covers incremental updates (create/delete, soft comment delete, rating value changes, draft modules, cascade deletes with ratings and comments, vote/like deletes, archived proposals, hidden live questions, and unregistered poll voters). Run:
+
+```bash
+venv/bin/python -m pytest tests/projects/test_insights.py -v
+```
 
 ## Developer Notes
 
@@ -161,5 +173,6 @@ synced by distinct `content_id` (see `count_unregistered_participants()`).
 
 - Incremental signals were extended with `post_delete` handlers, soft-delete
   handling for comments, rating value changes, draft-module exclusion, proposal
-  ratings in recounts, and shared inclusion helpers in `insights.py` so signals
-  and `create_insight()` use the same rules.
+  ratings in recounts, archived/hidden exclusion for proposals and live questions,
+  `pre_delete` caching for cascade-safe decrements, and shared inclusion helpers
+  in `insights.py` so signals and `create_insight()` use the same rules.

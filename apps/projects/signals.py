@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import signals
 from django.dispatch import receiver
 
@@ -20,10 +21,12 @@ from .insights import add_active_participant
 from .insights import comment_counts_toward_insights
 from .insights import create_insight
 from .insights import get_insight_module
+from .insights import live_question_counts_toward_insights
 from .insights import module_counts_toward_insights
 from .insights import rating_counts_toward_insights
 from .insights import remove_active_participant_if_inactive
 from .insights import sync_unregistered_participants
+from .insights import written_idea_counts_toward_insights
 from .models import ProjectInsight
 
 
@@ -39,6 +42,26 @@ def _insight_module_for_instance(instance):
     if isinstance(instance, Rating):
         return instance.module
     return get_insight_module(instance)
+
+
+def _safe_insight_module_for_instance(instance):
+    try:
+        if isinstance(instance, Rating):
+            return get_insight_module(instance.content_object)
+        return _insight_module_for_instance(instance)
+    except (AttributeError, ObjectDoesNotExist):
+        return None
+
+
+def _insight_delete_module(instance):
+    return getattr(instance, "_insight_delete_module", None)
+
+
+def _insight_delete_was_counted(instance, fallback):
+    cached = getattr(instance, "_insight_delete_was_counted", None)
+    if cached is not None:
+        return cached
+    return fallback()
 
 
 @receiver(signals.m2m_changed, sender=Project.participants.through)
@@ -69,6 +92,11 @@ def refresh_insights_on_module_draft_change(sender, instance, **kwargs):
     previous_is_draft = getattr(instance, "_previous_is_draft", None)
     if previous_is_draft is not None and previous_is_draft != instance.is_draft:
         create_insight(project=instance.project)
+
+
+@receiver(signals.pre_delete, sender=Comment)
+def cache_comment_insight_delete_state(sender, instance, **kwargs):
+    instance._insight_delete_was_counted = comment_counts_toward_insights(instance)
 
 
 @receiver(signals.pre_save, sender=Comment)
@@ -115,7 +143,7 @@ def update_comments_count(sender, instance, created, **kwargs):
 def increase_idea_count(sender, instance, created, **kwargs):
     if not created:
         return
-    if not module_counts_toward_insights(instance.module):
+    if not written_idea_counts_toward_insights(instance):
         return
 
     project = instance.module.project
@@ -125,6 +153,41 @@ def increase_idea_count(sender, instance, created, **kwargs):
 
     if sender != Topic:
         add_active_participant(insight, instance.creator_id)
+
+
+@receiver(signals.pre_save, sender=Proposal)
+def cache_proposal_counted_state(sender, instance, **kwargs):
+    if instance.pk:
+        previous = Proposal.objects.get(pk=instance.pk)
+        instance._was_counted_toward_insights = written_idea_counts_toward_insights(
+            previous
+        )
+    else:
+        instance._was_counted_toward_insights = False
+
+
+@receiver(signals.post_save, sender=Proposal)
+def update_proposal_written_ideas_count(sender, instance, created, **kwargs):
+    if created:
+        return
+
+    was_counted = getattr(instance, "_was_counted_toward_insights", False)
+    is_counted = written_idea_counts_toward_insights(instance)
+    if was_counted == is_counted:
+        return
+
+    project = instance.module.project
+    insight, _ = ProjectInsight.objects.get_or_create(project=project)
+    if is_counted:
+        insight.written_ideas += 1
+        insight.save()
+        add_active_participant(insight, instance.creator_id)
+    else:
+        insight.written_ideas = max(0, insight.written_ideas - 1)
+        insight.save()
+        remove_active_participant_if_inactive(
+            insight=insight, project=project, user_id=instance.creator_id
+        )
 
 
 @receiver(signals.pre_save, sender=Rating)
@@ -143,7 +206,22 @@ def cache_rating_value(sender, instance, **kwargs):
 def cache_rating_insight_module(sender, instance, **kwargs):
     # content_object may already be gone in post_delete when the parent is
     # cascade-deleted (e.g. idea.delete() removes ratings first).
-    instance._insight_delete_module = get_insight_module(instance.content_object)
+    instance._insight_delete_module = _safe_insight_module_for_instance(instance)
+
+
+@receiver(signals.pre_delete, sender=Vote)
+def cache_vote_insight_module(sender, instance, **kwargs):
+    instance._insight_delete_module = _safe_insight_module_for_instance(instance)
+
+
+@receiver(signals.pre_delete, sender=Answer)
+def cache_answer_insight_module(sender, instance, **kwargs):
+    instance._insight_delete_module = _safe_insight_module_for_instance(instance)
+
+
+@receiver(signals.pre_delete, sender=Like)
+def cache_like_insight_module(sender, instance, **kwargs):
+    instance._insight_delete_module = _safe_insight_module_for_instance(instance)
 
 
 @receiver(signals.post_save, sender=Rating)
@@ -178,17 +256,32 @@ def update_rating_count(sender, instance, created, **kwargs):
         )
 
 
+@receiver(signals.pre_save, sender=LiveQuestion)
+def cache_live_question_counted_state(sender, instance, **kwargs):
+    if instance.pk:
+        previous = LiveQuestion.objects.get(pk=instance.pk)
+        instance._was_counted_toward_insights = live_question_counts_toward_insights(
+            previous
+        )
+    else:
+        instance._was_counted_toward_insights = False
+
+
 @receiver(signals.post_save, sender=LiveQuestion)
-def increase_live_questions_count(sender, instance, created, **kwargs):
-    if not created:
-        return
-    if not module_counts_toward_insights(instance.module):
+def update_live_questions_count(sender, instance, created, **kwargs):
+    was_counted = getattr(instance, "_was_counted_toward_insights", False)
+    is_counted = live_question_counts_toward_insights(instance)
+    if was_counted == is_counted:
         return
 
     project = instance.module.project
     insight, _ = ProjectInsight.objects.get_or_create(project=project)
-    insight.live_questions += 1
-    insight.save()
+    if is_counted:
+        insight.live_questions += 1
+        insight.save()
+    else:
+        insight.live_questions = max(0, insight.live_questions - 1)
+        insight.save()
 
 
 @receiver(signals.post_save, sender=Like)
@@ -246,7 +339,9 @@ def increase_poll_participant_count(sender, poll, creator, content_id, **kwargs)
 def decrease_comments_count(sender, instance, **kwargs):
     if not instance.project_id:
         return
-    if not comment_counts_toward_insights(instance):
+    if not _insight_delete_was_counted(
+        instance, lambda: comment_counts_toward_insights(instance)
+    ):
         return
 
     project = instance.project
@@ -263,7 +358,7 @@ def decrease_comments_count(sender, instance, **kwargs):
 @receiver(signals.post_delete, sender=Proposal)
 @receiver(signals.post_delete, sender=Topic)
 def decrease_idea_count(sender, instance, **kwargs):
-    if not module_counts_toward_insights(instance.module):
+    if not written_idea_counts_toward_insights(instance):
         return
 
     project = instance.module.project
@@ -282,7 +377,7 @@ def decrease_rating_count(sender, instance, **kwargs):
     if not rating_counts_toward_insights(instance.value):
         return
 
-    module = getattr(instance, "_insight_delete_module", None)
+    module = _insight_delete_module(instance)
     if not module_counts_toward_insights(module):
         return
 
@@ -295,9 +390,18 @@ def decrease_rating_count(sender, instance, **kwargs):
     )
 
 
+@receiver(signals.pre_delete, sender=LiveQuestion)
+def cache_live_question_insight_delete_state(sender, instance, **kwargs):
+    instance._insight_delete_was_counted = live_question_counts_toward_insights(
+        instance
+    )
+
+
 @receiver(signals.post_delete, sender=LiveQuestion)
 def decrease_live_questions_count(sender, instance, **kwargs):
-    if not module_counts_toward_insights(instance.module):
+    if not _insight_delete_was_counted(
+        instance, lambda: live_question_counts_toward_insights(instance)
+    ):
         return
 
     project = instance.module.project
@@ -308,7 +412,9 @@ def decrease_live_questions_count(sender, instance, **kwargs):
 
 @receiver(signals.post_delete, sender=Like)
 def decrease_ratings_count_for_likes(sender, instance, **kwargs):
-    module = instance.livequestion.module
+    module = _insight_delete_module(instance) or _safe_insight_module_for_instance(
+        instance
+    )
     if not module_counts_toward_insights(module):
         return
 
@@ -321,7 +427,9 @@ def decrease_ratings_count_for_likes(sender, instance, **kwargs):
 @receiver(signals.post_delete, sender=Vote)
 @receiver(signals.post_delete, sender=Answer)
 def decrease_poll_answers_count(sender, instance, **kwargs):
-    module = _insight_module_for_instance(instance)
+    module = _insight_delete_module(instance) or _safe_insight_module_for_instance(
+        instance
+    )
     if not module_counts_toward_insights(module):
         return
 

@@ -604,3 +604,116 @@ def test_deleting_unregistered_poll_vote_syncs_participant_count(
     Answer.objects.filter(content_id=content_id).delete()
     insight.refresh_from_db()
     assert insight.unregistered_participants == 0
+
+
+@pytest.mark.django_db
+def test_delete_idea_with_rating_decreases_ratings_count(
+    module_factory,
+    idea_factory,
+    rating_factory,
+):
+    module = module_factory()
+    idea = idea_factory(module=module)
+    rating_factory(content_object=idea, value=1)
+
+    insight = ProjectInsight.objects.get(project=module.project)
+    assert insight.ratings == 1
+
+    idea.delete()
+    insight.refresh_from_db()
+    assert insight.ratings == 0
+
+
+@pytest.mark.django_db
+def test_delete_idea_cascade_decrements_comments(
+    module_factory,
+    idea_factory,
+    comment_factory,
+):
+    module = module_factory()
+    idea = idea_factory(module=module)
+    comment_factory(content_object=idea)
+
+    insight = ProjectInsight.objects.get(project=module.project)
+    assert insight.comments == 1
+
+    idea.delete()
+    insight.refresh_from_db()
+    assert insight.comments == 0
+
+
+@pytest.mark.django_db
+def test_delete_live_question_decreases_live_questions_and_like_ratings(
+    module_factory,
+    live_question_factory,
+    like_factory,
+):
+    module = module_factory(blueprint_type="IE")
+    live_question = live_question_factory(module=module)
+    like_factory(livequestion=live_question)
+
+    insight = ProjectInsight.objects.get(project=module.project)
+    assert insight.live_questions == 1
+    assert insight.ratings == 1
+
+    live_question.delete()
+    insight.refresh_from_db()
+    assert insight.live_questions == 0
+    assert insight.ratings == 0
+
+
+@pytest.mark.django_db
+def test_delete_vote_decreases_poll_answers(
+    module_factory,
+    poll_factory,
+    question_factory,
+    choice_factory,
+    vote_factory,
+    user_factory,
+):
+    module = module_factory(blueprint_type="PO")
+    poll = poll_factory(module=module)
+    question = question_factory(poll=poll)
+    choice = choice_factory(question=question)
+    vote = vote_factory(choice=choice, creator=user_factory())
+
+    insight = ProjectInsight.objects.get(project=module.project)
+    assert insight.poll_answers == 1
+
+    vote.delete()
+    insight.refresh_from_db()
+    assert insight.poll_answers == 0
+
+
+@pytest.mark.django_db
+def test_archived_proposal_excluded_from_written_ideas(
+    module_factory,
+    user_factory,
+):
+    module = module_factory(blueprint_type="PB")
+    proposal = ProposalFactory(module=module, creator=user_factory())
+
+    insight = ProjectInsight.objects.get(project=module.project)
+    assert insight.written_ideas == 1
+
+    proposal.is_archived = True
+    proposal.save()
+    insight.refresh_from_db()
+    assert insight.written_ideas == 0
+
+
+@pytest.mark.django_db
+def test_hidden_live_question_excluded_from_live_questions(
+    module_factory,
+    live_question_factory,
+):
+    module = module_factory(blueprint_type="IE")
+    live_question = live_question_factory(module=module)
+
+    insight = ProjectInsight.objects.get(project=module.project)
+    assert insight.live_questions == 1
+
+    live_question.is_hidden = True
+    live_question.save()
+    insight.refresh_from_db()
+    assert insight.live_questions == 0

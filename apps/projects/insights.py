@@ -28,7 +28,8 @@ from apps.topicprio.models import Topic
 # whether to increment or decrement on create, update, or delete.
 #
 # Not every row in the database counts: e.g. soft-deleted comments, draft
-# modules, and neutral ratings (value 0) are excluded.
+# modules, archived proposals, hidden live questions, and neutral ratings
+# (value 0) are excluded.
 
 RATING_INSIGHT_VALUES = {Rating.POSITIVE, Rating.NEGATIVE}
 
@@ -79,6 +80,25 @@ def module_counts_toward_insights(module) -> bool:
     until the module is published (see refresh_insights_on_module_draft_change).
     """
     return module is not None and not module.is_draft
+
+
+def written_idea_counts_toward_insights(item) -> bool:
+    """Return whether an idea-like object counts toward insight.written_ideas.
+
+    Archived budgeting proposals are excluded (same as create_insight recount).
+    """
+    if not module_counts_toward_insights(item.module):
+        return False
+    if isinstance(item, Proposal) and item.is_archived:
+        return False
+    return True
+
+
+def live_question_counts_toward_insights(live_question: LiveQuestion) -> bool:
+    """Return whether a live question counts toward insight.live_questions."""
+    if live_question.is_hidden:
+        return False
+    return module_counts_toward_insights(live_question.module)
 
 
 def get_published_modules(project: Project):
@@ -197,11 +217,11 @@ def create_insight(project: Project) -> ProjectInsight:
     ideas = Idea.objects.filter(module__in=modules)
     map_ideas = MapIdea.objects.filter(module__in=modules)
     comments = get_counted_comments_project(project=project)
-    proposals = Proposal.objects.filter(module__in=modules)
+    proposals = Proposal.objects.filter(module__in=modules, is_archived=False)
     polls = Poll.objects.filter(module__in=modules)
     votes = Vote.objects.filter(choice__question__poll__in=polls)
     answers = Answer.objects.filter(question__poll__in=polls)
-    live_questions = LiveQuestion.objects.filter(module__in=modules)
+    live_questions = LiveQuestion.objects.filter(module__in=modules, is_hidden=False)
     likes = Like.objects.filter(livequestion__in=live_questions)
     topics = Topic.objects.filter(module__in=modules)
 
@@ -295,13 +315,15 @@ def user_has_active_contributions(project: Project, user_id: int) -> bool:
     ideas = Idea.objects.filter(module__in=modules)
     map_ideas = MapIdea.objects.filter(module__in=modules)
     topics = Topic.objects.filter(module__in=modules)
-    proposals = Proposal.objects.filter(module__in=modules)
+    proposals = Proposal.objects.filter(module__in=modules, is_archived=False)
     values = list(RATING_INSIGHT_VALUES)
 
     existence_checks = (
         Idea.objects.filter(module__in=modules, creator_id=user_id),
         MapIdea.objects.filter(module__in=modules, creator_id=user_id),
-        Proposal.objects.filter(module__in=modules, creator_id=user_id),
+        Proposal.objects.filter(
+            module__in=modules, creator_id=user_id, is_archived=False
+        ),
         comments.filter(creator_id=user_id),
         Vote.objects.filter(choice__question__poll__in=polls, creator_id=user_id),
         Answer.objects.filter(question__poll__in=polls, creator_id=user_id),
