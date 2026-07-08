@@ -39,6 +39,16 @@ $summary-arrow-lg-size: 24px;
     @media (max-width: $breakpoint-md-down) {
         padding: $spacer;
     }
+
+    &.htmx-request {
+        .hide-when-loading {
+            display: none;
+        }
+
+        .project-summary__loading {
+            display: flex;
+        }
+    }
 }
 
 .project-summary__inner {
@@ -51,28 +61,62 @@ $summary-arrow-lg-size: 24px;
     text-align: center;
 }
 
+.project-summary__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    width: 100%;
+}
+
 .project-summary__title {
     font-size: $font-size-xl;
     font-weight: $demi-bold;
     line-height: 1.2;
     margin: 0;
+    color: $print-black;
 }
 
 .project-summary__description {
     margin: 0;
-    color: $text-color;
+    font-size: $font-size-base;
+    line-height: 1.5;
+    color: $print-black;
 }
 
 .project-summary__generate-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.375 * $spacer;
+    justify-content: center;
+    gap: 0.375rem;
     min-height: $project-detail-action-height;
-    padding-inline: (1.5 * $spacer);
+    padding: 0.75rem (1.5 * $spacer);
+    border: 1px solid $print-black;
+    background-color: $white;
+    color: $print-black;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: $white !important;
+        border-color: $print-black;
+        color: $print-black;
+        text-decoration: none;
+    }
 
     i {
         color: $brand-primary;
     }
+}
+
+.project-summary__loading {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    max-width: 39.75rem;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .project-summary__error {

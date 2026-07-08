@@ -85,13 +85,14 @@ def test_project_detail_shows_summary_teaser_when_enabled(client, project_factor
 
     assert response.status_code == 200
     content = response.content.decode()
+    assert "project-summary" in content
     assert "summary-card" in content
     assert "Summarize with AI" in content
     assert "Summary of the participation" in content
 
 
 @pytest.mark.django_db
-def test_project_detail_shows_cached_summary(client, project_factory):
+def test_project_detail_shows_button_even_with_cached_summary(client, project_factory):
     organisation = OrganisationFactory(enable_ai_summarisation=True)
     project = project_factory(organisation=organisation)
     response_data = ProjectSummaryResponse(
@@ -109,9 +110,10 @@ def test_project_detail_shows_cached_summary(client, project_factory):
 
     assert response.status_code == 200
     content = response.content.decode()
-    assert "Cached overview" in content
-    assert "summary-card" not in content
-    assert "summary__refresh-btn" in content
+    assert "Cached overview" not in content
+    assert "project-summary" in content
+    assert "summary-card" in content
+    assert "Summarize with AI" in content
 
 
 @pytest.mark.django_db

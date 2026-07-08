@@ -83,11 +83,7 @@
                         <h2 class="visually-hidden" id="project-detail-summary-heading">
                             {% translate 'Summary of the participation' %}
                         </h2>
-                        {% if project_summary_html %}
-                        <div id="summary-content" class="summary__container">{{ project_summary_html|safe }}</div>
-                        {% else %}
                         {% include "a4_candy_projects/_generate_summary_button.html" with project=project %}
-                        {% endif %}
                     </section>
                     {% endif %}
                     {% endif %}

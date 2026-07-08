@@ -38,7 +38,6 @@ from apps.contrib.mixins import StaffRequiredMixin
 from apps.projects.models import ProjectInsight
 from apps.summarization.models import ProjectSummary
 from apps.summarization.models import SummaryFeedback
-from apps.summarization.pydantic_models import ProjectSummaryResponse
 
 from . import dashboard
 from . import forms
@@ -46,12 +45,10 @@ from . import models
 from .timeline import build_participation_grid_modules
 from .timeline import build_participation_timeline_groups
 from .utils import generate_project_summary
-from .utils import get_latest_project_summary
 from .utils import get_summary_modules
 from .utils import get_user_feedback
 from .utils import is_ai_summarisation_enabled
 from .utils import project_has_result_content
-from .utils import render_summary_fragment
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -385,23 +382,6 @@ class ProjectDetailView(
         context["event"] = None
         context["modules"] = None
         context["ai_summarisation_enabled"] = is_ai_summarisation_enabled(self.project)
-        context["project_summary_html"] = ""
-
-        if context["ai_summarisation_enabled"]:
-            summary_obj = get_latest_project_summary(self.project)
-            if summary_obj:
-                response = ProjectSummaryResponse(**summary_obj.response_data)
-                user_feedback = get_user_feedback(
-                    summary_obj,
-                    self.request.user,
-                    self.request.session.session_key,
-                )
-                context["project_summary_html"] = render_summary_fragment(
-                    project=self.project,
-                    response=response,
-                    summary_obj=summary_obj,
-                    user_feedback=user_feedback,
-                )
 
         return context
 

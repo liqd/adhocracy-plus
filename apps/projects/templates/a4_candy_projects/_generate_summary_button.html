@@ -1,53 +1,42 @@
-<style>
-.loading-spinner {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-}
-.htmx-request .hide-when-loading {
-    display: none;
-}
-.htmx-request .loading-spinner {
-    display: flex !important;
-}
-</style>
+{% load i18n summarization_tags %}
+{% get_project_stats project as stats %}
 
 <script>
     document.body.addEventListener('htmx:afterSwap', function(evt) {
-    if (evt.detail.target.id === 'summary-content') {
-        const summaryContent = document.getElementById('summary-content');
-        const summaryCard = document.getElementById('summary-card');
+        if (evt.detail.target.id === 'summary-content') {
+            const summaryContent = document.getElementById('summary-content');
+            const summaryCard = document.getElementById('summary-card');
 
-        if (summaryContent && summaryContent.innerHTML.trim() !== '') {
-            summaryCard.style.display = 'none';
+            if (summaryContent && summaryContent.innerHTML.trim() !== '') {
+                summaryCard.style.display = 'none';
+            }
         }
-    }
-});
+    });
 </script>
-{% load i18n %}
 
-<div id="summary-card" class="summary-prompt-card" hx-indicator="this">
-    <div class="hide-when-loading">
-        <div class="summary-text">
-            <strong class="summary-title">{% trans 'Summary of the participation' %}</strong>
-            <p class="summary-description">{% trans 'Automatically generated overview of the key topics, sentiments, and insights from this participation.' %}</p>
+<div id="summary-card" class="project-summary" hx-indicator="this">
+    <div class="project-summary__inner hide-when-loading">
+        <div class="project-summary__text">
+            <h3 class="project-summary__title">{% trans 'Summary of the participation' %}</h3>
+            <p class="project-summary__description">
+                {% blocktranslate count counter=stats.contributions %}
+                    Automatically generated overview of the key topics, sentiments, and insights from {{ counter }} project contribution.
+                {% plural %}
+                    Automatically generated overview of the key topics, sentiments, and insights from {{ counter }} project contributions.
+                {% endblocktranslate %}
+            </p>
         </div>
-        <div class="summary-button">
-            <button hx-get="{% url 'project-generate-summary' organisation_slug=project.organisation.slug slug=project.slug %}"
-                    hx-target="#summary-content"
-                    class="btn btn--transparent project-summary__generate-btn">
-                <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
-                {% trans 'Summarize with AI' %}
-            </button>
-        </div>
+        <button type="button"
+                hx-get="{% url 'project-generate-summary' organisation_slug=project.organisation.slug slug=project.slug %}"
+                hx-target="#summary-content"
+                class="btn project-summary__generate-btn">
+            <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+            {% trans 'Summarize with AI' %}
+        </button>
     </div>
-    <div class="htmx-indicator loading-spinner">
-        <div class="project-summary__spinner" role="status" aria-live="polite">
-            <span class="visually-hidden">{% trans 'Generating AI summary' %}</span>
-        </div>
-        <span>{% trans 'Generating AI summary' %}</span>
+    <div class="htmx-indicator project-summary__loading" role="status" aria-live="polite">
+        <div class="project-summary__spinner" aria-hidden="true"></div>
+        <p class="project-summary__loading-title">{% trans 'Generating AI summary' %}</p>
     </div>
 </div>
 <div id="summary-content" class="summary__container"></div>
