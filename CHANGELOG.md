@@ -34,6 +34,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- Project insights: keep counters in sync when contributions are deleted, soft-deleted, or removed by cascade (comments, ratings, poll answers, etc.); exclude archived proposals and hidden live questions.
 - Dashboard forms: align radio button options with text inputs and select fields.
 
 ## hotfix v2606.1
