@@ -1,3 +1,5 @@
+from html import unescape
+
 import pytest
 from django.urls import reverse
 
@@ -30,7 +32,7 @@ def test_react_questions(rf, user, live_question):
     assert module.description.replace("\n", "\\n") in rendered
     assert questions_api_url in rendered
     assert present_url in rendered
-    assert live_question.category.name in rendered
+    assert live_question.category.name in unescape(rendered)
 
 
 @pytest.mark.django_db
@@ -51,5 +53,5 @@ def test_react_questions_present(rf, user, live_question):
 
     assert rendered.startswith('<div data-aplus-widget="present"')
     assert questions_api_url in rendered
-    assert live_question.category.name in rendered
+    assert live_question.category.name in unescape(rendered)
     assert module.project.name in rendered
