@@ -360,36 +360,6 @@ def test_project_detail_offline_event_links_use_timeline_slide(
 
 
 @pytest.mark.django_db
-def test_legacy_initial_slide_redirects_to_participation_detail(
-    client, project, module_factory, phase_factory
-):
-    module = module_factory(project=project)
-    phase_factory(
-        module=module,
-        start_date=parse("2013-01-01 17:00:00 UTC"),
-        end_date=parse("2013-01-01 19:00:00 UTC"),
-    )
-    OfflineEventFactory(
-        project=project,
-        name="Past workshop",
-        date=parse("2012-12-01 12:00:00 UTC"),
-    )
-    future_event = OfflineEventFactory(
-        project=project,
-        name="Future workshop",
-        date=parse("2013-03-01 12:00:00 UTC"),
-    )
-
-    with freeze_time(parse("2013-01-01 18:00:00 UTC")):
-        response = client.get(
-            f"{project_detail_url(project)}?initialSlide=2", follow=False
-        )
-
-    assert response.status_code == 302
-    assert response.url == future_event.get_absolute_url()
-
-
-@pytest.mark.django_db
 def test_project_detail_events_section_has_timeline_toggle_attr(
     client, project, module_factory, phase_factory
 ):

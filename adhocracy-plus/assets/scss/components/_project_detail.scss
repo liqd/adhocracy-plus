@@ -5,7 +5,7 @@ $project-detail-action-height: 48px;
 $project-detail-card-border: $grey-100;
 $project-detail-card-height: 332px;
 $project-detail-completed: #ff1e38;
-$project-detail-breadcrumbs-offset-signed-out: 60px;
+$project-detail-breadcrumbs-offset: 79px;
 
 .project-detail {
     // padding-top: 2.6 * $spacer;
@@ -15,7 +15,7 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
 .project-detail__toolbar {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: $spacer;
+    margin-bottom: -52px;
 }
 
 .project-detail__inner {
@@ -30,10 +30,6 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
 .project-detail__breadcrumbs {
     margin-bottom: 2 * $spacer;
 
-    &--signed-out {
-        margin-top: $project-detail-breadcrumbs-offset-signed-out;
-    }
-
     .platform-breadcrumbs__link .platform-breadcrumbs__name {
         font-weight: 400;
         text-decoration: underline;
@@ -45,8 +41,8 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
     }
 }
 
-.project-detail:not(.project-subpage) .project-detail__breadcrumbs:not(.project-detail__breadcrumbs--signed-out) {
-    margin-top: 2 * $spacer;
+.project-detail:not(.project-subpage) .project-detail__breadcrumbs {
+    margin-top: $project-detail-breadcrumbs-offset;
 }
 
 .project-detail__intro {
@@ -92,7 +88,27 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
     margin-bottom: $spacer;
 }
 
-.project-detail--module .project-detail__title {
+.project-detail__description {
+    font-size: $font-size-base;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 1.5 * $spacer;
+    color: $text-color;
+}
+
+.project-detail__module-intro {
+    margin-bottom: 2 * $spacer;
+
+    .project-detail__title {
+        margin-bottom: $spacer;
+    }
+
+    .project-detail__description {
+        margin-bottom: 0;
+    }
+}
+
+.project-detail--module .project-detail__module-intro .project-detail__title {
     font-family: $font-family-serif;
     font-size: 2.5rem;
     font-weight: 400;
@@ -147,26 +163,6 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
     }
 }
 
-.project-detail__description {
-    font-size: $font-size-base;
-    font-weight: 400;
-    line-height: 1.5;
-    margin-bottom: 1.5 * $spacer;
-    color: $text-color;
-}
-
-.project-detail__module-intro {
-    margin-bottom: 2 * $spacer;
-
-    .project-detail__title {
-        margin-bottom: $spacer;
-    }
-
-    .project-detail__description {
-        margin-bottom: 0;
-    }
-}
-
 .project-detail__module-notice,
 .project-detail__module-visibility {
     margin: 0 0 1.5 * $spacer;
@@ -178,19 +174,6 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
 
 .project-detail__other-modules {
     margin-top: 3 * $spacer;
-}
-
-.project-detail--module .timeline-carousel__wrapper {
-    @include project-detail-timeline-bleed;
-    width: auto;
-}
-
-.project-detail--module .timeline-carousel,
-.project-detail--module .timeline-carousel__container {
-    max-width: none;
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
 }
 
 .project-detail__actions {
@@ -251,37 +234,20 @@ $project-detail-breadcrumbs-offset-signed-out: 60px;
     &.a4-btn--follow,
     &.a4-btn--following {
         padding: 0 $spacer;
-        border: 1px solid $print-black;
-        background-color: $print-black;
-        color: $white;
+        border: 1px solid $text-color;
+        background-color: $body-bg;
+        color: $text-color;
         font-weight: 400;
-
-        &:hover,
-        &:focus {
-            background-color: lighten($print-black, 15%);
-            color: $white;
-        }
 
         &:before {
             margin-right: 0.3em;
         }
-    }
-    
-    /* stylelint-disable-next-line no-descending-specificity */
-    &.a4-btn--following {
-        background-color: $brand-primary;
-        color: $white;
-        border-color: $brand-primary;
-
-        &:before {
-            color: $white;
-        }
 
         &:hover,
         &:focus {
-            background-color: lighten($brand-primary, 8%);
-            border-color: lighten($brand-primary, 8%);
-            color: $white;
+            background-color: lighten($brand-tertiary, 57%);
+            border-color: $text-color;
+            color: $text-color;
         }
     }
 }
@@ -1181,11 +1147,6 @@ $project-detail-timeline-meta-icon-gap: 8px;
     }
 
     .project-detail--module {
-        .project-detail__title {
-            font-size: $font-size-lg;
-            line-height: 1.2;
-        }
-
         .project-detail__intro .project-detail__title {
             margin-bottom: 0.625rem;
         }
@@ -1210,10 +1171,6 @@ $project-detail-timeline-meta-icon-gap: 8px;
 
         .project-detail__content {
             padding-top: 0;
-        }
-
-        .timeline-carousel {
-            margin-bottom: 0.625rem;
         }
 
         .project-detail__module-intro {

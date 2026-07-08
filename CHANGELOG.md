@@ -26,17 +26,18 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   for new and existing projects (adhocracy4 migration `0055`).
 - Project initiators can choose per project whether guest users may participate
   (new "Participants" setting in basic settings).
-
 - Contact information fields included in Proposal/Idea/Mapidea Forms
 - Header indicator: rename anonymous visitor CSS classes from `guest-*` to `anonymous-*`
 - polls: optional confidential questions
-- Project detail: remove the legacy participation timeline carousel (template, styles, and slick init); offline events and document chapters link back to the project overview without `initialSlide` query params.
-- New Module pages: Adapt Modul Page to new Grid and more styling.
+- Project detail: remove the participation timeline carousel.
+- Module pages: adapt layout to the new project detail grid styling; remove previous/next
+  module cluster navigation.
 
 ### Fixed
 
 - Project insights: keep counters in sync when contributions are deleted, soft-deleted, or removed by cascade (comments, ratings, poll answers, etc.); exclude archived proposals and hidden live questions.
 - Dashboard forms: align radio button options with text inputs and select fields.
+- Alert styling
 
 ## hotfix v2606.1
 

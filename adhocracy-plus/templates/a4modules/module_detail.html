@@ -70,26 +70,6 @@
 
                     {% include "a4_candy_projects/includes/project_detail_intro.html" with module_page=True %}
 
-                    {% include "a4_candy_projects/includes/participation_timeline_carousel.html" %}
-                    {% block module_nav %}
-                        {% if module.is_in_module_cluster %}
-                            <div class="mt-2 mb-5 me-md-3 d-flex justify-content-center justify-content-sm-end">
-                            {% if module.previous_module_in_cluster %}
-                                <a class="btn btn--light text-muted" href="{{ module.previous_module_in_cluster.get_absolute_url }}">
-                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                    <span>{% translate 'Previous' %}</span>
-                                </a>
-                            {% endif %}
-                                <span class="my-2 mx-3">{{ module.readable_index_in_cluster }} {% translate 'of' %} {{ module.module_cluster|length }}</span>
-                            {% if module.next_module_in_cluster %}
-                                <a class="btn btn--light text-muted" href="{{ module.next_module_in_cluster.get_absolute_url }}">
-                                    <span>{% translate 'Next' %}</span>
-                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-                            {% endif %}
-                            </div>
-                        {% endif %}
-                    {% endblock module_nav %}
-
                     <div class="project-detail__content">
                     {% include "a4modules/includes/module_description.html" %}
                     {% block phase_info %}
