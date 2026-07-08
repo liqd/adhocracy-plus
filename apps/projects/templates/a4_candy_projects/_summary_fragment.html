@@ -1,4 +1,4 @@
-{% load humanize i18n summarization_tags %}
+{% load humanize i18n summarization_tags a4_candy_project_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% if show_debug %}
@@ -97,6 +97,7 @@
                 </div>
             </div>
 
+            {% if project|has_result_content %}
             <div class="summary__results-link">
                 <p class="summary__results-text">
                     {% trans 'To read all the results of this participation' %}
@@ -111,6 +112,7 @@
                     {% include "a4_candy_projects/_summary_arrow_icon.html" with size="sm" %}
                 </a>
             </div>
+            {% endif %}
 
             {% if response.phases.past.modules %}
                 {% include "a4_candy_projects/_summary_section.html" with project=project modules=response.phases.past.modules show_debug=show_debug id="pastModules" %}

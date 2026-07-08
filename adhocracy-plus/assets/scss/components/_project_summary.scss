@@ -31,6 +31,17 @@ $summary-arrow-lg-size: 24px;
     margin-bottom: 3 * $spacer;
 }
 
+.project-summary__loading {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    max-width: 39.75rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
 .project-summary {
     border: 1px dashed $grey-100;
     background-color: $white;
@@ -88,11 +99,14 @@ $summary-arrow-lg-size: 24px;
     align-items: center;
     justify-content: center;
     gap: 0.375rem;
+    height: $project-detail-action-height;
     min-height: $project-detail-action-height;
-    padding: 0.75rem (1.5 * $spacer);
+    padding: 0 (1.5 * $spacer);
     border: 1px solid $print-black;
     background-color: $white;
     color: $print-black;
+    font-size: $font-size-base;
+    line-height: 1.5;
 
     &:hover,
     &:focus,
@@ -106,17 +120,6 @@ $summary-arrow-lg-size: 24px;
     i {
         color: $brand-primary;
     }
-}
-
-.project-summary__loading {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    max-width: 39.75rem;
-    margin: 0 auto;
-    text-align: center;
 }
 
 .project-summary__error {
