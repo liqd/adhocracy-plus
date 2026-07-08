@@ -31,8 +31,9 @@ From the project root directory run: `python manage.py <command> [args]`
 
 **reset_insights_table** `[--project SLUG]`
 
-- Resets insights and participation tables.
+- Rebuilds project insight counters from the database (`create_insight()`).
 - Optional `--project` to reset a single project only.
+- Prints a line per project only when counts change (see `docs/project_insights.md`).
 
 **send_publish_results_reminder** `<project-slug>` `[--force]`
 
