@@ -3,7 +3,6 @@ import React, { useReducer, useMemo, useEffect } from 'react'
 import django from 'django'
 
 import Alert from 'adhocracy4/adhocracy4/static/Alert'
-import { TermsOfUseCheckbox } from 'adhocracy4/adhocracy4/static/TermsOfUseCheckbox'
 import ProsopoCaptcha from './ProsopoCaptcha'
 import StartScreen from './components/StartScreen'
 import QuestionFunnel from './components/QuestionFunnel'
@@ -116,21 +115,16 @@ const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, ma
                 onNext={actions.handleNext}
                 onSubmit={actions.handleSubmitAll}
                 isLoading={state.isSubmitting}
+                useTermsOfUse={state.useTermsOfUse}
+                agreedTermsOfUse={state.agreedTermsOfUse}
+                orgTermsUrl={state.orgTermsUrl}
+                checkedTermsOfUse={state.checkedTermsOfUse}
+                onSetCheckedTerms={actions.handleSetCheckedTerms}
               />
             </form>
 
             {state.alert && (
               <Alert onClick={actions.handleClearAlert} {...state.alert} />
-            )}
-
-            {state.useTermsOfUse && !state.agreedTermsOfUse && (
-              <div className="col-12 mt-4">
-                <TermsOfUseCheckbox
-                  id="terms-of-use"
-                  onChange={actions.handleSetCheckedTerms}
-                  orgTermsUrl={state.orgTermsUrl}
-                />
-              </div>
             )}
 
             {showCaptcha && (
