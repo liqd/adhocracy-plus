@@ -15,8 +15,8 @@ from django.urls import reverse
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
+from django.utils.formats import date_format
 from django.utils.functional import cached_property
-from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 from django.views import View
@@ -453,16 +453,6 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
             request.session.session_key,
         )
 
-    def _format_summary_date(self, timestamp, language_code):
-        if not timestamp:
-            return None
-
-        local_ts = timezone.localtime(timestamp)
-
-        if language_code == "de":
-            return local_ts.strftime("%-d. %B %Y")
-        return local_ts.strftime("%B %-d, %Y")
-
     def get(self, request, *args, **kwargs):
         project = self.get_object()
         if not is_ai_summarisation_enabled(project):
@@ -493,16 +483,13 @@ class ProjectGenerateSummaryView(PermissionRequiredMixin, generic.DetailView):
                 summary = None
 
             user_feedback = self._get_user_feedback(summary, request)
-            language_code = get_language()
 
             summary_timestamp = None
             summary_date_str = None
             if summary:
                 ts = summary.last_checked_at or summary.created_at
                 summary_timestamp = timezone.localtime(ts)
-                summary_date_str = self._format_summary_date(
-                    summary_timestamp, language_code
-                )
+                summary_date_str = date_format(summary_timestamp, "DATE_FORMAT")
 
             html = render_to_string(
                 "a4_candy_projects/_summary_fragment.html",

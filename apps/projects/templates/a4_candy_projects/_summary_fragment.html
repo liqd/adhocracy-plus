@@ -1,5 +1,4 @@
 {% load humanize i18n summarization_tags a4_candy_project_tags %}
-{% get_current_language as LANGUAGE_CODE %}
 
 {% if show_debug %}
 <div>
@@ -26,15 +25,9 @@
                 {% if summary_timestamp %}
                     <span class="summary__generated-meta">
                         <i class="fa-regular fa-clock" aria-hidden="true"></i>
-                        {% if LANGUAGE_CODE == 'de' %}
-                            {% blocktranslate with time=summary_timestamp|timesince trimmed %}
-                                vor {{ time }} generiert
-                            {% endblocktranslate %}
-                        {% else %}
-                            {% blocktranslate with time=summary_timestamp|timesince trimmed %}
-                                generated {{ time }} ago
-                            {% endblocktranslate %}
-                        {% endif %}
+                        {% blocktranslate with time=summary_timestamp|timesince trimmed %}
+                            generated {{ time }} ago
+                        {% endblocktranslate %}
                     </span>
                 {% endif %}
                 <a
@@ -50,15 +43,9 @@
         </div>
         {% if summary_timestamp %}
             <p class="summary__meta-text">
-                {% if LANGUAGE_CODE == 'de' %}
-                    {% blocktranslate with date=summary_date_str time=summary_timestamp|date:"H:i" %}
-                        Diese Zusammenfassung wurde am {{ date }} um {{ time }} Uhr mithilfe von KI erstellt und kann Fehler enthalten oder unvollständig sein.
-                    {% endblocktranslate %}
-                {% else %}
-                    {% blocktranslate with date=summary_date_str time=summary_timestamp|date:"H:i" %}
-                        This summary was created by AI on {{ date }} at {{ time }} and may contain errors or be incomplete.
-                    {% endblocktranslate %}
-                {% endif %}
+                {% blocktranslate with date=summary_date_str time=summary_timestamp|date:"H:i" trimmed %}
+                    This summary was created by AI on {{ date }} at {{ time }} and may contain errors or be incomplete.
+                {% endblocktranslate %}
             </p>
         {% endif %}
     </div>
