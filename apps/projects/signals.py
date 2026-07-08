@@ -139,6 +139,13 @@ def cache_rating_value(sender, instance, **kwargs):
         instance._previous_rating_value = None
 
 
+@receiver(signals.pre_delete, sender=Rating)
+def cache_rating_insight_module(sender, instance, **kwargs):
+    # content_object may already be gone in post_delete when the parent is
+    # cascade-deleted (e.g. idea.delete() removes ratings first).
+    instance._insight_delete_module = get_insight_module(instance.content_object)
+
+
 @receiver(signals.post_save, sender=Rating)
 def update_rating_count(sender, instance, created, **kwargs):
     module = instance.module
@@ -274,10 +281,12 @@ def decrease_idea_count(sender, instance, **kwargs):
 def decrease_rating_count(sender, instance, **kwargs):
     if not rating_counts_toward_insights(instance.value):
         return
-    if not module_counts_toward_insights(instance.module):
+
+    module = getattr(instance, "_insight_delete_module", None)
+    if not module_counts_toward_insights(module):
         return
 
-    project = instance.module.project
+    project = module.project
     insight, _ = ProjectInsight.objects.get_or_create(project=project)
     insight.ratings = max(0, insight.ratings - 1)
     insight.save()
