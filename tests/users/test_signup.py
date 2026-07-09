@@ -104,7 +104,7 @@ def test_convert_guest_user(client):
     guest_user_creator = GuestUserCreator()
     guest_user = guest_user_creator.create_guest_user()
     client.force_login(guest_user)
-    guest_email = "mail@example.com"
+    guest_email = "guest.converted@example.com"
 
     response = client.post(
         reverse("guest_convert"),
