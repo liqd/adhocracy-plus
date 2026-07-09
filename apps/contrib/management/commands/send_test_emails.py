@@ -51,11 +51,6 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("email")
 
-    """
-    test missing for:   - newsletter_email
-                        - notify_creator_on_moderator_feedback
-    """
-
     def handle(self, *args, **options):
         self.user = User.objects.get(email=options["email"])
 

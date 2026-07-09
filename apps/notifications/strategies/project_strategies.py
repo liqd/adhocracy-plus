@@ -48,11 +48,6 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
             return []
         return self._get_project_recipients(event.project)
 
-    def _get_phase_recipients(self, phase) -> List[User]:
-        if not phase.module.project:
-            return []
-        return self._get_project_recipients(phase.module.project)
-
 
 class ProjectStarted(ProjectNotificationStrategy):
     def get_recipients(self, project) -> List[User]:

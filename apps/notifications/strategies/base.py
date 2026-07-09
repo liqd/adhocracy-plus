@@ -15,7 +15,6 @@ class BaseNotificationStrategy(ABC):
             return obj.organisation
         elif hasattr(obj, "project"):
             return obj.project.organisation
-        pass
 
     @abstractmethod
     def get_recipients(self, obj) -> list[User]:
