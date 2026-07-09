@@ -153,6 +153,10 @@ MIDDLEWARE = (
     "allauth.account.middleware.AccountMiddleware",
 )
 
+# YouTube embeds require a Referer on cross-origin iframe requests.
+# Django's default "same-origin" strips it; this matches YouTube's recommendation.
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
 ROOT_URLCONF = "adhocracy-plus.config.urls"
 
 LOCALE_PATHS = [
