@@ -152,7 +152,8 @@ class NotificationService:
         )
 
         if not should_check_preferences:
-            return unique_recipients, unique_recipients
+            email_recipients = [r for r in unique_recipients if not is_guest_user(r)]
+            return unique_recipients, email_recipients
 
         in_app_recipients = NotificationService._filter_recipients_by_preferences(
             unique_recipients, notification_type, "in_app"
@@ -172,7 +173,9 @@ class NotificationService:
         """
         filtered = []
         for recipient in recipients:
-            if channel == "email" and is_guest_user(recipient):
+            if is_guest_user(recipient):
+                if channel == "email":
+                    continue
                 continue
             settings = NotificationSettings.get_for_user(recipient)
             if settings.should_receive_notification(notification_type, channel):
