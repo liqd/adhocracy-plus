@@ -259,7 +259,7 @@ MEDIA_URL = "/media/"
 IMAGE_ALIASES = {
     "*": {
         "max_size": 5 * 10**6,
-        "fileformats": ("image/png", "image/jpeg", "image/gif"),
+        "fileformats": ("image/png", "image/jpeg", "image/gif", "image/webp"),
     },
     "heroimage": {"min_resolution": (0, 0)},
     "tileimage": {"min_resolution": (0, 0)},
@@ -286,7 +286,7 @@ THUMBNAIL_ALIASES = {
     }
 }
 
-ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
+ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif", "webp")
 
 
 # Authentication

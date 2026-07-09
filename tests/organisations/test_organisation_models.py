@@ -51,6 +51,12 @@ def test_image_validation_type_not_allowed(organisation_factory, image_bmp):
 
 
 @pytest.mark.django_db
+def test_image_validation_webp_type_allowed(organisation_factory, image_webp):
+    organisation = organisation_factory(image=image_webp)
+    assert organisation.full_clean() is None
+
+
+@pytest.mark.django_db
 def test_image_validation_image_type_allowed(organisation_factory, image_png):
     organisation = organisation_factory(image=image_png)
     assert organisation.full_clean() is None

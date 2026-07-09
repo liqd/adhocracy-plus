@@ -52,6 +52,11 @@ def image_png():
 
 
 @pytest.fixture
+def image_webp():
+    return factory.django.ImageField(width=1500, height=1400, format="WEBP")
+
+
+@pytest.fixture
 def image_bmp():
     return factory.django.ImageField(width=1500, height=1400, format="BMP")
 

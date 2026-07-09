@@ -18,6 +18,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - New project detail page with both grid and timeline view
 - Initiator reminder to publish project results.
 - Image upload: modal upload dialog with cropping for project, idea, proposal, map idea, and organisation forms.
+- Image upload: WebP is now accepted alongside PNG, JPEG, and GIF.
 - AI project summarisation: summary section on the project detail page.
 - AI project summarisation: organisation-level feature flag “Enable AI summarisation” in Django admin.
 - AI project summarisation: periodic Celery Beat task `refresh_project_summaries` regenerates summaries for projects in AI-enabled organisations
