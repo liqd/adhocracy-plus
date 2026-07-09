@@ -54,12 +54,12 @@ class ProjectStarted(ProjectNotificationStrategy):
         return self._get_project_recipients(project)
 
     def create_notification_data(self, project) -> dict:
-        end_date = (
-            project.phases.filter(module__is_draft=False)
-            .order_by("end_date")
-            .first()
-            .end_date
+        end_date = None
+        first_phase = (
+            project.phases.filter(module__is_draft=False).order_by("end_date").first()
         )
+        if first_phase:
+            end_date = first_phase.end_date
 
         email_context = {
             "subject": _("Here we go: {project_name} starts now!"),

@@ -57,6 +57,7 @@ class NotificationEmail(Email):
                         project_name=context.get("project_name"),
                         project_type=context.get("project_type"),
                         article=context.get("article", ""),
+                        content_type=context.get("content_type", ""),
                         content_type_display=context.get("content_type_display", ""),
                         commenter_name=context.get("commenter_name", ""),
                         post_name=context.get("post_name", ""),

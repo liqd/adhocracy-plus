@@ -69,6 +69,8 @@ class OfflineEventDeleted(ProjectNotificationStrategy):
             "subject": _("Event {event_name} in project {project_name} cancelled"),
             "headline": _("Event"),
             "subheadline": offline_event.name,
+            "cta_url": offline_event.project.get_absolute_url(),
+            "cta_label": _("Visit the project"),
             "reason": _(
                 "This email was sent to {receiver_email}. You have received the e-mail because you are following the above project."
             ),
