@@ -334,7 +334,7 @@ class CommunicationContentCreationForm(forms.Form):
             help_text=_(
                 "The picture will be displayed in the sharepic. It "
                 "must be min. {} pixel wide and {} pixel tall. "
-                "Allowed file formats are png, jpeg, gif. The file "
+                "Allowed file formats are png, jpeg, gif, webp. The file "
                 "size should be max. 5 MB."
             ).format(self.sizes["img_min_width"], self.sizes["img_min_height"]),
         )

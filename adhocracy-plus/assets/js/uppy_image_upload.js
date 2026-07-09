@@ -197,8 +197,8 @@ function initContainer (container) {
         : {}),
       croppedCanvasOptions: config.outputWidth && config.outputHeight
         ? {
-            maxWidth: config.outputWidth,
-            maxHeight: config.outputHeight,
+            width: config.outputWidth,
+            height: config.outputHeight,
             imageSmoothingQuality: 'high'
           }
         : {}
