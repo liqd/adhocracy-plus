@@ -2,31 +2,31 @@
 git+https://github.com/liqd/adhocracy4.git@main#egg=adhocracy4
 
 # Additional requirements
-brotli==1.1.0
+brotli==1.2.0
 git+https://github.com/skorokithakis/django-cloudflare-push.git@fcfcfc57826ecb87b9f138fd882cfb361047d850
 django-guest-user @ git+https://github.com/liqd/django-guest-user.git@00e250018ccd4ee848e01eaa0f6b2c6882ebc22c
 django_csp==4.0
 djangorestframework-gis==1.2.0
 django-parler==2.3
-djangorestframework-simplejwt==5.3.1
+djangorestframework-simplejwt==5.5.1
 sentry-sdk==2.19.2
-wagtail==7.4
+wagtail==7.4.2
 whitenoise==6.9.0
 xmltodict==0.14.2
-zeep==4.3.1
-urllib3==2.5.0
+zeep==4.3.3
+urllib3==2.7.0
 redis==5.2.1
 pytest-testmon==2.2.0
-mistralai==1.9.11
-pydantic-ai==1.59.0
+mistralai>=2.0.0,<3
+pydantic-ai==1.102.0
 json-repair>=0.39,<1
 pymupdf==1.27.1
 python-docx==1.2.0
 
 
 # Inherited a4-core requirements
-Django==5.2.8
-django-allauth[socialaccount]==65.9.0
+Django==5.2.15
+django-allauth[socialaccount]==65.14.1
 django-autoslug==1.9.9
 https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.12-liqd/django_ckeditor_5-0.2.12-py3-none-any.whl
 django-filter==24.3
