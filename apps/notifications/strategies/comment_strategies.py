@@ -2,6 +2,7 @@ from typing import List
 
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
+from guest_user.functions import is_guest_user
 
 from ..models import NotificationType
 from .base import BaseNotificationStrategy
@@ -101,19 +102,22 @@ class ProjectComment(ProjectNotificationStrategy):
             "content_see_said": _("See what they said and join the discussion."),
         }
 
+        context = {
+            "user": comment.creator.username,
+            "comment": comment.comment,
+            "post_url": comment.content_object.get_absolute_url(),
+            "post": post_name,
+            "project": comment.project.name,
+            "project_url": comment.project.get_absolute_url(),
+        }
+        if not is_guest_user(comment.creator):
+            context["user_url"] = comment.creator.get_absolute_url()
+
         return {
             "notification_type": NotificationType.COMMENT_ON_POST,
             "message_template": "{user} commented on your post {post}",
             "translated_message_template": _("{user} commented on your post {post}"),
-            "context": {
-                "user": comment.creator.username,
-                "user_url": getattr(comment.creator, "get_absolute_url", lambda: "")(),
-                "comment": comment.comment,
-                "post_url": comment.content_object.get_absolute_url(),
-                "post": post_name,
-                "project": comment.project.name,
-                "project_url": comment.project.get_absolute_url(),
-            },
+            "context": context,
             "email_context": email_context,
         }
 
@@ -159,17 +163,20 @@ class CommentReply(BaseNotificationStrategy):
             ),
         }
 
+        context = {
+            "user": comment.creator.username,
+            "replied": "replied",
+            "replied_url": comment.get_absolute_url(),
+            "project": comment.project.name,
+            "project_url": comment.project.get_absolute_url(),
+        }
+        if not is_guest_user(comment.creator):
+            context["user_url"] = comment.creator.get_absolute_url()
+
         return {
             "notification_type": NotificationType.COMMENT_REPLY,
             "message_template": "{user} {replied} to your comment",
             "translated_message_template": _("{user} {replied} to your comment"),
-            "context": {
-                "user": comment.creator.username,
-                "user_url": comment.creator.get_absolute_url(),
-                "replied": "replied",
-                "replied_url": comment.get_absolute_url(),
-                "project": comment.project.name,
-                "project_url": comment.project.get_absolute_url(),
-            },
+            "context": context,
             "email_context": email_context,
         }
