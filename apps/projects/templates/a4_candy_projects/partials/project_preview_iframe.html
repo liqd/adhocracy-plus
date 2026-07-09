@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}">
+    <title>{% translate "Preview" %}</title>
+</head>
+<body>
+    {% include "a4_candy_projects/partials/project_preview_page.html" %}
+</body>
+</html>

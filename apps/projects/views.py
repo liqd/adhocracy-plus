@@ -35,6 +35,7 @@ from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from apps.contrib.mixins import StaffRequiredMixin
+from apps.projects.mixins import ProjectDetailDisplayMixin
 from apps.projects.models import ProjectInsight
 from apps.summarization.models import ProjectSummary
 from apps.summarization.models import SummaryFeedback
@@ -42,8 +43,6 @@ from apps.summarization.models import SummaryFeedback
 from . import dashboard
 from . import forms
 from . import models
-from .timeline import build_participation_grid_modules
-from .timeline import build_participation_timeline_groups
 from .utils import generate_project_summary
 from .utils import get_summary_modules
 from .utils import get_user_feedback
@@ -351,6 +350,7 @@ class ProjectResultsView(
 
 class ProjectDetailView(
     PermissionRequiredMixin,
+    ProjectDetailDisplayMixin,
     DisplayProjectOrModuleMixin,
     generic.DetailView,
 ):
@@ -370,20 +370,6 @@ class ProjectDetailView(
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["participation_grid_modules"] = build_participation_grid_modules(
-            self.project
-        )
-        context["participation_timeline_groups"] = build_participation_timeline_groups(
-            self.project
-        )
-        context["event"] = None
-        context["modules"] = None
-        context["ai_summarisation_enabled"] = is_ai_summarisation_enabled(self.project)
-
-        return context
 
 
 class ProjectResultInsightComponentFormView(ProjectComponentFormView):

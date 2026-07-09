@@ -65,7 +65,7 @@
             <div class="project-detail">
                 <div class="project-detail__inner">
                     {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
-                    {% if user_may_change %}
+                    {% if user_may_change and request.META.HTTP_SEC_FETCH_DEST != 'iframe' %}
                     <div class="project-detail__toolbar">
                         <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small">{% translate 'Edit' %}</a>
                     </div>

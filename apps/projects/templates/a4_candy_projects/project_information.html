@@ -30,7 +30,7 @@
                                 {% translate 'Back' %}
                             </a>
                             {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
-                            {% if user_may_change %}
+                            {% if user_may_change and request.META.HTTP_SEC_FETCH_DEST != 'iframe' %}
                             <a href="{% url 'a4dashboard:dashboard-information-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}" class="btn btn--light btn--small project-subpage__edit">
                                 <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                                 {% translate 'Edit' %}

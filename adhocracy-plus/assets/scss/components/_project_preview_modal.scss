@@ -1,0 +1,185 @@
+@import "../variables";
+
+// Global anchor :hover/:focus use $primary; keep btn--light text color.
+a.btn.btn--light.js-project-preview-trigger {
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus-visible {
+    color: $secondary;
+  }
+}
+
+$project-preview-modal-max-width: 1440px;
+$project-preview-desktop-frame-inset: 124px;
+$project-preview-mobile-frame-width: 430px;
+$project-preview-header-bg: #ddd;
+$project-preview-header-border: #9d9d9d;
+
+.project-preview-modal-root {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+// stylelint-disable-next-line selector-max-id
+#modal-root.project-preview-modal-root.modal {
+  border: none;
+  height: 100%;
+  margin: 0;
+  max-width: none;
+  padding: 0;
+  width: 100%;
+}
+
+.project-preview-modal-root .modal-dialog {
+  margin: 0.5rem auto;
+  max-width: min($project-preview-modal-max-width, calc(100vw - 2rem));
+  transition: max-width 0.2s ease, width 0.2s ease;
+  width: min($project-preview-modal-max-width, calc(100vw - 2rem));
+}
+
+.project-preview-modal .modal-content {
+  background: $project-preview-header-bg;
+  border: 0;
+}
+
+.project-preview-modal__header {
+  align-items: center;
+  background: $project-preview-header-bg;
+  border-top: 1px solid $project-preview-header-border;
+  display: flex;
+  justify-content: center;
+  min-height: 3.5rem;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.project-preview-modal__toggle {
+  align-items: center;
+  display: inline-flex;
+  gap: 14px;
+}
+
+.project-preview-modal__toggle-btn {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: $text-color;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.project-preview-modal__toggle-btn-inner {
+  align-items: center;
+  display: inline-flex;
+  height: 20px;
+  justify-content: center;
+  width: 20px;
+
+  i {
+    font-size: 16px;
+    line-height: 1;
+  }
+}
+
+.project-preview-modal__toggle-btn.is-active {
+  background: $border-color;
+  border-radius: 12px;
+  padding: 4px;
+
+  .project-preview-modal__toggle-btn-inner {
+    background: #fff;
+    border: 1px solid $print-black;
+    border-radius: 10px;
+    height: 32px;
+    width: 32px;
+
+    i {
+      color: $primary;
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-down) {
+  .project-preview-modal__toggle-btn[data-preview-device="desktop"] {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $breakpoint-xs-down) {
+  .project-preview-modal__toggle {
+    left: 1rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.project-preview-modal__close {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: $text-color;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: $font-family-base;
+  font-size: 1rem;
+  gap: 8px;
+  line-height: 1.5;
+  padding: 4px 0;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+
+.project-preview-modal__close-label {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.project-preview-modal__close-icon {
+  font-size: 1rem;
+  height: 16px;
+  line-height: 1;
+  width: 16px;
+}
+
+.project-preview-modal__body {
+  background: $project-preview-header-bg;
+  max-height: calc(100vh - 5rem);
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.project-preview-modal__frame {
+  margin: 0 auto;
+  transition: max-width 0.2s ease;
+  width: 100%;
+}
+
+.project-preview-modal__frame--mobile {
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 0;
+  max-width: $project-preview-mobile-frame-width;
+  overflow: hidden;
+  width: 100%;
+}
+
+.project-preview-modal__frame--desktop {
+  max-width: min(
+    $project-preview-modal-max-width - $project-preview-desktop-frame-inset,
+    calc(100vw - 2rem - #{$project-preview-desktop-frame-inset})
+  );
+  width: 100%;
+}
+
+.project-preview-modal__iframe {
+  background: #fff;
+  border: 0;
+  display: block;
+  min-height: calc(100vh - 7rem);
+  width: 100%;
+}

@@ -1,7 +1,12 @@
 {% load i18n %}
 
 <a href="{{ project.get_absolute_url }}"
-   class="btn btn--light btn--full">
+   class="btn btn--light btn--full u-spacer-bottom js-project-preview-trigger"
+   hx-get="{% url 'a4dashboard:project-preview-modal' organisation_slug=view.organisation.slug project_slug=project.slug %}"
+   hx-target="#modal-root .modal-content"
+   hx-swap="innerHTML"
+   data-bs-toggle="modal"
+   data-bs-target="#modal-root">
     <i class="fa fa-eye" aria-hidden="true"></i>
     {% if project.is_draft %}
     {% translate 'Preview' %}

@@ -65,6 +65,11 @@ module.exports = {
         './adhocracy-plus/assets/js/init_dashboard.js'
       ]
     },
+    init_project_preview_modal: {
+      import: [
+        './apps/dashboard/assets/init_project_preview_modal.js'
+      ]
+    },
     moderation_projects: {
       import: [
         './apps/userdashboard/assets/js/a4_candy_userdashboard/react_moderation_projects.jsx'

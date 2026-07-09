@@ -1,0 +1,114 @@
+{% load i18n thumbnail a4_candy_project_tags offlineevent_tags contrib_tags ckeditor_tags static platform_breadcrumbs_tags %}
+
+<div
+    class="project-header project-header--hero{% if project.image %} project-header--image{% endif %}"
+    {% if project.image %}
+        style="background-image: url({{ project.image |thumbnail_url:'heroimage' }});"
+        role="img"
+        aria-label="{% if project.image_alt_text %}{{ project.image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
+    {% endif %}
+>
+    {% if project.image_copyright %}
+    <div class="header__copyright copyright">© {{ project.image_copyright }}</div>
+    {% endif %}
+    {% include 'header_lower.html' with organisation=project.organisation content_inset=True %}
+</div>
+
+<div class="project-detail">
+    <div class="project-detail__inner">
+        <div class="project-detail__breadcrumbs{% if not request.user.is_authenticated %} project-detail__breadcrumbs--signed-out{% endif %}">
+            {% platform_breadcrumbs project=project current='project' %}
+        </div>
+
+        {% include "a4_candy_projects/includes/project_detail_intro.html" %}
+        {% if ai_summarisation_enabled %}
+        <section class="project-detail__summary" aria-labelledby="project-detail-summary-heading">
+            <h2 class="visually-hidden" id="project-detail-summary-heading">
+                {% translate 'Summary of the participation' %}
+            </h2>
+            {% include "a4_candy_projects/_generate_summary_button.html" with project=project %}
+        </section>
+        {% endif %}
+
+        <div class="project-detail__content">
+            <section
+                class="project-detail__participation"
+                aria-labelledby="project-detail-participation-heading"
+                data-participation-view>
+                <div class="project-detail__participation-header">
+                    <h2 class="project-detail__participation-title" id="project-detail-participation-heading">
+                        {% translate 'Online participation' %}
+                    </h2>
+                    {% if participation_grid_modules or participation_timeline_groups %}
+                    <div class="project-detail__view-toggle" role="group" aria-label="{% translate 'Participation layout' %}">
+                        <button
+                            type="button"
+                            class="project-detail__view-btn project-detail__view-btn--active"
+                            data-participation-view-btn="grid"
+                            aria-pressed="true"
+                            aria-controls="project-detail-participation-grid">
+                            <i class="fas fa-th" aria-hidden="true"></i>
+                            {% translate 'Grid' %}
+                        </button>
+                        <button
+                            type="button"
+                            class="project-detail__view-btn"
+                            data-participation-view-btn="timeline"
+                            aria-pressed="false"
+                            aria-controls="project-detail-participation-timeline">
+                            <svg class="project-detail__view-btn-icon" viewBox="0 0 14.4 12" aria-hidden="true" focusable="false">
+                                <path d="M4 3.8325C4.7075 3.525 5.2 2.82 5.2 2C5.2 0.895 4.305 0 3.2 0C2.095 0 1.2 0.895 1.2 2C1.2 2.82 1.6925 3.525 2.4 3.8325V5.2H0.8C0.3575 5.2 0 5.5575 0 6C0 6.4425 0.3575 6.8 0.8 6.8H6.4V8.1675C5.6925 8.475 5.2 9.18 5.2 10C5.2 11.105 6.095 12 7.2 12C8.305 12 9.2 11.105 9.2 10C9.2 9.18 8.7075 8.475 8 8.1675V6.8H13.6C14.0425 6.8 14.4 6.4425 14.4 6C14.4 5.5575 14.0425 5.2 13.6 5.2H12V3.8325C12.7075 3.525 13.2 2.82 13.2 2C13.2 0.895 12.305 0 11.2 0C10.095 0 9.2 0.895 9.2 2C9.2 2.82 9.6925 3.525 10.4 3.8325V5.2H4V3.8325Z" />
+                            </svg>
+                            {% translate 'Timeline' %}
+                        </button>
+                    </div>
+                    {% endif %}
+                </div>
+                <ul
+                    class="project-detail__module-grid"
+                    id="project-detail-participation-grid"
+                    data-participation-view-panel="grid">
+                    {% for module in participation_grid_modules %}
+                        {% include "a4_candy_projects/includes/project_grid_card.html" %}
+                    {% endfor %}
+                </ul>
+                <div
+                    class="project-detail__module-timeline"
+                    id="project-detail-participation-timeline"
+                    data-participation-view-panel="timeline"
+                    hidden>
+                    <div class="project-detail__timeline-rail" aria-hidden="true"></div>
+                    {% for group in participation_timeline_groups %}
+                    <section class="project-detail__timeline-group project-detail__timeline-group--{{ group.status }}" aria-labelledby="project-detail-timeline-group-{{ forloop.counter }}">
+                        <div class="project-detail__timeline-group-header" id="project-detail-timeline-group-{{ forloop.counter }}">
+                            <span class="project-detail__timeline-group-date">
+                                {% blocktranslate with date=group.group_date|date:"d.m.Y" %}from {{ date }}{% endblocktranslate %}
+                            </span>
+                            <span class="project-detail__timeline-group-status project-detail__timeline-group-status--{{ group.status }}">
+                                {{ group.status_label }}
+                            </span>
+                            <span class="project-detail__timeline-group-line" aria-hidden="true"></span>
+                        </div>
+                        <ol class="project-detail__timeline-list">
+                            {% for item in group.items %}
+                                {% if item.module %}
+                                    {% with module=item.module %}
+                                        {% include "a4_candy_projects/includes/project_timeline_card.html" %}
+                                    {% endwith %}
+                                {% elif item.offline_event %}
+                                    {% with offline_event=item.offline_event %}
+                                        {% include "a4_candy_projects/includes/project_timeline_event_card.html" %}
+                                    {% endwith %}
+                                {% endif %}
+                            {% endfor %}
+                        </ol>
+                    </section>
+                    {% endfor %}
+                </div>
+            </section>
+
+            {% include "a4_candy_projects/includes/project_detail_events.html" %}
+            {% include "a4_candy_projects/includes/project_detail_insights.html" %}
+        </div>
+    </div>
+</div>

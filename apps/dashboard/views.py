@@ -19,6 +19,7 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import ProjectMixin
+from apps.projects.mixins import ProjectDetailDisplayMixin
 
 from .forms import DashboardProjectCreateForm
 
@@ -252,6 +253,62 @@ class ModuleDeleteView(mixins.DashboardBaseMixin, generic.DeleteView):
                 "organisation_slug": self.get_object().project.organisation.slug,
             },
         )
+
+
+class DashboardProjectPreviewModalView(
+    ProjectMixin, mixins.DashboardBaseMixin, generic.DetailView
+):
+    """Load the project preview modal shell via HTMX."""
+
+    permission_required = "a4projects.change_project"
+    model = project_models.Project
+    slug_url_kwarg = "project_slug"
+    template_name = "a4_candy_projects/partials/project_preview_modal_htmx.html"
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["content_url"] = reverse(
+            "a4dashboard:project-preview-content",
+            kwargs={
+                "organisation_slug": self.organisation.slug,
+                "project_slug": self.project.slug,
+            },
+        )
+        return context
+
+
+class DashboardProjectPreviewContentView(
+    ProjectDetailDisplayMixin,
+    ProjectMixin,
+    mixins.DashboardBaseMixin,
+    generic.DetailView,
+):
+    """Load project detail content for the dashboard preview modal."""
+
+    permission_required = "a4projects.change_project"
+    model = project_models.Project
+    slug_url_kwarg = "project_slug"
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        response.xframe_options_exempt = True
+        return response
+
+    def get_template_names(self):
+        return ["a4_candy_projects/partials/project_preview_iframe.html"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["preview_partial"] = (
+            "a4_candy_projects/partials/project_detail_preview.html"
+        )
+        return context
 
 
 class ProjectCreateView(
