@@ -37,7 +37,7 @@ def render_notification_with_links(notification):
                         f'<a href="{mark_read_url}?redirect_to={redirect_url}">{_(context[key])}</a>'
                     )
                 else:
-                    result.append(context[key])
+                    result.append(_(context[key]))
             result.append(rest)
         else:
             result.append(part)

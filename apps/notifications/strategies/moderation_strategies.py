@@ -52,7 +52,7 @@ class CommentFeedback(BaseNotificationStrategy):
             ),
             "context": {
                 "moderator_feedback": feedback.feedback_text,
-                "comment": _("comment"),
+                "comment": "comment",
                 "comment_url": user_comment.get_absolute_url(),
                 "project": project.name,
                 "organisation": project.organisation.name,
