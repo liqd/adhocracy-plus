@@ -281,15 +281,31 @@ div.cke_focus {
     white-space: nowrap;
 }
 
-.account-auth-form {
-    .row {
-        button,
-        .proceed-guest-button {
-            width: 100%;
-        }
+.account-auth-form__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: $spacer;
 
+    .btn,
+    .proceed-guest-button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    @media screen and (min-width: $breakpoint) {
+        flex-flow: row wrap;
+        align-items: center;
+
+        .btn,
         .proceed-guest-button {
-            margin-top: 16px;
+            width: auto;
+        }
+    }
+
+    &--single {
+        @media screen and (min-width: $breakpoint) {
+            justify-content: flex-end;
         }
     }
 }

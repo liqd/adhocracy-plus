@@ -4,7 +4,7 @@
     {% translate "Continue as Guest" %}
 {% endblock head_title %}
 {% block content %}
-    <h1>{% translate "Proceed as guest" %}</h1>
+    <h1>{% translate "Continue as a guest" %}</h1>
     <p>
         {% url 'account_login' as login_url %}
         {% url 'account_signup' as signup_url %}
@@ -22,7 +22,7 @@
       {% endwith %}
     </p>
     <p>{% translate "Please log out after participating or close your browser. This ensures that neither you nor anyone else has access to your guest account. You can convert your guest account into a permanent account in the user settings." %}</p>
-    <form id="signup_form" method="post" action="">
+    <form id="signup_form" method="post" action="" class="account-auth-form">
         {{ form.non_field_errors }}
         {{ form.media }}
         {% csrf_token %}
@@ -67,8 +67,8 @@
         {% endif %}
         <input type="hidden" name="next" value="{{ next }}">
 
-        <div class="u-spacer-bottom-double">
-            <button class="btn btn--primary" type="submit">{% translate "Proceed as Guest" %}</button>
+        <div class="account-auth-form__actions account-auth-form__actions--single u-spacer-bottom-double">
+            <button class="btn btn--black" type="submit">{% translate "Continue as a guest" %}</button>
         </div>
     </form>
 {% endblock content %}

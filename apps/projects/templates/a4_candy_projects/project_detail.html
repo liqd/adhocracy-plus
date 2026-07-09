@@ -98,7 +98,7 @@
                         data-participation-view>
                         <div class="project-detail__participation-header">
                             <h2 class="project-detail__participation-title" id="project-detail-participation-heading">
-                                {% translate 'Online participation' %}
+                                {% translate 'Participation' %}
                             </h2>
                             {% if participation_grid_modules or participation_timeline_groups %}
                             <div class="project-detail__view-toggle" role="group" aria-label="{% translate 'Participation layout' %}">
@@ -120,7 +120,7 @@
                                     <svg class="project-detail__view-btn-icon" viewBox="0 0 14.4 12" aria-hidden="true" focusable="false">
                                         <path d="M4 3.8325C4.7075 3.525 5.2 2.82 5.2 2C5.2 0.895 4.305 0 3.2 0C2.095 0 1.2 0.895 1.2 2C1.2 2.82 1.6925 3.525 2.4 3.8325V5.2H0.8C0.3575 5.2 0 5.5575 0 6C0 6.4425 0.3575 6.8 0.8 6.8H6.4V8.1675C5.6925 8.475 5.2 9.18 5.2 10C5.2 11.105 6.095 12 7.2 12C8.305 12 9.2 11.105 9.2 10C9.2 9.18 8.7075 8.475 8 8.1675V6.8H13.6C14.0425 6.8 14.4 6.4425 14.4 6C14.4 5.5575 14.0425 5.2 13.6 5.2H12V3.8325C12.7075 3.525 13.2 2.82 13.2 2C13.2 0.895 12.305 0 11.2 0C10.095 0 9.2 0.895 9.2 2C9.2 2.82 9.6925 3.525 10.4 3.8325V5.2H4V3.8325Z" />
                                     </svg>
-                                    {% translate 'Timeline' %}
+                                    {% translate 'Timeline' context 'project detail participation view toggle' %}
                                 </button>
                             </div>
                             {% endif %}

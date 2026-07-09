@@ -35,9 +35,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Project detail: remove the participation timeline carousel.
 - Module pages: adapt layout to the new project detail grid styling; remove previous/next
   module cluster navigation.
+- Accounts: adjust login/signup button styles
 
 ### Fixed
 
+- Embedded YouTube videos: set referrer policy to `strict-origin-when-cross-origin` so cross-origin embeds send the site origin.
 - Project insights: keep counters in sync when contributions are deleted, soft-deleted, or removed by cascade (comments, ratings, poll answers, etc.); exclude archived proposals and hidden live questions.
 - Dashboard forms: align radio button options with text inputs and select fields.
 - Alert styling

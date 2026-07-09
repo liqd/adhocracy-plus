@@ -3,6 +3,7 @@ from urllib.parse import urlparse
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -10,6 +11,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import UpdateView
 from django.views.generic import View
+from guest_user.functions import is_guest_user
 from guest_user.mixins import RegularUserRequiredMixin
 
 from apps.userdashboard.views import UserDashboardNotificationsBaseView
@@ -98,6 +100,13 @@ class MarkNotificationAsReadView(LoginRequiredMixin, View):
 
 class NotificationCountPartialView(UserDashboardNotificationsBaseView):
     """HTMX partial for just the notification badge"""
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.headers.get("HX-Request"):
+            user = request.user
+            if not user.is_authenticated or is_guest_user(user):
+                return HttpResponse(status=204)
+        return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         unread_count = 0
