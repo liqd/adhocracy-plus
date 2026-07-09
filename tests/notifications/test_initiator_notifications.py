@@ -39,13 +39,3 @@ def test_notify_on_project_deleted(client, project):
     initiator_emails = get_emails_for_address(initiator.email)
     assert len(initiator_emails) == 2
     assert initiator_emails[1].subject.startswith("Deletion of project")
-
-
-# TODO: Check logic here
-# @pytest.mark.django_db
-# def test_notify_on_project_deleted_no_orga(client, project):
-#     """Check no email or error when project is deleted with organisation."""
-#     organisation = project.organisation
-#     organisation.delete()
-
-#     assert len(mail.outbox) == 0

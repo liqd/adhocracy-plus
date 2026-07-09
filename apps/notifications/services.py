@@ -57,6 +57,7 @@ class NotificationEmail(Email):
                         project_name=context.get("project_name"),
                         project_type=context.get("project_type"),
                         article=context.get("article", ""),
+                        content_type=context.get("content_type", ""),
                         content_type_display=context.get("content_type_display", ""),
                         commenter_name=context.get("commenter_name", ""),
                         post_name=context.get("post_name", ""),
@@ -151,7 +152,8 @@ class NotificationService:
         )
 
         if not should_check_preferences:
-            return unique_recipients, unique_recipients
+            email_recipients = [r for r in unique_recipients if not is_guest_user(r)]
+            return unique_recipients, email_recipients
 
         in_app_recipients = NotificationService._filter_recipients_by_preferences(
             unique_recipients, notification_type, "in_app"
@@ -171,7 +173,9 @@ class NotificationService:
         """
         filtered = []
         for recipient in recipients:
-            if channel == "email" and is_guest_user(recipient):
+            if is_guest_user(recipient):
+                if channel == "email":
+                    continue
                 continue
             settings = NotificationSettings.get_for_user(recipient)
             if settings.should_receive_notification(notification_type, channel):

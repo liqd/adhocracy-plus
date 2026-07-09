@@ -74,8 +74,6 @@ class NotificationCategory:
 
 NOTIFICATION_TYPE_MAPPING = {
     # Project notifications
-    NotificationType.PHASE_STARTED: NotificationCategory.PROJECT_UPDATES,
-    NotificationType.PHASE_ENDED: NotificationCategory.PROJECT_UPDATES,
     NotificationType.PROJECT_CREATED: NotificationCategory.PROJECT_UPDATES,
     NotificationType.PROJECT_DELETED: NotificationCategory.PROJECT_UPDATES,
     NotificationType.PROJECT_STARTED: NotificationCategory.PROJECT_UPDATES,

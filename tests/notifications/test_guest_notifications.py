@@ -8,9 +8,11 @@ from tests.helpers import get_emails_for_address
 
 
 @pytest.mark.django_db
-def test_guest_gets_in_app_notification_but_no_email(
+def test_guest_gets_no_notifications(
     module_factory, idea_factory, project_factory, comment_factory, user_factory
 ):
+    """Guest users should not receive any notifications, as they have no
+    NotificationSettings and we should not create one as a side effect."""
     project = project_factory(allow_guest_users=True)
     module = module_factory(project=project)
     guest = GuestUserCreator().create_guest_user()
@@ -20,7 +22,7 @@ def test_guest_gets_in_app_notification_but_no_email(
     mail.outbox.clear()
     comment_factory(content_object=idea, creator=idea_author, project=project)
 
-    assert Notification.objects.filter(recipient=guest).count() == 1
+    assert Notification.objects.filter(recipient=guest).count() == 0
     assert len(get_emails_for_address(guest.email)) == 0
 
 

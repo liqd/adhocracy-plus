@@ -48,23 +48,18 @@ class ProjectNotificationStrategy(BaseNotificationStrategy):
             return []
         return self._get_project_recipients(event.project)
 
-    def _get_phase_recipients(self, phase) -> List[User]:
-        if not phase.module.project:
-            return []
-        return self._get_project_recipients(phase.module.project)
-
 
 class ProjectStarted(ProjectNotificationStrategy):
     def get_recipients(self, project) -> List[User]:
         return self._get_project_recipients(project)
 
     def create_notification_data(self, project) -> dict:
-        end_date = (
-            project.phases.filter(module__is_draft=False)
-            .order_by("end_date")
-            .first()
-            .end_date
+        end_date = None
+        first_phase = (
+            project.phases.filter(module__is_draft=False).order_by("end_date").first()
         )
+        if first_phase:
+            end_date = first_phase.end_date
 
         email_context = {
             "subject": _("Here we go: {project_name} starts now!"),
@@ -369,10 +364,8 @@ class UserContentCreated(ProjectNotificationStrategy):
                 "project": obj.project.name,
                 "project_url": obj.project.get_absolute_url(),
                 "organisation": obj.project.organisation.name,
-                "content_type": content_type_translations[content_type.lower()],
-                "content_type_display": content_type_translations[
-                    content_type_display.lower()
-                ],
+                "content_type": content_type.lower(),
+                "content_type_display": content_type_display.lower(),
                 "content": obj.name,
                 "content_url": obj.get_absolute_url(),
                 "creator_name": obj.creator.username,
