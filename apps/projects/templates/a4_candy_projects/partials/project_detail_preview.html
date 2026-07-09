@@ -1,0 +1,6 @@
+{% load i18n %}
+{% if project.is_draft %}
+    {% translate 'This project has not yet been published.' as info %}
+    {% include 'a4_candy_contrib/components/info-box.html' with info_message=info %}
+{% endif %}
+{% include 'a4_candy_projects/partials/project_detail_preview_content.html' %}

@@ -82,5 +82,15 @@ urlpatterns += [
         a4dashborad_views.ProjectPublishView.as_view(),
         name="project-publish",
     ),
+    re_path(
+        r"^projects/(?P<project_slug>[-\w_]+)/preview/modal/$",
+        views.DashboardProjectPreviewModalView.as_view(),
+        name="project-preview-modal",
+    ),
+    re_path(
+        r"^projects/(?P<project_slug>[-\w_]+)/preview/content/$",
+        views.DashboardProjectPreviewContentView.as_view(),
+        name="project-preview-content",
+    ),
     path("", include(a4dashboard_components.get_urls())),
 ]

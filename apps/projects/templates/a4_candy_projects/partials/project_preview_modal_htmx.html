@@ -1,0 +1,48 @@
+{% load i18n %}
+<div class="project-preview-modal">
+    <div class="modal-content">
+        <div class="modal-header project-preview-modal__header">
+            <h2 id="project-preview-modal-label" class="visually-hidden">
+                {% if project.is_draft %}
+                    {% translate 'Preview' %}
+                {% else %}
+                    {% translate 'View' %}
+                {% endif %}
+            </h2>
+            <div class="project-preview-modal__toggle" role="group" aria-label="{% translate 'Preview device size' %}">
+                <button type="button"
+                        class="project-preview-modal__toggle-btn is-active"
+                        data-preview-device="desktop"
+                        aria-pressed="true"
+                        aria-label="{% translate 'Desktop' %}">
+                    <span class="project-preview-modal__toggle-btn-inner">
+                        <i class="fas fa-desktop" aria-hidden="true"></i>
+                    </span>
+                </button>
+                <button type="button"
+                        class="project-preview-modal__toggle-btn"
+                        data-preview-device="mobile"
+                        aria-pressed="false"
+                        aria-label="{% translate 'Mobile' %}">
+                    <span class="project-preview-modal__toggle-btn-inner">
+                        <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                    </span>
+                </button>
+            </div>
+            <button type="button"
+                    class="project-preview-modal__close"
+                    data-bs-dismiss="modal">
+                <span class="project-preview-modal__close-label">{% translate 'Close preview mode' %}</span>
+                <i class="fa fa-times project-preview-modal__close-icon" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="modal-body project-preview-modal__body">
+            <div id="project-preview-frame" class="project-preview-modal__frame project-preview-modal__frame--desktop">
+                <iframe id="project-preview-iframe"
+                        class="project-preview-modal__iframe"
+                        title="{% translate 'Project preview' %}"
+                        data-content-url="{{ content_url }}"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

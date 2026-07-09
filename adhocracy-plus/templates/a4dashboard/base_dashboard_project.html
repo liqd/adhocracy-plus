@@ -170,4 +170,19 @@
             {% include "a4dashboard/includes/preview.html" with project=project %}
         </div>
     </div>
+
+    <div id="modal-root"
+         class="modal fade project-preview-modal-root"
+         tabindex="-1"
+         aria-labelledby="project-preview-modal-label"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
 {% endblock dashboard_content %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static 'init_project_preview_modal.js' %}"></script>
+{% endblock extra_js %}

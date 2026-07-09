@@ -157,6 +157,9 @@ MIDDLEWARE = (
 # Django's default "same-origin" strips it; this matches YouTube's recommendation.
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
+# Allow same-origin iframes (e.g. dashboard project preview modal).
+X_FRAME_OPTIONS = "SAMEORIGIN"
+
 ROOT_URLCONF = "adhocracy-plus.config.urls"
 
 LOCALE_PATHS = [

@@ -1,0 +1,5 @@
+{% load i18n %}
+<div class="info-box" role="status" tabindex="0">
+    {% if info_title %}<h3 class="info-box__title">{{ info_title }}</h3>{% endif %}
+    <p class="info-box__text">{{ info_message }}</p>
+</div>
