@@ -1,0 +1,36 @@
+{% load i18n static %}
+<div id="summary-error" class="summary-error__container">
+    <div class="summary-error__header">
+        <img class="summary-error__warning-logo" src="{% static 'images/warning.svg' %}" alt="warning">
+        {% trans 'Could not generate the summary' %}
+    </div>
+    <div class="summary-error__text">
+        {% trans 'The AI ran into an issue processing this content. The original discussion is still available.' %}
+    </div>
+    <div class="summary-error__retry mt-3">
+        <button hx-get="{% url 'project-generate-summary' organisation_slug=project.organisation.slug slug=project.slug %}"
+                hx-target="#summary-error"
+                hx-swap="outerHTML"
+                hx-disabled-elt="this"
+                hx-indicator="this"
+                class="btn btn--transparent project-summary__generate-btn">
+            <span class="button-text"><i class="fa fa-rotate-right me-2" aria-hidden="true"></i>{% trans 'Try again' %}</span>
+            <span class="htmx-indicator">
+                <span class="spinner-border spinner-border-sm" role="status"></span>
+                <span class="ml-2">{% trans 'Generating...' %}</span>
+            </span>
+        </button>
+    </div>
+</div>
+
+<style>
+button .htmx-indicator {
+    display: none;
+}
+button.htmx-request .button-text {
+    display: none;
+}
+button.htmx-request .htmx-indicator {
+    display: inline-block;
+}
+</style>

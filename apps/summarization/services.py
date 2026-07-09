@@ -71,39 +71,47 @@ class AIService:
         result_type: type[BaseModel] = ProjectSummaryResponse,
         is_rate_limit: bool = True,
         allow_regeneration: bool = True,
-    ) -> BaseModel:
+        force_regeneration: bool = False,
+    ) -> BaseModel | None:
         """Summarize project data with caching.
 
         - Exact hash match: reuse cached summary and update last_checked_at.
         - Rate limits (if enabled): optionally reuse latest summary without touching last_checked_at.
         - If allow_regeneration is False and a summary exists, always return the latest summary
           without generating a new one, even when the hash changed.
+        - If allow_regeneration is False and no summary exists, return None.
+        - If force_regeneration is True, always call the AI provider (staff trigger URL).
         """
         set_sentry_project_tags(project)
         request = SummaryRequest(text=text, prompt=prompt)
         latest = self._get_latest_summary(project)
         text_hash = ProjectSummary.compute_hash(text)
 
-        cached = self._get_cached_response(
-            project=project,
-            text_hash=text_hash,
-            latest=latest,
-            is_rate_limit=is_rate_limit,
-        )
-        if cached:
-            return cached
+        if not force_regeneration:
+            cached = self._get_cached_response(
+                project=project,
+                text_hash=text_hash,
+                latest=latest,
+                is_rate_limit=is_rate_limit,
+            )
+            if cached:
+                return cached
 
         # No cache hit:
-        # - If regeneration is not allowed and we already have a summary,
-        #   return the latest one unchanged (used by the button endpoint).
-        if not allow_regeneration and latest:
+        # - If regeneration is not allowed, never call the AI provider.
+        if not allow_regeneration:
+            if latest:
+                logger.debug(
+                    "Regeneration disabled and no cache hit; returning latest summary "
+                    f"for project {project.id}"
+                )
+                return ProjectSummaryResponse(**latest.response_data)
             logger.debug(
-                "Regeneration disabled and no cache hit; returning latest summary "
-                f"for project {project.id}"
+                "Regeneration disabled and no cached summary for project %s",
+                project.id,
             )
-            return ProjectSummaryResponse(**latest.response_data)
+            return None
 
-        # If there is no existing summary, we must generate one at least once.
         logger.info(f"Generating summary for project {project.id} ({project.slug})")
 
         try:
@@ -191,20 +199,28 @@ class AIService:
         documents_dict: dict[str, str],
         prompt: str | None = None,
         project=None,
+        *,
+        include_images: bool = True,
     ) -> DocumentSummaryResponse:
         """Process documents from dictionary format."""
         items = [DocumentInputItem(handle=h, url=u) for h, u in documents_dict.items()]
-        return self.request_vision(items, prompt, project=project)
+        return self.request_vision(
+            items, prompt, project=project, include_images=include_images
+        )
 
     def request_vision(
         self,
         documents: list[DocumentInputItem],
         prompt: str | None = None,
         project=None,
+        *,
+        include_images: bool = True,
     ) -> DocumentSummaryResponse:
         """Process documents and images, return combined summaries."""
         if project is not None:
             set_sentry_project_tags(project)
+        if not include_images:
+            documents = [doc for doc in documents if not doc.is_image()]
         docs, images = self._split_documents(documents)
 
         results = []
