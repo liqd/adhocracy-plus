@@ -1,5 +1,5 @@
 // apps/polls/assets/react_polls/components/QuestionFunnel.jsx
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import django from 'django'
 import { TermsOfUseCheckbox } from 'adhocracy4/adhocracy4/static/TermsOfUseCheckbox'
 import { PollChoice } from './PollChoice'
@@ -43,6 +43,14 @@ const QuestionFunnel = ({
 }) => {
   const funnelRef = useRef(null)
   const headerRef = useRef(null)
+  const prevNumberRef = useRef(currentNumber)
+  const prevQuestionRef = useRef(currentQuestion)
+  const prevAnswerRef = useRef(currentAnswer)
+
+  const [phase, setPhase] = useState('idle')
+  const [direction, setDirection] = useState('forward')
+  const [exitingQuestion, setExitingQuestion] = useState(null)
+  const [exitingAnswer, setExitingAnswer] = useState(null)
 
   useEffect(() => {
     const top = funnelRef.current?.getBoundingClientRect().top + window.scrollY - 50
@@ -50,16 +58,39 @@ const QuestionFunnel = ({
     headerRef.current?.focus({ preventScroll: true })
   }, [currentQuestion.id])
 
+  useEffect(() => {
+    if (currentNumber !== prevNumberRef.current) {
+      const dir = currentNumber > prevNumberRef.current ? 'forward' : 'backward'
+      setDirection(dir)
+      setExitingQuestion(prevQuestionRef.current)
+      setExitingAnswer(prevAnswerRef.current)
+      setPhase('exiting')
+      prevNumberRef.current = currentNumber
+    }
+    prevQuestionRef.current = currentQuestion
+    prevAnswerRef.current = currentAnswer
+  }, [currentNumber, currentQuestion, currentAnswer])
+
+  const handleExitEnd = useCallback(() => {
+    setExitingQuestion(null)
+    setExitingAnswer(null)
+    setPhase('entering')
+  }, [])
+
+  const handleEnterEnd = useCallback(() => {
+    setPhase('idle')
+  }, [])
+
+  const enrichQuestion = useCallback((question, answer) => ({
+    ...question,
+    userChoices: answer?.choices || [],
+    open_answer: answer?.open_answer || '',
+    other_choice_answer: answer?.other_choice_answer || ''
+  }), [])
+
   const isLastQuestion = currentNumber === totalQuestions
   const isSubmitDisabled = (isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
     (isLastQuestion && showCaptcha && !captcha)
-
-  const enrichedQuestion = {
-    ...currentQuestion,
-    userChoices: currentAnswer?.choices || [],
-    open_answer: currentAnswer?.open_answer || '',
-    other_choice_answer: currentAnswer?.other_choice_answer || ''
-  }
 
   const handleAnswerUpdate = (questionId, value, type) => {
     const handler = ANSWER_HANDLERS[type]
@@ -82,27 +113,62 @@ const QuestionFunnel = ({
         )}
       </div>
 
-      <div className="poll-question-content">
-        {currentQuestion.is_open
+      <div className="poll-question-content-wrapper">
+        {phase === 'exiting'
           ? (
-            <PollOpenQuestion
-              key={currentQuestion.id}
-              allowUnregisteredUsers={allowUnregisteredUsers}
-              question={enrichedQuestion}
-              onOpenChange={(questionId, value) =>
-                handleAnswerUpdate(questionId, value, 'open')}
-              errors={errors}
-              questionImagesEnabled={!!currentQuestion.image_url}
-            />
+            <div
+              className={'poll-question-content poll-question-content--exit-' + direction}
+              onAnimationEnd={handleExitEnd}
+            >
+              {exitingQuestion?.is_open
+                ? (
+                  <PollOpenQuestion
+                    key={exitingQuestion.id}
+                    allowUnregisteredUsers={allowUnregisteredUsers}
+                    question={enrichQuestion(exitingQuestion, exitingAnswer)}
+                    onOpenChange={() => {}}
+                    errors={errors}
+                    questionImagesEnabled={!!exitingQuestion.image_url}
+                  />
+                  )
+                : (
+                  <PollChoice
+                    key={exitingQuestion?.id}
+                    question={enrichQuestion(exitingQuestion, exitingAnswer)}
+                    allowUnregisteredUsers={allowUnregisteredUsers}
+                    onAnswerChange={() => {}}
+                    errors={errors}
+                  />
+                  )}
+            </div>
             )
           : (
-            <PollChoice
-              key={currentQuestion.id}
-              question={enrichedQuestion}
-              allowUnregisteredUsers={allowUnregisteredUsers}
-              onAnswerChange={handleAnswerUpdate}
-              errors={errors}
-            />
+            <div
+              className={'poll-question-content poll-question-content--enter-' + direction + (phase === 'idle' ? '' : '')}
+              onAnimationEnd={phase === 'entering' ? handleEnterEnd : undefined}
+            >
+              {currentQuestion.is_open
+                ? (
+                  <PollOpenQuestion
+                    key={currentQuestion.id}
+                    allowUnregisteredUsers={allowUnregisteredUsers}
+                    question={enrichQuestion(currentQuestion, currentAnswer)}
+                    onOpenChange={(questionId, value) =>
+                      handleAnswerUpdate(questionId, value, 'open')}
+                    errors={errors}
+                    questionImagesEnabled={!!currentQuestion.image_url}
+                  />
+                  )
+                : (
+                  <PollChoice
+                    key={currentQuestion.id}
+                    question={enrichQuestion(currentQuestion, currentAnswer)}
+                    allowUnregisteredUsers={allowUnregisteredUsers}
+                    onAnswerChange={handleAnswerUpdate}
+                    errors={errors}
+                  />
+                  )}
+            </div>
             )}
       </div>
 

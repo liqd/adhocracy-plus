@@ -223,3 +223,61 @@
         }
     }
 }
+
+.poll-question-content-wrapper {
+    position: relative;
+}
+
+.poll-question-content--exit-forward {
+    animation: slide-out-left 0.3s ease-in-out forwards;
+}
+
+.poll-question-content--exit-backward {
+    animation: slide-out-right 0.3s ease-in-out forwards;
+}
+
+.poll-question-content--enter-forward {
+    animation: slide-in-right 0.3s ease-in-out;
+}
+
+.poll-question-content--enter-backward {
+    animation: slide-in-left 0.3s ease-in-out;
+}
+
+@keyframes slide-out-left {
+    to {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-right {
+    to {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-left {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
