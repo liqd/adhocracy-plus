@@ -1,0 +1,130 @@
+.pollquestionlist-container,
+.poll__preliminary-results {
+    padding-top: $spacer;
+}
+
+.poll--result {
+    margin-bottom: 1.5 * $spacer;
+}
+
+.poll__preliminary-results-buttons {
+    padding-top: $spacer;
+}
+
+.poll__results-subtitle {
+    font-size: $font-size-base;
+    font-weight: 600;
+}
+
+.poll__results-content {
+    max-height: 3000px;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+
+    &--collapsed {
+        max-height: 0;
+    }
+}
+
+.poll__results-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    font-size: inherit;
+    font-family: inherit;
+
+    .poll__results-header-text {
+        flex: 1;
+    }
+
+    .fa-chevron-down {
+        margin-left: $spacer;
+        margin-top: 0.25em;
+        transition: transform 0.4s ease;
+        flex-shrink: 0;
+
+        &.open {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.poll {
+    h2 {
+        margin-top: 0;
+        font-size: $font-size-lg;
+        font-weight: 600;
+        font-family: $font-family-base;
+    }
+
+    fieldset {
+        padding: 0;
+    }
+}
+
+.poll__question-image {
+    cursor: pointer;
+    margin: 1rem 0;
+    display: inline-block;
+    position: relative;
+}
+
+.poll__question-image-zoom-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: $white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0;
+    pointer-events: none;
+    font-size: $font-size-sm;
+}
+
+.poll__question-image-img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: $choice-border-radius;
+    transition: $choice-transition;
+}
+
+.poll__question-image--expanded {
+    .poll__question-image-img {
+        max-height: 700px;
+        cursor: zoom-out;
+    }
+}
+
+.poll__rows {
+    display: flex;
+    flex-direction: column;
+}
+
+.poll-start-screen__count {
+    font-weight: bold;
+}
+
+.poll-question-header h3 {
+    font-size: $font-size-sm;
+    color: $text-color-gray;
+    margin: 0;
+    padding: 0;
+}
+
+.poll__question-label {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    display: block;
+    padding-bottom: 1rem;
+}
+
+.poll__question-legend {
+    padding-left: 0;
+}
