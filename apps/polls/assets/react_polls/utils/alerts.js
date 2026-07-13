@@ -19,3 +19,8 @@ export const ALERT_INCOMPLETE = {
   type: 'warning',
   message: django.gettext('Please answer all questions before submitting.')
 }
+
+export const ALERT_CAPTCHA_INCOMPLETE = {
+  type: 'danger',
+  message: django.gettext('Please complete the captcha before submitting.')
+}

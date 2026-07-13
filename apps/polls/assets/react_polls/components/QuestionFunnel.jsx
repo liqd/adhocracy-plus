@@ -29,6 +29,8 @@ const QuestionFunnel = ({
   agreedTermsOfUse,
   orgTermsUrl,
   checkedTermsOfUse,
+  showCaptcha,
+  captcha,
   onSetCheckedTerms,
   errors,
   onAnswerChange,
@@ -36,7 +38,8 @@ const QuestionFunnel = ({
   onSkip,
   onNext,
   onSubmit,
-  isLoading
+  isLoading,
+  children
 }) => {
   const funnelRef = useRef(null)
   const headerRef = useRef(null)
@@ -48,7 +51,8 @@ const QuestionFunnel = ({
   }, [currentQuestion.id])
 
   const isLastQuestion = currentNumber === totalQuestions
-  const isSubmitDisabled = isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse
+  const isSubmitDisabled = (isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
+    (isLastQuestion && showCaptcha && !captcha)
 
   const enrichedQuestion = {
     ...currentQuestion,
@@ -111,6 +115,8 @@ const QuestionFunnel = ({
           />
         </div>
       )}
+
+      {isLastQuestion && children}
 
       <NavigationButtons
         onBack={onBack}

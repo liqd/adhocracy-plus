@@ -120,21 +120,23 @@ const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, ma
                 orgTermsUrl={state.orgTermsUrl}
                 checkedTermsOfUse={state.checkedTermsOfUse}
                 onSetCheckedTerms={actions.handleSetCheckedTerms}
-              />
+                showCaptcha={showCaptcha}
+                captcha={state.captcha}
+              >
+                {showCaptcha && (
+                  <CaptchaWidget
+                    key={state.refreshCaptcha}
+                    siteKey={prosopoSiteKey}
+                    language={document.documentElement.lang || 'de'}
+                    onChange={actions.handleSetCaptcha}
+                    name="captcha"
+                  />
+                )}
+              </QuestionFunnel>
             </form>
 
             {state.alert && (
               <Alert onClick={actions.handleClearAlert} {...state.alert} />
-            )}
-
-            {showCaptcha && (
-              <CaptchaWidget
-                key={state.refreshCaptcha}
-                siteKey={prosopoSiteKey}
-                language={document.documentElement.lang || 'de'}
-                onChange={actions.handleSetCaptcha}
-                name="captcha"
-              />
             )}
           </div>
         )
