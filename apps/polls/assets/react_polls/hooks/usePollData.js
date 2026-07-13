@@ -33,6 +33,10 @@ const normalizePollData = (poll) => {
   const isAuthenticated = poll.questions.length > 0 &&
     poll.questions[0]?.authenticated
 
+  const isReadOnly = poll.questions.length > 0 && !!poll.questions[0]?.isReadOnly
+
+  const votingEnded = !!poll.voting_ended
+
   return {
     questions: poll.questions,
     userAnswers,
@@ -41,6 +45,8 @@ const normalizePollData = (poll) => {
     guestCanVote: poll.guest_can_vote,
     isAuthenticated,
     hasUserVote: poll.has_user_vote,
+    isReadOnly,
+    votingEnded,
     useTermsOfUse: poll.use_org_terms_of_use,
     agreedTermsOfUse: poll.user_has_agreed,
     orgTermsUrl: poll.org_terms_url,

@@ -3,7 +3,7 @@ import django from 'django'
 import PollResults from './PollResults'
 import Alert from 'adhocracy4/adhocracy4/static/Alert'
 
-const ResultsView = ({ results, totalParticipants, hasUserVote, alert, onBackToPoll, onChangeAnswer }) => {
+const ResultsView = ({ results, totalParticipants, hasUserVote, votingEnded, alert, onBackToPoll, onChangeAnswer }) => {
   const [resultsCollapsed, setResultsCollapsed] = useState(false)
 
   return (
@@ -46,16 +46,18 @@ const ResultsView = ({ results, totalParticipants, hasUserVote, alert, onBackToP
           {hasUserVote
             ? (
               <div className="text-end">
-                <button
-                  type="button"
-                  className="btn btn--transparent-bordered"
-                  onClick={onChangeAnswer}
-                >
-                  {django.gettext('Change my answers')}
-                </button>
+                {!votingEnded && (
+                  <button
+                    type="button"
+                    className="btn btn--transparent-bordered"
+                    onClick={onChangeAnswer}
+                  >
+                    {django.gettext('Change my answers')}
+                  </button>
+                )}
               </div>
               )
-            : (
+            : !votingEnded && (
               <button
                 type="button"
                 className="btn poll__btn--link"

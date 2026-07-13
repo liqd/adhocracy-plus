@@ -75,6 +75,7 @@ const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, ma
             results={state.results}
             totalParticipants={state.totalParticipants}
             hasUserVote={state.hasUserVote}
+            votingEnded={state.votingEnded}
             alert={state.alert}
             onBackToPoll={actions.handleBackToPoll}
             onChangeAnswer={actions.handleChangeAnswer}

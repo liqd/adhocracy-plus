@@ -14,7 +14,7 @@ export const PollChoice = ({ question, allowUnregisteredUsers, onAnswerChange, e
   const otherChoiceAnswer = question.other_choice_answer || ''
 
   const otherChoice = question.choices.find(c => c.is_other_choice)
-  const canVote = question.authenticated || allowUnregisteredUsers
+  const canVote = (question.authenticated || allowUnregisteredUsers) && !question.isReadOnly
 
   const handleChoiceChange = (choiceId) => {
     if (question.multiple_choice) {
