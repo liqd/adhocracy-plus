@@ -2,7 +2,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { initialise as ReactWidgetInit } from 'adhocracy4/adhocracy4/static/widget'
 
-import PollQuestions from './react_polls/PollQuestions'
+import PollQuestions from './react_polls/components/PollQuestions'
 
 function init () {
   ReactWidgetInit('a4', 'polls',
