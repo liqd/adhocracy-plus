@@ -198,5 +198,5 @@ export const pollReducer = (state, action) => {
     return state
   }
 
-  return reducer(state, action.payload ?? action.payload)
+  return reducer(state, action.payload)
 }

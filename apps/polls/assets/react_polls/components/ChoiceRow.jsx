@@ -53,11 +53,10 @@ export const ChoiceRow = React.memo(({
   disabled,
   otherChoiceAnswer,
   onOtherChange,
-  isReadOnly,
   errors,
   name,
-  isResult = false, // New prop
-  percent = null // New prop for result percentage
+  isResult = false,
+  percent = null
 }) => {
   const [textareaValue, setTextareaValue] = useState(otherChoiceAnswer)
   const [showTextarea, setShowTextarea] = useState(false)

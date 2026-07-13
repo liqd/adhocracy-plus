@@ -1,5 +1,5 @@
 // apps/polls/assets/react_polls/components/PollChoice.jsx
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import django from 'django'
 import { ChoiceRow } from './ChoiceRow'
 import { ConfidentialNotice } from 'adhocracy4/adhocracy4/polls/static/PollDetail/ConfidentialNotice'
@@ -9,24 +9,12 @@ const translated = {
   multiple: django.gettext('Multiple answers are possible.')
 }
 
-const getOtherChoiceAnswer = (question) => {
-  const userAnswerId = question.other_choice_user_answer
-  return question.other_choice_answer ||
-    (userAnswerId && question.other_choice_answers?.find(
-      oc => oc.vote_id === userAnswerId
-    )?.answer) || ''
-}
-
 export const PollChoice = ({ question, allowUnregisteredUsers, onAnswerChange, errors }) => {
-  const [userChoices, setUserChoices] = useState(question.userChoices || [])
-  const [otherChoiceAnswer, setOtherChoiceAnswer] = useState(getOtherChoiceAnswer(question))
+  const userChoices = question.userChoices || []
+  const otherChoiceAnswer = question.other_choice_answer || ''
 
   const otherChoice = question.choices.find(c => c.is_other_choice)
   const canVote = question.authenticated || allowUnregisteredUsers
-
-  useEffect(() => {
-    setOtherChoiceAnswer(getOtherChoiceAnswer(question))
-  }, [question.other_choice_answer, question.other_choice_user_answer])
 
   const handleChoiceChange = (choiceId) => {
     if (question.multiple_choice) {
@@ -34,28 +22,22 @@ export const PollChoice = ({ question, allowUnregisteredUsers, onAnswerChange, e
         ? userChoices.filter(id => id !== choiceId)
         : [...userChoices, choiceId]
 
-      setUserChoices(newChoices)
       onAnswerChange(question.id, choiceId, 'multi')
 
       if (otherChoice && !newChoices.includes(otherChoice.id)) {
-        setOtherChoiceAnswer('')
         onAnswerChange(question.id, '', 'other')
       }
     } else {
-      setUserChoices([choiceId])
       onAnswerChange(question.id, choiceId, 'single')
 
       if (otherChoice && choiceId !== otherChoice.id) {
-        setOtherChoiceAnswer('')
         onAnswerChange(question.id, '', 'other')
       }
     }
   }
 
   const handleOtherChange = (event) => {
-    const answer = event.target.value
-    setOtherChoiceAnswer(answer)
-    onAnswerChange(question.id, answer, 'other')
+    onAnswerChange(question.id, event.target.value, 'other')
   }
 
   return (

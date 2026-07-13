@@ -64,7 +64,7 @@ const StartScreen = ({ moduleName, moduleDescription, totalQuestions, isAuthenti
             )
           : (
             <a
-              href={window.adhocracy4?.config?.getLoginUrl?.() || '/accounts/login/'}
+              href={'/accounts/login/?next=' + encodeURIComponent(location.pathname)}
               className="btn poll__btn--dark"
             >
               {django.gettext('Log in to participate')}

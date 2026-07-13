@@ -1,10 +1,8 @@
-/* eslint-disable react/jsx-closing-tag-location */
 import React from 'react'
 import django from 'django'
 
 const NavigationButtons = ({
   currentIndex,
-  totalQuestions,
   isLastQuestion,
   isLoading,
   isSubmitDisabled,
@@ -27,22 +25,23 @@ const NavigationButtons = ({
       </div>
       <div>
         {!isLastQuestion
-          ? <button
-              type="button"
-              className="btn btn--transparent mr-2"
-              onClick={onSkip}
-            >{django.gettext('Skip')}
-          </button>
-          : null}
-        {!isLastQuestion
           ? (
-            <button
-              type="button"
-              className="btn poll__btn--dark"
-              onClick={onNext}
-            >
-              {django.gettext('Next')}
-            </button>
+            <>
+              <button
+                type="button"
+                className="btn btn--transparent mr-2"
+                onClick={onSkip}
+              >
+                {django.gettext('Skip')}
+              </button>
+              <button
+                type="button"
+                className="btn poll__btn--dark"
+                onClick={onNext}
+              >
+                {django.gettext('Next')}
+              </button>
+            </>
             )
           : (
             <button
