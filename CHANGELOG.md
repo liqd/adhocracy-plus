@@ -24,6 +24,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - AI project summarisation: periodic Celery Beat task `refresh_project_summaries` regenerates summaries for projects in AI-enabled organisations
 - AI project summarisation: global Settings flag `project_summary_include_images` (default off) to include image attachments in summaries.
 - Dashboard: project preview modal in the project form sidebar with desktop and mobile views.
+- Settings: Added questionimage to IMAGE_ALIASES
 
 ### Changed
 
