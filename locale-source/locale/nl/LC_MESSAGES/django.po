@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-14 15:50+0200\n"
+"POT-Creation-Date: 2026-07-14 16:33+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
@@ -101,21 +101,7 @@ msgstr "Fase"
 msgid "Select"
 msgstr "Selecteren"
 
-#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:5
-#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
-#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:5
-#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
-#: apps/account/templates/a4_candy_account/guest_convert.html:32
-#: apps/contrib/templates/a4_candy_contrib/includes/form_checkbox_field.html:6
-#: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
-#: apps/users/templates/a4_candy_users/guest_create.html:41
-#: apps/users/templates/a4_candy_users/guest_create.html:52
-#: adhocracy-plus/templates/account/signup.html:37
-#: adhocracy-plus/templates/account/signup.html:48
-#: adhocracy-plus/templates/socialaccount/signup.html:34
-msgid "This field is required"
-msgstr "Dit veld is verplicht"
-
+#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
 #: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:10
 msgid "Missing field for publication"
 msgstr "Ontbrekend veld voor publicatie"
@@ -309,6 +295,20 @@ msgstr "hier kunt u alle opmerkingen exporteren"
 msgid "Search"
 msgstr "Zoeken"
 
+#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
+#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:5
+#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
+#: apps/account/templates/a4_candy_account/guest_convert.html:32
+#: apps/contrib/templates/a4_candy_contrib/includes/form_checkbox_field.html:6
+#: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
+#: apps/users/templates/a4_candy_users/guest_create.html:41
+#: apps/users/templates/a4_candy_users/guest_create.html:52
+#: adhocracy-plus/templates/account/signup.html:37
+#: adhocracy-plus/templates/account/signup.html:48
+#: adhocracy-plus/templates/socialaccount/signup.html:34
+msgid "This field is required"
+msgstr "Dit veld is verplicht"
+
 #: adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
 #: adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
 #: adhocracy4/forms/templates/a4forms/includes/inline_form.html:18
@@ -469,7 +469,7 @@ msgid "unknown user"
 msgstr "onbekende gebruiker"
 
 #: adhocracy4/comments_async/api.py:150
-#: adhocracy4/polls/api.py:203
+#: adhocracy4/polls/api.py:160
 msgid "Please agree to the organisation's terms of use."
 msgstr "U dient akkoord te gaan met de gebruiksvoorwaarden van de organisatie."
 
@@ -873,7 +873,6 @@ msgid "Please add an alternative text for this image"
 msgstr ""
 
 #: adhocracy4/images/validators.py:28
-#, python-brace-format
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Niet-ondersteunde bestandsformaat. Ondersteunde formaten zijn {}."
 
@@ -1108,34 +1107,33 @@ msgstr "De einddatum kan niet eerder zijn dan de startdatum."
 msgid "Either both or no date has to be set."
 msgstr "Of beide of geen datum moet worden ingesteld."
 
-#: adhocracy4/polls/api.py:167
-#: adhocracy4/polls/api.py:185
+#: adhocracy4/polls/api.py:124
+#: adhocracy4/polls/api.py:142
 msgid "Your answer to the captcha was wrong."
 msgstr "Je antwoord op de captcha was verkeerd."
 
-#: adhocracy4/polls/api.py:172
-#: adhocracy4/polls/api.py:181
+#: adhocracy4/polls/api.py:129
+#: adhocracy4/polls/api.py:138
 msgid "Something about the answer to the captcha was wrong."
 msgstr "Iets aan het antwoord op de captcha was onjuist."
 
-#: adhocracy4/polls/api.py:267
+#: adhocracy4/polls/api.py:223
 msgid "Please specify your answer."
 msgstr "Geef uw antwoord."
 
-#: adhocracy4/polls/api.py:281
-#, python-brace-format
+#: adhocracy4/polls/api.py:237
 msgid "Key error for {}"
 msgstr "Key error for {}"
 
-#: adhocracy4/polls/api.py:283
+#: adhocracy4/polls/api.py:239
 msgid "Choice not found."
 msgstr "Keuze niet gevonden."
 
-#: adhocracy4/polls/api.py:304
+#: adhocracy4/polls/api.py:260
 msgid "Duplicate choices detected."
 msgstr "Dubbele keuzes gevonden."
 
-#: adhocracy4/polls/api.py:307
+#: adhocracy4/polls/api.py:263
 msgid "Multiple choice disabled for question."
 msgstr "Meerkeuze uitgeschakeld voor vraag."
 
@@ -1147,7 +1145,7 @@ msgstr "Meerkeuze uitgeschakeld voor vraag."
 msgid "Poll"
 msgstr "Poll"
 
-#: adhocracy4/polls/dashboard.py:45
+#: adhocracy4/polls/dashboard.py:44
 #: apps/budgeting/dashboard.py:14 apps/debate/dashboard.py:65
 #: apps/documents/dashboard.py:50 apps/ideas/dashboard.py:14
 #: apps/mapideas/dashboard.py:14 apps/topicprio/dashboard.py:65
@@ -1251,35 +1249,33 @@ msgstr "Beantwoord de vragen en reageer op de poll."
 msgid "polls"
 msgstr "polls"
 
-#: adhocracy4/polls/serializers.py:227
-#: adhocracy4/polls/services.py:107
+#: adhocracy4/polls/serializers.py:229
+#: adhocracy4/polls/serializers.py:431
 msgid "Please provide a descriptive alt text for the question image."
 msgstr ""
 
-#: adhocracy4/polls/validators.py:36
-#, python-format
-msgid "Image must be at least %(width)s pixels wide."
+#: adhocracy4/polls/serializers.py:409
+msgid "Image must be at least 1500 pixels wide"
 msgstr ""
 
-#: adhocracy4/polls/validators.py:40
-#, python-format
-msgid "Image must be at least %(height)s pixels high."
+#: adhocracy4/polls/serializers.py:413
+msgid "Image must be at least 500 pixels high"
 msgstr ""
 
-#: adhocracy4/polls/validators.py:58
+#: adhocracy4/polls/validators.py:16
 #, python-format
 msgid "Item of type %(item)s for that module already exists"
 msgstr "Item van het type %(item)s voor die module bestaat reeds"
 
-#: adhocracy4/polls/validators.py:70
+#: adhocracy4/polls/validators.py:28
 msgid "Question has to belong to the poll set in the url."
 msgstr "De vraag moet horen bij de poll die in de URL staat."
 
-#: adhocracy4/polls/validators.py:81
+#: adhocracy4/polls/validators.py:39
 msgid "Choice has to belong to the question set in the url."
 msgstr "Keuze moet bij de vraagstelling in de url horen."
 
-#: adhocracy4/polls/validators.py:104
+#: adhocracy4/polls/validators.py:62
 msgid "Only one vote per choice is allowed per user."
 msgstr "Per gebruiker is slechts één stem per keuze toegestaan."
 
@@ -1318,7 +1314,7 @@ msgstr "Contact"
 msgid "public"
 msgstr "openbaar"
 
-#: adhocracy4/projects/mixins.py:171
+#: adhocracy4/projects/mixins.py:173
 msgid "Final Results"
 msgstr ""
 
@@ -1448,16 +1444,13 @@ msgid ""
 "users are enabled for the platform."
 msgstr ""
 
-#: adhocracy4/projects/utils.py:58
-#, python-brace-format
-msgid "{}. Participation"
+#: adhocracy4/projects/utils.py:46
+msgid "{}. Online Participation"
 msgstr ""
 
-#: adhocracy4/projects/utils.py:67
-#: apps/projects/templates/a4_candy_projects/project_detail.html:101
-#: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:34
-msgid "Participation"
-msgstr "Deelname"
+#: adhocracy4/projects/utils.py:55
+msgid "Online Participation"
+msgstr ""
 
 #: adhocracy4/reports/templatetags/react_reports.py:28
 #: apps/contrib/templates/a4_candy_contrib/item_detail.html:125
@@ -1472,7 +1465,6 @@ msgid "Password"
 msgstr "Wachtwoord"
 
 #: apps/account/forms.py:77 apps/organisations/mixins.py:58
-#, python-brace-format
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr ""
 "Ja, ik heb de {}terms of use{} van deze organisatie gelezen en ga ermee "
@@ -2124,7 +2116,6 @@ msgid "Header image: "
 msgstr "Kopplaatje: "
 
 #: apps/cms/settings/helpers.py:8
-#, python-brace-format
 msgid "Please look {}here{} for more information."
 msgstr "Kijk {}here{} voor meer informatie."
 
@@ -2962,7 +2953,6 @@ msgid "Ask a question yourself!"
 msgstr "Stel zelf een vraag!"
 
 #: apps/interactiveevents/templatetags/react_interactiveevents.py:28
-#, python-brace-format
 msgid ""
 "I confirm that I have read and accepted the {}terms of use{} and the {}data "
 "protection policy{}."
@@ -4457,22 +4447,18 @@ msgid "The offline event has been deleted"
 msgstr "Het offline evenement is verwijderd"
 
 #: apps/organisations/forms.py:18
-#, python-brace-format
 msgid "Here you can find an example of an {}imprint{}."
 msgstr "Hier vindt u een voorbeeld van een {}imprint{}."
 
 #: apps/organisations/forms.py:19
-#, python-brace-format
 msgid "Here you can find an example of {}terms of use{}."
 msgstr "Hier vindt u een voorbeeld van {}terms of use{}."
 
 #: apps/organisations/forms.py:21
-#, python-brace-format
 msgid "Here you can find an example of a {}data protection policy{}."
 msgstr "Hier vindt u een voorbeeld van een {}data protection policy{}."
 
 #: apps/organisations/forms.py:23
-#, python-brace-format
 msgid "Here you can find an example of a {}netiquette{}."
 msgstr "Hier vindt u een voorbeeld van een {}netiquette{}."
 
@@ -4515,7 +4501,6 @@ msgid "Please select a project of your organisation and click select."
 msgstr "Selecteer een project van uw organisatie en klik op selecteren."
 
 #: apps/organisations/forms.py:315
-#, python-brace-format
 msgid ""
 "This title will be displayed as a header. It should be max. {} characters "
 "long."
@@ -4523,7 +4508,6 @@ msgstr ""
 "De titel wordt weergegeven als kopregel. Hij kan max. {} tekens lang zijn."
 
 #: apps/organisations/forms.py:324
-#, python-brace-format
 msgid ""
 "This description will be displayed below the title. It should briefly state "
 "the goal of the project in max. {} chars."
@@ -4536,7 +4520,6 @@ msgid "Picture Upload"
 msgstr "Afbeelding uploaden"
 
 #: apps/organisations/forms.py:335
-#, python-brace-format
 msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
 "and {} pixel tall. Allowed file formats are png, jpeg, gif, webp. The file "
@@ -5034,7 +5017,6 @@ msgid "running"
 msgstr "lopende"
 
 #: apps/projects/serializers.py:255
-#, python-brace-format
 msgid "starts on {}"
 msgstr "begint op {}"
 
@@ -5653,6 +5635,11 @@ msgstr ""
 msgid "This project is not yet published."
 msgstr "Dit project is nog niet gepubliceerd."
 
+#: apps/projects/templates/a4_candy_projects/project_detail.html:101
+#: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:34
+msgid "Participation"
+msgstr "Deelname"
+
 #: apps/projects/templates/a4_candy_projects/project_detail.html:123
 msgctxt "project detail participation view toggle"
 msgid "Timeline"
@@ -5785,12 +5772,10 @@ msgid "Invite moderators via file upload"
 msgstr "Moderatoren uitnodigen via bestandsupload"
 
 #: apps/projects/views.py:253
-#, python-brace-format
 msgid "{} moderator invited."
 msgstr "{} moderator uitgenodigd."
 
 #: apps/projects/views.py:253
-#, python-brace-format
 msgid "{} moderators invited."
 msgstr "{} moderatoren uitgenodigd."
 
@@ -5799,12 +5784,10 @@ msgid "Moderator successfully removed."
 msgstr "Moderator succesvol verwijderd."
 
 #: apps/projects/views.py:272
-#, python-brace-format
 msgid "{} participant invited."
 msgstr "{} deelnemer uitgenodigd."
 
 #: apps/projects/views.py:272
-#, python-brace-format
 msgid "{} participants invited."
 msgstr "{} deelnemers uitgenodigd."
 
@@ -6058,7 +6041,6 @@ msgid "Important dates"
 msgstr "Belangrijke datums"
 
 #: apps/users/emails.py:17
-#, python-brace-format
 msgid ""
 "If you no longer want to receive any notifications, change the settings for "
 "your {}account{}."
@@ -6067,7 +6049,6 @@ msgstr ""
 "{}account{}."
 
 #: apps/users/emails.py:21
-#, python-brace-format
 msgid ""
 "If you no longer want to receive notifications about this project, "
 "unsubscribe from the {}project{}."
@@ -6080,7 +6061,6 @@ msgid "Please enter correct email addresses, separated by commas."
 msgstr "Voer correcte e-mailadressen in, gescheiden door komma’s."
 
 #: apps/users/forms.py:23
-#, python-brace-format
 msgid ""
 "Please complete the captcha verification.<strong>If you are having "
 "difficulty please contact us by {}email{}.</strong>"
