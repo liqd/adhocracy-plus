@@ -306,3 +306,28 @@ def test_cannot_set_contact_fields_without_consent_on_create(
         assert idea.creator_email == "", "Email should not be saved without consent"
         assert idea.creator_phone == "", "Phone should not be saved without consent"
         assert idea.creator_contact_consent is False
+
+
+@pytest.mark.django_db
+def test_guest_creator_email_not_prefilled_on_create_form(client, phase_factory):
+    from tests.helpers import GuestUserCreator
+
+    phase = phase_factory(phase_content=phases.IssuePhase())
+    module = phase.module
+    project = module.project
+    project.allow_guest_users = True
+    project.save()
+    url = reverse(
+        "a4_candy_ideas:idea-create",
+        kwargs={
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
+    guest_user = GuestUserCreator().create_guest_user()
+    with freeze_phase(phase):
+        client.force_login(guest_user)
+        response = client.get(url)
+        assert_template_response(response, "a4_candy_ideas/idea_create_form.html")
+        form = response.context_data["form"]
+        assert form.fields["creator_email"].initial in ("", None)

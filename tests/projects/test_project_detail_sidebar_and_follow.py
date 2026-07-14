@@ -6,6 +6,7 @@ from freezegun import freeze_time
 from adhocracy4.follows.models import Follow
 from adhocracy4.polls import phases
 from adhocracy4.test.helpers import assert_template_response
+from tests.helpers import GuestUserCreator
 from tests.offlineevents.factories import OfflineEventFactory
 
 
@@ -236,6 +237,58 @@ def test_project_detail_guest_alert_hidden_for_authenticated_user(
     response = client.get(project_detail_url(project_detail_overview))
     assert response.status_code == 200
     assert b"data-guest-alert" not in response.content
+
+
+@pytest.mark.django_db
+def test_project_detail_guest_alert_hidden_for_guest_when_guests_allowed(
+    client, project_detail_overview
+):
+    project_detail_overview.allow_guest_users = True
+    project_detail_overview.save()
+    guest_user = GuestUserCreator().create_guest_user()
+    client.force_login(guest_user)
+    response = client.get(project_detail_url(project_detail_overview))
+    assert response.status_code == 200
+    assert b"data-guest-alert" not in response.content
+
+
+@pytest.mark.django_db
+def test_project_detail_guest_alert_visible_for_guest_when_guests_disabled(
+    client, project_detail_overview
+):
+    project_detail_overview.allow_guest_users = False
+    project_detail_overview.save()
+    guest_user = GuestUserCreator().create_guest_user()
+    client.force_login(guest_user)
+    response = client.get(project_detail_url(project_detail_overview))
+    assert response.status_code == 200
+    assert b"data-guest-alert" in response.content
+    assert b"currently logged in as guest" in response.content
+    assert b"register" in response.content
+    assert b"login" in response.content
+
+
+@pytest.mark.django_db
+def test_project_detail_followers_exclude_guest_users(
+    client, project_detail_overview, follow_factory, user_factory
+):
+    guest_user = GuestUserCreator().create_guest_user()
+    registered_user = user_factory()
+    Follow.objects.filter(project=project_detail_overview).delete()
+    follow_factory(
+        project=project_detail_overview,
+        creator=guest_user,
+        enabled=True,
+    )
+    follow_factory(
+        project=project_detail_overview,
+        creator=registered_user,
+        enabled=True,
+    )
+    response = client.get(project_detail_url(project_detail_overview))
+    assert response.status_code == 200
+    assert b"1 Following" in response.content
+    assert registered_user.avatar_fallback.encode() in response.content
 
 
 @pytest.mark.django_db

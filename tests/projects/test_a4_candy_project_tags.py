@@ -9,6 +9,7 @@ from freezegun import freeze_time
 
 from adhocracy4.follows.models import Follow
 from apps.projects.templatetags import a4_candy_project_tags as tags
+from tests.helpers import GuestUserCreator
 
 
 @pytest.mark.django_db
@@ -79,6 +80,32 @@ def test_get_project_followers_respects_limit(project, follow_factory, user_fact
     for _ in range(5):
         follow_factory(project=project, creator=user_factory(), enabled=True)
     assert len(tags.get_project_followers(project, limit=3)) == 3
+
+
+@pytest.mark.django_db
+def test_get_project_follower_count_excludes_guest_users(
+    project, follow_factory, user_factory
+):
+    Follow.objects.filter(project=project).delete()
+    guest_user = GuestUserCreator().create_guest_user()
+    follow_factory(project=project, creator=guest_user, enabled=True)
+    follow_factory(project=project, creator=user_factory(), enabled=True)
+    assert tags.get_project_follower_count(project) == 1
+
+
+@pytest.mark.django_db
+def test_get_project_followers_excludes_guest_users(
+    project, follow_factory, user_factory
+):
+    Follow.objects.filter(project=project).delete()
+    guest_user = GuestUserCreator().create_guest_user()
+    registered_user = user_factory()
+    follow_factory(project=project, creator=guest_user, enabled=True)
+    follow_factory(project=project, creator=registered_user, enabled=True)
+    followers = tags.get_project_followers(project, limit=4)
+    assert len(followers) == 1
+    assert registered_user in followers
+    assert guest_user not in followers
 
 
 @pytest.mark.django_db

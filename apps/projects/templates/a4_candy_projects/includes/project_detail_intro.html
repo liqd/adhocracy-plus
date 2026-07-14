@@ -40,6 +40,24 @@
                 <i class="fa-solid fa-times" aria-hidden="true"></i>
             </button>
         </div>
+        {% elif request.user|is_guest_user and not project.allow_guest_users %}
+        <div class="alert project-detail__guest-alert"
+             role="status"
+             data-guest-alert
+             data-project-slug="{{ project.slug }}"
+             hidden>
+            <div class="alert__content">
+                {% url 'account_signup' as signup_url %}
+                {% url 'account_login' as login_url %}
+                {% blocktranslate %}You are currently logged in as guest. In order to take part in the project you must <a href="{{ signup_url }}?next={{ request.path }}">register</a> or <a href="{{ login_url }}?next={{ request.path }}">login</a> with a personal account{% endblocktranslate %}
+            </div>
+            <button type="button"
+                    class="alert__close"
+                    data-guest-alert-dismiss
+                    aria-label="{% translate 'Close' %}">
+                <i class="fa-solid fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
         {% endif %}
     </div>
     {% if not module_page %}

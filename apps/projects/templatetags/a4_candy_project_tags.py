@@ -3,6 +3,7 @@ import json
 from django import template
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
+from guest_user.functions import get_guest_model
 from guest_user.functions import is_guest_user
 
 from adhocracy4.comments.models import Comment
@@ -30,6 +31,14 @@ from apps.projects.timeline import (
 from apps.projects.utils import project_has_result_content
 
 register = template.Library()
+
+
+def _registered_project_follows(project):
+    """Return enabled project follows from registered users only."""
+    guest_user_ids = get_guest_model().objects.values_list("user_id", flat=True)
+    return Follow.objects.filter(project=project, enabled=True).exclude(
+        creator_id__in=guest_user_ids
+    )
 
 
 @register.filter
@@ -117,14 +126,14 @@ def project_participation_status(project):
 
 @register.simple_tag
 def get_project_follower_count(project):
-    return Follow.objects.filter(project=project, enabled=True).count()
+    return _registered_project_follows(project).count()
 
 
 @register.simple_tag
 def get_project_followers(project, limit=4):
     return [
         follow.creator
-        for follow in Follow.objects.filter(project=project, enabled=True)
+        for follow in _registered_project_follows(project)
         .select_related("creator")
         .order_by("-created")[:limit]
     ]
@@ -145,11 +154,12 @@ def _follower_avatar_data(user):
 def project_detail_follow_widget_attrs(context, project):
     """JSON attributes for the project detail follow React widget."""
     request = context["request"]
+    registered_follows = _registered_project_follows(project)
     follower_users = [
         follow.creator
-        for follow in Follow.objects.filter(project=project, enabled=True)
-        .select_related("creator")
-        .order_by("-created")[:4]
+        for follow in registered_follows.select_related("creator").order_by("-created")[
+            :4
+        ]
     ]
 
     # Portal element ids are fixed in project_detail_intro/sidebar templates;
@@ -157,9 +167,7 @@ def project_detail_follow_widget_attrs(context, project):
     attrs = {
         "project": project.slug,
         "initialFollowers": [_follower_avatar_data(u) for u in follower_users],
-        "initialFollowerCount": Follow.objects.filter(
-            project=project, enabled=True
-        ).count(),
+        "initialFollowerCount": registered_follows.count(),
     }
 
     if request.user.is_authenticated and not is_guest_user(request.user):
