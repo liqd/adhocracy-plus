@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-08 16:31+0200\n"
+"POT-Creation-Date: 2026-07-14 15:50+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Kyrgyz (https://app.transifex.com/liqd/teams/109316/ky/)\n"
@@ -103,7 +103,21 @@ msgstr "Фаза"
 msgid "Select"
 msgstr "Тандоо"
 
-#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
+#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:5
+#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
+#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:5
+#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
+#: apps/account/templates/a4_candy_account/guest_convert.html:32
+#: apps/contrib/templates/a4_candy_contrib/includes/form_checkbox_field.html:6
+#: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
+#: apps/users/templates/a4_candy_users/guest_create.html:41
+#: apps/users/templates/a4_candy_users/guest_create.html:52
+#: adhocracy-plus/templates/account/signup.html:37
+#: adhocracy-plus/templates/account/signup.html:48
+#: adhocracy-plus/templates/socialaccount/signup.html:34
+msgid "This field is required"
+msgstr "Бул тилкени сөзсүз толтуруу керек "
+
 #: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:10
 msgid "Missing field for publication"
 msgstr "Жарыялоо үчүн тилке жок"
@@ -113,7 +127,8 @@ msgstr "Жарыялоо үчүн тилке жок"
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:59
-#: adhocracy-plus/templates/a4dashboard/includes/preview.html:7
+#: apps/projects/templates/a4_candy_projects/partials/project_preview_iframe.html:9
+#: apps/projects/templates/a4_candy_projects/partials/project_preview_modal_htmx.html:7
 #: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:42
 msgid "Preview"
 msgstr "Алдын ала карап чыгуу"
@@ -124,9 +139,8 @@ msgstr "Алдын ала карап чыгуу"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:14
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:15
+#: apps/projects/templates/a4_candy_projects/partials/project_preview_modal_htmx.html:9
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:14
-#: adhocracy-plus/templates/a4dashboard/includes/preview.html:9
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:44
 msgid "View"
 msgstr "Карап чыгуу"
 
@@ -211,19 +225,19 @@ msgstr "Долбоорлор"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
 #: apps/projects/timeline.py:25
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:25
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:24
 msgid "Finished"
 msgstr "Аяктады"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
 #: adhocracy4/projects/enums.py:14
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:28
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:27
 msgid "semipublic"
 msgstr "аралаш"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
 #: adhocracy4/projects/enums.py:15
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:31
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:30
 msgid "private"
 msgstr "жеке"
 
@@ -235,12 +249,12 @@ msgstr "жеке"
 #: apps/projects/templates/a4_candy_projects/project_information.html:36
 #: apps/projects/templates/a4_candy_projects/project_results.html:36
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:19
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:50
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:51
 msgid "Edit"
 msgstr "Редакциялоо "
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:73
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:74
 msgid "Duplicate"
 msgstr "Көчүрүү "
 
@@ -296,20 +310,6 @@ msgstr "бул жакта сиз бардык пикирлерди өткөрө 
 #: adhocracy-plus/templates/a4filters/widgets/free_text_filter.html:11
 msgid "Search"
 msgstr "Издөө"
-
-#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
-#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:5
-#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
-#: apps/account/templates/a4_candy_account/guest_convert.html:32
-#: apps/contrib/templates/a4_candy_contrib/includes/form_checkbox_field.html:6
-#: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
-#: apps/users/templates/a4_candy_users/guest_create.html:41
-#: apps/users/templates/a4_candy_users/guest_create.html:52
-#: adhocracy-plus/templates/account/signup.html:37
-#: adhocracy-plus/templates/account/signup.html:48
-#: adhocracy-plus/templates/socialaccount/signup.html:34
-msgid "This field is required"
-msgstr "Бул тилкени сөзсүз толтуруу керек "
 
 #: adhocracy4/forms/templates/a4forms/includes/inline_form.html:14
 #: adhocracy4/forms/templates/a4forms/includes/inline_form.html:15
@@ -472,7 +472,7 @@ msgid "unknown user"
 msgstr "белгисиз колдонуучу "
 
 #: adhocracy4/comments_async/api.py:150
-#: adhocracy4/polls/api.py:160
+#: adhocracy4/polls/api.py:203
 msgid "Please agree to the organisation's terms of use."
 msgstr ""
 "Сураныч, уюмдун кызматтарын колдонуу шарттарына макулдугуңузду бериңиз."
@@ -561,6 +561,7 @@ msgstr "Баардыгы"
 
 #: adhocracy4/dashboard/filter.py:20
 #: apps/budgeting/views.py:36
+#: apps/projects/templates/a4_candy_projects/_feedback_icons.html:28
 msgid "No"
 msgstr "Жок"
 
@@ -571,6 +572,7 @@ msgstr "Жок"
 #: apps/ideas/templates/a4_candy_ideas/idea_confirm_delete.html:15
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_confirm_delete.html:15
 #: apps/offlineevents/templates/a4_candy_offlineevents/offlineevent_confirm_delete.html:16
+#: apps/projects/templates/a4_candy_projects/_feedback_icons.html:17
 #: apps/topicprio/templates/a4_candy_topicprio/topic_confirm_delete.html:16
 msgid "Yes"
 msgstr "Ооба"
@@ -593,9 +595,9 @@ msgstr "Чакырылган колдонуучулар гана катыша а
 
 #: adhocracy4/dashboard/forms.py:126
 #: apps/projects/dashboard.py:21
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:71
 #: apps/projects/templates/a4_candy_projects/project_participants.html:4
 #: apps/projects/templates/a4_candy_projects/project_participants.html:12
-#: apps/summarization/templates/summarization/_summary_fragment.html:65
 msgid "Participants"
 msgstr "Катышуучулар"
 
@@ -663,7 +665,7 @@ msgid "Project successfully created."
 msgstr "Долбоор ийгиликтүү түзүлдү"
 
 #: adhocracy4/dashboard/views.py:164
-#: apps/dashboard/views.py:133
+#: apps/dashboard/views.py:134
 msgid "Invalid action"
 msgstr "Уруксат берилбеген иш-аракет"
 
@@ -876,6 +878,7 @@ msgid "Please add an alternative text for this image"
 msgstr ""
 
 #: adhocracy4/images/validators.py:28
+#, python-brace-format
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Файлдын форматы ылайыктуу эмес. Ылайыктуу форматтар: {}."
 
@@ -1112,33 +1115,34 @@ msgstr "Аяктоо күнү башталуу күнүнөн эртерээк �
 msgid "Either both or no date has to be set."
 msgstr "Эки датаны тең жазуу керек же дата такыр жазылбайт. "
 
-#: adhocracy4/polls/api.py:124
-#: adhocracy4/polls/api.py:142
+#: adhocracy4/polls/api.py:167
+#: adhocracy4/polls/api.py:185
 msgid "Your answer to the captcha was wrong."
 msgstr "Сиздин капчага жообуңуз туура эмес."
 
-#: adhocracy4/polls/api.py:129
-#: adhocracy4/polls/api.py:138
+#: adhocracy4/polls/api.py:172
+#: adhocracy4/polls/api.py:181
 msgid "Something about the answer to the captcha was wrong."
 msgstr "Капчага жоопто ката бар."
 
-#: adhocracy4/polls/api.py:223
+#: adhocracy4/polls/api.py:267
 msgid "Please specify your answer."
 msgstr "Сураныч, жообуңузду тактап берсениз"
 
-#: adhocracy4/polls/api.py:237
+#: adhocracy4/polls/api.py:281
+#, python-brace-format
 msgid "Key error for {}"
 msgstr "{} катанын ачкычы "
 
-#: adhocracy4/polls/api.py:239
+#: adhocracy4/polls/api.py:283
 msgid "Choice not found."
 msgstr "Тандоо табылган жок"
 
-#: adhocracy4/polls/api.py:260
+#: adhocracy4/polls/api.py:304
 msgid "Duplicate choices detected."
 msgstr "Тандоо кайталанганы аныкталды"
 
-#: adhocracy4/polls/api.py:263
+#: adhocracy4/polls/api.py:307
 msgid "Multiple choice disabled for question."
 msgstr "Суроо үчүн бир нече тандоо өчүрүлгөн"
 
@@ -1150,7 +1154,7 @@ msgstr "Суроо үчүн бир нече тандоо өчүрүлгөн"
 msgid "Poll"
 msgstr "Сурамжылоо"
 
-#: adhocracy4/polls/dashboard.py:44
+#: adhocracy4/polls/dashboard.py:45
 #: apps/budgeting/dashboard.py:14 apps/debate/dashboard.py:65
 #: apps/documents/dashboard.py:50 apps/ideas/dashboard.py:14
 #: apps/mapideas/dashboard.py:14 apps/topicprio/dashboard.py:65
@@ -1254,33 +1258,35 @@ msgstr "Суроолорго жооп бериңиз жана добуш бер�
 msgid "polls"
 msgstr "сурамжылоолор "
 
-#: adhocracy4/polls/serializers.py:229
-#: adhocracy4/polls/serializers.py:431
+#: adhocracy4/polls/serializers.py:227
+#: adhocracy4/polls/services.py:107
 msgid "Please provide a descriptive alt text for the question image."
 msgstr ""
 
-#: adhocracy4/polls/serializers.py:409
-msgid "Image must be at least 1500 pixels wide"
+#: adhocracy4/polls/validators.py:36
+#, python-format
+msgid "Image must be at least %(width)s pixels wide."
 msgstr ""
 
-#: adhocracy4/polls/serializers.py:413
-msgid "Image must be at least 500 pixels high"
+#: adhocracy4/polls/validators.py:40
+#, python-format
+msgid "Image must be at least %(height)s pixels high."
 msgstr ""
 
-#: adhocracy4/polls/validators.py:16
+#: adhocracy4/polls/validators.py:58
 #, python-format
 msgid "Item of type %(item)s for that module already exists"
 msgstr "Бул модуль үчүн %(item)s түрдөгү пункт мурунтан бар. "
 
-#: adhocracy4/polls/validators.py:28
+#: adhocracy4/polls/validators.py:70
 msgid "Question has to belong to the poll set in the url."
 msgstr "Суроо url да уюштурулган сурамжылоого таандык."
 
-#: adhocracy4/polls/validators.py:39
+#: adhocracy4/polls/validators.py:81
 msgid "Choice has to belong to the question set in the url."
 msgstr "Тандоо URL-даректе жазылган суроого тиешелүү болушу керек."
 
-#: adhocracy4/polls/validators.py:62
+#: adhocracy4/polls/validators.py:104
 msgid "Only one vote per choice is allowed per user."
 msgstr "Бир катышуучуга бир гана добуш берүүгө болот"
 
@@ -1451,11 +1457,12 @@ msgid ""
 msgstr ""
 
 #: adhocracy4/projects/utils.py:58
+#, python-brace-format
 msgid "{}. Participation"
 msgstr ""
 
 #: adhocracy4/projects/utils.py:67
-#: apps/projects/templates/a4_candy_projects/project_detail.html:91
+#: apps/projects/templates/a4_candy_projects/project_detail.html:101
 #: adhocracy-plus/templates/includes/project_header_mobile_toggle.html:34
 msgid "Participation"
 msgstr "Катышуу"
@@ -1473,6 +1480,7 @@ msgid "Password"
 msgstr "Сыр сөз "
 
 #: apps/account/forms.py:77 apps/organisations/mixins.py:58
+#, python-brace-format
 msgid "Yes, I have read and agree to this organisation's {}terms of use{}."
 msgstr ""
 "Ооба, мен окудум жана уюмдун кызматтарын колдонуу {}шарттарына{} макулмун."
@@ -1848,7 +1856,7 @@ msgstr ""
 "Бюджет боюнча сунуштар менен идеяларды жарыялаңыз, алар тууралуу пикир "
 "калтырыңыз жана баалаңыз. "
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:557
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:569
 msgid "participatory budgeting"
 msgstr "Жергиликтүү бюджетти коомчулуктун катышуусу менен кабыл алуу "
 
@@ -2008,11 +2016,11 @@ msgstr "Эң көп пикир калтырылгандар "
 msgid "Your budget request has been deleted"
 msgstr "Сиздин бюджет сурамыңыз өчүрүлдү"
 
-#: apps/captcha/fields.py:15 apps/polls/api.py:17
+#: apps/captcha/fields.py:15 apps/polls/captcha_backend.py:16
 msgid "Please complete the captcha."
 msgstr ""
 
-#: apps/captcha/fields.py:20 apps/polls/api.py:21
+#: apps/captcha/fields.py:20 apps/polls/captcha_backend.py:19
 msgid "Captcha verification failed. Please try again."
 msgstr ""
 
@@ -2117,6 +2125,7 @@ msgid "Header image: "
 msgstr "Башкы сүрөт: "
 
 #: apps/cms/settings/helpers.py:8
+#, python-brace-format
 msgid "Please look {}here{} for more information."
 msgstr "Кошумча маалыматты {}бул жактан {} табууга болот."
 
@@ -2145,19 +2154,19 @@ msgstr "Саясатчылар"
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:17
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_index_page.html:100
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:50
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:94
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:49
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:93
 #, python-format
 msgid "For %(category)s"
 msgstr "%(category)s үчүн "
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:28
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:106
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:105
 msgid "Visit Demosite"
 msgstr "Демо-сайтка кирүү "
 
 #: apps/cms/use_cases/templates/a4_candy_cms_use_cases/blocks/use_cases_block.html:34
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:111
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:110
 msgid "View more examples"
 msgstr "Көбүрөөк мисалдарды көрсөтүү "
 
@@ -2196,7 +2205,7 @@ msgstr ""
 msgid "Visit the demo platform"
 msgstr "Көрсөтмөлүү платформага кирүү "
 
-#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:80
+#: apps/cms/use_cases/templates/a4_candy_cms_use_cases/use_case_page.html:79
 #, python-format
 msgid "More examples for %(category)s"
 msgstr "%(category)s үчүн көбүрөөк мисал "
@@ -2261,14 +2270,14 @@ msgstr "Бул тилкеде 4000 ашык символ болбогонун т
 #: apps/contrib/image_upload_help.py:6
 #, python-brace-format
 msgid ""
-"Allowed file formats are png, jpeg, and gif. Images are cropped and resized "
-"automatically when you upload them. For best results, use an image at least "
-"{min_width} pixels wide and {min_height} pixels tall."
+"Allowed file formats are png, jpeg, gif, and webp. Images are cropped and "
+"resized automatically when you upload them. For best results, use an image "
+"at least {min_width} pixels wide and {min_height} pixels tall."
 msgstr ""
 
 #: apps/contrib/image_upload_help.py:20
 msgid ""
-"The image must be square. Allowed file formats are png, jpeg, and gif. "
+"The image must be square. Allowed file formats are png, jpeg, gif, and webp. "
 "Images are cropped and resized automatically when you upload them. For best "
 "results, use an image at least 200 pixels wide and 200 pixels tall."
 msgstr ""
@@ -2563,43 +2572,43 @@ msgstr ""
 "Сураныч, тизмедеги модулду кошуңуз. Кийинчирээк долбоорго кошумча модулдарды "
 "кошууга, оңдоого же кайрадан өчүрүүгө болот. "
 
-#: apps/dashboard/views.py:56
+#: apps/dashboard/views.py:57
 msgid "The module was created"
 msgstr "Модуль өчүрүлгөн"
 
-#: apps/dashboard/views.py:154
+#: apps/dashboard/views.py:155
 msgid "Module is already added"
 msgstr "Модуль мурун кошулган "
 
-#: apps/dashboard/views.py:164
+#: apps/dashboard/views.py:165
 msgid "Module cannot be added. Required fields are missing."
 msgstr "Модуль кошулушу мүмкүн эмес. Милдеттүү тилкелер толтурулган эмес. "
 
-#: apps/dashboard/views.py:175
+#: apps/dashboard/views.py:176
 msgid "The module is displayed in the project."
 msgstr "Модуль долбоордо чагылдырылып  турат. "
 
-#: apps/dashboard/views.py:180
+#: apps/dashboard/views.py:181
 msgid "Module is already removed"
 msgstr "Модуль өчүрүлгөн. "
 
-#: apps/dashboard/views.py:184
+#: apps/dashboard/views.py:185
 msgid "Module cannot be removed from a published project."
 msgstr "Модулду жарыяланган  долбоордон өчүрүү мүмкүн эмес"
 
-#: apps/dashboard/views.py:196
+#: apps/dashboard/views.py:197
 msgid "The module is no longer displayed in the project."
 msgstr "Модуль эми долбоордо көрүнбөйт. "
 
-#: apps/dashboard/views.py:203
+#: apps/dashboard/views.py:204
 msgid "The module has been deleted"
 msgstr "Модуль өчүрүлгөн. "
 
-#: apps/dashboard/views.py:210
+#: apps/dashboard/views.py:211
 msgid "Module cannot be deleted. It has to be removed from the project first."
 msgstr "Модулду өчүрүү мүмкүн эмес. Аны алгач долбоордон өчүрүү керек. "
 
-#: apps/dashboard/views.py:266
+#: apps/dashboard/views.py:323
 msgid "Project was created."
 msgstr "Долбоор түзүлгөн"
 
@@ -2893,7 +2902,7 @@ msgid "Add affiliation"
 msgstr "Таандыктыкты кошуу"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/livequestion_form.html:18
-#: apps/notifications/strategies/comment_strategies.py:83
+#: apps/notifications/strategies/comment_strategies.py:84
 msgid "post"
 msgstr "билдирүү "
 
@@ -2950,6 +2959,7 @@ msgid "Ask a question yourself!"
 msgstr "Өзүңүзгө суроо берип көрүңүз!"
 
 #: apps/interactiveevents/templatetags/react_interactiveevents.py:28
+#, python-brace-format
 msgid ""
 "I confirm that I have read and accepted the {}terms of use{} and the {}data "
 "protection policy{}."
@@ -3486,139 +3496,134 @@ msgstr ""
 msgid "System Notification"
 msgstr ""
 
-#: apps/notifications/models.py:144
+#: apps/notifications/models.py:142
 msgid "Email newsletter"
 msgstr ""
 
-#: apps/notifications/models.py:150
+#: apps/notifications/models.py:148
 msgid "Email reminder to publish project results"
 msgstr ""
 
-#: apps/notifications/models.py:155
+#: apps/notifications/models.py:153
 msgid "Email project updates"
 msgstr ""
 
-#: apps/notifications/models.py:158
+#: apps/notifications/models.py:156
 msgid "In-app project updates"
 msgstr ""
 
-#: apps/notifications/models.py:163
+#: apps/notifications/models.py:161
 msgid "Email project events"
 msgstr ""
 
-#: apps/notifications/models.py:166
+#: apps/notifications/models.py:164
 msgid "In-app project events"
 msgstr ""
 
-#: apps/notifications/models.py:171
+#: apps/notifications/models.py:169
 msgid "Email user interactions"
 msgstr ""
 
-#: apps/notifications/models.py:174
+#: apps/notifications/models.py:172
 msgid "In-app user interactions"
 msgstr ""
 
-#: apps/notifications/models.py:177
+#: apps/notifications/models.py:175
 msgid "Email messages"
 msgstr ""
 
-#: apps/notifications/models.py:179
+#: apps/notifications/models.py:177
 msgid "In-app messages"
 msgstr ""
 
-#: apps/notifications/models.py:183
+#: apps/notifications/models.py:181
 msgid "Email invitations"
 msgstr ""
 
-#: apps/notifications/models.py:186
+#: apps/notifications/models.py:184
 msgid "In-app invitations"
 msgstr ""
 
-#: apps/notifications/models.py:190
+#: apps/notifications/models.py:188
 msgid "Email moderation actions"
 msgstr ""
 
-#: apps/notifications/models.py:193
+#: apps/notifications/models.py:191
 msgid "In-app moderation actions"
 msgstr ""
 
-#: apps/notifications/models.py:196
+#: apps/notifications/models.py:194
 msgid "Email warnings"
 msgstr ""
 
-#: apps/notifications/models.py:198
+#: apps/notifications/models.py:196
 msgid "In-app warnings"
 msgstr ""
 
-#: apps/notifications/models.py:207 apps/notifications/models.py:208
+#: apps/notifications/models.py:205 apps/notifications/models.py:206
 #: apps/notifications/templates/a4_candy_notifications/settings.html:5
 #: apps/notifications/templates/a4_candy_notifications/settings.html:12
 msgid "Notification Settings"
 msgstr ""
 
-#: apps/notifications/models.py:289
+#: apps/notifications/models.py:287
 msgid "Notification Type"
 msgstr ""
 
-#: apps/notifications/models.py:296
+#: apps/notifications/models.py:294
 msgid "Target URL"
 msgstr ""
 
-#: apps/notifications/models.py:300
+#: apps/notifications/models.py:298
 msgid "Notification"
 msgstr ""
 
-#: apps/notifications/models.py:301
+#: apps/notifications/models.py:299
 #: apps/notifications/templates/a4_candy_notifications/_notifications_partial.html:4
 #: apps/userdashboard/views.py:71
 msgid "Notifications"
 msgstr ""
 
-#: apps/notifications/strategies/base.py:36
+#: apps/notifications/strategies/base.py:35
 msgid "Your submission was accepted"
 msgstr ""
 
-#: apps/notifications/strategies/base.py:37
+#: apps/notifications/strategies/base.py:36
 msgid "Your submission was approved"
 msgstr ""
 
-#: apps/notifications/strategies/base.py:38
+#: apps/notifications/strategies/base.py:37
 msgid "Your submission was rejected"
 msgstr ""
 
-#: apps/notifications/strategies/base.py:39
+#: apps/notifications/strategies/base.py:38
 msgid "Your submission was reviewed"
 msgstr ""
 
-#: apps/notifications/strategies/base.py:40
+#: apps/notifications/strategies/base.py:39
 msgid "Your submission is under consideration"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:29
-#: apps/notifications/strategies/comment_strategies.py:90
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:49
+#: apps/notifications/strategies/comment_strategies.py:30
+#: apps/notifications/strategies/comment_strategies.py:91
 msgid "View post"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:29
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:26
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:17
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:31
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:29
+#: apps/notifications/strategies/comment_strategies.py:30
+#: apps/notifications/strategies/event_strategies.py:73
 msgid "Visit the project"
 msgstr "Долбоорго кирүү "
 
-#: apps/notifications/strategies/comment_strategies.py:32
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:4
+#: apps/notifications/strategies/comment_strategies.py:33
 msgid "A moderator highlighted your comment"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:33
+#: apps/notifications/strategies/comment_strategies.py:34
 #, python-brace-format
 msgid "Project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:37
+#: apps/notifications/strategies/comment_strategies.py:38
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. You have received the e-mail "
@@ -3626,65 +3631,61 @@ msgid ""
 "moderator."
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:52
+#: apps/notifications/strategies/comment_strategies.py:53
 #, python-brace-format
 msgid "A moderator highlighted your comment '{comment}' in project {project}"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:86
+#: apps/notifications/strategies/comment_strategies.py:87
 #, python-brace-format
 msgid "{commenter_name} commented on your post {post_name}"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:87
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:16
+#: apps/notifications/strategies/comment_strategies.py:88
 msgid "New comment on your post"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:92
+#: apps/notifications/strategies/comment_strategies.py:93
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email} because someone commented on your "
 "content."
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:101
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:40
+#: apps/notifications/strategies/comment_strategies.py:102
 msgid "See what they said and join the discussion."
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:107
+#: apps/notifications/strategies/comment_strategies.py:119
 #, python-brace-format
 msgid "{user} commented on your post {post}"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:143
+#: apps/notifications/strategies/comment_strategies.py:147
 #, python-brace-format
 msgid "{commenter_name} replied to your comment"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:144
+#: apps/notifications/strategies/comment_strategies.py:148
 msgid "New reply to your comment"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:147
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:54
+#: apps/notifications/strategies/comment_strategies.py:151
 msgid "View conversation"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:149
+#: apps/notifications/strategies/comment_strategies.py:153
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email} because someone replied to your "
 "comment."
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:158
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:45
+#: apps/notifications/strategies/comment_strategies.py:162
 msgid "Join the conversation and continue the discussion."
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:165
+#: apps/notifications/strategies/comment_strategies.py:179
 #, python-brace-format
 msgid "{user} {replied} to your comment"
 msgstr ""
@@ -3696,30 +3697,24 @@ msgstr ""
 
 #: apps/notifications/strategies/event_strategies.py:23
 #: apps/notifications/strategies/event_strategies.py:70
-#: apps/notifications/strategies/event_strategies.py:115
-#: apps/notifications/strategies/event_strategies.py:160
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:6
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:6
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:6
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_updated.en.email:6
+#: apps/notifications/strategies/event_strategies.py:117
+#: apps/notifications/strategies/event_strategies.py:162
 #: apps/projects/templates/a4_candy_projects/includes/project_timeline_event_card.html:17
 msgid "Event"
 msgstr "Иш-чара "
 
 #: apps/notifications/strategies/event_strategies.py:26
-#: apps/notifications/strategies/event_strategies.py:118
-#: apps/notifications/strategies/event_strategies.py:166
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:24
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:24
+#: apps/notifications/strategies/event_strategies.py:120
+#: apps/notifications/strategies/event_strategies.py:168
 msgid "Show Event"
 msgstr "Иш-чараны көрсөтүү "
 
 #: apps/notifications/strategies/event_strategies.py:28
-#: apps/notifications/strategies/event_strategies.py:73
-#: apps/notifications/strategies/event_strategies.py:120
-#: apps/notifications/strategies/event_strategies.py:163
-#: apps/notifications/strategies/project_strategies.py:76
-#: apps/notifications/strategies/project_strategies.py:107
+#: apps/notifications/strategies/event_strategies.py:75
+#: apps/notifications/strategies/event_strategies.py:122
+#: apps/notifications/strategies/event_strategies.py:165
+#: apps/notifications/strategies/project_strategies.py:71
+#: apps/notifications/strategies/project_strategies.py:102
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. You have received the e-mail "
@@ -3736,27 +3731,27 @@ msgstr ""
 msgid "Event {event_name} in project {project_name} cancelled"
 msgstr ""
 
-#: apps/notifications/strategies/event_strategies.py:90
+#: apps/notifications/strategies/event_strategies.py:92
 #, python-brace-format
 msgid "The event '{event}' in project {project} has been cancelled"
 msgstr ""
 
-#: apps/notifications/strategies/event_strategies.py:114
+#: apps/notifications/strategies/event_strategies.py:116
 #, python-brace-format
 msgid "Event in project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/event_strategies.py:136
+#: apps/notifications/strategies/event_strategies.py:138
 #, python-brace-format
 msgid "The event '{event}' in project {project} is starting on {event_date}"
 msgstr ""
 
-#: apps/notifications/strategies/event_strategies.py:159
+#: apps/notifications/strategies/event_strategies.py:161
 #, python-brace-format
 msgid "Event {event_name} in project {project_name} updated"
 msgstr ""
 
-#: apps/notifications/strategies/event_strategies.py:182
+#: apps/notifications/strategies/event_strategies.py:184
 #, python-brace-format
 msgid "The event {event} in project {project} has been updated"
 msgstr ""
@@ -3771,14 +3766,12 @@ msgstr ""
 #: apps/notifications/strategies/moderation_strategies.py:31
 #: apps/notifications/strategies/moderation_strategies.py:73
 #: apps/notifications/strategies/moderation_strategies.py:115
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:6
 msgid "Feedback for your contribution"
 msgstr "Сиздин салым тууралуу ой-пикир "
 
 #: apps/notifications/strategies/moderation_strategies.py:34
 #: apps/notifications/strategies/moderation_strategies.py:76
 #: apps/notifications/strategies/moderation_strategies.py:118
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:31
 msgid "Check your contribution"
 msgstr "Салымыңызды текшерип көрүү "
 
@@ -3796,10 +3789,6 @@ msgstr ""
 msgid "A moderator gave feedback on your {comment}"
 msgstr ""
 
-#: apps/notifications/strategies/moderation_strategies.py:55
-msgid "comment"
-msgstr ""
-
 #: apps/notifications/strategies/moderation_strategies.py:94
 #, python-brace-format
 msgid "A moderator gave feedback on your idea {idea}"
@@ -3812,8 +3801,6 @@ msgstr ""
 
 #: apps/notifications/strategies/moderation_strategies.py:171
 #: apps/notifications/strategies/moderation_strategies.py:172
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:10
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:14
 msgid "Your comment was blocked"
 msgstr ""
 
@@ -3823,13 +3810,12 @@ msgid "Hello <strong>{receiver_name}</strong>,"
 msgstr ""
 
 #: apps/notifications/strategies/moderation_strategies.py:176
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:46
 msgid "View Project"
 msgstr ""
 
 #: apps/notifications/strategies/moderation_strategies.py:177
-#: apps/notifications/strategies/project_strategies.py:158
-#: apps/notifications/strategies/project_strategies.py:200
+#: apps/notifications/strategies/project_strategies.py:153
+#: apps/notifications/strategies/project_strategies.py:195
 #, python-brace-format
 msgid "This email was sent to {receiver_email}."
 msgstr ""
@@ -3839,140 +3825,132 @@ msgstr ""
 msgid "Your comment was blocked in project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:70
+#: apps/notifications/strategies/project_strategies.py:65
 #, python-brace-format
 msgid "Here we go: {project_name} starts now!"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:71
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:6
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:11
+#: apps/notifications/strategies/project_strategies.py:66
 msgid "Here we go!"
 msgstr "Баштадык!"
 
-#: apps/notifications/strategies/project_strategies.py:74
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:21
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:21
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:17
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:26
+#: apps/notifications/strategies/project_strategies.py:69
 msgid "Join now"
 msgstr "Азыр кошулуңуз"
 
-#: apps/notifications/strategies/project_strategies.py:86
+#: apps/notifications/strategies/project_strategies.py:81
 #, python-brace-format
 msgid "The project {project} has begun."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:102
+#: apps/notifications/strategies/project_strategies.py:97
 #, python-brace-format
 msgid "{project_name} has completed."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:105
+#: apps/notifications/strategies/project_strategies.py:100
 msgid "View now"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:117
+#: apps/notifications/strategies/project_strategies.py:112
 #, python-brace-format
 msgid "The project {project} has been completed."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:142
+#: apps/notifications/strategies/project_strategies.py:137
 #, python-brace-format
 msgid "Invitation to the private project: {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:143
+#: apps/notifications/strategies/project_strategies.py:138
 #, python-brace-format
 msgid "Invitation to the semi-public project: {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:147
+#: apps/notifications/strategies/project_strategies.py:142
 #, python-brace-format
 msgid "Invitation to the private project: \"{project_name}\""
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:148
+#: apps/notifications/strategies/project_strategies.py:143
 #, python-brace-format
 msgid "Invitation to the semi-public project: \"{project_name}\""
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:157
+#: apps/notifications/strategies/project_strategies.py:152
 #: apps/notifications/templates/a4_candy_notifications/emails/content/project_invitation.en.email:12
 #: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:15
 #: apps/projects/templates/a4_candy_projects/emails/invite_participant.en.email:15
 msgid "Accept invitation"
 msgstr "Чакырууну кабыл алуу "
 
-#: apps/notifications/strategies/project_strategies.py:170
+#: apps/notifications/strategies/project_strategies.py:165
 #, python-brace-format
 msgid ""
 "You have been invited to project {project}. Please check your email to "
 "accept."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:196
+#: apps/notifications/strategies/project_strategies.py:191
 #, python-brace-format
 msgid "Moderator invitation for project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:197
+#: apps/notifications/strategies/project_strategies.py:192
 msgid "Moderator Invitation"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:199
+#: apps/notifications/strategies/project_strategies.py:194
 msgid "View Invitation"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:208
+#: apps/notifications/strategies/project_strategies.py:203
 #, python-brace-format
 msgid ""
 "You have been invited to be a moderator of project {project_name}. View "
 "{invitation}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:212
+#: apps/notifications/strategies/project_strategies.py:207
 msgid "invitation"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:226
+#: apps/notifications/strategies/project_strategies.py:221
 #, python-brace-format
 msgid "New project {project_name} on {site_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:228
+#: apps/notifications/strategies/project_strategies.py:223
 #, python-brace-format
 msgid "The new project {project_name} was created for {organisation_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:231
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:15
+#: apps/notifications/strategies/project_strategies.py:226
 msgid "Show project"
 msgstr "Долбоорду көрсөтүү "
 
-#: apps/notifications/strategies/project_strategies.py:233
+#: apps/notifications/strategies/project_strategies.py:228
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
 "you are an initiator of {organisation_name}."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:246
+#: apps/notifications/strategies/project_strategies.py:241
 #, python-brace-format
 msgid "A new project {project} has been created."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:263
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:4
+#: apps/notifications/strategies/project_strategies.py:258
 msgid "Deletion of project"
 msgstr "Долбоорду өчүрүү"
 
-#: apps/notifications/strategies/project_strategies.py:264
+#: apps/notifications/strategies/project_strategies.py:259
 #, python-brace-format
 msgid "The project {project_name} was deleted."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:266
+#: apps/notifications/strategies/project_strategies.py:261
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
@@ -3980,86 +3958,86 @@ msgid ""
 "project was deleted."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:280
+#: apps/notifications/strategies/project_strategies.py:275
 #, python-brace-format
 msgid "The project {project} has been deleted."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:307
+#: apps/notifications/strategies/project_strategies.py:302
 msgid "An"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:307
+#: apps/notifications/strategies/project_strategies.py:302
 msgid "A"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:309
+#: apps/notifications/strategies/project_strategies.py:304
 msgid "idea"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:310
+#: apps/notifications/strategies/project_strategies.py:305
 msgid "proposal"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:311
+#: apps/notifications/strategies/project_strategies.py:306
 msgid "mapidea"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:314
+#: apps/notifications/strategies/project_strategies.py:309
 #, python-brace-format
 msgid "An idea was added to the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:315
+#: apps/notifications/strategies/project_strategies.py:310
 #, python-brace-format
 msgid "A proposal was added to the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:316
+#: apps/notifications/strategies/project_strategies.py:311
 #, python-brace-format
 msgid "A map idea was added to the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:320
+#: apps/notifications/strategies/project_strategies.py:315
 #, python-brace-format
 msgid "{creator_name} created an idea on the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:322
+#: apps/notifications/strategies/project_strategies.py:317
 #, python-brace-format
 msgid "{creator_name} created a proposal on the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:325
+#: apps/notifications/strategies/project_strategies.py:320
 #, python-brace-format
 msgid "{creator_name} created a map idea on the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:332
+#: apps/notifications/strategies/project_strategies.py:327
 #, python-brace-format
 msgid "{article} {content_type} was added to the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:337
+#: apps/notifications/strategies/project_strategies.py:332
 #, python-brace-format
 msgid ""
 "{creator_name} created {article_lower} {content_type} on the project "
 "{project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:344
+#: apps/notifications/strategies/project_strategies.py:339
 #, python-brace-format
 msgid "Check the {content_type_display}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:346
+#: apps/notifications/strategies/project_strategies.py:341
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
 "you are a moderator in the project."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:366
+#: apps/notifications/strategies/project_strategies.py:361
 #, python-brace-format
 msgid ""
 "A new {content_type} \"{content}\" has been created in project {project}."
@@ -4076,7 +4054,6 @@ msgid "Mark all as read"
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/comment_on_post.en.email:3
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:29
 #, python-format
 msgid ""
 "\n"
@@ -4085,12 +4062,10 @@ msgid ""
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/comment_on_post.en.email:8
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:34
 msgid "Their comment:"
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/comment_reply.en.email:3
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:29
 #, python-format
 msgid ""
 "\n"
@@ -4098,7 +4073,6 @@ msgid ""
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/comment_reply.en.email:8
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:34
 msgid "Your original comment:"
 msgstr ""
 
@@ -4109,16 +4083,12 @@ msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/event_added.en.email:3
 #: apps/notifications/templates/a4_candy_notifications/emails/content/event_soon.en.email:3
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:13
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:13
 #, python-format
 msgid "The following event takes place on %(date)s:"
 msgstr "Кийинки иш-чара %(date)sкүнү орун алат:"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/event_added.en.email:9
 #: apps/notifications/templates/a4_candy_notifications/emails/content/event_soon.en.email:9
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:19
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:19
 msgid "Further information about the event can be found in the project."
 msgstr "Иш-чара тууралуу төмөнкү маалымат долбоордон тапса болот."
 
@@ -4137,7 +4107,6 @@ msgid "%(event)s below has been updated."
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_blocked_comment.en.email:2
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:26
 #, python-format
 msgid ""
 "Your comment in the project <strong>\"%(project_name)s\"</strong> was "
@@ -4145,14 +4114,12 @@ msgid ""
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_blocked_comment.en.email:4
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:28
 msgid ""
 "Please ensure your contributions align with our community guidelines to "
 "maintain a constructive discussion environment."
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_blocked_comment.en.email:6
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:30
 msgid "Your comment:"
 msgstr ""
 
@@ -4165,24 +4132,18 @@ msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_comment.en.email:4
 #: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_post.en.email:3
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:3
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:13
 #, python-format
 msgid "%(organisation_name)s reacted on your contribution."
 msgstr "%(organisation_name)sСиздин салымга мамилесин билдирди "
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_comment.en.email:8
 #: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_post.en.email:14
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:7
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:22
 #, python-format
 msgid "Official feedback: %(feedback)s"
 msgstr "Расмий ой-пикир: %(feedback)s"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_comment.en.email:12
 #: apps/notifications/templates/a4_candy_notifications/emails/content/moderator_feedback_on_post.en.email:19
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_feedback.en.email:11
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:26
 msgid "Do you want to answer?"
 msgstr "Жооп бергиңиз келеби? "
 
@@ -4201,7 +4162,6 @@ msgid "The new project %(project_name)s was created for %(organisation_name)s."
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/project_deleted.en.email:3
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:10
 #, python-format
 msgid ""
 "The project \"%(project)s\" on the participation platform %(site_name)s was "
@@ -4209,7 +4169,6 @@ msgid ""
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/project_ended.en.email:3
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:12
 msgid "Online participation for the above project has finished."
 msgstr ""
 
@@ -4271,14 +4230,10 @@ msgid ""
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/project_started.en.email:3
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:13
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:18
 msgid "Online participation for the above project has started."
 msgstr "Онлайн катышуу жогоруда айтылган долбоорго башталды."
 
 #: apps/notifications/templates/a4_candy_notifications/emails/content/project_started.en.email:6
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:16
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:21
 #, python-format
 msgid "You can participate until %(end_date)s."
 msgstr "Сиз %(end_date)sчейин катыша аласыз."
@@ -4298,239 +4253,6 @@ msgid ""
 "Checkout what happened on the project %(project)s.\n"
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:4
-#, python-format
-msgid "Reaction to your contribution in project %(project_name)s"
-msgstr "%(project_name)s долбооруна  Сиздин салымыңызга реакция "
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:6
-msgid "Reaction to your contribution"
-msgstr "Сиздин салымга реакция "
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:9
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:24
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:24
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:8
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:9
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:9
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:9
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:9
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_updated.en.email:9
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:9
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:9
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:8
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:14
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_publish_results.en.email:8
-#: apps/notifications/templates/a4_candy_notifications/emails/strategy_email_base.en.email:8
-#, python-format
-msgid "Hello %(receiver_name)s,"
-msgstr "Саламатсызбы %(receiver_name)s,"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:13
-#, python-format
-msgid "%(actor_name)s commented on your post:"
-msgstr "%(actor_name)s Сиздин билдирүүңүзгө пикир калтырды:  "
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:21
-msgid "Would you like to answer?"
-msgstr "Жооп бергиңиз келеби? "
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:26
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:17
-msgid "View Post"
-msgstr "Билдирүүнү окуп көрүү "
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator.en.email:28
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:19
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:33
-#, python-format
-msgid ""
-"This email was sent to %(receiver_mail)s. You have received the e-mail "
-"because you added a contribution to the above project."
-msgstr ""
-"Бул электрондук кат %(receiver_mail)s жиберилди. Сиз электрондук катты "
-"жогоруда аталган долбоорго салым кошконуңуз үчүн алдыңыз. "
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:12
-#, python-format
-msgid "%(commenter)s commented on your %(post)s"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_on_post.en.email:53
-#, python-format
-msgid ""
-"This email was sent to %(receiver_email)s because someone commented on your "
-"content."
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:12
-#, python-format
-msgid "%(commenter)s replied to your comment"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:16
-msgid "xxxdead New reply to your comment"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:39
-#, python-format
-msgid "Reply from %(commenter_name)s:"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_comment_reply.en.email:58
-#, python-format
-msgid ""
-"This email was sent to %(receiver_email)s because someone replied to your "
-"comment."
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_blocked.en.email:22
-#, python-format
-msgid "Hello <strong>%(username)s</strong>,"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:6
-#, python-format
-msgid "Project %(project_name)s"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_comment_highlight.en.email:12
-msgid "A moderator highlighted your comment in the project "
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:4
-#, python-format
-msgid "Feedback for your contribution on %(site_name)s"
-msgstr "Сиздин салым тууралуу ой-пикир %(site_name)sда"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_creator_on_moderator_feedback.en.email:17
-#, python-format
-msgid "Your contribution is %(status)s."
-msgstr "Сиздин салым %(status)s."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:4
-#, python-format
-msgid "Event added to project %(project)s"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_added.en.email:26
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:23
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:26
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_updated.en.email:20
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:23
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:23
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:19
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:28
-#, python-format
-msgid ""
-"This email was sent to %(receiver_mail)s. You have received the e-mail "
-"because you are following the above project."
-msgstr ""
-"Бул кат %(receiver_mail)s жиберилди. Сиз бул электрондук катты жогоруда "
-"аталган долбоорго катышкандыгыңыз үчүн алдыңыз. "
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:4
-#, python-format
-msgid "Event %(event)s in project %(project)s cancelled"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:13
-#, python-format
-msgid "Unfortunately, %(event)s on %(date)s below has been cancelled :"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_deleted.en.email:19
-msgid "Please contact the organisation for further information."
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_upcomming.en.email:4
-#, python-format
-msgid "Event in project %(project)s"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_updated.en.email:4
-#, python-format
-msgid "Event %(event)s in project %(project)s updated"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_event_updated.en.email:13
-#, python-format
-msgid "Unfortunately, %(event)s below has been updated :"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:4
-#, python-format
-msgid "Participation ends soon for %(project_name)s"
-msgstr "%(project_name)s катышуу жакында аяктайт "
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:6
-msgid "Participation ends soon!"
-msgstr "Катышуу жакында аяктайт! "
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:13
-msgid "the online participation in the above mentioned project will end soon."
-msgstr "Онлайн катышуу жогоруда айтылган долбоордо жакында аяктайт."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_over_soon.en.email:16
-#, python-format
-msgid "You can still participate until %(end_date)s."
-msgstr "Сиз дагы эле %(end_date)sчейин катыша аласыз."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_phase_started.en.email:4
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_started.en.email:9
-#, python-format
-msgid "Here we go: %(project_name)s starts now!"
-msgstr "Келиңиз баштайлы: %(project_name)s башталды!"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_followers_project_completed.en.email:4
-#, python-format
-msgid "%(project_name)s has completed."
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:4
-#, python-format
-msgid "New project %(project_name)s on %(site_name)s"
-msgstr "%(project_name)sжаңы долбоору %(site_name)sда"
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:6
-#, python-format
-msgid "The new project %(project_name)s was created for %(organisation_name)s"
-msgstr "%(project_name)s жаңы долбоору %(organisation_name)s үчүн түзүлгөн."
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:10
-#, python-format
-msgid ""
-"%(creator_name)s has created the project %(project_name)s for "
-"%(organisation_name)s."
-msgstr ""
-"%(creator_name)s%(project_name)s долбоорун %(organisation_name)s  үчүн "
-"даярдады.  "
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_created.en.email:17
-#, python-format
-msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"you are an intiator of %(organisation_name)s."
-msgstr ""
-"Бул электрондук кат %(receiver_mail)s жиберилген. Бул электрондук кат Сизге "
-"Сиз %(organisation_name)s уюштуруучусу болгонуңуз үчүн жиберилди. "
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:6
-#, python-format
-msgid "The project %(project)s was deleted."
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_project_deleted.en.email:14
-#, python-format
-msgid ""
-"This email was sent to %(receiver)s. This email was sent to you because you "
-"are an initiator of the organisation '%(organisation_name)s', in which a "
-"project was deleted."
-msgstr ""
-"Бул электрондук кат %(receiver)s жиберилген. Сизге бул электрондук кат "
-"долбоор  өчүрүлгөн %(organisation_name)s уюмунун уюштуруучусу болгонуңуз "
-"үчүн жиберилди. "
-
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_publish_results.en.email:4
 #, python-format
 msgid "Next step: Publish the results of \"%(project_name)s\""
@@ -4540,6 +4262,12 @@ msgstr ""
 #: apps/notifications/templates/a4_candy_notifications/settings.html:57
 msgid "Publish project results"
 msgstr ""
+
+#: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_publish_results.en.email:8
+#: apps/notifications/templates/a4_candy_notifications/emails/strategy_email_base.en.email:8
+#, python-format
+msgid "Hello %(receiver_name)s,"
+msgstr "Саламатсызбы %(receiver_name)s,"
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_publish_results.en.email:12
 #, python-format
@@ -4590,49 +4318,6 @@ msgid ""
 "This email was sent to %(receiver_email)s. You have received the e-mail "
 "because you are a project initiator in the above mentioned organization."
 msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:5
-#, python-format
-msgid "A %(content_type)s was added to the project %(project)s"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:9
-#, python-format
-msgid "%(creator_name)s created a %(content_type)s on the project %(project)s"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:14
-#, python-format
-msgid ""
-"on the project %(project)s a %(content_type)s was added by %(creator_name)s."
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:17
-#, python-format
-msgid ""
-"Checkout what happened on the project %(project)s by clicking the link below."
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:19
-#, python-format
-msgid ""
-"Checkout what happened on the project %(project)s by clicking the button "
-"below."
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:29
-#, python-format
-msgid "Check the %(content_type)s"
-msgstr ""
-
-#: apps/notifications/templates/a4_candy_notifications/emails/notify_moderator.en.email:33
-#, python-format
-msgid ""
-"This email was sent to %(receiver_mail)s. This email was sent to you because "
-"you are a moderator in the project."
-msgstr ""
-"Бул электрондук кат %(receiver_mail)s жиберилген. Бул  электрондук кат Сизге "
-"долбоордун модератору болгонуңуз үчүн жиберилген."
 
 #: apps/notifications/templates/a4_candy_notifications/settings.html:19
 msgid "Trigger all notification tasks (for testing)"
@@ -4769,19 +4454,23 @@ msgid "The offline event has been deleted"
 msgstr "Оффлайн окуя өчүрүлдү"
 
 #: apps/organisations/forms.py:18
+#, python-brace-format
 msgid "Here you can find an example of an {}imprint{}."
 msgstr "Мында Сиз {}чыгуу маалыматтарынын{} мисалдарын таба аласыз. "
 
 #: apps/organisations/forms.py:19
+#, python-brace-format
 msgid "Here you can find an example of {}terms of use{}."
 msgstr "Мында Сиз {} колдонуу шарттарынын {} мисалдарын тапсаңыз болот. "
 
 #: apps/organisations/forms.py:21
+#, python-brace-format
 msgid "Here you can find an example of a {}data protection policy{}."
 msgstr ""
 "Мында Сиз {} маалыматтарды сактоо саясатынын {} мисалдарын тапсаңыз болот. "
 
 #: apps/organisations/forms.py:23
+#, python-brace-format
 msgid "Here you can find an example of a {}netiquette{}."
 msgstr "Мында Сиз {} тармактык этикеттин {} мисалдарын тапсаңыз болот. "
 
@@ -4823,6 +4512,7 @@ msgid "Please select a project of your organisation and click select."
 msgstr "Сураныч, уюмуңуздун долбоорун тандаңыз жана тандоо дегенди басыңыз."
 
 #: apps/organisations/forms.py:315
+#, python-brace-format
 msgid ""
 "This title will be displayed as a header. It should be max. {} characters "
 "long."
@@ -4830,6 +4520,7 @@ msgstr ""
 "Бул аталыш башкы сөз катары жайгаштырылат. Ал {} ден көп болбоосу керек"
 
 #: apps/organisations/forms.py:324
+#, python-brace-format
 msgid ""
 "This description will be displayed below the title. It should briefly state "
 "the goal of the project in max. {} chars."
@@ -4842,14 +4533,12 @@ msgid "Picture Upload"
 msgstr "Cүрөттү жайгаштырыңыз"
 
 #: apps/organisations/forms.py:335
+#, python-brace-format
 msgid ""
 "The picture will be displayed in the sharepic. It must be min. {} pixel wide "
-"and {} pixel tall. Allowed file formats are png, jpeg, gif. The file size "
-"should be max. 5 MB."
+"and {} pixel tall. Allowed file formats are png, jpeg, gif, webp. The file "
+"size should be max. 5 MB."
 msgstr ""
-"Cүрөт жайгаштырылат. Анын бийиктиги {} пиксельден туурасы {} пиксельден "
-"ашпоосу керек. Колдонууга болгон форматтар png, jpeg, gif. Файлдын көлөмү 5 "
-"мбтан ашпоосу керек"
 
 #: apps/organisations/mixins.py:20
 msgid "You can still manage all your preferences on User Agreements."
@@ -5033,11 +4722,21 @@ msgstr ""
 msgid "enable geolocation for projects"
 msgstr ""
 
-#: apps/organisations/models.py:172
+#: apps/organisations/models.py:173
+msgid "Enable AI summarisation"
+msgstr ""
+
+#: apps/organisations/models.py:175
+msgid ""
+"When enabled, projects of this organisation can use AI summarisation on the "
+"project detail page."
+msgstr ""
+
+#: apps/organisations/models.py:180
 msgid "Default language for e-mails"
 msgstr "Электрондук почтанын башынан белгиленген тили "
 
-#: apps/organisations/models.py:177
+#: apps/organisations/models.py:185
 msgid ""
 "All e-mails to unregistered users (invites) will be sent in this language."
 msgstr ""
@@ -5065,6 +4764,7 @@ msgid "To view the sharepic, click generate"
 msgstr "Жалпы сүрөттү көрүү үчүн түзүү дегенди басыңыз"
 
 #: apps/organisations/templates/a4_candy_organisations/communication_form_social_media.html:81
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:126
 msgid "Refresh"
 msgstr "Жаңылоо"
 
@@ -5220,11 +4920,11 @@ msgstr ""
 msgid "Edit location"
 msgstr ""
 
-#: apps/projects/forms.py:48 apps/projects/views.py:252
+#: apps/projects/forms.py:48 apps/projects/views.py:270
 msgid "Invite users via email"
 msgstr "Электрондук почта аркылуу колдонуучуларды чакыруу"
 
-#: apps/projects/forms.py:53 apps/projects/views.py:253
+#: apps/projects/forms.py:53 apps/projects/views.py:271
 msgid "Invite users via file upload"
 msgstr "Файлды жүктөө аркылуу колдонуучуларды чакыруу"
 
@@ -5241,14 +4941,17 @@ msgid "active participants"
 msgstr ""
 
 #: apps/projects/models.py:154
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:75
 msgid "comments"
 msgstr ""
 
 #: apps/projects/models.py:155
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:79
 msgid "ratings"
 msgstr ""
 
 #: apps/projects/models.py:159
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:83
 msgid "written ideas"
 msgstr ""
 
@@ -5332,6 +5035,7 @@ msgid "running"
 msgstr "азыркы"
 
 #: apps/projects/serializers.py:255
+#, python-brace-format
 msgid "starts on {}"
 msgstr "{} башталат"
 
@@ -5341,9 +5045,227 @@ msgstr "келечекте башталат"
 
 #: apps/projects/serializers.py:265
 #: apps/projects/templatetags/a4_candy_project_tags.py:114
-#: apps/summarization/templates/summarization/_summary_section.html:45
 msgid "completed"
 msgstr "бүттү"
+
+#: apps/projects/templates/a4_candy_projects/_feedback_icons.html:5
+msgid "Was this summary helpful?"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_feedback_icons.html:15
+msgid "Yes, this summary was helpful"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_feedback_icons.html:26
+msgid "No, this summary was not helpful"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_generate_summary_button.html:20
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:14
+#: apps/projects/templates/a4_candy_projects/partials/project_detail_preview_content.html:27
+#: apps/projects/templates/a4_candy_projects/project_detail.html:84
+msgid "Summary of the participation"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_generate_summary_button.html:22
+#, python-format
+msgid ""
+"\n"
+"                    Automatically generated overview of the key topics, "
+"sentiments, and insights from %(counter)s project contribution.\n"
+"                "
+msgid_plural ""
+"\n"
+"                    Automatically generated overview of the key topics, "
+"sentiments, and insights from %(counter)s project contributions.\n"
+"                "
+msgstr[0] ""
+
+#: apps/projects/templates/a4_candy_projects/_generate_summary_button.html:34
+msgid "Summarize with AI"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_generate_summary_button.html:39
+msgid "Generating AI summary"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_error.html:5
+msgid "Could not generate the summary"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_error.html:8
+msgid ""
+"The AI ran into an issue processing this content. The original discussion is "
+"still available."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_error.html:17
+msgid "Try again"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_error.html:20
+msgid "Generating..."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:19
+msgid ""
+"This summary was automatically generated using AI and may contain errors or "
+"be incomplete."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:20
+msgid "About this AI summary"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:28
+#, python-format
+msgid "generated %(time)s ago"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:46
+#, python-format
+msgid ""
+"This summary was created by AI on %(date)s at %(time)s and may contain "
+"errors or be incomplete."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:56
+#: adhocracy-plus/templates/a4dashboard/organisation_form_base.html:16
+msgid "General information"
+msgstr "Жалпы маалымат"
+
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:90
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:98
+msgid "To read all the results of this participation"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_fragment.html:93
+msgid "click here"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:13
+msgid "Summary of what has happened so far"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:15
+msgid "Summary of what is happening"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:17
+msgid "Summary of what will happen"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:26
+msgid ""
+"The participation phases of the modules in this section are finished. You "
+"can no longer contribute. In this section you can find summaries of the "
+"modules and the main topics that were discussed."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:28
+msgid ""
+"The participation phases of the modules in this section are currently "
+"ongoing. You can contribute to the modules at this stage. In this section "
+"you can find summaries of the modules and the topics that are being "
+"discussed."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:30
+msgid ""
+"The participation phases of the modules in this section have not started "
+"yet. You cannot contribute to the modules at this stage. In this section you "
+"can find summaries of the planned modules and their objectives."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:39
+msgid "Module"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:42
+msgid "Completed"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:44
+msgid "Ongoing"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:46
+msgid "Future"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:64
+msgid "Debug information"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:75
+msgid "Signals"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:86
+msgid "Draft before QA"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:90
+msgid "After QA"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:97
+msgid "Claims"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:101
+msgid "Claim"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:102
+msgid "Evidence"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:103
+msgid "Action"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:104
+msgid "Fix hint"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:127
+msgid "Quantifier fixes"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:142
+msgid "Anchors"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:153
+msgid "Coverage gaps"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:161
+msgid "Patch"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:169
+msgid "Patches applied"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:186
+msgid "Changes"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:209
+#, python-format
+msgid "To see what will happen in module %(module_name)s,"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:213
+#, python-format
+msgid "To see what happened in module %(module_name)s,"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/_summary_section.html:217
+msgid "click here."
+msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/emails/invite_moderator.en.email:4
 #, python-format
@@ -5480,8 +5402,9 @@ msgid "Participation: from %(date)s"
 msgstr ""
 
 #: apps/projects/templates/a4_candy_projects/includes/project_list_tile.html:18
+#: apps/projects/templates/a4_candy_projects/partials/project_detail_preview_content.html:8
 #: apps/projects/templates/a4_candy_projects/project_detail.html:56
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:13
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:12
 #: adhocracy-plus/templates/a4modules/module_detail.html:56
 msgid "Here you can find a decorative picture."
 msgstr ""
@@ -5628,6 +5551,54 @@ msgstr "Кабыл алуу"
 msgid "Decline"
 msgstr "Баш тартуу "
 
+#: apps/projects/templates/a4_candy_projects/partials/project_detail_preview.html:3
+msgid "This project has not yet been published."
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/partials/project_detail_preview_content.html:40
+msgid "Online participation"
+msgstr "Онлайн катышуу"
+
+#: apps/projects/templates/a4_candy_projects/partials/project_detail_preview_content.html:43
+#: apps/projects/templates/a4_candy_projects/project_detail.html:104
+msgid "Participation layout"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/partials/project_detail_preview_content.html:51
+#: apps/projects/templates/a4_candy_projects/project_detail.html:112
+msgid "Grid"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/partials/project_detail_preview_content.html:62
+msgid "Timeline"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/partials/project_detail_preview_content.html:85
+#: apps/projects/templates/a4_candy_projects/project_detail.html:146
+#, python-format
+msgid "from %(date)s"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/partials/project_preview_modal_htmx.html:12
+msgid "Preview device size"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/partials/project_preview_modal_htmx.html:17
+msgid "Desktop"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/partials/project_preview_modal_htmx.html:26
+msgid "Mobile"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/partials/project_preview_modal_htmx.html:35
+msgid "Close preview mode"
+msgstr ""
+
+#: apps/projects/templates/a4_candy_projects/partials/project_preview_modal_htmx.html:43
+msgid "Project preview"
+msgstr ""
+
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:4
 #: apps/projects/templates/a4_candy_projects/participantinvite_form.html:4
 #, python-format
@@ -5675,55 +5646,41 @@ msgstr ""
 msgid "This project is not yet published."
 msgstr "Бул долбоор али жарыялана элек."
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:94
-msgid "Participation layout"
-msgstr ""
-
-#: apps/projects/templates/a4_candy_projects/project_detail.html:102
-msgid "Grid"
-msgstr ""
-
-#: apps/projects/templates/a4_candy_projects/project_detail.html:113
+#: apps/projects/templates/a4_candy_projects/project_detail.html:123
 msgctxt "project detail participation view toggle"
 msgid "Timeline"
 msgstr ""
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:136
-#, python-format
-msgid "from %(date)s"
-msgstr ""
-
-#: apps/projects/templates/a4_candy_projects/project_detail.html:171
+#: apps/projects/templates/a4_candy_projects/project_detail.html:181
 #: adhocracy-plus/templates/a4modules/module_detail.html:80
 msgid "Participation is not possible at the moment."
 msgstr "Азыркы учурда катышуу мүмкүн эмес"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:174
+#: apps/projects/templates/a4_candy_projects/project_detail.html:184
 #: adhocracy-plus/templates/a4modules/module_detail.html:83
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "Ал %(date)s тартып башталат. "
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:177
+#: apps/projects/templates/a4_candy_projects/project_detail.html:187
 #: adhocracy-plus/templates/a4modules/module_detail.html:86
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "Ал %(date)s тартып  уланат. "
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:180
+#: apps/projects/templates/a4_candy_projects/project_detail.html:190
 #: adhocracy-plus/templates/a4modules/module_detail.html:89
 #, python-format
 msgid "It ended on %(date)s."
 msgstr "Ал %(date)s аяктайт. "
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:195
-#: apps/summarization/templates/summarization/_summary_section.html:47
+#: apps/projects/templates/a4_candy_projects/project_detail.html:205
 #: apps/users/models.py:51
 #: adhocracy-plus/templates/a4modules/module_detail.html:102
 msgid "active"
 msgstr "активдүү"
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:221
+#: apps/projects/templates/a4_candy_projects/project_detail.html:231
 #: adhocracy-plus/templates/a4modules/module_detail.html:124
 msgid ""
 "This project is not publicly visible. Only invited users can see content and "
@@ -5732,7 +5689,7 @@ msgstr ""
 "Бул долбоор жалпыга жеткиликтүү эмес. Чакырылган колдонуучулар гана "
 "контентти көрүп, активдүү катыша алат. "
 
-#: apps/projects/templates/a4_candy_projects/project_detail.html:225
+#: apps/projects/templates/a4_candy_projects/project_detail.html:235
 #: adhocracy-plus/templates/a4modules/module_detail.html:128
 msgid ""
 "This project is publicly visible. Invited users can actively participate."
@@ -5792,224 +5749,78 @@ msgstr ""
 msgid "Read"
 msgstr ""
 
-#: apps/projects/views.py:132
+#: apps/projects/utils.py:262
+msgid "Session required for anonymous feedback."
+msgstr ""
+
+#: apps/projects/views.py:150
 msgid "Invitation succesfully removed."
 msgstr "Чакыруу ийгиликтүү өчүрүлдү."
 
-#: apps/projects/views.py:135
+#: apps/projects/views.py:153
 msgid "Invitation was already accepted or removed."
 msgstr "Чакыруу мурун кабыл алынган  же өчүрүлгөн. "
 
-#: apps/projects/views.py:183
+#: apps/projects/views.py:201
 msgid "Following users already accepted an invitation: "
 msgstr "Төмөнкү колдонуучулар чакырууну кабыл алышкан: "
 
-#: apps/projects/views.py:191
+#: apps/projects/views.py:209
 msgid "Following users are already invited: "
 msgstr "Төмөнкү колдонуучулар чакырылган: "
 
-#: apps/projects/views.py:233
+#: apps/projects/views.py:251
 msgid "Invite moderators via email"
 msgstr "Электрондук почта аркылуу модераторлорду чакыруу "
 
-#: apps/projects/views.py:234
+#: apps/projects/views.py:252
 msgid "Invite moderators via file upload"
 msgstr "Файлды жүктөө аркылуу модераторлорду чакыруу "
 
-#: apps/projects/views.py:235
+#: apps/projects/views.py:253
+#, python-brace-format
 msgid "{} moderator invited."
 msgstr "{} модератор чакырылды"
 
-#: apps/projects/views.py:235
+#: apps/projects/views.py:253
+#, python-brace-format
 msgid "{} moderators invited."
 msgstr "{} модераторлор чакырылды "
 
-#: apps/projects/views.py:236
+#: apps/projects/views.py:254
 msgid "Moderator successfully removed."
 msgstr "Модератор ийгиликтүү өчүрүлдү."
 
-#: apps/projects/views.py:254
+#: apps/projects/views.py:272
+#, python-brace-format
 msgid "{} participant invited."
 msgstr "{} катышуучу чакырылды"
 
-#: apps/projects/views.py:254
+#: apps/projects/views.py:272
+#, python-brace-format
 msgid "{} participants invited."
 msgstr "{} катышуучулар чакырылды. "
 
-#: apps/projects/views.py:255
+#: apps/projects/views.py:273
 msgid "Participant successfully removed."
 msgstr "Катышуучу ийгиликтүү өчүрүлдү "
 
-#: apps/projects/views.py:267
+#: apps/projects/views.py:285
 #, python-format
 msgid "Project '%(name)s' was deleted successfully."
 msgstr "\"%(name)s\" долбоору ийгиликтүү өчүрүлдү"
 
-#: apps/summarization/templates/summarization/_feedback_icons.html:4
-msgid "Was this summary helpful?"
+#: apps/projects/views.py:446 apps/projects/views.py:533
+#: apps/projects/views.py:564
+msgid "AI summarisation is not enabled for this organisation."
 msgstr ""
 
-#: apps/summarization/templates/summarization/_feedback_icons.html:10
-#: apps/summarization/templates/summarization/_feedback_icons.html:16
-msgid "Feedback is available on project pages only"
+#: apps/projects/views.py:550
+msgid "Summary generation failed. Please try again later."
 msgstr ""
 
-#: apps/summarization/templates/summarization/_summary_fragment.html:19
-msgid "Summary of the Participation"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_fragment.html:33
-#, python-format
-msgid ""
-"\n"
-"                    Diese Zusammenfassung wurde am %(date)s um %(time)s Uhr "
-"mithilfe von KI erstellt und kann Fehler enthalten oder unvollständig sein.\n"
-"                "
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_fragment.html:37
-#, python-format
-msgid ""
-"\n"
-"                    This summary was created by AI on %(date)s at %(time)s "
-"and may contain errors or be incomplete.\n"
-"                "
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_fragment.html:48
-msgid "General info"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_fragment.html:69
-msgid "Contributions"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_fragment.html:73
-msgid "Modules"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_fragment.html:82
-msgid "To read all the results of this participation"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_fragment.html:86
-#: apps/summarization/templates/summarization/_summary_section.html:221
-msgid "click here"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:15
-msgid "Summary of what has happened so far"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:17
-msgid "Summary of what is currently happening"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:19
-msgid "Summary of what will happen"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:29
-msgid ""
-"The participation phases of the modules in this section are finished. You "
-"can no longer contribute. In this section you can find summaries of the "
-"modules and the main topics that were discussed."
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:31
-msgid ""
-"The participation phases of the modules in this section are currently "
-"ongoing. You can contribute to the modules at this stage. In this section "
-"you can find summaries of the modules and the topics that are being "
-"discussed."
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:33
-msgid ""
-"The participation phases of the modules in this section have not started "
-"yet. You cannot contribute to the modules at this stage. In this section you "
-"can find summaries of the planned modules and their objectives."
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:43
-msgid "Module"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:49
-msgid "planned"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:56
-msgid "Ative Beteiligung"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:58
-msgid "Active participation"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:78
-msgid "Debug information"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:91
-msgid "Signals"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:103
-msgid "Draft before QA"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:107
-msgid "After QA"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:115
-msgid "Claims"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:119
-msgid "Claim"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:120
-msgid "Evidence"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:121
-msgid "Action"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:122
-msgid "Fix hint"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:146
-msgid "Quantifier fixes"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:162
-msgid "Anchors"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:174
-msgid "Coverage gaps"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:182
-msgid "Patch"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:191
-msgid "Patches applied"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:209
-msgid "Changes"
-msgstr ""
-
-#: apps/summarization/templates/summarization/_summary_section.html:218
-#, python-format
-msgid "To see what happened in module %(module_name)s,"
+#: apps/projects/views.py:554
+msgid "AI summary generated successfully."
 msgstr ""
 
 #: apps/topicprio/dashboard.py:15
@@ -6240,6 +6051,7 @@ msgid "Important dates"
 msgstr "Маанилүү күндөр"
 
 #: apps/users/emails.py:17
+#, python-brace-format
 msgid ""
 "If you no longer want to receive any notifications, change the settings for "
 "your {}account{}."
@@ -6248,6 +6060,7 @@ msgstr ""
 "эсебиңиздин {} тууралоосун өзгөртүңүз. "
 
 #: apps/users/emails.py:21
+#, python-brace-format
 msgid ""
 "If you no longer want to receive notifications about this project, "
 "unsubscribe from the {}project{}."
@@ -6261,6 +6074,7 @@ msgstr ""
 "Сураныч, үтүр коюу менен чыныгы электрондук почтанын даректерин жазыңыз"
 
 #: apps/users/forms.py:23
+#, python-brace-format
 msgid ""
 "Please complete the captcha verification.<strong>If you are having "
 "difficulty please contact us by {}email{}.</strong>"
@@ -6568,119 +6382,119 @@ msgstr ""
 msgid "Account Inactive"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:214
+#: adhocracy-plus/config/settings/base.py:221
 msgid "English"
 msgstr "Англис тили"
 
-#: adhocracy-plus/config/settings/base.py:215
+#: adhocracy-plus/config/settings/base.py:222
 msgid "German"
 msgstr "Немис тили."
 
-#: adhocracy-plus/config/settings/base.py:490
+#: adhocracy-plus/config/settings/base.py:502
 msgid "suggestion"
 msgstr "Сунуш "
 
-#: adhocracy-plus/config/settings/base.py:491
+#: adhocracy-plus/config/settings/base.py:503
 msgid "note"
 msgstr "Эскертүү"
 
-#: adhocracy-plus/config/settings/base.py:492
+#: adhocracy-plus/config/settings/base.py:504
 msgid "question"
 msgstr "Суроо"
 
-#: adhocracy-plus/config/settings/base.py:533
+#: adhocracy-plus/config/settings/base.py:545
 msgid "Pin without icon"
 msgstr "Белгисиз тиркөө"
 
-#: adhocracy-plus/config/settings/base.py:534
+#: adhocracy-plus/config/settings/base.py:546
 msgid "Diamond"
 msgstr "Алмаз"
 
-#: adhocracy-plus/config/settings/base.py:535
+#: adhocracy-plus/config/settings/base.py:547
 msgid "Triangle up"
 msgstr "Үч бурчтук өйдө "
 
-#: adhocracy-plus/config/settings/base.py:536
+#: adhocracy-plus/config/settings/base.py:548
 msgid "Triangle down"
 msgstr "Үч бурчтук ылдый"
 
-#: adhocracy-plus/config/settings/base.py:537
+#: adhocracy-plus/config/settings/base.py:549
 msgid "Ellipse"
 msgstr "Эллипс"
 
-#: adhocracy-plus/config/settings/base.py:538
+#: adhocracy-plus/config/settings/base.py:550
 msgid "Semi circle"
 msgstr "Жарым  айлана"
 
-#: adhocracy-plus/config/settings/base.py:539
+#: adhocracy-plus/config/settings/base.py:551
 msgid "Hexagon"
 msgstr "Алты бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:540
+#: adhocracy-plus/config/settings/base.py:552
 msgid "Rhomboid"
 msgstr "Ромбоид"
 
-#: adhocracy-plus/config/settings/base.py:541
+#: adhocracy-plus/config/settings/base.py:553
 msgid "Star"
 msgstr "Жылдыз"
 
-#: adhocracy-plus/config/settings/base.py:542
+#: adhocracy-plus/config/settings/base.py:554
 msgid "Square"
 msgstr "Төрт бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:543
+#: adhocracy-plus/config/settings/base.py:555
 msgid "Octothorpe"
 msgstr "Торчо"
 
-#: adhocracy-plus/config/settings/base.py:544
+#: adhocracy-plus/config/settings/base.py:556
 msgid "Rectangle"
 msgstr "Тик бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:545
+#: adhocracy-plus/config/settings/base.py:557
 msgid "Circle"
 msgstr "Айлана"
 
-#: adhocracy-plus/config/settings/base.py:546
+#: adhocracy-plus/config/settings/base.py:558
 msgid "Right triangle"
 msgstr "Тик бурчтуу үч бурчтук"
 
-#: adhocracy-plus/config/settings/base.py:547
+#: adhocracy-plus/config/settings/base.py:559
 msgid "Zigzag"
 msgstr "Ийри-буйру сызык"
 
-#: adhocracy-plus/config/settings/base.py:551
+#: adhocracy-plus/config/settings/base.py:563
 msgid "brainstorming"
 msgstr "Жамааттык талкуу"
 
-#: adhocracy-plus/config/settings/base.py:552
+#: adhocracy-plus/config/settings/base.py:564
 msgid "spatial brainstorming"
 msgstr "Көлөмдүү жамааттык талкуу"
 
-#: adhocracy-plus/config/settings/base.py:553
+#: adhocracy-plus/config/settings/base.py:565
 msgid "idea challenge"
 msgstr "Идеяны сынап көрүү"
 
-#: adhocracy-plus/config/settings/base.py:554
+#: adhocracy-plus/config/settings/base.py:566
 msgid "spatial idea challenge"
 msgstr "Идеяны көлөмдүү сыноо"
 
-#: adhocracy-plus/config/settings/base.py:555
+#: adhocracy-plus/config/settings/base.py:567
 msgid "text review"
 msgstr "Текстти карап чыгуу"
 
-#: adhocracy-plus/config/settings/base.py:556
+#: adhocracy-plus/config/settings/base.py:568
 msgid "poll"
 msgstr "Сурамжылоо"
 
-#: adhocracy-plus/config/settings/base.py:558
+#: adhocracy-plus/config/settings/base.py:570
 msgid "interactive event"
 msgstr "Интерактивдүү иш-чара"
 
-#: adhocracy-plus/config/settings/base.py:559
+#: adhocracy-plus/config/settings/base.py:571
 msgid "prioritization"
 msgstr "Ыраатташтыруу"
 
-#: adhocracy-plus/config/settings/base.py:560
+#: adhocracy-plus/config/settings/base.py:572
 msgid "debate"
 msgstr "Дебаттар"
 
@@ -6792,6 +6606,10 @@ msgstr ""
 msgid "Download price list"
 msgstr ""
 
+#: adhocracy-plus/templates/a4dashboard/includes/preview.html:11
+msgid "View Draft"
+msgstr ""
+
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:6
 msgid "Project created"
 msgstr "Долбоор түзүлдү"
@@ -6860,33 +6678,33 @@ msgstr "Долбоор жарыяланды"
 msgid "The project has been published. You can add further modules."
 msgstr "Долбоор жарыяланды. Сиз кошумча модулдарды кошо аласыз"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:61
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:63
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:45
+msgid "View Live"
+msgstr ""
+
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:62
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:64
 msgid "more"
 msgstr "көбүрөөк"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:78
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:98
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:113
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:79
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:99
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:114
 msgid "delete"
 msgstr "өчүрүү"
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:106
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:107
 #, python-format
 msgid " Are you sure you want to delete the project '%(project_name)s'? "
 msgstr "\"%(project_name)s\" долбоорун чындыгында өчүрүүнү каалайсызбы? "
 
-#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:112
+#: adhocracy-plus/templates/a4dashboard/includes/project_list_item.html:113
 msgid "cancel"
 msgstr "баш тартуу"
 
 #: adhocracy-plus/templates/a4dashboard/includes/project_result_form.html:4
 msgid "Insights"
 msgstr ""
-
-#: adhocracy-plus/templates/a4dashboard/organisation_form_base.html:16
-msgid "General information"
-msgstr "Жалпы маалымат"
 
 #: adhocracy-plus/templates/a4dashboard/organisation_form_base.html:18
 #: adhocracy-plus/templates/a4dashboard/organisation_form_base.html:28
