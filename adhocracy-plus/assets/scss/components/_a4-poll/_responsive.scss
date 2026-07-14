@@ -1,0 +1,30 @@
+@media (max-width: $breakpoint) {
+    .poll-choice {
+        padding: 12px;
+
+        &--checked {
+            padding: 12px;
+        }
+    }
+
+    .poll-choice__label {
+        font-size: $font-size-sm;
+    }
+
+    .poll-choice__input {
+        width: 18px;
+        height: 18px;
+    }
+
+    .poll-choice__textarea-container {
+        padding-left: 28px;
+    }
+
+    .poll-result-other-section {
+        margin-left: 0;
+    }
+}
+
+body.poll-answering .poll-comments-section {
+    display: none;
+}

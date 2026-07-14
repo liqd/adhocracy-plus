@@ -10,7 +10,7 @@ PACKAGE_JSON_FILE="package.json"
 PACKAGE_NAME="adhocracy4"
 
 # Read the hash from the pip requirements file
-PIP_HASH=$(grep -E "$PACKAGE_NAME" "$PIP_REQUIREMENTS_FILE" | awk -F'@' '{print $2}' | awk -F'#' '{print $1}')
+PIP_HASH=$(grep -E "$PACKAGE_NAME" "$PIP_REQUIREMENTS_FILE" | sed 's/.*[@#]//')
 
 # Read the commit hash from the package.json file
 PACKAGE_JSON_HASH=$(jq -r ".dependencies.\"$PACKAGE_NAME\"" "$PACKAGE_JSON_FILE" | awk -F'#' '{print $2}')

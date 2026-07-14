@@ -11,22 +11,28 @@ class PollComponent(a4_poll_dashboard.PollComponent):
     def get_base_url(self, module):
         return reverse(
             "a4dashboard:poll-dashboard",
-            kwargs={
-                "organisation_slug": module.project.organisation.slug,
-                "module_slug": module.slug,
-            },
+            kwargs=self.get_base_url_kwargs(module),
         )
+
+    def get_base_url_kwargs(self, module):
+        return {
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        }
 
 
 class ExportPollComponent(a4_poll_dashboard.ExportPollComponent):
     def get_base_url(self, module):
         return reverse(
             "a4dashboard:poll-export-module",
-            kwargs={
-                "organisation_slug": module.project.organisation.slug,
-                "module_slug": module.slug,
-            },
+            kwargs=self.get_base_url_kwargs(module),
         )
+
+    def get_base_url_kwargs(self, module):
+        return {
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        }
 
     def get_urls(self):
         return [

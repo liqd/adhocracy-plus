@@ -1,0 +1,24 @@
+.poll-progress {
+    margin: 1.5rem 0;
+
+    &__track {
+        height: 5px;
+        background-color: $gray-lightest;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    &__bar {
+        height: 100%;
+        background-color: $brand-primary;
+        transition: width 0.3s ease;
+        border-radius: 10px;
+    }
+
+    &__label {
+        margin-top: 0.3rem;
+        font-size: $font-size-sm;
+        text-align: right;
+        color: $text-color-gray;
+    }
+}

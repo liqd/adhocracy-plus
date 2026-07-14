@@ -2,8 +2,8 @@
 {% load wagtailcore_tags wagtailimages_tags i18n %}
 
 {% block title %}
-    {{ self.subtitle }} &mdash; {{ block.super }}
-{% endblock %}
+    {{ self.subtitle }} — {{ block.super }}
+{% endblock title %}
 
 {% block social_meta %}
 <meta name="twitter:card" content="summary">
@@ -11,10 +11,10 @@
 <meta name="linkedin:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}{% if page.subtitle %}/{{ page.subtitle }}{% else %}/{{ page.title }}{% endif %}">
 <meta property="og:url" content="{{ request.build_absolute_uri }}">
 <meta property="og:title" content="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}{% if page.subtitle %}/{{ page.subtitle }}{% else %}/{{ page.title }}{% endif %}">
-{% endblock %}
+{% endblock social_meta %}
 
 {% block social_meta_description %}
-{% if page.teaser  %}
+{% if page.teaser %}
 <meta name="twitter:description" content="{{ page.teaser }}">
 <meta name="linkedin:description" content="{{ page.teaser }}">
 <meta property="og:description" content="{{ page.teaser }}">
@@ -25,7 +25,7 @@
 <meta property="og:description" content="{{ settings.a4_candy_cms_settings.SocialMedia.fallback_description }}">
 {% endif %}
 {% endif %}
-{% endblock %}
+{% endblock social_meta_description %}
 
 {% block social_meta_image %}
 {% if page.image %}
@@ -44,7 +44,7 @@
 <meta property="og:image:height" content="{{ fallback_image.height }}">
 {% endif %}
 {% endif %}
-{% endblock %}
+{% endblock social_meta_image %}
 
 {% block content %}
 <div class="cms__wrapper py-5">
@@ -75,9 +75,9 @@
         </div>
         <div class="row justify-content-center pt-5">
             <div class="cms__text">
-                <a href="{{ page.get_parent.url }}" class="btn btn--transparent">{% translate 'Back to overview' %}</a>
+                <a href="{{ page.get_parent.url }}" class="btn btn--transparent btn--transparent-bordered">{% translate 'Back to overview' %}</a>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

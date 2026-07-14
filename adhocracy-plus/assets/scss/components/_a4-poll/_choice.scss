@@ -1,0 +1,283 @@
+.poll-choice {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 15px;
+    gap: 10px;
+    width: 100%;
+    background: $white;
+    border: 1px solid $gray-lightest;
+    border-radius: $choice-border-radius;
+    cursor: pointer;
+    transition: $choice-transition;
+    margin-bottom: 9px;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        background: $gray-lightest;
+        border: 1px solid $gray;
+        transform: $choice-hover-transform;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    &--checked {
+        background: $brand-primary-100;
+        border: 1px solid $brand-primary;
+
+        &:hover {
+            background: $brand-primary-100;
+            border: 1px solid $brand-primary;
+            transform: none;
+        }
+    }
+
+    &--other {
+        &.poll-choice--checked {
+            background: $brand-primary-100;
+            border: 1px solid $brand-primary;
+        }
+    }
+
+    &__label {
+        font-family: $font-family-base;
+        font-size: $font-size-base;
+        font-weight: 500;
+        line-height: 1.4;
+        color: $black;
+        cursor: pointer;
+        flex: 1;
+        margin: 0;
+    }
+
+    &--result {
+        cursor: default;
+
+        .poll-choice__label {
+            cursor: default;
+        }
+
+        &:hover {
+            background: $white;
+            border: 1px solid $gray-lightest;
+            transform: none;
+            box-shadow: none;
+        }
+
+        &.poll-choice--checked:hover {
+            background: $brand-primary-100;
+            border: 1px solid $brand-primary;
+        }
+    }
+}
+
+.poll-choice__fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: $brand-primary-50;
+    transition: width 0.3s ease;
+    z-index: 0;
+}
+
+.poll-choice--checked .poll-choice__fill {
+    background-color: $brand-primary-100;
+}
+
+.poll-choice__container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.poll-choice__input-wrapper {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.poll-choice__input {
+    appearance: none;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+    transition: $choice-transition;
+    flex-shrink: 0;
+    background-color: $white;
+
+    &[type="radio"],
+    &[type="checkbox"] {
+        border-radius: 50%;
+        background-color: $gray-lightest;
+        border: 2px solid $gray-lightest;
+
+        &:hover {
+            background-color: $white;
+            border-color: $gray-lightest;
+        }
+
+        &:checked {
+            background-color: $brand-primary;
+            border-color: $brand-primary;
+
+            &:before {
+                content: '\f00c';
+                font-family: 'Font Awesome 7 Free', sans-serif;
+                font-weight: 900;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: $white;
+                font-size: 10px;
+            }
+        }
+    }
+}
+
+.poll-row__radio:checked + .radio__text:after {
+    content: "\f00c";
+    transform: scale(1);
+    opacity: 100%;
+}
+
+.poll-row__radio:focus + .radio__text:before {
+    @include fake-focus-shadow;
+}
+
+.poll-row__radio:disabled + .radio__text {
+    &:before,
+    &:after {
+        background-color: $border-color;
+        cursor: not-allowed;
+    }
+}
+
+.poll-choice__result-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.poll-choice__check-icon {
+    color: $brand-primary;
+    font-size: 20px;
+}
+
+.poll-choice__empty-circle {
+    width: 20px;
+    height: 20px;
+    border: 2px solid $gray-lightest;
+    border-radius: 50%;
+    background-color: $white;
+}
+
+.poll-choice--checked .poll-choice__label {
+    color: $black;
+    font-weight: 600;
+}
+
+.poll-choice__percentage {
+    color: $text-color-gray;
+    flex-shrink: 0;
+}
+
+.poll-choice__textarea-container {
+    width: 100%;
+    margin-top: 8px;
+    padding-left: 32px;
+    position: relative;
+    z-index: 1;
+
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid $gray-lightest;
+        border-radius: $choice-border-radius;
+        font-family: $font-family-base;
+        font-size: $font-size-sm;
+        resize: vertical;
+        transition: border-color 0.2s ease;
+
+        &:focus {
+            outline: none;
+            border-color: $brand-primary;
+            box-shadow: 0 0 0 2px rgba(26, 100, 203, 0.1);
+        }
+
+        &:disabled {
+            background-color: $gray-lightest;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.poll-question-content-wrapper {
+    position: relative;
+}
+
+.poll-question-content--exit-forward {
+    animation: slide-out-left 0.3s ease-in-out forwards;
+}
+
+.poll-question-content--exit-backward {
+    animation: slide-out-right 0.3s ease-in-out forwards;
+}
+
+.poll-question-content--enter-forward {
+    animation: slide-in-right 0.3s ease-in-out backwards;
+}
+
+.poll-question-content--enter-backward {
+    animation: slide-in-left 0.3s ease-in-out backwards;
+}
+
+@keyframes slide-out-left {
+    to {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-right {
+    to {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-left {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

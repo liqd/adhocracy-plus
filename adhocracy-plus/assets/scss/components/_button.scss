@@ -94,21 +94,22 @@
     @extend .btn--light;
 
     background-color: transparent;
-    border-color: $border-color;
+    border-color: transparent;
 
     &:focus,
     &:hover,
     &:active {
         background-color: transparent !important;
+        border-color: transparent !important;
         text-decoration: underline;
     }
 }
 
-.btn.btn--transparent-border {
-    border-color: transparent;
+.btn.btn--transparent-bordered {
+    border-color: $border-color;
 
     &:hover {
-        border-color: transparent;
+        border-color: $border-color;
     }
 }
 
