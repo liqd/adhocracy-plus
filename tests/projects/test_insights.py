@@ -226,6 +226,8 @@ def test_initiators_are_not_counted_as_participants(
     module = module_factory()
     topic_factory(module=module)
     poll_factory(module=module)
+    if insight_provider is get_insight:
+        ProjectInsight.objects.get_or_create(project=module.project)
     insight = insight_provider(project=module.project)
 
     assert insight.active_participants.count() == 0
@@ -301,7 +303,7 @@ def test_complex_example(
     insight = insight_provider(project=project)
 
     assert insight.live_questions == len(live_questions)
-    assert insight.written_ideas == len(topics)
+    assert insight.written_ideas == 0
     assert insight.comments == len(comments)
     assert insight.poll_answers == len(answers) + len(votes)
     assert insight.ratings == len(ratings) + len(likes)
@@ -383,7 +385,7 @@ def test_create_insight_for_ideas(
 
     insight = insight_provider(project=module.project)
 
-    assert insight.written_ideas == 2
+    assert insight.written_ideas == 1
     assert insight.poll_answers == 0
     assert insight.live_questions == 0
     assert insight.ratings == 3
@@ -520,6 +522,27 @@ def test_draft_module_content_not_counted(
 
 
 @pytest.mark.django_db
+def test_topic_prioritization_topics_not_counted_as_written_ideas(
+    module_factory,
+    topic_factory,
+    comment_factory,
+    rating_factory,
+    user_factory,
+):
+    module = module_factory(blueprint_type="TP")
+    user = user_factory()
+    topic = topic_factory(module=module)
+    comment_factory(content_object=topic, creator=user)
+    rating_factory(content_object=topic, creator=user, value=1)
+
+    insight = create_insight(project=module.project)
+    assert insight.written_ideas == 0
+    assert insight.comments == 1
+    assert insight.ratings == 1
+    assert insight.active_participants.filter(pk=user.pk).exists()
+
+
+@pytest.mark.django_db
 def test_topic_prioritization_shows_written_ideas_label(module_factory, topic_factory):
     module = module_factory(blueprint_type="TP")
     topic_factory(module=module)
@@ -529,7 +552,7 @@ def test_topic_prioritization_shows_written_ideas_label(module_factory, topic_fa
     labels = [label for label, count in context["counts"]]
 
     assert "written ideas" in labels
-    assert insight.written_ideas == 1
+    assert insight.written_ideas == 0
 
 
 @pytest.mark.django_db

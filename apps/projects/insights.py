@@ -252,7 +252,7 @@ def _collect_insight_metrics(project: Project) -> dict:
         likes,
     ]
 
-    idea_objects = [ideas, map_ideas, proposals, topics]
+    idea_objects = [ideas, map_ideas, proposals]
 
     participant_user_ids = set()
     unregistered_participants = set()
