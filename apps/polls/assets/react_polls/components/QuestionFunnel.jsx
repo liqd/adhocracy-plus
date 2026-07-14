@@ -1,5 +1,5 @@
 // apps/polls/assets/react_polls/components/QuestionFunnel.jsx
-import React, { useState, useCallback, useEffect, useRef } from 'react'
+import React, { useState, useCallback, useLayoutEffect, useRef } from 'react'
 import django from 'django'
 import { TermsOfUseCheckbox } from 'adhocracy4/adhocracy4/static/TermsOfUseCheckbox'
 import { PollChoice } from './PollChoice'
@@ -52,13 +52,13 @@ const QuestionFunnel = ({
   const [exitingQuestion, setExitingQuestion] = useState(null)
   const [exitingAnswer, setExitingAnswer] = useState(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const top = funnelRef.current?.getBoundingClientRect().top + window.scrollY - 50
     window.scrollTo({ top, behavior: 'smooth' })
     headerRef.current?.focus({ preventScroll: true })
   }, [currentQuestion.id])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (currentNumber !== prevNumberRef.current) {
       const dir = currentNumber > prevNumberRef.current ? 'forward' : 'backward'
       setDirection(dir)
