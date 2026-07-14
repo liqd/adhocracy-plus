@@ -185,6 +185,9 @@ po:
 # Deduplicate #: lines
 	$(foreach file, $(wildcard locale-*/locale/*/LC_MESSAGES/*.po), \
 		$(SED) -i '/^#: /{N; s/^\(#: .*\)\n\1$$/\1/}' $(file);)
+# Fill empty msgstr in English source files (required for Transifex upload)
+	$(foreach file, $(wildcard locale-*/locale/en/LC_MESSAGES/django*.po), \
+		msgen -o $(file) $(file);)
 .PHONY: mo
 mo:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
