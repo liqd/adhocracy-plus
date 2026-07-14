@@ -44,7 +44,7 @@ A full recount (`create_insight()`) remains available for repair and ops; see `r
 |---|---|
 | `comments` | Visible project comments (see inclusion rules below) |
 | `ratings` | Thumbs up/down on ideas, map ideas, topics, comments, and proposals; plus likes on live questions |
-| `written_ideas` | Ideas, map ideas, proposals, and topics |
+| `written_ideas` | Ideas, map ideas, and proposals (not topic prioritization topics) |
 | `poll_answers` | Poll votes and open answers |
 | `live_questions` | Interactive-event questions |
 | `active_participants` | Registered users who contributed (M2M — each user counted once) |
@@ -71,7 +71,7 @@ Key helpers:
 | Function | Purpose |
 |---|---|
 | `comment_counts_toward_insights()` | Should this comment count toward `insight.comments`? |
-| `written_idea_counts_toward_insights()` | Should this idea/map idea/topic/proposal count toward `written_ideas`? |
+| `written_idea_counts_toward_insights()` | Should this idea/map idea/proposal count toward `written_ideas`? |
 | `live_question_counts_toward_insights()` | Should this live question count toward `live_questions`? |
 | `module_counts_toward_insights()` | Is this module published enough to count? |
 | `rating_counts_toward_insights()` | Does this rating value (±1 vs 0) count? |
@@ -96,7 +96,7 @@ Signals are registered in `apps/projects/apps.py` → `apps/projects/signals.py`
 - `Vote` / `Answer` `post_save` → `poll_answers`
 - `poll_voted` signal → `active_participants` (registered) or `sync_unregistered_participants()` (anonymous)
 
-Models wired up: `Comment`, `Idea`, `MapIdea`, `Proposal`, `Topic`, `Rating`, `LiveQuestion`, `Like`, `Vote`, `Answer`, `Module` (draft changes), and `poll_voted`.
+Models wired up: `Comment`, `Idea`, `MapIdea`, `Proposal`, `Rating`, `LiveQuestion`, `Like`, `Vote`, `Answer`, `Module` (draft changes), and `poll_voted`.
 
 ### Full recalculation
 

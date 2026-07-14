@@ -14,7 +14,6 @@ from apps.ideas.models import Idea
 from apps.interactiveevents.models import Like
 from apps.interactiveevents.models import LiveQuestion
 from apps.mapideas.models import MapIdea
-from apps.topicprio.models import Topic
 
 from . import emails
 from .insights import add_active_participant
@@ -139,7 +138,6 @@ def update_comments_count(sender, instance, created, **kwargs):
 @receiver(signals.post_save, sender=Idea)
 @receiver(signals.post_save, sender=MapIdea)
 @receiver(signals.post_save, sender=Proposal)
-@receiver(signals.post_save, sender=Topic)
 def increase_idea_count(sender, instance, created, **kwargs):
     if not created:
         return
@@ -151,8 +149,7 @@ def increase_idea_count(sender, instance, created, **kwargs):
     insight.written_ideas += 1
     insight.save()
 
-    if sender != Topic:
-        add_active_participant(insight, instance.creator_id)
+    add_active_participant(insight, instance.creator_id)
 
 
 @receiver(signals.pre_save, sender=Proposal)
@@ -356,7 +353,6 @@ def decrease_comments_count(sender, instance, **kwargs):
 @receiver(signals.post_delete, sender=Idea)
 @receiver(signals.post_delete, sender=MapIdea)
 @receiver(signals.post_delete, sender=Proposal)
-@receiver(signals.post_delete, sender=Topic)
 def decrease_idea_count(sender, instance, **kwargs):
     if not written_idea_counts_toward_insights(instance):
         return
@@ -366,10 +362,9 @@ def decrease_idea_count(sender, instance, **kwargs):
     insight.written_ideas = max(0, insight.written_ideas - 1)
     insight.save()
 
-    if sender != Topic:
-        remove_active_participant_if_inactive(
-            insight=insight, project=project, user_id=instance.creator_id
-        )
+    remove_active_participant_if_inactive(
+        insight=insight, project=project, user_id=instance.creator_id
+    )
 
 
 @receiver(signals.post_delete, sender=Rating)
