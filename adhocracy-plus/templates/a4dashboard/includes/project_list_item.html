@@ -3,7 +3,6 @@
 {% project_tile_image_copyright project as project_image_copyright %}
 {% project_tile_image_alt_text project as project_image_alt_text %}
 
-
 <li class="list-item list-item--has-image">
     <div class="list-item--has-image__wrapper">
         <div class="list-item--has-image__image"
@@ -36,18 +35,20 @@
                 <div class="btn--group">
                 {% spaceless %}
                     <a href="{{ project|project_url }}"
-                       class="btn btn--light btn--small">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
+                       class="btn btn--light btn--small"
+                       {% if not project.is_draft %}target="_blank" rel="noopener noreferrer"{% endif %}>
                         {% if project.is_draft %}
+                        <i class="fa fa-eye" aria-hidden="true"></i>
                         {% translate 'Preview' %}
                         {% else %}
-                        {% translate 'View' %}
+                        <i class="fa fa-external-link-alt" aria-hidden="true"></i>
+                        {% translate 'View Live' %}
                         {% endif %}
                     </a>
                     <a href="{% url 'a4dashboard:project-edit' organisation_slug=project.organisation.slug project_slug=project.slug %}"
                        class="btn btn--light btn--small">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
-                        {% translate 'Edit'%}
+                        {% translate 'Edit' %}
                     </a>
                     <div class="dropdown">
                         <button
