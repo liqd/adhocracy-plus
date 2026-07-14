@@ -30,7 +30,11 @@ const ResultsView = ({ results, totalParticipants, hasUserVote, votingEnded, ale
               }}
             />
           )}
-          <p className="lead poll__results-subtitle">{django.gettext('The poll was completed! Here you can see the results.')}</p>
+          <p className="lead poll__results-subtitle">
+            {django.gettext(votingEnded
+              ? 'The poll has ended. Here are the results.'
+              : 'Here are the preliminary results.')}
+          </p>
         </div>
         <i className={`fas fa-chevron-down${resultsCollapsed ? '' : ' open'}`} aria-hidden="true" />
       </button>
