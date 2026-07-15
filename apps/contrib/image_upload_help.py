@@ -5,9 +5,9 @@ def image_upload_help_text(min_width, min_height):
     return _(
         "Allowed file formats are png, jpeg, gif, and webp. "
         "Images are cropped and resized automatically when you upload them. "
-        "For best results, use an image at least {min_width} pixels wide and "
-        "{min_height} pixels tall."
-    ).format(min_width=min_width, min_height=min_height)
+        "For best results, use an image at least %(min_width)s pixels wide and "
+        "%(min_height)s pixels tall."
+    ) % {"min_width": min_width, "min_height": min_height}
 
 
 IMAGE_UPLOAD_HERO_HELP_TEXT = image_upload_help_text(1500, 500)
