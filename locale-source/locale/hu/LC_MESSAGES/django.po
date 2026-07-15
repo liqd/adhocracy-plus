@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 11:14+0200\n"
+"POT-Creation-Date: 2026-07-15 14:51+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: János Gerzson <gerzsonj@gmail.com>, 2025\n"
 "Language-Team: Hungarian (https://app.transifex.com/liqd/teams/109316/hu/)\n"
@@ -1218,34 +1218,38 @@ msgid "polls"
 msgstr ""
 
 #: adhocracy4/polls/serializers.py:227
-#: adhocracy4/polls/services.py:107
+#: adhocracy4/polls/services.py:110
 msgid "Please provide a descriptive alt text for the question image."
 msgstr ""
 
 #: adhocracy4/polls/validators.py:36
+msgid "The uploaded file is not a valid image."
+msgstr ""
+
+#: adhocracy4/polls/validators.py:42
 #, python-format
 msgid "Image must be at least %(width)s pixels wide."
 msgstr ""
 
-#: adhocracy4/polls/validators.py:40
+#: adhocracy4/polls/validators.py:46
 #, python-format
 msgid "Image must be at least %(height)s pixels high."
 msgstr ""
 
-#: adhocracy4/polls/validators.py:58
+#: adhocracy4/polls/validators.py:64
 #, python-format
 msgid "Item of type %(item)s for that module already exists"
 msgstr ""
 
-#: adhocracy4/polls/validators.py:70
+#: adhocracy4/polls/validators.py:76
 msgid "Question has to belong to the poll set in the url."
 msgstr ""
 
-#: adhocracy4/polls/validators.py:81
+#: adhocracy4/polls/validators.py:87
 msgid "Choice has to belong to the question set in the url."
 msgstr ""
 
-#: adhocracy4/polls/validators.py:104
+#: adhocracy4/polls/validators.py:110
 msgid "Only one vote per choice is allowed per user."
 msgstr ""
 
@@ -2179,11 +2183,11 @@ msgid "Ensure this field has no more than 4000 characters."
 msgstr ""
 
 #: apps/contrib/image_upload_help.py:6
-#, python-brace-format
+#, python-format
 msgid ""
 "Allowed file formats are png, jpeg, gif, and webp. Images are cropped and "
 "resized automatically when you upload them. For best results, use an image "
-"at least {min_width} pixels wide and {min_height} pixels tall."
+"at least %(min_width)s pixels wide and %(min_height)s pixels tall."
 msgstr ""
 
 #: apps/contrib/image_upload_help.py:20

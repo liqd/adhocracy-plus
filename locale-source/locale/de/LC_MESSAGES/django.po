@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 11:14+0200\n"
+"POT-Creation-Date: 2026-07-15 14:51+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Tietje, 2026\n"
 "Language-Team: German (https://app.transifex.com/liqd/teams/109316/de/)\n"
@@ -1303,35 +1303,39 @@ msgid "polls"
 msgstr "Umfragen"
 
 #: adhocracy4/polls/serializers.py:227
-#: adhocracy4/polls/services.py:107
+#: adhocracy4/polls/services.py:110
 msgid "Please provide a descriptive alt text for the question image."
 msgstr ""
 "Bitte geben Sie einen aussagekräftigen Alternativtext für das Fragenbild ein."
 
 #: adhocracy4/polls/validators.py:36
+msgid "The uploaded file is not a valid image."
+msgstr ""
+
+#: adhocracy4/polls/validators.py:42
 #, python-format
 msgid "Image must be at least %(width)s pixels wide."
-msgstr ""
+msgstr "Das Bild muss mindestens %(width)s Pixel breit sein."
 
-#: adhocracy4/polls/validators.py:40
+#: adhocracy4/polls/validators.py:46
 #, python-format
 msgid "Image must be at least %(height)s pixels high."
-msgstr ""
+msgstr "Das Bild muss mindestens %(height)s Pixel hoch sein."
 
-#: adhocracy4/polls/validators.py:58
+#: adhocracy4/polls/validators.py:64
 #, python-format
 msgid "Item of type %(item)s for that module already exists"
 msgstr "Beitrag des Typs %(item)s für dieses Modul existiert bereits."
 
-#: adhocracy4/polls/validators.py:70
+#: adhocracy4/polls/validators.py:76
 msgid "Question has to belong to the poll set in the url."
 msgstr "Die Frage muss zu der in der Url angegebenen Umfrage gehören."
 
-#: adhocracy4/polls/validators.py:81
+#: adhocracy4/polls/validators.py:87
 msgid "Choice has to belong to the question set in the url."
 msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 
-#: adhocracy4/polls/validators.py:104
+#: adhocracy4/polls/validators.py:110
 msgid "Only one vote per choice is allowed per user."
 msgstr "Pro Nutzer ist nur eine Stimme pro Auswahl zulässig."
 
@@ -1507,7 +1511,7 @@ msgstr ""
 #: adhocracy4/projects/utils.py:58
 #, python-brace-format
 msgid "{}. Participation"
-msgstr ""
+msgstr "{}. Beteiligung"
 
 #: adhocracy4/projects/utils.py:67
 #: apps/projects/templates/a4_candy_projects/project_detail.html:101
@@ -2342,16 +2346,16 @@ msgstr ""
 "Stellen Sie sicher, dass dieses Feld nicht mehr als 4000 Zeichen lang ist."
 
 #: apps/contrib/image_upload_help.py:6
-#, python-brace-format
+#, python-format
 msgid ""
 "Allowed file formats are png, jpeg, gif, and webp. Images are cropped and "
 "resized automatically when you upload them. For best results, use an image "
-"at least {min_width} pixels wide and {min_height} pixels tall."
+"at least %(min_width)s pixels wide and %(min_height)s pixels tall."
 msgstr ""
-"Zulässige Dateiformate sind PNG, JPEG, GIF und WebP. Bilder werden beim "
-"Hochladen automatisch zugeschnitten und in der Größe angepasst. Für optimale "
-"Ergebnisse sollte das Bild mindestens {min_width} Pixel breit und "
-"{min_height} Pixel hoch sein."
+"Die erlaubten Bildformate sind png, jpeg, gif und webp. Bilder können selbst "
+"zugeschnitten werden und die Größe wird automatisch angepasst. Für das beste "
+"Ergebnis empfehlen wir, dass das Bild mindestens %(min_width)s Pixel breit "
+"und %(min_height)s Pixel hoch ist. "
 
 #: apps/contrib/image_upload_help.py:20
 msgid ""
