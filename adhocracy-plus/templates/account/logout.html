@@ -1,17 +1,34 @@
 {% extends "account/base.html" %}
 {% load i18n %}
 
-{% block head_title %}{% translate "Sign Out" %}{% endblock %}
+{% block head_title %}
+    {% if guest_switch_logout %}
+        {% translate "Log in with a personal account" %}
+    {% else %}
+        {% translate "Sign Out" %}
+    {% endif %}
+{% endblock head_title %}
 
 {% block content %}
+    {% if guest_switch_logout %}
+    <h1>{% translate "Log in with a personal account" %}</h1>
+    <p>{% translate "You are currently logged in as a guest. To log in with a personal account, end your guest session first." %}</p>
+    {% else %}
     <h1>{% translate "Sign Out" %}</h1>
     <p>{% translate 'Are you sure you want to sign out?' %}</p>
+    {% endif %}
 
     <form method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
-        <button class="btn btn--primary" type="submit">{% translate 'Sign Out' %}</button>
+        <button class="btn btn--primary" type="submit">
+            {% if guest_switch_logout %}
+                {% translate "Continue" %}
+            {% else %}
+                {% translate 'Sign Out' %}
+            {% endif %}
+        </button>
     </form>
-{% endblock %}
+{% endblock content %}

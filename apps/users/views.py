@@ -1,16 +1,30 @@
+from allauth.account import views as allauth_account_views
 from django.shortcuts import redirect
 from django.utils.translation import check_for_language
 from django.views.generic import FormView
 from django.views.generic.detail import DetailView
 from django.views.i18n import LANGUAGE_QUERY_PARAMETER
 from django.views.i18n import set_language
+from guest_user.functions import is_guest_user
 from guest_user.functions import maybe_create_guest_user
 
 from adhocracy4.actions.models import Action
 from apps.organisations.models import Organisation
 
 from . import models
+from .constants import GUEST_SWITCH_QUERY_PARAM
 from .forms import GuestCreateForm
+
+
+class LogoutView(allauth_account_views.LogoutView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["guest_switch_logout"] = (
+            self.request.user.is_authenticated
+            and is_guest_user(self.request.user)
+            and self.request.GET.get(GUEST_SWITCH_QUERY_PARAM) == "1"
+        )
+        return context
 
 
 class GuestCreateView(FormView):

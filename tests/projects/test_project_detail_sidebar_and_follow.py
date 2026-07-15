@@ -1,6 +1,11 @@
+import re
+from html import unescape
+from urllib.parse import unquote
+
 import pytest
 from dateutil.parser import parse
 from django.urls import reverse
+from django.utils import translation
 from freezegun import freeze_time
 
 from adhocracy4.follows.models import Follow
@@ -264,8 +269,13 @@ def test_project_detail_guest_alert_visible_for_guest_when_guests_disabled(
     assert response.status_code == 200
     assert b"data-guest-alert" in response.content
     assert b"currently logged in as guest" in response.content
-    assert b"register" in response.content
-    assert b"login" in response.content
+    assert b"guest/convert" in response.content
+    login_links = re.findall(rb'href="([^"]*)"', response.content)
+    personal_login_links = [link for link in login_links if b"logout" in link]
+    assert personal_login_links, "expected logout link for guest personal login"
+    assert b"login" in personal_login_links[0]
+    decoded_login_link = unquote(unquote(personal_login_links[0].decode()))
+    assert project_detail_url(project_detail_overview) in decoded_login_link
 
 
 @pytest.mark.django_db
@@ -289,6 +299,28 @@ def test_project_detail_followers_exclude_guest_users(
     assert response.status_code == 200
     assert b"1 Following" in response.content
     assert registered_user.avatar_fallback.encode() in response.content
+
+
+@pytest.mark.django_db
+def test_guest_personal_login_link_reaches_logout_page(client, project_detail_overview):
+    project_detail_overview.allow_guest_users = False
+    project_detail_overview.save()
+    guest_user = GuestUserCreator().create_guest_user()
+    client.force_login(guest_user)
+    project_url = project_detail_url(project_detail_overview)
+    page_response = client.get(project_url)
+    login_links = re.findall(rb'href="([^"]*logout[^"]*)"', page_response.content)
+    personal_login_links = [link for link in login_links if b"login" in link]
+    assert personal_login_links
+    assert b"guest_switch=1" in personal_login_links[0]
+
+    logout_url = unescape(personal_login_links[0].decode())
+    with translation.override("en"):
+        response = client.get(logout_url, follow=False)
+    assert response.status_code == 200
+    assert b"guest session first" in response.content
+    decoded_login_link = unquote(unquote(personal_login_links[0].decode()))
+    assert project_url in decoded_login_link
 
 
 @pytest.mark.django_db
