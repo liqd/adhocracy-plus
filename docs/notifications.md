@@ -76,3 +76,11 @@ which are rendered using the templates:
 `apps/notifications/templates/a4_candy_notifications/_notification_list.html`
 
 and each individual notification is loaded via filter `render_notification_with_links()` (`apps/notifications/templatetags/notification_tags.py`)
+
+### Email delivery
+
+Notification emails are sent through `NotificationEmail` (`apps/notifications/services.py`), which subclasses `EmailAplus` (`apps/users/emails.py`).
+
+Organisation-scoped emails use the visible sender name `{organisation name} | {platform name}`. The platform name comes from Wagtail `OrganisationSettings.platform_name` on the default site, or falls back to the Django site name (`get_platform_name()` in `apps/users/emails.py`). The SMTP address is taken from Django's `DEFAULT_FROM_EMAIL` setting (configure in production — see `docs/installation_prod.md`). Account-related mails without an organisation use the platform/site name only.
+
+adhocracy4's built-in report-to-moderator email is patched at startup in `apps/contrib/a4_emails.py` so it uses the same sender behaviour.

@@ -70,6 +70,9 @@ DATABASES = {
 # forward outgoing emails to a local email proxy
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='127.0.0.1'
+# SMTP sender address (envelope). Organisation-scoped emails add a display name
+# automatically: "{organisation name} | {platform/site name}" (see docs/notifications.md).
+DEFAULT_FROM_EMAIL='noreply@your.domain'
 
 # folder for user-uploads, directly served from the webserver (see nginx example below). Must be created manually.
 MEDIA_ROOT='/home/aplus/aplus-media'

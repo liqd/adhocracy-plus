@@ -1,5 +1,36 @@
+from email.utils import parseaddr
+
 import pytest
 from django.core import mail
+
+from apps.account.emails import AccountDeletionEmail
+
+
+@pytest.mark.django_db
+def test_aplus_email_from_name_with_organisation(
+    organisation_factory,
+    project_factory,
+    module_factory,
+    idea_factory,
+):
+    organisation = organisation_factory(name="City Council")
+    project = project_factory(organisation=organisation)
+    module = module_factory(project=project)
+    idea_factory(module=module)
+
+    display_name, _ = parseaddr(mail.outbox[0].from_email)
+    org_name, platform_name = display_name.split(" | ", 1)
+    assert org_name == "City Council"
+    assert platform_name
+
+
+@pytest.mark.django_db
+def test_aplus_email_from_name_without_organisation(user):
+    AccountDeletionEmail.send(user)
+
+    display_name, _ = parseaddr(mail.outbox[0].from_email)
+    assert display_name
+    assert " | " not in display_name
 
 
 @pytest.mark.django_db

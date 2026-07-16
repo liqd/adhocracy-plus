@@ -17,6 +17,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Idea, proposal, and map idea forms: do not prefill contact email for guest users
 - Project detail: follower count and avatar bubbles exclude guest users
 - Project banner for guests: register links to guest account conversion; login routes through sign-out before the login page
+- Emails: organisation-scoped mailings (notifications, invitations, newsletters,
+  report-to-moderator, etc.) show ``{organisation name} | {platform/site name}`` as the
+  sender display name (from Wagtail ``OrganisationSettings.platform_name`` or the
+  Django site name). SMTP address still comes from ``DEFAULT_FROM_EMAIL``.
+  Implemented in ``EmailAplus.get_from_email()``; a4 report emails are wired via
+  ``apps/contrib/a4_emails.py``.
 
 ### Fixed
 
