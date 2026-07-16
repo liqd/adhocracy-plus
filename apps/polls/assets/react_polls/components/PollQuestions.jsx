@@ -85,7 +85,6 @@ const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, ma
       case STATES.START_SCREEN:
         return (
           <StartScreen
-            moduleName={state.moduleName}
             moduleDescription={state.moduleDescription}
             totalQuestions={state.questions.length}
             totalParticipants={state.totalParticipants}
