@@ -13,6 +13,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+## v2607.3
+
+### Fixed
+
+- Removed double module description on Poll Start Screen
+
 ## v2607.2
 
 ### Fixed
