@@ -13,6 +13,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+## v2607.2
+
+### Fixed
+
+- Safe handling for corrupted user avatars
+- Removed double module title on Poll Start Screen
+
 ## v2607.1
 
 ### Added
