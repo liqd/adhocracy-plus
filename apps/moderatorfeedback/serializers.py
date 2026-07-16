@@ -26,10 +26,11 @@ class ModeratorCommentFeedbackSerializer(serializers.ModelSerializer):
         return super().update(feedback, validated_data)
 
     def get_last_edit(self, feedback):
+        if feedback is None:
+            return None
         if feedback.modified:
             return get_date_display(feedback.modified)
-        else:
-            return get_date_display(feedback.created)
+        return get_date_display(feedback.created)
 
 
 class CommentWithFeedbackSerializer(a4_serializers.CommentSerializer):
@@ -38,7 +39,7 @@ class CommentWithFeedbackSerializer(a4_serializers.CommentSerializer):
     class Meta:
         model = Comment
         read_only_fields = a4_serializers.CommentSerializer.Meta.read_only_fields + (
-            "moderator_comment_feedback",
+            "moderator_feedback",
         )
         exclude = ("creator",)
 
