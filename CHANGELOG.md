@@ -9,6 +9,14 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+### Changed
+
+### Fixed
+
+## v2607.1
+
+### Added
+
 - Django admin: filter users by active status.
 - Guest user accounts: anonymous participation with optional conversion to a full account
 - Project detail: guest participation alert for signed-out visitors (dismissible per project per session)
