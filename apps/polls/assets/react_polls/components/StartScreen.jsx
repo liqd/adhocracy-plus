@@ -2,7 +2,7 @@
 import React from 'react'
 import django from 'django'
 
-const StartScreen = ({ moduleDescription, totalQuestions, isAuthenticated, allowUnregisteredUsers, totalParticipants, manualLink, onStart, onShowResults }) => {
+const StartScreen = ({ totalQuestions, isAuthenticated, allowUnregisteredUsers, totalParticipants, manualLink, onStart, onShowResults }) => {
   return (
     <div className="poll-start-screen">
 
@@ -20,10 +20,6 @@ const StartScreen = ({ moduleDescription, totalQuestions, isAuthenticated, allow
             </div>
           </div>
         </aside>
-      )}
-
-      {moduleDescription && (
-        <p className="lead">{moduleDescription}</p>
       )}
 
       <p
