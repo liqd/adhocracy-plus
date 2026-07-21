@@ -15,7 +15,7 @@
             {% trans 'Free, transparent, and designed to strengthen democracy.' %}
         </p>
         <div class="lp-hero-buttons">
-            <a href="{% url 'wagtail_serve' 'info/start/' %}" class="btn lp-hero-btn lp-hero-btn--outline">
+            <a href="{% url 'wagtail_serve' 'info/start/' %}" class="btn lp-hero-btn lp-hero-btn--account">
                 <i class="fa-regular fa-building" aria-hidden="true"></i>
                 {% trans 'Register your organization' %}
             </a>
@@ -25,7 +25,7 @@
                 {% else %}
                     {% url 'organisation' organisation_slug="musterorganisation" as demo_organisation_url %}
                 {% endif %}
-                <a href="{{ demo_organisation_url }}" class="btn lp-hero-btn lp-hero-btn--account">
+                <a href="{{ demo_organisation_url }}" class="btn lp-hero-btn lp-hero-btn--outline">
                     <i class="fa fa-external-link-alt" aria-hidden="true"></i>
                     {% trans 'Check demo organisation' %}
                 </a>
