@@ -327,6 +327,9 @@ SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
 LOGIN_URL = "account_login"
 LOGIN_REDIRECT_URL = "/"
 
+# Outgoing mail (see docs/installation_prod.md). Set DEFAULT_FROM_EMAIL in
+# production local settings to your SMTP sender address. Organisation-scoped
+# emails add a display name via EmailAplus (``{organisation} | {site name}``).
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Rest Framework

@@ -1,4 +1,6 @@
 from email.mime.image import MIMEImage
+from email.utils import formataddr
+from email.utils import parseaddr
 
 import magic
 from django.conf import settings
@@ -22,8 +24,25 @@ PROJECT_LINK_TEXT = _(
     "this project, unsubscribe from the {}project{}."
 )
 
+# Fallback when no platform or site name is configured (see get_platform_name()).
+DEFAULT_PLATFORM_SENDER_NAME = "adhocracy.plus"
+
 
 class EmailAplus(Email):
+    def get_sender_display_name(self):
+        platform_name = self.get_platform_name() or DEFAULT_PLATFORM_SENDER_NAME
+        organisation = self.get_organisation()
+        if organisation is not None:
+            return f"{organisation.name} | {platform_name}"
+        return platform_name
+
+    # Uses a4 EmailBase.get_from_email() hook; address from DEFAULT_FROM_EMAIL.
+    def get_from_email(self):
+        _, address = parseaddr(settings.DEFAULT_FROM_EMAIL)
+        if not address:
+            address = settings.DEFAULT_FROM_EMAIL
+        return formataddr((self.get_sender_display_name(), address))
+
     def get_languages(self, receiver):
         languages = super().get_languages(receiver)
         organisation = self.get_organisation()
