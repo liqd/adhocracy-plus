@@ -1,5 +1,7 @@
 {% load i18n wagtailcore_tags wagtailimages_tags static %}
 
+{% get_current_language as LANGUAGE_CODE %}
+
 <section class="lp-hero">
     <div class="lp-hero-text">
         <h1>
@@ -18,9 +20,14 @@
                 {% trans 'Register your organization' %}
             </a>
             {% if not user.is_authenticated %}
-                <a href="{% url 'account_signup' %}" class="btn lp-hero-btn lp-hero-btn--account">
-                    <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
-                    {% trans 'Create your Account' %}
+                {% if LANGUAGE_CODE == "en" %}
+                    {% url 'organisation' organisation_slug="model-organization" as demo_organisation_url %}
+                {% else %}
+                    {% url 'organisation' organisation_slug="musterorganisation" as demo_organisation_url %}
+                {% endif %}
+                <a href="{{ demo_organisation_url }}" class="btn lp-hero-btn lp-hero-btn--account">
+                    <i class="fa fa-external-link-alt" aria-hidden="true"></i>
+                    {% trans 'Check demo platform' %}
                 </a>
             {% endif %}
         </div>
