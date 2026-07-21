@@ -46,6 +46,7 @@ from apps.userdashboard.routers import ModerationDetailDefaultRouter
 from apps.users.api import UserViewSet
 from apps.users.decorators import user_is_project_admin
 from apps.users.views import GuestCreateView
+from apps.users.views import LogoutView
 from apps.users.views import set_language_overwrite
 
 router = routers.DefaultRouter()
@@ -99,6 +100,7 @@ urlpatterns = [
     path("admin/", include("wagtail.admin.urls")),
     path("documents/", include(wagtaildocs_urls)),
     path("accounts/guests/login/", GuestCreateView.as_view(), name="guest_create"),
+    path("accounts/logout/", LogoutView.as_view(), name="account_logout"),
     path(
         "accounts/email/",
         regular_user_required(allauth_views.EmailView.as_view()),

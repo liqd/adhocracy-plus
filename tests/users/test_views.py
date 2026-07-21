@@ -63,6 +63,43 @@ def test_logout_with_next(user, client, logout_url):
     assert "_auth_user_id" not in client.session
 
 
+@pytest.mark.django_db
+def test_guest_switch_logout_page_shows_guest_specific_copy(client, logout_url):
+    from tests.helpers import GuestUserCreator
+
+    guest_user = GuestUserCreator().create_guest_user()
+    client.force_login(guest_user)
+    with translation.override("en"):
+        response = client.get(logout_url + "?guest_switch=1&next=/accounts/login/")
+    assert response.status_code == 200
+    assert b"guest session first" in response.content
+    assert b"Continue" in response.content
+    assert b"Are you sure you want to sign out?" not in response.content
+
+
+@pytest.mark.django_db
+def test_guest_logout_without_switch_shows_regular_copy(client, logout_url):
+    from tests.helpers import GuestUserCreator
+
+    guest_user = GuestUserCreator().create_guest_user()
+    client.force_login(guest_user)
+    with translation.override("en"):
+        response = client.get(logout_url)
+    assert response.status_code == 200
+    assert b"Are you sure you want to sign out?" in response.content
+    assert b"guest session first" not in response.content
+
+
+@pytest.mark.django_db
+def test_regular_user_guest_switch_logout_shows_regular_copy(client, user, logout_url):
+    client.force_login(user)
+    with translation.override("en"):
+        response = client.get(logout_url + "?guest_switch=1&next=/accounts/login/")
+    assert response.status_code == 200
+    assert b"Are you sure you want to sign out?" in response.content
+    assert b"guest session first" not in response.content
+
+
 @override_settings(CAPTCHA=False)
 @pytest.mark.django_db
 def test_register(client, signup_url):

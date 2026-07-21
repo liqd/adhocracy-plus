@@ -304,3 +304,33 @@ def test_creator_contact_fields_not_saved_without_consent_on_proposal(
         assert proposal.creator_email == ""
         assert proposal.creator_phone == ""
         assert proposal.creator_contact_consent is False
+
+
+@pytest.mark.django_db
+def test_guest_creator_email_not_prefilled_on_proposal_create_form(
+    client, phase_factory, area_settings_factory
+):
+    from tests.helpers import GuestUserCreator
+
+    phase = phase_factory(phase_content=phases.RequestPhase())
+    module = phase.module
+    project = module.project
+    project.allow_guest_users = True
+    project.save()
+    area_settings_factory(module=module)
+    url = reverse(
+        "a4_candy_budgeting:proposal-create",
+        kwargs={
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
+    guest_user = GuestUserCreator().create_guest_user()
+    with freeze_phase(phase):
+        client.force_login(guest_user)
+        response = client.get(url)
+        assert_template_response(
+            response, "a4_candy_budgeting/proposal_create_form.html"
+        )
+        form = response.context_data["form"]
+        assert form.fields["creator_email"].initial in ("", None)

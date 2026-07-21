@@ -9,7 +9,14 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- Project detail and module pages: alert for guest users on registered-users-only projects to register or log in with a personal account
+- Guest logout confirmation: dedicated copy when guests end their session to log in with a personal account from the project banner
+
 ### Changed
+
+- Idea, proposal, and map idea forms: do not prefill contact email for guest users
+- Project detail: follower count and avatar bubbles exclude guest users
+- Project banner for guests: register links to guest account conversion; login routes through sign-out before the login page
 
 ### Fixed
 
