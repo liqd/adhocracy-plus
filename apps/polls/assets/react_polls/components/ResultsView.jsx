@@ -6,6 +6,9 @@ import Alert from 'adhocracy4/adhocracy4/static/Alert'
 const ResultsView = ({ results, totalParticipants, hasUserVote, votingEnded, alert, onBackToPoll, onChangeAnswer }) => {
   const [resultsCollapsed, setResultsCollapsed] = useState(false)
 
+  const pollEndedStr = django.gettext('The poll has ended. Here are the results.')
+  const pollCompletedStr = django.gettext('Here are the preliminary results.')
+
   return (
     <div className="poll__preliminary-results">
       <button
@@ -31,9 +34,9 @@ const ResultsView = ({ results, totalParticipants, hasUserVote, votingEnded, ale
             />
           )}
           <p className="lead poll__results-subtitle">
-            {django.gettext(votingEnded
-              ? 'The poll has ended. Here are the results.'
-              : 'Here are the preliminary results.')}
+            {votingEnded
+              ? pollEndedStr
+              : pollCompletedStr}
           </p>
         </div>
         <i className={`fas fa-chevron-down${resultsCollapsed ? '' : ' open'}`} aria-hidden="true" />

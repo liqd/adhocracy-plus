@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 14:51+0200\n"
+"POT-Creation-Date: 2026-07-21 09:18+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
@@ -332,10 +332,10 @@ msgid "Discussion"
 msgstr ""
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:289
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:293
 #: adhocracy4/comments_async/static/comments_async/filter_category.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:289
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:293
 #: adhocracy4/comments_async/static/comments_async/filter_category.jsx:6
 #: apps/interactiveevents/assets/Filters.jsx:32
 #: apps/interactiveevents/assets/QuestionBox.jsx:57
@@ -346,6 +346,10 @@ msgstr "allen"
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationActionsBar.jsx:14
 msgid "Highlighted"
 msgstr "Uitgelicht"
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:76
+msgid "Failed to load comments. Please try again."
+msgstr ""
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
@@ -653,15 +657,13 @@ msgstr ""
 msgid "The poll has been updated."
 msgstr "De poll is bijgewerkt."
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:187
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:188
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:193
 msgid "The poll could not be updated. Please check the data you entered again."
 msgstr ""
 "De poll kon niet worden bijgewerkt. Controleer de ingevoerde gegevens "
 "opnieuw."
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:266
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:267
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:272
 #: apps/documents/assets/DocumentManagement.jsx:327
 msgid "Save"
 msgstr "Bewaren"
@@ -810,7 +812,7 @@ msgid "Your answer is invalid or empty. Please try again."
 msgstr "Het antwoord is ongeldig of leeg. Probeer het opnieuw."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:70
-#: apps/polls/assets/react_polls/components/ResultsView.jsx:70
+#: apps/polls/assets/react_polls/components/ResultsView.jsx:73
 msgid "To poll"
 msgstr "Stemmen"
 
@@ -830,7 +832,7 @@ msgid "Please login to answer"
 msgstr "Log in om te antwoorden"
 
 #: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:201
-#: apps/polls/assets/react_polls/components/StartScreen.jsx:79
+#: apps/polls/assets/react_polls/components/StartScreen.jsx:73
 msgid "Show results"
 msgstr "Toon resultaten"
 
@@ -1275,18 +1277,22 @@ msgstr ""
 msgid "Question %(current)s of %(total)s"
 msgstr ""
 
-#: apps/polls/assets/react_polls/components/ResultsView.jsx:24
+#: apps/polls/assets/react_polls/components/ResultsView.jsx:9
+msgid "The poll has ended. Here are the results."
+msgstr ""
+
+#: apps/polls/assets/react_polls/components/ResultsView.jsx:10
+msgid "Here are the preliminary results."
+msgstr ""
+
+#: apps/polls/assets/react_polls/components/ResultsView.jsx:27
 #, javascript-format
 msgid "<strong>%s</strong> <strong>person</strong> has participated."
 msgid_plural "<strong>%s</strong> <strong>people</strong> have participated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/polls/assets/react_polls/components/ResultsView.jsx:35
-msgid "The poll has ended. Here are the results."
-msgstr ""
-
-#: apps/polls/assets/react_polls/components/ResultsView.jsx:59
+#: apps/polls/assets/react_polls/components/ResultsView.jsx:62
 msgid "Change my answers"
 msgstr ""
 
@@ -1310,7 +1316,7 @@ msgstr ""
 msgid "Learn more about voting options."
 msgstr ""
 
-#: apps/polls/assets/react_polls/components/StartScreen.jsx:36
+#: apps/polls/assets/react_polls/components/StartScreen.jsx:30
 msgid ""
 "Poll contains <span class=\"poll-start-screen__count\">%(count)s question</"
 "span>."
@@ -1320,7 +1326,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/polls/assets/react_polls/components/StartScreen.jsx:44
+#: apps/polls/assets/react_polls/components/StartScreen.jsx:38
 msgid ""
 "So far <span class=\"poll-start-screen__count\">%(count)s person</span> has "
 "participated."
@@ -1330,11 +1336,11 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/polls/assets/react_polls/components/StartScreen.jsx:62
+#: apps/polls/assets/react_polls/components/StartScreen.jsx:56
 msgid "Start"
 msgstr ""
 
-#: apps/polls/assets/react_polls/components/StartScreen.jsx:70
+#: apps/polls/assets/react_polls/components/StartScreen.jsx:64
 msgid "Log in to participate"
 msgstr ""
 

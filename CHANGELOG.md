@@ -13,6 +13,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- apps/polls: No cut-off in ResultsScreen for long polls
+
 ## v2607.3
 
 ### Fixed
