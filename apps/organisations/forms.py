@@ -170,6 +170,7 @@ class OrganisationForm(forms.ModelForm):
         ]
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop("user", None)
         super().__init__(*args, **kwargs)
         self.fields["title"].widget.attrs.update({"required": "true"})
         self.fields["logo"].help_text = IMAGE_UPLOAD_LOGO_HELP_TEXT
@@ -215,6 +216,10 @@ class OrganisationForm(forms.ModelForm):
             for lang in self.languages
             if lang in self.data or self.instance.has_translation(lang)
         ]
+        if not self.data and self.user and self.user.language:
+            if self.user.language in languages:
+                languages.remove(self.user.language)
+            languages.insert(0, self.user.language)
         return languages
 
     def get_initial_active_tab(self):
