@@ -248,6 +248,11 @@ module.exports = {
     )
   },
   plugins: [
+    // override adhocracy4 QuestionImageUploadButton with Uppy-based version
+    new webpack.NormalModuleReplacementPlugin(
+      /QuestionImageUploadButton$/,
+      path.resolve('./apps/polls/assets/react_polls/components/UppyQuestionImageUpload.jsx')
+    ),
     // automatically load modules instead of import or require them everywhere.
     new webpack.ProvidePlugin({
       $: 'jquery',
