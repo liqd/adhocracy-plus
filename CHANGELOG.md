@@ -25,6 +25,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   Implemented in ``EmailAplus.get_from_email()``; a4 report emails are wired via
   ``apps/contrib/a4_emails.py``.
 
+
+## v2607.4
+
 ### Fixed
 
 - apps/polls: No cut-off in ResultsScreen for long polls
