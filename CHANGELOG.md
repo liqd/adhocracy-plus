@@ -24,6 +24,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   Django site name). SMTP address still comes from ``DEFAULT_FROM_EMAIL``.
   Implemented in ``EmailAplus.get_from_email()``; a4 report emails are wired via
   ``apps/contrib/a4_emails.py``.
+- Polls: Use Uppy Image uploader for Poll Question Images
 
 
 ## v2607.4
