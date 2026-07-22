@@ -19,17 +19,15 @@
                 <i class="fa-regular fa-building" aria-hidden="true"></i>
                 {% trans 'Register your organization' %}
             </a>
-            {% if not user.is_authenticated %}
-                {% if LANGUAGE_CODE == "en" %}
-                    {% url 'organisation' organisation_slug="model-organization" as demo_organisation_url %}
-                {% else %}
-                    {% url 'organisation' organisation_slug="musterorganisation" as demo_organisation_url %}
-                {% endif %}
-                <a href="{{ demo_organisation_url }}" class="btn lp-hero-btn lp-hero-btn--outline">
-                    <i class="fa fa-external-link-alt" aria-hidden="true"></i>
-                    {% trans 'Check demo organisation' %}
-                </a>
+            {% if LANGUAGE_CODE == "en" %}
+                {% url 'organisation' organisation_slug="model-organization" as demo_organisation_url %}
+            {% else %}
+                {% url 'organisation' organisation_slug="musterorganisation" as demo_organisation_url %}
             {% endif %}
+            <a href="{{ demo_organisation_url }}" class="btn lp-hero-btn lp-hero-btn--outline">
+                <i class="fa fa-external-link-alt" aria-hidden="true"></i>
+                {% trans 'Check demo organisation' %}
+            </a>
         </div>
     </div>
     <div class="lp-hero-img">
