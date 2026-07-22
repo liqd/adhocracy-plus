@@ -149,12 +149,13 @@
         <div class="d-none d-md-flex userindicator__anonymous userindicator__anonymous--desktop">
             <a href="{% url 'account_login' %}?next={{ redirect_field_value }}"
                class="btn userindicator__anonymous-btn userindicator__anonymous-btn--login">
+                <i class="fa fa-sign-in" aria-hidden="true"></i>
                 {% translate "Log in" %}
             </a>
             <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}"
                class="btn userindicator__anonymous-btn userindicator__anonymous-btn--cta">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
                 <span>{% translate "Get Started" %}</span>
-                <i class="fa-solid fa-arrow-right userindicator__anonymous-cta-icon" aria-hidden="true"></i>
             </a>
         </div>
         <div class="dropdown-menu dropdown-menu-end userindicator__anonymous-sheet d-md-none"
@@ -162,12 +163,13 @@
             <div class="userindicator__anonymous userindicator__anonymous--mobile">
                 <a href="{% url 'account_login' %}?next={{ redirect_field_value }}"
                    class="btn userindicator__anonymous-btn userindicator__anonymous-btn--login">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>
                     {% translate "Log in" %}
                 </a>
                 <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}"
                    class="btn userindicator__anonymous-btn userindicator__anonymous-btn--cta">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
                     <span>{% translate "Get Started" %}</span>
-                    <i class="fa-solid fa-arrow-right userindicator__anonymous-cta-icon" aria-hidden="true"></i>
                 </a>
             </div>
         </div>

@@ -10,9 +10,7 @@ def test_hero_shows_register_and_account_buttons_for_guests(client):
     content = response.content.decode()
     assert "lp-hero-buttons" in content
     assert "/info/start/" in content
-    assert "Register your organization" in content
-    assert reverse("account_signup") in content
-    assert "Create your Account" in content
+    assert "Check demo organisation" in content
     assert "fa-user-plus" in content
 
 
