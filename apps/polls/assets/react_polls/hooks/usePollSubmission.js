@@ -2,7 +2,7 @@
 import { useCallback } from 'react'
 import api from 'adhocracy4/adhocracy4/static/api'
 
-export const usePollSubmission = (pollId, dispatch) => {
+export const usePollSubmission = (pollId) => {
   const submitVotes = useCallback(async (votes, options = {}) => {
     const { agreedTermsOfUse = false, captcha = '' } = options
 

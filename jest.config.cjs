@@ -21,7 +21,7 @@ const config = {
     '**/*.jsx',
     '!**/coverage/**',
     '!**/node_modules/**',
-    '!**/babel.config.js',
+    '!**/babel.config.cjs',
     '!**/jest.setup.js',
     '!**/chrome/**',
     '!**/site-packages/adhocracy4/**',

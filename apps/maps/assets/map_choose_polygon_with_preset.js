@@ -42,7 +42,7 @@ function init () {
 
       $(document).on('click', '#map-export-link', (e) => {
         e.preventDefault()
-        this._export(map)
+        this._export()
       })
 
       $(document).on('submit', '#map-import-form', (e) => {
@@ -121,7 +121,7 @@ function init () {
       $('#map-import-form .form-group').append('<ul class="errorlist"><li>' + msg + '</li>')
     },
 
-    _export: function (map) {
+    _export: function () {
       const geoJson = this._layer.toGeoJSON()
       const blob = new window.Blob([JSON.stringify(geoJson)], { type: 'application/json' })
       FileSaver.saveAs(blob, 'export.geojson')
@@ -142,8 +142,9 @@ function init () {
               console.log('Import error: ', e)
               this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
             }
-          }, (e) => this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
-          ).catch((e) => {
+            return undefined
+          }, () => this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
+          ).catch(() => {
             this._showUploadError(django.gettext('The uploaded file could not be imported.'))
           })
         }
@@ -259,19 +260,19 @@ function init () {
       $('#id_' + name).trigger('change')
     })
 
-    map.on(L.Draw.Event.EDITED, function (event) {
+    map.on(L.Draw.Event.EDITED, function () {
       const geoJson = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(geoJson))
       $('#id_' + name).trigger('change')
     })
 
-    map.on(L.Draw.Event.DELETED, function (event) {
+    map.on(L.Draw.Event.DELETED, function () {
       const geoJson = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(geoJson))
       $('#id_' + name).trigger('change')
     })
 
-    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function () {
       map.invalidateSize().fitBounds(getBaseBounds(L, polygon, bbox))
     })
 

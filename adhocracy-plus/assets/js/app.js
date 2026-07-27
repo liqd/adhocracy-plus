@@ -1,4 +1,3 @@
-import 'bootstrap' // load bootstrap components
 import { Dropdown } from 'bootstrap'
 import 'django'
 import 'select2' // used to skin select element used in livequestions

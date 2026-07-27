@@ -21,7 +21,7 @@ module.exports = {
   widget: function () { return null },
 
   // Named exports used by polls
-  PollOpenQuestion: function (props) {
+  PollOpenQuestion: function () {
     return React.createElement('div', { 'data-testid': 'poll-open-question' })
   },
   ConfidentialNotice: function () {
