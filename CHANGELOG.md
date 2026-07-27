@@ -27,6 +27,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   Implemented in ``EmailAplus.get_from_email()``; a4 report emails are wired via
   ``apps/contrib/a4_emails.py``.
 - Polls: Use Uppy Image uploader for Poll Question Images
+- Dependencies: use pnpm for more secure package management
 
 
 ## v2607.4
