@@ -13,6 +13,10 @@ jobs:
     container: ghcr.io/${{ github.repository }}/ci-base:latest
     steps:
       - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.8.0
       - name: Start PostgreSQL
         run: |
           sudo service postgresql start
@@ -24,25 +28,13 @@ jobs:
           python-version: '3.12.13'
           check-latest: false
 
-      - name: Cache node packages
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-node-packages
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: Cache node Modules
-        id: cache-node-modules
+      - name: Cache pnpm store
         uses: actions/cache@v4
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.local/share/pnpm/store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-node_modules-
+            ${{ runner.os }}-pnpm-store-
 
       - name: Cache uv packages
         uses: actions/cache@v4
@@ -67,8 +59,6 @@ jobs:
 
       - name: Checks
         run: |
-          echo "node_modules cache hit: ${{ steps.cache-node-modules.outputs.cache-hit }}"
-          ls -la node_modules 2>/dev/null || echo "node_modules directory does not exist"
           echo "testmon cache hit: ${{ steps.cache-testmon.outputs.cache-hit }}"
           ls -la .testmondata || true
           ./scripts/a4-check.sh
@@ -111,23 +101,18 @@ jobs:
           git config --global user.email "actions@github.com"
           coveralls
 
-      - name: Install NPM Dependencies
+      - name: Install Dependencies
         run: |
-          if [ "${{ steps.cache-node-modules.outputs.cache-hit }}" = "true" ]; then
-            echo "node_modules cache hit - skipping npm ci"
-          else
-            echo "node_modules cache miss or partial restore - running npm ci"
-            npm ci --prefer-offline --no-audit --no-fund
-          fi
+          pnpm install --frozen-lockfile
 
-      - name: Build NPM 
+      - name: Build
         run: |
-          npm run build
+          pnpm run build
 
       - name: Run Frontend Tests
         run: |
-          npm test
-          npm run lint
+          pnpm test
+          pnpm run lint
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'

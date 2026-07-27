@@ -172,7 +172,10 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!(adhocracy4)\/).*/, // exclude all dependencies but adhocracy4
+        exclude: [
+          /node_modules\/\.pnpm\/.+?\/node_modules\/(?!adhocracy4\/).*/,
+          /node_modules\/(?!\.pnpm\/)(?!adhocracy4\/).*/
+        ],
         use: {
           loader: 'babel-loader',
           options: {
@@ -229,7 +232,7 @@ module.exports = {
       path: require.resolve('path-browserify')
     },
     // attempt to resolve these extensions in this order.
-    extensions: ['*', '.js', '.jsx', '.scss', '.css'],
+    extensions: ['.js', '.jsx', '.scss', '.css'],
     // create aliases to import or require certain modules more easily, $ signifys exact match
     alias: {
       bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',
