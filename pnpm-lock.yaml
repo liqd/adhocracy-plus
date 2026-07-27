@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  i18next-http-middleware: 3.9.7
+
 importers:
 
   .:
@@ -3415,8 +3418,8 @@ packages:
   i18next-http-backend@3.0.2:
     resolution: {integrity: sha512-PdlvPnvIp4E1sYi46Ik4tBYh/v/NbYfFFgTjkwFl0is8A18s7/bx9aXqsrOax9WUbeNS6mD2oix7Z0yGGf6m5g==}
 
-  i18next-http-middleware@3.7.4:
-    resolution: {integrity: sha512-RANEF3XNpR5ExJryg3wKIycrPEYg7IdZiEvWFwb2lyDTwG5nB3AvhD5SfqRFT02Jbn8MHS5+xq7p4W+dX2ZJ8g==}
+  i18next-http-middleware@3.9.7:
+    resolution: {integrity: sha512-k4Aa39thnQXGox5ZeKvlOwbDsFz+iGxtPJITWm6xmmErNZOeGMXIoH9XwK3ITUq7lqHaywnIH9gLwOraU4jJvQ==}
 
   i18next-resources-to-backend@1.2.1:
     resolution: {integrity: sha512-okHbVA+HZ7n1/76MsfhPqDou0fptl2dAlhRDu2ideXloRRduzHsqDOznJBef+R3DFZnbvWoBW+KxJ7fnFjd6Yw==}
@@ -7364,7 +7367,7 @@ snapshots:
       i18next-chained-backend: 4.6.2
       i18next-fs-backend: 2.6.6
       i18next-http-backend: 3.0.2
-      i18next-http-middleware: 3.7.4
+      i18next-http-middleware: 3.9.7
       i18next-resources-to-backend: 1.2.1
       react-i18next: 15.4.0(i18next@24.2.2(typescript@5.9.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       zod: 3.23.8
@@ -10485,7 +10488,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  i18next-http-middleware@3.7.4: {}
+  i18next-http-middleware@3.9.7: {}
 
   i18next-resources-to-backend@1.2.1:
     dependencies:
