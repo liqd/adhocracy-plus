@@ -28,6 +28,19 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   ``apps/contrib/a4_emails.py``.
 - Polls: Use Uppy Image uploader for Poll Question Images
 - Dependencies: use pnpm for more secure package management
+- CI: use Node 22 in GitHub Actions workflow
+- Dependencies: upgrade various npm packages for security fixes
+- Dependencies: migrate eslint from v8 to v9 with flat config (``eslint.config.js``);
+  remove deprecated ``@babel/eslint-parser``, ``eslint-config-standard``,
+  ``eslint-config-standard-jsx``, and ``eslint-plugin-import``; add
+  ``@eslint/js``, ``eslint-plugin-import-x``, ``eslint-plugin-n``,
+  ``eslint-plugin-react-hooks``, and ``globals``
+
+### Fixed
+
+- tests/organisations: fix ``test_initiator_can_update`` assertion to use
+  ``switch_language`` context manager (django-parler behaviour change caused
+  the default-language description to return the primary language value)
 
 
 ## v2607.4
