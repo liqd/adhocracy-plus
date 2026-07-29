@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from ..models import NotificationType
@@ -29,7 +30,7 @@ class OrganisationNewProject(BaseNotificationStrategy):
                 "This email was sent to {receiver_email}. You have received the "
                 "e-mail because you are following {organisation_name}. If you no "
                 "longer want to receive notifications for the organisation, "
-                '<a href="{organisation_url}" target="_blank">click here</a>.'
+                '<a href="{unfollow_url}" target="_blank">unfollow</a>.'
             ),
             "content_template": (
                 "a4_candy_notifications/emails/content/"
@@ -38,6 +39,10 @@ class OrganisationNewProject(BaseNotificationStrategy):
             "project_name": project.name,
             "organisation_name": organisation.name,
             "organisation_path": organisation.get_absolute_url(),
+            "unfollow_path": reverse(
+                "organisation-unfollow",
+                kwargs={"organisation_slug": organisation.slug},
+            ),
             "project_description": project.description,
         }
 

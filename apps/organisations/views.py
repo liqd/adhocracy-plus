@@ -12,6 +12,7 @@ from django.db.models import OuterRef
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -100,6 +101,21 @@ class OrganisationFollowToggleView(LoginRequiredMixin, View):
             request=request,
         )
         return HttpResponse(alert + button)
+
+
+class OrganisationUnfollowView(LoginRequiredMixin, View):
+    def get(self, request, organisation_slug):
+        organisation = get_object_or_404(Organisation, slug=organisation_slug)
+        OrganisationFollow.objects.filter(
+            organisation=organisation,
+            creator=request.user,
+            enabled=True,
+        ).update(enabled=False)
+        return render(
+            request,
+            "a4_candy_organisations/organisation_unfollow.html",
+            {"organisation": organisation},
+        )
 
 
 class InformationView(DetailView):

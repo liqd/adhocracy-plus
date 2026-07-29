@@ -18,6 +18,11 @@ urlpatterns = [
         name="organisation-follow",
     ),
     re_path(
+        r"^(?P<organisation_slug>[-\w_]+)/unfollow/$",
+        views.OrganisationUnfollowView.as_view(),
+        name="organisation-unfollow",
+    ),
+    re_path(
         r"^(?P<organisation_slug>[-\w_]+)/information/$",
         views.InformationView.as_view(),
         name="organisation-information",

@@ -115,3 +115,64 @@ def test_organisation_follow_toggle_view_unauthenticated(client, organisation_fa
     response = client.post(url)
     assert response.status_code == 302
     assert "login" in response.url
+
+
+@pytest.mark.django_db
+def test_organisation_unfollow_view_unfollows(
+    client, organisation_factory, user_factory
+):
+    organisation = organisation_factory()
+    user = user_factory()
+    OrganisationFollow.objects.create(
+        organisation=organisation,
+        creator=user,
+        enabled=True,
+    )
+    client.force_login(user)
+
+    url = reverse(
+        "organisation-unfollow",
+        kwargs={"organisation_slug": organisation.slug},
+    )
+
+    response = client.get(url)
+    assert response.status_code == 200
+
+    follow = OrganisationFollow.objects.get(organisation=organisation, creator=user)
+    assert follow.enabled is False
+
+
+@pytest.mark.django_db
+def test_organisation_unfollow_view_unauthenticated(client, organisation_factory):
+    organisation = organisation_factory()
+
+    url = reverse(
+        "organisation-unfollow",
+        kwargs={"organisation_slug": organisation.slug},
+    )
+
+    response = client.get(url)
+    assert response.status_code == 302
+    assert "login" in response.url
+
+
+@pytest.mark.django_db
+def test_organisation_unfollow_view_noop_when_not_following(
+    client, organisation_factory, user_factory
+):
+    organisation = organisation_factory()
+    user = user_factory()
+    client.force_login(user)
+
+    url = reverse(
+        "organisation-unfollow",
+        kwargs={"organisation_slug": organisation.slug},
+    )
+
+    response = client.get(url)
+    assert response.status_code == 200
+
+    follows = OrganisationFollow.objects.filter(
+        organisation=organisation, creator=user, enabled=True
+    )
+    assert follows.count() == 0

@@ -90,11 +90,16 @@ class NotificationEmail(Email):
                     organisation_url = (
                         self.get_host() + organisation_path if organisation_path else ""
                     )
+                    unfollow_path = context.get("unfollow_path", "")
+                    unfollow_url = (
+                        self.get_host() + unfollow_path if unfollow_path else ""
+                    )
                     context["reason"] = context["reason"].format(
                         receiver_email=receiver.email,
                         organisation_name=context.get("organisation_name", ""),
                         site_name=site_name,
                         organisation_url=organisation_url,
+                        unfollow_url=unfollow_url,
                     )
                     context["reason"] = mark_safe(context["reason"])
 
