@@ -21,15 +21,15 @@ class OrganisationNewProject(BaseNotificationStrategy):
     def create_notification_data(self, project):
         organisation = project.organisation
         email_context = {
-            "subject": _("New project: {project_name} from {organisation_name}"),
-            "headline": _("A new project has been published!"),
-            "subheadline": project.name,
+            "subject": _("New project was published by {organisation_name}"),
+            "headline": _("New project was published by {organisation_name}"),
             "cta_url": project.get_absolute_url(),
-            "cta_label": _("View project"),
+            "cta_label": _("Show project"),
             "reason": _(
                 "This email was sent to {receiver_email}. You have received the "
-                "e-mail because you are following the organisation "
-                "{organisation_name}."
+                "e-mail because you are following {organisation_name}. If you no "
+                "longer want to receive notifications for the organisation, "
+                '<a href="{organisation_url}" target="_blank">click here</a>.'
             ),
             "content_template": (
                 "a4_candy_notifications/emails/content/"
@@ -37,6 +37,8 @@ class OrganisationNewProject(BaseNotificationStrategy):
             ),
             "project_name": project.name,
             "organisation_name": organisation.name,
+            "organisation_path": organisation.get_absolute_url(),
+            "project_description": project.description,
         }
 
         return {

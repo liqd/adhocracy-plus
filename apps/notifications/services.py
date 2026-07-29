@@ -3,6 +3,7 @@ from typing import List
 from django.apps import apps
 from django.template.loader import render_to_string
 from django.utils import translation
+from django.utils.safestring import mark_safe
 from guest_user.functions import is_guest_user
 
 from apps.users.emails import EmailAplus as Email
@@ -85,11 +86,17 @@ class NotificationEmail(Email):
                         receiver_name=receiver.username
                     )
                 if "reason" in context:
+                    organisation_path = context.get("organisation_path", "")
+                    organisation_url = (
+                        self.get_host() + organisation_path if organisation_path else ""
+                    )
                     context["reason"] = context["reason"].format(
                         receiver_email=receiver.email,
                         organisation_name=context.get("organisation_name", ""),
                         site_name=site_name,
+                        organisation_url=organisation_url,
                     )
+                    context["reason"] = mark_safe(context["reason"])
 
             return super().render(template_name, context)
 

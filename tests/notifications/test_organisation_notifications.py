@@ -96,6 +96,7 @@ def test_organisation_new_project_sends_email_to_followers(
     assert len(follower_emails) == 1
     assert project.name.lower() in follower_emails[0].body.lower()
     assert organisation.name.lower() in follower_emails[0].body.lower()
+    assert project.description in follower_emails[0].body
 
 
 @pytest.mark.django_db
