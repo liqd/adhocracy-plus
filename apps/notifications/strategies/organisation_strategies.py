@@ -55,6 +55,7 @@ class OrganisationNewProject(BaseNotificationStrategy):
                 "project": project.name,
                 "project_url": project.get_absolute_url(),
                 "organisation": organisation.name,
+                "organisation_url": organisation.get_absolute_url(),
             },
             "target_url": project.get_absolute_url(),
             "email_context": email_context,
