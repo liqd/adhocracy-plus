@@ -1,0 +1,6 @@
+{% load i18n %}
+<p>
+{% blocktranslate with organisation_name=organisation_name project_name=project_name %}
+The organisation {{ organisation_name }} has published a new participation project "{{ project_name }}".
+{% endblocktranslate %}
+</p>

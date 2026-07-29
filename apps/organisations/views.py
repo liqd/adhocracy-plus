@@ -4,12 +4,16 @@ import os
 from io import BytesIO
 
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ImproperlyConfigured
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.views import View
 from django.views import generic
 from django.views.generic import DetailView
 from PIL import Image
@@ -23,6 +27,7 @@ from . import forms
 from .forms import SOCIAL_MEDIA_SIZES
 from .forms import CommunicationContentCreationForm
 from .models import Organisation
+from .models import OrganisationFollow
 
 
 class OrganisationView(DetailView):
@@ -47,7 +52,40 @@ class OrganisationView(DetailView):
             project_headline = _("Ended participation")
         context["project_headline"] = project_headline
 
+        user = self.request.user
+        if user.is_authenticated:
+            context["is_following"] = OrganisationFollow.objects.filter(
+                organisation=self.object,
+                creator=user,
+                enabled=True,
+            ).exists()
+        else:
+            context["is_following"] = False
+
         return context
+
+
+class OrganisationFollowToggleView(LoginRequiredMixin, View):
+    def post(self, request, organisation_slug):
+        organisation = get_object_or_404(Organisation, slug=organisation_slug)
+        follow, created = OrganisationFollow.objects.get_or_create(
+            organisation=organisation,
+            creator=request.user,
+            defaults={"enabled": True},
+        )
+        if not created:
+            follow.enabled = not follow.enabled
+            follow.save()
+
+        html = render_to_string(
+            "a4_candy_organisations/includes/follow_button.html",
+            {
+                "organisation": organisation,
+                "is_following": follow.enabled,
+            },
+            request=request,
+        )
+        return HttpResponse(html)
 
 
 class InformationView(DetailView):

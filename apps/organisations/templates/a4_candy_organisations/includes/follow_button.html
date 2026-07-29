@@ -1,0 +1,33 @@
+{% load i18n %}
+{% if request.user.is_authenticated %}
+  <span class="a4-follow">
+    <form hx-post="{% url 'organisation-follow' organisation_slug=organisation.slug %}"
+          hx-swap="outerHTML"
+          hx-target="closest span">
+      {% csrf_token %}
+      <button
+        class="btn {% if is_following %}a4-btn a4-btn--following{% else %}a4-btn a4-btn--follow{% endif %}"
+        type="submit"
+        aria-pressed="{{ is_following|yesno:'true,false' }}"
+        aria-describedby="follow-description-{{ organisation.slug }}"
+      >
+        <span class="a4-follow__btn--content">
+          {% if is_following %}{% translate 'Following' %}{% else %}{% translate 'Follow' %}{% endif %}
+        </span>
+        <span class="a4-sr-only" id="follow-description-{{ organisation.slug }}">
+          {% if is_following %}
+            {% translate "Click to no longer be updated about new projects of this organisation via email." %}
+          {% else %}
+            {% translate "Click to be updated about new projects of this organisation via email." %}
+          {% endif %}
+        </span>
+      </button>
+    </form>
+  </span>
+{% else %}
+  <span class="a4-follow">
+    <a href="{% url 'account_login' %}?next={{ request.path }}" class="a4-btn a4-btn--follow">
+      <span class="a4-follow__btn--content">{% translate 'Follow' %}</span>
+    </a>
+  </span>
+{% endif %}

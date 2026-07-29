@@ -9,6 +9,7 @@ from .moderation_strategies import CommentBlocked
 from .moderation_strategies import CommentFeedback
 from .moderation_strategies import IdeaFeedback
 from .moderation_strategies import ProposalFeedback
+from .organisation_strategies import OrganisationNewProject
 from .project_strategies import ProjectCreated
 from .project_strategies import ProjectDeleted
 from .project_strategies import ProjectEnded
@@ -36,4 +37,5 @@ __all__ = [
     "UserContentCreated",
     "ProposalFeedback",
     "CommentBlocked",
+    "OrganisationNewProject",
 ]
