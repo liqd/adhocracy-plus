@@ -136,7 +136,12 @@ def test_organisation_unfollow_view_unfollows(
     )
 
     response = client.get(url)
-    assert response.status_code == 200
+    assert response.status_code == 302
+    assert (
+        response.url
+        == reverse("organisation", kwargs={"organisation_slug": organisation.slug})
+        + "?unfollowed=1"
+    )
 
     follow = OrganisationFollow.objects.get(organisation=organisation, creator=user)
     assert follow.enabled is False
@@ -170,7 +175,12 @@ def test_organisation_unfollow_view_noop_when_not_following(
     )
 
     response = client.get(url)
-    assert response.status_code == 200
+    assert response.status_code == 302
+    assert (
+        response.url
+        == reverse("organisation", kwargs={"organisation_slug": organisation.slug})
+        + "?unfollowed=1"
+    )
 
     follows = OrganisationFollow.objects.filter(
         organisation=organisation, creator=user, enabled=True

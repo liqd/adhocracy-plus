@@ -12,7 +12,6 @@ from django.db.models import OuterRef
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
-from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -71,6 +70,7 @@ class OrganisationView(DetailView):
         context["project_headline"] = project_headline
 
         context["is_following"] = getattr(self.object, "_is_following", False)
+        context["unfollow_alert"] = self.request.GET.get("unfollowed") == "1"
 
         return context
 
@@ -111,10 +111,9 @@ class OrganisationUnfollowView(LoginRequiredMixin, View):
             creator=request.user,
             enabled=True,
         ).update(enabled=False)
-        return render(
-            request,
-            "a4_candy_organisations/organisation_unfollow.html",
-            {"organisation": organisation},
+        return redirect(
+            reverse("organisation", kwargs={"organisation_slug": organisation.slug})
+            + "?unfollowed=1"
         )
 
 
