@@ -86,7 +86,12 @@ class OrganisationFollowToggleView(LoginRequiredMixin, View):
             follow.enabled = not follow.enabled
             follow.save()
 
-        html = render_to_string(
+        alert = render_to_string(
+            "a4_candy_organisations/includes/_follow_alert.html",
+            {"is_following": follow.enabled},
+            request=request,
+        )
+        button = render_to_string(
             "a4_candy_organisations/includes/follow_button.html",
             {
                 "organisation": organisation,
@@ -94,7 +99,7 @@ class OrganisationFollowToggleView(LoginRequiredMixin, View):
             },
             request=request,
         )
-        return HttpResponse(html)
+        return HttpResponse(alert + button)
 
 
 class InformationView(DetailView):
