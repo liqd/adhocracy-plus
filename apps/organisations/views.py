@@ -7,6 +7,8 @@ from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ImproperlyConfigured
+from django.db.models import Exists
+from django.db.models import OuterRef
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
@@ -35,6 +37,21 @@ class OrganisationView(DetailView):
     model = Organisation
     slug_url_kwarg = "organisation_slug"
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        user = self.request.user
+        if user.is_authenticated:
+            qs = qs.annotate(
+                _is_following=Exists(
+                    OrganisationFollow.objects.filter(
+                        organisation=OuterRef("pk"),
+                        creator=user,
+                        enabled=True,
+                    )
+                )
+            )
+        return qs
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         active, future, past = self.object.get_projects_list(self.request.user)
@@ -52,15 +69,7 @@ class OrganisationView(DetailView):
             project_headline = _("Ended participation")
         context["project_headline"] = project_headline
 
-        user = self.request.user
-        if user.is_authenticated:
-            context["is_following"] = OrganisationFollow.objects.filter(
-                organisation=self.object,
-                creator=user,
-                enabled=True,
-            ).exists()
-        else:
-            context["is_following"] = False
+        context["is_following"] = getattr(self.object, "_is_following", False)
 
         return context
 

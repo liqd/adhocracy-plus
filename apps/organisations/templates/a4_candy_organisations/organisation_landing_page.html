@@ -56,15 +56,7 @@
                             {{ organisation.description }}
                         </div>
                         <div class="organisation__follow">
-                            {% if request.user.is_authenticated %}
-                                {% include 'a4_candy_organisations/includes/follow_button.html' with organisation=organisation is_following=is_following %}
-                            {% else %}
-                                <span class="a4-follow">
-                                    <a href="{% url 'account_login' %}?next={{ request.path }}" class="a4-btn a4-btn--follow">
-                                        <span class="a4-follow__btn--content">{% translate 'Follow' %}</span>
-                                    </a>
-                                </span>
-                            {% endif %}
+                            {% include 'a4_candy_organisations/includes/follow_button.html' with organisation=organisation is_following=is_following %}
                         </div>
                     </div>
                 </div>
