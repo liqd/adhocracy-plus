@@ -240,12 +240,8 @@ module.exports = {
       jquery$: 'jquery/dist/jquery.min.js',
       'slick-carousel$': 'slick-carousel/slick/slick.min.js'
     },
-    // when using `npm link` for a4 dev env, dependencies are resolved against the linked
-    // folder by default. This may result in dependencies being included twice.
-    // Resolving against node_modules will prevent this.
-    // concat merges node_modules and assets and syncs both to ensure no duplication.
     modules: [
-      path.resolve('./node_modules')
+      'node_modules'
     ].concat(
       glob.sync('./apps/*/assets/js').map(e => { return path.resolve(e) })
     )
