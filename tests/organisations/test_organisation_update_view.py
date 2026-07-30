@@ -233,3 +233,19 @@ def test_member_cannot_update_legal_info(client, member):
     data = {"imprint": "Organisation imprint", "netiquette": "Be nice with each other."}
     response = client.post(url, data)
     assert response.status_code == 403
+
+
+@pytest.mark.django_db
+def test_preferred_language_is_active_tab_by_default(client, organisation):
+    initiator = organisation.initiators.first()
+    initiator.language = "de"
+    initiator.save()
+
+    client.login(username=initiator, password="password")
+    url = reverse(
+        "a4dashboard:organisation-settings",
+        kwargs={"organisation_slug": organisation.slug},
+    )
+    response = client.get(url)
+    assert response.status_code == 200
+    assert response.context["form"].get_initial_active_tab() == "de"
