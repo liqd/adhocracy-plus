@@ -4,12 +4,18 @@ import os
 from io import BytesIO
 
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ImproperlyConfigured
+from django.db.models import Exists
+from django.db.models import OuterRef
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.views import View
 from django.views import generic
 from django.views.generic import DetailView
 from PIL import Image
@@ -23,12 +29,28 @@ from . import forms
 from .forms import SOCIAL_MEDIA_SIZES
 from .forms import CommunicationContentCreationForm
 from .models import Organisation
+from .models import OrganisationFollow
 
 
 class OrganisationView(DetailView):
     template_name = "a4_candy_organisations/organisation_landing_page.html"
     model = Organisation
     slug_url_kwarg = "organisation_slug"
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        user = self.request.user
+        if user.is_authenticated:
+            qs = qs.annotate(
+                _is_following=Exists(
+                    OrganisationFollow.objects.filter(
+                        organisation=OuterRef("pk"),
+                        creator=user,
+                        enabled=True,
+                    )
+                )
+            )
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -47,7 +69,52 @@ class OrganisationView(DetailView):
             project_headline = _("Ended participation")
         context["project_headline"] = project_headline
 
+        context["is_following"] = getattr(self.object, "_is_following", False)
+        context["unfollow_alert"] = self.request.GET.get("unfollowed") == "1"
+
         return context
+
+
+class OrganisationFollowToggleView(LoginRequiredMixin, View):
+    def post(self, request, organisation_slug):
+        organisation = get_object_or_404(Organisation, slug=organisation_slug)
+        follow, created = OrganisationFollow.objects.get_or_create(
+            organisation=organisation,
+            creator=request.user,
+            defaults={"enabled": True},
+        )
+        if not created:
+            follow.enabled = not follow.enabled
+            follow.save()
+
+        alert = render_to_string(
+            "a4_candy_organisations/includes/_follow_alert.html",
+            {"is_following": follow.enabled},
+            request=request,
+        )
+        button = render_to_string(
+            "a4_candy_organisations/includes/follow_button.html",
+            {
+                "organisation": organisation,
+                "is_following": follow.enabled,
+            },
+            request=request,
+        )
+        return HttpResponse(alert + button)
+
+
+class OrganisationUnfollowView(LoginRequiredMixin, View):
+    def get(self, request, organisation_slug):
+        organisation = get_object_or_404(Organisation, slug=organisation_slug)
+        OrganisationFollow.objects.filter(
+            organisation=organisation,
+            creator=request.user,
+            enabled=True,
+        ).update(enabled=False)
+        return redirect(
+            reverse("organisation", kwargs={"organisation_slug": organisation.slug})
+            + "?unfollowed=1"
+        )
 
 
 class InformationView(DetailView):

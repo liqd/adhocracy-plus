@@ -55,6 +55,14 @@
                         <div class="organisation__description {% if organisation.description|length > 500 %} l-two-col {% endif %}">
                             {{ organisation.description }}
                         </div>
+                        <div class="organisation__follow">
+                            {% include 'a4_candy_organisations/includes/follow_button.html' with organisation=organisation is_following=is_following %}
+                        </div>
+                        <div id="organisation-follow-alert">
+                            {% if unfollow_alert %}
+                                {% include 'a4_candy_organisations/includes/_follow_alert.html' with is_following=False %}
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

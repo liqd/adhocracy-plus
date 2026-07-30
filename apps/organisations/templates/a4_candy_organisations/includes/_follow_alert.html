@@ -1,0 +1,22 @@
+{% load i18n %}
+<div hx-swap-oob="true" id="organisation-follow-alert" class="a4-follow__notification">
+    <div class="alert alert--{% if is_following %}success{% else %}warning{% endif %}" role="status" aria-live="polite" aria-atomic="true">
+        <div class="alert__content">
+            {% if is_following %}
+                {% blocktranslate %}
+                    From now on, we'll keep you updated on all changes.<br/>
+                    Make sure email notifications are enabled in your
+                    <a href="/account/notification-settings/" target="_blank">
+                        notification settings
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                    </a>.
+                {% endblocktranslate %}
+            {% else %}
+                {% translate "You will no longer be notified about organisation updates or new projects." %}
+            {% endif %}
+        </div>
+        <button type="button" class="alert__close" onclick="this.closest('.alert').remove()" aria-label="{% translate 'Close' %}">
+            <span class="fa fa-times" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>
