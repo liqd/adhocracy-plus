@@ -80,7 +80,7 @@
                       role="button"
                       aria-expanded="false"
                       data-bs-toggle="tab">
-                      {% if request.path ==  project_list %}
+                      {% if request.path == project_list %}
                         {% translate 'Participation projects' %}
                       {% elif request.path == newsletter_create %}
                         {% translate 'Communication' %}
@@ -111,17 +111,17 @@
                   </div>
                 </li>
             </ul>
-
-
         </div>
     </div>
-    {% endblock %}
+    {% endblock dashboard_nav %}
     <div class="container">
-        {% block dashboard_content %}{% endblock %}
+        {% block dashboard_content %}{% endblock dashboard_content %}
     </div>
-{% endblock %}
+{% endblock content %}
+
+{% block extra_css %}{{ block.super }}{% endblock extra_css %}
 
 {% block extra_js %}
     <script src="{% static 'unload_warning.js' %}"></script>
     <script src="{% static 'init_dashboard.js' %}"></script>
-{% endblock %}
+{% endblock extra_js %}

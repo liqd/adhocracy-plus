@@ -1,0 +1,15 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n static react_polls %}
+
+{% block dashboard_project_content %}
+    <h1 class="u-first-heading">{% translate 'Edit poll' %}</h1>
+
+    {% react_poll_form poll True %}
+
+{% endblock dashboard_project_content %}
+
+{% block extra_js %}
+  {{ block.super }}
+  {% include 'a4images/uppy_image_upload_assets.html' %}
+  <script type="text/javascript" src="{% static 'poll_management.js' %}"></script>
+{% endblock extra_js %}
