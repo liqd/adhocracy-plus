@@ -1,0 +1,22 @@
+overrides:
+  js-cookie: 3.0.8
+  lodash: 4.18.1
+  i18next-fs-backend: 2.6.6
+  i18next-http-backend: 3.0.5
+  i18next-http-middleware: 3.9.7
+  serialize-javascript: 7.0.5
+  ip-address: 10.1.1
+  postcss: 8.5.18
+  brace-expansion: ">=5.0.8"
+packageExtensions:
+  adhocracy4:
+    dependencies:
+      lodash.debounce: "*"
+blockExoticSubdeps: false
+allowBuilds:
+  husky: true
+  unrs-resolver: true
+  adhocracy4@https://codeload.github.com/liqd/adhocracy4/tar.gz/e391addec7dbac085ab37b9536b386222ccc6178: true
+  '@parcel/watcher': true
+minimumReleaseAgeExclude:
+  - globals@17.8.0

@@ -8,11 +8,13 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends git ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
+RUN corepack enable && corepack prepare pnpm@11.8.0 --activate
+
 COPY package.json ./
-RUN npm install --no-save
+RUN pnpm install
 
 COPY . .
-RUN npm run build
+RUN pnpm run build
 
 
 FROM python:3.12-bookworm AS app

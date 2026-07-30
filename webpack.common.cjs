@@ -8,6 +8,7 @@ module.exports = {
   entry: {
     adhocracy4: {
       import: [ // array of entry points
+        'bootstrap/dist/js/bootstrap.bundle.min.js',
         '@fortawesome/fontawesome-free/scss/fontawesome.scss',
         '@fortawesome/fontawesome-free/scss/brands.scss',
         '@fortawesome/fontawesome-free/scss/regular.scss',
@@ -172,7 +173,10 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!(adhocracy4)\/).*/, // exclude all dependencies but adhocracy4
+        exclude: [
+          /node_modules\/\.pnpm\/.+?\/node_modules\/(?!adhocracy4\/).*/,
+          /node_modules\/(?!\.pnpm\/)(?!adhocracy4\/).*/
+        ],
         use: {
           loader: 'babel-loader',
           options: {
@@ -229,7 +233,7 @@ module.exports = {
       path: require.resolve('path-browserify')
     },
     // attempt to resolve these extensions in this order.
-    extensions: ['*', '.js', '.jsx', '.scss', '.css'],
+    extensions: ['.js', '.jsx', '.scss', '.css'],
     // create aliases to import or require certain modules more easily, $ signifys exact match
     alias: {
       bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',
@@ -237,12 +241,8 @@ module.exports = {
       jquery$: 'jquery/dist/jquery.min.js',
       'slick-carousel$': 'slick-carousel/slick/slick.min.js'
     },
-    // when using `npm link` for a4 dev env, dependencies are resolved against the linked
-    // folder by default. This may result in dependencies being included twice.
-    // Resolving against node_modules will prevent this.
-    // concat merges node_modules and assets and syncs both to ensure no duplication.
     modules: [
-      path.resolve('./node_modules')
+      'node_modules'
     ].concat(
       glob.sync('./apps/*/assets/js').map(e => { return path.resolve(e) })
     )
@@ -259,7 +259,8 @@ module.exports = {
       jQuery: 'jquery',
       'window.$': 'jquery',
       'window.jQuery': 'jquery',
-      timeago: 'timeago.js'
+      timeago: 'timeago.js',
+      Dropdown: ['bootstrap', 'Dropdown']
     }),
     // extracts CSS into separate files
     new MiniCssExtractPlugin({

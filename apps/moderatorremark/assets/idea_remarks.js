@@ -2,7 +2,7 @@ import * as bootstrap from 'bootstrap'
 const $ = require('jquery')
 const a4api = require('adhocracy4').api
 
-/* eslint-disable */
+ 
 $(function () {
   const dropdown = $('#idea-remark__dropdown')
   const attributes = dropdown.data('attributes')
@@ -60,4 +60,4 @@ $(function () {
     }
   })
 })
-/* eslint-enable */
+ 

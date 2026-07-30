@@ -35,9 +35,13 @@ def test_initiator_can_update(client, organisation):
     organisation.get_translation("en").refresh_from_db()
     assert organisation.title == "Organisation platform title"
     assert organisation.language == "de"
-    assert organisation.description == "some very short description of the organisation"
-    assert organisation.slogan == "some slogan in English"
-    assert organisation.information == "This is very important info!"
+    with switch_language(organisation, "en"):
+        assert (
+            organisation.description
+            == "some very short description of the organisation"
+        )
+        assert organisation.slogan == "some slogan in English"
+        assert organisation.information == "This is very important info!"
 
     with switch_language(organisation, "de"):
         assert (
