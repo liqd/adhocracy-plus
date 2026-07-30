@@ -5,6 +5,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
 from adhocracy4.comments.models import Comment
+from adhocracy4.dashboard import signals as a4_dashboard_signals
 from adhocracy4.follows.models import Follow
 from apps.budgeting.models import Proposal
 from apps.ideas.models import Idea
@@ -24,6 +25,7 @@ from .strategies import IdeaFeedback
 from .strategies import OfflineEventCreated
 from .strategies import OfflineEventDeleted
 from .strategies import OfflineEventUpdate
+from .strategies import OrganisationNewProject
 from .strategies import ProjectComment
 from .strategies import ProjectCreated
 from .strategies import ProjectDeleted
@@ -201,6 +203,12 @@ def handle_offline_event_notifications(sender, instance, created, **kwargs):
 
 
 # Project Signals
+
+
+@receiver(a4_dashboard_signals.project_published)
+def handle_organisation_new_project_notifications(sender, project, user, **kwargs):
+    strategy = OrganisationNewProject()
+    NotificationService.create_notifications(project, strategy)
 
 
 @receiver(post_save, sender=ParticipantInvite)

@@ -6,6 +6,7 @@ NOTIFICATION_SECTIONS = {
         NotificationType.PROJECT_COMPLETED,
         NotificationType.PROJECT_CREATED,
         NotificationType.PROJECT_DELETED,
+        NotificationType.ORGANISATION_NEW_PROJECT,
         NotificationType.EVENT_ADDED,
         NotificationType.EVENT_SOON,
         NotificationType.EVENT_UPDATE,

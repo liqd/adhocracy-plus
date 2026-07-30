@@ -13,6 +13,7 @@ from parler.models import TranslatedFields
 
 from adhocracy4 import transforms
 from adhocracy4.images import fields as images_fields
+from adhocracy4.models import base as a4_base
 from adhocracy4.projects.models import Project
 from apps.projects import query
 
@@ -249,6 +250,21 @@ class Organisation(TranslatableModel):
         if update_fields:
             update_fields = {"imprint"}.union(update_fields)
         super().save(update_fields=update_fields, *args, **kwargs)
+
+
+class OrganisationFollow(a4_base.UserGeneratedContentModel):
+    organisation = models.ForeignKey(
+        settings.A4_ORGANISATIONS_MODEL, on_delete=models.CASCADE
+    )
+    enabled = models.BooleanField(default=True)
+
+    class Meta:
+        unique_together = ("organisation", "creator")
+
+    def __str__(self):
+        return "OrganisationFollow({}, enabled={})".format(
+            self.organisation, self.enabled
+        )
 
 
 class Member(models.Model):

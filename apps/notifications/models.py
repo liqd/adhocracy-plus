@@ -28,6 +28,9 @@ class NotificationType(models.TextChoices):
     PROJECT_COMPLETED = "project_completed", _("Project Completed")
     PROJECT_CREATED = "project_created", _("Project Created")
     PROJECT_DELETED = "project_deleted", _("Project Deleted")
+    ORGANISATION_NEW_PROJECT = "organisation_new_project", _(
+        "New Project from Organisation"
+    )
 
     USER_CONTENT_CREATED = "user_content_created", _("User Content created")
     EVENT_ADDED = "event_added", _("Event Added")
@@ -78,6 +81,7 @@ NOTIFICATION_TYPE_MAPPING = {
     NotificationType.PROJECT_DELETED: NotificationCategory.PROJECT_UPDATES,
     NotificationType.PROJECT_STARTED: NotificationCategory.PROJECT_UPDATES,
     NotificationType.PROJECT_COMPLETED: NotificationCategory.PROJECT_UPDATES,
+    NotificationType.ORGANISATION_NEW_PROJECT: NotificationCategory.PROJECT_UPDATES,
     # Project events
     NotificationType.EVENT_ADDED: NotificationCategory.PROJECT_EVENTS,
     NotificationType.EVENT_SOON: NotificationCategory.PROJECT_EVENTS,

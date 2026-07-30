@@ -1,0 +1,10 @@
+{% load i18n %}
+<p>
+  {% blocktranslate with organisation_name=organisation_name project_name=project_name %}
+    {{ organisation_name }} just published the project {{ project_name }}.
+  {% endblocktranslate %}
+</p>
+<p>
+  <strong>{% translate "Short description" %}:</strong>
+  {{ project_description }}
+</p>

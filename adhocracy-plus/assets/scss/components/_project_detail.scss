@@ -230,28 +230,6 @@ $project-detail-breadcrumbs-offset: 79px;
     }
 }
 
-.project-detail__follow-btn {
-    &.a4-btn--follow,
-    &.a4-btn--following {
-        padding: 0 $spacer;
-        border: 1px solid $text-color;
-        background-color: $body-bg;
-        color: $text-color;
-        font-weight: 400;
-
-        &:before {
-            margin-right: 0.3em;
-        }
-
-        &:hover,
-        &:focus {
-            background-color: lighten($brand-tertiary, 57%);
-            border-color: $text-color;
-            color: $text-color;
-        }
-    }
-}
-
 .project-detail__avatar-button {
     display: block;
     margin: 0;
