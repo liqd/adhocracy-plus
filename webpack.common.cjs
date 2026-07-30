@@ -8,6 +8,7 @@ module.exports = {
   entry: {
     adhocracy4: {
       import: [ // array of entry points
+        'bootstrap/dist/js/bootstrap.bundle.min.js',
         '@fortawesome/fontawesome-free/scss/fontawesome.scss',
         '@fortawesome/fontawesome-free/scss/brands.scss',
         '@fortawesome/fontawesome-free/scss/regular.scss',
@@ -258,7 +259,8 @@ module.exports = {
       jQuery: 'jquery',
       'window.$': 'jquery',
       'window.jQuery': 'jquery',
-      timeago: 'timeago.js'
+      timeago: 'timeago.js',
+      Dropdown: ['bootstrap', 'Dropdown']
     }),
     // extracts CSS into separate files
     new MiniCssExtractPlugin({
