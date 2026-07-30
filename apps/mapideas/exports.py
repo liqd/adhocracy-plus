@@ -13,6 +13,7 @@ class MapIdeaExportView(
     PermissionRequiredMixin,
     mixins.ItemExportWithReferenceNumberMixin,
     mixins.ItemExportWithLinkMixin,
+    mixins.ItemExportWithImageMixin,
     mixins.ExportModelFieldsMixin,
     mixins.ItemExportWithCategoriesMixin,
     mixins.ItemExportWithLabelsMixin,
