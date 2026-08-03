@@ -40,6 +40,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- Guest account conversion: delete the Guest row immediately when a guest
+  converts to a regular account (previously only on email confirmation).
+  A leftover Guest row made the platform treat converted users as guests and
+  excluded them from all notification emails. Added management command
+  ``delete_converted_guest_rows`` to clean up stale Guest rows of users who
+  already converted.
 - tests/organisations: fix ``test_initiator_can_update`` assertion to use
   ``switch_language`` context manager (django-parler behaviour change caused
   the default-language description to return the primary language value)

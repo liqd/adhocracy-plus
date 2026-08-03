@@ -12,6 +12,8 @@ from django.views.generic.base import RedirectView
 from guest_user.functions import is_guest_user
 from guest_user.mixins import GuestUserRequiredMixin
 from guest_user.mixins import RegularUserRequiredMixin
+from guest_user.models import Guest
+from guest_user.signals import converted
 from guest_user.views import ConvertFormView
 
 from apps.users.forms import GuestConvertForm
@@ -70,6 +72,12 @@ class GuestConvertView(
 
     def form_valid(self, form):
         user = form.save(self.request)
+        # Delete the guest marker immediately, as guest_user's own convert flow
+        # does. Waiting for the email_confirmed signal instead would leave the
+        # user flagged as guest (and thus excluded from all notification
+        # emails) until they confirm their email address.
+        Guest.objects.filter(user=user).delete()
+        converted.send(Guest.objects, user=user)
         response = complete_signup(
             self.request,
             user,
