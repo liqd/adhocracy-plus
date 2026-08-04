@@ -42,14 +42,19 @@ CELERY_BEAT_SCHEDULE = {
     },
     "send-recently-started-project-notifications": {
         "task": "send_recently_started_project_notifications",
-        "schedule": timedelta(days=3),
+        # Coverage window is NOTIFICATION_PROJECT_STARTED_HOURS (default 72h);
+        # the tasks deduplicate, so frequent runs are safe and each project is
+        # notified exactly once.
+        "schedule": timedelta(days=1),
     },
     "send-recently-completed-project-notifications": {
         "task": "send_recently_completed_project_notifications",
-        "schedule": timedelta(days=3),
+        # Coverage window is NOTIFICATION_PROJECT_COMPLETED_HOURS (default 72h).
+        "schedule": timedelta(days=1),
     },
     "send_upcoming-event-notifications": {
         "task": "send_upcoming_event_notifications",
-        "schedule": timedelta(days=3),
+        # Coverage window is NOTIFICATION_EVENT_STARTING_HOURS (default 72h).
+        "schedule": timedelta(days=1),
     },
 }

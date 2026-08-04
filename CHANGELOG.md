@@ -40,6 +40,14 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- Periodic notifications: the project started/completed and event reminder
+  tasks now use configurable coverage windows (``NOTIFICATION_PROJECT_STARTED_HOURS``,
+  ``NOTIFICATION_PROJECT_COMPLETED_HOURS``, ``NOTIFICATION_EVENT_STARTING_HOURS``,
+  default 72h) and deduplicate, so each project/event is notified exactly once.
+  Previously the tasks ran every 3 days with a 24h window, so most project
+  start/completion emails and short-notice event reminders were never sent;
+  the schedule now runs daily, mirroring adhocracy4's ``create_system_actions``
+  idempotency.
 - Guest account conversion: delete the Guest row immediately when a guest
   converts to a regular account (previously only on email confirmation).
   A leftover Guest row made the platform treat converted users as guests and

@@ -290,6 +290,14 @@ class Notification(models.Model):
         choices=NotificationType.choices,
         verbose_name=_("Notification Type"),
     )
+    project = models.ForeignKey(
+        "a4projects.Project",
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="+",
+        verbose_name=_("Project"),
+    )
     read = models.BooleanField(default=False)
     read_at = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
