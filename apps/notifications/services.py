@@ -6,6 +6,7 @@ from django.utils import translation
 from django.utils.safestring import mark_safe
 from guest_user.functions import is_guest_user
 
+from adhocracy4.projects.models import Project
 from apps.users.emails import EmailAplus as Email
 
 from .models import NOTIFICATION_TYPE_MAPPING
@@ -142,6 +143,7 @@ class NotificationService:
         # Remove email_context before creating notifications
         notification_data.pop("email_context", None)
         notification_data.pop("translated_message_template", None)
+        notification_data["project"] = NotificationService._get_project(obj)
 
         # Create in-app notifications
         notifications = [
@@ -151,6 +153,26 @@ class NotificationService:
 
         if notifications:
             Notification.objects.bulk_create(notifications)
+
+    @staticmethod
+    def _get_project(obj):
+        """Best-effort lookup of the project a notification belongs to."""
+        if isinstance(obj, Project):
+            # Some notifications are created from a post_delete signal (e.g.
+            # project deletion), when the project row no longer exists.
+            if Project.objects.filter(pk=obj.pk).exists():
+                return obj
+            return None
+        project = getattr(obj, "project", None)
+        if project is None:
+            content_object = getattr(obj, "content_object", None)
+            if content_object is not None:
+                project = getattr(content_object, "project", None)
+        if project is None:
+            comment = getattr(obj, "comment", None)
+            if comment is not None:
+                project = getattr(comment, "project", None)
+        return project
 
     @staticmethod
     def _get_filtered_recipients(all_recipients, notification_type):

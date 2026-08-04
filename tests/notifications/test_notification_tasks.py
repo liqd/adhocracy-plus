@@ -183,3 +183,127 @@ def test_send_upcoming_event_notifications(
     assert len(follower_emails) == 1
     assert "event in project" in follower_emails[0].subject.lower()
     assert project.name.lower() in follower_emails[0].subject.lower()
+
+
+@pytest.mark.django_db
+def test_no_upcoming_event_notification_beyond_window(
+    project_factory, offline_event_factory, user2
+):
+    """Events starting more than the configured window ahead must not be
+    notified yet."""
+    project = project_factory()
+    offline_event_factory(
+        project=project,
+        date=timezone.now() + timedelta(hours=100),
+    )
+
+    Follow.objects.get_or_create(
+        project=project,
+        creator=user2,
+        defaults={"enabled": True},
+    )
+
+    send_upcoming_event_notifications()
+
+    assert Notification.objects.filter(recipient=user2).count() == 0
+    assert len(get_emails_for_address(user2.email)) == 0
+
+
+@pytest.mark.django_db
+def test_upcoming_event_notification_window_is_configurable(
+    project_factory, offline_event_factory, user2, settings
+):
+    """The lookahead window honours the NOTIFICATION_EVENT_STARTING_HOURS
+    setting."""
+    project = project_factory()
+    offline_event_factory(
+        project=project,
+        date=timezone.now() + timedelta(hours=30),
+    )
+    Follow.objects.get_or_create(
+        project=project,
+        creator=user2,
+        defaults={"enabled": True},
+    )
+
+    settings.NOTIFICATION_EVENT_STARTING_HOURS = 24
+
+    send_upcoming_event_notifications()
+
+    assert Notification.objects.filter(recipient=user2).count() == 0
+
+
+@pytest.mark.django_db
+def test_no_project_started_notification_beyond_window(
+    phase_factory, project_factory, user2
+):
+    """Projects started more than the configured window ago must not be
+    notified."""
+    project = project_factory()
+    phase_factory(
+        module__project=project,
+        start_date=timezone.now() - timedelta(hours=100),
+        end_date=timezone.now() + timedelta(days=7),
+    )
+
+    Follow.objects.get_or_create(
+        project=project,
+        creator=user2,
+        defaults={"enabled": True},
+    )
+
+    send_recently_started_project_notifications()
+
+    assert Notification.objects.filter(recipient=user2).count() == 0
+    assert len(get_emails_for_address(user2.email)) == 0
+
+
+@pytest.mark.django_db
+def test_upcoming_event_notification_only_sent_once(
+    project_factory, offline_event_factory, user2
+):
+    """An event within the lookahead window must only be notified once, even
+    if the task runs repeatedly (dedup via existing EVENT_SOON notification)."""
+    project = project_factory()
+    offline_event_factory(
+        project=project,
+        date=timezone.now() + timedelta(hours=30),
+    )
+
+    Follow.objects.get_or_create(
+        project=project,
+        creator=user2,
+        defaults={"enabled": True},
+    )
+
+    send_upcoming_event_notifications()
+    send_upcoming_event_notifications()
+
+    assert Notification.objects.filter(recipient=user2).count() == 1
+    assert len(get_emails_for_address(user2.email)) == 1
+
+
+@pytest.mark.django_db
+def test_project_started_notification_only_sent_once(
+    phase_factory, project_factory, user2
+):
+    """A started project must only be notified once, even if the task runs
+    repeatedly (dedup via existing PROJECT_STARTED notification)."""
+    project = project_factory()
+    phase_factory(
+        module__project=project,
+        start_date=timezone.now() - timedelta(hours=12),
+        end_date=timezone.now() + timedelta(days=7),
+    )
+
+    Follow.objects.get_or_create(
+        project=project,
+        creator=user2,
+        defaults={"enabled": True},
+    )
+
+    send_recently_started_project_notifications()
+    send_recently_started_project_notifications()
+
+    assert Notification.objects.filter(recipient=user2).count() == 1
+    assert len(get_emails_for_address(user2.email)) == 1

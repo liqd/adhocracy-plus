@@ -145,6 +145,8 @@ class OfflineEventReminder(ProjectNotificationStrategy):
                 "event_url": offline_event.get_absolute_url(),
                 "event_date": format_event_date(offline_event.date),
             },
+            # Used as dedup key by the periodic task: each event is notified once.
+            "target_url": offline_event.get_absolute_url(),
             "email_context": email_context,
         }
 

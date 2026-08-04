@@ -530,6 +530,23 @@ A4_AUTO_FOLLOWABLES = (
     ("a4_candy_budgeting", "proposal"),
 )
 
+# Coverage windows (in hours) for the periodic system notifications. The beat
+# schedule runs the tasks daily and notifications are only created once per
+# project/event, so the effective timing is determined by the daily cadence:
+#
+# - PROJECT_STARTED_HOURS / PROJECT_COMPLETED_HOURS are LOOKBACK margins.
+#   Projects are notified at the first daily run after their start/end date,
+#   i.e. within ~24h of the event; the margin only catches backdated phases
+#   or missed runs.
+# - EVENT_STARTING_HOURS is a LOOKAHEAD margin. Events are reminded at the
+#   first daily run after they enter the window, i.e. roughly 48-72h before
+#   the event (less for events announced shortly before).
+#
+# Mirrors adhocracy4's create_system_actions configuration.
+NOTIFICATION_PROJECT_STARTED_HOURS = 72
+NOTIFICATION_PROJECT_COMPLETED_HOURS = 72
+NOTIFICATION_EVENT_STARTING_HOURS = 72
+
 A4_CATEGORIZABLE = (
     ("a4_candy_ideas", "idea"),
     ("a4_candy_mapideas", "mapidea"),
