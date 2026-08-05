@@ -219,3 +219,26 @@ $lp-blue: blue;
         margin: 0;
     }
 }
+
+// Tablet/iPad: two columns instead of four
+@media ($breakpoint <= width <= 1024px) {
+    .lp-statistics {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .desktop-view {
+        display: grid;
+    }
+
+    .mobile-view {
+        display: none;
+    }
+
+    .lp-statistics__stats-scroller {
+        width: 90%;
+        margin: 0 auto;
+        padding: 1em;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
