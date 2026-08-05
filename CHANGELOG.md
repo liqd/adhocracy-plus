@@ -40,6 +40,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- Profile editing no longer silently clears the newsletter opt-in
+  (``User.get_newsletters``). The newsletter toggle on the notification
+  settings page now controls this actual opt-in.
 - Periodic notifications: the project started/completed and event reminder
   tasks now use configurable coverage windows (``NOTIFICATION_PROJECT_STARTED_HOURS``,
   ``NOTIFICATION_PROJECT_COMPLETED_HOURS``, ``NOTIFICATION_EVENT_STARTING_HOURS``,
@@ -132,7 +135,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Improvements to pagination
 - Footer: New Footer Module
-- Hierarchical platform breadcrumbs 
+- Hierarchical platform breadcrumbs
 - Design: Update Colour Pallette
 - Design: New Landing Page
 
@@ -165,7 +168,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## v2602.2
 
-### Added 
+### Added
 
 - apps/projects: export_utils for exporting project data
 

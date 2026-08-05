@@ -5,6 +5,35 @@ from apps.account import forms
 
 
 @pytest.mark.django_db
+def test_profile_save_keeps_newsletter_optin(client, user):
+    """Saving the profile must not silently clear the newsletter opt-in.
+
+    The profile page does not render the get_newsletters checkbox, so the
+    form must not include the field either (a missing checkbox is submitted
+    as unchecked and would reset the user's opt-in on every save).
+    """
+    user.get_newsletters = True
+    user.save()
+    client.login(email=user.email, password="password")
+
+    response = client.post(
+        reverse("account_profile"),
+        {
+            "username": user.username,
+            "bio": "Updated my bio",
+            "twitter_handle": "",
+            "facebook_handle": "",
+            "homepage": "",
+            "language": "en",
+        },
+    )
+
+    assert response.status_code == 302
+    user.refresh_from_db()
+    assert user.get_newsletters is True
+
+
+@pytest.mark.django_db
 def test_clean_username(user_factory):
     user = user_factory(username="username")
     data = {
