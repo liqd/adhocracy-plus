@@ -1,3 +1,4 @@
+import uuid
 from io import BytesIO
 
 import factory
@@ -48,27 +49,46 @@ def apiclient():
 
 @pytest.fixture
 def image_png():
-    return factory.django.ImageField(width=1500, height=1400, format="PNG")
+    return factory.django.ImageField(
+        width=1500,
+        height=1400,
+        format="PNG",
+        filename=f"example-{uuid.uuid4().hex}.png",
+    )
 
 
 @pytest.fixture
 def image_webp():
-    return factory.django.ImageField(width=1500, height=1400, format="WEBP")
+    return factory.django.ImageField(
+        width=1500,
+        height=1400,
+        format="WEBP",
+        filename=f"example-{uuid.uuid4().hex}.webp",
+    )
 
 
 @pytest.fixture
 def image_bmp():
-    return factory.django.ImageField(width=1500, height=1400, format="BMP")
+    return factory.django.ImageField(
+        width=1500,
+        height=1400,
+        format="BMP",
+        filename=f"example-{uuid.uuid4().hex}.bmp",
+    )
 
 
 @pytest.fixture
 def small_image():
-    return factory.django.ImageField(width=200, height=200)
+    return factory.django.ImageField(
+        width=200, height=200, filename=f"example-{uuid.uuid4().hex}.jpg"
+    )
 
 
 @pytest.fixture
 def big_image():
-    return factory.django.ImageField(width=1500, height=1400)
+    return factory.django.ImageField(
+        width=1500, height=1400, filename=f"example-{uuid.uuid4().hex}.jpg"
+    )
 
 
 @pytest.fixture
