@@ -72,8 +72,8 @@
                                 {% trans "Receive email newsletters with updates and news from the projects you follow." %}
                             </p>
                             <div class="form-check form-switch">
-                                {{ form.email_newsletter|add_class:"project-related-switch" }}
-                                <label class="form-check-label" for="{{ form.email_newsletter.id_for_label }}">
+                                {{ form.get_newsletters|add_class:"project-related-switch" }}
+                                <label class="form-check-label" for="{{ form.get_newsletters.id_for_label }}">
                                     {% trans "Email" %}
                                 </label>
                             </div>

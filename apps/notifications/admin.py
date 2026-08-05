@@ -32,7 +32,6 @@ class NotificationAdmin(admin.ModelAdmin):
 class NotificationSettingsAdmin(admin.ModelAdmin):
     list_display = ("id", "user", "email_moderation", "notify_moderation")
     list_filter = (
-        "email_newsletter",
         "email_initiator_publish_results",
         "email_project_updates",
         "notify_project_updates",

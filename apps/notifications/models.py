@@ -119,7 +119,6 @@ CATEGORY_TO_FIELDS = {
     NotificationCategory.INVITATIONS: ("email_invitations", "notify_invitations"),
     NotificationCategory.MODERATION: ("email_moderation", "notify_moderation"),
     NotificationCategory.WARNINGS: ("email_warnings", "notify_warnings"),
-    "newsletter": ("email_newsletter", None),  # No in-app for newsletter
     "system": (None, None),  # Always deliver system notifications
 }
 
@@ -139,11 +138,6 @@ class NotificationSettings(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name="notification_settings",
-    )
-
-    # Project related - Email newsletter
-    email_newsletter = models.BooleanField(
-        default=True, verbose_name=_("Email newsletter")
     )
 
     # Initiator-only e-mails
@@ -243,7 +237,6 @@ class NotificationSettings(models.Model):
             "email_project_updates",
             "email_project_events",
             "email_user_engagement",
-            "email_newsletter",
         ]
 
     def get_notification_fields(self):
