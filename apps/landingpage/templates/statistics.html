@@ -134,92 +134,117 @@
         const scroller = document.getElementById('statsScroller');
         const columns = document.querySelectorAll('.lp-statistics__stats-scroller-column');
 
-        columns.forEach(column => {
-            const direction = column.getAttribute('data-direction');
-            if (direction === 'down') {
-                column.style.transform = 'translateY(-250px)';
-            } else if (direction === 'up') {
-                column.style.transform = 'translateY(50px)';
-            }
-        });
+        // Tablet/desktop only: the desktop view must be visible
+        if (scroller.clientHeight > 0 && columns.length) {
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const isTablet = window.innerWidth <= 1024;
 
-        let isUserScrolling = false;
-        let lastScrollY = window.scrollY;
-        
-        const bounds = {
-            down: { min: -400, max: 0 },
-            up: { min: -100, max: 0 }
-        };
-        
-        scroller.addEventListener('click', function() {
-            isUserScrolling = !isUserScrolling;
-            scroller.classList.toggle('active', isUserScrolling);
-            
-            if (isUserScrolling) {
-                columns.forEach(column => {
-                    column.style.transition = 'transform 0.5s ease-out';
-                    column.style.transform = 'translateY(0)';
+            // Tablet: merge the four columns into two, so all tiles are
+            // visible in the two-column layout. Otherwise the grid wraps the
+            // right columns into a second row that stays hidden below the
+            // visible area.
+            if (isTablet) {
+                Array.from(columns[1].children).forEach(item => columns[0].appendChild(item));
+                Array.from(columns[3].children).forEach(item => columns[2].appendChild(item));
+                columns[1].style.display = 'none';
+                columns[3].style.display = 'none';
+                columns[2].setAttribute('data-direction', 'up');
+            }
+
+            const loopColumns = isTablet ? [columns[0], columns[2]] : Array.from(columns);
+            const directions = loopColumns.map(column => column.getAttribute('data-direction'));
+
+            // Slightly staggered arrangement, same as on desktop.
+            // On tablet the offset comes from the CSS margin-top (-200px).
+            let staggers = isTablet
+                ? [0, 0]
+                : directions.map(direction => direction === 'down' ? -250 : 50);
+            let copyHeight = 0;
+            let gap = 0;
+            let step = 0;
+
+            if (!reduceMotion) {
+                // The visible window is capped by the CSS max-height
+                const viewportHeight = parseFloat(getComputedStyle(scroller).maxHeight) || scroller.clientHeight;
+
+                // Duplicate the column content so the auto-scroll can loop seamlessly.
+                // Duplicates are hidden from screen readers. The extra height also
+                // covers the staggered offsets, so the visible area never runs empty.
+                loopColumns.forEach(column => {
+                    const items = Array.from(column.children);
+                    const copy1 = document.createElement('div');
+                    copy1.className = 'lp-statistics__stats-scroller-column__copy';
+                    items.forEach(item => copy1.appendChild(item));
+                    column.appendChild(copy1);
+
+                    gap = parseFloat(getComputedStyle(column).gap) || 0;
+                    copyHeight = Math.max(copyHeight, copy1.offsetHeight);
                 });
-                
-                setTimeout(() => {
-                    columns.forEach(column => {
-                        column.style.transition = '';
+
+                // Tablet: the CSS margin-top of the first column adds 200px
+                // to the staggered range
+                const staggerRange = isTablet
+                    ? 200
+                    : Math.max(...staggers) - Math.min(...staggers);
+
+                // Number of copies needed so the visible area never runs empty
+                // (viewport + one loop step + staggered offsets). Computed
+                // arithmetically because the columns stretch to the grid row
+                // height, which makes scrollHeight unreliable while copies are
+                // being added.
+                const needed = viewportHeight + copyHeight + staggerRange + 2 * gap;
+                let copies = 1;
+                while (copies * (copyHeight + gap) < needed) {
+                    loopColumns.forEach(column => {
+                        const clone = document.createElement('div');
+                        clone.className = 'lp-statistics__stats-scroller-column__copy';
+                        clone.setAttribute('aria-hidden', 'true');
+                        Array.from(column.children[0].children).forEach(item => clone.appendChild(item.cloneNode(true)));
+                        column.appendChild(clone);
                     });
-                }, 500);
+                    copies++;
+                }
+
+                step = copyHeight + gap;
             }
-        });
-        
-        window.addEventListener('scroll', function() {
-            if (isUserScrolling) return;
-            
-            const scrollY = window.scrollY;
-            const scrollDelta = scrollY - lastScrollY;
-            const scrollerRect = scroller.getBoundingClientRect();
-            
-            const elementCenter = scrollerRect.top + (scrollerRect.height / 2);
-            const viewportCenter = window.innerHeight / 2;
-            const distanceFromCenter = Math.abs(viewportCenter - elementCenter);
-            const maxDistance = window.innerHeight * 0.6;
-            
-            if (distanceFromCenter < maxDistance) {
-                const centeredness = 1 - (distanceFromCenter / maxDistance);
-                const baseSpeed = 12;
-                
-                columns.forEach(column => {
-                    const direction = column.getAttribute('data-direction');
-                    const speed = baseSpeed * centeredness;
-                    
-                    const currentTransform = getComputedStyle(column).transform;
-                    let currentY = 0;
-                    
-                    if (currentTransform !== 'none') {
-                        const matrix = new DOMMatrixReadOnly(currentTransform);
-                        currentY = matrix.m42;
+
+            const yLow = -Math.max(...staggers) - step;
+
+            loopColumns.forEach((column, index) => {
+                const offset = reduceMotion ? staggers[index] : yLow + staggers[index];
+                column.style.transform = `translateY(${offset}px)`;
+            });
+
+            // All tiles wander together from top to bottom through the visible area.
+            // The scroller stays fixed; only the columns move inside it, so tiles
+            // are never visible outside the visible area. Not pausable and not
+            // scrollable by the user.
+            if (!reduceMotion && step > 0) {
+                const yHigh = yLow + step;
+                let y = yLow;
+                let lastTime = performance.now();
+                // Fast enough that all tiles pass through the visible area
+                // within a reasonable time (~17s on tablet, ~8s on desktop)
+                const speed = 80; // px per second
+
+                function tick(now) {
+                    const dt = Math.min((now - lastTime) / 1000, 0.05);
+                    lastTime = now;
+
+                    y += speed * dt;
+                    if (y >= yHigh) {
+                        y -= step;
                     }
-                    
-                    let newY = currentY;
-                    if (direction === 'down') {
-                        newY += scrollDelta * speed;
-                        newY = Math.min(newY, bounds.down.max);
-                        newY = Math.max(newY, bounds.down.min);
-                    } else if (direction === 'up') {
-                        newY -= scrollDelta * speed;
-                        newY = Math.max(newY, bounds.up.min);
-                        newY = Math.min(newY, bounds.up.max);
-                    }
-                    
-                    column.style.transition = 'transform 0.1s linear';
-                    column.style.transform = `translateY(${newY}px)`;
-                });
+
+                    loopColumns.forEach((column, index) => {
+                        column.style.transform = `translateY(${y + staggers[index]}px)`;
+                    });
+
+                    requestAnimationFrame(tick);
+                }
+
+                requestAnimationFrame(tick);
             }
-            
-            lastScrollY = scrollY;
-        });
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && document.activeElement === scroller) {
-                scroller.click();
-            }
-        });
+        }
     });
 </script>

@@ -49,14 +49,7 @@ $lp-blue: blue;
         margin-top: -20px; // Pull it up under the fade
         position: relative;
         z-index: 1;
-        cursor: pointer;
-        transition: all 0.3s ease;
     }
-}
-
-.lp-statistics__stats-scroller.active {
-    overflow-y: auto;
-    cursor: default;
 }
 
 .lp-statistics__stats-scroller-column {
@@ -64,6 +57,12 @@ $lp-blue: blue;
     flex-direction: column;
     gap: 2em;
     will-change: transform;
+}
+
+.lp-statistics__stats-scroller-column__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
 }
 
 .lp-statistics__stat {
@@ -240,5 +239,16 @@ $lp-blue: blue;
         margin: 0 auto;
         padding: 1em;
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lp-statistics__stats-scroller-column[data-direction="down"] {
+        margin-top: -200px;
+    }
+}
+
+// Reduced motion: show a single static copy, no duplicated content
+@media (prefers-reduced-motion: reduce) {
+    .lp-statistics__stats-scroller-column__copy[aria-hidden="true"] {
+        display: none;
     }
 }
