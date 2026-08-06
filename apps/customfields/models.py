@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.models.base import TimeStampedModel
 from adhocracy4.modules import models as module_models
-
 from apps.ideas import models as idea_models
 
 
@@ -14,6 +13,10 @@ class CustomFieldType(models.TextChoices):
 
 class CustomFieldSettings(module_models.AbstractSettings):
     """Module settings holding the custom fields of the idea submission form."""
+
+    @property
+    def project(self):
+        return self.module.project
 
     def __str__(self):
         return "Custom fields for module {}".format(self.module)
@@ -70,4 +73,16 @@ class CustomFieldAnswer(TimeStampedModel):
         ]
 
     def __str__(self):
+        return self.value
+
+    @property
+    def display_value(self):
+        if self.field.type == CustomFieldType.CHOICE and self.value:
+            try:
+                choice = CustomFieldChoice.objects.get(
+                    pk=int(self.value), field=self.field
+                )
+            except (ValueError, CustomFieldChoice.DoesNotExist):
+                return self.value
+            return choice.label
         return self.value

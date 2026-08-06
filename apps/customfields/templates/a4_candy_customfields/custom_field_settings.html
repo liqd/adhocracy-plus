@@ -1,0 +1,14 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n static %}
+
+{% block dashboard_project_content %}
+    <h1 class="u-first-heading">{% translate 'Edit custom fields' %}</h1>
+
+    <div data-a4-widget="custom-field-management" data-attributes="{{ widget_attributes }}"></div>
+
+{% endblock dashboard_project_content %}
+
+{% block extra_js %}
+  {{ block.super }}
+    <script type="text/javascript" src="{% static 'custom_fields_management.js' %}"></script>
+{% endblock extra_js %}

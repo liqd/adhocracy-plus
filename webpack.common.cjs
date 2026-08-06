@@ -44,6 +44,12 @@ module.exports = {
         './apps/documents/assets/react_documents_init.jsx'
       ]
     },
+    custom_fields_management: {
+      import: [
+        './apps/customfields/assets/react_custom_fields_management_init.jsx'
+      ],
+      dependOn: 'adhocracy4'
+    },
     dsgvo_video_embed: {
       import: [
         'dsgvo-video-embed/dist/dsgvo-video-embed.min.css',
