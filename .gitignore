@@ -23,6 +23,8 @@ coverage/
 # Translations
 *.mo
 *.pot
+# Test fixture catalogs are committed on purpose (see tests/**/locale/)
+!tests/**/locale/**/*.mo
 
 # Environments
 venv/
