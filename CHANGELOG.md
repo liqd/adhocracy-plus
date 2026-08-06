@@ -9,6 +9,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- Management command ``send_newsletter_settings_notice`` plus an English/German
+  notice email to inform users whose newsletter opt-in may have been reset by
+  the profile-edit bug. Recipients are the refined candidate pool; every sent
+  user is appended with a timestamp to ``/var/log/django/newsletter_settings_notice.log``,
+  so re-runs and staged rollouts (``--limit``) never send twice. Supports
+  ``--dry-run``, ``--log-file`` and ``--to`` (single test copy to a chosen
+  account)
 - Organisation page: follow button to get notified about new projects
 - Notifications: organisation followers receive email and in-app notification when a project is published
 - Project detail and module pages: alert for guest users on registered-users-only projects to register or log in with a personal account

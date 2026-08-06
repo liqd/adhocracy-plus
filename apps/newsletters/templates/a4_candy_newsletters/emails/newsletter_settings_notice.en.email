@@ -1,0 +1,22 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n %}
+
+{% block headline %}{% translate "Update on your newsletter settings" %}{% endblock %}
+
+{% block subject %}{% translate "Update on your newsletter settings" %}{% endblock %}
+
+{% block content %}
+<p>
+{% blocktranslate %}Organisations on adhocracy plus send newsletters to their followers. Due to an issue, your user setting that controls whether you receive newsletters from organisations may have been reset.{% endblocktranslate %}
+</p>
+<p>
+{% blocktranslate %}You are currently opted out. If you wish to receive newsletters from the organisations you subscribe to, visit your user settings and enable this setting.{% endblocktranslate %}
+</p>
+<p>
+<a href="{{ settings_url }}">{% translate "Your notification settings" %}</a>
+</p>
+{% endblock %}
+
+{% block reason %}
+{% blocktranslate with receiver_mail=receiver.email site_name=site.name %}This email was sent to {{ receiver_mail }} because you are registered on {{ site_name }}. You receive this email because the newsletter setting on your account may have been reset.{% endblocktranslate %}
+{% endblock %}
