@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load humanize i18n rules thumbnail a4_candy_project_tags platform_breadcrumbs_tags %}
+{% load static i18n thumbnail a4_candy_project_tags %}
 
 {% block title %}{{ organisation.name }}{% endblock title %}
 
@@ -21,42 +21,56 @@
 {% endif %}
 {% endblock social_meta_description %}
 
+{% block extra_js %}
+  {{ block.super }}
+  <script src="{% static 'project_search.js' %}"></script>
+{% endblock extra_js %}
+
 {% block super_content %}
 <div class="u-bg-light py-5">
     <div class="container px-0 px-sm-3 u-bg-light">
         <div class="container--shadow">
-            <div class="hero-unit" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});">
-                {% if organisation.image_copyright %}
-                <div class="header__copyright copyright">© {{ organisation.image_copyright }}</div>
-                {% endif %}
-                {% include 'header_lower.html' with organisation=organisation %}
-            </div>
-
-            <div class="row">
-                <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 pt-3 mb-4">
-                    {% platform_breadcrumbs organisation=organisation current='organisation' %}
+            <div class="organisation-page__hero-wrap">
+                <div class="hero-unit" style="background-image: url({% thumbnail organisation.image "1500x610" crop %});">
+                    {% if organisation.image_copyright %}
+                    <div class="header__copyright copyright">© {{ organisation.image_copyright }}</div>
+                    {% endif %}
+                </div>
+                <div class="organisation-page__avatar">
+                    {% if organisation.logo %}
+                    <img src="{% thumbnail organisation.logo '0x160' %}" alt="{{ organisation.name }}">
+                    {% else %}
+                    <span>{{ organisation.name }}</span>
+                    {% endif %}
                 </div>
             </div>
 
-            <div class="organisation-page__header">
-                <div class="row">
-                    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                        <h1 class="marked-box">{{ organisation.title }}</h1>
-                        {% if organisation.url %}
-                        <a class="ms-3 text-muted" href="{{ organisation.url }}" target="_blank" title="{{ organisation.url }}">
-                            <i class="fas fa-external-link-alt" role="img" aria-label="{{ organisation.title }} {% translate 'Opens in new window' %}"></i>
-                        </a>
+            <div class="organisation-page__body">
+                <div class="project-detail__intro">
+                    <div class="project-detail__main">
+                        <h1 class="organisation-page__title">
+                            {{ organisation.name }}
+                            {% if organisation.url %}
+                            <a class="organisation-page__title-link" href="{{ organisation.url }}" target="_blank" title="{{ organisation.url }}">
+                                <i class="fas fa-external-link-alt" role="img" aria-label="{{ organisation.title }} {% translate 'Opens in new window' %}"></i>
+                            </a>
+                            {% endif %}
+                        </h1>
+                        {% if organisation.slogan %}
+                        <h3 class="organisation-page__slogan">{{ organisation.slogan }}</h3>
                         {% endif %}
-                        <div class="row">
-                            <div class="col">
-                                <h3>{{ organisation.slogan }}</h3>
+                        {% if organisation.description %}
+                        <p class="project-detail__description">{{ organisation.description }}</p>
+                        {% endif %}
+                        <div class="project-detail__actions">
+                            <div class="project-detail__follow">
+                                {% include 'a4_candy_organisations/includes/follow_button.html' with organisation=organisation is_following=is_following %}
                             </div>
-                        </div>
-                        <div class="organisation__description {% if organisation.description|length > 500 %} l-two-col {% endif %}">
-                            {{ organisation.description }}
-                        </div>
-                        <div class="organisation__follow">
-                            {% include 'a4_candy_organisations/includes/follow_button.html' with organisation=organisation is_following=is_following %}
+                            {% if organisation.information %}
+                            <a class="btn btn--link project-detail__action organisation-page__about" href="{% url 'organisation-information' organisation_slug=organisation.slug %}">
+                                {% translate 'About' %}
+                            </a>
+                            {% endif %}
                         </div>
                         <div id="organisation-follow-alert">
                             {% if unfollow_alert %}
@@ -64,44 +78,35 @@
                             {% endif %}
                         </div>
                     </div>
+                    {% include 'a4_candy_organisations/includes/organisation_sidebar.html' %}
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                 {% if active_projects or future_projects or past_projects %}
-                    <h2>{{ project_headline }}</h2>
-                    {% if object.projects.count == 1 %}
-                        {% with object.projects.0 as project %}
-                        {% has_perm 'a4projects.view_project' request.user project as can_view_project %}
-                        {% if can_view_project %}
-                            {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='horizontal' type='project' url=project|project_url %}
-                        {% endif %}
-                        {% endwith %}
-                    {% else %}
-                        <ul class="l-tiles-2">
-                            {% if active_projects %}
-                            {% for project in active_projects %}
-                                {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project|project_url %}
-                            {% endfor %}
-                            {% endif %}
-
-                            {% if future_projects %}
-                            {% for project in future_projects %}
-                                {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project|project_url %}
-                            {% endfor %}
-                            {% endif %}
-
-                            {% if past_projects %}
-                            {% for project in past_projects %}
-                                {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project|project_url %}
-                            {% endfor %}
-                            {% endif %}
-                        </ul>
-                    {% endif %}
+                <h2 class="organisation-page__projects-headline">{{ project_headline }}</h2>
+                <div data-project-search>
+                    <div class="organisation-page__search">
+                        <label class="visually-hidden" for="organisation-project-search">{% translate 'Search projects' %}</label>
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input type="search" id="organisation-project-search" data-project-search-input placeholder="{% translate 'Search' %}" autocomplete="off">
+                    </div>
+                    <ul class="l-tiles-3 organisation-page__projects" data-project-search-list>
+                        {% for project in active_projects %}
+                            {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project|project_url %}
+                        {% endfor %}
+                        {% for project in future_projects %}
+                            {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project|project_url %}
+                        {% endfor %}
+                        {% for project in past_projects %}
+                            {% include 'a4_candy_projects/includes/project_list_tile.html' with object=project project=project orientation='vertical' type='project' url=project|project_url %}
+                        {% endfor %}
+                    </ul>
+                    <p class="organisation-page__no-results" data-project-search-empty role="status" hidden>
+                        {% translate 'No projects found.' %}
+                    </p>
+                </div>
                 {% else %}
                     {% if request.user.is_authenticated %}
-                        <p>{% blocktranslate %}Currently, there are no public participation processes. Please check again later.{% endblocktranslate %}</p>
+                        <p>{% blocktranslate %}</p>Currently, there are no public participation processes. Please check again later.{% endblocktranslate %}</p>
                     {% elif organisation.information %}
                         {% url 'account_login' as account_login_url %}
                         {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
@@ -113,7 +118,6 @@
                         <p>{% blocktranslate %}Currently, there are no public participation processes. Sign in <a href="{{ account_login_url }}?next={{ organisation_url }}">here</a>.{% endblocktranslate %}</p>
                     {% endif %}
                 {% endif %}
-                </div>
             </div>
             {% include 'footer_upper.html' with organisation=organisation %}
         </div>

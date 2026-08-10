@@ -72,6 +72,17 @@ class OrganisationView(DetailView):
         context["is_following"] = getattr(self.object, "_is_following", False)
         context["unfollow_alert"] = self.request.GET.get("unfollowed") == "1"
 
+        # The sidebar stats need a calculation that differs from the normal
+        # project stats and is implemented in a later step. For now the
+        # values are placeholders, the markup is already in place.
+        context["organisation_stats"] = {
+            "projects_count": 0,
+            "comments_count": 0,
+            "proposals_count": 0,
+            "followers_count": 0,
+            "followers": [],
+        }
+
         return context
 
 
@@ -204,11 +215,10 @@ class DashboardLegalInformationUpdateView(
 class DashboardCommunicationProjectChoiceView(
     a4dashboard_mixins.DashboardBaseMixin, generic.FormView
 ):
-
     menu_item = "communication"
     form_class = forms.CommunicationProjectChoiceForm
     permission_required = "a4_candy_organisations.change_organisation"
-    template_name = "a4_candy_organisations/" "communication_form_social_media.html"
+    template_name = "a4_candy_organisations/communication_form_social_media.html"
     slug_url_kwarg = "organisation_slug"
 
     def get_permission_object(self):
@@ -250,11 +260,10 @@ class DashboardCommunicationProjectChoiceView(
 class DashboardCommunicationContentCreateView(
     a4dashboard_mixins.DashboardBaseMixin, generic.FormView
 ):
-
     menu_item = "communication"
     form_class = forms.CommunicationContentCreationForm
     permission_required = "a4_candy_organisations.change_organisation"
-    template_name = "a4_candy_organisations/" "communication_form_social_media.html"
+    template_name = "a4_candy_organisations/communication_form_social_media.html"
     slug_url_kwarg = "organisation_slug"
 
     def get_permission_object(self):

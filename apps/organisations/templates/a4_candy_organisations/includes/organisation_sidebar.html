@@ -1,0 +1,40 @@
+{% load i18n thumbnail %}
+
+<aside class="project-detail__sidebar organisation-page__sidebar" aria-label="{% translate 'Organisation overview' %}">
+    <ul class="project-detail__meta-list">
+        <li class="project-detail__meta-item">
+            <i class="fa-regular fa-file-lines project-detail__meta-icon" aria-hidden="true"></i>
+            {% blocktranslate count count=organisation_stats.projects_count %}{{ count }} Project{% plural %}{{ count }} Projects{% endblocktranslate %}
+        </li>
+        <li class="project-detail__meta-item">
+            <i class="fa-regular fa-comment project-detail__meta-icon" aria-hidden="true"></i>
+            {% blocktranslate count count=organisation_stats.comments_count %}{{ count }} Comment{% plural %}{{ count }} Comments{% endblocktranslate %}
+        </li>
+        <li class="project-detail__meta-item">
+            <i class="fa-regular fa-pen-to-square project-detail__meta-icon" aria-hidden="true"></i>
+            {% blocktranslate count count=organisation_stats.proposals_count %}{{ count }} Proposal{% plural %}{{ count }} Proposals{% endblocktranslate %}
+        </li>
+    </ul>
+
+    {% if organisation_stats.followers_count %}
+    <div class="project-detail__followers">
+        <p class="project-detail__followers-label">
+            {% blocktranslate count count=organisation_stats.followers_count %}{{ count }} Following{% plural %}{{ count }} Following{% endblocktranslate %}
+        </p>
+        <ul class="project-detail__avatars">
+            {% for follower in organisation_stats.followers %}
+            <li class="project-detail__avatar">
+                <span
+                    class="project-detail__avatar-image"
+                    style="background-image: url({% if follower.avatar %}{{ follower.avatar|thumbnail_url:'avatar' }}{% else %}{{ follower.avatar_fallback }}{% endif %});"></span>
+            </li>
+            {% endfor %}
+            <li class="project-detail__avatar">
+                <span class="project-detail__avatar-image project-detail__avatar-image--more">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                </span>
+            </li>
+        </ul>
+    </div>
+    {% endif %}
+</aside>

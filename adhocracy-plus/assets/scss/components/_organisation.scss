@@ -51,3 +51,151 @@
         color: $white;
     }
 }
+
+// Organisation landing page (Figma: d-OrganizationPage)
+// The intro layout and the sidebar borrow the component classes from the
+// project detail page (project-detail__intro, project-detail__sidebar, ...),
+// only the differences are defined here.
+
+.organisation-page__hero-wrap {
+    position: relative;
+}
+
+.organisation-page__avatar {
+    position: absolute;
+
+    // The hero-unit has a bottom margin of 3.5 * $spacer; the avatar overlaps
+    // the hero image by 3 * $spacer, so it sits 0.5 * $spacer above the wrap.
+    bottom: 0.5 * $spacer;
+    left: clamp(1rem, 6vw, 6rem);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6rem;
+    height: 6rem;
+    padding: 0.5 * $spacer;
+    background-color: $body-bg;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.09),
+        0 8px 5px 0 rgba(0, 0, 0, 0.05), 0 14px 6px 0 rgba(0, 0, 0, 0.01);
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    span {
+        font-weight: $demi-bold;
+        text-align: center;
+        overflow-wrap: anywhere;
+    }
+}
+
+.organisation-page__body {
+    width: 100%;
+    max-width: 60.375rem; // 966px, Figma content column
+    margin-top: 6.5 * $spacer; // Figma gap between hero/avatar and intro
+    margin-left: clamp(1rem, 6vw, 6rem);
+
+    // Below the large breakpoint the container is narrower than the max-width
+    // above; use padding instead of margin so the content cannot overflow.
+    @media (max-width: $breakpoint-lg-down) {
+        margin-left: 0;
+        padding-left: clamp(1rem, 6vw, 6rem);
+    }
+}
+
+.organisation-page__title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5 * $spacer;
+    margin-top: 0;
+    margin-bottom: $spacer;
+    font-family: $font-family-serif;
+    font-size: $font-size-xxl;
+    font-weight: 400;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.organisation-page__title-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: $font-size-sm;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: $link-hover-color;
+    }
+}
+
+.organisation-page__slogan {
+    margin-top: 0;
+    margin-bottom: $spacer;
+    font-family: $font-family-base;
+    font-size: $font-size-xl;
+    font-weight: $demi-bold;
+    line-height: 1.2;
+}
+
+.organisation-page__about {
+    min-width: 0;
+}
+
+.organisation-page__sidebar {
+    border: 1px solid $grey-100;
+
+    @media (min-width: $breakpoint-md) {
+        width: 12.25rem; // 196px, Figma stats box
+    }
+}
+
+.organisation-page__projects-headline {
+    margin: 1.5 * $spacer 0 2 * $spacer;
+    font-family: $font-family-serif;
+    font-size: $font-size-xxl;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.organisation-page__search {
+    position: relative;
+    width: min(26rem, 100%); // 416px, Figma search field
+    margin-bottom: 2 * $spacer;
+
+    .fa-search {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+        color: $text-color;
+        pointer-events: none;
+    }
+
+    input {
+        width: 100%;
+        height: 2.5rem;
+        padding: 0.5 * $spacer 1rem 0.5 * $spacer 2.5rem;
+        border: 1px solid $grey-100;
+        background-color: $body-bg;
+        font-size: $font-size-sm;
+
+        &:focus-visible {
+            @include fake-focus-shadow;
+        }
+    }
+}
+
+.organisation-page__projects .tile[hidden] {
+    display: none;
+}
+
+.organisation-page__no-results {
+    margin: 0;
+}
