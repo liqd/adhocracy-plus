@@ -173,6 +173,12 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
+        // package.json has "type": "module", which classifies .js files as
+        // javascript/esm. In esm modules webpack does not process CommonJS
+        // require() calls (e.g. CSS imports converted by the babel
+        // transform-modules-commonjs plugin), so the extracted CSS files are
+        // never emitted. Force javascript/auto to restore that handling.
+        type: 'javascript/auto',
         exclude: [
           /node_modules\/\.pnpm\/.+?\/node_modules\/(?!adhocracy4\/).*/,
           /node_modules\/(?!\.pnpm\/)(?!adhocracy4\/).*/
