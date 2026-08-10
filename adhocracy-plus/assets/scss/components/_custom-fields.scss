@@ -1,5 +1,11 @@
 // Custom fields module settings (apps/customfields)
 
+@media screen and (max-width: $breakpoint-md-down) {
+    .custom-fields__heading.u-first-heading {
+        margin-top: 16px;
+    }
+}
+
 .custom-fields__help-text {
     color: $text-color-gray;
     font-style: italic;
