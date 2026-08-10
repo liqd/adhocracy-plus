@@ -2,12 +2,14 @@
 {% load i18n static %}
 
 {% block dashboard_project_content %}
-    <h1 class="u-first-heading custom-fields__heading">{% translate 'Edit custom fields' %}</h1>
-    <p class="custom-fields__help-text">
-        {% translate 'Add extra questions participants answer when submitting an idea.' %}
-    </p>
+    <div class="custom-fields">
+        <h1 class="u-first-heading custom-fields__heading">{% translate 'Edit custom fields' %}</h1>
+        <p class="custom-fields__help-text">
+            {% translate 'Add extra questions participants answer when submitting an idea.' %}
+        </p>
 
-    <div data-a4-widget="custom-field-management" data-attributes="{{ widget_attributes }}"></div>
+        <div data-a4-widget="custom-field-management" data-attributes="{{ widget_attributes }}"></div>
+    </div>
 
 {% endblock dashboard_project_content %}
 

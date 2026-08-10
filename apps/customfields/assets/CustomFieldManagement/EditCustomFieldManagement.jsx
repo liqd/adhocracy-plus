@@ -135,7 +135,7 @@ export const EditCustomFieldManagement = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} onChange={clearAlert} className="editpoll__questions">
+    <form onSubmit={handleSubmit} onChange={clearAlert} className="editpoll__questions custom-fields">
 
       {fields.map((field, index) => (
         <EditCustomField
