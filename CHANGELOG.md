@@ -17,37 +17,33 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
-- Organisation page: redesigned landing page (hero with overlapping logo avatar,
-  intro with follow and about actions, stats sidebar with placeholders, project
-  name search filter, project tiles in a three column grid). The about tab in
-  the organisation navigation was replaced by an about link next to the follow
-  button; breadcrumbs are no longer shown on the organisation landing page.
 - Landing Page: Updated buttons (view demo organisation), new icons
 - Idea, proposal, and map idea forms: do not prefill contact email for guest users
 - Project detail: follower count and avatar bubbles exclude guest users
 - Project banner for guests: register links to guest account conversion; login routes through sign-out before the login page
 - Emails: organisation-scoped mailings (notifications, invitations, newsletters,
-  report-to-moderator, etc.) show `{organisation name} | {platform/site name}` as the
-  sender display name (from Wagtail `OrganisationSettings.platform_name` or the
-  Django site name). SMTP address still comes from `DEFAULT_FROM_EMAIL`.
-  Implemented in `EmailAplus.get_from_email()`; a4 report emails are wired via
-  `apps/contrib/a4_emails.py`.
+  report-to-moderator, etc.) show ``{organisation name} | {platform/site name}`` as the
+  sender display name (from Wagtail ``OrganisationSettings.platform_name`` or the
+  Django site name). SMTP address still comes from ``DEFAULT_FROM_EMAIL``.
+  Implemented in ``EmailAplus.get_from_email()``; a4 report emails are wired via
+  ``apps/contrib/a4_emails.py``.
 - Organisation settings: Language availability preselected according to user language
 - Polls: Use Uppy Image uploader for Poll Question Images
 - Dependencies: use pnpm for more secure package management
 - CI: use Node 22 in GitHub Actions workflow
 - Dependencies: upgrade various npm packages for security fixes
-- Dependencies: migrate eslint from v8 to v9 with flat config (`eslint.config.js`);
-  remove deprecated `@babel/eslint-parser`, `eslint-config-standard`,
-  `eslint-config-standard-jsx`, and `eslint-plugin-import`; add
-  `@eslint/js`, `eslint-plugin-import-x`, `eslint-plugin-n`,
-  `eslint-plugin-react-hooks`, and `globals`
+- Dependencies: migrate eslint from v8 to v9 with flat config (``eslint.config.js``);
+  remove deprecated ``@babel/eslint-parser``, ``eslint-config-standard``,
+  ``eslint-config-standard-jsx``, and ``eslint-plugin-import``; add
+  ``@eslint/js``, ``eslint-plugin-import-x``, ``eslint-plugin-n``,
+  ``eslint-plugin-react-hooks``, and ``globals``
 
 ### Fixed
 
-- tests/organisations: fix `test_initiator_can_update` assertion to use
-  `switch_language` context manager (django-parler behaviour change caused
+- tests/organisations: fix ``test_initiator_can_update`` assertion to use
+  ``switch_language`` context manager (django-parler behaviour change caused
   the default-language description to return the primary language value)
+
 
 ## v2607.4
 
@@ -118,7 +114,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## hotfix v2606.1
 
 ### Fixed
-
 - Participant invites should also go to unregistered users
 
 ## v2605.1
@@ -127,7 +122,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Improvements to pagination
 - Footer: New Footer Module
-- Hierarchical platform breadcrumbs
+- Hierarchical platform breadcrumbs 
 - Design: Update Colour Pallette
 - Design: New Landing Page
 
@@ -160,7 +155,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## v2602.2
 
-### Added
+### Added 
 
 - apps/projects: export_utils for exporting project data
 
@@ -258,6 +253,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Conditional display of dashboard project module menu's "Location" uses identifier instead of label, so translation doesn't break it
 - dashboard/phases: Prevent accidental selection of entire page when using date picker
 
+
+
 ## v2501.4
 
 ### Added
@@ -284,14 +281,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - update dependency postcss to v8.5.1
 - update dependency stylelint to v16.13.2
 
+
+
 ## v2501.2
-
 ### Changed
-
 - update translations
 
 ## v2501.1
-
 ### Changed
 
 - change sorting of past projects on organisation detail page from oldest ->
@@ -300,11 +296,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - offlineevent delete view, replace depricated a4 DashboardComponentDeleteSignalMixin with DashboardComponentFormSignalMixin
 - topicrio delete view, replace depricated a4 DashboardComponentDeleteSignalMixin with DashboardComponentFormSignalMixin
 - image upload for ideas, proposals,mapideas and projects organised by date
-- small css overwrites to adapt to a4 changes- Update README with some notes and new commands for the installation of the a+ repository locally. - queryset filter for AppProjectsViewSet to include all current and future projects, and only those with enabled geolocation
+- small css overwrites to adapt to a4 changes-  Update README with some notes and new commands for the installation of the a+ repository locally. - queryset filter for AppProjectsViewSet to include all current and future projects, and only those with enabled geolocation
 - replaced the old datepicker with flatpickr
 - make flatpickr instances aware of each other (e.g. for start and end phase of
   a module, you can't choose an end date which is earlier than the start date)- add a check for the creator field in the Answer/Vote signal for the poll to
-  accommodate the new feature to vote without registration
+accommodate the new feature to vote without registration
 - update wagtail to 6.0.x
 - update wagtail to 6.1.x
 - update wagtail to 6.2.x
@@ -326,15 +322,14 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - django rest framework simplejwt for API authentication with jwt token
 - translations
 - add a new field `unregistered_participants` to `ProjectInsights` to allow
-  tracking unregistered participants in polls.
+tracking unregistered participants in polls.
 - add a signal handler for the new `poll_voted` signal which increases the
-  unregistered participants count in the project insights.
+unregistered participants count in the project insights.
 - docs for new open poll
 - added a new make command `docs` to run the mkdocs server to read (and see live
-  changes to) the documentation
+changes to) the documentation
 - info-box on poll for unregistered users
 - module_description snippet with fixed semantics
-
 ### Fixed
 
 - fix moderator feedback on comments not breaking long words/urls (#2709)
@@ -349,7 +344,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - removed no longer required `use_json_field` from wagtail pages
 
 ## v2406.4
-
 ### Changed
 
 - update a4 to aplus-v2406.4
@@ -363,7 +357,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - add missing template for password_set view
 
 ## v2406.3
-
 ### Changed
 
 - update a4 to aplus-v2406.3
@@ -373,12 +366,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## v2406.2
 
 ### Added
-
 - modules diagrams
 - added pytest-mock to dev dependencies (currently only used in forks)
 
 ### Fixed
-
 - fixed outdated telephone number in error templates
 - fixed linting errors and reformat the modified templates
 - disable password help text provided by django-allauth on login form
@@ -400,13 +391,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - add script to check in CI that a4 hashes for pip and npm match
 - pass initial_slide as url param when going back from module to project
 - in contrib templates for item_detail:
-  request http referer for go back/overview to filtered/paginated list
+    request http referer for go back/overview to filtered/paginated list
 - in topicprio templates for topic_detail:
-  request http referer for go back/overview to filtered/paginated list
+    request http referer for go back/overview to filtered/paginated list
 - in budgeting, idea, mapidea, topicprio:
-  index id to be used with href anchor to navigate back to item list
+    index id to be used with href anchor to navigate back to item list
 - in contrib templates for map_filter_and_sort and pagination:
-  index id to be used with href anchor to navigate back to item list
+    index id to be used with href anchor to navigate back to item list
 - logo icon and styling for project-holi btn (!7430)
 - project insight model, create insight function,
   update insights with signals (#2492)
@@ -461,13 +452,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - language setting as a cookie instead of session key according to django deprecation
 - captcha becomes optional depending on project settings (#2449)
-  assets/blocks: small home page block improvements fixes #2493
-  assets/variables//button: rm twitter related styling and variable partial fix for #2363
-  apps/captcha: rm inline css and add to own file update structure to be more a11y friendly
-  apps/userdashboard/: small styling fixes fixes #2392
-  assets/variables: reduce lightening slightly on tertiary background colour fixes #2369
-  templates/project_list_tile: ensure abbr date title is translatable and update styling and make it hoverable on a tile link fixes #2222
-  assets/account: update styling for user agreements fixes #1922
+assets/blocks: small home page block improvements fixes #2493
+assets/variables//button: rm twitter related styling and variable partial fix for #2363
+apps/captcha: rm inline css and add to own file update structure to be more a11y friendly
+apps/userdashboard/: small styling fixes fixes #2392
+assets/variables: reduce lightening slightly on tertiary background colour fixes #2369
+templates/project_list_tile: ensure abbr date title is translatable and update styling and make it hoverable on a tile link fixes #2222
+assets/account: update styling for user agreements fixes #1922
 - language not changing to user preference after login
 - fix broken pytest-lastfailed command in Makefile
 - fixed the flaky test_notify_creator_exclude_moderator test
@@ -491,7 +482,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - changed wording of emails of event notifications
 - replace django-ckeditor with django-ckeditor5
 - disable browser-side form checks for forms which use ckeditor by adding
-  `novalidate` to them This is necessary as ckeditor form fields which are
+  `novalidate` to them  This is necessary as ckeditor form fields which are
   required will block form submission otherwise.
 - update and move helptext for plans ckeditor5 field from model to form
 - update and move helptext for newsletter ckeditor5 field from model to form
@@ -500,7 +491,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - add image validator which validates that all img tags have the alt attribute
   set to all ckedito5 fields
 - disable browser-side form checks for forms which use ckeditor by adding
-  `novalidate` to them This is necessary as ckeditor form fields which are
+  `novalidate` to them  This is necessary as ckeditor form fields which are
   required will block form submission otherwise.
 - changed font-weight: normal to 400 to consistenly use numbers
 - changed the register button from btn--primary to btn--secondary-filled
@@ -541,8 +532,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - wagtail: upgrade to 5.2.x
 - django-filters: upgrade to 23.5 as required by wagtail 5.2
 - apps/interactiveevent: display module description and phase info as plain text
-- inherited adapter's method from get_email_confirmation_redirect_url to get_email_verification_redirect_url
-- to latest allauth v.0.63.2
+-  inherited adapter's method from get_email_confirmation_redirect_url to get_email_verification_redirect_url
+-  to latest allauth v.0.63.2
 - reformat CHANGELOG.md
 - fixed outdated telephone number in error templates
 - changed link on error templates from hardcoded value to page root

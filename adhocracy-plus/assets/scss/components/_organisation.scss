@@ -52,7 +52,7 @@
     }
 }
 
-// Organisation landing page (Figma: d-OrganizationPage)
+// Organisation landing page
 // The intro layout and the sidebar borrow the component classes from the
 // project detail page (project-detail__intro, project-detail__sidebar, ...),
 // only the differences are defined here.
@@ -95,8 +95,8 @@
 
 .organisation-page__body {
     width: 100%;
-    max-width: 60.375rem; // 966px, Figma content column
-    margin-top: 6.5 * $spacer; // Figma gap between hero/avatar and intro
+    max-width: 60.375rem; // 966px
+    margin-top: 6.5 * $spacer;
     margin-left: clamp(1rem, 6vw, 6rem);
 
     // Below the large breakpoint the container is narrower than the max-width
@@ -151,7 +151,7 @@
     border: 1px solid $grey-100;
 
     @media (min-width: $breakpoint-md) {
-        width: 12.25rem; // 196px, Figma stats box
+        width: 12.25rem; // 196px
     }
 }
 
@@ -166,7 +166,7 @@
 
 .organisation-page__search {
     position: relative;
-    width: min(26rem, 100%); // 416px, Figma search field
+    width: min(26rem, 100%); // 416px
     margin-bottom: 2 * $spacer;
 
     .fa-search {
