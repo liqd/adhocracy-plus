@@ -2,6 +2,7 @@ import base64
 import json
 import os
 from io import BytesIO
+from itertools import chain
 
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,6 +10,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Exists
 from django.db.models import OuterRef
+from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
@@ -18,12 +20,14 @@ from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views import generic
 from django.views.generic import DetailView
+from guest_user.functions import get_guest_model
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from apps.projects.models import Project
+from apps.projects.models import ProjectInsight
 
 from . import forms
 from .forms import SOCIAL_MEDIA_SIZES
@@ -55,6 +59,7 @@ class OrganisationView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         active, future, past = self.object.get_projects_list(self.request.user)
+        viewable_projects = list(chain(active, future, past))
 
         context["active_projects"] = active
         context["future_projects"] = future
@@ -72,18 +77,41 @@ class OrganisationView(DetailView):
         context["is_following"] = getattr(self.object, "_is_following", False)
         context["unfollow_alert"] = self.request.GET.get("unfollowed") == "1"
 
-        # The sidebar stats need a calculation that differs from the normal
-        # project stats and is implemented in a later step. For now the
-        # values are placeholders, the markup is already in place.
-        context["organisation_stats"] = {
-            "projects_count": 0,
-            "comments_count": 0,
-            "proposals_count": 0,
-            "followers_count": 0,
-            "followers": [],
-        }
+        context["organisation_stats"] = self._get_organisation_stats(viewable_projects)
 
         return context
+
+    def _get_organisation_stats(self, projects):
+        """Sidebar stats for the organisation landing page.
+
+        Comments and proposals mirror the project insight counters (see
+        apps/projects/insights.py) aggregated over the visible projects of the
+        organisation. Followers only count registered (non-guest) users, the
+        same way the project detail follower list does.
+        """
+        project_ids = [project.pk for project in projects]
+
+        counts = ProjectInsight.objects.filter(project_id__in=project_ids).aggregate(
+            comments=Sum("comments"),
+            written_ideas=Sum("written_ideas"),
+        )
+
+        guest_user_ids = get_guest_model().objects.values_list("user_id", flat=True)
+        follows = OrganisationFollow.objects.filter(
+            organisation=self.object, enabled=True
+        ).exclude(creator_id__in=guest_user_ids)
+        followers = [
+            follow.creator
+            for follow in follows.select_related("creator").order_by("-created")[:4]
+        ]
+
+        return {
+            "projects_count": len(project_ids),
+            "comments_count": counts["comments"] or 0,
+            "proposals_count": counts["written_ideas"] or 0,
+            "followers_count": follows.count(),
+            "followers": followers,
+        }
 
 
 class OrganisationFollowToggleView(LoginRequiredMixin, View):

@@ -87,6 +87,12 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    project_search: {
+        import: [
+        './adhocracy-plus/assets/js/project_search.js'
+        ],
+        dependOn: 'adhocracy4'
+    },
     // A4 dependencies - we want all of them to go through webpack
     a4maps_display_point: {
       import: [
