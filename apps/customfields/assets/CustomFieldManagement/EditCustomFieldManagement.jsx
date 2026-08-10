@@ -1,8 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react'
 import django from 'django'
-import FlipMove from 'react-flip-move'
-import update from 'immutability-helper'
 import cookie from 'js-cookie'
 
 import { alert as Alert } from 'adhocracy4'
@@ -11,10 +9,7 @@ import { updateDashboard } from 'adhocracy4/adhocracy4/dashboard/assets/dashboar
 import { EditCustomField } from './EditCustomField'
 
 const TRANSLATED = {
-  addAndEditSectionTitle: django.gettext('Add and Edit Custom Fields'),
-  newField: django.gettext('New Field'),
-  openQuestion: django.gettext('Open question'),
-  multipleChoice: django.gettext('Multiple choice question'),
+  addField: django.gettext('Add Field'),
   save: django.gettext('Save'),
   updated: django.gettext('The custom fields have been updated.'),
   updateFailed: django.gettext(
@@ -25,12 +20,12 @@ const TRANSLATED = {
 let maxLocalKey = 0
 const getNextLocalKey = () => `local_${maxLocalKey++}`
 
-const createEmptyField = (type) => ({
+const createEmptyField = () => ({
   label: '',
-  type,
+  type: 'open',
   required: false,
   key: getNextLocalKey(),
-  choices: type === 'choice' ? [{ label: '', key: getNextLocalKey() }] : []
+  choices: []
 })
 
 export const EditCustomFieldManagement = (props) => {
@@ -46,43 +41,60 @@ export const EditCustomFieldManagement = (props) => {
   }, [props.apiUrl])
 
   const updateField = (index, updates) => {
-    setFields(update(fields, { [index]: { $merge: updates } }))
+    setFields(prev => prev.map((field, i) => (
+      i === index ? { ...field, ...updates } : field
+    )))
   }
 
   const updateChoice = (fIndex, cIndex, updates) => {
-    setFields(update(fields, {
-      [fIndex]: { choices: { [cIndex]: { $merge: updates } } }
+    setFields(prev => prev.map((field, i) => {
+      if (i !== fIndex) return field
+      const choices = field.choices.map((choice, j) => (
+        j === cIndex ? { ...choice, ...updates } : choice
+      ))
+      return { ...field, choices }
     }))
   }
 
-  const handleFieldAppend = (type) => {
-    setFields([...fields, createEmptyField(type)])
+  const handleFieldAppend = () => {
+    setFields(prev => [...prev, createEmptyField()])
   }
 
   const handleFieldDelete = (index) => {
-    setFields(fields.filter((_, i) => i !== index))
+    setFields(prev => prev.filter((_, i) => i !== index))
   }
 
-  const handleFieldMove = (index, direction) => {
-    const newIndex = index + direction
-    if (newIndex < 0 || newIndex >= fields.length) return
-
-    const reordered = [...fields]
-    const temp = reordered[index]
-    reordered[index] = reordered[newIndex]
-    reordered[newIndex] = temp
-
-    setFields(reordered)
+  const handleTypeChange = (index, type) => {
+    setFields(prev => prev.map((field, i) => {
+      if (i !== index) return field
+      if (type === 'choice' && (!field.choices || field.choices.length === 0)) {
+        return {
+          ...field,
+          type,
+          choices: [{ label: '', key: getNextLocalKey() }]
+        }
+      }
+      return { ...field, type }
+    }))
   }
 
   const handleChoiceDelete = (fIndex, cIndex) => {
-    const newChoices = fields[fIndex].choices.filter((_, i) => i !== cIndex)
-    updateField(fIndex, { choices: newChoices })
+    setFields(prev => prev.map((field, i) => {
+      if (i !== fIndex) return field
+      return {
+        ...field,
+        choices: field.choices.filter((_, j) => j !== cIndex)
+      }
+    }))
   }
 
   const handleChoiceAppend = (fIndex) => {
-    setFields(update(fields, {
-      [fIndex]: { choices: { $push: [{ label: '', key: getNextLocalKey() }] } }
+    setFields(prev => prev.map((field, i) => {
+      if (i !== fIndex) return field
+      return {
+        ...field,
+        choices: [...field.choices, { label: '', key: getNextLocalKey() }]
+      }
     }))
   }
 
@@ -124,78 +136,36 @@ export const EditCustomFieldManagement = (props) => {
 
   return (
     <form onSubmit={handleSubmit} onChange={clearAlert} className="editpoll__questions">
-      <section>
-        <h2>{TRANSLATED.addAndEditSectionTitle}</h2>
-        <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
-          {fields.map((field, index, arr) => {
-            const key = field.id || field.key
-            return (
-              <EditCustomField
-                key={key}
-                id={key}
-                field={field}
-                onLabelChange={(label) => updateField(index, { label })}
-                onRequiredChange={(required) => updateField(index, { required })}
-                onChoiceLabelChange={(cIndex, label) => updateChoice(index, cIndex, { label })}
-                onDeleteChoice={(cIndex) => handleChoiceDelete(index, cIndex)}
-                onAppendChoice={() => handleChoiceAppend(index)}
-                onMoveUp={index > 0 ? () => handleFieldMove(index, -1) : null}
-                onMoveDown={index < arr.length - 1 ? () => handleFieldMove(index, 1) : null}
-                onDelete={() => handleFieldDelete(index)}
-              />
-            )
-          })}
-        </FlipMove>
-      </section>
+
+      {fields.map((field, index) => (
+        <EditCustomField
+          key={field.id || field.key}
+          id={field.id || field.key}
+          field={field}
+          title={field.id
+            ? django.interpolate(django.gettext('Field %(number)s'), { number: index + 1 }, true)
+            : django.gettext('New field')}
+          onLabelChange={(label) => updateField(index, { label })}
+          onRequiredChange={(required) => updateField(index, { required })}
+          onTypeChange={(type) => handleTypeChange(index, type)}
+          onChoiceLabelChange={(cIndex, label) => updateChoice(index, cIndex, { label })}
+          onDeleteChoice={(cIndex) => handleChoiceDelete(index, cIndex)}
+          onAppendChoice={() => handleChoiceAppend(index)}
+          onDelete={() => handleFieldDelete(index)}
+        />
+      ))}
 
       <Alert onClick={clearAlert} {...alert} />
 
-      <div className="editpoll__question-container">
-        <div className="editpoll__question">
-          <EditCustomFieldDropdown
-            handleAddOpen={() => handleFieldAppend('open')}
-            handleAddChoice={() => handleFieldAppend('choice')}
-          />
-        </div>
-        <div className="editpoll__question-actions">
-          <button type="submit" className="btn btn--primary">
-            {TRANSLATED.save}
-          </button>
-        </div>
+      <div className="custom-fields__actions">
+        <button type="button" className="btn btn--secondary" onClick={handleFieldAppend}>
+          <i className="fa fa-plus" aria-hidden="true" />
+          {TRANSLATED.addField}
+        </button>
+        <button type="submit" className="btn btn--primary">
+          {TRANSLATED.save}
+        </button>
       </div>
     </form>
   )
 }
-
-const EditCustomFieldDropdown = ({ handleAddOpen, handleAddChoice }) => (
-  <div className="dropdown editpoll__dropdown">
-    <button
-      type="button"
-      className="dropdown-toggle btn btn--light"
-      aria-haspopup="true"
-      aria-expanded="false"
-      data-bs-toggle="dropdown"
-    >
-      <i className="fa fa-plus" />
-      {TRANSLATED.newField}
-    </button>
-    <div className="dropdown-menu">
-      <button
-        key="1"
-        className="dropdown-item"
-        type="button"
-        onClick={handleAddChoice}
-      >
-        {TRANSLATED.multipleChoice}
-      </button>
-      <button
-        key="2"
-        className="dropdown-item"
-        type="button"
-        onClick={handleAddOpen}
-      >
-        {TRANSLATED.openQuestion}
-      </button>
-    </div>
-  </div>
-)

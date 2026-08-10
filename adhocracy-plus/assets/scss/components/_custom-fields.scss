@@ -1,0 +1,113 @@
+// Custom fields module settings (apps/customfields)
+
+.custom-fields__help-text {
+    color: $text-color-gray;
+    font-style: italic;
+}
+
+.custom-fields__field {
+    width: 100%;
+
+    .editpoll__question {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+.custom-fields__card {
+    padding: 1.5 * $spacer;
+}
+
+.custom-fields__card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1 * $spacer;
+}
+
+.custom-fields__card-title {
+    margin: 0;
+}
+
+.custom-fields__delete {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.custom-fields__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5 * $spacer;
+    margin: 1 * $spacer 0 0;
+
+    .form-check {
+        margin-bottom: 0;
+    }
+
+    label {
+        margin: 0;
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .custom-fields__options {
+        flex-direction: row;
+        gap: 2 * $spacer;
+    }
+}
+
+.custom-fields__answers {
+    margin-top: 1.5 * $spacer;
+}
+
+.custom-fields__add-answer {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5 * $spacer;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    color: $brand-primary;
+}
+
+.custom-fields__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1 * $spacer;
+    margin-top: 1.5 * $spacer;
+}
+
+.custom-fields__input-group {
+    position: relative;
+
+    .input-group__input {
+        padding-right: 2.5rem;
+    }
+}
+
+.custom-fields__answer-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}

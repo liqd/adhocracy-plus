@@ -177,6 +177,15 @@ module.exports = {
   },
   module: {
     rules: [
+      // The repository and the adhocracy4 package are "type": "module".
+      // Their sources are transpiled to CommonJS by babel (see plugin below),
+      // so let webpack parse all JS as CommonJS instead of strict ESM.
+      // Otherwise the generated `require`/`exports` identifiers are not
+      // rewritten and break at runtime.
+      {
+        test: /\.(js|jsx)$/,
+        type: 'javascript/auto'
+      },
       {
         test: /\.jsx?$/,
         // package.json has "type": "module", which classifies .js files as
