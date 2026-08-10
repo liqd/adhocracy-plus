@@ -1,5 +1,15 @@
 // Custom fields module settings (apps/customfields)
 
+// Participant-side custom field widgets (idea submission form)
+select[id^="id_custom_field_"] {
+    appearance: none;
+    padding-right: 2.5rem;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23666' d='M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px 16px;
+}
+
 @media screen and (max-width: $breakpoint-md-down) {
     .custom-fields__heading.u-first-heading {
         margin-top: 16px;

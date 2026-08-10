@@ -55,7 +55,7 @@ class CustomFieldsFormMixin(forms.Form):
         return forms.CharField(
             label=field.label,
             required=field.required,
-            widget=forms.Textarea,
+            widget=forms.Textarea(attrs={"rows": 4}),
         )
 
     def save(self, commit=True):
