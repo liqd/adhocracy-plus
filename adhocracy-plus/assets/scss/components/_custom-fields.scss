@@ -5,17 +5,33 @@
     font-style: italic;
 }
 
-.custom-fields__field {
+.editpoll__questions .custom-fields__field {
     width: 100%;
+
+    // neutralize the margins of the editpoll row pattern so the cards stay
+    // aligned with the form and only one spacing source applies
+    margin: 0;
 
     .editpoll__question {
         flex: 1 1 100%;
         max-width: 100%;
+
+        // drop the grid gutter padding and bottom margin from the commenting
+        // pattern so the cards span the full form width and only one spacing
+        // source applies
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 0;
     }
 }
 
-.custom-fields__card {
+.custom-fields__field + .custom-fields__field {
+    margin-top: 16px;
+}
+
+.editpoll__questions .custom-fields__card {
     padding: 1.5 * $spacer;
+    margin-bottom: 0;
 }
 
 .custom-fields__card-header {
@@ -82,7 +98,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 1 * $spacer;
-    margin-top: 1.5 * $spacer;
+    margin-top: 30px;
 }
 
 .custom-fields__input-group {
