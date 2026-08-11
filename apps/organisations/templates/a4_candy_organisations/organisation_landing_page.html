@@ -63,7 +63,7 @@
                         <p class="project-detail__description">{{ organisation.description }}</p>
                         {% endif %}
                         <div class="project-detail__actions">
-                            <div class="project-detail__follow">
+                            <div class="project-detail__follow" id="organisation-follow-button">
                                 {% include 'a4_candy_organisations/includes/follow_button.html' with organisation=organisation is_following=is_following %}
                             </div>
                             {% if organisation.information %}

@@ -1,0 +1,47 @@
+{% load i18n thumbnail %}
+<div id="organisation-sidebar-followers"{% if oob %} hx-swap-oob="true"{% endif %}>
+    {% if organisation_stats.followers_count %}
+    <div class="project-detail__followers">
+        <p class="project-detail__followers-label">
+            {{ organisation_stats.followers_count }} {% translate 'Following' %}
+        </p>
+        <ul class="project-detail__avatars">
+            {% for follower in organisation_stats.followers %}
+            <li class="project-detail__avatar">
+                <span
+                    class="project-detail__avatar-image"
+                    style="background-image: url({% if follower.avatar %}{{ follower.avatar|thumbnail_url:'avatar' }}{% else %}{{ follower.avatar_fallback }}{% endif %});"></span>
+            </li>
+            {% endfor %}
+            {% if request.user.is_authenticated %}
+            <li class="project-detail__avatar">
+                <form
+                    hx-post="{% url 'organisation-follow' organisation_slug=organisation.slug %}"
+                    hx-target="#organisation-follow-button"
+                    hx-swap="innerHTML"
+                >
+                    {% csrf_token %}
+                    <button
+                        type="submit"
+                        class="project-detail__avatar-button project-detail__avatar-image project-detail__avatar-image--more"
+                        aria-label="{% translate 'Follow organisation' %}"
+                    >
+                        <i class="fas fa-plus" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </li>
+            {% else %}
+            <li class="project-detail__avatar">
+                <a
+                    class="project-detail__avatar-button project-detail__avatar-image project-detail__avatar-image--more"
+                    href="{% url 'account_login' %}?next={{ request.path }}"
+                    aria-label="{% translate 'Follow organisation' %}"
+                >
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endif %}
+</div>

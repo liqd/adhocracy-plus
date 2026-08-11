@@ -101,9 +101,11 @@
 
     // Below the large breakpoint the container is narrower than the max-width
     // above; use padding instead of margin so the content cannot overflow.
+    // The padding is symmetric so the content stays centered in the container.
     @media (max-width: $breakpoint-lg-down) {
         margin-left: 0;
         padding-left: clamp(1rem, 6vw, 6rem);
+        padding-right: clamp(1rem, 6vw, 6rem);
     }
 }
 
@@ -161,7 +163,6 @@
     font-size: $font-size-xxl;
     font-weight: 400;
     line-height: 1.2;
-    text-align: center;
 }
 
 .organisation-page__search {

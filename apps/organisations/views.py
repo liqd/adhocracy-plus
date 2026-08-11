@@ -36,6 +36,22 @@ from .models import Organisation
 from .models import OrganisationFollow
 
 
+def get_organisation_followers(organisation, limit=4):
+    """Enabled follows from registered (non-guest) users only.
+
+    Same exclusion as the project detail follower list.
+    """
+    guest_user_ids = get_guest_model().objects.values_list("user_id", flat=True)
+    follows = OrganisationFollow.objects.filter(
+        organisation=organisation, enabled=True
+    ).exclude(creator_id__in=guest_user_ids)
+    followers = [
+        follow.creator
+        for follow in follows.select_related("creator").order_by("-created")[:limit]
+    ]
+    return follows.count(), followers
+
+
 class OrganisationView(DetailView):
     template_name = "a4_candy_organisations/organisation_landing_page.html"
     model = Organisation
@@ -96,20 +112,13 @@ class OrganisationView(DetailView):
             written_ideas=Sum("written_ideas"),
         )
 
-        guest_user_ids = get_guest_model().objects.values_list("user_id", flat=True)
-        follows = OrganisationFollow.objects.filter(
-            organisation=self.object, enabled=True
-        ).exclude(creator_id__in=guest_user_ids)
-        followers = [
-            follow.creator
-            for follow in follows.select_related("creator").order_by("-created")[:4]
-        ]
+        follower_count, followers = get_organisation_followers(self.object)
 
         return {
             "projects_count": len(project_ids),
             "comments_count": counts["comments"] or 0,
             "proposals_count": counts["written_ideas"] or 0,
-            "followers_count": follows.count(),
+            "followers_count": follower_count,
             "followers": followers,
         }
 
@@ -139,7 +148,20 @@ class OrganisationFollowToggleView(LoginRequiredMixin, View):
             },
             request=request,
         )
-        return HttpResponse(alert + button)
+        follower_count, followers = get_organisation_followers(organisation)
+        followers_fragment = render_to_string(
+            "a4_candy_organisations/includes/organisation_followers.html",
+            {
+                "organisation": organisation,
+                "organisation_stats": {
+                    "followers_count": follower_count,
+                    "followers": followers,
+                },
+                "oob": True,
+            },
+            request=request,
+        )
+        return HttpResponse(alert + button + followers_fragment)
 
 
 class OrganisationUnfollowView(LoginRequiredMixin, View):
