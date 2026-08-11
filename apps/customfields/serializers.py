@@ -34,11 +34,7 @@ class CustomFieldSettingsSerializer(serializers.ModelSerializer):
         fields = ("id", "fields")
 
     def update(self, instance, validated_data):
-        request = self.context.get("request")
-        if not request:
-            return instance
-
-        fields_data = request.data.get("fields")
+        fields_data = validated_data.get("fields")
         if fields_data is None:
             return instance
 

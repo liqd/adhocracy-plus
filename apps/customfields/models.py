@@ -79,10 +79,13 @@ class CustomFieldAnswer(TimeStampedModel):
     def display_value(self):
         if self.field.type == CustomFieldType.CHOICE and self.value:
             try:
-                choice = CustomFieldChoice.objects.get(
-                    pk=int(self.value), field=self.field
-                )
-            except (ValueError, CustomFieldChoice.DoesNotExist):
+                pk = int(self.value)
+            except ValueError:
                 return self.value
-            return choice.label
+            # iterate the prefetched choices (when available) instead of
+            # issuing a query per answer
+            for choice in self.field.choices.all():
+                if choice.pk == pk:
+                    return choice.label
+            return self.value
         return self.value

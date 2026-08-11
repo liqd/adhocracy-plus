@@ -27,7 +27,7 @@ class CustomFieldsFormMixin(forms.Form):
 
     def get_custom_fields(self):
         if self.settings_instance:
-            return self.settings_instance.fields.all()
+            return self.settings_instance.fields.prefetch_related("choices")
         return []
 
     def get_existing_answers(self):
@@ -60,12 +60,20 @@ class CustomFieldsFormMixin(forms.Form):
 
     def save(self, commit=True):
         idea = super().save(commit=commit)
-        if self.settings_instance and self.custom_field_list and idea.pk:
-            CustomFieldAnswer.objects.filter(idea=idea).delete()
-            for name, field in self.custom_field_list:
-                value = self.cleaned_data.get(name)
-                if value:
-                    CustomFieldAnswer.objects.create(
-                        idea=idea, field=field, value=str(value)
-                    )
+        if not idea.pk:
+            return idea
+
+        current = {field.pk for _, field in self.custom_field_list}
+        CustomFieldAnswer.objects.filter(idea=idea).exclude(
+            field_id__in=current
+        ).delete()
+
+        for name, field in self.custom_field_list:
+            value = self.cleaned_data.get(name)
+            if value:
+                CustomFieldAnswer.objects.update_or_create(
+                    idea=idea, field=field, defaults={"value": str(value)}
+                )
+            else:
+                CustomFieldAnswer.objects.filter(idea=idea, field=field).delete()
         return idea

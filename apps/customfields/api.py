@@ -12,7 +12,7 @@ class CustomFieldSettingsViewSet(
 ):
     """ViewSet used to edit the custom fields from the dashboard."""
 
-    queryset = CustomFieldSettings.objects.all()
+    queryset = CustomFieldSettings.objects.prefetch_related("fields__choices")
     serializer_class = CustomFieldSettingsSerializer
     permission_classes = (ViewSetRulesPermission,)
 

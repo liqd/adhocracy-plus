@@ -153,6 +153,7 @@ def test_update_idea_prefills_and_saves_custom_fields(
     CustomFieldAnswer.objects.create(
         idea=idea, field=choice_field, value=str(choice_1.pk)
     )
+    open_created = idea.custom_field_answers.get(field=open_field).created
     category = category_factory(module=module)
     url = reverse(
         "a4_candy_ideas:idea-update",
@@ -188,3 +189,48 @@ def test_update_idea_prefills_and_saves_custom_fields(
         answers = idea.custom_field_answers.all()
         assert answers.get(field=open_field).value == "Friedrichshain"
         assert answers.get(field=choice_field).value == str(choice_2.pk)
+        # update_or_create keeps the original created timestamp
+        assert answers.get(field=open_field).created == open_created
+
+
+@pytest.mark.django_db
+def test_update_idea_clears_custom_field_answer(
+    client,
+    bs_module,
+    idea_factory,
+    category_factory,
+    custom_field_factory,
+):
+    module = bs_module
+    phase = module.phase_set.first()
+    settings = module.customfieldsettings_settings
+    open_field = custom_field_factory(
+        settings=settings, type=CustomFieldType.OPEN, required=False
+    )
+
+    idea = idea_factory(module=module)
+    user = idea.creator
+    CustomFieldAnswer.objects.create(idea=idea, field=open_field, value="Kreuzberg")
+    category = category_factory(module=module)
+    url = reverse(
+        "a4_candy_ideas:idea-update",
+        kwargs={
+            "organisation_slug": idea.project.organisation.slug,
+            "pk": idea.pk,
+            "year": idea.created.year,
+        },
+    )
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+        data = {
+            "name": idea.name,
+            "description": idea.description,
+            "category": category.pk,
+            "organisation_terms_of_use": True,
+            "custom_field_{}".format(open_field.pk): "",
+        }
+        response = client.post(url, data)
+        assert redirect_target(response) == "idea-detail"
+
+        idea.refresh_from_db()
+        assert idea.custom_field_answers.count() == 0
