@@ -24,8 +24,8 @@ services:
 
   web:
     build: .
-    ports:
-      - "8004:8004"
+    expose:
+      - "8004"
     depends_on:
       db:
         condition: service_healthy
