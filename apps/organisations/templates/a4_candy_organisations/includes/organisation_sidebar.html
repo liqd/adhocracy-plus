@@ -1,36 +1,18 @@
 {% load i18n thumbnail %}
 
-<aside
-    class="project-detail__sidebar organisation-page__sidebar"
-    aria-label="{% translate 'Organisation overview' %}"
->
+<aside class="project-detail__sidebar organisation-page__sidebar" aria-label="{% translate 'Organisation overview' %}">
     <ul class="project-detail__meta-list">
         <li class="project-detail__meta-item">
-            <i
-                class="fa-regular fa-file-lines project-detail__meta-icon"
-                aria-hidden="true"
-            ></i>
-            {% blocktranslate count count=organisation_stats.projects_count %}{{
-            count }} Project{% plural %}{{ count }} Projects{% endblocktranslate
-            %}
+            <i class="fa-regular fa-file-lines project-detail__meta-icon" aria-hidden="true"></i>
+            {% blocktranslate count count=organisation_stats.projects_count %}{{ count }} Project{% plural %}{{ count }} Projects{% endblocktranslate %}
         </li>
         <li class="project-detail__meta-item">
-            <i
-                class="fa-regular fa-comment project-detail__meta-icon"
-                aria-hidden="true"
-            ></i>
-            {% blocktranslate count count=organisation_stats.comments_count %}{{
-            count }} Comment{% plural %}{{ count }} Comments{% endblocktranslate
-            %}
+            <i class="fa-regular fa-comment project-detail__meta-icon" aria-hidden="true"></i>
+            {% blocktranslate count count=organisation_stats.comments_count %}{{ count }} Comment{% plural %}{{ count }} Comments{% endblocktranslate %}
         </li>
         <li class="project-detail__meta-item">
-            <i
-                class="fa-regular fa-pen-to-square project-detail__meta-icon"
-                aria-hidden="true"
-            ></i>
-            {% blocktranslate count count=organisation_stats.proposals_count
-            %}{{ count }} Proposal{% plural %}{{ count }} Proposals{%
-            endblocktranslate %}
+            <i class="fa-regular fa-pen-to-square project-detail__meta-icon" aria-hidden="true"></i>
+            {% blocktranslate count count=organisation_stats.proposals_count %}{{ count }} Proposal{% plural %}{{ count }} Proposals{% endblocktranslate %}
         </li>
     </ul>
 

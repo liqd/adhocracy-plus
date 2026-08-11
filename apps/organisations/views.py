@@ -157,6 +157,7 @@ class OrganisationFollowToggleView(LoginRequiredMixin, View):
                     "followers_count": follower_count,
                     "followers": followers,
                 },
+                "is_following": follow.enabled,
                 "oob": True,
             },
             request=request,

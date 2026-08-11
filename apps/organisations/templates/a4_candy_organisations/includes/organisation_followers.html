@@ -13,7 +13,7 @@
                     style="background-image: url({% if follower.avatar %}{{ follower.avatar|thumbnail_url:'avatar' }}{% else %}{{ follower.avatar_fallback }}{% endif %});"></span>
             </li>
             {% endfor %}
-            {% if request.user.is_authenticated %}
+            {% if request.user.is_authenticated and not is_following %}
             <li class="project-detail__avatar">
                 <form
                     hx-post="{% url 'organisation-follow' organisation_slug=organisation.slug %}"
@@ -29,16 +29,6 @@
                         <i class="fas fa-plus" aria-hidden="true"></i>
                     </button>
                 </form>
-            </li>
-            {% else %}
-            <li class="project-detail__avatar">
-                <a
-                    class="project-detail__avatar-button project-detail__avatar-image project-detail__avatar-image--more"
-                    href="{% url 'account_login' %}?next={{ request.path }}"
-                    aria-label="{% translate 'Follow organisation' %}"
-                >
-                    <i class="fas fa-plus" aria-hidden="true"></i>
-                </a>
             </li>
             {% endif %}
         </ul>
