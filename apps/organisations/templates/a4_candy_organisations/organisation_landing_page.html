@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <div class="organisation-page__body">
+            <div class="organisation-page__inner">
                 <div class="project-detail__intro">
                     <div class="project-detail__main">
                         <h1 class="organisation-page__title">
@@ -62,12 +62,12 @@
                         {% if organisation.description %}
                         <p class="project-detail__description">{{ organisation.description }}</p>
                         {% endif %}
-                        <div class="project-detail__actions">
+                        <div class="project-detail__actions organisation-page__actions">
                             <div class="project-detail__follow" id="organisation-follow-button">
                                 {% include 'a4_candy_organisations/includes/follow_button.html' with organisation=organisation is_following=is_following %}
                             </div>
                             {% if organisation.information %}
-                            <a class="btn btn--link project-detail__action organisation-page__about" href="{% url 'organisation-information' organisation_slug=organisation.slug %}">
+                            <a class="btn btn--link organisation-page__about" href="{% url 'organisation-information' organisation_slug=organisation.slug %}">
                                 {% translate 'About' %}
                             </a>
                             {% endif %}
@@ -106,7 +106,7 @@
                 </div>
                 {% else %}
                     {% if request.user.is_authenticated %}
-                        <p>{% blocktranslate %}</p>Currently, there are no public participation processes. Please check again later.{% endblocktranslate %}</p>
+                        <p>{% blocktranslate %}Currently, there are no public participation processes. Please check again later.{% endblocktranslate %}</p>
                     {% elif organisation.information %}
                         {% url 'account_login' as account_login_url %}
                         {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}

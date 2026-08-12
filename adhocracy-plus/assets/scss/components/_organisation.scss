@@ -1,54 +1,54 @@
-.organisation__header {
-    margin-top: $spacer;
-    margin-bottom: 4 * $spacer;
-}
-
-.organisation__description {
-    padding-top: 0.5 * $spacer;
-    padding-bottom: $spacer;
-}
-
-.organisation__logo-box {
-    display: inline-block;
-    position: relative;
-    margin-top: -3.5em;
-    box-shadow: 0 0 8px 0 $shadow;
-
-    padding: 1.25 * $padding;
-    background-color: $body-bg;
-}
-
-.organisation__logo-img {
-    display: block;
-    height: 6.5em;
-    width: auto;
-}
-
-@media (min-width: $breakpoint) {
-    .organisation__logo-box {
-        padding: $padding;
+.organisation {
+    &__header {
+        margin-top: $spacer;
+        margin-bottom: 4 * $spacer;
     }
 
-    .organisation__description {
-        padding-top: $spacer;
+    &__description {
+        padding-top: 0.5 * $spacer;
         padding-bottom: $spacer;
+
+        @media (min-width: $breakpoint) {
+            padding-top: $spacer;
+            padding-bottom: $spacer;
+        }
     }
-}
 
-.organisation__social-link {
-    width: 2rem;
-    height: 2rem;
-    position: relative;
-    background-color: $brand-secondary;
-    border-radius: 8rem;
+    &__logo-box {
+        display: inline-block;
+        position: relative;
+        margin-top: -3.5em;
+        box-shadow: 0 0 8px 0 $shadow;
 
-    i {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 50%;
-        color: $white;
+        padding: 1.25 * $padding;
+        background-color: $body-bg;
+
+        @media (min-width: $breakpoint) {
+            padding: $padding;
+        }
+    }
+
+    &__logo-img {
+        display: block;
+        height: 6.5em;
+        width: auto;
+    }
+
+    &__social-link {
+        width: 2rem;
+        height: 2rem;
+        position: relative;
+        background-color: $brand-secondary;
+        border-radius: 8rem;
+
+        i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            color: $white;
+        }
     }
 }
 
@@ -56,147 +56,186 @@
 // The intro layout and the sidebar borrow the component classes from the
 // project detail page (project-detail__intro, project-detail__sidebar, ...),
 // only the differences are defined here.
-
-.organisation-page__hero-wrap {
-    position: relative;
-}
-
-.organisation-page__avatar {
-    position: absolute;
-
-    // The hero-unit has a bottom margin of 3.5 * $spacer; the avatar overlaps
-    // the hero image by 3 * $spacer, so it sits 0.5 * $spacer above the wrap.
-    bottom: 0.5 * $spacer;
-    left: clamp(1rem, 6vw, 6rem);
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 6rem;
-    height: 6rem;
-    padding: 0.5 * $spacer;
-    background-color: $body-bg;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.09),
-        0 8px 5px 0 rgba(0, 0, 0, 0.05), 0 14px 6px 0 rgba(0, 0, 0, 0.01);
-
-    img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+.organisation-page {
+    &__hero-wrap {
+        // Establish a block formatting context so the hero-unit's bottom margin
+        // stays inside the wrap; the avatar overlap below depends on it.
+        display: flow-root;
+        position: relative;
     }
 
-    span {
-        font-weight: $demi-bold;
-        text-align: center;
-        overflow-wrap: anywhere;
-    }
-}
-
-.organisation-page__body {
-    width: 100%;
-    max-width: 60.375rem; // 966px
-    margin-top: 6.5 * $spacer;
-    margin-left: clamp(1rem, 6vw, 6rem);
-
-    // Below the large breakpoint the container is narrower than the max-width
-    // above; use padding instead of margin so the content cannot overflow.
-    // The padding is symmetric so the content stays centered in the container.
-    @media (max-width: $breakpoint-lg-down) {
-        margin-left: 0;
-        padding-left: clamp(1rem, 6vw, 6rem);
-        padding-right: clamp(1rem, 6vw, 6rem);
-    }
-}
-
-.organisation-page__title {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5 * $spacer;
-    margin-top: 0;
-    margin-bottom: $spacer;
-    font-family: $font-family-serif;
-    font-size: $font-size-xxl;
-    font-weight: 400;
-    line-height: 1.2;
-    overflow-wrap: anywhere;
-}
-
-.organisation-page__title-link {
-    display: inline-flex;
-    align-items: center;
-    font-size: $font-size-sm;
-    color: inherit;
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
-        color: $link-hover-color;
-    }
-}
-
-.organisation-page__slogan {
-    margin-top: 0;
-    margin-bottom: $spacer;
-    font-family: $font-family-base;
-    font-size: $font-size-xl;
-    font-weight: $demi-bold;
-    line-height: 1.2;
-}
-
-.organisation-page__about {
-    min-width: 0;
-}
-
-.organisation-page__sidebar {
-    border: 1px solid $grey-100;
-
-    @media (min-width: $breakpoint-md) {
-        width: 12.25rem; // 196px
-    }
-}
-
-.organisation-page__projects-headline {
-    margin: 1.5 * $spacer 0 2 * $spacer;
-    font-family: $font-family-serif;
-    font-size: $font-size-xxl;
-    font-weight: 400;
-    line-height: 1.2;
-}
-
-.organisation-page__search {
-    position: relative;
-    width: min(26rem, 100%); // 416px
-    margin-bottom: 2 * $spacer;
-
-    .fa-search {
+    &__avatar {
         position: absolute;
-        top: 50%;
-        left: 1rem;
-        transform: translateY(-50%);
-        color: $text-color;
-        pointer-events: none;
-    }
 
-    input {
-        width: 100%;
-        height: 2.5rem;
-        padding: 0.5 * $spacer 1rem 0.5 * $spacer 2.5rem;
-        border: 1px solid $grey-100;
+        // The hero-unit has a bottom margin of 3.5 * $spacer; the avatar
+        // overlaps the hero image by 3 * $spacer, so it sits 0.5 * $spacer
+        // above the wrap.
+        bottom: 0.5 * $spacer;
+
+        // Align with the inset of the inner container below; mirrors the
+        // project-detail-page-inset mixin breakpoints.
+        left: clamp(1rem, 4vw, 5rem);
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 6rem;
+        height: 6rem;
+        padding: 0.5 * $spacer;
         background-color: $body-bg;
-        font-size: $font-size-sm;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.09),
+            0 8px 5px 0 rgba(0, 0, 0, 0.05), 0 14px 6px 0 rgba(0, 0, 0, 0.01);
 
-        &:focus-visible {
-            @include fake-focus-shadow;
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        span {
+            font-weight: $demi-bold;
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+
+        @media (max-width: $breakpoint-down) {
+            // The container--shadow padding provides the inset on phones.
+            left: 0;
+        }
+
+        @media (min-width: $breakpoint) and (max-width: $breakpoint-md-down) {
+            left: $project-detail-page-inset-tablet-left;
+        }
+
+        @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg-down) {
+            left: clamp(1rem, 2vw, 2rem);
         }
     }
-}
 
-.organisation-page__projects .tile[hidden] {
-    display: none;
-}
+    // The inner container mirrors the project detail page (project-detail__inner)
+    // and spans the full content width with the same gutters; the sidebar sits
+    // at its right edge like on the project detail page.
+    &__inner {
+        margin-top: 6.5 * $spacer;
 
-.organisation-page__no-results {
-    margin: 0;
+        @include project-detail-page-inset;
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5 * $spacer;
+        margin-top: 0;
+        margin-bottom: $spacer;
+        font-family: $font-family-serif;
+        font-size: $font-size-xxl;
+        font-weight: 400;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+
+    &__title-link {
+        display: inline-flex;
+        align-items: center;
+        font-size: $font-size-sm;
+        color: inherit;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            color: $link-hover-color;
+        }
+    }
+
+    &__slogan {
+        margin-top: 0;
+        margin-bottom: $spacer;
+        font-family: $font-family-base;
+        font-size: $font-size-xl;
+        font-weight: $demi-bold;
+        line-height: 1.2;
+    }
+
+    &__actions {
+        gap: 0; // the about button provides its own spacing
+
+        // The follow button hugs its content like the follow button in the
+        // Figma (padding 12px 24px) instead of the 10rem minimum width of the
+        // shared project detail action styles.
+        .a4-btn--follow,
+        .a4-btn--following {
+            min-width: 0;
+            padding: 0.75rem 1.5rem;
+        }
+    }
+
+    &__about {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3 * $spacer; // 48px, matches the follow button height
+        padding: 0.75rem 1.5rem; // 24px horizontal padding
+        margin-left: $spacer; // 16px between the follow and the about button
+
+        @media (max-width: $breakpoint-down) {
+            margin-left: 0;
+            margin-top: $spacer;
+        }
+    }
+
+    &__projects-headline {
+        margin: 1.5 * $spacer 0 2 * $spacer;
+        font-family: $font-family-serif;
+        font-size: $font-size-xxl;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+    &__search {
+        position: relative;
+        width: min(26rem, 100%); // 416px
+        margin-bottom: 2 * $spacer;
+
+        .fa-search {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            color: $text-color;
+            pointer-events: none;
+        }
+
+        input {
+            width: 100%;
+            height: 2.5rem;
+            padding: 0.5 * $spacer 1rem 0.5 * $spacer 2.5rem;
+            border: 1px solid $grey-100;
+            background-color: $body-bg;
+            font-size: $font-size-sm;
+
+            &:focus-visible {
+                @include fake-focus-shadow;
+            }
+        }
+    }
+
+    &__projects {
+        .tile[hidden] {
+            display: none;
+        }
+    }
+
+    &__no-results {
+        margin: 0;
+    }
+
+    &__sidebar {
+        border: 1px solid $grey-100;
+
+        @media (min-width: $breakpoint-md) {
+            width: 12.25rem; // 196px
+        }
+    }
 }
