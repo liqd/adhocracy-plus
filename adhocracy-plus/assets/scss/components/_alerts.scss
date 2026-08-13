@@ -19,6 +19,11 @@ $messages-margin-bottom: 25px;
     text-align: center;
     border-radius: 0;
     flex: 1 1 auto;
+
+    &--info {
+        background-color: $brand-primary-100;
+        color: $text-color;
+    }
 }
 
 .alert__content {
@@ -41,11 +46,11 @@ $messages-margin-bottom: 25px;
     border: none;
     cursor: pointer;
     color: inherit;
-    
+
     &:hover {
         opacity: 0.8;
     }
-    
+
     .fa-times {
         font-size: 10px;
         width: 10px;
@@ -79,4 +84,3 @@ $messages-margin-bottom: 25px;
         margin-top: -$messages-margin-bottom;
     }
 }
-

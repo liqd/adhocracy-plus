@@ -71,11 +71,12 @@ export const usePollActions = (state, dispatch, pollId) => {
     })
 
     if (result.success) {
+      const resultsHidden = result.hideResultsUntilFinished && !result.votingEnded
       dispatch({
         type: ACTIONS.SUBMIT_SUCCESS,
         payload: {
           ...result,
-          alert: ALERT_SUCCESS
+          alert: resultsHidden ? null : ALERT_SUCCESS
         }
       })
     } else {

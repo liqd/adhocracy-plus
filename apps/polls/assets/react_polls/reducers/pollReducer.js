@@ -38,6 +38,9 @@ export const initialState = {
   moduleName: '',
   moduleDescription: '',
 
+  // Result visibility
+  hideResultsUntilFinished: false,
+
   // Captcha
   captcha: '',
   refreshCaptcha: 0,
@@ -63,6 +66,7 @@ const reducers = {
     totalParticipants: payload.totalParticipants,
     moduleName: payload.moduleName,
     moduleDescription: payload.moduleDescription,
+    hideResultsUntilFinished: payload.hideResultsUntilFinished,
     state: (payload.hasUserVote || payload.votingEnded) ? STATES.RESULTS : STATES.START_SCREEN,
     isLoading: false
   }),
@@ -142,6 +146,7 @@ const reducers = {
     agreedTermsOfUse: payload.agreedTermsOfUse,
     orgTermsUrl: payload.orgTermsUrl,
     totalParticipants: payload.totalParticipants,
+    hideResultsUntilFinished: payload.hideResultsUntilFinished,
     isSubmitting: false,
     alert: payload.alert
   }),

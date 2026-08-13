@@ -26,7 +26,9 @@ export const usePollSubmission = (pollId) => {
         agreedTermsOfUse: poll.user_has_agreed,
         orgTermsUrl: poll.org_terms_url,
         hasUserVote: poll.has_user_vote,
-        totalParticipants: poll.total_participants || 0
+        totalParticipants: poll.total_participants || 0,
+        votingEnded: poll.voting_ended || false,
+        hideResultsUntilFinished: poll.hide_results_until_finished || false
       }
     } catch (error) {
       return { success: false, error }

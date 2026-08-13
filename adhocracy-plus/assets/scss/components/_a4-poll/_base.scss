@@ -128,3 +128,22 @@
 .poll__question-legend {
     padding-left: 0;
 }
+
+.poll-answer-review {
+    &__banner {
+        margin-bottom: 35px;
+    }
+
+    &__open-answer,
+    &__other-answer {
+        padding: 0.75rem 1rem;
+        background: $gray-lightest;
+        border-radius: $choice-border-radius;
+        margin-bottom: 0.5rem;
+    }
+
+    &__buttons {
+        padding-top: $spacer;
+        text-align: end;
+    }
+}

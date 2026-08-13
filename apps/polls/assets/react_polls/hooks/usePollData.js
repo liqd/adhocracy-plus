@@ -52,7 +52,8 @@ const normalizePollData = (poll) => {
     orgTermsUrl: poll.org_terms_url,
     totalParticipants: poll.total_participants || 0,
     moduleName: poll.module_name || '',
-    moduleDescription: poll.module_description || ''
+    moduleDescription: poll.module_description || '',
+    hideResultsUntilFinished: poll.hide_results_until_finished || false
   }
 }
 
