@@ -1,4 +1,6 @@
 import pytest
+from django.db import connection
+from django.test.utils import CaptureQueriesContext
 
 from apps.customfields.models import CustomFieldAnswer
 from apps.customfields.models import CustomFieldType
@@ -47,3 +49,44 @@ def test_detail_page_without_answers_shows_no_custom_fields_section(
     response = client.get(url)
     assert response.status_code == 200
     assert "item-detail__custom-fields" not in response.content.decode()
+
+
+@pytest.mark.django_db
+def test_detail_page_queries_do_not_scale_with_answers(
+    client,
+    bs_module,
+    idea_factory,
+    custom_field_factory,
+    custom_field_choice_factory,
+):
+    def render_choice_queries(num_answers):
+        settings = bs_module.customfieldsettings_settings
+        fields = [
+            custom_field_factory(
+                settings=settings, type=CustomFieldType.CHOICE, required=False
+            )
+            for _ in range(num_answers)
+        ]
+        for index, field in enumerate(fields):
+            custom_field_choice_factory(field=field, label=f"Option {index}")
+
+        idea = idea_factory(module=bs_module)
+        for field in fields:
+            choice = field.choices.first()
+            CustomFieldAnswer.objects.create(
+                idea=idea, field=field, value=str(choice.pk)
+            )
+
+        url = idea.get_absolute_url()
+        with CaptureQueriesContext(connection) as ctx:
+            response = client.get(url)
+            assert response.status_code == 200
+        return len(
+            [
+                query
+                for query in ctx.captured_queries
+                if "customfields_customfieldchoice" in query["sql"]
+            ]
+        )
+
+    assert render_choice_queries(2) == render_choice_queries(6)

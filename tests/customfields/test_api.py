@@ -5,6 +5,8 @@ from apps.customfields.models import CustomField
 from apps.customfields.models import CustomFieldSettings
 from apps.customfields.models import CustomFieldType
 
+from .factories import CustomFieldSettingsFactory
+
 
 @pytest.mark.django_db
 def test_api_get_settings(apiclient, bs_module):
@@ -74,6 +76,114 @@ def test_api_update_removes_deleted_fields(
     assert response.status_code == 200
     assert settings.fields.count() == 0
     assert not CustomField.objects.filter(pk=field.pk).exists()
+
+
+@pytest.mark.django_db
+def test_api_update_edits_existing_field(
+    apiclient, bs_module, custom_field_factory, custom_field_choice_factory
+):
+    settings = CustomFieldSettings.objects.get(module=bs_module)
+    field = custom_field_factory(settings=settings, type=CustomFieldType.CHOICE)
+    choice = custom_field_choice_factory(field=field, label="Option 1")
+    initiator = bs_module.project.organisation.initiators.first()
+    url = reverse("custom-fields-detail", kwargs={"pk": settings.pk})
+    apiclient.force_authenticate(user=initiator)
+
+    data = {
+        "fields": [
+            {
+                "id": field.pk,
+                "label": "New label",
+                "type": "choice",
+                "required": True,
+                "choices": [{"id": choice.pk, "label": "Renamed"}],
+            },
+        ]
+    }
+    response = apiclient.put(url, data, format="json")
+    assert response.status_code == 200
+
+    field.refresh_from_db()
+    assert field.label == "New label"
+    assert field.required is True
+    choice.refresh_from_db()
+    assert choice.label == "Renamed"
+
+
+@pytest.mark.django_db
+def test_api_update_rejects_field_id_from_other_module(
+    apiclient, bs_module, custom_field_factory
+):
+    settings = CustomFieldSettings.objects.get(module=bs_module)
+    other_settings = CustomFieldSettingsFactory()
+    foreign_field = custom_field_factory(
+        settings=other_settings, label="Foreign", type=CustomFieldType.OPEN
+    )
+    initiator = bs_module.project.organisation.initiators.first()
+    url = reverse("custom-fields-detail", kwargs={"pk": settings.pk})
+    apiclient.force_authenticate(user=initiator)
+
+    data = {
+        "fields": [
+            {"id": foreign_field.pk, "label": "Hijacked", "type": "open"},
+        ]
+    }
+    response = apiclient.put(url, data, format="json")
+    assert response.status_code == 400
+
+    foreign_field.refresh_from_db()
+    assert foreign_field.settings == other_settings
+    assert foreign_field.label == "Foreign"
+
+
+@pytest.mark.django_db
+def test_api_update_rejects_choice_id_from_other_field(
+    apiclient, bs_module, custom_field_factory, custom_field_choice_factory
+):
+    settings = CustomFieldSettings.objects.get(module=bs_module)
+    field = custom_field_factory(settings=settings, type=CustomFieldType.CHOICE)
+    other_settings = CustomFieldSettingsFactory()
+    other_field = custom_field_factory(
+        settings=other_settings, type=CustomFieldType.CHOICE
+    )
+    foreign_choice = custom_field_choice_factory(field=other_field, label="Foreign")
+    initiator = bs_module.project.organisation.initiators.first()
+    url = reverse("custom-fields-detail", kwargs={"pk": settings.pk})
+    apiclient.force_authenticate(user=initiator)
+
+    data = {
+        "fields": [
+            {
+                "id": field.pk,
+                "label": field.label,
+                "type": "choice",
+                "choices": [{"id": foreign_choice.pk, "label": "Stolen"}],
+            },
+        ]
+    }
+    response = apiclient.put(url, data, format="json")
+    assert response.status_code == 400
+
+    foreign_choice.refresh_from_db()
+    assert foreign_choice.field == other_field
+    assert foreign_choice.label == "Foreign"
+
+
+@pytest.mark.django_db
+def test_api_update_requires_choices_for_choice_field(apiclient, bs_module):
+    settings = CustomFieldSettings.objects.get(module=bs_module)
+    initiator = bs_module.project.organisation.initiators.first()
+    url = reverse("custom-fields-detail", kwargs={"pk": settings.pk})
+    apiclient.force_authenticate(user=initiator)
+
+    data = {
+        "fields": [
+            {"label": "District", "type": "choice", "required": False, "choices": []},
+        ]
+    }
+    response = apiclient.put(url, data, format="json")
+    assert response.status_code == 400
+    assert settings.fields.count() == 0
 
 
 @pytest.mark.django_db

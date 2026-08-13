@@ -49,15 +49,17 @@ class IdeaExportView(
     def get_virtual_fields(self, virtual):
         virtual = super().get_virtual_fields(virtual)
         settings = self.module.settings_instance
-        if settings and hasattr(settings, "fields"):
-            for field in settings.fields.all():
-                name = "custom_field_{}".format(field.pk)
-                virtual[name] = field.label
-                setattr(
-                    self,
-                    "get_{}_data".format(name),
-                    self._make_custom_field_getter(field.pk),
-                )
+        if not (settings and hasattr(settings, "fields")):
+            return virtual
+
+        for field in settings.fields.all():
+            name = "custom_field_{}".format(field.pk)
+            virtual[name] = field.label
+            setattr(
+                self,
+                "get_{}_data".format(name),
+                self._make_custom_field_getter(field.pk),
+            )
         return virtual
 
     def _make_custom_field_getter(self, field_id):
