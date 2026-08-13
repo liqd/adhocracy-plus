@@ -44,6 +44,8 @@ services:
       RUN_MIGRATIONS: "1"
       LOAD_FIXTURES: "1"
       LOAD_USER_FIXTURES: "0"
+    env_file:
+      - ${APLUS_ENV_FILE:-./.env}
     volumes:
       - media_data:/app/media
     healthcheck:
@@ -66,6 +68,8 @@ services:
       RUN_MIGRATIONS: "0"
       LOAD_FIXTURES: "0"
       LOAD_USER_FIXTURES: "0"
+    env_file:
+      - ${APLUS_ENV_FILE:-./.env}
     volumes:
       - media_data:/app/media
     command:
@@ -83,6 +87,8 @@ services:
       RUN_MIGRATIONS: "0"
       LOAD_FIXTURES: "0"
       LOAD_USER_FIXTURES: "0"
+    env_file:
+      - ${APLUS_ENV_FILE:-./.env}
     volumes:
       - media_data:/app/media
     command:
