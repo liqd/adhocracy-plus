@@ -164,6 +164,12 @@ module.exports = {
         './adhocracy-plus/assets/js/uppy_image_upload.js'
       ],
       dependOn: 'adhocracy4'
+    },
+    mapideas_gps: {
+      import: [
+        './apps/mapideas/assets/js/gps_locate.js'
+      ],
+      dependOn: 'adhocracy4'
     }
   },
   output: {
