@@ -71,23 +71,23 @@ const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, ma
         )
 
       case STATES.RESULTS:
-        if (state.hideResultsUntilFinished && !state.votingEnded) {
+        if (!state.hideResultsUntilFinished || state.votingEnded) {
           return (
-            <PollAnswerReview
-              questions={state.questions}
+            <ResultsView
+              results={state.results}
+              totalParticipants={state.totalParticipants}
+              hasUserVote={state.hasUserVote}
+              votingEnded={state.votingEnded}
+              alert={state.alert}
+              onBackToPoll={actions.handleBackToPoll}
               onChangeAnswer={actions.handleChangeAnswer}
             />
           )
         }
 
         return (
-          <ResultsView
-            results={state.results}
-            totalParticipants={state.totalParticipants}
-            hasUserVote={state.hasUserVote}
-            votingEnded={state.votingEnded}
-            alert={state.alert}
-            onBackToPoll={actions.handleBackToPoll}
+          <PollAnswerReview
+            questions={state.questions}
             onChangeAnswer={actions.handleChangeAnswer}
           />
         )
