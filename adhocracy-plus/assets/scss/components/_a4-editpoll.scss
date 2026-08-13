@@ -23,7 +23,7 @@
 .editpoll__questions-options__form-check {
     display: flex;
     align-items: center;
-  
+
     input {
         margin: 0 0.5em 0 0;
     }
@@ -104,4 +104,26 @@
 
 .image-upload-hidden-input {
     display: none;
+}
+
+.poll-dashboard {
+    .u-first-heading {
+        margin-top: 40px;
+    }
+
+    .editpoll__questions-options {
+        h2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .editpoll__questions-options__form-check + .editpoll__questions-options__form-check {
+            margin-top: 8px;
+        }
+    }
+
+    .editpoll__questions > section:not(.editpoll__questions-options) > h2 {
+        margin-top: 30px;
+        margin-bottom: 36px;
+    }
 }

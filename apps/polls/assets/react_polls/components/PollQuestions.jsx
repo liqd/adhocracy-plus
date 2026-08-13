@@ -7,6 +7,7 @@ import ProsopoCaptcha from '../ProsopoCaptcha'
 import StartScreen from './StartScreen'
 import QuestionFunnel from './QuestionFunnel'
 import ResultsView from './ResultsView'
+import PollAnswerReview from './PollAnswerReview'
 import { LoadingSpinner } from './LoadingSpinner'
 import { usePollData } from '../hooks/usePollData'
 import { usePollActions } from '../hooks/usePollActions'
@@ -70,6 +71,15 @@ const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, ma
         )
 
       case STATES.RESULTS:
+        if (state.hideResultsUntilFinished && !state.votingEnded) {
+          return (
+            <PollAnswerReview
+              questions={state.questions}
+              onChangeAnswer={actions.handleChangeAnswer}
+            />
+          )
+        }
+
         return (
           <ResultsView
             results={state.results}
@@ -89,6 +99,7 @@ const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, ma
             totalParticipants={state.totalParticipants}
             isAuthenticated={state.isAuthenticated}
             allowUnregisteredUsers={state.allowUnregisteredUsers}
+            hideResultsUntilFinished={state.hideResultsUntilFinished}
             manualLink={manualLink}
             onStart={actions.handleStartPoll}
             onShowResults={actions.handleShowResults}

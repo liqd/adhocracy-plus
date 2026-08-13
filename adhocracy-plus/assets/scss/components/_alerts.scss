@@ -41,11 +41,11 @@ $messages-margin-bottom: 25px;
     border: none;
     cursor: pointer;
     color: inherit;
-    
+
     &:hover {
         opacity: 0.8;
     }
-    
+
     .fa-times {
         font-size: 10px;
         width: 10px;
@@ -69,6 +69,11 @@ $messages-margin-bottom: 25px;
     color: $text-color;
 }
 
+.alert--info {
+    background-color: $brand-primary-100;
+    color: $text-color;
+}
+
 .alert--small {
     padding: 0.5em;
 }
@@ -79,4 +84,3 @@ $messages-margin-bottom: 25px;
         margin-top: -$messages-margin-bottom;
     }
 }
-

@@ -9,6 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- polls: add option to hide preliminary results until phase end
 - Management command ``send_newsletter_settings_notice`` plus an English/German
   notice email to inform users whose newsletter opt-in may have been reset by
   the profile-edit bug. Recipients are the refined candidate pool; every sent

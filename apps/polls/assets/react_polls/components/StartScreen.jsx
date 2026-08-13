@@ -2,7 +2,7 @@
 import React from 'react'
 import django from 'django'
 
-const StartScreen = ({ totalQuestions, isAuthenticated, allowUnregisteredUsers, totalParticipants, manualLink, onStart, onShowResults }) => {
+const StartScreen = ({ totalQuestions, isAuthenticated, allowUnregisteredUsers, hideResultsUntilFinished, totalParticipants, manualLink, onStart, onShowResults }) => {
   return (
     <div className="poll-start-screen">
 
@@ -65,13 +65,15 @@ const StartScreen = ({ totalQuestions, isAuthenticated, allowUnregisteredUsers, 
             </a>
             )}
 
-        <button
-          type="button"
-          className="btn btn--transparent"
-          onClick={onShowResults}
-        >
-          {django.gettext('Show results')}
-        </button>
+        {!hideResultsUntilFinished && (
+          <button
+            type="button"
+            className="btn btn--transparent"
+            onClick={onShowResults}
+          >
+            {django.gettext('Show results')}
+          </button>
+        )}
       </div>
     </div>
   )
