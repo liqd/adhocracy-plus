@@ -6,7 +6,7 @@
           hx-target="closest span">
       {% csrf_token %}
       <button
-        class="btn btn--light {% if is_following %}a4-btn a4-btn--following{% else %}a4-btn a4-btn--follow{% endif %}"
+        class="btn btn--light a4-btn project-detail__action project-detail__action--follow {% if is_following %}a4-btn--following{% else %}a4-btn--follow{% endif %}"
         type="submit"
         aria-pressed="{{ is_following|yesno:'true,false' }}"
         aria-describedby="follow-description-{{ organisation.slug }}"
@@ -26,7 +26,7 @@
   </span>
 {% else %}
   <span class="a4-follow">
-    <a href="{% url 'account_login' %}?next={{ request.path }}" class="btn btn--light a4-btn a4-btn--follow">
+    <a href="{% url 'account_login' %}?next={{ request.path }}" class="btn btn--light a4-btn a4-btn--follow project-detail__action project-detail__action--follow">
       <span class="a4-follow__btn--content">{% translate 'Follow' %}</span>
     </a>
   </span>

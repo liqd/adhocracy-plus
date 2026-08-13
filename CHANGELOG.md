@@ -24,6 +24,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Organisation page: redesigned with overlapping logo, about link, organisation stats, project search and project tiles in a three column grid
 - Landing Page: Updated buttons (view demo organisation), new icons
 - Idea, proposal, and map idea forms: do not prefill contact email for guest users
 - Project detail: follower count and avatar bubbles exclude guest users
