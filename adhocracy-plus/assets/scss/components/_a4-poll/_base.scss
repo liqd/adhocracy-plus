@@ -129,45 +129,21 @@
     padding-left: 0;
 }
 
-.poll-answer-review__open-answer,
-.poll-answer-review__other-answer {
-    padding: 0.75rem 1rem;
-    background: $gray-lightest;
-    border-radius: $choice-border-radius;
-    margin-bottom: 0.5rem;
-}
-
-.poll__answers-review {
-    .alert {
+.poll-answer-review {
+    &__banner {
         margin-bottom: 35px;
     }
 
-    .poll-choice--result {
-        border-color: $grey-500;
-
-        &:hover {
-            background: $white;
-            border-color: $grey-500;
-        }
-
-        &.poll-choice--checked {
-            background: $white;
-            border-color: $brand-primary;
-
-            &:hover {
-                background: $white;
-                border-color: $brand-primary;
-            }
-        }
+    &__open-answer,
+    &__other-answer {
+        padding: 0.75rem 1rem;
+        background: $gray-lightest;
+        border-radius: $choice-border-radius;
+        margin-bottom: 0.5rem;
     }
 
-    .poll-choice__empty-circle {
-        background-color: $grey-100;
-        border-color: $grey-100;
+    &__buttons {
+        padding-top: $spacer;
+        text-align: end;
     }
-}
-
-.poll__answers-review-buttons {
-    padding-top: $spacer;
-    text-align: end;
 }

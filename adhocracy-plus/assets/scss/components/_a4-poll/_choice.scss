@@ -70,6 +70,26 @@
             border: 1px solid $brand-primary;
         }
     }
+
+    &--review {
+        border-color: $grey-500;
+
+        &:hover {
+            background: $white;
+            border-color: $grey-500;
+        }
+
+        &.poll-choice--checked {
+            background: $white;
+            border-color: $brand-primary;
+
+            &:hover {
+                background: $white;
+                border-color: $brand-primary;
+            }
+        }
+
+    }
 }
 
 .poll-choice__fill {
@@ -182,6 +202,11 @@
     border: 2px solid $gray-lightest;
     border-radius: 50%;
     background-color: $white;
+
+    .poll-choice--review & {
+        background-color: $grey-100;
+        border-color: $grey-100;
+    }
 }
 
 .poll-choice--checked .poll-choice__label {

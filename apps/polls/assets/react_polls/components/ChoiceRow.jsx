@@ -56,6 +56,7 @@ export const ChoiceRow = React.memo(({
   errors,
   name,
   isResult = false,
+  review = false,
   percent = null
 }) => {
   const [textareaValue, setTextareaValue] = useState(otherChoiceAnswer)
@@ -87,7 +88,7 @@ export const ChoiceRow = React.memo(({
 
   return (
     <label
-      className={`poll-choice ${checked ? 'poll-choice--checked' : ''} ${choice.is_other_choice ? 'poll-choice--other' : ''}  ${isResult ? 'poll-choice--result' : ''}`}
+      className={`poll-choice ${checked ? 'poll-choice--checked' : ''} ${choice.is_other_choice ? 'poll-choice--other' : ''} ${isResult ? 'poll-choice--result' : ''}${review ? ' poll-choice--review' : ''}`}
       htmlFor={!isResult ? ('id_choice-' + choice.id + '-' + (type === 'radio' ? 'single' : 'multiple')) : undefined}
     >
       {isResult && percent !== null && (

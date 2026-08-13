@@ -48,6 +48,16 @@ describe('ChoiceRow', () => {
     expect(screen.queryByTestId('textarea-with-counter')).not.toBeInTheDocument()
   })
 
+  it('adds the review modifier class', () => {
+    const { container } = render(
+      <ChoiceRow
+        choice={baseChoice} checked={false} type="radio" isResult review
+        onInputChange={jest.fn()} onOtherChange={jest.fn()}
+      />
+    )
+    expect(container.querySelector('label')).toHaveClass('poll-choice--review')
+  })
+
   it('calls onOtherChange on textarea input', () => {
     const onOtherChange = jest.fn()
     render(

@@ -1,25 +1,27 @@
-import React, { useState } from "react";
-import django from "django";
+import React, { useState } from 'react'
+import django from 'django'
 
-import Alert from "adhocracy4/adhocracy4/static/Alert";
-import { ChoiceRow } from "./ChoiceRow";
-import { ConfidentialNotice } from "adhocracy4/adhocracy4/polls/static/PollDetail/ConfidentialNotice";
-import QuestionImage from "adhocracy4/adhocracy4/polls/static/PollDetail/QuestionImage";
+import Alert from 'adhocracy4/adhocracy4/static/Alert'
+import { ChoiceRow } from './ChoiceRow'
+import { ConfidentialNotice } from 'adhocracy4/adhocracy4/polls/static/PollDetail/ConfidentialNotice'
+import QuestionImage from 'adhocracy4/adhocracy4/polls/static/PollDetail/QuestionImage'
 
 const PollAnswerReview = ({ questions, onChangeAnswer }) => {
-  const [bannerDismissed, setBannerDismissed] = useState(false);
+  const [bannerDismissed, setBannerDismissed] = useState(false)
 
   return (
-    <div className="poll poll__answers-review">
-      {!bannerDismissed && (
-        <Alert
-          type="info"
-          message={django.gettext(
-            "Thank you for taking part in the poll! You will see the results as soon as the participation phase is over.",
-          )}
-          onClick={() => setBannerDismissed(true)}
-        />
-      )}
+    <div className="poll-answer-review">
+      <div className="poll-answer-review__banner">
+        {!bannerDismissed && (
+          <Alert
+            type="info"
+            message={django.gettext(
+              'Thank you for taking part in the poll! You will see the results as soon as the participation phase is over.'
+            )}
+            onClick={() => setBannerDismissed(true)}
+          />
+        )}
+      </div>
 
       {questions.map((question) => (
         <div className="poll poll--question" key={question.id}>
@@ -44,24 +46,22 @@ const PollAnswerReview = ({ questions, onChangeAnswer }) => {
             <div className="poll__rows">
               {!question.is_open &&
                 question.choices.map((choice) => {
-                  const isChosen = (question.userChoices || []).includes(
-                    choice.id,
-                  );
+                  const isChosen = (question.userChoices || []).includes(choice.id)
                   const ownOtherAnswer =
                     choice.is_other_choice && question.other_choice_user_answer
                       ? question.other_choice_answers?.find(
-                          (a) =>
-                            a.vote_id === question.other_choice_user_answer,
-                        )?.answer
-                      : null;
+                        (a) => a.vote_id === question.other_choice_user_answer
+                      )?.answer
+                      : null
 
                   return (
                     <div key={choice.id}>
                       <ChoiceRow
                         choice={choice}
                         checked={isChosen}
-                        type={question.multiple_choice ? "checkbox" : "radio"}
+                        type={question.multiple_choice ? 'checkbox' : 'radio'}
                         isResult
+                        review
                         disabled
                       />
                       {ownOtherAnswer && (
@@ -70,13 +70,13 @@ const PollAnswerReview = ({ questions, onChangeAnswer }) => {
                         </div>
                       )}
                     </div>
-                  );
+                  )
                 })}
 
               {question.is_open && (
                 <div className="poll-answer-review__open-answer">
-                  {question.answers?.find((a) => a.id === question.userAnswer)
-                    ?.answer || django.gettext("No answer given.")}
+                  {question.answers?.find((a) => a.id === question.userAnswer)?.answer ||
+                    django.gettext('No answer given.')}
                 </div>
               )}
             </div>
@@ -84,17 +84,17 @@ const PollAnswerReview = ({ questions, onChangeAnswer }) => {
         </div>
       ))}
 
-      <div className="poll__answers-review-buttons">
+      <div className="poll-answer-review__buttons">
         <button
           type="button"
           className="btn btn--transparent-bordered"
           onClick={onChangeAnswer}
         >
-          {django.gettext("Change my answers")}
+          {django.gettext('Change my answers')}
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PollAnswerReview;
+export default PollAnswerReview

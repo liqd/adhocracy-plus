@@ -107,22 +107,22 @@
 }
 
 .poll-dashboard {
-    .u-first-heading {
+    &__heading {
         margin-top: 40px;
     }
 
     .editpoll__questions-options {
-        h2 {
+        &__title {
             margin-top: 20px;
             margin-bottom: 10px;
         }
 
-        .editpoll__questions-options__form-check + .editpoll__questions-options__form-check {
+        &__form-check + &__form-check {
             margin-top: 8px;
         }
     }
 
-    .editpoll__questions > section:not(.editpoll__questions-options) > h2 {
+    .editpoll__questions-title {
         margin-top: 30px;
         margin-bottom: 36px;
     }
