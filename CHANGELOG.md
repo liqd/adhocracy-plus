@@ -9,6 +9,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- Image upload fields: the native file picker is restricted to image files
+  (``accept="image/*"``) and the Uppy image uploader offers a camera option
+  ("take a photo") in addition to the file picker
 - Management command ``send_newsletter_settings_notice`` plus an English/German
   notice email to inform users whose newsletter opt-in may have been reset by
   the profile-edit bug. Recipients are the refined candidate pool; every sent
