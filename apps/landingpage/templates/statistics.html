@@ -154,11 +154,20 @@
             const loopColumns = isTablet ? [columns[0], columns[2]] : Array.from(columns);
             const directions = loopColumns.map(column => column.getAttribute('data-direction'));
 
-            // Slightly staggered arrangement, same as on desktop.
-            // On tablet the offset comes from the CSS margin-top (-200px).
+            // The staggered offset is derived from the tile size so the columns
+            // always interlace by roughly half a tile. A fixed pixel offset
+            // degenerates to almost no stagger as soon as it is a whole
+            // number of tiles long (at ~1400px the old 300px matched a
+            // 323px tile and left only a 23px offset). On tablet the offset
+            // comes from the CSS margin-top (-200px).
+            const tileProbe = document.querySelector('.lp-statistics__stat, .lp-statistics__quote, .lp-statistics__image');
+            const copyProbe = document.querySelector('.lp-statistics__stats-scroller-column__copy');
+            const tilePeriod = (tileProbe ? tileProbe.getBoundingClientRect().height : 0)
+                + (copyProbe ? parseFloat(getComputedStyle(copyProbe).gap) : 0) || 0;
+            const staggerBase = tilePeriod ? Math.round(tilePeriod * 0.25) : 150;
             let staggers = isTablet
                 ? [0, 0]
-                : directions.map(direction => direction === 'down' ? -250 : 50);
+                : directions.map(direction => direction === 'down' ? -staggerBase : staggerBase);
             let copyHeight = 0;
             let gap = 0;
             let step = 0;
@@ -187,25 +196,31 @@
                     ? 200
                     : Math.max(...staggers) - Math.min(...staggers);
 
+                step = copyHeight + gap;
+
                 // Number of copies needed so the visible area never runs empty
-                // (viewport + one loop step + staggered offsets). Computed
-                // arithmetically because the columns stretch to the grid row
-                // height, which makes scrollHeight unreliable while copies are
-                // being added.
-                const needed = viewportHeight + copyHeight + staggerRange + 2 * gap;
-                let copies = 1;
-                while (copies * (copyHeight + gap) < needed) {
-                    loopColumns.forEach(column => {
+                // (viewport + one loop step + staggered offsets). Computed per
+                // column from its own copy height: using only the tallest
+                // column's height would leave shorter columns with too few
+                // copies, so their content scrolls out and the window goes
+                // empty until the wrap jumps back in.
+                const neededHeight = viewportHeight + step + staggerRange + 2 * gap;
+                loopColumns.forEach(column => {
+                    const copyH = column.children[0].offsetHeight;
+                    // An empty column has no tiles to show and needs no copies;
+                    // otherwise it would create dozens of empty divs.
+                    if (copyH === 0) {
+                        return;
+                    }
+                    const copiesNeeded = Math.min(8, Math.max(1, Math.ceil(neededHeight / (copyH + gap))));
+                    for (let i = 1; i < copiesNeeded; i++) {
                         const clone = document.createElement('div');
                         clone.className = 'lp-statistics__stats-scroller-column__copy';
                         clone.setAttribute('aria-hidden', 'true');
                         Array.from(column.children[0].children).forEach(item => clone.appendChild(item.cloneNode(true)));
                         column.appendChild(clone);
-                    });
-                    copies++;
-                }
-
-                step = copyHeight + gap;
+                    }
+                });
             }
 
             const yLow = -Math.max(...staggers) - step;
@@ -220,24 +235,61 @@
             // are never visible outside the visible area. Not pausable and not
             // scrollable by the user.
             if (!reduceMotion && step > 0) {
-                const yHigh = yLow + step;
-                let y = yLow;
+                // Each column loops at its own period (its copy height + its
+                // own gap) using its own small accumulator. A shared position
+                // has to be folded back once in a while, which jumps every
+                // column that is not a whole-number multiple of that fold —
+                // the "sometimes visible jump" in the scroll.
+                const loopInfos = loopColumns.map((column, index) => {
+                    const columnGap = parseFloat(getComputedStyle(column).gap) || 0;
+                    const period = (column.children[0].offsetHeight || step) + columnGap;
+                    return {
+                        column,
+                        period,
+                        base: yLow + staggers[index],
+                        offset: 0,
+                    };
+                });
+
                 let lastTime = performance.now();
+                let lastMeasure = lastTime;
                 // Fast enough that all tiles pass through the visible area
-                // within a reasonable time (~17s on tablet, ~8s on desktop)
-                const speed = 80; // px per second
+                // within a reasonable time (~34s on tablet, ~16s on desktop)
+                const speed = 40; // px per second
 
                 function tick(now) {
                     const dt = Math.min((now - lastTime) / 1000, 0.05);
                     lastTime = now;
+                    const dy = speed * dt;
 
-                    y += speed * dt;
-                    if (y >= yHigh) {
-                        y -= step;
+                    // Re-measure the period every second so the wrap always
+                    // matches the rendered content. If the layout changes
+                    // after the initial measurement (fonts, images, resize),
+                    // the stored period would drift and the wraps would
+                    // eventually become visible.
+                    if (now - lastMeasure > 1000) {
+                        lastMeasure = now;
+                        loopInfos.forEach(info => {
+                            const h = info.column.children[0].offsetHeight;
+                            const g = parseFloat(getComputedStyle(info.column).gap) || 0;
+                            if (h > 0) {
+                                info.period = h + g;
+                                if (info.offset >= info.period) {
+                                    info.offset -= info.period;
+                                }
+                            }
+                        });
                     }
 
-                    loopColumns.forEach((column, index) => {
-                        column.style.transform = `translateY(${y + staggers[index]}px)`;
+                    loopInfos.forEach(info => {
+                        // Advance the column and wrap it at its own period.
+                        // The wrap is invisible because the cloned copies
+                        // repeat the content exactly every period.
+                        info.offset += dy;
+                        if (info.offset >= info.period) {
+                            info.offset -= info.period;
+                        }
+                        info.column.style.transform = `translateY(${info.base + info.offset}px)`;
                     });
 
                     requestAnimationFrame(tick);

@@ -246,6 +246,26 @@ $lp-blue: blue;
     }
 }
 
+// Four-column layout on narrow desktop: the tiles are still small, so
+// scale the card fonts down until the tiles grow large enough.
+@media (1025px <= width <= $breakpoint-xl-down) {
+    .lp-statistics__stat {
+        font-size: 1rem;
+    }
+
+    .lp-statistics__stat-number {
+        font-size: 2.5rem;
+    }
+
+    .lp-statistics__quote {
+        font-size: 0.9rem;
+    }
+
+    .lp-statistics__quote-author__name {
+        font-size: 0.95rem;
+    }
+}
+
 // Reduced motion: show a single static copy, no duplicated content
 @media (prefers-reduced-motion: reduce) {
     .lp-statistics__stats-scroller-column__copy[aria-hidden="true"] {
