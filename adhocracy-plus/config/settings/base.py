@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     "apps.topicprio",
     "apps.debate",
     "apps.landingpage",
+    "apps.customfields",
 )
 
 MIDDLEWARE = (

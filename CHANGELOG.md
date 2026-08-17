@@ -18,6 +18,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   ``--dry-run``, ``--log-file`` and ``--to`` (single test copy to a chosen
   account)
 - Organisation page: follow button to get notified about new projects
+- Brainstorming: Add Custom fields on the idea submission form. (incl. Export)
 - Notifications: organisation followers receive email and in-app notification when a project is published
 - Project detail and module pages: alert for guest users on registered-users-only projects to register or log in with a personal account
 - Guest logout confirmation: dedicated copy when guests end their session to log in with a personal account from the project banner

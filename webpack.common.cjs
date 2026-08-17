@@ -44,6 +44,12 @@ module.exports = {
         './apps/documents/assets/react_documents_init.jsx'
       ]
     },
+    custom_fields_management: {
+      import: [
+        './apps/customfields/assets/react_custom_fields_management_init.jsx'
+      ],
+      dependOn: 'adhocracy4'
+    },
     dsgvo_video_embed: {
       import: [
         'dsgvo-video-embed/dist/dsgvo-video-embed.min.css',
@@ -177,6 +183,15 @@ module.exports = {
   },
   module: {
     rules: [
+      // The repository and the adhocracy4 package are "type": "module".
+      // Their sources are transpiled to CommonJS by babel (see plugin below),
+      // so let webpack parse all JS as CommonJS instead of strict ESM.
+      // Otherwise the generated `require`/`exports` identifiers are not
+      // rewritten and break at runtime.
+      {
+        test: /\.(js|jsx)$/,
+        type: 'javascript/auto'
+      },
       {
         test: /\.jsx?$/,
         // package.json has "type": "module", which classifies .js files as

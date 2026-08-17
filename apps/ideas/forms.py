@@ -6,12 +6,14 @@ from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from apps.contrib.image_upload_help import IMAGE_UPLOAD_IDEA_HELP_TEXT
 from apps.contrib.mixins import GuestCreatorContactFieldMixin
 from apps.contrib.mixins import ImageRightOfUseMixin
+from apps.customfields.forms import CustomFieldsFormMixin
 from apps.organisations.mixins import OrganisationTermsOfUseMixin
 
 from . import models
 
 
 class IdeaForm(
+    CustomFieldsFormMixin,
     GuestCreatorContactFieldMixin,
     CategorizableFieldMixin,
     LabelsAddableFieldMixin,

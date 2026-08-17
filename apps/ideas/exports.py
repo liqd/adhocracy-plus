@@ -41,7 +41,35 @@ class IdeaExportView(
             .annotate_comment_count()
             .annotate_positive_rating_count()
             .annotate_negative_rating_count()
+            .prefetch_related(
+                "custom_field_answers", "custom_field_answers__field__choices"
+            )
         )
+
+    def get_virtual_fields(self, virtual):
+        virtual = super().get_virtual_fields(virtual)
+        settings = self.module.settings_instance
+        if not (settings and hasattr(settings, "fields")):
+            return virtual
+
+        for field in settings.fields.all():
+            name = "custom_field_{}".format(field.pk)
+            virtual[name] = field.label
+            setattr(
+                self,
+                "get_{}_data".format(name),
+                self._make_custom_field_getter(field.pk),
+            )
+        return virtual
+
+    def _make_custom_field_getter(self, field_id):
+        def getter(item):
+            for answer in item.custom_field_answers.all():
+                if answer.field_id == field_id:
+                    return answer.display_value
+            return ""
+
+        return getter
 
     @property
     def raise_exception(self):
