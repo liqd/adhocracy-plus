@@ -15,3 +15,7 @@ DATABASES = {
         },
     }
 }
+
+# E2E tests must be deterministic and self-contained: do not require the
+# external Prosopo captcha service on forms (e.g. the guest login flow).
+CAPTCHA = False
