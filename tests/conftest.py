@@ -42,6 +42,16 @@ def pytest_configure():
     Celery(task_always_eager=True)
 
 
+def pytest_collection_modifyitems(config, items):
+    # Do not run browser e2e tests by default. Run them explicitly with
+    # `py.test -m e2e` (which sets config.option.markexpr).
+    if config.option.markexpr:
+        return
+    for item in items:
+        if "e2e" in item.keywords:
+            item.add_marker(pytest.mark.skip(reason="e2e: run with `py.test -m e2e`"))
+
+
 @pytest.fixture
 def apiclient():
     return APIClient()
