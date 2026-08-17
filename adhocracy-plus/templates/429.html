@@ -1,0 +1,8 @@
+{% extends "base_errors.html" %}
+{% load i18n %}
+
+{% block error_status %}429{% endblock error_status %}
+
+{% block error_description %}
+    {% translate 'Too many requests. Please try again later.' %}
+{% endblock error_description %}
