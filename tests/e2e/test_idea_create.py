@@ -1,6 +1,7 @@
 import pytest
 from django.urls import reverse
 from django.utils import timezone
+from playwright.sync_api import expect
 
 from adhocracy4.test.factories import PhaseFactory
 from apps.ideas import models as idea_models
@@ -65,5 +66,4 @@ def test_user_creates_idea(page, e2e_login, seed, idea_project, db_commit):
     assert created.creator == user
     assert created.module == module
 
-    body = page.locator("body").inner_text()
-    assert "My Playwright Idea" in body
+    expect(page.locator("body")).to_contain_text("My Playwright Idea")

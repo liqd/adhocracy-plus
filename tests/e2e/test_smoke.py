@@ -1,5 +1,6 @@
 import pytest
 from django.urls import reverse
+from playwright.sync_api import expect
 
 from tests.factories import UserFactory
 
@@ -8,7 +9,7 @@ from tests.factories import UserFactory
 def test_landing_page_renders(page):
     page.goto("/")
     body = page.locator("body")
-    body.wait_for(state="visible")
+    expect(body).to_be_visible()
     text = body.inner_text()
     assert "Poll" in text
     assert "Brainstorming" in text
