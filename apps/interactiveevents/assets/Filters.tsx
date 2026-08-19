@@ -1,8 +1,27 @@
 import React from 'react'
 import django from 'django'
 
-export default class Filter extends React.Component {
-  constructor (props) {
+interface FilterProps {
+  categories: string[]
+  currentCategory: string
+  currentCategoryName: string
+  setCategories: (category: string) => void
+  orderedByLikes: boolean
+  toggleOrdering: () => void
+  displayOnShortlist: boolean
+  displayNotHiddenOnly: boolean
+  toggleDisplayOnShortlist: () => void
+  toggledisplayNotHiddenOnly: () => void
+  isModerator: boolean
+  showFilters?: boolean
+}
+
+interface FilterState {
+  showFilters: boolean
+}
+
+export default class Filter extends React.Component<FilterProps, FilterState> {
+  constructor (props: FilterProps) {
     super(props)
 
     this.state = {
@@ -10,10 +29,10 @@ export default class Filter extends React.Component {
     }
   }
 
-  selectCategory (e) {
+  selectCategory (e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
-    const category = e.target.getAttribute('data-value')
-    this.props.setCategories(category)
+    const category = e.currentTarget.getAttribute('data-value')
+    this.props.setCategories(category || '')
   }
 
   handleToggleFilters () {
@@ -54,7 +73,7 @@ export default class Filter extends React.Component {
                     className="dropdown-item"
                     key={index}
                     data-value={category === allTag ? -1 : category}
-                    onClick={this.selectCategory.bind(this)} href="#"
+                    onClick={this.selectCategory.bind(this)}
                   >
                     {category}
                   </button>
@@ -76,7 +95,7 @@ export default class Filter extends React.Component {
                 id="showFilters"
                 name="showFilter"
                 checked={this.props.showFilters}
-                onChange={this.handleToggleFilters.bind(this)} // eslint-disable-line react/jsx-handler-names
+                onChange={this.handleToggleFilters.bind(this)}
               />
               <span className="checkbox-btn__text--colour">
                 <i className="fas fa-sliders-h me-1" aria-hidden="true" />
@@ -99,7 +118,7 @@ export default class Filter extends React.Component {
                   id="markedCheck"
                   name="markedCheck"
                   checked={this.props.displayOnShortlist}
-                  onChange={this.props.toggleDisplayOnShortlist} // eslint-disable-line react/jsx-handler-names
+                  onChange={this.props.toggleDisplayOnShortlist}
                 />
                 <span className="checkbox-btn__text--colour">
                   <i className="icon-in-list" aria-hidden="true" />
@@ -119,7 +138,7 @@ export default class Filter extends React.Component {
                   id="displayNotHiddenOnly"
                   name="displayNotHiddenOnly"
                   checked={this.props.displayNotHiddenOnly}
-                  onChange={this.props.toggledisplayNotHiddenOnly} // eslint-disable-line react/jsx-handler-names
+                  onChange={this.props.toggledisplayNotHiddenOnly}
                 />
                 <span className="checkbox-btn__text--colour">
                   <i className="far fa-eye" aria-hidden="true" />
@@ -139,7 +158,7 @@ export default class Filter extends React.Component {
                   id="orderedByLikes"
                   name="orderedByLikes"
                   checked={this.props.orderedByLikes}
-                  onChange={this.props.toggleOrdering} // eslint-disable-line react/jsx-handler-names
+                  onChange={this.props.toggleOrdering}
                 />
                 <span className="checkbox-btn__text--colour">
                   <i className="fa fa-thumbs-up" aria-hidden="true" /> likes

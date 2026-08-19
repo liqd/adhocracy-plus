@@ -1,8 +1,36 @@
 import React from 'react'
 import django from 'django'
+import type { LikeInfo } from './types'
 
-export default class QuestionModerator extends React.Component {
-  constructor (props) {
+interface QuestionModeratorProps {
+  is_on_shortlist: boolean
+  is_live: boolean
+  is_hidden: boolean
+  is_answered: boolean
+  id: number
+  likes: LikeInfo
+  category?: string
+  children?: React.ReactNode
+  displayIsHidden?: boolean
+  displayIsAnswered?: boolean
+  displayIsLive?: boolean
+  displayIsOnShortlist?: boolean
+  updateQuestion: (data: Record<string, number | boolean>, id: number) => Promise<Response>
+  removeFromList: (id: number, data: Record<string, number | boolean>) => void
+  togglePollingPaused?: () => void
+}
+
+interface QuestionModeratorState {
+  is_on_shortlist: boolean
+  is_live: boolean
+  likes: number
+  session_like: boolean
+  is_hidden: boolean
+  is_answered: boolean
+}
+
+export default class QuestionModerator extends React.Component<QuestionModeratorProps, QuestionModeratorState> {
+  constructor (props: QuestionModeratorProps) {
     super(props)
 
     this.state = {
@@ -21,12 +49,12 @@ export default class QuestionModerator extends React.Component {
     const data = { is_on_shortlist: boolValue }
     this.props.updateQuestion(data, this.props.id)
       .then((response) => response.json())
-      .then(responseData => this.setState(
+      .then((responseData: any) => this.setState(
         {
           is_on_shortlist: responseData.is_on_shortlist
         }
       ))
-      .then(() => this.props.togglePollingPaused())
+      .then(() => this.props.togglePollingPaused?.())
   }
 
   toggleIslive () {
@@ -35,12 +63,12 @@ export default class QuestionModerator extends React.Component {
     const data = { is_live: boolValue }
     this.props.updateQuestion(data, this.props.id)
       .then((response) => response.json())
-      .then(responseData => this.setState(
+      .then((responseData: any) => this.setState(
         {
           is_live: responseData.is_live
         }
       ))
-      .then(() => this.props.togglePollingPaused())
+      .then(() => this.props.togglePollingPaused?.())
   }
 
   toggleIsAnswered () {
@@ -56,15 +84,15 @@ export default class QuestionModerator extends React.Component {
     const data = { is_hidden: boolValue }
     this.props.updateQuestion(data, this.props.id)
       .then((response) => response.json())
-      .then(responseData => this.setState(
+      .then((responseData: any) => this.setState(
         {
           is_hidden: responseData.is_hidden
         }
       ))
-      .then(() => this.props.togglePollingPaused())
+      .then(() => this.props.togglePollingPaused?.())
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prevProps: QuestionModeratorProps) {
     if (this.props.is_on_shortlist !== prevProps.is_on_shortlist) {
       this.setState({
         is_on_shortlist: this.props.is_on_shortlist

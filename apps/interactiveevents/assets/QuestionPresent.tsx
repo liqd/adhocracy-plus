@@ -1,8 +1,19 @@
 import React from 'react'
 import django from 'django'
+import type { LikeInfo } from './types'
 
-export default class QuestionPresent extends React.Component {
-  constructor (props) {
+interface QuestionPresentProps {
+  id?: number
+  likes: LikeInfo
+  children?: React.ReactNode
+}
+
+interface QuestionPresentState {
+  likes: number
+}
+
+export default class QuestionPresent extends React.Component<QuestionPresentProps, QuestionPresentState> {
+  constructor (props: QuestionPresentProps) {
     super(props)
 
     this.state = {
@@ -10,7 +21,7 @@ export default class QuestionPresent extends React.Component {
     }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prevProps: QuestionPresentProps) {
     if (this.props.likes !== prevProps.likes) {
       this.setState({
         likes: this.props.likes.count
@@ -18,7 +29,7 @@ export default class QuestionPresent extends React.Component {
     }
   }
 
-  handleErrors (response) {
+  handleErrors (response: Response) {
     if (!response.ok) {
       throw Error(response.statusText)
     }

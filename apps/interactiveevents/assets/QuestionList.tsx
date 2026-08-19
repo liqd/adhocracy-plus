@@ -1,13 +1,24 @@
 import React from 'react'
 import QuestionModerator from './QuestionModerator'
 import QuestionUser from './QuestionUser'
+import type { IEQuestion } from './types'
 
-const QuestionList = (props) => {
+interface QuestionListProps {
+  isModerator: boolean
+  hasLikingPermission: boolean
+  questions: IEQuestion[]
+  removeFromList: (id: number, data: Record<string, number | boolean>) => void
+  updateQuestion: (data: Record<string, number | boolean>, id: number) => Promise<Response>
+  handleLike: (this: unknown, id: number, value: boolean) => Promise<Response>
+  togglePollingPaused: () => void
+}
+
+const QuestionList = (props: QuestionListProps) => {
   if (props.isModerator) {
     return (
       <div>
         {
-          props.questions.map((question, index) => {
+          props.questions.map((question) => {
             return (
               <QuestionModerator
                 key={question.id}
@@ -17,9 +28,6 @@ const QuestionList = (props) => {
                 displayIsAnswered={!question.is_hidden}
                 removeFromList={props.removeFromList.bind(this)}
                 updateQuestion={props.updateQuestion.bind(this)}
-                handleLike={props.handleLike.bind(this)}
-                isModerator={props.isModerator}
-                hasLikingPermission={props.hasLikingPermission}
                 id={question.id}
                 is_answered={question.is_answered}
                 is_on_shortlist={question.is_on_shortlist}
@@ -40,19 +48,15 @@ const QuestionList = (props) => {
     return (
       <div>
         {
-          props.questions.map((question, index) => {
+          props.questions.map((question) => {
             return (
               <QuestionUser
                 key={question.id}
-                updateQuestion={props.updateQuestion.bind(this)}
                 handleLike={props.handleLike.bind(this)}
-                isModerator={props.isModerator}
                 hasLikingPermission={props.hasLikingPermission}
                 id={question.id}
-                is_answered={question.is_answered}
                 is_on_shortlist={question.is_on_shortlist}
                 is_live={question.is_live}
-                is_hidden={question.is_hidden}
                 category={question.category}
                 likes={question.likes}
               >

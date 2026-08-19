@@ -1,11 +1,16 @@
 import django from 'django'
 import React, { useEffect } from 'react'
 
-export const CategorySelect = (props) => {
+interface CategorySelectProps {
+  onSelect: (event: Event) => void
+  category_dict: Record<string | number, string>
+}
+
+export const CategorySelect = (props: CategorySelectProps) => {
   useEffect(() => {
     const select = document.getElementById('categorySelect')
-    select.addEventListener('change', props.onSelect)
-  }, [])
+    select?.addEventListener('change', props.onSelect as EventListener)
+  }, [props.onSelect])
 
   const affiliationStr = django.gettext('Affiliation')
   const answeredQuestionsStr = django.gettext('Answered questions will be displayed in the statistics according to the chosen affiliation.')
@@ -24,7 +29,7 @@ export const CategorySelect = (props) => {
                 name="categorySelect"
                 id="categorySelect"
                 className="form-select"
-                required="required"
+                required={true}
                 data-minimum-results-for-search="Infinity"
               >
                 <option value="">---------</option>

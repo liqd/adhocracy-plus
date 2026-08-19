@@ -1,10 +1,25 @@
 import django from 'django'
 import React from 'react'
-import { updateItem } from './helpers.js'
+import { updateItem } from './helpers'
 import { CategorySelect } from './CategorySelect'
 
-export default class QuestionForm extends React.Component {
-  constructor (props) {
+interface QuestionFormProps {
+  restartPolling: () => void
+  category_dict: Record<string, string>
+  questions_api_url: string
+  privatePolicyLabel: string
+  termsOfUseUrl: string
+  dataProtectionPolicyUrl: string
+}
+
+interface QuestionFormState {
+  question: string
+  selectedCategory: string
+  questionCharCount: number
+}
+
+export default class QuestionForm extends React.Component<QuestionFormProps, QuestionFormState> {
+  constructor (props: QuestionFormProps) {
     super(props)
     this.state = {
       question: '',
@@ -13,11 +28,11 @@ export default class QuestionForm extends React.Component {
     }
   }
 
-  selectCategory (e) {
-    this.setState({ selectedCategory: e.target.value })
+  selectCategory (e: Event) {
+    this.setState({ selectedCategory: (e.target as HTMLSelectElement).value })
   }
 
-  handleTextChange (e) {
+  handleTextChange (e: React.ChangeEvent<HTMLTextAreaElement>) {
     this.setState({
       question: e.target.value,
       questionCharCount: e.target.value.length
@@ -37,7 +52,7 @@ export default class QuestionForm extends React.Component {
     )
   }
 
-  addQuestion (e) {
+  addQuestion (e: React.FormEvent) {
     e.preventDefault()
     const anchor = document.getElementById('question-list-end')
     const url = this.props.questions_api_url
@@ -50,7 +65,7 @@ export default class QuestionForm extends React.Component {
       question: '',
       questionCharCount: 0
     })
-    anchor.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    anchor?.scrollIntoView({ behavior: 'smooth', block: 'end' })
     this.props.restartPolling()
   }
 
@@ -70,16 +85,16 @@ export default class QuestionForm extends React.Component {
             id="questionTextField"
             className="form-control"
             name="questionTextFieldName"
-            rows="3"
+            rows={3}
             onChange={this.handleTextChange.bind(this)}
-            required="required"
+            required={true}
             value={this.state.question}
-            maxLength="1000"
+            maxLength={1000}
           />
           <label htmlFor="id-livequestion-form" className="live_questions__char-count">{this.state.questionCharCount}/1000{django.gettext(' characters')}</label>
           <div className="form-check">
             <label className="form-check__label">
-              <input type="checkbox" name="data_protection" id="data_protection_check" required="required" />
+              <input type="checkbox" name="data_protection" id="data_protection_check" required={true} />
               &nbsp;
               {this.getPrivacyPolicyLabelWithLinks()}
             </label>

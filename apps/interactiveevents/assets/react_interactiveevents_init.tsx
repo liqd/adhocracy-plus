@@ -6,8 +6,8 @@ import QuestionBox from './QuestionBox'
 
 function init () {
   ReactWidget.initialise('aplus', 'questions',
-    function (el) {
-      const props = JSON.parse(el.dataset.attributes)
+    function (el: HTMLElement) {
+      const props = JSON.parse(el.dataset.attributes || '{}')
       const root = createRoot(el)
       root.render(
         <React.StrictMode>

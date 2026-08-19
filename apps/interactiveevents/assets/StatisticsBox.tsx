@@ -1,34 +1,46 @@
 import django from 'django'
 import React from 'react'
-import { updateItem } from './helpers.js'
+import { updateItem } from './helpers'
 import QuestionUser from './QuestionUser'
 import QuestionModerator from './QuestionModerator'
+import type { IEQuestion, LikeInfo } from './types'
 
-export default class StatisticsBox extends React.Component {
-  constructor (props) {
+interface StatisticsBoxProps {
+  answeredQuestions: IEQuestion[]
+  questions_api_url: string
+  categories: string[]
+  isModerator: boolean
+}
+
+interface StatisticsBoxState {
+  answeredQuestions: IEQuestion[]
+}
+
+export default class StatisticsBox extends React.Component<StatisticsBoxProps, StatisticsBoxState> {
+  constructor (props: StatisticsBoxProps) {
     super(props)
     this.state = { answeredQuestions: props.answeredQuestions }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prevProps: StatisticsBoxProps) {
     if (this.props.answeredQuestions !== prevProps.answeredQuestions) {
       this.setState({ answeredQuestions: this.props.answeredQuestions })
     }
   }
 
-  updateQuestion (data, id) {
+  updateQuestion (data: Record<string, number | boolean>, id: number) {
     const url = this.props.questions_api_url + id + '/'
     return updateItem(data, url, 'PATCH')
   }
 
-  removeFromList (id, data) {
+  removeFromList (id: number, data: Record<string, number | boolean>) {
     this.updateQuestion(data, id)
-      .then(response => this.setState(prevState => ({
+      .then(() => this.setState(prevState => ({
         answeredQuestions: prevState.answeredQuestions.filter(question => question.id !== id)
       })))
   }
 
-  countCategory (category) {
+  countCategory (category: string) {
     let countPerCategory = 0
     let answeredQuestions = 0
     this.props.answeredQuestions.forEach(function (question) {
@@ -57,8 +69,8 @@ export default class StatisticsBox extends React.Component {
                     <span>{category}</span>
                     <div className="progress">
                       <div
-                        className="progress-bar" style={style} role="progressbar" aria-valuenow="25" aria-valuemin="0"
-                        aria-valuemax="100"
+                        className="progress-bar" style={style} role="progressbar" aria-valuenow={25} aria-valuemin={0}
+                        aria-valuemax={100}
                       >{countPerCategory}%
                       </div>
                     </div>
@@ -71,7 +83,7 @@ export default class StatisticsBox extends React.Component {
         {this.props.isModerator
           ? (
             <div className="list-group mt-md-4">
-              {this.state.answeredQuestions.map((question, index) => {
+              {this.state.answeredQuestions.map((question) => {
                 return (
                   <QuestionModerator
                     updateQuestion={this.updateQuestion.bind(this)}
@@ -87,7 +99,7 @@ export default class StatisticsBox extends React.Component {
                     is_live={question.is_live}
                     is_hidden={question.is_hidden}
                     category={question.category}
-                    likes={question.likes}
+                    likes={question.likes as LikeInfo}
                   >
                     {question.text}
                   </QuestionModerator>
@@ -97,17 +109,15 @@ export default class StatisticsBox extends React.Component {
             )
           : (
             <div className="list-group mt-3 mt-md-4">
-              {this.state.answeredQuestions.map((question, index) => {
+              {this.state.answeredQuestions.map((question) => {
                 return (
                   <QuestionUser
                     key={question.id}
                     id={question.id}
-                    is_answered={question.is_answered}
                     is_on_shortlist={question.is_on_shortlist}
                     is_live={question.is_live}
-                    is_hidden={question.is_hidden}
                     category={question.category}
-                    likes={question.likes}
+                    likes={question.likes as LikeInfo}
                   >
                     {question.text}
                   </QuestionUser>

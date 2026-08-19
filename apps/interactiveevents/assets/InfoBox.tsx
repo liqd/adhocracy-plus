@@ -10,8 +10,16 @@ const textMarkedModeration = django.gettext('is shown in front of a question? It
 const ariaCloseInfo = django.gettext('Close information')
 const ariaOpenInfo = django.gettext('Open information')
 
-export default class InfoBox extends React.Component {
-  constructor (props) {
+interface InfoBoxProps {
+  isModerator: boolean
+}
+
+interface InfoBoxState {
+  displayInfo: boolean
+}
+
+export default class InfoBox extends React.Component<InfoBoxProps, InfoBoxState> {
+  constructor (props: InfoBoxProps) {
     super(props)
 
     this.state = {

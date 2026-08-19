@@ -1,10 +1,27 @@
-/* global fetch */
 import $ from 'jquery'
 import React from 'react'
 import QuestionPresent from './QuestionPresent'
+import type { LikeInfo } from './types'
 
-export default class PresentBox extends React.Component {
-  constructor (props) {
+interface PresentQuestion {
+  id: number
+  text: string
+  likes: LikeInfo
+}
+
+interface PresentBoxProps {
+  questions_api_url: string
+  title: string
+}
+
+interface PresentBoxState {
+  questions: PresentQuestion[]
+}
+
+export default class PresentBox extends React.Component<PresentBoxProps, PresentBoxState> {
+  timer: ReturnType<typeof setInterval> | null = null
+
+  constructor (props: PresentBoxProps) {
     super(props)
 
     this.state = {
@@ -12,7 +29,7 @@ export default class PresentBox extends React.Component {
     }
   }
 
-  getListAndFooter (data) {
+  getListAndFooter (data: PresentQuestion[]) {
     this.setState({
       questions: data
     })
@@ -31,6 +48,9 @@ export default class PresentBox extends React.Component {
   }
 
   componentWillUnmount () {
+    if (this.timer) {
+      clearInterval(this.timer)
+    }
     this.timer = null
   }
 
@@ -51,7 +71,7 @@ export default class PresentBox extends React.Component {
       return (
         <div className="container">
           <div className="list-group mt-5">
-            {this.state.questions.map((question, index) => {
+            {this.state.questions.map((question) => {
               return (
                 <QuestionPresent
                   key={question.id}

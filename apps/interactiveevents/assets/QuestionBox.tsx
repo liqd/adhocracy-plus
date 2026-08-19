@@ -1,11 +1,12 @@
 import django from 'django'
 import React from 'react'
-import { updateItem } from './helpers.js'
+import { updateItem } from './helpers'
 import QuestionForm from './QuestionForm'
 import QuestionList from './QuestionList'
 import InfoBox from './InfoBox'
 import Filter from './Filters'
 import StatisticsBox from './StatisticsBox'
+import type { IEQuestion } from './types'
 
 const textStatistics = django.gettext('Statistics')
 const textQuestionCount = django.gettext('Entries')
@@ -13,8 +14,40 @@ const ariaOpenStatistics = django.gettext('Click to view statistics of answered 
 const textDisplayOnScreen = django.gettext('display on screen')
 const ariaDisplayOnScreen = django.gettext('Click to view list of marked questions screen')
 
-export default class QuestionBox extends React.Component {
-  constructor (props) {
+interface QuestionBoxProps {
+  questions_api_url: string
+  likes_api_url: string
+  hasAskQuestionsPermission: boolean
+  isModerator: boolean
+  hasLikingPermission: boolean
+  categories: string[]
+  present_url: string
+  category_dict: Record<string, string>
+  privatePolicyLabel: string
+  termsOfUseUrl: string
+  dataProtectionPolicyUrl: string
+}
+
+interface QuestionBoxState {
+  questions: IEQuestion[]
+  filteredQuestions: IEQuestion[]
+  answeredQuestions: IEQuestion[]
+  category: string
+  categoryName: string
+  displayNotHiddenOnly: boolean
+  displayOnShortlist: boolean
+  orderedByLikes: boolean
+  filterChanged: boolean
+  orderingChanged: boolean
+  pollingPaused: boolean
+  showStatistics: boolean
+  questionCount: number
+}
+
+export default class QuestionBox extends React.Component<QuestionBoxProps, QuestionBoxState> {
+  timer: ReturnType<typeof setInterval> | null = null
+
+  constructor (props: QuestionBoxProps) {
     super(props)
 
     this.restartPolling = this.restartPolling.bind(this)
@@ -41,6 +74,9 @@ export default class QuestionBox extends React.Component {
   }
 
   componentWillUnmount () {
+    if (this.timer) {
+      clearInterval(this.timer)
+    }
     this.timer = null
   }
 
@@ -53,7 +89,7 @@ export default class QuestionBox extends React.Component {
     }
   }
 
-  setCategory (category) {
+  setCategory (category: string) {
     const newName = (category === '-1') ? django.gettext('all') : category
     this.setState({
       filterChanged: true,
@@ -93,13 +129,13 @@ export default class QuestionBox extends React.Component {
     })
   }
 
-  isInFilter (item) {
+  isInFilter (item: IEQuestion) {
     return (this.state.category === '-1' || this.state.category === item.category) &&
       (!this.state.displayOnShortlist || item.is_on_shortlist) && (!this.state.displayNotHiddenOnly || !item.is_hidden)
   }
 
-  filterQuestions (questions) {
-    const filteredQuestions = []
+  filterQuestions (questions: IEQuestion[]) {
+    const filteredQuestions: IEQuestion[] = []
     questions.forEach((item) => {
       if (this.isInFilter(item) && !item.is_answered) {
         filteredQuestions.push(item)
@@ -108,8 +144,8 @@ export default class QuestionBox extends React.Component {
     return filteredQuestions
   }
 
-  getAnsweredQuestions (questions) {
-    const answeredQuestions = []
+  getAnsweredQuestions (questions: IEQuestion[]) {
+    const answeredQuestions: IEQuestion[] = []
     questions.forEach((item) => {
       if (item.is_answered) {
         answeredQuestions.push(item)
@@ -148,7 +184,7 @@ export default class QuestionBox extends React.Component {
     }
   }
 
-  updateQuestion (data, id) {
+  updateQuestion (data: Record<string, number | boolean>, id: number) {
     this.setState({
       pollingPaused: true
     })
@@ -156,16 +192,16 @@ export default class QuestionBox extends React.Component {
     return updateItem(data, url, 'PATCH')
   }
 
-  removeFromList (id, data) {
+  removeFromList (id: number, data: Record<string, number | boolean>) {
     this.updateQuestion(data, id)
-      .then(response => this.setState(prevState => ({
+      .then(() => this.setState(prevState => ({
         filteredQuestions: prevState.filteredQuestions.filter(question => question.id !== id),
         pollingPaused: false
       })))
   }
 
-  handleLike (id, value) {
-    const url = this.props.likes_api_url.replace('LIVEQUESTIONID', id)
+  handleLike (id: number, value: boolean) {
+    const url = this.props.likes_api_url.replace('LIVEQUESTIONID', String(id))
     const data = { value }
     return updateItem(data, url, 'POST')
   }
@@ -179,7 +215,9 @@ export default class QuestionBox extends React.Component {
 
   restartPolling () {
     this.getItems()
-    clearInterval(this.timer)
+    if (this.timer) {
+      clearInterval(this.timer)
+    }
     this.timer = setInterval(() => this.getItems(), 5000)
   }
 

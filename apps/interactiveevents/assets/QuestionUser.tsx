@@ -1,8 +1,27 @@
 import React from 'react'
 import django from 'django'
+import type { LikeInfo } from './types'
 
-export default class QuestionUser extends React.Component {
-  constructor (props) {
+interface QuestionUserProps {
+  is_on_shortlist: boolean
+  is_live: boolean
+  likes: LikeInfo
+  id: number
+  children?: React.ReactNode
+  category?: string
+  hasLikingPermission?: boolean
+  handleLike?: (id: number, value: boolean) => Promise<Response>
+}
+
+interface QuestionUserState {
+  is_on_shortlist: boolean
+  is_live: boolean
+  likes: number
+  session_like: boolean
+}
+
+export default class QuestionUser extends React.Component<QuestionUserProps, QuestionUserState> {
+  constructor (props: QuestionUserProps) {
     super(props)
 
     this.state = {
@@ -13,7 +32,7 @@ export default class QuestionUser extends React.Component {
     }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prevProps: QuestionUserProps) {
     if (this.props.is_on_shortlist !== prevProps.is_on_shortlist) {
       this.setState({
         is_on_shortlist: this.props.is_on_shortlist
@@ -27,7 +46,7 @@ export default class QuestionUser extends React.Component {
     }
   }
 
-  handleErrors (response) {
+  handleErrors (response: Response) {
     if (!response.ok) {
       throw Error(response.statusText)
     }
@@ -36,15 +55,17 @@ export default class QuestionUser extends React.Component {
 
   handleLike () {
     const value = !this.state.session_like
-    this.props.handleLike(this.props.id, value)
+    const likePromise = this.props.handleLike?.(this.props.id, value)
+    if (!likePromise) return
+    likePromise
       .then(this.handleErrors)
-      .then((response) => this.setState(
+      .then(() => this.setState(
         {
           session_like: value,
           likes: value ? this.state.likes + 1 : this.state.likes - 1
         }
       ))
-      .catch((response) => { console.log(response.message) })
+      .catch((response: Error) => { console.log(response.message) })
   }
 
   render () {
