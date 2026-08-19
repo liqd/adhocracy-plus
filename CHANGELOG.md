@@ -50,6 +50,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   ``eslint-config-standard-jsx``, and ``eslint-plugin-import``; add
   ``@eslint/js``, ``eslint-plugin-import-x``, ``eslint-plugin-n``,
   ``eslint-plugin-react-hooks``, and ``globals``
+- Frontend: migrate the React components and their supporting helpers (polls,
+  documents, interactive events, user dashboard moderation, custom-fields
+  management, organisations language choice, project detail follow) to
+  TypeScript (``.ts``/``.tsx``). Added ``typescript``, ``@babel/preset-typescript``
+  and ``typescript-eslint``; added a type-check script (``pnpm typecheck``) and
+  ambient type declarations for the untyped ``adhocracy4``/``django`` imports
 
 ### Fixed
 
