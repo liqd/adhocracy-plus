@@ -1,6 +1,15 @@
 import React, { useEffect } from 'react'
 import django from 'django'
 import FormFieldError from 'adhocracy4/adhocracy4/static/FormFieldError'
+import type { ChapterParagraph } from './types'
+
+declare global {
+  interface Window {
+    ckeditorRegisterCallback: (id: string, cb: (editor: any) => void) => void
+    ckeditorUnregisterCallback: (id: string) => void
+    editors: Record<string, any>
+  }
+}
 
 // translations
 const translations = {
@@ -17,9 +26,32 @@ const translations = {
   )
 }
 
-const ParagraphForm = (props) => {
+interface ParagraphFormProps {
+  id: string
+  index?: number
+  paragraph: ChapterParagraph
+  errors?: Record<string, unknown> | null
+  onNameChange: (name: string) => void
+  onTextChange: (text: string) => void
+  onDelete?: () => void
+  onMoveUp?: (() => void) | null
+  onMoveDown?: (() => void) | null
+  onParagraphAddBefore?: () => void
+  uploadUrl?: string
+  uploadFileTypes?: string[]
+  csrfCookieName?: string
+  config?: Record<string, unknown>
+}
+
+const ParagraphForm = (props: ParagraphFormProps) => {
   const id = 'id_paragraphs-' + props.id
   const ckeditorId = id + '-text'
+
+  const setDataHandler = (editor: any) => {
+    editor.model.document.on('change:data', () => {
+      props.onTextChange(editor.getData())
+    })
+  }
 
   useEffect(() => {
     window.ckeditorRegisterCallback(ckeditorId, setDataHandler)
@@ -32,13 +64,7 @@ const ParagraphForm = (props) => {
     }
   }, [props.id, props.onTextChange, props.index])
 
-  const setDataHandler = (editor) => {
-    editor.model.document.on('change:data', () => {
-      props.onTextChange(editor.getData())
-    })
-  }
-
-  const handleNameChange = (e) => {
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value
     props.onNameChange(name)
   }
@@ -59,7 +85,7 @@ const ParagraphForm = (props) => {
                   value={props.paragraph.name}
                   onChange={handleNameChange}
                   aria-invalid={props.errors ? 'true' : 'false'}
-                  aria-describedby={props.errors && 'id_error-' + props.id}
+                  aria-describedby={props.errors ? 'id_error-' + props.id : undefined}
                 />
                 <FormFieldError
                   id={'id_error-' + props.id}
@@ -115,7 +141,7 @@ const ParagraphForm = (props) => {
         <div className="commenting__actions btn-group" role="group">
           <button
             className="btn btn--light btn--small"
-            onClick={props.onMoveUp}
+            onClick={props.onMoveUp ?? undefined}
             disabled={!props.onMoveUp}
             title={translations.moveUp}
             type="button"
@@ -124,7 +150,7 @@ const ParagraphForm = (props) => {
           </button>
           <button
             className="btn btn--light btn--small"
-            onClick={props.onMoveDown}
+            onClick={props.onMoveDown ?? undefined}
             disabled={!props.onMoveDown}
             title={translations.moveDown}
             type="button"
@@ -148,4 +174,4 @@ const ParagraphForm = (props) => {
   )
 }
 
-module.exports = ParagraphForm
+export default ParagraphForm

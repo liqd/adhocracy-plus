@@ -1,16 +1,40 @@
+import React from 'react'
 import { alert as Alert } from 'adhocracy4'
-const api = require('adhocracy4').api
-const React = require('react')
-const django = require('django')
-const dashboard = require('adhocracy4/adhocracy4/dashboard/assets/dashboard')
-const update = require('immutability-helper')
-const ChapterNav = require('./ChapterNav')
-const ChapterForm = require('./ChapterForm')
+import api from 'adhocracy4/adhocracy4/static/api'
+import django from 'django'
+import dashboard from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
+import update from 'immutability-helper'
+import ChapterNav from './ChapterNav'
+import ChapterForm from './ChapterForm'
+import type { Chapter, ChapterParagraph, DocumentErrors } from './types'
 
-class DocumentManagement extends React.Component {
-  constructor (props) {
+interface DocumentAlert {
+  type: string
+  message: string
+}
+
+interface DocumentManagementProps {
+  chapters?: Chapter[]
+  module: number
+  reloadOnSuccess?: boolean
+  csrfCookieName?: string
+  uploadUrl?: string
+  uploadFileTypes?: string[]
+  config?: Record<string, unknown>
+}
+
+interface DocumentManagementState {
+  chapters: Chapter[]
+  errors: DocumentErrors | null
+  alert: DocumentAlert | null
+  editChapterIndex: number
+}
+
+class DocumentManagement extends React.Component<DocumentManagementProps, DocumentManagementState> {
+  maxLocalKey = 0
+
+  constructor (props: DocumentManagementProps) {
     super(props)
-    this.maxLocalKey = 0
 
     let chapters = this.props.chapters
     if (!chapters || chapters.length === 0) {
@@ -36,13 +60,7 @@ class DocumentManagement extends React.Component {
     return 'local_' + this.maxLocalKey
   }
 
-  /*
-  |--------------------------------------------------------------------------
-  | Chapter state related handlers
-  |--------------------------------------------------------------------------
-  */
-
-  getNewChapter (name) {
+  getNewChapter (name: string): Chapter {
     return {
       name,
       key: this.getNextLocalKey(),
@@ -50,9 +68,9 @@ class DocumentManagement extends React.Component {
     }
   }
 
-  handleChapterMoveUp (index) {
+  handleChapterMoveUp (index: number) {
     const value = this.state.chapters[index]
-    const diff = { $splice: [[index, 1], [index - 1, 0, value]] }
+    const diff = { $splice: [[index, 1], [index - 1, 0, value]] } as any
     let editChapterIndex = this.state.editChapterIndex
     if (index === editChapterIndex) {
       editChapterIndex--
@@ -65,9 +83,9 @@ class DocumentManagement extends React.Component {
     })
   }
 
-  handleChapterMoveDown (index) {
+  handleChapterMoveDown (index: number) {
     const value = this.state.chapters[index]
-    const diff = { $splice: [[index, 1], [index + 1, 0, value]] }
+    const diff = { $splice: [[index, 1], [index + 1, 0, value]] } as any
     let editChapterIndex = this.state.editChapterIndex
     if (index === editChapterIndex) {
       editChapterIndex++
@@ -80,8 +98,8 @@ class DocumentManagement extends React.Component {
     })
   }
 
-  handleChapterDelete (index) {
-    const diff = { $splice: [[index, 1]] }
+  handleChapterDelete (index: number) {
+    const diff = { $splice: [[index, 1]] } as any
     let editChapterIndex = this.state.editChapterIndex
     if (index < editChapterIndex) {
       editChapterIndex--
@@ -98,15 +116,15 @@ class DocumentManagement extends React.Component {
     const newChapter = this.getNewChapter(django.gettext('new chapter'))
     const newChapterIndex = this.state.chapters.length
 
-    const diff = { $push: [newChapter] }
+    const diff = { $push: [newChapter] } as any
     this.setState({
       chapters: update(this.state.chapters, diff),
       editChapterIndex: newChapterIndex
     }, () => { this.focusOnChapter(newChapter) })
   }
 
-  handleChapterNameChange (index, name) {
-    const diff = {}
+  handleChapterNameChange (index: number, name: string) {
+    const diff: any = {}
     diff[index] = {
       $merge: {
         name
@@ -117,26 +135,20 @@ class DocumentManagement extends React.Component {
     })
   }
 
-  handleChapterEdit (index) {
+  handleChapterEdit (index: number) {
     const chapter = this.state.chapters[index]
     this.setState({
       editChapterIndex: index
     }, () => { this.focusOnChapter(chapter) })
   }
 
-  focusOnChapter (chapter) {
+  focusOnChapter (chapter: Chapter) {
     const key = chapter.id || chapter.key
     const id = 'id_chapters-' + key + '-name'
-    window.document.getElementById(id).focus()
+    window.document.getElementById(id)?.focus()
   }
 
-  /*
-  |--------------------------------------------------------------------------
-  | Paragraph state related handlers
-  |--------------------------------------------------------------------------
-  */
-
-  getNewParagraph (name = '', text = '') {
+  getNewParagraph (name = '', text = ''): ChapterParagraph {
     return {
       name,
       text,
@@ -144,10 +156,10 @@ class DocumentManagement extends React.Component {
     }
   }
 
-  handleParagraphAppend (chapterIndex) {
+  handleParagraphAppend (chapterIndex: number) {
     const newParagraph = this.getNewParagraph()
 
-    const diff = {}
+    const diff: any = {}
     diff[chapterIndex] = {
       paragraphs: {
         $push: [newParagraph]
@@ -159,9 +171,9 @@ class DocumentManagement extends React.Component {
     }, () => { this.focusOnParagraph(newParagraph) })
   }
 
-  handleParagraphMoveUp (chapterIndex, paragraphIndex) {
+  handleParagraphMoveUp (chapterIndex: number, paragraphIndex: number) {
     const value = this.state.chapters[chapterIndex].paragraphs[paragraphIndex]
-    const diff = {}
+    const diff: any = {}
     diff[chapterIndex] = {
       paragraphs: {
         $splice: [[paragraphIndex, 1], [paragraphIndex - 1, 0, value]]
@@ -172,9 +184,9 @@ class DocumentManagement extends React.Component {
     })
   }
 
-  handleParagraphMoveDown (chapterIndex, paragraphIndex) {
+  handleParagraphMoveDown (chapterIndex: number, paragraphIndex: number) {
     const value = this.state.chapters[chapterIndex].paragraphs[paragraphIndex]
-    const diff = {}
+    const diff: any = {}
     diff[chapterIndex] = {
       paragraphs: {
         $splice: [[paragraphIndex, 1], [paragraphIndex + 1, 0, value]]
@@ -185,8 +197,8 @@ class DocumentManagement extends React.Component {
     })
   }
 
-  handleParagraphDelete (chapterIndex, paragraphIndex) {
-    const diff = {}
+  handleParagraphDelete (chapterIndex: number, paragraphIndex: number) {
+    const diff: any = {}
     diff[chapterIndex] = {
       paragraphs: {
         $splice: [[paragraphIndex, 1]]
@@ -197,8 +209,8 @@ class DocumentManagement extends React.Component {
     })
   }
 
-  handleParagraphNameChange (chapterIndex, paragraphIndex, name) {
-    const diff = {}
+  handleParagraphNameChange (chapterIndex: number, paragraphIndex: number, name: string) {
+    const diff: any = {}
     diff[chapterIndex] = { paragraphs: [] }
     diff[chapterIndex].paragraphs[paragraphIndex] = {
       $merge: {
@@ -210,8 +222,8 @@ class DocumentManagement extends React.Component {
     })
   }
 
-  handleParagraphTextChange (chapterIndex, paragraphIndex, text) {
-    const diff = {}
+  handleParagraphTextChange (chapterIndex: number, paragraphIndex: number, text: string) {
+    const diff: any = {}
     diff[chapterIndex] = { paragraphs: [] }
     diff[chapterIndex].paragraphs[paragraphIndex] = {
       $merge: {
@@ -225,17 +237,11 @@ class DocumentManagement extends React.Component {
     })
   }
 
-  focusOnParagraph (paragraph) {
+  focusOnParagraph (paragraph: ChapterParagraph) {
     const key = paragraph.id || paragraph.key
     const id = 'id_paragraphs-' + key + '-name'
-    window.document.getElementById(id).focus()
+    window.document.getElementById(id)?.focus()
   }
-
-  /*
-  |--------------------------------------------------------------------------
-  | Document form and submit logic
-  |--------------------------------------------------------------------------
-  */
 
   removeAlert () {
     this.setState({
@@ -243,7 +249,7 @@ class DocumentManagement extends React.Component {
     })
   }
 
-  handleSubmit (e) {
+  handleSubmit (e: React.FormEvent) {
     if (e) {
       e.preventDefault()
     }
@@ -254,21 +260,21 @@ class DocumentManagement extends React.Component {
     }
 
     api.document.add(submitData)
-      .done((data) => {
+      .done((data: any) => {
         this.setState({
           alert: {
             type: 'success',
             message: django.gettext('The document has been updated.')
           },
-          errors: [],
+          errors: null,
           chapters: data.chapters
         })
         if (this.props.reloadOnSuccess) {
           dashboard.updateDashboard()
         }
       })
-      .fail((xhr, status, err) => {
-        let errors = []
+      .fail((xhr: any) => {
+        let errors: DocumentErrors | null = null
         if (xhr.responseJSON && 'chapters' in xhr.responseJSON) {
           errors = xhr.responseJSON.chapters
         }
@@ -285,7 +291,7 @@ class DocumentManagement extends React.Component {
 
   render () {
     const chapterIndex = this.state.editChapterIndex
-    const chapterErrors = this.state.errors && this.state.errors[chapterIndex] ? this.state.errors[chapterIndex] : {}
+    const chapterErrors = this.state.errors && this.state.errors[chapterIndex] ? this.state.errors[chapterIndex] as unknown as Record<string, unknown> : null
     const chapter = this.state.chapters[chapterIndex]
     const key = chapter.id || chapter.key
 
@@ -306,7 +312,7 @@ class DocumentManagement extends React.Component {
 
         <h2>{django.gettext('Edit chapter')}</h2>
         <ChapterForm
-          id={key}
+          id={String(key)}
           onChapterNameChange={(name) => { this.handleChapterNameChange(chapterIndex, name) }}
           onParagraphNameChange={(paragraphIndex, name) => { this.handleParagraphNameChange(chapterIndex, paragraphIndex, name) }}
           onParagraphTextChange={(paragraphIndex, text) => { this.handleParagraphTextChange(chapterIndex, paragraphIndex, text) }}
@@ -331,4 +337,4 @@ class DocumentManagement extends React.Component {
   }
 }
 
-module.exports = DocumentManagement
+export default DocumentManagement

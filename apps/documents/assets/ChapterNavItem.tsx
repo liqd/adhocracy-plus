@@ -1,17 +1,29 @@
-const React = require('react')
-const django = require('django')
+import React from 'react'
+import django from 'django'
 
-function getErrorCount (props) {
+interface ChapterNavItemProps {
+  name: string
+  index: number
+  active?: boolean
+  onClick?: () => void
+  onMoveUp?: (() => void) | null
+  onMoveDown?: (() => void) | null
+  onDelete?: (() => void) | null
+  errors?: Record<string, unknown> | null
+}
+
+function getErrorCount (props: ChapterNavItemProps) {
   if (props.errors && Object.keys(props.errors).length > 0) {
     let errorCount = Object.keys(props.errors).length
     if (props.errors.paragraphs) {
-      errorCount = errorCount - 1 + Object.keys(props.errors.paragraphs).length
+      errorCount = errorCount - 1 + Object.keys(props.errors.paragraphs as Record<string, unknown>).length
     }
     return <span className="text-danger"> ({errorCount})</span>
   }
+  return null
 }
 
-const ChapterNavItem = (props) => {
+const ChapterNavItem = (props: ChapterNavItemProps) => {
   return (
     <div className="commenting" data-testid="chapter-nav-item">
       <div className="commenting__content">
@@ -28,7 +40,7 @@ const ChapterNavItem = (props) => {
       <div className="commenting__actions btn--group" role="group">
         <button
           className="btn btn--light btn--small"
-          onClick={props.onMoveUp}
+          onClick={props.onMoveUp ?? undefined}
           disabled={!props.onMoveUp}
           title={django.gettext('Move up')}
           type="button"
@@ -40,7 +52,7 @@ const ChapterNavItem = (props) => {
         </button>
         <button
           className="btn btn--light btn--small"
-          onClick={props.onMoveDown}
+          onClick={props.onMoveDown ?? undefined}
           disabled={!props.onMoveDown}
           title={django.gettext('Move down')}
           type="button"
@@ -52,7 +64,7 @@ const ChapterNavItem = (props) => {
         </button>
         <button
           className="btn btn--light btn--small"
-          onClick={props.onDelete}
+          onClick={props.onDelete ?? undefined}
           disabled={!props.onDelete}
           title={django.gettext('Delete')}
           type="button"
@@ -67,4 +79,4 @@ const ChapterNavItem = (props) => {
   )
 }
 
-module.exports = ChapterNavItem
+export default ChapterNavItem

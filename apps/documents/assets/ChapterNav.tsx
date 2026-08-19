@@ -1,9 +1,21 @@
-const React = require('react')
-const FlipMove = require('react-flip-move').default
-const django = require('django')
-const ChapterNavItem = require('./ChapterNavItem')
+import React from 'react'
+import FlipMove from 'react-flip-move'
+import django from 'django'
+import ChapterNavItem from './ChapterNavItem'
+import type { Chapter, DocumentErrors } from './types'
 
-const ChapterNav = (props) => {
+interface ChapterNavProps {
+  chapters: Chapter[]
+  activeChapter: Chapter
+  onMoveUp: (index: number) => void
+  onMoveDown: (index: number) => void
+  onDelete: (index: number) => void
+  onChapterAppend: () => void
+  onClick: (index: number) => void
+  errors?: DocumentErrors | null
+}
+
+const ChapterNav = (props: ChapterNavProps) => {
   const activeKey = props.activeChapter.id || props.activeChapter.key
   return (
     <nav aria-label={django.gettext('Chapter navigation')}>
@@ -20,7 +32,7 @@ const ChapterNav = (props) => {
                   onMoveDown={index < arr.length - 1 ? () => { props.onMoveDown(index) } : null}
                   onDelete={arr.length > 1 ? () => { props.onDelete(index) } : null}
                   onClick={() => { props.onClick(index) }}
-                  errors={props.errors ? props.errors[index] : {}}
+                  errors={props.errors ? props.errors[index] : null}
                   active={key === activeKey}
                 />
               </li>
@@ -42,4 +54,4 @@ const ChapterNav = (props) => {
   )
 }
 
-module.exports = ChapterNav
+export default ChapterNav
