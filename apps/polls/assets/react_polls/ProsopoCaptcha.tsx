@@ -19,12 +19,12 @@ export default function ProsopoCaptcha ({ siteKey, language, onChange, name = 'c
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    if (!siteKey) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setError(true)
-      return
-    }
     if (!containerRef.current) return
+
+    const handleError = () => {
+      setError(true)
+      onChange('')
+    }
 
     try {
       containerRef.current.innerHTML = ''
@@ -37,19 +37,15 @@ export default function ProsopoCaptcha ({ siteKey, language, onChange, name = 'c
         'expired-callback': function () {
           onChange('')
         },
-        'error-callback': function () {
-          setError(true)
-          onChange('')
-        }
+        'error-callback': handleError
       } as any)
     } catch {
-      setError(true)
-      onChange('')
+      queueMicrotask(handleError)
     }
     // only mount once per key/lang
   }, [siteKey, language])
 
-  if (error) {
+  if (!siteKey || error) {
     return <span className="captcheck_error_message">{translated.error}</span>
   }
 

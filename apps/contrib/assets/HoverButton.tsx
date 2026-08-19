@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 interface HoverButtonProps {
   textMouseOn?: string
@@ -19,20 +19,20 @@ export const HoverButton = ({
   disabled,
   icon
 }: HoverButtonProps) => {
+  const [prevTextMouseOff, setPrevTextMouseOff] = useState(textMouseOff)
   const [buttonText, setButtonText] = useState(textMouseOff)
   const [processing, setProcessing] = useState(false)
+
+  if (prevTextMouseOff !== textMouseOff) {
+    setPrevTextMouseOff(textMouseOff)
+    setButtonText(textMouseOff)
+    setProcessing(false)
+  }
 
   const handleClick = () => {
     setProcessing(true)
     onClick?.()
   }
-
-  useEffect(() => {
-    // intentionally reset state when the off-state text changes
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setProcessing(false)
-    setButtonText(textMouseOff)
-  }, [textMouseOff])
 
   return (
     <button
