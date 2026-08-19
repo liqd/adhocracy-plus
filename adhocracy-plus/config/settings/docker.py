@@ -51,3 +51,33 @@ CELERY_BEAT_SCHEDULE = {
 ALLOWED_HOSTS = ["*"]
 
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8004")
+
+
+# Instance-specific settings, JSON-encoded by Salt in the env_file
+# (/data/docker/adhocracy-plus/.env on conway). Copy of the old
+# local.py content, delivered via env vars instead of a mounted file.
+import json
+
+
+def _load_json_env(name, default=""):
+    raw = os.environ.get(name)
+    if not raw:
+        return json.loads(default)
+    return json.loads(raw)
+
+
+_instance = _load_json_env("APLUS_CONFIG", "{}")
+globals().update(_instance)
+
+if "APLUS_SOCIAL_ACCOUNTS" in os.environ:
+    SOCIALACCOUNT_PROVIDERS = json.loads(os.environ["APLUS_SOCIAL_ACCOUNTS"])
+
+if "APLUS_SENTRY_URL" in os.environ and os.environ["APLUS_SENTRY_URL"]:
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+
+    sentry_sdk.init(
+        dsn=os.environ["APLUS_SENTRY_URL"],
+        integrations=[DjangoIntegration()],
+        release=os.environ.get("GITREF", ""),
+    )
