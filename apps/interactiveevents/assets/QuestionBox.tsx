@@ -181,6 +181,7 @@ export default class QuestionBox extends React.Component<QuestionBoxProps, Quest
           orderingChanged: false,
           questionCount: this.filterQuestions(data).length
         }))
+        .catch(() => {})
     }
   }
 
@@ -198,6 +199,7 @@ export default class QuestionBox extends React.Component<QuestionBoxProps, Quest
         filteredQuestions: prevState.filteredQuestions.filter(question => question.id !== id),
         pollingPaused: false
       })))
+      .catch(() => {})
   }
 
   handleLike (id: number, value: boolean) {

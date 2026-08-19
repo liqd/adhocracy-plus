@@ -142,7 +142,7 @@ export default [
       'n/no-unpublished-import': 'off',
       'n/no-extraneous-import': 'off',
       'import-x/named': 'off',
-      'no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
       'jest/valid-title': 'off',
       'jest/no-identical-title': 'off',
       'jest/no-export': 'off',

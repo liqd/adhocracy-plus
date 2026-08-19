@@ -47,7 +47,9 @@ export const EditCustomFieldManagement = (props: EditCustomFieldManagementProps)
       .then(response => response.json())
       .then(data => {
         setFields(data.fields || [])
+        return data
       })
+      .catch(() => {})
   }, [props.apiUrl])
 
   const updateField = (index: number, updates: Partial<CustomField>) => {
@@ -139,6 +141,7 @@ export const EditCustomFieldManagement = (props: EditCustomFieldManagementProps)
         setFields(data.fields || [])
         setAlert({ type: 'success', message: TRANSLATED.updated })
         if (props.reloadOnSuccess) updateDashboard()
+        return data
       })
       .catch(() => {
         setAlert({ type: 'danger', message: TRANSLATED.updateFailed })

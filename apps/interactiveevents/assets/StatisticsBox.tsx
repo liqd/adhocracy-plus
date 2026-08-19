@@ -38,6 +38,7 @@ export default class StatisticsBox extends React.Component<StatisticsBoxProps, S
       .then(() => this.setState(prevState => ({
         answeredQuestions: prevState.answeredQuestions.filter(question => question.id !== id)
       })))
+      .catch(() => {})
   }
 
   countCategory (category: string) {

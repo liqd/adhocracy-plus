@@ -55,6 +55,7 @@ export default class QuestionModerator extends React.Component<QuestionModerator
         }
       ))
       .then(() => this.props.togglePollingPaused?.())
+      .catch(() => {})
   }
 
   toggleIslive () {
@@ -69,6 +70,7 @@ export default class QuestionModerator extends React.Component<QuestionModerator
         }
       ))
       .then(() => this.props.togglePollingPaused?.())
+      .catch(() => {})
   }
 
   toggleIsAnswered () {
@@ -90,6 +92,7 @@ export default class QuestionModerator extends React.Component<QuestionModerator
         }
       ))
       .then(() => this.props.togglePollingPaused?.())
+      .catch(() => {})
   }
 
   componentDidUpdate (prevProps: QuestionModeratorProps) {

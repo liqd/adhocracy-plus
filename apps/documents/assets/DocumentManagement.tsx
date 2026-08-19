@@ -2,7 +2,7 @@ import React from 'react'
 import { alert as Alert } from 'adhocracy4'
 import api from 'adhocracy4/adhocracy4/static/api'
 import django from 'django'
-import dashboard from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
+import { updateDashboard } from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
 import update from 'immutability-helper'
 import ChapterNav from './ChapterNav'
 import ChapterForm from './ChapterForm'
@@ -270,7 +270,7 @@ class DocumentManagement extends React.Component<DocumentManagementProps, Docume
           chapters: data.chapters
         })
         if (this.props.reloadOnSuccess) {
-          dashboard.updateDashboard()
+          updateDashboard()
         }
       })
       .fail((xhr: any) => {

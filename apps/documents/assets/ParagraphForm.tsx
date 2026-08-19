@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import django from 'django'
 import FormFieldError from 'adhocracy4/adhocracy4/static/FormFieldError'
 import type { ChapterParagraph } from './types'
@@ -44,14 +44,15 @@ interface ParagraphFormProps {
 }
 
 const ParagraphForm = (props: ParagraphFormProps) => {
+  const { onTextChange: propsOnTextChange } = props
   const id = 'id_paragraphs-' + props.id
   const ckeditorId = id + '-text'
 
-  const setDataHandler = (editor: any) => {
+  const setDataHandler = useCallback((editor: any) => {
     editor.model.document.on('change:data', () => {
-      props.onTextChange(editor.getData())
+      propsOnTextChange(editor.getData())
     })
-  }
+  }, [propsOnTextChange])
 
   useEffect(() => {
     window.ckeditorRegisterCallback(ckeditorId, setDataHandler)
@@ -62,7 +63,7 @@ const ParagraphForm = (props: ParagraphFormProps) => {
     return () => {
       window.ckeditorUnregisterCallback(ckeditorId)
     }
-  }, [props.id, props.onTextChange, props.index])
+  }, [props.id, props.onTextChange, props.index, ckeditorId, setDataHandler])
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value

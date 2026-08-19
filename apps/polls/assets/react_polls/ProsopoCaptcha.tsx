@@ -43,7 +43,7 @@ export default function ProsopoCaptcha ({ siteKey, language, onChange, name = 'c
       queueMicrotask(handleError)
     }
     // only mount once per key/lang
-  }, [siteKey, language])
+  }, [siteKey, language, onChange])
 
   if (!siteKey || error) {
     return <span className="captcheck_error_message">{translated.error}</span>

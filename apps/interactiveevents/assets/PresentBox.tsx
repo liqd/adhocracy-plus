@@ -40,6 +40,7 @@ export default class PresentBox extends React.Component<PresentBoxProps, Present
     fetch(this.props.questions_api_url + '?is_live=1&is_answered=0')
       .then(response => response.json())
       .then(data => this.getListAndFooter(data))
+      .catch(() => {})
   }
 
   componentDidMount () {
