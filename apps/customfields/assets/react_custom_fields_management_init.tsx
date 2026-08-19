@@ -5,8 +5,8 @@ import { widget as ReactWidget } from 'adhocracy4'
 import { EditCustomFieldManagement } from './CustomFieldManagement/EditCustomFieldManagement'
 
 function init () {
-  ReactWidget.initialise('a4', 'custom-field-management', (el) => {
-    const props = JSON.parse(el.dataset.attributes)
+  ReactWidget.initialise('a4', 'custom-field-management', (el: HTMLElement) => {
+    const props = JSON.parse(el.dataset.attributes || '{}')
     const root = createRoot(el)
     root.render(
       <React.StrictMode>

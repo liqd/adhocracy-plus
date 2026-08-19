@@ -1,6 +1,6 @@
-/* eslint-disable camelcase */
 import React from 'react'
 import django from 'django'
+import type { CustomField } from './types'
 
 const TRANSLATED = {
   question: django.gettext('Question'),
@@ -11,7 +11,20 @@ const TRANSLATED = {
   delete: django.gettext('Delete')
 }
 
-export const EditCustomField = (props) => {
+interface EditCustomFieldProps {
+  id: number | string
+  title: string
+  field: CustomField
+  onLabelChange: (label: string) => void
+  onRequiredChange: (required: boolean) => void
+  onTypeChange: (type: 'choice' | 'open') => void
+  onChoiceLabelChange: (choiceIndex: number, label: string) => void
+  onDeleteChoice: (choiceIndex: number) => void
+  onAppendChoice: () => void
+  onDelete: () => void
+}
+
+export const EditCustomField = (props: EditCustomFieldProps) => {
   const isChoice = props.field.type === 'choice'
   return (
     <section className="editpoll__question-container custom-fields__field">

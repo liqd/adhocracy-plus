@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react'
 import django from 'django'
 import cookie from 'js-cookie'
@@ -7,6 +6,7 @@ import { alert as Alert } from 'adhocracy4'
 import { updateDashboard } from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
 
 import { EditCustomField } from './EditCustomField'
+import type { CustomField, FieldChoice } from './types'
 
 const TRANSLATED = {
   addField: django.gettext('Add Field'),
@@ -20,7 +20,7 @@ const TRANSLATED = {
 let maxLocalKey = 0
 const getNextLocalKey = () => `local_${maxLocalKey++}`
 
-const createEmptyField = () => ({
+const createEmptyField = (): CustomField => ({
   label: '',
   type: 'open',
   required: false,
@@ -28,9 +28,19 @@ const createEmptyField = () => ({
   choices: []
 })
 
-export const EditCustomFieldManagement = (props) => {
-  const [fields, setFields] = useState([])
-  const [alert, setAlert] = useState(null)
+interface AlertValue {
+  type: string
+  message: string
+}
+
+interface EditCustomFieldManagementProps {
+  apiUrl: string
+  reloadOnSuccess?: boolean
+}
+
+export const EditCustomFieldManagement = (props: EditCustomFieldManagementProps) => {
+  const [fields, setFields] = useState<CustomField[]>([])
+  const [alert, setAlert] = useState<AlertValue | null>(null)
 
   useEffect(() => {
     fetch(props.apiUrl)
@@ -40,13 +50,13 @@ export const EditCustomFieldManagement = (props) => {
       })
   }, [props.apiUrl])
 
-  const updateField = (index, updates) => {
+  const updateField = (index: number, updates: Partial<CustomField>) => {
     setFields(prev => prev.map((field, i) => (
       i === index ? { ...field, ...updates } : field
     )))
   }
 
-  const updateChoice = (fIndex, cIndex, updates) => {
+  const updateChoice = (fIndex: number, cIndex: number, updates: Partial<FieldChoice>) => {
     setFields(prev => prev.map((field, i) => {
       if (i !== fIndex) return field
       const choices = field.choices.map((choice, j) => (
@@ -60,11 +70,11 @@ export const EditCustomFieldManagement = (props) => {
     setFields(prev => [...prev, createEmptyField()])
   }
 
-  const handleFieldDelete = (index) => {
+  const handleFieldDelete = (index: number) => {
     setFields(prev => prev.filter((_, i) => i !== index))
   }
 
-  const handleTypeChange = (index, type) => {
+  const handleTypeChange = (index: number, type: 'choice' | 'open') => {
     setFields(prev => prev.map((field, i) => {
       if (i !== index) return field
       if (type === 'choice' && (!field.choices || field.choices.length === 0)) {
@@ -78,7 +88,7 @@ export const EditCustomFieldManagement = (props) => {
     }))
   }
 
-  const handleChoiceDelete = (fIndex, cIndex) => {
+  const handleChoiceDelete = (fIndex: number, cIndex: number) => {
     setFields(prev => prev.map((field, i) => {
       if (i !== fIndex) return field
       return {
@@ -88,7 +98,7 @@ export const EditCustomFieldManagement = (props) => {
     }))
   }
 
-  const handleChoiceAppend = (fIndex) => {
+  const handleChoiceAppend = (fIndex: number) => {
     setFields(prev => prev.map((field, i) => {
       if (i !== fIndex) return field
       return {
@@ -100,11 +110,12 @@ export const EditCustomFieldManagement = (props) => {
 
   const clearAlert = () => setAlert(null)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
     const payload = {
       fields: fields.map(field => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { key, ...clean } = field
         return clean
       })
@@ -114,7 +125,7 @@ export const EditCustomFieldManagement = (props) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
-        'X-CSRFToken': cookie.get('csrftoken')
+        'X-CSRFToken': cookie.get('csrftoken') || ''
       },
       body: JSON.stringify(payload)
     })
@@ -140,7 +151,7 @@ export const EditCustomFieldManagement = (props) => {
       {fields.map((field, index) => (
         <EditCustomField
           key={field.id || field.key}
-          id={field.id || field.key}
+          id={field.id || field.key || index}
           field={field}
           title={field.id
             ? django.interpolate(django.gettext('Field %(number)s'), { number: index + 1 }, true)
