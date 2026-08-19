@@ -124,3 +124,72 @@ jobs:
           TRAVIS_SSH_SECRET: ${{ secrets.DEPLOY }}
         run: |
           ./scripts/deploy.sh
+
+  e2e:
+    runs-on: ubuntu-24.04
+    # The official Playwright Python image bakes in Chromium and its OS deps;
+    # the playwright pin in requirements/dev.txt must match this tag
+    # (the tag includes the build number, hence the check script ignores it).
+    container: mcr.microsoft.com/playwright/python:v1.62.0-noble
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install System Dependencies
+        run: |
+          apt-get update && apt-get install -y gdal-bin libsqlite3-mod-spatialite libmagic1
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          cp "$HOME/.local/bin/uv" /usr/local/bin/uv
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.8.0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.13'
+          check-latest: false
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/pnpm/store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - name: Cache uv packages
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-uv-packages
+        with:
+          path: ~/.cache/uv
+          key: ${{ runner.os }}-e2e-${{ env.cache-name }}-${{ hashFiles('**/requirements/dev.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-e2e-${{ env.cache-name }}-
+            ${{ runner.os }}-e2e-
+      - name: Install Python Dependencies
+        run: |
+          uv pip install -r requirements/dev.txt --system
+      - name: Install Frontend Dependencies
+        run: |
+          pnpm install --frozen-lockfile
+      - name: Build Frontend
+        run: |
+          pnpm run build
+      - name: Run End-to-End Tests
+        env:
+          DJANGO_ALLOW_ASYNC_UNSAFE: "1"
+        run: |
+          python manage.py collectstatic > /dev/null
+          py.test -m e2e -n auto --ds=adhocracy-plus.config.settings.e2e \
+            --tracing retain-on-failure --screenshot only-on-failure
+      - name: Upload Playwright Artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-test-results
+          path: test-results/
+          if-no-files-found: ignore

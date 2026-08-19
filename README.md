@@ -105,6 +105,23 @@ source venv/bin/activate
 ```
 make test
 ```
+
+### Run browser e2e tests
+
+End-to-end tests use [pytest-playwright](https://pytest-playwright.readthedocs.io/) against the Django test suite. Install the Chromium browser once, then run the whole e2e suite or a single file:
+
+```
+make e2e-install
+make e2e
+```
+
+To run a single e2e test file, use pytest directly (it requires `DJANGO_ALLOW_ASYNC_UNSAFE`):
+
+```
+DJANGO_ALLOW_ASYNC_UNSAFE=1 venv/bin/py.test -m e2e --ds=adhocracy-plus.config.settings.e2e tests/e2e/test_poll_vote.py
+```
+
+The e2e suite seeds data through the `seed` fixture (see `tests/e2e/conftest.py`) so the live test server sees it, and covers the React/vanilla widgets: polls, moderation, interactive events, project search, project follow, and documents.
 ### Start a local server
 ```
 make watch

@@ -35,6 +35,8 @@ help:
 	@echo "  make jstest-nocov				-- run js tests without coverage"
 	@echo "  make jstest-debug				-- run changed tests only, no coverage"
 	@echo "  make jstest-updateSnapshots	-- update jest snapshots"
+	@echo "  make e2e						-- run browser end-to-end tests (pytest-playwright)"
+	@echo "  make e2e-install				-- install the playwright chromium browser"
 	@echo "  make coverage					-- write coverage report to dir htmlcov"
 	@echo "  make lint						-- lint all project files"
 	@echo "  make lint-quick				-- lint all files staged in git"
@@ -127,6 +129,14 @@ jstest-debug:
 jstest-updateSnapshots:
 	pnpm run updateSnapshots
 
+.PHONY: e2e
+e2e:
+	DJANGO_ALLOW_ASYNC_UNSAFE=1 $(VIRTUAL_ENV)/bin/py.test -n auto -m e2e --ds=adhocracy-plus.config.settings.e2e
+
+.PHONY: e2e-install
+e2e-install:
+	$(VIRTUAL_ENV)/bin/python -m playwright install chromium
+
 .PHONY: coverage
 coverage:
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db --cov --cov-report=html
@@ -144,6 +154,7 @@ lint:
 lint-quick:
 	EXIT_STATUS=0; \
 	pnpm run lint-staged ||  EXIT_STATUS=$$?; \
+	scripts/check-ci-playwright-sync.sh ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
