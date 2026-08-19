@@ -1,12 +1,16 @@
 import pytest
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import connections
 from django.db import transaction
 from django.urls import reverse
+from django.utils import timezone
 from wagtail.models import Locale
 from wagtail.models import Page
 from wagtail.models import Site as WagtailSite
+
+from adhocracy4.test.factories import PhaseFactory
 
 
 @pytest.fixture(scope="session")
@@ -69,11 +73,68 @@ def seed(django_db_blocker, db_commit):
 
     yield _seed
 
-    def _cleanup():
-        for obj in reversed(created):
-            obj.delete()
+    for obj in _dependency_order(created):
+        if obj.pk is None:
+            continue
+        db_commit(obj.delete)
 
-    db_commit(_cleanup)
+
+def _dependency_order(objs):
+    """Order objects so children are deleted before their parents.
+
+    Django's fast-delete collector can emit parent deletes before child deletes
+    when a whole related graph cascades in one call (e.g. deleting a project
+    that owns live questions with likes), which violates foreign keys on
+    SQLite. Deleting each object on its own connection, leaf-first, avoids the
+    issue entirely.
+    """
+    remaining = list(objs)
+    result = []
+
+    def _parents(obj):
+        parents = set()
+        for field in obj._meta.fields:
+            if field.is_relation and field.many_to_one and not field.auto_created:
+                try:
+                    parents.add(getattr(obj, field.name))
+                except ObjectDoesNotExist:
+                    continue
+        return parents
+
+    while remaining:
+        for obj in remaining:
+            children = [o for o in remaining if obj in _parents(o)]
+            if not children:
+                result.append(obj)
+                remaining.remove(obj)
+                break
+
+    return result + remaining
+
+
+@pytest.fixture
+def e2e_active_phase(seed):
+    """Factory for seeding a module with an active phase.
+
+    Call with a phase content instance, e.g. ``e2e_active_phase(IssuePhase())``.
+    Returns a dict with phase, module and project, committed so the live server
+    can see it and removed on teardown.
+    """
+
+    def _create(*, phase_content):
+        now = timezone.now()
+        phase = PhaseFactory(
+            phase_content=phase_content,
+            start_date=now - timezone.timedelta(days=1),
+            end_date=now + timezone.timedelta(days=1),
+        )
+        return {
+            "phase": phase,
+            "module": phase.module,
+            "project": phase.module.project,
+        }
+
+    return lambda phase_content: seed(_create, phase_content=phase_content)
 
 
 def _ensure_default_wagtail_site():
