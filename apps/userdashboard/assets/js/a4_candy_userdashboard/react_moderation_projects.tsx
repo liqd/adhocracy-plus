@@ -5,8 +5,8 @@ import { widget as ReactWidget } from 'adhocracy4'
 
 function init () {
   ReactWidget.initialise('aplus', 'moderation_projects',
-    function (el) {
-      const projectApiUrl = el.dataset.projectApiUrl
+    function (el: HTMLElement) {
+      const projectApiUrl = el.dataset.projectApiUrl || ''
       const root = createRoot(el)
       root.render(
         <ModerationProjects

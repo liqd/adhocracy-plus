@@ -1,11 +1,19 @@
 import React, { useState } from 'react'
 import django from 'django'
+import type { ModeratorFeedback } from './types'
 
 const MODERATOR_FEEDBACK_MAX_LENGTH = 500
 
-export const ModerationFeedbackForm = (props) => {
+interface ModerationFeedbackFormProps {
+  editing?: boolean
+  initialFeedback?: ModeratorFeedback | null
+  onSubmit?: (feedback: string) => void
+  onEditSubmit?: (feedback: string) => void
+}
+
+export const ModerationFeedbackForm = (props: ModerationFeedbackFormProps) => {
   const [feedback, setFeedback] =
-    useState((props.editing && props.initialFeedback.feedback_text) || '')
+    useState((props.editing && props.initialFeedback?.feedback_text) || '')
 
   const translated = {
     placeholder: django.gettext('Write feedback'),
@@ -14,12 +22,12 @@ export const ModerationFeedbackForm = (props) => {
     submitEditLabel: django.gettext('update feedback')
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (props.editing) {
-      props.onEditSubmit(feedback)
+      props.onEditSubmit?.(feedback)
     } else {
-      props.onSubmit(feedback)
+      props.onSubmit?.(feedback)
     }
   }
 

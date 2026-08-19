@@ -1,16 +1,42 @@
-/* global fetch */
 import React, { Component } from 'react'
 import django from 'django'
 
-export default class ModerationProjects extends Component {
-  constructor (props) {
+interface ModerationProjectItem {
+  title: string
+  moderation_detail_url: string
+  num_unread_comments: number
+  tile_image?: string
+  tile_image_copyright?: string
+  organisation: string
+  access: number
+  num_reported_unread_comments: number
+  comment_count: number
+  future_phase?: boolean
+  active_phase?: [unknown, string]
+  past_phase?: boolean
+  participation_string?: string
+}
+
+interface ModerationProjectsProps {
+  projectApiUrl: string
+}
+
+interface ModerationProjectsState {
+  items: ModerationProjectItem[]
+  isLoaded: boolean
+}
+
+export default class ModerationProjects extends Component<ModerationProjectsProps, ModerationProjectsState> {
+  isLoading = false
+  timer: ReturnType<typeof setInterval> | null = null
+
+  constructor (props: ModerationProjectsProps) {
     super(props)
 
     this.state = {
       items: [],
       isLoaded: false
     }
-    this.isLoading = false
   }
 
   componentDidMount () {
@@ -23,7 +49,7 @@ export default class ModerationProjects extends Component {
     try {
       const data = await fetch(this.props.projectApiUrl)
       const jsonData = await data.json()
-      jsonData.sort((a, b) => b.num_reported_unread_comments - a.num_reported_unread_comments)
+      jsonData.sort((a: ModerationProjectItem, b: ModerationProjectItem) => b.num_reported_unread_comments - a.num_reported_unread_comments)
       this.setState({
         items: jsonData,
         isLoaded: true
@@ -36,34 +62,36 @@ export default class ModerationProjects extends Component {
   }
 
   componentWillUnmount () {
-    clearInterval(this.timer)
+    if (this.timer) {
+      clearInterval(this.timer)
+    }
     this.timer = null
   }
 
-  getTimespan (item) {
-    const timeRemaining = item.active_phase[1].split(' ')
-    const daysRemaining = parseInt(timeRemaining[0])
+  getTimespan (item: ModerationProjectItem) {
+    const timeRemaining = item.active_phase?.[1].split(' ') || []
+    const daysRemaining = parseInt(timeRemaining[0] || '0')
     if (daysRemaining > 365) {
       return (
         <span>{django.gettext('Over 1 year left')}</span>
       )
     } else {
       return (
-        <span>{item.active_phase[1]} {django.gettext('left')}</span>
+        <span>{item.active_phase?.[1]} {django.gettext('left')}</span>
       )
     }
   }
 
-  getMobileTimespan (item) {
-    const timeRemaining = item.active_phase[1].split(' ')
-    const daysRemaining = parseInt(timeRemaining[0])
+  getMobileTimespan (item: ModerationProjectItem) {
+    const timeRemaining = item.active_phase?.[1].split(' ') || []
+    const daysRemaining = parseInt(timeRemaining[0] || '0')
     if (daysRemaining > 365) {
       return (
         <span>{django.gettext('1 year')}</span>
       )
     } else {
       return (
-        <span>{item.active_phase[1]}</span>
+        <span>{item.active_phase?.[1]}</span>
       )
     }
   }

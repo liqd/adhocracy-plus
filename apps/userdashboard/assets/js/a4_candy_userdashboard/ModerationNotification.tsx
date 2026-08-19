@@ -5,6 +5,7 @@ import { ModerationFeedbackForm } from './ModerationFeedbackForm'
 import { ModerationFeedback } from './ModerationFeedback'
 import { ModerationNotificationActionsBar } from './ModerationNotificationActionsBar'
 import { alert as Alert } from 'adhocracy4'
+import type { ModerationComment } from './types'
 
 const alertTime = 6000
 
@@ -24,13 +25,27 @@ const translated = {
   postedComment: django.gettext('posted a {}comment{}')
 }
 
-export const ModerationNotification = (props) => {
+interface AlertValue {
+  type: string
+  message: React.ReactNode
+  timeInMs?: number
+}
+
+interface ModerationNotificationProps {
+  notification: ModerationComment
+  apiUrl?: string
+  getUrlParams?: () => string
+  loadData?: () => void
+  onChangeStatus?: (error: unknown) => void
+}
+
+export const ModerationNotification = (props: ModerationNotificationProps) => {
   const { notification } = props
   const [showFeedbackForm, setShowFeedbackForm] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
-  const [alert, setAlert] = useState()
+  const [alert, setAlert] = useState<AlertValue>()
 
-  function getLink (string, url) {
+  function getLink (string: string, url: string) {
     const splitted = string.split('{}')
     return (
       <span>
@@ -43,23 +58,23 @@ export const ModerationNotification = (props) => {
 
   // Return a react component to render the anchor, we should probably rather
   // extent the Alert component to handle
-  function getFeedbackAdded (commentUrl) {
+  function getFeedbackAdded (commentUrl?: string) {
     return (
       <>
-        {translated.feedbackAdded} <a href={commentUrl}>{translated.goToDiscussion}</a>
+        {translated.feedbackAdded} {commentUrl && <a href={commentUrl}>{translated.goToDiscussion}</a>}
       </>
     )
   }
 
   // **** Start feedback methods ****
 
-  const handleFeedbackSubmit = async (payload) => {
-    const [getResponse] = await api.fetch({
+  const handleFeedbackSubmit = async (payload: string) => {
+    const [getResponse] = await api.fetch<any[]>({
       url: notification.feedback_api_url,
       method: 'GET'
     })
 
-    if (getResponse.length > 0) {
+    if (getResponse && getResponse.length > 0) {
       setShowFeedbackForm(false)
       setAlert({
         type: 'error',
@@ -67,8 +82,7 @@ export const ModerationNotification = (props) => {
         timeInMs: alertTime
       })
     } else {
-      // eslint-disable-next-line no-unused-vars
-      const [response, error] = await api.fetch({
+      const [, error] = await api.fetch({
         url: notification.feedback_api_url,
         method: 'POST',
         body: { feedback_text: payload }
@@ -76,11 +90,11 @@ export const ModerationNotification = (props) => {
       if (error) {
         setAlert({
           type: 'error',
-          message: error,
+          message: String(error),
           timeInMs: alertTime
         })
       } else {
-        props.loadData()
+        props.loadData?.()
         setShowFeedbackForm(false)
         setAlert({
           type: 'success',
@@ -91,17 +105,16 @@ export const ModerationNotification = (props) => {
     }
   }
 
-  const handleFeedbackEdit = async (payload) => {
-    // eslint-disable-next-line no-unused-vars
-    const [response, error] = await api.fetch({
-      url: notification.feedback_api_url + notification.moderator_feedback.pk + '/',
+  const handleFeedbackEdit = async (payload: string) => {
+    const [, error] = await api.fetch({
+      url: notification.feedback_api_url + notification.moderator_feedback?.pk + '/',
       method: 'PUT',
       body: { feedback_text: payload }
     })
     if (error) {
-      props.onChangeStatus(error)
+      props.onChangeStatus?.(error)
     } else {
-      props.loadData()
+      props.loadData?.()
       setShowFeedbackForm(false)
       setIsEditing(false)
       setAlert({
@@ -114,10 +127,10 @@ export const ModerationNotification = (props) => {
 
   const handleFeedbackDelete = async () => {
     await api.fetch({
-      url: notification.feedback_api_url + notification.moderator_feedback.pk + '/',
+      url: notification.feedback_api_url + notification.moderator_feedback?.pk + '/',
       method: 'DELETE'
     })
-    props.loadData()
+    props.loadData?.()
     setAlert({
       type: 'success',
       message: translated.feedbackDeleted,
@@ -125,8 +138,8 @@ export const ModerationNotification = (props) => {
     })
   }
 
-  function toggleModerationFeedbackForm (isEditing) {
-    isEditing && setIsEditing(true)
+  function toggleModerationFeedbackForm (isEditing: boolean) {
+    if (isEditing) setIsEditing(true)
     setShowFeedbackForm(!showFeedbackForm)
   }
 
@@ -136,10 +149,10 @@ export const ModerationNotification = (props) => {
 
   async function toggleIsUnread () {
     const url = notification.is_unread
-      ? props.apiUrl + 'mark_read/' + props.getUrlParams()
-      : props.apiUrl + 'mark_unread/' + props.getUrlParams()
+      ? (props.apiUrl || '') + 'mark_read/' + (props.getUrlParams?.() || '')
+      : (props.apiUrl || '') + 'mark_unread/' + (props.getUrlParams?.() || '')
     const [response, error] =
-      await api.fetch({
+      await api.fetch<any>({
         url,
         method: 'GET'
       })
@@ -150,7 +163,7 @@ export const ModerationNotification = (props) => {
     if (error) {
       setAlert({
         type: 'error',
-        message: error,
+        message: String(error),
         timeInMs: alertTime
       })
     } else {
@@ -164,8 +177,8 @@ export const ModerationNotification = (props) => {
 
   async function toggleIsBlocked () {
     const [response, error] =
-      await api.fetch({
-        url: props.apiUrl + props.getUrlParams(),
+      await api.fetch<any>({
+        url: (props.apiUrl || '') + (props.getUrlParams?.() || ''),
         method: 'PATCH',
         body: { is_blocked: !notification.is_blocked }
       })
@@ -176,7 +189,7 @@ export const ModerationNotification = (props) => {
     if (error) {
       setAlert({
         type: 'error',
-        message: error,
+        message: String(error),
         timeInMs: alertTime
       })
     } else {
@@ -190,8 +203,8 @@ export const ModerationNotification = (props) => {
 
   async function toggleIsHighlighted () {
     const [response, error] =
-      await api.fetch({
-        url: props.apiUrl + props.getUrlParams(),
+      await api.fetch<any>({
+        url: (props.apiUrl || '') + (props.getUrlParams?.() || ''),
         method: 'PATCH',
         body: { is_moderator_marked: !notification.is_moderator_marked }
       })
@@ -202,7 +215,7 @@ export const ModerationNotification = (props) => {
     if (error) {
       setAlert({
         type: 'error',
-        message: error,
+        message: String(error),
         timeInMs: alertTime
       })
     } else {
@@ -216,7 +229,7 @@ export const ModerationNotification = (props) => {
 
   // **** End notification methods ****
 
-  function translatedReportText (reportsFound) {
+  function translatedReportText (reportsFound: number) {
     const tmp = django.ngettext(
       'This {}comment{} has been reported 1 time since it\'s creation',
       'This {}comment{} has been reported %s times since it\'s creation',
@@ -310,7 +323,7 @@ export const ModerationNotification = (props) => {
         <p>{commentText}</p>
         <ModerationNotificationActionsBar
           itemPk={notification.pk}
-          isEditing={notification.moderator_feedback}
+          isEditing={!!notification.moderator_feedback}
           isBlocked={notification.is_blocked}
           isHighlighted={notification.is_moderator_marked}
           onToggleForm={(isEditing) => toggleModerationFeedbackForm(isEditing)}
@@ -335,7 +348,7 @@ export const ModerationNotification = (props) => {
           editing={isEditing}
         />}
       <div className="mb-3">
-        <Alert {...alert} onClick={() => setAlert(null)} />
+        <Alert {...alert} onClick={() => setAlert(undefined)} />
       </div>
     </li>
   )

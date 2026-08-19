@@ -5,8 +5,8 @@ import { widget as ReactWidget } from 'adhocracy4'
 
 function init () {
   ReactWidget.initialise('aplus', 'moderation_notification_list',
-    function (el) {
-      const props = el.dataset
+    function (el: HTMLElement) {
+      const props = el.dataset as any
       const root = createRoot(el)
       root.render(
         <React.StrictMode>

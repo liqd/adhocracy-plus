@@ -2,7 +2,17 @@ import React from 'react'
 import django from 'django'
 import { HoverButton } from '../../../../../apps/contrib/assets/HoverButton'
 
-export const ModerationNotificationActionsBar = (props) => {
+interface ModerationNotificationActionsBarProps {
+  isEditing?: boolean
+  isBlocked?: boolean
+  isHighlighted?: boolean
+  itemPk?: number
+  onToggleForm?: (isEditing: boolean) => void
+  onToggleBlock?: () => void
+  onToggleHighlight?: () => void
+}
+
+export const ModerationNotificationActionsBar = (props: ModerationNotificationActionsBarProps) => {
   const translated = {
     blockText: django.gettext('Block'),
     unblockText: django.gettext('Unblock'),
@@ -33,7 +43,7 @@ export const ModerationNotificationActionsBar = (props) => {
         id={'moderation-notification-actions-bar-button-reply-' + itemPk}
         className="btn px-0 userdashboard-mod-notification__btn"
         type="button"
-        onClick={() => onToggleForm(!!isEditing)}
+        onClick={() => onToggleForm?.(!!isEditing)}
       >
         {isEditing
           ? <i className="fas fa-pen" aria-hidden="true" />

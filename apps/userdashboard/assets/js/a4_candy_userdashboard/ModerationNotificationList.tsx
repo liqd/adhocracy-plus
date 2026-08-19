@@ -3,28 +3,49 @@ import django from 'django'
 
 import { ModerationNotification } from './ModerationNotification'
 import { Filter } from './Filter'
+import type { FilterItem, ModerationComment } from './types'
 
 const PACKET_COMMENT_SIZE = 15
 
-const isReadFilterItems = [
+const isReadFilterItems: FilterItem[] = [
   { label: django.gettext('Read'), value: 'True' },
   { label: django.gettext('Unread'), value: 'False' },
   { label: django.gettext('View all'), value: 'All' }
 ]
 
-const reportsFilterItems = [
+const reportsFilterItems: FilterItem[] = [
   { label: django.gettext('Reported'), value: 'True' },
   { label: django.gettext('All comments'), value: 'All' }
 ]
 
-const orderingFilterItems = [
+const orderingFilterItems: FilterItem[] = [
   { label: django.gettext('Most reported'), value: '-num_reports' },
   { label: django.gettext('Oldest'), value: 'created' },
   { label: django.gettext('Most recent'), value: '-created' }
 ]
 
-export default class ModerationNotificationList extends Component {
-  constructor (props) {
+interface ModerationNotificationListProps {
+  moderationCommentsApiUrl: string
+  projectTitle: string
+  organisation: string
+  projectUrl: string
+}
+
+interface ModerationNotificationListState {
+  moderationComments: ModerationComment[]
+  selectedFilters: { isRead: string; hasReports: string; ordering: string }
+  numOfComments: number
+  hasMore: string | null
+  packetFactor: number
+  isLoaded: boolean
+  alert?: unknown
+}
+
+export default class ModerationNotificationList extends Component<ModerationNotificationListProps, ModerationNotificationListState> {
+  isLoading = false
+  timer: ReturnType<typeof setInterval> | null = null
+
+  constructor (props: ModerationNotificationListProps) {
     super(props)
 
     this.state = {
@@ -35,7 +56,6 @@ export default class ModerationNotificationList extends Component {
       packetFactor: 1,
       isLoaded: false
     }
-    this.isLoading = false
   }
 
   componentDidMount () {
@@ -43,7 +63,7 @@ export default class ModerationNotificationList extends Component {
     this.timer = setInterval(() => !this.isLoading && this.loadData(), 3000)
   }
 
-  isReadFilterChangeHandle (value) {
+  isReadFilterChangeHandle (value: string) {
     this.setState({
       selectedFilters: {
         ...this.state.selectedFilters,
@@ -55,7 +75,7 @@ export default class ModerationNotificationList extends Component {
     )
   }
 
-  reportsFilterChangeHandle (value) {
+  reportsFilterChangeHandle (value: string) {
     this.setState({
       selectedFilters: {
         ...this.state.selectedFilters,
@@ -67,7 +87,7 @@ export default class ModerationNotificationList extends Component {
     )
   }
 
-  orderingFilterChangeHandle (value) {
+  orderingFilterChangeHandle (value: string) {
     this.setState({
       selectedFilters: {
         ...this.state.selectedFilters,
@@ -114,10 +134,10 @@ export default class ModerationNotificationList extends Component {
     }, this.loadData)
   }
 
-  handleAlert = (message, type = 'Notification') => {
+  handleAlert = (message: unknown) => {
     const alertMessage = typeof message === 'string'
-      ? this.getSuccessAlert(message, type)
-      : this.getErrorAlert(message)
+      ? this.getSuccessAlert(message)
+      : this.getErrorAlert(message as Error)
 
     this.setState({
       alert: {
@@ -143,14 +163,14 @@ export default class ModerationNotificationList extends Component {
     document.documentElement.scrollTop = 0
   }
 
-  getSuccessAlert = (message) => {
+  getSuccessAlert = (message: string) => {
     return {
       type: 'success',
       message
     }
   }
 
-  getErrorAlert = (error) => {
+  getErrorAlert = (error: Error) => {
     return {
       type: 'error',
       message: error.message
@@ -162,7 +182,9 @@ export default class ModerationNotificationList extends Component {
   }
 
   componentWillUnmount () {
-    clearInterval(this.timer)
+    if (this.timer) {
+      clearInterval(this.timer)
+    }
     this.timer = null
   }
 

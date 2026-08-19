@@ -1,9 +1,15 @@
 import React from 'react'
 import django from 'django'
+import type { ModeratorFeedback } from './types'
 
-export const ModerationFeedback = (props) => {
-  // eslint-disable-next-line no-unused-vars
-  const { feedback_text: feedbackText, last_edit: lastEdit, pk } = props.feedback
+interface ModerationFeedbackProps {
+  feedback: ModeratorFeedback
+  onDelete?: (pk: number) => void
+  onEdit?: () => void
+}
+
+export const ModerationFeedback = ({ feedback, onDelete, onEdit }: ModerationFeedbackProps) => {
+  const { feedback_text: feedbackText, last_edit: lastEdit, pk } = feedback
   const translated = {
     delete: django.gettext('delete'),
     edit: django.gettext('edit'),
@@ -36,7 +42,7 @@ export const ModerationFeedback = (props) => {
                     className="dropdown-item"
                     type="button"
                     id="delete-input"
-                    onClick={() => props.onDelete(pk)}
+                    onClick={() => onDelete?.(pk)}
                   >
                     {translated.delete}
                   </button>
@@ -46,7 +52,7 @@ export const ModerationFeedback = (props) => {
                     className="dropdown-item"
                     type="button"
                     id="edit-input"
-                    onClick={props.onEdit}
+                    onClick={onEdit}
                   >
                     {translated.edit}
                   </button>

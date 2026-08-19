@@ -27,7 +27,7 @@ test('ModerationFeedback onDelete', () => {
       feedback={mockProps}
       onDelete={mockOnDelete}
     />)
-  const deleteButton = tree.container.querySelector('#delete-input')
+  const deleteButton = tree.container.querySelector('#delete-input')!
   fireEvent.click(deleteButton)
   expect(mockOnDelete).toHaveBeenCalled()
 })
@@ -44,7 +44,7 @@ test('ModerationFeedback onEdit', () => {
       feedback={mockProps}
       onEdit={mockOnEdit}
     />)
-  const editButton = tree.container.querySelector('#edit-input')
+  const editButton = tree.container.querySelector('#edit-input')!
   fireEvent.click(editButton)
   expect(mockOnEdit).toHaveBeenCalled()
 })

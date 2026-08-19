@@ -1,15 +1,24 @@
 import React, { useState } from 'react'
 import django from 'django'
+import type { FilterItem } from './types'
 
-const getItemByValue = (items, value) => {
+const getItemByValue = (items: FilterItem[], value: string) => {
   return items.find(item => item.value === value)
 }
 
-export const Filter = (props) => {
-  const [currFilterItem, setCurrFilterItem] =
-    useState(getItemByValue(props.filterItems, props.selectedFilter))
+interface FilterProps {
+  filterItems: FilterItem[]
+  selectedFilter: string
+  filterClass?: string
+  filterText?: string
+  onFilterChange: (value: string) => void
+}
 
-  const onSelectFilter = (filterItem) => {
+export const Filter = (props: FilterProps) => {
+  const [currFilterItem, setCurrFilterItem] =
+    useState<FilterItem | undefined>(getItemByValue(props.filterItems, props.selectedFilter))
+
+  const onSelectFilter = (filterItem: FilterItem) => {
     setCurrFilterItem(filterItem)
     props.onFilterChange(filterItem.value)
   }
@@ -22,7 +31,7 @@ export const Filter = (props) => {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        {props.filterText}: {currFilterItem.label}
+        {props.filterText}: {currFilterItem?.label}
         <i className="fa fa-caret-down" aria-hidden="true" />
       </button>
       <ul className="dropdown-menu">

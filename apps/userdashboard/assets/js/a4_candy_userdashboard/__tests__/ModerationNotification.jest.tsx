@@ -28,7 +28,7 @@ test('Render <ModerationNotification>', () => {
   render(
     <ModerationNotification
       notification={mockedNotification}
-      getUrlParams={() => {}}
+      getUrlParams={() => ''}
     />
   )
   const comment = screen.getByText(/example comment/)
@@ -40,11 +40,11 @@ test('showing "mark as read" alert', async () => {
   const tree = render(
     <ModerationNotification
       notification={mockedNotification}
-      getUrlParams={() => {}}
+      getUrlParams={() => ''}
       loadData={mockedFn}
     />
   )
-  const readButton = tree.container.querySelector('.dropdown-item')
+  const readButton = tree.container.querySelector('.dropdown-item')!
   fireEvent.click(readButton)
   await waitFor(() => {
     const foundAlert = screen.getByText(/mock alert/)
@@ -57,13 +57,13 @@ test('showing blocked alert', async () => {
   const tree = render(
     <ModerationNotification
       notification={mockedNotification}
-      getUrlParams={() => {}}
+      getUrlParams={() => ''}
       loadData={mockedFn}
     />
   )
   const blockButton = tree.container.querySelector(
     '#moderation-notification-actions-bar-button-block-2'
-  )
+  )!
   fireEvent.click(blockButton)
   await waitFor(() => {
     const foundAlert = screen.getByText(/mock alert/)
@@ -76,13 +76,13 @@ test('showing highlighted alert', async () => {
   const tree = render(
     <ModerationNotification
       notification={mockedNotification}
-      getUrlParams={() => {}}
+      getUrlParams={() => ''}
       loadData={mockedFn}
     />
   )
   const highlightButton = tree.container.querySelector(
     '#moderation-notification-actions-bar-button-highlight-2'
-  )
+  )!
   fireEvent.click(highlightButton)
   await waitFor(() => {
     const foundAlert = screen.getByText(/mock alert/)
