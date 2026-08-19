@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 
-const LanguageChoice = (props) => {
+interface LanguageChoiceProps {
+  activeLanguages: string[]
+  languages: string[]
+  languageDict: Record<string, string>
+}
+
+const LanguageChoice = (props: LanguageChoiceProps) => {
   const [activeLanguages, setActiveLanguages] = useState(props.activeLanguages)
   const [activeTab, setActiveTab] = useState(getInitialActiveTab())
 
@@ -13,27 +19,14 @@ const LanguageChoice = (props) => {
     }
   }
 
-  function getNewActiveTab (removedLanguage) {
-    const index = activeLanguages.indexOf(removedLanguage)
-    const newActiveLanguages = activeLanguages.concat([])
-    if (index !== -1) {
-      newActiveLanguages.splice(index, 1)
-    }
-    if (newActiveLanguages.length > 0) {
-      return newActiveLanguages[0]
-    } else {
-      return ''
-    }
-  }
-
-  const activateTab = (e) => {
-    const languagecode = e.target.textContent
+  const activateTab = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const languagecode = e.currentTarget.textContent || ''
     setActiveTab(languagecode)
     e.preventDefault()
   }
 
-  const addLanguage = (e) => {
-    const languagecode = e.target.getAttribute('data-languagecode')
+  const addLanguage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const languagecode = e.currentTarget.getAttribute('data-languagecode') || ''
     const index = activeLanguages.indexOf(languagecode)
     const newActiveLanguages = activeLanguages.concat([])
     if (index === -1) {
@@ -41,11 +34,11 @@ const LanguageChoice = (props) => {
       newActiveLanguages.push(languagecode)
     }
     setActiveLanguages(newActiveLanguages)
-    document.querySelector('#' + languagecode).click()
+    document.querySelector<HTMLElement>('#' + languagecode)?.click()
   }
 
-  const removeLanguage = (e) => {
-    const languagecode = e.target.getAttribute('data-languagecode')
+  const removeLanguage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const languagecode = e.currentTarget.getAttribute('data-languagecode') || ''
     const index = activeLanguages.indexOf(languagecode)
     const newActiveLanguages = activeLanguages.concat([])
     if (index !== -1) {
@@ -54,7 +47,7 @@ const LanguageChoice = (props) => {
     }
     setActiveLanguages(newActiveLanguages)
     if (activeTab === languagecode) {
-      document.querySelector('#' + activeLanguages[0]).click()
+      document.querySelector<HTMLElement>('#' + activeLanguages[0])?.click()
     }
   }
 
@@ -62,7 +55,7 @@ const LanguageChoice = (props) => {
     <div className="language-choice-container">
       <ul className="checkbox-list nav btn--group">
         {
-          props.languages.map((languagecode, i) => {
+          props.languages.map((languagecode) => {
             const isActive = languagecode === activeTab ? ' active' : ''
             return (
               <li
@@ -82,7 +75,6 @@ const LanguageChoice = (props) => {
                   readOnly
                 />
                 <button
-                  href={'#' + languagecode + '_language_panel'}
                   className={'btn btn--light btn--small language-choice' + isActive}
                   id={languagecode}
                   data-bs-toggle="tab"
@@ -111,7 +103,6 @@ const LanguageChoice = (props) => {
                   <span key={languagecode}>
                     {activeLanguages.indexOf(languagecode) === -1 &&
                       <button
-                        href={'#' + languagecode + '_language_panel'}
                         className="dropdown-item"
                         data-languagecode={languagecode}
                         onClick={addLanguage}
@@ -142,11 +133,6 @@ const LanguageChoice = (props) => {
                     <span key={languagecode}>
                       {activeLanguages.indexOf(languagecode) !== -1 &&
                         <button
-                          href={
-                            languagecode === activeTab
-                              ? '#' + getNewActiveTab(languagecode) + '_language_panel'
-                              : ''
-                          }
                           className="dropdown-item"
                           data-languagecode={languagecode}
                           onClick={removeLanguage}
@@ -165,10 +151,10 @@ const LanguageChoice = (props) => {
   )
 }
 
-module.exports.renderLanguageChoice = function (el) {
-  const languages = el.getAttribute('data-languages').split(' ')
-  const activeLanguages = el.getAttribute('data-active-languages').split(' ')
-  const languageDict = JSON.parse(el.getAttribute('data-language-dict'))
+export function renderLanguageChoice (el: HTMLElement) {
+  const languages = (el.getAttribute('data-languages') || '').split(' ')
+  const activeLanguages = (el.getAttribute('data-active-languages') || '').split(' ')
+  const languageDict = JSON.parse(el.getAttribute('data-language-dict') || '{}')
   const root = createRoot(el)
   root.render(
     <React.StrictMode>

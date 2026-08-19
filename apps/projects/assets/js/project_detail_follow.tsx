@@ -10,15 +10,28 @@ const ACTIONS_TARGET = 'project-detail-follow-actions'
 const AVATARS_TARGET = 'project-detail-followers-avatars'
 const LABEL_TARGET = 'project-detail-followers-label'
 
-function prependFollower (followers, user) {
+interface Follower {
+  pk: number
+  avatar?: string
+  avatarFallback?: string
+}
+
+function prependFollower (followers: Follower[], user: Follower) {
   return [user, ...followers.filter((f) => f.pk !== user.pk)].slice(0, 4)
 }
 
-function removeFollower (followers, userPk) {
+function removeFollower (followers: Follower[], userPk: number) {
   return followers.filter((f) => f.pk !== userPk)
 }
 
-function FollowerAvatars ({ followers, following, authenticatedAs, onPlusClick }) {
+interface FollowerAvatarsProps {
+  followers: Follower[]
+  following: boolean
+  authenticatedAs: boolean | null
+  onPlusClick: () => void
+}
+
+function FollowerAvatars ({ followers, following, authenticatedAs, onPlusClick }: FollowerAvatarsProps) {
   return (
     <ul className="project-detail__avatars">
       {followers.map((follower) => (
@@ -50,22 +63,35 @@ function FollowerAvatars ({ followers, following, authenticatedAs, onPlusClick }
   )
 }
 
+interface ProjectDetailFollowProps {
+  project: unknown
+  authenticatedAs: boolean | null
+  user?: Follower | null
+  initialFollowers?: Follower[]
+  initialFollowerCount?: number
+}
+
+interface FollowState {
+  following: boolean | null
+  toggleFollow: () => void
+}
+
 function ProjectDetailFollow ({
   project,
   authenticatedAs,
   user,
   initialFollowers,
   initialFollowerCount
-}) {
-  const [followers, setFollowers] = useState(initialFollowers || [])
+}: ProjectDetailFollowProps) {
+  const [followers, setFollowers] = useState<Follower[]>(initialFollowers || [])
   const [followerCount, setFollowerCount] = useState(initialFollowerCount || 0)
-  const [followState, setFollowState] = useState({
+  const [followState, setFollowState] = useState<FollowState>({
     following: null,
     toggleFollow: () => {}
   })
 
   const handleFollowChange = useCallback(
-    (isFollowing) => {
+    (isFollowing: boolean) => {
       if (!user) return
       setFollowers((current) => {
         const hasUser = current.some((f) => f.pk === user.pk)
@@ -117,7 +143,7 @@ function ProjectDetailFollow ({
         createPortal(
           <FollowerAvatars
             followers={followers}
-            following={followState.following}
+            following={followState.following === true}
             authenticatedAs={authenticatedAs}
             onPlusClick={handlePlusClick}
           />,
@@ -127,8 +153,8 @@ function ProjectDetailFollow ({
   )
 }
 
-export function renderProjectDetailFollow (el) {
-  const props = JSON.parse(el.getAttribute('data-attributes'))
+export function renderProjectDetailFollow (el: HTMLElement) {
+  const props = JSON.parse(el.getAttribute('data-attributes') || '{}')
   const root = createRoot(el)
   root.render(<ProjectDetailFollow {...props} />)
 }
