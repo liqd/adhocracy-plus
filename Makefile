@@ -131,7 +131,7 @@ jstest-updateSnapshots:
 
 .PHONY: e2e
 e2e:
-	DJANGO_ALLOW_ASYNC_UNSAFE=1 $(VIRTUAL_ENV)/bin/py.test -m e2e --ds=adhocracy-plus.config.settings.e2e
+	DJANGO_ALLOW_ASYNC_UNSAFE=1 $(VIRTUAL_ENV)/bin/py.test -n auto -m e2e --ds=adhocracy-plus.config.settings.e2e
 
 .PHONY: e2e-install
 e2e-install:

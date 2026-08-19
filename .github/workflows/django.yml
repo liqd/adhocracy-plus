@@ -184,7 +184,7 @@ jobs:
           DJANGO_ALLOW_ASYNC_UNSAFE: "1"
         run: |
           python manage.py collectstatic > /dev/null
-          py.test -m e2e --ds=adhocracy-plus.config.settings.e2e \
+          py.test -m e2e -n auto --ds=adhocracy-plus.config.settings.e2e \
             --tracing retain-on-failure --screenshot only-on-failure
       - name: Upload Playwright Artifacts
         if: failure()
