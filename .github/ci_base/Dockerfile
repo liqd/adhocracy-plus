@@ -14,8 +14,6 @@ RUN apt update && \
         unzip \
         sudo \
         jq \
-        nodejs \
-        npm \
         git \
         python3 \
         python3-venv \
@@ -34,10 +32,6 @@ RUN service postgresql start && \
     sudo -u postgres createdb django_test && \
     sudo -u postgres psql -d django -c "CREATE EXTENSION IF NOT EXISTS postgis;" && \
     sudo -u postgres psql -d django_test -c "CREATE EXTENSION IF NOT EXISTS postgis;"
-
-# Additional tools that are always needed
-# RUN npm install -g some-global-node-tool # Example for Node-Tools
-# RUN pip install poetry # Example for Python-Tools
 
 # Set the working directory
 WORKDIR /app

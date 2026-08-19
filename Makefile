@@ -154,6 +154,7 @@ lint:
 lint-quick:
 	EXIT_STATUS=0; \
 	pnpm run lint-staged ||  EXIT_STATUS=$$?; \
+	scripts/check-ci-playwright-sync.sh ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 

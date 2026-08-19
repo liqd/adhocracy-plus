@@ -127,9 +127,19 @@ jobs:
 
   e2e:
     runs-on: ubuntu-24.04
-    container: ghcr.io/${{ github.repository }}/ci-base:latest
+    # The official Playwright Python image bakes in Chromium and its OS deps;
+    # the playwright pin in requirements/dev.txt must match this tag
+    # (the tag includes the build number, hence the check script ignores it).
+    container: mcr.microsoft.com/playwright/python:v1.62.0-noble
     steps:
       - uses: actions/checkout@v4
+      - name: Install System Dependencies
+        run: |
+          apt-get update && apt-get install -y gdal-bin libsqlite3-mod-spatialite libmagic1
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          cp "$HOME/.local/bin/uv" /usr/local/bin/uv
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -169,9 +179,6 @@ jobs:
       - name: Build Frontend
         run: |
           pnpm run build
-      - name: Install Playwright Chromium
-        run: |
-          python -m playwright install --with-deps chromium
       - name: Run End-to-End Tests
         env:
           DJANGO_ALLOW_ASYNC_UNSAFE: "1"
