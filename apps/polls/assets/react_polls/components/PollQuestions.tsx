@@ -1,4 +1,4 @@
-// apps/polls/assets/react_polls/PollQuestions.jsx
+// apps/polls/assets/react_polls/PollQuestions.tsx
 import React, { useReducer, useMemo, useEffect } from 'react'
 import django from 'django'
 
@@ -13,17 +13,24 @@ import { usePollData } from '../hooks/usePollData'
 import { usePollActions } from '../hooks/usePollActions'
 import { pollReducer, initialState } from '../reducers/pollReducer'
 import { STATES } from '../utils/stateMachine'
-import { getAnsweredCount } from '../utils/pollHelpers'
 
-const captchaWidgets = {
+const captchaWidgets: Record<string, React.FC<any>> = {
   prosopo: ProsopoCaptcha
 }
 
-function getCaptchaWidget (type) {
-  return captchaWidgets[type]
+function getCaptchaWidget (type: string | undefined) {
+  return captchaWidgets[type || 'prosopo']
 }
 
-const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, manualLink }) => {
+interface PollQuestionsProps {
+  pollId: number
+  captchaEnabled?: boolean
+  captchaType?: string
+  prosopoSiteKey?: string
+  manualLink?: string
+}
+
+const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, manualLink }: PollQuestionsProps) => {
   const [state, dispatch] = useReducer(pollReducer, initialState)
 
   usePollData(pollId, dispatch)
@@ -41,12 +48,7 @@ const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, ma
     [currentQuestion, state.userAnswers]
   )
 
-  const answeredCount = useMemo(
-    () => getAnsweredCount(state.questions, state.userAnswers),
-    [state.questions, state.userAnswers]
-  )
-
-  const showCaptcha = captchaEnabled &&
+  const showCaptcha = !!captchaEnabled &&
     state.allowUnregisteredUsers &&
     !state.isAuthenticated
 
@@ -116,7 +118,6 @@ const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, ma
                 currentAnswer={currentAnswer}
                 currentNumber={state.currentQuestionIndex + 1}
                 totalQuestions={state.questions.length}
-                answeredCount={answeredCount}
                 allowUnregisteredUsers={state.allowUnregisteredUsers}
                 errors={state.errors}
                 onAnswerChange={actions.handleAnswerChange}

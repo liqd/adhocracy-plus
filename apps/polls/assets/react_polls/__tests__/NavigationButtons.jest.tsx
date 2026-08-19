@@ -12,6 +12,7 @@ describe('NavigationButtons', () => {
     onSubmit: jest.fn(),
     isLoading: false,
     isLastQuestion: false,
+    isSubmitDisabled: false,
     currentIndex: 0
   }
 

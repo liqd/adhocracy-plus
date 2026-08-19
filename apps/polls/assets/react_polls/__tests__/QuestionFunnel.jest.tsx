@@ -19,7 +19,7 @@ describe('QuestionFunnel', () => {
   }
 
   const openQuestion = {
-    id: 2, label: 'Your thoughts', is_open: true, authenticated: true
+    id: 2, label: 'Your thoughts', is_open: true, authenticated: true, multiple_choice: false, choices: []
   }
 
   const baseProps = {
@@ -29,7 +29,14 @@ describe('QuestionFunnel', () => {
     totalQuestions: 3,
     answeredCount: 0,
     allowUnregisteredUsers: false,
-    errors: null,
+    useTermsOfUse: false,
+    agreedTermsOfUse: false,
+    orgTermsUrl: '',
+    checkedTermsOfUse: false,
+    showCaptcha: false,
+    captcha: '',
+    onSetCheckedTerms: jest.fn(),
+    errors: {},
     onAnswerChange: jest.fn(),
     onBack: jest.fn(),
     onSkip: jest.fn(),
@@ -105,7 +112,7 @@ describe('QuestionFunnel', () => {
         onAnswerChange={fn}
       />
     )
-    expect(screen.getByText('Red').closest('label').querySelector('input')).toBeChecked()
+    expect(screen.getByText('Red').closest('label')!.querySelector('input')).toBeChecked()
     fireEvent.click(screen.getByText('Blue'))
     expect(fn).toHaveBeenCalledWith(1, { choices: [11] })
   })
@@ -115,7 +122,7 @@ describe('QuestionFunnel', () => {
     render(
       <QuestionFunnel
         {...baseProps}
-        currentQuestion={{ id: 3, label: 'Your thoughts', is_open: true, authenticated: true }}
+        currentQuestion={{ id: 3, label: 'Your thoughts', is_open: true, authenticated: true, multiple_choice: false, choices: [] }}
         onAnswerChange={fn}
       />
     )

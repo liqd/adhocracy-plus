@@ -1,7 +1,8 @@
-// apps/polls/assets/react_polls/reducers/pollReducer.js
+// apps/polls/assets/react_polls/reducers/pollReducer.ts
 import { STATES, ACTIONS, isValidTransition } from '../utils/stateMachine'
+import type { PollAction, PollState, UserAnswers } from '../types'
 
-export const initialState = {
+export const initialState: PollState = {
   // Machine state
   state: STATES.LOADING,
 
@@ -48,7 +49,9 @@ export const initialState = {
   prosopoSiteKey: ''
 }
 
-const reducers = {
+type ReducerHandler = (state: PollState, payload: any) => PollState
+
+const reducers: Record<string, ReducerHandler> = {
   [ACTIONS.DATA_LOADED]: (state, payload) => ({
     ...state,
     questions: payload.questions,
@@ -106,7 +109,7 @@ const reducers = {
   [ACTIONS.SKIP_QUESTION]: (state) => {
     if (state.currentQuestionIndex >= state.questions.length - 1) return state
     const currentQuestionId = state.questions[state.currentQuestionIndex].id
-    const updatedAnswers = { ...state.userAnswers }
+    const updatedAnswers: UserAnswers = { ...state.userAnswers }
     delete updatedAnswers[currentQuestionId]
     return {
       ...state,
@@ -197,8 +200,8 @@ const reducers = {
   })
 }
 
-export const pollReducer = (state, action) => {
-  if (!isValidTransition(state.state, action.type)) {
+export const pollReducer = (state: PollState, action: PollAction): PollState => {
+  if (!isValidTransition(state.state as any, action.type as any)) {
     console.warn(`Invalid transition: ${state.state} -> ${action.type}`)
     return state
   }

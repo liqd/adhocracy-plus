@@ -1,8 +1,19 @@
-// apps/polls/assets/react_polls/components/StartScreen.jsx
+// apps/polls/assets/react_polls/components/StartScreen.tsx
 import React from 'react'
 import django from 'django'
 
-const StartScreen = ({ totalQuestions, isAuthenticated, allowUnregisteredUsers, hideResultsUntilFinished, totalParticipants, manualLink, onStart, onShowResults }) => {
+interface StartScreenProps {
+  totalQuestions: number
+  isAuthenticated: boolean
+  allowUnregisteredUsers: boolean
+  hideResultsUntilFinished: boolean
+  totalParticipants: number
+  manualLink?: string
+  onStart: () => void
+  onShowResults: () => void
+}
+
+const StartScreen = ({ totalQuestions, isAuthenticated, allowUnregisteredUsers, hideResultsUntilFinished, totalParticipants, manualLink, onStart, onShowResults }: StartScreenProps) => {
   return (
     <div className="poll-start-screen">
 

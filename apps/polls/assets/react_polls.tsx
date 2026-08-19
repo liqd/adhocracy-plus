@@ -6,8 +6,8 @@ import PollQuestions from './react_polls/components/PollQuestions'
 
 function init () {
   ReactWidgetInit('a4', 'polls',
-    function (el) {
-      const props = JSON.parse(el.dataset.attributes)
+    function (el: HTMLElement) {
+      const props = JSON.parse(el.dataset.attributes || '{}')
       const root = createRoot(el)
       root.render(
         <PollQuestions {...props} />

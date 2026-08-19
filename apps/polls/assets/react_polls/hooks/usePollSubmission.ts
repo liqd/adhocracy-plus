@@ -1,12 +1,18 @@
-// apps/polls/assets/react_polls/hooks/usePollSubmission.js
+// apps/polls/assets/react_polls/hooks/usePollSubmission.ts
 import { useCallback } from 'react'
 import api from 'adhocracy4/adhocracy4/static/api'
+import type { PollResultsPayload, UserAnswer } from '../types'
 
-export const usePollSubmission = (pollId) => {
-  const submitVotes = useCallback(async (votes, options = {}) => {
+interface SubmitVotesOptions {
+  agreedTermsOfUse?: boolean
+  captcha?: string
+}
+
+export const usePollSubmission = (pollId: number) => {
+  const submitVotes = useCallback(async (votes: Record<number, UserAnswer>, options: SubmitVotesOptions = {}) => {
     const { agreedTermsOfUse = false, captcha = '' } = options
 
-    const data = {
+    const data: Record<string, unknown> = {
       urlReplaces: { pollId },
       votes,
       captcha
@@ -29,7 +35,7 @@ export const usePollSubmission = (pollId) => {
         totalParticipants: poll.total_participants || 0,
         votingEnded: poll.voting_ended || false,
         hideResultsUntilFinished: poll.hide_results_until_finished || false
-      }
+      } as PollResultsPayload & { success: boolean; alert?: unknown; error?: unknown }
     } catch (error) {
       return { success: false, error }
     }

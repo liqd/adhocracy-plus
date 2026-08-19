@@ -6,7 +6,9 @@ export const STATES = {
   SUBMITTING: 'submitting',
   RESULTS: 'results',
   ERROR: 'error'
-}
+} as const
+
+export type PollState = typeof STATES[keyof typeof STATES]
 
 // Action types
 export const ACTIONS = {
@@ -39,11 +41,13 @@ export const ACTIONS = {
   CHANGE_ANSWER: 'CHANGE_ANSWER',
   SHOW_RESULTS: 'SHOW_RESULTS'
 
-}
+} as const
+
+export type PollAction = typeof ACTIONS[keyof typeof ACTIONS]
 
 // Helper to check if transition is valid
-export const isValidTransition = (currentState, actionType) => {
-  const validTransitions = {
+export const isValidTransition = (currentState: PollState, actionType: PollAction): boolean => {
+  const validTransitions: Record<PollState, PollAction[]> = {
     [STATES.LOADING]: [ACTIONS.DATA_LOADED, ACTIONS.DATA_ERROR],
     [STATES.START_SCREEN]: [ACTIONS.START_POLL, ACTIONS.SHOW_RESULTS],
     [STATES.ANSWERING]: [

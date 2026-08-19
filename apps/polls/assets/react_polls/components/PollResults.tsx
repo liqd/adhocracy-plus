@@ -1,13 +1,25 @@
-// PollResult.jsx - Simplified version
+// PollResult.tsx - Simplified version
 import React, { useState, useCallback, useMemo, useRef } from 'react'
 import Slider from 'react-slick'
 import django from 'django'
 import { ChoiceRow } from './ChoiceRow'
 import QuestionImage from 'adhocracy4/adhocracy4/polls/static/PollDetail/QuestionImage'
+import type { PollAnswer, PollOtherAnswer, PollQuestion } from '../types'
 
-const PollQuestionSlider = ({ answers, isUserAnswer }) => {
+interface SliderItem {
+  id?: number
+  vote_id?: number
+  answer: string
+}
+
+interface PollQuestionSliderProps {
+  answers: SliderItem[]
+  isUserAnswer: (slide: SliderItem) => boolean
+}
+
+const PollQuestionSlider = ({ answers, isUserAnswer }: PollQuestionSliderProps) => {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const sliderRef = useRef(null)
+  const sliderRef = useRef<Slider | null>(null)
   const total = answers.length
 
   const settings = {
@@ -18,7 +30,7 @@ const PollQuestionSlider = ({ answers, isUserAnswer }) => {
     infinite: false,
     centerMode: true,
     centerPadding: '0px',
-    afterChange: (current) => setCurrentSlide(current)
+    afterChange: (current: number) => setCurrentSlide(current)
   }
 
   return (
@@ -27,7 +39,7 @@ const PollQuestionSlider = ({ answers, isUserAnswer }) => {
         {answers.map((slide, index) => (
           <div
             className="poll-slider__item"
-            key={slide.id || index}
+            key={slide.id || slide.vote_id || index}
             role="group"
             aria-label={django.interpolate(
               django.gettext('Answer %(current)s of %(total)s'),
@@ -69,7 +81,14 @@ const PollQuestionSlider = ({ answers, isUserAnswer }) => {
   )
 }
 
-const OtherAnswersSection = ({ otherAnswers, isUserAnswer, showOtherAnswers, onToggle }) => {
+interface OtherAnswersSectionProps {
+  otherAnswers?: PollOtherAnswer[]
+  isUserAnswer: (slide: SliderItem) => boolean
+  showOtherAnswers: boolean
+  onToggle: () => void
+}
+
+const OtherAnswersSection = ({ otherAnswers, isUserAnswer, showOtherAnswers, onToggle }: OtherAnswersSectionProps) => {
   if (!otherAnswers?.length) return null
 
   return (
@@ -91,7 +110,11 @@ const OtherAnswersSection = ({ otherAnswers, isUserAnswer, showOtherAnswers, onT
   )
 }
 
-const PollResult = ({ question }) => {
+interface PollResultProps {
+  question: PollQuestion
+}
+
+const PollResult = ({ question }: PollResultProps) => {
   const [showOtherAnswers, setShowOtherAnswers] = useState(false)
 
   const userAnswerId = useMemo(() => {
@@ -100,7 +123,7 @@ const PollResult = ({ question }) => {
       : question.other_choice_user_answer
   }, [question])
 
-  const isUserAnswer = useCallback((slide) => {
+  const isUserAnswer = useCallback((slide: SliderItem) => {
     const matchedId = question.is_open
       ? slide.id === userAnswerId
       : slide.vote_id === userAnswerId
@@ -115,20 +138,20 @@ const PollResult = ({ question }) => {
     if (question.is_confidential) {
       const total = question.is_open ? question.totalAnswerCount : question.totalVoteCount
       return django.interpolate(
-        django.ngettext('%s response submitted', '%s responses submitted', total),
-        [total]
+        django.ngettext('%s response submitted', '%s responses submitted', total ?? 0),
+        [total ?? 0]
       )
     }
 
     if (question.is_open) {
-      const total = question.totalAnswerCount
+      const total = question.totalAnswerCount ?? 0
       return total >= 1
         ? django.interpolate(django.ngettext('1 person has answered.', '%s people have answered.', total), [total])
         : django.gettext('no one has answered this question')
     }
 
-    const total = question.totalVoteCount
-    const totalMulti = question.totalVoteCountMulti
+    const total = question.totalVoteCount ?? 0
+    const totalMulti = question.totalVoteCountMulti ?? 0
 
     if (question.multiple_choice) {
       const participantText = total === 1 && totalMulti === 1
@@ -162,7 +185,7 @@ const PollResult = ({ question }) => {
     )
   }
 
-  const totalVotes = question.totalVoteCount
+  const totalVotes = question.totalVoteCount ?? 0
 
   return (
     <div className="poll poll--result">
@@ -172,8 +195,8 @@ const PollResult = ({ question }) => {
       <div className="poll__rows">
         {/* Non-open questions - reuse ChoiceRow */}
         {!question.is_open && question.choices.map(choice => {
-          const isChosen = question.userChoices.includes(choice.id)
-          const percent = totalVotes === 0 ? 0 : Math.round((choice.count / totalVotes) * 100)
+          const isChosen = question.userChoices!.includes(choice.id)
+          const percent = totalVotes === 0 ? 0 : Math.round(((choice.count ?? 0) / totalVotes) * 100)
 
           return (
             <div key={choice.id}>
@@ -200,8 +223,8 @@ const PollResult = ({ question }) => {
         })}
 
         {/* Open questions */}
-        {question.is_open && question.answers?.length > 0 && (
-          <PollQuestionSlider answers={question.answers} isUserAnswer={isUserAnswer} />
+        {question.is_open && (question.answers?.length ?? 0) > 0 && (
+          <PollQuestionSlider answers={question.answers as PollAnswer[]} isUserAnswer={isUserAnswer} />
         )}
 
         {/* Help text */}

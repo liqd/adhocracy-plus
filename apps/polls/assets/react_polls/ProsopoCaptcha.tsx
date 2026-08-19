@@ -7,12 +7,20 @@ const translated = {
   error: django.gettext('There was a problem loading the CAPTCHA.')
 }
 
-export default function ProsopoCaptcha ({ siteKey, language, onChange, name = 'captcha' }) {
-  const containerRef = useRef(null)
+interface ProsopoCaptchaProps {
+  siteKey?: string
+  language?: string
+  onChange: (token: string) => void
+  name?: string
+}
+
+export default function ProsopoCaptcha ({ siteKey, language, onChange, name = 'captcha' }: ProsopoCaptchaProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
   const [error, setError] = useState(false)
 
   useEffect(() => {
     if (!siteKey) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setError(true)
       return
     }
@@ -23,7 +31,7 @@ export default function ProsopoCaptcha ({ siteKey, language, onChange, name = 'c
       renderProcaptcha(containerRef.current, {
         siteKey,
         language,
-        callback: function (token) {
+        callback: function (token: string) {
           onChange(token)
         },
         'expired-callback': function () {
@@ -33,8 +41,8 @@ export default function ProsopoCaptcha ({ siteKey, language, onChange, name = 'c
           setError(true)
           onChange('')
         }
-      })
-    } catch (e) {
+      } as any)
+    } catch {
       setError(true)
       onChange('')
     }

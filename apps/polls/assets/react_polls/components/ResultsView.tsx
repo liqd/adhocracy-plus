@@ -2,8 +2,19 @@ import React, { useState } from 'react'
 import django from 'django'
 import PollResults from './PollResults'
 import Alert from 'adhocracy4/adhocracy4/static/Alert'
+import type { AlertState, PollQuestion } from '../types'
 
-const ResultsView = ({ results, totalParticipants, hasUserVote, votingEnded, alert, onBackToPoll, onChangeAnswer }) => {
+interface ResultsViewProps {
+  results: PollQuestion[]
+  totalParticipants: number
+  hasUserVote: boolean
+  votingEnded: boolean
+  alert: AlertState | null
+  onBackToPoll: () => void
+  onChangeAnswer: () => void
+}
+
+const ResultsView = ({ results, totalParticipants, hasUserVote, votingEnded, alert, onBackToPoll, onChangeAnswer }: ResultsViewProps) => {
   const [resultsCollapsed, setResultsCollapsed] = useState(false)
 
   const pollEndedStr = django.gettext('The poll has ended. Here are the results.')

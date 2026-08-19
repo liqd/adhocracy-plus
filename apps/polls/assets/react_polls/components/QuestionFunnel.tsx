@@ -1,4 +1,4 @@
-// apps/polls/assets/react_polls/components/QuestionFunnel.jsx
+// apps/polls/assets/react_polls/components/QuestionFunnel.tsx
 import React, { useState, useCallback, useLayoutEffect, useRef } from 'react'
 import django from 'django'
 import { TermsOfUseCheckbox } from 'adhocracy4/adhocracy4/static/TermsOfUseCheckbox'
@@ -6,16 +6,43 @@ import { PollChoice } from './PollChoice'
 import { PollOpenQuestion } from 'adhocracy4/adhocracy4/polls/static/PollDetail/PollOpenQuestion'
 import ProgressBar from './ProgressBar'
 import NavigationButtons from './NavigationButtons'
+import type { PollQuestion, UserAnswer } from '../types'
 
-const ANSWER_HANDLERS = {
-  single: (questionId, value) => ({ choices: [value] }),
-  multi: (questionId, value, currentChoices = []) => ({
-    choices: currentChoices.includes(value)
-      ? currentChoices.filter(c => c !== value)
-      : [...currentChoices, value]
-  }),
-  open: (questionId, value) => ({ open_answer: value }),
-  other: (questionId, value) => ({ other_choice_answer: value })
+const ANSWER_HANDLERS: Record<string, (questionId: number, value: string | number, currentChoices?: number[]) => Partial<UserAnswer>> = {
+  single: (questionId, value) => ({ choices: [Number(value)] }),
+  multi: (questionId, value, currentChoices = []) => {
+    const val = Number(value)
+    return {
+      choices: currentChoices.includes(val)
+        ? currentChoices.filter(c => c !== val)
+        : [...currentChoices, val]
+    }
+  },
+  open: (questionId, value) => ({ open_answer: String(value) }),
+  other: (questionId, value) => ({ other_choice_answer: String(value) })
+}
+
+interface QuestionFunnelProps {
+  currentQuestion: PollQuestion
+  currentAnswer?: UserAnswer | null
+  currentNumber: number
+  totalQuestions: number
+  allowUnregisteredUsers: boolean
+  useTermsOfUse: boolean
+  agreedTermsOfUse: boolean
+  orgTermsUrl: string
+  checkedTermsOfUse: boolean
+  showCaptcha: boolean
+  captcha: string
+  onSetCheckedTerms: (checked: boolean) => void
+  errors: Record<string, unknown>
+  onAnswerChange: (questionId: number, answerData: Partial<UserAnswer>) => void
+  onBack: () => void
+  onSkip: () => void
+  onNext: () => void
+  onSubmit: () => void
+  isLoading: boolean
+  children?: React.ReactNode
 }
 
 const QuestionFunnel = ({
@@ -23,7 +50,6 @@ const QuestionFunnel = ({
   currentAnswer,
   currentNumber,
   totalQuestions,
-  answeredCount,
   allowUnregisteredUsers,
   useTermsOfUse,
   agreedTermsOfUse,
@@ -40,20 +66,20 @@ const QuestionFunnel = ({
   onSubmit,
   isLoading,
   children
-}) => {
-  const funnelRef = useRef(null)
-  const headerRef = useRef(null)
+}: QuestionFunnelProps) => {
+  const funnelRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
   const prevNumberRef = useRef(currentNumber)
-  const prevQuestionRef = useRef(currentQuestion)
-  const prevAnswerRef = useRef(currentAnswer)
+  const prevQuestionRef = useRef<PollQuestion | null>(currentQuestion)
+  const prevAnswerRef = useRef<UserAnswer | null | undefined>(currentAnswer)
 
   const [phase, setPhase] = useState('idle')
   const [direction, setDirection] = useState('forward')
-  const [exitingQuestion, setExitingQuestion] = useState(null)
-  const [exitingAnswer, setExitingAnswer] = useState(null)
+  const [exitingQuestion, setExitingQuestion] = useState<PollQuestion | null>(null)
+  const [exitingAnswer, setExitingAnswer] = useState<UserAnswer | null>(null)
 
   useLayoutEffect(() => {
-    const top = funnelRef.current?.getBoundingClientRect().top + window.scrollY - 50
+    const top = (funnelRef.current?.getBoundingClientRect().top || 0) + window.scrollY - 50
     window.scrollTo({ top, behavior: 'smooth' })
     headerRef.current?.focus({ preventScroll: true })
   }, [currentQuestion.id])
@@ -63,7 +89,7 @@ const QuestionFunnel = ({
       const dir = currentNumber > prevNumberRef.current ? 'forward' : 'backward'
       setDirection(dir)
       setExitingQuestion(prevQuestionRef.current)
-      setExitingAnswer(prevAnswerRef.current)
+      setExitingAnswer(prevAnswerRef.current ?? null)
       setPhase('exiting')
       prevNumberRef.current = currentNumber
     }
@@ -81,7 +107,7 @@ const QuestionFunnel = ({
     setPhase('idle')
   }, [])
 
-  const enrichQuestion = useCallback((question, answer) => ({
+  const enrichQuestion = useCallback((question: PollQuestion, answer: UserAnswer | null | undefined): PollQuestion => ({
     ...question,
     userChoices: answer?.choices || [],
     open_answer: answer?.open_answer || '',
@@ -92,7 +118,7 @@ const QuestionFunnel = ({
   const isSubmitDisabled = (isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
     (isLastQuestion && showCaptcha && !captcha)
 
-  const handleAnswerUpdate = (questionId, value, type) => {
+  const handleAnswerUpdate = (questionId: number, value: string | number, type: string) => {
     const handler = ANSWER_HANDLERS[type]
     if (!handler) return
 
@@ -114,13 +140,13 @@ const QuestionFunnel = ({
       </div>
 
       <div className="poll-question-content-wrapper">
-        {phase === 'exiting'
+        {phase === 'exiting' && exitingQuestion
           ? (
             <div
               className={'poll-question-content poll-question-content--exit-' + direction}
               onAnimationEnd={handleExitEnd}
             >
-              {exitingQuestion?.is_open
+              {exitingQuestion.is_open
                 ? (
                   <PollOpenQuestion
                     key={exitingQuestion.id}
@@ -133,7 +159,7 @@ const QuestionFunnel = ({
                   )
                 : (
                   <PollChoice
-                    key={exitingQuestion?.id}
+                    key={exitingQuestion.id}
                     question={enrichQuestion(exitingQuestion, exitingAnswer)}
                     allowUnregisteredUsers={allowUnregisteredUsers}
                     onAnswerChange={() => {}}
@@ -153,7 +179,7 @@ const QuestionFunnel = ({
                     key={currentQuestion.id}
                     allowUnregisteredUsers={allowUnregisteredUsers}
                     question={enrichQuestion(currentQuestion, currentAnswer)}
-                    onOpenChange={(questionId, value) =>
+                    onOpenChange={(questionId: number, value: string) =>
                       handleAnswerUpdate(questionId, value, 'open')}
                     errors={errors}
                     questionImagesEnabled={!!currentQuestion.image_url}

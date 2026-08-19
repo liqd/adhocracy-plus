@@ -1,22 +1,30 @@
-// apps/polls/assets/react_polls/components/PollChoice.jsx
+// apps/polls/assets/react_polls/components/PollChoice.tsx
 import React from 'react'
 import django from 'django'
 import { ChoiceRow } from './ChoiceRow'
 import { ConfidentialNotice } from 'adhocracy4/adhocracy4/polls/static/PollDetail/ConfidentialNotice'
 import QuestionImage from 'adhocracy4/adhocracy4/polls/static/PollDetail/QuestionImage'
+import type { PollQuestion } from '../types'
 
 const translated = {
   multiple: django.gettext('Multiple answers are possible.')
 }
 
-export const PollChoice = ({ question, allowUnregisteredUsers, onAnswerChange, errors }) => {
+interface PollChoiceProps {
+  question: PollQuestion
+  allowUnregisteredUsers: boolean
+  onAnswerChange: (questionId: number, value: number | string, type: string) => void
+  errors?: unknown
+}
+
+export const PollChoice = ({ question, allowUnregisteredUsers, onAnswerChange, errors }: PollChoiceProps) => {
   const userChoices = question.userChoices || []
   const otherChoiceAnswer = question.other_choice_answer || ''
 
   const otherChoice = question.choices.find(c => c.is_other_choice)
   const canVote = (question.authenticated || allowUnregisteredUsers) && !question.isReadOnly
 
-  const handleChoiceChange = (choiceId) => {
+  const handleChoiceChange = (choiceId: number) => {
     if (question.multiple_choice) {
       const newChoices = userChoices.includes(choiceId)
         ? userChoices.filter(id => id !== choiceId)
@@ -36,7 +44,7 @@ export const PollChoice = ({ question, allowUnregisteredUsers, onAnswerChange, e
     }
   }
 
-  const handleOtherChange = (event) => {
+  const handleOtherChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     onAnswerChange(question.id, event.target.value, 'other')
   }
 

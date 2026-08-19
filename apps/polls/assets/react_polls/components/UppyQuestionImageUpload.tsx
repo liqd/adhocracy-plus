@@ -7,8 +7,9 @@ import deDE from '@uppy/locales/lib/de_DE.js'
 import enUS from '@uppy/locales/lib/en_US.js'
 
 import FormFieldError from 'adhocracy4/adhocracy4/static/FormFieldError'
+import type { PollQuestion } from '../types'
 
-const UPPY_LOCALES = {
+const UPPY_LOCALES: Record<string, typeof deDE> = {
   de: deDE,
   en: enUS
 }
@@ -23,17 +24,27 @@ function getUppyLocale () {
   return UPPY_LOCALES[languageCode] || enUS
 }
 
-const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText, altText, onAltTextChange }) => {
-  const uppyRef = useRef(null)
+interface UppyQuestionImageUploadProps {
+  id: number
+  question: PollQuestion
+  onImageChange: (base64: string) => void
+  errors?: Record<string, unknown>
+  helpText?: string
+  altText?: string
+  onAltTextChange: (value: string) => void
+}
+
+const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText, altText, onAltTextChange }: UppyQuestionImageUploadProps) => {
+  const uppyRef = useRef<any>(null)
   const onImageChangeRef = useRef(onImageChange)
 
   onImageChangeRef.current = onImageChange
 
-  const imageError = errors?.image_base64 || errors?.image
-  const altTextError = errors?.image_alt_text
+  const imageError = Boolean(errors?.image_base64 || errors?.image)
+  const altTextError = Boolean(errors?.image_alt_text)
 
   useEffect(() => {
-    let uppy
+    let uppy: any
 
     try {
       uppy = new Uppy({
@@ -73,9 +84,9 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
         }
       })
 
-      uppy.on('file-added', (file) => {
+      uppy.on('file-added', (file: any) => {
         uppy.getPlugin('ImageEditor')?.stop()
-        uppy.getFiles().forEach((existingFile) => {
+        uppy.getFiles().forEach((existingFile: any) => {
           if (existingFile.id !== file.id) {
             uppy.removeFile(existingFile.id)
           }
@@ -90,17 +101,17 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
         uppy.upload().catch(() => {})
       })
 
-      uppy.on('complete', (result) => {
+      uppy.on('complete', (result: any) => {
         const file = result.successful[0] || uppy.getFiles()[0]
         if (file) {
           const reader = new FileReader()
           reader.onloadend = () => {
-            onImageChangeRef.current(reader.result)
+            onImageChangeRef.current(reader.result as string)
           }
           reader.readAsDataURL(file.data)
         }
         uppy.getPlugin('Dashboard')?.closeModal()
-        uppy.getFiles().forEach((uppyFile) => {
+        uppy.getFiles().forEach((uppyFile: any) => {
           uppy.removeFile(uppyFile.id)
         })
       })

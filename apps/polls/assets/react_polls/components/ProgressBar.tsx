@@ -1,6 +1,11 @@
 import React from 'react'
 
-const ProgressBar = ({ current, total }) => {
+interface ProgressBarProps {
+  current: number
+  total: number
+}
+
+const ProgressBar = ({ current, total }: ProgressBarProps) => {
   const getLabel = () => {
     if (total <= 1) return ''
     return `${current}/${total}`

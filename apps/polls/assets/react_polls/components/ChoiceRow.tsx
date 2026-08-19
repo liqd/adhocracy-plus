@@ -1,10 +1,21 @@
-// ChoiceRow.jsx
+// ChoiceRow.tsx
 import React, { useState, useEffect } from 'react'
 import django from 'django'
 import { TextareaWithCounter } from 'adhocracy4/adhocracy4/polls/static/PollDetail/TextareaWithCounter'
+import type { PollChoiceData } from '../types'
 
 const translated = {
   other: django.gettext('other')
+}
+
+interface ChoiceInputProps {
+  type: string
+  choice: PollChoiceData
+  checked: boolean
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>, isOtherChoice: boolean) => void
+  disabled: boolean
+  name?: string
+  isResult?: boolean
 }
 
 const ChoiceInput = ({
@@ -15,7 +26,7 @@ const ChoiceInput = ({
   disabled,
   name,
   isResult = false // New prop for result mode
-}) => (
+}: ChoiceInputProps) => (
   <div className="poll-choice__input-wrapper">
     {!isResult
       ? (
@@ -45,6 +56,21 @@ const ChoiceInput = ({
   </div>
 )
 
+interface ChoiceRowProps {
+  choice: PollChoiceData
+  checked: boolean
+  onInputChange?: (event: React.ChangeEvent<HTMLInputElement>, isOtherChoice: boolean) => void
+  type: string
+  disabled?: boolean
+  otherChoiceAnswer?: string
+  onOtherChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+  errors?: unknown
+  name?: string
+  isResult?: boolean
+  review?: boolean
+  percent?: number | null
+}
+
 export const ChoiceRow = React.memo(({
   choice,
   checked,
@@ -58,21 +84,24 @@ export const ChoiceRow = React.memo(({
   isResult = false,
   review = false,
   percent = null
-}) => {
-  const [textareaValue, setTextareaValue] = useState(otherChoiceAnswer)
+}: ChoiceRowProps) => {
+  const [textareaValue, setTextareaValue] = useState(otherChoiceAnswer || '')
   const [showTextarea, setShowTextarea] = useState(false)
 
   useEffect(() => {
+    // keep the textarea visibility in sync with the checked "other" choice
+    /* eslint-disable react-hooks/set-state-in-effect */
     if (checked && choice.is_other_choice) {
       setShowTextarea(true)
     } else {
       setShowTextarea(false)
     }
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, [checked, choice.is_other_choice])
 
-  const handleChange = (event, isOtherChoice) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, isOtherChoice: boolean) => {
     if (isResult) return // No changes in result mode
-    onInputChange(event, isOtherChoice)
+    onInputChange?.(event, isOtherChoice)
 
     if (isOtherChoice && event.target.checked) {
       setShowTextarea(true)
@@ -81,9 +110,9 @@ export const ChoiceRow = React.memo(({
     }
   }
 
-  const handleTextareaChange = (event) => {
+  const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTextareaValue(event.target.value)
-    onOtherChange(event)
+    onOtherChange?.(event)
   }
 
   return (

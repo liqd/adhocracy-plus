@@ -1,6 +1,17 @@
 import React from 'react'
 import django from 'django'
 
+interface NavigationButtonsProps {
+  currentIndex: number
+  isLastQuestion: boolean
+  isLoading: boolean
+  isSubmitDisabled: boolean
+  onBack: () => void
+  onSkip: () => void
+  onNext: () => void
+  onSubmit: () => void
+}
+
 const NavigationButtons = ({
   currentIndex,
   isLastQuestion,
@@ -10,7 +21,7 @@ const NavigationButtons = ({
   onSkip,
   onNext,
   onSubmit
-}) => {
+}: NavigationButtonsProps) => {
   return (
     <div className="poll-navigation-buttons mt-4 d-flex justify-content-between">
       <div>

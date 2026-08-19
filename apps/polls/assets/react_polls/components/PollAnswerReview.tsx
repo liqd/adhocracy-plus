@@ -5,8 +5,14 @@ import Alert from 'adhocracy4/adhocracy4/static/Alert'
 import { ChoiceRow } from './ChoiceRow'
 import { ConfidentialNotice } from 'adhocracy4/adhocracy4/polls/static/PollDetail/ConfidentialNotice'
 import QuestionImage from 'adhocracy4/adhocracy4/polls/static/PollDetail/QuestionImage'
+import type { PollQuestion } from '../types'
 
-const PollAnswerReview = ({ questions, onChangeAnswer }) => {
+interface PollAnswerReviewProps {
+  questions: PollQuestion[]
+  onChangeAnswer: () => void
+}
+
+const PollAnswerReview = ({ questions, onChangeAnswer }: PollAnswerReviewProps) => {
   const [bannerDismissed, setBannerDismissed] = useState(false)
 
   return (

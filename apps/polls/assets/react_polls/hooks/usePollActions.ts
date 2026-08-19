@@ -1,12 +1,13 @@
-// apps/polls/assets/react_polls/hooks/usePollActions.js
-import { useCallback } from 'react'
+// apps/polls/assets/react_polls/hooks/usePollActions.ts
+import { useCallback, type Dispatch } from 'react'
 import { ACTIONS } from '../utils/stateMachine'
 import { hasValidAnswer, buildVoteData } from '../utils/pollHelpers'
 import { ALERT_INVALID, ALERT_SUCCESS, ALERT_ERROR, ALERT_INCOMPLETE, ALERT_CAPTCHA_INCOMPLETE } from '../utils/alerts'
 import { usePollSubmission } from './usePollSubmission'
+import type { PollAction, PollState, UserAnswer } from '../types'
 
-export const usePollActions = (state, dispatch, pollId) => {
-  const { submitVotes } = usePollSubmission(pollId, dispatch)
+export const usePollActions = (state: PollState, dispatch: Dispatch<PollAction>, pollId: number) => {
+  const { submitVotes } = usePollSubmission(pollId)
 
   const handleStartPoll = useCallback(() => {
     dispatch({ type: ACTIONS.START_POLL })
@@ -71,7 +72,7 @@ export const usePollActions = (state, dispatch, pollId) => {
     })
 
     if (result.success) {
-      const resultsHidden = result.hideResultsUntilFinished && !result.votingEnded
+      const resultsHidden = (result as any).hideResultsUntilFinished && !(result as any).votingEnded
       dispatch({
         type: ACTIONS.SUBMIT_SUCCESS,
         payload: {
@@ -84,7 +85,7 @@ export const usePollActions = (state, dispatch, pollId) => {
     }
   }, [state, dispatch, submitVotes])
 
-  const handleAnswerChange = useCallback((questionId, answerData) => {
+  const handleAnswerChange = useCallback((questionId: number, answerData: UserAnswer) => {
     dispatch({
       type: ACTIONS.UPDATE_ANSWER,
       payload: { questionId, answerData }
@@ -95,11 +96,11 @@ export const usePollActions = (state, dispatch, pollId) => {
     dispatch({ type: ACTIONS.CLEAR_ALERT })
   }, [dispatch])
 
-  const handleSetCheckedTerms = useCallback((checked) => {
+  const handleSetCheckedTerms = useCallback((checked: boolean) => {
     dispatch({ type: ACTIONS.SET_CHECKED_TERMS, payload: checked })
   }, [dispatch])
 
-  const handleSetCaptcha = useCallback((token) => {
+  const handleSetCaptcha = useCallback((token: string) => {
     dispatch({ type: ACTIONS.SET_CAPTCHA, payload: token })
   }, [dispatch])
 
