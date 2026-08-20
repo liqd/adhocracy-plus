@@ -48,7 +48,10 @@ $lp-blue: blue;
         overflow: hidden;
         margin-top: -20px; // Pull it up under the fade
         position: relative;
-        z-index: 1;
+
+        // No z-index here on purpose: establishing a stacking context here
+        // would trap the pause control below the header fade. Without it the
+        // tiles still render under the fade, but the control can sit on top.
     }
 }
 
@@ -266,9 +269,43 @@ $lp-blue: blue;
     }
 }
 
+.lp-statistics__control {
+    position: absolute;
+
+    // Align the button with the right edge of the tiles (matching the
+    // scroller's own 1em padding).
+    right: 1em;
+    top: 17px;
+
+    // Above the header fade (which has z-index 2).
+    z-index: 5;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: none;
+    border-radius: 25px;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: $black;
+}
+
+.lp-statistics__control-icon {
+    font-size: 24px;
+    line-height: 1;
+}
+
 // Reduced motion: show a single static copy, no duplicated content
 @media (prefers-reduced-motion: reduce) {
     .lp-statistics__stats-scroller-column__copy[aria-hidden="true"] {
         display: none;
     }
+
+    // There is nothing to pause, so hide the control.
+    .lp-statistics__control {
+        display: none;
+    }
 }
+

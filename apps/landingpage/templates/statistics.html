@@ -42,6 +42,9 @@
                 {% endfor %}
             </div>
         {% endfor %}
+        <button class="lp-statistics__control" type="button" aria-label="{% trans 'Pause statistics scroll' %}" aria-pressed="false">
+            <i class="fa-solid fa-pause lp-statistics__control-icon" aria-hidden="true"></i>
+        </button>
     </div>
     <!-- Mobile view: 2 rows -->
     <div class="lp-statistics__stats-scroller mobile-view">
@@ -252,50 +255,77 @@
                 });
 
                 let lastTime = performance.now();
-                let lastMeasure = lastTime;
                 // Fast enough that all tiles pass through the visible area
-                // within a reasonable time (~34s on tablet, ~16s on desktop)
-                const speed = 40; // px per second
+                // within a reasonable time (~48s on tablet, ~23s on desktop)
+                const speed = 28; // px per second
+
+                // Pause/resume controlled by the round button in the top-right
+                // corner. The animation loop keeps running so resuming is
+                // instant; we simply stop advancing the offset while paused.
+                let paused = false;
+                const control = document.querySelector('.lp-statistics__control');
+                if (control) {
+                    control.addEventListener('click', () => {
+                        paused = !paused;
+                        control.setAttribute('aria-pressed', String(paused));
+                        control.setAttribute('aria-label', paused
+                            ? '{% trans "Play statistics scroll" %}'
+                            : '{% trans "Pause statistics scroll" %}');
+                        const icon = control.querySelector('.lp-statistics__control-icon');
+                        icon.classList.toggle('fa-pause', !paused);
+                        icon.classList.toggle('fa-play', paused);
+                    });
+                }
 
                 function tick(now) {
                     const dt = Math.min((now - lastTime) / 1000, 0.05);
                     lastTime = now;
                     const dy = speed * dt;
 
-                    // Re-measure the period every second so the wrap always
-                    // matches the rendered content. If the layout changes
-                    // after the initial measurement (fonts, images, resize),
-                    // the stored period would drift and the wraps would
-                    // eventually become visible.
-                    if (now - lastMeasure > 1000) {
-                        lastMeasure = now;
+                    if (!paused) {
                         loopInfos.forEach(info => {
-                            const h = info.column.children[0].offsetHeight;
-                            const g = parseFloat(getComputedStyle(info.column).gap) || 0;
-                            if (h > 0) {
-                                info.period = h + g;
-                                if (info.offset >= info.period) {
-                                    info.offset -= info.period;
-                                }
+                            // Advance the column and wrap it at its own period.
+                            // The wrap is invisible because the cloned copies
+                            // repeat the content exactly every period.
+                            info.offset += dy;
+                            if (info.offset >= info.period) {
+                                info.offset -= info.period;
                             }
+                            info.column.style.transform = `translateY(${info.base + info.offset}px)`;
                         });
                     }
-
-                    loopInfos.forEach(info => {
-                        // Advance the column and wrap it at its own period.
-                        // The wrap is invisible because the cloned copies
-                        // repeat the content exactly every period.
-                        info.offset += dy;
-                        if (info.offset >= info.period) {
-                            info.offset -= info.period;
-                        }
-                        info.column.style.transform = `translateY(${info.base + info.offset}px)`;
-                    });
 
                     requestAnimationFrame(tick);
                 }
 
                 requestAnimationFrame(tick);
+
+                // Re-measure the loop period whenever the layout can actually
+                // change (web fonts, images, viewport resize) so the wraps
+                // always match the rendered content. Polling for it inside
+                // the animation loop would force a synchronous layout read
+                // on every interval.
+                const remeasure = () => {
+                    loopInfos.forEach(info => {
+                        const h = info.column.children[0].offsetHeight;
+                        const g = parseFloat(getComputedStyle(info.column).gap) || 0;
+                        if (h > 0) {
+                            info.period = h + g;
+                            if (info.offset >= info.period) {
+                                info.offset -= info.period;
+                            }
+                        }
+                    });
+                };
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(remeasure);
+                }
+                window.addEventListener('load', remeasure);
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(remeasure, 300);
+                });
             }
         }
     });
