@@ -180,11 +180,15 @@ function initContainer (container) {
   uppy.use(ImageEditor, {
     quality: 0.8,
     actions: {
-      rotate: false,
+      revert: true,
+      rotate: true,
+      zoomIn: true,
+      zoomOut: true,
+      flip: false,
       granularRotate: false,
       cropSquare: false,
       cropWidescreen: false,
-      cropWidescreenVertical: false
+      cropWidescreenVertical: false,
     },
     cropperOptions: {
       viewMode: 1,
