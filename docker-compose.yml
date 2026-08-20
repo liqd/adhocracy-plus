@@ -44,10 +44,9 @@ services:
       RUN_MIGRATIONS: "1"
       LOAD_FIXTURES: "1"
       LOAD_USER_FIXTURES: "0"
-    env_file:
-      - ${APLUS_ENV_FILE:-./.env}
     volumes:
       - media_data:/app/media
+      - aplus_config:/data:ro
     healthcheck:
       test: ["CMD-SHELL", "python manage.py migrate --check"]
       interval: 5s
@@ -68,10 +67,9 @@ services:
       RUN_MIGRATIONS: "0"
       LOAD_FIXTURES: "0"
       LOAD_USER_FIXTURES: "0"
-    env_file:
-      - ${APLUS_ENV_FILE:-./.env}
     volumes:
       - media_data:/app/media
+      - aplus_config:/data:ro
     command:
       ["celery", "--app", "adhocracy-plus", "worker", "--loglevel", "INFO"]
 
@@ -87,13 +85,14 @@ services:
       RUN_MIGRATIONS: "0"
       LOAD_FIXTURES: "0"
       LOAD_USER_FIXTURES: "0"
-    env_file:
-      - ${APLUS_ENV_FILE:-./.env}
     volumes:
       - media_data:/app/media
+      - aplus_config:/data:ro
     command:
       ["celery", "--app", "adhocracy-plus", "beat", "--loglevel", "INFO"]
 
 volumes:
   postgres_data:
   media_data:
+  aplus_config:
+    name: adhocracy-plus-config
