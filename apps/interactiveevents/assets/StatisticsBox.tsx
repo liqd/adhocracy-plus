@@ -1,0 +1,132 @@
+import django from 'django'
+import React from 'react'
+import { updateItem } from './helpers'
+import QuestionUser from './QuestionUser'
+import QuestionModerator from './QuestionModerator'
+import type { IEQuestion, LikeInfo } from './types'
+
+interface StatisticsBoxProps {
+  answeredQuestions: IEQuestion[]
+  questions_api_url: string
+  categories: string[]
+  isModerator: boolean
+}
+
+interface StatisticsBoxState {
+  answeredQuestions: IEQuestion[]
+}
+
+export default class StatisticsBox extends React.Component<StatisticsBoxProps, StatisticsBoxState> {
+  constructor (props: StatisticsBoxProps) {
+    super(props)
+    this.state = { answeredQuestions: props.answeredQuestions }
+  }
+
+  componentDidUpdate (prevProps: StatisticsBoxProps) {
+    if (this.props.answeredQuestions !== prevProps.answeredQuestions) {
+      this.setState({ answeredQuestions: this.props.answeredQuestions })
+    }
+  }
+
+  updateQuestion (data: Record<string, number | boolean>, id: number) {
+    const url = this.props.questions_api_url + id + '/'
+    return updateItem(data, url, 'PATCH')
+  }
+
+  removeFromList (id: number, data: Record<string, number | boolean>) {
+    this.updateQuestion(data, id)
+      .then(() => this.setState(prevState => ({
+        answeredQuestions: prevState.answeredQuestions.filter(question => question.id !== id)
+      })))
+      .catch(() => {})
+  }
+
+  countCategory (category: string) {
+    let countPerCategory = 0
+    let answeredQuestions = 0
+    this.props.answeredQuestions.forEach(function (question) {
+      if (question.is_answered && !question.is_hidden) {
+        answeredQuestions++
+        if (question.category === category) {
+          countPerCategory++
+        }
+      }
+    })
+    return Math.round(countPerCategory * 100 / answeredQuestions) || 0
+  }
+
+  render () {
+    const questionAnsweredTag = django.gettext('Questions Answered')
+    return (
+      <div className="p-3 p-md-4">
+        {this.props.categories.length > 0 &&
+          <div className="row justify-content-center">
+            <div className="col-12 col-md-8">
+              {this.props.categories.map((category, index) => {
+                const countPerCategory = this.countCategory(category)
+                const style = { width: countPerCategory + '%' }
+                return (
+                  <div key={index} className="mt-3">
+                    <span>{category}</span>
+                    <div className="progress">
+                      <div
+                        className="progress-bar" style={style} role="progressbar" aria-valuenow={25} aria-valuemin={0}
+                        aria-valuemax={100}
+                      >{countPerCategory}%
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>}
+        <h3 className="u-serif-header text-center mt-5">{questionAnsweredTag}</h3>
+        {this.props.isModerator
+          ? (
+            <div className="list-group mt-md-4">
+              {this.state.answeredQuestions.map((question) => {
+                return (
+                  <QuestionModerator
+                    updateQuestion={this.updateQuestion.bind(this)}
+                    displayIsOnShortlist={false}
+                    displayIsLive={false}
+                    displayIsHidden={false}
+                    displayIsAnswered={question.is_answered}
+                    removeFromList={this.removeFromList.bind(this)}
+                    key={question.id}
+                    id={question.id}
+                    is_answered={question.is_answered}
+                    is_on_shortlist={question.is_on_shortlist}
+                    is_live={question.is_live}
+                    is_hidden={question.is_hidden}
+                    category={question.category}
+                    likes={question.likes as LikeInfo}
+                  >
+                    {question.text}
+                  </QuestionModerator>
+                )
+              })}
+            </div>
+            )
+          : (
+            <div className="list-group mt-3 mt-md-4">
+              {this.state.answeredQuestions.map((question) => {
+                return (
+                  <QuestionUser
+                    key={question.id}
+                    id={question.id}
+                    is_on_shortlist={question.is_on_shortlist}
+                    is_live={question.is_live}
+                    category={question.category}
+                    likes={question.likes as LikeInfo}
+                  >
+                    {question.text}
+                  </QuestionUser>
+                )
+              })}
+            </div>
+            )}
+      </div>
+    )
+  }
+}
