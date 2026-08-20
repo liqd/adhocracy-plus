@@ -121,8 +121,8 @@ importers:
         specifier: 3.0.5
         version: 3.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-leaflet:
-        specifier: 4.2.1
-        version: 4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 5.0.0
+        version: 5.0.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-markdown:
         specifier: 9.0.3
         version: 9.0.3(@types/react@18.3.31)(react@18.3.1)
@@ -1606,6 +1606,13 @@ packages:
       react: ^18.0.0
       react-dom: ^18.0.0
 
+  '@react-leaflet/core@3.0.0':
+    resolution: {integrity: sha512-3EWmekh4Nz+pGcr+xjf0KNyYfC3U2JjnkWsh0zcqaexYqmmB5ZhH37kz41JXGmKzpaMZCnPofBBm64i+YrEvGQ==}
+    peerDependencies:
+      leaflet: ^1.9.0
+      react: ^19.0.0
+      react-dom: ^19.0.0
+
   '@scure/base@1.2.6':
     resolution: {integrity: sha512-g/nm5FgUa//MCj1gV09zTJTaM6KBAHqLN907YVQqf7zC49+DcO4B1so4ZX07Ef10Twr6nuqYEH9GEggFXA4Fmg==}
 
@@ -3028,7 +3035,7 @@ packages:
     engines: {node: '>= 0.4'}
 
   datepicker@https://codeload.github.com/liqd/datePicker/tar.gz/88316e26cf0ebc59a8959dd11e58630820ff8387:
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/liqd/datePicker/tar.gz/88316e26cf0ebc59a8959dd11e58630820ff8387}
+    resolution: {gitHosted: true, integrity: sha512-/c+Gu/5YVxfYx1YQ9JS2vMFBxrhtOAMyTvQm3wuJ8A2PrUbcMs93NK4w+Px5DfyHnRAyYyRU3Rx1IidgV+EGSQ==, tarball: https://codeload.github.com/liqd/datePicker/tar.gz/88316e26cf0ebc59a8959dd11e58630820ff8387}
     version: 1.0.0
 
   debug@4.4.3:
@@ -3116,7 +3123,7 @@ packages:
     engines: {node: '>=12'}
 
   dsgvo-video-embed@https://codeload.github.com/liqd/dsgvo-video-embed/tar.gz/a237d91920aaca2a96c8e336b8729765d3131bd2:
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/liqd/dsgvo-video-embed/tar.gz/a237d91920aaca2a96c8e336b8729765d3131bd2}
+    resolution: {gitHosted: true, integrity: sha512-3jh/pUiInXBAvzIoqkpZWXy58eLlMKb13Jy/NVZ0lp8CDGc4QC4DLgM6Gu1Sf3RiO6hpr7rjdjM5nnB9S+2GNQ==, tarball: https://codeload.github.com/liqd/dsgvo-video-embed/tar.gz/a237d91920aaca2a96c8e336b8729765d3131bd2}
     version: 1.0.0
 
   dunder-proto@1.0.1:
@@ -4333,7 +4340,7 @@ packages:
     resolution: {integrity: sha512-rsQ6saQO5ST5Aj6XRFylr5zvarWgzWnrg46zQ1MEOEIHsppdC/8hnN8qMoFvACsPvTioAuysya/TVtog15tyAQ==}
 
   leaflet.markercluster@https://codeload.github.com/liqd/Leaflet.markercluster/tar.gz/88919e61849389e92559b03380674eca63df193d:
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/liqd/Leaflet.markercluster/tar.gz/88919e61849389e92559b03380674eca63df193d}
+    resolution: {gitHosted: true, integrity: sha512-wXPEBVhHBr4JBdwCYFGpZ9z7gP9sWJndZ1jSbAgbL9IdkwKBljhdLzuBXJ4DRyUJqh9O1m3w3xZOatuzr7XAAw==, tarball: https://codeload.github.com/liqd/Leaflet.markercluster/tar.gz/88919e61849389e92559b03380674eca63df193d}
     version: 1.5.4
     peerDependencies:
       leaflet: ^1.3.1
@@ -5077,6 +5084,13 @@ packages:
       react: ^18.0.0
       react-dom: ^18.0.0
 
+  react-leaflet@5.0.0:
+    resolution: {integrity: sha512-CWbTpr5vcHw5bt9i4zSlPEVQdTVcML390TjeDG0cK59z1ylexpqC6M1PJFjV8jD7CF+ACBFsLIDs6DRMoLEofw==}
+    peerDependencies:
+      leaflet: ^1.9.0
+      react: ^19.0.0
+      react-dom: ^19.0.0
+
   react-markdown@9.0.3:
     resolution: {integrity: sha512-Yk7Z94dbgYTOrdk41Z74GoKA7rThnsbbqBTRYuxoe08qvfQ9tJVhmAKw6BJS/ZORG7kTy/s1QvYzSuaoBA1qfw==}
     peerDependencies:
@@ -5367,7 +5381,7 @@ packages:
     engines: {node: '>=18'}
 
   slick-carousel@https://codeload.github.com/liqd/slick/tar.gz/38a33e1d054052fd2ad12d4b1b5e70c315fd33a5:
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/liqd/slick/tar.gz/38a33e1d054052fd2ad12d4b1b5e70c315fd33a5}
+    resolution: {gitHosted: true, integrity: sha512-B75gXbeIddTsC0EXGTbLG+z0G9ozMxOW+yGT5AfA66eutU8EdNhu5rU1ZKpdhJ9WINdwx1f871ZPb2un2Fd/yA==, tarball: https://codeload.github.com/liqd/slick/tar.gz/38a33e1d054052fd2ad12d4b1b5e70c315fd33a5}
     version: 1.9.0
     peerDependencies:
       jquery: '>=1.8.0'
@@ -7903,6 +7917,12 @@ snapshots:
       seedrandom: 3.0.5
 
   '@react-leaflet/core@2.1.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      leaflet: 1.9.4
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  '@react-leaflet/core@3.0.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       leaflet: 1.9.4
       react: 18.3.1
@@ -12716,6 +12736,13 @@ snapshots:
   react-leaflet@4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@react-leaflet/core': 2.1.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      leaflet: 1.9.4
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  react-leaflet@5.0.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@react-leaflet/core': 3.0.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       leaflet: 1.9.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
