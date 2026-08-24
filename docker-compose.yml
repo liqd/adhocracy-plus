@@ -50,7 +50,7 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "python manage.py migrate --check"]
       interval: 5s
-      timeout: 10s
+      timeout: 120s
       retries: 60
       start_period: 300s
     command: ["python", "manage.py", "runserver", "0.0.0.0:8004"]
