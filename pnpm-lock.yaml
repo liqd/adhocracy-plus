@@ -51,6 +51,9 @@ importers:
       '@uppy/locales':
         specifier: ^5.1.1
         version: 5.1.1
+      '@uppy/webcam':
+        specifier: ^5.1.0
+        version: 5.1.0(@uppy/core@5.2.0)
       adhocracy4:
         specifier: github:liqd/adhocracy4#main
         version: https://codeload.github.com/liqd/adhocracy4/tar.gz/e391addec7dbac085ab37b9536b386222ccc6178(@types/react@18.3.31)
@@ -2415,6 +2418,11 @@ packages:
   '@uppy/utils@7.2.0':
     resolution: {integrity: sha512-6lC246qszMv6bTyl/+QyHwrudgeguWkA94ME1wHn+a6uRAvmtAEaUManIfGqTJfoKvWAiCJqdJPl5xRJjhAloQ==}
 
+  '@uppy/webcam@5.1.0':
+    resolution: {integrity: sha512-SHI+yiNrD4JrTFhQPyt7Mi9nL5r5YDwyXtYXuSRM3URB0etKes6u02MKY5GEn2LEpCSqSceXUi84Prig7UWYIw==}
+    peerDependencies:
+      '@uppy/core': ^5.2.0
+
   '@webassemblyjs/ast@1.14.1':
     resolution: {integrity: sha512-nuBEDgQfm1ccRp/8bCQrx1frohyufl4JlbMMZ4P1wpeOfDhF6FQkxZJ1b/e+PLwr6X1Nhw6OLme5usuBWYBvuQ==}
 
@@ -3028,7 +3036,7 @@ packages:
     engines: {node: '>= 0.4'}
 
   datepicker@https://codeload.github.com/liqd/datePicker/tar.gz/88316e26cf0ebc59a8959dd11e58630820ff8387:
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/liqd/datePicker/tar.gz/88316e26cf0ebc59a8959dd11e58630820ff8387}
+    resolution: {gitHosted: true, integrity: sha512-/c+Gu/5YVxfYx1YQ9JS2vMFBxrhtOAMyTvQm3wuJ8A2PrUbcMs93NK4w+Px5DfyHnRAyYyRU3Rx1IidgV+EGSQ==, tarball: https://codeload.github.com/liqd/datePicker/tar.gz/88316e26cf0ebc59a8959dd11e58630820ff8387}
     version: 1.0.0
 
   debug@4.4.3:
@@ -3116,7 +3124,7 @@ packages:
     engines: {node: '>=12'}
 
   dsgvo-video-embed@https://codeload.github.com/liqd/dsgvo-video-embed/tar.gz/a237d91920aaca2a96c8e336b8729765d3131bd2:
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/liqd/dsgvo-video-embed/tar.gz/a237d91920aaca2a96c8e336b8729765d3131bd2}
+    resolution: {gitHosted: true, integrity: sha512-3jh/pUiInXBAvzIoqkpZWXy58eLlMKb13Jy/NVZ0lp8CDGc4QC4DLgM6Gu1Sf3RiO6hpr7rjdjM5nnB9S+2GNQ==, tarball: https://codeload.github.com/liqd/dsgvo-video-embed/tar.gz/a237d91920aaca2a96c8e336b8729765d3131bd2}
     version: 1.0.0
 
   dunder-proto@1.0.1:
@@ -3944,6 +3952,9 @@ packages:
     resolution: {integrity: sha512-1Qed0/Hr2m+YqxnM09CjA2d/i6YZNfF6R2oRAOj36eUdS6qIV/huPJNSEpKbupewFs+ZsJlxsjjPbc0/afW6Lw==}
     engines: {node: '>= 0.4'}
 
+  is-mobile@4.0.0:
+    resolution: {integrity: sha512-mlcHZA84t1qLSuWkt2v0I2l61PYdyQDt4aG1mLIXF5FDMm4+haBCxCPYSr/uwqQNRk1MiTizn0ypEuRAOLRAew==}
+
   is-negative-zero@2.0.3:
     resolution: {integrity: sha512-5KoIu2Ngpyek75jXodFvnafB6DJgr3u8uuK0LEZJjrU19DrMD3EVERaR8sjz8CCGgpZvxPl9SuE1GMVPFHx1mw==}
     engines: {node: '>= 0.4'}
@@ -4329,7 +4340,7 @@ packages:
     resolution: {integrity: sha512-rsQ6saQO5ST5Aj6XRFylr5zvarWgzWnrg46zQ1MEOEIHsppdC/8hnN8qMoFvACsPvTioAuysya/TVtog15tyAQ==}
 
   leaflet.markercluster@https://codeload.github.com/liqd/Leaflet.markercluster/tar.gz/88919e61849389e92559b03380674eca63df193d:
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/liqd/Leaflet.markercluster/tar.gz/88919e61849389e92559b03380674eca63df193d}
+    resolution: {gitHosted: true, integrity: sha512-wXPEBVhHBr4JBdwCYFGpZ9z7gP9sWJndZ1jSbAgbL9IdkwKBljhdLzuBXJ4DRyUJqh9O1m3w3xZOatuzr7XAAw==, tarball: https://codeload.github.com/liqd/Leaflet.markercluster/tar.gz/88919e61849389e92559b03380674eca63df193d}
     version: 1.5.4
     peerDependencies:
       leaflet: ^1.3.1
@@ -5358,7 +5369,7 @@ packages:
     engines: {node: '>=18'}
 
   slick-carousel@https://codeload.github.com/liqd/slick/tar.gz/38a33e1d054052fd2ad12d4b1b5e70c315fd33a5:
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/liqd/slick/tar.gz/38a33e1d054052fd2ad12d4b1b5e70c315fd33a5}
+    resolution: {gitHosted: true, integrity: sha512-B75gXbeIddTsC0EXGTbLG+z0G9ozMxOW+yGT5AfA66eutU8EdNhu5rU1ZKpdhJ9WINdwx1f871ZPb2un2Fd/yA==, tarball: https://codeload.github.com/liqd/slick/tar.gz/38a33e1d054052fd2ad12d4b1b5e70c315fd33a5}
     version: 1.9.0
     peerDependencies:
       jquery: '>=1.8.0'
@@ -9557,6 +9568,15 @@ snapshots:
     transitivePeerDependencies:
       - preact-render-to-string
 
+  '@uppy/webcam@5.1.0(@uppy/core@5.2.0)':
+    dependencies:
+      '@uppy/core': 5.2.0
+      '@uppy/utils': 7.2.0
+      is-mobile: 4.0.0
+      preact: 10.29.7
+    transitivePeerDependencies:
+      - preact-render-to-string
+
   '@webassemblyjs/ast@1.14.1':
     dependencies:
       '@webassemblyjs/helper-numbers': 1.13.2
@@ -11269,6 +11289,8 @@ snapshots:
   is-hexadecimal@2.0.1: {}
 
   is-map@2.0.3: {}
+
+  is-mobile@4.0.0: {}
 
   is-negative-zero@2.0.3: {}
 
