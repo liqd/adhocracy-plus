@@ -44,3 +44,21 @@ def test_normal_user_cannot_view_dashboard_moderation(client, user, organisation
     )
     response = client.get(url)
     assert response.status_code == 403
+
+
+@pytest.mark.django_db
+def test_moderator_of_other_organisation_cannot_view_dashboard_moderation(
+    client, project_factory, organisation_factory
+):
+    project = project_factory()
+    moderator = project.moderators.first()
+    other_organisation = organisation_factory()
+    client.login(username=moderator.email, password="password")
+
+    url = reverse(
+        "a4dashboard:project-moderation",
+        kwargs={"organisation_slug": other_organisation.slug},
+    )
+    response = client.get(url)
+
+    assert response.status_code == 403

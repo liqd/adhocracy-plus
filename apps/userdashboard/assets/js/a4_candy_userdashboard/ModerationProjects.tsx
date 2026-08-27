@@ -189,8 +189,13 @@ export default class ModerationProjects extends Component<ModerationProjectsProp
                   type="search"
                   className="form-control"
                   placeholder={searchPlaceholder}
+                  aria-label={searchPlaceholder}
                   value={this.state.searchQuery}
                   onChange={(e) => {
+                    // Stop the native change event from reaching the
+                    // document-level listener in unload_warning.js, which
+                    // would arm the unsaved-changes warning for these
+                    // read-only controls.
                     e.nativeEvent.stopImmediatePropagation()
                     const searchQuery = e.target.value
                     this.setUrlParam('search', searchQuery)
@@ -207,14 +212,18 @@ export default class ModerationProjects extends Component<ModerationProjectsProp
                   className="form-select w-auto"
                   value={this.state.sortBy}
                   onChange={(e) => {
+                    // Stop the native change event from reaching the
+                    // document-level listener in unload_warning.js, which
+                    // would arm the unsaved-changes warning for these
+                    // read-only controls.
                     e.nativeEvent.stopImmediatePropagation()
                     const sortBy = e.target.value
                     this.setUrlParam('sort', sortBy)
                     this.setState({ sortBy })
                   }}
                 >
-                  <option value="recent">{sortMostRecent}</option>
                   <option value="reports">{sortMostReported}</option>
+                  <option value="recent">{sortMostRecent}</option>
                   <option value="name">{sortAlphabetical}</option>
                 </select>
               </div>

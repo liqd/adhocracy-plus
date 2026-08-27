@@ -356,7 +356,9 @@ class DashboardModerationView(
     generic.TemplateView,
 ):
     template_name = "a4_candy_dashboard/moderation_dashboard.html"
-    permission_required = "a4_candy_userdashboard.view_moderation_dashboard"
+    permission_required = (
+        "a4_candy_userdashboard.view_moderation_dashboard_organisation"
+    )
     menu_item = "project"
 
     def get_permission_object(self):

@@ -16,7 +16,7 @@
                         {% translate "Projects" %}
                     </a>
                 </li>
-                {% has_perm 'a4_candy_userdashboard.view_moderation_dashboard' request.user as user_is_moderator %}
+                {% has_perm 'a4_candy_userdashboard.view_moderation_dashboard_organisation' request.user view.organisation as user_is_moderator %}
                 {% if user_is_moderator %}
                 <li class="dashboard-nav__page">
                     <a href="{% url 'a4dashboard:project-moderation' organisation_slug=view.organisation.slug %}"
