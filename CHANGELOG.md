@@ -9,6 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- Tests: e2e coverage for the React/vanilla JS widgets: poll multi-question funnel and review step, moderation actions (block, highlight, feedback), interactive events present screen, organisation project search, project follow, and document chapter editing; the suite standardizes on Playwright's `expect()` assertions
 - polls: add option to hide preliminary results until phase end
 - Management command ``send_newsletter_settings_notice`` plus an English/German
   notice email to inform users whose newsletter opt-in may have been reset by
@@ -18,11 +19,14 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   ``--dry-run``, ``--log-file`` and ``--to`` (single test copy to a chosen
   account)
 - Organisation page: follow button to get notified about new projects
+- Brainstorming: Add Custom fields on the idea submission form. (incl. Export)
 - Notifications: organisation followers receive email and in-app notification when a project is published
 - Project detail and module pages: alert for guest users on registered-users-only projects to register or log in with a personal account
 - Guest logout confirmation: dedicated copy when guests end their session to log in with a personal account from the project banner
 - apps/exports: include Image export mixin for ideas and proposals
 - Dashboard: add moderation view to projects list
+- 429 error page template so the allauth rate limiter can render a user-facing
+  "Too Many Requests" response instead of failing with ``TemplateDoesNotExist``
 
 ### Changed
 
@@ -47,6 +51,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   ``eslint-config-standard-jsx``, and ``eslint-plugin-import``; add
   ``@eslint/js``, ``eslint-plugin-import-x``, ``eslint-plugin-n``,
   ``eslint-plugin-react-hooks``, and ``globals``
+- Frontend: migrate the React components and their supporting helpers (polls,
+  documents, interactive events, user dashboard moderation, custom-fields
+  management, organisations language choice, project detail follow) to
+  TypeScript (``.ts``/``.tsx``). Added ``typescript``, ``@babel/preset-typescript``
+  and ``typescript-eslint``; added a type-check script (``pnpm typecheck``) and
+  ambient type declarations for the untyped ``adhocracy4``/``django`` imports
 
 ### Fixed
 

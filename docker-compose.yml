@@ -46,10 +46,11 @@ services:
       LOAD_USER_FIXTURES: "0"
     volumes:
       - media_data:/app/media
+      - aplus_config:/data:ro
     healthcheck:
       test: ["CMD-SHELL", "python manage.py migrate --check"]
       interval: 5s
-      timeout: 10s
+      timeout: 120s
       retries: 60
       start_period: 300s
     command: ["python", "manage.py", "runserver", "0.0.0.0:8004"]
@@ -68,6 +69,7 @@ services:
       LOAD_USER_FIXTURES: "0"
     volumes:
       - media_data:/app/media
+      - aplus_config:/data:ro
     command:
       ["celery", "--app", "adhocracy-plus", "worker", "--loglevel", "INFO"]
 
@@ -85,9 +87,12 @@ services:
       LOAD_USER_FIXTURES: "0"
     volumes:
       - media_data:/app/media
+      - aplus_config:/data:ro
     command:
       ["celery", "--app", "adhocracy-plus", "beat", "--loglevel", "INFO"]
 
 volumes:
   postgres_data:
   media_data:
+  aplus_config:
+    name: adhocracy-plus-config

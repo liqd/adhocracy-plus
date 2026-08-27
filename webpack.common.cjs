@@ -41,8 +41,14 @@ module.exports = {
     },
     documents: {
       import: [
-        './apps/documents/assets/react_documents_init.jsx'
+        './apps/documents/assets/react_documents_init.tsx'
       ]
+    },
+    custom_fields_management: {
+      import: [
+        './apps/customfields/assets/react_custom_fields_management_init.tsx'
+      ],
+      dependOn: 'adhocracy4'
     },
     dsgvo_video_embed: {
       import: [
@@ -53,12 +59,12 @@ module.exports = {
     },
     interactiveevents: {
       import: [
-        './apps/interactiveevents/assets/react_interactiveevents_init.jsx'
+        './apps/interactiveevents/assets/react_interactiveevents_init.tsx'
       ]
     },
     interactiveevents_presents: {
       import: [
-        './apps/interactiveevents/assets/react_interactiveevents_present_init.jsx'
+        './apps/interactiveevents/assets/react_interactiveevents_present_init.tsx'
       ]
     },
     init_dashboard: {
@@ -73,12 +79,12 @@ module.exports = {
     },
     moderation_projects: {
       import: [
-        './apps/userdashboard/assets/js/a4_candy_userdashboard/react_moderation_projects.jsx'
+        './apps/userdashboard/assets/js/a4_candy_userdashboard/react_moderation_projects.tsx'
       ]
     },
     moderation_notification_list: {
       import: [
-        './apps/userdashboard/assets/js/a4_candy_userdashboard/react_moderation_notification_list.jsx'
+        './apps/userdashboard/assets/js/a4_candy_userdashboard/react_moderation_notification_list.tsx'
       ]
     },
     unload_warning: {
@@ -149,7 +155,7 @@ module.exports = {
     },
     polls: {
       import: [
-        './apps/polls/assets/react_polls.jsx'
+        './apps/polls/assets/react_polls.tsx'
       ],
       dependOn: 'adhocracy4'
     },
@@ -177,8 +183,17 @@ module.exports = {
   },
   module: {
     rules: [
+      // The repository and the adhocracy4 package are "type": "module".
+      // Their sources are transpiled to CommonJS by babel (see plugin below),
+      // so let webpack parse all JS as CommonJS instead of strict ESM.
+      // Otherwise the generated `require`/`exports` identifiers are not
+      // rewritten and break at runtime.
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx|ts|tsx)$/,
+        type: 'javascript/auto'
+      },
+      {
+        test: /\.(js|jsx|ts|tsx)$/,
         // package.json has "type": "module", which classifies .js files as
         // javascript/esm. In esm modules webpack does not process CommonJS
         // require() calls (e.g. CSS imports converted by the babel
@@ -192,7 +207,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),
+            presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'].map(require.resolve),
             plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-transform-modules-commonjs']
           }
         }
@@ -245,7 +260,7 @@ module.exports = {
       path: require.resolve('path-browserify')
     },
     // attempt to resolve these extensions in this order.
-    extensions: ['.js', '.jsx', '.scss', '.css'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss', '.css'],
     // create aliases to import or require certain modules more easily, $ signifys exact match
     alias: {
       bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',
@@ -263,7 +278,7 @@ module.exports = {
     // override adhocracy4 QuestionImageUploadButton with Uppy-based version
     new webpack.NormalModuleReplacementPlugin(
       /QuestionImageUploadButton$/,
-      path.resolve('./apps/polls/assets/react_polls/components/UppyQuestionImageUpload.jsx')
+      path.resolve('./apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx')
     ),
     // automatically load modules instead of import or require them everywhere.
     new webpack.ProvidePlugin({

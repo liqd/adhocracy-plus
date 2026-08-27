@@ -19,8 +19,8 @@ import {
   widget as ReactWidget
 } from 'adhocracy4'
 
-import { renderLanguageChoice } from '../../../apps/organisations/assets/react_language_choice.jsx'
-import { renderProjectDetailFollow } from '../../../apps/projects/assets/js/project_detail_follow.jsx'
+import { renderLanguageChoice } from '../../../apps/organisations/assets/react_language_choice.tsx'
+import { renderProjectDetailFollow } from '../../../apps/projects/assets/js/project_detail_follow.tsx'
 import { initGuestProjectAlerts } from '../../../apps/projects/assets/js/guest_project_alert.js'
 import { initProjectDetailParticipationView } from '../../../apps/projects/assets/js/project_detail_participation_view.js'
 

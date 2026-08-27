@@ -28,6 +28,7 @@ from adhocracy4.reports.api import ReportViewSet
 from apps.account.api import AccountViewSet
 from apps.contrib import views as contrib_views
 from apps.contrib.sitemaps import static_sitemap_index
+from apps.customfields.api import CustomFieldSettingsViewSet
 from apps.documents.api import DocumentViewSet
 from apps.ideas.api import IdeaViewSet
 from apps.interactiveevents.api import LikesViewSet
@@ -53,6 +54,7 @@ router = routers.DefaultRouter()
 router.register(r"follows", FollowViewSet, basename="follows")
 router.register(r"reports", ReportViewSet, basename="reports")
 router.register(r"polls", PollViewSet, basename="polls")
+router.register(r"custom-fields", CustomFieldSettingsViewSet, basename="custom-fields")
 router.register(r"app-projects", AppProjectsViewSet, basename="app-projects")
 router.register(r"app-modules", AppModuleViewSet, basename="app-modules")
 router.register(r"users", UserViewSet, basename="users")

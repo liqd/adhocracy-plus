@@ -14,11 +14,14 @@ const config = {
   },
   testMatch: [
     '**/*.jest.js',
-    '**/*.jest.jsx'
+    '**/*.jest.jsx',
+    '**/*.jest.ts',
+    '**/*.jest.tsx'
   ],
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.jsx',
+    '**/*.tsx',
     '!**/coverage/**',
     '!**/node_modules/**',
     '!**/babel.config.cjs',

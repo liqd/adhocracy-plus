@@ -1,3 +1,7 @@
+// Colour design tokens (push through the project variables)
+@import "../scss/variables";
+
+// Image upload field on forms
 .uppy-image-upload-field {
   .upload-wrapper__fields {
     .form-control-file,
@@ -15,3 +19,291 @@
     flex-shrink: 0;
   }
 }
+
+// Image upload dialog
+// Drop zone: Figma 6965:32660, editor: Figma 6965:32705
+// These selectors target the third-party Uppy library and use design-token
+// colors, so they deliberately don't follow the project's own BEM/color rules.
+/* stylelint-disable selector-class-pattern, scale-unlimited/declaration-strict-value, font-family-no-missing-generic-family-keyword, no-descending-specificity */
+.uppy-Dashboard--modal {
+  font-family: "SourceSansPro", sans-serif;
+
+  // Modal shell
+  .uppy-Dashboard-inner {
+    max-width: calc(100% - 30px);
+    max-height: calc(100% - 30px);
+    background-color: $white;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  .uppy-Dashboard-innerWrap {
+    background-color: $white;
+    border-radius: 2px;
+  }
+
+  // Bottom action bar (cancel, file name, save) - Figma 6965:32727
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar {
+    position: absolute;
+    inset: auto 0 0;
+    height: auto;
+    min-height: 68px;
+    padding: 10px 20px;
+    background-color: $white;
+    border: none;
+    border-top: 1px solid #f2f2f2;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.06);
+    z-index: 1005;
+  }
+
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-title {
+    font-family: "SourceSansPro", sans-serif;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    max-width: 300px;
+    margin: auto;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 68px;
+    color: $text-color;
+    white-space: nowrap;
+    text-align: center;
+    text-overflow: ellipsis;
+  }
+
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-back,
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-save {
+    font-family: "SourceSansPro", sans-serif;
+    height: 48px;
+    margin: 0;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    border-radius: 0;
+  }
+
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-back {
+    color: $text-color;
+    background-color: $white;
+    border: 1px solid $text-color;
+
+    &:hover {
+      color: $text-color;
+      background-color: #f5f5f5;
+    }
+  }
+
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-save {
+    color: $white;
+    background-color: $text-color;
+    border: 1px solid $text-color;
+
+    &:hover {
+      color: $white;
+      background-color: #000;
+    }
+  }
+
+  // Keep the editor image clear of the bottom bar
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-panelBody {
+    padding-bottom: 78px;
+  }
+
+  // FileCard (opened from the file list) - keep it consistent with the redesign
+  .uppy-Dashboard-FileCard .uppy-DashboardContent-bar {
+    background-color: $white;
+    border-bottom: 1px solid #f2f2f2;
+  }
+
+  .uppy-Dashboard-FileCard .uppy-DashboardContent-back,
+  .uppy-Dashboard-FileCard .uppy-Dashboard-FileCard-actionsBtn {
+    font-family: "SourceSansPro", sans-serif;
+    color: $text-color;
+  }
+
+  .uppy-Dashboard-FileCard .uppy-Dashboard-FileCard-actionsBtn.uppy-c-btn-primary {
+    background-color: $text-color;
+    border-color: $text-color;
+  }
+
+  .uppy-Dashboard-FileCard .uppy-Dashboard-FileCard-actionsBtn.uppy-c-btn-link {
+    background-color: transparent;
+    border: 1px solid $text-color;
+  }
+
+  // Drop zone (empty state)
+  .uppy-Dashboard-AddFiles {
+    justify-content: flex-start;
+    height: 100%;
+    margin: 0;
+    padding-top: 91px;
+    border: none;
+    background-color: $white;
+  }
+
+  .uppy-Dashboard-AddFiles-title {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0 32px;
+    font-family: "SourceSansPro", sans-serif;
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28.8px;
+    text-align: center;
+  }
+
+  .uppy-Dashboard-browse {
+    padding: 0;
+    color: $brand-primary;
+    text-decoration: underline;
+    border: 0;
+
+    &:hover,
+    &:focus {
+      color: #144a92;
+      text-decoration: underline;
+    }
+  }
+
+  .uppy-Dashboard-AddFiles-info {
+    position: static;
+    margin-top: auto;
+    padding: 0 0 32px;
+  }
+
+  .uppy-Dashboard-note {
+    max-width: none;
+    margin: 0 auto;
+    padding: 0 32px;
+    font-family: "SourceSansPro", sans-serif;
+    color: $grey-500;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  // Image editor
+  .uppy-ImageCropper {
+    position: relative;
+  }
+
+  .uppy-ImageCropper-container {
+    flex-grow: 0;
+    align-self: flex-start;
+    width: 100%;
+  }
+
+  // Keep the image within the padded content area so the crop handles are not
+  // hidden under the bottom action bar (panel content is 446px - 78px = 368px).
+  .uppy-ImageCropper-image {
+    max-height: 356px;
+  }
+
+  // Toolbar with revert, rotate, zoom in, zoom out.
+  // The :nth-child glyph mapping below assumes exactly these four buttons, in
+  // this order. All nine ImageEditor action flags must stay pinned (revert,
+  // rotate, zoomIn, zoomOut on; flip, granularRotate and the crop presets off)
+  // in both uppy_image_upload.js and UppyQuestionImageUpload.jsx - enabling any
+  // extra action shifts the glyphs onto the wrong buttons.
+  .uppy-ImageCropper-controls {
+    top: 44px;
+    bottom: auto;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .uppy-ImageCropper-controls button {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    color: #000;
+    background-color: $white;
+    border: 1px solid #DFDEDE;
+    border-radius: 2px;
+    box-sizing: border-box;
+
+    + button {
+      margin-left: -1px;
+    }
+
+    &:hover {
+      background-color: #f4f3f3;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $brand-primary;
+      outline-offset: 1px;
+    }
+
+    svg {
+      display: none;
+    }
+
+    &:before {
+      display: block;
+      height: 14px;
+      font-family: "Font Awesome 7 Free";
+      font-weight: 900;
+      font-size: 14px;
+      line-height: 14px;
+      text-align: center;
+    }
+
+    // fa-clock-rotate-left, fa-rotate-right,
+    // fa-magnifying-glass-plus, fa-magnifying-glass-minus
+    &:nth-child(1):before {
+      content: "\f1da";
+    }
+
+    &:nth-child(2):before {
+      content: "\f2f9";
+    }
+
+    &:nth-child(3):before {
+      content: "\f00e";
+    }
+
+    &:nth-child(4):before {
+      content: "\f010";
+    }
+  }
+
+  // Crop frame
+  .uppy-ImageCropper .cropper-view-box {
+    background: none;
+    outline: 1px solid $brand-primary;
+  }
+
+  .uppy-ImageCropper .cropper-line {
+    opacity: 0;
+  }
+
+  .uppy-ImageCropper .cropper-point {
+    width: 6px;
+    height: 6px;
+    background-color: $brand-primary;
+    opacity: 1;
+  }
+
+  .uppy-ImageCropper .cropper-modal {
+    background-color: $white;
+    opacity: 0.9;
+  }
+}
+
+@media (width >= 820px) {
+  .uppy-Dashboard--modal .uppy-Dashboard-inner {
+    width: 636px;
+    height: 446px;
+  }
+}
+/* stylelint-enable selector-class-pattern, scale-unlimited/declaration-strict-value, font-family-no-missing-generic-family-keyword, no-descending-specificity */
