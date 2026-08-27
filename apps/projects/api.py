@@ -1,5 +1,7 @@
+import django_filters
 from django.db.models import Q
 from django.utils import timezone
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions
 from rest_framework import viewsets
 
@@ -39,9 +41,19 @@ class AppModuleViewSet(viewsets.ReadOnlyModelViewSet):
         return Module.objects.filter(is_draft=False, project__is_app_accessible=True)
 
 
+class ModerationProjectFilterSet(django_filters.FilterSet):
+    organisation = django_filters.CharFilter(field_name="organisation__slug")
+
+    class Meta:
+        model = Project
+        fields = ["organisation"]
+
+
 class ModerationProjectsViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ModerationProjectSerializer
     permission_classes = (permissions.IsAuthenticated,)
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = ModerationProjectFilterSet
 
     def get_queryset(self):
         return self.request.user.project_moderator.all().select_related("organisation")

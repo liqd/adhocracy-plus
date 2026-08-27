@@ -66,5 +66,7 @@ def test_moderation_dashboard_context_data(client, project_factory):
     )
     assert "moderation_comments_api_url" in context_data
     assert moderation_comments_api_url == context_data["moderation_comments_api_url"]
+    assert "back_url" in context_data
+    assert context_data["back_url"] == reverse("userdashboard-moderation")
     assert context_data["view"].project == project
     assert context_data["view"].project_url == project.get_absolute_url()

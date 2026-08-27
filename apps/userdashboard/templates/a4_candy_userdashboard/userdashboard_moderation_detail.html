@@ -4,10 +4,10 @@
 {% block extra_js %}
   {{ block.super }}
     <script type="text/javascript" src="{% static 'moderation_notification_list.js' %}"></script>
-{% endblock %}
+{% endblock extra_js %}
 
 {% block dashboard_content %}
-<a class="btn btn--none px-0" href="{% url 'userdashboard-moderation' %}">
+<a class="btn btn--none px-0" href="{{ back_url }}">
     <i class="fa fa-chevron-left" aria-hidden="true"></i>
 
     <span>{% trans 'Back' %}</span>
@@ -18,4 +18,4 @@
      data-organisation ="{{ view.project.organisation }}"
      data-project-url ="{{ view.project_url }}" >
 </div>
-{% endblock %}
+{% endblock dashboard_content %}

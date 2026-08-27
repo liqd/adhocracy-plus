@@ -19,6 +19,7 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import ProjectMixin
+from adhocracy4.rules import mixins as rules_mixins
 from apps.projects.mixins import ProjectDetailDisplayMixin
 
 from .forms import DashboardProjectCreateForm
@@ -347,3 +348,24 @@ class ProjectCreateView(
         )
 
         return response
+
+
+class DashboardModerationView(
+    mixins.DashboardBaseMixin,
+    rules_mixins.PermissionRequiredMixin,
+    generic.TemplateView,
+):
+    template_name = "a4_candy_dashboard/moderation_dashboard.html"
+    permission_required = "a4_candy_userdashboard.view_moderation_dashboard"
+    menu_item = "project"
+
+    def get_permission_object(self):
+        return self.organisation
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["project_api_url"] = (
+            reverse("moderationprojects-list")
+            + f"?organisation={self.organisation.slug}"
+        )
+        return context
