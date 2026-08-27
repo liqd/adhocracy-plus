@@ -160,9 +160,6 @@ export default class ModerationProjects extends Component<ModerationProjectsProp
     const privateText = django.gettext('private')
     const semiPrivateText = django.gettext('semi-public')
     const hasUnReadComments = django.gettext('Notifications has unread comments')
-    const overviewText = django.gettext('Moderation dashboard overview')
-    const projectText = django.gettext('Projects')
-    const projectSrText = django.gettext('Projects I am moderating')
     const searchPlaceholder = django.gettext('Search')
     const sortLabel = django.gettext('Sort')
     const sortMostRecent = django.gettext('Most Recent')
@@ -178,10 +175,7 @@ export default class ModerationProjects extends Component<ModerationProjectsProp
 
     return (
       <>
-        <h1 className="visually-hidden">
-          {overviewText}
-        </h1>
-        <section className="row" aria-labelledby="sr-following-header">
+        <section className="row">
           <div className="col-12">
             <div className="row mb-3">
               <div className="col-12 col-md-6 mb-2 mb-md-0">
@@ -228,11 +222,6 @@ export default class ModerationProjects extends Component<ModerationProjectsProp
                 </select>
               </div>
             </div>
-
-            <h2 className="mt-sm-0">
-              <span id="sr-following-header" className="visually-hidden">{projectSrText}</span>
-              {projectText}
-            </h2>
 
             {items.length === 0
               ? <p>{emptyText}</p>
