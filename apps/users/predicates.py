@@ -6,3 +6,10 @@ from apps.projects.models import Project
 @rules.predicate
 def is_moderator(user):
     return Project.objects.filter(moderators__id=user.id).exists()
+
+
+@rules.predicate
+def is_moderator_in_organisation(user, organisation):
+    return Project.objects.filter(
+        moderators__id=user.id, organisation=organisation
+    ).exists()

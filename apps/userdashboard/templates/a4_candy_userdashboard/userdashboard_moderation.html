@@ -4,10 +4,11 @@
 {% block extra_js %}
   {{ block.super }}
     <script type="text/javascript" src="{% static 'moderation_projects.js' %}"></script>
-{% endblock %}
+{% endblock extra_js %}
 
 {% block dashboard_content %}
+<h1>{% trans 'Moderation' %}</h1>
 <div data-aplus-widget="moderation_projects"
      data-project-api-url="{{ project_api_url }}" >
 </div>
-{% endblock %}
+{% endblock dashboard_content %}

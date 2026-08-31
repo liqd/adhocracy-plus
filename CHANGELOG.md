@@ -24,6 +24,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Project detail and module pages: alert for guest users on registered-users-only projects to register or log in with a personal account
 - Guest logout confirmation: dedicated copy when guests end their session to log in with a personal account from the project banner
 - apps/exports: include Image export mixin for ideas and proposals
+- Dashboard: add moderation view to projects list
 - 429 error page template so the allauth rate limiter can render a user-facing
   "Too Many Requests" response instead of failing with ``TemplateDoesNotExist``
 

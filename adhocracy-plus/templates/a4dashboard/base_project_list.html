@@ -16,6 +16,15 @@
                         {% translate "Projects" %}
                     </a>
                 </li>
+                {% has_perm 'a4_candy_userdashboard.view_moderation_dashboard_organisation' request.user view.organisation as user_is_moderator %}
+                {% if user_is_moderator %}
+                <li class="dashboard-nav__page">
+                    <a href="{% url 'a4dashboard:project-moderation' organisation_slug=view.organisation.slug %}"
+                       class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'project-moderation' %}is-active{% endif %}">
+                        {% translate "Moderation" %}
+                    </a>
+                </li>
+                {% endif %}
             </ul>
         </div>
 

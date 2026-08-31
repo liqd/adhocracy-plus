@@ -226,6 +226,7 @@ class ModerationProjectSerializer(serializers.ModelSerializer):
         model = Project
         fields = [
             "title",
+            "created",
             "organisation",
             "tile_image",
             "tile_image_alt_text",

@@ -58,6 +58,11 @@ urlpatterns = [
         organisation_views.DashboardCommunicationContentCreateView.as_view(),
         name="communication-content-create",
     ),
+    path(
+        "projects/moderation/",
+        views.DashboardModerationView.as_view(),
+        name="project-moderation",
+    ),
 ]
 
 # a4 dashboard urls without organisation slug

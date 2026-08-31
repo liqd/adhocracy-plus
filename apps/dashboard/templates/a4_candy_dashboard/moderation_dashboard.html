@@ -1,0 +1,20 @@
+{% extends "a4dashboard/base_project_list.html" %}
+{% load i18n static %}
+
+{% block title %}{% translate "Moderation" %} — {{ block.super }}{% endblock title %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'moderation_projects.js' %}"></script>
+{% endblock extra_js %}
+
+{% block project_list %}
+<div class="lr-bar lr-bar--with-margin">
+    <h1 class="lr-bar__left">
+        {% translate "Moderation" %}
+    </h1>
+</div>
+<div data-aplus-widget="moderation_projects"
+     data-project-api-url="{{ project_api_url }}">
+</div>
+{% endblock project_list %}
