@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     "apps.ideas",
     "apps.mapideas",
     "apps.polls",
+    "apps.ranked_choice",
     "apps.topicprio",
     "apps.debate",
     "apps.landingpage",
@@ -591,6 +592,7 @@ A4_BLUEPRINT_TYPES = [
     ("IE", _("interactive event")),
     ("TP", _("prioritization")),
     ("DB", _("debate")),
+    ("RC", _("ranked choice")),
 ]
 
 A4_MAP_BASEURL = "https://{s}.tile.openstreetmap.org/"
