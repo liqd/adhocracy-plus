@@ -10,23 +10,6 @@
             </div>
         {% endblock %}
 
-        {% if results_visible %}
-            <div class="ranked-choice-results u-mb-4">
-                <h2>{% translate "Ranked choice results" %}</h2>
-                {% if winners %}
-                    <ol>
-                        {% for winner in winners %}
-                            <li>
-                                <span class="ranked-choice-results__place">{{ winner.place }}.</span>
-                                <a href="{{ winner.idea.get_absolute_url }}">{{ winner.idea.name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ol>
-                {% else %}
-                    <p>{% translate "There are not enough ballots to determine a result yet." %}</p>
-                {% endif %}
-            </div>
-        {% endif %}
     </div>
 </div>
 {% endblock %}

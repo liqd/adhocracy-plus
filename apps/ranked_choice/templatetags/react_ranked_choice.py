@@ -12,6 +12,12 @@ def react_ranked_choice(context):
     ideas = context.get("ideas") or []
     my_ballot = context.get("my_ballot") or []
     user_can_rank = context.get("user_can_rank") or False
+    results_visible = bool(context.get("results_visible"))
+    winners = context.get("winners") or []
+    results = [
+        {"place": winner["place"], "pk": winner["idea"].pk, "name": winner["idea"].name}
+        for winner in winners
+    ]
     request = context.get("request")
     user_authenticated = bool(
         request and request.user and request.user.is_authenticated
@@ -23,6 +29,8 @@ def react_ranked_choice(context):
         "myBallot": list(my_ballot),
         "userCanRank": user_can_rank,
         "userAuthenticated": user_authenticated,
+        "resultsVisible": results_visible,
+        "results": results,
     }
 
     return format_html(

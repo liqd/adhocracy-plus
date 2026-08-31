@@ -1,6 +1,8 @@
 from django.utils import timezone
 from django.views import generic
 
+from adhocracy4.modules import predicates as module_predicates
+from adhocracy4.phases import predicates as phase_predicates
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
@@ -39,13 +41,26 @@ class RankedChoiceDetailView(
         context["ranked_choice"] = self.ranked_choice
         context["ideas"] = self.ideas
         context["my_ballot"] = self._my_ballot()
-        context["user_can_rank"] = self.request.user.has_perm(
-            "a4_candy_ranked_choice.rank_idea", self.module
-        )
+        context["user_can_rank"] = self._user_can_rank()
         results_visible = self._results_visible()
         context["results_visible"] = results_visible
         context["winners"] = self._winners() if results_visible else []
         return context
+
+    def _user_can_rank(self):
+        """Ranking is only possible while the rank phase is active.
+
+        Computed explicitly instead of via has_perm because superusers
+        bypass the rules framework through ModelBackend.
+        """
+        user = self.request.user
+        if not user.is_authenticated:
+            return False
+        if not phase_predicates.has_feature_active(self.module, Idea, "rank"):
+            return False
+        return module_predicates.is_allowed_moderate_project(
+            user, self.module
+        ) or module_predicates.is_context_member(user, self.module)
 
     def _my_ballot(self):
         user = self.request.user
