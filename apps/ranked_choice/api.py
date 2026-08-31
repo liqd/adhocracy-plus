@@ -1,9 +1,14 @@
+from django.utils.translation import gettext as _
 from rest_framework import mixins
 from rest_framework import viewsets
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 
 from adhocracy4.api.mixins import ModuleMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
+from adhocracy4.phases import predicates as phase_predicates
+
+from apps.ideas.models import Idea
 
 from .models import RankedBallot
 from .serializers import RankedBallotSerializer
@@ -38,6 +43,10 @@ class RankedBallotViewSet(
         )
 
     def create(self, request, *args, **kwargs):
+        if not phase_predicates.has_feature_active(self.module, Idea, "rank"):
+            # Superusers bypass the rules framework via ModelBackend, so the
+            # active-phase check is enforced here explicitly.
+            raise PermissionDenied(_("The ranking phase is over."))
         # Upsert: a user can only ever have one ballot per module.
         RankedBallot.objects.filter(module=self.module, creator=request.user).delete()
         serializer = self.get_serializer(data=request.data)

@@ -11,6 +11,14 @@ type RankedChoiceWidgetProps = {
   myBallot: number[]
   userCanRank: boolean
   userAuthenticated: boolean
+  resultsVisible: boolean
+  results: ResultItem[]
+}
+
+type ResultItem = {
+  place: number
+  pk: number
+  name: string
 }
 
 function getCsrfToken (): string {
@@ -32,7 +40,7 @@ async function submitBallot (moduleId: number, ranks: number[]): Promise<boolean
 }
 
 export default function RankedChoiceWidget (props: RankedChoiceWidgetProps) {
-  const { moduleId, ideas, myBallot, userCanRank, userAuthenticated } = props
+  const { moduleId, ideas, myBallot, userCanRank, userAuthenticated, resultsVisible, results } = props
   const [order, setOrder] = useState<number[]>(() => {
     if (myBallot && myBallot.length > 0) {
       return myBallot
@@ -78,27 +86,15 @@ export default function RankedChoiceWidget (props: RankedChoiceWidgetProps) {
   }
 
   if (!userCanRank) {
-    if (!userAuthenticated) {
-      return <p className="ranked-choice__login-note">Log in or register to rank the ideas.</p>
-    }
-    const savedBallot = myBallot.length > 0 ? myBallot : null
     return (
-      <div className="ranked-choice ranked-choice--closed">
-        <h2 className="ranked-choice__title">Rank the ideas</h2>
-        <p className="ranked-choice__hint">The ranking phase is over. The order can no longer be changed.</p>
-        {savedBallot ? (
-          <ol className="ranked-choice__list">
-            {savedBallot.map((pk, index) => (
-              <li className="ranked-choice__item" key={pk}>
-                <span className="ranked-choice__position is-saved">{index + 1}</span>
-                <span className="ranked-choice__name">{nameOf(pk)}</span>
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <p className="ranked-choice__empty">You did not participate in the ranking.</p>
-        )}
-      </div>
+      <RankedChoiceTabs
+        resultsVisible={resultsVisible}
+        results={results}
+        myBallot={myBallot}
+        userAuthenticated={userAuthenticated}
+        nameOf={nameOf}
+        defaultTab={resultsVisible ? "results" : "own"}
+      />
     )
   }
 
@@ -127,6 +123,62 @@ export default function RankedChoiceWidget (props: RankedChoiceWidgetProps) {
         {submitting ? 'Saving...' : 'Save ranking'}
       </button>
       {message && <p className="ranked-choice__message">{message}</p>}
+    </div>
+  )
+}
+
+function RankedChoiceTabs (props: {
+  resultsVisible: boolean
+  results: ResultItem[]
+  myBallot: number[]
+  userAuthenticated: boolean
+  nameOf: (pk: number) => string
+  defaultTab: string
+}) {
+  const { resultsVisible, results, myBallot, userAuthenticated, nameOf, defaultTab } = props
+  const [tab, setTab] = useState(defaultTab)
+  return (
+    <div className="ranked-choice">
+      <div className="ranked-choice__tabs">
+        {resultsVisible ? (
+          <button type="button" className={"ranked-choice__tab" + (tab === "results" ? " is-active" : "")} onClick={() => setTab("results")}>Result</button>
+        ) : null}
+        <button type="button" className={"ranked-choice__tab" + (tab === "own" ? " is-active" : "")} onClick={() => setTab("own")}>My ranking</button>
+      </div>
+      {tab === "results" ? (
+        <div className="ranked-choice__results">
+          {results.length > 0 ? (
+            <ol className="ranked-choice__result-list">
+              {results.map((item) => (
+                <li className="ranked-choice__result-item" key={item.pk}>
+                  <span className={"ranked-choice__place" + (item.place === 1 ? " is-first" : item.place === 2 ? " is-second" : item.place === 3 ? " is-third" : "")}>{item.place}</span>
+                  <span className="ranked-choice__name">{item.name}</span>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p className="ranked-choice__empty">There are not enough ballots to determine a result yet.</p>
+          )}
+        </div>
+      ) : (
+        <div className="ranked-choice__own">
+          {!userAuthenticated ? (
+            <p className="ranked-choice__login-note">Log in to see your ranking.</p>
+          ) : myBallot.length > 0 ? (
+            <ol className="ranked-choice__list">
+              {myBallot.map((pk, index) => (
+                <li className="ranked-choice__item" key={pk}>
+                  <span className="ranked-choice__position is-saved">{index + 1}</span>
+                  <span className="ranked-choice__name">{nameOf(pk)}</span>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p className="ranked-choice__empty">You did not participate in the ranking.</p>
+          )}
+          <p className="ranked-choice__hint">The ranking phase is over. The order can no longer be changed.</p>
+        </div>
+      )}
     </div>
   )
 }
