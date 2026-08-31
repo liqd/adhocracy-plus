@@ -5,6 +5,7 @@ from rules.contrib.views import PermissionRequiredMixin
 from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins
 from adhocracy4.exports import views as a4_export_views
+from apps.customfields.exports import CustomFieldExportMixin
 
 from . import models
 
@@ -24,6 +25,7 @@ class MapIdeaExportView(
     mixins.ItemExportWithModeratorFeedback,
     mixins.ItemExportWithModeratorRemark,
     mixins.CreatorContactExportMixin,
+    CustomFieldExportMixin,
     a4_export_views.BaseItemExportView,
 ):
     model = models.MapIdea
@@ -39,6 +41,9 @@ class MapIdeaExportView(
             .annotate_comment_count()
             .annotate_positive_rating_count()
             .annotate_negative_rating_count()
+            .prefetch_related(
+                "custom_field_answers", "custom_field_answers__field__choices"
+            )
         )
 
     def get_permission_object(self):

@@ -25,9 +25,11 @@ def test_detail_page_shows_custom_field_answers(
     choice_1 = custom_field_choice_factory(field=choice_field, label="Option 1")
 
     idea = idea_factory(module=module)
-    CustomFieldAnswer.objects.create(idea=idea, field=open_field, value="Kreuzberg")
     CustomFieldAnswer.objects.create(
-        idea=idea, field=choice_field, value=str(choice_1.pk)
+        content_object=idea, field=open_field, value="Kreuzberg"
+    )
+    CustomFieldAnswer.objects.create(
+        content_object=idea, field=choice_field, value=str(choice_1.pk)
     )
 
     url = idea.get_absolute_url()
@@ -74,7 +76,7 @@ def test_detail_page_queries_do_not_scale_with_answers(
         for field in fields:
             choice = field.choices.first()
             CustomFieldAnswer.objects.create(
-                idea=idea, field=field, value=str(choice.pk)
+                content_object=idea, field=field, value=str(choice.pk)
             )
 
         url = idea.get_absolute_url()

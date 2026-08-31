@@ -2,15 +2,5 @@
 {% load i18n %}
 
 {% block additional_content %}
-    {% if object.custom_field_answers.all %}
-        <div class="item-detail__custom-fields">
-            <h2 class="item-detail__custom-fields__title">{% translate 'Additional questions' %}</h2>
-            {% for answer in object.custom_field_answers.all %}
-                <div class="item-detail__custom-fields__field">
-                    <p class="item-detail__custom-fields__question">{{ answer.field.label }}</p>
-                    <p class="item-detail__custom-fields__answer">{{ answer.display_value }}</p>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+    {% include 'a4_candy_customfields/custom_field_answers.html' %}
 {% endblock additional_content %}

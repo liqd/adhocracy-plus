@@ -1,15 +1,22 @@
 from django import forms
+from django.contrib.contenttypes.models import ContentType
 
 from .models import CustomFieldAnswer
+from .models import CustomFieldSettings
 from .models import CustomFieldType
 
 
 class CustomFieldsFormMixin(forms.Form):
     """Add the custom fields of the module settings to the form and save the
-    answers on the submitted object."""
+    answers on the submitted object.
+
+    Works for all idea based modules (brainstorming, idea contest, spatial
+    brainstorming and spatial idea contest). The custom field settings are
+    looked up via the module that is passed to the form.
+    """
 
     def __init__(self, *args, **kwargs):
-        self.settings_instance = kwargs.pop("settings_instance", None)
+        self.module = kwargs.get("module")
         super().__init__(*args, **kwargs)
         self.custom_field_list = []
         answers = self.get_existing_answers()
@@ -26,14 +33,20 @@ class CustomFieldsFormMixin(forms.Form):
         return [self[name] for name, _ in self.custom_field_list]
 
     def get_custom_fields(self):
-        if self.settings_instance:
-            return self.settings_instance.fields.prefetch_related("choices")
+        if not self.module:
+            return []
+        settings = CustomFieldSettings.objects.filter(module=self.module).first()
+        if settings:
+            return settings.fields.prefetch_related("choices")
         return []
 
     def get_existing_answers(self):
         instance = getattr(self, "instance", None)
         if instance and instance.pk:
-            answers = CustomFieldAnswer.objects.filter(idea=instance)
+            content_type = ContentType.objects.get_for_model(instance.__class__)
+            answers = CustomFieldAnswer.objects.filter(
+                content_type=content_type, object_id=instance.pk
+            )
             return {answer.field_id: answer.value for answer in answers}
         return None
 
@@ -59,21 +72,27 @@ class CustomFieldsFormMixin(forms.Form):
         )
 
     def save(self, commit=True):
-        idea = super().save(commit=commit)
-        if not idea.pk:
-            return idea
+        obj = super().save(commit=commit)
+        if not obj.pk:
+            return obj
 
+        content_type = ContentType.objects.get_for_model(obj.__class__)
         current = {field.pk for _, field in self.custom_field_list}
-        CustomFieldAnswer.objects.filter(idea=idea).exclude(
-            field_id__in=current
-        ).delete()
+        CustomFieldAnswer.objects.filter(
+            content_type=content_type, object_id=obj.pk
+        ).exclude(field_id__in=current).delete()
 
         for name, field in self.custom_field_list:
             value = self.cleaned_data.get(name)
             if value:
                 CustomFieldAnswer.objects.update_or_create(
-                    idea=idea, field=field, defaults={"value": str(value)}
+                    content_type=content_type,
+                    object_id=obj.pk,
+                    field=field,
+                    defaults={"value": str(value)},
                 )
             else:
-                CustomFieldAnswer.objects.filter(idea=idea, field=field).delete()
-        return idea
+                CustomFieldAnswer.objects.filter(
+                    content_type=content_type, object_id=obj.pk, field=field
+                ).delete()
+        return obj

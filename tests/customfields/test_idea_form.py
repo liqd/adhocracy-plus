@@ -149,9 +149,11 @@ def test_update_idea_prefills_and_saves_custom_fields(
 
     idea = idea_factory(module=module)
     user = idea.creator
-    CustomFieldAnswer.objects.create(idea=idea, field=open_field, value="Kreuzberg")
     CustomFieldAnswer.objects.create(
-        idea=idea, field=choice_field, value=str(choice_1.pk)
+        content_object=idea, field=open_field, value="Kreuzberg"
+    )
+    CustomFieldAnswer.objects.create(
+        content_object=idea, field=choice_field, value=str(choice_1.pk)
     )
     open_created = idea.custom_field_answers.get(field=open_field).created
     category = category_factory(module=module)
@@ -210,7 +212,9 @@ def test_update_idea_clears_custom_field_answer(
 
     idea = idea_factory(module=module)
     user = idea.creator
-    CustomFieldAnswer.objects.create(idea=idea, field=open_field, value="Kreuzberg")
+    CustomFieldAnswer.objects.create(
+        content_object=idea, field=open_field, value="Kreuzberg"
+    )
     category = category_factory(module=module)
     url = reverse(
         "a4_candy_ideas:idea-update",
