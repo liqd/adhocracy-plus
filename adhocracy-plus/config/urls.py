@@ -42,6 +42,7 @@ from apps.organisations.sitemaps import organisations_sitemap_index
 from apps.projects.api import AppModuleViewSet
 from apps.projects.api import AppProjectsViewSet
 from apps.projects.api import ModerationProjectsViewSet
+from apps.ranked_choice.api import RankedBallotViewSet
 from apps.userdashboard.api import ModerationCommentViewSet
 from apps.userdashboard.routers import ModerationDetailDefaultRouter
 from apps.users.api import UserViewSet
@@ -72,6 +73,9 @@ module_router.register(
     basename="interactiveevents",
 )
 module_router.register(r"ideas", IdeaViewSet, basename="ideas")
+module_router.register(
+    r"rankedchoice", RankedBallotViewSet, basename="ranked-choice"
+)
 
 likes_router = LikesDefaultRouter()
 likes_router.register(r"likes", LikesViewSet, basename="likes")
