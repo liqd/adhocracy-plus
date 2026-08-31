@@ -300,6 +300,14 @@
   }
 }
 
+@media (width < 820px) {
+  // The file name title in the bottom bar overlaps the editor content on
+  // small screens, so hide it entirely on mobile.
+  .uppy-DashboardContent-panel > .uppy-DashboardContent-bar .uppy-DashboardContent-title {
+    display: none;
+  }
+}
+
 @media (width >= 820px) {
   .uppy-Dashboard--modal .uppy-Dashboard-inner {
     width: 636px;
