@@ -9,7 +9,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends git ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-RUN corepack enable && corepack prepare pnpm@11.8.0 --activate
+RUN corepack enable && corepack prepare pnpm@11.19.0 --activate
 
 # pnpm needs pnpm-workspace.yaml (allowBuilds for adhocracy4, overrides,
 # packageExtensions), the lockfile and .npmrc to install correctly.
