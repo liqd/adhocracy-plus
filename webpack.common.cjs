@@ -172,7 +172,19 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!(adhocracy4)\/).*/, // exclude all dependencies but adhocracy4
+        // package.json has "type": "module", which classifies .js files as
+        // javascript/esm. In esm modules webpack does not process CommonJS
+        // require() calls (e.g. CSS imports converted by the babel
+        // transform-modules-commonjs plugin), so the extracted CSS files are
+        // never emitted. Force javascript/auto to restore that handling.
+        type: 'javascript/auto',
+        // Babel-transpile only adhocracy4 sources (which are .jsx). Under pnpm
+        // adhocracy4 lives inside the virtual store (.pnpm/.../node_modules),
+        // not at the flat node_modules root, so match it wherever it is.
+        exclude: [
+          /node_modules\/\.pnpm\/.+?\/node_modules\/(?!adhocracy4\/).*/,
+          /node_modules\/(?!\.pnpm\/)(?!adhocracy4\/).*/
+        ],
         use: {
           loader: 'babel-loader',
           options: {
@@ -237,12 +249,13 @@ module.exports = {
       jquery$: 'jquery/dist/jquery.min.js',
       'slick-carousel$': 'slick-carousel/slick/slick.min.js'
     },
-    // when using `npm link` for a4 dev env, dependencies are resolved against the linked
-    // folder by default. This may result in dependencies being included twice.
-    // Resolving against node_modules will prevent this.
-    // concat merges node_modules and assets and syncs both to ensure no duplication.
+    // when using `npm link`/`pnpm link` for a4 dev env, dependencies are resolved
+    // against the linked folder by default. This may result in dependencies being
+    // included twice. Resolving against node_modules will prevent this.
+    // Use a relative 'node_modules' entry so webpack also walks up the directory
+    // tree, which lets pnpm's nested (non-hoisted) transitive dependencies resolve.
     modules: [
-      path.resolve('./node_modules')
+      'node_modules'
     ].concat(
       glob.sync('./apps/*/assets/js').map(e => { return path.resolve(e) })
     )

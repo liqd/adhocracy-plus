@@ -22,6 +22,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - apps/polls: No cut-off in ResultsScreen for long polls
 
+## hotfix-v2609.1
+
+### Changed
+
+- Dependencies: migrate the frontend package manager from npm to pnpm for more secure package management (webpack/babel/jest configs now use `.cjs`; build tooling updated accordingly)
+- Dependencies: apply `pnpm audit` security updates to vulnerable packages
+
 ## v2607.3
 
 ### Fixed

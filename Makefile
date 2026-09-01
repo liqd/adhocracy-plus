@@ -61,15 +61,15 @@ help:
 
 .PHONY: install
 install:
-	npm install --no-save
-	npm run build
+	pnpm install
+	pnpm run build
 	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
 	$(VIRTUAL_ENV)/bin/python -m pip install --upgrade -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python manage.py migrate
 
 .PHONY: clean
 clean:
-	if [ -f package-lock.json ]; then rm package-lock.json; fi
+	if [ -f pnpm-lock.yaml ]; then rm pnpm-lock.yaml; fi
 	if [ -d node_modules ]; then rm -rf node_modules; fi
 	if [ -d venv ]; then rm -rf venv; fi
 
@@ -86,7 +86,7 @@ server:
 .PHONY: watch
 watch:
 	trap 'kill %1' KILL; \
-	npm run watch & \
+	pnpm run watch & \
 	$(VIRTUAL_ENV)/bin/python manage.py runserver 8004
 
 .PHONY: background
@@ -96,7 +96,7 @@ background:
 .PHONY: test
 test:
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db
-	npm run testNoCov
+	pnpm run testNoCov
 
 .PHONY: pytest
 pytest:
@@ -113,19 +113,19 @@ pytest-clean:
 
 .PHONY: jstest
 jstest:
-	npm run test
+	pnpm run test
 
 .PHONY: jstest-nocov
 jstest-nocov:
-	npm run testNoCov
+	pnpm run testNoCov
 
 .PHONY: jstest-debug
 jstest-debug:
-	npm run testDebug
+	pnpm run testDebug
 
 .PHONY: jstest-updateSnapshots
 jstest-updateSnapshots:
-	npm run updateSnapshots
+	pnpm run updateSnapshots
 
 .PHONY: coverage
 coverage:
@@ -136,21 +136,21 @@ lint:
 	EXIT_STATUS=0; \
 	$(VIRTUAL_ENV)/bin/isort --diff -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
-	npm run lint ||  EXIT_STATUS=$$?; \
+	pnpm run lint ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-quick
 lint-quick:
 	EXIT_STATUS=0; \
-	npm run lint-staged ||  EXIT_STATUS=$$?; \
+	pnpm run lint-staged ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-js-fix
 lint-js-fix:
 	EXIT_STATUS=0; \
-	npm run lint-fix ||  EXIT_STATUS=$$?; \
+	pnpm run lint-fix ||  EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 # Use with caution, the automatic fixing might produce bad results
@@ -195,8 +195,8 @@ mo:
 .PHONY: release
 release: export DJANGO_SETTINGS_MODULE ?= adhocracy-plus.config.settings.build
 release:
-	npm install --silent
-	npm run build:prod
+	pnpm install --silent
+	pnpm run build:prod
 	$(VIRTUAL_ENV)/bin/python -m pip install -r requirements.txt -q
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages -v0
 	$(VIRTUAL_ENV)/bin/python manage.py collectstatic --noinput -v0
@@ -229,7 +229,7 @@ local-a4:
 	if [ -d "../adhocracy4" ]; then \
 		$(VIRTUAL_ENV)/bin/python -m pip install --upgrade ../adhocracy4; \
 		$(VIRTUAL_ENV)/bin/python manage.py migrate; \
-		npm link ../adhocracy4; \
+		pnpm link ../adhocracy4; \
 	fi
 
 .PHONY: celery-worker-start

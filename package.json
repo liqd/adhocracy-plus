@@ -1,6 +1,8 @@
 {
   "name": "adhocracy-plus",
   "version": "1.0.0-dev.1",
+  "type": "module",
+  "packageManager": "pnpm@11.8.0",
   "license": "AGPL-3.0+",
   "author": {
     "name": "Liquid Democracy e.V.",
@@ -92,9 +94,9 @@
     "webpack-merge": "6.0.1"
   },
   "scripts": {
-    "build:prod": "webpack --config webpack.prod.js",
-    "build": "webpack --config webpack.dev.js",
-    "watch": "webpack --config webpack.dev.js --watch",
+    "build:prod": "webpack --config webpack.prod.cjs",
+    "build": "webpack --config webpack.dev.cjs",
+    "watch": "webpack --config webpack.dev.cjs --watch",
     "lint": "eslint apps adhocracy-plus/assets --ext .js,.jsx && stylelint 'adhocracy-plus/assets/scss/**/*.scss'",
     "lint-staged": "lint-staged",
     "lint-fix": "eslint --fix --ext .js,.jsx . && stylelint --fix 'adhocracy-plus/assets/scss/**/*.scss'",
@@ -103,15 +105,6 @@
     "testDebug": "jest -o --coverage=false",
     "testNoCov": "jest --coverage=false",
     "updateSnapshots": "jest -u --coverage=false"
-  },
-  "overrides": {
-    "js-cookie": "3.0.8",
-    "lodash": "4.18.1",
-    "i18next-fs-backend": "2.6.6",
-    "i18next-http-backend": "3.0.5",
-    "i18next-http-middleware": "3.9.7",
-    "serialize-javascript": "7.0.5",
-    "ip-address": "10.1.1"
   },
   "browserslist": "defaults and not dead and >= 0.5%, ie >= 11",
   "lint-staged": {

@@ -21,7 +21,7 @@ const config = {
     '**/*.jsx',
     '!**/coverage/**',
     '!**/node_modules/**',
-    '!**/babel.config.js',
+    '!**/babel.config.cjs',
     '!**/jest.setup.js',
     '!**/chrome/**',
     '!**/site-packages/adhocracy4/**',
@@ -35,8 +35,9 @@ const config = {
     '^.+\\.[t|j]sx?$': 'babel-jest'
   },
   transformIgnorePatterns: [
-  // transpile all node_modules, not great?
-    '/node_modules/(?!(.*)/)'
+    // Transform all node_modules (both flat npm and pnpm virtual store)
+    '[/\\\\]node_modules[/\\\\]\\.pnpm[/\\\\].+[/\\\\]node_modules[/\\\\](?!.+).+\\.(js|jsx|mjs|cjs|ts|tsx)$',
+    '[/\\\\]node_modules[/\\\\](?!.+).+\\.(js|jsx|mjs|cjs|ts|tsx)$'
   ]
 }
 
