@@ -155,7 +155,7 @@ module.exports = {
     },
     poll_management: {
       import: [
-        'adhocracy4/adhocracy4/polls/static/react_poll_management.jsx'
+        './apps/polls/assets/react_poll_management.tsx'
       ],
       dependOn: 'adhocracy4'
     },
@@ -281,11 +281,6 @@ module.exports = {
     )
   },
   plugins: [
-    // override adhocracy4 QuestionImageUploadButton with Uppy-based version
-    new webpack.NormalModuleReplacementPlugin(
-      /QuestionImageUploadButton$/,
-      path.resolve('./apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx')
-    ),
     // automatically load modules instead of import or require them everywhere.
     new webpack.ProvidePlugin({
       $: 'jquery',

@@ -32,6 +32,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - apps/exports: include Image export mixin for ideas and proposals
 - Dashboard: add moderation view to projects list
 - Moderation dashboard: project detail lists comments and ideas together with labels, each idea's moderation status and official feedback, and read/unread handling. Items can be marked as read/unread manually and are marked read automatically when official feedback is added to a comment or an idea, or a status is set on an idea. The list can be filtered by content type and read status and sorted by date or reports; reported ideas are flagged and counted, and "Add feedback" returns to the moderation page.
+- Polls dashboard: rebuilt the poll management interface with a collapsible
+  question list, drag and drop reordering, expandable "Question X of Y"
+  editor with previous/next navigation, per-item save/cancel, single/multiple
+  choice switch and greyed-out alt text field until an image is uploaded
 - 429 error page template so the allauth rate limiter can render a user-facing
   "Too Many Requests" response instead of failing with ``TemplateDoesNotExist``
 - Project Dashboard: Add 'View Live'
