@@ -29,6 +29,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - apps/exports: include Image export mixin for ideas and proposals
 - Dashboard: add moderation view to projects list
 - Moderation dashboard: project detail now lists comments and ideas together, with a filter for all/only comments/reported comments/only ideas, labels for comments and ideas, and idea feedback linking to the idea moderation page
+- Polls dashboard: rebuilt the poll management interface with a collapsible
+  question list, drag and drop reordering, expandable "Question X of Y"
+  editor with previous/next navigation, per-item save/cancel, single/multiple
+  choice switch and greyed-out alt text field until an image is uploaded
 - 429 error page template so the allauth rate limiter can render a user-facing
   "Too Many Requests" response instead of failing with ``TemplateDoesNotExist``
 - Project Dashboard: Add 'View Live'
