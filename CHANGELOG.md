@@ -9,6 +9,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- New "ranked choice" module (blueprint ``ranked-choice``): participants first
+  collect ideas, then rank the collected ideas by preference (partial ballots
+  allowed, unranked ideas count as last choice). Ballots are counted with a
+  single transferable vote (STV) style instant runoff that produces an ordered
+  list of winners. Includes React ranking widget, module-scoped ballot API,
+  CSV export, and configurable number of winners per module.
 - Tests: e2e coverage for the React/vanilla JS widgets: poll multi-question funnel and review step, moderation actions (block, highlight, feedback), interactive events present screen, organisation project search, project follow, and document chapter editing; the suite standardizes on Playwright's `expect()` assertions
 - polls: add option to hide preliminary results until phase end
 - Management command ``send_newsletter_settings_notice`` plus an English/German
