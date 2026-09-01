@@ -20,7 +20,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 11.8.0
+          version: 11.19.0
       - name: Start PostgreSQL
         run: |
           sudo service postgresql start
@@ -147,7 +147,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 11.8.0
+          version: 11.19.0
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
