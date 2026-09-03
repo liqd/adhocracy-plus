@@ -48,3 +48,33 @@
     margin-bottom: 0.5em;
     width: 100%;
 }
+
+.item-detail__custom-fields {
+    margin-top: 1.5 * $spacer;
+
+    &__title {
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: $demi-bold;
+        margin-bottom: 16px;
+    }
+
+    &__field {
+        & + & {
+            margin-top: 8px;
+        }
+    }
+
+    &__question {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: $demi-bold;
+        margin: 0;
+    }
+
+    &__answer {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0;
+    }
+}

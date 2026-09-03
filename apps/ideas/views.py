@@ -77,7 +77,10 @@ class IdeaDetailView(AbstractIdeaDetailView):
     queryset = (
         models.Idea.objects.annotate_positive_rating_count()
         .annotate_negative_rating_count()
-        .prefetch_related("custom_field_answers__field__choices")
+        .prefetch_related(
+            "custom_field_answers__field__choices",
+            "module__customfieldsettings_settings__fields__choices",
+        )
     )
     permission_required = "a4_candy_ideas.view_idea"
 
@@ -98,8 +101,6 @@ class AbstractIdeaCreateView(
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs["module"] = self.module
-        if self.module.settings_instance:
-            kwargs["settings_instance"] = self.module.settings_instance
         return kwargs
 
 
@@ -119,8 +120,6 @@ class AbstractIdeaUpdateView(
         kwargs = super().get_form_kwargs()
         instance = kwargs.get("instance")
         kwargs["module"] = instance.module
-        if instance.module.settings_instance:
-            kwargs["settings_instance"] = instance.module.settings_instance
         return kwargs
 
     def get_initial(self):

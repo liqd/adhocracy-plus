@@ -68,7 +68,12 @@ class MapIdeaListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMix
 class MapIdeaDetailView(idea_views.AbstractIdeaDetailView):
     model = models.MapIdea
     queryset = (
-        models.MapIdea.objects.annotate_positive_rating_count().annotate_negative_rating_count()
+        models.MapIdea.objects.annotate_positive_rating_count()
+        .annotate_negative_rating_count()
+        .prefetch_related(
+            "custom_field_answers__field__choices",
+            "module__customfieldsettings_settings__fields__choices",
+        )
     )
     permission_required = "a4_candy_mapideas.view_mapidea"
 

@@ -85,6 +85,9 @@ class Idea(AbstractIdea):
     comments = GenericRelation(
         comment_models.Comment, related_query_name="idea", object_id_field="object_pk"
     )
+    custom_field_answers = GenericRelation(
+        "a4_candy_customfields.CustomFieldAnswer", related_query_name="idea"
+    )
 
     def get_absolute_url(self):
         return reverse(
