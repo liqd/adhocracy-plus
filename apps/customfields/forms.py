@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.contenttypes.models import ContentType
+from django.utils.translation import gettext_lazy as _
 
 from .models import CustomFieldAnswer
 from .models import CustomFieldSettings
@@ -57,8 +58,11 @@ class CustomFieldsFormMixin(forms.Form):
     def get_form_field(self, field):
         if field.type == CustomFieldType.CHOICE:
             choices = [(choice.pk, choice.label) for choice in field.choices.all()]
-            if not field.required:
-                choices = [("", "---------")] + choices
+            # Always prepend an empty placeholder option, also for required
+            # questions. Without it the browser silently preselects the first
+            # answer, so participants could "answer" a required question
+            # without actively choosing anything.
+            choices = [("", _("Please choose..."))] + choices
             return forms.ChoiceField(
                 label=field.label,
                 required=field.required,

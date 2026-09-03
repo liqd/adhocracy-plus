@@ -54,6 +54,39 @@ def test_detail_page_without_answers_shows_no_custom_fields_section(
 
 
 @pytest.mark.django_db
+def test_detail_page_shows_unanswered_fields_with_placeholder(
+    client, bs_module, idea_factory, custom_field_factory
+):
+    """Every configured question is shown, unanswered ones with a placeholder.
+
+    Adresses the previous behaviour where only answered questions were
+    visible on the posted idea.
+    """
+    module = bs_module
+    settings = module.customfieldsettings_settings
+    answered_field = custom_field_factory(
+        settings=settings, type=CustomFieldType.OPEN, required=False
+    )
+    unanswered_field = custom_field_factory(
+        settings=settings, type=CustomFieldType.OPEN, required=False
+    )
+
+    idea = idea_factory(module=module)
+    CustomFieldAnswer.objects.create(
+        content_object=idea, field=answered_field, value="Kreuzberg"
+    )
+
+    response = client.get(idea.get_absolute_url())
+    assert response.status_code == 200
+    content = response.content.decode()
+    assert "item-detail__custom-fields" in content
+    assert answered_field.label in content
+    assert "Kreuzberg" in content
+    assert unanswered_field.label in content
+    assert "\u2014" in content
+
+
+@pytest.mark.django_db
 def test_detail_page_queries_do_not_scale_with_answers(
     client,
     bs_module,

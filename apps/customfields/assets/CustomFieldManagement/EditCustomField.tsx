@@ -107,6 +107,7 @@ export const EditCustomField = (props: EditCustomFieldProps) => {
                         onClick={() => props.onDeleteChoice(index)}
                         title={TRANSLATED.delete}
                         type="button"
+                        disabled={props.field.choices.length <= 1}
                       >
                         <i className="fa fa-times" aria-label={TRANSLATED.delete} />
                       </button>
