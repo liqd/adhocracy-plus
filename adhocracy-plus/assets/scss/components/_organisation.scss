@@ -117,7 +117,9 @@
     // and spans the full content width with the same gutters; the sidebar sits
     // at its right edge like on the project detail page.
     &__inner {
-        margin-top: 6.5 * $spacer;
+        // 38px gap between the avatar (whose bottom edge sits 0.5 * $spacer
+        // above the wrap) and the heading below.
+        margin-top: 30px; // 38px - 0.5 * $spacer
 
         @include project-detail-page-inset;
     }
@@ -235,7 +237,11 @@
         border: 1px solid $grey-100;
 
         @media (min-width: $breakpoint-md) {
-            width: 12.25rem; // 196px
+            // Grow with the content so wide labels (e.g. German "123
+            // Kommentare") stay on one line instead of wrapping; the design
+            // width remains as the minimum.
+            width: fit-content;
+            min-width: 12.25rem; // 196px
         }
     }
 }
