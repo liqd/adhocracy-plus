@@ -18,3 +18,23 @@ For submitting the open poll, we provide a checkbox labelled with `agreed_terms_
 The open poll is intended for public projects only. Private and semi-private projects require a user account to interact with by design, thus the `allow_unregistered_users` option in the poll module dashboard has no effect for these type of projects. 
 
 Project insights do count unregistered users, and exporting a poll as an excel also counts votes and answers from unregistered users with the prefix 'ANON'.
+
+# Admin moderation of open answers
+
+Open (free-text) answers can be managed in the Django admin under **Polls → Answers**
+(`apps/polls/admin.py`). This is an admin-only intervention tool, not a
+general moderation feature inside the poll module.
+
+- **List, search, filter:** admins can see all open answers and locate specific
+  ones by answer text, creator, project, organisation, question, or date.
+- **Edit:** the answer text of an individual open answer can be corrected.
+  Creator, content and timestamp fields are read-only.
+- **Delete:** a single answer can be deleted. Because answers are stored in
+  their own table (independent of choices/votes) and counts are computed
+  dynamically, deleting an answer removes it from the result display and from
+  exports without affecting the poll's overall counts or "other" votes.
+- **Traceability:** every action is recorded via Django's built-in admin history
+  (`django.contrib.admin.models.LogEntry`). When an admin edits an answer, the
+  change message stores both the previous and the new answer text. The full
+  action log is browsable and searchable through the read-only **Admin → Log
+  entries** view (by user, content type, action flag, and date).
