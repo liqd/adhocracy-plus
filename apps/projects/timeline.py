@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING
 from django.utils import timezone
 from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext as _n
 
 if TYPE_CHECKING:
     from adhocracy4.modules.models import Module
@@ -20,6 +21,15 @@ if TYPE_CHECKING:
 STATUS_FINISHED = "finished"
 STATUS_RUNNING = "running"
 STATUS_UPCOMING = "upcoming"
+
+PHASE_STATUS_COMPLETED = "completed"
+PHASE_STATUS_ACTIVE = "active"
+
+_PHASE_STATUS_LABELS = {
+    PHASE_STATUS_COMPLETED: _("Completed"),
+    PHASE_STATUS_ACTIVE: _("Active"),
+    STATUS_UPCOMING: _("Upcoming"),
+}
 
 _STATUS_LABELS = {
     STATUS_FINISHED: _("Finished"),
@@ -67,6 +77,61 @@ def module_participation_status(module: Module) -> tuple[str, str]:
 
 
 participation_timeline_status = module_participation_status
+
+
+def phase_participation_status(phase) -> tuple[str, str]:
+    """
+    Return (status key, translated label) for one phase.
+
+    The status mirrors adhocracy4's phase semantics: a phase is completed
+    once ``phase.is_over`` is True, active while it is inside
+    ``phase.module.active_phases()`` (``start_date <= now < end_date``) and
+    upcoming otherwise. Staying close to ``Phase.is_over`` and
+    ``active_phases()`` keeps the badge consistent with
+    ``module.active_phase`` and the "participation is not possible" notice.
+    """
+    if phase.is_over:
+        return PHASE_STATUS_COMPLETED, _PHASE_STATUS_LABELS[PHASE_STATUS_COMPLETED]
+    now = timezone.now()
+    if (
+        phase.start_date
+        and phase.start_date <= now
+        and phase.end_date
+        and phase.end_date > now
+    ):
+        return PHASE_STATUS_ACTIVE, _PHASE_STATUS_LABELS[PHASE_STATUS_ACTIVE]
+    return STATUS_UPCOMING, _PHASE_STATUS_LABELS[STATUS_UPCOMING]
+
+
+def phase_duration_label(phase) -> str:
+    """Human readable duration of a phase, e.g. '3 months' or '2 weeks'."""
+    start = phase.start_date
+    end = phase.end_date
+    if not start or not end or end <= start:
+        return ""
+    months = (end.year - start.year) * 12 + (end.month - start.month)
+    if end.day < start.day:
+        months -= 1
+    if months >= 1:
+        return _n("%(count)s month", "%(count)s months", months) % {"count": months}
+
+    # Use the actual elapsed time so that phases shorter than a calendar
+    # day (including ones crossing midnight) are reported in hours or
+    # minutes instead of being rounded up to "1 day".
+    elapsed = end - start
+    days = elapsed.days
+    if days >= 7:
+        weeks = days // 7
+        return _n("%(count)s week", "%(count)s weeks", weeks) % {"count": weeks}
+    if days >= 1:
+        return _n("%(count)s day", "%(count)s days", days) % {"count": days}
+    hours = elapsed.seconds // 3600
+    if hours >= 1:
+        return _n("%(count)s hour", "%(count)s hours", hours) % {"count": hours}
+    minutes = elapsed.seconds // 60
+    if minutes >= 1:
+        return _n("%(count)s minute", "%(count)s minutes", minutes) % {"count": minutes}
+    return _("1 minute")
 
 
 def offline_event_participation_status(event: OfflineEvent) -> tuple[str, str]:

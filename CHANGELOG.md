@@ -30,6 +30,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Module page: replace the running phase description with a table listing all phases
+  (name, start date, end date and status completed/active/upcoming)
 - Organisation page: redesigned with overlapping logo, about link, organisation stats, project search and project tiles in a three column grid
 - Landing Page: Updated buttons (view demo organisation), new icons
 - Idea, proposal, and map idea forms: do not prefill contact email for guest users
