@@ -62,6 +62,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   ambient type declarations for the untyped ``adhocracy4``/``django`` imports
 - Idea Detail Page: Full width description and photo
 - Ideas List: New design
+- Comment box: Minimum height 100px
 
 ### Fixed
 
