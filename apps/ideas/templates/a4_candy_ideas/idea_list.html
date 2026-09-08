@@ -8,7 +8,7 @@
             {% translate 'Submit idea' %}
         </a>
     {% endif %}
-{% endblock %}
+{% endblock project_action %}
 
 {% block phase_content %}
     <div class="l-top-overlap" id="index">
@@ -21,7 +21,7 @@
     <div class="bg--light">
         <div class="row">
             <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                <ul class="u-list-reset">
+                <ul class="u-list-reset" id="idea-list-accordion">
                     {% for object in object_list %}
                         {% include "a4_candy_ideas/includes/idea_list_item.html" with object=object %}
                     {% empty %}
@@ -37,4 +37,60 @@
             </div>
         </div>
     </div>
-{% endblock %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var accordion = document.getElementById('idea-list-accordion')
+            var pendingItem = null
+            var siblingCollapsing = false
+
+            function scrollToItem (item) {
+                var top = item.getBoundingClientRect().top + window.pageYOffset - 20
+                window.scrollTo({ top: top, behavior: 'smooth' })
+            }
+
+            function maybeScroll () {
+                if (pendingItem && !siblingCollapsing) {
+                    var item = pendingItem
+                    pendingItem = null
+                    scrollToItem(item)
+                }
+            }
+
+            // A previously open item starts collapsing. If it contains a
+            // (possibly tall) image, its disappearance shrinks the page and
+            // shifts cards above the target, so wait for it to finish.
+            // Without an image the layout doesn't shift, so no wait needed.
+            accordion.addEventListener('hide.bs.collapse', function (event) {
+                var sibling = event.target.closest('.list-item')
+                siblingCollapsing = !!(sibling && sibling.querySelector('.list-item__details-image'))
+            })
+
+            accordion.addEventListener('hidden.bs.collapse', function () {
+                siblingCollapsing = false
+                maybeScroll()
+            })
+
+            // When a new item starts expanding, scroll it into view once the
+            // layout above it has settled. Only the disappearance of a sibling
+            // that contains an image can shift the target, so only wait then.
+            accordion.addEventListener('show.bs.collapse', function (event) {
+                var item = event.target.closest('.list-item')
+                if (!item) {
+                    return
+                }
+                pendingItem = item
+
+                var openSibling = Array.prototype.find.call(
+                    accordion.querySelectorAll('.collapse'),
+                    function (el) {
+                        return el !== event.target &&
+                            (el.classList.contains('show') || el.classList.contains('collapsing'))
+                    }
+                )
+                siblingCollapsing = !!(openSibling &&
+                    openSibling.closest('.list-item').querySelector('.list-item__details-image'))
+                maybeScroll()
+            })
+        })
+    </script>
+{% endblock phase_content %}
