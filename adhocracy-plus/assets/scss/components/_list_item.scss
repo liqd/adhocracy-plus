@@ -240,16 +240,25 @@
         }
     }
 
+    .idea-inbox__list,
+    .idea-inbox__panes {
+        min-width: 0;
+    }
+
     .idea-inbox__panes {
         display: block;
         position: sticky;
         top: 0;
+        max-height: calc(100vh - 2 * $spacer);
+        overflow-y: auto;
         border: 1px solid $gray-lightest;
         background-color: $body-bg;
         padding: 1.5 * $padding;
     }
 
     .idea-inbox__pane {
+        overflow-wrap: break-word;
+
         .idea-inbox__pane-title {
             margin: 0 0 0.5em;
         }

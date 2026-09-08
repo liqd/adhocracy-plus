@@ -62,7 +62,7 @@
                                         <img class="list-item__author-avatar"
                                              src="{% if object.creator.avatar %}{% thumbnail object.creator.avatar 'avatar' %}{% else %}{{ object.creator.avatar_fallback }}{% endif %}"
                                              alt="">
-                                        <span class="list-item__author">{{ object.creator.username }}</span>
+                                        <span class="list-item__author">{{ object.creator.username }} · </span>
                                         {% html_date object.created class='list-item__date' %}
                                     </div>
                                     <a class="btn btn--default" href="{{ object.get_absolute_url }}">
