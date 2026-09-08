@@ -212,3 +212,65 @@
 .list-item__header[aria-expanded="true"] .list-item__explore-btn {
     display: inline-block;
 }
+
+// "Inbox" style: two panes side by side on desktop. The right pane column is
+// only rendered (visible) above the breakpoint; on smaller screens the inline
+// accordion expansion is used instead and the panes are hidden.
+.idea-inbox__panes {
+    display: none;
+}
+
+@media (min-width: $breakpoint) {
+    .idea-inbox {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+        gap: $spacer;
+        align-items: start;
+    }
+
+    .idea-inbox__list {
+        .list-item__expand-toggle,
+        .list-item__explore-btn,
+        .collapse {
+            display: none;
+        }
+
+        .list-item.selected {
+            background-color: $bg-tertiary;
+        }
+    }
+
+    .idea-inbox__panes {
+        display: block;
+        position: sticky;
+        top: 0;
+        border: 1px solid $gray-lightest;
+        background-color: $body-bg;
+        padding: 1.5 * $padding;
+    }
+
+    .idea-inbox__pane {
+        .idea-inbox__pane-title {
+            margin: 0 0 0.5em;
+        }
+
+        .list-item__details {
+            padding-top: 0;
+        }
+    }
+
+    .idea-inbox__pane-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: $spacer;
+
+        .btn {
+            margin: 0;
+        }
+    }
+
+    .idea-inbox__pane--placeholder {
+        color: $text-muted;
+    }
+}

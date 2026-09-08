@@ -1,6 +1,6 @@
 {% load i18n module_tags contrib_tags wagtailcore_tags thumbnail %}
 
-<li class="list-item list-item--squashed">
+<li class="list-item list-item--squashed" data-idea-pk="{{ object.pk }}">
     <div class="list-item__header" data-bs-toggle="collapse" data-bs-target="#idea-details-{{ object.pk }}" role="button" aria-expanded="false" aria-controls="idea-details-{{ object.pk }}">
         <div class="list-item__stats">
             {% spaceless %}
@@ -40,12 +40,7 @@
 
         <div id="idea-details-{{ object.pk }}" class="collapse" data-bs-parent="#idea-list-accordion">
             <div class="list-item__details">
-                {% if object.image %}
-                    <img class="item-detail__image list-item__details-image" src="{% thumbnail object.image 'idea_image' %}" alt="">
-                {% endif %}
-                <div class="ck-content">
-                    {{ object.description | richtext }}
-                </div>
+                {% include "a4_candy_ideas/includes/idea_list_item_details.html" with object=object %}
             </div>
         </div>
 
