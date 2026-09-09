@@ -48,12 +48,12 @@ services:
       - media_data:/app/media
       - aplus_config:/data:ro
     healthcheck:
-      test: ["CMD-SHELL", "python manage.py migrate --check"]
-      interval: 5s
-      timeout: 120s
-      retries: 60
-      start_period: 300s
-    command: ["python", "manage.py", "runserver", "0.0.0.0:8004"]
+      test: ["CMD", "python", "-c", "import socket,sys; s=socket.create_connection(('localhost',8004),2); s.close()"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    command: ["granian", "--interface", "wsgi", "--host", "0.0.0.0", "--port", "8004", "--log-level", "warning", "adhocracy-plus.config.wsgi:application"]
 
   worker:
     build: .
