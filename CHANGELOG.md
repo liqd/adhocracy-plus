@@ -29,6 +29,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Dashboard: add moderation view to projects list
 - 429 error page template so the allauth rate limiter can render a user-facing
   "Too Many Requests" response instead of failing with ``TemplateDoesNotExist``
+- Project Dashboard: Add 'View Live'
 
 ### Changed
 
