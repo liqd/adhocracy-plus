@@ -5,6 +5,8 @@ services:
       POSTGRES_USER: django
       POSTGRES_PASSWORD: django
       POSTGRES_DB: django
+    mem_limit: "${DB_MEM_LIMIT:-512m}"
+    memswap_limit: "${DB_MEM_LIMIT:-512m}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -16,6 +18,8 @@ services:
 
   redis:
     image: redis:7-alpine
+    mem_limit: "${REDIS_MEM_LIMIT:-256m}"
+    memswap_limit: "${REDIS_MEM_LIMIT:-256m}"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -24,6 +28,8 @@ services:
 
   web:
     build: .
+    mem_limit: "${WEB_MEM_LIMIT:-1g}"
+    memswap_limit: "${WEB_MEM_LIMIT:-1g}"
     expose:
       - "8004"
     depends_on:
@@ -40,6 +46,11 @@ services:
       POSTGRES_DB: django
       CELERY_BROKER_URL: redis://redis:6379/0
       CELERY_RESULT_BACKEND: redis://redis:6379/0
+      CELERY_WORKER_CONCURRENCY: "${CELERY_WORKER_CONCURRENCY:-1}"
+      CELERY_WORKER_MAX_TASKS_PER_CHILD: "${CELERY_WORKER_MAX_TASKS_PER_CHILD:-100}"
+      CELERY_WORKER_MAX_MEMORY_PER_CHILD: "${CELERY_WORKER_MAX_MEMORY_PER_CHILD:-400}"
+      CELERY_WORKER_PREFETCH_MULTIPLIER: "${CELERY_WORKER_PREFETCH_MULTIPLIER:-1}"
+      CELERY_WORKER_POOL: "${CELERY_WORKER_POOL:-prefork}"
       WAGTAILADMIN_BASE_URL: http://localhost:8004
       RUN_MIGRATIONS: "1"
       LOAD_FIXTURES: "1"
@@ -57,6 +68,8 @@ services:
 
   worker:
     build: .
+    mem_limit: "${WORKER_MEM_LIMIT:-1536m}"
+    memswap_limit: "${WORKER_MEM_LIMIT:-1536m}"
     depends_on:
       redis:
         condition: service_healthy
@@ -75,6 +88,8 @@ services:
 
   beat:
     build: .
+    mem_limit: "${BEAT_MEM_LIMIT:-512m}"
+    memswap_limit: "${BEAT_MEM_LIMIT:-512m}"
     depends_on:
       redis:
         condition: service_healthy

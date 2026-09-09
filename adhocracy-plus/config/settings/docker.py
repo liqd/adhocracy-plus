@@ -19,6 +19,23 @@ CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", "redis://redis:6379/0")
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", "redis://redis:6379/0")
 CELERY_TASK_ALWAYS_EAGER = False
 
+# Celery default concurrency is the number of CPU cores, which lets a single
+# container balloon to several GiB on large hosts. Bound it (each prefork child
+# loads a full Django instance) and recycle children so long-running workers do
+# not accumulate memory. All values are overridable per environment via env
+# vars (e.g. in Coolify).
+CELERY_WORKER_CONCURRENCY = int(os.environ.get("CELERY_WORKER_CONCURRENCY", "1"))
+CELERY_WORKER_MAX_TASKS_PER_CHILD = int(
+    os.environ.get("CELERY_WORKER_MAX_TASKS_PER_CHILD", "100")
+)
+CELERY_WORKER_MAX_MEMORY_PER_CHILD = int(
+    os.environ.get("CELERY_WORKER_MAX_MEMORY_PER_CHILD", "400")
+)
+CELERY_WORKER_PREFETCH_MULTIPLIER = int(
+    os.environ.get("CELERY_WORKER_PREFETCH_MULTIPLIER", "1")
+)
+CELERY_WORKER_POOL = os.environ.get("CELERY_WORKER_POOL", "prefork")
+
 CELERY_BEAT_SCHEDULE = {
     "publish-results-reminders-hourly": {
         "task": "send_publish_results_reminders",
