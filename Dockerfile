@@ -46,10 +46,14 @@ RUN pip install --no-cache-dir -r requirements/dev.txt
 COPY . .
 COPY --from=assets /app/adhocracy-plus/static /app/adhocracy-plus/static
 
+# Collect static files so the WSGI server (granian) can serve them via
+# WhiteNoise; the dev server (runserver) is not used in containers.
+RUN python manage.py collectstatic --noinput
+
 COPY docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 EXPOSE 8004
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8004"]
+CMD ["granian", "--interface", "wsgi", "--host", "0.0.0.0", "--port", "8004", "--log-level", "warning", "adhocracy-plus.config.wsgi:application"]
