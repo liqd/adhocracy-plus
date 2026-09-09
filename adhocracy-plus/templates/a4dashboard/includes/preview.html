@@ -10,3 +10,12 @@
     <i class="fa fa-eye" aria-hidden="true"></i>
     {% translate 'View Draft' %}
 </a>
+{% if not project.is_draft %}
+    <a href="{{ project.get_absolute_url }}"
+       class="btn btn--light btn--full"
+       target="_blank"
+       rel="noopener noreferrer">
+        <i class="fa fa-external-link-alt" aria-hidden="true"></i>
+        {% translate 'View Live' %}
+    </a>
+{% endif %}

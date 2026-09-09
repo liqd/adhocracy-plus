@@ -108,6 +108,30 @@ def test_preview_sidebar_renders_htmx_trigger(project_factory, organisation):
 
 
 @pytest.mark.django_db
+@pytest.mark.parametrize(
+    "is_draft,should_show_live_link", [(False, True), (True, False)]
+)
+def test_preview_sidebar_view_live_link(
+    project_factory, organisation, is_draft, should_show_live_link
+):
+    project = project_factory(organisation=organisation, is_draft=is_draft)
+    template = "{% load i18n %}" '{% include "a4dashboard/includes/preview.html" %}'
+    content = render_template(
+        template,
+        {
+            "project": project,
+            "view": type("View", (), {"organisation": organisation})(),
+        },
+    )
+    if should_show_live_link:
+        assert project.get_absolute_url() in content
+        assert 'target="_blank"' in content
+        assert "View Live" in content
+    else:
+        assert "View Live" not in content
+
+
+@pytest.mark.django_db
 def test_project_information_hides_edit_button_in_iframe(
     client, project_factory, organisation
 ):
