@@ -7,6 +7,7 @@ services:
       POSTGRES_DB: django
     mem_limit: "${DB_MEM_LIMIT:-512m}"
     memswap_limit: "${DB_MEM_LIMIT:-512m}"
+    cpu_shares: ${DB_CPU_SHARES:-512}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -20,6 +21,7 @@ services:
     image: redis:7-alpine
     mem_limit: "${REDIS_MEM_LIMIT:-256m}"
     memswap_limit: "${REDIS_MEM_LIMIT:-256m}"
+    cpu_shares: ${REDIS_CPU_SHARES:-256}
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -30,6 +32,7 @@ services:
     build: .
     mem_limit: "${WEB_MEM_LIMIT:-1g}"
     memswap_limit: "${WEB_MEM_LIMIT:-1g}"
+    cpu_shares: ${WEB_CPU_SHARES:-512}
     expose:
       - "8004"
     depends_on:
@@ -70,6 +73,7 @@ services:
     build: .
     mem_limit: "${WORKER_MEM_LIMIT:-1536m}"
     memswap_limit: "${WORKER_MEM_LIMIT:-1536m}"
+    cpu_shares: ${WORKER_CPU_SHARES:-256}
     depends_on:
       redis:
         condition: service_healthy
@@ -90,6 +94,7 @@ services:
     build: .
     mem_limit: "${BEAT_MEM_LIMIT:-512m}"
     memswap_limit: "${BEAT_MEM_LIMIT:-512m}"
+    cpu_shares: ${BEAT_CPU_SHARES:-256}
     depends_on:
       redis:
         condition: service_healthy
