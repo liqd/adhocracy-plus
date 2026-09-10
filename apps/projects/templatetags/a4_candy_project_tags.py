@@ -28,6 +28,10 @@ from apps.projects.timeline import (
 from apps.projects.timeline import (
     offline_event_participation_status as get_offline_event_participation_status,
 )
+from apps.projects.timeline import phase_duration_label as get_phase_duration_label
+from apps.projects.timeline import (
+    phase_participation_status as get_phase_participation_status,
+)
 from apps.projects.utils import project_has_result_content
 
 register = template.Library()
@@ -92,6 +96,19 @@ def module_date_range(module):
 @register.simple_tag
 def module_cta_label(module):
     return get_module_cta_label(module)
+
+
+@register.simple_tag
+def phase_status_tag(phase):
+    """Return label and BEM modifier for a phase on the module detail page."""
+    status, label = get_phase_participation_status(phase)
+    return {"label": label, "modifier": status}
+
+
+@register.simple_tag
+def phase_duration(phase):
+    """Return a human readable duration for a phase, e.g. '3 months'."""
+    return get_phase_duration_label(phase)
 
 
 @register.simple_tag

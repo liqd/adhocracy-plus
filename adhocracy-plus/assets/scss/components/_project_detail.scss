@@ -170,6 +170,112 @@ $project-detail-breadcrumbs-offset: 79px;
 
 .project-detail__module-phases {
     width: 100%;
+    margin-bottom: 1.5 * $spacer;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+$project-detail-phase-border: #DFDEDE;
+$project-detail-phase-gap: 1.25 * $spacer;
+
+.project-detail__module-phases .phase-info__item {
+    margin-bottom: $project-detail-phase-gap;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.project-detail__module-phases .phase-info__item__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacer;
+    margin-bottom: $project-detail-phase-gap;
+}
+
+.project-detail__module-phases .phase-info__item__name {
+    font-size: $font-size-sm;
+    font-weight: $demi-bold;
+    line-height: 1.5;
+}
+
+.project-detail__module-phases .phase-status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.625rem;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.6;
+    white-space: nowrap;
+
+    // Completed
+    &--completed {
+        background-color: $grey-100;
+        color: $grey-700;
+    }
+
+    // Active
+    &--active {
+        background-color: $feedback-color-accepted;
+        color: $text-colour;
+    }
+
+    // Upcoming
+    &--upcoming {
+        background-color: $text-colour;
+        color: $white;
+    }
+}
+
+.project-detail__module-phases .phase-info__item__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacer;
+    padding: 0.625rem 0;
+    border-top: 1px solid $project-detail-phase-border;
+    border-bottom: 1px solid $project-detail-phase-border;
+
+    @media (max-width: $breakpoint-down) {
+        flex-wrap: wrap;
+    }
+}
+
+.project-detail__module-phases .phase-info__item__detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25 * $spacer;
+    min-width: 0;
+    text-align: center;
+}
+
+.project-detail__module-phases .phase-info__item__detail-label {
+    font-size: $font-size-sm;
+    font-weight: 400;
+    color: $text-color;
+}
+
+.project-detail__module-phases .phase-info__item__detail-value {
+    font-size: $font-size-sm;
+    font-weight: $demi-bold;
+    color: $text-color;
+    line-height: 1.5;
+
+    time {
+        font-weight: inherit;
+    }
+}
+
+.project-detail__module-phases .phase-info__item__description {
+    margin-top: $project-detail-phase-gap;
+    font-size: $font-size-sm;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 .project-detail__other-modules {

@@ -1,0 +1,40 @@
+{% load i18n a4_candy_project_tags contrib_tags %}
+
+<div class="project-detail__module-phases">
+    {% for phase in module.phases %}
+    {% phase_status_tag phase as phase_status %}
+    <div class="phase-info__item">
+        <div class="phase-info__item__header">
+            <div class="phase-info__item__name">{{ phase.name }}</div>
+            <span class="phase-status-badge phase-status-badge--{{ phase_status.modifier }}">
+                {{ phase_status.label }}
+            </span>
+        </div>
+        <div class="phase-info__item__details">
+            <div class="phase-info__item__detail">
+                <span class="phase-info__item__detail-label">{% translate 'Start' %}</span>
+                <div class="phase-info__item__detail-value">
+                    {% html_date phase.start_date 'DATE_FORMAT' %}<br>
+                    {% html_date phase.start_date 'TIME_FORMAT' %}
+                </div>
+            </div>
+            <div class="phase-info__item__detail">
+                <span class="phase-info__item__detail-label">{% translate 'Duration' %}</span>
+                <div class="phase-info__item__detail-value">
+                    {% phase_duration phase %}
+                </div>
+            </div>
+            <div class="phase-info__item__detail">
+                <span class="phase-info__item__detail-label">{% translate 'End' %}</span>
+                <div class="phase-info__item__detail-value">
+                    {% html_date phase.end_date 'DATE_FORMAT' %}<br>
+                    {% html_date phase.end_date 'TIME_FORMAT' %}
+                </div>
+            </div>
+        </div>
+        <div class="phase-info__item__description">
+            {{ phase.description }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
