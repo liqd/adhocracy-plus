@@ -5,6 +5,7 @@ services:
       POSTGRES_USER: django
       POSTGRES_PASSWORD: django
       POSTGRES_DB: django
+      MALLOC_ARENA_MAX: "2"
     mem_limit: "${DB_MEM_LIMIT:-512m}"
     memswap_limit: "${DB_MEM_LIMIT:-512m}"
     cpu_shares: ${DB_CPU_SHARES:-512}
@@ -55,6 +56,7 @@ services:
       CELERY_WORKER_PREFETCH_MULTIPLIER: "${CELERY_WORKER_PREFETCH_MULTIPLIER:-1}"
       CELERY_WORKER_POOL: "${CELERY_WORKER_POOL:-prefork}"
       WAGTAILADMIN_BASE_URL: http://localhost:8004
+      MALLOC_ARENA_MAX: "2"
       RUN_MIGRATIONS: "1"
       LOAD_FIXTURES: "1"
       LOAD_USER_FIXTURES: "0"
@@ -88,28 +90,17 @@ services:
       - media_data:/app/media
       - aplus_config:/data:ro
     command:
-      ["celery", "--app", "adhocracy-plus", "worker", "--loglevel", "INFO"]
-
-  beat:
-    build: .
-    mem_limit: "${BEAT_MEM_LIMIT:-512m}"
-    memswap_limit: "${BEAT_MEM_LIMIT:-512m}"
-    cpu_shares: ${BEAT_CPU_SHARES:-256}
-    depends_on:
-      redis:
-        condition: service_healthy
-      web:
-        condition: service_healthy
-    environment:
-      <<: *app_env
-      RUN_MIGRATIONS: "0"
-      LOAD_FIXTURES: "0"
-      LOAD_USER_FIXTURES: "0"
-    volumes:
-      - media_data:/app/media
-      - aplus_config:/data:ro
-    command:
-      ["celery", "--app", "adhocracy-plus", "beat", "--loglevel", "INFO"]
+      [
+        "celery",
+        "--app",
+        "adhocracy-plus",
+        "worker",
+        "--beat",
+        "--schedule",
+        "/app/media/celerybeat-schedule",
+        "--loglevel",
+        "INFO",
+      ]
 
 volumes:
   postgres_data:
