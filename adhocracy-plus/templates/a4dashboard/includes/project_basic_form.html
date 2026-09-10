@@ -18,7 +18,7 @@
 
 {% if form.allow_guest_users %}
 <section class="u-bottom-divider">
-    {% include 'a4dashboard/includes/form_field.html' with field=form.allow_guest_users %}
+    {% include 'a4forms/includes/form_field_radiogroup.html' with field=form.allow_guest_users %}
 </section>
 {% endif %}
 
