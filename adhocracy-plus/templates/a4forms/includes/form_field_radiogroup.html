@@ -1,0 +1,16 @@
+{% load i18n widget_tweaks %}
+
+<div class="form-group">
+    <fieldset class="form-fieldset">
+        <legend>
+            {{ field.label }}{% if field.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
+        </legend>
+        {% if field.help_text %}
+        <div class="form-hint" id="{{ field.auto_id }}_helptext">{{ field.help_text }}</div>
+        {% endif %}
+        <div class="widget widget--{{ field|widget_type }}">
+            {{ field }}
+        </div>
+        {{ field.errors }}
+    </fieldset>
+</div>
