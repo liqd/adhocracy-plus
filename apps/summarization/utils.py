@@ -1,19 +1,25 @@
 """Utility functions for document processing."""
 
+from __future__ import annotations
+
 import io
 import json
 from pathlib import Path
+from typing import TYPE_CHECKING
 
-import fitz  # PyMuPDF
 import requests
-from docx import Document
-from pydantic_ai.messages import BinaryContent
-from pydantic_ai.messages import BinaryImage
+
+if TYPE_CHECKING:
+    from pydantic_ai.messages import BinaryContent
+    from pydantic_ai.messages import BinaryImage
 
 
 # TODO: Deprecated ? We use only URLs now.
 def read_document(doc_path: Path) -> BinaryImage | BinaryContent:
     """Read document file and return BinaryImage or BinaryContent."""
+    from pydantic_ai.messages import BinaryContent
+    from pydantic_ai.messages import BinaryImage
+
     doc_path = Path(doc_path) if not isinstance(doc_path, Path) else doc_path
 
     if not doc_path.exists():
@@ -115,6 +121,8 @@ def download_document(url: str, timeout: int = 30) -> bytes:
 
 def extract_text_from_pdf(pdf_bytes: bytes) -> str:
     """Extract text from PDF document."""
+    import fitz
+
     try:
         pdf_document = fitz.open(stream=pdf_bytes, filetype="pdf")
         text_parts = []
@@ -139,6 +147,8 @@ def extract_text_from_pdf(pdf_bytes: bytes) -> str:
 
 def extract_text_from_docx(docx_bytes: bytes) -> str:
     """Extract text from DOCX document."""
+    from docx import Document
+
     try:
         docx_file = io.BytesIO(docx_bytes)
         doc = Document(docx_file)
