@@ -3,6 +3,18 @@ from datetime import timedelta
 
 from .dev import *
 
+DEBUG = False
+
+for template_engine in TEMPLATES:
+    template_engine["OPTIONS"]["debug"] = False
+
+INSTALLED_APPS = tuple(app for app in INSTALLED_APPS if app != "debug_toolbar")
+MIDDLEWARE = tuple(
+    middleware
+    for middleware in MIDDLEWARE
+    if middleware != "debug_toolbar.middleware.DebugToolbarMiddleware"
+)
+
 # PostgreSQL with PostGIS (service name "db" in docker-compose)
 DATABASES = {
     "default": {
