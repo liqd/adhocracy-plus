@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags pagination %}
+{% load i18n discovery_tags pagination contrib_tags thumbnail %}
 
 {% block project_action %}
     {% has_or_would_have_perm 'a4_candy_ideas.add_idea' request.user module as propose_allowed %}
@@ -8,7 +8,7 @@
             {% translate 'Submit idea' %}
         </a>
     {% endif %}
-{% endblock %}
+{% endblock project_action %}
 
 {% block phase_content %}
     <div class="l-top-overlap" id="index">
@@ -20,21 +20,157 @@
     </div>
     <div class="bg--light">
         <div class="row">
-            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                <ul class="u-list-reset">
-                    {% for object in object_list %}
-                        {% include "a4_candy_ideas/includes/idea_list_item.html" with object=object %}
-                    {% empty %}
-                        {% translate "Nothing to show" %}
-                    {% endfor %}
-                </ul>
+            <div class="col-12">
+                <div class="idea-inbox">
+                    <div class="idea-inbox__list">
+                        <ul class="u-list-reset" id="idea-list-accordion">
+                            {% for object in object_list %}
+                                {% include "a4_candy_ideas/includes/idea_list_item.html" with object=object %}
+                            {% empty %}
+                                {% translate "Nothing to show" %}
+                            {% endfor %}
+                        </ul>
 
-                {% if page_obj.paginator.num_pages > 1 %}
-                    <div class="mt-4">
-                        {% pagination page_obj %}
+                        {% if page_obj.paginator.num_pages > 1 %}
+                            <div class="mt-4">
+                                {% pagination page_obj %}
+                            </div>
+                        {% endif %}
                     </div>
-                {% endif %}
+                    <div class="idea-inbox__panes">
+                        <div class="idea-inbox__pane idea-inbox__pane--placeholder" data-idea-pane-placeholder>
+                            {% translate "Select an idea to view its details" %}
+                        </div>
+                        {% for object in object_list %}
+                            <div class="idea-inbox__pane" data-idea-pane="{{ object.pk }}" hidden>
+                                <h3 class="idea-inbox__pane-title u-first-heading">
+                                    <a href="{{ object.get_absolute_url }}">{{ object.name }}</a>
+                                </h3>
+                                <div class="list-item__labels">
+                                    {% if object.category %}
+                                        <span class="badge badge--big">{{ object.category }}</span>
+                                    {% endif %}
+                                    {% if object.moderator_status %}
+                                        <span class="badge badge--big badge--{{ object.moderator_status|classify }} list-item__badge--moderator-feedback">
+                                            {{ object.get_moderator_status_display }}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                {% include "a4_candy_ideas/includes/idea_list_item_details.html" with object=object %}
+                                <div class="idea-inbox__pane-footer">
+                                    <div class="list-item__meta">
+                                        <img class="list-item__author-avatar"
+                                             src="{% if object.creator.avatar %}{% thumbnail object.creator.avatar 'avatar' %}{% else %}{{ object.creator.avatar_fallback }}{% endif %}"
+                                             alt="">
+                                        <span class="list-item__author">{{ object.creator.username }}</span>
+                                        {% html_date object.created class='list-item__date' %}
+                                    </div>
+                                    <a class="btn btn--default" href="{{ object.get_absolute_url }}">
+                                        {% translate "Explore discussion" %}
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-{% endblock %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var accordion = document.getElementById('idea-list-accordion')
+            var panes = document.querySelectorAll('[data-idea-pane]')
+            var placeholder = document.querySelector('[data-idea-pane-placeholder]')
+            var desktop = window.matchMedia('(min-width: 768px)')
+            var pendingItem = null
+            var siblingCollapsing = false
+
+            // On desktop the headers must not trigger Bootstrap's inline
+            // collapse (which would expand then hide against the inbox pane).
+            // Remove the data-api wiring so only the pane-selection handler runs.
+            if (desktop.matches) {
+                accordion.querySelectorAll('.list-item__header').forEach(function (header) {
+                    header.removeAttribute('data-bs-toggle')
+                    header.removeAttribute('data-bs-target')
+                    header.removeAttribute('data-bs-parent')
+                })
+            }
+
+            function selectIdea (item) {
+                var pk = item.getAttribute('data-idea-pk')
+                document.querySelectorAll('.idea-inbox__list .list-item').forEach(function (card) {
+                    card.classList.toggle('selected', card === item)
+                })
+                panes.forEach(function (pane) {
+                    pane.hidden = pane.getAttribute('data-idea-pane') !== pk
+                })
+                if (placeholder) {
+                    placeholder.hidden = !!pk
+                }
+            }
+
+            accordion.addEventListener('click', function (event) {
+                var header = event.target.closest('.list-item__header')
+                if (!header) {
+                    return
+                }
+                if (desktop.matches) {
+                    event.preventDefault()
+                    selectIdea(header.closest('.list-item'))
+                }
+            })
+
+            function scrollToItem (item) {
+                var top = item.getBoundingClientRect().top + window.pageYOffset - 50
+                window.scrollTo({ top: top, behavior: 'smooth' })
+            }
+
+            function maybeScroll () {
+                if (pendingItem && !siblingCollapsing) {
+                    var item = pendingItem
+                    pendingItem = null
+                    scrollToItem(item)
+                }
+            }
+
+            // A previously open item starts collapsing. If it contains a
+            // (possibly tall) image, its disappearance shrinks the page and
+            // shifts cards above the target, so wait for it to finish.
+            // Without an image the layout doesn't shift, so no wait needed.
+            accordion.addEventListener('hide.bs.collapse', function (event) {
+                var sibling = event.target.closest('.list-item')
+                siblingCollapsing = !!(sibling && sibling.querySelector('.list-item__details-image'))
+            })
+
+            accordion.addEventListener('hidden.bs.collapse', function () {
+                siblingCollapsing = false
+                maybeScroll()
+            })
+
+            // When a new item starts expanding, scroll it into view once the
+            // layout above it has settled. Only the disappearance of a sibling
+            // that contains an image can shift the target, so only wait then.
+            accordion.addEventListener('show.bs.collapse', function (event) {
+                if (desktop.matches) {
+                    return
+                }
+                var item = event.target.closest('.list-item')
+                if (!item) {
+                    return
+                }
+                pendingItem = item
+
+                var openSibling = Array.prototype.find.call(
+                    accordion.querySelectorAll('.collapse'),
+                    function (el) {
+                        return el !== event.target &&
+                            (el.classList.contains('show') || el.classList.contains('collapsing'))
+                    }
+                )
+                siblingCollapsing = !!(openSibling &&
+                    openSibling.closest('.list-item').querySelector('.list-item__details-image'))
+                maybeScroll()
+            })
+        })
+    </script>
+{% endblock phase_content %}

@@ -1,44 +1,65 @@
-{% load i18n module_tags contrib_tags %}
+{% load i18n module_tags contrib_tags wagtailcore_tags thumbnail %}
 
-<li class="list-item list-item--squashed">
-    <div class="list-item__stats">
-        {% spaceless %}
-        {% if object|has_feature:"rate" %}
-            <span class="rating">
-                <span class="rating-button rating-up is-read-only" title="{% translate 'Positive Ratings' %}">
-                    <i class="fa fa-thumbs-up" aria-label="{% translate 'Positive Ratings' %}"></i>
-                    {{ object.positive_rating_count }}
+<li class="list-item list-item--squashed" data-idea-pk="{{ object.pk }}">
+    <div class="list-item__header" data-bs-toggle="collapse" data-bs-target="#idea-details-{{ object.pk }}" role="button" aria-expanded="false" aria-controls="idea-details-{{ object.pk }}">
+        <div class="list-item__stats">
+            {% spaceless %}
+            {% if object|has_feature:"rate" %}
+                <span class="rating">
+                    <span class="rating-button rating-up is-read-only" title="{% translate 'Positive Ratings' %}">
+                        <i class="fa fa-thumbs-up" aria-label="{% translate 'Positive Ratings' %}"></i>
+                        {{ object.positive_rating_count }}
+                    </span>
+                    <span class="rating-button rating-down is-read-only" title="{% translate 'Negative Ratings' %}">
+                        <i class="fa fa-thumbs-down" aria-label="{% translate 'Negative Ratings' %}"></i>
+                        {{ object.negative_rating_count }}
+                    </span>
                 </span>
-                <span class="rating-button rating-down is-read-only" title="{% translate 'Negative Ratings' %}">
-                    <i class="fa fa-thumbs-down" aria-label="{% translate 'Negative Ratings' %}"></i>
-                    {{ object.negative_rating_count }}
+            {% endif %}
+            <span title="{% translate 'Comments' %}" class="list-item__comments">
+                <i class="far fa-comment" aria-label="{% translate 'Comments' %}"></i>
+                {{ object.comment_count }}
+            </span>
+            {% endspaceless %}
+        </div>
+        <div class="list-item__labels">
+            {% if object.category %}
+                <span class="badge badge--big">{{ object.category }}</span>
+            {% endif %}
+            {% if object.moderator_status %}
+                <span class="badge badge--big badge--{{ object.moderator_status|classify }} list-item__badge--moderator-feedback">
+                    {{ object.get_moderator_status_display }}
                 </span>
-            </span>
-        {% endif %}
-        <span title="{% translate 'Comments' %}" class="list-item__comments">
-            <i class="far fa-comment" aria-label="{% translate 'Comments' %}"></i>
-            {{ object.comment_count }}
-        </span>
-        {% endspaceless %}
-    </div>
-    <h3 class="u-first-heading">
-        <a href="{{ object.get_absolute_url }}">
-        {{ object.name }}
-        </a>
-    </h3>
-    <div class="list-item__labels">
-        {% if object.category %}
-            <span class="badge badge--big">{{ object.category }}</span>
-        {% endif %}
-        {% if object.moderator_status %}
-            <span class="badge badge--big badge--{{ object.moderator_status|classify }} list-item__badge--moderator-feedback">
-                {{ object.get_moderator_status_display }}
-            </span>
-        {% endif %}
-    </div>
+            {% endif %}
+        </div>
+        <h3 class="u-first-heading">
+            <a class="list-item__title-link" href="{{ object.get_absolute_url }}">
+            {{ object.name }}
+            </a>
+        </h3>
 
-    <span class="list-item__author">
-        {{ object.creator.username }}
-    </span>
-    {% html_date object.created class='list-item__date' %}
+        <div id="idea-details-{{ object.pk }}" class="collapse" data-bs-parent="#idea-list-accordion">
+            <div class="list-item__details">
+                {% include "a4_candy_ideas/includes/idea_list_item_details.html" with object=object %}
+            </div>
+        </div>
+
+        <div class="list-item__meta">
+            <img class="list-item__author-avatar"
+                 src="{% if object.creator.avatar %}{% thumbnail object.creator.avatar 'avatar' %}{% else %}{{ object.creator.avatar_fallback }}{% endif %}"
+                 alt="">
+            <span class="list-item__author">{{ object.creator.username }}</span>
+            {% html_date object.created class='list-item__date' %}
+        </div>
+        <div class="list-item__footer">
+            <span class="list-item__expand-toggle">
+                <span class="u-if-collapsed">{% translate "Show details" %}</span>
+                <span class="u-if-not-collapsed">{% translate "Hide details" %}</span>
+                <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </span>
+            <a class="btn btn--default list-item__explore-btn" href="{{ object.get_absolute_url }}">
+                {% translate "Explore discussion" %}
+            </a>
+        </div>
+    </div>
 </li>
