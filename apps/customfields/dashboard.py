@@ -13,7 +13,7 @@ class CustomFieldComponent(DashboardComponent):
     label = _("Custom Fields")
 
     def is_effective(self, module):
-        return module.blueprint_type == "BS"
+        return module.blueprint_type in ["BS", "IC", "MBS", "MIC"]
 
     def get_progress(self, module):
         return 0, 0

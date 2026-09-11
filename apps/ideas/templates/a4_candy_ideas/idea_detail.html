@@ -2,14 +2,5 @@
 {% load i18n %}
 
 {% block additional_content %}
-    {% if object.custom_field_answers.all %}
-        <div class="item-detail__custom-fields">
-            {% for answer in object.custom_field_answers.all %}
-                <div class="form-group">
-                    <label>{{ answer.field.label }}</label>
-                    <p>{{ answer.display_value }}</p>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+    {% include 'a4_candy_customfields/custom_field_answers.html' %}
 {% endblock additional_content %}

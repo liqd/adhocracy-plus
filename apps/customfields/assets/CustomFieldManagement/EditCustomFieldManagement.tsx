@@ -79,14 +79,22 @@ export const EditCustomFieldManagement = (props: EditCustomFieldManagementProps)
   const handleTypeChange = (index: number, type: 'choice' | 'open') => {
     setFields(prev => prev.map((field, i) => {
       if (i !== index) return field
-      if (type === 'choice' && (!field.choices || field.choices.length === 0)) {
+      if (type === 'choice') {
+        // Switching to a choice question always starts with a fresh pair of
+        // answer options, so initiators immediately see two answer fields and
+        // no empty placeholder option is carried over from an open question.
         return {
           ...field,
           type,
-          choices: [{ label: '', key: getNextLocalKey() }]
+          choices: [
+            { label: '', key: getNextLocalKey() },
+            { label: '', key: getNextLocalKey() }
+          ]
         }
       }
-      return { ...field, type }
+      // Switching back to an open question: drop the answer options so they
+      // cannot linger and break later saves or leak into the submission form.
+      return { ...field, type, choices: [] }
     }))
   }
 
@@ -119,7 +127,18 @@ export const EditCustomFieldManagement = (props: EditCustomFieldManagementProps)
       fields: fields.map(field => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { key, ...clean } = field
-        return clean
+        return {
+          ...clean,
+          // Empty answer options (e.g. the auto-seeded blanks) are dropped so
+          // they are never persisted or surfaced as selectable answers.
+          choices: clean.choices
+            .map(choice => {
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              const { key: choiceKey, ...choiceClean } = choice
+              return choiceClean
+            })
+            .filter(choice => choice.label.trim() !== '')
+        }
       })
     }
 

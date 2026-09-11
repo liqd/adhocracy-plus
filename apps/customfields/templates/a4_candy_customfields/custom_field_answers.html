@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load custom_field_tags %}
+{% with settings=object|custom_field_settings %}
+    {% if settings and settings.fields.all %}
+        <div class="item-detail__custom-fields">
+            <h2 class="item-detail__custom-fields__title">{% translate 'Additional questions' %}</h2>
+            {% for field in settings.fields.all %}
+                <div class="item-detail__custom-fields__field">
+                    <p class="item-detail__custom-fields__question">{{ field.label }}</p>
+                    {% with value=object|answer_for:field %}
+                        <p class="item-detail__custom-fields__answer">{% if value %}{{ value }}{% else %}—{% endif %}</p>
+                    {% endwith %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}

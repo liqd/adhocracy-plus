@@ -14,9 +14,18 @@ def test_component_effective_for_bs_blueprint(bs_module):
 
 
 @pytest.mark.django_db
+def test_component_effective_for_idea_based_blueprints(phase_factory):
+    for blueprint_type in ["BS", "IC", "MBS", "MIC"]:
+        phase, module, project, _ = setup_phase(phase_factory, None, phases.IssuePhase)
+        module.blueprint_type = blueprint_type
+        module.save()
+        assert CustomFieldComponent().is_effective(module)
+
+
+@pytest.mark.django_db
 def test_component_not_effective_for_other_blueprints(phase_factory):
     phase, module, project, _ = setup_phase(phase_factory, None, phases.IssuePhase)
-    module.blueprint_type = "IC"
+    module.blueprint_type = "DB"
     module.save()
     assert not CustomFieldComponent().is_effective(module)
 

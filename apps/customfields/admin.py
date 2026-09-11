@@ -26,4 +26,4 @@ class CustomFieldAdmin(admin.ModelAdmin):
 
 @admin.register(models.CustomFieldAnswer)
 class CustomFieldAnswerAdmin(admin.ModelAdmin):
-    list_display = ("idea", "field", "value")
+    list_display = ("content_object", "field", "value")

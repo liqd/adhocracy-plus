@@ -36,9 +36,11 @@ def test_idea_export_contains_custom_field_columns(
         settings=settings, type=CustomFieldType.CHOICE, required=False
     )
     choice_1 = custom_field_choice_factory(field=choice_field, label="Option 1")
-    CustomFieldAnswer.objects.create(idea=idea, field=open_field, value="Kreuzberg")
     CustomFieldAnswer.objects.create(
-        idea=idea, field=choice_field, value=str(choice_1.pk)
+        content_object=idea, field=open_field, value="Kreuzberg"
+    )
+    CustomFieldAnswer.objects.create(
+        content_object=idea, field=choice_field, value=str(choice_1.pk)
     )
 
     initiator = module.project.organisation.initiators.first()

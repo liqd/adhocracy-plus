@@ -41,6 +41,9 @@ class MapIdea(AbstractMapIdea):
         related_query_name="mapidea",
         object_id_field="object_pk",
     )
+    custom_field_answers = GenericRelation(
+        "a4_candy_customfields.CustomFieldAnswer", related_query_name="mapidea"
+    )
 
     objects = PolymorphicManager.from_queryset(idea_models.IdeaQuerySet)()
 

@@ -3,21 +3,22 @@
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'a4maps_display_point.js' %}"></script>
-{% endblock %}
+{% endblock extra_js %}
 
 {% block extra_css %}
-    <link type="text/css" href="{% static 'a4maps_display_point.css'%}" rel="stylesheet" />
-{% endblock %}
+    <link type="text/css" href="{% static 'a4maps_display_point.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
 
 {% block additional_labels %}
     {% if object.point_label %}
         <span class="badge badge--big"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> {{ object.point_label }}</span>
     {% endif %}
-{% endblock %}
+{% endblock additional_labels %}
 
 {% block additional_content %}
     {% if object.point %}
         {% get_category_pin_url object as pin_url %}
         {% map_display_point object.point object.module.areasettings_settings.polygon pin_url %}
     {% endif %}
-{% endblock %}
+    {% include 'a4_candy_customfields/custom_field_answers.html' %}
+{% endblock additional_content %}
