@@ -22,6 +22,14 @@
 
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.point %}
 
+    <div class="gps-locate d-md-none">
+        <button type="button" class="btn btn--secondary" data-gps-locate>
+            <i class="fas fa-location-crosshairs" aria-hidden="true"></i>
+            {% translate 'Use my current location' %}
+        </button>
+        <span class="gps-locate__status" data-gps-locate-status hidden></span>
+    </div>
+
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.point_label %}
 
     {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.organisation_terms_of_use %}

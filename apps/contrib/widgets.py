@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.filters.widgets import FreeTextFilterWidget as A4FreeTextFilterWidget
 from adhocracy4.filters.widgets import OrderingWidget
-from adhocracy4.images.widgets import ImageInputWidget
+from adhocracy4.images.widgets import ImageInputWidget as A4ImageInputWidget
 
 
 class Select2Mixin:
@@ -63,6 +63,15 @@ class AplusOrderingWidget(OrderingWidget):
 
 class FreeTextFilterWidget(A4FreeTextFilterWidget):
     label = _("Search")
+
+
+class ImageInputWidget(A4ImageInputWidget):
+    """A4 image input that restricts the native file picker to images."""
+
+    def render(self, name, value, attrs=None, renderer=None):
+        attrs = attrs or {}
+        attrs["accept"] = "image/*"
+        return super().render(name, value, attrs, renderer)
 
 
 class ImageInputWidgetSimple(ImageInputWidget):

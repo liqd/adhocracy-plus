@@ -33,7 +33,7 @@ class MapIdeaForm(
         self.fields["image"].help_text = IMAGE_UPLOAD_IDEA_HELP_TEXT
 
     class Media:
-        js = ("select_dropdown_init.js",)
+        js = ("select_dropdown_init.js", "mapideas_gps.js")
 
     class Meta:
         model = models.MapIdea
