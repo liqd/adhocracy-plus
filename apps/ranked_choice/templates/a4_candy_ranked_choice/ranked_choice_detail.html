@@ -1,0 +1,20 @@
+{% extends extends %}
+{% load i18n static react_ranked_choice %}
+
+{% block phase_content %}
+<div class="row">
+    <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+        {% block ranked_choice_react %}
+            <div class="u-mb-4">
+                {% react_ranked_choice %}
+            </div>
+        {% endblock %}
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+    <script type="text/javascript" src="{% static 'ranked_choice.js' %}"></script>
+{% endblock extra_js %}

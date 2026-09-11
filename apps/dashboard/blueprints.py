@@ -8,6 +8,7 @@ from apps.documents import phases as documents_phases
 from apps.ideas import phases as ideas_phases
 from apps.interactiveevents import phases as interactiveevent_phases
 from apps.mapideas import phases as mapideas_phases
+from apps.ranked_choice import phases as ranked_choice_phases
 from apps.topicprio import phases as topicprio_phases
 
 blueprints = [
@@ -59,6 +60,25 @@ blueprints = [
             image="images/agenda-setting.svg",
             settings_model=None,
             type="IC",
+        ),
+    ),
+    (
+        "ranked-choice",
+        ProjectBlueprint(
+            title=_("Ranked choice"),
+            description=_(
+                "In a first phase, participants can submit their own ideas. "
+                "In a second phase, participants rank the collected ideas "
+                "according to their preference. The result is determined by "
+                "the ranked votes."
+            ),
+            content=[
+                ideas_phases.CollectPhase(),
+                ranked_choice_phases.RankPhase(),
+            ],
+            image="images/priorization.svg",
+            settings_model=None,
+            type="RC",
         ),
     ),
     (
