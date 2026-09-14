@@ -1,8 +1,11 @@
 from django import forms
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.dashboard.forms import ALLOW_GUEST_USERS_CHOICES
 from adhocracy4.dashboard.forms import ProjectBasicForm as A4ProjectBasicForm
 from adhocracy4.dashboard.forms import ProjectCreateForm
+from adhocracy4.dashboard.forms import coerce_bool_choice
 from adhocracy4.projects import models as project_models
 from apps.contrib.image_upload_help import IMAGE_UPLOAD_HERO_HELP_TEXT
 from apps.contrib.image_upload_help import IMAGE_UPLOAD_TILE_HELP_TEXT
@@ -26,7 +29,7 @@ class ProjectBasicForm(A4ProjectBasicForm):
 class DashboardProjectCreateForm(ProjectCreateForm):
     class Meta:
         model = project_models.Project
-        fields = ["name", "description", "access"]
+        fields = ["name", "description", "allow_guest_users", "access"]
         widgets = {
             "access": forms.RadioSelect(
                 # FIXME: these choices are currently ignored by djangos widget
@@ -56,3 +59,17 @@ class DashboardProjectCreateForm(ProjectCreateForm):
                 ]
             ),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if getattr(settings, "A4_ENABLE_GUEST_USERS", False):
+            self.fields["allow_guest_users"] = forms.TypedChoiceField(
+                label=_("Participants"),
+                choices=ALLOW_GUEST_USERS_CHOICES,
+                coerce=coerce_bool_choice,
+                widget=forms.RadioSelect(),
+                required=True,
+                initial=False,
+            )
+        else:
+            self.fields.pop("allow_guest_users", None)

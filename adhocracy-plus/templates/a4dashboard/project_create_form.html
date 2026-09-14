@@ -1,7 +1,7 @@
 {% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n %}
 
-{% block title %}{% translate "Create project" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "Create project" %} — {{ block.super }}{% endblock title %}
 
 {% block dashboard_nav %}
 <div class="u-bg-secondary u-spacer-bottom-double py-3">
@@ -18,7 +18,7 @@
         </nav>
     </div>
 </div>
-{% endblock %}
+{% endblock dashboard_nav %}
 
 {% block dashboard_content %}
     <div class="row mb-5">
@@ -35,6 +35,11 @@
                 {% include 'a4forms/includes/form_field.html' with field=form.name %}
 
                 {% include 'a4forms/includes/form_field.html' with field=form.description %}
+                {% if form.allow_guest_users %}
+                <section class="u-bottom-divider">
+                    {% include 'a4forms/includes/form_field_radiogroup.html' with field=form.allow_guest_users %}
+                </section>
+                {% endif %}
 
                 {% include 'a4dashboard/includes/form_field.html' with field=form.access %}
 
@@ -48,12 +53,12 @@
             </form>
         </div>
     </div>
-{% endblock %}
+{% endblock dashboard_content %}
 
 {% block extra_js %}
     {{ block.super }}
     {{ form.media.js }}
-{% endblock %}
+{% endblock extra_js %}
 {% block extra_css %}
     {{ form.media.css }}
-{% endblock %}
+{% endblock extra_css %}

@@ -18,7 +18,12 @@ def test_project_create(client, organisation, user):
         },
     )
 
-    data = {"name": "project name", "description": "project description", "access": 1}
+    data = {
+        "name": "project name",
+        "description": "project description",
+        "access": 1,
+        "allow_guest_users": "False",
+    }
 
     response = client.post(url, data)
     assert redirect_target(response) == "account_login"
@@ -152,9 +157,7 @@ def test_module_publish(client, project):
     response = client.post(url_publish, data_publish)
     messages = list(get_messages(response.wsgi_request))
     assert len(messages) > 0
-    assert (
-        str(messages[-1]) == "Module cannot be added. Required fields " "are missing."
-    )
+    assert str(messages[-1]) == "Module cannot be added. Required fields are missing."
 
     # fill required fields first
     url = reverse(
@@ -204,7 +207,7 @@ def test_module_publish(client, project):
     response = client.post(url_publish, data_unpublish)
     assert redirect_target(response) == "project-edit"
     messages = list(get_messages(response.wsgi_request))
-    assert str(messages[-1]) == "Module cannot be removed from a published " "project."
+    assert str(messages[-1]) == "Module cannot be removed from a published project."
 
     project.is_draft = True
     project.save()
@@ -212,7 +215,7 @@ def test_module_publish(client, project):
     response = client.post(url_publish, data_unpublish)
     assert redirect_target(response) == "project-edit"
     messages = list(get_messages(response.wsgi_request))
-    assert str(messages[-1]) == "The module is no longer displayed in the " "project."
+    assert str(messages[-1]) == "The module is no longer displayed in the project."
 
     module.refresh_from_db()
     assert module.is_draft
