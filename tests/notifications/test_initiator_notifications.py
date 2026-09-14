@@ -17,7 +17,12 @@ def test_notify_on_project_created(client, organisation, user):
         },
     )
 
-    data = {"name": "project name", "description": "project description", "access": 1}
+    data = {
+        "name": "project name",
+        "description": "project description",
+        "access": 1,
+        "allow_guest_users": "False",
+    }
 
     client.login(username=initiator, password="password")
     response = client.post(url, data)
