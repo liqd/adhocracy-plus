@@ -43,13 +43,13 @@ services:
         condition: service_healthy
     environment: &app_env
       DJANGO_SETTINGS_MODULE: adhocracy-plus.config.settings.docker
-      POSTGRES_HOST: db
+      POSTGRES_HOST: ${SERVICE_NAME_DB:-db}
       POSTGRES_PORT: "5432"
       POSTGRES_USER: django
       POSTGRES_PASSWORD: django
       POSTGRES_DB: django
-      CELERY_BROKER_URL: redis://redis:6379/0
-      CELERY_RESULT_BACKEND: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://${SERVICE_NAME_REDIS:-redis}:6379/0
+      CELERY_RESULT_BACKEND: redis://${SERVICE_NAME_REDIS:-redis}:6379/0
       CELERY_WORKER_CONCURRENCY: "${CELERY_WORKER_CONCURRENCY:-1}"
       CELERY_WORKER_MAX_TASKS_PER_CHILD: "${CELERY_WORKER_MAX_TASKS_PER_CHILD:-100}"
       CELERY_WORKER_MAX_MEMORY_PER_CHILD: "${CELERY_WORKER_MAX_MEMORY_PER_CHILD:-400}"
