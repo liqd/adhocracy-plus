@@ -1,5 +1,7 @@
 """Provider implementation for AI services."""
 
+from __future__ import annotations
+
 import logging
 from abc import ABC
 from typing import TypeVar
@@ -7,13 +9,6 @@ from typing import cast
 
 from django.conf import settings
 from pydantic import BaseModel
-from pydantic_ai import Agent
-from pydantic_ai import ImageUrl
-from pydantic_ai import TextOutput
-from pydantic_ai.models.mistral import MistralModel
-from pydantic_ai.models.openai import OpenAIChatModel
-from pydantic_ai.providers.mistral import MistralProvider
-from pydantic_ai.providers.openai import OpenAIProvider
 from sentry_sdk import capture_exception
 
 from .llm_json import parse_structured_llm_json
@@ -139,6 +134,9 @@ class AIProvider:
             "",
         )
 
+        from pydantic_ai.providers.mistral import MistralProvider
+        from pydantic_ai.providers.openai import OpenAIProvider
+
         # Use MistralProvider for Mistral, OpenAIProvider for others
         if config.handle == "mistral":
             self.provider = MistralProvider(
@@ -177,6 +175,11 @@ class AIProvider:
         Returns:
             Structured response as BaseModel instance
         """
+        from pydantic_ai import Agent
+        from pydantic_ai import TextOutput
+        from pydantic_ai.models.mistral import MistralModel
+        from pydantic_ai.models.openai import OpenAIChatModel
+
         # Use MistralModel for Mistral, OpenAIChatModel for others
         if self.is_mistral:
             model = MistralModel(
@@ -249,6 +252,12 @@ class AIProvider:
         Returns:
             Structured response instance
         """
+        from pydantic_ai import Agent
+        from pydantic_ai import ImageUrl
+        from pydantic_ai import TextOutput
+        from pydantic_ai.models.mistral import MistralModel
+        from pydantic_ai.models.openai import OpenAIChatModel
+
         # Use MistralModel for Mistral, OpenAIChatModel for others
         # Note: Mistral may not support vision/multimodal requests
         # Note: OpenAIResponsesModel uses /v1/responses endpoint which is not supported by all providers

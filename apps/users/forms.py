@@ -1,6 +1,5 @@
 import logging
 
-import xmltodict
 from allauth.account.forms import LoginForm
 from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
@@ -9,7 +8,6 @@ from django.conf import settings
 from django.contrib.auth import forms as auth_forms
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
-from zeep import Client
 
 from apps.captcha.fields import ProsopoCaptchaField
 from apps.cms.settings import helpers
@@ -71,6 +69,7 @@ class DefaultLoginForm(LoginForm):
         self.fields["login"].widget.attrs["autocomplete"] = "username"
         self.fields["password"].widget.attrs["autocomplete"] = "current-password"
         self.fields["password"].widget.attrs["class"] = "password-toggle"
+
 
 class DefaultSignupForm(BotTrapMixin, TermsAndCaptchaMixin, SignupForm):
     terms_of_use = forms.BooleanField(label=_("Terms of use"))
@@ -183,6 +182,9 @@ class IgbceSignupForm(DefaultSignupForm):
     )
 
     def validateMemberNumberAndDate(self, member_number, birth_date):
+        import xmltodict
+        from zeep import Client
+
         if not hasattr(settings, "IGBCE_NAV_URL") or not hasattr(
             settings, "IGBCE_NAV_SECURITYID"
         ):
