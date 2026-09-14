@@ -1,0 +1,20 @@
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { initialise as ReactWidgetInit } from 'adhocracy4/adhocracy4/static/widget'
+
+import { PollManagement } from './react_poll_management/components/PollManagement'
+
+function init () {
+  ReactWidgetInit('a4', 'poll-management',
+    function (el: HTMLElement) {
+      const props = JSON.parse(el.dataset.attributes || '{}')
+      const root = createRoot(el)
+
+      root.render(
+        <PollManagement {...props} />
+      )
+    }
+  )
+}
+
+document.addEventListener('DOMContentLoaded', init, false)
