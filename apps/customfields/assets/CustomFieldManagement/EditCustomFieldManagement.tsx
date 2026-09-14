@@ -79,22 +79,22 @@ export const EditCustomFieldManagement = (props: EditCustomFieldManagementProps)
   const handleTypeChange = (index: number, type: 'choice' | 'open') => {
     setFields(prev => prev.map((field, i) => {
       if (i !== index) return field
-      if (type === 'choice') {
-        // Switching to a choice question always starts with a fresh pair of
-        // answer options, so initiators immediately see two answer fields and
-        // no empty placeholder option is carried over from an open question.
-        return {
-          ...field,
-          type,
-          choices: [
-            { label: '', key: getNextLocalKey() },
-            { label: '', key: getNextLocalKey() }
-          ]
-        }
+      if (type === 'open') {
+        // Switching back to an open question: drop the answer options so they
+        // cannot linger and break later saves or leak into the submission form.
+        return { ...field, type, choices: [] }
       }
-      // Switching back to an open question: drop the answer options so they
-      // cannot linger and break later saves or leak into the submission form.
-      return { ...field, type, choices: [] }
+      // Switching to a choice question always starts with a fresh pair of
+      // answer options, so initiators immediately see two answer fields and
+      // no empty placeholder option is carried over from an open question.
+      return {
+        ...field,
+        type,
+        choices: [
+          { label: '', key: getNextLocalKey() },
+          { label: '', key: getNextLocalKey() }
+        ]
+      }
     }))
   }
 
