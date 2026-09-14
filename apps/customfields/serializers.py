@@ -13,6 +13,7 @@ from .models import CustomFieldType
 
 class CustomFieldChoiceSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
+    label = serializers.CharField(required=True, allow_blank=True, max_length=255)
 
     class Meta:
         model = CustomFieldChoice
@@ -32,7 +33,10 @@ class CustomFieldSerializer(serializers.ModelSerializer):
             return attrs
 
         choices = attrs.get("choices") or []
-        if not choices:
+        non_blank_choices = [
+            choice for choice in choices if (choice.get("label") or "").strip()
+        ]
+        if not non_blank_choices:
             raise serializers.ValidationError(
                 {"choices": _("A multiple choice question needs at least one answer.")}
             )
@@ -76,11 +80,22 @@ class CustomFieldSettingsSerializer(serializers.ModelSerializer):
                 if field.type == CustomFieldType.CHOICE:
                     choices = field_data.get("choices", [])
                     self._update_choices(choices, field)
+                else:
+                    # Open questions must not keep stale answer options. They
+                    # would otherwise linger after switching a question type
+                    # and leak into the submission form or later saves.
+                    field.choices.all().delete()
 
         self._send_component_updated_signal(instance)
         return instance
 
     def _update_choices(self, choices_data, field):
+        # Drop blank answer options (e.g. auto-seeded placeholders) instead of
+        # persisting empty selectable answers.
+        choices_data = [
+            choice for choice in choices_data if (choice.get("label") or "").strip()
+        ]
+
         allowed_ids = set(field.choices.values_list("id", flat=True))
         submitted_ids = {choice["id"] for choice in choices_data if choice.get("id")}
         if not submitted_ids <= allowed_ids:

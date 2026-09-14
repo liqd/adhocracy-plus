@@ -25,8 +25,8 @@ select[id^="id_custom_field_"] {
     // The management form carries both classes. The .editpoll__questions
     // prefix keeps the specificity above the editpoll/commenting patterns,
     // which are defined later in the stylesheet.
-    .editpoll__questions & {
-        &__field {
+    &.editpoll__questions {
+        .custom-fields__field {
             width: 100%;
 
             // neutralize the margins of the editpoll row pattern so the cards
@@ -46,11 +46,11 @@ select[id^="id_custom_field_"] {
             }
         }
 
-        &__field + &__field {
+        .custom-fields__field + .custom-fields__field {
             margin-top: 16px;
         }
 
-        &__card {
+        .custom-fields__card {
             padding: 1.5 * $spacer;
             margin-bottom: 0;
         }
@@ -145,6 +145,11 @@ select[id^="id_custom_field_"] {
 
         &:hover {
             opacity: 0.7;
+        }
+
+        &:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
         }
     }
 }
