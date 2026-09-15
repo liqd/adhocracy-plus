@@ -1,0 +1,7 @@
+{% load wagtailcore_tags thumbnail %}
+{% if object.image %}
+    <img class="item-detail__image list-item__details-image" src="{% thumbnail object.image 'idea_image' %}" alt="">
+{% endif %}
+<div class="ck-content">
+    {{ object.description | richtext }}
+</div>
