@@ -1,9 +1,10 @@
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.models.base import TimeStampedModel
 from adhocracy4.modules import models as module_models
-from apps.ideas import models as idea_models
 
 
 class CustomFieldType(models.TextChoices):
@@ -57,9 +58,16 @@ class CustomFieldChoice(models.Model):
 
 
 class CustomFieldAnswer(TimeStampedModel):
-    idea = models.ForeignKey(
-        idea_models.Idea, on_delete=models.CASCADE, related_name="custom_field_answers"
-    )
+    """Answer to a custom field, attached to an idea or a map idea.
+
+    Uses a generic foreign key so that all idea based modules
+    (brainstorming, idea contest, spatial brainstorming and spatial idea
+    contest) can store custom field answers.
+    """
+
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey()
     field = models.ForeignKey(
         CustomField, on_delete=models.CASCADE, related_name="answers"
     )
@@ -68,7 +76,8 @@ class CustomFieldAnswer(TimeStampedModel):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["idea", "field"], name="unique_answer_per_idea_and_field"
+                fields=["content_type", "object_id", "field"],
+                name="unique_answer_per_object_and_field",
             )
         ]
 

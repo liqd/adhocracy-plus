@@ -7,6 +7,10 @@
 
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.description %}
 
+    {% for field in form.custom_fields %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
+    {% endfor %}
+
     {% if form.show_categories %}
         {% include 'a4_candy_contrib/includes/form_field.html' with field=form.category %}
     {% endif %}

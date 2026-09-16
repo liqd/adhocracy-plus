@@ -149,9 +149,11 @@ def test_update_idea_prefills_and_saves_custom_fields(
 
     idea = idea_factory(module=module)
     user = idea.creator
-    CustomFieldAnswer.objects.create(idea=idea, field=open_field, value="Kreuzberg")
     CustomFieldAnswer.objects.create(
-        idea=idea, field=choice_field, value=str(choice_1.pk)
+        content_object=idea, field=open_field, value="Kreuzberg"
+    )
+    CustomFieldAnswer.objects.create(
+        content_object=idea, field=choice_field, value=str(choice_1.pk)
     )
     open_created = idea.custom_field_answers.get(field=open_field).created
     category = category_factory(module=module)
@@ -210,7 +212,9 @@ def test_update_idea_clears_custom_field_answer(
 
     idea = idea_factory(module=module)
     user = idea.creator
-    CustomFieldAnswer.objects.create(idea=idea, field=open_field, value="Kreuzberg")
+    CustomFieldAnswer.objects.create(
+        content_object=idea, field=open_field, value="Kreuzberg"
+    )
     category = category_factory(module=module)
     url = reverse(
         "a4_candy_ideas:idea-update",
@@ -234,3 +238,51 @@ def test_update_idea_clears_custom_field_answer(
 
         idea.refresh_from_db()
         assert idea.custom_field_answers.count() == 0
+
+
+@pytest.mark.django_db
+def test_required_choice_field_has_empty_placeholder_and_enforces_choice(
+    client,
+    bs_module,
+    user,
+    custom_field_factory,
+    custom_field_choice_factory,
+):
+    """A required choice question must not preselect the first answer.
+
+    The empty placeholder option is always present so that participants have
+    to actively choose an answer instead of silently submitting the first
+    option of the drop-down.
+    """
+    module = bs_module
+    phase = module.phase_set.first()
+    settings = module.customfieldsettings_settings
+    choice_field = custom_field_factory(
+        settings=settings, type=CustomFieldType.CHOICE, required=True
+    )
+    custom_field_choice_factory(field=choice_field, label="Option 1")
+    url = reverse(
+        "a4_candy_ideas:idea-create",
+        kwargs={
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+        response = client.get(url)
+        form = response.context_data["form"]
+        name = "custom_field_{}".format(choice_field.pk)
+        first_choice = form.fields[name].choices[0]
+        assert first_choice[0] == ""
+        assert first_choice[1]
+
+        idea = {
+            "name": "Idea",
+            "description": "description",
+            "organisation_terms_of_use": True,
+            name: "",
+        }
+        response = client.post(url, idea)
+        assert response.status_code == 200
+        assert not idea_models.Idea.objects.filter(name="Idea").exists()
