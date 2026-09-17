@@ -73,6 +73,7 @@ services:
 
   worker:
     build: .
+    profiles: ["workers"]
     mem_limit: "${WORKER_MEM_LIMIT:-1536m}"
     memswap_limit: "${WORKER_MEM_LIMIT:-1536m}"
     cpu_shares: ${WORKER_CPU_SHARES:-256}
