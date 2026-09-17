@@ -2,6 +2,12 @@ VIRTUAL_ENV ?= venv
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = adhocracy-plus apps tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
+DEV_PORT ?= 8004
+ifeq ($(filter server watch,$(firstword $(MAKECMDGOALS))),$(firstword $(MAKECMDGOALS)))
+ifneq ($(strip $(ARGUMENTS)),)
+DEV_PORT := $(firstword $(ARGUMENTS))
+endif
+endif
 
 # for mac os gsed is needed (brew install gnu-sed and brew install gsed)
 SED = sed
@@ -24,8 +30,8 @@ help:
 	@echo "  make install					-- install dev setup"
 	@echo "  make clean						-- delete node modules and venv"
 	@echo "  make fixtures					-- load example data"
-	@echo "  make server					-- start a dev server"
-	@echo "  make watch						-- start a dev server and rebuild js and css files on changes"
+	@echo "  make server [port]				-- start a dev server (default port 8004)"
+	@echo "  make watch [port]				-- start a dev server and rebuild js and css files on changes (default port 8004)"
 	@echo "  make background				-- start background processes"
 	@echo "  make test						-- run all test cases"
 	@echo "  make pytest					-- run all test cases with pytest"
@@ -83,13 +89,13 @@ fixtures:
 
 .PHONY: server
 server:
-	$(VIRTUAL_ENV)/bin/python manage.py runserver 8004
+	$(VIRTUAL_ENV)/bin/python manage.py runserver $(DEV_PORT)
 
 .PHONY: watch
 watch:
 	trap 'kill %1' KILL; \
 	pnpm run watch & \
-	$(VIRTUAL_ENV)/bin/python manage.py runserver 8004
+	$(VIRTUAL_ENV)/bin/python manage.py runserver $(DEV_PORT)
 
 .PHONY: background
 background:
