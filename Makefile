@@ -267,15 +267,15 @@ docs:
 
 .PHONY: docker-up
 docker-up:
-	docker compose up --build
+	docker compose --profile workers up --build
 
 .PHONY: docker-down
 docker-down:
-	docker compose down
+	docker compose --profile workers down
 
 .PHONY: docker-logs
 docker-logs:
-	docker compose logs -f
+	docker compose --profile workers logs -f
 
 .PHONY: docker-fixtures-users
 docker-fixtures-users:
