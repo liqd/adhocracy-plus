@@ -11,10 +11,21 @@
                 {% if provider.id == "openid" %}
                 {% for brand in provider.get_brands %}
                 <div class="col-lg-6 pb-3">
-                    <a title="{{ brand.name }}"
-                       class="socialaccount-provider {{ provider.id }} {{ brand.id }}"
-                       href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
-                    >{{ brand.name }}</a>
+                    <a 
+                        title="{{ brand.name }}"
+                        class="socialaccount-provider {{ provider.id }} {{ brand.id }}"
+                        href="
+                            {% if provider.id == 'github' %}
+                                {% provider_login_url provider.id openid=brand.openid_url process=process next='/accounts/3rdparty/signup/' %}
+                            {% elif provider.id == 'apple' %}
+                                {% provider_login_url provider.id openid=brand.openid_url process=process next='/accounts/apple/callback/' %}
+                            {% else %}
+                                {% provider_login_url provider.id openid=brand.openid_url process=process %}
+                            {% endif %}
+                        "
+                    >
+                        {{ brand.id }}
+                    </a>
                 </div>
                 {% endfor %}
                 {% endif %}
