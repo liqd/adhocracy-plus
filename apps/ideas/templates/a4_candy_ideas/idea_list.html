@@ -65,7 +65,7 @@
                                         <span class="list-item__author">{{ object.creator.username }} · </span>
                                         {% html_date object.created class='list-item__date' %}
                                     </div>
-                                    <a class="btn btn--default" href="{{ object.get_absolute_url }}">
+                                    <a class="btn btn--transparent-bordered" href="{{ object.get_absolute_url }}">
                                         {% translate "Explore discussion" %}
                                     </a>
                                 </div>
@@ -85,6 +85,16 @@
             var pendingItem = null
             var siblingCollapsing = false
 
+            window.addEventListener('click', function (event) {
+                if (desktop.matches || !event.target.closest('.list-item__header')) {
+                    return
+                }
+                var hasSelection = window.getSelection && window.getSelection().toString().trim() !== ''
+                if (hasSelection || event.target.closest('.list-item__explore-btn, .list-item__details')) {
+                    event.stopPropagation()
+                }
+            }, true)
+
             // On desktop the headers must not trigger Bootstrap's inline
             // collapse (which would expand then hide against the inbox pane).
             // Remove the data-api wiring so only the pane-selection handler runs.
@@ -97,9 +107,10 @@
             }
 
             function selectIdea (item) {
-                var pk = item.getAttribute('data-idea-pk')
+                var pk = item ? item.getAttribute('data-idea-pk') : null
                 document.querySelectorAll('.idea-inbox__list .list-item').forEach(function (card) {
                     card.classList.toggle('selected', card === item)
+                    card.querySelector('.list-item__header').setAttribute('aria-expanded', card === item ? 'true' : 'false')
                 })
                 panes.forEach(function (pane) {
                     pane.hidden = pane.getAttribute('data-idea-pane') !== pk
@@ -116,7 +127,8 @@
                 }
                 if (desktop.matches) {
                     event.preventDefault()
-                    selectIdea(header.closest('.list-item'))
+                    var item = header.closest('.list-item')
+                    selectIdea(item.classList.contains('selected') ? null : item)
                 }
             })
 

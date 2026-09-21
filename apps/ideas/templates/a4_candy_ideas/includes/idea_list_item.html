@@ -40,7 +40,7 @@
 
         <div id="idea-details-{{ object.pk }}" class="collapse" data-bs-parent="#idea-list-accordion">
             <div class="list-item__details">
-                {% include "a4_candy_ideas/includes/idea_list_item_details.html" with object=object %}
+                {% include "a4_candy_ideas/includes/idea_list_item_details.html" with object=object max_chars=1000 %}
             </div>
         </div>
 
@@ -57,7 +57,7 @@
                 <span class="u-if-not-collapsed">{% translate "Hide details" %}</span>
                 <i class="fas fa-chevron-down" aria-hidden="true"></i>
             </span>
-            <a class="btn btn--default list-item__explore-btn" href="{{ object.get_absolute_url }}">
+            <a class="btn btn--transparent-bordered list-item__explore-btn" href="{{ object.get_absolute_url }}">
                 {% translate "Explore discussion" %}
             </a>
         </div>
