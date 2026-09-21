@@ -3,5 +3,9 @@
     <img class="item-detail__image list-item__details-image" src="{% thumbnail object.image 'idea_image' %}" alt="">
 {% endif %}
 <div class="ck-content">
-    {{ object.description | richtext }}
+    {% if max_chars %}
+        {{ object.description | richtext | truncatechars_html:max_chars }}
+    {% else %}
+        {{ object.description | richtext }}
+    {% endif %}
 </div>
