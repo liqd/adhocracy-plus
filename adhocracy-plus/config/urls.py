@@ -1,5 +1,7 @@
 """adhocracy+ URL Configuration."""
 
+from urllib.parse import urlsplit
+
 from allauth.account import views as allauth_views
 from django.conf import settings
 from django.conf.urls import i18n
@@ -222,7 +224,6 @@ urlpatterns = [
 
 
 if settings.DEBUG:
-    from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
     urlpatterns += [
@@ -231,9 +232,8 @@ if settings.DEBUG:
         path("500/", server_error),
     ]
 
-    # Serve static and media locally
+    # Serve static locally
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     try:
         import debug_toolbar
     except ImportError:
@@ -242,6 +242,23 @@ if settings.DEBUG:
         urlpatterns = [
             path("__debug__/", include(debug_toolbar.urls)),
         ] + urlpatterns
+
+if (settings.DEBUG or getattr(settings, "SERVE_MEDIA", False)) and not urlsplit(
+    settings.MEDIA_URL
+).netloc:
+    # Serve media from Django: locally in debug mode, and in container
+    # deployments without a separate reverse proxy for MEDIA_ROOT
+    # (SERVE_MEDIA=true, MEDIA_URL without host). Production keeps
+    # SERVE_MEDIA=false or points MEDIA_URL at nginx.
+    from django.views.static import serve
+
+    urlpatterns += [
+        path(
+            settings.MEDIA_URL.strip("/") + "/<path:path>",
+            serve,
+            {"document_root": settings.MEDIA_ROOT},
+        ),
+    ]
 
 
 # generic patterns at the very end
