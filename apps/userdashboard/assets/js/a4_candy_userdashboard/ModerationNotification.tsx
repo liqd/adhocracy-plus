@@ -5,7 +5,7 @@ import { ModerationFeedbackForm } from './ModerationFeedbackForm'
 import { ModerationFeedback } from './ModerationFeedback'
 import { ModerationNotificationActionsBar } from './ModerationNotificationActionsBar'
 import { alert as Alert } from 'adhocracy4'
-import type { ModerationComment } from './types'
+import type { ModerationItem } from './types'
 
 const alertTime = 6000
 
@@ -22,7 +22,9 @@ const translated = {
   notificationRead: django.gettext('Notification successfully marked as read.'),
   notificationUnread: django.gettext('Notification successfully marked as unread.'),
   aiClassified: django.gettext('AI'),
-  postedComment: django.gettext('posted a {}comment{}')
+  postedComment: django.gettext('posted a {}comment{}'),
+  submittedIdea: django.gettext('submitted the idea'),
+  addFeedback: django.gettext('Add feedback')
 }
 
 interface AlertValue {
@@ -32,7 +34,7 @@ interface AlertValue {
 }
 
 interface ModerationNotificationProps {
-  notification: ModerationComment
+  notification: ModerationItem
   apiUrl?: string
   getUrlParams?: () => string
   loadData?: () => void
@@ -41,6 +43,7 @@ interface ModerationNotificationProps {
 
 export const ModerationNotification = (props: ModerationNotificationProps) => {
   const { notification } = props
+  const isIdea = notification.item_type === 'idea'
   const [showFeedbackForm, setShowFeedbackForm] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [alert, setAlert] = useState<AlertValue>()
@@ -241,14 +244,15 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
   }
 
   const {
-    comment: commentText,
-    comment_url: commentUrl,
+    text: itemText,
+    url: itemUrl,
     last_edit: created,
     is_modified: isModified,
     user_image: userImage,
     user_name: userName,
     user_profile_url: userProfileUrl,
-    num_reports: numReports
+    num_reports: numReports,
+    title: ideaTitle
   } = notification
   const markReadText = django.gettext('Mark as read')
   const markUnreadText = django.gettext('Mark as unread')
@@ -268,6 +272,26 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
     commentChangeLog = django.gettext('Created on ' + created)
   }
 
+  function getByline () {
+    if (isIdea) {
+      return (
+        <>
+          <i className="fas fa-lightbulb me-1" aria-hidden="true" />
+          {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName}{' '}
+          {translated.submittedIdea}{' '}
+          <a href={itemUrl}>{ideaTitle}</a>
+        </>
+      )
+    }
+    return (
+      <>
+        {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, itemUrl)}
+      </>
+    )
+  }
+
+  const labelClass = 'userdashboard-mod-item__label userdashboard-mod-item__label--' + notification.item_type
+
   return (
     <li>
       <div className="u-border p-4">
@@ -275,72 +299,93 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
           {userImageDiv}
           <div className="col-6 d-none d-md-block">
             <p className="mb-1">
-              {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, commentUrl)}
+              {getByline()}
             </p>
             <p className="mb-1">{commentChangeLog}</p>
           </div>
-          <div className="col-auto ms-auto">
-            <div className="dropdown">
-              <button
-                title="{% trans 'Notification menu' %}"
-                type="button"
-                className="dropdown-toggle btn btn--none"
-                aria-haspopup="true"
-                aria-expanded="false"
-                data-bs-toggle="dropdown"
-              >
-                <i className="fas fa-ellipsis-v" aria-hidden="true" />
-              </button>
-              <ul className="dropdown-menu dropdown-menu-end">
-                <li key="1">
-                  <button
-                    className="dropdown-item"
-                    type="button"
-                    onClick={() => toggleIsUnread()}
-                  >
-                    {notification.is_unread ? markReadText : markUnreadText}
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
+          {!isIdea &&
+            <div className="col-auto ms-auto">
+              <div className="dropdown">
+                <button
+                  title="{% trans 'Notification menu' %}"
+                  type="button"
+                  className="dropdown-toggle btn btn--none"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  data-bs-toggle="dropdown"
+                >
+                  <i className="fas fa-ellipsis-v" aria-hidden="true" />
+                </button>
+                <ul className="dropdown-menu dropdown-menu-end">
+                  <li key="1">
+                    <button
+                      className="dropdown-item"
+                      type="button"
+                      onClick={() => toggleIsUnread()}
+                    >
+                      {notification.is_unread ? markReadText : markUnreadText}
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>}
           <div className="col-12 d-md-none">
             <p className="mb-1">
-              {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, commentUrl)}
+              {getByline()}
             </p>
             <p className="mb-1">{commentChangeLog}</p>
           </div>
         </div>
 
-        {numReports > 0 &&
+        <span className={labelClass}>{notification.label}</span>
+
+        {!isIdea && numReports > 0 &&
           <div>
             <p>
               <i className="fas fa-exclamation-circle me-1" aria-hidden="true" />
-              {getLink(translatedReportText(numReports), commentUrl)}
+              {getLink(translatedReportText(numReports), itemUrl)}
             </p>
           </div>}
 
-        <p>{commentText}</p>
-        <ModerationNotificationActionsBar
-          itemPk={notification.pk}
-          isEditing={!!notification.moderator_feedback}
-          isBlocked={notification.is_blocked}
-          isHighlighted={notification.is_moderator_marked}
-          onToggleForm={(isEditing) => toggleModerationFeedbackForm(isEditing)}
-          onToggleBlock={() => toggleIsBlocked()}
-          onToggleHighlight={() => toggleIsHighlighted()}
-        />
-        {notification.moderator_feedback && !showFeedbackForm &&
-          <ModerationFeedback
-            feedback={notification.moderator_feedback}
-            onDelete={handleFeedbackDelete}
-            onEdit={() => {
-              setShowFeedbackForm(true)
-              setIsEditing(true)
-            }}
-          />}
+        <p>{itemText}</p>
+
+        {isIdea
+          ? (
+            <div className="d-flex flex-wrap justify-content-between">
+              <a
+                id={'moderation-notification-actions-bar-button-reply-idea-' + notification.pk}
+                className="btn px-0 userdashboard-mod-notification__btn"
+                href={notification.moderate_url}
+              >
+                <i className="fas fa-reply" aria-hidden="true" />
+                <span className="ms-2">{translated.addFeedback}</span>
+              </a>
+            </div>
+            )
+          : (
+            <>
+              <ModerationNotificationActionsBar
+                itemPk={notification.pk}
+                isEditing={!!notification.moderator_feedback}
+                isBlocked={notification.is_blocked}
+                isHighlighted={notification.is_moderator_marked}
+                onToggleForm={(isEditing) => toggleModerationFeedbackForm(isEditing)}
+                onToggleBlock={() => toggleIsBlocked()}
+                onToggleHighlight={() => toggleIsHighlighted()}
+              />
+              {notification.moderator_feedback && !showFeedbackForm &&
+                <ModerationFeedback
+                  feedback={notification.moderator_feedback}
+                  onDelete={handleFeedbackDelete}
+                  onEdit={() => {
+                    setShowFeedbackForm(true)
+                    setIsEditing(true)
+                  }}
+                />}
+            </>
+            )}
       </div>
-      {showFeedbackForm &&
+      {!isIdea && showFeedbackForm &&
         <ModerationFeedbackForm
           onSubmit={(payload) => handleFeedbackSubmit(payload)}
           onEditSubmit={(payload) => handleFeedbackEdit(payload)}

@@ -4,10 +4,15 @@ export interface ModeratorFeedback {
   last_edit: string
 }
 
-export interface ModerationComment {
+export interface ModerationItem {
   pk: number
-  comment: string
-  comment_url: string
+  item_type: 'comment' | 'idea'
+  label: string
+  text: string
+  title?: string | null
+  url: string
+  moderate_url: string
+  api_url: string
   last_edit: string
   is_modified: boolean
   user_image?: string
