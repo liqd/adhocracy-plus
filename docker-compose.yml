@@ -1,5 +1,5 @@
 services:
-  db:
+  db-aplus:
     image: postgis/postgis:16-3.4
     environment:
       POSTGRES_USER: django
@@ -18,7 +18,7 @@ services:
       retries: 10
       start_period: 10s
 
-  redis:
+  redis-aplus:
     image: redis:7-alpine
     mem_limit: "${REDIS_MEM_LIMIT:-256m}"
     memswap_limit: "${REDIS_MEM_LIMIT:-256m}"
@@ -37,19 +37,19 @@ services:
     expose:
       - "8004"
     depends_on:
-      db:
+      db-aplus:
         condition: service_healthy
-      redis:
+      redis-aplus:
         condition: service_healthy
     environment: &app_env
       DJANGO_SETTINGS_MODULE: adhocracy-plus.config.settings.docker
-      POSTGRES_HOST: ${SERVICE_NAME_DB:-db}
+      POSTGRES_HOST: db-aplus
       POSTGRES_PORT: "5432"
       POSTGRES_USER: django
       POSTGRES_PASSWORD: django
       POSTGRES_DB: django
-      CELERY_BROKER_URL: redis://${SERVICE_NAME_REDIS:-redis}:6379/0
-      CELERY_RESULT_BACKEND: redis://${SERVICE_NAME_REDIS:-redis}:6379/0
+      CELERY_BROKER_URL: redis://redis-aplus:6379/0
+      CELERY_RESULT_BACKEND: redis://redis-aplus:6379/0
       CELERY_WORKER_CONCURRENCY: "${CELERY_WORKER_CONCURRENCY:-1}"
       CELERY_WORKER_MAX_TASKS_PER_CHILD: "${CELERY_WORKER_MAX_TASKS_PER_CHILD:-100}"
       CELERY_WORKER_MAX_MEMORY_PER_CHILD: "${CELERY_WORKER_MAX_MEMORY_PER_CHILD:-400}"
@@ -78,7 +78,7 @@ services:
     memswap_limit: "${WORKER_MEM_LIMIT:-1536m}"
     cpu_shares: ${WORKER_CPU_SHARES:-256}
     depends_on:
-      redis:
+      redis-aplus:
         condition: service_healthy
       web:
         condition: service_healthy
