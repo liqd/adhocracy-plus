@@ -81,6 +81,11 @@ ALLOWED_HOSTS = ["*"]
 
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8004")
 
+# Serve MEDIA_ROOT from Django when there is no separate reverse proxy for
+# media (dev container deployments). Production overrides this via the
+# SERVE_MEDIA env var / /data/.env (SERVE_MEDIA=false) and serves media via
+# nginx instead.
+SERVE_MEDIA = os.environ.get("SERVE_MEDIA", "1") not in ("0", "false")
 
 # Instance-specific settings, rendered by Salt into a .env file inside the
 # named volume mounted at /data (docker-compose.yml). The .env format is kept
