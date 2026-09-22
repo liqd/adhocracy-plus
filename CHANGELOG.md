@@ -28,6 +28,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Guest access settings on project create form
 - apps/exports: include Image export mixin for ideas and proposals
 - Dashboard: add moderation view to projects list
+- Moderation dashboard: project detail now lists comments and ideas together, with a filter for all/only comments/only ideas, labels for comments and ideas, and idea feedback linking to the idea moderation page
 - 429 error page template so the allauth rate limiter can render a user-facing
   "Too Many Requests" response instead of failing with ``TemplateDoesNotExist``
 - Project Dashboard: Add 'View Live'

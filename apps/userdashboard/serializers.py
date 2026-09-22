@@ -1,4 +1,5 @@
 from django.urls import reverse
+from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
@@ -7,6 +8,8 @@ from rest_framework.utils import model_meta
 
 from adhocracy4.comments.models import Comment
 from apps.contrib.dates import get_date_display
+from apps.contrib.templatetags.item_tags import get_item_url
+from apps.ideas.models import Idea
 from apps.moderatorfeedback.serializers import ModeratorCommentFeedbackSerializer
 
 
@@ -131,3 +134,186 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
             field.set(value)
 
         return instance
+
+
+class ModerationItemMixin(serializers.Serializer):
+    """Shared representation of comments and ideas in the moderation list."""
+
+    item_type = serializers.SerializerMethodField()
+    label = serializers.SerializerMethodField()
+    text = serializers.SerializerMethodField()
+    title = serializers.SerializerMethodField()
+    url = serializers.SerializerMethodField()
+    moderate_url = serializers.SerializerMethodField()
+    api_url = serializers.SerializerMethodField()
+
+    def get_item_type(self, instance):
+        return self.item_type_value
+
+    def get_label(self, instance):
+        return self.label_value
+
+    def get_text(self, instance):
+        return self.text_value(instance)
+
+    def get_title(self, instance):
+        return self.title_value(instance)
+
+    def get_url(self, instance):
+        return self.get_absolute_url_value(instance)
+
+    def get_moderate_url(self, instance):
+        return self.moderate_url_value(instance)
+
+    def get_api_url(self, instance):
+        return self.api_url_value(instance)
+
+
+class ModerationCommentItemSerializer(ModerationItemMixin, ModerationCommentSerializer):
+    item_type_value = "comment"
+    label_value = _("Comment")
+
+    class Meta(ModerationCommentSerializer.Meta):
+        fields = ModerationCommentSerializer.Meta.fields + [
+            "item_type",
+            "label",
+            "text",
+            "title",
+            "url",
+            "moderate_url",
+            "api_url",
+        ]
+
+    def text_value(self, comment):
+        return comment.comment
+
+    def title_value(self, comment):
+        return None
+
+    def get_absolute_url_value(self, comment):
+        return comment.get_absolute_url()
+
+    def moderate_url_value(self, comment):
+        return ""
+
+    def api_url_value(self, comment):
+        return reverse(
+            "moderationcomments-detail",
+            kwargs={"project_pk": comment.project_id, "pk": comment.pk},
+        )
+
+
+class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer):
+    last_edit = serializers.SerializerMethodField()
+    is_modified = serializers.SerializerMethodField()
+    is_unread = serializers.SerializerMethodField()
+    is_blocked = serializers.SerializerMethodField()
+    is_moderator_marked = serializers.SerializerMethodField()
+    num_reports = serializers.SerializerMethodField()
+    moderator_feedback = serializers.SerializerMethodField()
+    feedback_api_url = serializers.SerializerMethodField()
+    user_name = serializers.SerializerMethodField()
+    user_image = serializers.SerializerMethodField()
+    user_profile_url = serializers.SerializerMethodField()
+
+    item_type_value = "idea"
+    label_value = _("Idea")
+
+    class Meta:
+        model = Idea
+        fields = [
+            "pk",
+            "item_type",
+            "label",
+            "text",
+            "title",
+            "url",
+            "moderate_url",
+            "api_url",
+            "last_edit",
+            "is_modified",
+            "is_unread",
+            "is_blocked",
+            "is_moderator_marked",
+            "num_reports",
+            "moderator_feedback",
+            "feedback_api_url",
+            "user_name",
+            "user_image",
+            "user_profile_url",
+        ]
+
+    def text_value(self, idea):
+        return strip_tags(idea.description)
+
+    def title_value(self, idea):
+        return idea.name
+
+    def get_absolute_url_value(self, idea):
+        return idea.get_absolute_url()
+
+    def moderate_url_value(self, idea):
+        return get_item_url(idea, "moderate", raises=False)
+
+    def api_url_value(self, idea):
+        return ""
+
+    def get_last_edit(self, idea):
+        if idea.modified:
+            return get_date_display(idea.modified)
+        return get_date_display(idea.created)
+
+    def get_is_modified(self, idea):
+        return idea.modified is not None
+
+    def get_is_unread(self, idea):
+        return False
+
+    def get_is_blocked(self, idea):
+        return False
+
+    def get_is_moderator_marked(self, idea):
+        return False
+
+    def get_num_reports(self, idea):
+        return 0
+
+    def get_moderator_feedback(self, idea):
+        return None
+
+    def get_feedback_api_url(self, idea):
+        return ""
+
+    def get_user_name(self, idea):
+        return str(idea.creator.username)
+
+    def get_user_image(self, idea):
+        try:
+            if idea.creator.avatar:
+                avatar = get_thumbnailer(idea.creator.avatar)["avatar"]
+                return avatar.url
+        except AttributeError:
+            pass
+        try:
+            if idea.creator.avatar_fallback:
+                return idea.creator.avatar_fallback
+        except AttributeError:
+            pass
+        return None
+
+    def get_user_profile_url(self, idea):
+        try:
+            return idea.creator.get_absolute_url()
+        except AttributeError:
+            return ""
+
+
+class ModerationItemSerializer(serializers.BaseSerializer):
+    """Serializes comments and ideas with a shared set of fields."""
+
+    def to_representation(self, instance):
+        if isinstance(instance, Comment):
+            serializer = ModerationCommentItemSerializer(instance, context=self.context)
+        else:
+            serializer = ModerationIdeaSerializer(instance, context=self.context)
+        return serializer.data
