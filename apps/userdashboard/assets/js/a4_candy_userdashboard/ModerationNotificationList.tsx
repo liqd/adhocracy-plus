@@ -10,6 +10,7 @@ const PACKET_COMMENT_SIZE = 15
 const contentTypeFilterItems: FilterItem[] = [
   { label: django.gettext('All'), value: 'all' },
   { label: django.gettext('All comments'), value: 'comments' },
+  { label: django.gettext('Reported comments'), value: 'reported' },
   { label: django.gettext('All ideas'), value: 'ideas' }
 ]
 
@@ -26,8 +27,7 @@ const orderingFilterItems: FilterItem[] = [
 ]
 
 interface ModerationNotificationListProps {
-  moderationCommentsApiUrl?: string
-  moderationItemsApiUrl?: string
+  moderationItemsApiUrl: string
   projectTitle: string
   organisation: string
   projectUrl: string
@@ -44,7 +44,6 @@ interface ModerationNotificationListState {
   hasMore: string | null
   packetFactor: number
   isLoaded: boolean
-  alert?: unknown
 }
 
 export default class ModerationNotificationList extends Component<ModerationNotificationListProps, ModerationNotificationListState> {
@@ -67,10 +66,6 @@ export default class ModerationNotificationList extends Component<ModerationNoti
   componentDidMount () {
     this.loadData()
     this.timer = setInterval(() => !this.isLoading && this.loadData(), 3000)
-  }
-
-  getItemsApiUrl () {
-    return this.props.moderationItemsApiUrl || this.props.moderationCommentsApiUrl || ''
   }
 
   contentTypeFilterChangeHandle (value: string) {
@@ -119,7 +114,7 @@ export default class ModerationNotificationList extends Component<ModerationNoti
   async loadData () {
     this.isLoading = true
     try {
-      const url = this.getItemsApiUrl() + this.getUrlParams()
+      const url = this.props.moderationItemsApiUrl + this.getUrlParams()
       const data = await fetch(url)
       const jsonData = await data.json()
       this.setState({
@@ -144,19 +139,6 @@ export default class ModerationNotificationList extends Component<ModerationNoti
     }, this.loadData)
   }
 
-  handleAlert = (message: unknown) => {
-    const alertMessage = typeof message === 'string'
-      ? this.getSuccessAlert(message)
-      : this.getErrorAlert(message as Error)
-
-    this.setState({
-      alert: {
-        ...alertMessage,
-        onClick: () => this.hideAlert()
-      }
-    })
-  }
-
   handleLoadMore = () => {
     this.setState(prevState => {
       const newPacketFactor = prevState.packetFactor + 1
@@ -171,24 +153,6 @@ export default class ModerationNotificationList extends Component<ModerationNoti
   handleToTop = () => {
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
-  }
-
-  getSuccessAlert = (message: string) => {
-    return {
-      type: 'success',
-      message
-    }
-  }
-
-  getErrorAlert = (error: Error) => {
-    return {
-      type: 'error',
-      message: error.message
-    }
-  }
-
-  hideAlert = () => {
-    this.setState({ alert: undefined })
   }
 
   componentWillUnmount () {

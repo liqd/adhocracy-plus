@@ -24,8 +24,6 @@ export interface ModerationItem {
   is_moderator_marked: boolean
   moderator_feedback?: ModeratorFeedback | null
   feedback_api_url: string
-  comment?: string
-  comment_url?: string
 }
 
 export interface FilterItem {

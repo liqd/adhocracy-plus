@@ -346,9 +346,6 @@ class UserDashboardModerationDetailView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["moderation_comments_api_url"] = reverse(
-            "moderationcomments-list", kwargs={"project_pk": self.project.pk}
-        )
         context["moderation_items_api_url"] = reverse(
             "moderationitems-list", kwargs={"project_pk": self.project.pk}
         )

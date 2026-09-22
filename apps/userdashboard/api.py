@@ -1,6 +1,9 @@
+from django.db.models import CharField
 from django.db.models import Count
 from django.db.models import ExpressionWrapper
+from django.db.models import IntegerField
 from django.db.models import Q
+from django.db.models import Value
 from django.db.models.fields import BooleanField
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import BooleanFilter
@@ -132,53 +135,109 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         params = self.request.query_params
         content_type = params.get("content_type", "all")
         is_reviewed = params.get("is_reviewed", "false")
-        has_reports = params.get("has_reports", "all")
         ordering = params.get("ordering", "-num_reports")
 
-        items = []
-        if content_type in ("all", "comments"):
-            items.extend(
-                self._comments_queryset(
-                    is_reviewed=is_reviewed, has_reports=has_reports
+        row_sets = []
+        if content_type in ("all", "comments", "reported"):
+            comments = self._comments_queryset(is_reviewed)
+            if content_type == "reported":
+                comments = comments.filter(num_reports__gt=0)
+            row_sets.append(self._comment_rows(comments))
+        if content_type in ("all", "ideas"):
+            row_sets.append(
+                self._idea_rows(
+                    Idea.objects.filter(module__project=self.project), "idea"
                 )
             )
-        if content_type in ("all", "ideas"):
-            items.extend(self._ideas_queryset())
-        return self._sort_items(items, ordering)
+            row_sets.append(
+                self._idea_rows(
+                    MapIdea.objects.filter(module__project=self.project), "mapidea"
+                )
+            )
+        if not row_sets:
+            return Comment.objects.none()
+        return self._order_rows(row_sets[0].union(*row_sets[1:], all=True), ordering)
 
-    def _comments_queryset(self, is_reviewed, has_reports):
+    def _comments_queryset(self, is_reviewed):
         comments = helpers.get_all_comments_project(self.project).annotate(
             num_reports=Count("reports", distinct=True)
         )
         if is_reviewed.lower() != "all":
             comments = comments.filter(is_reviewed=is_reviewed.lower() == "true")
-        if has_reports.lower() == "true":
-            comments = comments.filter(num_reports__gt=0)
-        elif has_reports.lower() == "false":
-            comments = comments.filter(num_reports=0)
-        return comments.select_related("creator")
-
-    def _ideas_queryset(self):
-        related = ("creator", "module__project__organisation")
-        ideas = Idea.objects.filter(module__project=self.project).select_related(
-            *related
-        )
-        map_ideas = MapIdea.objects.filter(module__project=self.project).select_related(
-            *related
-        )
-        return list(ideas) + list(map_ideas)
+        return comments
 
     @staticmethod
-    def _sort_items(items, ordering):
-        descending = ordering.startswith("-")
+    def _comment_rows(comments):
+        return (
+            comments.annotate(item_type=Value("comment", output_field=CharField()))
+            .values("pk", "created", "num_reports", "item_type")
+            .order_by()
+        )
+
+    @staticmethod
+    def _idea_rows(ideas, item_type):
+        return (
+            ideas.annotate(
+                item_type=Value(item_type, output_field=CharField()),
+                num_reports=Value(0, output_field=IntegerField()),
+            )
+            .values("pk", "created", "num_reports", "item_type")
+            .order_by()
+        )
+
+    @staticmethod
+    def _order_rows(rows, ordering):
         field = ordering.lstrip("-")
+        if field not in ("num_reports", "created"):
+            field = "created"
+        prefix = "-" if ordering.startswith("-") else ""
+        return rows.order_by(prefix + field, "-created")
 
-        def key(item):
-            if field == "num_reports":
-                return getattr(item, "num_reports", 0)
-            return item.created
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(self._resolve_items(page), many=True)
+            return self.get_paginated_response(serializer.data)
+        serializer = self.get_serializer(self._resolve_items(queryset), many=True)
+        return Response(serializer.data)
 
-        return sorted(items, key=key, reverse=descending)
+    def _resolve_items(self, rows):
+        rows = list(rows)
+        comment_ids = [row["pk"] for row in rows if row["item_type"] == "comment"]
+        idea_ids = [row["pk"] for row in rows if row["item_type"] == "idea"]
+        map_idea_ids = [row["pk"] for row in rows if row["item_type"] == "mapidea"]
+        related = ("creator", "module__project__organisation")
+
+        comments = {
+            comment.pk: comment
+            for comment in Comment.objects.filter(pk__in=comment_ids)
+            .annotate(num_reports=Count("reports", distinct=True))
+            .select_related("creator")
+        }
+        ideas = {
+            idea.pk: idea
+            for idea in Idea.objects.filter(pk__in=idea_ids).select_related(*related)
+        }
+        map_ideas = {
+            map_idea.pk: map_idea
+            for map_idea in MapIdea.objects.filter(pk__in=map_idea_ids).select_related(
+                *related
+            )
+        }
+
+        resolved = []
+        for row in rows:
+            item_type = row["item_type"]
+            if item_type == "comment":
+                item = comments.get(row["pk"])
+            elif item_type == "idea":
+                item = ideas.get(row["pk"])
+            else:
+                item = map_ideas.get(row["pk"])
+            if item is not None:
+                resolved.append(item)
+        return resolved
 
     @property
     def rules_method_map(self):

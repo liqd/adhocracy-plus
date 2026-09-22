@@ -13,6 +13,44 @@ from apps.ideas.models import Idea
 from apps.moderatorfeedback.serializers import ModeratorCommentFeedbackSerializer
 
 
+def _is_hidden(instance):
+    return getattr(instance, "is_censored", False) or getattr(
+        instance, "is_removed", False
+    )
+
+
+def get_creator_name(instance):
+    if _is_hidden(instance):
+        return _("unknown user")
+    return str(instance.creator.username)
+
+
+def get_creator_image(instance):
+    if _is_hidden(instance):
+        return None
+    creator = instance.creator
+    try:
+        if creator.avatar:
+            return get_thumbnailer(creator.avatar)["avatar"].url
+    except AttributeError:
+        pass
+    try:
+        if creator.avatar_fallback:
+            return creator.avatar_fallback
+    except AttributeError:
+        pass
+    return None
+
+
+def get_creator_profile_url(instance):
+    if _is_hidden(instance):
+        return ""
+    try:
+        return instance.creator.get_absolute_url()
+    except AttributeError:
+        return ""
+
+
 class ModerationCommentSerializer(serializers.ModelSerializer):
     comment_url = serializers.SerializerMethodField()
     is_unread = serializers.SerializerMethodField()
@@ -63,40 +101,13 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
         return comment.num_reports
 
     def get_user_name(self, comment):
-        if comment.is_censored or comment.is_removed:
-            return _("unknown user")
-        return str(comment.creator.username)
-
-    def get_user_image_fallback(self, comment):
-        """Load small thumbnail images for default user images."""
-        if comment.is_censored or comment.is_removed:
-            return None
-        try:
-            if comment.creator.avatar_fallback:
-                return comment.creator.avatar_fallback
-        except AttributeError:
-            pass
-        return None
+        return get_creator_name(comment)
 
     def get_user_image(self, comment):
-        """Load small thumbnail images for user images."""
-        if comment.is_censored or comment.is_removed:
-            return None
-        try:
-            if comment.creator.avatar:
-                avatar = get_thumbnailer(comment.creator.avatar)["avatar"]
-                return avatar.url
-        except AttributeError:
-            pass
-        return self.get_user_image_fallback(comment)
+        return get_creator_image(comment)
 
     def get_user_profile_url(self, comment):
-        if comment.is_censored or comment.is_removed:
-            return ""
-        try:
-            return comment.creator.get_absolute_url()
-        except AttributeError:
-            return ""
+        return get_creator_profile_url(comment)
 
     def get_is_unread(self, comment):
         return not comment.is_reviewed
@@ -137,7 +148,7 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
 
 
 class ModerationItemMixin(serializers.Serializer):
-    """Shared representation of comments and ideas in the moderation list."""
+    """Shared fields for comments and ideas in the moderation list."""
 
     item_type = serializers.SerializerMethodField()
     label = serializers.SerializerMethodField()
@@ -147,32 +158,8 @@ class ModerationItemMixin(serializers.Serializer):
     moderate_url = serializers.SerializerMethodField()
     api_url = serializers.SerializerMethodField()
 
-    def get_item_type(self, instance):
-        return self.item_type_value
-
-    def get_label(self, instance):
-        return self.label_value
-
-    def get_text(self, instance):
-        return self.text_value(instance)
-
-    def get_title(self, instance):
-        return self.title_value(instance)
-
-    def get_url(self, instance):
-        return self.get_absolute_url_value(instance)
-
-    def get_moderate_url(self, instance):
-        return self.moderate_url_value(instance)
-
-    def get_api_url(self, instance):
-        return self.api_url_value(instance)
-
 
 class ModerationCommentItemSerializer(ModerationItemMixin, ModerationCommentSerializer):
-    item_type_value = "comment"
-    label_value = _("Comment")
-
     class Meta(ModerationCommentSerializer.Meta):
         fields = ModerationCommentSerializer.Meta.fields + [
             "item_type",
@@ -184,19 +171,25 @@ class ModerationCommentItemSerializer(ModerationItemMixin, ModerationCommentSeri
             "api_url",
         ]
 
-    def text_value(self, comment):
+    def get_item_type(self, comment):
+        return "comment"
+
+    def get_label(self, comment):
+        return _("Comment")
+
+    def get_text(self, comment):
         return comment.comment
 
-    def title_value(self, comment):
+    def get_title(self, comment):
         return None
 
-    def get_absolute_url_value(self, comment):
+    def get_url(self, comment):
         return comment.get_absolute_url()
 
-    def moderate_url_value(self, comment):
+    def get_moderate_url(self, comment):
         return ""
 
-    def api_url_value(self, comment):
+    def get_api_url(self, comment):
         return reverse(
             "moderationcomments-detail",
             kwargs={"project_pk": comment.project_id, "pk": comment.pk},
@@ -215,9 +208,6 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
     user_name = serializers.SerializerMethodField()
     user_image = serializers.SerializerMethodField()
     user_profile_url = serializers.SerializerMethodField()
-
-    item_type_value = "idea"
-    label_value = _("Idea")
 
     class Meta:
         model = Idea
@@ -243,19 +233,25 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
             "user_profile_url",
         ]
 
-    def text_value(self, idea):
+    def get_item_type(self, idea):
+        return "idea"
+
+    def get_label(self, idea):
+        return _("Idea")
+
+    def get_text(self, idea):
         return strip_tags(idea.description)
 
-    def title_value(self, idea):
+    def get_title(self, idea):
         return idea.name
 
-    def get_absolute_url_value(self, idea):
+    def get_url(self, idea):
         return idea.get_absolute_url()
 
-    def moderate_url_value(self, idea):
+    def get_moderate_url(self, idea):
         return get_item_url(idea, "moderate", raises=False)
 
-    def api_url_value(self, idea):
+    def get_api_url(self, idea):
         return ""
 
     def get_last_edit(self, idea):
@@ -285,27 +281,13 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
         return ""
 
     def get_user_name(self, idea):
-        return str(idea.creator.username)
+        return get_creator_name(idea)
 
     def get_user_image(self, idea):
-        try:
-            if idea.creator.avatar:
-                avatar = get_thumbnailer(idea.creator.avatar)["avatar"]
-                return avatar.url
-        except AttributeError:
-            pass
-        try:
-            if idea.creator.avatar_fallback:
-                return idea.creator.avatar_fallback
-        except AttributeError:
-            pass
-        return None
+        return get_creator_image(idea)
 
     def get_user_profile_url(self, idea):
-        try:
-            return idea.creator.get_absolute_url()
-        except AttributeError:
-            return ""
+        return get_creator_profile_url(idea)
 
 
 class ModerationItemSerializer(serializers.BaseSerializer):

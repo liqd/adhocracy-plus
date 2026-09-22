@@ -82,6 +82,21 @@ def test_filter_by_content_type(apiclient, comment_factory, idea):
 
 
 @pytest.mark.django_db
+def test_filter_reported_comments(apiclient, comment_factory, report_factory, idea):
+    reported = comment_factory(content_object=idea)
+    comment_factory(content_object=idea)
+    report_factory(content_object=reported)
+    project = idea.project
+    moderator = project.moderators.first()
+    apiclient.login(username=moderator.email, password="password")
+
+    response = apiclient.get(_url(project) + "?content_type=reported")
+    assert response.status_code == 200
+    assert [item["item_type"] for item in response.data] == ["comment"]
+    assert [item["pk"] for item in response.data] == [reported.pk]
+
+
+@pytest.mark.django_db
 def test_is_reviewed_filter_applies_to_comments_only(apiclient, comment_factory, idea):
     reviewed_comment = comment_factory(content_object=idea, is_reviewed=True)
     unread_comment = comment_factory(content_object=idea, is_reviewed=False)

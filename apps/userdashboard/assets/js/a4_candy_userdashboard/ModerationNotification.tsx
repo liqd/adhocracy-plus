@@ -353,7 +353,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
           ? (
             <div className="d-flex flex-wrap justify-content-between">
               <a
-                id={'moderation-notification-actions-bar-button-reply-' + notification.pk}
+                id={'moderation-notification-actions-bar-button-reply-idea-' + notification.pk}
                 className="btn px-0 userdashboard-mod-notification__btn"
                 href={notification.moderate_url}
               >
