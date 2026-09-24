@@ -3,6 +3,7 @@
 import Uppy from '@uppy/core'
 import Dashboard from '@uppy/dashboard'
 import ImageEditor from '@uppy/image-editor'
+import Webcam from '@uppy/webcam'
 import Compressor from '@uppy/compressor'
 import deDE from '@uppy/locales/lib/de_DE.js'
 import enUS from '@uppy/locales/lib/en_US.js'
@@ -10,6 +11,7 @@ import enUS from '@uppy/locales/lib/en_US.js'
 import '@uppy/core/css/style.min.css'
 import '@uppy/dashboard/css/style.min.css'
 import '@uppy/image-editor/css/style.min.css'
+import '@uppy/webcam/css/style.min.css'
 import './uppy_image_upload.scss'
 
 const PLACEHOLDER_SRC = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
@@ -175,6 +177,20 @@ function initContainer (container) {
     proudlyDisplayPoweredByUppy: false,
     autoOpen: 'imageEditor',
     note: getDashboardNote()
+  })
+
+  uppy.use(Webcam, {
+    // The target (Dashboard instance) is required for the camera to mount in
+    // the Dashboard, otherwise it renders as a bare overlay.
+    target: uppy.getPlugin('Dashboard'),
+    modes: ['picture'],
+    // Use the inline camera (getUserMedia): the native `<input capture>` flow
+    // is inconsistent across Android devices (some only offer the file
+    // manager). `showVideoSourceDropdown` adds the front/rear camera switch and
+    // `facingMode: 'environment'` defaults to the rear camera.
+    mobileNativeCamera: false,
+    showVideoSourceDropdown: true,
+    videoConstraints: { facingMode: 'environment' }
   })
 
   uppy.use(ImageEditor, {
