@@ -1,0 +1,187 @@
+// Poll dashboard management UI (apps/polls/assets/react_poll_management)
+
+.poll-management {
+    margin-bottom: 3 * $spacer;
+
+    &__section-title {
+        margin-top: 2 * $spacer;
+        margin-bottom: $spacer;
+    }
+
+    &__option {
+        display: flex;
+        align-items: center;
+
+        input {
+            margin: 0 0.5em 0 0;
+        }
+
+        & + & {
+            margin-top: 8px;
+        }
+    }
+
+    &__list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: $spacer;
+    }
+
+    &__list-item + &__list-item {
+        margin-top: 0.5 * $spacer;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 0.5 * $spacer;
+        padding: 0.75 * $spacer 1.5 * $spacer;
+        border: 1px solid $border-color;
+        background-color: $white;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    &__item--dragging {
+        opacity: 0.5;
+    }
+
+    &__item--drag-over {
+        border: 1px dashed $brand-primary;
+    }
+
+    &__item--error {
+        border-color: $feedback-color-rejected;
+    }
+
+    &__item--active {
+        border-color: $brand-primary;
+    }
+
+    &__drag-handle {
+        padding: 4px;
+        color: $gray;
+        cursor: grab;
+        touch-action: none;
+    }
+
+    &__summary {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5 * $spacer;
+        flex: 1 1 auto;
+        text-align: left;
+        min-width: 0;
+    }
+
+    &__number {
+        font-weight: bold;
+        flex: 0 0 auto;
+    }
+
+    &__label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &--empty {
+            font-style: italic;
+            color: $text-color-gray;
+        }
+    }
+
+    &__type {
+        flex: 0 0 auto;
+        margin-left: auto;
+        color: $text-color-gray;
+        font-size: 0.85em;
+    }
+
+    &__delete {
+        background-color: transparent;
+        border: none;
+        padding: 4px;
+        color: $gray;
+        cursor: pointer;
+    }
+
+    &__collapse {
+        background-color: transparent;
+        border: none;
+        padding: 4px;
+        color: $gray;
+        cursor: pointer;
+    }
+
+    &__editor {
+        padding: 1.5 * $spacer;
+        border: 1px solid $brand-primary;
+        background-color: $white;
+    }
+
+
+    &__item--active + .poll-management__editor {
+        border-top: none;
+        margin-top: -1px;
+    }
+
+    &__editor-header {
+        display: flex;
+        align-items: center;
+        gap: $spacer;
+        margin-bottom: 1.5 * $spacer;
+    }
+
+    &__editor-title {
+        margin: 0;
+        flex: 1 1 auto;
+    }
+
+    &__nav-button {
+        @extend .btn--light;
+    }
+
+    &__editor-actions {
+        display: flex;
+        gap: 0.5 * $spacer;
+        margin-left: auto;
+    }
+
+    &__answer-type {
+        border: none;
+        padding-left: 0;
+        margin-bottom: $spacer;
+    }
+
+    &__answers-title {
+        margin-top: 1.5 * $spacer;
+        font-size: 1.1em;
+    }
+
+    &__buttons {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 0.5 * $spacer;
+        margin-top: 0.5 * $spacer;
+    }
+
+    &__btn {
+        @extend .btn--light;
+    }
+
+    &__btn--active {
+        background-color: $brand-primary-50;
+    }
+
+    &__choice-delete {
+        @extend .btn--light;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $spacer;
+        margin-top: 1.5 * $spacer;
+    }
+}
