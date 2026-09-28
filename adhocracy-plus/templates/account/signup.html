@@ -1,9 +1,17 @@
 {% extends "account/base.html" %}
-{% load i18n %}
+{% load i18n static %}
 {% block head_title %}
     {% translate "Register" %}
 {% endblock head_title %}
+{% block extra_js %}
+    <script src="{% static 'signup_wizard.js' %}"></script>
+{% endblock extra_js %}
 {% block content %}
+    {% comment %}
+    Loaded once here, outside the htmx swap target. Every wizard pass starts
+    with a full page render, so the captcha script is available when step 3 is
+    swapped in.
+    {% endcomment %}
     {{ signup_media }}
     <div id="signup-wizard" class="signup-wizard">
         {% include "account/signup/_wizard.html" %}

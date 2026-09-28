@@ -1,7 +1,10 @@
+import time
 from datetime import date
 from datetime import datetime
 
 from allauth.account import views as allauth_account_views
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils.translation import check_for_language
@@ -17,6 +20,8 @@ from apps.organisations.models import Organisation
 
 from . import models
 from .constants import GUEST_SWITCH_QUERY_PARAM
+from .forms import SIGNUP_LAST_STEP
+from .forms import SIGNUP_STEP_FIELDS
 from .forms import GuestCreateForm
 from .forms import restrict_fields_to_step
 from .forms import signup_error_step
@@ -24,15 +29,15 @@ from .forms import signup_error_step
 # Session key that holds the data collected during the multi step signup.
 SIGNUP_WIZARD_SESSION_KEY = "signup_wizard"
 SIGNUP_WIZARD_NEXT_KEY = "next"
-# Data that is gathered step by step and later merged into the final
-# (django-allauth) signup form.
-SIGNUP_WIZARD_DATA_FIELDS = (
-    "email",
-    "username",
-    "password1",
-    "password2",
-    "member_number",
-    "birth_date",
+SIGNUP_WIZARD_TIMESTAMP_KEY = "staged_at"
+# Staged data expires so that a plaintext password does not linger in the
+# (database backed) session when a user abandons the wizard.
+SIGNUP_WIZARD_MAX_AGE = 30 * 60
+# Fields collected on an earlier step are staged in the session and merged
+# into the final (django-allauth) signup form. Derived from the single
+# field -> step map so the two can never drift apart.
+SIGNUP_WIZARD_DATA_FIELDS = tuple(
+    name for name, step in SIGNUP_STEP_FIELDS.items() if step < SIGNUP_LAST_STEP
 )
 
 
@@ -62,8 +67,8 @@ class SignupWizardView(allauth_account_views.SignupView):
 
     def get(self, request, *args, **kwargs):
         requested_step = request.GET.get("step")
-        session_data = request.session.get(SIGNUP_WIZARD_SESSION_KEY)
-        if requested_step in ("1", "2", "3") and session_data is not None:
+        session_data = self._session_data(request)
+        if requested_step in ("1", "2", "3") and session_data:
             step = int(requested_step)
             form = (
                 self._complete_form()
@@ -79,7 +84,8 @@ class SignupWizardView(allauth_account_views.SignupView):
             request.session[SIGNUP_WIZARD_SESSION_KEY] = {
                 SIGNUP_WIZARD_NEXT_KEY: next_url
             }
-        return self._render_wizard(request, 1, self._step_form(1))
+        initial = self._email_initial()
+        return self._render_wizard(request, 1, self._step_form(1, initial=initial))
 
     def post(self, request, *args, **kwargs):
         step = request.POST.get("signup_step")
@@ -89,9 +95,13 @@ class SignupWizardView(allauth_account_views.SignupView):
         return super().post(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        # allauth pre-fills the (social) verified email into the email field.
-        # On steps without that field this would raise, so hide it for the
-        # rendering and restore it afterwards.
+        form = kwargs.get("form")
+        if form is not None and "email" in form.fields:
+            # allauth may pre-fill a verified email; that is safe here because
+            # the current step actually renders the email field.
+            return super().get_context_data(**kwargs)
+        # On steps without that field allauth's pre-fill would raise, so hide
+        # it for the rendering and restore it afterwards.
         session = self.request.session
         verified_email = session.pop("account_verified_email", None)
         try:
@@ -105,7 +115,7 @@ class SignupWizardView(allauth_account_views.SignupView):
         if self.request.method == "POST" and self.request.POST.get(
             "signup_step"
         ) not in ("1", "2"):
-            session_data = self.request.session.get(SIGNUP_WIZARD_SESSION_KEY) or {}
+            session_data = self._session_data(self.request)
             if session_data:
                 data = self.request.POST.copy()
                 for name in SIGNUP_WIZARD_DATA_FIELDS:
@@ -137,7 +147,7 @@ class SignupWizardView(allauth_account_views.SignupView):
         return self._render_wizard(request, step, form)
 
     def _store_step_data(self, request, cleaned_data):
-        data = request.session.get(SIGNUP_WIZARD_SESSION_KEY) or {}
+        data = dict(request.session.get(SIGNUP_WIZARD_SESSION_KEY) or {})
         for name in SIGNUP_WIZARD_DATA_FIELDS:
             if name in cleaned_data:
                 value = cleaned_data[name]
@@ -150,7 +160,28 @@ class SignupWizardView(allauth_account_views.SignupView):
         next_url = request.POST.get(SIGNUP_WIZARD_NEXT_KEY)
         if next_url:
             data[SIGNUP_WIZARD_NEXT_KEY] = next_url
+        data[SIGNUP_WIZARD_TIMESTAMP_KEY] = time.time()
         request.session[SIGNUP_WIZARD_SESSION_KEY] = data
+
+    def _session_data(self, request):
+        """Return the staged wizard data, dropping it once it is stale."""
+        data = request.session.get(SIGNUP_WIZARD_SESSION_KEY) or {}
+        staged_at = data.get(SIGNUP_WIZARD_TIMESTAMP_KEY)
+        if staged_at and time.time() - staged_at > SIGNUP_WIZARD_MAX_AGE:
+            request.session.pop(SIGNUP_WIZARD_SESSION_KEY, None)
+            return {}
+        return data
+
+    def _email_initial(self):
+        """Support allauth's ``?email=`` pre-fill on the first step."""
+        email = self.request.GET.get("email")
+        if not email:
+            return None
+        try:
+            validate_email(email)
+        except ValidationError:
+            return None
+        return {"email": email}
 
     def _step_form(self, step, data=None, initial=None):
         form = self.get_form_class()(data=data, initial=initial)
@@ -158,14 +189,14 @@ class SignupWizardView(allauth_account_views.SignupView):
 
     def _complete_form(self):
         form = self.get_form_class()()
-        initial = dict(self.request.session.get(SIGNUP_WIZARD_SESSION_KEY) or {})
+        initial = dict(self._session_data(self.request))
         for name in ("password1", "password2"):
             initial.pop(name, None)
         form.initial.update(initial)
         return form
 
     def _next_url(self, request):
-        session_data = request.session.get(SIGNUP_WIZARD_SESSION_KEY) or {}
+        session_data = self._session_data(request)
         return (
             session_data.get(SIGNUP_WIZARD_NEXT_KEY)
             or request.GET.get(SIGNUP_WIZARD_NEXT_KEY)

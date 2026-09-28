@@ -24,14 +24,16 @@ PROSOPO_CAPTCHA_HELP = _(
 
 # Fields of the (multi step) registration form and the step they belong to.
 # Any field that is not listed here is rendered on the last step, so custom
-# signup forms (e.g. the IG BCE form) keep working.
+# signup forms (e.g. the IG BCE form) keep working. Custom extra fields
+# (member_number/birth_date) are validated on the last step only, where the
+# complete form is submitted.
 SIGNUP_STEP_FIELDS = {
     "email": 1,
     "username": 1,
-    "member_number": 1,
-    "birth_date": 1,
     "password1": 2,
     "password2": 2,
+    "member_number": 3,
+    "birth_date": 3,
     "captcha": 3,
     "terms_of_use": 3,
     "terms_of_use_extra": 3,
@@ -282,13 +284,19 @@ class IgbceSignupForm(DefaultSignupForm):
     def clean(self):
         super().clean()
 
-        if any(self.errors):
-            return self.errors
-
         member_number = self.cleaned_data.get("member_number")
         birth_date = self.cleaned_data.get("birth_date")
 
+        # These fields only exist on the last step of the multi step signup;
+        # on the earlier, restricted steps there is nothing to validate here.
+        if not member_number or not birth_date:
+            return self.cleaned_data
+
+        if any(self.errors):
+            return self.cleaned_data
+
         self.validateMemberNumberAndDate(member_number, birth_date)
+        return self.cleaned_data
 
     def save(self, request):
         user = super().save(request)
