@@ -6,6 +6,7 @@ $project-detail-card-border: $grey-100;
 $project-detail-card-height: 332px;
 $project-detail-completed: #ff1e38;
 $project-detail-breadcrumbs-offset: 79px;
+$project-detail-sticky-cta-height: 6rem;
 
 .project-detail {
     // padding-top: 2.6 * $spacer;
@@ -161,6 +162,49 @@ $project-detail-breadcrumbs-offset: 79px;
     .map-list-view .view-toggle .filter-bar__spaced {
         margin-bottom: 0.5 * $spacer;
     }
+}
+
+// Sticky "submit" call to action above the phase content (BS, MBS, IC, MIC, PB).
+// Sits in the flow, then docks to the top of the viewport while scrolling.
+.project-detail__module-action-row:has(.sticky-cta__inner) {
+    @include project-detail-module-panel-bleed;
+
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    padding-top: 1.5 * $spacer;
+    padding-bottom: 1.5 * $spacer;
+    background-color: $brand-primary;
+}
+
+.sticky-cta__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacer;
+}
+
+.sticky-cta__text {
+    margin: 0;
+    color: $text-color-inverted;
+    font-size: $font-size-md;
+    font-weight: $demi-bold;
+    line-height: 1.2;
+}
+
+.sticky-cta__button {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    height: 3 * $spacer;
+    padding: 0 1.5 * $spacer;
+}
+
+// Keep the sticky inbox pane (idea list, desktop) clear of the sticky CTA bar.
+.project-detail:has(.sticky-cta__inner) .idea-inbox__panes {
+    top: $project-detail-sticky-cta-height;
+    max-height: calc(100vh - #{$project-detail-sticky-cta-height} - 2 * #{$spacer});
 }
 
 .project-detail__module-notice,
