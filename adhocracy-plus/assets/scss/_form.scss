@@ -316,4 +316,28 @@ div.cke_focus {
             justify-content: flex-end;
         }
     }
+
+    // Keep the buttons stacked (full width) on every breakpoint.
+    &--stacked {
+        @media screen and (min-width: $breakpoint) {
+            flex-flow: column;
+            align-items: stretch;
+
+            .btn,
+            .proceed-guest-button {
+                width: 100%;
+            }
+        }
+    }
+
+    // Two buttons side by side, sharing the available width equally.
+    &--split {
+        flex-flow: row nowrap;
+
+        .btn {
+            flex: 1 1 0;
+            width: auto;
+            min-width: 0;
+        }
+    }
 }

@@ -78,9 +78,16 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   })
 })
-document.addEventListener('DOMContentLoaded', function () {
+function initPasswordToggles (root) {
+  const scope = root || document
   // Add toggle buttons to password fields
-  document.querySelectorAll('.password-toggle').forEach(function (passwordField) {
+  scope.querySelectorAll('.password-toggle').forEach(function (passwordField) {
+    // Skip fields that already have a toggle (e.g. after an htmx swap)
+    if (passwordField.dataset.passwordToggleInitialized) {
+      return
+    }
+    passwordField.dataset.passwordToggleInitialized = 'true'
+
     // Create wrapper
     const wrapper = document.createElement('div')
     wrapper.className = 'password-field-wrapper'
@@ -113,6 +120,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     wrapper.appendChild(toggleBtn)
   })
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  initPasswordToggles()
+})
+document.addEventListener('htmx:afterSwap', function (event) {
+  initPasswordToggles(event.detail.target)
 })
 export function getCurrentPath () {
   return location.pathname

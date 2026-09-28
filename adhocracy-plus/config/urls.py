@@ -50,6 +50,7 @@ from apps.users.api import UserViewSet
 from apps.users.decorators import user_is_project_admin
 from apps.users.views import GuestCreateView
 from apps.users.views import LogoutView
+from apps.users.views import SignupWizardView
 from apps.users.views import set_language_overwrite
 
 router = routers.DefaultRouter()
@@ -120,6 +121,9 @@ urlpatterns = [
         regular_user_required(allauth_views.PasswordSetView.as_view()),
         name="account_set_password",
     ),
+    # Multi step registration (must be listed before the allauth urls so it
+    # takes precedence over allauth's own ``account_signup``).
+    path("accounts/signup/", SignupWizardView.as_view(), name="account_signup"),
     path("accounts/", include("allauth.urls")),
     path("account/", include("apps.account.urls")),
     path("profile/", include("apps.users.urls")),

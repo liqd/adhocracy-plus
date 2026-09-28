@@ -1,0 +1,99 @@
+{% load i18n signup_flow %}
+{% guest_url as guest_url_value %}
+<div class="signup-steps" role="group" aria-label="{% translate 'Registration progress' %}">
+    <span class="signup-steps__dot{% if signup_step == 1 %} is-active{% endif %}"></span>
+    <span class="signup-steps__dot{% if signup_step == 2 %} is-active{% endif %}"></span>
+    <span class="signup-steps__dot{% if signup_step == 3 %} is-active{% endif %}"></span>
+    <span class="visually-hidden">{% blocktranslate with step=signup_step %}Step {{ step }} of 3{% endblocktranslate %}</span>
+</div>
+
+<h1>{% translate "Register" %}</h1>
+{% if signup_step == 1 %}
+    {% with page=settings.a4_candy_cms_settings.ImportantPages.registration %}
+        {% if page.live and page.url %}<a href="{{ page.url }}" target="_blank">{% blocktranslate %}Why register?{% endblocktranslate %}</a>{% endif %}
+    {% endwith %}
+{% endif %}
+<p>{% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">log in</a>.{% endblocktranslate %}</p>
+
+{% if signup_step == 1 %}
+    <form method="post" action="{% url 'account_signup' %}" class="account-auth-form signup-step"
+          hx-post="{% url 'account_signup' %}" hx-target="#signup-wizard" hx-swap="innerHTML">
+        {% csrf_token %}
+        <input type="hidden" name="signup_step" value="1">
+        {% if redirect_field_value %}<input type="hidden" name="next" value="{{ redirect_field_value }}">{% endif %}
+        {{ step_form.non_field_errors }}
+        {% for field in step_form %}
+            {% if field.name|signup_field_step == 1 %}{% include 'a4_candy_contrib/includes/form_field.html' with field=field %}{% endif %}
+        {% endfor %}
+        <div class="account-auth-form__actions account-auth-form__actions--stacked">
+            <button class="btn btn--black" type="submit">{% translate "Next" %}</button>
+            <a class="btn btn--secondary proceed-guest-button" href="{{ guest_url_value }}">{% translate "Continue as a Guest" %}</a>
+        </div>
+    </form>
+{% elif signup_step == 2 %}
+    <form method="post" action="{% url 'account_signup' %}" class="account-auth-form signup-step"
+          hx-post="{% url 'account_signup' %}" hx-target="#signup-wizard" hx-swap="innerHTML">
+        {% csrf_token %}
+        <input type="hidden" name="signup_step" value="2">
+        {% if redirect_field_value %}<input type="hidden" name="next" value="{{ redirect_field_value }}">{% endif %}
+        {{ step_form.non_field_errors }}
+        {% for field in step_form %}
+            {% if field.name|signup_field_step == 2 %}{% include 'a4_candy_contrib/includes/form_field.html' with field=field %}{% endif %}
+        {% endfor %}
+        <div class="account-auth-form__actions account-auth-form__actions--split">
+            <a class="btn btn--secondary" href="{% url 'account_signup' %}?step=1" hx-get="{% url 'account_signup' %}?step=1"
+               hx-target="#signup-wizard" hx-swap="innerHTML">{% translate "Back" %}</a>
+            <button class="btn btn--black" type="submit">{% translate "Next" %}</button>
+        </div>
+    </form>
+{% else %}
+    <form method="post" action="{% url 'account_signup' %}" class="account-auth-form signup-step">
+        {% csrf_token %}
+        <input type="hidden" name="signup_step" value="3">
+        {% if redirect_field_value %}<input type="hidden" name="next" value="{{ redirect_field_value }}">{% endif %}
+        {{ step_form.non_field_errors }}
+        {% if step_form.captcha %}
+            {% with tabindex="0" %}{% include 'a4_candy_contrib/includes/form_field.html' with field=step_form.captcha tabindex=0 %}{% endwith %}
+        {% endif %}
+        <div class="form-check">
+            <label class="form-check__label">
+                {{ step_form.terms_of_use }}
+                {% blocktranslate with terms_of_use_url=settings.a4_candy_cms_settings.ImportantPages.terms_of_use.url data_protection_policy=settings.a4_candy_cms_settings.ImportantPages.data_protection_policy.url %}
+                I confirm that I have read and accepted the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{data_protection_policy}}" target="_blank">data protection policy</a>.
+                {% endblocktranslate %}
+                {% if step_form.terms_of_use.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
+            </label>
+            {{ step_form.terms_of_use.errors }}
+        </div>
+        {% if step_form.terms_of_use_extra %}
+            <div class="form-check">
+                <label class="form-check__label">
+                    {{ step_form.terms_of_use_extra }}
+                    {{ step_form.terms_of_use_extra.label|safe }}
+                    {% if step_form.terms_of_use_extra.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
+                </label>
+                {{ step_form.terms_of_use_extra.errors }}
+            </div>
+        {% endif %}
+        <div class="form-check">
+            <label class="form-check__label">{{ step_form.get_newsletters }} {{ step_form.get_newsletters.label }}</label>
+            <div class="form-hint">{{ step_form.get_newsletters.help_text }}</div>
+            {{ step_form.get_newsletters.errors }}
+        </div>
+        <div class="form-check">
+            <label class="form-check__label">{{ step_form.accept_marketing_partners }} {{ step_form.accept_marketing_partners.label }}</label>
+        </div>
+        {% for field in step_form %}
+            {% if field.name|signup_field_step == 3 and field.name != "captcha" and field.name != "terms_of_use" and field.name != "terms_of_use_extra" and field.name != "get_newsletters" and field.name != "accept_marketing_partners" %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
+            {% endif %}
+        {% endfor %}
+        <div class="account-auth-form__actions account-auth-form__actions--split">
+            <a class="btn btn--secondary" href="{% url 'account_signup' %}?step=2" hx-get="{% url 'account_signup' %}?step=2"
+               hx-target="#signup-wizard" hx-swap="innerHTML">{% translate "Back" %}</a>
+            <button class="btn btn--black" type="submit">{% translate "Next" %}</button>
+        </div>
+    </form>
+{% endif %}
+
+{% include "socialaccount/snippets/provider_list.html" with process="login" %}
