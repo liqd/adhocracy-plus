@@ -1,9 +1,10 @@
 {% load i18n wagtailsettings_tags %}
+{# djlint:off H021 #}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="{{ LANGUAGE_CODE }}" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{% block subject %}{% endblock %}</title>
+    <title>{% block subject %}{% endblock subject %}</title>
   </head>
 <body style="margin: 0; padding: 0; min-width: 100% !important; background: #f7f7f7;">
   <div style="margin: 20px auto; margin-top: 100px; padding: 20px; width: 100%; max-width: 630px; background-color: #fff;">
@@ -24,13 +25,13 @@
      </tr>
       <tr>
           <td style="text-align: center; padding-top: 8px;" align="center">
-              <h2>{% block headline %}{% endblock %}</h2>
+              <h2>{% block headline %}{% endblock headline %}</h2>
           </td>
       </tr>
       <tr>
           <td style="text-align: center; padding-top: 4px;" align="center">
               <h3 style="color: #818181;">
-              {% block sub-headline %}{% endblock %}</h3>
+              {% block sub-headline %}{% endblock sub-headline %}</h3>
           </td>
       </tr>
       <tr>
@@ -38,25 +39,25 @@
             <p>
               {% block greeting %}
               {% translate 'Hello' %},
-              {% endblock %}
+              {% endblock greeting %}
             </p>
             {% block content_html %}
-                {% block content %}{% endblock %}
-            {% endblock %}
+                {% block content %}{% endblock content %}
+            {% endblock content_html %}
           </td>
       </tr>
       {% block cta %}
       <tr>
           <td style="padding-top: 10px; padding-bottom: 10px; text-align: center;" align="center">
-              <a href="{% block cta_url %}{% endblock %}"
+              <a href="{% block cta_url %}{% endblock cta_url %}"
                  style="padding: 0 20px; font-weight: bold; line-height: 40px; margin: 0 auto; color: #fff;
                         background-color: #2d40cc; border-color: #2d40cc; display: inline-block;
                         vertical-align: middle; text-decoration: none;">
-                 {% block cta_label %}{% endblock %}
+                 {% block cta_label %}{% endblock cta_label %}
               </a>
           </td>
       </tr>
-      {% endblock %}
+      {% endblock cta %}
         {% block organisation_footer %}
         {% if organisation %}
       <tr>
@@ -80,7 +81,7 @@
           </td>
       </tr>
         {% endif %}
-      {% endblock %}
+      {% endblock organisation_footer %}
     </table>
     </div>
     <div style="margin: 20px auto; padding-left: 20px; padding-right: 20px; width: 100%; max-width: 630px; background-color: #f7f7f7; ">
@@ -88,10 +89,10 @@
            style="width: 100%; max-width: 600px; margin: auto;">
         <tr>
           <td style="color: #818181; font-size: small; padding-top: 20px; padding-left: 5px; padding-right: 5px;">
-              {% block reason %}{% endblock %}
+              {% block reason %}{% endblock reason %}
               <p>
                 {% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}{{ platformname }} is a participation platform operated by{% endblocktranslate %}<br />
-                Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
+                Liquid Democracy e.V., Prinzenallee 74, 13357 Berlin (Deutschland | Germany)
               </p>
           </td>
       </tr>
@@ -116,5 +117,6 @@
       </tr>
     </table>
     </div>
+  {# djlint:on #}
   </body>
 </html>
