@@ -61,6 +61,12 @@ $header-upper-ribbon-gap: 12px;
     width: auto;
 }
 
+// Compact "a+" mark for mobile; the full wordmark is shown from the md
+// breakpoint up (see header.html).
+.header-upper__brand-img.header-upper__brand-img--short {
+    height: 1.5rem;
+}
+
 .header-upper__lang,
 .header-upper__learning,
 .header-upper__notification_button,

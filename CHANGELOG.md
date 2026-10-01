@@ -68,11 +68,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Ideas List: New design
 - Comment box: Minimum height 100px
 - Idea, spatial idea and participatory budgeting module pages: the submit call to action is now a sticky banner that stays at the top of the viewport while scrolling
-- Header: the question-mark help button moved into the header and opens the Learning Center sidebar as an overlay (no page navigation); the sidebar closes via close icon, backdrop click or Esc. The header is sticky and hides when scrolling down, reappears on scroll up, and the button has an accessible label
+- Header: the question-mark help button moved into the header and opens the Learning Center sidebar as an overlay (no page navigation); the sidebar closes via close icon, backdrop click or Esc. The header is sticky and hides when scrolling down, reappears on scroll up, and the button has an accessible label. The compact "a+" logo is shown on mobile instead of the full wordmark, and the help/notification buttons are 48px with the burger vertically centered
 
 ### Fixed
 
-- Learning Nuggets: only live, non-private nuggets are served and listed (draft/private pages no longer leak); the ``?sidebar=`` overlay only loads same-origin Learning Center paths (protocol-relative URLs are rejected); the index heading now uses the Learning Center page title; legacy ``permission_level`` values are normalised so categories are no longer dropped from the index; video/audio MIME detection is based on ``mimetypes`` with a safe fallback (``.webm``/``.ogg`` handled correctly) and the video title is rendered
+- Learning Nuggets: only live, non-private nuggets are served and listed (draft/private pages no longer leak); the ``?sidebar=`` overlay only loads same-origin Learning Center paths (protocol-relative URLs are rejected); the index heading now uses the Learning Center page title; legacy ``permission_level`` values are normalised so categories are no longer dropped from the index; video/audio MIME detection is based on ``mimetypes`` with a safe fallback (``.webm``/``.ogg`` handled correctly) and the video title is rendered; opening the help sidebar moves keyboard focus into the dialog and traps it there (focus returns to the trigger on close)
 - Profile editing no longer silently clears the newsletter opt-in
   (``User.get_newsletters``). The newsletter toggle on the notification
   settings page now controls this actual opt-in.
