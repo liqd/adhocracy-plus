@@ -23,6 +23,9 @@ def test_index_returns_full_page_without_htmx(client):
     assert response.status_code == 200
     assert "learning_sidebar" not in ""  # full page rendered via base template
     assert b"learning-sidebar" in response.content
+    # the toggle is rendered in the global header, not as a floating button
+    assert b'id="learning-toggle"' in response.content
+    assert b"header-upper__learning" in response.content
 
 
 @pytest.mark.django_db
