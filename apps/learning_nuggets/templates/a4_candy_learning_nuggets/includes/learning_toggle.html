@@ -1,0 +1,12 @@
+{% load i18n %}
+<button id="learning-toggle"
+        class="learning-toggle"
+        type="button"
+        aria-label="{% translate 'Help' %}"
+        aria-controls="learning-sidebar"
+        aria-expanded="false"
+        hx-get="{% url 'learning_nuggets:index' %}"
+        hx-target="#learning-content"
+        hx-swap="innerHTML">
+    <i class="fas fa-circle-question" aria-hidden="true"></i>
+</button>
