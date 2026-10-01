@@ -1,6 +1,7 @@
 import pytest
 from django.urls import reverse
 from wagtail.models import Page
+from wagtail.models import PageViewRestriction
 
 from apps.learning_nuggets.models import LearningCategory
 from apps.learning_nuggets.models import LearningCenterPage
@@ -63,3 +64,64 @@ def test_category_returns_partial_with_htmx(client):
     content = response.content.decode()
     assert "Registration" in content
     assert "<!DOCTYPE html>" not in content
+
+
+@pytest.mark.django_db
+def test_legacy_permission_level_is_not_dropped(client):
+    _setup_center()
+    LearningCategory.objects.create(name="Legacy", permission_level="participant")
+
+    response = client.get(reverse("learning_nuggets:index"), HTTP_HX_REQUEST="true")
+
+    assert "Legacy" in response.content.decode()
+
+
+@pytest.mark.django_db
+def test_draft_nugget_is_not_served(client):
+    center = _setup_center()
+    category = LearningCategory.objects.create(
+        name="Participants", slug="participants", permission_level="teilnehmer:in"
+    )
+    nugget = LearningNuggetPage(
+        title="Draft", slug="draft", category=category, live=False
+    )
+    center.add_child(instance=nugget)
+
+    detail = client.get(
+        reverse(
+            "learning_nuggets:nugget-detail",
+            kwargs={"category_slug": "participants", "nugget_slug": "draft"},
+        )
+    )
+    listing = client.get(
+        reverse("learning_nuggets:category", kwargs={"category_slug": "participants"}),
+        HTTP_HX_REQUEST="true",
+    )
+
+    assert detail.status_code == 404
+    assert "Draft" not in listing.content.decode()
+
+
+@pytest.mark.django_db
+def test_private_nugget_section_is_not_served(client):
+    center = _setup_center()
+    PageViewRestriction.objects.create(page=center, restriction_type="login")
+    category = LearningCategory.objects.create(
+        name="Participants", slug="participants", permission_level="teilnehmer:in"
+    )
+    nugget = LearningNuggetPage(title="Private", slug="private", category=category)
+    center.add_child(instance=nugget)
+
+    detail = client.get(
+        reverse(
+            "learning_nuggets:nugget-detail",
+            kwargs={"category_slug": "participants", "nugget_slug": "private"},
+        )
+    )
+    listing = client.get(
+        reverse("learning_nuggets:category", kwargs={"category_slug": "participants"}),
+        HTTP_HX_REQUEST="true",
+    )
+
+    assert detail.status_code == 404
+    assert "Private" not in listing.content.decode()

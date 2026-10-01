@@ -1,3 +1,19 @@
+const SIDEBAR_PATH_PATTERN = /^\/learning-center(\/|$)/
+
+// Only same-origin Learning Center paths may be loaded into the overlay. This
+// rejects protocol-relative URLs (e.g. //evil.example) that would otherwise be
+// fetched cross-origin and injected into the DOM.
+function normaliseSidebarUrl (param) {
+  if (!param) {
+    return null
+  }
+  const path = param.startsWith('/') ? param : `/${param}`
+  if (!SIDEBAR_PATH_PATTERN.test(path)) {
+    return null
+  }
+  return path
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   const toggleButton = document.getElementById('learning-toggle')
   const sidebar = document.getElementById('learning-sidebar')
@@ -74,10 +90,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // A ?sidebar=<path> deep link opens the sidebar and loads that path via htmx.
   const sidebarParam = new URLSearchParams(window.location.search).get('sidebar')
-  if (sidebarParam) {
+  const sidebarUrl = normaliseSidebarUrl(sidebarParam)
+  if (sidebarUrl && window.htmx) {
     setOpen(true)
-    const url = sidebarParam.startsWith('/') ? sidebarParam : `/${sidebarParam}`
-    window.htmx.ajax('GET', url, {
+    window.htmx.ajax('GET', sidebarUrl, {
       target: '#learning-content',
       swap: 'innerHTML'
     })

@@ -28,9 +28,12 @@
   }
 
   // If JS is enabled, hide the noscript fallback and display the button.
+  // The 24px gap to the language selector and the 16px gap to the notification
+  // button match the design (the language item already contributes 8px).
   .learning-toggle.learning-toggle--js-enabled {
     display: inline-flex;
-    margin-right: 0.5rem;
+    margin-left: $spacer;
+    margin-right: $spacer;
   }
 
   .learning-toggle__noscript {
@@ -92,17 +95,6 @@
     flex: 1;
     overflow-y: auto;
     padding: 0 1.5rem;
-  }
-
-  @media screen and (max-width: $breakpoint-md) {
-    .learning-toggle.learning-toggle--js-enabled {
-      width: 2.5em;
-      height: 2.5em;
-
-      i {
-        font-size: 1em;
-      }
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -1,9 +1,4 @@
 {% load i18n static %}
-{% block extra_css %}
-    <link type="text/css"
-          href="{% static 'learning_sidebar.css' %}"
-          rel="stylesheet" />
-{% endblock extra_css %}
 <noscript>
     <a href="{% url 'learning_nuggets:index' %}"
        class="learning-toggle__noscript">{% translate 'Go to Learning Center' %}</a>
@@ -26,6 +21,4 @@
     </button>
     <div id="learning-content" class="learning-sidebar__content"></div>
 </div>
-{% block extra_js %}
-    <script type="text/javascript" src="{% static 'learning_sidebar.js' %}"></script>
-{% endblock extra_js %}
+<script type="text/javascript" src="{% static 'learning_sidebar.js' %}"></script>
