@@ -24,6 +24,42 @@ import { renderProjectDetailFollow } from '../../../apps/projects/assets/js/proj
 import { initGuestProjectAlerts } from '../../../apps/projects/assets/js/guest_project_alert.js'
 import { initProjectDetailParticipationView } from '../../../apps/projects/assets/js/project_detail_participation_view.js'
 
+function initHeaderScroll () {
+  const header = document.querySelector('.header-upper')
+  if (!header) {
+    return
+  }
+
+  const hideThreshold = header.offsetHeight
+  let lastScrollY = window.scrollY
+  let ticking = false
+
+  function update () {
+    const scrollY = window.scrollY
+
+    if (scrollY <= 0) {
+      // Always visible at the very top of the page.
+      header.classList.remove('header-upper--hidden')
+    } else if (scrollY > lastScrollY && scrollY > hideThreshold) {
+      // Scrolling down past the threshold hides the header.
+      header.classList.add('header-upper--hidden')
+    } else if (scrollY < lastScrollY) {
+      // Any upward scroll reveals the header again, immediately.
+      header.classList.remove('header-upper--hidden')
+    }
+
+    lastScrollY = scrollY
+    ticking = false
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(update)
+      ticking = true
+    }
+  }, { passive: true })
+}
+
 function init () {
   ReactWidget.initialise('a4', 'comment_async', ReactCommentsAsync.renderComment)
   ReactWidget.initialise('a4', 'follows', ReactFollows.renderFollow)
@@ -35,6 +71,7 @@ function init () {
 
   initProjectDetailParticipationView()
   initGuestProjectAlerts()
+  initHeaderScroll()
 
   $('.project-tile-carousel').slick({
     initialSlide: 0,

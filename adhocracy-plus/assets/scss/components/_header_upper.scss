@@ -8,7 +8,15 @@ $header-upper-ribbon-gap: 12px;
 
 .header-upper {
     min-height: 100px;
-    position: relative;
+
+    // Dock to the top of the viewport while scrolling. The header is hidden on
+    // scroll-down and revealed on scroll-up via `.header-upper--hidden`
+    // (see `initHeaderScroll` in app.js).
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: $body-bg;
+    transition: transform 0.3s ease;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.02), 0 2px 27px 0 rgba(0, 0, 0, 0.05);
 
     > .navbar {
@@ -53,8 +61,16 @@ $header-upper-ribbon-gap: 12px;
     width: auto;
 }
 
+// Compact "a+" mark for mobile; the full wordmark is shown from the md
+// breakpoint up (see header.html).
+.header-upper__brand-img.header-upper__brand-img--short {
+    height: 1.5rem;
+}
+
 .header-upper__lang,
-.header-upper__notification_button {
+.header-upper__learning,
+.header-upper__notification_button,
+.header-upper__user {
     display: flex;
     align-items: center;
 }
@@ -104,3 +120,24 @@ $header-upper-ribbon-gap: 12px;
 
 // When the user menu is open, the dimmed backdrop (see `_userindicator.scss`) must sit above the header
 // (ribbon, logo, bell, menu toggle). The open `.userindicator__dropdown-menu` panel stays above the backdrop via its own z-index.
+.header-upper--hidden {
+    transform: translateY(-100%);
+}
+
+// Sticky positioning turns the header into a stacking context, which would trap the fixed user menu
+// (z-index 1050) below the dimming backdrop (z-index 1040). Lift the whole header above the backdrop
+// while the menu is open so the panel stays interactive and visible.
+.header-upper:has(.userindicator__dropdown .dropdown-toggle.show) {
+    z-index: 1045;
+}
+
+// Keep in-page anchor targets clear of the sticky header.
+html {
+    scroll-padding-top: 100px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header-upper {
+        transition: none;
+    }
+}

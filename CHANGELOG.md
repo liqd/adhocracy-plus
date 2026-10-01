@@ -9,6 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- Learning Nuggets: ported the Learning Center app with category-based nuggets (Wagtail pages and snippets), an htmx-powered help sidebar reachable from the header on every page, and a Wagtail Video Block (video/audio plus transcript). Adds `django-htmx`.
 - polls: Django admin to list, search, edit and delete free-text poll answers
 - audit: admin audit log records now as an extra view
 - Tests: e2e coverage for the React/vanilla JS widgets: poll multi-question funnel and review step, moderation actions (block, highlight, feedback), interactive events present screen, organisation project search, project follow, and document chapter editing; the suite standardizes on Playwright's `expect()` assertions
@@ -72,6 +73,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Ideas List: New design
 - Comment box: Minimum height 100px
 - Idea, spatial idea and participatory budgeting module pages: the submit call to action is now a sticky banner that stays at the top of the viewport while scrolling
+- Header: the question-mark help button moved into the header and opens the Learning Center sidebar as an overlay (no page navigation); the sidebar closes via close icon, backdrop click or Esc. The header is sticky and hides when scrolling down, reappears on scroll up, and the button has an accessible label. The compact "a+" logo is shown on mobile instead of the full wordmark, and the help/notification buttons are 48px with the burger vertically centered
 
 ### Removed
 
@@ -79,6 +81,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- Learning Nuggets: only live, non-private nuggets are served and listed (draft/private pages no longer leak); the ``?sidebar=`` overlay only loads same-origin Learning Center paths (protocol-relative URLs are rejected); the index heading now uses the Learning Center page title; legacy ``permission_level`` values are normalised so categories are no longer dropped from the index; video/audio MIME detection is based on ``mimetypes`` with a safe fallback (``.webm``/``.ogg`` handled correctly) and the video title is rendered
 - Profile editing no longer silently clears the newsletter opt-in
   (``User.get_newsletters``). The newsletter toggle on the notification
   settings page now controls this actual opt-in.

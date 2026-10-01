@@ -1,0 +1,24 @@
+{% load i18n static %}
+<noscript>
+    <a href="{% url 'learning_nuggets:index' %}"
+       class="learning-toggle__noscript">{% translate 'Go to Learning Center' %}</a>
+</noscript>
+<div id="learning-sidebar-backdrop"
+     class="learning-sidebar__backdrop"
+     aria-hidden="true"></div>
+<div id="learning-sidebar"
+     class="learning-sidebar"
+     role="dialog"
+     aria-modal="true"
+     aria-hidden="true"
+     aria-label="{% translate 'Learning Center' %}">
+    <div class="u-page-ribbon" aria-hidden="true"></div>
+    <button id="learning-close"
+            class="learning-sidebar__close"
+            type="button"
+            aria-label="{% translate 'Close' %}">
+        <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+    <div id="learning-content" class="learning-sidebar__content"></div>
+</div>
+<script type="text/javascript" src="{% static 'learning_sidebar.js' %}"></script>

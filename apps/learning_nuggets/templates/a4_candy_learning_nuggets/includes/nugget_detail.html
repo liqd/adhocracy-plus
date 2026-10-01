@@ -1,0 +1,19 @@
+{% load i18n wagtailcore_tags %}
+{% include "a4_candy_learning_nuggets/includes/learning_header.html" %}
+{% if nugget.category %}
+<nav class="learning-breadcrumb">
+    <a href="{% url 'learning_nuggets:category' category_slug=nugget.category.slug %}"
+       hx-get="{% url 'learning_nuggets:category' category_slug=nugget.category.slug %}"
+       hx-target="#learning-content"
+       hx-swap="innerHTML"
+       hx-push-url="true">
+        <i class="fas fa-chevron-left learning-breadcrumb__icon"
+           aria-hidden="true"></i>{{ nugget.category }}
+    </a>
+</nav>
+{% endif %}
+{% for block in nugget.content %}
+    {% include_block block %}
+{% empty %}
+    <p>{% translate 'No content available.' %}</p>
+{% endfor %}

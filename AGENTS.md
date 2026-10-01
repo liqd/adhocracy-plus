@@ -25,4 +25,4 @@ Applies to all code and config in this repository unless a file or directory exp
 
 ## Changelog
 
-- For **release notes and user-facing change history**, edit **`CHANGELOG.md`** at the repository root **only**. Do not add duplicate changelog content to `README.md`, wiki files, or other docs unless a maintainer explicitly asks for it.
+- For **release notes and user-facing change history**, edit **`CHANGELOG.md`** at the repository root **only**, under the **`## Unreleased`** section (`### Added` / `### Changed` / `### Fixed` / …). Do not create files under `changelog/` and do not add duplicate changelog content to `README.md`, wiki files, or other docs unless a maintainer explicitly asks for it.

@@ -267,6 +267,14 @@ if (settings.DEBUG or getattr(settings, "SERVE_MEDIA", False)) and not urlsplit(
 
 # generic patterns at the very end
 urlpatterns += [
+    # Custom routes for the Learning Center. These shadow the natural Wagtail
+    # URLs of the LearningCenterPage and its LearningNuggetPage children (which
+    # are served through these views instead), so page.url / sitemap / search
+    # results for those pages should not be relied upon.
+    path(
+        "learning-center/",
+        include("apps.learning_nuggets.urls", namespace="learning_nuggets"),
+    ),
     path("", landing_view, name="landing_page"),
     path("", include("apps.organisations.urls")),
     path("", include("wagtail.urls")),
