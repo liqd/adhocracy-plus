@@ -1,4 +1,5 @@
 from django.urls import reverse
+from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
@@ -7,7 +8,47 @@ from rest_framework.utils import model_meta
 
 from adhocracy4.comments.models import Comment
 from apps.contrib.dates import get_date_display
+from apps.contrib.templatetags.item_tags import get_item_url
+from apps.ideas.models import Idea
 from apps.moderatorfeedback.serializers import ModeratorCommentFeedbackSerializer
+
+
+def _is_hidden(instance):
+    return getattr(instance, "is_censored", False) or getattr(
+        instance, "is_removed", False
+    )
+
+
+def get_creator_name(instance):
+    if _is_hidden(instance):
+        return _("unknown user")
+    return str(instance.creator.username)
+
+
+def get_creator_image(instance):
+    if _is_hidden(instance):
+        return None
+    creator = instance.creator
+    try:
+        if creator.avatar:
+            return get_thumbnailer(creator.avatar)["avatar"].url
+    except AttributeError:
+        pass
+    try:
+        if creator.avatar_fallback:
+            return creator.avatar_fallback
+    except AttributeError:
+        pass
+    return None
+
+
+def get_creator_profile_url(instance):
+    if _is_hidden(instance):
+        return ""
+    try:
+        return instance.creator.get_absolute_url()
+    except AttributeError:
+        return ""
 
 
 class ModerationCommentSerializer(serializers.ModelSerializer):
@@ -60,40 +101,13 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
         return comment.num_reports
 
     def get_user_name(self, comment):
-        if comment.is_censored or comment.is_removed:
-            return _("unknown user")
-        return str(comment.creator.username)
-
-    def get_user_image_fallback(self, comment):
-        """Load small thumbnail images for default user images."""
-        if comment.is_censored or comment.is_removed:
-            return None
-        try:
-            if comment.creator.avatar_fallback:
-                return comment.creator.avatar_fallback
-        except AttributeError:
-            pass
-        return None
+        return get_creator_name(comment)
 
     def get_user_image(self, comment):
-        """Load small thumbnail images for user images."""
-        if comment.is_censored or comment.is_removed:
-            return None
-        try:
-            if comment.creator.avatar:
-                avatar = get_thumbnailer(comment.creator.avatar)["avatar"]
-                return avatar.url
-        except AttributeError:
-            pass
-        return self.get_user_image_fallback(comment)
+        return get_creator_image(comment)
 
     def get_user_profile_url(self, comment):
-        if comment.is_censored or comment.is_removed:
-            return ""
-        try:
-            return comment.creator.get_absolute_url()
-        except AttributeError:
-            return ""
+        return get_creator_profile_url(comment)
 
     def get_is_unread(self, comment):
         return not comment.is_reviewed
@@ -131,3 +145,157 @@ class ModerationCommentSerializer(serializers.ModelSerializer):
             field.set(value)
 
         return instance
+
+
+class ModerationItemMixin(serializers.Serializer):
+    """Shared fields for comments and ideas in the moderation list."""
+
+    item_type = serializers.SerializerMethodField()
+    label = serializers.SerializerMethodField()
+    text = serializers.SerializerMethodField()
+    title = serializers.SerializerMethodField()
+    url = serializers.SerializerMethodField()
+    moderate_url = serializers.SerializerMethodField()
+    api_url = serializers.SerializerMethodField()
+
+
+class ModerationCommentItemSerializer(ModerationItemMixin, ModerationCommentSerializer):
+    class Meta(ModerationCommentSerializer.Meta):
+        fields = ModerationCommentSerializer.Meta.fields + [
+            "item_type",
+            "label",
+            "text",
+            "title",
+            "url",
+            "moderate_url",
+            "api_url",
+        ]
+
+    def get_item_type(self, comment):
+        return "comment"
+
+    def get_label(self, comment):
+        return _("Comment")
+
+    def get_text(self, comment):
+        return comment.comment
+
+    def get_title(self, comment):
+        return None
+
+    def get_url(self, comment):
+        return comment.get_absolute_url()
+
+    def get_moderate_url(self, comment):
+        return ""
+
+    def get_api_url(self, comment):
+        return reverse(
+            "moderationcomments-detail",
+            kwargs={"project_pk": comment.project_id, "pk": comment.pk},
+        )
+
+
+class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer):
+    last_edit = serializers.SerializerMethodField()
+    is_modified = serializers.SerializerMethodField()
+    is_unread = serializers.SerializerMethodField()
+    is_blocked = serializers.SerializerMethodField()
+    is_moderator_marked = serializers.SerializerMethodField()
+    num_reports = serializers.SerializerMethodField()
+    moderator_feedback = serializers.SerializerMethodField()
+    feedback_api_url = serializers.SerializerMethodField()
+    user_name = serializers.SerializerMethodField()
+    user_image = serializers.SerializerMethodField()
+    user_profile_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Idea
+        fields = [
+            "pk",
+            "item_type",
+            "label",
+            "text",
+            "title",
+            "url",
+            "moderate_url",
+            "api_url",
+            "last_edit",
+            "is_modified",
+            "is_unread",
+            "is_blocked",
+            "is_moderator_marked",
+            "num_reports",
+            "moderator_feedback",
+            "feedback_api_url",
+            "user_name",
+            "user_image",
+            "user_profile_url",
+        ]
+
+    def get_item_type(self, idea):
+        return "idea"
+
+    def get_label(self, idea):
+        return _("Idea")
+
+    def get_text(self, idea):
+        return strip_tags(idea.description)
+
+    def get_title(self, idea):
+        return idea.name
+
+    def get_url(self, idea):
+        return idea.get_absolute_url()
+
+    def get_moderate_url(self, idea):
+        return get_item_url(idea, "moderate", raises=False)
+
+    def get_api_url(self, idea):
+        return ""
+
+    def get_last_edit(self, idea):
+        if idea.modified:
+            return get_date_display(idea.modified)
+        return get_date_display(idea.created)
+
+    def get_is_modified(self, idea):
+        return idea.modified is not None
+
+    def get_is_unread(self, idea):
+        return False
+
+    def get_is_blocked(self, idea):
+        return False
+
+    def get_is_moderator_marked(self, idea):
+        return False
+
+    def get_num_reports(self, idea):
+        return 0
+
+    def get_moderator_feedback(self, idea):
+        return None
+
+    def get_feedback_api_url(self, idea):
+        return ""
+
+    def get_user_name(self, idea):
+        return get_creator_name(idea)
+
+    def get_user_image(self, idea):
+        return get_creator_image(idea)
+
+    def get_user_profile_url(self, idea):
+        return get_creator_profile_url(idea)
+
+
+class ModerationItemSerializer(serializers.BaseSerializer):
+    """Serializes comments and ideas with a shared set of fields."""
+
+    def to_representation(self, instance):
+        if isinstance(instance, Comment):
+            serializer = ModerationCommentItemSerializer(instance, context=self.context)
+        else:
+            serializer = ModerationIdeaSerializer(instance, context=self.context)
+        return serializer.data

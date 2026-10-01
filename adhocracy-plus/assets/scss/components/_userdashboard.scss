@@ -77,6 +77,23 @@
     overflow-wrap: anywhere;
 }
 
+.userdashboard-mod-item__label {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: $font-size-xs;
+    line-height: 20px;
+    margin-bottom: $spacer;
+}
+
+.userdashboard-mod-item__label--idea {
+    background-color: $moderation-label-idea-bg;
+}
+
+.userdashboard-mod-item__label--comment {
+    background-color: $moderation-label-comment-bg;
+}
+
 .userdashboard-mod-notification__btn {
     @extend .btn--none;
     border: 1px solid $gray-lightest;
