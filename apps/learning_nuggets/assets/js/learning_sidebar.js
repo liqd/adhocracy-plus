@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 document.addEventListener('DOMContentLoaded', function () {
   const toggleButton = document.getElementById('learning-toggle')
   const sidebar = document.getElementById('learning-sidebar')
@@ -33,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Update URL with current path and sidebar parameter
         const newUrl = `${currentPath}?sidebar=${rootRelativeUrl.replace(/^\//, '')}`
         window.history.pushState({ sidebarUrl: rootRelativeUrl }, '', newUrl)
+        return html
       })
       .catch(error => {
         console.error('Error loading content:', error)
@@ -54,12 +54,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Close sidebar
-  function closeSidebar () {
+  // Close sidebar without touching the history stack
+  function hideSidebar () {
     sidebar.classList.remove('active')
     sidebar.setAttribute('aria-hidden', 'true')
     toggleButton.setAttribute('aria-expanded', 'false')
-    window.history.pushState(null, '', currentPath)
+  }
+
+  // Close sidebar and remove the sidebar parameter from the URL.
+  // Uses replaceState so closing does not push a new history entry.
+  function closeSidebar () {
+    hideSidebar()
+    const url = new URL(window.location.href)
+    if (url.searchParams.has('sidebar')) {
+      url.searchParams.delete('sidebar')
+      window.history.replaceState({}, '', url.pathname + url.search)
+    }
   }
 
   // Toggle sidebar
@@ -92,10 +102,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Handle browser back/forward buttons
   window.addEventListener('popstate', function (event) {
-    if (event.state && event.state.sidebarUrl) {
-      openSidebar(event.state.sidebarUrl)
+    const sidebarUrl = event.state && event.state.sidebarUrl
+    if (sidebarUrl) {
+      openSidebar(sidebarUrl)
     } else {
-      closeSidebar()
+      hideSidebar()
     }
   })
 
