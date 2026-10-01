@@ -72,11 +72,16 @@
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     z-index: 999;
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+
+    // Hidden while closed so its controls are not reachable via keyboard.
+    visibility: hidden;
+    transition: transform 0.3s ease, visibility 0s linear 0.3s;
   }
 
   .learning-sidebar.active {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.3s ease;
   }
 
   .learning-sidebar__close {
