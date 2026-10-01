@@ -72,6 +72,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- Learning Nuggets: only live, non-private nuggets are served and listed (draft/private pages no longer leak); the ``?sidebar=`` overlay only loads same-origin Learning Center paths (protocol-relative URLs are rejected); the index heading now uses the Learning Center page title; legacy ``permission_level`` values are normalised so categories are no longer dropped from the index; video/audio MIME detection is based on ``mimetypes`` with a safe fallback (``.webm``/``.ogg`` handled correctly) and the video title is rendered
 - Profile editing no longer silently clears the newsletter opt-in
   (``User.get_newsletters``). The newsletter toggle on the notification
   settings page now controls this actual opt-in.

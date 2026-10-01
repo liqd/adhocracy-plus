@@ -17,9 +17,9 @@
         {{ category.name }}
     </h2>
     
-    {% if category.nuggets.all %}
+    {% if nuggets %}
         <ul class="learning-nuggets-grid u-list-reset">
-            {% for nugget in category.nuggets.all|dictsort:"order" %}
+            {% for nugget in nuggets %}
                 <li class="learning-nugget-item">
                     <a href="{% url 'learning_nuggets:nugget-detail' category_slug=category.slug nugget_slug=nugget.slug %}"
                        class="nugget-link"

@@ -1,10 +1,24 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
 from django.views.generic import ListView
-from wagtail.models import Page
 
 from .models import LearningCategory
+from .models import LearningCenterPage
 from .models import LearningNuggetPage
+
+
+def live_public_nuggets():
+    """Only live pages that are not inside a private section.
+
+    The custom Learning Center views bypass ``wagtail.urls``, so the standard
+    live / privacy filtering has to be applied explicitly.
+    """
+    return (
+        LearningNuggetPage.objects.live()
+        .public()
+        .select_related("category")
+        .order_by("order")
+    )
 
 
 class HtmxTemplateMixin:
@@ -50,18 +64,22 @@ class LearningCenterView(HtmxTemplateMixin, ListView):
         for category in categories:
             grouped.setdefault(category.permission_level, []).append(category)
 
-        grouped_categories = []
-        for perm_level in self.PERMISSION_ORDER:
-            if perm_level in grouped:
-                grouped_categories.append(
-                    {"permission_level": perm_level, "categories": grouped[perm_level]}
-                )
+        # Show the known permission levels first, but never drop categories that
+        # store an unexpected level (e.g. legacy values that were never migrated).
+        ordered_levels = [level for level in self.PERMISSION_ORDER if level in grouped]
+        ordered_levels += [
+            level for level in grouped if level not in self.PERMISSION_ORDER
+        ]
 
-        context["grouped_categories"] = grouped_categories
+        context["grouped_categories"] = [
+            {"permission_level": level, "categories": grouped[level]}
+            for level in ordered_levels
+        ]
 
-        if not self.is_htmx:
-            page = get_object_or_404(Page, slug="learning-center")
-            context["page"] = page.specific
+        # The custom view does not go through Wagtail's page serving, so the
+        # page (used for the heading) is looked up once here for both the full
+        # page and the htmx partial.
+        context["page"] = LearningCenterPage.objects.live().public().first()
 
         return context
 
@@ -74,11 +92,13 @@ class LearningCategoryView(HtmxTemplateMixin, DetailView):
     context_object_name = "category"
 
     def get_object(self):
-        category = get_object_or_404(
-            LearningCategory, slug=self.kwargs["category_slug"]
-        )
+        return get_object_or_404(LearningCategory, slug=self.kwargs["category_slug"])
 
-        return category
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Evaluate the (live, public, ordered) nuggets once and reuse the list.
+        context["nuggets"] = list(self.object.ordered_nuggets())
+        return context
 
 
 class LearningNuggetView(HtmxTemplateMixin, DetailView):
@@ -89,12 +109,13 @@ class LearningNuggetView(HtmxTemplateMixin, DetailView):
     context_object_name = "nugget"
 
     def get_object(self):
-        # Get the nugget based on the slug, ensuring it belongs to the correct category
+        # Get the nugget based on the slug, ensuring it belongs to the correct
+        # category and is live / not private.
         category = get_object_or_404(
             LearningCategory, slug=self.kwargs["category_slug"]
         )
-        nugget = get_object_or_404(
-            LearningNuggetPage, slug=self.kwargs["nugget_slug"], category=category
+        return get_object_or_404(
+            live_public_nuggets(),
+            slug=self.kwargs["nugget_slug"],
+            category=category,
         )
-
-        return nugget
