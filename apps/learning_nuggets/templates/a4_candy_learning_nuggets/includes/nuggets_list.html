@@ -3,7 +3,10 @@
 
 <nav class="learning-breadcrumb">
     <a href="{% url 'learning_nuggets:index' %}"
-       {% if is_ajax %}data-sidebar{% endif %}>
+       hx-get="{% url 'learning_nuggets:index' %}"
+       hx-target="#learning-content"
+       hx-swap="innerHTML"
+       hx-push-url="true">
         <i class="fas fa-chevron-left learning-breadcrumb__icon"
            aria-hidden="true"></i>{% translate 'Learning Center Home' %}
     </a>
@@ -19,8 +22,11 @@
             {% for nugget in category.nuggets.all|dictsort:"order" %}
                 <li class="learning-nugget-item">
                     <a href="{% url 'learning_nuggets:nugget-detail' category_slug=category.slug nugget_slug=nugget.slug %}"
-                    class="nugget-link"
-                    {% if is_ajax %}data-sidebar{% endif %}>
+                       class="nugget-link"
+                       hx-get="{% url 'learning_nuggets:nugget-detail' category_slug=category.slug nugget_slug=nugget.slug %}"
+                       hx-target="#learning-content"
+                       hx-swap="innerHTML"
+                       hx-push-url="true">
                         
                         {% get_first_nugget_image nugget "fill-420x280" as thumb %}
                         {% if thumb %}

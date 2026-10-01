@@ -14,7 +14,10 @@
                     <article>
                         <a href="{% url 'learning_nuggets:category' category_slug=category.slug %}"
                            class="u-no-underline"
-                           {% if is_ajax %}data-sidebar{% endif %}>
+                           hx-get="{% url 'learning_nuggets:category' category_slug=category.slug %}"
+                           hx-target="#learning-content"
+                           hx-swap="innerHTML"
+                           hx-push-url="true">
                             {{ category.name }}
                         </a>
                     </article>

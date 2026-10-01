@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load absolute_url contrib_tags i18n organisation_tags static wagtailimages_tags wagtailsettings_tags wagtailuserbar %}
+{% load absolute_url contrib_tags i18n organisation_tags static wagtailimages_tags wagtailsettings_tags wagtailuserbar django_htmx %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_organisation as ORGANISATION %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -45,7 +45,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>
-    <script src="https://unpkg.com/htmx.org@2.0.8"></script>
+    {% htmx_script %}
     <meta name="viewport" content="width=device-width" />
     
     {% block extra_js %}

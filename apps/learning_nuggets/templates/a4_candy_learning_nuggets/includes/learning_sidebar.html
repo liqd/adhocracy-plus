@@ -10,10 +10,19 @@
 </noscript>
 <button id="learning-toggle"
         class="learning-toggle"
-        aria-label="{% translate 'Open Learning Center' %} ">
+        aria-label="{% translate 'Open Learning Center' %}"
+        aria-controls="learning-sidebar"
+        aria-expanded="false"
+        hx-get="{% url 'learning_nuggets:index' %}"
+        hx-target="#learning-content"
+        hx-swap="innerHTML"
+        hx-push-url="true">
     <i class="fa fa-question-circle" aria-hidden="true"></i>
 </button>
-<div id="learning-sidebar" class="learning-sidebar">
+<div id="learning-sidebar"
+     class="learning-sidebar"
+     aria-hidden="true"
+     aria-labelledby="learning-toggle">
     <div class="u-page-ribbon" aria-hidden="true"></div>
     <button id="learning-close"
             class="learning-sidebar__close"
