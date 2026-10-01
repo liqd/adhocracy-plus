@@ -93,8 +93,12 @@
 }
 
 .list-item__badge--moderator-feedback {
-    float: right;
-    margin-left: 0.5em;
+    margin-left: 0.25em;
+    color: $black !important;
+}
+
+.list-item__badge--category {
+    background-color: $brand-primary;
 }
 
 .list-item__meta {
@@ -129,7 +133,14 @@
 }
 
 .list-item__comments {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
     margin-left: 0.7em;
+
+    i {
+        transform: translateY(0.05em);
+    }
 }
 
 .list-item-empty {
@@ -204,6 +215,32 @@
     margin-top: $spacer;
 }
 
+.list-item__meta-row,
+.list-item__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list-item__divider {
+    margin: $spacer 0;
+    border: 0;
+    border-top: 1px solid $border-color;
+    opacity: 1;
+}
+
+.list-item__actions .list-item__expand-toggle {
+    border: 0;
+    padding: 0;
+    background: transparent;
+}
+
+@media (max-width: $breakpoint-down) {
+    .list-item__divider + .list-item__footer {
+        margin-top: 0;
+    }
+}
+
 .list-item__explore-btn {
     margin-left: auto;
     display: none;
@@ -218,6 +255,13 @@
 // accordion expansion is used instead and the panes are hidden.
 .idea-inbox__panes {
     display: none;
+}
+
+.idea-inbox__list {
+    .list-item {
+        margin-bottom: 20px;
+        border: 1px solid $gray-lightest;
+    }
 }
 
 @media (min-width: $breakpoint) {
@@ -235,7 +279,7 @@
         }
 
         .list-item.selected {
-            background-color: $bg-tertiary;
+            background-color: $bg-brand-primary-100-15;
         }
     }
 
@@ -269,8 +313,8 @@
 
     .idea-inbox__pane-footer {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: stretch;
         margin-top: $spacer;
 
         .btn {
