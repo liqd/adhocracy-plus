@@ -7,7 +7,12 @@
     <nav class="navbar navbar-expand-md">
         <div class="container position-relative">
             <a class="navbar-brand header-upper__brand" href="{% url 'wagtail_serve' '' %}">
-                <img src="{% static 'images/logo.svg' %}" alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}" class="header-upper__brand-img" />
+                <img src="{% static 'images/adhocracy-short.svg' %}"
+                     alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}"
+                     class="header-upper__brand-img header-upper__brand-img--short d-md-none" />
+                <img src="{% static 'images/logo.svg' %}"
+                     alt="{{ settings.a4_candy_cms_settings.OrganisationSettings.platform_name }}"
+                     class="header-upper__brand-img d-none d-md-block" />
             </a>
 
             <ul class="header-upper__nav navbar-nav ms-auto">
