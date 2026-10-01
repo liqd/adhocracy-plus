@@ -1,0 +1,27 @@
+{% load i18n rules learning_nuggets_tags %}
+{% include "a4_candy_learning_nuggets/includes/learning_header.html" %}
+
+<article class="learning-content">
+    <h2 class="learning-content__title learning-content__title--lg">{{ value.title }}</h2>
+
+    {% for group in grouped_categories %}
+        <h2 class="learning-content__title learning-content__title--md">
+            {% get_permission_display group.permission_level %}
+        </h2>
+        <ul class="u-list-reset learning-content__categories">
+            {% for category in group.categories %}
+                <li class="learning-content__categories__item">
+                    <article>
+                        <a href="{% url 'learning_nuggets:category' category_slug=category.slug %}"
+                           class="u-no-underline"
+                           {% if is_ajax %}data-sidebar{% endif %}>
+                            {{ category.name }}
+                        </a>
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+    {% empty %}
+        <p>{% translate 'No categories available.' %}</p>
+    {% endfor %}
+</article>

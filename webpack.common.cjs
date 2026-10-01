@@ -176,6 +176,12 @@ module.exports = {
         './adhocracy-plus/assets/js/uppy_image_upload.js'
       ],
       dependOn: 'adhocracy4'
+    },
+    learning_sidebar: {
+      import: [
+        './apps/learning_nuggets/assets/css/learning.scss',
+        './apps/learning_nuggets/assets/js/learning_sidebar.js'
+      ]
     }
   },
   output: {

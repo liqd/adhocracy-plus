@@ -9,6 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- Learning Nuggets: ported the Learning Center app with category-based nuggets (Wagtail pages and snippets), an AJAX help sidebar reachable from the header on every page, and a Wagtail Video Block (video/audio plus transcript)
 - polls: Django admin to list, search, edit and delete free-text poll answers
 - audit: admin audit log records now as an extra view
 - Tests: e2e coverage for the React/vanilla JS widgets: poll multi-question funnel and review step, moderation actions (block, highlight, feedback), interactive events present screen, organisation project search, project follow, and document chapter editing; the suite standardizes on Playwright's `expect()` assertions

@@ -1,0 +1,62 @@
+  $toggle_bg: #CFD7E5;
+
+  .learning-toggle {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 998;
+    background-color: $toggle_bg;
+    border: none;
+    padding: 0.8rem;
+    cursor: pointer;
+
+    i {
+      font-size: 2rem;
+    }
+  }
+
+  /* If JS is enabled, hide the noscript and display the button */
+  .learning-toggle.learning-toggle--js-enabled {
+    display: block;
+  }
+
+  .learning-sidebar {
+    position: fixed;
+    top: 0;
+    right: -480px; /* Start off-screen */
+    width: 480px;
+    height: 100vh;
+    background-color: $body-bg;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .learning-sidebar.active {
+    right: 0;
+  }
+  
+  .learning-sidebar__close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
+  .learning-sidebar__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 1.5rem;
+  }
+
+  @media screen and (max-width: $breakpoint) {
+    .learning-sidebar {
+      width: 100%;
+      right: -100%;
+    }
+  }

@@ -1,0 +1,14 @@
+{% load i18n wagtailcore_tags %}
+{% include "a4_candy_learning_nuggets/includes/learning_header.html" %}
+<nav class="learning-breadcrumb">
+    <a href="{% url 'learning_nuggets:category' category_slug=nugget.category.slug %}"
+       {% if is_ajax %}data-sidebar{% endif %}>
+        <i class="fas fa-chevron-left learning-breadcrumb__icon"
+           aria-hidden="true"></i>{{ nugget.category }}
+    </a>
+</nav>
+{% for block in nugget.content %}
+    {% include_block block %}
+{% empty %}
+    <p>{% translate 'No content available.' %}</p>
+{% endfor %}
