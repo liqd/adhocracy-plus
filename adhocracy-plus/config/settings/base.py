@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     "apps.offlineevents",
     "apps.projects",
     "apps.userdashboard",
+    "apps.learning_nuggets",
     # Apps defining phases
     "apps.activities",
     "apps.budgeting",
@@ -152,6 +153,7 @@ MIDDLEWARE = (
     "django.contrib.messages.middleware.MessageMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "apps.learning_nuggets.middleware.AjaxRequestMiddleware",
 )
 
 # YouTube embeds require a Referer on cross-origin iframe requests.
