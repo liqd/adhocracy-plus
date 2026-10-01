@@ -313,7 +313,13 @@ ACCOUNT_FORMS = {
     "signup": "apps.users.forms.DefaultSignupForm",
     "login": "apps.users.forms.DefaultLoginForm",
 }
-ACCOUNT_RATE_LIMITS = {"login_failed": "10/5m/ip"}
+ACCOUNT_RATE_LIMITS = {
+    "login_failed": "10/5m/ip",
+    # The multi step signup costs several POSTs per attempt (one per step,
+    # plus resubmits when a user goes back), so give it more headroom than
+    # allauth's default of 20/m/ip.
+    "signup": "60/m/ip",
+}
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_USERNAME_MIN_LENGTH = 5

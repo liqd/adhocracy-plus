@@ -20,3 +20,31 @@
         margin-left: 2.5 * $spacer;
     }
 }
+
+.signup-wizard {
+    margin-top: $spacer;
+}
+
+.signup-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5 * $spacer;
+}
+
+.signup-steps__dot {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: $gray-lightest;
+}
+
+.signup-steps__dot.is-active {
+    background-color: $brand-primary;
+}
+
+.signup-step {
+    margin-top: 1.5 * $spacer;
+}

@@ -1,7 +1,7 @@
 {% load i18n static wagtailsettings_tags %}
 {% get_settings use_default_site=True %}
 
-<footer class="footer width-xl-bxl {% if not ORGANISATION or not ORGANISATION.is_supporting %}{% if settings.a4_candy_cms_settings.ImportantPages.donate_link %} footer--banner-margin{% endif %}{% endif %}" role="contentinfo" aria-label="{% translate 'Site footer' %}">
+<footer class="footer width-xl-bxl" role="contentinfo" aria-label="{% translate 'Site footer' %}">
     <div class="footer__inner">
         <div class="footer__columns">
             <div class="footer__box footer__box--general w-100 w-xs-auto">

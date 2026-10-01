@@ -31,6 +31,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - 429 error page template so the allauth rate limiter can render a user-facing
   "Too Many Requests" response instead of failing with ``TemplateDoesNotExist``
 - Project Dashboard: Add 'View Live'
+- Registration: three-step signup flow (email/username and guest option, then
+  password, then captcha and checkboxes) with a step indicator, implemented with
+  htmx and server-side session staging on top of django-allauth
+- Login and registration: social logins redesigned as icon buttons below an
+  "Or continue with" heading
 
 ### Changed
 
@@ -67,6 +72,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Ideas List: New design
 - Comment box: Minimum height 100px
 - Idea, spatial idea and participatory budgeting module pages: the submit call to action is now a sticky banner that stays at the top of the viewport while scrolling
+
+### Removed
+
+- Donation banner on all pages
 
 ### Fixed
 

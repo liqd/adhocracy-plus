@@ -11,6 +11,15 @@ from .userindicator import get_next_url
 register = template.Library()
 
 
+@register.filter
+def signup_field_step(name):
+    """Return the registration step a form field name belongs to."""
+    # Imported lazily to avoid loading the forms during app initialization.
+    from apps.users.forms import signup_field_step as _signup_field_step
+
+    return _signup_field_step(name)
+
+
 def _url_with_next(url_name, request):
     return f"{reverse(url_name)}?{urlencode({'next': get_next_url(request)})}"
 

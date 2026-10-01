@@ -22,6 +22,45 @@ PROSOPO_CAPTCHA_HELP = _(
     "If you are having difficulty please contact us by {}email{}.</strong>"
 )
 
+# Fields of the (multi step) registration form and the step they belong to.
+# Any field that is not listed here is rendered on the last step, so custom
+# signup forms (e.g. the IG BCE form) keep working. Custom extra fields
+# (member_number/birth_date) are validated on the last step only, where the
+# complete form is submitted.
+SIGNUP_STEP_FIELDS = {
+    "email": 1,
+    "username": 1,
+    "password1": 2,
+    "password2": 2,
+    "member_number": 3,
+    "birth_date": 3,
+    "captcha": 3,
+    "terms_of_use": 3,
+    "terms_of_use_extra": 3,
+    "get_newsletters": 3,
+    "accept_marketing_partners": 3,
+}
+SIGNUP_LAST_STEP = 3
+
+
+def signup_field_step(name):
+    """Return the registration step a form field belongs to."""
+    return SIGNUP_STEP_FIELDS.get(name, SIGNUP_LAST_STEP)
+
+
+def restrict_fields_to_step(form, step):
+    """Remove all fields that do not belong to ``step`` from ``form``."""
+    for name in list(form.fields):
+        if signup_field_step(name) != step:
+            del form.fields[name]
+    return form
+
+
+def signup_error_step(form):
+    """Return the earliest step that contains a validation error."""
+    steps = [signup_field_step(name) for name in form.errors]
+    return min(steps) if steps else SIGNUP_LAST_STEP
+
 
 class BotTrapMixin:
     def __init__(self, *args, **kwargs):
@@ -245,13 +284,19 @@ class IgbceSignupForm(DefaultSignupForm):
     def clean(self):
         super().clean()
 
-        if any(self.errors):
-            return self.errors
-
         member_number = self.cleaned_data.get("member_number")
         birth_date = self.cleaned_data.get("birth_date")
 
+        # These fields only exist on the last step of the multi step signup;
+        # on the earlier, restricted steps there is nothing to validate here.
+        if not member_number or not birth_date:
+            return self.cleaned_data
+
+        if any(self.errors):
+            return self.cleaned_data
+
         self.validateMemberNumberAndDate(member_number, birth_date)
+        return self.cleaned_data
 
     def save(self, request):
         user = super().save(request)

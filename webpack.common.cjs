@@ -99,6 +99,12 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    signup_wizard: {
+      import: [
+        './apps/users/assets/js/signup_wizard.js'
+      ],
+      dependOn: 'adhocracy4'
+    },
     // A4 dependencies - we want all of them to go through webpack
     a4maps_display_point: {
       import: [

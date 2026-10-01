@@ -90,25 +90,6 @@
         {% block footer %}
         {% include 'footer.html' %}
         {% endblock footer %}
-
-        {% block donation_banner %}
-        {% if not ORGANISATION.is_supporting %}
-        {% if settings.a4_candy_cms_settings.ImportantPages.donate_link %}
-        <div class="donation-banner">
-            <a href="{{ settings.a4_candy_cms_settings.ImportantPages.donate_link }}"  class="btn btn--bg-tertiary">
-                <span class="d-none d-md-block">
-                    {% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}{{ platformname }} is funded by donations.{% endblocktranslate %}
-                    <br>
-                    <b>{% translate 'Donate now' %}</b>
-                </span>
-                <span class="d-md-none">
-                    <b>{% blocktranslate with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}Donate now to {{ platformname }}{% endblocktranslate %}</b>
-                </span>
-            </a>
-        </div>
-        {% endif %}
-        {% endif %}
-        {% endblock donation_banner %}
     </div>
 </body>
 </html>
