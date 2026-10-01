@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -41,7 +40,7 @@ class LearningCategory(models.Model):
         verbose_name = "Learning Category"
         verbose_name_plural = "Learning Categories"
 
-    def save(self, update_fields=None, *args, **kwargs):
+    def save(self, *args, update_fields=None, **kwargs):
         if not self.slug:
             base_slug = slugify(self.name)
             unique_slug = base_slug
@@ -55,10 +54,16 @@ class LearningCategory(models.Model):
 
         if update_fields:
             update_fields = {"slug"}.union(update_fields)
-        super().save(update_fields=update_fields, *args, **kwargs)
+        super().save(*args, update_fields=update_fields, **kwargs)
 
     def ordered_nuggets(self):
-        return self.nuggets.all().order_by("order")
+        """Live, non-private nuggets of this category in display order."""
+        return (
+            LearningNuggetPage.objects.live()
+            .public()
+            .filter(category=self)
+            .order_by("order")
+        )
 
     def __str__(self):
         return self.name
@@ -72,24 +77,11 @@ class LearningCenterPage(Page):
 
     max_count = 1  # Ensures only one instance can be created
 
-    content_panels = Page.content_panels
-
-    def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request, *args, **kwargs)
-        context["categories"] = LearningCategory.objects.all()
-        return context
-
     parent_page_types = ["a4_candy_cms_pages.HomePage"]
     subpage_types = ["LearningNuggetPage"]
 
     class Meta:
         verbose_name = "Learning Center Page"
-
-
-def validate_single_instance(value):
-    """Ensures only one item exists in the StreamField."""
-    if len(value) > 1:
-        raise ValidationError("Only one Learning Nugget is allowed in this field.")
 
 
 class LearningNuggetPage(Page, Orderable):
