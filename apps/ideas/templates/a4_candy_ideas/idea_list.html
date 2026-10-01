@@ -59,16 +59,29 @@
                                 </div>
                                 {% include "a4_candy_ideas/includes/idea_list_item_details.html" with object=object %}
                                 <div class="idea-inbox__pane-footer">
-                                    <div class="list-item__meta">
-                                        <img class="list-item__author-avatar"
-                                             src="{% if object.creator.avatar %}{% thumbnail object.creator.avatar 'avatar' %}{% else %}{{ object.creator.avatar_fallback }}{% endif %}"
-                                             alt="">
-                                        <span class="list-item__author">{{ object.creator.username }} · </span>
-                                        {% html_date object.created class='list-item__date' %}
+                                    <div class="list-item__meta-row">
+                                        <div class="list-item__meta">
+                                            <img class="list-item__author-avatar"
+                                                 src="{% if object.creator.avatar %}{% thumbnail object.creator.avatar 'avatar' %}{% else %}{{ object.creator.avatar_fallback }}{% endif %}"
+                                                 alt="">
+                                            <span class="list-item__author">{{ object.creator.username }} · </span>
+                                            {% html_date object.created class='list-item__date' %}
+                                        </div>
+                                        <span title="{% translate 'Comments' %}" class="list-item__comments">
+                                            <i class="far fa-comment" aria-label="{% translate 'Comments' %}"></i>
+                                            {{ object.comment_count }}
+                                        </span>
                                     </div>
-                                    <a class="btn btn--transparent-bordered" href="{{ object.get_absolute_url }}">
-                                        {% translate "Explore discussion" %}
-                                    </a>
+                                    <hr class="list-item__divider">
+                                    <div class="list-item__actions">
+                                        <button type="button" class="list-item__expand-toggle" data-idea-hide-details>
+                                            {% translate "Hide details" %}
+                                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                                        </button>
+                                        <a class="btn btn--transparent-bordered" href="{{ object.get_absolute_url }}">
+                                            {% translate "Join discussion" %}
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
@@ -131,6 +144,13 @@
                     var item = header.closest('.list-item')
                     selectIdea(item.classList.contains('selected') ? null : item)
                 }
+            })
+
+            document.querySelectorAll('[data-idea-hide-details]').forEach(function (btn) {
+                btn.addEventListener('click', function (event) {
+                    event.preventDefault()
+                    selectIdea(null)
+                })
             })
 
             function scrollToItem (item) {
