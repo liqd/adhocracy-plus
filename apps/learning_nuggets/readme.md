@@ -63,7 +63,19 @@ Each category has:
 - A slug (used in URLs)
 - A title
 - A description
-- A role-based permission (used to limit access)
+- A role-based permission (`permission_level`)
+
+> ⚠️ **The `permission_level` is not enforced yet.** All categories and nuggets
+> are publicly visible regardless of the level. The permissions in `rules.py`
+> (`view_participant_content`, `view_initiator_content`,
+> `view_moderator_content`) are defined but not checked anywhere.
+>
+> Reason: the underlying `is_initiator` / `is_moderator` predicates from
+> `adhocracy4` require a **project/organisation** as the subject, but
+> `LearningCategory` is a global snippet with no such relation. Enforcing role
+> access needs a concept first (global groups/staff, Wagtail groups, or an
+> organisation FK on the category). Implementation should filter/404 at object
+> level in the views.
 
 ---
 
