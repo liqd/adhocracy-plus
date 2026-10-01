@@ -7,25 +7,33 @@ from .models import LearningCategory
 from .models import LearningNuggetPage
 
 
-class AjaxTemplateMixin:
-    """Mixin to handle AJAX template selection"""
+class HtmxTemplateMixin:
+    """Mixin to serve the partial template for htmx requests.
 
-    ajax_template_name = None
+    Non-htmx requests fall back to the full page so the sidebar also works
+    without JavaScript (progressive enhancement).
+    """
+
+    htmx_template_name = None
+
+    @property
+    def is_htmx(self):
+        return self.request.htmx
 
     def get_template_names(self):
-        if self.request.is_ajax and self.ajax_template_name:
-            return [self.ajax_template_name]
+        if self.is_htmx and self.htmx_template_name:
+            return [self.htmx_template_name]
         return [self.template_name]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["is_ajax"] = self.request.is_ajax  # Add is_ajax flag to context
+        context["is_htmx"] = self.is_htmx
         return context
 
 
-class LearningCenterView(AjaxTemplateMixin, ListView):
+class LearningCenterView(HtmxTemplateMixin, ListView):
     template_name = "a4_candy_learning_nuggets/learning_center.html"
-    ajax_template_name = "a4_candy_learning_nuggets/includes/nuggets_index.html"
+    htmx_template_name = "a4_candy_learning_nuggets/includes/nuggets_index.html"
     context_object_name = "grouped_categories"
     model = LearningCategory
 
@@ -51,18 +59,18 @@ class LearningCenterView(AjaxTemplateMixin, ListView):
 
         context["grouped_categories"] = grouped_categories
 
-        if not self.request.is_ajax:
+        if not self.is_htmx:
             page = get_object_or_404(Page, slug="learning-center")
             context["page"] = page.specific
 
         return context
 
 
-class LearningCategoryView(AjaxTemplateMixin, DetailView):
+class LearningCategoryView(HtmxTemplateMixin, DetailView):
     """View for a specific category, showing all nuggets in that category"""
 
     template_name = "a4_candy_learning_nuggets/learning_category.html"
-    ajax_template_name = "a4_candy_learning_nuggets/includes/nuggets_list.html"
+    htmx_template_name = "a4_candy_learning_nuggets/includes/nuggets_list.html"
     context_object_name = "category"
 
     def get_object(self):
@@ -73,11 +81,11 @@ class LearningCategoryView(AjaxTemplateMixin, DetailView):
         return category
 
 
-class LearningNuggetView(AjaxTemplateMixin, DetailView):
+class LearningNuggetView(HtmxTemplateMixin, DetailView):
     """View for a specific learning nugget"""
 
     template_name = "a4_candy_learning_nuggets/learning_nugget_page.html"
-    ajax_template_name = "a4_candy_learning_nuggets/includes/nugget_detail.html"
+    htmx_template_name = "a4_candy_learning_nuggets/includes/nugget_detail.html"
     context_object_name = "nugget"
 
     def get_object(self):
