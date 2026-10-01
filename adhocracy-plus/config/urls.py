@@ -263,6 +263,10 @@ if (settings.DEBUG or getattr(settings, "SERVE_MEDIA", False)) and not urlsplit(
 
 # generic patterns at the very end
 urlpatterns += [
+    path(
+        "learning-center/",
+        include("apps.learning_nuggets.urls", namespace="learning_nuggets"),
+    ),
     path("", landing_view, name="landing_page"),
     path("", include("apps.organisations.urls")),
     path("", include("wagtail.urls")),

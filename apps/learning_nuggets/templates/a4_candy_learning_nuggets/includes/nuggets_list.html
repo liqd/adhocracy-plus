@@ -1,0 +1,46 @@
+{% load i18n rules learning_nuggets_tags wagtailimages_tags %}
+{% include "a4_candy_learning_nuggets/includes/learning_header.html" %}
+
+<style>
+
+</style>
+
+<nav class="learning-breadcrumb">
+    <a href="{% url 'learning_nuggets:index' %}"
+       {% if is_ajax %}data-sidebar{% endif %}>
+        <i class="fas fa-chevron-left learning-breadcrumb__icon"
+           aria-hidden="true"></i>{% translate 'Learning Center Home' %}
+    </a>
+</nav>
+
+<article class="learning-content">
+    <h2 class="learning-content__title learning-content__title--lg u-spacer-bottom">
+        {{ category.name }}
+    </h2>
+    
+    {% if category.nuggets.all %}
+        <ul class="learning-nuggets-grid u-list-reset">
+            {% for nugget in category.nuggets.all|dictsort:"order" %}
+                <li class="learning-nugget-item">
+                    <a href="{% url 'learning_nuggets:nugget-detail' category_slug=category.slug nugget_slug=nugget.slug %}"
+                    class="nugget-link"
+                    {% if is_ajax %}data-sidebar{% endif %}>
+                        
+                        {% get_first_nugget_image nugget "fill-420x280" as thumb %}
+                        {% if thumb %}
+                            <img src="{{ thumb.url }}" 
+                                alt="{{ nugget.title }}" 
+                                class="nugget-thumbnail">
+                        {% else %}
+                            <div class="nugget-thumbnail"></div>
+                        {% endif %}
+                        
+                        <p class="learning-nugget-item__name">{{ nugget.title }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% translate 'No learning nuggets available in this category.' %}</p>
+    {% endif %}
+</article>

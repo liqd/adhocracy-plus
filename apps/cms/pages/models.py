@@ -179,7 +179,10 @@ class HomePage(Page):
         ]
     )
 
-    subpage_types = ["a4_candy_cms_pages.EmptyPage"]
+    subpage_types = [
+        "a4_candy_cms_pages.EmptyPage",
+        "a4_candy_learning_nuggets.LearningCenterPage",
+    ]
 
 
 class EmptyPage(Page):

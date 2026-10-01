@@ -1,0 +1,61 @@
+{% load static wagtailcore_tags block_tags i18n wagtailimages_tags %}
+
+{% if value.media %}
+    <figure class="media-with-caption" role="group" {% if value.title %}aria-labelledby="media-title"{% endif %}>
+        {% if value.media.url|lower|slice:"-3:" == "mp3" or value.media.url|lower|slice:"-3:" == "wav" %}
+            <audio controls class="w-full" {% if value.title %}aria-labelledby="media-title"{% endif %} {% if value.description %}aria-describedby="media-description"{% endif %}>
+                <source src="{{ value.media.url }}" type="audio/{{ value.media.url|lower|slice:"-3:" }}">
+                <a href="{{ value.media.url }}" class="underline focus:ring-2 focus:ring-blue-500">
+                    {% translate 'Download audio file' %}
+                </a>
+            </audio>
+        {% else %}
+            <video controls class="video-js w-full" preload="metadata" {% if value.title %}aria-labelledby="media-title"{% endif %} {% if value.description %}aria-describedby="media-description"{% endif %}>
+                <source src="{{ value.media.url }}" type="video/{{ value.media.url|lower|slice:"-3:" }}">
+                <p class="vjs-no-js">
+                    {% translate 'To view this video please enable JavaScript, or upgrade to a web browser that' %}
+                    <a href="https://videojs.com/html5-video-support/" target="_blank" rel="noopener noreferrer" class="underline focus:ring-2 focus:ring-blue-500">
+                        {% translate 'supports HTML5 video' %}
+                    </a>
+                </p>
+            </video>
+        {% endif %}
+
+        {% if value.description %}
+            <figcaption id="media-description" class="mt-2 text-sm">
+                {{ value.description }}
+            </figcaption>
+        {% endif %}
+    </figure>
+{% endif %}
+
+{% if value.transcript %}
+    <details class="mt-4">
+        <summary 
+            class="flex items-center gap-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+            role="button"
+            aria-expanded="false"
+        >
+            <h3 class="inline-block text-lg font-medium">{% translate 'Media transcript' %}</h3>
+            <span class="details-arrow" aria-hidden="true">
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="16" 
+                    height="16" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="2" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"
+                    class="transition-transform"
+                >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </span>
+        </summary>
+        <div class="mt-2 pl-4 prose">
+            {{ value.transcript }}
+        </div>
+    </details>
+{% endif %}

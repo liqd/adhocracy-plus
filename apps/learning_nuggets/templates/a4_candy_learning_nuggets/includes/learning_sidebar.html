@@ -1,0 +1,27 @@
+{% load i18n static %}
+{% block extra_css %}
+    <link type="text/css"
+          href="{% static 'learning_sidebar.css' %}"
+          rel="stylesheet" />
+{% endblock extra_css %}
+<noscript>
+    <a href="{% url 'learning_nuggets:index' %}"
+       class="learning-toggle learning-toggle--js-enabled">{% translate 'Go to Learning Center' %}</a>
+</noscript>
+<button id="learning-toggle"
+        class="learning-toggle"
+        aria-label="{% translate 'Open Learning Center' %} ">
+    <i class="fa fa-question-circle" aria-hidden="true"></i>
+</button>
+<div id="learning-sidebar" class="learning-sidebar">
+    <div class="u-page-ribbon" aria-hidden="true"></div>
+    <button id="learning-close"
+            class="learning-sidebar__close"
+            aria-label="Close">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <div id="learning-content" class="learning-sidebar__content"></div>
+</div>
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'learning_sidebar.js' %}"></script>
+{% endblock extra_js %}
