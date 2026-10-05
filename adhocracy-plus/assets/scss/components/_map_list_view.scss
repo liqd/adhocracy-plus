@@ -36,12 +36,16 @@
     }
     
     .list-view {
-        .list-item {
+        .list-item:not(.list-item--card) {
             border-top: 1px solid #D8D8D8;
         }
-        
-        .list-item:last-child {
+
+        .list-item:not(.list-item--card):last-child {
             border-bottom: 1px solid #D8D8D8;
-          }
+        }
+
+        .list-item__divider + .list-item__footer {
+            margin-top: 0;
+        }
     }
 }

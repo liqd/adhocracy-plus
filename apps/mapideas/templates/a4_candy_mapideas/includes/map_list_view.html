@@ -14,12 +14,19 @@
 {% endblock map_content %}
 
 {% block list_content %}
-<ul class="u-list-reset">
+<ul class="u-list-reset" id="mapidea-list-accordion">
     {% for object in paginated_list %}
         {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
     {% empty %}
         {% translate "Nothing to show" %}
     {% endfor %}
 </ul>
+<script type="application/json" data-mapidea-categories>
+[
+{% for object in object_list %}
+    {"url": "{{ object.get_absolute_url|escapejs }}", "category": {% if object.category %}"{{ object.category|escapejs }}"{% else %}null{% endif %}}{% if not forloop.last %},{% endif %}
+{% endfor %}
+]
+</script>
 {% endblock list_content %}
 
