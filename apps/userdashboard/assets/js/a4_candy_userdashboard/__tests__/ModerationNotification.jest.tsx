@@ -6,8 +6,14 @@ import { ModerationNotification } from '../ModerationNotification'
 /** MOCK DEFINITIONS START **/
 
 const mockedNotification = {
-  comment: 'example comment text',
-  comment_url: '/liqd-orga/ideas/2022-00001/?comment=2',
+  pk: 2,
+  item_type: 'comment' as const,
+  label: 'Comment',
+  text: 'example comment text',
+  title: null,
+  url: '/liqd-orga/ideas/2022-00001/?comment=2',
+  moderate_url: '',
+  api_url: '/api/userdashboard/moderation/1/comments/2/',
   feedback_api_url: '/api/comments/2/moderatorfeedback/',
   is_blocked: false,
   is_moderator_marked: false,
@@ -16,13 +22,52 @@ const mockedNotification = {
   last_edit: '5. Dezember 2022, 15:38',
   moderator_feedback: null,
   num_reports: 1,
-  pk: 2,
   user_image: '/static/images/avatar-02.svg',
   user_name: 'user',
   user_profile_url: '/profile/user/'
 }
 
+const mockedIdea = {
+  pk: 5,
+  item_type: 'idea' as const,
+  label: 'Idea',
+  text: 'example idea description',
+  title: 'My idea title',
+  url: '/liqd-orga/ideas/2022-00005/',
+  moderate_url: '/liqd-orga/ideas/2022-00005/moderate/',
+  api_url: '',
+  feedback_api_url: '',
+  is_blocked: false,
+  is_moderator_marked: false,
+  is_modified: false,
+  is_unread: false,
+  last_edit: '5. Dezember 2022, 15:38',
+  moderator_feedback: null,
+  num_reports: 0,
+  user_name: 'user',
+  user_profile_url: '/profile/user/'
+}
+
 /** MOCK DEFINITIONS END **/
+
+test('renders an idea with label and moderation feedback link', () => {
+  const tree = render(
+    <ModerationNotification
+      notification={mockedIdea}
+      getUrlParams={() => ''}
+    />
+  )
+  expect(screen.getByText(/example idea description/)).toBeTruthy()
+  expect(screen.getByText('Idea')).toBeTruthy()
+  const link = tree.container.querySelector(
+    "a[href='/liqd-orga/ideas/2022-00005/moderate/']"
+  )!
+  expect(link).toBeTruthy()
+  expect(link.textContent).toMatch(/Add feedback/i)
+  expect(
+    tree.container.querySelector('#moderation-notification-actions-bar-button-block-5')
+  ).toBeNull()
+})
 
 test('Render <ModerationNotification>', () => {
   render(
