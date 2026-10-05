@@ -232,15 +232,19 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
 
   // **** End notification methods ****
 
-  function translatedReportText (reportsFound: number) {
-    const tmp = django.ngettext(
-      'This {}comment{} has been reported 1 time since it\'s creation',
-      'This {}comment{} has been reported %s times since it\'s creation',
-      reportsFound
-    )
-    return (
-      django.interpolate(tmp, [reportsFound])
-    )
+  function translatedReportText (reportsFound: number, isIdeaItem: boolean) {
+    const tmp = isIdeaItem
+      ? django.ngettext(
+        'This {}idea{} has been reported 1 time since it\'s creation',
+        'This {}idea{} has been reported %s times since it\'s creation',
+        reportsFound
+      )
+      : django.ngettext(
+        'This {}comment{} has been reported 1 time since it\'s creation',
+        'This {}comment{} has been reported %s times since it\'s creation',
+        reportsFound
+      )
+    return django.interpolate(tmp, [reportsFound])
   }
 
   const {
@@ -339,11 +343,11 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
 
         <span className={labelClass}>{notification.label}</span>
 
-        {!isIdea && numReports > 0 &&
+        {numReports > 0 &&
           <div>
             <p>
               <i className="fas fa-exclamation-circle me-1" aria-hidden="true" />
-              {getLink(translatedReportText(numReports), itemUrl)}
+              {getLink(translatedReportText(numReports, isIdea), itemUrl)}
             </p>
           </div>}
 
@@ -355,7 +359,9 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
               <a
                 id={'moderation-notification-actions-bar-button-reply-idea-' + notification.pk}
                 className="btn px-0 userdashboard-mod-notification__btn"
-                href={notification.moderate_url}
+                href={notification.moderate_url
+                  ? notification.moderate_url + '?next=' + encodeURIComponent(window.location.pathname + window.location.search)
+                  : notification.moderate_url}
               >
                 <i className="fas fa-reply" aria-hidden="true" />
                 <span className="ms-2">{translated.addFeedback}</span>

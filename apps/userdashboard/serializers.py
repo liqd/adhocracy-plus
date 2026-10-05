@@ -272,7 +272,7 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
         return False
 
     def get_num_reports(self, idea):
-        return 0
+        return getattr(idea, "num_reports", 0)
 
     def get_moderator_feedback(self, idea):
         return None

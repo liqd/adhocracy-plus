@@ -1,7 +1,6 @@
 from django.db.models import CharField
 from django.db.models import Count
 from django.db.models import ExpressionWrapper
-from django.db.models import IntegerField
 from django.db.models import Q
 from django.db.models import Value
 from django.db.models.fields import BooleanField
@@ -179,7 +178,7 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         return (
             ideas.annotate(
                 item_type=Value(item_type, output_field=CharField()),
-                num_reports=Value(0, output_field=IntegerField()),
+                num_reports=Count("reports", distinct=True),
             )
             .values("pk", "created", "num_reports", "item_type")
             .order_by()
@@ -204,40 +203,31 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
     def _resolve_items(self, rows):
         rows = list(rows)
-        comment_ids = [row["pk"] for row in rows if row["item_type"] == "comment"]
-        idea_ids = [row["pk"] for row in rows if row["item_type"] == "idea"]
-        map_idea_ids = [row["pk"] for row in rows if row["item_type"] == "mapidea"]
+        item_types = ("comment", "idea", "mapidea")
+        pks_by_type = {
+            item_type: [row["pk"] for row in rows if row["item_type"] == item_type]
+            for item_type in item_types
+        }
         related = ("creator", "module__project__organisation")
 
-        comments = {
-            comment.pk: comment
-            for comment in Comment.objects.filter(pk__in=comment_ids)
-            .annotate(num_reports=Count("reports", distinct=True))
-            .select_related("creator")
-        }
-        ideas = {
-            idea.pk: idea
-            for idea in Idea.objects.filter(pk__in=idea_ids).select_related(*related)
-        }
-        map_ideas = {
-            map_idea.pk: map_idea
-            for map_idea in MapIdea.objects.filter(pk__in=map_idea_ids).select_related(
-                *related
-            )
-        }
+        def by_pk(model, item_type, related_fields):
+            return {
+                obj.pk: obj
+                for obj in model.objects.filter(pk__in=pks_by_type[item_type])
+                .annotate(num_reports=Count("reports", distinct=True))
+                .select_related(*related_fields)
+            }
 
-        resolved = []
-        for row in rows:
-            item_type = row["item_type"]
-            if item_type == "comment":
-                item = comments.get(row["pk"])
-            elif item_type == "idea":
-                item = ideas.get(row["pk"])
-            else:
-                item = map_ideas.get(row["pk"])
-            if item is not None:
-                resolved.append(item)
-        return resolved
+        items = {
+            "comment": by_pk(Comment, "comment", ("creator",)),
+            "idea": by_pk(Idea, "idea", related),
+            "mapidea": by_pk(MapIdea, "mapidea", related),
+        }
+        return [
+            items[row["item_type"]][row["pk"]]
+            for row in rows
+            if row["pk"] in items[row["item_type"]]
+        ]
 
     @property
     def rules_method_map(self):

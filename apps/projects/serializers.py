@@ -225,6 +225,7 @@ class ModerationProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = [
+            "id",
             "title",
             "created",
             "organisation",

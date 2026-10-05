@@ -100,6 +100,14 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - tests/organisations: fix ``test_initiator_can_update`` assertion to use
   ``switch_language`` context manager (django-parler behaviour change caused
   the default-language description to return the primary language value)
+- Moderation dashboard: "Add feedback" on an idea now returns to the project's
+  moderation page after saving (via a validated ``next`` return URL) instead of
+  dropping the moderator into the public frontend
+- Moderation dashboard: reported ideas are now marked with the report count,
+  and reported ideas are included in the project list report counter
+- Moderation dashboard: project search and sorting on the overview page use a
+  stable project id as list key, fixing unreliable filtering/sorting when two
+  moderated projects share the same name
 
 
 ## v2607.4

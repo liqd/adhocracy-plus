@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import django from 'django'
 
 interface ModerationProjectItem {
+  id: number
   title: string
   moderation_detail_url: string
   num_unread_comments: number
@@ -228,7 +229,7 @@ export default class ModerationProjects extends Component<ModerationProjectsProp
               : (
                 <ul className="ps-0">
                   {items.map(item => (
-                    <li key={item.title} className="tile tile--horizontal">
+                    <li key={item.id} className="tile tile--horizontal">
                       <a
                         href={item.moderation_detail_url}
                         className="tile__link"
