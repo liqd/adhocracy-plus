@@ -11,7 +11,6 @@ import { QuestionEditor } from './QuestionEditor'
 import { QuestionListItem } from './QuestionListItem'
 import {
   buildQuestionsPayload,
-  cloneQuestion,
   createEmptyChoice,
   createEmptyQuestion,
   moveItem,
@@ -31,6 +30,7 @@ const TRANSLATED = {
   hideResultsUntilFinishedLabel: django.gettext('Hide results until participation is over'),
   hideResultsUntilFinishedSR: django.gettext('Enable this option to hide the poll results from participants until the participation phase has ended.'),
   questionsTitle: django.gettext('Questions'),
+  addQuestion: django.gettext('New question'),
   save: django.gettext('Save'),
   updated: django.gettext('The poll has been updated.'),
   updateFailed: django.gettext('The poll could not be updated. Please check the data you entered again.'),
@@ -50,7 +50,6 @@ export const PollManagement = (props: PollManagementProps) => {
   const [errors, setErrors] = useState<QuestionErrors[]>([])
   const [alert, setAlert] = useState<AlertValue | null>(null)
   const [expandedKey, setExpandedKey] = useState<string | null>(null)
-  const [snapshot, setSnapshot] = useState<ManagementQuestion | null>(null)
   const [dragIndex, setDragIndex] = useState<number | null>(null)
   const [overIndex, setOverIndex] = useState<number | null>(null)
 
@@ -96,50 +95,53 @@ export const PollManagement = (props: PollManagementProps) => {
     // clicking the row again collapses it, keeping the local edits
     if (key === expandedKey) {
       setExpandedKey(null)
-      setSnapshot(null)
       return
     }
-    const question = questions.find((item) => item.key === key)
-    if (question) {
+    if (questions.some((item) => item.key === key)) {
       setExpandedKey(key)
-      setSnapshot(cloneQuestion(question))
     }
   }
 
-  const handleItemSave = () => {
-    setExpandedKey(null)
-    setSnapshot(null)
-  }
-
-  const handleItemCancel = () => {
-    if (snapshot && expandedIndex >= 0) {
-      updateQuestion(expandedIndex, cloneQuestion(snapshot))
-    }
-    setExpandedKey(null)
-    setSnapshot(null)
-  }
-
-  const handleNavigate = (direction: -1 | 1) => {
+  // The up/down controls change the position of the current question within
+  // the survey instead of navigating to a different question.
+  const handleMove = (direction: -1 | 1) => {
     const newIndex = expandedIndex + direction
-    if (newIndex < 0 || newIndex >= questions.length) return
-    setExpandedKey(questions[newIndex].key)
-    setSnapshot(cloneQuestion(questions[newIndex]))
+    if (expandedIndex < 0 || newIndex < 0 || newIndex >= questions.length) return
+    setQuestions((prev) => moveItem(prev, expandedIndex, newIndex))
+    setErrors([])
   }
 
   const handleQuestionAppend = (isOpen: boolean) => {
     const question = createEmptyQuestion(isOpen)
     setQuestions((prev) => [...prev, question])
     setExpandedKey(question.key)
-    setSnapshot(cloneQuestion(question))
     setErrors([])
   }
 
   const handleQuestionDelete = (index: number) => {
     if (questions[index].key === expandedKey) {
       setExpandedKey(null)
-      setSnapshot(null)
     }
     setQuestions((prev) => prev.filter((_, i) => i !== index))
+    setErrors([])
+  }
+
+  // Switching a question to/from the open (free text) type also adjusts the
+  // choices: open questions have none, choice questions need at least two.
+  const handleOpenChange = (isOpen: boolean) => {
+    setQuestions((prev) => prev.map((question, i) => {
+      if (i !== expandedIndex || question.is_open === isOpen) return question
+      if (isOpen) {
+        return { ...question, is_open: true, choices: [] }
+      }
+      return {
+        ...question,
+        is_open: false,
+        choices: question.choices.length
+          ? question.choices
+          : [createEmptyChoice(), createEmptyChoice()]
+      }
+    }))
     setErrors([])
   }
 
@@ -232,7 +234,6 @@ export const PollManagement = (props: PollManagementProps) => {
         })))
         setErrors([])
         setExpandedKey(null)
-        setSnapshot(null)
         setAlert({ type: 'success', message: TRANSLATED.updated })
         if (props.reloadOnSuccess) updateDashboard()
       })
@@ -250,7 +251,6 @@ export const PollManagement = (props: PollManagementProps) => {
         const firstErrorIndex = questionErrors.findIndex(hasQuestionErrors)
         if (firstErrorIndex !== -1 && questions[firstErrorIndex]) {
           setExpandedKey(questions[firstErrorIndex].key)
-          setSnapshot(cloneQuestion(questions[firstErrorIndex]))
         }
         setAlert({ type: 'danger', message: TRANSLATED.updateFailed })
       })
@@ -258,44 +258,14 @@ export const PollManagement = (props: PollManagementProps) => {
 
   return (
     <form className="poll-management" onSubmit={handleSubmit} onChange={clearAlert}>
-      <section className="poll-management__options">
-        <h2 className="poll-management__section-title">{TRANSLATED.optionsTitle}</h2>
-        {props.enableUnregisteredUsers && (
-          <div className="poll-management__option form-check">
-            <input
-              type="checkbox"
-              id="allowUnregisteredUsersCheckbox"
-              onChange={() => setAllowUnregisteredUsers((value) => !value)}
-              checked={allowUnregisteredUsers}
-              aria-describedby="votingDescription"
-            />
-            <label htmlFor="allowUnregisteredUsersCheckbox">
-              {TRANSLATED.allowUnregisteredUsersLabel}
-            </label>
-            <p id="votingDescription" className="visually-hidden">
-              {TRANSLATED.allowUnregisteredUsersSR}
-            </p>
-          </div>
-        )}
-        <div className="poll-management__option form-check">
-          <input
-            type="checkbox"
-            id="hideResultsUntilFinishedCheckbox"
-            onChange={() => setHideResultsUntilFinished((value) => !value)}
-            checked={hideResultsUntilFinished}
-            aria-describedby="hideResultsDescription"
-          />
-          <label htmlFor="hideResultsUntilFinishedCheckbox">
-            {TRANSLATED.hideResultsUntilFinishedLabel}
-          </label>
-          <p id="hideResultsDescription" className="visually-hidden">
-            {TRANSLATED.hideResultsUntilFinishedSR}
-          </p>
-        </div>
-      </section>
-
       <section className="poll-management__questions">
-        <h2 className="poll-management__section-title">{TRANSLATED.questionsTitle}</h2>
+        <div className="poll-management__questions-header">
+          <h2 className="poll-management__section-title">{TRANSLATED.questionsTitle}</h2>
+          <AddQuestionDropdown
+            onAddMultipleChoice={() => handleQuestionAppend(false)}
+            onAddOpen={() => handleQuestionAppend(true)}
+          />
+        </div>
 
         <ul className="poll-management__list">
           {questions.map((question, index) => (
@@ -325,15 +295,14 @@ export const PollManagement = (props: PollManagementProps) => {
                   onHelpTextChange={(helpText) => updateQuestion(index, { help_text: helpText })}
                   onConfidentialChange={(value) => updateQuestion(index, { is_confidential: value })}
                   onMultipleChoiceChange={(value) => updateQuestion(index, { multiple_choice: value })}
+                  onOpenChange={handleOpenChange}
                   onImageChange={handleImageChange}
                   onAltTextChange={handleAltTextChange}
                   onChoiceLabelChange={handleChoiceLabelChange}
                   onChoiceDelete={handleChoiceDelete}
                   onChoiceAppend={handleChoiceAppend}
                   onOtherChoiceToggle={handleOtherChoiceToggle}
-                  onNavigate={handleNavigate}
-                  onSave={handleItemSave}
-                  onCancel={handleItemCancel}
+                  onMove={handleMove}
                 />
               )}
             </li>
@@ -351,6 +320,42 @@ export const PollManagement = (props: PollManagementProps) => {
             {TRANSLATED.save}
           </button>
         </div>
+
+        <section className="poll-management__options">
+          <h2 className="poll-management__section-title">{TRANSLATED.optionsTitle}</h2>
+          {props.enableUnregisteredUsers && (
+            <div className="poll-management__option form-check">
+              <input
+                type="checkbox"
+                id="allowUnregisteredUsersCheckbox"
+                onChange={() => setAllowUnregisteredUsers((value) => !value)}
+                checked={allowUnregisteredUsers}
+                aria-describedby="votingDescription"
+              />
+              <label htmlFor="allowUnregisteredUsersCheckbox">
+                {TRANSLATED.allowUnregisteredUsersLabel}
+              </label>
+              <p id="votingDescription" className="visually-hidden">
+                {TRANSLATED.allowUnregisteredUsersSR}
+              </p>
+            </div>
+          )}
+          <div className="poll-management__option form-check">
+            <input
+              type="checkbox"
+              id="hideResultsUntilFinishedCheckbox"
+              onChange={() => setHideResultsUntilFinished((value) => !value)}
+              checked={hideResultsUntilFinished}
+              aria-describedby="hideResultsDescription"
+            />
+            <label htmlFor="hideResultsUntilFinishedCheckbox">
+              {TRANSLATED.hideResultsUntilFinishedLabel}
+            </label>
+            <p id="hideResultsDescription" className="visually-hidden">
+              {TRANSLATED.hideResultsUntilFinishedSR}
+            </p>
+          </div>
+        </section>
       </section>
     </form>
   )

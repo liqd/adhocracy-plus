@@ -8,6 +8,18 @@
         margin-bottom: $spacer;
     }
 
+    &__questions-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $spacer;
+        flex-wrap: wrap;
+    }
+
+    &__questions-header &__section-title {
+        margin-bottom: $spacer;
+    }
+
     &__option {
         display: flex;
         align-items: center;
@@ -40,6 +52,10 @@
         background-color: $white;
         cursor: pointer;
         user-select: none;
+
+        @media (max-width: $breakpoint-xs) {
+            padding: 0.75 * $spacer;
+        }
     }
 
     &__item--dragging {
@@ -151,6 +167,44 @@
         border: none;
         padding-left: 0;
         margin-bottom: $spacer;
+
+        legend {
+            display: block;
+            float: none;
+            width: auto;
+            margin: 0 0 0.5 * $spacer;
+            padding: 0;
+        }
+    }
+
+    &__answer-type-group {
+        display: inline-flex;
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+
+    &__answer-type-btn {
+        &.btn {
+            border: 1px solid $border-color;
+            background-color: $white;
+            color: $text-color;
+            border-radius: 0;
+            margin-left: -1px;
+        }
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &--active,
+        &--active:hover,
+        &--active:focus {
+            &.btn {
+                background-color: $black;
+                border-color: $black;
+                color: $white;
+            }
+        }
     }
 
     &__answers-title {
@@ -183,5 +237,30 @@
         justify-content: space-between;
         gap: $spacer;
         margin-top: 1.5 * $spacer;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: $breakpoint-xs) {
+        &__editor {
+            padding: $spacer;
+        }
+
+        &__editor-header {
+            flex-wrap: wrap;
+            gap: 0.5 * $spacer;
+        }
+
+        &__answer-type-group {
+            display: flex;
+
+            .poll-management__answer-type-btn {
+                flex: 1 1 0;
+            }
+        }
+
+        &__footer .dropdown,
+        &__footer .btn {
+            flex: 1 1 auto;
+        }
     }
 }

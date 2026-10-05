@@ -5,7 +5,6 @@ import django from 'django'
 import type { ManagementQuestion } from '../types'
 
 const TRANSLATED = {
-  question: django.gettext('Question'),
   untitled: django.gettext('Untitled question'),
   multipleChoice: django.gettext('Multiple choice'),
   singleChoice: django.gettext('Single choice'),
@@ -86,7 +85,7 @@ export const QuestionListItem = ({
       onDragEnd={onDragEnd}
     >
       <span className="poll-management__drag-handle" aria-hidden="true">
-        <i className="fa fa-grip-lines" />
+        <i className="fa fa-grip-vertical" />
       </span>
 
       {/* not a native button: Firefox does not start the parent drag from
@@ -105,7 +104,7 @@ export const QuestionListItem = ({
         }}
       >
         <span className="poll-management__number">
-          {`${TRANSLATED.question} ${index + 1}`}
+          {index + 1}
         </span>
         <span className={`poll-management__label ${question.label ? '' : 'poll-management__label--empty'}`}>
           {question.label || TRANSLATED.untitled}

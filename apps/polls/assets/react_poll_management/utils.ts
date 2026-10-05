@@ -43,9 +43,6 @@ export const normalizeQuestion = (question: any): ManagementQuestion => ({
   }))
 })
 
-export const cloneQuestion = (question: ManagementQuestion): ManagementQuestion =>
-  JSON.parse(JSON.stringify(question)) as ManagementQuestion
-
 const READ_ONLY_QUESTION_FIELDS = [
   'key',
   'answers',

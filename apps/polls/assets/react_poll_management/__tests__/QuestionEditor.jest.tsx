@@ -36,61 +36,68 @@ const defaults = {
   onHelpTextChange: jest.fn(),
   onConfidentialChange: jest.fn(),
   onMultipleChoiceChange: jest.fn(),
+  onOpenChange: jest.fn(),
   onImageChange: jest.fn(),
   onAltTextChange: jest.fn(),
   onChoiceLabelChange: jest.fn(),
   onChoiceDelete: jest.fn(),
   onChoiceAppend: jest.fn(),
   onOtherChoiceToggle: jest.fn(),
-  onNavigate: jest.fn(),
-  onSave: jest.fn(),
-  onCancel: jest.fn()
+  onMove: jest.fn()
 }
 
 describe('QuestionEditor', () => {
-  it('shows the question position within the poll', () => {
+  it('shows the position within the poll without the word "Question"', () => {
     render(<QuestionEditor question={question} {...defaults} index={1} />)
-    expect(screen.getByText('Question 2 of 3')).toBeInTheDocument()
+    expect(screen.getByText('2 of 3')).toBeInTheDocument()
+    expect(screen.queryByText('Question 2 of 3')).not.toBeInTheDocument()
   })
 
-  it('disables previous on first and next on last question', () => {
+  it('does not render save and cancel buttons', () => {
+    render(<QuestionEditor question={question} {...defaults} />)
+    expect(screen.queryByText('Save')).not.toBeInTheDocument()
+    expect(screen.queryByText('Cancel')).not.toBeInTheDocument()
+  })
+
+  it('disables move up on first and move down on last question', () => {
     const { rerender } = render(<QuestionEditor question={question} {...defaults} index={0} total={2} />)
-    expect(screen.getByLabelText('Previous question')).toBeDisabled()
-    expect(screen.getByLabelText('Next question')).not.toBeDisabled()
+    expect(screen.getByLabelText('Move question up')).toBeDisabled()
+    expect(screen.getByLabelText('Move question down')).not.toBeDisabled()
 
     rerender(<QuestionEditor question={question} {...defaults} index={1} total={2} />)
-    expect(screen.getByLabelText('Previous question')).not.toBeDisabled()
-    expect(screen.getByLabelText('Next question')).toBeDisabled()
+    expect(screen.getByLabelText('Move question up')).not.toBeDisabled()
+    expect(screen.getByLabelText('Move question down')).toBeDisabled()
   })
 
-  it('navigates to the previous and next question', () => {
-    const onNavigate = jest.fn()
-    render(<QuestionEditor question={question} {...defaults} index={1} total={3} onNavigate={onNavigate} />)
-    fireEvent.click(screen.getByLabelText('Previous question'))
-    expect(onNavigate).toHaveBeenLastCalledWith(-1)
-    fireEvent.click(screen.getByLabelText('Next question'))
-    expect(onNavigate).toHaveBeenLastCalledWith(1)
+  it('moves the question up and down', () => {
+    const onMove = jest.fn()
+    render(<QuestionEditor question={question} {...defaults} index={1} total={3} onMove={onMove} />)
+    fireEvent.click(screen.getByLabelText('Move question up'))
+    expect(onMove).toHaveBeenLastCalledWith(-1)
+    fireEvent.click(screen.getByLabelText('Move question down'))
+    expect(onMove).toHaveBeenLastCalledWith(1)
   })
 
-  it('collapses on save and reverts on cancel', () => {
-    const onSave = jest.fn()
-    const onCancel = jest.fn()
-    render(<QuestionEditor question={question} {...defaults} onSave={onSave} onCancel={onCancel} />)
-    fireEvent.click(screen.getByText('Save'))
-    expect(onSave).toHaveBeenCalledTimes(1)
-    fireEvent.click(screen.getByText('Cancel'))
-    expect(onCancel).toHaveBeenCalledTimes(1)
-  })
-
-  it('changes the answer type between single and multiple choice', () => {
+  it('changes the answer type via the segmented control', () => {
     const onMultipleChoiceChange = jest.fn()
-    const { rerender } = render(<QuestionEditor question={question} {...defaults} onMultipleChoiceChange={onMultipleChoiceChange} />)
-    fireEvent.click(screen.getByLabelText('Multiple choice'))
+    const onOpenChange = jest.fn()
+    render(
+      <QuestionEditor
+        question={question}
+        {...defaults}
+        onMultipleChoiceChange={onMultipleChoiceChange}
+        onOpenChange={onOpenChange}
+      />
+    )
+    fireEvent.click(screen.getByRole('button', { name: 'Multiple choice' }))
+    expect(onOpenChange).toHaveBeenCalledWith(false)
     expect(onMultipleChoiceChange).toHaveBeenCalledWith(true)
 
-    rerender(<QuestionEditor question={{ ...question, multiple_choice: true }} {...defaults} onMultipleChoiceChange={onMultipleChoiceChange} />)
-    fireEvent.click(screen.getByLabelText('Single choice'))
+    fireEvent.click(screen.getByRole('button', { name: 'Single choice' }))
     expect(onMultipleChoiceChange).toHaveBeenCalledWith(false)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Open Text' }))
+    expect(onOpenChange).toHaveBeenCalledWith(true)
   })
 
   it('adds and toggles answer options', () => {
@@ -138,12 +145,13 @@ describe('QuestionEditor', () => {
     expect(screen.getByRole('textbox', { name: 'Explanation' })).toHaveValue('because')
   })
 
-  it('hides answer options and answer type for open questions', () => {
+  it('hides answer options but keeps the answer type for open questions', () => {
     render(
       <QuestionEditor question={{ ...question, is_open: true, choices: [] }} {...defaults} />
     )
     expect(screen.queryByText('Answer option')).not.toBeInTheDocument()
-    expect(screen.queryByLabelText('Multiple choice')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Open Text' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByRole('button', { name: 'Multiple choice' })).toHaveAttribute('aria-pressed', 'false')
     expect(screen.getByText('Explanation')).toBeInTheDocument()
   })
 })

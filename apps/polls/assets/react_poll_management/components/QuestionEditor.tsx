@@ -9,13 +9,12 @@ import type { ChoiceErrors, ManagementQuestion, QuestionErrors } from '../types'
 
 const TRANSLATED = {
   question: django.gettext('Question'),
-  questionOfTotal: django.gettext('Question %(number)s of %(total)s'),
-  previous: django.gettext('Previous question'),
-  next: django.gettext('Next question'),
-  save: django.gettext('Save'),
-  cancel: django.gettext('Cancel'),
+  questionOfTotal: django.gettext('%(number)s of %(total)s'),
+  moveUp: django.gettext('Move question up'),
+  moveDown: django.gettext('Move question down'),
   questionLabel: django.gettext('Question'),
   answerType: django.gettext('Answer type'),
+  openText: django.gettext('Open Text'),
   singleChoice: django.gettext('Single choice'),
   multipleChoice: django.gettext('Multiple choice'),
   confidential: django.gettext('Do not display answers publicly'),
@@ -38,15 +37,14 @@ interface QuestionEditorProps {
   onHelpTextChange: (helpText: string) => void
   onConfidentialChange: (value: boolean) => void
   onMultipleChoiceChange: (value: boolean) => void
+  onOpenChange: (value: boolean) => void
   onImageChange: (base64: string) => void
   onAltTextChange: (altText: string) => void
   onChoiceLabelChange: (choiceIndex: number, label: string) => void
   onChoiceDelete: (choiceIndex: number) => void
   onChoiceAppend: () => void
   onOtherChoiceToggle: () => void
-  onNavigate: (direction: -1 | 1) => void
-  onSave: () => void
-  onCancel: () => void
+  onMove: (direction: -1 | 1) => void
 }
 
 export const QuestionEditor = (props: QuestionEditorProps) => {
@@ -56,9 +54,7 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
     total,
     errors,
     questionImagesEnabled,
-    onNavigate,
-    onSave,
-    onCancel
+    onMove
   } = props
 
   const [hasHelptext, setHasHelptext] = useState(Boolean(question.help_text))
@@ -75,30 +71,22 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
           <button
             type="button"
             className="btn poll-management__nav-button"
-            onClick={() => onNavigate(-1)}
+            onClick={() => onMove(-1)}
             disabled={index === 0}
-            title={TRANSLATED.previous}
-            aria-label={TRANSLATED.previous}
+            title={TRANSLATED.moveUp}
+            aria-label={TRANSLATED.moveUp}
           >
-            <i className="fa fa-chevron-left" aria-hidden="true" />
+            <i className="fa fa-chevron-up" aria-hidden="true" />
           </button>
           <button
             type="button"
             className="btn poll-management__nav-button"
-            onClick={() => onNavigate(1)}
+            onClick={() => onMove(1)}
             disabled={index === total - 1}
-            title={TRANSLATED.next}
-            aria-label={TRANSLATED.next}
+            title={TRANSLATED.moveDown}
+            aria-label={TRANSLATED.moveDown}
           >
-            <i className="fa fa-chevron-right" aria-hidden="true" />
-          </button>
-        </div>
-        <div className="poll-management__editor-actions">
-          <button type="button" className="btn btn--primary" onClick={onSave}>
-            {TRANSLATED.save}
-          </button>
-          <button type="button" className="btn btn--light" onClick={onCancel}>
-            {TRANSLATED.cancel}
+            <i className="fa fa-chevron-down" aria-hidden="true" />
           </button>
         </div>
       </header>
@@ -150,43 +138,41 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
         </label>
       </div>
 
-      {!question.is_open && (
-        <fieldset className="poll-management__answer-type">
-          <legend>{TRANSLATED.answerType}</legend>
-          <div className="form-check">
-            <label
-              className="form-check__label"
-              htmlFor={`id_questions-${question.key}-single_choice`}
-            >
-              <input
-                type="radio"
-                id={`id_questions-${question.key}-single_choice`}
-                name={`answer-type-${question.key}`}
-                checked={!question.multiple_choice}
-                onChange={() => props.onMultipleChoiceChange(false)}
-              />
-              &nbsp;
-              {TRANSLATED.singleChoice}
-            </label>
-          </div>
-          <div className="form-check">
-            <label
-              className="form-check__label"
-              htmlFor={`id_questions-${question.key}-multiple_choice`}
-            >
-              <input
-                type="radio"
-                id={`id_questions-${question.key}-multiple_choice`}
-                name={`answer-type-${question.key}`}
-                checked={question.multiple_choice}
-                onChange={() => props.onMultipleChoiceChange(true)}
-              />
-              &nbsp;
-              {TRANSLATED.multipleChoice}
-            </label>
-          </div>
-        </fieldset>
-      )}
+      <fieldset className="poll-management__answer-type form-fieldset">
+        <legend>{TRANSLATED.answerType}</legend>
+        <div className="poll-management__answer-type-group" role="group">
+          <button
+            type="button"
+            className={`btn poll-management__answer-type-btn ${question.is_open ? 'poll-management__answer-type-btn--active' : ''}`}
+            onClick={() => props.onOpenChange(true)}
+            aria-pressed={question.is_open}
+          >
+            {TRANSLATED.openText}
+          </button>
+          <button
+            type="button"
+            className={`btn poll-management__answer-type-btn ${!question.is_open && question.multiple_choice ? 'poll-management__answer-type-btn--active' : ''}`}
+            onClick={() => {
+              props.onOpenChange(false)
+              props.onMultipleChoiceChange(true)
+            }}
+            aria-pressed={!question.is_open && question.multiple_choice}
+          >
+            {TRANSLATED.multipleChoice}
+          </button>
+          <button
+            type="button"
+            className={`btn poll-management__answer-type-btn ${!question.is_open && !question.multiple_choice ? 'poll-management__answer-type-btn--active' : ''}`}
+            onClick={() => {
+              props.onOpenChange(false)
+              props.onMultipleChoiceChange(false)
+            }}
+            aria-pressed={!question.is_open && !question.multiple_choice}
+          >
+            {TRANSLATED.singleChoice}
+          </button>
+        </div>
+      </fieldset>
 
       {!question.is_open && (
         <div className="poll-management__answers">
@@ -283,22 +269,34 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
               {' '}
               {TRANSLATED.addOpenAnswer}
             </button>
+            <button
+              type="button"
+              className={`btn poll-management__btn ${hasHelptext ? 'poll-management__btn--active' : ''}`}
+              onClick={() => setHasHelptext(!hasHelptext)}
+              aria-pressed={hasHelptext}
+            >
+              <i className={`fa ${hasHelptext ? 'fa-check' : 'fa-plus'}`} aria-hidden="true" />
+              {' '}
+              {TRANSLATED.addExplanation}
+            </button>
           </div>
         </div>
       )}
 
-      <div className="poll-management__buttons">
-        <button
-          type="button"
-          className={`btn poll-management__btn ${hasHelptext ? 'poll-management__btn--active' : ''}`}
-          onClick={() => setHasHelptext(!hasHelptext)}
-          aria-pressed={hasHelptext}
-        >
-          <i className={`fa ${hasHelptext ? 'fa-check' : 'fa-plus'}`} aria-hidden="true" />
-          {' '}
-          {TRANSLATED.addExplanation}
-        </button>
-      </div>
+      {question.is_open && (
+        <div className="poll-management__buttons">
+          <button
+            type="button"
+            className={`btn poll-management__btn ${hasHelptext ? 'poll-management__btn--active' : ''}`}
+            onClick={() => setHasHelptext(!hasHelptext)}
+            aria-pressed={hasHelptext}
+          >
+            <i className={`fa ${hasHelptext ? 'fa-check' : 'fa-plus'}`} aria-hidden="true" />
+            {' '}
+            {TRANSLATED.addExplanation}
+          </button>
+        </div>
+      )}
 
       {hasHelptext && (
         <div className="form-group poll-management__explanation">
