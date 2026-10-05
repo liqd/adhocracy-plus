@@ -1,0 +1,56 @@
+#!/usr/bin/env sh
+# Populate a freshly created worktree with local, gitignored artifacts.
+# Runs via Husky (core.hooksPath=.husky/_); args: <old> <new> <flag>.
+if [ "$3" != "1" ]; then exit 0; fi
+
+common_dir="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)" || exit 0
+src="$(dirname "$common_dir")"
+top="$(git rev-parse --show-toplevel 2>/dev/null)"
+# Only act inside a linked worktree, never in the main checkout.
+if [ ! -d "$src" ] || [ "$src" = "$top" ]; then exit 0; fi
+
+copy_if_missing() {
+  rel="$1"
+  if [ ! -e "$rel" ] && [ -e "$src/$rel" ]; then
+    mkdir -p "$(dirname "$rel")"
+    cp -R "$src/$rel" "$rel"
+  fi
+}
+
+# Symlink the entries of a directory without replacing tracked files
+# (e.g. media/.gitignore) that the worktree already contains.
+link_dir_contents() {
+  dir="$1"
+  if [ -d "$src/$dir" ]; then
+    mkdir -p "$dir"
+    for entry in "$src/$dir"/* "$src/$dir"/.[!.]*; do
+      if [ -e "$entry" ]; then
+        name="$(basename "$entry")"
+        if [ ! -e "$dir/$name" ]; then
+          ln -s "$entry" "$dir/$name"
+        fi
+      fi
+    done
+  fi
+}
+
+# Small, important local files: copy them.
+for rel in opencode.json db.sqlite3 .env .env.local \
+  adhocracy-plus/config/settings/local.py; do
+  copy_if_missing "$rel"
+done
+
+# Build an isolated Python environment inside the worktree. The venv is never
+# symlinked or copied: local updates must not leak into the main checkout.
+if [ "${WORKTREE_SETUP:-1}" != "0" ] && [ ! -d venv ] && [ -f Makefile ]; then
+  log="$(git rev-parse --git-dir)/worktree-install.log"
+  echo "worktree: running 'make install' (setup may take a while)..." >&2
+  if ! make install >"$log" 2>&1; then
+    echo "worktree: 'make install' failed; see $log" >&2
+  fi
+fi
+
+# Share media contents with the main checkout.
+link_dir_contents media
+
+exit 0
