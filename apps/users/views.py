@@ -5,6 +5,7 @@ from datetime import datetime
 from allauth.account import views as allauth_account_views
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils.translation import check_for_language
@@ -52,7 +53,55 @@ class LogoutView(allauth_account_views.LogoutView):
         return context
 
 
-class SignupWizardView(allauth_account_views.SignupView):
+# Bare project-wide layout used when an account view is requested via htmx
+# (button click) instead of a regular navigation. The full page keeps using
+# account/base.html. Both modes render the very same content template, they
+# only switch layout.
+AUTH_MODAL_LAYOUT = "partial.html"
+# Id of the element inside the global auth modal that htmx swaps into. It is
+# used to tell a modal open apart from the wizard's own step navigation (which
+# targets ``#signup-wizard``).
+AUTH_MODAL_TARGET = "auth-modal-body"
+
+
+class AuthModalMixin:
+    """Serve an account view either as a full page or as a modal fragment.
+
+    A regular request (opening the URL directly) renders the complete page. An
+    htmx request (clicking a login/registration button anywhere) renders the
+    same content through the bare ``partial.html`` layout so it can be swapped
+    into the global ``#auth-modal``.
+    """
+
+    def is_modal_request(self):
+        return bool(self.request.headers.get("HX-Request"))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.is_modal_request():
+            context["layout"] = AUTH_MODAL_LAYOUT
+            context["is_modal"] = True
+        return context
+
+
+class LoginView(AuthModalMixin, allauth_account_views.LoginView):
+    template_name = "account/login.html"
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        # A successful login redirects. Inside the modal htmx would swap that
+        # redirect target into the modal, so tell the client to navigate
+        # instead and reload the full page.
+        if self.is_modal_request() and response.status_code in (301, 302):
+            location = response.headers.get("Location")
+            if location:
+                hx_response = HttpResponse(status=200)
+                hx_response["HX-Redirect"] = location
+                return hx_response
+        return response
+
+
+class SignupWizardView(AuthModalMixin, allauth_account_views.SignupView):
     """Multi step registration on top of django-allauth.
 
     Steps 1 (email/username) and 2 (password) are validated on their own and
@@ -63,7 +112,6 @@ class SignupWizardView(allauth_account_views.SignupView):
     """
 
     template_name = "account/signup.html"
-    template_name_partial = "account/signup/_wizard.html"
 
     def get(self, request, *args, **kwargs):
         requested_step = request.GET.get("step")
@@ -211,15 +259,23 @@ class SignupWizardView(allauth_account_views.SignupView):
         context["signup_media"] = self.get_form_class()().media
         context["redirect_field_name"] = SIGNUP_WIZARD_NEXT_KEY
         context["redirect_field_value"] = self._next_url(request)
-        template = (
-            self.template_name_partial
-            if request.headers.get("HX-Request")
-            else self.template_name
-        )
-        return render(request, template, context)
+        # When the wizard is opened inside the auth modal (the button targets
+        # ``#auth-modal-body``) the whole content template is needed so the
+        # ``#signup-wizard`` wrapper and the captcha media are present. The
+        # wizard's own step navigation targets ``#signup-wizard`` and only
+        # swaps the bare fragment, so the media is not reloaded on every step.
+        if self.is_modal_request() and self._is_modal_target(request):
+            return render(request, self.template_name, context)
+        if request.headers.get("HX-Request"):
+            return render(request, "account/signup/_wizard.html", context)
+        return render(request, self.template_name, context)
+
+    @staticmethod
+    def _is_modal_target(request):
+        return request.headers.get("HX-Target") == AUTH_MODAL_TARGET
 
 
-class GuestCreateView(FormView):
+class GuestCreateView(AuthModalMixin, FormView):
     form_class = GuestCreateForm
     template_name = "a4_candy_users/guest_create.html"
 
@@ -251,7 +307,16 @@ class GuestCreateView(FormView):
     def form_valid(self, form):
         if self.request.user.is_anonymous:
             maybe_create_guest_user(self.request)
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        # Inside the modal htmx would swap the redirect target into the modal,
+        # so trigger a full page navigation instead.
+        if self.is_modal_request() and response.status_code in (301, 302):
+            location = response.headers.get("Location")
+            if location:
+                hx_response = HttpResponse(status=200)
+                hx_response["HX-Redirect"] = location
+                return hx_response
+        return response
 
 
 class ProfileView(DetailView):

@@ -1,0 +1,31 @@
+// Global modal that hosts the login and registration views loaded via htmx.
+// Visual reference: Figma "Login/sign up-modal" (wide, square white card with
+// a centered, narrow content column and a floating close button).
+.auth-modal__dialog {
+    // 1077px in the design.
+    max-width: 67.3125rem;
+
+    .modal-content {
+        border: 0;
+        border-radius: 0;
+    }
+}
+
+.auth-modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+}
+
+.auth-modal__dialog .modal-body {
+    // 415px content column in the design, centered in the wide card.
+    max-width: 25.9375rem;
+    margin-inline: auto;
+    padding: 2.5rem 1rem;
+}
+
+// The design dims the page behind the modal less than Bootstrap's default.
+body.auth-modal-open .modal-backdrop {
+    --bs-backdrop-opacity: 0.25;
+}
