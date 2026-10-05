@@ -1,24 +1,46 @@
 import { Dropdown, Modal } from 'bootstrap'
 
-// Account views that should open inside the global auth modal.
-const AUTH_VIEW_PATHS = new Set([
+// Fallback list; the canonical one is rendered into #auth-modal as
+// data-auth-views so it stays in sync with the Django URL configuration.
+const DEFAULT_AUTH_VIEW_PATHS = [
   '/accounts/login/',
   '/accounts/signup/',
   '/accounts/guests/login/'
-])
+]
 
 const MODAL_ID = 'auth-modal'
 const MODAL_BODY_ID = 'auth-modal-body'
 
+let authViewPaths = null
+
+function getAuthViewPaths () {
+  const modalElement = document.getElementById(MODAL_ID)
+  const raw = modalElement && modalElement.dataset.authViews
+  if (raw) {
+    try {
+      const paths = JSON.parse(raw)
+      if (Array.isArray(paths) && paths.length > 0) {
+        return new Set(
+          paths.map((path) => new URL(path, window.location.origin).pathname)
+        )
+      }
+    } catch {
+      // Fall back to the defaults below.
+    }
+  }
+  return new Set(DEFAULT_AUTH_VIEW_PATHS)
+}
+
 function getAuthPath (anchor) {
   if (!anchor || !anchor.href) return null
+  if (!authViewPaths) authViewPaths = getAuthViewPaths()
   let path
   try {
     path = new URL(anchor.href, window.location.origin).pathname
   } catch {
     return null
   }
-  return AUTH_VIEW_PATHS.has(path) ? path : null
+  return authViewPaths.has(path) ? path : null
 }
 
 function shouldIgnore (anchor) {

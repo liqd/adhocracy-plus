@@ -89,6 +89,32 @@ def test_login_htmx_invalid_shows_modal_partial(client, user, login_url):
     assert f'hx-post="{login_url}"' in content
 
 
+@pytest.mark.django_db
+def test_login_htmx_authenticated_uses_redirect_header(client, user, login_url):
+    client.force_login(user)
+    response = client.get(login_url, HTTP_HX_REQUEST="true")
+    assert response.status_code == 200
+    assert response.headers["HX-Redirect"]
+    assert "<!DOCTYPE html>" not in response.content.decode()
+
+
+@pytest.mark.django_db
+def test_signup_htmx_authenticated_uses_redirect_header(client, user, signup_url):
+    client.force_login(user)
+    response = client.get(signup_url, HTTP_HX_REQUEST="true")
+    assert response.status_code == 200
+    assert response.headers["HX-Redirect"]
+    assert "<!DOCTYPE html>" not in response.content.decode()
+
+
+@pytest.mark.django_db
+def test_guest_create_htmx_authenticated_uses_redirect_header(client, user):
+    client.force_login(user)
+    response = client.get(reverse("guest_create"), HTTP_HX_REQUEST="true")
+    assert response.status_code == 200
+    assert response.headers["HX-Redirect"] == "/"
+
+
 @override_settings(CAPTCHA=False)
 @pytest.mark.django_db
 def test_guest_create_full_page_renders_document(client):
