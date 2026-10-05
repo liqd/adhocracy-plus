@@ -44,6 +44,14 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Polls dashboard: reworked the poll management editor — question rows show
+  only their number, the "New question" button sits above the list, the
+  "Options" section moved below the questions, the answer-type control is a
+  segmented Open Text / Multiple choice / Single choice switch, the Explanation
+  button sits next to the answer buttons, the per-question Save/Cancel buttons
+  were removed (the single Save button persists everything), the editor header
+  shows only the position ("2 of 3"), and the arrow controls now move a question
+  up/down within the poll instead of switching between questions
 - Module page: replace the running phase description with a table listing all phases
   (name, start date, end date and status completed/active/upcoming)
 - Organisation page: redesigned with overlapping logo, about link, organisation stats, project search and project tiles in a three column grid

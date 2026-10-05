@@ -116,57 +116,66 @@ describe('PollManagement', () => {
     renderManagement()
     expect(await screen.findByText('First question')).toBeInTheDocument()
     expect(screen.getByText('Second question')).toBeInTheDocument()
-    expect(screen.getByText('Question 1')).toBeInTheDocument()
-    expect(screen.getByText('Question 2')).toBeInTheDocument()
+    expect(screen.getByText('1')).toBeInTheDocument()
+    expect(screen.getByText('2')).toBeInTheDocument()
     // collapsed: no editor fields visible
-    expect(screen.queryByText('Question 1 of 2')).not.toBeInTheDocument()
+    expect(screen.queryByLabelText('Move question up')).not.toBeInTheDocument()
   })
 
-  it('expands a question when clicked and collapses on cancel', async () => {
-    renderManagement()
+  it('expands a question when clicked and collapses on a second click', async () => {
+    const { container } = renderManagement()
     fireEvent.click(await screen.findByText('First question'))
-    expect(screen.getByText('Question 1 of 2')).toBeInTheDocument()
+    expect(screen.getByLabelText('Move question up')).toBeInTheDocument()
 
     const textarea = screen.getByRole('textbox', { name: /Question/ })
     fireEvent.change(textarea, { target: { value: 'Edited' } })
 
-    fireEvent.click(screen.getByText('Cancel'))
-    expect(screen.queryByText('Question 1 of 2')).not.toBeInTheDocument()
-    // the label was reverted to the snapshot
-    expect(screen.getByText('First question')).toBeInTheDocument()
+    fireEvent.click(container.querySelector('.poll-management__summary') as HTMLElement)
+    expect(screen.queryByLabelText('Move question up')).not.toBeInTheDocument()
+    // edits are kept in the local state
+    expect(screen.getByText('Edited')).toBeInTheDocument()
   })
 
-  const clickItemSave = () => {
-    const button = document.querySelector('.poll-management__editor-actions .btn--primary') as HTMLElement
-    fireEvent.click(button)
-  }
-
-  it('keeps edits local when saving a single item', async () => {
+  it('keeps edits local until the poll is saved', async () => {
     renderManagement()
     fireEvent.click(await screen.findByText('First question'))
     fireEvent.change(screen.getByRole('textbox', { name: /Question/ }), { target: { value: 'Edited' } })
-    clickItemSave()
 
-    expect(screen.queryByText('Question 1 of 2')).not.toBeInTheDocument()
-    expect(screen.getByText('Edited')).toBeInTheDocument()
     expect(api.poll.change).not.toHaveBeenCalled()
   })
 
-  it('navigates between questions with the arrows', async () => {
+  it('moves the question within the survey with the arrow controls', async () => {
+    const { container } = renderManagement()
+    fireEvent.click(await screen.findByText('First question'))
+    fireEvent.click(screen.getByLabelText('Move question down'))
+
+    const labels = Array.from(container.querySelectorAll('.poll-management__label')).map((el) => el.textContent)
+    expect(labels[0]).toBe('Second question')
+    expect(labels[1]).toBe('First question')
+  })
+
+  it('switches a choice question to an open question and back', async () => {
     renderManagement()
     fireEvent.click(await screen.findByText('First question'))
-    fireEvent.click(screen.getByLabelText('Next question'))
-    expect(screen.getByText('Question 2 of 2')).toBeInTheDocument()
-    expect(screen.getByRole('textbox', { name: /Question/ })).toHaveValue('Second question')
+
+    // switch to open text: choices are removed
+    fireEvent.click(screen.getByRole('button', { name: 'Open Text' }))
+    expect(screen.queryByText('Answer option')).not.toBeInTheDocument()
+
+    // switch back to single choice: two empty choices are seeded
+    fireEvent.click(screen.getByRole('button', { name: 'Single choice' }))
+    expect(screen.getByText('Answer option')).toBeInTheDocument()
+    expect(screen.getAllByText(/^Answer #/)).toHaveLength(2)
   })
 
   it('adds a new open question and expands it', async () => {
     const { container } = renderManagement()
     await screen.findByText('First question')
-    fireEvent.click(screen.getByText('New question'))
-    fireEvent.click(screen.getByText('Open question'))
+    // the "New question" button is rendered above the list and in the footer
+    fireEvent.click(screen.getAllByText('New question')[0])
+    fireEvent.click(screen.getAllByText('Open question')[0])
 
-    expect(screen.getByText('Question 3 of 3')).toBeInTheDocument()
+    expect(screen.getByLabelText('Move question up')).toBeInTheDocument()
     expect(container.querySelectorAll('.poll-management__list-item')).toHaveLength(3)
   })
 
@@ -176,7 +185,7 @@ describe('PollManagement', () => {
     fireEvent.click(screen.getAllByLabelText('Delete question')[0])
 
     expect(screen.queryByText('First question')).not.toBeInTheDocument()
-    expect(screen.getByText('Question 1')).toBeInTheDocument()
+    expect(screen.getByText('1')).toBeInTheDocument()
     expect(screen.getByText('Second question')).toBeInTheDocument()
   })
 
@@ -216,7 +225,7 @@ describe('PollManagement', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Save' }))
 
     expect(await screen.findByText('The poll could not be updated. Please check the data you entered again.')).toBeInTheDocument()
-    expect(screen.getByText('Question 1 of 2')).toBeInTheDocument()
+    expect(screen.getByLabelText('Move question up')).toBeInTheDocument()
   })
 
   it('toggles the unregistered users option', async () => {
@@ -229,10 +238,10 @@ describe('PollManagement', () => {
   it('collapses an expanded question when its row is clicked again', async () => {
     const { container } = renderManagement()
     fireEvent.click(await screen.findByText('First question'))
-    expect(screen.getByText('Question 1 of 2')).toBeInTheDocument()
+    expect(screen.getByLabelText('Move question up')).toBeInTheDocument()
 
     fireEvent.click(container.querySelector('.poll-management__summary') as HTMLElement)
-    expect(screen.queryByText('Question 1 of 2')).not.toBeInTheDocument()
+    expect(screen.queryByLabelText('Move question up')).not.toBeInTheDocument()
   })
 
   it('reorders questions via drag and drop', async () => {
@@ -248,7 +257,7 @@ describe('PollManagement', () => {
     fireEvent.drop(items[1])
     fireEvent.dragEnd(items[0])
 
-    expect(screen.getByText('Question 1')).toBeInTheDocument()
+    expect(screen.getByText('1')).toBeInTheDocument()
     // after the drop the second question is first in the list
     const labels = Array.from(container.querySelectorAll('.poll-management__label')).map((el) => el.textContent)
     expect(labels[0]).toBe('Second question')

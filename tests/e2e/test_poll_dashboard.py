@@ -81,15 +81,15 @@ def test_initiator_expands_and_collapses_questions(
     items.nth(0).locator(".poll-management__summary").click()
     editor = page.locator(".poll-management__editor")
     expect(editor).to_have_count(1)
-    expect(editor).to_contain_text("Question 1 of 2")
+    expect(editor).to_contain_text("1 of 2")
 
     # clicking the row again collapses the item, keeping the local edits
     page.locator(".poll-management__summary").first.click()
     expect(editor).to_have_count(0)
 
-    # re-open and cancel reverts to the state from when it was opened
+    # edits are kept live (there is no per-question cancel anymore)
     items.nth(0).locator(".poll-management__summary").click()
     editor.locator("textarea").first.fill("Edited question")
-    editor.get_by_role("button", name="Cancel").click()
+    page.locator(".poll-management__summary").first.click()
     expect(editor).to_have_count(0)
-    expect(items.nth(0)).to_contain_text("Question one")
+    expect(items.nth(0)).to_contain_text("Edited question")
