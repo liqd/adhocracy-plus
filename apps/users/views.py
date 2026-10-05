@@ -83,22 +83,32 @@ class AuthModalMixin:
             context["is_modal"] = True
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        return self.convert_redirect_for_modal(response)
 
-class LoginView(AuthModalMixin, allauth_account_views.LoginView):
-    template_name = "account/login.html"
+    def convert_redirect_for_modal(self, response):
+        """Turn a redirect into an htmx ``HX-Redirect`` for modal requests.
 
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        # A successful login redirects. Inside the modal htmx would swap that
-        # redirect target into the modal, so tell the client to navigate
-        # instead and reload the full page.
-        if self.is_modal_request() and response.status_code in (301, 302):
+        Without this, htmx follows a 3xx transparently and swaps the redirect
+        target's full page into ``#auth-modal-body``. This happens for example
+        when an already authenticated user opens login/registration from a
+        stale page or a second tab.
+        """
+        if self.is_modal_request() and getattr(response, "status_code", None) in (
+            301,
+            302,
+        ):
             location = response.headers.get("Location")
             if location:
                 hx_response = HttpResponse(status=200)
                 hx_response["HX-Redirect"] = location
                 return hx_response
         return response
+
+
+class LoginView(AuthModalMixin, allauth_account_views.LoginView):
+    template_name = "account/login.html"
 
 
 class SignupWizardView(AuthModalMixin, allauth_account_views.SignupView):
@@ -281,7 +291,7 @@ class GuestCreateView(AuthModalMixin, FormView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect("/")
+            return self.convert_redirect_for_modal(redirect("/"))
         return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
@@ -307,16 +317,7 @@ class GuestCreateView(AuthModalMixin, FormView):
     def form_valid(self, form):
         if self.request.user.is_anonymous:
             maybe_create_guest_user(self.request)
-        response = super().form_valid(form)
-        # Inside the modal htmx would swap the redirect target into the modal,
-        # so trigger a full page navigation instead.
-        if self.is_modal_request() and response.status_code in (301, 302):
-            location = response.headers.get("Location")
-            if location:
-                hx_response = HttpResponse(status=200)
-                hx_response["HX-Redirect"] = location
-                return hx_response
-        return response
+        return super().form_valid(form)
 
 
 class ProfileView(DetailView):
