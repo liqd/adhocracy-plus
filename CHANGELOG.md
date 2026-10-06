@@ -40,8 +40,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
-- Module page: replace the running phase description with a table listing all phases
-  (name, start date, end date and status completed/active/upcoming)
+- Module page: replace the running phase description with a condensed phase
+  timeline (stepper). Every phase shows its status badge, a progress bar and
+  its own status line: completed phases a full bar and completion date, the
+  active phase a live bar and countdown, upcoming phases an empty bar and
+  start date
 - Organisation page: redesigned with overlapping logo, about link, organisation stats, project search and project tiles in a three column grid
 - Landing Page: Updated buttons (view demo organisation), new icons
 - Idea, proposal, and map idea forms: do not prefill contact email for guest users

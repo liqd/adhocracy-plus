@@ -65,6 +65,28 @@ class ParticipationTimelineGroup:
     items: tuple[ParticipationTimelineItem, ...]
 
 
+@dataclass(frozen=True)
+class PhaseTimelineStep:
+    """One phase on the condensed phase stepper."""
+
+    phase: object
+    status: str
+    status_label: str
+    is_current: bool
+    detail_label: str
+    progress: int | None
+    start_iso: str
+    end_iso: str
+
+
+@dataclass(frozen=True)
+class PhaseTimeline:
+    """Condensed phase stepper for one module plus its visibility."""
+
+    is_visible: bool
+    steps: tuple[PhaseTimelineStep, ...]
+
+
 def module_participation_status(module: Module) -> tuple[str, str]:
     """Return (status key, translated label) for one module."""
     if module.module_has_finished:
@@ -132,6 +154,100 @@ def phase_duration_label(phase) -> str:
     if minutes >= 1:
         return _n("%(count)s minute", "%(count)s minutes", minutes) % {"count": minutes}
     return _("1 minute")
+
+
+def phase_progress(phase) -> int | None:
+    """Return how far along an active phase is as a percentage (0-100)."""
+    start = phase.start_date
+    end = phase.end_date
+    if not start or not end or end <= start:
+        return None
+    now = timezone.now()
+    if not (start <= now < end):
+        return None
+    total = (end - start).total_seconds()
+    if total <= 0:
+        return None
+    elapsed = (now - start).total_seconds()
+    return max(0, min(100, round(elapsed / total * 100)))
+
+
+def phase_time_left_label(phase) -> str:
+    """Countdown for an active phase, e.g. '3 days left'."""
+    if not phase.end_date:
+        return ""
+    remaining = phase.end_date - timezone.now()
+    days = remaining.days
+    if days >= 1:
+        return _n("%(count)s day left", "%(count)s days left", days) % {"count": days}
+    hours = remaining.seconds // 3600
+    if hours >= 1:
+        return _n("%(count)s hour left", "%(count)s hours left", hours) % {
+            "count": hours
+        }
+    minutes = max(remaining.seconds // 60, 1)
+    return _n("%(count)s minute left", "%(count)s minutes left", minutes) % {
+        "count": minutes
+    }
+
+
+def phase_completed_label(phase) -> str:
+    """Completion label for a finished phase, e.g. 'Completed on Sep. 11, 2026'."""
+    if not phase.end_date:
+        return _("Completed")
+    return _("Completed on %(date)s") % {"date": _format_short_date(phase.end_date)}
+
+
+def phase_starts_label(phase) -> str:
+    """Start label for an upcoming phase, e.g. 'Starts on Sep. 20, 2026'."""
+    if not phase.start_date:
+        return _("Upcoming")
+    return _("Starts on %(date)s") % {"date": _format_short_date(phase.start_date)}
+
+
+def build_phase_timeline(module: Module) -> PhaseTimeline:
+    """Build the condensed phase stepper for one module.
+
+    The stepper is only visible once the module has started, i.e. as soon
+    as any phase is active or completed. The current phase is the active
+    one, otherwise the next upcoming phase, otherwise the last completed one.
+    Every phase carries its own status detail (bar and countdown/date).
+    """
+    steps: list[tuple[object, str, str]] = []
+    for phase in module.phases:
+        status, label = phase_participation_status(phase)
+        steps.append((phase, status, label))
+
+    active = [step for step in steps if step[1] == PHASE_STATUS_ACTIVE]
+    completed = [step for step in steps if step[1] == PHASE_STATUS_COMPLETED]
+    upcoming = [step for step in steps if step[1] == STATUS_UPCOMING]
+
+    is_visible = bool(active or completed)
+    if not is_visible:
+        current_phase = None
+    elif active:
+        current_phase = active[0][0]
+    elif upcoming:
+        current_phase = upcoming[0][0]
+    else:
+        current_phase = completed[-1][0]
+
+    timeline_steps: list[PhaseTimelineStep] = []
+    for phase, status, label in steps:
+        timeline_steps.append(
+            PhaseTimelineStep(
+                phase=phase,
+                status=status,
+                status_label=label,
+                is_current=phase == current_phase,
+                detail_label=_phase_detail_label(phase, status),
+                progress=_phase_progress_value(phase, status),
+                start_iso=phase.start_date.isoformat() if phase.start_date else "",
+                end_iso=phase.end_date.isoformat() if phase.end_date else "",
+            )
+        )
+
+    return PhaseTimeline(is_visible=is_visible, steps=tuple(timeline_steps))
 
 
 def offline_event_participation_status(event: OfflineEvent) -> tuple[str, str]:
@@ -242,8 +358,29 @@ def _module_schedule(module: Module) -> tuple[datetime | None, datetime | None]:
         return None, None
 
 
+def _phase_detail_label(phase, status: str) -> str:
+    if status == PHASE_STATUS_ACTIVE:
+        return phase_time_left_label(phase)
+    if status == PHASE_STATUS_COMPLETED:
+        return phase_completed_label(phase)
+    return phase_starts_label(phase)
+
+
+def _phase_progress_value(phase, status: str) -> int | None:
+    """Progress bar value per phase: full, live or empty."""
+    if status == PHASE_STATUS_COMPLETED:
+        return 100 if phase.start_date and phase.end_date else None
+    if status == STATUS_UPCOMING:
+        return 0 if phase.start_date and phase.end_date else None
+    return phase_progress(phase)
+
+
 def _format_date(value: datetime) -> str:
     return date_format(timezone.localtime(value), "d.m.Y", use_l10n=True)
+
+
+def _format_short_date(value: datetime) -> str:
+    return date_format(timezone.localtime(value), "M. j, Y", use_l10n=True)
 
 
 def _format_date_range(start: datetime, end: datetime | None) -> str:
