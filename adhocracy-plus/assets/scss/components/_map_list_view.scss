@@ -49,3 +49,16 @@
         }
     }
 }
+
+// Desktop-only light panel for the stacked mapideas list. Mobile keeps the
+// plain list view (no panel) so the map/list toggle is unchanged.
+@media (min-width: $breakpoint) {
+    .map-list-view--stacked .mapidea-list-panel {
+        @include project-detail-module-panel-bleed;
+
+        padding-top: 3 * $spacer;
+        padding-bottom: 2 * $spacer;
+        margin-top: $spacer;
+        background-color: $bg-light;
+    }
+}

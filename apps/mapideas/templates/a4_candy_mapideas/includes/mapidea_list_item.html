@@ -51,17 +51,18 @@
                 <span class="list-item__author">{{ object.creator.username }} · </span>
                 {% html_date object.created class='list-item__date' %}
             </div>
-            <span title="{% translate 'Comments' %}" class="list-item__comments">
+            <span title="{% translate 'Comments' %}" class="list-item__comments d-md-none">
                 <i class="far fa-comment" aria-label="{% translate 'Comments' %}"></i>
                 {{ object.comment_count }}
             </span>
         </div>
-        <hr class="list-item__divider">
+        <hr class="list-item__divider d-md-none">
         <div class="list-item__footer">
             <span class="list-item__expand-toggle">
                 <span class="u-if-collapsed">{% translate "Show details" %}</span>
                 <span class="u-if-not-collapsed">{% translate "Hide details" %}</span>
-                <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                <i class="fas fa-chevron-down d-md-none" aria-hidden="true"></i>
+                <i class="fas fa-chevron-right d-none d-md-inline-block" aria-hidden="true"></i>
             </span>
             <a class="btn btn--transparent-bordered list-item__explore-btn" href="{{ object.get_absolute_url }}">
                 {% translate "Join discussion" %}

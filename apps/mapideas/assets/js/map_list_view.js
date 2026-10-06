@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const listView = document.getElementById('list-view')
   const listBtn = document.querySelector('[data-view="list"]')
   const mapBtn = document.querySelector('[data-view="map"]')
+  const desktop = window.matchMedia('(min-width: 768px)')
+  let mapInstance = null
+  let clusterGroup = null
 
   // Prevent interactive elements inside a list card header (links, buttons,
   // details content) or text selection from toggling the card's collapse.
@@ -22,6 +25,16 @@ document.addEventListener('DOMContentLoaded', function () {
       event.stopPropagation()
     }
   }, true)
+
+  // On desktop the list is selection-based (like the ideas inbox), so the
+  // headers must not trigger Bootstrap's inline collapse.
+  if (desktop.matches) {
+    document.querySelectorAll('.map-list-view .list-item__header').forEach(function (header) {
+      header.removeAttribute('data-bs-toggle')
+      header.removeAttribute('data-bs-target')
+      header.removeAttribute('data-bs-parent')
+    })
+  }
 
   // Decorate the map popup so it mirrors a list card: category badge, title,
   // comment indicator (already provided by the map bundle) and a "Show details"
@@ -116,32 +129,114 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Expand the matching list card (if it is rendered in the list below) when a
-  // pin's popup opens on desktop.
-  function expandCardForUrl (href) {
+  // Selection state shared by the desktop list and the map pins.
+  function findCardByUrl (href) {
     const cards = document.querySelectorAll('.map-list-view .list-item--card')
     for (const card of cards) {
       const cardLink = card.querySelector('.list-item__title-link')
-      if (!cardLink || cardLink.href !== href) {
-        continue
+      if (cardLink && cardLink.href === href) {
+        return card
       }
-      const header = card.querySelector('.list-item__header')
-      if (header && header.getAttribute('aria-expanded') !== 'true') {
-        header.click()
+    }
+    return null
+  }
+
+  function applySelection (card) {
+    const pk = card ? card.getAttribute('data-mapidea-pk') : null
+    document.querySelectorAll('.map-list-view .list-item--card').forEach(function (item) {
+      const isSelected = item === card
+      item.classList.toggle('selected', isSelected)
+      const header = item.querySelector('.list-item__header')
+      if (header) {
+        header.setAttribute('aria-expanded', isSelected ? 'true' : 'false')
       }
-      return
+    })
+    document.querySelectorAll('.map-list-view [data-mapidea-pane]').forEach(function (pane) {
+      pane.hidden = pane.getAttribute('data-mapidea-pane') !== pk
+    })
+    const placeholder = document.querySelector('.map-list-view [data-mapidea-pane-placeholder]')
+    if (placeholder) {
+      placeholder.hidden = !!pk
     }
   }
 
+  function findMarkerByUrl (href) {
+    if (!clusterGroup) {
+      return null
+    }
+    let found = null
+    clusterGroup.eachLayer(function (marker) {
+      if (found || !marker.getPopup) {
+        return
+      }
+      const popup = marker.getPopup()
+      const content = popup && popup.getContent()
+      if (typeof content !== 'string') {
+        return
+      }
+      const tmp = document.createElement('div')
+      tmp.innerHTML = content
+      const link = tmp.querySelector('.maps-popups-popup-name a')
+      if (link && link.href === href) {
+        found = marker
+      }
+    })
+    return found
+  }
+
+  // Selecting a card centers/opens its pin; deselecting closes the popup.
+  function focusCard (card) {
+    applySelection(card)
+    if (card) {
+      const link = card.querySelector('.list-item__title-link')
+      const marker = link && findMarkerByUrl(link.href)
+      if (marker && clusterGroup && mapInstance) {
+        clusterGroup.zoomToShowLayer(marker, function () {
+          marker.openPopup()
+        })
+      }
+    } else if (mapInstance) {
+      mapInstance.closePopup()
+    }
+  }
+
+  const listRoot = document.querySelector('.map-list-view')
+  if (listRoot) {
+    listRoot.addEventListener('click', function (event) {
+      if (!desktop.matches || event.target.closest('a, button, .list-item__details')) {
+        return
+      }
+      const header = event.target.closest('.list-item__header')
+      if (!header) {
+        return
+      }
+      const card = header.closest('.list-item')
+      focusCard(card.classList.contains('selected') ? null : card)
+    })
+  }
+
+  document.querySelectorAll('.map-list-view [data-mapidea-hide-details]').forEach(function (btn) {
+    btn.addEventListener('click', function (event) {
+      event.preventDefault()
+      focusCard(null)
+    })
+  })
+
   if (categoriesScript && window.L && window.L.Map) {
     window.L.Map.addInitHook(function () {
+      mapInstance = this
+      this.on('layeradd', function (event) {
+        if (event.layer && typeof event.layer.zoomToShowLayer === 'function') {
+          clusterGroup = event.layer
+        }
+      })
       this.on('popupopen', function (event) {
         decoratePopup(event.popup)
-        if (window.matchMedia('(min-width: 768px)').matches) {
+        if (desktop.matches) {
           const popup = event.popup && event.popup.getElement()
           const link = popup && popup.querySelector('.maps-popups-popup-name a')
           if (link) {
-            expandCardForUrl(link.href)
+            applySelection(findCardByUrl(link.href))
           }
         }
       })
