@@ -1,0 +1,157 @@
+@import '../../../../adhocracy-plus/assets/scss/variables';
+@import './learning_sidebar';
+
+// Learning Header
+.learning-header {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0 0.8rem;
+
+  i {
+    margin-right: 0.5rem;
+    position: relative;
+    bottom: 8px;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &--sticky {
+    background-color: $body-bg;
+    position: sticky;
+    top: 0;
+  }
+}
+
+// Learning Breadcrumb
+.learning-breadcrumb {
+  font-size: 0.85rem;
+  margin-top: 0.8rem;
+  margin-bottom: 24px;
+
+  &__icon {
+    margin-right: 0.5rem;
+  }
+
+  &__current {
+    font-weight: 600;
+  }
+}
+
+
+// Nuggets Grid
+.learning-nuggets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.learning-nugget-item__name {
+  margin-bottom: 0;
+}
+
+.nugget-thumbnail {
+  width: 100%;
+  height: 148px;
+  object-fit: cover;
+  background-color: $gray-lightest; /* Gray fallback */
+  margin-bottom: 8px;
+}
+
+.nugget-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.nugget-link:hover {
+  text-decoration: underline;
+}
+
+
+// Learning Content
+.learning-content {
+  max-width: 30rem;
+}
+
+.learning-content__categories__item {
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 39px;
+  }
+}
+
+.learning-content:last-child  {
+  padding-bottom: 3rem;
+}
+
+// h2/h3/h4 are added by wagtail richtext without a class, hence the nots
+.learning-content__description {
+  & h2:not(.learning-content__title, .learning-content__title--lg, .learning-content__title--md) {
+    font-family: $font-family-base;
+    font-weight: 700;
+    font-size: 1.35rem;
+    margin-bottom: 8px;
+  }
+
+  & h3 {
+    font-family: $font-family-base;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  & h4 {
+    font-family: $font-family-base;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+}
+
+.learning-content__title {
+  font-family: $font-family-base;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 17px;
+}
+
+.learning-content__title--xl {
+  font-size: 1.75rem;
+}
+
+.learning-content__title--lg {
+  font-size: 1.35rem;
+}
+
+.learning-content__title--md {
+  font-size: 1.2rem;
+}
+
+.learning-content__thumbnail {
+  object-fit: cover;
+  aspect-ratio: 3 / 2;
+}
+
+.learning-content__video {
+  video {
+    max-width: 430px;
+  }
+
+  .media-with-caption {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: $breakpoint) {
+  .learning-content__video {
+    video {
+      max-width: 320px;
+    }
+  }
+}
