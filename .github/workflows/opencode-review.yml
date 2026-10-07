@@ -12,6 +12,7 @@ jobs:
       contains(github.event.comment.body, '//review') &&
       (github.event_name == 'pull_request_review_comment' || github.event.issue.pull_request)
     runs-on: ubuntu-latest
+    timeout-minutes: 40
     permissions:
       contents: read
       pull-requests: write
@@ -81,6 +82,18 @@ jobs:
                   "mode": "primary",
                   "permission": {
                     "edit": "deny",
+                    "read": {
+                      "*": "allow",
+                      "**/.git/config": "deny"
+                    },
+                    "external_directory": {
+                      "*": "allow",
+                      "/proc/**": "deny",
+                      "**/.ssh/**": "deny",
+                      "**/.aws/**": "deny",
+                      "**/.config/**": "deny",
+                      "**/.env*": "deny"
+                    },
                     "bash": {
                       "*": "deny",
                       "git diff*": "allow",
