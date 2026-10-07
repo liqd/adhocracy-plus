@@ -50,6 +50,7 @@ from apps.userdashboard.routers import ModerationDetailDefaultRouter
 from apps.users.api import UserViewSet
 from apps.users.decorators import user_is_project_admin
 from apps.users.views import GuestCreateView
+from apps.users.views import LoginView
 from apps.users.views import LogoutView
 from apps.users.views import SignupWizardView
 from apps.users.views import set_language_overwrite
@@ -123,8 +124,10 @@ urlpatterns = [
         regular_user_required(allauth_views.PasswordSetView.as_view()),
         name="account_set_password",
     ),
-    # Multi step registration (must be listed before the allauth urls so it
-    # takes precedence over allauth's own ``account_signup``).
+    # Auth views served as a full page or, via htmx, as a modal fragment. They
+    # must be listed before the allauth urls so they take precedence over
+    # allauth's own ``account_login`` / ``account_signup``.
+    path("accounts/login/", LoginView.as_view(), name="account_login"),
     path("accounts/signup/", SignupWizardView.as_view(), name="account_signup"),
     path("accounts/", include("allauth.urls")),
     path("account/", include("apps.account.urls")),

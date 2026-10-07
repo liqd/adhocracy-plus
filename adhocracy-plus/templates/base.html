@@ -91,5 +91,18 @@
         {% include 'footer.html' %}
         {% endblock footer %}
     </div>
+
+    <div class="modal fade" id="auth-modal" tabindex="-1"
+         data-auth-views='["{% url 'account_login' %}", "{% url 'account_signup' %}", "{% url 'guest_create' %}"]'
+         aria-label="{% translate 'Login or registration' %}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered auth-modal__dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close auth-modal__close"
+                        data-bs-dismiss="modal"
+                        aria-label="{% translate 'Close' %}"></button>
+                <div class="modal-body" id="auth-modal-body"></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

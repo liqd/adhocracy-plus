@@ -271,6 +271,46 @@ def test_signup_wizard_non_js_step1_renders_full_page(client):
     assert b"<!DOCTYPE html>" in resp.content
 
 
+@pytest.mark.django_db
+def test_signup_full_page_renders_document(client):
+    resp = client.get(reverse("account_signup"))
+    assert resp.status_code == 200
+    assert b"<!DOCTYPE html>" in resp.content
+
+
+@pytest.mark.django_db
+def test_signup_htmx_renders_modal_partial(client):
+    resp = client.get(
+        reverse("account_signup"),
+        HTTP_HX_REQUEST="true",
+        HTTP_HX_TARGET="auth-modal-body",
+    )
+    assert resp.status_code == 200
+    content = resp.content.decode()
+    assert "<!DOCTYPE html>" not in content
+    assert resp.context["layout"] == "partial.html"
+    assert resp.context["is_modal"] is True
+    assert 'id="signup-wizard"' in content
+
+
+@override_settings(CAPTCHA=False)
+@pytest.mark.django_db
+def test_signup_wizard_step_swap_returns_bare_fragment(client):
+    resp = client.post(
+        reverse("account_signup"),
+        {"signup_step": "1", "email": "bare@example.com", "username": "bareuser"},
+        HTTP_HX_REQUEST="true",
+        HTTP_HX_TARGET="signup-wizard",
+    )
+    assert resp.status_code == 200
+    assert resp.context["signup_step"] == 2
+    content = resp.content.decode()
+    # The step navigation only swaps the inner wizard, so the wrapper (and the
+    # captcha media that lives outside of it) must not be part of the response.
+    assert 'id="signup-wizard"' not in content
+    assert "signup-steps" in content
+
+
 @override_settings(CAPTCHA=False)
 @pytest.mark.django_db
 def test_signup_wizard_routes_missing_fields_to_first_step(client):

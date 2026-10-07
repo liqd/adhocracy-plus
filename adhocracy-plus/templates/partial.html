@@ -1,0 +1,9 @@
+{% comment %}
+Project-wide bare layout for content that is requested through htmx and
+swapped into an existing page (e.g. the global auth modal). It renders only
+the fragment and skips the full page chrome. Views opt in by passing a
+``layout`` context variable and using ``{% extends layout|default:"base.html" %}``
+in their content template.
+{% endcomment %}
+{% block content %}{% endblock content %}
+{% block extra_js %}{% endblock extra_js %}

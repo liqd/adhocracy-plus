@@ -37,6 +37,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   htmx and server-side session staging on top of django-allauth
 - Login and registration: social logins redesigned as icon buttons below an
   "Or continue with" heading
+- Login and registration: auth links (header and elsewhere) open the login,
+  registration or guest view in a wide, square modal designed after Figma,
+  loaded via htmx; visiting the URL directly still loads the full page and both
+  modes share the same content and partial layout
 
 ### Changed
 
