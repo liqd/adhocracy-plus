@@ -1,25 +1,117 @@
-{% extends "a4_candy_contrib/includes/map_list_view_base.html" %}
-{% load i18n discovery_tags static maps_tags module_tags contrib_tags %}
+{% load i18n discovery_tags static maps_tags module_tags contrib_tags pagination thumbnail %}
 
-{% block map_content %}
-{% if object_list %}
-{% if object_list.0|has_feature:"rate" %}
-    {% map_display_points object_list module.settings_instance.polygon %}
-{% else %}
-    {% map_display_points object_list module.settings_instance.polygon 'true' %}
-{% endif %}
-{% else %}
-{% map_display_points object_list module.settings_instance.polygon %}
-{% endif %}
-{% endblock map_content %}
+<span class="map-list-view map-list-view--stacked">
+    <div class="l-top-overlap" id="index">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                <div class="d-md-none">
+                    {% include "a4_candy_contrib/includes/map_filter_and_sort.html" with filter=filter mode=view.mode %}
+                </div>
+                {% include "a4_candy_contrib/includes/filter_and_sort.html" with filter=filter %}
+            </div>
+        </div>
+    </div>
 
-{% block list_content %}
-<ul class="u-list-reset">
-    {% for object in paginated_list %}
-        {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
-    {% empty %}
-        {% translate "Nothing to show" %}
+    <div class="map-list list-view {% if view.mode == 'list' %}mobile-hide{% endif %}" id="map-view">
+        <div class="map-list__controls">
+            <div class="container">
+                <div class="leaflet-control-zoom leaflet-bar leaflet-control mt-4 mt-md-0">
+                    <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% translate 'Zoom in' %}">+</a>
+                    <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% translate 'Zoom out' %}">-</a>
+                </div>
+            </div>
+        </div>
+        {% if object_list %}
+            {% if object_list.0|has_feature:"rate" %}
+                {% map_display_points object_list module.settings_instance.polygon %}
+            {% else %}
+                {% map_display_points object_list module.settings_instance.polygon 'true' %}
+            {% endif %}
+        {% else %}
+            {% map_display_points object_list module.settings_instance.polygon %}
+        {% endif %}
+    </div>
+
+    <div class="mapidea-list-panel list-view {% if view.mode != 'list' %}mobile-hide{% endif %}" id="list-view">
+        <div class="row">
+            <div class="col-12">
+                <div class="idea-inbox">
+                    <div class="idea-inbox__list">
+                        <ul class="u-list-reset" id="mapidea-list-accordion">
+                            {% for object in paginated_list %}
+                                {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
+                            {% empty %}
+                                {% translate "Nothing to show" %}
+                            {% endfor %}
+                        </ul>
+
+                        {% if paginated_list.paginator.num_pages > 1 %}
+                            <div class="mt-4">
+                                {% pagination paginated_list %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="idea-inbox__panes">
+                        <div class="idea-inbox__pane idea-inbox__pane--placeholder" data-mapidea-pane-placeholder>
+                            {% translate "Select an idea to view its details" %}
+                        </div>
+                        {% for object in paginated_list %}
+                            <div class="idea-inbox__pane" data-mapidea-pane="{{ object.pk }}" hidden>
+                                <h3 class="idea-inbox__pane-title u-first-heading">
+                                    <a href="{{ object.get_absolute_url }}">{{ object.name }}</a>
+                                </h3>
+                                <div class="list-item__labels">
+                                    {% if object.category %}
+                                        <span class="badge badge--big list-item__badge--category">{{ object.category }}</span>
+                                    {% endif %}
+                                    {% if object.point_label %}
+                                        <span class="badge badge--big"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> {{ object.point_label }}</span>
+                                    {% endif %}
+                                    {% if object.moderator_status %}
+                                        <span class="badge badge--big badge--{{ object.moderator_status|classify }} list-item__badge--moderator-feedback">
+                                            {{ object.get_moderator_status_display }}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                {% include "a4_candy_contrib/includes/list_item_details.html" with object=object %}
+                                <div class="idea-inbox__pane-footer">
+                                    <div class="list-item__meta-row">
+                                        <div class="list-item__meta">
+                                            <img class="list-item__author-avatar"
+                                                 src="{% if object.creator.avatar %}{% thumbnail object.creator.avatar 'avatar' %}{% else %}{{ object.creator.avatar_fallback }}{% endif %}"
+                                                 alt="">
+                                            <span class="list-item__author">{{ object.creator.username }} · </span>
+                                            {% html_date object.created class='list-item__date' %}
+                                        </div>
+                                        <span title="{% translate 'Comments' %}" class="list-item__comments">
+                                            <i class="far fa-comment" aria-label="{% translate 'Comments' %}"></i>
+                                            {{ object.comment_count }}
+                                        </span>
+                                    </div>
+                                    <hr class="list-item__divider">
+                                    <div class="list-item__actions">
+                                        <button type="button" class="list-item__expand-toggle" data-mapidea-hide-details>
+                                            {% translate "Hide details" %}
+                                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                                        </button>
+                                        <a class="btn btn--transparent-bordered" href="{{ object.get_absolute_url }}">
+                                            {% translate "Join discussion" %}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/json" data-mapidea-categories>
+    [
+    {% for object in object_list %}
+        {"url": "{{ object.get_absolute_url|escapejs }}", "category": {% if object.category %}"{{ object.category|escapejs }}"{% else %}null{% endif %}}{% if not forloop.last %},{% endif %}
     {% endfor %}
-</ul>
-{% endblock list_content %}
-
+    ]
+    </script>
+</span>
