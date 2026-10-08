@@ -39,6 +39,8 @@ def test_return_url_is_passed_to_context(client):
     assert resp.status_code == 200
     assert resp.context["return_url"] == detail_url
     assert 'name="next" value="{}"'.format(detail_url) in resp.content.decode()
+    assert 'href="{}"'.format(detail_url) in resp.content.decode()
+    assert "back to moderation" not in resp.content.decode()
 
 
 @pytest.mark.django_db

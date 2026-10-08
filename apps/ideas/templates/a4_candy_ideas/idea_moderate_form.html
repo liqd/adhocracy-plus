@@ -15,15 +15,8 @@
                 </div>
                 <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
                     <ul>
-                        {% if return_url %}
                         <li>
-                            <a href="{{ return_url }}">
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                {% translate 'back to moderation' %}</a>
-                        </li>
-                        {% endif %}
-                        <li>
-                            <a href="{{ module.get_detail_url }}">
+                            <a href="{% if return_url %}{{ return_url }}{% else %}{{ module.get_detail_url }}{% endif %}">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
                                 {% translate 'go back' %}</a>
                         </li>
