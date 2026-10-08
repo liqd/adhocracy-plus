@@ -6,8 +6,7 @@ import ImageEditor from '@uppy/image-editor'
 import deDE from '@uppy/locales/lib/de_DE.js'
 import enUS from '@uppy/locales/lib/en_US.js'
 
-import FormFieldError from 'adhocracy4/adhocracy4/static/FormFieldError'
-import type { PollQuestion } from '../types'
+import FieldError from './FieldError'
 
 const UPPY_LOCALES: Record<string, typeof deDE> = {
   de: deDE,
@@ -25,8 +24,8 @@ function getUppyLocale () {
 }
 
 interface UppyQuestionImageUploadProps {
-  id: number
-  question: PollQuestion
+  id: string | number
+  question: { image_url?: string | null }
   onImageChange: (base64: string) => void
   errors?: Record<string, unknown>
   helpText?: string
@@ -189,9 +188,9 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
         </div>
       </div>
 
-      <FormFieldError id={`image-error-${id}`} error={errors} field="image_base64" />
+      <FieldError id={`image-error-${id}`} error={errors} field="image_base64" />
 
-      {(question.image_url || altTextError) && (
+      {question.image_url && (
         <div className={`form-group ${altTextError ? 'has-error' : ''}`}>
           <label htmlFor={`id_questions-${id}-image_alt_text`}>
             {django.gettext('Alt text')}
@@ -206,7 +205,7 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
             aria-invalid={!!altTextError}
             aria-describedby={altTextError ? `alt-text-error-${id}` : undefined}
           />
-          <FormFieldError id={`alt-text-error-${id}`} error={errors} field="image_alt_text" />
+          <FieldError id={`alt-text-error-${id}`} error={errors} field="image_alt_text" />
         </div>
       )}
     </div>
