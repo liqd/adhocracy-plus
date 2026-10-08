@@ -52,8 +52,8 @@ importers:
         specifier: ^5.1.1
         version: 5.1.1
       adhocracy4:
-        specifier: github:liqd/adhocracy4#main
-        version: https://codeload.github.com/liqd/adhocracy4/tar.gz/e7556bb32afab5f30263978b79b2ba6ebb8f54bd(@types/react@18.3.31)(supports-color@8.1.1)
+        specifier: github:liqd/adhocracy4#gg_26_10_human_readable_poll_export
+        version: https://codeload.github.com/liqd/adhocracy4/tar.gz/3df23e675e7964bf04aba4bb6f2ae7264ee0d024(@types/react@18.3.31)(supports-color@8.1.1)
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.5.26)
@@ -2521,8 +2521,8 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  adhocracy4@https://codeload.github.com/liqd/adhocracy4/tar.gz/e7556bb32afab5f30263978b79b2ba6ebb8f54bd:
-    resolution: {gitHosted: true, integrity: sha512-2YufnjElScrygNkpSd0fPxMj/XbAaI+491CGYkYnxOrr0Pi1KhArJCRnQb/eb0qKftjzJ1hHwBXdwsBIuUcrnA==, tarball: https://codeload.github.com/liqd/adhocracy4/tar.gz/e7556bb32afab5f30263978b79b2ba6ebb8f54bd}
+  adhocracy4@https://codeload.github.com/liqd/adhocracy4/tar.gz/3df23e675e7964bf04aba4bb6f2ae7264ee0d024:
+    resolution: {gitHosted: true, integrity: sha512-+CKEmMzgOeGuLrvIFP7ndCPMtw6OwmOaLtbyT7cW8oH2IbxRMq/KxZ509rZ7H7A+7CL0fJOeZJOkgI4X+e4Seg==, tarball: https://codeload.github.com/liqd/adhocracy4/tar.gz/3df23e675e7964bf04aba4bb6f2ae7264ee0d024}
     version: 1.0.0
 
   agent-base@6.0.2:
@@ -9750,10 +9750,15 @@ snapshots:
 
   acorn@8.18.0: {}
 
-  adhocracy4@https://codeload.github.com/liqd/adhocracy4/tar.gz/e7556bb32afab5f30263978b79b2ba6ebb8f54bd(@types/react@18.3.31)(supports-color@8.1.1):
+  adhocracy4@https://codeload.github.com/liqd/adhocracy4/tar.gz/3df23e675e7964bf04aba4bb6f2ae7264ee0d024(@types/react@18.3.31)(supports-color@8.1.1):
     dependencies:
       '@popperjs/core': 2.11.8
       '@turf/turf': 7.3.4
+      '@uppy/compressor': 3.1.0(@uppy/core@5.2.0)
+      '@uppy/core': 5.2.0
+      '@uppy/dashboard': 5.1.1(@uppy/core@5.2.0)
+      '@uppy/image-editor': 4.2.0(@uppy/core@5.2.0)
+      '@uppy/locales': 5.1.1
       file-saver: 2.0.5
       immutability-helper: 3.1.1
       jquery: 3.7.1
@@ -9773,6 +9778,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
       - geotiff
+      - preact-render-to-string
       - supports-color
 
   agent-base@6.0.2(supports-color@8.1.1):

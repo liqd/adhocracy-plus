@@ -36,9 +36,20 @@ def test_poll_dashboard_export_view(client, phase_factory, user_factory):
     response = client.get(url)
     assert_template_response(response, "a4exports/export_dashboard.html")
     assert response.template_name[0] == "a4exports/export_dashboard.html"
+    content = response.content.decode()
+    assert "here you can export all answers (human readable)" in content
+    assert "here you can export all answers (machine readable)" in content
     assert "poll_export" in response.context
     assert response.context["poll_export"] == reverse(
         "a4dashboard:poll-export",
+        kwargs={
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
+    assert "poll_export_human" in response.context
+    assert response.context["poll_export_human"] == reverse(
+        "a4dashboard:poll-export-human",
         kwargs={
             "organisation_slug": module.project.organisation.slug,
             "module_slug": module.slug,
@@ -51,4 +62,39 @@ def test_poll_dashboard_export_view(client, phase_factory, user_factory):
             "organisation_slug": module.project.organisation.slug,
             "module_slug": module.slug,
         },
+    )
+
+
+@pytest.mark.django_db
+def test_human_readable_poll_export_download(
+    client,
+    phase_factory,
+    user_factory,
+    poll_factory,
+    question_factory,
+    choice_factory,
+    vote_factory,
+):
+    phase, module, project, item = setup_phase(phase_factory, None, VotingPhase)
+    initiator = user_factory()
+    project.organisation.initiators.add(initiator)
+
+    poll = poll_factory(module=module)
+    question = question_factory(poll=poll, label="Was gefällt ihnen im Park am besten?")
+    choice = choice_factory(question=question, label="Wiese")
+    vote_factory(choice=choice, creator=initiator)
+
+    url = reverse(
+        "a4dashboard:poll-export-human",
+        kwargs={
+            "organisation_slug": module.project.organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
+
+    client.login(username=initiator.username, password="password")
+    response = client.get(url)
+    assert response.status_code == 200
+    assert response["Content-Type"] == (
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
