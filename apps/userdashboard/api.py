@@ -206,7 +206,11 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             item_type: [row["pk"] for row in rows if row["item_type"] == item_type]
             for item_type in item_types
         }
-        related = ("creator", "module__project__organisation")
+        related = (
+            "creator",
+            "module__project__organisation",
+            "moderator_feedback_text",
+        )
 
         def by_pk(model, item_type, related_fields):
             return {

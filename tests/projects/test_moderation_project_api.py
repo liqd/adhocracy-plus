@@ -37,6 +37,19 @@ def test_filter_by_organisation(apiclient, project_factory, organisation_factory
 
 
 @pytest.mark.django_db
+def test_num_unread_comments_is_included(apiclient, project_factory, user):
+    project = project_factory()
+    user.project_moderator.add(project)
+
+    apiclient.login(username=user.email, password="password")
+    url = reverse("moderationprojects-list")
+    response = apiclient.get(url)
+
+    assert response.status_code == 200
+    assert response.data[0]["num_unread_comments"] == 0
+
+
+@pytest.mark.django_db
 def test_anonymous_cannot_access_moderation_projects(apiclient):
     url = reverse("moderationprojects-list")
     response = apiclient.get(url)
