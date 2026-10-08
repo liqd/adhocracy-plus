@@ -92,6 +92,33 @@ test('hides report marker for an unreported idea', () => {
   expect(tree.container.querySelector('.fa-exclamation-circle')).toBeNull()
 })
 
+test('shows the notification menu for an idea', () => {
+  const tree = render(
+    <ModerationNotification
+      notification={mockedIdea}
+      getUrlParams={() => ''}
+    />
+  )
+  expect(tree.container.querySelector('.dropdown-toggle')).toBeTruthy()
+  expect(screen.getByText('Mark as unread')).toBeTruthy()
+})
+
+test('shows status badge and official feedback for an idea', () => {
+  render(
+    <ModerationNotification
+      notification={{
+        ...mockedIdea,
+        moderator_status: 'ACCEPTED',
+        moderator_status_display: 'Accepted',
+        moderator_feedback_text: 'Great idea'
+      }}
+      getUrlParams={() => ''}
+    />
+  )
+  expect(screen.getByText('Accepted')).toBeTruthy()
+  expect(screen.getByText('Great idea')).toBeTruthy()
+})
+
 test('Render <ModerationNotification>', () => {
   render(
     <ModerationNotification

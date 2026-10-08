@@ -50,6 +50,10 @@ class MapIdea(AbstractMapIdea):
     custom_field_answers = GenericRelation(
         "a4_candy_customfields.CustomFieldAnswer", related_query_name="mapidea"
     )
+    is_reviewed = models.BooleanField(
+        default=False,
+        verbose_name=_("Reviewed"),
+    )
 
     objects = PolymorphicManager.from_queryset(idea_models.IdeaQuerySet)()
 

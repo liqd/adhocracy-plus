@@ -24,7 +24,8 @@ const translated = {
   aiClassified: django.gettext('AI'),
   postedComment: django.gettext('posted a {}comment{}'),
   submittedIdea: django.gettext('submitted the idea'),
-  addFeedback: django.gettext('Add feedback')
+  addFeedback: django.gettext('Add feedback'),
+  officialFeedback: django.gettext('Official feedback')
 }
 
 interface AlertValue {
@@ -151,9 +152,8 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
   // **** Start notification methods ****
 
   async function toggleIsUnread () {
-    const url = notification.is_unread
-      ? (props.apiUrl || '') + 'mark_read/' + (props.getUrlParams?.() || '')
-      : (props.apiUrl || '') + 'mark_unread/' + (props.getUrlParams?.() || '')
+    const action = notification.is_unread ? 'mark_read/' : 'mark_unread/'
+    const url = (props.apiUrl || '') + action + (props.getUrlParams?.() || '')
     const [response, error] =
       await api.fetch<any>({
         url,
@@ -170,6 +170,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
         timeInMs: alertTime
       })
     } else {
+      props.loadData?.()
       setAlert({
         type: 'success',
         message: alertMessage,
@@ -307,32 +308,31 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
             </p>
             <p className="mb-1">{commentChangeLog}</p>
           </div>
-          {!isIdea &&
-            <div className="col-auto ms-auto">
-              <div className="dropdown">
-                <button
-                  title="{% trans 'Notification menu' %}"
-                  type="button"
-                  className="dropdown-toggle btn btn--none"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  data-bs-toggle="dropdown"
-                >
-                  <i className="fas fa-ellipsis-v" aria-hidden="true" />
-                </button>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <li key="1">
-                    <button
-                      className="dropdown-item"
-                      type="button"
-                      onClick={() => toggleIsUnread()}
-                    >
-                      {notification.is_unread ? markReadText : markUnreadText}
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>}
+          <div className="col-auto ms-auto">
+            <div className="dropdown">
+              <button
+                title="{% trans 'Notification menu' %}"
+                type="button"
+                className="dropdown-toggle btn btn--none"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-toggle="dropdown"
+              >
+                <i className="fas fa-ellipsis-v" aria-hidden="true" />
+              </button>
+              <ul className="dropdown-menu dropdown-menu-end">
+                <li key="1">
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => toggleIsUnread()}
+                  >
+                    {notification.is_unread ? markReadText : markUnreadText}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div className="col-12 d-md-none">
             <p className="mb-1">
               {getByline()}
@@ -343,6 +343,11 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
 
         <span className={labelClass}>{notification.label}</span>
 
+        {isIdea && notification.moderator_status &&
+          <span className={'userdashboard-mod-item__label userdashboard-mod-item__status userdashboard-mod-item__status--' + notification.moderator_status.toLowerCase()}>
+            {notification.moderator_status_display}
+          </span>}
+
         {numReports > 0 &&
           <div>
             <p>
@@ -352,6 +357,12 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
           </div>}
 
         <p>{itemText}</p>
+
+        {isIdea && notification.moderator_feedback_text &&
+          <div className="userdashboard-mod-item__feedback">
+            <span className="userdashboard-mod-item__feedback-title">{translated.officialFeedback}</span>
+            <p className="mb-0">{notification.moderator_feedback_text}</p>
+          </div>}
 
         {isIdea
           ? (

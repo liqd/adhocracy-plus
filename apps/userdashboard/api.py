@@ -134,7 +134,7 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         params = self.request.query_params
         content_type = params.get("content_type", "all")
         is_reviewed = params.get("is_reviewed", "false")
-        ordering = params.get("ordering", "-num_reports")
+        ordering = params.get("ordering", "-created")
 
         row_sets = []
         if content_type in ("all", "comments", "reported"):
@@ -143,16 +143,14 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
                 comments = comments.filter(num_reports__gt=0)
             row_sets.append(self._comment_rows(comments))
         if content_type in ("all", "ideas"):
-            row_sets.append(
-                self._idea_rows(
-                    Idea.objects.filter(module__project=self.project), "idea"
-                )
-            )
-            row_sets.append(
-                self._idea_rows(
-                    MapIdea.objects.filter(module__project=self.project), "mapidea"
-                )
-            )
+            ideas = Idea.objects.filter(module__project=self.project)
+            map_ideas = MapIdea.objects.filter(module__project=self.project)
+            if is_reviewed.lower() != "all":
+                reviewed = is_reviewed.lower() == "true"
+                ideas = ideas.filter(is_reviewed=reviewed)
+                map_ideas = map_ideas.filter(is_reviewed=reviewed)
+            row_sets.append(self._idea_rows(ideas, "idea"))
+            row_sets.append(self._idea_rows(map_ideas, "mapidea"))
         if not row_sets:
             return Comment.objects.none()
         return self._order_rows(row_sets[0].union(*row_sets[1:], all=True), ordering)
@@ -235,3 +233,55 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             GET="a4_candy_userdashboard.view_moderation_comment",
             OPTIONS="a4_candy_userdashboard.view_moderation_comment",
         )
+
+
+class ModerationIdeaViewSet(
+    mixins.RetrieveModelMixin,
+    viewsets.GenericViewSet,
+):
+    """Handles the read state of ideas in the moderation dashboard."""
+
+    model = Idea
+    serializer_class = serializers.ModerationIdeaSerializer
+    pagination_class = None
+    permission_classes = (ModerationItemPermission,)
+    lookup_field = "pk"
+
+    def dispatch(self, request, *args, **kwargs):
+        self.project_pk = kwargs.get("project_pk", "")
+        return super().dispatch(request, *args, **kwargs)
+
+    @property
+    def project(self):
+        return get_object_or_404(Project, pk=self.project_pk)
+
+    def get_permission_object(self):
+        return self.project
+
+    def get_queryset(self):
+        return self.model.objects.filter(module__project=self.project)
+
+    @action(detail=True)
+    def mark_read(self, request, **kwargs):
+        idea = self.get_object()
+        idea.is_reviewed = True
+        idea.save(ignore_modified=True)
+        return Response(data={"is_unread": False}, status=200)
+
+    @action(detail=True)
+    def mark_unread(self, request, **kwargs):
+        idea = self.get_object()
+        idea.is_reviewed = False
+        idea.save(ignore_modified=True)
+        return Response(data={"is_unread": True}, status=200)
+
+    @property
+    def rules_method_map(self):
+        return ViewSetRulesPermission.default_rules_method_map._replace(
+            GET="a4_candy_userdashboard.view_moderation_comment",
+            OPTIONS="a4_candy_userdashboard.view_moderation_comment",
+        )
+
+
+class ModerationMapIdeaViewSet(ModerationIdeaViewSet):
+    model = MapIdea

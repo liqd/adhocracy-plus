@@ -92,6 +92,10 @@ class Idea(AbstractIdea):
     custom_field_answers = GenericRelation(
         "a4_candy_customfields.CustomFieldAnswer", related_query_name="idea"
     )
+    is_reviewed = models.BooleanField(
+        default=False,
+        verbose_name=_("Reviewed"),
+    )
 
     def get_absolute_url(self):
         return reverse(
