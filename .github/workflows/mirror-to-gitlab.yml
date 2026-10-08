@@ -16,7 +16,15 @@ jobs:
 
       - name: Push to GitLab
         env:
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_SSH_KEY: ${{ secrets.GITLAB_SSH_KEY }}
         run: |
-          git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@gitlab.opencode.de/oc000164626241/adhocracy.plus.git"
+          mkdir -p ~/.ssh
+          printf '%s\n' "$GITLAB_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H gitlab.opencode.de >> ~/.ssh/known_hosts
+          export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes"
+          echo "--- SSH auth test ---"
+          ssh -T git@gitlab.opencode.de || true
+          echo "--- push ---"
+          git remote add gitlab "git@gitlab.opencode.de:oc000164626241/adhocracy.plus.git"
           git push --force gitlab main
