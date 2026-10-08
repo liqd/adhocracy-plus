@@ -66,11 +66,25 @@ describe('QuestionListItem', () => {
     expect(onEdit).toHaveBeenCalledTimes(1)
   })
 
-  it('calls onDelete when the delete button is clicked', () => {
+  it('asks for confirmation before deleting', () => {
     const onDelete = jest.fn()
     render(<QuestionListItem question={question} {...defaults} onDelete={onDelete} />)
+
     fireEvent.click(screen.getByLabelText('Delete question'))
+    expect(onDelete).not.toHaveBeenCalled()
+
+    fireEvent.click(screen.getByLabelText('Confirm delete'))
     expect(onDelete).toHaveBeenCalledTimes(1)
+  })
+
+  it('can cancel the delete confirmation', () => {
+    const onDelete = jest.fn()
+    render(<QuestionListItem question={question} {...defaults} onDelete={onDelete} />)
+
+    fireEvent.click(screen.getByLabelText('Delete question'))
+    fireEvent.click(screen.getByLabelText('Cancel delete'))
+    expect(onDelete).not.toHaveBeenCalled()
+    expect(screen.getByLabelText('Delete question')).toBeInTheDocument()
   })
 
   it('the whole row can be used to start dragging', () => {

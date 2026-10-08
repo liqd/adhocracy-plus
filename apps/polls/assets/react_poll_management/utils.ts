@@ -16,11 +16,11 @@ export const createEmptyChoice = (isOther = false): ManagementChoice => ({
   is_other_choice: isOther
 })
 
-export const createEmptyQuestion = (isOpen: boolean): ManagementQuestion => ({
+export const createEmptyQuestion = (isOpen: boolean, multipleChoice = false): ManagementQuestion => ({
   key: getNextLocalKey(),
   label: '',
   help_text: '',
-  multiple_choice: false,
+  multiple_choice: multipleChoice,
   is_open: isOpen,
   is_confidential: false,
   choices: isOpen ? [] : [createEmptyChoice(), createEmptyChoice()],

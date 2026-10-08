@@ -1,5 +1,5 @@
 // apps/polls/assets/react_poll_management/components/PollManagement.tsx
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import django from 'django'
 
 import api from 'adhocracy4/adhocracy4/static/api'
@@ -18,6 +18,7 @@ import {
 } from '../utils'
 import type {
   AlertValue,
+  ChoiceErrors,
   ManagementQuestion,
   PollManagementProps,
   QuestionErrors
@@ -34,14 +35,49 @@ const TRANSLATED = {
   save: django.gettext('Save'),
   updated: django.gettext('The poll has been updated.'),
   updateFailed: django.gettext('The poll could not be updated. Please check the data you entered again.'),
+  unsavedChanges: django.gettext('If you leave this page changes you made will not be saved.'),
   loadFailed: django.gettext('The poll could not be loaded. Please try again.')
 }
 
-const hasQuestionErrors = (errors: QuestionErrors | undefined): boolean =>
-  Boolean(errors && Object.keys(errors).some((field) => {
-    const value = (errors as Record<string, unknown>)[field]
+const hasQuestionErrors = (errors: QuestionErrors | undefined): boolean => {
+  if (!errors) return false
+  return Object.entries(errors).some(([field, value]) => {
+    if (field === 'choices') {
+      return Array.isArray(value) && value.some((choice) => (
+        choice && Object.values(choice).some((entry) => (
+          Array.isArray(entry) ? entry.length > 0 : Boolean(entry)
+        ))
+      ))
+    }
     return Array.isArray(value) ? value.length > 0 : Boolean(value)
-  }))
+  })
+}
+
+const collectErrorMessages = (questionErrors: QuestionErrors[]): string[] => {
+  const messages: string[] = []
+  questionErrors.forEach((questionError) => {
+    if (!questionError) return
+    Object.values(questionError).forEach((value) => {
+      if (!value) return
+      if (Array.isArray(value)) {
+        value.forEach((entry) => {
+          if (typeof entry === 'string' && entry) {
+            messages.push(entry)
+          } else if (entry && typeof entry === 'object') {
+            Object.values(entry).forEach((nested) => {
+              if (Array.isArray(nested) && nested[0]) {
+                messages.push(String(nested[0]))
+              }
+            })
+          }
+        })
+      } else if (typeof value === 'string') {
+        messages.push(value)
+      }
+    })
+  })
+  return messages.filter((message, index) => messages.indexOf(message) === index)
+}
 
 export const PollManagement = (props: PollManagementProps) => {
   const [questions, setQuestions] = useState<ManagementQuestion[]>([])
@@ -52,6 +88,9 @@ export const PollManagement = (props: PollManagementProps) => {
   const [expandedKey, setExpandedKey] = useState<string | null>(null)
   const [dragIndex, setDragIndex] = useState<number | null>(null)
   const [overIndex, setOverIndex] = useState<number | null>(null)
+  const [dirty, setDirty] = useState(false)
+  const focusErrorRef = useRef(false)
+  const scrollToEditorRef = useRef(false)
 
   useEffect(() => {
     api.poll.get(props.pollId).done((result: any) => {
@@ -68,10 +107,59 @@ export const PollManagement = (props: PollManagementProps) => {
 
   const expandedIndex = questions.findIndex((question) => question.key === expandedKey)
 
+  // Native unsaved-changes warning. The global unload_warning.js only arms on
+  // native "change" events, so button-only edits (answer type, add/delete,
+  // reorder) would not be covered. Track a dirty flag for every edit.
+  useEffect(() => {
+    if (!dirty) return undefined
+    const handler = (event: BeforeUnloadEvent) => {
+      event.preventDefault()
+      event.returnValue = TRANSLATED.unsavedChanges
+      return TRANSLATED.unsavedChanges
+    }
+    window.addEventListener('beforeunload', handler)
+    return () => window.removeEventListener('beforeunload', handler)
+  }, [dirty])
+
+  // Move focus (and the viewport) to the first invalid field after a failed save.
+  useEffect(() => {
+    if (!focusErrorRef.current || !expandedKey) return
+    const field = document.querySelector<HTMLElement>('.poll-management__editor [aria-invalid="true"]')
+    if (field) {
+      field.focus()
+      field.scrollIntoView?.({ block: 'center' })
+    }
+    focusErrorRef.current = false
+  }, [errors, expandedKey, questions])
+
+  // Keep the edited question in view after a successful save.
+  useEffect(() => {
+    if (!scrollToEditorRef.current || !expandedKey) return
+    const editor = document.querySelector<HTMLElement>('.poll-management__editor')
+    editor?.scrollIntoView?.({ block: 'start', behavior: 'smooth' })
+    scrollToEditorRef.current = false
+  }, [expandedKey, questions])
+
+  const markDirty = () => setDirty(true)
+
   const updateQuestion = (index: number, updates: Partial<ManagementQuestion>) => {
     setQuestions((prev) => prev.map((question, i) => (
       i === index ? { ...question, ...updates } : question
     )))
+    markDirty()
+    // Only clear the errors of the fields that were actually edited, so the
+    // remaining invalid fields stay marked until they are fixed as well.
+    setErrors((prev) => {
+      const questionError = prev[index]
+      if (!questionError) return prev
+      const fields = Object.keys(updates)
+      if (!fields.some((field) => field in questionError)) return prev
+      const next = [...prev]
+      const cleared = { ...questionError }
+      fields.forEach((field) => { delete cleared[field] })
+      next[index] = cleared
+      return next
+    })
   }
 
   const updateChoice = (questionIndex: number, choiceIndex: number, updates: Partial<ManagementQuestion['choices'][number]>) => {
@@ -84,11 +172,27 @@ export const PollManagement = (props: PollManagementProps) => {
         ))
       }
     }))
+    markDirty()
+    setErrors((prev) => {
+      const questionError = prev[questionIndex]
+      const choiceErrors = questionError?.choices
+      if (!questionError || !Array.isArray(choiceErrors)) return prev
+      const current = choiceErrors[choiceIndex]
+      if (!current) return prev
+      const fields = Object.keys(updates)
+      if (!fields.some((field) => field in current)) return prev
+      const next = [...prev]
+      const nextChoices = [...choiceErrors]
+      const cleared: Record<string, unknown> = { ...current }
+      fields.forEach((field) => { delete cleared[field] })
+      nextChoices[choiceIndex] = cleared as ChoiceErrors
+      next[questionIndex] = { ...questionError, choices: nextChoices }
+      return next
+    })
   }
 
   const clearAlert = () => {
     setAlert(null)
-    setErrors([])
   }
 
   const handleEdit = (key: string) => {
@@ -108,13 +212,15 @@ export const PollManagement = (props: PollManagementProps) => {
     const newIndex = expandedIndex + direction
     if (expandedIndex < 0 || newIndex < 0 || newIndex >= questions.length) return
     setQuestions((prev) => moveItem(prev, expandedIndex, newIndex))
+    markDirty()
     setErrors([])
   }
 
-  const handleQuestionAppend = (isOpen: boolean) => {
-    const question = createEmptyQuestion(isOpen)
+  const handleQuestionAppend = (isOpen: boolean, multipleChoice = false) => {
+    const question = createEmptyQuestion(isOpen, multipleChoice)
     setQuestions((prev) => [...prev, question])
     setExpandedKey(question.key)
+    markDirty()
     setErrors([])
   }
 
@@ -123,6 +229,7 @@ export const PollManagement = (props: PollManagementProps) => {
       setExpandedKey(null)
     }
     setQuestions((prev) => prev.filter((_, i) => i !== index))
+    markDirty()
     setErrors([])
   }
 
@@ -142,7 +249,25 @@ export const PollManagement = (props: PollManagementProps) => {
           : [createEmptyChoice(), createEmptyChoice()]
       }
     }))
-    setErrors([])
+    markDirty()
+  }
+
+  // Single choice questions only keep one answer option, so switching to
+  // single choice trims the extra regular choices (the "other" choice stays).
+  const handleAnswerTypeChange = (multipleChoice: boolean) => {
+    setQuestions((prev) => prev.map((question, i) => {
+      if (i !== expandedIndex) return question
+      if (multipleChoice || question.is_open) {
+        return { ...question, multiple_choice: multipleChoice }
+      }
+      const otherChoice = question.choices.find((choice) => choice.is_other_choice)
+      const firstRegular = question.choices.find((choice) => !choice.is_other_choice)
+      const choices = firstRegular
+        ? [firstRegular, ...(otherChoice ? [otherChoice] : [])]
+        : question.choices
+      return { ...question, multiple_choice: false, choices }
+    }))
+    markDirty()
   }
 
   const handleDragStart = (index: number) => setDragIndex(index)
@@ -156,6 +281,7 @@ export const PollManagement = (props: PollManagementProps) => {
   const handleDrop = () => {
     if (dragIndex !== null && overIndex !== null) {
       setQuestions((prev) => moveItem(prev, dragIndex, overIndex))
+      markDirty()
       setErrors([])
     }
     handleDragEnd()
@@ -178,6 +304,7 @@ export const PollManagement = (props: PollManagementProps) => {
         choices: question.choices.filter((_, j) => j !== choiceIndex)
       }
     }))
+    markDirty()
   }
 
   const handleChoiceAppend = () => {
@@ -189,6 +316,7 @@ export const PollManagement = (props: PollManagementProps) => {
       choices.splice(position, 0, createEmptyChoice())
       return { ...question, choices }
     }))
+    markDirty()
   }
 
   const handleOtherChoiceToggle = () => {
@@ -203,6 +331,7 @@ export const PollManagement = (props: PollManagementProps) => {
       }
       return { ...question, choices: [...question.choices, createEmptyChoice(true)] }
     }))
+    markDirty()
   }
 
   const handleImageChange = (base64: string) => {
@@ -225,15 +354,26 @@ export const PollManagement = (props: PollManagementProps) => {
       allow_unregistered_users: allowUnregisteredUsers,
       hide_results_until_finished: hideResultsUntilFinished
     }
+    const submitExpandedIndex = expandedIndex
 
     api.poll.change(payload, props.pollId)
       .done((response: any) => {
-        setQuestions(response.questions.map((question: any) => ({
+        const normalized: ManagementQuestion[] = response.questions.map((question: any) => ({
           ...normalizeQuestion(question),
           image_base64: null
-        })))
+        }))
+        setQuestions(normalized)
         setErrors([])
-        setExpandedKey(null)
+        // Keep the question that was being edited open and bring it back into
+        // view instead of collapsing everything and jumping to the top.
+        const savedQuestion = submitExpandedIndex >= 0 ? normalized[submitExpandedIndex] : undefined
+        if (savedQuestion) {
+          setExpandedKey(savedQuestion.key)
+          scrollToEditorRef.current = true
+        } else {
+          setExpandedKey(null)
+        }
+        setDirty(false)
         setAlert({ type: 'success', message: TRANSLATED.updated })
         if (props.reloadOnSuccess) updateDashboard()
       })
@@ -251,18 +391,23 @@ export const PollManagement = (props: PollManagementProps) => {
         const firstErrorIndex = questionErrors.findIndex(hasQuestionErrors)
         if (firstErrorIndex !== -1 && questions[firstErrorIndex]) {
           setExpandedKey(questions[firstErrorIndex].key)
+          focusErrorRef.current = true
         }
-        setAlert({ type: 'danger', message: TRANSLATED.updateFailed })
+        const messages = collectErrorMessages(questionErrors)
+        setAlert({
+          type: 'danger',
+          message: messages.length ? messages.join(' ') : TRANSLATED.updateFailed
+        })
       })
   }
 
   return (
-    <form className="poll-management" onSubmit={handleSubmit} onChange={clearAlert}>
+    <form className="poll-management" onSubmit={handleSubmit}>
       <section className="poll-management__questions">
         <div className="poll-management__questions-header">
           <h2 className="poll-management__section-title">{TRANSLATED.questionsTitle}</h2>
           <AddQuestionDropdown
-            onAddMultipleChoice={() => handleQuestionAppend(false)}
+            onAddMultipleChoice={() => handleQuestionAppend(false, true)}
             onAddOpen={() => handleQuestionAppend(true)}
           />
         </div>
@@ -294,7 +439,7 @@ export const PollManagement = (props: PollManagementProps) => {
                   onLabelChange={(label) => updateQuestion(index, { label })}
                   onHelpTextChange={(helpText) => updateQuestion(index, { help_text: helpText })}
                   onConfidentialChange={(value) => updateQuestion(index, { is_confidential: value })}
-                  onMultipleChoiceChange={(value) => updateQuestion(index, { multiple_choice: value })}
+                  onMultipleChoiceChange={handleAnswerTypeChange}
                   onOpenChange={handleOpenChange}
                   onImageChange={handleImageChange}
                   onAltTextChange={handleAltTextChange}
@@ -313,7 +458,7 @@ export const PollManagement = (props: PollManagementProps) => {
 
         <div className="poll-management__footer">
           <AddQuestionDropdown
-            onAddMultipleChoice={() => handleQuestionAppend(false)}
+            onAddMultipleChoice={() => handleQuestionAppend(false, true)}
             onAddOpen={() => handleQuestionAppend(true)}
           />
           <button type="submit" className="btn btn--primary">
