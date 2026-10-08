@@ -75,10 +75,19 @@
     }
 
     &__drag-handle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
         padding: 4px;
         color: $gray;
         cursor: grab;
         touch-action: none;
+    }
+
+    &__required {
+        margin-left: 0.15em;
     }
 
     &__summary {
@@ -127,6 +136,24 @@
         padding: 4px;
         color: $gray;
         cursor: pointer;
+    }
+
+    &__delete-confirm {
+        display: flex;
+        align-items: center;
+        gap: 0.25 * $spacer;
+    }
+
+    &__delete-prompt {
+        font-size: 0.85em;
+        color: $text-color-gray;
+        white-space: nowrap;
+    }
+
+    &__delete-yes,
+    &__delete-no {
+        @extend .btn--light;
+        padding: 4px 8px;
     }
 
     &__editor {
@@ -248,6 +275,10 @@
         &__editor-header {
             flex-wrap: wrap;
             gap: 0.5 * $spacer;
+        }
+
+        &__delete-prompt {
+            display: none;
         }
 
         &__answer-type-group {

@@ -6,7 +6,7 @@ import ImageEditor from '@uppy/image-editor'
 import deDE from '@uppy/locales/lib/de_DE.js'
 import enUS from '@uppy/locales/lib/en_US.js'
 
-import FormFieldError from 'adhocracy4/adhocracy4/static/FormFieldError'
+import FieldError from './FieldError'
 
 const UPPY_LOCALES: Record<string, typeof deDE> = {
   de: deDE,
@@ -188,28 +188,26 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
         </div>
       </div>
 
-      <FormFieldError id={`image-error-${id}`} error={errors} field="image_base64" />
+      <FieldError id={`image-error-${id}`} error={errors} field="image_base64" />
 
-      <div className={`form-group ${altTextError ? 'has-error' : ''}`}>
-        <label
-          htmlFor={`id_questions-${id}-image_alt_text`}
-          className={question.image_url ? '' : 'text-muted'}
-        >
-          {django.gettext('Alt text')}
-        </label>
-        <input
-          type="text"
-          id={`id_questions-${id}-image_alt_text`}
-          className={`form-control ${altTextError ? 'is-invalid' : ''}`}
-          value={altText || ''}
-          onChange={(e) => onAltTextChange(e.target.value)}
-          maxLength={80}
-          disabled={!question.image_url}
-          aria-invalid={!!altTextError}
-          aria-describedby={altTextError ? `alt-text-error-${id}` : undefined}
-        />
-        <FormFieldError id={`alt-text-error-${id}`} error={errors} field="image_alt_text" />
-      </div>
+      {question.image_url && (
+        <div className={`form-group ${altTextError ? 'has-error' : ''}`}>
+          <label htmlFor={`id_questions-${id}-image_alt_text`}>
+            {django.gettext('Alt text')}
+          </label>
+          <input
+            type="text"
+            id={`id_questions-${id}-image_alt_text`}
+            className={`form-control ${altTextError ? 'is-invalid' : ''}`}
+            value={altText || ''}
+            onChange={(e) => onAltTextChange(e.target.value)}
+            maxLength={80}
+            aria-invalid={!!altTextError}
+            aria-describedby={altTextError ? `alt-text-error-${id}` : undefined}
+          />
+          <FieldError id={`alt-text-error-${id}`} error={errors} field="image_alt_text" />
+        </div>
+      )}
     </div>
   )
 }

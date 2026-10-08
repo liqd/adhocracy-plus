@@ -93,3 +93,44 @@ def test_initiator_expands_and_collapses_questions(
     page.locator(".poll-management__summary").first.click()
     expect(editor).to_have_count(0)
     expect(items.nth(0)).to_contain_text("Edited question")
+
+
+@pytest.mark.e2e
+def test_initiator_adds_a_multiple_choice_question(
+    page, e2e_login, poll_dashboard_data
+):
+    module = poll_dashboard_data["module"]
+    initiator = module.project.organisation.initiators.first()
+
+    e2e_login(initiator)
+    page.goto(_poll_dashboard_url(module))
+
+    items = page.locator(".poll-management__item")
+    expect(items).to_have_count(2)
+
+    page.get_by_role("button", name="New question").first.click()
+    page.get_by_role("button", name="Multiple choice question").click()
+
+    expect(items).to_have_count(3)
+    expect(items.nth(2)).to_contain_text("Multiple choice")
+
+
+@pytest.mark.e2e
+def test_initiator_deletes_a_question_with_confirmation(
+    page, e2e_login, poll_dashboard_data
+):
+    module = poll_dashboard_data["module"]
+    initiator = module.project.organisation.initiators.first()
+
+    e2e_login(initiator)
+    page.goto(_poll_dashboard_url(module))
+
+    items = page.locator(".poll-management__item")
+    expect(items).to_have_count(2)
+
+    items.nth(0).get_by_role("button", name="Delete question").click()
+    # the first click only asks for confirmation
+    expect(items).to_have_count(2)
+    page.get_by_role("button", name="Confirm delete").click()
+    expect(items).to_have_count(1)
+    expect(items.nth(0)).to_contain_text("Question two")

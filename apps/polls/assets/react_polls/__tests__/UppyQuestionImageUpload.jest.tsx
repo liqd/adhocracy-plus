@@ -28,17 +28,17 @@ describe('UppyQuestionImageUpload', () => {
     onAltTextChange: jest.fn()
   }
 
-  it('greys out the alt text field when no image is uploaded', () => {
+  it('hides the alt text field when no image is uploaded', () => {
     render(
       <UppyQuestionImageUpload
         {...defaults}
         question={{ image_url: null }}
       />
     )
-    expect(screen.getByLabelText('Alt text')).toBeDisabled()
+    expect(screen.queryByLabelText('Alt text')).not.toBeInTheDocument()
   })
 
-  it('enables the alt text field when an image is uploaded', () => {
+  it('shows the alt text field when an image is uploaded', () => {
     render(
       <UppyQuestionImageUpload
         {...defaults}

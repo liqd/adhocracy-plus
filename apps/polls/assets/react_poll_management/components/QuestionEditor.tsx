@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import django from 'django'
 
-import FormFieldError from 'adhocracy4/adhocracy4/static/FormFieldError'
+import FieldError from '../../react_polls/components/FieldError'
 import UppyQuestionImageUpload from '../../react_polls/components/UppyQuestionImageUpload'
 
 import type { ChoiceErrors, ManagementQuestion, QuestionErrors } from '../types'
@@ -13,6 +13,7 @@ const TRANSLATED = {
   moveUp: django.gettext('Move question up'),
   moveDown: django.gettext('Move question down'),
   questionLabel: django.gettext('Question'),
+  required: django.gettext('This field is required'),
   answerType: django.gettext('Answer type'),
   openText: django.gettext('Open Text'),
   singleChoice: django.gettext('Single choice'),
@@ -60,6 +61,11 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
   const [hasHelptext, setHasHelptext] = useState(Boolean(question.help_text))
   const hasOtherOption = question.choices.some((choice) => choice.is_other_choice)
   const regularChoices = question.choices.filter((choice) => !choice.is_other_choice)
+  // Single choice questions only offer one answer option; the "other" (open
+  // answer) choice is kept in addition when present.
+  const visibleChoices = question.multiple_choice
+    ? question.choices
+    : question.choices.filter((choice) => choice.is_other_choice || choice === regularChoices[0])
 
   return (
     <section className="poll-management__editor">
@@ -94,6 +100,13 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
       <div className="form-group">
         <label htmlFor={`id_questions-${question.key}-name`}>
           {TRANSLATED.questionLabel}
+          <span
+            role="presentation"
+            title={TRANSLATED.required}
+            className="poll-management__required"
+          >
+            *
+          </span>
           {question.id && (
             <span className="editpoll__help-text"> Id: Q{question.id}</span>
           )}
@@ -104,9 +117,10 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
             onChange={(e) => props.onLabelChange(e.target.value)}
             aria-invalid={errors.label ? 'true' : 'false'}
             aria-describedby={errors.label ? `id_error-${question.key}` : undefined}
+            required
           />
         </label>
-        <FormFieldError id={`id_error-${question.key}`} error={errors} field="label" />
+        <FieldError id={`id_error-${question.key}`} error={errors} field="label" />
       </div>
 
       {questionImagesEnabled && (
@@ -177,8 +191,9 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
       {!question.is_open && (
         <div className="poll-management__answers">
           <h4 className="poll-management__answers-title">{TRANSLATED.answer}</h4>
-          {question.choices.map((choice, choiceIndex) => {
-            const choiceErrors: ChoiceErrors = errors.choices?.[choiceIndex] || {}
+          {visibleChoices.map((choice) => {
+            const actualIndex = question.choices.indexOf(choice)
+            const choiceErrors: ChoiceErrors = errors.choices?.[actualIndex] || {}
             if (choice.is_other_choice) {
               return (
                 <div key={choice.key} className="poll-management__choice form-group">
@@ -225,14 +240,14 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
                     type="text"
                     className="input-group__input"
                     value={choice.label}
-                    onChange={(e) => props.onChoiceLabelChange(choiceIndex, e.target.value)}
+                    onChange={(e) => props.onChoiceLabelChange(actualIndex, e.target.value)}
                     aria-invalid={choiceErrors.label ? 'true' : 'false'}
                   />
                   <span className="input-group__after">
                     <button
                       type="button"
                       className="btn poll-management__choice-delete"
-                      onClick={() => props.onChoiceDelete(choiceIndex)}
+                      onClick={() => props.onChoiceDelete(actualIndex)}
                       disabled={question.choices.length < 3}
                       title={TRANSLATED.remove}
                     >
@@ -240,7 +255,7 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
                     </button>
                   </span>
                 </div>
-                <FormFieldError
+                <FieldError
                   id={`id_error-choice-${choice.key}`}
                   error={choiceErrors}
                   field="label"
@@ -250,15 +265,17 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
           })}
 
           <div className="poll-management__buttons">
-            <button
-              type="button"
-              className="btn poll-management__btn"
-              onClick={props.onChoiceAppend}
-            >
-              <i className="fa fa-plus" aria-hidden="true" />
-              {' '}
-              {TRANSLATED.addAnswer}
-            </button>
+            {question.multiple_choice && (
+              <button
+                type="button"
+                className="btn poll-management__btn"
+                onClick={props.onChoiceAppend}
+              >
+                <i className="fa fa-plus" aria-hidden="true" />
+                {' '}
+                {TRANSLATED.addAnswer}
+              </button>
+            )}
             <button
               type="button"
               className={`btn poll-management__btn ${hasOtherOption ? 'poll-management__btn--active' : ''}`}
@@ -311,7 +328,7 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
               aria-describedby={errors.help_text ? `id_error-help-${question.key}` : undefined}
             />
           </label>
-          <FormFieldError
+          <FieldError
             id={`id_error-help-${question.key}`}
             error={errors}
             field="help_text"

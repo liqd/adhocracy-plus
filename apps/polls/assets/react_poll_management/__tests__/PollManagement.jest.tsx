@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 let mockPollData: any = null
@@ -37,8 +37,11 @@ jest.mock('adhocracy4', () => {
     __esModule: true,
     default: mockApi,
     alert: function MockAlert (props: any) {
-      // a react component may return a plain string
-      return props.message || null
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const ReactLib = require('react')
+      return props.message
+        ? ReactLib.createElement('div', { id: 'alert' }, props.message)
+        : null
     },
     updateDashboard: jest.fn()
   }
@@ -162,10 +165,14 @@ describe('PollManagement', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Open Text' }))
     expect(screen.queryByText('Answer option')).not.toBeInTheDocument()
 
-    // switch back to single choice: two empty choices are seeded
+    // switch back to single choice: only one answer is seeded, append hidden
     fireEvent.click(screen.getByRole('button', { name: 'Single choice' }))
+    expect(screen.queryByText('Answer option')).not.toBeInTheDocument()
+    expect(screen.getAllByText(/^Answer #/)).toHaveLength(1)
+
+    // switching to multiple choice shows the append button again
+    fireEvent.click(screen.getByRole('button', { name: 'Multiple choice' }))
     expect(screen.getByText('Answer option')).toBeInTheDocument()
-    expect(screen.getAllByText(/^Answer #/)).toHaveLength(2)
   })
 
   it('adds a new open question and expands it', async () => {
@@ -179,10 +186,24 @@ describe('PollManagement', () => {
     expect(container.querySelectorAll('.poll-management__list-item')).toHaveLength(3)
   })
 
-  it('deletes a question', async () => {
+  it('adds a new multiple choice question and marks it as multiple choice', async () => {
+    const { container } = renderManagement()
+    await screen.findByText('First question')
+    fireEvent.click(screen.getAllByText('New question')[0])
+    fireEvent.click(screen.getAllByText('Multiple choice question')[0])
+
+    const types = Array.from(container.querySelectorAll('.poll-management__type')).map((el) => el.textContent)
+    expect(types[types.length - 1]).toBe('Multiple choice')
+    expect(container.querySelectorAll('.poll-management__list-item')).toHaveLength(3)
+  })
+
+  it('deletes a question after confirming', async () => {
     renderManagement()
     await screen.findByText('First question')
     fireEvent.click(screen.getAllByLabelText('Delete question')[0])
+    // first click only asks for confirmation
+    expect(screen.getByText('First question')).toBeInTheDocument()
+    fireEvent.click(screen.getByLabelText('Confirm delete'))
 
     expect(screen.queryByText('First question')).not.toBeInTheDocument()
     expect(screen.getByText('1')).toBeInTheDocument()
@@ -224,8 +245,30 @@ describe('PollManagement', () => {
     await screen.findByText('First question')
     fireEvent.click(screen.getByRole('button', { name: 'Save' }))
 
-    expect(await screen.findByText('The poll could not be updated. Please check the data you entered again.')).toBeInTheDocument()
+    await waitFor(() => {
+      expect(document.querySelector('#alert')).toHaveTextContent('Please provide a question.')
+    })
     expect(screen.getByLabelText('Move question up')).toBeInTheDocument()
+  })
+
+  it('clears only the edited field error, keeping the others visible', async () => {
+    mockChangeFails = true
+    mockChangeResponse = {
+      questions: [{ label: ['Please provide a question.'], help_text: ['Please explain.'] }, {}]
+    }
+    renderManagement()
+    await screen.findByText('First question')
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }))
+    await screen.findByText('Please provide a question.')
+
+    // reveal and edit the explanation field only
+    fireEvent.click(screen.getByText('Explanation'))
+    fireEvent.change(screen.getByRole('textbox', { name: 'Explanation' }), {
+      target: { value: 'Because' }
+    })
+
+    expect(screen.queryByText('Please explain.')).not.toBeInTheDocument()
+    expect(screen.getByText('Please provide a question.')).toBeInTheDocument()
   })
 
   it('toggles the unregistered users option', async () => {

@@ -1,5 +1,5 @@
 // apps/polls/assets/react_poll_management/components/QuestionListItem.tsx
-import React from 'react'
+import React, { useState } from 'react'
 import django from 'django'
 
 import type { ManagementQuestion } from '../types'
@@ -10,6 +10,9 @@ const TRANSLATED = {
   singleChoice: django.gettext('Single choice'),
   open: django.gettext('Open'),
   delete: django.gettext('Delete question'),
+  confirmDelete: django.gettext('Confirm delete'),
+  cancelDelete: django.gettext('Cancel delete'),
+  deletePrompt: django.gettext('Delete this question?'),
   expand: django.gettext('Expand question'),
   collapse: django.gettext('Collapse question')
 }
@@ -50,6 +53,8 @@ export const QuestionListItem = ({
   onDragEnd,
   onDrop
 }: QuestionListItemProps) => {
+  const [confirmingDelete, setConfirmingDelete] = useState(false)
+
   const classNames = [
     'poll-management__item',
     isExpanded ? 'poll-management__item--active' : '',
@@ -124,15 +129,44 @@ export const QuestionListItem = ({
         <i className={`fa ${isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'}`} aria-hidden="true" />
       </button>
 
-      <button
-        type="button"
-        className="poll-management__delete"
-        aria-label={TRANSLATED.delete}
-        title={TRANSLATED.delete}
-        onClick={onDelete}
-      >
-        <i className="fas fa-trash-alt" aria-hidden="true" />
-      </button>
+      {confirmingDelete
+        ? (
+          <div className="poll-management__delete-confirm" role="group" aria-label={TRANSLATED.deletePrompt}>
+            <span className="poll-management__delete-prompt">{TRANSLATED.deletePrompt}</span>
+            <button
+              type="button"
+              className="btn poll-management__delete-yes"
+              aria-label={TRANSLATED.confirmDelete}
+              title={TRANSLATED.confirmDelete}
+              onClick={() => {
+                setConfirmingDelete(false)
+                onDelete()
+              }}
+            >
+              <i className="fas fa-trash-alt" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              className="btn poll-management__delete-no"
+              aria-label={TRANSLATED.cancelDelete}
+              title={TRANSLATED.cancelDelete}
+              onClick={() => setConfirmingDelete(false)}
+            >
+              <i className="fas fa-times" aria-hidden="true" />
+            </button>
+          </div>
+          )
+        : (
+          <button
+            type="button"
+            className="poll-management__delete"
+            aria-label={TRANSLATED.delete}
+            title={TRANSLATED.delete}
+            onClick={() => setConfirmingDelete(true)}
+          >
+            <i className="fas fa-trash-alt" aria-hidden="true" />
+          </button>
+          )}
     </div>
   )
 }

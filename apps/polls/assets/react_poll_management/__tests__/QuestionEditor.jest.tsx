@@ -100,12 +100,12 @@ describe('QuestionEditor', () => {
     expect(onOpenChange).toHaveBeenCalledWith(true)
   })
 
-  it('adds and toggles answer options', () => {
+  it('adds and toggles answer options for multiple choice', () => {
     const onChoiceAppend = jest.fn()
     const onOtherChoiceToggle = jest.fn()
     render(
       <QuestionEditor
-        question={question}
+        question={{ ...question, multiple_choice: true }}
         {...defaults}
         onChoiceAppend={onChoiceAppend}
         onOtherChoiceToggle={onOtherChoiceToggle}
@@ -115,6 +115,28 @@ describe('QuestionEditor', () => {
     expect(onChoiceAppend).toHaveBeenCalledTimes(1)
     fireEvent.click(screen.getByText('Open answer'))
     expect(onOtherChoiceToggle).toHaveBeenCalledTimes(1)
+  })
+
+  it('shows only one answer and hides the answer option button for single choice', () => {
+    render(<QuestionEditor question={question} {...defaults} />)
+    expect(screen.getAllByText(/^Answer #/)).toHaveLength(1)
+    expect(screen.getByText('Answer #1')).toBeInTheDocument()
+    expect(screen.queryByText('Answer option')).not.toBeInTheDocument()
+  })
+
+  it('keeps the other (open) answer for single choice', () => {
+    render(
+      <QuestionEditor
+        question={{
+          ...question,
+          choices: [...question.choices, { id: 12, key: 'c_12', label: 'other', is_other_choice: true }]
+        }}
+        {...defaults}
+      />
+    )
+    expect(screen.getAllByText(/^Answer #/)).toHaveLength(1)
+    expect(screen.getByLabelText('Other')).toBeInTheDocument()
+    expect(screen.queryByText('Answer option')).not.toBeInTheDocument()
   })
 
   it('renders the other answer option as disabled input', () => {
