@@ -60,13 +60,63 @@ test('renders an idea with label and moderation feedback link', () => {
   expect(screen.getByText(/example idea description/)).toBeTruthy()
   expect(screen.getByText('Idea')).toBeTruthy()
   const link = tree.container.querySelector(
-    "a[href='/liqd-orga/ideas/2022-00005/moderate/']"
+    '#moderation-notification-actions-bar-button-reply-idea-5'
   )!
   expect(link).toBeTruthy()
+  expect(link.getAttribute('href')).toBe(
+    '/liqd-orga/ideas/2022-00005/moderate/?next=%2F'
+  )
   expect(link.textContent).toMatch(/Add feedback/i)
   expect(
     tree.container.querySelector('#moderation-notification-actions-bar-button-block-5')
   ).toBeNull()
+})
+
+test('shows report marker for a reported idea', () => {
+  const tree = render(
+    <ModerationNotification
+      notification={{ ...mockedIdea, num_reports: 1 }}
+      getUrlParams={() => ''}
+    />
+  )
+  expect(tree.container.querySelector('.fa-exclamation-circle')).toBeTruthy()
+})
+
+test('hides report marker for an unreported idea', () => {
+  const tree = render(
+    <ModerationNotification
+      notification={mockedIdea}
+      getUrlParams={() => ''}
+    />
+  )
+  expect(tree.container.querySelector('.fa-exclamation-circle')).toBeNull()
+})
+
+test('shows the notification menu for an idea', () => {
+  const tree = render(
+    <ModerationNotification
+      notification={mockedIdea}
+      getUrlParams={() => ''}
+    />
+  )
+  expect(tree.container.querySelector('.dropdown-toggle')).toBeTruthy()
+  expect(screen.getByText('Mark as unread')).toBeTruthy()
+})
+
+test('shows status badge and official feedback for an idea', () => {
+  render(
+    <ModerationNotification
+      notification={{
+        ...mockedIdea,
+        moderator_status: 'ACCEPTED',
+        moderator_status_display: 'Accepted',
+        moderator_feedback_text: 'Great idea'
+      }}
+      getUrlParams={() => ''}
+    />
+  )
+  expect(screen.getByText('Accepted')).toBeTruthy()
+  expect(screen.getByText('Great idea')).toBeTruthy()
 })
 
 test('Render <ModerationNotification>', () => {

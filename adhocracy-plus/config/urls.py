@@ -45,7 +45,9 @@ from apps.projects.api import AppModuleViewSet
 from apps.projects.api import AppProjectsViewSet
 from apps.projects.api import ModerationProjectsViewSet
 from apps.userdashboard.api import ModerationCommentViewSet
+from apps.userdashboard.api import ModerationIdeaViewSet
 from apps.userdashboard.api import ModerationItemViewSet
+from apps.userdashboard.api import ModerationMapIdeaViewSet
 from apps.userdashboard.routers import ModerationDetailDefaultRouter
 from apps.users.api import UserViewSet
 from apps.users.decorators import user_is_project_admin
@@ -85,6 +87,10 @@ moderation_router.register(
     r"comments", ModerationCommentViewSet, basename="moderationcomments"
 )
 moderation_router.register(r"items", ModerationItemViewSet, basename="moderationitems")
+moderation_router.register(r"ideas", ModerationIdeaViewSet, basename="moderationideas")
+moderation_router.register(
+    r"mapideas", ModerationMapIdeaViewSet, basename="moderationmapideas"
+)
 
 orga_router = a4routers.OrganisationDefaultRouter()
 

@@ -24,7 +24,8 @@ const translated = {
   aiClassified: django.gettext('AI'),
   postedComment: django.gettext('posted a {}comment{}'),
   submittedIdea: django.gettext('submitted the idea'),
-  addFeedback: django.gettext('Add feedback')
+  addFeedback: django.gettext('Add feedback'),
+  officialFeedback: django.gettext('Official feedback')
 }
 
 interface AlertValue {
@@ -151,9 +152,8 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
   // **** Start notification methods ****
 
   async function toggleIsUnread () {
-    const url = notification.is_unread
-      ? (props.apiUrl || '') + 'mark_read/' + (props.getUrlParams?.() || '')
-      : (props.apiUrl || '') + 'mark_unread/' + (props.getUrlParams?.() || '')
+    const action = notification.is_unread ? 'mark_read/' : 'mark_unread/'
+    const url = (props.apiUrl || '') + action + (props.getUrlParams?.() || '')
     const [response, error] =
       await api.fetch<any>({
         url,
@@ -170,6 +170,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
         timeInMs: alertTime
       })
     } else {
+      props.loadData?.()
       setAlert({
         type: 'success',
         message: alertMessage,
@@ -232,15 +233,19 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
 
   // **** End notification methods ****
 
-  function translatedReportText (reportsFound: number) {
-    const tmp = django.ngettext(
-      'This {}comment{} has been reported 1 time since it\'s creation',
-      'This {}comment{} has been reported %s times since it\'s creation',
-      reportsFound
-    )
-    return (
-      django.interpolate(tmp, [reportsFound])
-    )
+  function translatedReportText (reportsFound: number, isIdeaItem: boolean) {
+    const tmp = isIdeaItem
+      ? django.ngettext(
+        'This {}idea{} has been reported 1 time since it\'s creation',
+        'This {}idea{} has been reported %s times since it\'s creation',
+        reportsFound
+      )
+      : django.ngettext(
+        'This {}comment{} has been reported 1 time since it\'s creation',
+        'This {}comment{} has been reported %s times since it\'s creation',
+        reportsFound
+      )
+    return django.interpolate(tmp, [reportsFound])
   }
 
   const {
@@ -303,32 +308,31 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
             </p>
             <p className="mb-1">{commentChangeLog}</p>
           </div>
-          {!isIdea &&
-            <div className="col-auto ms-auto">
-              <div className="dropdown">
-                <button
-                  title="{% trans 'Notification menu' %}"
-                  type="button"
-                  className="dropdown-toggle btn btn--none"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  data-bs-toggle="dropdown"
-                >
-                  <i className="fas fa-ellipsis-v" aria-hidden="true" />
-                </button>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <li key="1">
-                    <button
-                      className="dropdown-item"
-                      type="button"
-                      onClick={() => toggleIsUnread()}
-                    >
-                      {notification.is_unread ? markReadText : markUnreadText}
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>}
+          <div className="col-auto ms-auto">
+            <div className="dropdown">
+              <button
+                title="{% trans 'Notification menu' %}"
+                type="button"
+                className="dropdown-toggle btn btn--none"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-bs-toggle="dropdown"
+              >
+                <i className="fas fa-ellipsis-v" aria-hidden="true" />
+              </button>
+              <ul className="dropdown-menu dropdown-menu-end">
+                <li key="1">
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => toggleIsUnread()}
+                  >
+                    {notification.is_unread ? markReadText : markUnreadText}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div className="col-12 d-md-none">
             <p className="mb-1">
               {getByline()}
@@ -339,15 +343,26 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
 
         <span className={labelClass}>{notification.label}</span>
 
-        {!isIdea && numReports > 0 &&
+        {isIdea && notification.moderator_status &&
+          <span className={'userdashboard-mod-item__label userdashboard-mod-item__status userdashboard-mod-item__status--' + notification.moderator_status.toLowerCase()}>
+            {notification.moderator_status_display}
+          </span>}
+
+        {numReports > 0 &&
           <div>
             <p>
               <i className="fas fa-exclamation-circle me-1" aria-hidden="true" />
-              {getLink(translatedReportText(numReports), itemUrl)}
+              {getLink(translatedReportText(numReports, isIdea), itemUrl)}
             </p>
           </div>}
 
         <p>{itemText}</p>
+
+        {isIdea && notification.moderator_feedback_text &&
+          <div className="userdashboard-mod-item__feedback">
+            <span className="userdashboard-mod-item__feedback-title">{translated.officialFeedback}</span>
+            <p className="mb-0">{notification.moderator_feedback_text}</p>
+          </div>}
 
         {isIdea
           ? (
@@ -355,7 +370,9 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
               <a
                 id={'moderation-notification-actions-bar-button-reply-idea-' + notification.pk}
                 className="btn px-0 userdashboard-mod-notification__btn"
-                href={notification.moderate_url}
+                href={notification.moderate_url
+                  ? notification.moderate_url + '?next=' + encodeURIComponent(window.location.pathname + window.location.search)
+                  : notification.moderate_url}
               >
                 <i className="fas fa-reply" aria-hidden="true" />
                 <span className="ms-2">{translated.addFeedback}</span>

@@ -219,12 +219,14 @@ class ModerationProjectSerializer(serializers.ModelSerializer):
     active_phase = serializers.SerializerMethodField()
     past_phase = serializers.SerializerMethodField()
     num_reported_unread_comments = serializers.SerializerMethodField()
+    num_unread_comments = serializers.SerializerMethodField()
     comment_count = serializers.SerializerMethodField()
     moderation_detail_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Project
         fields = [
+            "id",
             "title",
             "created",
             "organisation",
@@ -239,6 +241,7 @@ class ModerationProjectSerializer(serializers.ModelSerializer):
             "active_phase",
             "past_phase",
             "num_reported_unread_comments",
+            "num_unread_comments",
             "comment_count",
             "moderation_detail_url",
         ]
@@ -340,6 +343,9 @@ class ModerationProjectSerializer(serializers.ModelSerializer):
 
     def get_num_reported_unread_comments(self, instance):
         return helpers.get_num_reported_unread_comments(instance)
+
+    def get_num_unread_comments(self, instance):
+        return helpers.get_num_unread_comments(instance)
 
     def get_comment_count(self, instance):
         return helpers.get_num_comments_project(instance)

@@ -15,7 +15,7 @@
                 <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
                     <ul>
                         <li>
-                            <a href="{{ module.get_detail_url }}">
+                            <a href="{% if return_url %}{{ return_url }}{% else %}{{ module.get_detail_url }}{% endif %}">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
                                 {% translate 'go back' %}</a>
                         </li>
@@ -30,6 +30,7 @@
                 <h1>{% translate 'Moderate idea' %}</h1>
                 <form novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
                     {% csrf_token %}
+                    {% if return_url %}<input type="hidden" name="next" value="{{ return_url }}">{% endif %}
                     {% for form in forms.values %}
                         {{ form.media }}
                     {% endfor %}
@@ -37,9 +38,8 @@
                     {% include 'a4_candy_contrib/includes/form_field.html' with field=forms.moderateable.moderator_status %}
                     {% include 'a4_candy_contrib/includes/form_field.html' with field=forms.feedback_text.feedback_text %}
 
-
                     <div class="d-flex justify-content-end mb-3">
-                        <a href="{{ object.get_absolute_url }}" class="btn btn--secondary me-2">{% translate 'Cancel' %}</a>
+                        <a href="{% if return_url %}{{ return_url }}{% else %}{{ object.get_absolute_url }}{% endif %}" class="btn btn--secondary me-2">{% translate 'Cancel' %}</a>
                         <button type="submit" class="btn btn--primary">{% translate 'Save' %}</button>
                     </div>
                 </form>
@@ -48,4 +48,4 @@
         {% include 'footer_upper.html' with organisation=module.project.organisation %}
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

@@ -10,6 +10,7 @@ from adhocracy4.comments.models import Comment
 from apps.contrib.dates import get_date_display
 from apps.contrib.templatetags.item_tags import get_item_url
 from apps.ideas.models import Idea
+from apps.mapideas.models import MapIdea
 from apps.moderatorfeedback.serializers import ModeratorCommentFeedbackSerializer
 
 
@@ -204,6 +205,9 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
     is_moderator_marked = serializers.SerializerMethodField()
     num_reports = serializers.SerializerMethodField()
     moderator_feedback = serializers.SerializerMethodField()
+    moderator_status = serializers.SerializerMethodField()
+    moderator_status_display = serializers.SerializerMethodField()
+    moderator_feedback_text = serializers.SerializerMethodField()
     feedback_api_url = serializers.SerializerMethodField()
     user_name = serializers.SerializerMethodField()
     user_image = serializers.SerializerMethodField()
@@ -227,6 +231,9 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
             "is_moderator_marked",
             "num_reports",
             "moderator_feedback",
+            "moderator_status",
+            "moderator_status_display",
+            "moderator_feedback_text",
             "feedback_api_url",
             "user_name",
             "user_image",
@@ -252,7 +259,15 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
         return get_item_url(idea, "moderate", raises=False)
 
     def get_api_url(self, idea):
-        return ""
+        route = (
+            "moderationmapideas-detail"
+            if isinstance(idea, MapIdea)
+            else "moderationideas-detail"
+        )
+        return reverse(
+            route,
+            kwargs={"project_pk": idea.module.project_id, "pk": idea.pk},
+        )
 
     def get_last_edit(self, idea):
         if idea.modified:
@@ -263,7 +278,7 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
         return idea.modified is not None
 
     def get_is_unread(self, idea):
-        return False
+        return not idea.is_reviewed
 
     def get_is_blocked(self, idea):
         return False
@@ -272,10 +287,24 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
         return False
 
     def get_num_reports(self, idea):
-        return 0
+        return getattr(idea, "num_reports", 0)
 
     def get_moderator_feedback(self, idea):
         return None
+
+    def get_moderator_status(self, idea):
+        return idea.moderator_status
+
+    def get_moderator_status_display(self, idea):
+        if not idea.moderator_status:
+            return None
+        return idea.get_moderator_status_display()
+
+    def get_moderator_feedback_text(self, idea):
+        feedback = idea.moderator_feedback_text
+        if not feedback or not feedback.feedback_text:
+            return None
+        return strip_tags(feedback.feedback_text)
 
     def get_feedback_api_url(self, idea):
         return ""

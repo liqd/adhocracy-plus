@@ -94,6 +94,37 @@
     background-color: $moderation-label-comment-bg;
 }
 
+.userdashboard-mod-item__status {
+    margin-left: 0.5em;
+}
+
+.userdashboard-mod-item__status--consideration {
+    background-color: $feedback-color-consideration;
+    color: contrast-color($feedback-color-consideration);
+}
+
+.userdashboard-mod-item__status--rejected {
+    background-color: $feedback-color-rejected;
+    color: contrast-color($feedback-color-rejected);
+}
+
+.userdashboard-mod-item__status--accepted {
+    background-color: $feedback-color-accepted;
+    color: contrast-color($feedback-color-accepted);
+}
+
+.userdashboard-mod-item__feedback {
+    margin-bottom: $spacer;
+    padding: $spacer;
+    background-color: $bg-light;
+    border-radius: 5px;
+}
+
+.userdashboard-mod-item__feedback-title {
+    display: block;
+    font-weight: bold;
+}
+
 .userdashboard-mod-notification__btn {
     @extend .btn--none;
     border: 1px solid $gray-lightest;

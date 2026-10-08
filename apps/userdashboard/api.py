@@ -1,7 +1,6 @@
 from django.db.models import CharField
 from django.db.models import Count
 from django.db.models import ExpressionWrapper
-from django.db.models import IntegerField
 from django.db.models import Q
 from django.db.models import Value
 from django.db.models.fields import BooleanField
@@ -135,7 +134,7 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         params = self.request.query_params
         content_type = params.get("content_type", "all")
         is_reviewed = params.get("is_reviewed", "false")
-        ordering = params.get("ordering", "-num_reports")
+        ordering = params.get("ordering", "-created")
 
         row_sets = []
         if content_type in ("all", "comments", "reported"):
@@ -144,16 +143,14 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
                 comments = comments.filter(num_reports__gt=0)
             row_sets.append(self._comment_rows(comments))
         if content_type in ("all", "ideas"):
-            row_sets.append(
-                self._idea_rows(
-                    Idea.objects.filter(module__project=self.project), "idea"
-                )
-            )
-            row_sets.append(
-                self._idea_rows(
-                    MapIdea.objects.filter(module__project=self.project), "mapidea"
-                )
-            )
+            ideas = Idea.objects.filter(module__project=self.project)
+            map_ideas = MapIdea.objects.filter(module__project=self.project)
+            if is_reviewed.lower() != "all":
+                reviewed = is_reviewed.lower() == "true"
+                ideas = ideas.filter(is_reviewed=reviewed)
+                map_ideas = map_ideas.filter(is_reviewed=reviewed)
+            row_sets.append(self._idea_rows(ideas, "idea"))
+            row_sets.append(self._idea_rows(map_ideas, "mapidea"))
         if not row_sets:
             return Comment.objects.none()
         return self._order_rows(row_sets[0].union(*row_sets[1:], all=True), ordering)
@@ -179,7 +176,7 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         return (
             ideas.annotate(
                 item_type=Value(item_type, output_field=CharField()),
-                num_reports=Value(0, output_field=IntegerField()),
+                num_reports=Count("reports", distinct=True),
             )
             .values("pk", "created", "num_reports", "item_type")
             .order_by()
@@ -204,40 +201,35 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
     def _resolve_items(self, rows):
         rows = list(rows)
-        comment_ids = [row["pk"] for row in rows if row["item_type"] == "comment"]
-        idea_ids = [row["pk"] for row in rows if row["item_type"] == "idea"]
-        map_idea_ids = [row["pk"] for row in rows if row["item_type"] == "mapidea"]
-        related = ("creator", "module__project__organisation")
+        item_types = ("comment", "idea", "mapidea")
+        pks_by_type = {
+            item_type: [row["pk"] for row in rows if row["item_type"] == item_type]
+            for item_type in item_types
+        }
+        related = (
+            "creator",
+            "module__project__organisation",
+            "moderator_feedback_text",
+        )
 
-        comments = {
-            comment.pk: comment
-            for comment in Comment.objects.filter(pk__in=comment_ids)
-            .annotate(num_reports=Count("reports", distinct=True))
-            .select_related("creator")
-        }
-        ideas = {
-            idea.pk: idea
-            for idea in Idea.objects.filter(pk__in=idea_ids).select_related(*related)
-        }
-        map_ideas = {
-            map_idea.pk: map_idea
-            for map_idea in MapIdea.objects.filter(pk__in=map_idea_ids).select_related(
-                *related
-            )
-        }
+        def by_pk(model, item_type, related_fields):
+            return {
+                obj.pk: obj
+                for obj in model.objects.filter(pk__in=pks_by_type[item_type])
+                .annotate(num_reports=Count("reports", distinct=True))
+                .select_related(*related_fields)
+            }
 
-        resolved = []
-        for row in rows:
-            item_type = row["item_type"]
-            if item_type == "comment":
-                item = comments.get(row["pk"])
-            elif item_type == "idea":
-                item = ideas.get(row["pk"])
-            else:
-                item = map_ideas.get(row["pk"])
-            if item is not None:
-                resolved.append(item)
-        return resolved
+        items = {
+            "comment": by_pk(Comment, "comment", ("creator",)),
+            "idea": by_pk(Idea, "idea", related),
+            "mapidea": by_pk(MapIdea, "mapidea", related),
+        }
+        return [
+            items[row["item_type"]][row["pk"]]
+            for row in rows
+            if row["pk"] in items[row["item_type"]]
+        ]
 
     @property
     def rules_method_map(self):
@@ -245,3 +237,55 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             GET="a4_candy_userdashboard.view_moderation_comment",
             OPTIONS="a4_candy_userdashboard.view_moderation_comment",
         )
+
+
+class ModerationIdeaViewSet(
+    mixins.RetrieveModelMixin,
+    viewsets.GenericViewSet,
+):
+    """Handles the read state of ideas in the moderation dashboard."""
+
+    model = Idea
+    serializer_class = serializers.ModerationIdeaSerializer
+    pagination_class = None
+    permission_classes = (ModerationItemPermission,)
+    lookup_field = "pk"
+
+    def dispatch(self, request, *args, **kwargs):
+        self.project_pk = kwargs.get("project_pk", "")
+        return super().dispatch(request, *args, **kwargs)
+
+    @property
+    def project(self):
+        return get_object_or_404(Project, pk=self.project_pk)
+
+    def get_permission_object(self):
+        return self.project
+
+    def get_queryset(self):
+        return self.model.objects.filter(module__project=self.project)
+
+    @action(detail=True)
+    def mark_read(self, request, **kwargs):
+        idea = self.get_object()
+        idea.is_reviewed = True
+        idea.save(ignore_modified=True)
+        return Response(data={"is_unread": False}, status=200)
+
+    @action(detail=True)
+    def mark_unread(self, request, **kwargs):
+        idea = self.get_object()
+        idea.is_reviewed = False
+        idea.save(ignore_modified=True)
+        return Response(data={"is_unread": True}, status=200)
+
+    @property
+    def rules_method_map(self):
+        return ViewSetRulesPermission.default_rules_method_map._replace(
+            GET="a4_candy_userdashboard.view_moderation_comment",
+            OPTIONS="a4_candy_userdashboard.view_moderation_comment",
+        )
+
+
+class ModerationMapIdeaViewSet(ModerationIdeaViewSet):
+    model = MapIdea

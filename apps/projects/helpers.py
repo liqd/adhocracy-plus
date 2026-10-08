@@ -34,10 +34,28 @@ def get_num_latest_comments(project, until={"days": 7}):
     ).count()
 
 
+def get_num_unread_comments(project):
+    return get_all_comments_project(project).filter(is_reviewed=False).count()
+
+
 def get_num_reported_unread_comments(project):
+    from apps.ideas.models import Idea
+    from apps.mapideas.models import MapIdea
+
     unread_comments = get_all_comments_project(project).filter(is_reviewed=False)
-    return (
+    num_reported_comments = (
         unread_comments.annotate(num_reports=Count("reports", distinct=True))
         .filter(num_reports__gt=0)
         .count()
     )
+    num_reported_ideas = sum(
+        model.objects.filter(
+            module__project=project,
+            reports__isnull=False,
+            is_reviewed=False,
+        )
+        .distinct()
+        .count()
+        for model in (Idea, MapIdea)
+    )
+    return num_reported_comments + num_reported_ideas
