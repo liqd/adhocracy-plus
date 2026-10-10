@@ -22,6 +22,7 @@ import {
 import { renderLanguageChoice } from '../../../apps/organisations/assets/react_language_choice.tsx'
 import { renderProjectDetailFollow } from '../../../apps/projects/assets/js/project_detail_follow.tsx'
 import { initGuestProjectAlerts } from '../../../apps/projects/assets/js/guest_project_alert.js'
+import { initPhaseProgress } from '../../../apps/projects/assets/js/phase_progress.js'
 import { initProjectDetailParticipationView } from '../../../apps/projects/assets/js/project_detail_participation_view.js'
 
 function init () {
@@ -35,6 +36,7 @@ function init () {
 
   initProjectDetailParticipationView()
   initGuestProjectAlerts()
+  initPhaseProgress()
 
   $('.project-tile-carousel').slick({
     initialSlide: 0,
