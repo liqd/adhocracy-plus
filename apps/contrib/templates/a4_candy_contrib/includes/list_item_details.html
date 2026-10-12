@@ -9,3 +9,6 @@
         {{ object.description | richtext }}
     {% endif %}
 </div>
+{% if show_custom_fields %}
+    {% include 'a4_candy_customfields/custom_field_answers.html' %}
+{% endif %}
