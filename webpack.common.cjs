@@ -105,6 +105,12 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
+    step_wizard: {
+      import: [
+        './adhocracy-plus/assets/js/step_wizard.js'
+      ],
+      dependOn: 'adhocracy4'
+    },
     // A4 dependencies - we want all of them to go through webpack
     a4maps_display_point: {
       import: [
