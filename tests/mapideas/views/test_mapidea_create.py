@@ -281,3 +281,35 @@ def test_creator_contact_fields_not_saved_without_consent_on_mapidea(
         assert mapidea.creator_email == ""
         assert mapidea.creator_phone == ""
         assert mapidea.creator_contact_consent is False
+
+
+@pytest.mark.django_db
+def test_create_view_renders_multistep_wizard_with_location_step(
+    client,
+    phase_factory,
+    map_idea_factory,
+    user,
+    area_settings_factory,
+    organisation,
+):
+    phase, module, project, item = setup_phase(
+        phase_factory, map_idea_factory, phases.CollectPhase
+    )
+    area_settings_factory(module=module)
+    url = reverse(
+        "a4_candy_mapideas:mapidea-create",
+        kwargs={"organisation_slug": organisation.slug, "module_slug": module.slug},
+    )
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+        response = client.get(url)
+        assert response.status_code == 200
+        html = response.content.decode()
+        assert "data-step-wizard" in html
+        assert 'data-step-wizard-step="1"' in html
+        assert 'data-step-wizard-step="4"' in html
+        # Mapideas get an additional location step before the contact step.
+        assert 'data-step-wizard-step="5"' in html
+        assert "data-step-wizard-progress" in html
+        assert "data-step-wizard-next" in html
+        assert "data-step-wizard-submit" in html
