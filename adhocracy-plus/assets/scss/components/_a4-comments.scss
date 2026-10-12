@@ -43,9 +43,41 @@
     min-height: 100px;
 }
 
+// replies use a more compact single-line input that grows with the text
+.a4-comments__child--list .a4-comments__textarea--small {
+    min-height: 3 * $spacer;
+}
+
+.a4-comments__comment-form__input {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacer;
+    width: 100%;
+}
+
+.a4-comments__comment-form__avatar {
+    display: none;
+    flex: 0 0 auto;
+
+    @media screen and (min-width: $breakpoint) {
+        display: block;
+    }
+}
+
+.a4-comments__comment-form__textarea-container {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+// the reply form shows the avatar on all breakpoints (the main comment
+// input only shows it on desktop).
+.a4-comments__child--list .a4-comments__comment-form__avatar {
+    display: block;
+}
+
 .a4-comments__comment {
-    border-top: solid 1px $gray-lightest;
-    padding: 1.5 * $spacer 0 $spacer 0;
+    position: relative;
+    padding: $spacer 0;
 
     mark > p {
         background-color: $brand-primary-tint;
@@ -53,17 +85,51 @@
     }
 }
 
-.a4-comments__box--left {
-    padding-left: 0;
-
-    @extend .col-md-2;
+// vertical line from the parent avatar down to the reply thread
+.a4-comments__comment--has-replies:after {
+    content: "";
+    position: absolute;
+    top: calc(#{$spacer} + 2.5rem);
+    bottom: 0;
+    left: 1.25 * $spacer;
+    width: 1px;
+    background-color: $gray-lightest;
 }
 
-.a4-comments__box--right {
-    border-left: 1px solid $gray-lightest;
-    padding-right: 0;
+.a4-comments__box {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacer;
+}
 
-    @extend .col-md-10;
+.a4-comments__user-img {
+    flex: 0 0 2.5rem;
+    width: 2.5rem;
+    line-height: 0;
+}
+
+// comment avatars are 40px in the design (the header avatar stays 3em)
+.a4-comments__user-img .userindicator__btn-img,
+.a4-comments__comment-form__avatar .userindicator__btn-img {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 0;
+}
+
+.a4-comments__content {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.a4-comments__meta {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $spacer;
+}
+
+.a4-comments__categories {
+    margin-bottom: 0.5 * $spacer;
 }
 
 .a4-comments__filters__parent {
@@ -87,11 +153,8 @@
 }
 
 .a4-comments__dropdown-container {
-    margin-right: $spacer;
-
-    @media screen and (min-width: $breakpoint-xs) {
-        margin-right: 0; // ensure inline with btns below
-    }
+    flex: 0 0 auto;
+    margin-right: 0;
 }
 
 .a4-comments__submit-input {
@@ -137,30 +200,49 @@
 }
 
 .a4-comments__action-bar-container {
-    @media screen and (min-width: $breakpoint) {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        align-items: center;
-    }
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5 * $spacer;
+}
+
+.a4-comments__action-separator {
+    color: $gray;
 }
 
 .a4-comments__action-bar {
     display: flex;
-    padding: 0.5 * $spacer 0;
+    align-items: center;
+    gap: 0.25 * $spacer;
+    padding: 0.25 * $spacer 0;
 }
 
 .a4-comments__action-bar__btn {
-    margin-left: 0.2 * $spacer !important;
+    margin-left: 0 !important;
 
     @extend .btn--small;
 
-    &:first-child {
-        margin-left: 0 !important;
-    }
-
     i {
         margin-right: 0.4em;
+    }
+}
+
+.a4-comments__reply-btn {
+    border: none;
+    background-color: transparent;
+}
+
+.a4-comments__replies-toggle {
+    display: flex;
+    align-items: center;
+    color: $brand-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    padding: 0.5 * $spacer 0;
+
+    i {
+        margin-right: 0.25 * $spacer;
     }
 }
 
@@ -170,14 +252,17 @@
 
 .a4-comments__text,
 .a4-comments__author {
-    margin: 1.2 * $spacer 0 1.2 * $spacer 0;
+    margin: 0.75 * $spacer 0;
     overflow-wrap: break-word;
     white-space: pre-wrap;
 }
 
 .a4-comments__submission-date {
-    font-style: italic;
+    color: $gray;
     display: block;
+    font-size: $font-size-sm;
+    font-style: normal;
+    margin-bottom: 0.25 * $spacer;
 }
 
 .a4-comments__owner {
@@ -195,6 +280,7 @@
 
 .a4-comments__author {
     display: inline-block;
+    font-weight: $font-weight-bold;
     margin: 0 (0.25 * $spacer) 0 0;
 }
 
@@ -204,34 +290,65 @@
     color: $text-color-gray;
 }
 
+.a4-comments__reply-form {
+    padding-top: $spacer;
+}
+
+// child comments: connected to their parent comment with lines.
+// The vertical line sits under the parent's avatar centre, each reply is
+// indented so its avatar lines up to the right and a horizontal connector
+// runs from the line to the left edge of the avatar. The vertical line ends
+// at the avatar centre of the last item instead of running on.
 .a4-comments__child--list {
-    border-left: solid 1px $gray-lightest;
-    margin: 0 0 $spacer (-$spacer);
+    $child-indent: 4.125 * $spacer;
 
-    @media screen and (min-width: $breakpoint) {
-        margin: 0 0 2.5 * $spacer 2.5 * $spacer;
+    margin: 0 0 0 1.25 * $spacer;
+    padding-left: $child-indent;
+
+    .a4-comments__comment,
+    .a4-comments__reply-form {
+        position: relative;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: calc(#{$spacer} + 1.25rem);
+            left: -1 * $child-indent;
+            width: $child-indent;
+            height: 1px;
+            background-color: $gray-lightest;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -1 * $child-indent;
+            width: 1px;
+            background-color: $gray-lightest;
+        }
     }
 
-    form {
-        padding-top: $spacer;
-        border-top: solid 1px $gray-lightest;
+    // the reply form closes the thread
+    .a4-comments__reply-form:after {
+        bottom: auto;
+        height: calc(#{$spacer} + 1.25rem);
     }
 
-    .a4-comments__box--left {
-        text-align: right;
-
-        @extend .col-md-12;
+    // without a reply form the line stops at the last reply's avatar
+    > ul:last-child > li:last-child .a4-comments__comment:after {
+        bottom: auto;
+        height: calc(#{$spacer} + 1.25rem);
     }
+}
 
-    .a4-comments__box--right {
-        border-left: none;
-
-        @extend .col-12;
-    }
-
-    .a4-comments__text {
-        margin-top: $spacer;
-    }
+.a4-comments__read-btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacer;
+    margin: 0.5 * $spacer 0;
 }
 
 // categories and category badges
