@@ -9,6 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 ### Changed
+- Comment section: compact layout with connected replies
 ### Fixed
 
 
