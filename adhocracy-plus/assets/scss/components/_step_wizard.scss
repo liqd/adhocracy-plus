@@ -1,0 +1,47 @@
+// Multi step form wizard (e.g. the idea submission form). The steps are always
+// present in the DOM; JavaScript hides all but the active one. Without
+// JavaScript every step stays visible and the form works as a single page.
+.step-wizard {
+    margin-top: $spacer;
+}
+
+.step-wizard__progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5 * $spacer;
+}
+
+.step-wizard__dot {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background-color: $gray-lightest;
+}
+
+.step-wizard__dot.is-active {
+    background-color: $brand-primary;
+}
+
+.step-wizard__step {
+    padding: 0;
+    margin: 0 0 1.5 * $spacer;
+    border: 0;
+}
+
+.step-wizard__title {
+    margin-bottom: $spacer;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.step-wizard__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}

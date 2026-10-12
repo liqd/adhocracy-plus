@@ -55,8 +55,18 @@ def test_user_creates_idea(page, e2e_login, seed, idea_project, db_commit):
     editor.click()
     editor.fill("Created by an e2e test.")
 
+    # Walk through the multi step wizard to the final contact step. Optional
+    # steps (e.g. custom fields) may be skipped, so advance until the submit
+    # button is shown.
+    form = page.locator("form[data-step-wizard]")
+    next_button = form.get_by_role("button", name="Next")
+    save_button = form.get_by_role("button", name="Save")
+    for _ in range(6):
+        if save_button.is_visible():
+            break
+        next_button.click()
     page.locator('input[name="organisation_terms_of_use"]').check()
-    page.get_by_role("button", name="Save").click()
+    save_button.click()
 
     def _verify():
         created = idea_models.Idea.objects.get(name="My Playwright Idea")

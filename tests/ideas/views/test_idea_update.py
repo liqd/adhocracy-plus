@@ -439,3 +439,28 @@ def test_existing_contact_fields_cleared_when_consent_removed_on_update(
         assert idea.creator_email == "", "Email should be cleared when consent removed"
         assert idea.creator_phone == "", "Phone should be cleared when consent removed"
         assert idea.creator_contact_consent is False, "Consent should be False"
+
+
+@pytest.mark.django_db
+def test_update_view_is_not_a_multistep_wizard(
+    client, phase_factory, idea_factory, category_factory
+):
+    phase, module, project, idea = setup_phase(
+        phase_factory, idea_factory, phases.IssuePhase
+    )
+    user = idea.creator
+    url = reverse(
+        "a4_candy_ideas:idea-update",
+        kwargs={
+            "organisation_slug": idea.project.organisation.slug,
+            "pk": idea.pk,
+            "year": idea.created.year,
+        },
+    )
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+        response = client.get(url)
+        assert response.status_code == 200
+        html = response.content.decode()
+        assert "data-step-wizard" not in html
+        assert 'data-step-wizard-step="1"' not in html
