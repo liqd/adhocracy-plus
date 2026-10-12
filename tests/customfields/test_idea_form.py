@@ -41,6 +41,8 @@ def test_create_idea_with_custom_fields(
         client.login(username=user.email, password="password")
         response = client.get(url)
         assert_template_response(response, "a4_candy_ideas/idea_create_form.html")
+        # Custom fields render as their own step in the multi step wizard.
+        assert 'data-step-wizard-step="2"' in response.content.decode()
 
         idea = {
             "name": "Idea",

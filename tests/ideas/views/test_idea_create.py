@@ -331,3 +331,33 @@ def test_guest_creator_email_not_prefilled_on_create_form(client, phase_factory)
         assert_template_response(response, "a4_candy_ideas/idea_create_form.html")
         form = response.context_data["form"]
         assert form.fields["creator_email"].initial in ("", None)
+
+
+@pytest.mark.django_db
+def test_create_view_renders_multistep_wizard(
+    client, phase_factory, idea_factory, user, organisation
+):
+    phase, module, project, idea = setup_phase(
+        phase_factory, idea_factory, phases.IssuePhase
+    )
+    url = reverse(
+        "a4_candy_ideas:idea-create",
+        kwargs={"organisation_slug": organisation.slug, "module_slug": module.slug},
+    )
+    with freeze_phase(phase):
+        client.login(username=user.email, password="password")
+        response = client.get(url)
+        assert response.status_code == 200
+        html = response.content.decode()
+        assert "data-step-wizard" in html
+        assert 'data-step-wizard-step="1"' in html
+        assert 'data-step-wizard-step="3"' in html
+        assert 'data-step-wizard-step="4"' in html
+        # Without custom fields (and without categories/labels) the optional
+        # "additional information" step is skipped.
+        assert 'data-step-wizard-step="2"' not in html
+        # Ideas without a map do not have a location step.
+        assert 'data-step-wizard-step="5"' not in html
+        assert "data-step-wizard-progress" in html
+        assert "data-step-wizard-next" in html
+        assert "data-step-wizard-submit" in html

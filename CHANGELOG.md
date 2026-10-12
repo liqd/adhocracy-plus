@@ -78,6 +78,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Login and registration: social logins redesigned as icon buttons below an
   "Or continue with" heading
 - Login and registration modal added
+- Ideas and map ideas: multi step idea submission form with a step indicator
+  (title/description, custom fields, image, contact info, plus a location step
+  for map ideas)
 
 ### Changed
 
