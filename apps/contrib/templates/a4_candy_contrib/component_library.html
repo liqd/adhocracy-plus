@@ -790,16 +790,16 @@
 
                 <div class="cl-example">
                     <div class="a4-comments__box">
-                        <div class="a4-comments__box--user">
-                            <div class="row">
-                                <div class="col-2 col-lg-1 a4-comments__user-img">
-                                    <div class="user-avatar user-avatar--small user-avatar--shadow mb-1 userindicator__btn-img" style="background-image: url(&quot;/static/images/avatar-01.svg&quot;);"></div>
-                                </div>
-                                <div class="col-7 col-md-8 a4-comments__author-container">
+                        <div class="a4-comments__user-img">
+                            <div class="user-avatar user-avatar--small user-avatar--shadow userindicator__btn-img" style="background-image: url(&quot;/static/images/avatar-01.svg&quot;);"></div>
+                        </div>
+                        <div class="a4-comments__content">
+                            <div class="a4-comments__meta">
+                                <div class="a4-comments__author-container">
                                     <div class="a4-comments__author"><a href="">Gilly Admin Bewland</a></div><span class="a4-comments__moderator">Moderator</span><time class="a4-comments__submission-date">Latest edit on
                                         Feb. 9, 2022, 5:54 p.m.</time>
                                 </div>
-                                <div class="col-1 col-md-1 ms-auto a4-comments__dropdown-container">
+                                <div class="a4-comments__dropdown-container">
                                     <div class="dropdown a4-comments__dropdown"><button type="button" class="dropdown-toggle btn btn--link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-h"
                                               aria-hidden="true"></i></button>
                                         <div class="dropdown-menu dropdown-menu-end"><button class="dropdown-item" type="button">Edit</button>
@@ -809,26 +809,16 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="a4-comments__box--comment">
-                                <div class="col-12"><span class="sr-only">Categories: </span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="a4-comments__text"><p>this is a test of the modalare</p></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6 a4-comments__read-btn-container"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 a4-comments__action-bar-container">
-                                <div class="rating"><button class="rating-button rating-up"><i class="fa fa-thumbs-up" aria-hidden="true"></i>0</button><button class="rating-button rating-down"><i class="fa fa-thumbs-down"
-                                          aria-hidden="true"></i>0</button></div>
-                                <div class="a4-comments__action-bar"><button class="btn btn--no-border a4-comments__action-bar__btn" type="button"><a href="#child-comment-form"><i class="far fa-comment" aria-hidden="true"></i> Reply</a></button><a
-                                      class="btn btn--no-border a4-comments__action-bar__btn" href="?comment_25" data-bs-toggle="modal" data-bs-target="#url_modal"><i class="fas fa-share"></i> Share</a></div>
+                            <div class="a4-comments__categories"><span class="sr-only">Categories: </span></div>
+                            <div class="a4-comments__text"><p>this is a test of the modalare</p></div>
+                            <div class="a4-comments__read-btn-container"></div>
+                            <div class="a4-comments__action">
+                                <div class="a4-comments__action-bar-container">
+                                    <div class="rating"><button class="rating-button rating-up"><i class="fa fa-thumbs-up" aria-hidden="true"></i>0</button><button class="rating-button rating-down"><i class="fa fa-thumbs-down"
+                                              aria-hidden="true"></i>0</button></div>
+                                    <div class="a4-comments__action-bar"><button class="btn btn--no-border a4-comments__action-bar__btn" type="button"><a href="#child-comment-form"><i class="far fa-comment" aria-hidden="true"></i> Reply</a></button><a
+                                          class="btn btn--no-border a4-comments__action-bar__btn" href="?comment_25" data-bs-toggle="modal" data-bs-target="#url_modal"><i class="fas fa-share"></i> Share</a></div>
+                                </div>
                             </div>
                         </div>
                     </div>

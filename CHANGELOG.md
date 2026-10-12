@@ -73,6 +73,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Ideas List: New design
 - Comment box: Minimum height 100px
 - Idea, spatial idea and participatory budgeting module pages: the submit call to action is now a sticky banner that stays at the top of the viewport while scrolling
+- Comment section: more compact layout, replies are connected to their parent
+  comment and collapsed by default (one nesting level only), the reply form
+  opens on demand and the comment input shows the user's profile picture on
+  desktop
 
 ### Removed
 
