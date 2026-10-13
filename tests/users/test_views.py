@@ -45,6 +45,108 @@ def test_login_no_password(client, user, login_url):
 
 
 @pytest.mark.django_db
+def test_login_full_page_renders_document(client, login_url):
+    response = client.get(login_url)
+    assert response.status_code == 200
+    assert b"<!DOCTYPE html>" in response.content
+    assert 'id="auth-modal"' in response.content.decode()
+
+
+@pytest.mark.django_db
+def test_login_htmx_renders_modal_partial(client, login_url):
+    response = client.get(login_url, HTTP_HX_REQUEST="true")
+    assert response.status_code == 200
+    content = response.content.decode()
+    assert "<!DOCTYPE html>" not in content
+    assert response.context["layout"] == "partial.html"
+    assert response.context["is_modal"] is True
+    assert f'hx-post="{login_url}"' in content
+    assert 'hx-target="#auth-modal-body"' in content
+
+
+@pytest.mark.django_db
+def test_login_htmx_success_sends_redirect_header(client, user, login_url):
+    response = client.post(
+        login_url,
+        {"login": user.email, "password": "password"},
+        HTTP_HX_REQUEST="true",
+    )
+    assert response.status_code == 200
+    assert response.headers["HX-Redirect"]
+    assert int(client.session["_auth_user_id"]) == user.pk
+
+
+@pytest.mark.django_db
+def test_login_htmx_invalid_shows_modal_partial(client, user, login_url):
+    response = client.post(
+        login_url,
+        {"login": user.email, "password": "wrong_password"},
+        HTTP_HX_REQUEST="true",
+    )
+    assert response.status_code == 200
+    content = response.content.decode()
+    assert "<!DOCTYPE html>" not in content
+    assert f'hx-post="{login_url}"' in content
+
+
+@pytest.mark.django_db
+def test_login_htmx_authenticated_uses_redirect_header(client, user, login_url):
+    client.force_login(user)
+    response = client.get(login_url, HTTP_HX_REQUEST="true")
+    assert response.status_code == 200
+    assert response.headers["HX-Redirect"]
+    assert "<!DOCTYPE html>" not in response.content.decode()
+
+
+@pytest.mark.django_db
+def test_signup_htmx_authenticated_uses_redirect_header(client, user, signup_url):
+    client.force_login(user)
+    response = client.get(signup_url, HTTP_HX_REQUEST="true")
+    assert response.status_code == 200
+    assert response.headers["HX-Redirect"]
+    assert "<!DOCTYPE html>" not in response.content.decode()
+
+
+@pytest.mark.django_db
+def test_guest_create_htmx_authenticated_uses_redirect_header(client, user):
+    client.force_login(user)
+    response = client.get(reverse("guest_create"), HTTP_HX_REQUEST="true")
+    assert response.status_code == 200
+    assert response.headers["HX-Redirect"] == "/"
+
+
+@override_settings(CAPTCHA=False)
+@pytest.mark.django_db
+def test_guest_create_full_page_renders_document(client):
+    response = client.get(reverse("guest_create"))
+    assert response.status_code == 200
+    assert b"<!DOCTYPE html>" in response.content
+
+
+@override_settings(CAPTCHA=False)
+@pytest.mark.django_db
+def test_guest_create_htmx_renders_modal_partial(client):
+    response = client.get(reverse("guest_create"), HTTP_HX_REQUEST="true")
+    assert response.status_code == 200
+    content = response.content.decode()
+    assert "<!DOCTYPE html>" not in content
+    assert response.context["layout"] == "partial.html"
+    assert 'hx-target="#auth-modal-body"' in content
+
+
+@override_settings(CAPTCHA=False)
+@pytest.mark.django_db
+def test_guest_create_htmx_success_sends_redirect_header(client):
+    response = client.post(
+        reverse("guest_create"),
+        {"terms_of_use": "on", "next": "/"},
+        HTTP_HX_REQUEST="true",
+    )
+    assert response.status_code == 200
+    assert response.headers["HX-Redirect"] == "/"
+
+
+@pytest.mark.django_db
 def test_logout(user, client, logout_url):
     logged_in = client.login(email=user.email, password="password")
     assert logged_in is True

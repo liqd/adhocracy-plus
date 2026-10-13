@@ -1,4 +1,4 @@
-{% extends "account/base.html" %}
+{% extends layout|default:"account/base.html" %}
 {% load i18n %}
 {% block head_title %}
     {% translate "Continue as Guest" %}
@@ -22,7 +22,8 @@
       {% endwith %}
     </p>
     <p>{% translate "Please log out after participating or close your browser. This ensures that neither you nor anyone else has access to your guest account. You can convert your guest account into a permanent account in the user settings." %}</p>
-    <form id="signup_form" method="post" action="" class="account-auth-form">
+    <form id="signup_form" method="post" action="{% url 'guest_create' %}" class="account-auth-form"
+          {% if is_modal %}hx-post="{% url 'guest_create' %}" hx-target="#auth-modal-body" hx-swap="innerHTML"{% endif %}>
         {{ form.non_field_errors }}
         {{ form.media }}
         {% csrf_token %}

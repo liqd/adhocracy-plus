@@ -1,4 +1,4 @@
-{% extends "account/base.html" %}
+{% extends layout|default:"account/base.html" %}
 {% load i18n account signup_flow %}
 
 {% block head_title %}{% translate "Login" %}{% endblock head_title %}
@@ -9,11 +9,10 @@
 
     <p>
         {% blocktranslate %}Would you like to create an account? Then <a href="{{ signup_url }}">click here</a>.{% endblocktranslate %}
-        </br>
-        {% blocktranslate %}Would you like to proceed as a guest? Then <a href="{{ guest_url_value }}">click here</a>.{% endblocktranslate %}
     </p>
 
-    <form method="post" action="{% url 'account_login' %}" class="account-auth-form u-spacer-bottom-double">
+    <form method="post" action="{% url 'account_login' %}" class="account-auth-form u-spacer-bottom-double"
+          {% if is_modal %}hx-post="{% url 'account_login' %}" hx-target="#auth-modal-body" hx-swap="innerHTML"{% endif %}>
         {{ form.non_field_errors }}
         {% csrf_token %}
 
@@ -29,10 +28,10 @@
 
         <div class="account-auth-form__actions account-auth-form__actions--stacked">
             <button class="btn btn--black" type="submit">{% translate "Login" %}</button>
-            <a class="btn btn--secondary proceed-guest-button" href="{{ guest_url_value }}">{% translate "Or continue as a guest" %}</a>
+            <a class="btn btn--secondary proceed-guest-button" href="{{ guest_url_value }}">{% translate "Continue as a Guest" %}</a>
         </div>
         <div class="mb-3">
-            <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
+            <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% translate "Forgot password?" %}</a>
         </div>
     </form>
 
