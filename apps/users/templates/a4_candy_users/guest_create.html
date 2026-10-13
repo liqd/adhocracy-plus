@@ -28,7 +28,13 @@
         {{ form.media }}
         {% csrf_token %}
         {% for field in form %}
-            {% if field is not form.terms_of_use and field is not form.terms_of_use_extra and field is not form.get_newsletters and field is not form.captcha %}
+            {% if field is form.username %}
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
+                <div id="guest-username-feedback"
+                     class="form-hint"
+                     role="status"
+                     aria-live="polite"></div>
+            {% elif field is not form.terms_of_use and field is not form.terms_of_use_extra and field is not form.get_newsletters and field is not form.captcha %}
                 {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
             {% endif %}
         {% endfor %}

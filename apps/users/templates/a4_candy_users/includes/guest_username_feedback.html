@@ -1,0 +1,4 @@
+{% load i18n %}
+{% if message %}
+    <span class="{% if status == 'error' %}text-danger{% endif %}">{{ message }}</span>
+{% endif %}

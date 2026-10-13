@@ -2,19 +2,26 @@ import time
 from datetime import date
 from datetime import datetime
 
+from allauth.account import app_settings as account_app_settings
 from allauth.account import views as allauth_account_views
+from allauth.core.internal import ratelimit as ratelimit_impl
+from allauth.core.ratelimit import respond_429
+from django.contrib.auth import login
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils.translation import check_for_language
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import FormView
+from django.views.generic import View
 from django.views.generic.detail import DetailView
 from django.views.i18n import LANGUAGE_QUERY_PARAMETER
 from django.views.i18n import set_language
+from guest_user import settings as guest_user_settings
+from guest_user.functions import get_guest_model
 from guest_user.functions import is_guest_user
-from guest_user.functions import maybe_create_guest_user
 
 from adhocracy4.actions.models import Action
 from apps.organisations.models import Organisation
@@ -24,8 +31,10 @@ from .constants import GUEST_SWITCH_QUERY_PARAM
 from .forms import SIGNUP_LAST_STEP
 from .forms import SIGNUP_STEP_FIELDS
 from .forms import GuestCreateForm
+from .forms import GuestUsernameForm
 from .forms import restrict_fields_to_step
 from .forms import signup_error_step
+from .utils import guest_email_for_username
 
 # Session key that holds the data collected during the multi step signup.
 SIGNUP_WIZARD_SESSION_KEY = "signup_wizard"
@@ -316,8 +325,52 @@ class GuestCreateView(AuthModalMixin, FormView):
 
     def form_valid(self, form):
         if self.request.user.is_anonymous:
-            maybe_create_guest_user(self.request)
+            guest_model = get_guest_model()
+            user = guest_model.objects.create_guest_user(
+                self.request, username=form.cleaned_data["username"]
+            )
+            # django-guest-user builds the placeholder email from the username,
+            # which may contain characters (e.g. the German gender colon) that
+            # are not valid in an email address.
+            user.email = guest_email_for_username(user.username)
+            user.save(update_fields=["email"])
+            login(self.request, user, backend=guest_user_settings.LOGIN_BACKEND)
         return super().form_valid(form)
+
+
+class GuestUsernameCheckView(View):
+    """Return an availability message for a guest username (htmx partial)."""
+
+    def get(self, request):
+        # The public allauth helper skips GET requests, so call the internal
+        # implementation to also throttle this read-only lookup.
+        usage = ratelimit_impl.consume(
+            request,
+            action="guest_username_check",
+            config=account_app_settings.RATE_LIMITS,
+            limit_get=True,
+        )
+        if not usage:
+            return respond_429(request)
+
+        username = (request.GET.get("username") or "").strip()
+        context = {"message": "", "status": ""}
+        if username:
+            form = GuestUsernameForm({"username": username})
+            if form.is_valid():
+                context["status"] = "ok"
+                context["message"] = _("This username is available.")
+            else:
+                context["status"] = "error"
+                errors = form.errors.get("username")
+                context["message"] = (
+                    errors[0] if errors else _("This username is not available.")
+                )
+        return render(
+            request,
+            "a4_candy_users/includes/guest_username_feedback.html",
+            context,
+        )
 
 
 class ProfileView(DetailView):
