@@ -68,6 +68,49 @@ $map-colour: #0076ae;
     display: none;
 }
 
+// Popups decorated to mirror a list card: stack the content naturally instead
+// of stretching it with space-between, and tighten the shared popup spacing.
+.maps-popups--list-item {
+    .leaflet-popup-content-wrapper {
+        padding: 0.75em;
+    }
+
+    .leaflet-popup-content {
+        min-height: 0;
+    }
+
+    .maps-popups-popup-text-content {
+        margin: 0;
+        justify-content: flex-start;
+        gap: 0.5em;
+    }
+
+    .maps-popups-popup-meta {
+        padding: 0;
+    }
+
+    .list-item__labels {
+        margin: 0;
+    }
+
+    .maps-popups-popup-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .maps-popups-popup-footer .list-item__comments,
+    .maps-popups-popup-footer .map-popup-comments-count {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .maps-popups-popup-footer .list-item__expand-toggle {
+        margin-left: auto;
+        text-decoration: none;
+    }
+}
+
 .map-list {
     position: relative;
     z-index: 0;

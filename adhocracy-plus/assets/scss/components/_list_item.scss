@@ -34,6 +34,11 @@
     }
 }
 
+.list-item--card {
+    margin-bottom: 20px;
+    border: 1px solid $gray-lightest;
+}
+
 .list-item--spaced {
     padding: 1.5 * $padding;
     border: 0;
@@ -122,6 +127,10 @@
 .list-item__stats {
     float: right;
     margin-left: 0.5em;
+}
+
+.list-item__stats .rating-button.is-read-only {
+    background-color: transparent;
 }
 
 .list-item__action {

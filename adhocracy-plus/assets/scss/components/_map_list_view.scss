@@ -36,12 +36,29 @@
     }
     
     .list-view {
-        .list-item {
+        .list-item:not(.list-item--card) {
             border-top: 1px solid #D8D8D8;
         }
-        
-        .list-item:last-child {
+
+        .list-item:not(.list-item--card):last-child {
             border-bottom: 1px solid #D8D8D8;
-          }
+        }
+
+        .list-item__divider + .list-item__footer {
+            margin-top: 0;
+        }
+    }
+}
+
+// Desktop-only light panel for the stacked mapideas list. Mobile keeps the
+// plain list view (no panel) so the map/list toggle is unchanged.
+@media (min-width: $breakpoint) {
+    .map-list-view--stacked .mapidea-list-panel {
+        @include project-detail-module-panel-bleed;
+
+        padding-top: 3 * $spacer;
+        padding-bottom: 2 * $spacer;
+        margin-top: $spacer;
+        background-color: $bg-light;
     }
 }
