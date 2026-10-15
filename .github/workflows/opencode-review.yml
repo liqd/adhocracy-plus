@@ -54,6 +54,33 @@ jobs:
             - API or UX regressions
             Report every finding with a severity, a concrete suggestion and
             file:line references. Also note what looks good.
+          PROMPT_COMMON: |
+            Post every concrete finding as an inline review comment on the
+            changed line, so it appears next to the code. Use the GitHub CLI
+            (GITHUB_TOKEN is already exported and has write access):
+
+            gh api --method POST \
+              -H "Accept: application/vnd.github+json" \
+              /repos/${{ github.repository }}/pulls/${{ github.event.issue.number || github.event.pull_request.number }}/comments \
+              -f body="<your finding>" \
+              -f commit_id="$(git rev-parse HEAD)" \
+              -f path="<path/to/file>" \
+              -F line=<line number> \
+              -f side=RIGHT
+
+            Rules for inline comments:
+            - Only comment on lines that are part of the pull request diff
+              (RIGHT side); otherwise GitHub rejects the request.
+            - Keep each comment short and actionable. Do not post generic praise.
+            - If a finding cannot be attached to a changed line, mention it in
+              the summary instead of forcing an inline comment.
+
+            After the inline comments, always post a short general review
+            comment (your final message) and end it with this section:
+
+            ## PM-Einschätzung
+            <exactly one sentence stating whether this pull request can be
+            merged as-is or not, and the main reason>
         run: |
           level="${LEVEL:-standard}"
           case "$level" in
@@ -61,6 +88,9 @@ jobs:
             thorough) prompt="$PROMPT_THOROUGH" ;;
             *) level="standard"; prompt="$PROMPT_STANDARD" ;;
           esac
+          prompt="$prompt
+
+          $PROMPT_COMMON"
           {
             echo "level=$level"
             echo "prompt<<OPENCODE_PROMPT"
@@ -100,7 +130,8 @@ jobs:
                       "git log*": "allow",
                       "git show*": "allow",
                       "git status*": "allow",
-                      "git rev-parse*": "allow"
+                      "git rev-parse*": "allow",
+                      "gh api*": "allow"
                     }
                   }
                 }
