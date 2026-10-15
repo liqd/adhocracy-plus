@@ -305,4 +305,45 @@ describe('PollManagement', () => {
     const labels = Array.from(container.querySelectorAll('.poll-management__label')).map((el) => el.textContent)
     expect(labels[0]).toBe('Second question')
   })
+
+  it('reorders questions via the drag handle on touch devices', async () => {
+    // jsdom does not implement PointerEvent; testing-library needs one that
+    // carries clientX/clientY and pointerType for React's pointer handlers.
+    class PointerEventPolyfill extends MouseEvent {
+      pointerType: string
+      pointerId: number
+
+      constructor (type: string, params: PointerEventInit = {}) {
+        super(type, params)
+        this.pointerType = params.pointerType || ''
+        this.pointerId = params.pointerId ?? 0
+      }
+    }
+    (window as unknown as { PointerEvent: unknown }).PointerEvent = PointerEventPolyfill
+
+    const { container } = renderManagement()
+    await screen.findByText('First question')
+
+    const listItems = container.querySelectorAll('.poll-management__list-item')
+    const first = listItems[0] as HTMLElement
+    const second = listItems[1] as HTMLElement
+    const handle = first.querySelector('.poll-management__drag-handle') as HTMLElement
+    const list = container.querySelector('.poll-management__list') as HTMLElement
+
+    // jsdom lacks pointer capture and hit testing
+    Element.prototype.setPointerCapture = jest.fn()
+    Element.prototype.releasePointerCapture = jest.fn()
+    Element.prototype.hasPointerCapture = jest.fn(() => true)
+    document.elementFromPoint = jest.fn((_x: number, y: number) => (
+      y < 50 ? first : second
+    )) as unknown as typeof document.elementFromPoint
+
+    fireEvent.pointerDown(handle, { pointerType: 'touch', clientX: 10, clientY: 10 })
+    fireEvent.pointerMove(list, { pointerId: 1, clientX: 10, clientY: 60 })
+    fireEvent.pointerUp(list, { pointerId: 1, clientX: 10, clientY: 60 })
+
+    const labels = Array.from(container.querySelectorAll('.poll-management__label')).map((el) => el.textContent)
+    expect(labels[0]).toBe('Second question')
+    expect(labels[1]).toBe('First question')
+  })
 })

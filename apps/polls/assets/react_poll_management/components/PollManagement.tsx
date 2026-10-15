@@ -91,6 +91,7 @@ export const PollManagement = (props: PollManagementProps) => {
   const [dirty, setDirty] = useState(false)
   const focusErrorRef = useRef(false)
   const scrollToEditorRef = useRef(false)
+  const touchDragIndexRef = useRef<number | null>(null)
 
   useEffect(() => {
     api.poll.get(props.pollId).done((result: any) => {
@@ -292,6 +293,54 @@ export const PollManagement = (props: PollManagementProps) => {
     setOverIndex(null)
   }
 
+  // Touch/pen devices do not support native HTML5 drag and drop, so reordering
+  // via the drag handle needs a Pointer Events fallback (mouse keeps using the
+  // native drag events above).
+  const itemIndexFromPoint = (x: number, y: number): number | null => {
+    const element = document.elementFromPoint(x, y)
+    const item = element?.closest('.poll-management__list-item')
+    if (!item || !item.parentElement) return null
+    const index = Array.from(item.parentElement.children).indexOf(item)
+    return index >= 0 ? index : null
+  }
+
+  const handleListPointerDown = (e: React.PointerEvent<HTMLUListElement>) => {
+    if (e.pointerType === 'mouse') return
+    const target = e.target as Element
+    if (!target.closest('.poll-management__drag-handle')) return
+    const index = itemIndexFromPoint(e.clientX, e.clientY)
+    if (index === null) return
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId)
+    } catch {
+      // capture is best-effort; dragging still works while over the list
+    }
+    touchDragIndexRef.current = index
+    setDragIndex(index)
+    setOverIndex(index)
+  }
+
+  const handleListPointerMove = (e: React.PointerEvent<HTMLUListElement>) => {
+    if (touchDragIndexRef.current === null) return
+    const index = itemIndexFromPoint(e.clientX, e.clientY)
+    if (index !== null && index !== overIndex) {
+      setOverIndex(index)
+    }
+  }
+
+  const handleListPointerUp = (e: React.PointerEvent<HTMLUListElement>) => {
+    if (touchDragIndexRef.current === null) return
+    try {
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId)
+      }
+    } catch {
+      // ignore missing capture
+    }
+    touchDragIndexRef.current = null
+    handleDrop()
+  }
+
   const handleChoiceLabelChange = (choiceIndex: number, label: string) => {
     updateChoice(expandedIndex, choiceIndex, { label })
   }
@@ -412,7 +461,13 @@ export const PollManagement = (props: PollManagementProps) => {
           />
         </div>
 
-        <ul className="poll-management__list">
+        <ul
+          className="poll-management__list"
+          onPointerDown={handleListPointerDown}
+          onPointerMove={handleListPointerMove}
+          onPointerUp={handleListPointerUp}
+          onPointerCancel={handleListPointerUp}
+        >
           {questions.map((question, index) => (
             <li key={question.key} className="poll-management__list-item">
               <QuestionListItem
