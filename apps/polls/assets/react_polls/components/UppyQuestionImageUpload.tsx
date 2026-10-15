@@ -194,6 +194,12 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
         <div className={`form-group ${altTextError ? 'has-error' : ''}`}>
           <label htmlFor={`id_questions-${id}-image_alt_text`}>
             {django.gettext('Alt text')}
+            <span
+              role="presentation"
+              title={django.gettext('This field is required')}
+            >
+              *
+            </span>
           </label>
           <input
             type="text"
@@ -202,6 +208,7 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
             value={altText || ''}
             onChange={(e) => onAltTextChange(e.target.value)}
             maxLength={80}
+            required
             aria-invalid={!!altTextError}
             aria-describedby={altTextError ? `alt-text-error-${id}` : undefined}
           />

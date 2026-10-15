@@ -35,16 +35,19 @@ describe('UppyQuestionImageUpload', () => {
         question={{ image_url: null }}
       />
     )
-    expect(screen.queryByLabelText('Alt text')).not.toBeInTheDocument()
+    expect(screen.queryByLabelText(/Alt text/)).not.toBeInTheDocument()
   })
 
-  it('shows the alt text field when an image is uploaded', () => {
+  it('shows the alt text field as required when an image is uploaded', () => {
     render(
       <UppyQuestionImageUpload
         {...defaults}
         question={{ image_url: '/media/question.png' }}
       />
     )
-    expect(screen.getByLabelText('Alt text')).toBeEnabled()
+    const input = screen.getByLabelText(/Alt text/)
+    expect(input).toBeEnabled()
+    expect(input).toBeRequired()
+    expect(screen.getByTitle('This field is required')).toBeInTheDocument()
   })
 })

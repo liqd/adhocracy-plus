@@ -98,9 +98,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   names the actual problem; focus moves to the first invalid field on a failed
   save; the edited question stays open and is scrolled back into view after a
   successful save; deleting a question now asks for a second-step confirmation;
-  the Alt text field is hidden while no image is uploaded; the drag handle has a
-  44px minimum target; switching a question to single choice shows only one
-  answer option and hides "Answer option"; the question field is marked as
+  the Alt text field is hidden while no image is uploaded and is marked as
+  required; the drag handle has a 44px minimum target and can be used to reorder
+  questions on touch devices; switching a question to single choice shows only
+  one answer option and hides "Answer option"; the question field is marked as
   mandatory
 - Poll question images: accept uploads up to 2px below the configured minimum
   resolution (browser-side processing could shave off a pixel or two), while the
