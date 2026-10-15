@@ -13,6 +13,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - audit: admin audit log records now as an extra view
 - Tests: e2e coverage for the React/vanilla JS widgets: poll multi-question funnel and review step, moderation actions (block, highlight, feedback), interactive events present screen, organisation project search, project follow, and document chapter editing; the suite standardizes on Playwright's `expect()` assertions
 - polls: add option to hide preliminary results until phase end
+- polls: add a human readable answer export 
 - Management command ``send_newsletter_settings_notice`` plus an English/German
   notice email to inform users whose newsletter opt-in may have been reset by
   the profile-edit bug. Recipients are the refined candidate pool; every sent

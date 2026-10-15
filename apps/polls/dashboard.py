@@ -51,6 +51,11 @@ class ExportPollComponent(a4_poll_dashboard.ExportPollComponent):
                 a4_poll_exports.PollExportView.as_view(),
                 "poll-export",
             ),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/poll/export/poll-human/$",
+                a4_poll_exports.HumanReadablePollExportView.as_view(),
+                "poll-export-human",
+            ),
         ]
 
 
