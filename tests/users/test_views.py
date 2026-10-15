@@ -139,7 +139,7 @@ def test_guest_create_htmx_renders_modal_partial(client):
 def test_guest_create_htmx_success_sends_redirect_header(client):
     response = client.post(
         reverse("guest_create"),
-        {"terms_of_use": "on", "next": "/"},
+        {"username": "Curious Citizen", "terms_of_use": "on", "next": "/"},
         HTTP_HX_REQUEST="true",
     )
     assert response.status_code == 200
@@ -375,6 +375,16 @@ def test_reset_password_error(client):
 
 @pytest.mark.django_db
 def test_profile(client, user):
+    url = reverse("profile", kwargs={"slug": user.username})
+    response = client.get(url)
+    assert response.status_code == 200
+    assert response.context["user"] == user
+
+
+@pytest.mark.django_db
+def test_profile_with_gender_colon_username(client, user):
+    user.username = "Neugierige:r Bürger:in"
+    user.save()
     url = reverse("profile", kwargs={"slug": user.username})
     response = client.get(url)
     assert response.status_code == 200

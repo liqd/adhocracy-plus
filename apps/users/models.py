@@ -24,7 +24,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         unique=True,
         help_text=_(
             "Required. 60 characters or fewer. Letters, digits, spaces and "
-            "@/./+/-/_ only."
+            "@/./+/-/:/_ only."
         ),
         validators=[
             validators.RegexValidator(

@@ -319,6 +319,8 @@ ACCOUNT_RATE_LIMITS = {
     # plus resubmits when a user goes back), so give it more headroom than
     # allauth's default of 20/m/ip.
     "signup": "60/m/ip",
+    # Guest username availability check (fired while typing).
+    "guest_username_check": "120/m/ip",
 }
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
@@ -801,9 +803,7 @@ CKEDITOR_5_CONFIGS = {
     },
 }
 
-GUEST_USER = {
-    "NAME_GENERATOR": "guest_user.functions.generate_uuid_username",
-}
+GUEST_USER_NAME_GENERATOR = "apps.users.utils.generate_guest_username"
 
 GUEST_USER_REQUIRED_ANON_URL = "/accounts/guests/login"
 # Redirects below when guest user is required but currently regular user.

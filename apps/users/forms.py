@@ -6,6 +6,8 @@ from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
 from django.conf import settings
 from django.contrib.auth import forms as auth_forms
+from django.core.validators import RegexValidator
+from django.urls import reverse
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
@@ -13,7 +15,10 @@ from apps.captcha.fields import ProsopoCaptchaField
 from apps.cms.settings import helpers
 from apps.organisations.models import Member
 from apps.organisations.models import Organisation
+from apps.users import USERNAME_INVALID_MESSAGE
+from apps.users import USERNAME_REGEX
 from apps.users.models import User
+from apps.users.utils import generate_guest_username
 
 logger = logging.getLogger(__name__)
 
@@ -148,8 +153,48 @@ class DefaultSignupForm(BotTrapMixin, TermsAndCaptchaMixin, SignupForm):
             return user
 
 
-class GuestCreateForm(TermsAndCaptchaMixin, forms.Form):
-    pass
+class GuestUsernameForm(forms.Form):
+    """Validate a guest username (format, length and uniqueness)."""
+
+    username = forms.CharField(
+        label=_("Contributing as"),
+        min_length=settings.ACCOUNT_USERNAME_MIN_LENGTH,
+        max_length=User._meta.get_field("username").max_length,
+        validators=[
+            RegexValidator(USERNAME_REGEX, USERNAME_INVALID_MESSAGE, "invalid"),
+        ],
+        help_text=_(
+            "Your username will appear publicly next to your posts. It must be "
+            "unique so that it can be kept when you create a regular account."
+        ),
+    )
+
+    def clean_username(self):
+        username = self.cleaned_data["username"]
+        username_field = User._meta.get_field("username")
+        if User.objects.filter(username__iexact=username).exists():
+            raise forms.ValidationError(username_field.error_messages["unique"])
+        if User.objects.filter(email__iexact=username).exists():
+            raise forms.ValidationError(username_field.error_messages["used_as_email"])
+        return username
+
+
+class GuestCreateForm(TermsAndCaptchaMixin, GuestUsernameForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not self.is_bound:
+            self.fields["username"].initial = generate_guest_username()
+        # Check availability in the background while typing and only swap the
+        # feedback element, leaving the input untouched.
+        self.fields["username"].widget.attrs.update(
+            {
+                "autocomplete": "off",
+                "hx-get": reverse("guest_username_check"),
+                "hx-trigger": "input changed delay:500ms",
+                "hx-target": "#guest-username-feedback",
+                "hx-swap": "innerHTML",
+            }
+        )
 
 
 class GuestConvertForm(DefaultSignupForm):
@@ -175,12 +220,27 @@ class GuestConvertForm(DefaultSignupForm):
         self.fields["password1"].required = True
         self.fields["password2"].required = True
 
+        if self.user is not None:
+            self.initial["username"] = self.user.username
+            self.fields["username"].help_text = _(
+                "Keep your guest username or choose a new one."
+            )
+
     def clean_email(self):
         email = self.cleaned_data["email"]
         users = User.objects.filter(email__iexact=email)
         if users.exists():
             raise forms.ValidationError("Email already in use.")
         return email
+
+    def clean_username(self):
+        username = self.cleaned_data["username"]
+        # The guest keeps the username chosen when continuing as a guest.
+        # django-allauth would otherwise reject it as already taken by the
+        # guest's own account.
+        if self.user is not None and username.lower() == self.user.username.lower():
+            return username
+        return super().clean_username()
 
     def save(self, request):
         user = self.user

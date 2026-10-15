@@ -50,6 +50,7 @@ from apps.userdashboard.routers import ModerationDetailDefaultRouter
 from apps.users.api import UserViewSet
 from apps.users.decorators import user_is_project_admin
 from apps.users.views import GuestCreateView
+from apps.users.views import GuestUsernameCheckView
 from apps.users.views import LoginView
 from apps.users.views import LogoutView
 from apps.users.views import SignupWizardView
@@ -108,6 +109,11 @@ urlpatterns = [
     path("admin/", include("wagtail.admin.urls")),
     path("documents/", include(wagtaildocs_urls)),
     path("accounts/guests/login/", GuestCreateView.as_view(), name="guest_create"),
+    path(
+        "accounts/guests/username-check/",
+        GuestUsernameCheckView.as_view(),
+        name="guest_username_check",
+    ),
     path("accounts/logout/", LogoutView.as_view(), name="account_logout"),
     path(
         "accounts/email/",
