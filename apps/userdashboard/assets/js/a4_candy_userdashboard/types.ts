@@ -22,6 +22,9 @@ export interface ModerationItem {
   is_unread: boolean
   is_blocked: boolean
   is_moderator_marked: boolean
+  moderator_status?: string | null
+  moderator_status_display?: string | null
+  moderator_feedback_text?: string | null
   moderator_feedback?: ModeratorFeedback | null
   feedback_api_url: string
 }

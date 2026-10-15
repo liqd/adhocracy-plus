@@ -17,6 +17,7 @@ from adhocracy4.models import query
 from adhocracy4.models.base import CreatorContactInfoModelMixin
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
+from adhocracy4.reports import models as report_models
 from apps.moderatorfeedback.models import Moderateable
 from apps.moderatorremark import models as remark_models
 
@@ -85,8 +86,15 @@ class Idea(AbstractIdea):
     comments = GenericRelation(
         comment_models.Comment, related_query_name="idea", object_id_field="object_pk"
     )
+    reports = GenericRelation(
+        report_models.Report, related_query_name="idea", object_id_field="object_pk"
+    )
     custom_field_answers = GenericRelation(
         "a4_candy_customfields.CustomFieldAnswer", related_query_name="idea"
+    )
+    is_reviewed = models.BooleanField(
+        default=False,
+        verbose_name=_("Reviewed"),
     )
 
     def get_absolute_url(self):

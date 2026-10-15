@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.db import transaction
 from django.urls import reverse
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
@@ -192,8 +193,23 @@ class AbstractIdeaModerateView(
         self.object = self.get_object()
         return super().dispatch(*args, **kwargs)
 
+    def get_return_url(self):
+        return_url = self.request.POST.get("next") or self.request.GET.get("next")
+        if return_url and url_has_allowed_host_and_scheme(
+            return_url,
+            allowed_hosts={self.request.get_host()},
+            require_https=self.request.is_secure(),
+        ):
+            return return_url
+        return ""
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["return_url"] = self.get_return_url()
+        return context
+
     def get_success_url(self):
-        return self.object.get_absolute_url()
+        return self.get_return_url() or self.object.get_absolute_url()
 
     def forms_save(self, forms, commit=True):
         objects = super().forms_save(forms, commit=False)

@@ -349,9 +349,7 @@ class UserDashboardModerationDetailView(
         context["moderation_items_api_url"] = reverse(
             "moderationitems-list", kwargs={"project_pk": self.project.pk}
         )
-        context["back_url"] = self.request.META.get(
-            "HTTP_REFERER", reverse("userdashboard-moderation")
-        )
+        context["back_url"] = reverse("userdashboard-moderation")
         return context
 
     def dispatch(self, request, *args, **kwargs):
