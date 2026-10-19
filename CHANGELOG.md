@@ -77,10 +77,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Comment box: Minimum height 100px
 - Idea, spatial idea and participatory budgeting module pages: the submit call to action is now a sticky banner that stays at the top of the viewport while scrolling
 
-### Removed
-
-- Donation banner on all pages
-
 ### Fixed
 
 - Profile editing no longer silently clears the newsletter opt-in
