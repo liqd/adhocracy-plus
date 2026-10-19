@@ -25,6 +25,8 @@ function getUppyLocale () {
 
 const MIN_WIDTH = 1500
 const MIN_HEIGHT = 500
+const OUTPUT_WIDTH = 1500
+const OUTPUT_HEIGHT = 500
 const MAX_LONGEST_SIDE = 2000
 const JPEG_QUALITY = 0.85
 
@@ -140,7 +142,16 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
         },
         cropperOptions: {
           viewMode: 1,
-          autoCropArea: 1
+          autoCropArea: 1,
+          aspectRatio: OUTPUT_WIDTH / OUTPUT_HEIGHT,
+          initialAspectRatio: OUTPUT_WIDTH / OUTPUT_HEIGHT,
+          // Scale/crop the edited image down to the target output resolution
+          // (same as the shared friendly image upload widget).
+          croppedCanvasOptions: {
+            width: OUTPUT_WIDTH,
+            height: OUTPUT_HEIGHT,
+            imageSmoothingQuality: 'high'
+          }
         }
       })
 

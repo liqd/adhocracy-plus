@@ -107,8 +107,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   resolution (browser-side processing could shave off a pixel or two), while the
   help text keeps stating the configured minimum; replaced images are stored
   under a unique file name so the browser no longer shows the cached old image;
-  uploads are resized and compressed in the browser (base64 payload), which
-  avoids "413 Request Entity Too Large" errors from proxy body-size limits
+  uploads are scaled/cropped to the 1500x500 target resolution and re-encoded
+  (JPEG) in the browser, which avoids "413 Request Entity Too Large" errors from
+  proxy body-size limits
 - Profile editing no longer silently clears the newsletter opt-in
   (``User.get_newsletters``). The newsletter toggle on the notification
   settings page now controls this actual opt-in.
