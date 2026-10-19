@@ -70,3 +70,57 @@ def test_next_is_used_as_success_url(client):
 
     assert resp.status_code == 302
     assert resp.url == detail_url
+
+
+@pytest.mark.django_db
+def test_status_marks_map_idea_as_read(client):
+    moderator, item, url, detail_url = setup_mapidea_moderation()
+    assert client.login(username=moderator.email, password="password")
+
+    resp = client.post(
+        url,
+        {
+            "moderateable-moderator_status": "ACCEPTED",
+            "feedback_text-feedback_text": "Great idea",
+        },
+    )
+
+    assert resp.status_code == 302
+    item.refresh_from_db()
+    assert item.is_reviewed is True
+
+
+@pytest.mark.django_db
+def test_feedback_marks_map_idea_as_read(client):
+    moderator, item, url, detail_url = setup_mapidea_moderation()
+    assert client.login(username=moderator.email, password="password")
+
+    resp = client.post(
+        url,
+        {
+            "moderateable-moderator_status": "",
+            "feedback_text-feedback_text": "Great idea",
+        },
+    )
+
+    assert resp.status_code == 302
+    item.refresh_from_db()
+    assert item.is_reviewed is True
+
+
+@pytest.mark.django_db
+def test_empty_save_keeps_map_idea_unread(client):
+    moderator, item, url, detail_url = setup_mapidea_moderation()
+    assert client.login(username=moderator.email, password="password")
+
+    resp = client.post(
+        url,
+        {
+            "moderateable-moderator_status": "",
+            "feedback_text-feedback_text": "",
+        },
+    )
+
+    assert resp.status_code == 302
+    item.refresh_from_db()
+    assert item.is_reviewed is False

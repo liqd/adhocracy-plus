@@ -28,8 +28,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Guest access settings on project create form
 - apps/exports: include Image export mixin for ideas and proposals
 - Dashboard: add moderation view to projects list
-- Moderation dashboard: project detail now lists comments and ideas together, with a filter for all/only comments/reported comments/only ideas, labels for comments and ideas, and idea feedback linking to the idea moderation page
-- Moderation dashboard: ideas in the list now show their moderation status and official feedback, can be marked as read/unread via the item menu, and the list filters/sorts by read status and recency (default: all, unread, most recent)
+- Moderation dashboard: project detail lists comments and ideas together with labels, each idea's moderation status and official feedback, and read/unread handling. Items can be marked as read/unread manually and are marked read automatically when official feedback is added to a comment or an idea, or a status is set on an idea. The list can be filtered by content type and read status and sorted by date or reports; reported ideas are flagged and counted, and "Add feedback" returns to the moderation page.
 - 429 error page template so the allauth rate limiter can render a user-facing
   "Too Many Requests" response instead of failing with ``TemplateDoesNotExist``
 - Project Dashboard: Add 'View Live'
@@ -101,14 +100,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - tests/organisations: fix ``test_initiator_can_update`` assertion to use
   ``switch_language`` context manager (django-parler behaviour change caused
   the default-language description to return the primary language value)
-- Moderation dashboard: "Add feedback" on an idea now returns to the project's
-  moderation page after saving (via a validated ``next`` return URL) instead of
-  dropping the moderator into the public frontend
-- Moderation dashboard: reported ideas are now marked with the report count,
-  and reported ideas are included in the project list report counter
-- Moderation dashboard: project search and sorting on the overview page use a
-  stable project id as list key, fixing unreliable filtering/sorting when two
-  moderated projects share the same name
 
 
 ## v2607.4

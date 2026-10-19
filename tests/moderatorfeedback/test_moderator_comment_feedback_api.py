@@ -153,3 +153,37 @@ def test_moderator_can_delete_feedback(
     response = apiclient.delete(url)
     assert response.status_code == 204
     assert ModeratorCommentFeedback.objects.all().count() == 0
+
+
+@pytest.mark.django_db
+def test_adding_feedback_marks_comment_as_read(apiclient, idea, user, comment_factory):
+    idea.project.moderators.add(user)
+    comment = comment_factory(content_object=idea, is_reviewed=False)
+    url = reverse("moderatorfeedback-list", kwargs={"comment_pk": comment.pk})
+
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, {"feedback_text": "a statement"})
+
+    assert response.status_code == 201
+    comment.refresh_from_db()
+    assert comment.is_reviewed is True
+
+
+@pytest.mark.django_db
+def test_editing_feedback_marks_comment_as_read(
+    apiclient, idea, user, comment_factory, moderator_comment_feedback_factory
+):
+    idea.project.moderators.add(user)
+    comment = comment_factory(content_object=idea, is_reviewed=False)
+    statement = moderator_comment_feedback_factory(comment=comment)
+    url = reverse(
+        "moderatorfeedback-detail",
+        kwargs={"comment_pk": comment.pk, "pk": statement.pk},
+    )
+
+    apiclient.force_authenticate(user=user)
+    response = apiclient.put(url, {"feedback_text": "changed"}, format="json")
+
+    assert response.status_code == 200
+    comment.refresh_from_db()
+    assert comment.is_reviewed is True

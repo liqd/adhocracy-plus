@@ -222,6 +222,8 @@ class AbstractIdeaModerateView(
         with transaction.atomic():
             feedback_text.save()
             moderateable.moderator_feedback_text = feedback_text
+            if moderateable.moderator_status or feedback_text.feedback_text:
+                moderateable.is_reviewed = True
             moderateable.save()
         return objects
 
