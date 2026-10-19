@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const sidebar = document.getElementById('learning-sidebar')
   const closeButton = document.getElementById('learning-close')
   const backdrop = document.getElementById('learning-sidebar-backdrop')
+  const searchStatus = document.getElementById('learning-search-status')
 
   if (!sidebar) {
     return
@@ -32,6 +33,47 @@ document.addEventListener('DOMContentLoaded', function () {
     'textarea:not([disabled])',
     '[tabindex]:not([tabindex="-1"])'
   ].join(',')
+
+  // The search form lives in the persistent sidebar shell, so its state can be
+  // kept in sync with htmx navigation without being replaced by swaps.
+  function searchInputElement () {
+    return document.getElementById('learning-search-input')
+  }
+
+  function searchClearElement () {
+    return document.getElementById('learning-search-clear')
+  }
+
+  function syncSearchClear () {
+    const input = searchInputElement()
+    const clear = searchClearElement()
+    if (input && clear) {
+      clear.hidden = input.value.length === 0
+    }
+  }
+
+  document.addEventListener('input', function (event) {
+    if (event.target && event.target.id === 'learning-search-input') {
+      syncSearchClear()
+    }
+  })
+
+  document.addEventListener('click', function (event) {
+    if (!event.target.closest || !event.target.closest('#learning-search-clear')) {
+      return
+    }
+    const input = searchInputElement()
+    if (!input) {
+      return
+    }
+    input.value = ''
+    syncSearchClear()
+    input.focus()
+    // Let htmx's `input changed` trigger restore the default sidebar content.
+    input.dispatchEvent(new Event('input', { bubbles: true }))
+  })
+
+  syncSearchClear()
 
   // Capture the page URL (without any sidebar deep-link param) so it can be
   // restored when the overlay is closed.
@@ -62,6 +104,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if (toggleButton) {
       toggleButton.setAttribute('aria-expanded', open ? 'true' : 'false')
+    }
+
+    if (!open && wasOpen) {
+      // Abort an in-flight search so its response cannot reopen the sidebar.
+      const form = document.getElementById('learning-search-form')
+      if (form && window.htmx) {
+        window.htmx.trigger(form, 'htmx:abort')
+      }
     }
 
     if (open && moveFocus && !wasOpen) {
@@ -138,8 +188,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Reflect htmx-driven navigation (back/forward, sidebar links) on the open state.
   document.body.addEventListener('htmx:afterSwap', function (evt) {
-    if (evt.detail.target && evt.detail.target.id === 'learning-content') {
-      setOpen(true, false)
+    if (!evt.detail.target || evt.detail.target.id !== 'learning-content') {
+      return
+    }
+
+    // A late search response must not reopen a sidebar the user just closed.
+    const requestElement = evt.detail.elt
+    const isSearchRequest = requestElement && (
+      requestElement.id === 'learning-search-form' ||
+      (requestElement.closest && requestElement.closest('#learning-search-form'))
+    )
+    if (isSearchRequest && !sidebar.classList.contains('active')) {
+      return
+    }
+
+    setOpen(true, false)
+
+    const responseUrl = evt.detail.xhr && evt.detail.xhr.responseURL
+    if (!responseUrl) {
+      return
+    }
+
+    const searchQuery = new URL(
+      responseUrl,
+      window.location.origin
+    ).searchParams.get('q')
+    const input = searchInputElement()
+    if (!input) {
+      return
+    }
+
+    // Keep the field in sync with the loaded content (e.g. deep links), but
+    // never overwrite it while the user is typing.
+    if (document.activeElement !== input) {
+      input.value = searchQuery || ''
+      syncSearchClear()
+    }
+
+    if (!searchQuery && searchStatus) {
+      searchStatus.textContent = ''
     }
   })
 

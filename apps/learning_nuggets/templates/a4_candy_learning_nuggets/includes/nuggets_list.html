@@ -1,12 +1,12 @@
 {% load i18n rules learning_nuggets_tags wagtailimages_tags %}
-{% include "a4_candy_learning_nuggets/includes/learning_header.html" %}
 
 <nav class="learning-breadcrumb">
     <a href="{% url 'learning_nuggets:index' %}"
        hx-get="{% url 'learning_nuggets:index' %}"
        hx-target="#learning-content"
        hx-swap="innerHTML"
-       hx-push-url="true">
+       hx-push-url="true"
+       hx-sync="#learning-sidebar:replace">
         <i class="fas fa-chevron-left learning-breadcrumb__icon"
            aria-hidden="true"></i>{% translate 'Learning Center Home' %}
     </a>
@@ -26,7 +26,8 @@
                        hx-get="{% url 'learning_nuggets:nugget-detail' category_slug=category.slug nugget_slug=nugget.slug %}"
                        hx-target="#learning-content"
                        hx-swap="innerHTML"
-                       hx-push-url="true">
+                       hx-push-url="true"
+                       hx-sync="#learning-sidebar:replace">
                         
                         {% get_first_nugget_image nugget "fill-420x280" as thumb %}
                         {% if thumb %}

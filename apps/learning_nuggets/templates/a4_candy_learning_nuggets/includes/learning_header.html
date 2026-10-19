@@ -1,7 +1,15 @@
 {% load i18n %}
-<header class="learning-header {% if is_htmx %}learning-header--sticky{% endif %}">
-    <i class="fa fa-question-circle" aria-hidden="true"></i>
-    <h1 class="learning-header__title learning-content__title learning-content__title--md">
-        {% translate 'Learning Center' %}
-    </h1>
+<header class="learning-header">
+    <div class="learning-header__top">
+        <i class="fa fa-question-circle" aria-hidden="true"></i>
+        {% if is_sidebar %}
+            <h2 class="learning-header__title learning-content__title learning-content__title--md">
+                {% translate 'Learning Center' %}
+            </h2>
+        {% else %}
+            <h1 class="learning-header__title learning-content__title learning-content__title--md">
+                {% translate 'Learning Center' %}
+            </h1>
+        {% endif %}
+    </div>
 </header>
