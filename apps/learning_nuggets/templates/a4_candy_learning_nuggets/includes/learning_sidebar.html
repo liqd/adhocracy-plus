@@ -19,6 +19,50 @@
             aria-label="{% translate 'Close' %}">
         <i class="fas fa-times" aria-hidden="true"></i>
     </button>
+
+    <div class="learning-sidebar__header">
+        {% include "a4_candy_learning_nuggets/includes/learning_header.html" with is_sidebar=True %}
+
+        <form id="learning-search-form"
+              class="learning-search"
+              role="search"
+              aria-label="{% translate 'Search help content' %}"
+              method="get"
+              action="{% url 'learning_nuggets:index' %}"
+              hx-get="{% url 'learning_nuggets:index' %}"
+              hx-trigger="input changed delay:300ms from:#learning-search-input, submit"
+              hx-target="#learning-content"
+              hx-swap="innerHTML"
+              hx-sync="#learning-sidebar:replace">
+            <label class="visually-hidden" for="learning-search-input">
+                {% translate 'Search help content' %}
+            </label>
+            <i class="fas fa-magnifying-glass learning-search__icon" aria-hidden="true"></i>
+            <input id="learning-search-input"
+                   class="learning-search__input"
+                   type="search"
+                   name="q"
+                   value=""
+                   placeholder="{% translate 'Search help content' %}"
+                   autocomplete="off"
+                   aria-controls="learning-content">
+            <button id="learning-search-clear"
+                    class="learning-search__clear"
+                    type="button"
+                    aria-label="{% translate 'Clear search' %}"
+                    hidden>
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </form>
+    </div>
+
+    {# Persistent live region so search result changes are announced. #}
+    <div id="learning-search-status"
+         class="visually-hidden"
+         role="status"
+         aria-live="polite"
+         aria-atomic="true"></div>
+
     <div id="learning-content" class="learning-sidebar__content"></div>
 </div>
 <script type="text/javascript" src="{% static 'learning_sidebar.js' %}"></script>

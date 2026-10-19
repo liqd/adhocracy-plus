@@ -1,4 +1,9 @@
+import re
+from html import unescape
+
 from django.shortcuts import get_object_or_404
+from django.utils.translation import gettext
+from django.utils.translation import ngettext
 from django.views.generic import DetailView
 from django.views.generic import ListView
 
@@ -19,6 +24,63 @@ def live_public_nuggets():
         .select_related("category")
         .order_by("order")
     )
+
+
+def _block_matches(block, query):
+    """Return whether a single StreamField block matches ``query``.
+
+    The acceptance criteria define three searchable fields: the page title
+    (handled by the caller), the nugget title and the nugget description.
+    """
+    if block.block_type != "learning_nugget":
+        return False
+
+    value = block.value
+    title = value.get("title") or ""
+    if query in title.casefold():
+        return True
+
+    description = value.get("description")
+    if description:
+        # RichText exposes the raw HTML in ``source``. Replace tags with a
+        # space (so words from adjacent blocks do not get glued together) and
+        # decode entities before matching the visible text.
+        text = getattr(description, "source", None) or str(description)
+        text = unescape(re.sub(r"<[^>]+>", " ", text)).replace("\xa0", " ")
+        if query in text.casefold():
+            return True
+    return False
+
+
+def search_nuggets(query):
+    """Return live, public nuggets matching ``query``.
+
+    Matching is case-insensitive and finds partial words. The curated help
+    content is filtered in Python because a database ``icontains`` lookup on
+    the StreamField would also match media/document metadata instead of only
+    the nugget title and description.
+    """
+    normalised = query.casefold()
+    if not normalised:
+        return []
+
+    return [
+        nugget
+        for nugget in live_public_nuggets().filter(category__isnull=False)
+        if normalised in nugget.title.casefold()
+        or any(_block_matches(block, normalised) for block in nugget.content)
+    ]
+
+
+def build_search_summary(query, result_count):
+    """Human readable (and translatable) summary of a sidebar search."""
+    if not result_count:
+        return gettext("No results for “%(query)s”.") % {"query": query}
+    return ngettext(
+        "%(count)s result for “%(query)s”",
+        "%(count)s results for “%(query)s”",
+        result_count,
+    ) % {"count": result_count, "query": query}
 
 
 class HtmxTemplateMixin:
@@ -58,6 +120,25 @@ class LearningCenterView(HtmxTemplateMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        # The custom view does not go through Wagtail's page serving, so the
+        # page (used for the heading) is looked up once here for both the full
+        # page and the htmx partial.
+        context["page"] = LearningCenterPage.objects.live().public().first()
+
+        # Live sidebar search. The query is capped to keep pathological input
+        # from being echoed back (and matched) in full.
+        query = self.request.GET.get("q", "").strip()[:100]
+        context["query"] = query
+        context["nuggets"] = search_nuggets(query) if query else []
+        context["search_summary"] = (
+            build_search_summary(query, len(context["nuggets"])) if query else ""
+        )
+
+        if query:
+            # Search results replace the category index in the partial.
+            return context
+
         categories = list(context.get("grouped_categories", []))
 
         grouped = {}
@@ -75,11 +156,6 @@ class LearningCenterView(HtmxTemplateMixin, ListView):
             {"permission_level": level, "categories": grouped[level]}
             for level in ordered_levels
         ]
-
-        # The custom view does not go through Wagtail's page serving, so the
-        # page (used for the heading) is looked up once here for both the full
-        # page and the htmx partial.
-        context["page"] = LearningCenterPage.objects.live().public().first()
 
         return context
 

@@ -18,6 +18,8 @@ This app introduces the **Learning Center**, a dynamic content hub for education
 - **htmx-Powered Navigation**  
   Nuggets load in the sidebar via [htmx](https://htmx.org/) (`hx-get` / `hx-target` / `hx-push-url`) for smooth transitions, while still supporting full server-side rendering (SSR) as a fallback. The views serve a partial when `request.htmx` is true (`django-htmx`), otherwise the full page.
 
+- **Sidebar Search**: the help sidebar can search across page titles, nugget titles and nugget descriptions. Matching is case-insensitive and also finds partial words. Results are deduplicated per page and announced to screen readers via a live region.
+
 - **Video Block Support**  
   Repurposed a `VideoBlock` from the Liquid site and added it to the CMS. It can be embedded within any nugget to enhance interactivity.
 

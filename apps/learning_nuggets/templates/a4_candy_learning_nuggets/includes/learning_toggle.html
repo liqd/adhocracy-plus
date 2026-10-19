@@ -7,6 +7,7 @@
         aria-expanded="false"
         hx-get="{% url 'learning_nuggets:index' %}"
         hx-target="#learning-content"
-        hx-swap="innerHTML">
+        hx-swap="innerHTML"
+        hx-sync="#learning-sidebar:replace">
     <i class="fas fa-circle-question" aria-hidden="true"></i>
 </button>
