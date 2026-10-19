@@ -15,6 +15,18 @@ test('ModerationFeedback with optimal values', () => {
   expect(feedback).toBeTruthy()
 })
 
+test('ModerationFeedback keeps a space before the edit date', () => {
+  const mockProps = {
+    feedback_text: 'test feedback',
+    last_edit: '20. April 2022, 3 PM',
+    pk: 1
+  }
+  render(
+    <ModerationFeedback feedback={mockProps} />
+  )
+  expect(screen.getByText('Last edit was on 20. April 2022, 3 PM')).toBeTruthy()
+})
+
 test('ModerationFeedback onDelete', () => {
   const mockProps = {
     feedback_text: 'test feedback',
