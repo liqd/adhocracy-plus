@@ -35,6 +35,7 @@ const TRANSLATED = {
   save: django.gettext('Save'),
   updated: django.gettext('The poll has been updated.'),
   updateFailed: django.gettext('The poll could not be updated. Please check the data you entered again.'),
+  updateFailedStatus: django.gettext('The poll could not be updated (HTTP %(status)s). Please try again.'),
   unsavedChanges: django.gettext('If you leave this page changes you made will not be saved.'),
   loadFailed: django.gettext('The poll could not be loaded. Please try again.')
 }
@@ -428,13 +429,18 @@ export const PollManagement = (props: PollManagementProps) => {
       })
       .fail((xhr: any) => {
         let questionErrors: QuestionErrors[] = []
+        let messages: string[] = []
+        let parsed: any = null
         try {
-          const parsed = xhr && xhr.responseText ? JSON.parse(xhr.responseText) : null
-          if (parsed && Array.isArray(parsed.questions)) {
-            questionErrors = parsed.questions
-          }
+          parsed = xhr && xhr.responseText ? JSON.parse(xhr.responseText) : null
         } catch {
-          // response body was not valid JSON, fall back to the generic alert
+          // response body was not valid JSON (e.g. a proxy or server error page)
+        }
+        if (parsed && Array.isArray(parsed.questions)) {
+          questionErrors = parsed.questions
+          messages = collectErrorMessages(questionErrors)
+        } else if (parsed) {
+          messages = collectErrorMessages([parsed as QuestionErrors])
         }
         setErrors(questionErrors)
         const firstErrorIndex = questionErrors.findIndex(hasQuestionErrors)
@@ -442,11 +448,14 @@ export const PollManagement = (props: PollManagementProps) => {
           setExpandedKey(questions[firstErrorIndex].key)
           focusErrorRef.current = true
         }
-        const messages = collectErrorMessages(questionErrors)
-        setAlert({
-          type: 'danger',
-          message: messages.length ? messages.join(' ') : TRANSLATED.updateFailed
-        })
+        const status = xhr && xhr.status
+        let message = messages.join(' ')
+        if (!message) {
+          message = status
+            ? django.interpolate(TRANSLATED.updateFailedStatus, { status }, true)
+            : TRANSLATED.updateFailed
+        }
+        setAlert({ type: 'danger', message })
       })
   }
 
