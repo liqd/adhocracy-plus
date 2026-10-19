@@ -49,14 +49,14 @@
                             </div>
                         </div>
 
-                        <a href="{% url 'profile' user.username %}" aria-label="{% trans 'Link to profile:' %}{{ user.username }}">
+                        <a href="{% url 'profile' user.username %}" aria-label="{% trans 'Link to profile:' %}{{ user.get_short_name }}">
                             {% if user.avatar %}
                                 <img class="userdashboard-profile__avatar mb-2" src="{% thumbnail user.avatar '170x170' crop %}" alt="" />
                             {% else %}
                                 <img class="userdashboard-profile__avatar mb-2" src="{{ user.avatar_fallback }}" width="170" height="170" alt="" />
                             {% endif %}
                             <h2 class="userdashboard-profile__name">
-                            {{ user.username }}
+                            {{ user.get_short_name }}
                             </h2>
                         </a>
                         <div class="u-text--gray">

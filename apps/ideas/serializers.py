@@ -84,7 +84,7 @@ class IdeaSerializer(serializers.ModelSerializer):
         read_only_fields = ("pk", "creator", "created", "reference_number")
 
     def get_creator(self, idea):
-        return idea.creator.username
+        return idea.creator.get_short_name()
 
     def get_created(self, idea):
         return get_date_display(idea.created)

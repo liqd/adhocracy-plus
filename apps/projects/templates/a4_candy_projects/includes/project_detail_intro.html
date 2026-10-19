@@ -1,4 +1,4 @@
-{% load i18n a4_candy_project_tags signup_flow guest_user %}
+{% load i18n a4_candy_project_tags signup_flow %}
 
 <div class="project-detail__intro">
     <div class="project-detail__main" id="project-detail-main">
@@ -40,7 +40,7 @@
                 <i class="fa-solid fa-times" aria-hidden="true"></i>
             </button>
         </div>
-        {% elif request.user|is_guest_user and not project.allow_guest_users %}
+        {% elif request.user.is_guest and not project.allow_guest_users %}
         <div class="alert project-detail__guest-alert"
              role="status"
              data-guest-alert
@@ -69,7 +69,7 @@
     {% if not module_page %}
     {% include "a4_candy_projects/includes/project_detail_sidebar.html" %}
     {% endif %}
-    {% if request.user.is_authenticated and not request.user|is_guest_user %}
+    {% if request.user.is_authenticated and not request.user.is_guest %}
     {% project_detail_follow_widget_attrs project as project_follow_widget_attrs %}
     <span
         class="visually-hidden"

@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% load i18n guest_user %}
+{% load i18n %}
 
 {% block title %}
-    {% if not user|is_guest_user %}
+    {% if not user.is_guest %}
         {% translate "User Dashboard" %} — {{ block.super }}
     {% else %}
         {% translate "Guest Account Settings" %} — {{ block.super }}
@@ -12,7 +12,7 @@
 {% block content %}
 <div class="container mt-4">
     <div class="row">
-        {% if not user|is_guest_user %}
+        {% if not user.is_guest %}
         <nav class="col-md-3" aria-label="{% translate 'User Dashboard navigation' %}">
             <div class="dashboard-nav">
                 <div class="dropdown dashboard-nav__dropdown u-word-break-all">
@@ -77,7 +77,7 @@
         <nav class="col-md-3" aria-label="{% translate 'Guest user settings navigation' %}">
             <div class="dashboard-nav">
                 <div class="dropdown dashboard-nav__dropdown u-word-break-all">
-                    {% translate "Guest" %}
+                    {{ request.user.get_short_name }}
                 </div>
             {% with request.resolver_match.url_name as url_name %}
                 <ul class="dashboard-nav__pages">
