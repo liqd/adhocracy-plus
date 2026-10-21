@@ -5,12 +5,14 @@ from rules.contrib.views import PermissionRequiredMixin
 from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins
 from adhocracy4.exports import views as a4_export_views
+from apps.exports.mixins import CreatorDisplayNameExportMixin
 
 
 class DocumentExportView(
     PermissionRequiredMixin,
     mixins.ItemExportWithLinkMixin,
     mixins.ExportModelFieldsMixin,
+    CreatorDisplayNameExportMixin,
     mixins.UserGeneratedContentExportMixin,
     mixins.ItemExportWithRatesMixin,
     mixins.CommentExportWithRepliesToMixin,

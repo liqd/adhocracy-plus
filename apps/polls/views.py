@@ -22,4 +22,11 @@ class PollDashboardExportView(DashboardExportView):
                 "module_slug": self.module.slug,
             },
         )
+        context["poll_export_human"] = reverse(
+            "a4dashboard:poll-export-human",
+            kwargs={
+                "organisation_slug": self.module.project.organisation.slug,
+                "module_slug": self.module.slug,
+            },
+        )
         return context

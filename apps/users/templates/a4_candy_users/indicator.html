@@ -1,4 +1,4 @@
-{% load i18n static thumbnail settings guest_user %}
+{% load i18n static thumbnail settings %}
 {% if request.user.is_authenticated %}
     <div class="dropdown userindicator__dropdown">
         <button title="{% translate 'Menu' %}"
@@ -20,19 +20,15 @@
                 aria-haspopup="true"
                 aria-expanded="false"
                 id="user-actions">
-            {% if not user|is_guest_user %}
+            {% if not user.is_guest %}
                 <div class="userindicator__btn-img"
                      style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar' }}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}">
                 </div>
             {% endif %}
             <div class="userindicator__btn-text text-start">
                 <span class="userindicator__hello">{% translate "Hello" %}, </span>
-                {% if not user|is_guest_user %}
-                    <br>
-                    <div class="u-overflow-ellipsis">{{ request.user.username }}</div>
-                {% else %}
-                    <span>{% translate "Guest" %}</span>
-                {% endif %}
+                <br>
+                <div class="u-overflow-ellipsis">{{ request.user.get_short_name }}</div>
             </div>
             {% include 'a4_candy_users/includes/userindicator_toggle_icons.html' %}
         </button>
@@ -40,14 +36,14 @@
              aria-labelledby="user-actions user-actions-mobile">
             <div class="userindicator__dropdown-profile">
                 <div class="userindicator__dropdown-profile-main">
-                    {% if not user|is_guest_user %}
+                    {% if not user.is_guest %}
                     <div class="userindicator__btn-img"
                          style="background-image: {% if request.user.avatar %} url({{ request.user.avatar|thumbnail_url:'avatar' }}) {% else %}  url({{ request.user.avatar_fallback }}) {% endif %}">
                     </div>
                     {% endif %}
                     <div class="userindicator__btn-text userindicator__dropdown-profile-text userindicator__dropdown-menu-title text-start">
-                        {% if user|is_guest_user %}
-                            {% translate "Guest" %}
+                        {% if user.is_guest %}
+                            {{ request.user.get_short_name }}
                         {% else %}
                             {% translate 'Menu' %}
                         {% endif %}
@@ -66,7 +62,7 @@
                     <span>{% translate "Admin" %}</span>
                 </a>
             {% endif %}
-            {% if not user|is_guest_user %}
+            {% if not user.is_guest %}
                 <a class="dropdown-item userindicator__dropdown-item"
                    href="{% url 'userdashboard-overview' %}">
                     <i class="fa-solid fa-user userindicator__dropdown-item-icon" aria-hidden="true"></i>

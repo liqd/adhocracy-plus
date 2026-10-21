@@ -10,6 +10,7 @@ from django.utils import translation
 
 from adhocracy4.test.helpers import redirect_target
 from apps.users import models
+from tests.helpers import GuestUserCreator
 
 User = auth.get_user_model()
 
@@ -139,7 +140,7 @@ def test_guest_create_htmx_renders_modal_partial(client):
 def test_guest_create_htmx_success_sends_redirect_header(client):
     response = client.post(
         reverse("guest_create"),
-        {"terms_of_use": "on", "next": "/"},
+        {"username": "Curious Citizen", "terms_of_use": "on", "next": "/"},
         HTTP_HX_REQUEST="true",
     )
     assert response.status_code == 200
@@ -379,3 +380,24 @@ def test_profile(client, user):
     response = client.get(url)
     assert response.status_code == 200
     assert response.context["user"] == user
+
+
+@pytest.mark.django_db
+def test_profile_with_gender_colon_username(client, user):
+    user.username = "Neugierige:r Bürger:in"
+    user.save()
+    url = reverse("profile", kwargs={"slug": user.username})
+    response = client.get(url)
+    assert response.status_code == 200
+    assert response.context["user"] == user
+
+
+@pytest.mark.django_db
+def test_profile_of_guest_shows_guest_marker(client):
+    guest = GuestUserCreator().create_guest_user()
+    url = reverse("profile", kwargs={"slug": guest.username})
+
+    response = client.get(url)
+
+    assert response.status_code == 200
+    assert "{} (Guest)".format(guest.username) in response.content.decode()

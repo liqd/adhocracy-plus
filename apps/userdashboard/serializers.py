@@ -22,7 +22,7 @@ def _is_hidden(instance):
 def get_creator_name(instance):
     if _is_hidden(instance):
         return _("unknown user")
-    return str(instance.creator.username)
+    return str(instance.creator.get_short_name())
 
 
 def get_creator_image(instance):

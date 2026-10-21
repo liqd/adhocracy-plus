@@ -24,7 +24,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         unique=True,
         help_text=_(
             "Required. 60 characters or fewer. Letters, digits, spaces and "
-            "@/./+/-/_ only."
+            "@/./+/-/:/_ only."
         ),
         validators=[
             validators.RegexValidator(
@@ -170,7 +170,32 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         number = self.pk % 4
         return static("images/avatar-{0:02d}.png".format(number))
 
+    @cached_property
+    def is_guest(self):
+        """Whether this is a temporary guest account.
+
+        Guest accounts always get a placeholder email of the form
+        ``guest+<username>@liqd.net`` (see ``guest_email_for_username``) which
+        is replaced by the real address when converting to a regular account.
+        Checking the email avoids one database query per author when rendering
+        lists and comment threads; the same convention is used by the
+        ``delete_converted_guest_rows`` command. Only the ``liqd.net`` domain
+        is used for guest placeholders and email verification is mandatory, so
+        a regular account cannot accidentally match.
+        """
+        if self.pk is None or not self.email:
+            return False
+        return self.email.startswith("guest+") and self.email.endswith("@liqd.net")
+
     def get_short_name(self):
+        """Return the name shown publicly next to contributions.
+
+        Guest accounts choose a username that is kept when converting to a
+        regular account. To make the temporary status visible wherever the
+        name is shown, guests get a translated "(Guest)" suffix.
+        """
+        if self.is_guest:
+            return "{} {}".format(self.username, _("(Guest)"))
         return self.username
 
     def get_full_name(self):

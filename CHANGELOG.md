@@ -13,6 +13,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - audit: admin audit log records now as an extra view
 - Tests: e2e coverage for the React/vanilla JS widgets: poll multi-question funnel and review step, moderation actions (block, highlight, feedback), interactive events present screen, organisation project search, project follow, and document chapter editing; the suite standardizes on Playwright's `expect()` assertions
 - polls: add option to hide preliminary results until phase end
+- polls: add a human readable answer export 
 - Management command ``send_newsletter_settings_notice`` plus an English/German
   notice email to inform users whose newsletter opt-in may have been reset by
   the profile-edit bug. Recipients are the refined candidate pool; every sent
@@ -25,6 +26,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Notifications: organisation followers receive email and in-app notification when a project is published
 - Project detail and module pages: alert for guest users on registered-users-only projects to register or log in with a personal account
 - Guest logout confirmation: dedicated copy when guests end their session to log in with a personal account from the project banner
+- Guests: choose a unique username that is kept when converting to a regular account
+- Guests: mark the chosen name with a translated "(Guest)" suffix wherever it is shown publicly
 - Guest access settings on project create form
 - apps/exports: include Image export mixin for ideas and proposals
 - Dashboard: add moderation view to projects list
@@ -74,10 +77,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Ideas, MapIdeas List: New design
 - Comment box: Minimum height 100px
 - Idea, spatial idea and participatory budgeting module pages: the submit call to action is now a sticky banner that stays at the top of the viewport while scrolling
-
-### Removed
-
-- Donation banner on all pages
 
 ### Fixed
 

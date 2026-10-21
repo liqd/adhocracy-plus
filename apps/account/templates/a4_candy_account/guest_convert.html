@@ -1,9 +1,9 @@
 {% extends "a4_candy_account/account_dashboard.html" %}
 
-{% load i18n guest_user %}
+{% load i18n %}
 
 {% block title %}
-    {% if not user|is_guest_user %}
+    {% if not user.is_guest %}
         {% translate "Your user profile" %} — {{ block.super }}
     {% else %}
         {% translate "Convert Account" %} — {{ block.super }}
