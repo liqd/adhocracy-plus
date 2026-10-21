@@ -35,7 +35,11 @@ def test_guest_convert_keeps_guest_username(client):
     client.force_login(guest)
 
     response = client.get(reverse("guest_convert"))
-    assert response.context["form"].initial["username"] == original_username
+    suggested_username = response.context["form"].initial["username"]
+    # The conversion suggests the bare guest username without the public
+    # "(Guest)" marker.
+    assert suggested_username == original_username
+    assert "(Guest)" not in suggested_username
 
     response = client.post(
         reverse("guest_convert"),

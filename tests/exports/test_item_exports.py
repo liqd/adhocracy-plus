@@ -1,6 +1,8 @@
 import pytest
 
 from adhocracy4.exports import mixins
+from apps.exports.mixins import CreatorDisplayNameExportMixin
+from tests.helpers import GuestUserCreator
 
 
 @pytest.mark.django_db
@@ -32,6 +34,17 @@ def test_user_generated_content_mixin(idea):
 
     assert idea.creator.username == mixin.get_creator_data(idea)
     assert idea.created.astimezone().isoformat() == mixin.get_created_data(idea)
+
+
+@pytest.mark.django_db
+def test_creator_display_name_export_mixin(idea):
+    guest = GuestUserCreator().create_guest_user()
+    idea.creator = guest
+    idea.save()
+
+    mixin = CreatorDisplayNameExportMixin()
+
+    assert mixin.get_creator_data(idea) == "{} (Guest)".format(guest.username)
 
 
 @pytest.mark.django_db

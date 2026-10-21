@@ -4,6 +4,7 @@ import pytest
 from django.conf import settings
 
 from adhocracy4.test.helpers import create_thumbnail
+from tests.helpers import GuestUserCreator
 
 
 @pytest.mark.django_db
@@ -44,6 +45,15 @@ def test_absolute_url(client, user):
 @pytest.mark.django_db
 def test_short_name(user):
     assert user.get_short_name() == user.username
+
+
+@pytest.mark.django_db
+def test_short_name_of_guest_marks_guest():
+    guest = GuestUserCreator().create_guest_user()
+
+    # The guest keeps the bare username (used e.g. when converting to a
+    # regular account) but is marked as guest when displayed.
+    assert guest.get_short_name() == "{} (Guest)".format(guest.username)
 
 
 @pytest.mark.django_db

@@ -10,6 +10,7 @@ from django.utils import translation
 
 from adhocracy4.test.helpers import redirect_target
 from apps.users import models
+from tests.helpers import GuestUserCreator
 
 User = auth.get_user_model()
 
@@ -389,3 +390,14 @@ def test_profile_with_gender_colon_username(client, user):
     response = client.get(url)
     assert response.status_code == 200
     assert response.context["user"] == user
+
+
+@pytest.mark.django_db
+def test_profile_of_guest_shows_guest_marker(client):
+    guest = GuestUserCreator().create_guest_user()
+    url = reverse("profile", kwargs={"slug": guest.username})
+
+    response = client.get(url)
+
+    assert response.status_code == 200
+    assert "{} (Guest)".format(guest.username) in response.content.decode()

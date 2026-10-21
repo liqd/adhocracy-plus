@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% if user|is_guest_user %}
+{% if user.is_guest %}
 
 {% block title %}{% translate "User Dashboard" %} — {{ block.super }}{% endblock title %}
 
@@ -13,7 +13,7 @@
         <nav class="col-md-3" aria-label="{% translate 'User Dashboard navigation' %}">
             <div class="dashboard-nav">
                 <div class="dropdown dashboard-nav__dropdown u-word-break-all">
-                  {% translate "Guest" %}
+                  {{ request.user.get_short_name }}
                 </div>
             {% with request.resolver_match.url_name as url_name %}
                 <ul class="dashboard-nav__pages">

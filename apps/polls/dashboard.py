@@ -4,6 +4,7 @@ from adhocracy4.dashboard import components
 from adhocracy4.polls import dashboard as a4_poll_dashboard
 from adhocracy4.polls import exports as a4_poll_exports
 
+from . import exports
 from . import views
 
 
@@ -43,7 +44,7 @@ class ExportPollComponent(a4_poll_dashboard.ExportPollComponent):
             ),
             (
                 r"^modules/(?P<module_slug>[-\w_]+)/poll/export/comments/$",
-                a4_poll_exports.PollCommentExportView.as_view(),
+                exports.PollCommentExportView.as_view(),
                 "poll-comment-export",
             ),
             (

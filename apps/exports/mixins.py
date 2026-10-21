@@ -33,3 +33,10 @@ class CommentExportWithCategoriesMixin(VirtualFieldMixin):
                     categories.append(category)
             return ", ".join(categories)
         return ""
+
+
+class CreatorDisplayNameExportMixin:
+    """Export the creator's public display name (marks guest accounts)."""
+
+    def get_creator_data(self, item):
+        return item.creator.get_short_name()
