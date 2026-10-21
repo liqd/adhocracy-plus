@@ -69,6 +69,10 @@ document.addEventListener('DOMContentLoaded', function () {
     popup.dataset.mapideaDecorated = 'true'
     popup.classList.add('maps-popups--list-item')
 
+    if (link.textContent.trim().length > 30) {
+      name.classList.add('maps-popups-popup-name--long')
+    }
+
     const url = link.getAttribute('href')
     const textContent = popup.querySelector('.maps-popups-popup-text-content') || popup
     const meta = popup.querySelector('.maps-popups-popup-meta')

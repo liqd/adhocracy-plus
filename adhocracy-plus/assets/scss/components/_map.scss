@@ -89,6 +89,19 @@ $map-colour: #0076ae;
         gap: 0.5em;
     }
 
+    .maps-popups-popup-name--long {
+        font-size: $font-size-md;
+
+        /* stylelint-disable property-no-vendor-prefix, value-no-vendor-prefix */
+        a {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+        /* stylelint-enable property-no-vendor-prefix, value-no-vendor-prefix */
+    }
+
     .maps-popups-popup-meta {
         padding: 0;
     }
