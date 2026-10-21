@@ -42,7 +42,7 @@
                    class="learning-search__input"
                    type="search"
                    name="q"
-                   value=""
+                   value="{{ query|default:'' }}"
                    placeholder="{% translate 'Search help content' %}"
                    autocomplete="off"
                    aria-controls="learning-content">

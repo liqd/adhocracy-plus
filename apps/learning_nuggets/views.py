@@ -1,6 +1,7 @@
 import re
 from html import unescape
 
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext
 from django.utils.translation import ngettext
@@ -24,6 +25,20 @@ def live_public_nuggets():
         .select_related("category")
         .order_by("order")
     )
+
+
+def live_public_center():
+    """Return the live Learning Center page if it is publicly viewable.
+
+    The custom views bypass ``wagtail.urls``, so the page's own view
+    restrictions are not enforced by Wagtail. If a center exists but is
+    private, the whole Learning Center is hidden (mirroring the ``.public()``
+    filtering used for nuggets).
+    """
+    page = LearningCenterPage.objects.live().public().first()
+    if page is None and LearningCenterPage.objects.live().exists():
+        raise Http404
+    return page
 
 
 def _block_matches(block, query):
@@ -123,8 +138,8 @@ class LearningCenterView(HtmxTemplateMixin, ListView):
 
         # The custom view does not go through Wagtail's page serving, so the
         # page (used for the heading) is looked up once here for both the full
-        # page and the htmx partial.
-        context["page"] = LearningCenterPage.objects.live().public().first()
+        # page and the htmx partial. This also enforces its view restrictions.
+        context["page"] = live_public_center()
 
         # Live sidebar search. The query is capped to keep pathological input
         # from being echoed back (and matched) in full.
@@ -168,6 +183,8 @@ class LearningCategoryView(HtmxTemplateMixin, DetailView):
     context_object_name = "category"
 
     def get_object(self):
+        # A restricted Learning Center also hides its category listings.
+        live_public_center()
         return get_object_or_404(LearningCategory, slug=self.kwargs["category_slug"])
 
     def get_context_data(self, **kwargs):
