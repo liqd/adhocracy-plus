@@ -110,6 +110,29 @@ compiled.
 Here, the English translations are kept untranslated, so that they could
 be used to overwrite strings.
 
+### Important rules for forks
+
+The transifex project is shared with the main branch of adhocracy-plus, so
+pushes from a fork can remove strings and translations for everyone:
+
+- Never run `tx push` from a fork of the project. Pushes must be done from the
+  main branch of this repository.
+- A fork that is behind the main branch is missing all strings that were added
+  or changed in the main branch since the last sync. Pushing its
+  `locale-source` files to transifex deletes these strings from the resource,
+  and their translations are lost once the main branch pushes the strings
+  again.
+- Treat `locale-source` as a pure mirror of the shared transifex resource: it
+  is only written by `tx pull -af`. Revert accidental changes (e.g. from
+  `make po`) before committing - the next `tx pull -af` would overwrite them
+  anyway.
+- Add fork-specific strings and translations **only** in `locale-fork`, and do
+  not push them to the shared transifex project.
+
+If a fork needs its own transifex workflow, it should use a separate transifex
+project or transifex branch resources (`tx push --branch`) instead of the
+shared resource.
+
 ### Mark fork-specific translations for translators
 There are two options to mark the strings for translators:
 1. By comments, that are displayed to translators. Django docs on comments for translaters
