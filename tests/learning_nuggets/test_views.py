@@ -34,7 +34,7 @@ def test_index_returns_full_page_without_htmx(client):
     response = client.get(reverse("learning_nuggets:index"))
 
     assert response.status_code == 200
-    assert "learning_sidebar" not in ""  # full page rendered via base template
+    assert b'id="learning-sidebar"' in response.content
     assert b"learning-sidebar" in response.content
     # the toggle is rendered in the global header, not as a floating button
     assert b'id="learning-toggle"' in response.content
@@ -136,7 +136,20 @@ def test_private_nugget_section_is_not_served(client):
     )
 
     assert detail.status_code == 404
+    assert listing.status_code == 404
     assert "Private" not in listing.content.decode()
+
+
+@pytest.mark.django_db
+def test_private_center_is_not_served(client):
+    center = _setup_center()
+    PageViewRestriction.objects.create(page=center, restriction_type="login")
+
+    partial = client.get(reverse("learning_nuggets:index"), HTTP_HX_REQUEST="true")
+    full_page = client.get(reverse("learning_nuggets:index"))
+
+    assert partial.status_code == 404
+    assert full_page.status_code == 404
 
 
 def _search(client, query):
@@ -156,6 +169,17 @@ def test_sidebar_contains_search_form(client):
     assert 'id="learning-search-input"' in content
     assert 'id="learning-search-status"' in content
     assert 'aria-live="polite"' in content
+
+
+@pytest.mark.django_db
+def test_full_page_search_echoes_query(client):
+    _setup_center()
+
+    content = client.get(
+        reverse("learning_nuggets:index"), {"q": "profil"}
+    ).content.decode()
+
+    assert 'value="profil"' in content
 
 
 @pytest.mark.django_db

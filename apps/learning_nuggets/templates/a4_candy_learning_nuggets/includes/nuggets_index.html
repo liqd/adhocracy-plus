@@ -1,17 +1,13 @@
 {% load i18n rules learning_nuggets_tags %}
 
-{% if query %}
-    {% if is_htmx %}
-        {# Announce result changes to screen readers, including the empty state. #}
-        <div hx-swap-oob="innerHTML:#learning-search-status">{{ search_summary }}</div>
-    {% endif %}
+{% if is_htmx %}
+    {# Announce result changes to screen readers, including the empty state. #}
+    <div hx-swap-oob="innerHTML:#learning-search-status">{{ search_summary }}</div>
+{% endif %}
 
+{% if query %}
     {% include "a4_candy_learning_nuggets/includes/nugget_search_results.html" %}
 {% else %}
-    {% if is_htmx %}
-        <div hx-swap-oob="innerHTML:#learning-search-status"></div>
-    {% endif %}
-
     <article class="learning-content">
         <h2 class="learning-content__title learning-content__title--lg">{{ page.title }}</h2>
 
