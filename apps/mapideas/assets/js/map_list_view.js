@@ -115,8 +115,8 @@ document.addEventListener('DOMContentLoaded', function () {
     footer.appendChild(details)
     textContent.appendChild(footer)
 
-    // Drop the ratings meta row if it is now empty (e.g. no ratings).
-    if (meta && meta.children.length === 0) {
+    // Remove the ratings meta row from the popup.
+    if (meta) {
       meta.remove()
     }
 

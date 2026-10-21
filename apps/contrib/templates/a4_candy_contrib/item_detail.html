@@ -55,10 +55,12 @@
 
                     <div class="item-detail__content">
                         <div class="item-detail__basic-content">
+                            {% if object.image %}
+                                <img class="item-detail__image" src="{% thumbnail object.image 'idea_image' %}" alt="">
+                            {% endif %}
                             <div class="ck-content">
                                 {{ object.description | richtext }}
                             </div>
-                            <img class="item-detail__image" src="{% thumbnail object.image 'idea_image' %}" alt="">
                         </div>
 
                         {% block additional_content %}{% endblock additional_content %}
