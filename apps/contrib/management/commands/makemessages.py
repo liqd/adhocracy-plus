@@ -15,7 +15,7 @@ class Command(makemessages.Command):
     def handle(self, *args, **options):
         if options["domain"] == "djangojs":
             if options["extensions"] is None:
-                options["extensions"] = ["js", "jsx"]
+                options["extensions"] = ["js", "jsx", "ts", "tsx"]
         return super().handle(*args, **options)
 
     def find_files(self, root):
