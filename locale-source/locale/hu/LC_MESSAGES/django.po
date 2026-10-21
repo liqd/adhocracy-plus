@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 12:58+0200\n"
+"POT-Creation-Date: 2026-10-21 13:25+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: János Gerzson <gerzsonj@gmail.com>, 2025\n"
 "Language-Team: Hungarian (https://app.transifex.com/liqd/teams/109316/hu/)\n"
@@ -106,8 +106,8 @@ msgstr "Kiválasztás"
 #: apps/account/templates/a4_candy_account/guest_convert.html:32
 #: apps/contrib/templates/a4_candy_contrib/includes/form_checkbox_field.html:6
 #: apps/contrib/templates/a4_candy_contrib/includes/form_field.html:5
-#: apps/users/templates/a4_candy_users/guest_create.html:42
-#: apps/users/templates/a4_candy_users/guest_create.html:53
+#: apps/users/templates/a4_candy_users/guest_create.html:49
+#: apps/users/templates/a4_candy_users/guest_create.html:60
 #: adhocracy-plus/templates/a4forms/includes/form_field_radiogroup.html:6
 #: adhocracy-plus/templates/a4polls/htmx/poll_questions.html:81
 #: adhocracy-plus/templates/account/signup/_wizard.html:64
@@ -273,19 +273,28 @@ msgstr "Nem találunk egy projektet sem"
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:35
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:47
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:59
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:5
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:23
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:35
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:47
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:59
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:71
 msgid "Export"
 msgstr "Export"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:7
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:7
 msgid ""
 "You can export the results of your participation project as an excel file."
 msgstr "A részvételi projekt eredményeit excel fájlként exportálhatja."
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:19
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:19
 msgid "here you can export all ideas"
 msgstr "minden ötletet itt exportálhat"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:31
 msgid "here you can export all subjects"
 msgstr "minden témát itt exportálhat"
 
@@ -294,6 +303,7 @@ msgid "here you can export all answers"
 msgstr "minden választ itt exportálhat"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:67
 msgid "here you can export all comments"
 msgstr "minden hozzászólást itt exportálhat"
 
@@ -330,6 +340,8 @@ msgstr ""
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:12
 #: adhocracy4/images/templates/a4images/uppy_image_upload_field.html:33
+#: adhocracy4/images/templates/a4images/image_upload_widget.html:12
+#: adhocracy4/images/templates/a4images/uppy_image_upload_field.html:33
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:16
 #: adhocracy-plus/templates/a4images/image_upload_widget.html:17
 #: adhocracy-plus/templates/a4images/image_upload_widget_simple.html:16
@@ -344,6 +356,11 @@ msgid ""
 "            Your image will be uploaded/removed once you save your changes\n"
 "            at the end of this page.\n"
 "            "
+msgstr ""
+
+#: adhocracy4/images/templates/a4images/uppy_image_upload_field.html:38
+msgid ""
+"Images are resized and compressed automatically before you save the form."
 msgstr ""
 
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
@@ -431,9 +448,9 @@ msgstr ""
 
 #: adhocracy4/comments/models.py:54
 #: adhocracy4/polls/exports.py:43
-#: apps/budgeting/exports.py:80 apps/debate/exports.py:68
-#: apps/documents/exports.py:41 apps/ideas/exports.py:84
-#: apps/mapideas/exports.py:85 apps/topicprio/exports.py:75
+#: apps/budgeting/exports.py:83 apps/debate/exports.py:71
+#: apps/documents/exports.py:43 apps/ideas/exports.py:87
+#: apps/mapideas/exports.py:88 apps/topicprio/exports.py:78
 msgctxt "noun"
 msgid "Comment"
 msgstr ""
@@ -720,9 +737,9 @@ msgstr ""
 #: adhocracy4/exports/mixins/general.py:43
 #: adhocracy4/models/base.py:12
 #: adhocracy4/polls/exports.py:44
-#: apps/budgeting/exports.py:81 apps/debate/exports.py:69
-#: apps/documents/exports.py:42 apps/ideas/exports.py:85
-#: apps/mapideas/exports.py:86 apps/topicprio/exports.py:76
+#: apps/budgeting/exports.py:84 apps/debate/exports.py:72
+#: apps/documents/exports.py:44 apps/ideas/exports.py:88
+#: apps/mapideas/exports.py:89 apps/topicprio/exports.py:79
 msgid "Created"
 msgstr ""
 
@@ -868,11 +885,6 @@ msgstr ""
 #: adhocracy4/images/mixins.py:40
 #: adhocracy4/images/mixins.py:45
 msgid "Please add an alternative text for this image"
-msgstr ""
-
-#: adhocracy4/images/templates/a4images/uppy_image_upload_field.html:38
-msgid ""
-"Images are resized and compressed automatically before you save the form."
 msgstr ""
 
 #: adhocracy4/images/validators.py:28
@@ -1151,9 +1163,9 @@ msgid "Export Excel"
 msgstr ""
 
 #: adhocracy4/polls/exports.py:42
-#: apps/budgeting/exports.py:79 apps/debate/exports.py:67
-#: apps/documents/exports.py:40 apps/ideas/exports.py:83
-#: apps/mapideas/exports.py:84 apps/topicprio/exports.py:74
+#: apps/budgeting/exports.py:82 apps/debate/exports.py:70
+#: apps/documents/exports.py:42 apps/ideas/exports.py:86
+#: apps/mapideas/exports.py:87 apps/topicprio/exports.py:77
 msgid "ID"
 msgstr ""
 
@@ -1491,7 +1503,7 @@ msgid "User Dashboard"
 msgstr ""
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:8
-#: apps/users/templates/a4_candy_users/indicator.html:109
+#: apps/users/templates/a4_candy_users/indicator.html:105
 msgid "Guest Account Settings"
 msgstr ""
 
@@ -1541,13 +1553,6 @@ msgstr ""
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:77
 msgid "Guest user settings navigation"
-msgstr ""
-
-#: apps/account/templates/a4_candy_account/account_dashboard.html:80
-#: apps/account/templates/a4_candy_account/guest_dashboard.html:16
-#: apps/users/templates/a4_candy_users/indicator.html:34
-#: apps/users/templates/a4_candy_users/indicator.html:50
-msgid "Guest"
 msgstr ""
 
 #: apps/account/templates/a4_candy_account/account_dashboard.html:88
@@ -1833,7 +1838,7 @@ msgstr ""
 msgid "Post ideas with budget proposals, comment on them and rate them."
 msgstr ""
 
-#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:596
+#: apps/budgeting/phases.py:19 adhocracy-plus/config/settings/base.py:598
 msgid "participatory budgeting"
 msgstr ""
 
@@ -2004,7 +2009,7 @@ msgstr ""
 msgid "Captcha verification failed. Please try again."
 msgstr ""
 
-#: apps/cms/contacts/models.py:42 apps/users/forms.py:91
+#: apps/cms/contacts/models.py:42 apps/users/forms.py:96
 #: adhocracy-plus/templates/a4polls/htmx/poll_questions.html:80
 msgid "I am not a robot"
 msgstr ""
@@ -2536,7 +2541,7 @@ msgstr ""
 #: apps/organisations/templates/a4_candy_organisations/includes/_follow_alert.html:18
 #: apps/projects/templates/a4_candy_projects/includes/project_detail_intro.html:39
 #: apps/projects/templates/a4_candy_projects/includes/project_detail_intro.html:63
-#: adhocracy-plus/templates/base.html:103
+#: adhocracy-plus/templates/base.html:122
 msgid "Close"
 msgstr ""
 
@@ -4781,7 +4786,7 @@ msgstr ""
 #: apps/organisations/models.py:133
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:4
 #: apps/organisations/templates/a4_candy_organisations/organisation_terms_of_use.html:16
-#: apps/users/forms.py:85 apps/users/forms.py:114
+#: apps/users/forms.py:90 apps/users/forms.py:119
 #: adhocracy-plus/templates/email_base.html:81
 #: adhocracy-plus/templates/email_base.html:111
 #: adhocracy-plus/templates/footer.html:40
@@ -5723,7 +5728,7 @@ msgstr ""
 #: apps/projects/templates/a4_candy_projects/moderatorinvite_detail.html:15
 #: apps/projects/templates/a4_candy_projects/participantinvite_detail.html:15
 #: adhocracy-plus/templates/account/email/unknown_account.en.email:24
-#: adhocracy-plus/templates/account/signup.html:4
+#: adhocracy-plus/templates/account/signup.html:5
 #: adhocracy-plus/templates/account/signup/_wizard.html:10
 #: adhocracy-plus/templates/socialaccount/signup.html:57
 msgid "Register"
@@ -6083,7 +6088,7 @@ msgid "My user Settings"
 msgstr ""
 
 #: apps/userdashboard/templates/a4_candy_userdashboard/base_userdashboard.html:48
-#: apps/users/templates/a4_candy_users/indicator.html:78
+#: apps/users/templates/a4_candy_users/indicator.html:74
 #: apps/users/templates/a4_candy_users/user_detail.html:29
 msgid "Account Settings"
 msgstr ""
@@ -6119,8 +6124,8 @@ msgstr ""
 #: apps/userdashboard/templates/a4_candy_userdashboard/base_userdashboard.html:140
 #: apps/userdashboard/templates/a4_candy_userdashboard/base_userdashboard.html:178
 #: apps/userdashboard/templates/a4_candy_userdashboard/base_userdashboard.html:206
-#: apps/users/templates/a4_candy_users/indicator.html:81
-#: apps/users/templates/a4_candy_users/indicator.html:84
+#: apps/users/templates/a4_candy_users/indicator.html:77
+#: apps/users/templates/a4_candy_users/indicator.html:80
 #: adhocracy-plus/templates/a4dashboard/base_dashboard.html:24
 msgid "Organisations"
 msgstr ""
@@ -6323,7 +6328,7 @@ msgstr ""
 #: apps/users/__init__.py:6
 msgid ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
-"and @/./+/-/_ characters. It must start with a digit or a letter."
+"and @/./+/-/:/_ characters. It must start with a digit or a letter."
 msgstr ""
 
 #: apps/users/admin.py:14
@@ -6352,74 +6357,88 @@ msgstr ""
 msgid "Please enter correct email addresses, separated by commas."
 msgstr ""
 
-#: apps/users/forms.py:21
+#: apps/users/forms.py:26
 #, python-brace-format
 msgid ""
 "Please complete the captcha verification.<strong>If you are having "
 "difficulty please contact us by {}email{}.</strong>"
 msgstr ""
 
-#: apps/users/forms.py:69
+#: apps/users/forms.py:74
 msgid "Accept marketing from our partners"
 msgstr ""
 
-#: apps/users/forms.py:104
+#: apps/users/forms.py:109
 msgid "Username/e-mail"
 msgstr ""
 
-#: apps/users/forms.py:116 apps/users/forms.py:158 apps/users/forms.py:320
+#: apps/users/forms.py:121 apps/users/forms.py:203 apps/users/forms.py:380
 #: apps/users/models.py:62
 msgid "I would like to receive further information"
 msgstr ""
 
-#: apps/users/forms.py:118 apps/users/forms.py:160 apps/users/forms.py:322
+#: apps/users/forms.py:123 apps/users/forms.py:205 apps/users/forms.py:382
 #: apps/users/models.py:65
 msgid ""
 "Projects you are following can send you additional information via email."
 msgstr ""
 
-#: apps/users/forms.py:128 apps/users/forms.py:333
+#: apps/users/forms.py:133 apps/users/forms.py:393
 msgid "Your username will appear publicly next to your posts."
 msgstr ""
 
-#: apps/users/forms.py:198
+#: apps/users/forms.py:160
+msgid "Contributing as"
+msgstr ""
+
+#: apps/users/forms.py:167
+msgid ""
+"Your username will appear publicly next to your posts. It must be unique so "
+"that it can be kept when you create a regular account."
+msgstr ""
+
+#: apps/users/forms.py:226
+msgid "Keep your guest username or choose a new one."
+msgstr ""
+
+#: apps/users/forms.py:258
 msgid "Membership number of IG BCE"
 msgstr ""
 
-#: apps/users/forms.py:200
+#: apps/users/forms.py:260
 msgid ""
 "The membership number consists of a seven-digit number and can be found on "
 "the membership card."
 msgstr ""
 
-#: apps/users/forms.py:207
+#: apps/users/forms.py:267
 msgid "Date of birth"
 msgstr ""
 
-#: apps/users/forms.py:209
+#: apps/users/forms.py:269
 msgid ""
 "Please also enter your date of birth in the format MM/DD/YYYY for "
 "authentication. Only members of the IG BCE can participate."
 msgstr ""
 
-#: apps/users/forms.py:216
+#: apps/users/forms.py:276
 msgid ""
 "I confirm that I have read and accepted the <a href=\"/info/ig-bce-"
 "datenschutz/\" target=\"_blank\">data protection policy</a> of IG BCE."
 msgstr ""
 
-#: apps/users/forms.py:231 apps/users/forms.py:271
+#: apps/users/forms.py:291 apps/users/forms.py:331
 msgid "Something is wrong with the setup - please try again later"
 msgstr ""
 
-#: apps/users/forms.py:237
+#: apps/users/forms.py:297
 msgid ""
 "There is already a participant with this membership number. Please check "
 "your entry. If this is your membership number, please send an email to "
 "\"zukunftsgewerkschaft@igbce.de\"."
 msgstr ""
 
-#: apps/users/forms.py:277
+#: apps/users/forms.py:337
 msgid ""
 "Unfortunately, the member number and / or date of birth could not be linked "
 "to an active member account. Please check your input and try again. If you "
@@ -6432,7 +6451,8 @@ msgstr ""
 
 #: apps/users/models.py:26
 msgid ""
-"Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
+"Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/:/_ "
+"only."
 msgstr ""
 
 #: apps/users/models.py:35
@@ -6505,37 +6525,41 @@ msgid ""
 "of the platform."
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/guest_create.html:4
+#: apps/users/models.py:198
+msgid "(Guest)"
+msgstr ""
+
+#: apps/users/templates/a4_candy_users/guest_create.html:5
 msgid "Continue as Guest"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/guest_create.html:7
-#: apps/users/templates/a4_candy_users/guest_create.html:72
+#: apps/users/templates/a4_candy_users/guest_create.html:8
+#: apps/users/templates/a4_candy_users/guest_create.html:79
 msgid "Continue as a guest"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/guest_create.html:14
+#: apps/users/templates/a4_candy_users/guest_create.html:15
 #, python-format
 msgid ""
 "Already have an account? Then please \n"
 "                        <a href=\"%(login_url)s\">log in</a>."
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/guest_create.html:17
+#: apps/users/templates/a4_candy_users/guest_create.html:18
 #, python-format
 msgid ""
 "Would you like to create an account? Then \n"
 "                        <a href=\"%(signup_url)s\">click here</a>."
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/guest_create.html:24
+#: apps/users/templates/a4_candy_users/guest_create.html:25
 msgid ""
 "Please log out after participating or close your browser. This ensures that "
 "neither you nor anyone else has access to your guest account. You can "
 "convert your guest account into a permanent account in the user settings."
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/guest_create.html:38
+#: apps/users/templates/a4_candy_users/guest_create.html:45
 #: adhocracy-plus/templates/account/signup/_wizard.html:61
 #: adhocracy-plus/templates/socialaccount/signup.html:31
 #, python-format
@@ -6551,8 +6575,8 @@ msgstr ""
 #: apps/users/templates/a4_candy_users/indicator.html:4
 #: apps/users/templates/a4_candy_users/indicator.html:12
 #: apps/users/templates/a4_candy_users/indicator.html:15
-#: apps/users/templates/a4_candy_users/indicator.html:52
-#: apps/users/templates/a4_candy_users/indicator.html:139
+#: apps/users/templates/a4_candy_users/indicator.html:48
+#: apps/users/templates/a4_candy_users/indicator.html:135
 #: adhocracy-plus/templates/includes/header_mobile_toggle.html:9
 msgid "Menu"
 msgstr ""
@@ -6562,35 +6586,35 @@ msgstr ""
 msgid "Hello"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:58
+#: apps/users/templates/a4_candy_users/indicator.html:54
 msgid "Close menu"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:66
+#: apps/users/templates/a4_candy_users/indicator.html:62
 msgid "Admin"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:73
+#: apps/users/templates/a4_candy_users/indicator.html:69
 msgid "My Overview"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:101
-#: apps/users/templates/a4_candy_users/indicator.html:118
+#: apps/users/templates/a4_candy_users/indicator.html:97
+#: apps/users/templates/a4_candy_users/indicator.html:114
 msgid "Help Center"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:126
-#: apps/users/templates/a4_candy_users/indicator.html:131
+#: apps/users/templates/a4_candy_users/indicator.html:122
+#: apps/users/templates/a4_candy_users/indicator.html:127
 msgid "Logout"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:153
-#: apps/users/templates/a4_candy_users/indicator.html:167
+#: apps/users/templates/a4_candy_users/indicator.html:149
+#: apps/users/templates/a4_candy_users/indicator.html:163
 msgid "Log in"
 msgstr ""
 
-#: apps/users/templates/a4_candy_users/indicator.html:158
-#: apps/users/templates/a4_candy_users/indicator.html:172
+#: apps/users/templates/a4_candy_users/indicator.html:154
+#: apps/users/templates/a4_candy_users/indicator.html:168
 msgid "Get Started"
 msgstr ""
 
@@ -6636,6 +6660,14 @@ msgstr ""
 msgid "Account Inactive"
 msgstr ""
 
+#: apps/users/views.py:362
+msgid "This username is available."
+msgstr ""
+
+#: apps/users/views.py:367
+msgid "This username is not available."
+msgstr ""
+
 #: adhocracy-plus/config/settings/base.py:222
 msgid "English"
 msgstr ""
@@ -6644,111 +6676,111 @@ msgstr ""
 msgid "German"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:512
+#: adhocracy-plus/config/settings/base.py:514
 msgid "suggestion"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:513
+#: adhocracy-plus/config/settings/base.py:515
 msgid "note"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:514
+#: adhocracy-plus/config/settings/base.py:516
 msgid "question"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:572
+#: adhocracy-plus/config/settings/base.py:574
 msgid "Pin without icon"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:573
+#: adhocracy-plus/config/settings/base.py:575
 msgid "Diamond"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:574
+#: adhocracy-plus/config/settings/base.py:576
 msgid "Triangle up"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:575
+#: adhocracy-plus/config/settings/base.py:577
 msgid "Triangle down"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:576
+#: adhocracy-plus/config/settings/base.py:578
 msgid "Ellipse"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:577
+#: adhocracy-plus/config/settings/base.py:579
 msgid "Semi circle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:578
+#: adhocracy-plus/config/settings/base.py:580
 msgid "Hexagon"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:579
+#: adhocracy-plus/config/settings/base.py:581
 msgid "Rhomboid"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:580
+#: adhocracy-plus/config/settings/base.py:582
 msgid "Star"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:581
+#: adhocracy-plus/config/settings/base.py:583
 msgid "Square"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:582
+#: adhocracy-plus/config/settings/base.py:584
 msgid "Octothorpe"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:583
+#: adhocracy-plus/config/settings/base.py:585
 msgid "Rectangle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:584
+#: adhocracy-plus/config/settings/base.py:586
 msgid "Circle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:585
+#: adhocracy-plus/config/settings/base.py:587
 msgid "Right triangle"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:586
+#: adhocracy-plus/config/settings/base.py:588
 msgid "Zigzag"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:590
+#: adhocracy-plus/config/settings/base.py:592
 msgid "brainstorming"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:591
+#: adhocracy-plus/config/settings/base.py:593
 msgid "spatial brainstorming"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:592
+#: adhocracy-plus/config/settings/base.py:594
 msgid "idea challenge"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:593
+#: adhocracy-plus/config/settings/base.py:595
 msgid "spatial idea challenge"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:594
+#: adhocracy-plus/config/settings/base.py:596
 msgid "text review"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:595
+#: adhocracy-plus/config/settings/base.py:597
 msgid "poll"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:597
+#: adhocracy-plus/config/settings/base.py:599
 msgid "interactive event"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:598
+#: adhocracy-plus/config/settings/base.py:600
 msgid "prioritization"
 msgstr ""
 
-#: adhocracy-plus/config/settings/base.py:599
+#: adhocracy-plus/config/settings/base.py:601
 msgid "debate"
 msgstr ""
 
@@ -6969,6 +7001,14 @@ msgstr ""
 
 #: adhocracy-plus/templates/a4dashboard/organisation_form_base.html:26
 msgid "Legal information"
+msgstr ""
+
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:43
+msgid "here you can export all answers (human readable)"
+msgstr ""
+
+#: adhocracy-plus/templates/a4exports/export_dashboard.html:55
+msgid "here you can export all answers (machine readable)"
 msgstr ""
 
 #: adhocracy-plus/templates/a4forms/includes/inline_form.html:14
@@ -7440,7 +7480,21 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: adhocracy-plus/templates/base.html:98
+#: adhocracy-plus/templates/base.html:100
+#, python-format
+msgid "%(platformname)s is funded by donations."
+msgstr ""
+
+#: adhocracy-plus/templates/base.html:102
+msgid "Donate now"
+msgstr ""
+
+#: adhocracy-plus/templates/base.html:105
+#, python-format
+msgid "Donate now to %(platformname)s"
+msgstr ""
+
+#: adhocracy-plus/templates/base.html:117
 msgid "Login or registration"
 msgstr ""
 
