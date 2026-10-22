@@ -307,3 +307,92 @@ def test_project_started_notification_only_sent_once(
 
     assert Notification.objects.filter(recipient=user2).count() == 1
     assert len(get_emails_for_address(user2.email)) == 1
+
+
+@pytest.mark.django_db
+def test_started_notifications_scoped_to_project(
+    phase_factory, project_factory, user, user2
+):
+    """Passing project_id only notifies followers of that project."""
+    project_a = project_factory()
+    project_b = project_factory()
+    for project in (project_a, project_b):
+        phase_factory(
+            module__project=project,
+            start_date=timezone.now() - timedelta(hours=12),
+            end_date=timezone.now() + timedelta(days=7),
+        )
+    Follow.objects.get_or_create(
+        project=project_a, creator=user, defaults={"enabled": True}
+    )
+    Follow.objects.get_or_create(
+        project=project_b, creator=user2, defaults={"enabled": True}
+    )
+
+    send_recently_started_project_notifications(project_id=project_a.id)
+
+    assert (
+        Notification.objects.filter(
+            recipient=user, notification_type=NotificationType.PROJECT_STARTED
+        ).count()
+        == 1
+    )
+    assert Notification.objects.filter(recipient=user2).count() == 0
+
+
+@pytest.mark.django_db
+def test_completed_notifications_scoped_to_project(
+    phase_factory, project_factory, user, user2
+):
+    """Passing project_id only notifies followers of that project."""
+    project_a = project_factory()
+    project_b = project_factory()
+    for project in (project_a, project_b):
+        phase_factory(
+            module__project=project,
+            start_date=timezone.now() - timedelta(days=7),
+            end_date=timezone.now() - timedelta(hours=12),
+        )
+    Follow.objects.get_or_create(
+        project=project_a, creator=user, defaults={"enabled": True}
+    )
+    Follow.objects.get_or_create(
+        project=project_b, creator=user2, defaults={"enabled": True}
+    )
+
+    send_recently_completed_project_notifications(project_id=project_a.id)
+
+    assert (
+        Notification.objects.filter(
+            recipient=user, notification_type=NotificationType.PROJECT_COMPLETED
+        ).count()
+        == 1
+    )
+    assert Notification.objects.filter(recipient=user2).count() == 0
+
+
+@pytest.mark.django_db
+def test_event_notifications_scoped_to_project(
+    project_factory, offline_event_factory, user, user2
+):
+    """Passing project_id only notifies followers of that project."""
+    project_a = project_factory()
+    project_b = project_factory()
+    offline_event_factory(project=project_a, date=timezone.now() + timedelta(hours=12))
+    offline_event_factory(project=project_b, date=timezone.now() + timedelta(hours=12))
+    Follow.objects.get_or_create(
+        project=project_a, creator=user, defaults={"enabled": True}
+    )
+    Follow.objects.get_or_create(
+        project=project_b, creator=user2, defaults={"enabled": True}
+    )
+
+    send_upcoming_event_notifications(project_id=project_a.id)
+
+    assert (
+        Notification.objects.filter(
+            recipient=user, notification_type=NotificationType.EVENT_SOON
+        ).count()
+        == 1
+    )
+    assert Notification.objects.filter(recipient=user2).count() == 0

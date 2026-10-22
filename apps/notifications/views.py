@@ -3,6 +3,7 @@ from urllib.parse import urlparse
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
@@ -14,6 +15,7 @@ from django.views.generic import View
 from guest_user.functions import is_guest_user
 from guest_user.mixins import RegularUserRequiredMixin
 
+from adhocracy4.projects.models import Project
 from apps.userdashboard.views import UserDashboardNotificationsBaseView
 
 from .forms import NotificationSettingsForm
@@ -45,19 +47,32 @@ class NotificationSettingsView(
         return reverse("account_notification_settings")
 
 
-class TriggerAllNotificationTasksView(LoginRequiredMixin, View):
-    """View to trigger all notification tasks (staff only)"""
+class TriggerAllNotificationTasksView(LoginRequiredMixin, UserPassesTestMixin, View):
+    """View to trigger all notification tasks (staff only)."""
+
+    raise_exception = True
 
     def test_func(self):
         return self.request.user.is_staff
 
     def post(self, request):
-        # Run all tasks
-        send_recently_started_project_notifications.delay()
-        send_recently_completed_project_notifications.delay()
-        send_upcoming_event_notifications.delay()
+        raw_slug = request.POST.get("project_slug", "").strip()
+        project = Project.objects.filter(slug=raw_slug).first() if raw_slug else None
+        if raw_slug and project is None:
+            messages.error(request, f"No project found for slug {raw_slug!r}.")
+            return redirect("account_notification_settings")
 
-        messages.success(request, "All notification tasks have been queued")
+        project_id = project.pk if project else None
+
+        # Run all tasks, optionally scoped to a single project
+        send_recently_started_project_notifications.delay(project_id=project_id)
+        send_recently_completed_project_notifications.delay(project_id=project_id)
+        send_upcoming_event_notifications.delay(project_id=project_id)
+
+        message = "All notification tasks have been queued"
+        if project:
+            message += f" for {project.name}"
+        messages.success(request, message)
         return redirect("account_notification_settings")
 
 
