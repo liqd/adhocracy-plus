@@ -4,10 +4,34 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never run two mirrors at the same time, otherwise the force pushes race
+concurrency:
+  group: mirror-to-gitlab
+  cancel-in-progress: false
+
+env:
+  GITLAB_HOST: gitlab.opencode.de
+  GITLAB_PATH: oc000164626241/adhocracy.plus.git
+  # GitHub runners reach gitlab.opencode.de over a path whose MTU is ~1400.
+  # ICMP is filtered, so path MTU discovery cannot kick in and full-size
+  # segments are dropped silently in the middle of the pack upload: the push
+  # then hangs until the TCP retransmissions give up (~15 min) or the server
+  # closes the connection. Pinning the route MTU for that destination keeps
+  # every segment below the limit.
+  GITLAB_MTU: "1400"
+  # A healthy push takes seconds, so a stuck attempt should not block the job.
+  PUSH_TIMEOUT: "300"
+  PUSH_ATTEMPTS: "3"
 
 jobs:
   mirror:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -18,13 +42,55 @@ jobs:
         env:
           GITLAB_SSH_KEY: ${{ secrets.GITLAB_SSH_KEY }}
         run: |
+          set -uo pipefail
+
+          if [ "${GITHUB_REF_NAME}" != "main" ]; then
+            echo "::error::Only main is mirrored, this run is for ${GITHUB_REF_NAME}"
+            exit 1
+          fi
+
           mkdir -p ~/.ssh
           printf '%s\n' "$GITLAB_SSH_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H gitlab.opencode.de >> ~/.ssh/known_hosts
-          export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes"
-          echo "--- SSH auth test ---"
-          ssh -T git@gitlab.opencode.de || true
-          echo "--- push ---"
-          git remote add gitlab "git@gitlab.opencode.de:oc000164626241/adhocracy.plus.git"
-          git push --force gitlab main
+          ssh-keyscan -4 -T 10 -H "$GITLAB_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+          if [ ! -s ~/.ssh/known_hosts ]; then
+            echo "::error::ssh-keyscan returned no host key for $GITLAB_HOST"
+            exit 1
+          fi
+          export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_ed25519 -o AddressFamily=inet -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=15"
+
+          # Keep our own segments below the path MTU (see GITLAB_MTU). Lowering
+          # the interface MTU is what actually limits the segment size; an MSS
+          # clamp on outgoing SYNs would only limit the other direction.
+          ipv4=$(getent ahostsv4 "$GITLAB_HOST" | awk '{print $1; exit}')
+          iface=$(ip route get "$ipv4" 2>/dev/null | sed -n 's/.* dev \([^ ]*\).*/\1/p')
+          if [ -z "$iface" ] || [ "$iface" = "lo" ]; then
+            echo "::error::Could not determine the interface towards $GITLAB_HOST"
+            exit 1
+          fi
+          old_mtu=$(cat "/sys/class/net/${iface}/mtu")
+          sudo -n ip link set dev "$iface" mtu "$GITLAB_MTU" </dev/null
+          new_mtu=$(cat "/sys/class/net/${iface}/mtu")
+          if [ "$new_mtu" != "$GITLAB_MTU" ]; then
+            echo "::error::Could not lower MTU of $iface from $old_mtu to $GITLAB_MTU (still $new_mtu), aborting instead of risking a hanging push"
+            exit 1
+          fi
+          echo "interface $iface MTU changed from $old_mtu to $new_mtu"
+
+          git remote add gitlab "git@${GITLAB_HOST}:${GITLAB_PATH}"
+          for attempt in $(seq 1 "$PUSH_ATTEMPTS"); do
+            echo "::group::push attempt ${attempt}/${PUSH_ATTEMPTS}"
+            if timeout "$PUSH_TIMEOUT" git push --force gitlab "HEAD:refs/heads/main"; then
+              echo "::endgroup::"
+              echo "Mirror push succeeded on attempt ${attempt}"
+              exit 0
+            fi
+            echo "::endgroup::"
+            echo "push attempt ${attempt} failed"
+            if [ "$attempt" -lt "$PUSH_ATTEMPTS" ]; then
+              sleep $((attempt * 10))
+            fi
+          done
+
+          echo "::error::Mirror to GitLab failed after ${PUSH_ATTEMPTS} attempts"
+          exit 1
