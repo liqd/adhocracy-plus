@@ -94,7 +94,7 @@
 
 .list-item__labels {
     @include clearfix;
-    margin: 0 0 0.4rem;
+    margin: 0 0 (0.5 * $spacer);
 }
 
 .list-item__badge--moderator-feedback {
@@ -129,7 +129,14 @@
     margin-left: 0.5em;
 }
 
-.list-item__stats .rating-button.is-read-only {
+.list-item__stats-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: (0.5 * $spacer) 0;
+}
+
+.list-item .rating-button.is-read-only {
     background-color: transparent;
 }
 
@@ -150,6 +157,10 @@
     i {
         transform: translateY(0.05em);
     }
+}
+
+.list-item__stats-row .list-item__comments {
+    margin-left: auto;
 }
 
 .list-item-empty {
@@ -312,11 +323,15 @@
         overflow-wrap: break-word;
 
         .idea-inbox__pane-title {
-            margin: 0 0 0.5em;
+            margin: 0 0 (0.5 * $spacer);
+        }
+
+        .list-item__meta {
+            margin-bottom: (0.5 * $spacer);
         }
 
         .list-item__details {
-            padding-top: 0;
+            padding-top: $spacer;
         }
     }
 

@@ -57,9 +57,6 @@
                         </div>
                         {% for object in paginated_list %}
                             <div class="idea-inbox__pane" data-mapidea-pane="{{ object.pk }}" hidden>
-                                <h3 class="idea-inbox__pane-title u-first-heading">
-                                    <a href="{{ object.get_absolute_url }}">{{ object.name }}</a>
-                                </h3>
                                 <div class="list-item__labels">
                                     {% if object.category %}
                                         <span class="badge badge--big list-item__badge--category">{{ object.category }}</span>
@@ -73,16 +70,31 @@
                                         </span>
                                     {% endif %}
                                 </div>
+                                <h3 class="idea-inbox__pane-title u-first-heading">
+                                    <a href="{{ object.get_absolute_url }}">{{ object.name }}</a>
+                                </h3>
+                                <div class="list-item__meta">
+                                    <img class="list-item__author-avatar"
+                                         src="{% if object.creator.avatar %}{% thumbnail object.creator.avatar 'avatar' %}{% else %}{{ object.creator.avatar_fallback }}{% endif %}"
+                                         alt="">
+                                    <span class="list-item__author">{{ object.creator.get_short_name }} · </span>
+                                    {% html_date object.created class='list-item__date' %}
+                                </div>
                                 {% include "a4_candy_contrib/includes/list_item_details.html" with object=object show_custom_fields=True %}
                                 <div class="idea-inbox__pane-footer">
-                                    <div class="list-item__meta-row">
-                                        <div class="list-item__meta">
-                                            <img class="list-item__author-avatar"
-                                                 src="{% if object.creator.avatar %}{% thumbnail object.creator.avatar 'avatar' %}{% else %}{{ object.creator.avatar_fallback }}{% endif %}"
-                                                 alt="">
-                                            <span class="list-item__author">{{ object.creator.get_short_name }} · </span>
-                                            {% html_date object.created class='list-item__date' %}
-                                        </div>
+                                    <div class="list-item__stats-row">
+                                        {% if object|has_feature:"rate" %}
+                                            <span class="rating">
+                                                <span class="rating-button rating-up is-read-only" title="{% translate 'Positive Ratings' %}">
+                                                    <i class="far fa-thumbs-up" aria-label="{% translate 'Positive Ratings' %}"></i>
+                                                    {{ object.positive_rating_count }}
+                                                </span>
+                                                <span class="rating-button rating-down is-read-only" title="{% translate 'Negative Ratings' %}">
+                                                    <i class="far fa-thumbs-down" aria-label="{% translate 'Negative Ratings' %}"></i>
+                                                    {{ object.negative_rating_count }}
+                                                </span>
+                                            </span>
+                                        {% endif %}
                                         <span title="{% translate 'Comments' %}" class="list-item__comments">
                                             <i class="far fa-comment" aria-label="{% translate 'Comments' %}"></i>
                                             {{ object.comment_count }}

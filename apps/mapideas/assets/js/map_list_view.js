@@ -69,6 +69,10 @@ document.addEventListener('DOMContentLoaded', function () {
     popup.dataset.mapideaDecorated = 'true'
     popup.classList.add('maps-popups--list-item')
 
+    if (link.textContent.trim().length > 30) {
+      name.classList.add('maps-popups-popup-name--long')
+    }
+
     const url = link.getAttribute('href')
     const textContent = popup.querySelector('.maps-popups-popup-text-content') || popup
     const meta = popup.querySelector('.maps-popups-popup-meta')
@@ -115,8 +119,8 @@ document.addEventListener('DOMContentLoaded', function () {
     footer.appendChild(details)
     textContent.appendChild(footer)
 
-    // Drop the ratings meta row if it is now empty (e.g. no ratings).
-    if (meta && meta.children.length === 0) {
+    // Remove the ratings meta row from the popup.
+    if (meta) {
       meta.remove()
     }
 
