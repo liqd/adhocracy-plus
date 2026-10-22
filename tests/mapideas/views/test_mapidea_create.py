@@ -307,9 +307,12 @@ def test_create_view_renders_multistep_wizard_with_location_step(
         html = response.content.decode()
         assert "data-step-wizard" in html
         assert 'data-step-wizard-step="1"' in html
+        assert 'data-step-wizard-step="2"' in html
+        assert 'data-step-wizard-step="3"' in html
         assert 'data-step-wizard-step="4"' in html
-        # Mapideas get an additional location step before the contact step.
-        assert 'data-step-wizard-step="5"' in html
+        # Mapideas start with the location step and end with the review step.
+        assert 'data-step-wizard-step="5"' not in html
         assert "data-step-wizard-progress" in html
+        assert "data-step-wizard-summary" in html
         assert "data-step-wizard-next" in html
         assert "data-step-wizard-submit" in html

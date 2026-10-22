@@ -351,13 +351,11 @@ def test_create_view_renders_multistep_wizard(
         html = response.content.decode()
         assert "data-step-wizard" in html
         assert 'data-step-wizard-step="1"' in html
+        assert 'data-step-wizard-step="2"' in html
         assert 'data-step-wizard-step="3"' in html
-        assert 'data-step-wizard-step="4"' in html
-        # Without custom fields (and without categories/labels) the optional
-        # "additional information" step is skipped.
-        assert 'data-step-wizard-step="2"' not in html
         # Ideas without a map do not have a location step.
-        assert 'data-step-wizard-step="5"' not in html
+        assert 'data-step-wizard-step="4"' not in html
         assert "data-step-wizard-progress" in html
+        assert "data-step-wizard-summary" in html
         assert "data-step-wizard-next" in html
         assert "data-step-wizard-submit" in html

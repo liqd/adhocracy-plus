@@ -7,24 +7,24 @@
 
 .step-wizard__progress {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1.5 * $spacer;
+    gap: 0.25rem;
+    margin-bottom: 0.5 * $spacer;
 }
 
-.step-wizard__dot {
-    display: block;
-    width: 0.5rem;
-    height: 0.5rem;
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
+.step-wizard__segment {
+    flex: 1 1 0;
+    height: 4px;
     background-color: $gray-lightest;
 }
 
-.step-wizard__dot.is-active {
+.step-wizard__segment.is-active {
     background-color: $brand-primary;
+}
+
+.step-wizard__status {
+    margin-bottom: 1.5 * $spacer;
+    color: $text-muted;
+    font-size: 0.875rem;
 }
 
 .step-wizard__step {
@@ -34,9 +34,50 @@
 }
 
 .step-wizard__title {
-    margin-bottom: $spacer;
+    margin-bottom: 0.5 * $spacer;
     font-size: 1.25rem;
     font-weight: 600;
+}
+
+.step-wizard__hint {
+    margin-bottom: $spacer;
+    color: $text-muted;
+}
+
+.step-wizard__summary {
+    margin-bottom: 1.5 * $spacer;
+    border-top: 1px solid $border-color;
+}
+
+.step-wizard__summary-row {
+    display: flex;
+    gap: $spacer;
+    align-items: baseline;
+    padding: 0.5 * $spacer 0;
+    border-bottom: 1px solid $border-color;
+}
+
+.step-wizard__summary-row dt {
+    flex: 0 0 30%;
+    color: $text-muted;
+    font-weight: 400;
+}
+
+.step-wizard__summary-row dd {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    gap: $spacer;
+    margin: 0;
+}
+
+.step-wizard__summary-edit {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: $brand-primary;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .step-wizard__actions {
