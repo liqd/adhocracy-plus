@@ -43,7 +43,7 @@ def _event_already_notified(event) -> bool:
 
 
 @shared_task(name="send_recently_started_project_notifications")
-def send_recently_started_project_notifications():
+def send_recently_started_project_notifications(project_id=None):
     """
     Notify followers that a project's first phase has started.
 
@@ -52,6 +52,8 @@ def send_recently_started_project_notifications():
     at the first run after its start date - i.e. within ~24h of the start. The
     lookback is a safety margin so backdated starts or missed runs are still
     caught. Deduplication guarantees each project is notified exactly once.
+
+    Pass ``project_id`` to restrict the run to a single project.
     """
     now = timezone.now()
     window = timedelta(hours=_hours("NOTIFICATION_PROJECT_STARTED_HOURS", 72))
@@ -60,6 +62,8 @@ def send_recently_started_project_notifications():
     started_phases = Phase.objects.filter(
         Q(start_date__gte=last_check, start_date__lte=now)
     )
+    if project_id is not None:
+        started_phases = started_phases.filter(module__project_id=project_id)
 
     # Ensure no duplicates
     seen_projects = set()
@@ -90,7 +94,7 @@ def is_last_phase_in_project(phase):
 
 
 @shared_task(name="send_recently_completed_project_notifications")
-def send_recently_completed_project_notifications():
+def send_recently_completed_project_notifications(project_id=None):
     """
     Notify followers that a project has been completed.
 
@@ -99,6 +103,8 @@ def send_recently_completed_project_notifications():
     notified at the first run after its last phase ends - i.e. within ~24h of
     the end. The lookback is a safety margin so missed runs are still caught.
     Deduplication guarantees each project is notified exactly once.
+
+    Pass ``project_id`` to restrict the run to a single project.
     """
     now = timezone.now()
     window = timedelta(hours=_hours("NOTIFICATION_PROJECT_COMPLETED_HOURS", 72))
@@ -107,6 +113,8 @@ def send_recently_completed_project_notifications():
     completed_phases = Phase.objects.filter(
         Q(end_date__gte=last_check, end_date__lte=now)
     )
+    if project_id is not None:
+        completed_phases = completed_phases.filter(module__project_id=project_id)
 
     ended_projects = [
         p.module.project for p in completed_phases if is_last_phase_in_project(p)
@@ -121,7 +129,7 @@ def send_recently_completed_project_notifications():
 
 
 @shared_task(name="send_upcoming_event_notifications")
-def send_upcoming_event_notifications():
+def send_upcoming_event_notifications(project_id=None):
     """
     Remind followers of events starting soon.
 
@@ -130,6 +138,8 @@ def send_upcoming_event_notifications():
     the first run after it enters the window - i.e. roughly 48-72h before the
     event (sooner for events announced after they entered the window).
     Deduplication guarantees each event is notified exactly once.
+
+    Pass ``project_id`` to restrict the run to a single project.
     """
 
     now = timezone.now()
@@ -138,6 +148,8 @@ def send_upcoming_event_notifications():
     upcoming_events = OfflineEvent.objects.filter(
         Q(date__gte=now, date__lte=future)
     ).select_related("project")
+    if project_id is not None:
+        upcoming_events = upcoming_events.filter(project_id=project_id)
 
     strategy = OfflineEventReminder()
 

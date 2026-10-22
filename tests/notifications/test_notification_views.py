@@ -25,3 +25,82 @@ def test_mark_notification_as_read_view(client, user_factory, notification_facto
     assert notification.read is True
     assert response.status_code == 302
     assert response.url == redirect_url
+
+
+@pytest.mark.django_db
+def test_trigger_tasks_requires_staff(client, user, mocker):
+    client.force_login(user)
+    started = mocker.patch(
+        "apps.notifications.views." "send_recently_started_project_notifications.delay"
+    )
+
+    response = client.post(reverse("trigger_all_notification_tasks"))
+
+    assert response.status_code == 403
+    started.assert_not_called()
+
+
+@pytest.mark.django_db
+def test_trigger_tasks_runs_globally_without_slug(client, admin, mocker):
+    client.force_login(admin)
+    started = mocker.patch(
+        "apps.notifications.views." "send_recently_started_project_notifications.delay"
+    )
+    completed = mocker.patch(
+        "apps.notifications.views."
+        "send_recently_completed_project_notifications.delay"
+    )
+    events = mocker.patch(
+        "apps.notifications.views.send_upcoming_event_notifications.delay"
+    )
+
+    response = client.post(reverse("trigger_all_notification_tasks"))
+
+    assert response.status_code == 302
+    started.assert_called_once_with(project_id=None)
+    completed.assert_called_once_with(project_id=None)
+    events.assert_called_once_with(project_id=None)
+
+
+@pytest.mark.django_db
+def test_trigger_tasks_scoped_to_project_slug(client, admin, project_factory, mocker):
+    project = project_factory()
+    client.force_login(admin)
+    started = mocker.patch(
+        "apps.notifications.views." "send_recently_started_project_notifications.delay"
+    )
+    completed = mocker.patch(
+        "apps.notifications.views."
+        "send_recently_completed_project_notifications.delay"
+    )
+    events = mocker.patch(
+        "apps.notifications.views.send_upcoming_event_notifications.delay"
+    )
+
+    response = client.post(
+        reverse("trigger_all_notification_tasks"),
+        {"project_slug": project.slug},
+    )
+
+    assert response.status_code == 302
+    started.assert_called_once_with(project_id=project.pk)
+    completed.assert_called_once_with(project_id=project.pk)
+    events.assert_called_once_with(project_id=project.pk)
+
+
+@pytest.mark.django_db
+def test_trigger_tasks_unknown_slug_shows_error(client, admin, mocker):
+    client.force_login(admin)
+    started = mocker.patch(
+        "apps.notifications.views." "send_recently_started_project_notifications.delay"
+    )
+
+    response = client.post(
+        reverse("trigger_all_notification_tasks"),
+        {"project_slug": "does-not-exist"},
+        follow=True,
+    )
+
+    assert response.status_code == 200
+    assert "No project found" in response.content.decode()
+    started.assert_not_called()

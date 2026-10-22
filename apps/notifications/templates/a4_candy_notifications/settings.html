@@ -25,6 +25,19 @@
                             </ul>
                             <form method="post" action="{% url 'trigger_all_notification_tasks' %}">
                                 {% csrf_token %}
+                                <div class="mb-2">
+                                    <label class="form-label" for="id_project_slug">
+                                        {% trans 'Project slug (optional)' %}
+                                    </label>
+                                    <input type="text"
+                                           name="project_slug"
+                                           id="id_project_slug"
+                                           class="form-control"
+                                           placeholder="{% trans 'Leave empty to run for all projects' %}">
+                                    <div class="form-hint">
+                                        {% trans 'Only run the tasks for the project with this slug.' %}
+                                    </div>
+                                </div>
                                 <button type="submit" class="btn btn-warning">
                                     {% trans 'Run All Notification Tasks' %}
                                 </button>
