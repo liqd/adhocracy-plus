@@ -6,6 +6,7 @@ from wagtail.models import PageViewRestriction
 from apps.learning_nuggets.models import LearningCategory
 from apps.learning_nuggets.models import LearningCenterPage
 from apps.learning_nuggets.models import LearningNuggetPage
+from apps.learning_nuggets.views import matches_text
 
 
 def _setup_center():
@@ -158,6 +159,52 @@ def _search(client, query):
         {"q": query},
         HTTP_HX_REQUEST="true",
     )
+
+
+@pytest.mark.parametrize(
+    "text, query, expected",
+    [
+        ("Profil einrichten", "Profile", True),
+        ("Profile verwalten", "Profil", True),
+        ("Projekt anlegen", "Projekte", True),
+        ("Konto verwalten", "Konten", True),
+        ("Idee einreichen", "Ideen", True),
+        ("Ideen einreichen", "Idee", True),
+        ("Passwort zurücksetzen", "Passwörter", True),
+        ("Häuser verwalten", "Haus", True),
+        ("Registration", "regist", True),
+        ("Haus", "Haut", False),
+        ("Profil", "xyz", False),
+    ],
+)
+def test_matches_text_handles_german_plurals(text, query, expected):
+    assert matches_text(text, query) is expected
+
+
+@pytest.mark.django_db
+def test_search_matches_german_plural_query(client):
+    center = _setup_center()
+    category = LearningCategory.objects.create(name="Participants")
+    _add_nugget(
+        center,
+        category,
+        "Profil einrichten",
+        "profil-einrichten",
+        [{"title": "Profil anlegen", "description": "<p>Profil bearbeiten</p>"}],
+    )
+    _add_nugget(
+        center,
+        category,
+        "Konto verwalten",
+        "konto-verwalten",
+        [{"title": "Passwort zurücksetzen", "description": "<p>Hilfe</p>"}],
+    )
+
+    content = _search(client, "Profile").content.decode()
+    assert "Profil einrichten" in content
+
+    content = _search(client, "Passwörter").content.decode()
+    assert "Konto verwalten" in content
 
 
 @pytest.mark.django_db
