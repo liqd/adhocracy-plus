@@ -1,40 +1,40 @@
 {% load i18n a4_candy_project_tags contrib_tags %}
 
+{% phase_timeline_steps module as phase_timeline %}
+{% if phase_timeline.is_visible %}
 <div class="project-detail__module-phases">
-    {% for phase in module.phases %}
-    {% phase_status_tag phase as phase_status %}
-    <div class="phase-info__item">
-        <div class="phase-info__item__header">
-            <div class="phase-info__item__name">{{ phase.name }}</div>
-            <span class="phase-status-badge phase-status-badge--{{ phase_status.modifier }}">
-                {{ phase_status.label }}
-            </span>
-        </div>
-        <div class="phase-info__item__details">
-            <div class="phase-info__item__detail">
-                <span class="phase-info__item__detail-label">{% translate 'Start' %}</span>
-                <div class="phase-info__item__detail-value">
-                    {% html_date phase.start_date 'DATE_FORMAT' %}<br>
-                    {% html_date phase.start_date 'TIME_FORMAT' %}
+    <ol class="phase-stepper">
+        {% for step in phase_timeline.steps %}
+        <li class="phase-stepper__step phase-stepper__step--{{ step.status }}{% if step.is_current %} phase-stepper__step--current{% endif %}"
+            {% if step.is_current %}aria-current="step"{% endif %}>
+            <span class="phase-stepper__marker" aria-hidden="true"></span>
+            <div class="phase-stepper__body">
+                <div class="phase-stepper__header">
+                    <span class="phase-stepper__name">{{ step.phase.name }}</span>
+                    <span class="phase-status-badge phase-status-badge--{{ step.status }}">
+                        {{ step.status_label }}
+                    </span>
+                </div>
+                <div class="phase-stepper__detail">
+                    {% if step.progress is not None %}
+                    <div
+                        class="phase-stepper__progress"
+                        role="progressbar"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="{{ step.progress }}"
+                        aria-label="{% translate 'Phase progress' %}"
+                        data-phase-progress
+                        data-phase-start="{{ step.start_iso }}"
+                        data-phase-end="{{ step.end_iso }}">
+                        <span class="phase-stepper__progress-fill" style="width: {{ step.progress }}%"></span>
+                    </div>
+                    {% endif %}
+                    <span class="phase-stepper__detail-label">{{ step.detail_label }}</span>
                 </div>
             </div>
-            <div class="phase-info__item__detail">
-                <span class="phase-info__item__detail-label">{% translate 'Duration' %}</span>
-                <div class="phase-info__item__detail-value">
-                    {% phase_duration phase %}
-                </div>
-            </div>
-            <div class="phase-info__item__detail">
-                <span class="phase-info__item__detail-label">{% translate 'End' %}</span>
-                <div class="phase-info__item__detail-value">
-                    {% html_date phase.end_date 'DATE_FORMAT' %}<br>
-                    {% html_date phase.end_date 'TIME_FORMAT' %}
-                </div>
-            </div>
-        </div>
-        <div class="phase-info__item__description">
-            {{ phase.description }}
-        </div>
-    </div>
-    {% endfor %}
+        </li>
+        {% endfor %}
+    </ol>
 </div>
+{% endif %}
