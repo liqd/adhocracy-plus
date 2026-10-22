@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 13:25+0200\n"
+"POT-Creation-Date: 2026-10-22 16:03+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: János Gerzson <gerzsonj@gmail.com>, 2025\n"
 "Language-Team: Hungarian (https://app.transifex.com/liqd/teams/109316/hu/)\n"
@@ -70,7 +70,7 @@ msgstr "Hiányzó mezők a közzétételhez"
 #: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_form.html:39
 #: apps/mapideas/templates/a4_candy_mapideas/mapidea_moderate_form.html:43
 #: apps/moderatorremark/templates/a4_candy_moderatorremark/includes/popover_remark.html:27
-#: apps/notifications/templates/a4_candy_notifications/settings.html:180
+#: apps/notifications/templates/a4_candy_notifications/settings.html:193
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_form.html:15
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_form.html:22
 #: adhocracy-plus/templates/a4dashboard/base_form_module.html:23
@@ -241,7 +241,7 @@ msgid "private"
 msgstr "magán"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:112
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:114
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:19
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:20
 #: apps/projects/templates/a4_candy_projects/project_detail.html:70
@@ -459,14 +459,14 @@ msgstr ""
 #: adhocracy4/exports/mixins/comments.py:48
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:16
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:17
-#: apps/ideas/templates/a4_candy_ideas/idea_list.html:70
-#: apps/ideas/templates/a4_candy_ideas/idea_list.html:71
-#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:51
-#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:52
-#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:86
-#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:87
-#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:54
-#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:55
+#: apps/ideas/templates/a4_candy_ideas/idea_list.html:82
+#: apps/ideas/templates/a4_candy_ideas/idea_list.html:83
+#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:49
+#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:50
+#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:98
+#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:99
+#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:52
+#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:53
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_list_item.html:18
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_list_item.html:20
 msgid "Comments"
@@ -479,7 +479,7 @@ msgstr ""
 
 #: adhocracy4/comments/serializers.py:87
 #: adhocracy4/comments_async/serializers.py:92
-#: apps/userdashboard/serializers.py:24
+#: apps/userdashboard/serializers.py:25
 msgid "unknown user"
 msgstr ""
 
@@ -767,12 +767,12 @@ msgstr ""
 
 #: adhocracy4/exports/mixins/items.py:43
 #: adhocracy4/labels/dashboard.py:13
-#: apps/ideas/models.py:51 apps/topicprio/models.py:57
+#: apps/ideas/models.py:52 apps/topicprio/models.py:57
 msgid "Labels"
 msgstr ""
 
 #: adhocracy4/exports/mixins/items.py:61
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:73
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:75
 msgid "Reference No."
 msgstr ""
 
@@ -1100,7 +1100,7 @@ msgstr ""
 
 #: adhocracy4/phases/models.py:60
 #: apps/activities/models.py:22 apps/debate/models.py:27
-#: apps/ideas/models.py:39 apps/offlineevents/models.py:33
+#: apps/ideas/models.py:40 apps/offlineevents/models.py:33
 #: apps/organisations/forms.py:326 apps/topicprio/forms.py:23
 #: apps/topicprio/models.py:38
 msgid "Description"
@@ -1363,8 +1363,8 @@ msgid "Postal address"
 msgstr ""
 
 #: adhocracy4/projects/models.py:74
-#: apps/notifications/templates/a4_candy_notifications/settings.html:64
 #: apps/notifications/templates/a4_candy_notifications/settings.html:77
+#: apps/notifications/templates/a4_candy_notifications/settings.html:90
 #: apps/projects/templates/a4_candy_projects/includes/removeable_invite_list.html:7
 msgid "Email"
 msgstr ""
@@ -1481,7 +1481,7 @@ msgid "Participation"
 msgstr ""
 
 #: adhocracy4/reports/templatetags/react_reports.py:28
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:123
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:125
 msgid "Report"
 msgstr ""
 
@@ -1785,7 +1785,7 @@ msgid "Face-to-Face Information"
 msgstr ""
 
 #: apps/activities/models.py:12 apps/debate/models.py:22
-#: apps/ideas/models.py:38 apps/offlineevents/models.py:25
+#: apps/ideas/models.py:39 apps/offlineevents/models.py:25
 #: apps/organisations/forms.py:317 apps/topicprio/models.py:35
 msgid "Title"
 msgstr ""
@@ -1844,10 +1844,14 @@ msgstr ""
 
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:7
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:8
-#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:9
-#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:10
-#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:9
-#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:10
+#: apps/ideas/templates/a4_candy_ideas/idea_list.html:72
+#: apps/ideas/templates/a4_candy_ideas/idea_list.html:73
+#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:39
+#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:40
+#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:88
+#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:89
+#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:42
+#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:43
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_list_item.html:8
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_list_item.html:10
 msgid "Positive Ratings"
@@ -1855,10 +1859,14 @@ msgstr ""
 
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:11
 #: apps/budgeting/templates/a4_candy_budgeting/includes/proposal_list_item.html:12
-#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:13
-#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:14
-#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:13
-#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:14
+#: apps/ideas/templates/a4_candy_ideas/idea_list.html:76
+#: apps/ideas/templates/a4_candy_ideas/idea_list.html:77
+#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:43
+#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:44
+#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:92
+#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:93
+#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:46
+#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:47
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_list_item.html:12
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_list_item.html:14
 msgid "Negative Ratings"
@@ -1982,17 +1990,17 @@ msgstr ""
 msgid "Edit proposal"
 msgstr ""
 
-#: apps/budgeting/views.py:23 apps/ideas/views.py:28 apps/mapideas/views.py:21
+#: apps/budgeting/views.py:23 apps/ideas/views.py:29 apps/mapideas/views.py:21
 #: apps/userdashboard/templates/a4_candy_userdashboard/htmx/_moderation_comment_list.html:26
 msgid "Most recent"
 msgstr ""
 
-#: apps/budgeting/views.py:25 apps/ideas/views.py:30 apps/mapideas/views.py:23
+#: apps/budgeting/views.py:25 apps/ideas/views.py:31 apps/mapideas/views.py:23
 #: apps/topicprio/views.py:30
 msgid "Most popular"
 msgstr ""
 
-#: apps/budgeting/views.py:26 apps/debate/filters.py:19 apps/ideas/views.py:31
+#: apps/budgeting/views.py:26 apps/debate/filters.py:19 apps/ideas/views.py:32
 #: apps/mapideas/views.py:24 apps/topicprio/views.py:31
 msgid "Most commented"
 msgstr ""
@@ -2327,12 +2335,12 @@ msgstr ""
 msgid "go to overview"
 msgstr ""
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:98
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:107
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:100
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:109
 msgid "Actions"
 msgstr ""
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:114
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:116
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:24
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:25
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:24
@@ -2341,12 +2349,12 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:118
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:120
 #: apps/ideas/templates/a4_candy_ideas/idea_moderate_form.html:4
 msgid "Give feedback"
 msgstr ""
 
-#: apps/contrib/templates/a4_candy_contrib/item_detail.html:140
+#: apps/contrib/templates/a4_candy_contrib/item_detail.html:142
 msgid "Official Feedback"
 msgstr ""
 
@@ -2748,12 +2756,16 @@ msgstr ""
 msgid "Document has no chapters defined."
 msgstr ""
 
-#: apps/ideas/models.py:42 apps/topicprio/models.py:43
+#: apps/ideas/models.py:43 apps/topicprio/models.py:43
 msgid "Add image"
 msgstr ""
 
-#: apps/ideas/models.py:45
+#: apps/ideas/models.py:46
 msgid "Visualize your idea."
+msgstr ""
+
+#: apps/ideas/models.py:97 apps/mapideas/models.py:55
+msgid "Reviewed"
 msgstr ""
 
 #: apps/ideas/phases.py:15 apps/interactiveevents/phases.py:15
@@ -2834,17 +2846,17 @@ msgstr ""
 msgid "Select an idea to view its details"
 msgstr ""
 
-#: apps/ideas/templates/a4_candy_ideas/idea_list.html:78
-#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:60
-#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:94
-#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:63
+#: apps/ideas/templates/a4_candy_ideas/idea_list.html:90
+#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:58
+#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:106
+#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:61
 msgid "Hide details"
 msgstr ""
 
-#: apps/ideas/templates/a4_candy_ideas/idea_list.html:82
-#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:65
-#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:98
-#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:68
+#: apps/ideas/templates/a4_candy_ideas/idea_list.html:94
+#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:63
+#: apps/mapideas/templates/a4_candy_mapideas/includes/map_list_view.html:110
+#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:66
 msgid "Join discussion"
 msgstr ""
 
@@ -2864,12 +2876,12 @@ msgstr ""
 msgid "Edit idea"
 msgstr ""
 
-#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:59
-#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:62
+#: apps/ideas/templates/a4_candy_ideas/includes/idea_list_item.html:57
+#: apps/mapideas/templates/a4_candy_mapideas/includes/mapidea_list_item.html:60
 msgid "Show details"
 msgstr ""
 
-#: apps/ideas/views.py:165 apps/mapideas/views.py:97
+#: apps/ideas/views.py:166 apps/mapideas/views.py:97
 msgid "Your Idea has been deleted"
 msgstr ""
 
@@ -3344,21 +3356,21 @@ msgstr ""
 msgid "Please locate your proposal on the map."
 msgstr ""
 
-#: apps/mapideas/models.py:15
+#: apps/mapideas/models.py:16
 msgid "Where can your idea be located on a map?"
 msgstr ""
 
-#: apps/mapideas/models.py:17
+#: apps/mapideas/models.py:18
 msgid ""
 "Click inside the marked area to set the marker. A set marker can be dragged "
 "when pressed."
 msgstr ""
 
-#: apps/mapideas/models.py:27
+#: apps/mapideas/models.py:28
 msgid "Label of the ideas location"
 msgstr ""
 
-#: apps/mapideas/models.py:28
+#: apps/mapideas/models.py:29
 msgid "This could be an address or the name of a landmark."
 msgstr ""
 
@@ -3551,7 +3563,7 @@ msgid "Newsletter has been saved and will be sent to the recipients."
 msgstr ""
 
 #: apps/notifications/forms.py:12
-#: apps/notifications/templates/a4_candy_notifications/settings.html:70
+#: apps/notifications/templates/a4_candy_notifications/settings.html:83
 msgid "Email Newsletter"
 msgstr ""
 
@@ -4423,7 +4435,7 @@ msgid "Next step: Publish the results of \"%(project_name)s\""
 msgstr ""
 
 #: apps/notifications/templates/a4_candy_notifications/emails/notify_initiators_publish_results.en.email:6
-#: apps/notifications/templates/a4_candy_notifications/settings.html:57
+#: apps/notifications/templates/a4_candy_notifications/settings.html:70
 msgid "Publish project results"
 msgstr ""
 
@@ -4487,51 +4499,63 @@ msgstr ""
 msgid "Trigger all notification tasks (for testing)"
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/settings.html:29
+#: apps/notifications/templates/a4_candy_notifications/settings.html:30
+msgid "Project slug (optional)"
+msgstr ""
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:36
+msgid "Leave empty to run for all projects"
+msgstr ""
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:38
+msgid "Only run the tasks for the project with this slug."
+msgstr ""
+
+#: apps/notifications/templates/a4_candy_notifications/settings.html:42
 msgid "Run All Notification Tasks"
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/settings.html:44
+#: apps/notifications/templates/a4_candy_notifications/settings.html:57
 msgid "Project-related Notifications"
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/settings.html:59
+#: apps/notifications/templates/a4_candy_notifications/settings.html:72
 msgid ""
 "Receive a reminder to publish participation results after the participation "
 "phase has ended."
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/settings.html:72
+#: apps/notifications/templates/a4_candy_notifications/settings.html:85
 msgid ""
 "Receive email newsletters with updates and news from the projects you follow."
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/settings.html:83
+#: apps/notifications/templates/a4_candy_notifications/settings.html:96
 msgid "Participation Status"
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/settings.html:85
+#: apps/notifications/templates/a4_candy_notifications/settings.html:98
 msgid "Receive notifications about projects you follow."
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/settings.html:109
+#: apps/notifications/templates/a4_candy_notifications/settings.html:122
 #: apps/projects/templates/a4_candy_projects/includes/project_detail_events.html:6
 msgid "Events"
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/settings.html:111
+#: apps/notifications/templates/a4_candy_notifications/settings.html:124
 msgid "Receive notifications about upcoming events in projects you follow."
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/settings.html:139
+#: apps/notifications/templates/a4_candy_notifications/settings.html:152
 msgid "Interactions with other users"
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/settings.html:152
+#: apps/notifications/templates/a4_candy_notifications/settings.html:165
 msgid "Reactions from other users to your posts"
 msgstr ""
 
-#: apps/notifications/templates/a4_candy_notifications/settings.html:154
+#: apps/notifications/templates/a4_candy_notifications/settings.html:167
 msgid "Receive a notification when someone rates or comments on your post."
 msgstr ""
 
@@ -5218,22 +5242,22 @@ msgstr ""
 msgid "Participation ended. Read result."
 msgstr ""
 
-#: apps/projects/serializers.py:251
+#: apps/projects/serializers.py:254
 #: apps/projects/templatetags/a4_candy_project_tags.py:136
 #: apps/projects/templatetags/a4_candy_project_tags.py:141
 msgid "running"
 msgstr ""
 
-#: apps/projects/serializers.py:256
+#: apps/projects/serializers.py:259
 #, python-brace-format
 msgid "starts on {}"
 msgstr ""
 
-#: apps/projects/serializers.py:264
+#: apps/projects/serializers.py:267
 msgid "starts in the future"
 msgstr ""
 
-#: apps/projects/serializers.py:266
+#: apps/projects/serializers.py:269
 #: apps/projects/templatetags/a4_candy_project_tags.py:140
 msgid "completed"
 msgstr ""
@@ -6060,11 +6084,11 @@ msgstr ""
 msgid "The topic has been deleted"
 msgstr ""
 
-#: apps/userdashboard/serializers.py:178
+#: apps/userdashboard/serializers.py:179
 msgid "Comment"
 msgstr ""
 
-#: apps/userdashboard/serializers.py:240
+#: apps/userdashboard/serializers.py:247
 msgid "Idea"
 msgstr ""
 

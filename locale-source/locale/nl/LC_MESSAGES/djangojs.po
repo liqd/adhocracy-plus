@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 13:25+0200\n"
+"POT-Creation-Date: 2026-10-22 16:03+0200\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
@@ -485,7 +485,7 @@ msgid "Following"
 msgstr "Volgend"
 
 #: adhocracy4/images/assets/uppy_image_upload.js:33
-#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:65
+#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:127
 #: adhocracy-plus/assets/js/uppy_image_upload.js:34
 msgid ""
 "Images are resized and compressed automatically before you save the form."
@@ -621,6 +621,7 @@ msgstr ""
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:81
 #: apps/customfields/assets/CustomFieldManagement/EditCustomField.tsx:9
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:22
 msgctxt "noun"
 msgid "Answer"
 msgstr "Antwoord"
@@ -629,6 +630,7 @@ msgstr "Antwoord"
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:35
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:29
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:35
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:24
 msgid "remove"
 msgstr "verwijderen"
 
@@ -641,28 +643,34 @@ msgid "Multiple Choice question"
 msgstr "Meerkeuzevraag"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:7
+#: apps/polls/assets/react_poll_management/components/AddQuestionDropdown.tsx:8
 msgid "Open question"
 msgstr "Open vraag"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:16
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:28
 msgid "Options"
 msgstr ""
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:17
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:29
 msgid "Allow unregistered users to vote"
 msgstr ""
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:18
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:30
 msgid ""
 "Enable this option to allow users who are not registered to participate in "
 "the voting process."
 msgstr ""
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:19
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:31
 msgid "Hide results until participation is over"
 msgstr ""
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:20
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:32
 msgid ""
 "Enable this option to hide the poll results from participants until the "
 "participation phase has ended."
@@ -673,10 +681,12 @@ msgid "Add and Edit Questions"
 msgstr ""
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:175
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:36
 msgid "The poll has been updated."
 msgstr "De poll is bijgewerkt."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:198
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:37
 msgid "The poll could not be updated. Please check the data you entered again."
 msgstr ""
 "De poll kon niet worden bijgewerkt. Controleer de ingevoerde gegevens "
@@ -685,6 +695,7 @@ msgstr ""
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:292
 #: apps/customfields/assets/CustomFieldManagement/EditCustomFieldManagement.tsx:13
 #: apps/documents/assets/DocumentManagement.tsx:333
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:35
 msgid "Save"
 msgstr "Bewaren"
 
@@ -694,6 +705,8 @@ msgstr "Bewaren"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:21
 #: apps/customfields/assets/CustomFieldManagement/EditCustomField.tsx:6
 #: apps/interactiveevents/assets/QuestionForm.tsx:82
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:11
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:15
 msgid "Question"
 msgstr "Vraag"
 
@@ -701,6 +714,7 @@ msgstr "Vraag"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:53
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:50
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:53
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:21
 msgid "Do not display answers publicly"
 msgstr ""
 
@@ -710,6 +724,8 @@ msgstr ""
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:60
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:27
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:28
 msgid "Explanation"
 msgstr "Uitleg"
 
@@ -753,6 +769,7 @@ msgstr "Deelnemers kunnen hun eigen antwoord toevoegen"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:107
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:106
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:107
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:23
 msgid "Other"
 msgstr "Andere"
 
@@ -761,22 +778,22 @@ msgid "New answer"
 msgstr "Nieuw antwoord"
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:34
-#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:144
+#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:220
 msgid "Question image"
 msgstr ""
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:42
-#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:152
+#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:228
 msgid "Image uploaded"
 msgstr ""
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:43
-#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:153
+#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:229
 msgid "No image uploaded"
 msgstr ""
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:51
-#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:161
+#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:237
 msgid "Preview"
 msgstr ""
 
@@ -784,8 +801,8 @@ msgstr ""
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:61
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:60
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:61
-#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:172
-#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:173
+#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:248
+#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:249
 msgid "Upload image"
 msgstr ""
 
@@ -793,13 +810,13 @@ msgstr ""
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:72
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:71
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:72
-#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:183
-#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:184
+#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:259
+#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:260
 msgid "Remove image"
 msgstr ""
 
 #: adhocracy4/polls/static/PollDashboard/QuestionImageUploadButton.jsx:85
-#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:197
+#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:273
 msgid "Alt text"
 msgstr ""
 
@@ -1063,7 +1080,7 @@ msgid "You can still manage all your preferences on User Agreements."
 msgstr "U kunt uw voorkeuren beheren van Gebruikersovereenkomsten."
 
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:163
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:164
 msgid "Search"
 msgstr ""
 
@@ -1307,8 +1324,111 @@ msgstr "vind ik leuk ongedaan maken"
 msgid "Questions Answered"
 msgstr "Beantwoorde vragen"
 
-#: apps/mapideas/assets/js/map_list_view.js:110
+#: apps/mapideas/assets/js/map_list_view.js:114
 msgid "Show details"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/AddQuestionDropdown.tsx:6
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:34
+msgid "New question"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/AddQuestionDropdown.tsx:7
+msgid "Multiple choice question"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:33
+msgid "Questions"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:38
+msgid "The poll could not be updated (HTTP %(status)s). Please try again."
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:39
+#: adhocracy-plus/assets/js/unload_warning.js:20
+msgid "If you leave this page changes you made will not be saved."
+msgstr ""
+"Als u deze pagina verlaat, worden de door u aangebrachte wijzigingen niet "
+"opgeslagen."
+
+#: apps/polls/assets/react_poll_management/components/PollManagement.tsx:40
+msgid "The poll could not be loaded. Please try again."
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:12
+msgid "%(number)s of %(total)s"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:13
+msgid "Move question up"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:14
+msgid "Move question down"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:16
+#: apps/polls/assets/react_polls/components/UppyQuestionImageUpload.tsx:276
+msgid "This field is required"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:17
+msgid "Answer type"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:18
+msgid "Open Text"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:19
+#: apps/polls/assets/react_poll_management/components/QuestionListItem.tsx:10
+msgid "Single choice"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:20
+#: apps/polls/assets/react_poll_management/components/QuestionListItem.tsx:9
+msgid "Multiple choice"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:25
+msgid "Answer option"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionEditor.tsx:26
+msgid "Open answer"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionListItem.tsx:8
+msgid "Untitled question"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionListItem.tsx:11
+msgid "Open"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionListItem.tsx:12
+msgid "Delete question"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionListItem.tsx:13
+msgid "Confirm delete"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionListItem.tsx:14
+msgid "Cancel delete"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionListItem.tsx:15
+msgid "Delete this question?"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionListItem.tsx:16
+msgid "Expand question"
+msgstr ""
+
+#: apps/polls/assets/react_poll_management/components/QuestionListItem.tsx:17
+msgid "Collapse question"
 msgstr ""
 
 #: apps/polls/assets/react_polls/components/NavigationButtons.tsx:34
@@ -1534,26 +1654,37 @@ msgstr ""
 msgid "Add feedback"
 msgstr "Feedback geven"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:237
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:28
+msgid "Official feedback"
+msgstr ""
+
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:239
+#, javascript-format
+msgid "This {}idea{} has been reported 1 time since it's creation"
+msgid_plural "This {}idea{} has been reported %s times since it's creation"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:244
 #, javascript-format
 msgid "This {}comment{} has been reported 1 time since it's creation"
 msgid_plural "This {}comment{} has been reported %s times since it's creation"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:257
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:262
 msgid "Mark as read"
 msgstr "Markeer als gelezen"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:258
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:263
 msgid "Mark as unread"
 msgstr "Markeer als ongelezen"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:270
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:275
 msgid "Last edited on "
 msgstr "Laatst aangepast op"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:272
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotification.tsx:277
 msgid "Created on "
 msgstr "Aangemaakt op"
 
@@ -1616,7 +1747,7 @@ msgid "View all"
 msgstr "Alle bekijken"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.tsx:24
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:166
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:167
 msgid "Most reported"
 msgstr "Meest gerapporteerd"
 
@@ -1629,7 +1760,7 @@ msgid "Most recent"
 msgstr "Meest recent"
 
 #: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationNotificationList.tsx:168
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:156
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:157
 msgid "By "
 msgstr "Door"
 
@@ -1662,67 +1793,61 @@ msgstr "Filter"
 msgid "Sorting"
 msgstr "Sorteren"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:107
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:108
 msgid "Over 1 year left"
 msgstr "Nog ruim 1 jaar"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:111
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:112
 msgid "left"
 msgstr "over"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:121
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:122
 msgid "1 year"
 msgstr "1 jaar"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:155
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:156
 msgid "Loading..."
 msgstr "Laden..."
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:157
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:158
 msgid " comments"
 msgstr "reacties"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:158
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:159
 msgid " reports"
 msgstr "rapportages"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:159
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:160
 msgid "public"
 msgstr "publiek"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:160
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:161
 msgid "private"
 msgstr "privé"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:161
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:162
 msgid "semi-public"
 msgstr "semi-privé"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:162
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:163
 msgid "Notifications has unread comments"
 msgstr "Notificaties heeft ongelezen reacties"
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:164
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:165
 msgid "Sort"
 msgstr ""
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:165
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:166
 msgid "Most Recent"
 msgstr ""
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:167
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:168
 msgid "Alphabetical"
 msgstr ""
 
-#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:168
+#: apps/userdashboard/assets/js/a4_candy_userdashboard/ModerationProjects.tsx:169
 msgid "No moderated projects found."
 msgstr ""
-
-#: adhocracy-plus/assets/js/unload_warning.js:20
-msgid "If you leave this page changes you made will not be saved."
-msgstr ""
-"Als u deze pagina verlaat, worden de door u aangebrachte wijzigingen niet "
-"opgeslagen."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:11
 msgid "External Video"
