@@ -41,6 +41,62 @@ def live_public_center():
     return page
 
 
+WORD_RE = re.compile(r"\w+")
+UMLAUT_TRANSLATION = str.maketrans({"ä": "a", "ö": "o", "ü": "u", "ß": "ss"})
+
+# German plural endings, longest first. The second value is the number of
+# characters that must remain so short singulars (e.g. "Kurs") are not mangled.
+PLURAL_ENDINGS = (
+    ("innen", 3),
+    ("ern", 4),
+    ("en", 3),
+    ("er", 4),
+    ("e", 3),
+    ("n", 4),
+    ("s", 4),
+)
+
+
+def _stem(word):
+    """Reduce a German word to a rough stem so singular and plural match."""
+    word = word.casefold().translate(UMLAUT_TRANSLATION)
+    for ending, min_remaining in PLURAL_ENDINGS:
+        if word.endswith(ending) and len(word) - len(ending) >= min_remaining:
+            return word[: -len(ending)]
+    return word
+
+
+def _words_match(query_word, text_word):
+    """Match two stems, allowing a prefix relation for partial words."""
+    if query_word == text_word:
+        return True
+
+    shorter, longer = sorted((query_word, text_word), key=len)
+    return len(shorter) >= 4 and longer.startswith(shorter)
+
+
+def matches_text(text, query):
+    """Case-insensitive match with basic German singular/plural support.
+
+    The plain substring check keeps prefix searches such as "regist" ->
+    "Registration" working. The token/stem comparison additionally makes
+    "Profile" match "Profil" without introducing a search backend.
+    """
+    normalised_query = query.casefold()
+    if normalised_query in text.casefold():
+        return True
+
+    query_words = [_stem(word) for word in WORD_RE.findall(normalised_query)]
+    if not query_words:
+        return False
+
+    text_words = {_stem(word) for word in WORD_RE.findall(text)}
+    return all(
+        any(_words_match(query_word, text_word) for text_word in text_words)
+        for query_word in query_words
+    )
+
+
 def _block_matches(block, query):
     """Return whether a single StreamField block matches ``query``.
 
@@ -51,8 +107,7 @@ def _block_matches(block, query):
         return False
 
     value = block.value
-    title = value.get("title") or ""
-    if query in title.casefold():
+    if matches_text(value.get("title") or "", query):
         return True
 
     description = value.get("description")
@@ -62,7 +117,7 @@ def _block_matches(block, query):
         # decode entities before matching the visible text.
         text = getattr(description, "source", None) or str(description)
         text = unescape(re.sub(r"<[^>]+>", " ", text)).replace("\xa0", " ")
-        if query in text.casefold():
+        if matches_text(text, query):
             return True
     return False
 
@@ -70,20 +125,20 @@ def _block_matches(block, query):
 def search_nuggets(query):
     """Return live, public nuggets matching ``query``.
 
-    Matching is case-insensitive and finds partial words. The curated help
-    content is filtered in Python because a database ``icontains`` lookup on
-    the StreamField would also match media/document metadata instead of only
-    the nugget title and description.
+    Matching is case-insensitive, finds partial words and understands common
+    German singular/plural pairs. The curated help content is filtered in
+    Python because a database ``icontains`` lookup on the StreamField would
+    also match media/document metadata instead of only the nugget title and
+    description.
     """
-    normalised = query.casefold()
-    if not normalised:
+    if not query:
         return []
 
     return [
         nugget
         for nugget in live_public_nuggets().filter(category__isnull=False)
-        if normalised in nugget.title.casefold()
-        or any(_block_matches(block, normalised) for block in nugget.content)
+        if matches_text(nugget.title, query)
+        or any(_block_matches(block, query) for block in nugget.content)
     ]
 
 
