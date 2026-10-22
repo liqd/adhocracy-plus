@@ -390,6 +390,7 @@ BLEACH_LIST = {
     "image-editor": {
         "tags": [
             "a",
+            "br",
             "em",
             "figcaption",
             "figure",

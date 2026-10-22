@@ -29,3 +29,10 @@ def test_invalidate_cache(newsletter_factory):
 
     newsletter.body = "second body"
     assert newsletter.body_with_absolute_urls == "second body"
+
+
+@pytest.mark.django_db
+def test_body_preserves_soft_line_breaks(newsletter_factory):
+    newsletter = newsletter_factory(body="Line one<br>Line two")
+
+    assert "<br>" in newsletter.body

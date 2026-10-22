@@ -48,6 +48,10 @@ def test_newsletter_form_has_preview_and_test_send_actions(client, admin, projec
     assert "js-newsletter-preview-trigger" in content
     assert "js-newsletter-test-send" in content
     assert "newsletter-preview-modal" in content
+    assert "View Draft" in content
+    assert 'hx-include="#newsletter-form"' in content
+    assert "js-newsletter-test-status" in content
+    assert "newsletter-preview__action" in content
 
 
 @pytest.mark.django_db
@@ -74,7 +78,8 @@ def test_preview_renders_email(client, admin, project):
     assert "cid:logo" not in content
     assert "images/email_logo.png" in content
     assert "Jane Doe &lt;jane@example.org&gt;" in content
-    assert "example recipient" in content
+    assert "example recipient" not in content
+    assert "text-align: left;" in content
     assert "<html" not in content
 
 
@@ -119,7 +124,9 @@ def test_preview_sends_test_email_only_to_current_user(
     )
 
     assert response.status_code == 200
-    assert "Test email sent" in response.content.decode()
+    content = response.content.decode()
+    assert "Test email sent" in content
+    assert 'data-autodismiss="true"' in content
     assert len(mail.outbox) == 1
     assert mail.outbox[0].to == [admin.email]
     assert mail.outbox[0].subject == "[TEST] Newsletter subject"
@@ -152,3 +159,17 @@ def test_preview_send_requires_subject(client, admin, project):
 
     assert "Please add a subject" in response.content.decode()
     assert len(mail.outbox) == 0
+
+
+@pytest.mark.django_db
+def test_preview_preserves_soft_line_breaks(client, admin, project):
+    client.login(username=admin.email, password="password")
+
+    response = client.post(
+        preview_url(project.organisation),
+        newsletter_data(project, body="Line one<br>Line two"),
+    )
+
+    content = response.content.decode()
+    assert "Line one<br" in content
+    assert "Line two" in content
