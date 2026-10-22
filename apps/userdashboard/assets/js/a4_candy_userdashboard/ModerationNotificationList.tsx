@@ -55,7 +55,7 @@ export default class ModerationNotificationList extends Component<ModerationNoti
 
     this.state = {
       moderationItems: [],
-      selectedFilters: { contentType: 'all', isRead: 'False', ordering: '-num_reports' },
+      selectedFilters: { contentType: 'all', isRead: 'False', ordering: '-created' },
       numOfComments: PACKET_COMMENT_SIZE,
       hasMore: null,
       packetFactor: 1,

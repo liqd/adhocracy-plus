@@ -14,16 +14,27 @@ class ModeratorCommentFeedbackSerializer(serializers.ModelSerializer):
         fields = ["last_edit", "pk", "feedback_text"]
         read_only_fields = ["last_edit", "pk"]
 
+    @staticmethod
+    def _mark_comment_read(comment):
+        if not comment.is_reviewed:
+            comment.is_reviewed = True
+            comment.save(ignore_modified=True)
+
     def create(self, validated_data):
         validated_data["creator"] = self.context["request"].user
-        validated_data["comment"] = self.context["view"].comment
+        comment = self.context["view"].comment
+        validated_data["comment"] = comment
 
-        return super().create(validated_data)
+        feedback = super().create(validated_data)
+        self._mark_comment_read(comment)
+        return feedback
 
     def update(self, feedback, validated_data):
         validated_data["creator"] = self.context["request"].user
 
-        return super().update(feedback, validated_data)
+        feedback = super().update(feedback, validated_data)
+        self._mark_comment_read(feedback.comment)
+        return feedback
 
     def get_last_edit(self, feedback):
         if feedback is None:

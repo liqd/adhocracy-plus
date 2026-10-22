@@ -124,6 +124,10 @@ def test_moderator_adds_and_deletes_feedback(
 
     _open_moderation_detail(page, e2e_login, moderation_data)
 
+    page.get_by_role("button", name="Filter: Unread").click()
+    page.get_by_role("button", name="View all").click()
+    page.keyboard.press("Escape")
+
     notification = _notification(page, comment)
     notification.locator("[id*='-reply-']").click()
 

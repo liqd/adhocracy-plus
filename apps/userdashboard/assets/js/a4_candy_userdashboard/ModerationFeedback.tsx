@@ -14,7 +14,7 @@ export const ModerationFeedback = ({ feedback, onDelete, onEdit }: ModerationFee
     delete: django.gettext('delete'),
     edit: django.gettext('edit'),
     feedbackTitle: django.gettext('Moderator\'s feedback'),
-    editWasOn: django.gettext('Last edit was on ')
+    editWasOn: django.gettext('Last edit was on ').replace(/\s+$/, '')
   }
 
   return (
@@ -65,7 +65,7 @@ export const ModerationFeedback = ({ feedback, onDelete, onEdit }: ModerationFee
       <div className="row">
         <div className="col">
           <p>
-            {translated.editWasOn}{lastEdit}
+            {translated.editWasOn} {lastEdit}
           </p>
         </div>
       </div>

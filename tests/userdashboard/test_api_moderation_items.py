@@ -115,6 +115,20 @@ def test_is_reviewed_filter_applies_to_comments_only(apiclient, comment_factory,
 
 
 @pytest.mark.django_db
+def test_reported_idea_has_num_reports(apiclient, idea, report_factory):
+    report_factory(content_object=idea)
+    project = idea.project
+    moderator = project.moderators.first()
+    apiclient.login(username=moderator.email, password="password")
+
+    response = apiclient.get(_url(project) + "?content_type=ideas")
+
+    assert response.status_code == 200
+    idea_item = next(item for item in response.data if item["item_type"] == "idea")
+    assert idea_item["num_reports"] == 1
+
+
+@pytest.mark.django_db
 def test_ordering_by_created(apiclient, comment_factory, idea):
     comment_1 = comment_factory(content_object=idea)
     comment_2 = comment_factory(
