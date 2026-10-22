@@ -32,6 +32,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - apps/exports: include Image export mixin for ideas and proposals
 - Dashboard: add moderation view to projects list
 - Moderation dashboard: project detail lists comments and ideas together with labels, each idea's moderation status and official feedback, and read/unread handling. Items can be marked as read/unread manually and are marked read automatically when official feedback is added to a comment or an idea, or a status is set on an idea. The list can be filtered by content type and read status and sorted by date or reports; reported ideas are flagged and counted, and "Add feedback" returns to the moderation page.
+- Polls dashboard: rebuilt the poll management interface with a collapsible
+  question list, drag and drop reordering, expandable "Question X of Y"
+  editor with previous/next navigation, per-item save/cancel, single/multiple
+  choice switch and greyed-out alt text field until an image is uploaded
 - 429 error page template so the allauth rate limiter can render a user-facing
   "Too Many Requests" response instead of failing with ``TemplateDoesNotExist``
 - Project Dashboard: Add 'View Live'
@@ -44,6 +48,14 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Polls dashboard: reworked the poll management editor — question rows show
+  only their number, the "New question" button sits above the list, the
+  "Options" section moved below the questions, the answer-type control is a
+  segmented Open Text / Multiple choice / Single choice switch, the Explanation
+  button sits next to the answer buttons, the per-question Save/Cancel buttons
+  were removed (the single Save button persists everything), the editor header
+  shows only the position ("2 of 3"), and the arrow controls now move a question
+  up/down within the poll instead of switching between questions
 - Module page: replace the running phase description with a table listing all phases
   (name, start date, end date and status completed/active/upcoming)
 - Organisation page: redesigned with overlapping logo, about link, organisation stats, project search and project tiles in a three column grid
@@ -80,6 +92,24 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- Polls dashboard: adding a "Multiple choice question" now creates a multiple
+  choice question instead of a single choice one; inline validation errors stay
+  visible on all invalid fields until each one is fixed and the summary alert
+  names the actual problem; focus moves to the first invalid field on a failed
+  save; the edited question stays open and is scrolled back into view after a
+  successful save; deleting a question now asks for a second-step confirmation;
+  the Alt text field is hidden while no image is uploaded and is marked as
+  required; the drag handle has a 44px minimum target and can be used to reorder
+  questions on touch devices; switching a question to single choice shows only
+  one answer option and hides "Answer option"; the question field is marked as
+  mandatory
+- Poll question images: accept uploads up to 2px below the configured minimum
+  resolution (browser-side processing could shave off a pixel or two), while the
+  help text keeps stating the configured minimum; replaced images are stored
+  under a unique file name so the browser no longer shows the cached old image;
+  uploads are scaled/cropped to the 1500x500 target resolution and re-encoded
+  (JPEG) in the browser, which avoids "413 Request Entity Too Large" errors from
+  proxy body-size limits
 - Profile editing no longer silently clears the newsletter opt-in
   (``User.get_newsletters``). The newsletter toggle on the notification
   settings page now controls this actual opt-in.

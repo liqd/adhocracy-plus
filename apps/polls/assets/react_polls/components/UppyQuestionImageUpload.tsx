@@ -6,8 +6,7 @@ import ImageEditor from '@uppy/image-editor'
 import deDE from '@uppy/locales/lib/de_DE.js'
 import enUS from '@uppy/locales/lib/en_US.js'
 
-import FormFieldError from 'adhocracy4/adhocracy4/static/FormFieldError'
-import type { PollQuestion } from '../types'
+import FieldError from './FieldError'
 
 const UPPY_LOCALES: Record<string, typeof deDE> = {
   de: deDE,
@@ -24,9 +23,72 @@ function getUppyLocale () {
   return UPPY_LOCALES[languageCode] || enUS
 }
 
+const MIN_WIDTH = 1500
+const MIN_HEIGHT = 500
+const OUTPUT_WIDTH = 1500
+const OUTPUT_HEIGHT = 500
+const MAX_LONGEST_SIDE = 2000
+const JPEG_QUALITY = 0.85
+
+/**
+ * Resizes and re-encodes an uploaded image so the request body stays small
+ * (the image is sent as base64 in the JSON body, which is ~33% larger).
+ * Opaque images become JPEG, images with transparency stay PNG. The configured
+ * minimum resolution is never undercut and the smaller of the two results is
+ * kept.
+ */
+const compressImageDataUrl = (dataUrl: string): Promise<string> => new Promise((resolve) => {
+  const image = new Image()
+  image.onload = () => {
+    const sourceWidth = image.naturalWidth || image.width
+    const sourceHeight = image.naturalHeight || image.height
+    if (!sourceWidth || !sourceHeight) {
+      resolve(dataUrl)
+      return
+    }
+
+    const longestSide = Math.max(sourceWidth, sourceHeight)
+    let scale = longestSide > MAX_LONGEST_SIDE ? MAX_LONGEST_SIDE / longestSide : 1
+    // never shrink below the required minimum resolution
+    scale = Math.min(1, Math.max(scale, MIN_WIDTH / sourceWidth, MIN_HEIGHT / sourceHeight))
+    const width = Math.max(1, Math.round(sourceWidth * scale))
+    const height = Math.max(1, Math.round(sourceHeight * scale))
+
+    const canvas = document.createElement('canvas')
+    canvas.width = width
+    canvas.height = height
+    const context = canvas.getContext('2d')
+    if (!context) {
+      resolve(dataUrl)
+      return
+    }
+    context.drawImage(image, 0, 0, width, height)
+
+    let hasTransparency = false
+    try {
+      const pixels = context.getImageData(0, 0, width, height).data
+      for (let i = 3; i < pixels.length; i += 4) {
+        if (pixels[i] < 255) {
+          hasTransparency = true
+          break
+        }
+      }
+    } catch {
+      hasTransparency = true
+    }
+
+    const compressed = hasTransparency
+      ? canvas.toDataURL('image/png')
+      : canvas.toDataURL('image/jpeg', JPEG_QUALITY)
+    resolve(compressed.length < dataUrl.length ? compressed : dataUrl)
+  }
+  image.onerror = () => resolve(dataUrl)
+  image.src = dataUrl
+})
+
 interface UppyQuestionImageUploadProps {
-  id: number
-  question: PollQuestion
+  id: string | number
+  question: { image_url?: string | null }
   onImageChange: (base64: string) => void
   errors?: Record<string, unknown>
   helpText?: string
@@ -80,7 +142,16 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
         },
         cropperOptions: {
           viewMode: 1,
-          autoCropArea: 1
+          autoCropArea: 1,
+          aspectRatio: OUTPUT_WIDTH / OUTPUT_HEIGHT,
+          initialAspectRatio: OUTPUT_WIDTH / OUTPUT_HEIGHT,
+          // Scale/crop the edited image down to the target output resolution
+          // (same as the shared friendly image upload widget).
+          croppedCanvasOptions: {
+            width: OUTPUT_WIDTH,
+            height: OUTPUT_HEIGHT,
+            imageSmoothingQuality: 'high'
+          }
         }
       })
 
@@ -106,7 +177,12 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
         if (file) {
           const reader = new FileReader()
           reader.onloadend = () => {
-            onImageChangeRef.current(reader.result as string)
+            compressImageDataUrl(reader.result as string)
+              .then((compressed) => {
+                onImageChangeRef.current(compressed)
+                return undefined
+              })
+              .catch(() => undefined)
           }
           reader.readAsDataURL(file.data)
         }
@@ -189,12 +265,18 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
         </div>
       </div>
 
-      <FormFieldError id={`image-error-${id}`} error={errors} field="image_base64" />
+      <FieldError id={`image-error-${id}`} error={errors} field="image_base64" />
 
-      {(question.image_url || altTextError) && (
+      {question.image_url && (
         <div className={`form-group ${altTextError ? 'has-error' : ''}`}>
           <label htmlFor={`id_questions-${id}-image_alt_text`}>
             {django.gettext('Alt text')}
+            <span
+              role="presentation"
+              title={django.gettext('This field is required')}
+            >
+              *
+            </span>
           </label>
           <input
             type="text"
@@ -203,10 +285,11 @@ const UppyQuestionImageUpload = ({ id, question, onImageChange, errors, helpText
             value={altText || ''}
             onChange={(e) => onAltTextChange(e.target.value)}
             maxLength={80}
+            required
             aria-invalid={!!altTextError}
             aria-describedby={altTextError ? `alt-text-error-${id}` : undefined}
           />
-          <FormFieldError id={`alt-text-error-${id}`} error={errors} field="image_alt_text" />
+          <FieldError id={`alt-text-error-${id}`} error={errors} field="image_alt_text" />
         </div>
       )}
     </div>
