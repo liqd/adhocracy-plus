@@ -254,21 +254,12 @@ export const PollManagement = (props: PollManagementProps) => {
     markDirty()
   }
 
-  // Single choice questions only keep one answer option, so switching to
-  // single choice trims the extra regular choices (the "other" choice stays).
+  // Single choice only limits how many answers a participant can select, not
+  // how many answer options the question offers.
   const handleAnswerTypeChange = (multipleChoice: boolean) => {
-    setQuestions((prev) => prev.map((question, i) => {
-      if (i !== expandedIndex) return question
-      if (multipleChoice || question.is_open) {
-        return { ...question, multiple_choice: multipleChoice }
-      }
-      const otherChoice = question.choices.find((choice) => choice.is_other_choice)
-      const firstRegular = question.choices.find((choice) => !choice.is_other_choice)
-      const choices = firstRegular
-        ? [firstRegular, ...(otherChoice ? [otherChoice] : [])]
-        : question.choices
-      return { ...question, multiple_choice: false, choices }
-    }))
+    setQuestions((prev) => prev.map((question, i) => (
+      i === expandedIndex ? { ...question, multiple_choice: multipleChoice } : question
+    )))
     markDirty()
   }
 

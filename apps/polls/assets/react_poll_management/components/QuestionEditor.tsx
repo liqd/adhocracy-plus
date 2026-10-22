@@ -61,11 +61,6 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
   const [hasHelptext, setHasHelptext] = useState(Boolean(question.help_text))
   const hasOtherOption = question.choices.some((choice) => choice.is_other_choice)
   const regularChoices = question.choices.filter((choice) => !choice.is_other_choice)
-  // Single choice questions only offer one answer option; the "other" (open
-  // answer) choice is kept in addition when present.
-  const visibleChoices = question.multiple_choice
-    ? question.choices
-    : question.choices.filter((choice) => choice.is_other_choice || choice === regularChoices[0])
 
   return (
     <section className="poll-management__editor">
@@ -191,7 +186,7 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
       {!question.is_open && (
         <div className="poll-management__answers">
           <h4 className="poll-management__answers-title">{TRANSLATED.answer}</h4>
-          {visibleChoices.map((choice) => {
+          {question.choices.map((choice) => {
             const actualIndex = question.choices.indexOf(choice)
             const choiceErrors: ChoiceErrors = errors.choices?.[actualIndex] || {}
             if (choice.is_other_choice) {
@@ -265,17 +260,15 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
           })}
 
           <div className="poll-management__buttons">
-            {question.multiple_choice && (
-              <button
-                type="button"
-                className="btn poll-management__btn"
-                onClick={props.onChoiceAppend}
-              >
-                <i className="fa fa-plus" aria-hidden="true" />
-                {' '}
-                {TRANSLATED.addAnswer}
-              </button>
-            )}
+            <button
+              type="button"
+              className="btn poll-management__btn"
+              onClick={props.onChoiceAppend}
+            >
+              <i className="fa fa-plus" aria-hidden="true" />
+              {' '}
+              {TRANSLATED.addAnswer}
+            </button>
             <button
               type="button"
               className={`btn poll-management__btn ${hasOtherOption ? 'poll-management__btn--active' : ''}`}
