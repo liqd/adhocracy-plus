@@ -165,14 +165,15 @@ describe('PollManagement', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Open Text' }))
     expect(screen.queryByText('Answer option')).not.toBeInTheDocument()
 
-    // switch back to single choice: only one answer is seeded, append hidden
+    // switch back to single choice: both answers are seeded and stay available
     fireEvent.click(screen.getByRole('button', { name: 'Single choice' }))
-    expect(screen.queryByText('Answer option')).not.toBeInTheDocument()
-    expect(screen.getAllByText(/^Answer #/)).toHaveLength(1)
+    expect(screen.getByText('Answer option')).toBeInTheDocument()
+    expect(screen.getAllByText(/^Answer #/)).toHaveLength(2)
 
-    // switching to multiple choice shows the append button again
+    // switching to multiple choice keeps the answer options
     fireEvent.click(screen.getByRole('button', { name: 'Multiple choice' }))
     expect(screen.getByText('Answer option')).toBeInTheDocument()
+    expect(screen.getAllByText(/^Answer #/)).toHaveLength(2)
   })
 
   it('adds a new open question and expands it', async () => {

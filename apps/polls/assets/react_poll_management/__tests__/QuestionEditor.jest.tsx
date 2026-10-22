@@ -117,11 +117,12 @@ describe('QuestionEditor', () => {
     expect(onOtherChoiceToggle).toHaveBeenCalledTimes(1)
   })
 
-  it('shows only one answer and hides the answer option button for single choice', () => {
+  it('shows all answer options and the answer option button for single choice', () => {
     render(<QuestionEditor question={question} {...defaults} />)
-    expect(screen.getAllByText(/^Answer #/)).toHaveLength(1)
+    expect(screen.getAllByText(/^Answer #/)).toHaveLength(2)
     expect(screen.getByText('Answer #1')).toBeInTheDocument()
-    expect(screen.queryByText('Answer option')).not.toBeInTheDocument()
+    expect(screen.getByText('Answer #2')).toBeInTheDocument()
+    expect(screen.getByText('Answer option')).toBeInTheDocument()
   })
 
   it('keeps the other (open) answer for single choice', () => {
@@ -134,9 +135,9 @@ describe('QuestionEditor', () => {
         {...defaults}
       />
     )
-    expect(screen.getAllByText(/^Answer #/)).toHaveLength(1)
+    expect(screen.getAllByText(/^Answer #/)).toHaveLength(2)
     expect(screen.getByLabelText('Other')).toBeInTheDocument()
-    expect(screen.queryByText('Answer option')).not.toBeInTheDocument()
+    expect(screen.getByText('Answer option')).toBeInTheDocument()
   })
 
   it('renders the other answer option as disabled input', () => {
