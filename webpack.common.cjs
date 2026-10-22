@@ -77,6 +77,11 @@ module.exports = {
         './apps/dashboard/assets/init_project_preview_modal.js'
       ]
     },
+    init_newsletter_preview_modal: {
+      import: [
+        './apps/newsletters/assets/init_newsletter_preview_modal.js'
+      ]
+    },
     moderation_projects: {
       import: [
         './apps/userdashboard/assets/js/a4_candy_userdashboard/react_moderation_projects.tsx'
