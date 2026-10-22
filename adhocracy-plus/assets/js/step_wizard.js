@@ -105,21 +105,21 @@ function initStepWizard (form) {
 
   const total = steps.length
   let current = 0
-  let dots = []
+  let segments = []
 
   // The number of rendered steps varies (optional steps may be omitted server
-  // side), so build the progress dots from the actual steps.
+  // side), so build the progress segments from the actual steps.
   function buildProgress () {
     if (!progress) {
       return
     }
     progress.innerHTML = ''
-    dots = []
+    segments = []
     for (let index = 0; index < total; index++) {
-      const dot = document.createElement('span')
-      dot.className = 'step-wizard__dot'
-      progress.appendChild(dot)
-      dots.push(dot)
+      const segment = document.createElement('span')
+      segment.className = 'step-wizard__segment'
+      progress.appendChild(segment)
+      segments.push(segment)
     }
   }
 
@@ -154,8 +154,8 @@ function initStepWizard (form) {
   }
 
   function updateProgress () {
-    dots.forEach(function (dot, index) {
-      dot.classList.toggle('is-active', index <= current)
+    segments.forEach(function (segment, index) {
+      segment.classList.toggle('is-active', index <= current)
     })
     if (status) {
       const label = status.dataset.label || ''
@@ -165,6 +165,123 @@ function initStepWizard (form) {
     }
   }
 
+  function stepOf (field) {
+    return steps.findIndex(function (step) {
+      return step.contains(field)
+    })
+  }
+
+  function textFromHtml (html) {
+    const container = document.createElement('div')
+    container.innerHTML = html
+    return (container.textContent || '').replace(/\s+/g, ' ').trim()
+  }
+
+  function labelText (form, input) {
+    if (input.id) {
+      const label = form.querySelector('label[for="' + input.id + '"]')
+      if (label) {
+        return label.textContent.trim()
+      }
+    }
+    const parent = input.closest('label')
+    return parent ? parent.textContent.trim() : input.value
+  }
+
+  function renderSummary () {
+    const summary = form.querySelector('[data-step-wizard-summary]')
+    if (!summary) {
+      return
+    }
+    syncRichTextEditors(form)
+    const labels = summary.dataset
+    const rows = []
+    const add = function (label, value, field) {
+      if (value) {
+        rows.push({ label: label, value: value, field: field })
+      }
+    }
+
+    const pointLabel = form.querySelector('input[name="point_label"], #id_point_label')
+    if (pointLabel) {
+      add(labels.labelLocation, pointLabel.value.trim(), pointLabel)
+    }
+
+    const nameInput = form.querySelector('input[name="name"]')
+    if (nameInput) {
+      add(labels.labelTitle, nameInput.value.trim(), nameInput)
+    }
+
+    const description = form.querySelector('textarea[name="description"]')
+    if (description) {
+      const text = textFromHtml(description.value)
+      add(
+        labels.labelDescription,
+        text.length > 120 ? text.slice(0, 117) + '…' : text,
+        description
+      )
+    }
+
+    const category = form.querySelector('select[name="category"]')
+    if (category && category.value && category.selectedIndex > -1) {
+      const option = category.options[category.selectedIndex]
+      add(labels.labelCategory, option ? option.textContent.trim() : '', category)
+    }
+
+    const selectedLabels = Array.from(
+      form.querySelectorAll('input[name="labels"]:checked')
+    )
+    if (selectedLabels.length) {
+      add(
+        labels.labelLabels,
+        selectedLabels.map(function (input) { return labelText(form, input) }).join(', '),
+        selectedLabels[0]
+      )
+    }
+
+    const image = form.querySelector('input[name="image"]')
+    if (image && image.files && image.files.length) {
+      add(labels.labelImage, image.files[0].name, image)
+    }
+
+    summary.innerHTML = ''
+    if (!rows.length) {
+      return
+    }
+    const list = document.createElement('dl')
+    list.className = 'step-wizard__summary-list'
+    rows.forEach(function (row) {
+      const item = document.createElement('div')
+      item.className = 'step-wizard__summary-row'
+
+      const term = document.createElement('dt')
+      term.textContent = row.label
+
+      const value = document.createElement('dd')
+      const text = document.createElement('span')
+      text.className = 'step-wizard__summary-value'
+      text.textContent = row.value
+      value.appendChild(text)
+
+      const index = stepOf(row.field)
+      if (index > -1) {
+        const edit = document.createElement('button')
+        edit.type = 'button'
+        edit.className = 'step-wizard__summary-edit'
+        edit.textContent = labels.labelEdit || 'Edit'
+        edit.addEventListener('click', function () {
+          goTo(index)
+        })
+        value.appendChild(edit)
+      }
+
+      item.appendChild(term)
+      item.appendChild(value)
+      list.appendChild(item)
+    })
+    summary.appendChild(list)
+  }
+
   function render (moveFocus) {
     steps.forEach(function (step, index) {
       const active = index === current
@@ -172,6 +289,9 @@ function initStepWizard (form) {
     })
     updateController()
     updateProgress()
+    if (current === total - 1) {
+      renderSummary()
+    }
     if (moveFocus) {
       focusStep(steps[current])
       // Let layout dependent widgets (e.g. the map) recalculate their size now
