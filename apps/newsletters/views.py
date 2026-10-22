@@ -173,7 +173,6 @@ class DashboardNewsletterPreviewView(NewsletterPreviewMixin):
             "email_html": self._prepare_email_html(email_html),
             "from_email": self._decode_header(email.get_from_email()),
             "reply_to": self._decode_header(reply_to[0]) if reply_to else "",
-            "receiver_email": request.user.email,
             "preview_send_url": reverse(
                 "a4dashboard:newsletter-preview-send",
                 kwargs={"organisation_slug": self.organisation.slug},

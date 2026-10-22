@@ -63,6 +63,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   ``apps/contrib/a4_emails.py``.
 - Newsletter form: relabel "Name" and "Sender" as "Sender Name" and "Sender Address";
   the sender name is now used as the display name in the ``Reply-To`` header.
+- Newsletter emails: left-align the body content instead of centering it.
 - Organisation settings: Language availability preselected according to user language
 - Polls: Use Uppy Image uploader for Poll Question Images
 - Dependencies: use pnpm for more secure package management

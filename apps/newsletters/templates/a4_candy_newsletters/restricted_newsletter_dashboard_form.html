@@ -4,54 +4,63 @@
 {% block title %}{% translate "Newsletter" %} – {{ block.super }}{% endblock title %}
 
 {% block communication_form %}
-<div class="col-md-9">
-    <h1 class="u-first-heading">{% translate "Create Newsletter" %}</h1>
+<h1 class="u-first-heading">{% translate "Create Newsletter" %}</h1>
 
-    <form id="newsletter-form" novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
-        {% csrf_token %}
-        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.project %}
+<div class="row">
+    <div class="col-md-8">
+        <form id="newsletter-form" novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.project %}
 
-        <div class="row">
-            <div class="col-sm">
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.sender_name %}
+            <div class="row">
+                <div class="col-sm">
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.sender_name %}
+                </div>
+                <div class="col-sm">
+                {% include 'a4_candy_contrib/includes/form_field.html' with field=form.sender %}
+                </div>
             </div>
-            <div class="col-sm">
-            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.sender %}
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.subject %}
+            {% include 'a4_candy_contrib/includes/form_field.html' with field=form.body %}
+
+            {{ form.receivers }}
+            <input type="hidden" id="{{ form.organisation.id_for_label }}" name="{{ form.organisation.html_name }}" value="{{ view.organisation.id }}" />
+
+            <div class="d-flex justify-content-end gap-2 mb-3">
+                <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--secondary">{% translate 'Cancel' %}</a>
+                <button type="submit" class="btn btn--primary" name="send">{% translate 'Send' %}</button>
             </div>
-        </div>
-        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.subject %}
-        {% include 'a4_candy_contrib/includes/form_field.html' with field=form.body %}
+        </form>
+        {{ form.media }}
+    </div>
 
-        {{ form.receivers }}
-        <input type="hidden" id="{{ form.organisation.id_for_label }}" name="{{ form.organisation.html_name }}" value="{{ view.organisation.id }}" />
-
-        <div class="d-flex justify-content-end flex-wrap gap-2 mb-3">
-            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--secondary">{% translate 'Cancel' %}</a>
-            <button type="button"
-                    class="btn btn--light js-newsletter-test-send"
-                    hx-post="{% url 'a4dashboard:newsletter-preview-send' organisation_slug=view.organisation.slug %}"
-                    hx-include="closest form"
-                    hx-target="#newsletter-test-status-page"
-                    hx-swap="innerHTML"
-                    hx-disabled-elt="this">
-                {% translate 'Send test email to me' %}
-            </button>
-            <button type="button"
-                    class="btn btn--light js-newsletter-preview-trigger"
-                    hx-post="{% url 'a4dashboard:newsletter-preview' organisation_slug=view.organisation.slug %}"
-                    hx-include="closest form"
-                    hx-target="#newsletter-preview-modal .modal-content"
-                    hx-swap="innerHTML"
-                    hx-disabled-elt="this"
-                    data-bs-toggle="modal"
-                    data-bs-target="#newsletter-preview-modal">
-                {% translate 'Preview' %}
-            </button>
-            <button type="submit" class="btn btn--primary" name="send">{% translate 'Send' %}</button>
-        </div>
-        <div id="newsletter-test-status-page" role="status" aria-live="polite"></div>
-    </form>
-    {{ form.media }}
+    <div class="col-md-4">
+        <button type="button"
+                class="btn btn--light btn--full u-spacer-bottom newsletter-preview__action js-newsletter-preview-trigger"
+                hx-post="{% url 'a4dashboard:newsletter-preview' organisation_slug=view.organisation.slug %}"
+                hx-include="#newsletter-form"
+                hx-target="#newsletter-preview-modal .modal-content"
+                hx-swap="innerHTML"
+                hx-disabled-elt="this"
+                data-bs-toggle="modal"
+                data-bs-target="#newsletter-preview-modal">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            {% translate 'View Draft' %}
+        </button>
+        <button type="button"
+                class="btn btn--light btn--full newsletter-preview__action js-newsletter-test-send"
+                hx-post="{% url 'a4dashboard:newsletter-preview-send' organisation_slug=view.organisation.slug %}"
+                hx-include="#newsletter-form"
+                hx-target="#newsletter-test-status-page"
+                hx-swap="innerHTML"
+                hx-disabled-elt="this">
+            {% translate 'Send test email to me' %}
+        </button>
+        <div id="newsletter-test-status-page"
+             class="newsletter-preview__status js-newsletter-test-status"
+             role="status"
+             aria-live="polite"></div>
+    </div>
 </div>
 
 <div id="newsletter-preview-modal"

@@ -40,10 +40,6 @@
         </div>
         {% endif %}
         <div class="newsletter-preview__meta-row">
-            <dt>{% translate 'To' %}</dt>
-            <dd>{{ receiver_email }} <span class="newsletter-preview__hint">{% translate '(example recipient)' %}</span></dd>
-        </div>
-        <div class="newsletter-preview__meta-row">
             <dt>{% translate 'Subject' %}</dt>
             <dd>{{ subject }}</dd>
         </div>
@@ -70,5 +66,8 @@
             {% translate 'Send test email to me' %}
         </button>
     </div>
-    <div id="newsletter-test-status" role="status" aria-live="polite"></div>
+    <div id="newsletter-test-status"
+         class="newsletter-preview__status js-newsletter-test-status"
+         role="status"
+         aria-live="polite"></div>
 </div>
