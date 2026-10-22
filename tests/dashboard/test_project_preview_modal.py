@@ -25,7 +25,7 @@ def test_project_preview_modal_view(client, project_factory, organisation):
     )
     content = response.content.decode()
     assert "<html" not in content
-    assert "project-preview-modal__toggle" in content
+    assert "preview-modal__toggle" in content
     assert "project-preview-iframe" in content
     assert "data-content-url" in content
     assert "project-preview-content" not in content

@@ -1,0 +1,8 @@
+{% load i18n %}
+{% if success %}
+<div class="alert alert--success" role="status">
+    {% blocktranslate with email=receiver_email %}Test email sent to {{ email }}.{% endblocktranslate %}
+</div>
+{% elif error %}
+<div class="alert alert--danger" role="alert">{{ error }}</div>
+{% endif %}
