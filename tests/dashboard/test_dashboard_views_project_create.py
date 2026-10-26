@@ -121,6 +121,30 @@ def test_module_create(client, project):
 
 
 @pytest.mark.django_db
+def test_module_create_redirects_to_added_module(client, project):
+    organisation = project.organisation
+    initiator = organisation.initiators.first()
+    url = reverse(
+        "a4dashboard:module-create",
+        kwargs={
+            "organisation_slug": organisation.slug,
+            "project_slug": project.slug,
+            "blueprint_slug": "interactive-event",
+        },
+    )
+    client.login(username=initiator.email, password="password")
+
+    response = client.post(url)
+
+    assert redirect_target(response) == "dashboard-module_basic-edit"
+    new_module = project.modules.get()
+    assert response.url.endswith(f"?added_module={new_module.pk}")
+
+    response = client.get(response.url)
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
 def test_module_publish(client, project):
 
     organisation = project.organisation
