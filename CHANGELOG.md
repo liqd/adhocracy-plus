@@ -62,7 +62,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   timeline (stepper). Every phase shows its status badge, a progress bar and
   its own status line: completed phases a full bar and completion date, the
   active phase a live bar and countdown, upcoming phases an empty bar and
-  start date
+  start date. The timeline is also shown before the module starts, listing
+  the upcoming phases
 - Organisation page: redesigned with overlapping logo, about link, organisation stats, project search and project tiles in a three column grid
 - Landing Page: Updated buttons (view demo organisation), new icons
 - Idea, proposal, and map idea forms: do not prefill contact email for guest users

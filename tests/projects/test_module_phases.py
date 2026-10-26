@@ -251,7 +251,7 @@ def test_phase_completed_and_starts_labels(phase_factory, module_factory):
 
 
 @pytest.mark.django_db
-def test_build_phase_timeline_hidden_before_start(phase_factory, module_factory):
+def test_build_phase_timeline_visible_before_start(phase_factory, module_factory):
     module = module_factory()
     _phase_for_module(
         phase_factory,
@@ -263,8 +263,13 @@ def test_build_phase_timeline_hidden_before_start(phase_factory, module_factory)
     )
     with freeze_time(parse("2013-01-01 00:00:00 UTC")):
         timeline = build_phase_timeline(module)
-    assert timeline.is_visible is False
-    assert all(not step.is_current for step in timeline.steps)
+    assert timeline.is_visible is True
+    current = [step for step in timeline.steps if step.is_current]
+    assert len(current) == 1
+    assert current[0].phase.name == "Collect ideas"
+    assert current[0].status == "upcoming"
+    assert current[0].progress == 0
+    assert current[0].detail_label.startswith("Starts on")
 
 
 @pytest.mark.django_db
@@ -431,7 +436,7 @@ def test_module_detail_renders_all_phases_with_status(
 
 
 @pytest.mark.django_db
-def test_module_detail_hides_timeline_before_start(
+def test_module_detail_shows_timeline_before_start(
     client, phase_factory, module_factory, organisation
 ):
     module = module_factory(project__organisation=organisation)
@@ -456,7 +461,11 @@ def test_module_detail_hides_timeline_before_start(
     assert response.status_code == 200
 
     content = response.content.decode()
-    assert "phase-stepper" not in content
+    assert "phase-stepper" in content
+    assert "Collect ideas" in content
+    assert "Upcoming" in content
+    assert "Starts on" in content
+    assert "data-phase-progress" in content
     assert "Participation is not possible at the moment." in content
 
 

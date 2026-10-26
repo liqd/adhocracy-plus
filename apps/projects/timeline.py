@@ -208,10 +208,10 @@ def phase_starts_label(phase) -> str:
 def build_phase_timeline(module: Module | None) -> PhaseTimeline:
     """Build the condensed phase stepper for one module.
 
-    The stepper is only visible once the module has started, i.e. as soon
-    as any phase is active or completed. The current phase is the active
-    one, otherwise the next upcoming phase, otherwise the last completed one.
-    Every phase carries its own status detail (bar and countdown/date).
+    The stepper is visible whenever the module has phases, including before
+    the module starts. The current phase is the active one, otherwise the next
+    upcoming phase, otherwise the last completed one. Every phase carries its
+    own status detail (bar and countdown/date).
     """
     if module is None:
         return PhaseTimeline(is_visible=False, steps=())
@@ -225,7 +225,7 @@ def build_phase_timeline(module: Module | None) -> PhaseTimeline:
     completed = [step for step in steps if step[1] == PHASE_STATUS_COMPLETED]
     upcoming = [step for step in steps if step[1] == STATUS_UPCOMING]
 
-    is_visible = bool(active or completed)
+    is_visible = bool(steps)
     if not is_visible:
         current_phase = None
     elif active:
