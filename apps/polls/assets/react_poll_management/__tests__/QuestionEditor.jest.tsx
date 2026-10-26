@@ -21,6 +21,7 @@ const question: ManagementQuestion = {
   multiple_choice: false,
   is_open: false,
   is_confidential: false,
+  is_mandatory: false,
   choices: [
     { id: 10, key: 'c_10', label: 'A', is_other_choice: false },
     { id: 11, key: 'c_11', label: 'B', is_other_choice: false }
@@ -35,6 +36,7 @@ const defaults = {
   onLabelChange: jest.fn(),
   onHelpTextChange: jest.fn(),
   onConfidentialChange: jest.fn(),
+  onMandatoryChange: jest.fn(),
   onMultipleChoiceChange: jest.fn(),
   onOpenChange: jest.fn(),
   onImageChange: jest.fn(),
@@ -176,5 +178,45 @@ describe('QuestionEditor', () => {
     expect(screen.getByRole('button', { name: 'Open Text' })).toHaveAttribute('aria-pressed', 'true')
     expect(screen.getByRole('button', { name: 'Multiple choice' })).toHaveAttribute('aria-pressed', 'false')
     expect(screen.getByText('Explanation')).toBeInTheDocument()
+  })
+
+  it('renders an unchecked mandatory checkbox by default', () => {
+    render(<QuestionEditor question={question} {...defaults} />)
+    expect(screen.getByRole('checkbox', { name: 'Mandatory question' })).not.toBeChecked()
+  })
+
+  it('shows the mandatory checkbox as checked for mandatory questions', () => {
+    render(<QuestionEditor question={{ ...question, is_mandatory: true }} {...defaults} />)
+    expect(screen.getByRole('checkbox', { name: 'Mandatory question' })).toBeChecked()
+  })
+
+  it('toggles the mandatory setting for all answer types', () => {
+    const onMandatoryChange = jest.fn()
+    const { rerender } = render(
+      <QuestionEditor question={question} {...defaults} onMandatoryChange={onMandatoryChange} />
+    )
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Mandatory question' }))
+    expect(onMandatoryChange).toHaveBeenLastCalledWith(true)
+
+    rerender(
+      <QuestionEditor
+        question={{ ...question, multiple_choice: true }}
+        {...defaults}
+        onMandatoryChange={onMandatoryChange}
+      />
+    )
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Mandatory question' }))
+    expect(onMandatoryChange).toHaveBeenLastCalledWith(true)
+
+    rerender(
+      <QuestionEditor
+        question={{ ...question, is_open: true, choices: [] }}
+        {...defaults}
+        onMandatoryChange={onMandatoryChange}
+      />
+    )
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Mandatory question' }))
+    expect(onMandatoryChange).toHaveBeenCalledTimes(3)
+    expect(onMandatoryChange).toHaveBeenLastCalledWith(true)
   })
 })

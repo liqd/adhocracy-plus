@@ -16,6 +16,7 @@ export interface ManagementQuestion {
   multiple_choice: boolean
   is_open: boolean
   is_confidential: boolean
+  is_mandatory: boolean
   choices: ManagementChoice[]
   answers?: unknown[]
   image_base64?: string | null

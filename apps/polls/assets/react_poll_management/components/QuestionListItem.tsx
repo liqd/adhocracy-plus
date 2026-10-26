@@ -14,7 +14,8 @@ const TRANSLATED = {
   cancelDelete: django.gettext('Cancel delete'),
   deletePrompt: django.gettext('Delete this question?'),
   expand: django.gettext('Expand question'),
-  collapse: django.gettext('Collapse question')
+  collapse: django.gettext('Collapse question'),
+  mandatory: django.gettext('Mandatory')
 }
 
 const typeLabel = (question: ManagementQuestion): string => {
@@ -114,6 +115,11 @@ export const QuestionListItem = ({
         <span className={`poll-management__label ${question.label ? '' : 'poll-management__label--empty'}`}>
           {question.label || TRANSLATED.untitled}
         </span>
+        {question.is_mandatory && (
+          <span className="poll-management__flag" title={TRANSLATED.mandatory}>
+            {TRANSLATED.mandatory}
+          </span>
+        )}
         <span className="poll-management__type">
           {typeLabel(question)}
         </span>

@@ -494,6 +494,7 @@ export const PollManagement = (props: PollManagementProps) => {
                   onLabelChange={(label) => updateQuestion(index, { label })}
                   onHelpTextChange={(helpText) => updateQuestion(index, { help_text: helpText })}
                   onConfidentialChange={(value) => updateQuestion(index, { is_confidential: value })}
+                  onMandatoryChange={(value) => updateQuestion(index, { is_mandatory: value })}
                   onMultipleChoiceChange={handleAnswerTypeChange}
                   onOpenChange={handleOpenChange}
                   onImageChange={handleImageChange}
