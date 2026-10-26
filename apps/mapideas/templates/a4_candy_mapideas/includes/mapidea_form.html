@@ -38,7 +38,7 @@
         {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
     {% endfor %}
 
-    {% include 'a4images/uppy_image_upload_field.html' with field=form.image form_field_template='a4_candy_contrib/includes/form_field.html' aspect_ratio='1.5' output_width=600 output_height=400 %}
+    {% include 'a4images/uppy_image_upload_field.html' with field=form.image form_field_template='a4_candy_contrib/includes/form_field.html' aspect_ratio='1.5' output_width=600 output_height=400 dropzone=True %}
     {% include 'a4images/uppy_image_upload_assets.html' %}
 
     {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.right_of_use %}
@@ -55,14 +55,15 @@
     {% if wizard %}</fieldset>{% endif %}
 
     <div class="d-flex justify-content-end align-items-center mb-3">
-        <a href="{{ cancel }}" class="btn btn--secondary me-2">{% translate 'Cancel' %}</a>
         {% if wizard %}
         <div class="step-wizard__actions">
             <button type="button" class="btn btn--secondary d-none" data-step-wizard-back>{% translate 'Back' %}</button>
-            <button type="button" class="btn btn--primary d-none" data-step-wizard-next>{% translate 'Next' %} <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-            <button type="submit" class="btn btn--primary" data-step-wizard-submit>{% translate 'Submit' %} <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+            <a href="{{ cancel }}" class="btn btn--secondary">{% translate 'Cancel' %}</a>
+            <button type="button" class="btn btn--primary-filled d-none" data-step-wizard-next>{% translate 'Next' %} <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+            <button type="submit" class="btn btn--primary-filled" data-step-wizard-submit>{% translate 'Submit' %} <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
         </div>
         {% else %}
+        <a href="{{ cancel }}" class="btn btn--secondary me-2">{% translate 'Cancel' %}</a>
         <button type="submit" class="btn btn--primary">{% translate 'Save' %}</button>
         {% endif %}
     </div>
