@@ -42,3 +42,14 @@ export const getAnsweredCount = (questions: PollQuestion[], userAnswers: UserAns
   })
   return count
 }
+
+/**
+ * Mandatory questions that still have no valid answer. Used to block the
+ * navigation and the submission of the poll.
+ */
+export const getUnansweredMandatoryQuestions = (
+  questions: PollQuestion[],
+  userAnswers: UserAnswers
+): PollQuestion[] => questions.filter(
+  question => !!question.is_mandatory && !hasValidAnswer(question, userAnswers[question.id])
+)

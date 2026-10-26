@@ -11,6 +11,7 @@ export interface PollQuestion {
   help_text?: string
   is_open: boolean
   is_confidential?: boolean
+  is_mandatory?: boolean
   multiple_choice: boolean
   choices: PollChoiceData[]
   userChoices?: number[]
