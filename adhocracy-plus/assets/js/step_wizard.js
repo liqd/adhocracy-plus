@@ -106,6 +106,7 @@ function initStepWizard (form) {
   const total = steps.length
   let current = 0
   let segments = []
+  let summaryImageUrl = null
 
   // The number of rendered steps varies (optional steps may be omitted server
   // side), so build the progress segments from the actual steps.
@@ -245,6 +246,21 @@ function initStepWizard (form) {
     }
 
     summary.innerHTML = ''
+    if (summaryImageUrl) {
+      URL.revokeObjectURL(summaryImageUrl)
+      summaryImageUrl = null
+    }
+
+    const imageInput = form.querySelector('input[name="image"]')
+    if (imageInput && imageInput.files && imageInput.files.length) {
+      summaryImageUrl = URL.createObjectURL(imageInput.files[0])
+      const preview = document.createElement('img')
+      preview.className = 'step-wizard__summary-image'
+      preview.src = summaryImageUrl
+      preview.alt = ''
+      summary.appendChild(preview)
+    }
+
     if (!rows.length) {
       return
     }
