@@ -86,3 +86,60 @@
     gap: 0.5rem;
     margin-left: auto;
 }
+
+// Dropzone style image upload used inside the wizard.
+.uppy-image-upload-field--dropzone {
+    .form-label {
+        display: block;
+        margin-bottom: 0.5 * $spacer;
+    }
+
+    .upload-wrapper__fields {
+        display: block;
+        width: 100%;
+    }
+
+    .upload-wrapper__preview,
+    .upload-wrapper__alert {
+        display: none;
+    }
+
+    .upload-wrapper__action-parent {
+        display: block;
+    }
+
+    .uppy-image-upload-field__trigger {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        min-height: 9rem;
+        padding: 1.5 * $spacer;
+        border: 1px solid $border-color;
+        background-color: $body-bg;
+        color: $text-color;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .uppy-image-upload-field__trigger:hover,
+    .uppy-image-upload-field__trigger:focus-visible {
+        border-color: $brand-primary;
+    }
+
+    .uppy-image-upload-field__trigger .fa-arrow-up-from-bracket {
+        font-size: 1.5rem;
+    }
+
+    .uppy-image-upload-field__browse {
+        color: $brand-primary;
+        text-decoration: underline;
+    }
+
+    .uppy-image-upload-field__note {
+        color: $text-muted;
+        font-size: 0.875rem;
+    }
+}

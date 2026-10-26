@@ -72,6 +72,11 @@
     min-width: 10 * $spacer;
 }
 
+.btn.btn--primary-filled {
+    @include button-bg($brand-primary, $brand-primary, $body-bg, 10%);
+    min-width: 10 * $spacer;
+}
+
 .btn.btn--black,
 .a4-btn.btn--black {
     @include button-bg($print-black, $print-black, $body-bg, 15%);
