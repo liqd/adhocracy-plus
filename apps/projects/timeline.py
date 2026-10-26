@@ -205,7 +205,7 @@ def phase_starts_label(phase) -> str:
     return _("Starts on %(date)s") % {"date": _format_short_date(phase.start_date)}
 
 
-def build_phase_timeline(module: Module) -> PhaseTimeline:
+def build_phase_timeline(module: Module | None) -> PhaseTimeline:
     """Build the condensed phase stepper for one module.
 
     The stepper is only visible once the module has started, i.e. as soon
@@ -213,6 +213,9 @@ def build_phase_timeline(module: Module) -> PhaseTimeline:
     one, otherwise the next upcoming phase, otherwise the last completed one.
     Every phase carries its own status detail (bar and countdown/date).
     """
+    if module is None:
+        return PhaseTimeline(is_visible=False, steps=())
+
     steps: list[tuple[object, str, str]] = []
     for phase in module.phases:
         status, label = phase_participation_status(phase)
