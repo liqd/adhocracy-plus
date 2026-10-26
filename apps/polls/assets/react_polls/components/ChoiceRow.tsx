@@ -16,6 +16,8 @@ interface ChoiceInputProps {
   disabled: boolean
   name?: string
   isResult?: boolean
+  required?: boolean
+  errorId?: string
 }
 
 const ChoiceInput = ({
@@ -25,7 +27,9 @@ const ChoiceInput = ({
   onInputChange,
   disabled,
   name,
-  isResult = false // New prop for result mode
+  isResult = false, // New prop for result mode
+  required = false,
+  errorId
 }: ChoiceInputProps) => (
   <div className="poll-choice__input-wrapper">
     {!isResult
@@ -39,7 +43,9 @@ const ChoiceInput = ({
           checked={checked}
           onChange={(event) => onInputChange(event, choice.is_other_choice)}
           disabled={disabled}
-          aria-describedby={'textarea-with-counter-' + choice.id}
+          aria-required={required ? 'true' : undefined}
+          aria-invalid={errorId ? 'true' : undefined}
+          aria-describedby={['textarea-with-counter-' + choice.id, errorId].filter(Boolean).join(' ')}
         />
         )
       : (
@@ -69,6 +75,8 @@ interface ChoiceRowProps {
   isResult?: boolean
   review?: boolean
   percent?: number | null
+  required?: boolean
+  errorId?: string
 }
 
 export const ChoiceRow = React.memo(({
@@ -83,7 +91,9 @@ export const ChoiceRow = React.memo(({
   name,
   isResult = false,
   review = false,
-  percent = null
+  percent = null,
+  required = false,
+  errorId
 }: ChoiceRowProps) => {
   const [textareaValue, setTextareaValue] = useState(otherChoiceAnswer || '')
   const [showTextarea, setShowTextarea] = useState(false)
@@ -136,6 +146,8 @@ export const ChoiceRow = React.memo(({
           disabled={disabled || isResult}
           name={name}
           isResult={isResult}
+          required={required}
+          errorId={errorId}
         />
         <span className="poll-choice__label">
           {choice.is_other_choice ? translated.other : choice.label}

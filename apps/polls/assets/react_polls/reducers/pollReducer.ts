@@ -1,5 +1,6 @@
 // apps/polls/assets/react_polls/reducers/pollReducer.ts
 import { STATES, ACTIONS, isValidTransition } from '../utils/stateMachine'
+import { hasValidAnswer } from '../utils/pollHelpers'
 import type { PollAction, PollState, UserAnswers } from '../types'
 
 export const initialState: PollState = {
@@ -85,6 +86,7 @@ const reducers: Record<string, ReducerHandler> = {
     ...state,
     state: STATES.ANSWERING,
     currentQuestionIndex: 0,
+    errors: {},
     alert: null
   }),
 
@@ -119,16 +121,47 @@ const reducers: Record<string, ReducerHandler> = {
     }
   },
 
-  [ACTIONS.UPDATE_ANSWER]: (state, { questionId, answerData }) => ({
-    ...state,
-    userAnswers: {
-      ...state.userAnswers,
-      [questionId]: {
-        ...state.userAnswers[questionId],
-        ...answerData
-      }
+  [ACTIONS.UPDATE_ANSWER]: (state, { questionId, answerData }) => {
+    const answer = {
+      ...state.userAnswers[questionId],
+      ...answerData
     }
-  }),
+    const question = state.questions.find(item => item.id === questionId)
+
+    // Only drop the error of the question that has just been answered, so the
+    // errors of the other unanswered questions stay visible.
+    let errors = state.errors
+    if (errors[questionId] && hasValidAnswer(question, answer)) {
+      errors = { ...errors }
+      delete errors[questionId]
+    }
+
+    return {
+      ...state,
+      userAnswers: {
+        ...state.userAnswers,
+        [questionId]: answer
+      },
+      errors
+    }
+  },
+
+  [ACTIONS.SET_QUESTION_ERRORS]: (state, { questionIds, message }) => {
+    const errors = { ...state.errors }
+    questionIds.forEach((questionId: number) => {
+      errors[questionId] = [message]
+    })
+    return { ...state, errors }
+  },
+
+  [ACTIONS.GO_TO_QUESTION]: (state, index) => {
+    if (index < 0 || index >= state.questions.length) return state
+    return {
+      ...state,
+      currentQuestionIndex: index,
+      alert: null
+    }
+  },
 
   [ACTIONS.SUBMIT_START]: (state) => ({
     ...state,
@@ -185,13 +218,15 @@ const reducers: Record<string, ReducerHandler> = {
   [ACTIONS.BACK_TO_POLL]: (state) => ({
     ...state,
     state: STATES.START_SCREEN,
-    currentQuestionIndex: 0
+    currentQuestionIndex: 0,
+    errors: {}
   }),
 
   [ACTIONS.CHANGE_ANSWER]: (state) => ({
     ...state,
     state: STATES.ANSWERING,
-    currentQuestionIndex: 0
+    currentQuestionIndex: 0,
+    errors: {}
   }),
 
   [ACTIONS.SHOW_RESULTS]: (state) => ({

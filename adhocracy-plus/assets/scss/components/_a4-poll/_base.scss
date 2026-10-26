@@ -129,6 +129,18 @@
     padding-left: 0;
 }
 
+.poll__question-required {
+    margin-left: 0.15em;
+    color: $brand-danger;
+    font-weight: 600;
+}
+
+.poll-question-funnel__mandatory-hint {
+    margin-bottom: 0.5 * $spacer;
+    color: $text-color-gray;
+    font-size: $font-size-sm;
+}
+
 .poll-answer-review {
     &__banner {
         margin-bottom: 35px;

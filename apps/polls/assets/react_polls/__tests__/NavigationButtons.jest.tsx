@@ -62,4 +62,10 @@ describe('NavigationButtons', () => {
     fireEvent.click(screen.getByText('Submit All'))
     expect(onSubmit).toHaveBeenCalledTimes(1)
   })
+
+  it('hides Skip for mandatory questions', () => {
+    render(<NavigationButtons {...defaults} isMandatory />)
+    expect(screen.queryByText('Skip')).not.toBeInTheDocument()
+    expect(screen.getByText('Next')).toBeInTheDocument()
+  })
 })
