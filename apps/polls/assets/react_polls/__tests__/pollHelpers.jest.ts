@@ -72,8 +72,8 @@ describe('hasValidAnswer', () => {
     expect(hasValidAnswer(singleQuestion, { choices: [11], other_choice_answer: 'my answer' })).toBe(true)
   })
 
-  it('accepts an "other" answer that was entered without selecting the option', () => {
-    expect(hasValidAnswer(singleQuestion, { choices: [], other_choice_answer: 'my answer' })).toBe(true)
+  it('rejects an "other" answer that was entered without selecting the option', () => {
+    expect(hasValidAnswer(singleQuestion, { choices: [], other_choice_answer: 'my answer' })).toBe(false)
   })
 })
 

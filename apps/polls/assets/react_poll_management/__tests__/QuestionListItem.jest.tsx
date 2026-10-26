@@ -32,7 +32,8 @@ const defaults = {
 }
 
 describe('QuestionListItem', () => {
-  it('renders number, label and answer type', () => {    render(<QuestionListItem question={question} {...defaults} index={2} />)
+  it('renders number, label and answer type', () => {
+    render(<QuestionListItem question={question} {...defaults} index={2} />)
     expect(screen.getByText('3')).toBeInTheDocument()
     expect(screen.getByText('What is your favourite colour?')).toBeInTheDocument()
     expect(screen.getByText('Single choice')).toBeInTheDocument()

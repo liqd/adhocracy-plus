@@ -17,7 +17,7 @@ export const hasValidAnswer = (question: PollQuestion | undefined, answer: UserA
     }
   }
 
-  return hasChoice || hasOtherAnswer
+  return hasChoice
 }
 
 export const buildVoteData = (userAnswers: UserAnswers): Record<number, UserAnswer> => {
