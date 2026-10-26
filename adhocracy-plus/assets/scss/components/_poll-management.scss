@@ -90,6 +90,28 @@
         margin-left: 0.15em;
     }
 
+    &__mandatory {
+        // keep the checkbox row a comfortable tap target on all screen sizes
+        label {
+            display: block;
+            min-height: 44px;
+            padding-top: 0.6em;
+            padding-bottom: 0.6em;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+    }
+
+    &__flag {
+        flex: 0 0 auto;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background-color: $brand-primary-50;
+        color: $text-color;
+        font-size: 0.8em;
+        white-space: nowrap;
+    }
+
     &__summary {
         display: flex;
         align-items: baseline;
