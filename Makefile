@@ -30,8 +30,8 @@ help:
 	@echo "  make install					-- install dev setup"
 	@echo "  make clean						-- delete node modules and venv"
 	@echo "  make fixtures					-- load example data"
-	@echo "  make server [port]				-- start a dev server (default port 8004)"
-	@echo "  make watch [port]				-- start a dev server and rebuild js and css files on changes (default port 8004)"
+	@echo "  make server [port] | [host:port]		-- start a dev server (default port 8004)"
+	@echo "  make watch [port] | [host:port]		-- start a dev server and rebuild js and css files on changes (default port 8004)"
 	@echo "  make background				-- start background processes"
 	@echo "  make test						-- run all test cases"
 	@echo "  make pytest					-- run all test cases with pytest"
@@ -280,3 +280,7 @@ docker-logs:
 .PHONY: docker-fixtures-users
 docker-fixtures-users:
 	docker compose exec web python manage.py loaddata adhocracy-plus/fixtures/users-dev.json
+
+# allow positional arguments for other targets (e.g. `make watch 8017`)
+%:
+	@:
