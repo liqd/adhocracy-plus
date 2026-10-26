@@ -39,7 +39,9 @@
 
     {% if wizard %}<fieldset class="step-wizard__step" data-step-wizard-step="3"><legend class="step-wizard__title">{% translate "Idea review and submit" %}</legend><p class="step-wizard__hint">{% translate "Make sure everything is right, you can add more contact details if desired" %}</p><div class="step-wizard__summary" data-step-wizard-summary data-label-location="{% translate 'Location' %}" data-label-title="{% translate 'Title' %}" data-label-description="{% translate 'Description' %}" data-label-category="{% translate 'Category' %}" data-label-labels="{% translate 'Label' %}" data-label-image="{% translate 'Image' %}" data-label-edit="{% translate 'Edit' %}"></div>{% endif %}
 
-    {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.organisation_terms_of_use %}
+    {% if form.organisation_terms_of_use %}
+        {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.organisation_terms_of_use %}
+    {% endif %}
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.creator_phone %}
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.creator_email %}
     {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.creator_contact_consent %}
