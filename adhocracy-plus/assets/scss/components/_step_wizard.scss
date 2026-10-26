@@ -149,7 +149,7 @@
     .upload-wrapper__preview {
         position: absolute;
         inset: 0;
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
         margin: 0;
@@ -164,6 +164,8 @@
     }
 
     .uppy-image-upload-field__trigger {
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -184,10 +186,6 @@
         border-color: $brand-primary;
     }
 
-    &.has-preview .uppy-image-upload-field__trigger > * {
-        visibility: hidden;
-    }
-
     .uppy-image-upload-field__trigger .fa-arrow-up-from-bracket {
         font-size: 1.5rem;
     }
@@ -200,6 +198,35 @@
     .uppy-image-upload-field__note {
         color: $text-muted;
         font-size: 0.875rem;
+    }
+
+    .uppy-image-upload-field__change {
+        display: none;
+    }
+
+    &.has-preview {
+        .upload-wrapper__preview {
+            display: flex;
+        }
+
+        .uppy-image-upload-field__trigger > i,
+        .uppy-image-upload-field__trigger .uppy-image-upload-field__text,
+        .uppy-image-upload-field__trigger .uppy-image-upload-field__note {
+            display: none;
+        }
+
+        .uppy-image-upload-field__change {
+            position: absolute;
+            right: 0.75rem;
+            bottom: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid $text-color;
+            background-color: $body-bg;
+            color: $text-color;
+        }
     }
 }
 
