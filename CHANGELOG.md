@@ -78,6 +78,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Organisation settings: Language availability preselected according to user language
 - Polls: Use Uppy Image uploader for Poll Question Images
 - Dependencies: use pnpm for more secure package management
+- Dependencies: upgrade Wagtail to 7.4.4 (LTS security fixes)
 - CI: use Node 22 in GitHub Actions workflow
 - Dependencies: upgrade various npm packages for security fixes
 - Dependencies: migrate eslint from v8 to v9 with flat config (``eslint.config.js``);
