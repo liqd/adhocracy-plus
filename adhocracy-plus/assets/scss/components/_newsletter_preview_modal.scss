@@ -14,6 +14,67 @@
   }
 }
 
+.btn.newsletter-send {
+  @include button-bg($brand-primary, $brand-primary, $text-color-inverted, 47%);
+}
+
+.newsletter-preview__header {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+  min-height: 5rem;
+  position: relative;
+
+  .preview-modal__toggle {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .btn {
+    line-height: 1.25;
+    padding: 0.75rem 1rem;
+  }
+}
+
+.newsletter-preview__header-actions {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+@media screen and (max-width: $breakpoint-xs-down) {
+  .newsletter-preview__header {
+    align-items: stretch;
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+
+    .preview-modal__toggle {
+      align-self: center;
+      position: static;
+      transform: none;
+    }
+
+    .btn {
+      padding: 0.5rem 0.75rem;
+    }
+
+    .btn--primary {
+      min-width: 0;
+    }
+  }
+
+  .newsletter-preview__header-actions {
+    align-self: stretch;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+
 .newsletter-preview__status {
   transition: opacity 0.3s ease;
 
@@ -36,8 +97,11 @@
 .newsletter-preview__meta {
   background: #fff;
   border: 1px solid var(--color-border, #ccc);
-  line-height: 0.8;
-  margin-bottom: 1rem;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
   padding: 0.75rem 1rem;
 }
 
@@ -61,6 +125,12 @@
   overflow-wrap: anywhere;
 }
 
+@media screen and (max-width: $breakpoint-down) {
+  .newsletter-preview__meta {
+    max-width: $preview-modal-mobile-frame-width;
+  }
+}
+
 .newsletter-preview__frame.preview-modal__frame--desktop {
   max-width: min(900px, calc(100vw - 2rem));
 }
@@ -72,8 +142,12 @@
   font-size: 16px;
   line-height: 1.5;
   overflow-wrap: anywhere;
-  padding: 1rem;
+  padding: 0;
   width: 100%;
+
+  > div:first-child {
+    margin-top: 0 !important;
+  }
 
   h2,
   h3,
@@ -127,12 +201,4 @@
     border: 0;
     padding: 0;
   }
-}
-
-.newsletter-preview__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: flex-end;
-  margin-top: 1rem;
 }

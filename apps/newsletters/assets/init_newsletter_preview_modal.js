@@ -4,6 +4,7 @@ import { bindPreviewDeviceToggle } from '../../../adhocracy-plus/assets/js/previ
 const MODAL_ID = 'newsletter-preview-modal'
 const PREVIEW_TRIGGER = '.js-newsletter-preview-trigger'
 const TEST_TRIGGER = '.js-newsletter-test-send'
+const SEND_TRIGGER = '.js-newsletter-send'
 const STATUS_SELECTOR = '.js-newsletter-test-status'
 const STATUS_DISMISS_MS = 8000
 const STATUS_FADE_MS = 300
@@ -60,6 +61,23 @@ function syncEditors () {
   })
 }
 
+function confirmSend () {
+  const projectSelect = document.getElementById('id_project')
+  const selectedOption = projectSelect && projectSelect.selectedOptions[0]
+  const projectName = selectedOption ? selectedOption.textContent.trim() : ''
+  const message = [
+    django.gettext('Send this newsletter to all followers of the selected project?')
+  ]
+
+  if (projectName) {
+    message.push('', `"${projectName}"`)
+  }
+
+  message.push('', django.gettext('This cannot be undone.'))
+
+  return window.confirm(message.join('\n'))
+}
+
 function init () {
   const modal = document.getElementById(MODAL_ID)
   if (!modal) return
@@ -87,6 +105,15 @@ function init () {
     if (event.target.closest(TEST_TRIGGER)) {
       syncEditors()
     }
+  }, true)
+
+  document.addEventListener('click', (event) => {
+    const sendButton = event.target.closest(SEND_TRIGGER)
+    if (!sendButton) return
+    if (confirmSend()) return
+
+    event.preventDefault()
+    event.stopImmediatePropagation()
   }, true)
 
   document.body.addEventListener('htmx:afterSwap', (event) => {
