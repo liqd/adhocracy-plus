@@ -171,6 +171,7 @@ class DashboardNewsletterPreviewView(NewsletterPreviewMixin):
         context = {
             "subject": subject,
             "email_html": self._prepare_email_html(email_html),
+            "recipient_count": self._get_recipient_count(newsletter),
             "from_email": self._decode_header(email.get_from_email()),
             "reply_to": self._decode_header(reply_to[0]) if reply_to else "",
             "preview_send_url": reverse(
@@ -182,6 +183,22 @@ class DashboardNewsletterPreviewView(NewsletterPreviewMixin):
             request,
             "a4_candy_newsletters/partials/newsletter_preview_modal.html",
             context,
+        )
+
+    def _get_recipient_count(self, newsletter):
+        if not newsletter.project_id:
+            return 0
+
+        participant_ids = Follow.objects.filter(
+            project_id=newsletter.project_id, enabled=True
+        ).values_list("creator", flat=True)
+
+        return (
+            User.objects.filter(id__in=participant_ids)
+            .filter(get_newsletters=True)
+            .filter(is_active=True)
+            .distinct()
+            .count()
         )
 
     def _prepare_email_html(self, email_html):

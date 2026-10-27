@@ -25,11 +25,6 @@
 
             {{ form.receivers }}
             <input type="hidden" id="{{ form.organisation.id_for_label }}" name="{{ form.organisation.html_name }}" value="{{ view.organisation.id }}" />
-
-            <div class="d-flex justify-content-end gap-2 mb-3">
-                <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--secondary">{% translate 'Cancel' %}</a>
-                <button type="submit" class="btn btn--primary" name="send">{% translate 'Send' %}</button>
-            </div>
         </form>
         {{ form.media }}
     </div>
@@ -55,6 +50,12 @@
                 hx-swap="innerHTML"
                 hx-disabled-elt="this">
             {% translate 'Send test email to me' %}
+        </button>
+        <button type="submit"
+                form="newsletter-form"
+                class="btn btn--full newsletter-send js-newsletter-send"
+                name="send">
+            {% translate 'Send' %}
         </button>
         <div id="newsletter-test-status-page"
              class="newsletter-preview__status js-newsletter-test-status"

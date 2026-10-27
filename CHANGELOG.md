@@ -42,9 +42,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   "Or continue with" heading
 - Login and registration modal added
 - Newsletter: preview the fully rendered email in a modal before sending, with
-  desktop and mobile views and a "Send test email to me" action using a ``[TEST]``
-  subject prefix. The preview uses the same email template as the actual send and
-  includes the current, unsaved form values.
+  desktop and mobile views, recipient count and a confirmation step. Includes a
+  "Send test email to me" action using a ``[TEST]`` subject prefix. The preview
+  uses the same email template as the actual send and includes the current,
+  unsaved form values.
 
 ### Changed
 
