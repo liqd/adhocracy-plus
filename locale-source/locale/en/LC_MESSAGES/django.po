@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 16:35+0100\n"
+"POT-Creation-Date: 2026-10-27 12:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5542,8 +5542,8 @@ msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
 #: apps/projects/serializers.py:254
-#: apps/projects/templatetags/a4_candy_project_tags.py:136
-#: apps/projects/templatetags/a4_candy_project_tags.py:141
+#: apps/projects/templatetags/a4_candy_project_tags.py:143
+#: apps/projects/templatetags/a4_candy_project_tags.py:148
 msgid "running"
 msgstr "running"
 
@@ -5557,7 +5557,7 @@ msgid "starts in the future"
 msgstr "starts in the future"
 
 #: apps/projects/serializers.py:269
-#: apps/projects/templatetags/a4_candy_project_tags.py:140
+#: apps/projects/templatetags/a4_candy_project_tags.py:147
 msgid "completed"
 msgstr "completed"
 
@@ -5720,7 +5720,7 @@ msgid "Module"
 msgstr "Module"
 
 #: apps/projects/templates/a4_candy_projects/_summary_section.html:42
-#: apps/projects/timeline.py:29
+#: apps/projects/timeline.py:29 apps/projects/timeline.py:197
 msgid "Completed"
 msgstr "Completed"
 
@@ -6285,7 +6285,7 @@ msgstr "Edit Participants"
 msgid "Statistics"
 msgstr "Statistics"
 
-#: apps/projects/templatetags/a4_candy_project_tags.py:138
+#: apps/projects/templatetags/a4_candy_project_tags.py:145
 msgid "upcoming"
 msgstr "upcoming"
 
@@ -6295,6 +6295,7 @@ msgid "Active"
 msgstr "Active"
 
 #: apps/projects/timeline.py:31 apps/projects/timeline.py:37
+#: apps/projects/timeline.py:204
 #: apps/userdashboard/templates/a4_candy_userdashboard/htmx/_moderation_project_list.html:38
 msgid "Upcoming"
 msgstr "Upcoming"
@@ -6303,20 +6304,30 @@ msgstr "Upcoming"
 msgid "Running"
 msgstr "Running"
 
-#: apps/projects/timeline.py:134
+#: apps/projects/timeline.py:156
 msgid "1 minute"
 msgstr "1 minute"
 
-#: apps/projects/timeline.py:161
+#: apps/projects/timeline.py:198
+#, python-format
+msgid "Completed on %(date)s"
+msgstr "Completed on %(date)s"
+
+#: apps/projects/timeline.py:205
+#, python-format
+msgid "Starts on %(date)s"
+msgstr "Starts on %(date)s"
+
+#: apps/projects/timeline.py:280
 msgid "See contributions"
 msgstr "See contributions"
 
-#: apps/projects/timeline.py:163
+#: apps/projects/timeline.py:282
 msgid "Participate"
 msgstr "Participate"
 
-#: apps/projects/timeline.py:164 apps/projects/timeline.py:171
-#: apps/projects/timeline.py:172
+#: apps/projects/timeline.py:283 apps/projects/timeline.py:290
+#: apps/projects/timeline.py:291
 #: apps/userdashboard/templates/a4_candy_userdashboard/htmx/_moderation_comment_list.html:18
 msgid "Read"
 msgstr "Read"
@@ -7481,17 +7492,9 @@ msgstr ""
 "Your image will be uploaded/removed once you save your changes at the end of "
 "this page."
 
-#: adhocracy-plus/templates/a4modules/includes/module_phases.html:15
-msgid "Start"
-msgstr "Start"
-
-#: adhocracy-plus/templates/a4modules/includes/module_phases.html:22
-msgid "Duration"
-msgstr "Duration"
-
-#: adhocracy-plus/templates/a4modules/includes/module_phases.html:28
-msgid "End"
-msgstr "End"
+#: adhocracy-plus/templates/a4modules/includes/module_phases.html:26
+msgid "Phase progress"
+msgstr "Phase progress"
 
 #: adhocracy-plus/templates/a4modules/module_detail.html:118
 msgid "More questions from this online participation"
