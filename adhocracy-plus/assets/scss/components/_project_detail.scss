@@ -223,27 +223,126 @@ $project-detail-sticky-cta-height: 6rem;
 
 $project-detail-phase-border: #DFDEDE;
 $project-detail-phase-gap: 1.25 * $spacer;
+$phase-stepper-indent: 28px;
+$phase-stepper-marker-size: 12px;
+$phase-stepper-rail-x: 0.5 * $phase-stepper-marker-size;
 
-.project-detail__module-phases .phase-info__item {
-    margin-bottom: $project-detail-phase-gap;
+.phase-stepper {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
-    &:last-child {
-        margin-bottom: 0;
+// Each phase row vertically centers its marker, so the active phase's dot
+// lines up with its timeline/progress bar.
+.phase-stepper__step {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: (0.5 * $project-detail-phase-gap) 0;
+
+    // Connector between consecutive phase markers.
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: $phase-stepper-rail-x;
+        width: 2px;
+        transform: translateX(-50%);
+        background-color: $project-detail-phase-border;
+    }
+
+    &:first-child:before {
+        top: 50%;
+    }
+
+    &:last-child:before {
+        bottom: 50%;
     }
 }
 
-.project-detail__module-phases .phase-info__item__header {
+.phase-stepper__marker {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    width: $phase-stepper-marker-size;
+    height: $phase-stepper-marker-size;
+    border: 2px solid $project-detail-phase-border;
+    border-radius: 50%;
+    background-color: $body-bg;
+}
+
+.phase-stepper__step--completed .phase-stepper__marker {
+    border-color: $grey-700;
+    background-color: $grey-700;
+}
+
+.phase-stepper__step--active .phase-stepper__marker,
+.phase-stepper__step--current .phase-stepper__marker {
+    border-color: $brand-primary;
+    background-color: $brand-primary;
+}
+
+.phase-stepper__step--current .phase-stepper__marker {
+    box-shadow: 0 0 0 4px rgba($brand-primary, 0.15);
+}
+
+.phase-stepper__body {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-left: $phase-stepper-indent - $phase-stepper-marker-size;
+}
+
+.phase-stepper__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: $spacer;
-    margin-bottom: $project-detail-phase-gap;
 }
 
-.project-detail__module-phases .phase-info__item__name {
+.phase-stepper__name {
     font-size: $font-size-sm;
-    font-weight: $demi-bold;
+    font-weight: 400;
     line-height: 1.5;
+    color: $text-color-gray;
+}
+
+.phase-stepper__step--current .phase-stepper__name {
+    font-weight: $demi-bold;
+    color: $text-color;
+}
+
+.phase-stepper__detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5 * $spacer;
+    margin-top: 0.5 * $spacer;
+}
+
+.phase-stepper__detail-label {
+    font-size: $font-size-sm;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $text-color;
+    text-align: right;
+}
+
+.phase-stepper__progress {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background-color: $gray-lightest;
+    overflow: hidden;
+}
+
+.phase-stepper__progress-fill {
+    display: block;
+    height: 100%;
+    background-color: $brand-primary;
+    transition: width 0.3s linear;
 }
 
 .project-detail__module-phases .phase-status-badge {
@@ -273,53 +372,6 @@ $project-detail-phase-gap: 1.25 * $spacer;
         background-color: $text-colour;
         color: $white;
     }
-}
-
-.project-detail__module-phases .phase-info__item__details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: $spacer;
-    padding: 0.625rem 0;
-    border-top: 1px solid $project-detail-phase-border;
-    border-bottom: 1px solid $project-detail-phase-border;
-
-    @media (max-width: $breakpoint-down) {
-        flex-wrap: wrap;
-    }
-}
-
-.project-detail__module-phases .phase-info__item__detail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25 * $spacer;
-    min-width: 0;
-    text-align: center;
-}
-
-.project-detail__module-phases .phase-info__item__detail-label {
-    font-size: $font-size-sm;
-    font-weight: 400;
-    color: $text-color;
-}
-
-.project-detail__module-phases .phase-info__item__detail-value {
-    font-size: $font-size-sm;
-    font-weight: $demi-bold;
-    color: $text-color;
-    line-height: 1.5;
-
-    time {
-        font-weight: inherit;
-    }
-}
-
-.project-detail__module-phases .phase-info__item__description {
-    margin-top: $project-detail-phase-gap;
-    font-size: $font-size-sm;
-    font-weight: 400;
-    line-height: 1.5;
 }
 
 .project-detail__other-modules {

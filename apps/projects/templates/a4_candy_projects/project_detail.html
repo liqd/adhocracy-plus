@@ -171,7 +171,7 @@
                     {% include "a4_candy_projects/includes/project_detail_events.html" %}
                     {% include "a4_candy_projects/includes/project_detail_insights.html" %}
 
-                    {% else %} <!-- if just one module and no phase view to dispatch to -->
+                    {% elif module %} <!-- if just one module and no phase view to dispatch to -->
                     {% include "a4modules/includes/module_description.html" %}
                     {% if module.phases.first.type != 'a4_candy_interactive_events:issue' %}
                         {% if not module.active_phase %}

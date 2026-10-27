@@ -14,6 +14,7 @@ from apps.ideas.models import Idea
 from apps.interactiveevents.models import Like
 from apps.interactiveevents.models import LiveQuestion
 from apps.mapideas.models import MapIdea
+from apps.projects.timeline import build_phase_timeline as get_phase_timeline
 from apps.projects.timeline import module_cta_label as get_module_cta_label
 from apps.projects.timeline import module_date_range as get_module_date_range
 from apps.projects.timeline import (
@@ -109,6 +110,12 @@ def phase_status_tag(phase):
 def phase_duration(phase):
     """Return a human readable duration for a phase, e.g. '3 months'."""
     return get_phase_duration_label(phase)
+
+
+@register.simple_tag
+def phase_timeline_steps(module):
+    """Return the condensed phase stepper (visibility and steps) for a module."""
+    return get_phase_timeline(module)
 
 
 @register.simple_tag
