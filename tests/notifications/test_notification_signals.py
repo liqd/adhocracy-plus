@@ -418,6 +418,40 @@ def test_handle_moderator_invite_notification(
     assert project.name.lower() in invited_user_emails[0].subject.lower()
 
 
+@pytest.mark.django_db
+def test_handle_moderator_invite_notification_case_insensitive_email(
+    project_factory, moderator_invite_factory, user_factory
+):
+    project = project_factory()
+    invited_user = user_factory(email="Person@Example.ORG")
+
+    moderator_invite_factory(project=project, email="person@example.org")
+
+    invitation_notifications = Notification.objects.filter(recipient=invited_user)
+    assert invitation_notifications.count() == 1
+    invited_user_emails = get_emails_for_address(invited_user.email)
+    assert len(invited_user_emails) == 1
+
+
+@pytest.mark.django_db
+def test_handle_moderator_invite_notification_duplicate_email(
+    project_factory, moderator_invite_factory, user_factory
+):
+    project = project_factory()
+    invited_email = "duplicate@example.org"
+    user_factory(email=invited_email)
+    user_factory(email=invited_email)
+
+    moderator_invite_factory(project=project, email=invited_email)
+
+    assert (
+        Notification.objects.filter(
+            notification_type=NotificationType.PROJECT_MODERATION_INVITATION
+        ).count()
+        == 1
+    )
+
+
 # TODO: Check project creator_name in email
 @pytest.mark.django_db
 def test_handle_project_created(project_factory, organisation_factory, user_factory):

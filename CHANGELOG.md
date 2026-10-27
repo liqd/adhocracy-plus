@@ -99,6 +99,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- Notification settings: saving the settings page no longer disables
+  notification categories that have no toggle in the UI (invitations,
+  messages, moderation, warnings, tracking). A data migration re-enables
+  those categories for affected users.
+- Moderator invitations: the invited user is now found case-insensitively,
+  so users whose stored email differs in casing still receive the
+  notification.
 - Polls dashboard: adding a "Multiple choice question" now creates a multiple
   choice question instead of a single choice one; inline validation errors stay
   visible on all invalid fields until each one is fixed and the summary alert

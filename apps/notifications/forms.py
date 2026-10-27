@@ -25,19 +25,6 @@ class NotificationSettingsForm(forms.ModelForm):
             # User interactions
             "email_user_engagement",
             "notify_user_engagement",
-            "email_messages",
-            "notify_messages",
-            "email_invitations",
-            "notify_invitations",
-            # Moderation
-            "email_moderation",
-            "notify_moderation",
-            "email_warnings",
-            "notify_warnings",
-            # Tracking
-            "track_project_updates",
-            "track_project_events",
-            "track_user_engagement",
         ]
 
     def __init__(self, *args, **kwargs):
