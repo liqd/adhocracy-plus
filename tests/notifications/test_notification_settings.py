@@ -14,17 +14,6 @@ def settings_form_data(get_newsletters=False):
         "notify_project_events": "on",
         "email_user_engagement": "on",
         "notify_user_engagement": "on",
-        "email_messages": "on",
-        "notify_messages": "on",
-        "email_invitations": "on",
-        "notify_invitations": "on",
-        "email_moderation": "on",
-        "notify_moderation": "on",
-        "email_warnings": "on",
-        "notify_warnings": "on",
-        "track_project_updates": "on",
-        "track_project_events": "on",
-        "track_user_engagement": "on",
     }
     if get_newsletters:
         data["get_newsletters"] = "on"
@@ -68,3 +57,42 @@ def test_newsletter_toggle_initial_reflects_current_optin(user):
 
     form = NotificationSettingsForm(instance=settings)
     assert form["get_newsletters"].initial is True
+
+
+@pytest.mark.django_db
+def test_saving_settings_keeps_hidden_preferences(user):
+    """Saving the settings page must not reset preferences without a toggle.
+
+    These fields are not rendered in the template, so they are not part of the
+    submitted data and the form must leave their stored values untouched.
+    """
+    settings = NotificationSettings.get_for_user(user)
+    settings.email_messages = False
+    settings.notify_messages = False
+    settings.email_invitations = False
+    settings.notify_invitations = False
+    settings.email_moderation = False
+    settings.notify_moderation = False
+    settings.email_warnings = False
+    settings.notify_warnings = False
+    settings.track_project_updates = False
+    settings.track_project_events = False
+    settings.track_user_engagement = False
+    settings.save()
+
+    form = NotificationSettingsForm(instance=settings, data=settings_form_data())
+    assert form.is_valid(), form.errors
+    form.save()
+
+    settings.refresh_from_db()
+    assert settings.email_messages is False
+    assert settings.notify_messages is False
+    assert settings.email_invitations is False
+    assert settings.notify_invitations is False
+    assert settings.email_moderation is False
+    assert settings.notify_moderation is False
+    assert settings.email_warnings is False
+    assert settings.notify_warnings is False
+    assert settings.track_project_updates is False
+    assert settings.track_project_events is False
+    assert settings.track_user_engagement is False
