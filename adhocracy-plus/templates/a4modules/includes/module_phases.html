@@ -15,6 +15,9 @@
                         {{ step.status_label }}
                     </span>
                 </div>
+                {% if step.phase.description %}
+                <p class="phase-stepper__description">{{ step.phase.description }}</p>
+                {% endif %}
                 <div class="phase-stepper__detail">
                     {% if step.progress is not None %}
                     <div

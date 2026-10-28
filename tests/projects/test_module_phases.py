@@ -171,8 +171,13 @@ def test_phase_duration_label_empty_without_end(phase_factory, module_factory):
     assert phase_duration_label(phase) == ""
 
 
-def _phase_for_module(phase_factory, module, weight, start, end, name):
+def _phase_for_module(
+    phase_factory, module, weight, start, end, name, description=None
+):
     content = ideas_phases.CollectPhase()
+    kwargs = {}
+    if description is not None:
+        kwargs["description"] = description
     return phase_factory(
         module=module,
         weight=weight,
@@ -180,6 +185,7 @@ def _phase_for_module(phase_factory, module, weight, start, end, name):
         name=name,
         start_date=parse(start),
         end_date=parse(end),
+        **kwargs,
     )
 
 
@@ -433,6 +439,39 @@ def test_module_detail_renders_all_phases_with_status(
     assert "Upcoming" in content
     assert "phase-stepper" in content
     assert content.count("data-phase-progress") == 3
+
+
+@pytest.mark.django_db
+def test_module_detail_renders_phase_description_between_name_and_progress(
+    client, phase_factory, module_factory, organisation
+):
+    module = module_factory(project__organisation=organisation)
+    _phase_for_module(
+        phase_factory,
+        module,
+        0,
+        "2013-02-01 17:00:00 UTC",
+        "2013-02-05 18:00:00 UTC",
+        "Collect ideas",
+        description="Share your ideas for the project.",
+    )
+
+    url = reverse(
+        "module-detail",
+        kwargs={
+            "organisation_slug": organisation.slug,
+            "module_slug": module.slug,
+        },
+    )
+    with freeze_time(parse("2013-01-03 18:00:00 UTC")):
+        response = client.get(url)
+    assert response.status_code == 200
+
+    content = response.content.decode()
+    name_index = content.index("Collect ideas")
+    description_index = content.index("Share your ideas for the project.")
+    progress_index = content.index("data-phase-progress")
+    assert name_index < description_index < progress_index
 
 
 @pytest.mark.django_db
