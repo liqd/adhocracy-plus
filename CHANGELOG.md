@@ -8,6 +8,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+### Changed
+### Fixed
+
+## v2610.1
+
+### Added
 
 - polls: Django admin to list, search, edit and delete free-text poll answers
 - audit: admin audit log records now as an extra view
