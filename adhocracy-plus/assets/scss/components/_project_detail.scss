@@ -314,6 +314,18 @@ $phase-stepper-rail-x: 0.5 * $phase-stepper-marker-size;
     color: $text-color;
 }
 
+.phase-stepper__description {
+    margin: 0.25 * $spacer 0 0;
+    font-size: $font-size-sm;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $text-color-gray;
+}
+
+.phase-stepper__step--current .phase-stepper__description {
+    color: $text-color;
+}
+
 .phase-stepper__detail {
     display: flex;
     flex-direction: column;
