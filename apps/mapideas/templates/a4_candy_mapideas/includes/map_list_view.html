@@ -37,7 +37,7 @@
             <div class="col-12">
                 <div class="idea-inbox">
                     <div class="idea-inbox__list">
-                        <ul class="u-list-reset" id="mapidea-list-accordion">
+                        <ul class="u-list-reset" id="mapidea-list-accordion" data-accordion-scroll>
                             {% for object in paginated_list %}
                                 {% include "a4_candy_mapideas/includes/mapidea_list_item.html" with object=object %}
                             {% empty %}
