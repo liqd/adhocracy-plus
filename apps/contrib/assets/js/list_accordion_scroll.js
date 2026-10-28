@@ -1,11 +1,13 @@
 /**
- * Scroll an expanded list card into view on mobile.
+ * Scroll list cards into view when their accordion state changes on mobile.
  *
- * Used by the ideas and mapideas card lists. When a card is expanded, its item
- * is smoothly scrolled into view — but only if it isn't already fully visible.
- * With an accordion parent, opening one card collapses the previously open
- * one; that collapse shifts the target's position, so the scroll waits until
- * the expansion and any sibling collapse have finished.
+ * Used by the ideas and mapideas card lists.
+ * - Expanding: scroll the card into view unless it is already fully visible.
+ *   With an accordion parent, opening one card collapses the previously open
+ *   one; that collapse shifts the target's position, so the scroll waits until
+ *   the expansion and any sibling collapse have finished.
+ * - Collapsing: if the user has scrolled past the card's top, bring it back
+ *   into view so they don't end up looking at content that shifted up.
  */
 
 const desktop = window.matchMedia('(min-width: 768px)')
@@ -33,6 +35,25 @@ function isFullyVisible (item, offset) {
 function scrollToItem (item) {
   const offset = getScrollOffset()
   if (isFullyVisible(item, offset)) {
+    return
+  }
+  item.style.scrollMarginTop = offset + 'px'
+  item.scrollIntoView({
+    behavior: reducedMotion.matches ? 'auto' : 'smooth',
+    block: 'start'
+  })
+}
+
+function isTopVisible (item, offset) {
+  const rect = item.getBoundingClientRect()
+  return rect.top >= offset && rect.top < window.innerHeight
+}
+
+// Bring the card's top back into view (used when collapsing a card the user
+// has scrolled past, so they don't end up looking at shifted content).
+function scrollTopIntoView (item) {
+  const offset = getScrollOffset()
+  if (isTopVisible(item, offset)) {
     return
   }
   item.style.scrollMarginTop = offset + 'px'
@@ -93,6 +114,32 @@ export function initListAccordionScroll (accordion) {
     siblingPending = !!openSibling
     startFallback()
     settle()
+  })
+
+  // When a card is collapsed directly (not the auto-collapse triggered by
+  // opening another card), keep its top in view if the user has scrolled past
+  // it, so they don't end up looking at content that shifted up.
+  accordion.addEventListener('hide.bs.collapse', function (event) {
+    if (desktop.matches) {
+      return
+    }
+    const item = event.target.closest('.list-item')
+    if (!item) {
+      return
+    }
+    if (pendingItem === item) {
+      // The card was still expanding and is being collapsed again.
+      pendingItem = null
+      expansionPending = false
+      siblingPending = false
+      clearTimeout(fallbackTimeout)
+      return
+    }
+    if (pendingItem) {
+      // Auto-collapse while another card is being expanded.
+      return
+    }
+    scrollTopIntoView(item)
   })
 
   accordion.addEventListener('shown.bs.collapse', function (event) {
