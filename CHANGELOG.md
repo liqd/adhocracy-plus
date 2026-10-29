@@ -54,6 +54,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Project dashboard: collapse other modules when adding a module
 - Polls dashboard: reworked the poll management editor — question rows show
   only their number, the "New question" button sits above the list, the
   "Options" section moved below the questions, the answer-type control is a

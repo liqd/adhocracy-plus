@@ -22,14 +22,21 @@
     {% closed_accordions project.id as closed_accordions %}
     <div class="row">
         <nav class="col-md-3 js-selector-update-dashboard" aria-label="{% translate "Project Settings" %}">
+            <div
+                class="visually-hidden"
+                role="status"
+                aria-live="polite"
+                data-dashboard-accordion-status="{% translate "The module was added. The other modules are collapsed." %}"></div>
             <div class="dashboard-nav">
                 <div
                     class="dashboard-nav__dropdown{% if project.id in closed_accordions.0 %} collapsed{% endif %}"
                     id="dashboard-nav__project--{{ project.id }}"
                     data-bs-toggle="collapse"
                     href="#dashboardCollapseProj"
+                    role="button"
+                    tabindex="0"
                     aria-expanded="{% if project.id in closed_accordions.0 %}false{% else %}true{% endif %}"
-                    aria-controls="#dashboardCollapseProj"
+                    aria-controls="dashboardCollapseProj"
                     data-bs-target="#dashboardCollapseProj"
                 >
                     {% if project_progress.project_is_complete %}
@@ -40,7 +47,7 @@
                     {{ project.name }}
                     <i class="fa fa-chevron-up" aria-hidden="true"></i>
                 </div>
-                <ul class="dashboard-nav__pages collapse{% if not project.id in closed_accordions.0 %} show{% endif %}" id="dashboardCollapseProj" aria-hidden="false">
+                <ul class="dashboard-nav__pages collapse{% if not project.id in closed_accordions.0 %} show{% endif %}" id="dashboardCollapseProj" aria-hidden="{% if project.id in closed_accordions.0 %}true{% else %}false{% endif %}">
                     {% for item in dashboard_menu.project %}
                         {% if item.identifier != "location" or project.organisation.enable_geolocation %}
                             <li class="dashboard-nav__page">
@@ -83,8 +90,10 @@
                         id="dashboard-nav__module--{{ module_menu.module.pk }}"
                         data-bs-toggle="collapse"
                         href="#dashboardCollapse_{{ forloop.counter }}"
+                        role="button"
+                        tabindex="0"
                         aria-expanded="{% if module_menu.module.pk in closed_accordions.1 %}false{% else %}true{% endif %}"
-                        aria-controls="#dashboardCollapse_{{ forloop.counter }}"
+                        aria-controls="dashboardCollapse_{{ forloop.counter }}"
                         data-bs-target="#dashboardCollapse_{{ forloop.counter }}"
                     >
                       {% if module_menu.is_complete %}
@@ -96,7 +105,7 @@
                       <i class="fa fa-chevron-up {% if module_menu.module.is_draft %}dashboard-nav-i-spacer{% endif %}" aria-hidden="true"></i>
                     </div>
 
-                    <ul class="dashboard-nav__pages collapse{% if not module_menu.module.pk in closed_accordions.1 %} show{% endif %}" id="dashboardCollapse_{{ forloop.counter }}" aria-hidden="false">
+                    <ul class="dashboard-nav__pages collapse{% if not module_menu.module.pk in closed_accordions.1 %} show{% endif %}" id="dashboardCollapse_{{ forloop.counter }}" aria-hidden="{% if module_menu.module.pk in closed_accordions.1 %}true{% else %}false{% endif %}">
                         {% for item in module_menu.menu %}
                             <li class="dashboard-nav__page">
                               <a href="{{ item.url }}"
