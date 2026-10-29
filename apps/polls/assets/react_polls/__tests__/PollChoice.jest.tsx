@@ -103,6 +103,17 @@ describe('PollChoice', () => {
     inputs.forEach(input => expect(input).toHaveAttribute('aria-required', 'true'))
   })
 
+  it('marks the other answer textarea of mandatory questions as aria-required', () => {
+    const { container } = render(
+      <PollChoice
+        question={{ ...multiQuestion, is_mandatory: true, userChoices: [12] }}
+        allowUnregisteredUsers={false}
+        onAnswerChange={jest.fn()}
+      />
+    )
+    expect(container.querySelector('textarea')).toHaveAttribute('aria-required', 'true')
+  })
+
   describe('image alt text', () => {
     const questionWithImage = {
       ...singleQuestion,
