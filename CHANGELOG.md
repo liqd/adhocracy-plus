@@ -51,6 +51,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Login and registration: social logins redesigned as icon buttons below an
   "Or continue with" heading
 - Login and registration modal added
+- Newsletter: preview the fully rendered email in a modal before sending, with
+  desktop and mobile views, recipient count and a confirmation step. Includes a
+  "Send test email to me" action using a ``[TEST]`` subject prefix. The preview
+  uses the same email template as the actual send and includes the current,
+  unsaved form values.
 
 ### Changed
 
@@ -82,6 +87,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   Django site name). SMTP address still comes from ``DEFAULT_FROM_EMAIL``.
   Implemented in ``EmailAplus.get_from_email()``; a4 report emails are wired via
   ``apps/contrib/a4_emails.py``.
+- Newsletter form: relabel "Name" and "Sender" as "Sender Name" and "Sender Address";
+  the sender name is now used as the display name in the ``Reply-To`` header.
+- Newsletter emails: left-align the body content instead of centering it.
 - Organisation settings: Language availability preselected according to user language
 - Polls: Use Uppy Image uploader for Poll Question Images
 - Dependencies: use pnpm for more secure package management

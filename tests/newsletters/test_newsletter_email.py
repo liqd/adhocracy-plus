@@ -3,6 +3,7 @@ from django.core.files.base import ContentFile
 from django.test.utils import override_settings
 
 from apps.newsletters.emails import NewsletterEmail
+from apps.newsletters.models import Newsletter
 from tests.factories import OrganisationFactory
 from tests.factories import UserFactory
 from tests.newsletters.factories import NewsletterFactory
@@ -52,3 +53,43 @@ def test_newsletter_email_uses_organisation_logo_as_inline_logo(tmp_path):
         attachments = email.get_attachments()
         content_ids = [attachment["Content-Id"] for attachment in attachments]
         assert content_ids.count("<logo>") == 1
+
+
+def test_newsletter_reply_to_includes_sender_name():
+    newsletter = Newsletter(sender_name="Jane Doe", sender="jane@example.org")
+    email = NewsletterEmail(newsletter, None, [])
+
+    assert email.get_reply_to() == ["Jane Doe <jane@example.org>"]
+
+
+def test_newsletter_reply_to_without_sender_name():
+    newsletter = Newsletter(sender_name="", sender="jane@example.org")
+    email = NewsletterEmail(newsletter, None, [])
+
+    assert email.get_reply_to() == ["jane@example.org"]
+
+
+def test_newsletter_reply_to_without_sender():
+    newsletter = Newsletter(sender_name="Jane Doe", sender="")
+    email = NewsletterEmail(newsletter, None, [])
+
+    assert email.get_reply_to() == []
+
+
+@pytest.mark.django_db
+def test_newsletter_email_body_in_text_and_html_parts():
+    user = UserFactory()
+    newsletter = NewsletterFactory(subject="Subject", body="Body text")
+    email = NewsletterEmail(
+        newsletter=newsletter,
+        organisation=newsletter.project.organisation,
+        participant_ids=[user.id],
+    )
+
+    context = email.get_context()
+    context["receiver"] = user
+
+    _, text, html = email.render(email.template_name, context)
+    assert "Body text" in text
+    assert "Body text" in html
+    assert '<div style="text-align: left;">' in html
