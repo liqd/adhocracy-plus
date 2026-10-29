@@ -50,6 +50,7 @@ declare module 'adhocracy4/adhocracy4/polls/static/PollDetail/TextareaWithCounte
     disabled?: boolean
     error?: unknown
     label?: string
+    required?: boolean
   }
   export const TextareaWithCounter: React.FC<TextareaWithCounterProps>
 }

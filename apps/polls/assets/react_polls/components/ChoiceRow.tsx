@@ -166,6 +166,7 @@ export const ChoiceRow = React.memo(({
             disabled={disabled}
             error={errors}
             label={translated.other}
+            required={required}
           />
         </div>
       )}
