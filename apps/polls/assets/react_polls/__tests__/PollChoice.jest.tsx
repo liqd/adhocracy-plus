@@ -70,6 +70,50 @@ describe('PollChoice', () => {
     expect(screen.getByText('Multiple answers are possible.')).toBeInTheDocument()
   })
 
+  it('marks mandatory questions with an asterisk', () => {
+    const { container } = render(
+      <PollChoice
+        question={{ ...singleQuestion, is_mandatory: true }}
+        allowUnregisteredUsers={false}
+        onAnswerChange={jest.fn()}
+      />
+    )
+    const marker = container.querySelector('.poll__question-required')
+    expect(marker).toHaveTextContent('*')
+    expect(marker).toHaveAttribute('aria-hidden', 'true')
+    expect(screen.getByText('Mandatory question')).toHaveClass('visually-hidden')
+  })
+
+  it('does not mark optional questions', () => {
+    const { container } = render(
+      <PollChoice question={singleQuestion} allowUnregisteredUsers={false} onAnswerChange={jest.fn()} />
+    )
+    expect(container.querySelector('.poll__question-required')).not.toBeInTheDocument()
+  })
+
+  it('marks the inputs of mandatory questions as aria-required', () => {
+    const { container } = render(
+      <PollChoice
+        question={{ ...singleQuestion, is_mandatory: true }}
+        allowUnregisteredUsers={false}
+        onAnswerChange={jest.fn()}
+      />
+    )
+    const inputs = container.querySelectorAll('input[type="radio"]')
+    inputs.forEach(input => expect(input).toHaveAttribute('aria-required', 'true'))
+  })
+
+  it('marks the other answer textarea of mandatory questions as aria-required', () => {
+    const { container } = render(
+      <PollChoice
+        question={{ ...multiQuestion, is_mandatory: true, userChoices: [12] }}
+        allowUnregisteredUsers={false}
+        onAnswerChange={jest.fn()}
+      />
+    )
+    expect(container.querySelector('textarea')).toHaveAttribute('aria-required', 'true')
+  })
+
   describe('image alt text', () => {
     const questionWithImage = {
       ...singleQuestion,

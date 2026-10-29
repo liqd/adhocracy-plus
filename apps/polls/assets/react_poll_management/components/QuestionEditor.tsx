@@ -19,6 +19,7 @@ const TRANSLATED = {
   singleChoice: django.gettext('Single choice'),
   multipleChoice: django.gettext('Multiple choice'),
   confidential: django.gettext('Do not display answers publicly'),
+  mandatory: django.gettext('Mandatory question'),
   answer: django.pgettext('noun', 'Answer'),
   other: django.gettext('Other'),
   remove: django.gettext('remove'),
@@ -37,6 +38,7 @@ interface QuestionEditorProps {
   onLabelChange: (label: string) => void
   onHelpTextChange: (helpText: string) => void
   onConfidentialChange: (value: boolean) => void
+  onMandatoryChange: (value: boolean) => void
   onMultipleChoiceChange: (value: boolean) => void
   onOpenChange: (value: boolean) => void
   onImageChange: (base64: string) => void
@@ -144,6 +146,23 @@ export const QuestionEditor = (props: QuestionEditorProps) => {
           />
           &nbsp;
           {TRANSLATED.confidential}
+        </label>
+      </div>
+
+      <div className="form-check poll-management__mandatory">
+        <label
+          className="form-check__label"
+          htmlFor={`id_questions-${question.key}-is_mandatory`}
+        >
+          <input
+            type="checkbox"
+            id={`id_questions-${question.key}-is_mandatory`}
+            name={`questions-${question.key}-is_mandatory`}
+            checked={question.is_mandatory || false}
+            onChange={(e) => props.onMandatoryChange(e.target.checked)}
+          />
+          &nbsp;
+          {TRANSLATED.mandatory}
         </label>
       </div>
 
