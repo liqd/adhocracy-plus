@@ -81,7 +81,13 @@ class ProjectComment(ProjectNotificationStrategy):
         return list(recipients)
 
     def create_notification_data(self, comment) -> dict:
-        post_name = getattr(comment.content_object, "name", _("post"))
+        post_name = getattr(comment.content_object, "name", None)
+        if not post_name:
+            post_name = getattr(
+                getattr(comment.content_object, "module", None), "name", None
+            )
+        if not post_name:
+            post_name = _("post")
 
         email_context = {
             "subject": _("{commenter_name} commented on your post {post_name}"),

@@ -1,7 +1,11 @@
 import pytest
+from django.utils import translation
 
 from apps.notifications.models import Notification
 from apps.notifications.models import NotificationType
+from apps.notifications.templatetags.notification_tags import (
+    render_notification_with_links,
+)
 from tests.helpers import get_emails_for_address
 
 
@@ -93,3 +97,34 @@ def test_comment_author_no_notification_when_replying_own_comment(
     # Assert no notifications
     assert Notification.objects.count() == 0
     assert len(get_emails_for_address(user.email)) == 0
+
+
+@pytest.mark.django_db
+def test_comment_on_poll_notification_uses_module_name(
+    project_factory, module_factory, poll_factory, comment_factory, user_factory
+):
+    project = project_factory()
+    module = module_factory(project=project, name="My poll module")
+    poll_creator = user_factory()
+    poll = poll_factory(module=module, creator=poll_creator)
+    commenter = user_factory()
+
+    comment_factory(content_object=poll, creator=commenter, project=project)
+
+    notification = Notification.objects.get(
+        recipient=poll_creator,
+        notification_type=NotificationType.COMMENT_ON_POST,
+    )
+
+    assert notification.context["post"] == module.name
+    assert notification.context["post_url"] == poll.get_absolute_url()
+
+    with translation.override("de"):
+        rendered = render_notification_with_links(notification)
+
+    assert module.name in rendered
+    assert "abschicken" not in rendered
+
+    mails = get_emails_for_address(poll_creator.email)
+    assert len(mails) == 1
+    assert module.name in mails[0].subject
