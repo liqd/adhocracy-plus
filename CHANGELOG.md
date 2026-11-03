@@ -11,6 +11,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 ### Fixed
 
+- Notifications: comment notifications on polls now use the poll title instead of the mistranslated fallback "abschicken"
+
 ## v2610.1
 
 ### Added
