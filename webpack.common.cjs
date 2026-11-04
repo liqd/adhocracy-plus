@@ -272,7 +272,6 @@ module.exports = {
       bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',
       'file-saver': 'file-saver/dist/FileSaver.min.js',
       jquery$: 'jquery/dist/jquery.min.js',
-      'maplibre-gl$': require.resolve('maplibre-gl/dist/maplibre-gl.mjs'),
       'slick-carousel$': 'slick-carousel/slick/slick.min.js'
     },
     modules: [
