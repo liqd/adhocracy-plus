@@ -23,6 +23,7 @@ export const createEmptyQuestion = (isOpen: boolean, multipleChoice = false): Ma
   multiple_choice: multipleChoice,
   is_open: isOpen,
   is_confidential: false,
+  is_mandatory: false,
   choices: isOpen ? [] : [createEmptyChoice(), createEmptyChoice()],
   image_base64: null,
   image_url: null,

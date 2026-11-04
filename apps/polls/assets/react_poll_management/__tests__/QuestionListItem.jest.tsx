@@ -13,6 +13,7 @@ const question: ManagementQuestion = {
   multiple_choice: false,
   is_open: false,
   is_confidential: false,
+  is_mandatory: false,
   choices: []
 }
 
@@ -57,6 +58,21 @@ describe('QuestionListItem', () => {
       />
     )
     expect(screen.getByText('Multiple choice')).toBeInTheDocument()
+  })
+
+  it('marks mandatory questions in the collapsed row', () => {
+    render(
+      <QuestionListItem
+        question={{ ...question, is_mandatory: true }}
+        {...defaults}
+      />
+    )
+    expect(screen.getByText('Mandatory')).toBeInTheDocument()
+  })
+
+  it('does not mark optional questions', () => {
+    render(<QuestionListItem question={question} {...defaults} />)
+    expect(screen.queryByText('Mandatory')).not.toBeInTheDocument()
   })
 
   it('opens the editor when the summary is clicked', () => {

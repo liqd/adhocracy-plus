@@ -118,6 +118,7 @@ const PollQuestions = ({ pollId, captchaEnabled, captchaType, prosopoSiteKey, ma
                 currentAnswer={currentAnswer}
                 currentNumber={state.currentQuestionIndex + 1}
                 totalQuestions={state.questions.length}
+                hasMandatoryQuestions={state.questions.some((question) => !!question.is_mandatory)}
                 allowUnregisteredUsers={state.allowUnregisteredUsers}
                 errors={state.errors}
                 onAnswerChange={actions.handleAnswerChange}

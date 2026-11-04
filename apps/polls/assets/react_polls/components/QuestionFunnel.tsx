@@ -4,9 +4,14 @@ import django from 'django'
 import { TermsOfUseCheckbox } from 'adhocracy4/adhocracy4/static/TermsOfUseCheckbox'
 import { PollChoice } from './PollChoice'
 import { PollOpenQuestion } from 'adhocracy4/adhocracy4/polls/static/PollDetail/PollOpenQuestion'
+import FieldError from './FieldError'
 import ProgressBar from './ProgressBar'
 import NavigationButtons from './NavigationButtons'
 import type { PollQuestion, UserAnswer } from '../types'
+
+const TRANSLATED = {
+  mandatoryHint: django.gettext('* Mandatory question')
+}
 
 const ANSWER_HANDLERS: Record<string, (questionId: number, value: string | number, currentChoices?: number[]) => Partial<UserAnswer>> = {
   single: (questionId, value) => ({ choices: [Number(value)] }),
@@ -27,6 +32,7 @@ interface QuestionFunnelProps {
   currentAnswer?: UserAnswer | null
   currentNumber: number
   totalQuestions: number
+  hasMandatoryQuestions?: boolean
   allowUnregisteredUsers: boolean
   useTermsOfUse: boolean
   agreedTermsOfUse: boolean
@@ -50,6 +56,7 @@ const QuestionFunnel = ({
   currentAnswer,
   currentNumber,
   totalQuestions,
+  hasMandatoryQuestions = false,
   allowUnregisteredUsers,
   useTermsOfUse,
   agreedTermsOfUse,
@@ -118,6 +125,12 @@ const QuestionFunnel = ({
   const isSubmitDisabled = (isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
     (isLastQuestion && showCaptcha && !captcha)
 
+  /* The shared textarea resolves errors by id only, so only the error of the
+     current question is forwarded to it to keep question and choice ids apart. */
+  const currentQuestionErrors = (errors as Record<number, unknown>)?.[currentQuestion.id]
+    ? { [currentQuestion.id]: (errors as Record<number, unknown>)[currentQuestion.id] }
+    : {}
+
   const handleAnswerUpdate = (questionId: number, value: string | number, type: string) => {
     const handler = ANSWER_HANDLERS[type]
     if (!handler) return
@@ -138,6 +151,10 @@ const QuestionFunnel = ({
           true
         )}
       </div>
+
+      {hasMandatoryQuestions && (
+        <p className="poll-question-funnel__mandatory-hint">{TRANSLATED.mandatoryHint}</p>
+      )}
 
       <div className="poll-question-content-wrapper">
         {phase === 'exiting' && exitingQuestion
@@ -186,13 +203,21 @@ const QuestionFunnel = ({
                   />
                   )
                 : (
-                  <PollChoice
-                    key={currentQuestion.id}
-                    question={enrichQuestion(currentQuestion, currentAnswer)}
-                    allowUnregisteredUsers={allowUnregisteredUsers}
-                    onAnswerChange={handleAnswerUpdate}
-                    errors={errors}
-                  />
+                  <>
+                    <PollChoice
+                      key={currentQuestion.id}
+                      question={enrichQuestion(currentQuestion, currentAnswer)}
+                      allowUnregisteredUsers={allowUnregisteredUsers}
+                      onAnswerChange={handleAnswerUpdate}
+                      errors={currentQuestionErrors}
+                    />
+                    {/* open questions render the error inside their textarea */}
+                    <FieldError
+                      id={`id_error-${currentQuestion.id}`}
+                      error={errors}
+                      field={String(currentQuestion.id)}
+                    />
+                  </>
                   )}
             </div>
             )}
@@ -218,6 +243,7 @@ const QuestionFunnel = ({
         isLoading={isLoading}
         isLastQuestion={isLastQuestion}
         isSubmitDisabled={isSubmitDisabled}
+        isMandatory={!!currentQuestion.is_mandatory}
         currentIndex={currentNumber - 1}
       />
     </div>
