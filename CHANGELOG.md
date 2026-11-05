@@ -11,6 +11,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 ### Fixed
 
+## v2611.2
+
+### Fixed
+
 - Maps: pin `maplibre-gl` to 5.24.0 to restore map rendering on deployed instances
 
 ## v2611.1
