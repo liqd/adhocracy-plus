@@ -119,6 +119,57 @@
     height: 2 * $spacer;
 }
 
+// Icon-only button linking to the live page of the current organisation.
+// It is transparent and aligned with the organisation logo; `min-width`
+// keeps a comfortable touch target. Hover/active reuse the neutral
+// `.btn--none` background and keyboard focus keeps the standard focus shadow.
+.dashboard-nav__live-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    height: 2 * $spacer;
+    min-width: 44px;
+    padding: 0;
+    line-height: 1;
+    white-space: nowrap;
+
+    &.btn:focus-visible {
+        @include fake-focus-shadow;
+    }
+}
+
+// The organisation dropdown only needs a small gap between the caret and its
+// right edge so the adjacent live button fits next to it on narrow screens.
+.dashboard-nav__organisation-toggle {
+    padding-right: 0.2em;
+}
+
+// The organisation name links directly to the live page when the user belongs
+// to a single organisation. It reads like a link (underline) and reveals its
+// button-like click area with an outline on hover and keyboard focus.
+.dashboard-nav__organisation-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: center;
+    gap: 0.4em;
+    padding: 0.3em 0.6em;
+    color: $text-color;
+    text-decoration: none;
+
+    &:hover,
+    &:active,
+    &:focus-visible {
+        color: $text-color;
+        outline: 2px solid $brand-primary;
+        outline-offset: 2px;
+    }
+}
+
+.dashboard-nav__organisation-name {
+    text-decoration: underline;
+}
+
 .dashboard-nav__toggle-label {
     text-align: left;
 }
