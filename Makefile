@@ -3,6 +3,8 @@ NODE_BIN = node_modules/.bin
 SOURCE_DIRS = adhocracy-plus apps tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
 DEV_PORT ?= 8004
+RUN_HOST ?= 127.0.0.1
+RUN_PORT ?= 8004
 ifeq ($(filter server watch,$(firstword $(MAKECMDGOALS))),$(firstword $(MAKECMDGOALS)))
 ifneq ($(strip $(ARGUMENTS)),)
 DEV_PORT := $(firstword $(ARGUMENTS))
@@ -32,6 +34,7 @@ help:
 	@echo "  make fixtures					-- load example data"
 	@echo "  make server [port] | [host:port]		-- start a dev server (default port 8004)"
 	@echo "  make watch [port] | [host:port]		-- start a dev server and rebuild js and css files on changes (default port 8004)"
+	@echo "  make run [port] | [host:port]		-- rebuild js and css, then start granian (default 127.0.0.1:8004)"
 	@echo "  make background				-- start background processes"
 	@echo "  make test						-- run all test cases"
 	@echo "  make pytest					-- run all test cases with pytest"
@@ -96,6 +99,19 @@ watch:
 	trap 'kill %1' KILL; \
 	pnpm run watch & \
 	$(VIRTUAL_ENV)/bin/python manage.py runserver $(DEV_PORT)
+
+.PHONY: run
+run:
+	ARG="$(firstword $(ARGUMENTS))"; \
+	HOST="$(RUN_HOST)"; PORT="$(RUN_PORT)"; \
+	if [ -n "$$ARG" ]; then \
+		case "$$ARG" in \
+			*:*) HOST="$${ARG%%:*}"; PORT="$${ARG##*:}";; \
+			*) PORT="$$ARG";; \
+		esac; \
+	fi; \
+	pnpm run build && \
+	$(VIRTUAL_ENV)/bin/granian --interface wsgi --host "$$HOST" --port "$$PORT" adhocracy-plus.config.wsgi:application
 
 .PHONY: background
 background:
