@@ -1,7 +1,10 @@
 from email.utils import parseaddr
 
 import pytest
+from django.contrib.contenttypes.models import ContentType
 from django.core import mail
+from django.urls import reverse
+from rest_framework import status
 
 from apps.account.emails import AccountDeletionEmail
 
@@ -31,6 +34,27 @@ def test_aplus_email_from_name_without_organisation(user):
     display_name, _ = parseaddr(mail.outbox[0].from_email)
     assert display_name
     assert " | " not in display_name
+
+
+@pytest.mark.django_db
+def test_report_moderator_email_is_sent(apiclient, user, user2, idea_factory):
+    idea = idea_factory()
+    idea.project.moderators.add(user2)
+    apiclient.force_authenticate(user=user)
+    content_type = ContentType.objects.get_for_model(idea)
+
+    response = apiclient.post(
+        reverse("reports-list"),
+        {
+            "content_type": content_type.pk,
+            "object_pk": idea.pk,
+            "description": "Test report",
+        },
+        format="json",
+    )
+
+    assert response.status_code == status.HTTP_201_CREATED
+    assert any("Moderation request" in message.subject for message in mail.outbox)
 
 
 @pytest.mark.django_db
