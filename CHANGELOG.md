@@ -9,6 +9,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 ### Changed
+
+- Upgrade Celery, kombu, redis-py and hiredis to current versions
+
 ### Fixed
 
 ## v2611.2
