@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING
 from django.utils import timezone
 from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _
-from django.utils.translation import ngettext as _n
+from django.utils.translation import ngettext
 
 if TYPE_CHECKING:
     from adhocracy4.modules.models import Module
@@ -135,7 +135,9 @@ def phase_duration_label(phase) -> str:
     if end.day < start.day:
         months -= 1
     if months >= 1:
-        return _n("%(count)s month", "%(count)s months", months) % {"count": months}
+        return ngettext("%(count)s month", "%(count)s months", months) % {
+            "count": months
+        }
 
     # Use the actual elapsed time so that phases shorter than a calendar
     # day (including ones crossing midnight) are reported in hours or
@@ -144,15 +146,17 @@ def phase_duration_label(phase) -> str:
     days = elapsed.days
     if days >= 7:
         weeks = days // 7
-        return _n("%(count)s week", "%(count)s weeks", weeks) % {"count": weeks}
+        return ngettext("%(count)s week", "%(count)s weeks", weeks) % {"count": weeks}
     if days >= 1:
-        return _n("%(count)s day", "%(count)s days", days) % {"count": days}
+        return ngettext("%(count)s day", "%(count)s days", days) % {"count": days}
     hours = elapsed.seconds // 3600
     if hours >= 1:
-        return _n("%(count)s hour", "%(count)s hours", hours) % {"count": hours}
+        return ngettext("%(count)s hour", "%(count)s hours", hours) % {"count": hours}
     minutes = elapsed.seconds // 60
     if minutes >= 1:
-        return _n("%(count)s minute", "%(count)s minutes", minutes) % {"count": minutes}
+        return ngettext("%(count)s minute", "%(count)s minutes", minutes) % {
+            "count": minutes
+        }
     return _("1 minute")
 
 
@@ -179,14 +183,16 @@ def phase_time_left_label(phase) -> str:
     remaining = phase.end_date - timezone.now()
     days = remaining.days
     if days >= 1:
-        return _n("%(count)s day left", "%(count)s days left", days) % {"count": days}
+        return ngettext("%(count)s day left", "%(count)s days left", days) % {
+            "count": days
+        }
     hours = remaining.seconds // 3600
     if hours >= 1:
-        return _n("%(count)s hour left", "%(count)s hours left", hours) % {
+        return ngettext("%(count)s hour left", "%(count)s hours left", hours) % {
             "count": hours
         }
     minutes = max(remaining.seconds // 60, 1)
-    return _n("%(count)s minute left", "%(count)s minutes left", minutes) % {
+    return ngettext("%(count)s minute left", "%(count)s minutes left", minutes) % {
         "count": minutes
     }
 

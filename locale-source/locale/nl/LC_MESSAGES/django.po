@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: adhocracy-plus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-27 12:00+0100\n"
+"POT-Creation-Date: 2026-11-10 16:43+0100\n"
 "PO-Revision-Date: 2020-11-12 13:23+0000\n"
 "Last-Translator: Luca Thüer, 2023\n"
 "Language-Team: Dutch (https://app.transifex.com/liqd/teams/109316/nl/)\n"
@@ -53,8 +53,8 @@ msgstr "Projectinstellingen"
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:50
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:105
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:57
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:114
 msgid "Missing fields for publication"
 msgstr "Ontbrekende velden voor publicatie"
 
@@ -689,7 +689,7 @@ msgid "Project successfully created."
 msgstr "Project met succes gecreëerd."
 
 #: adhocracy4/dashboard/views.py:164
-#: apps/dashboard/views.py:135
+#: apps/dashboard/views.py:123
 msgid "Invalid action"
 msgstr "Ongeldige actie"
 
@@ -907,45 +907,45 @@ msgstr ""
 msgid "Please add an alternative text for this image"
 msgstr ""
 
-#: adhocracy4/images/validators.py:28
+#: adhocracy4/images/validators.py:36
 #, python-brace-format
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Niet-ondersteunde bestandsformaat. Ondersteunde formaten zijn {}."
 
-#: adhocracy4/images/validators.py:35
+#: adhocracy4/images/validators.py:43
 #: apps/organisations/forms.py:366
 #, python-brace-format
 msgid "Image should be at most {max_size} MB"
 msgstr "Het beeld kan maximaal {max_size} MB zijn"
 
-#: adhocracy4/images/validators.py:43
+#: adhocracy4/images/validators.py:51
 #: apps/organisations/forms.py:374
 #, python-brace-format
 msgid "Image must be at least {min_width} pixels wide"
 msgstr "Beeld moet minstens {min_width} pixels breed zijn"
 
-#: adhocracy4/images/validators.py:51
+#: adhocracy4/images/validators.py:59
 #: apps/organisations/forms.py:384
 #, python-brace-format
 msgid "Image must be at least {min_height} pixels high"
 msgstr "Beeld moet minstens {min_height} pixels hoog zijn"
 
-#: adhocracy4/images/validators.py:57
+#: adhocracy4/images/validators.py:65
 #, python-brace-format
 msgid "Image must be at most {max_width} pixels wide"
 msgstr "Afbeelding kan maximaal {max_width} pixels breed zijn"
 
-#: adhocracy4/images/validators.py:60
+#: adhocracy4/images/validators.py:68
 #, python-brace-format
 msgid "Image must be at most {max_height} pixels high"
 msgstr "Afbeelding kan maximaal {max_height} pixels hoog zijn"
 
-#: adhocracy4/images/validators.py:69
+#: adhocracy4/images/validators.py:77
 #, python-brace-format
 msgid "Image aspect ratio should be {aspect_width}:{aspect_height}"
 msgstr "De beeldverhouding moet {aspect_width}:{aspect_height} zijn."
 
-#: adhocracy4/images/validators.py:87
+#: adhocracy4/images/validators.py:95
 msgid "Please add an alternative text for all images."
 msgstr ""
 
@@ -1317,38 +1317,38 @@ msgid "polls"
 msgstr "polls"
 
 #: adhocracy4/polls/serializers.py:233
-#: adhocracy4/polls/services.py:117
+#: adhocracy4/polls/services.py:118
 msgid "Please provide a descriptive alt text for the question image."
 msgstr ""
 
-#: adhocracy4/polls/validators.py:37
+#: adhocracy4/polls/validators.py:50
 msgid "The uploaded file is not a valid image."
 msgstr ""
 
-#: adhocracy4/polls/validators.py:43
+#: adhocracy4/polls/validators.py:60
 #, python-format
 msgid "Image must be at least %(width)s pixels wide."
 msgstr ""
 
-#: adhocracy4/polls/validators.py:48
+#: adhocracy4/polls/validators.py:64
 #, python-format
 msgid "Image must be at least %(height)s pixels high."
 msgstr ""
 
-#: adhocracy4/polls/validators.py:67
+#: adhocracy4/polls/validators.py:82
 #, python-format
 msgid "Item of type %(item)s for that module already exists"
 msgstr "Item van het type %(item)s voor die module bestaat reeds"
 
-#: adhocracy4/polls/validators.py:79
+#: adhocracy4/polls/validators.py:94
 msgid "Question has to belong to the poll set in the url."
 msgstr "De vraag moet horen bij de poll die in de URL staat."
 
-#: adhocracy4/polls/validators.py:90
+#: adhocracy4/polls/validators.py:105
 msgid "Choice has to belong to the question set in the url."
 msgstr "Keuze moet bij de vraagstelling in de url horen."
 
-#: adhocracy4/polls/validators.py:113
+#: adhocracy4/polls/validators.py:128
 msgid "Only one vote per choice is allowed per user."
 msgstr "Per gebruiker is slechts één stem per keuze toegestaan."
 
@@ -2435,8 +2435,8 @@ msgstr "Acties"
 #: apps/debate/templates/a4_candy_debate/includes/subject_dashboard_list_item.html:24
 #: apps/offlineevents/templates/a4_candy_offlineevents/includes/offlineevent_list_item.html:25
 #: apps/topicprio/templates/a4_candy_topicprio/includes/topic_dashboard_list_item.html:24
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:72
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:73
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:79
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:80
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -2708,45 +2708,45 @@ msgstr ""
 "Voeg een module toe uit de lijst. U kunt later meer modules aan het project "
 "toevoegen, bewerken of weer verwijderen."
 
-#: apps/dashboard/views.py:58
+#: apps/dashboard/views.py:55
 msgid "The module was created"
 msgstr "De module is gemaakt"
 
-#: apps/dashboard/views.py:156
+#: apps/dashboard/views.py:144
 msgid "Module is already added"
 msgstr "Module is reeds toegevoegd"
 
-#: apps/dashboard/views.py:166
+#: apps/dashboard/views.py:154
 msgid "Module cannot be added. Required fields are missing."
 msgstr "Module kan niet worden toegevoegd. Verplichte velden ontbreken."
 
-#: apps/dashboard/views.py:177
+#: apps/dashboard/views.py:165
 msgid "The module is displayed in the project."
 msgstr "De module wordt in het project weergegeven."
 
-#: apps/dashboard/views.py:182
+#: apps/dashboard/views.py:170
 msgid "Module is already removed"
 msgstr "Module is al verwijderd"
 
-#: apps/dashboard/views.py:186
+#: apps/dashboard/views.py:174
 msgid "Module cannot be removed from a published project."
 msgstr "Module kan niet worden verwijderd uit een gepubliceerd project."
 
-#: apps/dashboard/views.py:198
+#: apps/dashboard/views.py:186
 msgid "The module is no longer displayed in the project."
 msgstr "De module wordt niet meer weergegeven in het project."
 
-#: apps/dashboard/views.py:205
+#: apps/dashboard/views.py:193
 msgid "The module has been deleted"
 msgstr "De module is verwijderd"
 
-#: apps/dashboard/views.py:212
+#: apps/dashboard/views.py:200
 msgid "Module cannot be deleted. It has to be removed from the project first."
 msgstr ""
 "De module kan niet worden verwijderd. Hij moet eerst uit het project worden "
 "verwijderd."
 
-#: apps/dashboard/views.py:324
+#: apps/dashboard/views.py:312
 msgid "Project was created."
 msgstr "Project is gecreëerd."
 
@@ -3163,7 +3163,7 @@ msgid "Add affiliation"
 msgstr "Groepering toevoegen"
 
 #: apps/interactiveevents/templates/a4_candy_interactive_events/livequestion_form.html:18
-#: apps/notifications/strategies/comment_strategies.py:84
+#: apps/notifications/strategies/comment_strategies.py:90
 msgid "post"
 msgstr "versturen"
 
@@ -3906,7 +3906,7 @@ msgid "Your submission is under consideration"
 msgstr ""
 
 #: apps/notifications/strategies/comment_strategies.py:30
-#: apps/notifications/strategies/comment_strategies.py:91
+#: apps/notifications/strategies/comment_strategies.py:97
 msgid "View post"
 msgstr ""
 
@@ -3937,60 +3937,60 @@ msgstr ""
 msgid "A moderator highlighted your comment '{comment}' in project {project}"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:87
+#: apps/notifications/strategies/comment_strategies.py:93
 #, python-brace-format
 msgid "{commenter_name} commented on your post {post_name}"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:88
+#: apps/notifications/strategies/comment_strategies.py:94
 msgid "New comment on your post"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:93
+#: apps/notifications/strategies/comment_strategies.py:99
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email} because someone commented on your "
 "content."
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:102
+#: apps/notifications/strategies/comment_strategies.py:108
 msgid "See what they said and join the discussion."
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:119
+#: apps/notifications/strategies/comment_strategies.py:125
 #, python-brace-format
 msgid "{user} commented on your post {post}"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:147
+#: apps/notifications/strategies/comment_strategies.py:153
 #, python-brace-format
 msgid "{commenter_name} replied to your comment"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:148
+#: apps/notifications/strategies/comment_strategies.py:154
 msgid "New reply to your comment"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:151
+#: apps/notifications/strategies/comment_strategies.py:157
 msgid "View conversation"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:153
+#: apps/notifications/strategies/comment_strategies.py:159
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email} because someone replied to your "
 "comment."
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:162
+#: apps/notifications/strategies/comment_strategies.py:168
 msgid "Join the conversation and continue the discussion."
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:168
+#: apps/notifications/strategies/comment_strategies.py:174
 msgid "replied"
 msgstr ""
 
-#: apps/notifications/strategies/comment_strategies.py:179
+#: apps/notifications/strategies/comment_strategies.py:185
 #, python-brace-format
 msgid "{user} {replied} to your comment"
 msgstr ""
@@ -4120,7 +4120,7 @@ msgstr ""
 
 #: apps/notifications/strategies/moderation_strategies.py:177
 #: apps/notifications/strategies/project_strategies.py:153
-#: apps/notifications/strategies/project_strategies.py:195
+#: apps/notifications/strategies/project_strategies.py:193
 #, python-brace-format
 msgid "This email was sent to {receiver_email}."
 msgstr ""
@@ -4137,7 +4137,7 @@ msgid "New project was published by {organisation_name}"
 msgstr ""
 
 #: apps/notifications/strategies/organisation_strategies.py:28
-#: apps/notifications/strategies/project_strategies.py:226
+#: apps/notifications/strategies/project_strategies.py:224
 msgid "Show project"
 msgstr "Toon project"
 
@@ -4221,62 +4221,62 @@ msgid ""
 "accept."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:191
+#: apps/notifications/strategies/project_strategies.py:189
 #, python-brace-format
 msgid "Moderator invitation for project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:192
+#: apps/notifications/strategies/project_strategies.py:190
 msgid "Moderator Invitation"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:194
+#: apps/notifications/strategies/project_strategies.py:192
 msgid "View Invitation"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:203
+#: apps/notifications/strategies/project_strategies.py:201
 #, python-brace-format
 msgid ""
 "You have been invited to be a moderator of project {project_name}. View "
 "{invitation}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:207
+#: apps/notifications/strategies/project_strategies.py:205
 msgid "invitation"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:221
+#: apps/notifications/strategies/project_strategies.py:219
 #, python-brace-format
 msgid "New project {project_name} on {site_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:223
+#: apps/notifications/strategies/project_strategies.py:221
 #, python-brace-format
 msgid "The new project {project_name} was created for {organisation_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:228
+#: apps/notifications/strategies/project_strategies.py:226
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
 "you are an initiator of {organisation_name}."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:241
+#: apps/notifications/strategies/project_strategies.py:239
 #, python-brace-format
 msgid "A new project {project} has been created."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:258
+#: apps/notifications/strategies/project_strategies.py:256
 msgid "Deletion of project"
 msgstr "Verwijderen van het project"
 
-#: apps/notifications/strategies/project_strategies.py:259
+#: apps/notifications/strategies/project_strategies.py:257
 #, python-brace-format
 msgid "The project {project_name} was deleted."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:261
+#: apps/notifications/strategies/project_strategies.py:259
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
@@ -4284,86 +4284,86 @@ msgid ""
 "project was deleted."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:275
+#: apps/notifications/strategies/project_strategies.py:273
 #, python-brace-format
 msgid "The project {project} has been deleted."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:302
+#: apps/notifications/strategies/project_strategies.py:300
 msgid "An"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:302
+#: apps/notifications/strategies/project_strategies.py:300
 msgid "A"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:304
+#: apps/notifications/strategies/project_strategies.py:302
 msgid "idea"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:305
+#: apps/notifications/strategies/project_strategies.py:303
 msgid "proposal"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:306
+#: apps/notifications/strategies/project_strategies.py:304
 msgid "mapidea"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:309
+#: apps/notifications/strategies/project_strategies.py:307
 #, python-brace-format
 msgid "An idea was added to the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:310
+#: apps/notifications/strategies/project_strategies.py:308
 #, python-brace-format
 msgid "A proposal was added to the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:311
+#: apps/notifications/strategies/project_strategies.py:309
 #, python-brace-format
 msgid "A map idea was added to the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:315
+#: apps/notifications/strategies/project_strategies.py:313
 #, python-brace-format
 msgid "{creator_name} created an idea on the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:317
+#: apps/notifications/strategies/project_strategies.py:315
 #, python-brace-format
 msgid "{creator_name} created a proposal on the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:320
+#: apps/notifications/strategies/project_strategies.py:318
 #, python-brace-format
 msgid "{creator_name} created a map idea on the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:327
+#: apps/notifications/strategies/project_strategies.py:325
 #, python-brace-format
 msgid "{article} {content_type} was added to the project {project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:332
+#: apps/notifications/strategies/project_strategies.py:330
 #, python-brace-format
 msgid ""
 "{creator_name} created {article_lower} {content_type} on the project "
 "{project_name}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:339
+#: apps/notifications/strategies/project_strategies.py:337
 #, python-brace-format
 msgid "Check the {content_type_display}"
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:341
+#: apps/notifications/strategies/project_strategies.py:339
 #, python-brace-format
 msgid ""
 "This email was sent to {receiver_email}. This email was sent to you because "
 "you are a moderator in the project."
 msgstr ""
 
-#: apps/notifications/strategies/project_strategies.py:361
+#: apps/notifications/strategies/project_strategies.py:359
 #, python-brace-format
 msgid ""
 "A new {content_type} \"{content}\" has been created in project {project}."
@@ -6191,9 +6191,65 @@ msgstr ""
 msgid "Running"
 msgstr ""
 
+#: apps/projects/timeline.py:138
+#, python-format
+msgid "%(count)s month"
+msgid_plural "%(count)s months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/projects/timeline.py:147
+#, python-format
+msgid "%(count)s week"
+msgid_plural "%(count)s weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/projects/timeline.py:149
+#, python-format
+msgid "%(count)s day"
+msgid_plural "%(count)s days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/projects/timeline.py:152
+#, python-format
+msgid "%(count)s hour"
+msgid_plural "%(count)s hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/projects/timeline.py:155
+#, python-format
+msgid "%(count)s minute"
+msgid_plural "%(count)s minutes"
+msgstr[0] ""
+msgstr[1] ""
+
 #: apps/projects/timeline.py:156
 msgid "1 minute"
 msgstr ""
+
+#: apps/projects/timeline.py:182
+#, python-format
+msgid "%(count)s day left"
+msgid_plural "%(count)s days left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/projects/timeline.py:185
+#, python-format
+msgid "%(count)s hour left"
+msgid_plural "%(count)s hours left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/projects/timeline.py:189
+#, python-format
+msgid "%(count)s minute left"
+msgid_plural "%(count)s minutes left"
+msgstr[0] ""
+msgstr[1] ""
 
 #: apps/projects/timeline.py:198
 #, python-format
@@ -7138,35 +7194,39 @@ msgstr "Organisatie instellingen"
 msgid "All projects"
 msgstr "Alle projecten"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:36
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:29
+msgid "The module was added. The other modules are collapsed."
+msgstr ""
+
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:43
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:14
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:74
 msgid "Project ready for publication"
 msgstr "Project klaar voor publicatie"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:38
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:45
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:16
 #: adhocracy-plus/templates/a4dashboard/includes/progress_line.html:72
 msgid "Project not ready for publication"
 msgstr "Project niet klaar voor publicatie"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:91
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:100
 msgid "Module ready for addition"
 msgstr "Module klaar om toe te voegen"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:93
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:102
 msgid "Module not ready for addition"
 msgstr "Module niet klaar voor toevoeging"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:134
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:143
 msgid "Hide from project"
 msgstr "Verberg je voor het project"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:144
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:153
 msgid "Add to project"
 msgstr "Toevoegen aan project"
 
-#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:159
+#: adhocracy-plus/templates/a4dashboard/base_dashboard_project.html:168
 msgid "Add Module"
 msgstr "Module toevoegen"
 
@@ -7334,7 +7394,7 @@ msgstr ""
 "Uw afbeelding wordt geüpload/verwijderd zodra u uw wijzigingen aan het einde "
 "van deze pagina opslaat."
 
-#: adhocracy-plus/templates/a4modules/includes/module_phases.html:26
+#: adhocracy-plus/templates/a4modules/includes/module_phases.html:29
 msgid "Phase progress"
 msgstr ""
 

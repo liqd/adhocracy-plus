@@ -9,7 +9,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 ### Changed
+
 ### Fixed
+
+- Translations for phase display timeline
 
 ## v2611.3
 
