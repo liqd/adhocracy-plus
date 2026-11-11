@@ -109,6 +109,19 @@ function initContainer (container) {
     return
   }
 
+  // Show the preview of an existing/restored image even before the user
+  // interacts with the field (edit forms and re-rendered forms after a
+  // validation error).
+  const previewImage = uploadField.querySelector(
+    'img[data-upload-preview="' + config.inputId + '"]'
+  )
+  if (previewImage) {
+    const previewSrc = previewImage.getAttribute('src')
+    if (previewSrc && previewSrc !== PLACEHOLDER_SRC) {
+      uploadField.classList.add('has-preview')
+    }
+  }
+
   actionParent.insertBefore(trigger, actionParent.firstChild)
 
   container.dataset.uppyInitialized = 'true'
