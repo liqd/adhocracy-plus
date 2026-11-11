@@ -130,8 +130,8 @@ importers:
         specifier: 3.0.5
         version: 3.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-leaflet:
-        specifier: 4.2.1
-        version: 4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 5.0.0
+        version: 5.0.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-markdown:
         specifier: 9.0.3
         version: 9.0.3(@types/react@18.3.31)(react@18.3.1)(supports-color@8.1.1)
@@ -1622,6 +1622,13 @@ packages:
       leaflet: ^1.9.0
       react: ^18.0.0
       react-dom: ^18.0.0
+
+  '@react-leaflet/core@3.0.0':
+    resolution: {integrity: sha512-3EWmekh4Nz+pGcr+xjf0KNyYfC3U2JjnkWsh0zcqaexYqmmB5ZhH37kz41JXGmKzpaMZCnPofBBm64i+YrEvGQ==}
+    peerDependencies:
+      leaflet: ^1.9.0
+      react: ^19.0.0
+      react-dom: ^19.0.0
 
   '@scure/base@1.2.6':
     resolution: {integrity: sha512-g/nm5FgUa//MCj1gV09zTJTaM6KBAHqLN907YVQqf7zC49+DcO4B1so4ZX07Ef10Twr6nuqYEH9GEggFXA4Fmg==}
@@ -5041,6 +5048,13 @@ packages:
       react: ^18.0.0
       react-dom: ^18.0.0
 
+  react-leaflet@5.0.0:
+    resolution: {integrity: sha512-CWbTpr5vcHw5bt9i4zSlPEVQdTVcML390TjeDG0cK59z1ylexpqC6M1PJFjV8jD7CF+ACBFsLIDs6DRMoLEofw==}
+    peerDependencies:
+      leaflet: ^1.9.0
+      react: ^19.0.0
+      react-dom: ^19.0.0
+
   react-markdown@9.0.3:
     resolution: {integrity: sha512-Yk7Z94dbgYTOrdk41Z74GoKA7rThnsbbqBTRYuxoe08qvfQ9tJVhmAKw6BJS/ZORG7kTy/s1QvYzSuaoBA1qfw==}
     peerDependencies:
@@ -7344,7 +7358,7 @@ snapshots:
       '@polkadot/api-augment': 16.5.6(supports-color@8.1.1)
       '@polkadot/api-base': 16.5.6(supports-color@8.1.1)
       '@polkadot/api-derive': 16.5.6(supports-color@8.1.1)
-      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@14.0.3))(@polkadot/util@14.0.3)
+      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@13.5.7))(@polkadot/util@14.0.3)
       '@polkadot/rpc-augment': 16.5.6(supports-color@8.1.1)
       '@polkadot/rpc-core': 16.5.6(supports-color@8.1.1)
       '@polkadot/rpc-provider': 16.5.6(supports-color@8.1.1)
@@ -7383,10 +7397,10 @@ snapshots:
       '@polkadot/util-crypto': 13.5.9(@polkadot/util@13.5.7)
       tslib: 2.8.1
 
-  '@polkadot/keyring@14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@14.0.3))(@polkadot/util@14.0.3)':
+  '@polkadot/keyring@14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@13.5.7))(@polkadot/util@14.0.3)':
     dependencies:
       '@polkadot/util': 14.0.3
-      '@polkadot/util-crypto': 14.0.3(@polkadot/util@14.0.3)
+      '@polkadot/util-crypto': 14.0.3(@polkadot/util@13.5.7)
       tslib: 2.8.1
 
   '@polkadot/networks@13.5.9':
@@ -7428,7 +7442,7 @@ snapshots:
 
   '@polkadot/rpc-provider@16.5.6(supports-color@8.1.1)':
     dependencies:
-      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@14.0.3))(@polkadot/util@14.0.3)
+      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@13.5.7))(@polkadot/util@14.0.3)
       '@polkadot/types': 16.5.6
       '@polkadot/types-support': 16.5.6
       '@polkadot/util': 14.0.3
@@ -7512,7 +7526,7 @@ snapshots:
 
   '@polkadot/types@16.5.6':
     dependencies:
-      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@14.0.3))(@polkadot/util@14.0.3)
+      '@polkadot/keyring': 14.0.3(@polkadot/util-crypto@14.0.3(@polkadot/util@13.5.7))(@polkadot/util@14.0.3)
       '@polkadot/types-augment': 16.5.6
       '@polkadot/types-codec': 16.5.6
       '@polkadot/types-create': 16.5.6
@@ -7534,13 +7548,27 @@ snapshots:
       '@scure/base': 1.2.6
       tslib: 2.8.1
 
+  '@polkadot/util-crypto@14.0.3(@polkadot/util@13.5.7)':
+    dependencies:
+      '@noble/curves': 1.9.7
+      '@noble/hashes': 1.8.0
+      '@polkadot/networks': 14.0.3
+      '@polkadot/util': 13.5.7
+      '@polkadot/wasm-crypto': 7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
+      '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/x-bigint': 14.0.3
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
+      '@scure/base': 1.2.6
+      '@scure/sr25519': 0.2.0
+      tslib: 2.8.1
+
   '@polkadot/util-crypto@14.0.3(@polkadot/util@14.0.3)':
     dependencies:
       '@noble/curves': 1.9.7
       '@noble/hashes': 1.8.0
       '@polkadot/networks': 14.0.3
       '@polkadot/util': 14.0.3
-      '@polkadot/wasm-crypto': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))
+      '@polkadot/wasm-crypto': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
       '@polkadot/wasm-util': 7.5.4(@polkadot/util@14.0.3)
       '@polkadot/x-bigint': 14.0.3
       '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3))
@@ -7585,11 +7613,18 @@ snapshots:
       '@polkadot/x-randomvalues': 13.5.9(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
-  '@polkadot/wasm-bridge@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))':
+  '@polkadot/wasm-bridge@7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
+    dependencies:
+      '@polkadot/util': 13.5.7
+      '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
+      tslib: 2.8.1
+
+  '@polkadot/wasm-bridge@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
     dependencies:
       '@polkadot/util': 14.0.3
       '@polkadot/wasm-util': 7.5.4(@polkadot/util@14.0.3)
-      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3))
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
   '@polkadot/wasm-crypto-asmjs@7.5.4(@polkadot/util@13.5.7)':
@@ -7612,14 +7647,24 @@ snapshots:
       '@polkadot/x-randomvalues': 13.5.9(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
-  '@polkadot/wasm-crypto-init@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))':
+  '@polkadot/wasm-crypto-init@7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
+    dependencies:
+      '@polkadot/util': 13.5.7
+      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
+      '@polkadot/wasm-crypto-asmjs': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/wasm-crypto-wasm': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
+      tslib: 2.8.1
+
+  '@polkadot/wasm-crypto-init@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
     dependencies:
       '@polkadot/util': 14.0.3
-      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))
+      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
       '@polkadot/wasm-crypto-asmjs': 7.5.4(@polkadot/util@14.0.3)
       '@polkadot/wasm-crypto-wasm': 7.5.4(@polkadot/util@14.0.3)
       '@polkadot/wasm-util': 7.5.4(@polkadot/util@14.0.3)
-      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3))
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
   '@polkadot/wasm-crypto-wasm@7.5.4(@polkadot/util@13.5.7)':
@@ -7645,15 +7690,26 @@ snapshots:
       '@polkadot/x-randomvalues': 13.5.9(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
-  '@polkadot/wasm-crypto@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))':
+  '@polkadot/wasm-crypto@7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
+    dependencies:
+      '@polkadot/util': 13.5.7
+      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
+      '@polkadot/wasm-crypto-asmjs': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/wasm-crypto-init': 7.5.4(@polkadot/util@13.5.7)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
+      '@polkadot/wasm-crypto-wasm': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
+      tslib: 2.8.1
+
+  '@polkadot/wasm-crypto@7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))':
     dependencies:
       '@polkadot/util': 14.0.3
-      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))
+      '@polkadot/wasm-bridge': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
       '@polkadot/wasm-crypto-asmjs': 7.5.4(@polkadot/util@14.0.3)
-      '@polkadot/wasm-crypto-init': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3)))
+      '@polkadot/wasm-crypto-init': 7.5.4(@polkadot/util@14.0.3)(@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)))
       '@polkadot/wasm-crypto-wasm': 7.5.4(@polkadot/util@14.0.3)
       '@polkadot/wasm-util': 7.5.4(@polkadot/util@14.0.3)
-      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3))
+      '@polkadot/x-randomvalues': 14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))
       tslib: 2.8.1
 
   '@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7)':
@@ -7711,6 +7767,13 @@ snapshots:
       '@polkadot/util': 13.5.7
       '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
       '@polkadot/x-global': 13.5.9
+      tslib: 2.8.1
+
+  '@polkadot/x-randomvalues@14.0.3(@polkadot/util@13.5.7)(@polkadot/wasm-util@7.5.4(@polkadot/util@13.5.7))':
+    dependencies:
+      '@polkadot/util': 13.5.7
+      '@polkadot/wasm-util': 7.5.4(@polkadot/util@13.5.7)
+      '@polkadot/x-global': 14.0.3
       tslib: 2.8.1
 
   '@polkadot/x-randomvalues@14.0.3(@polkadot/util@14.0.3)(@polkadot/wasm-util@7.5.4(@polkadot/util@14.0.3))':
@@ -7835,6 +7898,12 @@ snapshots:
       seedrandom: 3.0.5
 
   '@react-leaflet/core@2.1.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      leaflet: 1.9.4
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  '@react-leaflet/core@3.0.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       leaflet: 1.9.4
       react: 18.3.1
@@ -12592,6 +12661,13 @@ snapshots:
   react-leaflet@4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@react-leaflet/core': 2.1.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      leaflet: 1.9.4
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  react-leaflet@5.0.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@react-leaflet/core': 3.0.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       leaflet: 1.9.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
