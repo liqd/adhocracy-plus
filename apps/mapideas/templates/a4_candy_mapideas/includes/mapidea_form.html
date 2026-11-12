@@ -1,15 +1,30 @@
 {% load i18n %}
-<form novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
+<form {% if wizard %}data-step-wizard{% endif %} novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
     {% csrf_token %}
     {{ form.media }}
+
+    {% if wizard %}
+    <div class="step-wizard__progress" data-step-wizard-progress aria-hidden="true"></div>
+    <p class="step-wizard__status" data-step-wizard-status aria-live="polite" data-label="{% translate 'Step %(current)s of %(total)s' %}"></p>
+    {% endif %}
+
+    {% if wizard %}<fieldset class="step-wizard__step" data-step-wizard-step="1"><legend class="step-wizard__title">{% translate "Set a location for your idea" %}</legend><p class="step-wizard__hint">{% translate "You can click anywhere on the map to place your idea. For fine-tuning, use the arrow keys." %}</p>{% endif %}
+
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.point %}
+
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.point_label %}
+
+    {% if wizard %}</fieldset>{% endif %}
+
+    {% if wizard %}<fieldset class="step-wizard__step" data-step-wizard-step="2"><legend class="step-wizard__title">{% translate "Describe your idea" %}</legend><p class="step-wizard__hint">{% translate "Be clear and concise to help others understand your suggestion." %}</p>{% endif %}
 
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.name %}
 
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.description %}
 
-    {% for field in form.custom_fields %}
-        {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
-    {% endfor %}
+    {% if wizard %}</fieldset>{% endif %}
+
+    {% if wizard %}<fieldset class="step-wizard__step" data-step-wizard-step="3"><legend class="step-wizard__title">{% translate "Add details" %}</legend><p class="step-wizard__hint">{% translate "Helps others find and understand better your idea" %}</p>{% endif %}
 
     {% if form.show_categories %}
         {% include 'a4_candy_contrib/includes/form_field.html' with field=form.category %}
@@ -19,23 +34,39 @@
         {% include 'a4_candy_contrib/includes/form_field.html' with field=form.labels %}
     {% endif %}
 
-    {% include 'a4images/uppy_image_upload_field.html' with field=form.image form_field_template='a4_candy_contrib/includes/form_field.html' aspect_ratio='1.5' output_width=600 output_height=400 %}
+    {% for field in form.custom_fields %}
+        {% include 'a4_candy_contrib/includes/form_field.html' with field=field %}
+    {% endfor %}
+
+    {% include 'a4images/uppy_image_upload_field.html' with field=form.image aspect_ratio='1.5' output_width=600 output_height=400 %}
     {% include 'a4images/uppy_image_upload_assets.html' %}
 
     {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.right_of_use %}
 
-    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.point %}
+    {% if wizard %}</fieldset>{% endif %}
 
-    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.point_label %}
+    {% if wizard %}<fieldset class="step-wizard__step" data-step-wizard-step="4"><legend class="step-wizard__title">{% translate "Idea review and submit" %}</legend><p class="step-wizard__hint">{% translate "Make sure everything is right, you can add more contact details if desired" %}</p><div class="step-wizard__summary" data-step-wizard-summary data-label-location="{% translate 'Location' %}" data-label-title="{% translate 'Title' %}" data-label-description="{% translate 'Description' %}" data-label-category="{% translate 'Category' %}" data-label-labels="{% translate 'Label' %}" data-label-image="{% translate 'Image' %}" data-label-edit="{% translate 'Edit' %}"></div>{% endif %}
 
-    {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.organisation_terms_of_use %}
-
-    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.creator_email %}
+    {% if form.organisation_terms_of_use %}
+        {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.organisation_terms_of_use %}
+    {% endif %}
     {% include 'a4_candy_contrib/includes/form_field.html' with field=form.creator_phone %}
+    {% include 'a4_candy_contrib/includes/form_field.html' with field=form.creator_email %}
     {% include 'a4_candy_contrib/includes/form_checkbox_field.html' with field=form.creator_contact_consent %}
 
-    <div class="d-flex justify-content-end mb-3">
+    {% if wizard %}</fieldset>{% endif %}
+
+    <div class="d-flex justify-content-end align-items-center mb-3">
+        {% if wizard %}
+        <div class="step-wizard__actions">
+            <button type="button" class="btn btn--secondary d-none" data-step-wizard-back>{% translate 'Back' %}</button>
+            <a href="{{ cancel }}" class="btn btn--secondary">{% translate 'Cancel' %}</a>
+            <button type="button" class="btn btn--primary-filled d-none" data-step-wizard-next>{% translate 'Next' %} <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+            <button type="submit" class="btn btn--primary-filled" data-step-wizard-submit>{% translate 'Submit' %} <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
+        {% else %}
         <a href="{{ cancel }}" class="btn btn--secondary me-2">{% translate 'Cancel' %}</a>
         <button type="submit" class="btn btn--primary">{% translate 'Save' %}</button>
+        {% endif %}
     </div>
 </form>
