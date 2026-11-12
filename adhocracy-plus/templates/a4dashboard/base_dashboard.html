@@ -23,7 +23,7 @@
                     <button
                             title="{% translate 'Organisations' %}"
                             type="button"
-                            class="dropdown-toggle btn btn--none btn--small"
+                            class="dropdown-toggle btn btn--none btn--small dashboard-nav__organisation-toggle"
                             data-bs-toggle="dropdown"
                             data-flip="false"
                             aria-haspopup="true"
@@ -43,8 +43,22 @@
                         {% endfor %}
                     </div>
                 </div>
+                <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}"
+                   class="btn btn--none btn--small dashboard-nav__live-button"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="{% translate 'View Live' %}: {{ view.organisation.name }}">
+                    <i class="fa fa-external-link-alt" aria-hidden="true"></i>
+                </a>
             {% else %}
-                <span class="py-1 px-3">{{ view.organisation.name }}</span>
+                <a href="{% url 'organisation' organisation_slug=ORGANISATION.slug %}"
+                   class="ms-2 dashboard-nav__organisation-link"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="{% translate 'View Live' %}: {{ view.organisation.name }}">
+                    <span class="dashboard-nav__organisation-name">{{ view.organisation.name }}</span>
+                    <i class="fa fa-external-link-alt" aria-hidden="true"></i>
+                </a>
             {% endif %}
           </div>
 
