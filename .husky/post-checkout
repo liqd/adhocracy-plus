@@ -42,11 +42,24 @@ done
 
 # Build an isolated Python environment inside the worktree. The venv is never
 # symlinked or copied: local updates must not leak into the main checkout.
+# 'make install' (pnpm install, webpack build, pip install, migrate) takes
+# minutes, so it is detached: creating a worktree must not block on it.
 if [ "${WORKTREE_SETUP:-1}" != "0" ] && [ ! -d venv ] && [ -f Makefile ]; then
-  log="$(git rev-parse --git-dir)/worktree-install.log"
-  echo "worktree: running 'make install' (setup may take a while)..." >&2
-  if ! make install >"$log" 2>&1; then
-    echo "worktree: 'make install' failed; see $log" >&2
+  WORKTREE_INSTALL_LOG="$(git rev-parse --git-dir)/worktree-install.log"
+  export WORKTREE_INSTALL_LOG
+  # The detached shell redirects everything itself, so the hook never keeps
+  # the caller's stdout/stderr open and git worktree add returns immediately.
+  install_script='
+if make install >>"$WORKTREE_INSTALL_LOG" 2>&1 </dev/null; then
+  echo "worktree: make install finished" >>"$WORKTREE_INSTALL_LOG"
+else
+  echo "worktree: make install FAILED" >>"$WORKTREE_INSTALL_LOG"
+fi'
+  echo "worktree: starting 'make install' in the background (log: $WORKTREE_INSTALL_LOG)" >&2
+  if command -v setsid >/dev/null 2>&1; then
+    setsid sh -c "$install_script" >/dev/null 2>&1 </dev/null &
+  else
+    nohup sh -c "$install_script" >/dev/null 2>&1 </dev/null &
   fi
 fi
 
