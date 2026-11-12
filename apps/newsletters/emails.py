@@ -1,3 +1,5 @@
+from email.utils import formataddr
+
 from django.urls import reverse
 
 from apps.users.emails import EmailAplus as Email
@@ -26,7 +28,15 @@ class NewsletterEmail(Email):
         )
 
     def get_reply_to(self):
-        return [self._newsletter.sender]
+        if not self._newsletter.sender:
+            return []
+        return [formataddr((self._newsletter.sender_name, self._newsletter.sender))]
+
+    def render_for_receiver(self, receiver):
+        self.object = self._newsletter
+        context = self.get_context()
+        context["receiver"] = receiver
+        return self.render(self.template_name, context)
 
     def get_context(self):
         context = super().get_context()
@@ -42,6 +52,27 @@ class NewsletterEmail(Email):
 class NewsletterEmailAll(NewsletterEmail):
     def get_receivers(self):
         return User.objects.filter(is_active=True).distinct()
+
+
+class NewsletterPreviewEmail(NewsletterEmail):
+    """Send a newsletter to a single receiver as a test."""
+
+    subject_prefix = "[TEST]"
+
+    def __init__(self, newsletter, organisation, receiver):
+        super().__init__(newsletter, organisation, [])
+        self._receiver = receiver
+
+    def get_receivers(self):
+        return [self._receiver]
+
+    def render(self, template_name, context):
+        subject, text, html = super().render(template_name, context)
+        if not subject.strip().startswith(self.subject_prefix):
+            subject = " ".join(
+                part for part in (self.subject_prefix, subject.strip()) if part
+            )
+        return subject, text, html
 
 
 class NewsletterSettingsNoticeEmail(Email):

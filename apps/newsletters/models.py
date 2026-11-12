@@ -27,10 +27,10 @@ RECEIVER_CHOICES = (
 class Newsletter(UserGeneratedContentModel):
     sender_name = models.CharField(
         max_length=254,
-        verbose_name=_("Name"),
+        verbose_name=_("Sender Name"),
         blank=True,
     )
-    sender = models.EmailField(blank=True, verbose_name=_("Sender"))
+    sender = models.EmailField(blank=True, verbose_name=_("Sender Address"))
     subject = models.CharField(max_length=254, verbose_name=_("Subject"))
     body = CKEditor5Field(
         blank=True,
