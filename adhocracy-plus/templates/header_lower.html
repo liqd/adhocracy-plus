@@ -7,11 +7,11 @@
 
             {% if organisation.logo %}
               {% url 'organisation' organisation_slug=organisation.slug as organisation_url %}
-                <a href="{% url 'organisation' organisation_slug=organisation.slug %}" class="header-lower__logo-box" rel="home">
+                <a href="{% url 'organisation' organisation_slug=organisation.slug %}" class="header-lower__logo-box" rel="home" data-step-wizard-anchor>
                     <img src="{% thumbnail organisation.logo '0x160' %}" height="80" alt="{{ organisation.name }}" class="header-lower__logo-img" />
                 </a>
             {% else %}
-              <div class="header-lower__brand u-bg-body">
+              <div class="header-lower__brand u-bg-body" data-step-wizard-anchor>
                 <a class="header-lower__brand--link fw-bold" href="{% url 'organisation' organisation_slug=organisation.slug %}">
                     {{ organisation.name }}
                 </a>
