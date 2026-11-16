@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
 import django from 'django'
+import { Filter } from './Filter'
+import type { FilterItem } from './types'
+
+function formatCount (count: number): string {
+  return String(count).padStart(2, '0')
+}
+
+type StatusFilter = 'open' | 'resolved' | 'all'
 
 interface ModerationProjectItem {
   id: number
   title: string
   moderation_detail_url: string
   num_unread_comments: number
+  num_unread_items: number
   tile_image?: string
   tile_image_copyright?: string
   organisation: string
@@ -28,6 +37,7 @@ interface ModerationProjectsState {
   isLoaded: boolean
   searchQuery: string
   sortBy: string
+  statusFilter: StatusFilter
 }
 
 export default class ModerationProjects extends Component<ModerationProjectsProps, ModerationProjectsState> {
@@ -41,7 +51,8 @@ export default class ModerationProjects extends Component<ModerationProjectsProp
       items: [],
       isLoaded: false,
       searchQuery: this.getInitialSearchQuery(),
-      sortBy: this.getInitialSortBy()
+      sortBy: this.getInitialSortBy(),
+      statusFilter: this.getInitialStatusFilter()
     }
   }
 
@@ -90,14 +101,48 @@ export default class ModerationProjects extends Component<ModerationProjectsProp
 
   getInitialSortBy (): string {
     const sort = this.getUrlParam('sort')
-    if (sort && ['reports', 'recent', 'name'].includes(sort)) {
+    if (sort === 'recent') {
+      return 'newest'
+    }
+    if (sort && ['oldest', 'newest', 'reports', 'name'].includes(sort)) {
       return sort
     }
-    return 'reports'
+    return 'oldest'
+  }
+
+  getInitialStatusFilter (): StatusFilter {
+    const status = this.getUrlParam('status')
+    if (status && ['open', 'resolved', 'all'].includes(status)) {
+      return status as StatusFilter
+    }
+    return 'open'
   }
 
   getInitialSearchQuery (): string {
     return this.getUrlParam('search') || ''
+  }
+
+  getOpenItems (): ModerationProjectItem[] {
+    return this.state.items.filter(item => item.num_unread_items > 0)
+  }
+
+  getResolvedItems (): ModerationProjectItem[] {
+    return this.state.items.filter(item => item.num_unread_items === 0)
+  }
+
+  getStatusFilteredItems (): ModerationProjectItem[] {
+    if (this.state.statusFilter === 'open') {
+      return this.getOpenItems()
+    }
+    if (this.state.statusFilter === 'resolved') {
+      return this.getResolvedItems()
+    }
+    return this.state.items
+  }
+
+  changeStatusFilter (statusFilter: StatusFilter): void {
+    this.setUrlParam('status', statusFilter)
+    this.setState({ statusFilter })
   }
 
   getTimespan (item: ModerationProjectItem) {
@@ -131,18 +176,21 @@ export default class ModerationProjects extends Component<ModerationProjectsProp
   getFilteredAndSortedItems (): ModerationProjectItem[] {
     const query = this.state.searchQuery.toLowerCase()
 
-    const filtered = this.state.items.filter(item => {
+    const filtered = this.getStatusFilteredItems().filter(item => {
       const title = item.title ? item.title.toLowerCase() : ''
       const organisation = item.organisation ? item.organisation.toLowerCase() : ''
       return title.includes(query) || organisation.includes(query)
     })
 
     return filtered.sort((a, b) => {
+      if (this.state.sortBy === 'oldest') {
+        return new Date(a.created).getTime() - new Date(b.created).getTime()
+      }
+      if (this.state.sortBy === 'newest') {
+        return new Date(b.created).getTime() - new Date(a.created).getTime()
+      }
       if (this.state.sortBy === 'reports') {
         return b.num_reported_unread_comments - a.num_reported_unread_comments
-      }
-      if (this.state.sortBy === 'recent') {
-        return new Date(b.created).getTime() - new Date(a.created).getTime()
       }
       if (this.state.sortBy === 'name') {
         return a.title.localeCompare(b.title)
@@ -163,23 +211,78 @@ export default class ModerationProjects extends Component<ModerationProjectsProp
     const hasUnReadComments = django.gettext('Notifications has unread comments')
     const searchPlaceholder = django.gettext('Search')
     const sortLabel = django.gettext('Sort')
-    const sortMostRecent = django.gettext('Most Recent')
-    const sortMostReported = django.gettext('Most reported')
-    const sortAlphabetical = django.gettext('Alphabetical')
+    const statusFilterLabel = django.gettext('Moderation status')
     const emptyText = django.gettext('No moderated projects found.')
 
     if (!isLoaded) {
       return <div>{loadingText}</div>
     }
 
+    const openCount = this.getOpenItems().length
+    const resolvedCount = this.getResolvedItems().length
+    const allCount = this.state.items.length
     const items = this.getFilteredAndSortedItems()
+    const projectCountText = django.ngettext('Project', 'Projects', items.length)
+    const statusFilters: { value: StatusFilter, label: string, count: number }[] = [
+      { value: 'open', label: django.gettext('Open'), count: openCount },
+      { value: 'resolved', label: django.gettext('Resolved'), count: resolvedCount },
+      { value: 'all', label: django.gettext('All'), count: allCount }
+    ]
+    const sortItems: FilterItem[] = [
+      { value: 'oldest', label: django.gettext('Oldest First') },
+      { value: 'newest', label: django.gettext('Newest First') },
+      { value: 'reports', label: django.gettext('Most reported') },
+      { value: 'name', label: django.gettext('Alphabetical') }
+    ]
 
     return (
       <>
         <section className="row">
           <div className="col-12">
-            <div className="row mb-3">
-              <div className="col-12 col-md-6 mb-2 mb-md-0">
+            <div className="moderation-projects__filters row align-items-center mb-2">
+              <div className="col-12 col-md-auto mb-2 mb-md-0">
+                <div
+                  className="moderation-filter"
+                  role="group"
+                  aria-label={statusFilterLabel}
+                >
+                  {statusFilters.map(filter => (
+                    <button
+                      key={filter.value}
+                      type="button"
+                      className={
+                        'moderation-filter__btn' +
+                        (this.state.statusFilter === filter.value ? ' is-active' : '')
+                      }
+                      aria-pressed={this.state.statusFilter === filter.value}
+                      onClick={() => this.changeStatusFilter(filter.value)}
+                    >
+                      {filter.label} ({formatCount(filter.count)})
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="col-12 col-md-auto ms-md-auto">
+                <Filter
+                  filterClass="moderation-projects__sort dropdown"
+                  filterItems={sortItems}
+                  selectedFilter={this.state.sortBy}
+                  onFilterChange={(sortBy) => {
+                    this.setUrlParam('sort', sortBy)
+                    this.setState({ sortBy })
+                  }}
+                  filterText={sortLabel}
+                />
+              </div>
+            </div>
+
+            <div className="row align-items-center mb-3">
+              <div className="col-12 col-md-auto">
+                <p className="moderation-projects__count u-text--gray mb-0">
+                  {items.length} {projectCountText}
+                </p>
+              </div>
+              <div className="col-12 col-md-4 ms-md-auto mt-2 mt-md-0">
                 <input
                   type="search"
                   className="form-control"
@@ -197,30 +300,6 @@ export default class ModerationProjects extends Component<ModerationProjectsProp
                     this.setState({ searchQuery })
                   }}
                 />
-              </div>
-              <div className="col-12 col-md-6 d-flex justify-content-md-end align-items-center">
-                <label htmlFor="moderation-sort" className="me-2">
-                  {sortLabel}:
-                </label>
-                <select
-                  id="moderation-sort"
-                  className="form-select w-auto"
-                  value={this.state.sortBy}
-                  onChange={(e) => {
-                    // Stop the native change event from reaching the
-                    // document-level listener in unload_warning.js, which
-                    // would arm the unsaved-changes warning for these
-                    // read-only controls.
-                    e.nativeEvent.stopImmediatePropagation()
-                    const sortBy = e.target.value
-                    this.setUrlParam('sort', sortBy)
-                    this.setState({ sortBy })
-                  }}
-                >
-                  <option value="reports">{sortMostReported}</option>
-                  <option value="recent">{sortMostRecent}</option>
-                  <option value="name">{sortAlphabetical}</option>
-                </select>
               </div>
             </div>
 

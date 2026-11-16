@@ -9,6 +9,8 @@ const projects = [
     title: 'Alpha',
     organisation: 'Org A',
     moderation_detail_url: '/moderation/detail/alpha/',
+    num_unread_comments: 2,
+    num_unread_items: 5,
     num_reported_unread_comments: 5,
     comment_count: 0,
     created: '2026-01-01T00:00:00Z',
@@ -21,6 +23,8 @@ const projects = [
     title: 'Beta',
     organisation: 'Org B',
     moderation_detail_url: '/moderation/detail/beta/',
+    num_unread_comments: 0,
+    num_unread_items: 0,
     num_reported_unread_comments: 0,
     comment_count: 0,
     created: '2026-02-01T00:00:00Z',
@@ -33,7 +37,8 @@ const projects = [
 const tileTitles = () => Array.from(document.querySelectorAll('.tile__title')).map(el => el.textContent)
 
 beforeEach(() => {
-  (global as any).fetch = jest.fn(() =>
+  window.history.replaceState({}, '', '/?status=all')
+  ;(global as any).fetch = jest.fn(() =>
     Promise.resolve({ json: () => Promise.resolve(projects) })
   )
 })
@@ -55,11 +60,39 @@ test('filters projects by search query', async () => {
   })
 })
 
-test('sorts projects by most recent', async () => {
+test('shows the number of matching projects', async () => {
+  render(<ModerationProjects projectApiUrl="/api/userdashboard/moderationprojects/" />)
+  await waitFor(() => expect(tileTitles()).toHaveLength(2))
+
+  expect(screen.getByText('2 Projects')).toBeTruthy()
+})
+
+test('filters projects by moderation status', async () => {
+  window.history.replaceState({}, '', '/')
+  render(<ModerationProjects projectApiUrl="/api/userdashboard/moderationprojects/" />)
+  await waitFor(() => expect(tileTitles()).toEqual(['Alpha']))
+
+  expect(screen.getByRole('button', { name: 'Open (01)' })).toHaveAttribute('aria-pressed', 'true')
+
+  fireEvent.click(screen.getByRole('button', { name: 'Resolved (01)' }))
+
+  await waitFor(() => {
+    expect(tileTitles()).toEqual(['Beta'])
+  })
+
+  fireEvent.click(screen.getByRole('button', { name: 'All (02)' }))
+
+  await waitFor(() => {
+    expect(tileTitles()).toEqual(['Alpha', 'Beta'])
+  })
+})
+
+test('sorts projects by newest first', async () => {
   render(<ModerationProjects projectApiUrl="/api/userdashboard/moderationprojects/" />)
   await waitFor(() => expect(tileTitles()).toEqual(['Alpha', 'Beta']))
 
-  fireEvent.change(screen.getByRole('combobox'), { target: { value: 'recent' } })
+  fireEvent.click(screen.getByRole('button', { name: 'Sort: Oldest First' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Newest First' }))
 
   await waitFor(() => {
     expect(tileTitles()).toEqual(['Beta', 'Alpha'])

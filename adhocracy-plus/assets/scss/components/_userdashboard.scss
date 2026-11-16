@@ -187,3 +187,60 @@
 .general-form .ck-editor__editable {
     min-height: 100px;
 }
+
+.moderation-projects__filters {
+    margin-top: $spacer;
+}
+
+.moderation-filter {
+    display: flex;
+}
+
+.moderation-filter__btn {
+    padding: 0.75rem 1rem;
+    border: 1px solid $border-color;
+    background-color: $white;
+    color: $text-color;
+    font-size: $font-size-sm;
+    line-height: 1;
+    cursor: pointer;
+
+    & + & {
+        border-left: 0;
+    }
+
+    &:first-child {
+        border-radius: 4px 0 0 4px;
+    }
+
+    &:last-child {
+        border-radius: 0 4px 4px 0;
+    }
+
+    &:hover {
+        background-color: $bg-light;
+    }
+
+    &.is-active {
+        border-color: $text-color;
+        background-color: $text-color;
+        color: $white;
+    }
+
+    &:focus-visible {
+        position: relative;
+        z-index: 1;
+        outline: 2px solid $link-color;
+        outline-offset: 2px;
+    }
+}
+
+.moderation-projects__sort {
+    .btn--select {
+        width: auto;
+    }
+}
+
+.moderation-projects__count {
+    font-size: 0.875rem;
+}

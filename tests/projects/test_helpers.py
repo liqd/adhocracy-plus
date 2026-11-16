@@ -1,6 +1,7 @@
 import pytest
 
 from apps.projects import helpers
+from tests.ideas.factories import IdeaFactory
 
 
 @pytest.mark.django_db
@@ -43,3 +44,18 @@ def test_unread_comments_are_counted(idea, comment_factory):
     comment_factory(content_object=idea, is_reviewed=True)
 
     assert helpers.get_num_unread_comments(project) == 1
+
+
+@pytest.mark.django_db
+def test_unread_items_count_comments_and_ideas(idea, comment_factory):
+    project = idea.project
+    comment_factory(content_object=idea)
+    comment_factory(content_object=idea, is_reviewed=True)
+    read_idea = IdeaFactory(module=idea.module, is_reviewed=True)
+
+    assert helpers.get_num_unread_items(project) == 2
+
+    read_idea.is_reviewed = False
+    read_idea.save(ignore_modified=True)
+
+    assert helpers.get_num_unread_items(project) == 3
