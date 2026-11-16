@@ -1,17 +1,43 @@
-const SIDEBAR_PATH_PATTERN = /^\/learning-center(\/|$)/
+const LEARNING_CENTER_PREFIX = '/learning-center'
 
-// Only same-origin Learning Center paths may be loaded into the overlay. This
-// rejects protocol-relative URLs (e.g. //evil.example) that would otherwise be
-// fetched cross-origin and injected into the DOM.
+// Only same-origin Learning Center paths may be loaded into the overlay. The
+// value is parsed and normalised by the browser first, so dot segments
+// (e.g. /learning-center/../admin/) cannot escape the prefix and
+// protocol-relative URLs (e.g. //evil.example) fail the origin check.
 function normaliseSidebarUrl (param) {
   if (!param) {
     return null
   }
-  const path = param.startsWith('/') ? param : `/${param}`
-  if (!SIDEBAR_PATH_PATTERN.test(path)) {
+
+  let url
+  try {
+    url = new URL(param, window.location.origin)
+  } catch (error) {
     return null
   }
-  return path
+
+  if (url.origin !== window.location.origin) {
+    return null
+  }
+
+  const path = url.pathname
+  if (path !== LEARNING_CENTER_PREFIX && !path.startsWith(`${LEARNING_CENTER_PREFIX}/`)) {
+    return null
+  }
+
+  // A percent-encoded slash or dot may be decoded into a path separator by the
+  // server, so only already canonical paths are accepted.
+  let decodedPath
+  try {
+    decodedPath = decodeURIComponent(path)
+  } catch (error) {
+    return null
+  }
+  if (decodedPath !== path) {
+    return null
+  }
+
+  return path + url.search
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -24,6 +50,25 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!sidebar) {
     return
   }
+
+  // Set when the user closes the overlay. A late htmx response must not reopen
+  // it, no matter whether it came from the search, the toggle or a link.
+  let userClosed = false
+
+  // Requests currently loading sidebar content, so closing the overlay can
+  // abort all of them at once.
+  const pendingContentRequests = new Set()
+
+  document.body.addEventListener('htmx:beforeRequest', function (evt) {
+    const target = evt.detail.target
+    if (target && target.id === 'learning-content') {
+      pendingContentRequests.add(evt.detail.elt || evt.target)
+    }
+  })
+
+  document.body.addEventListener('htmx:afterRequest', function (evt) {
+    pendingContentRequests.delete(evt.detail.elt || evt.target)
+  })
 
   const FOCUSABLE_SELECTOR = [
     'a[href]',
@@ -107,11 +152,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!open && wasOpen) {
-      // Abort an in-flight search so its response cannot reopen the sidebar.
-      const form = document.getElementById('learning-search-form')
-      if (form && window.htmx) {
-        window.htmx.trigger(form, 'htmx:abort')
-      }
+      // Remember the explicit close and abort every request still loading
+      // sidebar content so none of their responses can reopen the overlay.
+      userClosed = true
+      pendingContentRequests.forEach(function (element) {
+        if (window.htmx) {
+          window.htmx.trigger(element, 'htmx:abort')
+        }
+      })
+      pendingContentRequests.clear()
     }
 
     if (open && moveFocus && !wasOpen) {
@@ -131,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // its request is triggered by the button's own hx-get.
   if (toggleButton) {
     toggleButton.addEventListener('click', function () {
+      userClosed = false
       setOpen(true, true)
     })
   }
@@ -192,13 +242,10 @@ document.addEventListener('DOMContentLoaded', function () {
       return
     }
 
-    // A late search response must not reopen a sidebar the user just closed.
-    const requestElement = evt.detail.elt
-    const isSearchRequest = requestElement && (
-      requestElement.id === 'learning-search-form' ||
-      (requestElement.closest && requestElement.closest('#learning-search-form'))
-    )
-    if (isSearchRequest && !sidebar.classList.contains('active')) {
+    // A response that arrives after the user closed the overlay must not
+    // reopen it (the request was aborted, but a racing response can still
+    // arrive).
+    if (userClosed) {
       return
     }
 
