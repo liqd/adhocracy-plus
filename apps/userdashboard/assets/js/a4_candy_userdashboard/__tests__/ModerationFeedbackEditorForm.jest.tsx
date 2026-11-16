@@ -103,7 +103,8 @@ test('submits the current editor content and status', async () => {
   await waitFor(() => {
     expect(onSubmit).toHaveBeenCalledWith({
       feedback: '<p>changed feedback</p>',
-      status: 'ACCEPTED'
+      status: 'ACCEPTED',
+      markResolved: false
     })
   })
 })
@@ -165,7 +166,8 @@ test('falls back to a textarea without the CKEditor bundle', async () => {
   await waitFor(() => {
     expect(onSubmit).toHaveBeenCalledWith({
       feedback: '<p>plain feedback</p>',
-      status: 'CONSIDERATION'
+      status: 'CONSIDERATION',
+      markResolved: false
     })
   })
 })
@@ -183,7 +185,8 @@ test('hides the status select when used for comments', async () => {
   await waitFor(() => {
     expect(onSubmit).toHaveBeenCalledWith({
       feedback: '<p>comment feedback</p>',
-      status: null
+      status: null,
+      markResolved: false
     })
   })
 })
@@ -192,4 +195,20 @@ test('does not render a visible "Official feedback" label', () => {
   renderForm()
 
   expect(screen.queryByText('Official feedback')).toBeNull()
+})
+
+test('passes mark resolved to the submit handler', () => {
+  delete (window as any).ClassicEditor
+  const { onSubmit } = renderForm()
+  fireEvent.click(screen.getByLabelText('Also mark report as resolved'))
+  fireEvent.change(screen.getByLabelText('Feedback'), {
+    target: { value: '<p>feedback</p>' }
+  })
+  fireEvent.click(screen.getByRole('button', { name: 'Submit feedback' }))
+
+  expect(onSubmit).toHaveBeenCalledWith({
+    feedback: '<p>feedback</p>',
+    status: 'CONSIDERATION',
+    markResolved: true
+  })
 })

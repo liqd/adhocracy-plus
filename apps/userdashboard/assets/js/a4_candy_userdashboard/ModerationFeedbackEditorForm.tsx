@@ -15,8 +15,9 @@ interface ModerationFeedbackEditorFormProps {
   initialFeedback?: ModeratorFeedback | null
   ckeditorConfig?: string
   showStatus?: boolean
-  onSubmit: (payload: { feedback: string, status: string | null }) => void | Promise<void>
+  onSubmit: (payload: { feedback: string, status: string | null, markResolved: boolean }) => void | Promise<void>
   onCancel: () => void
+  onDelete?: () => void
 }
 
 function plainTextLength (html: string) {
@@ -33,6 +34,7 @@ export const ModerationFeedbackEditorForm = (props: ModerationFeedbackEditorForm
   const [feedback, setFeedback] = useState(initialFeedback?.feedback_text || '')
   const [status, setStatus] = useState(item.moderator_status || '')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [markResolved, setMarkResolved] = useState(false)
   const formId = 'moderation-feedback-' + item.pk
   const supportsRichText = typeof window !== 'undefined' && !!window.ClassicEditor
   const feedbackFieldId = formId + '-feedback'
@@ -42,10 +44,11 @@ export const ModerationFeedbackEditorForm = (props: ModerationFeedbackEditorForm
     noStatus: django.gettext('No processing status'),
     feedback: django.gettext('Feedback'),
     placeholder: django.gettext('Write a feedback...'),
-    charCount: django.gettext(' characters'),
     cancel: django.gettext('Cancel'),
     submit: django.gettext('Submit feedback'),
-    submitEdit: django.gettext('Update feedback')
+    submitEdit: django.gettext('Update feedback'),
+    markResolved: django.gettext('Also mark report as resolved'),
+    delete: django.gettext('Delete feedback')
   }
 
   const parseConfig = () => {
@@ -122,7 +125,8 @@ export const ModerationFeedbackEditorForm = (props: ModerationFeedbackEditorForm
     try {
       await props.onSubmit({
         feedback,
-        status: showStatus ? (status || null) : null
+        status: showStatus ? (status || null) : null,
+        markResolved
       })
     } finally {
       setIsSubmitting(false)
@@ -168,20 +172,38 @@ export const ModerationFeedbackEditorForm = (props: ModerationFeedbackEditorForm
       </div>
 
       <div className="row align-items-center">
-        <span className="col-6 a4-comments__char-count">
-          {charCount}/{FEEDBACK_MAX_LENGTH}{translated.charCount}
-        </span>
-        <div className="a4-comments__submit d-flex col-6 justify-content-end">
+        <div className="col-12 col-md-4 d-flex align-items-center">
+          <span className="a4-comments__char-count">
+            {charCount}/{FEEDBACK_MAX_LENGTH}
+          </span>
+          {initialFeedback && props.onDelete &&
+            <button
+              type="button"
+              className="btn btn--none text-danger ms-3"
+              onClick={props.onDelete}
+            >
+              {translated.delete}
+            </button>}
+        </div>
+        <div className="col-12 col-md-8 d-flex flex-wrap align-items-center justify-content-end">
+          <label className="userdashboard-mod-feedback__resolve me-3">
+            <input
+              type="checkbox"
+              checked={markResolved}
+              onChange={(e) => setMarkResolved(e.target.checked)}
+            />
+            <span className="ms-2">{translated.markResolved}</span>
+          </label>
           <button
             type="button"
-            className="btn btn--secondary me-2"
+            className="btn btn--none me-2"
             onClick={props.onCancel}
           >
             {translated.cancel}
           </button>
           <button
             type="submit"
-            className="btn btn--default a4-comments__submit-input"
+            className="btn btn--primary-filled a4-comments__submit-input"
             disabled={isSubmitting || overLimit}
           >
             {initialFeedback ? translated.submitEdit : translated.submit}

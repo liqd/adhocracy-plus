@@ -60,7 +60,7 @@ test('renders an idea with label and inline feedback button', () => {
   expect(screen.getByText(/example idea description/)).toBeTruthy()
   expect(screen.getByText('Idea')).toBeTruthy()
   const button = tree.container.querySelector(
-    '#moderation-notification-actions-bar-button-reply-idea-5'
+    '#moderation-notification-actions-bar-button-reply-5'
   )!
   expect(button).toBeTruthy()
   expect(button.getAttribute('href')).toBeNull()
@@ -79,7 +79,7 @@ test('shows the feedback form when adding feedback to an idea', () => {
   )
   fireEvent.click(
     tree.container.querySelector(
-      '#moderation-notification-actions-bar-button-reply-idea-5'
+      '#moderation-notification-actions-bar-button-reply-5'
     )!
   )
   expect(screen.getByLabelText('Status')).toBeTruthy()
@@ -221,7 +221,7 @@ test('showing blocked alert', async () => {
   const mockedFn = jest.fn()
   const tree = render(
     <ModerationNotification
-      notification={mockedNotification}
+      notification={{ ...mockedNotification, is_moderator_marked: true }}
       getUrlParams={() => ''}
       loadData={mockedFn}
     />

@@ -318,3 +318,19 @@ def test_non_moderator_cannot_write_idea_feedback(
     response = apiclient.delete(url)
 
     assert response.status_code == 403
+
+
+@pytest.mark.django_db
+def test_idea_feedback_without_mark_resolved_keeps_idea_unread(apiclient, idea):
+    project = idea.project
+    _login_moderator(apiclient, project)
+
+    response = apiclient.post(
+        _feedback_url(project, idea),
+        {"feedback_text": "<p>Feedback</p>", "mark_resolved": False},
+        format="json",
+    )
+
+    assert response.status_code == 201
+    idea.refresh_from_db()
+    assert idea.is_reviewed is False

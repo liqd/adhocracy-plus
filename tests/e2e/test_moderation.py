@@ -85,6 +85,11 @@ def test_moderator_blocks_comment(page, e2e_login, moderation_data, db_commit):
     _open_moderation_detail(page, e2e_login, moderation_data)
 
     notification = _notification(page, comment)
+    highlight = notification.locator(
+        f"[id='moderation-notification-actions-bar-button-highlight-{comment.pk}']"
+    )
+    highlight.click()
+    expect(page.locator("#alert")).to_contain_text("Comment highlighted successfully.")
     block = notification.locator(
         f"[id='moderation-notification-actions-bar-button-block-{comment.pk}']"
     )
@@ -124,17 +129,13 @@ def test_moderator_adds_and_deletes_feedback(
 
     _open_moderation_detail(page, e2e_login, moderation_data)
 
-    page.get_by_role("button", name="Filter: Unread").click()
-    page.get_by_role("button", name="View all").click()
-    page.keyboard.press("Escape")
-
     notification = _notification(page, comment)
     notification.locator("[id*='-reply-']").click()
 
     feedback_form = page.locator("form.general-form")
     expect(feedback_form).to_be_visible()
-    feedback_form.locator("textarea").fill("Please clarify this comment")
-    feedback_form.get_by_role("button", name="submit feedback").click()
+    feedback_form.locator(".ck-editor__editable").fill("Please clarify this comment")
+    feedback_form.get_by_role("button", name="Submit feedback").click()
 
     feedback = page.locator(".userdashboard-mod-feedback")
     expect(feedback).to_be_visible()
@@ -145,8 +146,8 @@ def test_moderator_adds_and_deletes_feedback(
 
     assert db_commit(_verify) is True
 
-    feedback.locator(".dropdown-toggle").click()
-    page.locator("#delete-input").click()
+    notification.locator("[id*='-reply-']").click()
+    page.get_by_role("button", name="Delete feedback").click()
 
     expect(feedback).not_to_be_attached(timeout=15000)
 

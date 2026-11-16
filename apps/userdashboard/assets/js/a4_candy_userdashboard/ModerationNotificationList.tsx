@@ -3,28 +3,46 @@ import django from 'django'
 
 import { ModerationNotification } from './ModerationNotification'
 import { Filter } from './Filter'
+import api from './api'
 import type { FilterItem, ModerationItem } from './types'
 
 const PACKET_COMMENT_SIZE = 15
 
+interface ReviewCounts {
+  unread: number
+  read: number
+  total: number
+}
+
+interface ModerationCounts {
+  all: ReviewCounts
+  comments: ReviewCounts
+  reported: ReviewCounts
+  ideas: ReviewCounts
+}
+
 const contentTypeFilterItems: FilterItem[] = [
   { label: django.gettext('All'), value: 'all' },
-  { label: django.gettext('All comments'), value: 'comments' },
+  { label: django.gettext('Comments'), value: 'comments' },
   { label: django.gettext('Reported comments'), value: 'reported' },
-  { label: django.gettext('All ideas'), value: 'ideas' }
+  { label: django.gettext('Ideas'), value: 'ideas' }
 ]
 
-const isReadFilterItems: FilterItem[] = [
-  { label: django.gettext('Read'), value: 'True' },
+const readFilterItems: FilterItem[] = [
   { label: django.gettext('Unread'), value: 'False' },
-  { label: django.gettext('View all'), value: 'All' }
+  { label: django.gettext('Read'), value: 'True' },
+  { label: django.gettext('All'), value: 'All' }
 ]
 
 const orderingFilterItems: FilterItem[] = [
-  { label: django.gettext('Most reported'), value: '-num_reports' },
-  { label: django.gettext('Oldest'), value: 'created' },
-  { label: django.gettext('Most recent'), value: '-created' }
+  { label: django.gettext('Oldest First'), value: 'created' },
+  { label: django.gettext('Newest First'), value: '-created' },
+  { label: django.gettext('Most reported'), value: '-num_reports' }
 ]
+
+function formatCount (count: number): string {
+  return String(count).padStart(2, '0')
+}
 
 interface ModerationNotificationListProps {
   moderationItemsApiUrl: string
@@ -41,6 +59,7 @@ interface ModerationNotificationListState {
     isRead: string
     ordering: string
   }
+  counts: ModerationCounts | null
   numOfComments: number
   hasMore: string | null
   packetFactor: number
@@ -56,7 +75,12 @@ export default class ModerationNotificationList extends Component<ModerationNoti
 
     this.state = {
       moderationItems: [],
-      selectedFilters: { contentType: 'all', isRead: 'False', ordering: '-created' },
+      selectedFilters: {
+        contentType: 'all',
+        isRead: 'False',
+        ordering: 'created'
+      },
+      counts: null,
       numOfComments: PACKET_COMMENT_SIZE,
       hasMore: null,
       packetFactor: 1,
@@ -115,12 +139,16 @@ export default class ModerationNotificationList extends Component<ModerationNoti
   async loadData () {
     this.isLoading = true
     try {
-      const url = this.props.moderationItemsApiUrl + this.getUrlParams()
-      const data = await fetch(url)
+      const [data, countsData] = await Promise.all([
+        fetch(this.props.moderationItemsApiUrl + this.getUrlParams()),
+        fetch(this.props.moderationItemsApiUrl + 'counts/')
+      ])
       const jsonData = await data.json()
+      const counts = await countsData.json()
       this.setState({
         moderationItems: jsonData.results,
         hasMore: jsonData.next,
+        counts,
         isLoaded: true
       })
     } catch (error) {
@@ -156,11 +184,52 @@ export default class ModerationNotificationList extends Component<ModerationNoti
     document.documentElement.scrollTop = 0
   }
 
+  markAllResolved = async () => {
+    const [, error] = await api.fetch({
+      url: this.props.moderationItemsApiUrl + 'mark_all_read/',
+      method: 'POST'
+    })
+    if (error) {
+      console.warn(error)
+      return
+    }
+    this.loadDataWithFilter()
+  }
+
   componentWillUnmount () {
     if (this.timer) {
       clearInterval(this.timer)
     }
     this.timer = null
+  }
+
+  getCurrentCounts (): ReviewCounts {
+    if (!this.state.counts) {
+      return { unread: 0, read: 0, total: 0 }
+    }
+    return this.state.counts[this.state.selectedFilters.contentType as keyof ModerationCounts] ||
+      this.state.counts.all
+  }
+
+  getDisplayCount (): number {
+    const counts = this.getCurrentCounts()
+    if (this.state.selectedFilters.isRead === 'False') {
+      return counts.unread
+    }
+    if (this.state.selectedFilters.isRead === 'True') {
+      return counts.read
+    }
+    return counts.total
+  }
+
+  getDisplayLabel (): string {
+    if (this.state.selectedFilters.isRead === 'False') {
+      return django.gettext('Unread')
+    }
+    if (this.state.selectedFilters.isRead === 'True') {
+      return django.gettext('Read')
+    }
+    return django.gettext('All')
   }
 
   render () {
@@ -172,6 +241,13 @@ export default class ModerationNotificationList extends Component<ModerationNoti
     const listText = django.gettext('Notifications of comments and ideas from project')
     const filterText = django.gettext('Notification filters and sorting')
     const headerText = django.gettext('Moderation project')
+    const readFilterLabel = django.gettext('Read status')
+    const typeFilterText = django.gettext('Type')
+    const sortFilterText = django.gettext('Sort')
+    const markAllResolvedText = django.gettext('Mark all as resolved')
+
+    const counts = this.getCurrentCounts()
+    const allUnreadCount = this.state.counts ? this.state.counts.all.unread : 0
 
     return (
       <>
@@ -189,37 +265,69 @@ export default class ModerationNotificationList extends Component<ModerationNoti
         </div>
 
         <nav
-          className="row"
+          className="row align-items-center"
           aria-label={filterText}
         >
-          <div className="col-md">
+          <div className="col-12 col-lg-auto mb-2 mb-lg-0">
+            <div className="moderation-filter" role="group" aria-label={readFilterLabel}>
+              {readFilterItems.map(filter => {
+                const count = filter.value === 'False'
+                  ? counts.unread
+                  : filter.value === 'True' ? counts.read : counts.total
+                return (
+                  <button
+                    key={filter.value}
+                    type="button"
+                    className={
+                      'moderation-filter__btn' +
+                      (this.state.selectedFilters.isRead === filter.value ? ' is-active' : '')
+                    }
+                    aria-pressed={this.state.selectedFilters.isRead === filter.value}
+                    onClick={() => this.isReadFilterChangeHandle(filter.value)}
+                  >
+                    {filter.label} ({formatCount(count)})
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+          <div className="col-12 col-lg-auto mb-2 mb-lg-0">
             <Filter
-              filterClass="filter--full dropdown dropdown-menu-end"
+              filterClass="moderation-projects__sort dropdown"
               filterItems={contentTypeFilterItems}
               onFilterChange={(value) => this.contentTypeFilterChangeHandle(value)}
               selectedFilter={this.state.selectedFilters.contentType}
-              filterText={django.gettext('Filter')}
+              filterText={typeFilterText}
             />
           </div>
-          <div className="col-md">
+          <div className="col-12 col-lg-auto ms-lg-auto">
             <Filter
-              filterClass="filter--full dropdown dropdown-menu-end"
-              filterItems={isReadFilterItems}
-              onFilterChange={(value) => this.isReadFilterChangeHandle(value)}
-              selectedFilter={this.state.selectedFilters.isRead}
-              filterText={django.gettext('Filter')}
-            />
-          </div>
-          <div className="col-md">
-            <Filter
-              filterClass="filter--full dropdown dropdown-menu-end"
+              filterClass="moderation-projects__sort dropdown"
               filterItems={orderingFilterItems}
               onFilterChange={(value) => this.orderingFilterChangeHandle(value)}
               selectedFilter={this.state.selectedFilters.ordering}
-              filterText={django.gettext('Sorting')}
+              filterText={sortFilterText}
             />
           </div>
         </nav>
+        <div className="row align-items-center mb-2">
+          <div className="col-12 col-lg-auto">
+            <p className="moderation-projects__count u-text--gray mb-0">
+              {formatCount(this.getDisplayCount())} {this.getDisplayLabel()}
+            </p>
+          </div>
+          <div className="col-12 col-lg-auto ms-lg-auto">
+            <button
+              className="btn btn--light"
+              type="button"
+              onClick={this.markAllResolved}
+              disabled={allUnreadCount === 0}
+            >
+              <i className="fas fa-box-archive" aria-hidden="true" />
+              <span className="ms-2">{markAllResolvedText}</span>
+            </button>
+          </div>
+        </div>
         <section aria-labelledby="list-header" className="row">
           {!isLoaded
             ? (

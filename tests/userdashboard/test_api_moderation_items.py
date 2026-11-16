@@ -10,6 +10,11 @@ def _url(project):
     return reverse("moderationitems-list", kwargs={"project_pk": project.pk})
 
 
+def _login_moderator(apiclient, project):
+    moderator = project.moderators.first()
+    apiclient.login(username=moderator.email, password="password")
+
+
 @pytest.mark.django_db
 def test_anonymous_cannot_view_moderation_items(apiclient, project):
     response = apiclient.get(_url(project))
@@ -143,3 +148,49 @@ def test_ordering_by_created(apiclient, comment_factory, idea):
     )
     assert response.status_code == 200
     assert [item["pk"] for item in response.data] == [comment_2.pk, comment_1.pk]
+
+
+def _counts_url(project):
+    return reverse("moderationitems-counts", kwargs={"project_pk": project.pk})
+
+
+def _mark_all_read_url(project):
+    return reverse("moderationitems-mark-all-read", kwargs={"project_pk": project.pk})
+
+
+@pytest.mark.django_db
+def test_counts_for_comments_and_ideas(apiclient, idea, comment_factory):
+    comment_factory(content_object=idea, is_reviewed=False)
+    comment_factory(content_object=idea, is_reviewed=True)
+    idea.is_reviewed = False
+    idea.save(ignore_modified=True)
+    project = idea.project
+    _login_moderator(apiclient, project)
+
+    response = apiclient.get(_counts_url(project))
+
+    assert response.status_code == 200
+    assert response.data["comments"] == {"unread": 1, "read": 1, "total": 2}
+    assert response.data["ideas"] == {"unread": 1, "read": 0, "total": 1}
+    assert response.data["all"] == {"unread": 2, "read": 1, "total": 3}
+
+
+@pytest.mark.django_db
+def test_mark_all_read_marks_comments_and_ideas(apiclient, idea, comment_factory):
+    unread_comment = comment_factory(content_object=idea, is_reviewed=False)
+    read_comment = comment_factory(content_object=idea, is_reviewed=True)
+    idea.is_reviewed = False
+    idea.save(ignore_modified=True)
+    project = idea.project
+    _login_moderator(apiclient, project)
+
+    response = apiclient.post(_mark_all_read_url(project), format="json")
+
+    assert response.status_code == 200
+    assert response.data["updated"] == 2
+    unread_comment.refresh_from_db()
+    read_comment.refresh_from_db()
+    idea.refresh_from_db()
+    assert unread_comment.is_reviewed is True
+    assert read_comment.is_reviewed is True
+    assert idea.is_reviewed is True

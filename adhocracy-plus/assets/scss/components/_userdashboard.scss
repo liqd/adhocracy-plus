@@ -62,15 +62,21 @@
 }
 
 .userdashboard-mod-feedback {
-    border-top: 1px solid $gray-lightest;
-    margin: $spacer (1.5 * -$spacer) 0 (1.5 * -$spacer);
-    padding: (1.5 * $spacer) (1.5 * $spacer) 0;
+    margin: $spacer 0;
+    padding: $spacer;
+    background-color: $bg-light;
+    border-radius: 5px;
 }
 
 .userdashboard-mod-feedback__header {
     font-weight: $demi-bold;
     display: flex;
     align-items: center;
+}
+
+.userdashboard-mod-feedback__date {
+    color: $text-color-gray;
+    font-size: $font-size-sm;
 }
 
 .userdashboard-mod-feedback__text {
@@ -243,4 +249,66 @@
 
 .moderation-projects__count {
     font-size: 0.875rem;
+}
+
+.userdashboard-mod-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacer;
+    margin-bottom: $spacer;
+}
+
+.userdashboard-mod-actions__right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: (1.5 * $spacer);
+    margin-left: auto;
+}
+
+.userdashboard-mod-actions__btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: $text-color;
+    font-size: $font-size-sm;
+
+    &:hover,
+    &:focus-visible {
+        background: none;
+        text-decoration: underline;
+    }
+
+    &--primary {
+        color: $brand-primary;
+    }
+
+    &--danger {
+        color: $brand-danger;
+    }
+}
+
+.userdashboard-mod-item__hidden {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacer;
+    padding: $spacer;
+    background-color: $bg-light;
+    color: $text-color-gray;
+    font-size: $font-size-sm;
+}
+
+.userdashboard-mod-feedback__resolve {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0;
+    font-size: $font-size-sm;
+}
+
+.btn.btn--primary-filled {
+    @include button-bg($brand-primary, $brand-primary, $white, 10%);
 }

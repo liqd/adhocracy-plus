@@ -187,3 +187,21 @@ def test_editing_feedback_marks_comment_as_read(
     assert response.status_code == 200
     comment.refresh_from_db()
     assert comment.is_reviewed is True
+
+
+@pytest.mark.django_db
+def test_adding_feedback_without_mark_resolved_keeps_comment_unread(
+    apiclient, idea, user, comment_factory
+):
+    idea.project.moderators.add(user)
+    comment = comment_factory(content_object=idea, is_reviewed=False)
+    url = reverse("moderatorfeedback-list", kwargs={"comment_pk": comment.pk})
+
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(
+        url, {"feedback_text": "a statement", "mark_resolved": False}, format="json"
+    )
+
+    assert response.status_code == 201
+    comment.refresh_from_db()
+    assert comment.is_reviewed is False
