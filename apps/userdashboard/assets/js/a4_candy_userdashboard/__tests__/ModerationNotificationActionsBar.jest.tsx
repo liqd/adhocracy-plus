@@ -15,13 +15,13 @@ test('shows give feedback, mark resolved and highlight', () => {
   const buttons = tree.container.querySelectorAll('button')
   expect(buttons.length).toBe(3)
   expect(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-reply-7')
+    tree.container.querySelector('#moderation-notification-comment-7-reply')
   ).toBeTruthy()
   expect(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-resolve-7')
+    tree.container.querySelector('#moderation-notification-comment-7-resolve')
   ).toBeTruthy()
   expect(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-highlight-7')
+    tree.container.querySelector('#moderation-notification-comment-7-highlight')
   ).toBeTruthy()
 })
 
@@ -37,7 +37,7 @@ test('shows the pencil and edit label when feedback exists', () => {
 
   expect(tree.container.querySelector('.fa-pen')).toBeTruthy()
   expect(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-reply-7')?.textContent
+    tree.container.querySelector('#moderation-notification-comment-7-reply')?.textContent
   ).toMatch(/Edit feedback/i)
 })
 
@@ -51,10 +51,10 @@ test('shows hide from discussion for a highlighted comment', () => {
   )
 
   expect(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-block-7')?.textContent
+    tree.container.querySelector('#moderation-notification-comment-7-block')?.textContent
   ).toMatch(/Hide from discussion/i)
   expect(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-highlight-7')
+    tree.container.querySelector('#moderation-notification-comment-7-highlight')
   ).toBeNull()
 })
 
@@ -70,7 +70,7 @@ test('shows only reopen report for a hidden comment', () => {
   const buttons = tree.container.querySelectorAll('button')
   expect(buttons.length).toBe(1)
   expect(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-reopen-7')?.textContent
+    tree.container.querySelector('#moderation-notification-comment-7-reopen')?.textContent
   ).toMatch(/Reopen report/i)
 })
 
@@ -85,10 +85,10 @@ test('hides highlight and hide actions for ideas', () => {
   )
 
   expect(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-highlight-7')
+    tree.container.querySelector('#moderation-notification-comment-7-highlight')
   ).toBeNull()
   expect(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-block-7')
+    tree.container.querySelector('#moderation-notification-comment-7-block')
   ).toBeNull()
 })
 
@@ -112,13 +112,13 @@ test('calls the action callbacks', () => {
   )
 
   fireEvent.click(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-reply-7')!
+    tree.container.querySelector('#moderation-notification-comment-7-reply')!
   )
   fireEvent.click(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-resolve-7')!
+    tree.container.querySelector('#moderation-notification-comment-7-resolve')!
   )
   fireEvent.click(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-highlight-7')!
+    tree.container.querySelector('#moderation-notification-comment-7-highlight')!
   )
 
   expect(onToggleForm).toHaveBeenCalled()

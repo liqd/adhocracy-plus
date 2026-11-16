@@ -574,6 +574,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
 
         <ModerationNotificationActionsBar
           itemPk={notification.pk}
+          itemType={notification.item_type}
           isEditing={!!notification.moderator_feedback}
           isBlocked={notification.is_blocked}
           isHighlighted={notification.is_moderator_marked}

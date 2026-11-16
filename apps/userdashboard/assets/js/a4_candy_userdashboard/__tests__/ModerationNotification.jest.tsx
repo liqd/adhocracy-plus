@@ -60,13 +60,13 @@ test('renders an idea with label and inline feedback button', () => {
   expect(screen.getByText(/example idea description/)).toBeTruthy()
   expect(screen.getByText('Idea')).toBeTruthy()
   const button = tree.container.querySelector(
-    '#moderation-notification-actions-bar-button-reply-5'
+    '#moderation-notification-idea-5-reply'
   )!
   expect(button).toBeTruthy()
   expect(button.getAttribute('href')).toBeNull()
   expect(button.textContent).toMatch(/Give feedback/i)
   expect(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-block-5')
+    tree.container.querySelector('#moderation-notification-idea-5-block')
   ).toBeNull()
 })
 
@@ -79,7 +79,7 @@ test('shows the feedback form when adding feedback to an idea', () => {
   )
   fireEvent.click(
     tree.container.querySelector(
-      '#moderation-notification-actions-bar-button-reply-5'
+      '#moderation-notification-idea-5-reply'
     )!
   )
   expect(screen.getByLabelText('Status')).toBeTruthy()
@@ -227,7 +227,7 @@ test('showing blocked alert', async () => {
     />
   )
   const blockButton = tree.container.querySelector(
-    '#moderation-notification-actions-bar-button-block-2'
+    '#moderation-notification-comment-2-block'
   )!
   fireEvent.click(blockButton)
   await waitFor(() => {
@@ -246,7 +246,7 @@ test('showing highlighted alert', async () => {
     />
   )
   const highlightButton = tree.container.querySelector(
-    '#moderation-notification-actions-bar-button-highlight-2'
+    '#moderation-notification-comment-2-highlight'
   )!
   fireEvent.click(highlightButton)
   await waitFor(() => {

@@ -139,12 +139,17 @@ export default class ModerationNotificationList extends Component<ModerationNoti
   async loadData () {
     this.isLoading = true
     try {
-      const [data, countsData] = await Promise.all([
-        fetch(this.props.moderationItemsApiUrl + this.getUrlParams()),
-        fetch(this.props.moderationItemsApiUrl + 'counts/')
-      ])
+      const data = await fetch(this.props.moderationItemsApiUrl + this.getUrlParams())
       const jsonData = await data.json()
-      const counts = await countsData.json()
+      let counts = this.state.counts
+      try {
+        const countsData = await fetch(this.props.moderationItemsApiUrl + 'counts/')
+        if (countsData.ok) {
+          counts = await countsData.json()
+        }
+      } catch (error) {
+        console.warn(error)
+      }
       this.setState({
         moderationItems: jsonData.results,
         hasMore: jsonData.next,

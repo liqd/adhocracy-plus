@@ -86,12 +86,12 @@ def test_moderator_blocks_comment(page, e2e_login, moderation_data, db_commit):
 
     notification = _notification(page, comment)
     highlight = notification.locator(
-        f"[id='moderation-notification-actions-bar-button-highlight-{comment.pk}']"
+        f"[id='moderation-notification-comment-{comment.pk}-highlight']"
     )
     highlight.click()
     expect(page.locator("#alert")).to_contain_text("Comment highlighted successfully.")
     block = notification.locator(
-        f"[id='moderation-notification-actions-bar-button-block-{comment.pk}']"
+        f"[id='moderation-notification-comment-{comment.pk}-block']"
     )
     block.click()
     expect(page.locator("#alert")).to_contain_text("Comment blocked successfully.")
@@ -110,7 +110,7 @@ def test_moderator_highlights_comment(page, e2e_login, moderation_data, db_commi
 
     notification = _notification(page, comment)
     highlight = notification.locator(
-        f"[id='moderation-notification-actions-bar-button-highlight-{comment.pk}']"
+        f"[id='moderation-notification-comment-{comment.pk}-highlight']"
     )
     highlight.click()
     expect(page.locator("#alert")).to_contain_text("Comment highlighted successfully.")

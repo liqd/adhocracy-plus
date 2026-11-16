@@ -7,6 +7,7 @@ interface ModerationNotificationActionsBarProps {
   isHighlighted?: boolean
   isUnread?: boolean
   itemPk?: number
+  itemType?: 'comment' | 'idea'
   showModerationActions?: boolean
   onToggleForm?: (isEditing: boolean) => void
   onToggleBlock?: () => void
@@ -31,6 +32,7 @@ export const ModerationNotificationActionsBar = (props: ModerationNotificationAc
     isHighlighted,
     isUnread = true,
     itemPk,
+    itemType = 'comment',
     showModerationActions = true,
     onToggleForm,
     onToggleBlock,
@@ -39,12 +41,14 @@ export const ModerationNotificationActionsBar = (props: ModerationNotificationAc
     onReopen
   } = props
 
+  const idPrefix = 'moderation-notification-' + itemType + '-' + itemPk
+
   if (isBlocked) {
     return (
       <div className="userdashboard-mod-actions">
         <div className="userdashboard-mod-actions__right">
           <button
-            id={'moderation-notification-actions-bar-button-reopen-' + itemPk}
+            id={idPrefix + '-reopen'}
             className="btn btn--none userdashboard-mod-actions__btn"
             type="button"
             onClick={onReopen}
@@ -60,7 +64,7 @@ export const ModerationNotificationActionsBar = (props: ModerationNotificationAc
   return (
     <div className="userdashboard-mod-actions">
       <button
-        id={'moderation-notification-actions-bar-button-reply-' + itemPk}
+        id={idPrefix + '-reply'}
         className="btn btn--none userdashboard-mod-actions__btn"
         type="button"
         onClick={() => onToggleForm?.(!!isEditing)}
@@ -76,7 +80,7 @@ export const ModerationNotificationActionsBar = (props: ModerationNotificationAc
       <div className="userdashboard-mod-actions__right">
         {isUnread &&
           <button
-            id={'moderation-notification-actions-bar-button-resolve-' + itemPk}
+            id={idPrefix + '-resolve'}
             className="btn btn--none userdashboard-mod-actions__btn"
             type="button"
             onClick={onMarkResolved}
@@ -87,7 +91,7 @@ export const ModerationNotificationActionsBar = (props: ModerationNotificationAc
         {showModerationActions && (isHighlighted
           ? (
             <button
-              id={'moderation-notification-actions-bar-button-block-' + itemPk}
+              id={idPrefix + '-block'}
               className="btn btn--none userdashboard-mod-actions__btn userdashboard-mod-actions__btn--danger"
               type="button"
               onClick={onToggleBlock}
@@ -98,7 +102,7 @@ export const ModerationNotificationActionsBar = (props: ModerationNotificationAc
             )
           : (
             <button
-              id={'moderation-notification-actions-bar-button-highlight-' + itemPk}
+              id={idPrefix + '-highlight'}
               className="btn btn--none userdashboard-mod-actions__btn userdashboard-mod-actions__btn--primary"
               type="button"
               onClick={onToggleHighlight}
