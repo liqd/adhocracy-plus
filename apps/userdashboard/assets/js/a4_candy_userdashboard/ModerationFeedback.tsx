@@ -13,7 +13,7 @@ export const ModerationFeedback = ({ feedback, onDelete, onEdit }: ModerationFee
   const translated = {
     delete: django.gettext('delete'),
     edit: django.gettext('edit'),
-    feedbackTitle: django.gettext('Moderator\'s feedback'),
+    feedbackTitle: django.gettext('Moderator'),
     editWasOn: django.gettext('Last edit was on ').replace(/\s+$/, '')
   }
 

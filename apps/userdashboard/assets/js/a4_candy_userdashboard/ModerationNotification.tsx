@@ -1,9 +1,8 @@
 import React, { useRef, useState } from 'react'
 import django from 'django'
 import api from './api'
-import { ModerationFeedbackForm } from './ModerationFeedbackForm'
 import { ModerationFeedback } from './ModerationFeedback'
-import { ModerationIdeaFeedbackForm } from './ModerationIdeaFeedbackForm'
+import { ModerationFeedbackEditorForm } from './ModerationFeedbackEditorForm'
 import { ModerationNotificationActionsBar } from './ModerationNotificationActionsBar'
 import { alert as Alert } from 'adhocracy4'
 import type { ModerationItem } from './types'
@@ -25,9 +24,7 @@ const translated = {
   aiClassified: django.gettext('AI'),
   postedComment: django.gettext('posted a {}comment{}'),
   submittedIdea: django.gettext('submitted the idea'),
-  addFeedback: django.gettext('Add feedback'),
-  editFeedback: django.gettext('Edit feedback'),
-  officialFeedback: django.gettext('Official feedback'),
+  giveFeedback: django.gettext('Give feedback'),
   statusSaved: django.gettext('Processing status saved.'),
   readMore: django.gettext('Read more'),
   showLess: django.gettext('Show less'),
@@ -55,7 +52,6 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
   const { notification } = props
   const isIdea = notification.item_type === 'idea'
   const [showFeedbackForm, setShowFeedbackForm] = useState(false)
-  const [isEditing, setIsEditing] = useState(false)
   const [showFullText, setShowFullText] = useState(false)
   const [alert, setAlert] = useState<AlertValue>()
   const imageDialogRef = useRef<HTMLDialogElement>(null)
@@ -139,7 +135,6 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
     } else {
       props.loadData?.()
       setShowFeedbackForm(false)
-      setIsEditing(false)
       setAlert({
         type: 'success',
         message: translated.feedbackEdited,
@@ -163,7 +158,6 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
     }
     props.loadData?.()
     setShowFeedbackForm(false)
-    setIsEditing(false)
     setAlert({
       type: 'success',
       message: translated.feedbackDeleted,
@@ -241,8 +235,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
     }
   }
 
-  function toggleModerationFeedbackForm (isEditing: boolean) {
-    if (isEditing) setIsEditing(true)
+  function toggleModerationFeedbackForm () {
     setShowFeedbackForm(!showFeedbackForm)
   }
 
@@ -546,12 +539,10 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
                 className="btn px-0 userdashboard-mod-notification__btn"
                 type="button"
                 aria-expanded={showFeedbackForm}
-                onClick={() => toggleModerationFeedbackForm(!!notification.moderator_feedback)}
+                onClick={() => toggleModerationFeedbackForm()}
               >
                 <i className="fas fa-reply" aria-hidden="true" />
-                <span className="ms-2">
-                  {notification.moderator_feedback ? translated.editFeedback : translated.addFeedback}
-                </span>
+                <span className="ms-2">{translated.giveFeedback}</span>
               </button>
             </div>
             )
@@ -562,7 +553,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
                 isEditing={!!notification.moderator_feedback}
                 isBlocked={notification.is_blocked}
                 isHighlighted={notification.is_moderator_marked}
-                onToggleForm={(isEditing) => toggleModerationFeedbackForm(isEditing)}
+                onToggleForm={() => toggleModerationFeedbackForm()}
                 onToggleBlock={() => toggleIsBlocked()}
                 onToggleHighlight={() => toggleIsHighlighted()}
               />
@@ -574,28 +565,28 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
             onDelete={handleFeedbackDelete}
             onEdit={() => {
               setShowFeedbackForm(true)
-              setIsEditing(true)
             }}
           />}
       </div>
-      {!isIdea && showFeedbackForm &&
-        <ModerationFeedbackForm
-          onSubmit={(payload) => handleFeedbackSubmit(payload)}
-          onEditSubmit={(payload) => handleFeedbackEdit(payload)}
-          initialFeedback={notification.moderator_feedback}
-          editing={isEditing}
-        />}
-      {isIdea && showFeedbackForm &&
-        <ModerationIdeaFeedbackForm
+      {showFeedbackForm &&
+        <ModerationFeedbackEditorForm
           key={notification.moderator_feedback?.pk || 'new'}
           item={notification}
           initialFeedback={notification.moderator_feedback}
           ckeditorConfig={props.ckeditorConfig}
-          onSubmit={(payload) => handleIdeaFeedbackSubmit(payload)}
+          showStatus={isIdea}
+          onSubmit={(payload) => {
+            if (isIdea) {
+              return handleIdeaFeedbackSubmit(payload)
+            }
+            if (notification.moderator_feedback) {
+              return handleFeedbackEdit(payload.feedback)
+            }
+            return handleFeedbackSubmit(payload.feedback)
+          }}
           onCancel={() => {
             setShowFeedbackForm(false)
-            setIsEditing(false)
-          }}
+                }}
         />}
       <div className="mb-3">
         <Alert {...alert} onClick={() => setAlert(undefined)} />

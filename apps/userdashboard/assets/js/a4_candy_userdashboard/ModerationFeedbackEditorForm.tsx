@@ -10,10 +10,11 @@ declare global {
   }
 }
 
-interface ModerationIdeaFeedbackFormProps {
+interface ModerationFeedbackEditorFormProps {
   item: ModerationItem
   initialFeedback?: ModeratorFeedback | null
   ckeditorConfig?: string
+  showStatus?: boolean
   onSubmit: (payload: { feedback: string, status: string | null }) => void | Promise<void>
   onCancel: () => void
 }
@@ -26,8 +27,8 @@ function plainTextLength (html: string) {
   return doc.body.textContent?.length ?? 0
 }
 
-export const ModerationIdeaFeedbackForm = (props: ModerationIdeaFeedbackFormProps) => {
-  const { item, initialFeedback } = props
+export const ModerationFeedbackEditorForm = (props: ModerationFeedbackEditorFormProps) => {
+  const { item, initialFeedback, showStatus = true } = props
   const editorContainerRef = useRef<HTMLDivElement>(null)
   const [feedback, setFeedback] = useState(initialFeedback?.feedback_text || '')
   const [status, setStatus] = useState(item.moderator_status || '')
@@ -37,9 +38,10 @@ export const ModerationIdeaFeedbackForm = (props: ModerationIdeaFeedbackFormProp
   const feedbackFieldId = formId + '-feedback'
 
   const translated = {
-    status: django.gettext('Processing status'),
+    status: django.gettext('Status'),
     noStatus: django.gettext('No processing status'),
-    feedback: django.gettext('Official feedback'),
+    feedback: django.gettext('Feedback'),
+    placeholder: django.gettext('Write a feedback...'),
     charCount: django.gettext(' characters'),
     cancel: django.gettext('Cancel'),
     submit: django.gettext('Submit feedback'),
@@ -73,6 +75,7 @@ export const ModerationIdeaFeedbackForm = (props: ModerationIdeaFeedbackFormProp
       try {
         const createdEditor = await window.ClassicEditor.create(editorElement, {
           ...parseConfig(),
+          placeholder: translated.placeholder,
           initialData: initialFeedback?.feedback_text || ''
         })
         if (isCancelled) {
@@ -119,7 +122,7 @@ export const ModerationIdeaFeedbackForm = (props: ModerationIdeaFeedbackFormProp
     try {
       await props.onSubmit({
         feedback,
-        status: status || null
+        status: showStatus ? (status || null) : null
       })
     } finally {
       setIsSubmitting(false)
@@ -131,29 +134,33 @@ export const ModerationIdeaFeedbackForm = (props: ModerationIdeaFeedbackFormProp
 
   return (
     <form className="general-form" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor={formId + '-status'}>{translated.status}</label>
-        <select
-          className="form-select"
-          id={formId + '-status'}
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-        >
-          <option value="">{translated.noStatus}</option>
-          {(item.moderator_status_choices || []).map(choice => (
-            <option key={choice.value} value={choice.value}>{choice.label}</option>
-          ))}
-        </select>
-      </div>
+      {showStatus &&
+        <div className="form-group">
+          <label htmlFor={formId + '-status'}>{translated.status}</label>
+          <select
+            className="form-select"
+            id={formId + '-status'}
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <option value="">{translated.noStatus}</option>
+            {(item.moderator_status_choices || []).map(choice => (
+              <option key={choice.value} value={choice.value}>{choice.label}</option>
+            ))}
+          </select>
+        </div>}
 
       <div className="form-group">
-        <label htmlFor={feedbackFieldId}>{translated.feedback}</label>
+        <label htmlFor={feedbackFieldId} className="visually-hidden">
+          {translated.feedback}
+        </label>
         {supportsRichText
           ? <div ref={editorContainerRef} />
           : (
             <textarea
               id={feedbackFieldId}
               className="form-control"
+              placeholder={translated.placeholder}
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
             />

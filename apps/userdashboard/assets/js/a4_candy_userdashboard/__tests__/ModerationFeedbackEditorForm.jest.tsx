@@ -1,7 +1,7 @@
 import React from 'react'
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { ModerationIdeaFeedbackForm } from '../ModerationIdeaFeedbackForm'
+import { ModerationFeedbackEditorForm } from '../ModerationFeedbackEditorForm'
 
 const mockedItem = {
   pk: 7,
@@ -61,7 +61,7 @@ function renderForm (props = {}) {
   const onSubmit = jest.fn()
   const onCancel = jest.fn()
   const tree = render(
-    <ModerationIdeaFeedbackForm
+    <ModerationFeedbackEditorForm
       item={mockedItem}
       ckeditorConfig={'{}'}
       onSubmit={onSubmit}
@@ -76,14 +76,16 @@ test('creates the rich text editor and labels the editable field', async () => {
   renderForm()
 
   await waitFor(() => expect(createEditor).toHaveBeenCalled())
-  expect((createEditor.mock.calls[0] as any[])[1]).toEqual({ initialData: '' })
+  expect((createEditor.mock.calls[0] as any[])[1]).toEqual(
+    expect.objectContaining({ initialData: '' })
+  )
   expect(editableElement.setAttribute).toHaveBeenCalledWith(
     'id',
     'moderation-feedback-7-feedback'
   )
   expect(editableElement.setAttribute).toHaveBeenCalledWith(
     'aria-label',
-    'Official feedback'
+    'Feedback'
   )
 })
 
@@ -93,7 +95,7 @@ test('submits the current editor content and status', async () => {
 
   currentData = '<p>changed feedback</p>'
   act(() => changeHandler?.())
-  fireEvent.change(screen.getByLabelText('Processing status'), {
+  fireEvent.change(screen.getByLabelText('Status'), {
     target: { value: 'ACCEPTED' }
   })
   fireEvent.click(screen.getByRole('button', { name: 'Submit feedback' }))
@@ -125,9 +127,9 @@ test('uses the initial feedback as editor data', async () => {
   })
 
   await waitFor(() => expect(createEditor).toHaveBeenCalled())
-  expect((createEditor.mock.calls[0] as any[])[1]).toEqual({
-    initialData: '<p>existing feedback</p>'
-  })
+  expect((createEditor.mock.calls[0] as any[])[1]).toEqual(
+    expect.objectContaining({ initialData: '<p>existing feedback</p>' })
+  )
   expect(screen.getByRole('button', { name: 'Update feedback' })).toBeTruthy()
 })
 
@@ -155,7 +157,7 @@ test('falls back to a textarea without the CKEditor bundle', async () => {
   delete (window as any).ClassicEditor
   const { onSubmit } = renderForm()
 
-  fireEvent.change(screen.getByLabelText('Official feedback'), {
+  fireEvent.change(screen.getByLabelText('Feedback'), {
     target: { value: '<p>plain feedback</p>' }
   })
   fireEvent.click(screen.getByRole('button', { name: 'Submit feedback' }))
@@ -166,4 +168,28 @@ test('falls back to a textarea without the CKEditor bundle', async () => {
       status: 'CONSIDERATION'
     })
   })
+})
+
+test('hides the status select when used for comments', async () => {
+  const { onSubmit } = renderForm({ showStatus: false, item: mockedItem })
+  await waitFor(() => expect(changeHandler).toBeDefined())
+
+  expect(screen.queryByLabelText('Status')).toBeNull()
+
+  currentData = '<p>comment feedback</p>'
+  act(() => changeHandler?.())
+  fireEvent.click(screen.getByRole('button', { name: 'Submit feedback' }))
+
+  await waitFor(() => {
+    expect(onSubmit).toHaveBeenCalledWith({
+      feedback: '<p>comment feedback</p>',
+      status: null
+    })
+  })
+})
+
+test('does not render a visible "Official feedback" label', () => {
+  renderForm()
+
+  expect(screen.queryByText('Official feedback')).toBeNull()
 })

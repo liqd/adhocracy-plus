@@ -64,7 +64,7 @@ test('renders an idea with label and inline feedback button', () => {
   )!
   expect(button).toBeTruthy()
   expect(button.getAttribute('href')).toBeNull()
-  expect(button.textContent).toMatch(/Add feedback/i)
+  expect(button.textContent).toMatch(/Give feedback/i)
   expect(
     tree.container.querySelector('#moderation-notification-actions-bar-button-block-5')
   ).toBeNull()
@@ -82,8 +82,8 @@ test('shows the feedback form when adding feedback to an idea', () => {
       '#moderation-notification-actions-bar-button-reply-idea-5'
     )!
   )
-  expect(screen.getByLabelText('Processing status')).toBeTruthy()
-  expect(screen.getByLabelText('Official feedback')).toBeTruthy()
+  expect(screen.getByLabelText('Status')).toBeTruthy()
+  expect(screen.getByLabelText('Feedback')).toBeTruthy()
 })
 
 test('shows report marker for a reported idea', () => {
