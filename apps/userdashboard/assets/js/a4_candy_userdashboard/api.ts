@@ -27,12 +27,20 @@ const api = {
       headers: headers as Record<string, string>,
       body: JSON.stringify(body)
     })
+    let data: any
     try {
-      const data: T = await response.json()
-      return [data, undefined]
-    } catch (error) {
-      return [undefined, error]
+      data = await response.json()
+    } catch {
+      data = undefined
     }
+    if (!response.ok) {
+      const detail = data?.detail ||
+        Object.entries(data || {})
+          .map(([field, messages]) => `${field}: ${Array.isArray(messages) ? messages.join(', ') : messages}`)
+          .join(' ')
+      return [undefined, detail || response.statusText]
+    }
+    return [data as T, undefined]
   }
 }
 

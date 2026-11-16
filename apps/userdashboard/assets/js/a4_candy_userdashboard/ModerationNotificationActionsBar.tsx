@@ -1,76 +1,116 @@
 import React from 'react'
 import django from 'django'
-import { HoverButton } from '../../../../../apps/contrib/assets/HoverButton'
 
 interface ModerationNotificationActionsBarProps {
   isEditing?: boolean
   isBlocked?: boolean
   isHighlighted?: boolean
+  isUnread?: boolean
   itemPk?: number
+  itemType?: 'comment' | 'idea'
+  showModerationActions?: boolean
   onToggleForm?: (isEditing: boolean) => void
   onToggleBlock?: () => void
   onToggleHighlight?: () => void
+  onMarkResolved?: () => void
+  onReopen?: () => void
 }
 
 export const ModerationNotificationActionsBar = (props: ModerationNotificationActionsBarProps) => {
   const translated = {
-    blockText: django.gettext('Block'),
-    unblockText: django.gettext('Unblock'),
-    isBlockedText: django.gettext('Blocked'),
-    replyText: django.gettext('Add feedback'),
-    blockedText: django.gettext('This comment was blocked'),
-    highlightText: django.gettext('Highlight'),
-    unhighlightText: django.gettext('Unhighlight'),
-    isHighlightedText: django.gettext('Highlighted'),
-    unreadText: django.gettext('Unread'),
-    readText: django.gettext('Read'),
-    editText: django.gettext('Edit feedback')
+    giveFeedback: django.gettext('Give feedback'),
+    editFeedback: django.gettext('Edit feedback'),
+    markResolved: django.gettext('Mark as resolved'),
+    highlight: django.gettext('Highlight comment'),
+    hide: django.gettext('Hide from discussion'),
+    reopen: django.gettext('Reopen report')
   }
 
   const {
     isEditing,
     isBlocked,
     isHighlighted,
+    isUnread = true,
     itemPk,
+    itemType = 'comment',
+    showModerationActions = true,
     onToggleForm,
     onToggleBlock,
-    onToggleHighlight
+    onToggleHighlight,
+    onMarkResolved,
+    onReopen
   } = props
 
+  const idPrefix = 'moderation-notification-' + itemType + '-' + itemPk
+
+  if (isBlocked) {
+    return (
+      <div className="userdashboard-mod-actions">
+        <div className="userdashboard-mod-actions__right">
+          <button
+            id={idPrefix + '-reopen'}
+            className="btn btn--none userdashboard-mod-actions__btn"
+            type="button"
+            onClick={onReopen}
+          >
+            <i className="fas fa-arrow-rotate-left" aria-hidden="true" />
+            <span className="ms-2">{translated.reopen}</span>
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="d-flex flex-wrap justify-content-between">
+    <div className="userdashboard-mod-actions">
       <button
-        id={'moderation-notification-actions-bar-button-reply-' + itemPk}
-        className="btn px-0 userdashboard-mod-notification__btn"
+        id={idPrefix + '-reply'}
+        className="btn btn--none userdashboard-mod-actions__btn"
         type="button"
         onClick={() => onToggleForm?.(!!isEditing)}
       >
-        {isEditing
-          ? <i className="fas fa-pen" aria-hidden="true" />
-          : <i className="fas fa-reply" aria-hidden="true" />}
-        {isEditing
-          ? <span className="ms-2">{translated.editText}</span>
-          : <span className="ms-2">{translated.replyText}</span>}
+        <i
+          className={isEditing ? 'fas fa-pen' : 'fas fa-reply'}
+          aria-hidden="true"
+        />
+        <span className="ms-2">
+          {isEditing ? translated.editFeedback : translated.giveFeedback}
+        </span>
       </button>
-      <div>
-        <HoverButton
-          id={'moderation-notification-actions-bar-button-highlight-' + itemPk}
-          className="btn userdashboard-mod-notification__btn"
-          onClick={onToggleHighlight}
-          disabled={isBlocked}
-          icon={<i className="fas fa-highlighter" aria-hidden="true" />}
-          textMouseOff={isHighlighted ? translated.isHighlightedText : translated.highlightText}
-          textMouseOn={isHighlighted ? translated.unhighlightText : translated.highlightText}
-        />
-        <HoverButton
-          id={'moderation-notification-actions-bar-button-block-' + itemPk}
-          className="btn userdashboard-mod-notification__btn"
-          onClick={onToggleBlock}
-          disabled={isHighlighted}
-          icon={<i className="fas fa-ban" aria-hidden="true" />}
-          textMouseOff={isBlocked ? translated.isBlockedText : translated.blockText}
-          textMouseOn={isBlocked ? translated.unblockText : translated.blockText}
-        />
+      <div className="userdashboard-mod-actions__right">
+        {isUnread &&
+          <button
+            id={idPrefix + '-resolve'}
+            className="btn btn--none userdashboard-mod-actions__btn"
+            type="button"
+            onClick={onMarkResolved}
+          >
+            <i className="fas fa-box-archive" aria-hidden="true" />
+            <span className="ms-2">{translated.markResolved}</span>
+          </button>}
+        {showModerationActions && (isHighlighted
+          ? (
+            <button
+              id={idPrefix + '-block'}
+              className="btn btn--none userdashboard-mod-actions__btn userdashboard-mod-actions__btn--danger"
+              type="button"
+              onClick={onToggleBlock}
+            >
+              <i className="fas fa-eye-slash" aria-hidden="true" />
+              <span className="ms-2">{translated.hide}</span>
+            </button>
+            )
+          : (
+            <button
+              id={idPrefix + '-highlight'}
+              className="btn btn--none userdashboard-mod-actions__btn userdashboard-mod-actions__btn--primary"
+              type="button"
+              onClick={onToggleHighlight}
+            >
+              <i className="fas fa-highlighter" aria-hidden="true" />
+              <span className="ms-2">{translated.highlight}</span>
+            </button>
+            ))}
       </div>
     </div>
   )

@@ -4,11 +4,23 @@ export interface ModeratorFeedback {
   last_edit: string
 }
 
+export interface ModerationImage {
+  thumbnail: string
+  full: string
+}
+
+export interface ModerationStatusChoice {
+  value: string
+  label: string
+}
+
 export interface ModerationItem {
   pk: number
   item_type: 'comment' | 'idea'
   label: string
   text: string
+  text_preview?: string | null
+  image?: ModerationImage | null
   title?: string | null
   url: string
   moderate_url: string
@@ -23,6 +35,7 @@ export interface ModerationItem {
   is_blocked: boolean
   is_moderator_marked: boolean
   moderator_status?: string | null
+  moderator_status_choices?: ModerationStatusChoice[]
   moderator_status_display?: string | null
   moderator_feedback_text?: string | null
   moderator_feedback?: ModeratorFeedback | null

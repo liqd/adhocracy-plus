@@ -50,7 +50,7 @@ const mockedIdea = {
 
 /** MOCK DEFINITIONS END **/
 
-test('renders an idea with label and moderation feedback link', () => {
+test('renders an idea with label and inline feedback button', () => {
   const tree = render(
     <ModerationNotification
       notification={mockedIdea}
@@ -59,17 +59,31 @@ test('renders an idea with label and moderation feedback link', () => {
   )
   expect(screen.getByText(/example idea description/)).toBeTruthy()
   expect(screen.getByText('Idea')).toBeTruthy()
-  const link = tree.container.querySelector(
-    '#moderation-notification-actions-bar-button-reply-idea-5'
+  const button = tree.container.querySelector(
+    '#moderation-notification-idea-5-reply'
   )!
-  expect(link).toBeTruthy()
-  expect(link.getAttribute('href')).toBe(
-    '/liqd-orga/ideas/2022-00005/moderate/?next=%2F'
-  )
-  expect(link.textContent).toMatch(/Add feedback/i)
+  expect(button).toBeTruthy()
+  expect(button.getAttribute('href')).toBeNull()
+  expect(button.textContent).toMatch(/Give feedback/i)
   expect(
-    tree.container.querySelector('#moderation-notification-actions-bar-button-block-5')
+    tree.container.querySelector('#moderation-notification-idea-5-block')
   ).toBeNull()
+})
+
+test('shows the feedback form when adding feedback to an idea', () => {
+  const tree = render(
+    <ModerationNotification
+      notification={mockedIdea}
+      getUrlParams={() => ''}
+    />
+  )
+  fireEvent.click(
+    tree.container.querySelector(
+      '#moderation-notification-idea-5-reply'
+    )!
+  )
+  expect(screen.getByLabelText('Status')).toBeTruthy()
+  expect(screen.getByLabelText('Feedback')).toBeTruthy()
 })
 
 test('shows report marker for a reported idea', () => {
@@ -110,13 +124,69 @@ test('shows status badge and official feedback for an idea', () => {
         ...mockedIdea,
         moderator_status: 'ACCEPTED',
         moderator_status_display: 'Accepted',
-        moderator_feedback_text: 'Great idea'
+        moderator_feedback: {
+          pk: 3,
+          feedback_text: 'Great idea',
+          last_edit: '5. Dezember 2022, 15:38'
+        }
       }}
       getUrlParams={() => ''}
     />
   )
   expect(screen.getByText('Accepted')).toBeTruthy()
   expect(screen.getByText('Great idea')).toBeTruthy()
+})
+
+test('renders idea text with formatting and truncates long texts', () => {
+  const tree = render(
+    <ModerationNotification
+      notification={{
+        ...mockedIdea,
+        text: '<p>A <strong>bold</strong> idea description</p>',
+        text_preview: '<p>A <strong>bold</strong>…</p>'
+      }}
+      getUrlParams={() => ''}
+    />
+  )
+  const text = tree.container.querySelector('.userdashboard-mod-item__text')!
+  expect(text.innerHTML).toContain('<strong>bold</strong>')
+  expect(text.textContent).toContain('…')
+  fireEvent.click(screen.getByText('Read more'))
+  expect(text.textContent).not.toContain('…')
+  fireEvent.click(screen.getByText('Show less'))
+  expect(text.textContent).toContain('…')
+})
+
+test('opens the idea image in a dialog', () => {
+  const showModal = jest.fn()
+  const originalShowModal = typeof HTMLDialogElement !== 'undefined'
+    ? HTMLDialogElement.prototype.showModal
+    : undefined
+  if (typeof HTMLDialogElement !== 'undefined') {
+    HTMLDialogElement.prototype.showModal = showModal
+  }
+
+  const tree = render(
+    <ModerationNotification
+      notification={{
+        ...mockedIdea,
+        image: {
+          thumbnail: '/media/idea-thumb.jpg',
+          full: '/media/idea-full.jpg'
+        }
+      }}
+      getUrlParams={() => ''}
+    />
+  )
+
+  const thumbnail = tree.container.querySelector('.userdashboard-mod-item__image')!
+  expect(thumbnail.getAttribute('src')).toBe('/media/idea-thumb.jpg')
+  fireEvent.click(tree.container.querySelector('.userdashboard-mod-item__image-btn')!)
+  expect(showModal).toHaveBeenCalled()
+
+  if (typeof HTMLDialogElement !== 'undefined') {
+    HTMLDialogElement.prototype.showModal = originalShowModal!
+  }
 })
 
 test('Render <ModerationNotification>', () => {
@@ -151,13 +221,13 @@ test('showing blocked alert', async () => {
   const mockedFn = jest.fn()
   const tree = render(
     <ModerationNotification
-      notification={mockedNotification}
+      notification={{ ...mockedNotification, is_moderator_marked: true }}
       getUrlParams={() => ''}
       loadData={mockedFn}
     />
   )
   const blockButton = tree.container.querySelector(
-    '#moderation-notification-actions-bar-button-block-2'
+    '#moderation-notification-comment-2-block'
   )!
   fireEvent.click(blockButton)
   await waitFor(() => {
@@ -176,7 +246,7 @@ test('showing highlighted alert', async () => {
     />
   )
   const highlightButton = tree.container.querySelector(
-    '#moderation-notification-actions-bar-button-highlight-2'
+    '#moderation-notification-comment-2-highlight'
   )!
   fireEvent.click(highlightButton)
   await waitFor(() => {

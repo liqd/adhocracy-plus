@@ -62,15 +62,21 @@
 }
 
 .userdashboard-mod-feedback {
-    border-top: 1px solid $gray-lightest;
-    margin: $spacer (1.5 * -$spacer) 0 (1.5 * -$spacer);
-    padding: (1.5 * $spacer) (1.5 * $spacer) 0;
+    margin: $spacer 0;
+    padding: $spacer;
+    background-color: $bg-light;
+    border-radius: 5px;
 }
 
 .userdashboard-mod-feedback__header {
     font-weight: $demi-bold;
     display: flex;
     align-items: center;
+}
+
+.userdashboard-mod-feedback__date {
+    color: $text-color-gray;
+    font-size: $font-size-sm;
 }
 
 .userdashboard-mod-feedback__text {
@@ -141,4 +147,168 @@
     @media (min-width: $breakpoint) {
         min-width: revert;
     }
+}
+
+.userdashboard-mod-item__text {
+    overflow-wrap: anywhere;
+}
+
+.userdashboard-mod-item__text-toggle {
+    margin-bottom: $spacer;
+}
+
+.userdashboard-mod-item__image-btn {
+    display: block;
+    padding: 0;
+    margin-bottom: $spacer;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    overflow: hidden;
+    background: none;
+    cursor: zoom-in;
+}
+
+.userdashboard-mod-item__image {
+    display: block;
+    width: 96px;
+    height: 72px;
+    object-fit: cover;
+}
+
+.userdashboard-mod-item__image-modal {
+    max-width: 90vw;
+
+    @media (min-width: $breakpoint) {
+        max-width: 1000px;
+    }
+
+    .a4-modal__body img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+}
+
+.general-form .ck-editor__editable {
+    min-height: 100px;
+}
+
+.moderation-projects__filters {
+    margin-top: $spacer;
+}
+
+.moderation-filter {
+    display: flex;
+}
+
+.moderation-filter__btn {
+    padding: 0.75rem 1rem;
+    border: 1px solid $border-color;
+    background-color: $white;
+    color: $text-color;
+    font-size: $font-size-sm;
+    line-height: 1;
+    cursor: pointer;
+
+    & + & {
+        border-left: 0;
+    }
+
+    &:first-child {
+        border-radius: 4px 0 0 4px;
+    }
+
+    &:last-child {
+        border-radius: 0 4px 4px 0;
+    }
+
+    &:hover {
+        background-color: $bg-light;
+    }
+
+    &.is-active {
+        border-color: $text-color;
+        background-color: $text-color;
+        color: $white;
+    }
+
+    &:focus-visible {
+        position: relative;
+        z-index: 1;
+        outline: 2px solid $link-color;
+        outline-offset: 2px;
+    }
+}
+
+.moderation-projects__sort {
+    .btn--select {
+        width: auto;
+    }
+}
+
+.moderation-projects__count {
+    font-size: 0.875rem;
+}
+
+.userdashboard-mod-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacer;
+    margin-bottom: $spacer;
+}
+
+.userdashboard-mod-actions__right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: (1.5 * $spacer);
+    margin-left: auto;
+}
+
+.userdashboard-mod-actions__btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: $text-color;
+    font-size: $font-size-sm;
+
+    &:hover,
+    &:focus-visible {
+        background: none;
+        text-decoration: underline;
+    }
+
+    &--primary {
+        color: $brand-primary;
+    }
+
+    &--danger {
+        color: $brand-danger;
+    }
+}
+
+.userdashboard-mod-item__hidden {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacer;
+    padding: $spacer;
+    background-color: $bg-light;
+    color: $text-color-gray;
+    font-size: $font-size-sm;
+}
+
+.userdashboard-mod-feedback__resolve {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0;
+    font-size: $font-size-sm;
+}
+
+.btn.btn--primary-filled {
+    @include button-bg($brand-primary, $brand-primary, $white, 10%);
 }

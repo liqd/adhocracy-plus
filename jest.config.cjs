@@ -8,7 +8,7 @@ const config = {
     '\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/styleMock.js',
     '\\.(gif|ttf|eot|svg)$': '<rootDir>/__mocks__/fileMock.js',
     '(django)': '<rootDir>/__mocks__/djangoMock.js',
-    '^(\\.\\/ModerationFeedbackForm$|^\\.\\/ModerationFeedback$)': '<rootDir>/__mocks__/customComponentMock.js',
+    '^\\.\\/ModerationFeedback$': '<rootDir>/__mocks__/customComponentMock.js',
     '^(\\.\\/api$)': '<rootDir>/__mocks__/apiMock.js',
     '(adhocracy4)': '<rootDir>/__mocks__/a4Mock.js'
   },

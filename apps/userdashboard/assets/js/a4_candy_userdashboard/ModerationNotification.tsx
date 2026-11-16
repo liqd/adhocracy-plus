@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import django from 'django'
 import api from './api'
-import { ModerationFeedbackForm } from './ModerationFeedbackForm'
 import { ModerationFeedback } from './ModerationFeedback'
+import { ModerationFeedbackEditorForm } from './ModerationFeedbackEditorForm'
 import { ModerationNotificationActionsBar } from './ModerationNotificationActionsBar'
 import { alert as Alert } from 'adhocracy4'
 import type { ModerationItem } from './types'
@@ -21,11 +21,16 @@ const translated = {
   commentUnhighlighted: django.gettext('Comment unhighlighted successfully.'),
   notificationRead: django.gettext('Notification successfully marked as read.'),
   notificationUnread: django.gettext('Notification successfully marked as unread.'),
+  hiddenFromDiscussion: django.gettext('Hidden from discussion by Moderator'),
   aiClassified: django.gettext('AI'),
   postedComment: django.gettext('posted a {}comment{}'),
   submittedIdea: django.gettext('submitted the idea'),
-  addFeedback: django.gettext('Add feedback'),
-  officialFeedback: django.gettext('Official feedback')
+  statusSaved: django.gettext('Processing status saved.'),
+  readMore: django.gettext('Read more'),
+  showLess: django.gettext('Show less'),
+  imagePreview: django.gettext('Image preview'),
+  close: django.gettext('Close'),
+  saveFailed: django.gettext('Your changes could not be saved. Please try again.')
 }
 
 interface AlertValue {
@@ -40,14 +45,17 @@ interface ModerationNotificationProps {
   getUrlParams?: () => string
   loadData?: () => void
   onChangeStatus?: (error: unknown) => void
+  ckeditorConfig?: string
 }
 
 export const ModerationNotification = (props: ModerationNotificationProps) => {
   const { notification } = props
   const isIdea = notification.item_type === 'idea'
   const [showFeedbackForm, setShowFeedbackForm] = useState(false)
-  const [isEditing, setIsEditing] = useState(false)
+  const [showFullText, setShowFullText] = useState(false)
   const [alert, setAlert] = useState<AlertValue>()
+  const imageDialogRef = useRef<HTMLDialogElement>(null)
+  const imageButtonRef = useRef<HTMLButtonElement>(null)
 
   function getLink (string: string, url: string) {
     const splitted = string.split('{}')
@@ -72,7 +80,14 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
 
   // **** Start feedback methods ****
 
-  const handleFeedbackSubmit = async (payload: string) => {
+  const feedbackDetailUrl = () => {
+    if (isIdea) {
+      return notification.feedback_api_url
+    }
+    return notification.feedback_api_url + notification.moderator_feedback?.pk + '/'
+  }
+
+  const handleFeedbackSubmit = async (payload: string, markResolved: boolean) => {
     const [getResponse] = await api.fetch<any[]>({
       url: notification.feedback_api_url,
       method: 'GET'
@@ -89,7 +104,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
       const [, error] = await api.fetch({
         url: notification.feedback_api_url,
         method: 'POST',
-        body: { feedback_text: payload }
+        body: { feedback_text: payload, mark_resolved: markResolved }
       })
       if (error) {
         setAlert({
@@ -109,18 +124,17 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
     }
   }
 
-  const handleFeedbackEdit = async (payload: string) => {
+  const handleFeedbackEdit = async (payload: string, markResolved: boolean) => {
     const [, error] = await api.fetch({
-      url: notification.feedback_api_url + notification.moderator_feedback?.pk + '/',
+      url: feedbackDetailUrl(),
       method: 'PUT',
-      body: { feedback_text: payload }
+      body: { feedback_text: payload, mark_resolved: markResolved }
     })
     if (error) {
       props.onChangeStatus?.(error)
     } else {
       props.loadData?.()
       setShowFeedbackForm(false)
-      setIsEditing(false)
       setAlert({
         type: 'success',
         message: translated.feedbackEdited,
@@ -130,11 +144,20 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
   }
 
   const handleFeedbackDelete = async () => {
-    await api.fetch({
-      url: notification.feedback_api_url + notification.moderator_feedback?.pk + '/',
+    const [, error] = await api.fetch({
+      url: feedbackDetailUrl(),
       method: 'DELETE'
     })
+    if (error) {
+      setAlert({
+        type: 'error',
+        message: translated.saveFailed,
+        timeInMs: alertTime
+      })
+      return
+    }
     props.loadData?.()
+    setShowFeedbackForm(false)
     setAlert({
       type: 'success',
       message: translated.feedbackDeleted,
@@ -142,9 +165,90 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
     })
   }
 
-  function toggleModerationFeedbackForm (isEditing: boolean) {
-    if (isEditing) setIsEditing(true)
+  const handleIdeaFeedbackSubmit = async (payload: { feedback: string, status: string | null, markResolved: boolean }) => {
+    const currentFeedback = notification.moderator_feedback?.feedback_text || ''
+    const statusChanged = payload.status !== (notification.moderator_status || null)
+    const feedbackChanged = payload.feedback !== currentFeedback
+    const clearFeedback = feedbackChanged &&
+      payload.feedback.trim() === '' &&
+      !!notification.moderator_feedback
+
+    if (!feedbackChanged && !statusChanged) {
+      setShowFeedbackForm(false)
+      return
+    }
+
+    let error: unknown
+    let alertMessage = translated.statusSaved
+
+    if (clearFeedback) {
+      const [, deleteError] = await api.fetch({
+        url: notification.feedback_api_url,
+        method: 'DELETE'
+      })
+      error = deleteError
+      alertMessage = translated.feedbackDeleted
+      if (!deleteError && statusChanged) {
+        const [, statusError] = await api.fetch({
+          url: notification.api_url,
+          method: 'PATCH',
+          body: { moderator_status: payload.status }
+        })
+        error = statusError
+      }
+    } else if (feedbackChanged) {
+      const [, feedbackError] = await api.fetch({
+        url: notification.feedback_api_url,
+        method: notification.moderator_feedback ? 'PUT' : 'POST',
+        body: {
+          feedback_text: payload.feedback,
+          mark_resolved: payload.markResolved,
+          ...(statusChanged ? { moderator_status: payload.status } : {})
+        }
+      })
+      error = feedbackError
+      alertMessage = notification.moderator_feedback
+        ? translated.feedbackEdited
+        : translated.feedbackAdded
+    } else if (statusChanged) {
+      const [, statusError] = await api.fetch({
+        url: notification.api_url,
+        method: 'PATCH',
+        body: { moderator_status: payload.status }
+      })
+      error = statusError
+      if (!statusError && payload.markResolved && notification.is_unread) {
+        await api.fetch({
+          url: (props.apiUrl || '') + 'mark_read/' + (props.getUrlParams?.() || ''),
+          method: 'GET'
+        })
+      }
+    }
+
+    if (error) {
+      setAlert({
+        type: 'error',
+        message: String(error) || translated.saveFailed,
+        timeInMs: alertTime
+      })
+    } else {
+      props.loadData?.()
+      setShowFeedbackForm(false)
+      setAlert({
+        type: 'success',
+        message: alertMessage,
+        timeInMs: alertTime
+      })
+    }
+  }
+
+  function toggleModerationFeedbackForm () {
     setShowFeedbackForm(!showFeedbackForm)
+  }
+
+  function hideFromDiscussion () {
+    setShowFeedbackForm(false)
+    toggleIsBlocked()
   }
 
   // **** End feedback methods ****
@@ -179,6 +283,27 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
     }
   }
 
+  async function markResolved () {
+    const [, error] = await api.fetch<any>({
+      url: (props.apiUrl || '') + 'mark_read/' + (props.getUrlParams?.() || ''),
+      method: 'GET'
+    })
+    if (error) {
+      setAlert({
+        type: 'error',
+        message: String(error),
+        timeInMs: alertTime
+      })
+    } else {
+      props.loadData?.()
+      setAlert({
+        type: 'success',
+        message: translated.notificationRead,
+        timeInMs: alertTime
+      })
+    }
+  }
+
   async function toggleIsBlocked () {
     const [response, error] =
       await api.fetch<any>({
@@ -197,6 +322,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
         timeInMs: alertTime
       })
     } else {
+      props.loadData?.()
       setAlert({
         type: 'success',
         message: alertMessage,
@@ -223,6 +349,7 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
         timeInMs: alertTime
       })
     } else {
+      props.loadData?.()
       setAlert({
         type: 'success',
         message: alertMessage,
@@ -250,6 +377,8 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
 
   const {
     text: itemText,
+    text_preview: itemTextPreview,
+    image: itemImage,
     url: itemUrl,
     last_edit: created,
     is_modified: isModified,
@@ -290,10 +419,28 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
     }
     return (
       <>
+        <i className="far fa-comment me-1" aria-hidden="true" />
         {userProfileUrl ? <a href={userProfileUrl}>{userName}</a> : userName} {getLink(translated.postedComment, itemUrl)}
       </>
     )
   }
+
+  function openImagePreview () {
+    imageDialogRef.current?.showModal()
+  }
+
+  function closeImagePreview () {
+    imageDialogRef.current?.close()
+  }
+
+  const displayedText = isIdea && !showFullText && itemTextPreview
+    ? itemTextPreview
+    : itemText
+
+  const ideaTextId = 'moderation-idea-text-' + notification.pk
+  const imagePreviewLabel = ideaTitle
+    ? django.interpolate(django.gettext('Image preview: {}'), [ideaTitle])
+    : translated.imagePreview
 
   const labelClass = 'userdashboard-mod-item__label userdashboard-mod-item__label--' + notification.item_type
 
@@ -356,59 +503,113 @@ export const ModerationNotification = (props: ModerationNotificationProps) => {
             </p>
           </div>}
 
-        <p>{itemText}</p>
-
-        {isIdea && notification.moderator_feedback_text &&
-          <div className="userdashboard-mod-item__feedback">
-            <span className="userdashboard-mod-item__feedback-title">{translated.officialFeedback}</span>
-            <p className="mb-0">{notification.moderator_feedback_text}</p>
-          </div>}
-
         {isIdea
           ? (
-            <div className="d-flex flex-wrap justify-content-between">
-              <a
-                id={'moderation-notification-actions-bar-button-reply-idea-' + notification.pk}
-                className="btn px-0 userdashboard-mod-notification__btn"
-                href={notification.moderate_url
-                  ? notification.moderate_url + '?next=' + encodeURIComponent(window.location.pathname + window.location.search)
-                  : notification.moderate_url}
-              >
-                <i className="fas fa-reply" aria-hidden="true" />
-                <span className="ms-2">{translated.addFeedback}</span>
-              </a>
-            </div>
-            )
-          : (
             <>
-              <ModerationNotificationActionsBar
-                itemPk={notification.pk}
-                isEditing={!!notification.moderator_feedback}
-                isBlocked={notification.is_blocked}
-                isHighlighted={notification.is_moderator_marked}
-                onToggleForm={(isEditing) => toggleModerationFeedbackForm(isEditing)}
-                onToggleBlock={() => toggleIsBlocked()}
-                onToggleHighlight={() => toggleIsHighlighted()}
+              <div
+                id={ideaTextId}
+                className="ck-content userdashboard-mod-item__text"
+                aria-live="polite"
+                dangerouslySetInnerHTML={{ __html: displayedText }}
               />
-              {notification.moderator_feedback && !showFeedbackForm &&
-                <ModerationFeedback
-                  feedback={notification.moderator_feedback}
-                  onDelete={handleFeedbackDelete}
-                  onEdit={() => {
-                    setShowFeedbackForm(true)
-                    setIsEditing(true)
-                  }}
-                />}
+              {itemTextPreview &&
+                <button
+                  type="button"
+                  className="btn btn--none px-0 userdashboard-mod-item__text-toggle"
+                  aria-expanded={showFullText}
+                  aria-controls={ideaTextId}
+                  onClick={() => setShowFullText(!showFullText)}
+                >
+                  {showFullText ? translated.showLess : translated.readMore}
+                </button>}
             </>
-            )}
+            )
+          : <p>{itemText}</p>}
+
+        {isIdea && itemImage &&
+          <>
+            <button
+              ref={imageButtonRef}
+              type="button"
+              className="userdashboard-mod-item__image-btn"
+              onClick={openImagePreview}
+              aria-haspopup="dialog"
+              aria-label={imagePreviewLabel}
+            >
+              <img
+                className="userdashboard-mod-item__image"
+                src={itemImage.thumbnail}
+                alt=""
+              />
+            </button>
+            <dialog
+              ref={imageDialogRef}
+              className="a4-modal userdashboard-mod-item__image-modal"
+              aria-label={imagePreviewLabel}
+              onClose={() => imageButtonRef.current?.focus()}
+            >
+              <div className="a4-modal__content">
+                <header className="a4-modal__header">
+                  <button
+                    className="a4-modal__close"
+                    aria-label={translated.close}
+                    onClick={closeImagePreview}
+                    type="button"
+                  >
+                    <i className="fa fa-times" aria-hidden="true" />
+                  </button>
+                </header>
+                <div className="a4-modal__body">
+                  <img src={itemImage.full} alt={ideaTitle || ''} />
+                </div>
+              </div>
+            </dialog>
+          </>}
+
+        {notification.is_blocked &&
+          <div className="userdashboard-mod-item__hidden">
+            <i className="far fa-eye-slash me-1" aria-hidden="true" />
+            <span>{translated.hiddenFromDiscussion} · {created}</span>
+          </div>}
+
+        <ModerationNotificationActionsBar
+          itemPk={notification.pk}
+          itemType={notification.item_type}
+          isEditing={!!notification.moderator_feedback}
+          isBlocked={notification.is_blocked}
+          isHighlighted={notification.is_moderator_marked}
+          isUnread={notification.is_unread}
+          showModerationActions={!isIdea}
+          onToggleForm={() => toggleModerationFeedbackForm()}
+          onToggleBlock={() => hideFromDiscussion()}
+          onToggleHighlight={() => toggleIsHighlighted()}
+          onMarkResolved={() => markResolved()}
+          onReopen={() => toggleIsBlocked()}
+        />
+        {!notification.is_blocked && notification.moderator_feedback && !showFeedbackForm &&
+          <ModerationFeedback feedback={notification.moderator_feedback} />}
+        {showFeedbackForm &&
+          <ModerationFeedbackEditorForm
+            key={notification.moderator_feedback?.pk || 'new'}
+            item={notification}
+            initialFeedback={notification.moderator_feedback}
+            ckeditorConfig={props.ckeditorConfig}
+            showStatus={isIdea}
+            onSubmit={(payload) => {
+              if (isIdea) {
+                return handleIdeaFeedbackSubmit(payload)
+              }
+              if (notification.moderator_feedback) {
+                return handleFeedbackEdit(payload.feedback, payload.markResolved)
+              }
+              return handleFeedbackSubmit(payload.feedback, payload.markResolved)
+            }}
+            onCancel={() => {
+              setShowFeedbackForm(false)
+            }}
+            onDelete={notification.moderator_feedback ? handleFeedbackDelete : undefined}
+          />}
       </div>
-      {!isIdea && showFeedbackForm &&
-        <ModerationFeedbackForm
-          onSubmit={(payload) => handleFeedbackSubmit(payload)}
-          onEditSubmit={(payload) => handleFeedbackEdit(payload)}
-          initialFeedback={notification.moderator_feedback}
-          editing={isEditing}
-        />}
       <div className="mb-3">
         <Alert {...alert} onClick={() => setAlert(undefined)} />
       </div>

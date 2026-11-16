@@ -1,3 +1,4 @@
+from django.db import transaction
 from django.db.models import CharField
 from django.db.models import Count
 from django.db.models import ExpressionWrapper
@@ -10,6 +11,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.fields import ChoiceField
+from rest_framework.fields import empty
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
@@ -110,6 +113,18 @@ class ModerationCommentViewSet(
 class ModerationItemPermission(ViewSetRulesPermission):
     def get_model_cls(self, request, view):
         return Comment
+
+    def has_permission(self, request, view):
+        if not view.detail:
+            obj = view.get_permission_object()
+            return self.has_object_permission(request, view, obj)
+        return super().has_permission(request, view)
+
+
+def _review_counts(*querysets):
+    total = sum(queryset.count() for queryset in querysets)
+    unread = sum(queryset.filter(is_reviewed=False).count() for queryset in querysets)
+    return {"unread": unread, "read": total - unread, "total": total}
 
 
 class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
@@ -231,19 +246,52 @@ class ModerationItemViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             if row["pk"] in items[row["item_type"]]
         ]
 
+    @action(detail=False, methods=["get"], url_path="counts")
+    def counts(self, request, **kwargs):
+        comments = helpers.get_all_comments_project(self.project)
+        reported_comments = comments.annotate(
+            num_reports=Count("reports", distinct=True)
+        ).filter(num_reports__gt=0)
+        ideas = Idea.objects.filter(module__project=self.project)
+        map_ideas = MapIdea.objects.filter(module__project=self.project)
+
+        return Response(
+            {
+                "comments": _review_counts(comments),
+                "reported": _review_counts(reported_comments),
+                "ideas": _review_counts(ideas, map_ideas),
+                "all": _review_counts(comments, ideas, map_ideas),
+            }
+        )
+
+    @action(detail=False, methods=["post"], url_path="mark_all_read")
+    def mark_all_read(self, request, **kwargs):
+        updated = (
+            helpers.get_all_comments_project(self.project)
+            .filter(is_reviewed=False)
+            .update(is_reviewed=True)
+        )
+        for model in (Idea, MapIdea):
+            updated += model.objects.filter(
+                module__project=self.project, is_reviewed=False
+            ).update(is_reviewed=True)
+        return Response({"updated": updated})
+
     @property
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
             GET="a4_candy_userdashboard.view_moderation_comment",
             OPTIONS="a4_candy_userdashboard.view_moderation_comment",
+            POST="a4_candy_userdashboard.change_moderation_comment",
         )
 
 
 class ModerationIdeaViewSet(
     mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
     viewsets.GenericViewSet,
 ):
-    """Handles the read state of ideas in the moderation dashboard."""
+    """Handles the read state and feedback of ideas in the moderation dashboard."""
 
     model = Idea
     serializer_class = serializers.ModerationIdeaSerializer
@@ -279,11 +327,104 @@ class ModerationIdeaViewSet(
         idea.save(ignore_modified=True)
         return Response(data={"is_unread": True}, status=200)
 
+    @action(
+        detail=True,
+        methods=["get", "post", "put", "patch", "delete"],
+        url_path="feedback",
+    )
+    def feedback(self, request, **kwargs):
+        idea = self.get_object()
+        feedback = idea.moderator_feedback_text
+
+        if request.method == "GET":
+            if feedback is None:
+                return Response(None)
+            return Response(serializers.ModeratorFeedbackSerializer(feedback).data)
+
+        moderator_status = self._get_moderator_status(request, idea)
+        mark_resolved = request.data.get("mark_resolved", True)
+
+        if request.method == "POST":
+            return self._save_feedback(
+                request, idea, feedback, moderator_status, mark_resolved
+            )
+
+        if feedback is None:
+            return Response(status=404)
+
+        if request.method in ("PUT", "PATCH"):
+            return self._update_feedback(
+                request, idea, feedback, moderator_status, mark_resolved
+            )
+
+        return self._delete_feedback(idea, feedback)
+
+    @staticmethod
+    def _get_moderator_status(request, idea):
+        if "moderator_status" not in request.data:
+            return empty
+        return ChoiceField(
+            choices=idea.moderator_status_choices, allow_null=True
+        ).run_validation(request.data["moderator_status"])
+
+    @staticmethod
+    def _save_feedback(request, idea, feedback, moderator_status, mark_resolved):
+        with transaction.atomic():
+            if feedback is None:
+                serializer = serializers.ModeratorFeedbackSerializer(data=request.data)
+                serializer.is_valid(raise_exception=True)
+                feedback = serializer.save(creator=request.user)
+                idea.moderator_feedback_text = feedback
+                status_code = 201
+            else:
+                serializer = serializers.ModeratorFeedbackSerializer(
+                    feedback, data=request.data, partial=True
+                )
+                serializer.is_valid(raise_exception=True)
+                serializer.save()
+                status_code = 200
+
+            if moderator_status is not empty:
+                idea.moderator_status = moderator_status
+            if mark_resolved:
+                idea.is_reviewed = True
+            idea.save(ignore_modified=True)
+        return Response(serializer.data, status=status_code)
+
+    @staticmethod
+    def _update_feedback(request, idea, feedback, moderator_status, mark_resolved):
+        with transaction.atomic():
+            serializer = serializers.ModeratorFeedbackSerializer(
+                feedback,
+                data=request.data,
+                partial=request.method == "PATCH",
+            )
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            if moderator_status is not empty:
+                idea.moderator_status = moderator_status
+            if mark_resolved:
+                idea.is_reviewed = True
+            idea.save(ignore_modified=True)
+        return Response(serializer.data)
+
+    @staticmethod
+    def _delete_feedback(idea, feedback):
+        with transaction.atomic():
+            idea.moderator_feedback_text = None
+            idea.save(ignore_modified=True)
+            feedback.delete()
+        return Response(status=204)
+
     @property
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
             GET="a4_candy_userdashboard.view_moderation_comment",
             OPTIONS="a4_candy_userdashboard.view_moderation_comment",
+            POST="a4_candy_userdashboard.change_moderation_comment",
+            PUT="a4_candy_userdashboard.change_moderation_comment",
+            PATCH="a4_candy_userdashboard.change_moderation_comment",
+            DELETE="a4_candy_userdashboard.change_moderation_comment",
         )
 
 

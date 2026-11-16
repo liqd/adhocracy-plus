@@ -1,5 +1,6 @@
 from django.urls import reverse
 from django.utils.html import strip_tags
+from django.utils.text import Truncator
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
@@ -12,6 +13,19 @@ from apps.contrib.templatetags.item_tags import get_item_url
 from apps.ideas.models import Idea
 from apps.mapideas.models import MapIdea
 from apps.moderatorfeedback.serializers import ModeratorCommentFeedbackSerializer
+from apps.moderatorfeedback.serializers import ModeratorFeedbackSerializer
+
+IDEA_TEXT_MAX_CHARS = 500
+
+
+def get_idea_image(idea):
+    if _is_hidden(idea) or not idea.image:
+        return None
+    thumbnailer = get_thumbnailer(idea.image)
+    return {
+        "thumbnail": thumbnailer["idea_thumbnail"].url,
+        "full": thumbnailer["idea_image"].url,
+    }
 
 
 def _is_hidden(instance):
@@ -154,6 +168,8 @@ class ModerationItemMixin(serializers.Serializer):
     item_type = serializers.SerializerMethodField()
     label = serializers.SerializerMethodField()
     text = serializers.SerializerMethodField()
+    text_preview = serializers.SerializerMethodField()
+    image = serializers.SerializerMethodField()
     title = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
     moderate_url = serializers.SerializerMethodField()
@@ -166,6 +182,8 @@ class ModerationCommentItemSerializer(ModerationItemMixin, ModerationCommentSeri
             "item_type",
             "label",
             "text",
+            "text_preview",
+            "image",
             "title",
             "url",
             "moderate_url",
@@ -180,6 +198,12 @@ class ModerationCommentItemSerializer(ModerationItemMixin, ModerationCommentSeri
 
     def get_text(self, comment):
         return comment.comment
+
+    def get_text_preview(self, comment):
+        return None
+
+    def get_image(self, comment):
+        return None
 
     def get_title(self, comment):
         return None
@@ -205,7 +229,10 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
     is_moderator_marked = serializers.SerializerMethodField()
     num_reports = serializers.SerializerMethodField()
     moderator_feedback = serializers.SerializerMethodField()
-    moderator_status = serializers.SerializerMethodField()
+    moderator_status = serializers.ChoiceField(
+        choices=Idea.moderator_status_choices, allow_null=True, required=False
+    )
+    moderator_status_choices = serializers.SerializerMethodField()
     moderator_status_display = serializers.SerializerMethodField()
     moderator_feedback_text = serializers.SerializerMethodField()
     feedback_api_url = serializers.SerializerMethodField()
@@ -220,6 +247,8 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
             "item_type",
             "label",
             "text",
+            "text_preview",
+            "image",
             "title",
             "url",
             "moderate_url",
@@ -232,6 +261,7 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
             "num_reports",
             "moderator_feedback",
             "moderator_status",
+            "moderator_status_choices",
             "moderator_status_display",
             "moderator_feedback_text",
             "feedback_api_url",
@@ -247,7 +277,18 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
         return _("Idea")
 
     def get_text(self, idea):
-        return strip_tags(idea.description)
+        return idea.description
+
+    def get_text_preview(self, idea):
+        if not idea.description:
+            return None
+        truncated = Truncator(idea.description).chars(IDEA_TEXT_MAX_CHARS, html=True)
+        if truncated == idea.description:
+            return None
+        return truncated
+
+    def get_image(self, idea):
+        return get_idea_image(idea)
 
     def get_title(self, idea):
         return idea.name
@@ -290,10 +331,16 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
         return getattr(idea, "num_reports", 0)
 
     def get_moderator_feedback(self, idea):
-        return None
+        feedback = idea.moderator_feedback_text
+        if feedback is None:
+            return None
+        return ModeratorFeedbackSerializer(feedback).data
 
-    def get_moderator_status(self, idea):
-        return idea.moderator_status
+    def get_moderator_status_choices(self, idea):
+        return [
+            {"value": value, "label": str(label)}
+            for value, label in idea.moderator_status_choices
+        ]
 
     def get_moderator_status_display(self, idea):
         if not idea.moderator_status:
@@ -307,7 +354,23 @@ class ModerationIdeaSerializer(ModerationItemMixin, serializers.ModelSerializer)
         return strip_tags(feedback.feedback_text)
 
     def get_feedback_api_url(self, idea):
-        return ""
+        route = (
+            "moderationmapideas-feedback"
+            if isinstance(idea, MapIdea)
+            else "moderationideas-feedback"
+        )
+        return reverse(
+            route,
+            kwargs={"project_pk": idea.module.project_id, "pk": idea.pk},
+        )
+
+    def update(self, instance, validated_data):
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        if instance.moderator_status:
+            instance.is_reviewed = True
+        instance.save(ignore_modified=True)
+        return instance
 
     def get_user_name(self, idea):
         return get_creator_name(idea)

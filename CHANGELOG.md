@@ -8,7 +8,14 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+
+- Moderation dashboard: ideas show their formatted text, images and inline official feedback
+
 ### Changed
+
+- Moderation dashboard: projects can be filtered by open/resolved status and sorted
+- Moderation dashboard: comments and ideas can be filtered by read status and resolved or hidden directly in the list
+
 ### Fixed
 
 

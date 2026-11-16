@@ -1,62 +1,18 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom'
 import { ModerationFeedback } from '../ModerationFeedback'
 
-test('ModerationFeedback with optimal values', () => {
+test('ModerationFeedback renders title, date and text', () => {
   const mockProps = {
     feedback_text: 'test feedback',
     last_edit: '20. April 2022, 3 PM',
     pk: 1
   }
-  render(
-    <ModerationFeedback feedback={mockProps} />
-  )
-  const feedback = screen.getByText('test feedback')
-  expect(feedback).toBeTruthy()
-})
 
-test('ModerationFeedback keeps a space before the edit date', () => {
-  const mockProps = {
-    feedback_text: 'test feedback',
-    last_edit: '20. April 2022, 3 PM',
-    pk: 1
-  }
-  render(
-    <ModerationFeedback feedback={mockProps} />
-  )
-  expect(screen.getByText('Last edit was on 20. April 2022, 3 PM')).toBeTruthy()
-})
+  render(<ModerationFeedback feedback={mockProps} />)
 
-test('ModerationFeedback onDelete', () => {
-  const mockProps = {
-    feedback_text: 'test feedback',
-    last_edit: '20. April 2022, 3 PM',
-    pk: 1
-  }
-  const mockOnDelete = jest.fn()
-  const tree = render(
-    <ModerationFeedback
-      feedback={mockProps}
-      onDelete={mockOnDelete}
-    />)
-  const deleteButton = tree.container.querySelector('#delete-input')!
-  fireEvent.click(deleteButton)
-  expect(mockOnDelete).toHaveBeenCalled()
-})
-
-test('ModerationFeedback onEdit', () => {
-  const mockProps = {
-    feedback_text: 'test feedback',
-    last_edit: '20. April 2022, 3 PM',
-    pk: 1
-  }
-  const mockOnEdit = jest.fn()
-  const tree = render(
-    <ModerationFeedback
-      feedback={mockProps}
-      onEdit={mockOnEdit}
-    />)
-  const editButton = tree.container.querySelector('#edit-input')!
-  fireEvent.click(editButton)
-  expect(mockOnEdit).toHaveBeenCalled()
+  expect(screen.getByText('Moderator')).toBeTruthy()
+  expect(screen.getByText('20. April 2022, 3 PM')).toBeTruthy()
+  expect(screen.getByText('test feedback')).toBeTruthy()
 })
